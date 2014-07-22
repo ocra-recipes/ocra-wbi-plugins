@@ -26,6 +26,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src
                     )
 
 TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
+                                     ${ICUB_LIBRARIES}
                                      ${iDynTree_LIBRARIES}
                                      ${yarpWholeBodyInterface_LIBRARIES})
 
