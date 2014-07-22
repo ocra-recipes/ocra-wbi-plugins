@@ -1,2 +1,3 @@
 add_subdirectory(basicWholeBodyInterfaceModule)
 add_subdirectory(basicWholeBodyControlModule)
+add_subdirectory(ISIRControllerYarpTest)
