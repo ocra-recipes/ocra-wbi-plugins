@@ -88,6 +88,15 @@ basicWholeBodyInterfaceModule::basicWholeBodyInterfaceModule()
 
 bool basicWholeBodyInterfaceModule::configure(ResourceFinder &rf)
 {
+    //--------------------------READ FROM CONFIGURATION----------------------
+    if( rf.check("robot") )
+    {
+        robotName = rf.find("robot").asString().c_str();
+    }
+    if( rf.check("local") )
+    {
+        moduleName = rf.find("local").asString().c_str();
+    }
     //--------------------------WHOLE BODY INTERFACE--------------------------
     iCub::iDynTree::iCubTree_version_tag icub_version;
     iCubVersionFromRf(rf,icub_version);
