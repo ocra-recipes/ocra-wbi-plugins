@@ -44,16 +44,27 @@ bool basicWholeBodyControlThread::threadInit()
     qRad.resize(robot->getDoFs());
     printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
 
+    // Set all declared joints in module to TORQUE mode
+    bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, -1);
     return true;
 }
 
 //*************************************************************************************************************************
 void basicWholeBodyControlThread::run()
 {
+    // Move this to header so can resize once
     yarp::sig::Vector torques;
+    yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 10.0);
     torques.resize(robot->getDoFs());
     bool res = robot->getEstimates(ESTIMATE_JOINT_POS, qRad.data(), -1.0);
     bool res2 = robot->getEstimates(ESTIMATE_JOINT_TORQUE, torques.data(), -1.0);
+
+    // prepare the matrices for WBC
+
+    // compute desired torque from WBC
+
+    // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
+    robot->setControlReference(torques_cmd.data());
 
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
 
