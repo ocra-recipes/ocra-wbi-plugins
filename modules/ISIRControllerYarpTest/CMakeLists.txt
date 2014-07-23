@@ -71,7 +71,5 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} iDyn
                                      ${PC_ORC_FRAMEWORK_LIBRARIES}
                                      )
                                      
-
-
-
+INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
 

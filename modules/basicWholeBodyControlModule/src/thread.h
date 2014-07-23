@@ -31,6 +31,8 @@
 
 #include <wbi/wbi.h>
 
+#include "orcWbiModel.h"
+
 using namespace yarp::os;
 using namespace yarp::sig;
 
@@ -48,12 +50,14 @@ class basicWholeBodyControlThread: public RateThread
     string name;
     string robotName;
     wholeBodyInterface *robot;
+    orcWbiModel *orcModel;
     yarp::os::Property options;
 
     // Member variables
     double printPeriod;
     double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
-    yarp::sig::Vector qRad; // vector that contains the encoders readed from the robot
+    yarp::sig::Vector fb_qRad; // vector that contains the encoders read from the robot
+    yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
 public:
     basicWholeBodyControlThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);

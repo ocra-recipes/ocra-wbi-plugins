@@ -16,6 +16,8 @@
 */
 
 #include "thread.h"
+#include "orcWbiModel.h"
+
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Log.h>
@@ -35,13 +37,16 @@ basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
                                                             )
     : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
 {
+    bool isFreeBase = false;
+    orcModel = new orcWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     printCountdown = 0;
 }
 
 //*************************************************************************************************************************
 bool basicWholeBodyControlThread::threadInit()
 {
-    qRad.resize(robot->getDoFs());
+    fb_qRad.resize(robot->getDoFs());
+    fb_torque.resize(robot->getDoFs());
     printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
 
     // Set all declared joints in module to TORQUE mode
@@ -53,15 +58,14 @@ bool basicWholeBodyControlThread::threadInit()
 void basicWholeBodyControlThread::run()
 {
     // Move this to header so can resize once
-    yarp::sig::Vector torques;
-    yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 10.0);
-    torques.resize(robot->getDoFs());
-    bool res = robot->getEstimates(ESTIMATE_JOINT_POS, qRad.data(), -1.0);
-    bool res2 = robot->getEstimates(ESTIMATE_JOINT_TORQUE, torques.data(), -1.0);
+    yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
+    bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), -1.0);
+    bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, fb_torque.data(), -1.0);
 
-    // prepare the matrices for WBC
 
-    // compute desired torque from WBC
+    // SET THE FREE FLYER POSITION AND VELOCITY HERE
+
+    // compute desired torque by calling the controller
 
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());
@@ -70,9 +74,12 @@ void basicWholeBodyControlThread::run()
 
     if(printCountdown==0) {
         std::cout << "The robot encoders values are: " << std::endl;
-        std::cout << qRad.toString() << std::endl;
+        std::cout << fb_qRad.toString() << std::endl;
         std::cout << "The joint torquess are" << std::endl;
-        std::cout << torques.toString() << std::endl;
+        std::cout << fb_torque.toString() << std::endl;
+        
+        std::cout << "Data in orcModel" << std::endl;
+        orcModel->printAllData();
     }
 }
 
@@ -80,4 +87,3 @@ void basicWholeBodyControlThread::run()
 void basicWholeBodyControlThread::threadRelease()
 {
 }
-
