@@ -204,6 +204,7 @@ public:
     {
         initContantVariables();
         outdateModel();
+        actuatedDofs = Eigen::VectorXd::Ones(32);
     }
 
     void initContantVariables()
