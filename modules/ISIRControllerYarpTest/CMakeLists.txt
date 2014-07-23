@@ -5,7 +5,7 @@
 
 cmake_minimum_required(VERSION 2.8)
 
-SET(PROJECTNAME ISIRControllerYarpTest)
+SET(PROJECTNAME ISIRControllerYarpTest2)
 PROJECT(${PROJECTNAME} CXX)
 
 
@@ -23,7 +23,7 @@ SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${ICUB_LINK_FLAGS}")
 
 find_package(YARP)
 find_package(ICUB)
-find_package(YCM)
+
 # now stuff related to ISIR_controller
 find_package(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(EIGEN eigen_lgsm REQUIRED)
@@ -38,7 +38,7 @@ endif(NOT PC_ORCISIR_ISIRCONTROLLER_FOUND)
 #--------------------------
 
 # these are necessary and taken from $CODYCO_ROOT/extern
-#SET(${iDyn_INCLUDE_DIRS} /home/shak/compil/samaxe-64/include)
+SET(${iDyn_INCLUDE_DIRS} /home/shak/compil/samaxe-64/include)
 				
 INCLUDE_DIRECTORIES(${iDyn_INCLUDE_DIRS}
                     ${PC_MODHELP_INCLUDE_DIRS}
@@ -47,7 +47,8 @@ INCLUDE_DIRECTORIES(${iDyn_INCLUDE_DIRS}
                     ${BOOST_INCLUDE_DIRS}
                     ${EIGEN_INCLUDE_DIRS}
                     ${PC_ORCISIR_ISIRCONTROLLER_INCLUDE_DIRS}
-                    ${PC_ORC_FRAMEWORK_INCLUDE_DIRS}                  
+                    ${PC_ORC_FRAMEWORK_INCLUDE_DIRS}
+                    #${PC_EIGEN_INCLUDE_DIRS}                    
                     )
                     				
 # link libraries
@@ -59,12 +60,17 @@ LINK_DIRECTORIES(${PC_ORCISIR_ISIRCONTROLLER_LIBRARY_DIRS}
 
 #this must go always before link_directories
 ADD_LIBRARY(iCubModel SHARED src/iCubModel.cpp)
-ADD_EXECUTABLE(${PROJECTNAME} src/main.cpp)
+ADD_LIBRARY(iCubTaskManager SHARED src/iCubTaskManager.cpp)
+ADD_LIBRARY(iCubTaskGenerator SHARED src/iCubTaskGenerator.cpp)
+#ADD_LIBRARY(icubfixed SHARED src/icubfixed.cpp)
+ADD_EXECUTABLE(${PROJECTNAME} src/mainTest.cpp)
 
 
 TARGET_LINK_LIBRARIES(${PROJECTNAME} iDyn
                                      icubmod
                                      iCubModel
+				     iCubTaskManager
+				     iCubTaskGenerator
                                      ${PC_MODHELP_LIBRARIES}
                                      ${YARP_LIBRARIES}
                                      ${PC_ORCISIR_ISIRCONTROLLER_LIBRARIES}
@@ -72,4 +78,6 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} iDyn
                                      )
                                      
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
+
+add_subdirectory(app)
 
