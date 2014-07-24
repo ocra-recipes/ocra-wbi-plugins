@@ -79,5 +79,5 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} iDyn
                                      
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
 
-add_subdirectory(app)
+#add_subdirectory(app)
 

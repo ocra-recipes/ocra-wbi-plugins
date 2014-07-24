@@ -21,17 +21,12 @@ public:
     int                                                     nbSegments;
     Eigen::VectorXd                                         actuatedDofs;
     Eigen::VectorXd                                         lowerLimits;
-    std::vector<double>                                     lowerLimitsArray;
     Eigen::VectorXd                                         upperLimits;
-    std::vector<double>                                     upperLimitsArray;
     Eigen::VectorXd                                         q;
-    std::vector<double>                                     qArray;
     Eigen::VectorXd                                         dq;
-    std::vector<double>                                     dqArray;
     Eigen::Displacementd                                    Hroot;
     Eigen::Twistd                                           Troot;
-    Eigen::MatrixXd                                         M;
-    yarp::sig::Matrix                                       M_array;
+    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>       M;
 };
 
 //=================================  Class methods  =================================//
@@ -55,22 +50,15 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     // Setup and get lower/upper joint limits
     owm_pimpl->lowerLimits = Eigen::VectorXd::Ones(owm_pimpl->nbInternalDofs);
     owm_pimpl->upperLimits = Eigen::VectorXd::Ones(owm_pimpl->nbInternalDofs);
-    owm_pimpl->lowerLimitsArray.resize(owm_pimpl->nbInternalDofs);
-    owm_pimpl->upperLimitsArray.resize(owm_pimpl->nbInternalDofs);
 
-    robot->getJointLimits(owm_pimpl->lowerLimitsArray.data(), owm_pimpl->upperLimitsArray.data(), ALL_JOINTS);
-    owm_pimpl->lowerLimits = Eigen::Map<Eigen::VectorXd>(owm_pimpl->lowerLimitsArray.data(), owm_pimpl->nbInternalDofs);
-    owm_pimpl->upperLimits = Eigen::Map<Eigen::VectorXd>(owm_pimpl->upperLimitsArray.data(), owm_pimpl->nbInternalDofs);
+    robot->getJointLimits(owm_pimpl->lowerLimits.data(), owm_pimpl->upperLimits.data(), ALL_JOINTS);
     
     // Setup joint states
     owm_pimpl->q.resize(owm_pimpl->nbInternalDofs);
-    owm_pimpl->qArray.resize(owm_pimpl->nbInternalDofs);
     owm_pimpl->dq.resize(owm_pimpl->nbInternalDofs);
-    owm_pimpl->dqArray.resize(owm_pimpl->nbInternalDofs);
 
     // Setup mass matrix 
     owm_pimpl->M.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
-    owm_pimpl->M_array.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
 }
 
 orcWbiModel::~orcWbiModel()
@@ -100,15 +88,13 @@ const Eigen::VectorXd& orcWbiModel::getJointUpperLimits() const
 
 const Eigen::VectorXd& orcWbiModel::getJointPositions() const
 {
-    bool res = robot->getEstimates(ESTIMATE_JOINT_POS, owm_pimpl->qArray.data());
-    owm_pimpl->q = Eigen::Map<Eigen::VectorXd>(owm_pimpl->qArray.data(), owm_pimpl->nbInternalDofs);
+    bool res = robot->getEstimates(ESTIMATE_JOINT_POS, owm_pimpl->q.data());
     return owm_pimpl->q;
 }
 
 const Eigen::VectorXd& orcWbiModel::getJointVelocities() const
 {
-    bool res = robot->getEstimates(ESTIMATE_JOINT_VEL, owm_pimpl->dqArray.data());
-    owm_pimpl->dq = Eigen::Map<Eigen::VectorXd>(owm_pimpl->dqArray.data(), owm_pimpl->nbInternalDofs);
+    bool res = robot->getEstimates(ESTIMATE_JOINT_VEL, owm_pimpl->dq.data());
     return owm_pimpl->dq;
 }
 
@@ -124,12 +110,9 @@ const Eigen::Twistd& orcWbiModel::getFreeFlyerVelocity() const
 
 const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
 {
-    std::cout<<getJointPositions()<<std::endl;
-    std::cout<<owm_pimpl->nbInternalDofs<<std::endl;
     double q[owm_pimpl->nbInternalDofs];
     Eigen::Map<Eigen::VectorXd>(q, owm_pimpl->nbInternalDofs) = getJointPositions();
-    bool res = robot->computeMassMatrix(q, wbi::Frame(), owm_pimpl->M_array.data());
-    owm_pimpl->M = Eigen::Map<Eigen::MatrixXd>(owm_pimpl->M_array.data(), owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+    bool res = robot->computeMassMatrix(q, wbi::Frame(), owm_pimpl->M.data());
 
     return owm_pimpl->M;
 }

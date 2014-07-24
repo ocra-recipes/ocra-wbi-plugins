@@ -37,7 +37,7 @@ basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
                                                             )
     : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
 {
-    bool isFreeBase = false;
+    bool isFreeBase = true;
     orcModel = new orcWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     printCountdown = 0;
 }
