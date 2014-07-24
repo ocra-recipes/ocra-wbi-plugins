@@ -19,16 +19,18 @@ public:
     int                                                     nbDofs;
     int                                                     nbInternalDofs; // nbDofs + FREE_ROOT_DOF if free root, otherwise the same as nbDofs
 
-    int                                                     nbSegments;
-    Eigen::VectorXd                                         actuatedDofs;
-    Eigen::VectorXd                                         lowerLimits;
-    Eigen::VectorXd                                         upperLimits;
-    Eigen::VectorXd                                         q;
-    Eigen::VectorXd                                         dq;
-    Eigen::Displacementd                                    Hroot;
-    Eigen::Twistd                                           Troot;
-    Eigen::MatrixXd                                         M;
-    MatrixXdRm                                              M_rm;
+    int                                                     nbSegments; // nbInternalDofs+1?
+    Eigen::VectorXd                                         actuatedDofs; // which joints are actuated
+    Eigen::VectorXd                                         lowerLimits; // lower q of joints
+    Eigen::VectorXd                                         upperLimits; // upper q of joints
+    Eigen::VectorXd                                         q; // state variable
+    Eigen::VectorXd                                         dq; // derivative of q
+    Eigen::Displacementd                                    Hroot; // translation of root
+    Eigen::Twistd                                           Troot; // twist of root (velocity)
+    Eigen::MatrixXd                                         M_cm; // Mass inertia matrix (col major for ORC control)
+    MatrixXdRm                                              M_rm; // Mass inertia matrix (row major for WBI)
+    Eigen::MatrixXd                                         Minv_cm; // Inverse of mass inertia matrix (col major for ORC control)
+    Eigen::MatrixXd                                         B_cm; // Not used, set to ZERO for now (col major for ORC control)
 };
 
 //=================================  Class methods  =================================//
@@ -60,7 +62,7 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     owm_pimpl->dq.resize(owm_pimpl->nbInternalDofs);
 
     // Setup mass matrix 
-    owm_pimpl->M.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+    owm_pimpl->M_cm.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     owm_pimpl->M_rm.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
 }
 
@@ -115,12 +117,14 @@ const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
 {
     Eigen::VectorXd q = getJointPositions();
     bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M_rm.data());
-    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_rm, owm_pimpl->M);
-    return owm_pimpl->M;
+    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_rm, owm_pimpl->M_cm);
+    return owm_pimpl->M_cm;
 }
 
 const Eigen::MatrixXd& orcWbiModel::getInertiaMatrixInverse() const
 {
+    owm_pimpl->Minv_cm = owm_pimpl->M_cm.inverse();
+    return owm_pimpl->Minv_cm;
 }
 
 const Eigen::MatrixXd& orcWbiModel::getDampingMatrix() const
@@ -265,9 +269,13 @@ void orcWbiModel::printAllData()
     std::cout<<"Troot:\n";
     std::cout<<getFreeFlyerVelocity()<<"\n";
 
+/*
     std::cout<<"M:\n";
     std::cout<<getInertiaMatrix()<<"\n";
     
+    std::cout<<"Minv:\n";
+    std::cout<<getInertiaMatrixInverse()<<"\n";
+*/
 /*
     std::cout<<"total_mass:\n";
     std::cout<<getMass()<<"\n";
@@ -288,8 +296,6 @@ void orcWbiModel::printAllData()
     std::cout<<getCoMJacobianDot()<<"\n";
     
     
-    std::cout<<"Minv:\n";
-    std::cout<<getInertiaMatrixInverse()<<"\n";
     
     std::cout<<"B:\n";
     std::cout<<getDampingMatrix()<<"\n";
