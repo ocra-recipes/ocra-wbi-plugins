@@ -8,15 +8,52 @@
 
 #include <iostream>
 
+#include <wbiIcub/wholeBodyInterfaceIcub.h>
+#include <yarp/sig/Matrix.h>
+#include <map>
+#include <vector>
 #include "orcWbiUtil.h"
 
     /* static */ bool orcWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
     {
+		double p_wbi[3];
+		Eigen::Vector3d p;
+		p = disp.getTranslation();
+		
+		p_wbi[0] = p[0];
+		p_wbi[1] = p[1];
+		p_wbi[2] = p[2];
+		
+		double _x, _y, _z, _w;
+		_x = disp.getRotation().x();
+		_y = disp.getRotation().y();
+		_z = disp.getRotation().z();
+		_w = disp.getRotation().w();
+		
+		
+		wbi::Rotation R;	R.quaternion(_x, _y, _z, _w);	
+		wbi::Frame _frame(R, p_wbi);
+		frame = _frame;
+		// Need to add error checking...
         return false;
     }
 
     /* static */ bool orcWbiConversions::wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp)
     {   
+		double _x, _y, _z, _w;
+		frame.R.getQuaternion(_x, _y, _z, _w);
+		//Eigen::Rotation3d Rot;
+		//Rot << _x, _y, _z, _w;
+		
+		double x, y, z;
+		x = frame.p[0];
+		y = frame.p[1];
+		z = frame.p[2];
+		Eigen::Vector3d trans;
+		trans << x, y, z;
+		Eigen::Displacementd _disp(x,y,z,_w,_x,_y,_z);
+		disp = _disp;
+		// Need to add error checking...
         return false;
     }
 
