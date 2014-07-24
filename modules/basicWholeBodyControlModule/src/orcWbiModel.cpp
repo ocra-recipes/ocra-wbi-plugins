@@ -232,11 +232,9 @@ double orcWbiModel::getMass() const
 
 const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
 {
-    Eigen::VectorXd q = getJointPositions();
-    Eigen::Displacementd Hroot = getFreeFlyerPosition();
     wbi::Frame Hbase,H;
-    orcWbiConversions::eigenDispdToWbiFrame(Hroot,Hbase);
-    robot->computeH(q.data(),Hbase,wbi::iWholeBodyModel::COM_LINK_ID,H);
+    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
+    robot->computeH(owm_pimpl->q.data(),Hbase,wbi::iWholeBodyModel::COM_LINK_ID,H);
     Eigen::Displacementd Hcom;
     orcWbiConversions::wbiFrameToEigenDispd(H,Hcom);
     owm_pimpl->pos_com = Hcom.getTranslation();
@@ -251,24 +249,19 @@ const Eigen::Vector3d& orcWbiModel::getCoMVelocity() const
 
 const Eigen::Vector3d& orcWbiModel::getCoMJdotQdot() const
 {
-    Eigen::VectorXd q = getJointPositions();
-    Eigen::VectorXd dq = getJointVelocities();
-    Eigen::Displacementd Hroot = getFreeFlyerPosition();
-    wbi::Frame Hbase,H;
-    orcWbiConversions::eigenDispdToWbiFrame(Hroot,Hbase);
+    wbi::Frame Hbase;
+    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
     Eigen::Twistd Troot = getFreeFlyerVelocity();
-    robot->computeDJdq(q.data(),Hbase,dq.data(),Troot.data(),wbi::iWholeBodyModel::COM_LINK_ID,owm_pimpl->DJDq.data());
+    robot->computeDJdq(owm_pimpl->q.data(),Hbase,owm_pimpl->dq.data(),Troot.data(),wbi::iWholeBodyModel::COM_LINK_ID,owm_pimpl->DJDq.data());
     return owm_pimpl->DJDq;
 }
 
 const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacobian() const
 {
 
-    Eigen::VectorXd q = getJointPositions();
-    Eigen::Displacementd Hroot = getFreeFlyerPosition();
-    wbi::Frame Hbase, H;
-    orcWbiConversions::eigenDispdToWbiFrame(Hroot, Hbase);
-    robot->computeJacobian(q.data(), Hbase, wbi::iWholeBodyModel::COM_LINK_ID, owm_pimpl->J_com_rm.data());
+    wbi::Frame Hbase;
+    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot, Hbase);
+    robot->computeJacobian(owm_pimpl->q.data(), Hbase, wbi::iWholeBodyModel::COM_LINK_ID, owm_pimpl->J_com_rm.data());
     orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->J_com_rm, owm_pimpl->J_com_cm);
     owm_pimpl->J_com = owm_pimpl->J_com_cm;
     return owm_pimpl->J_com;
@@ -281,11 +274,10 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacob
 
 const Eigen::Displacementd& orcWbiModel::getSegmentPosition(int index) const
 {
-    Eigen::VectorXd q = getJointPositions();
-    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+
     wbi::Frame Hbase,H;
-    orcWbiConversions::eigenDispdToWbiFrame(Hroot,Hbase);
-    robot->computeH(q.data(),Hbase,index,H);
+    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
+    robot->computeH(owm_pimpl->q.data(),Hbase,index,H);
 
     orcWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->segPosition[index]);
 
@@ -325,14 +317,12 @@ const Eigen::Rotation3d& orcWbiModel::getSegmentInertiaAxes(int index) const
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(int index) const
 {
-    Eigen::VectorXd q = getJointPositions();
-    Eigen::Displacementd Hroot = getFreeFlyerPosition();
-    wbi::Frame Hbase, H;
-    orcWbiConversions::eigenDispdToWbiFrame(Hroot, Hbase);
-    robot->computeJacobian(q.data(), Hbase, index, owm_pimpl->segJacobian_rm[index].data());
+    wbi::Frame Hbase;
+    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot, Hbase);
+    robot->computeJacobian(owm_pimpl->q.data(), Hbase, index, owm_pimpl->segJacobian_rm[index].data());
     orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->segJacobian_rm[index], owm_pimpl->segJacobian_cm[index]);
-    owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_cm[index];
-
+    owm_pimpl->segJacobian[index].topRows(3) = owm_pimpl->segJacobian_cm[index].bottomRows(3);
+    owm_pimpl->segJacobian[index].bottomRows(3) = owm_pimpl->segJacobian_cm[index].topRows(3);
     return owm_pimpl->segJacobian[index];
 }
 
@@ -349,13 +339,13 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getJointJacobian(int 
 
 const Eigen::Twistd& orcWbiModel::getSegmentJdotQdot(int index) const
 {
-    Eigen::VectorXd q = getJointPositions();
-    Eigen::VectorXd dq = getJointVelocities();
-    Eigen::Displacementd Hroot = getFreeFlyerPosition();
-    wbi::Frame Hbase,H;
-    orcWbiConversions::eigenDispdToWbiFrame(Hroot,Hbase);
+    wbi::Frame Hbase;
+    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
     Eigen::Twistd Troot = getFreeFlyerVelocity();
-    robot->computeDJdq(q.data(),Hbase,dq.data(),Troot.data(),index,owm_pimpl->segJdotQdot[index].data());
+    Eigen::Twistd Tseg;
+    robot->computeDJdq(owm_pimpl->q.data(),Hbase,owm_pimpl->dq.data(),Troot.data(),index,Tseg.data());
+    owm_pimpl->segJdotQdot[index].head(3) = Tseg.tail(3);
+    owm_pimpl->segJdotQdot[index].tail(3) = Tseg.head(3);
     return owm_pimpl->segJdotQdot[index];
 }
 
