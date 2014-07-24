@@ -194,8 +194,7 @@ const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
     Eigen::VectorXd q = getJointPositions();
     Eigen::Displacementd Hroot = getFreeFlyerPosition();
     wbi::Frame Hbase,H;
-    orcWbiConversions wbiconv;
-    wbiconv.eigenDispdToWbiFrame(Hroot,Hbase);
+    orcWbiConversions::eigenDispdToWbiFrame(Hroot,Hbase);
     robot->computeH(q.data(),Hbase,wbi::iWholeBodyModel::COM_LINK_ID,H);
     Eigen::Displacementd Hcom;
     orcWbiConversions::wbiFrameToEigenDispd(H,Hcom);
@@ -205,10 +204,20 @@ const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
 
 const Eigen::Vector3d& orcWbiModel::getCoMVelocity() const
 {
+    owm_pimpl->vel_com = getCoMJacobian()*getJointVelocities();
+    return owm_pimpl->vel_com;
 }
 
 const Eigen::Vector3d& orcWbiModel::getCoMJdotQdot() const
 {
+    Eigen::VectorXd q = getJointPositions();
+    Eigen::VectorXd dq = getJointVelocities();
+    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+    wbi::Frame Hbase,H;
+    orcWbiConversions::eigenDispdToWbiFrame(Hroot,Hbase);
+    Eigen::Twistd Troot = getFreeFlyerVelocity();
+    robot->computeDJdq(q.data(),Hbase,dq.data(),Troot.data(),wbi::iWholeBodyModel::COM_LINK_ID,owm_pimpl->DJDq.data());
+    return owm_pimpl->DJDq;
 }
 
 const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacobian() const
@@ -218,7 +227,6 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacob
     Eigen::Displacementd Hroot = getFreeFlyerPosition();
     wbi::Frame Hbase, H;
     orcWbiConversions::eigenDispdToWbiFrame(Hroot, Hbase);
-
     robot->computeJacobian(q.data(), Hbase, wbi::iWholeBodyModel::COM_LINK_ID, owm_pimpl->J_com_rm.data());
     orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->J_com_rm, owm_pimpl->J_com_cm);
     owm_pimpl->J_com = owm_pimpl->J_com_cm;
@@ -227,38 +235,70 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacob
 
 const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacobianDot() const
 {
+    owm_pimpl->DJ_com = Eigen::MatrixXd::Zero(COM_POS_DIM, owm_pimpl->nbDofs);
+    return owm_pimpl->DJ_com;
 }
 
 const Eigen::Displacementd& orcWbiModel::getSegmentPosition(int index) const
 {
+    Eigen::VectorXd q = getJointPositions();
+    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+    wbi::Frame Hbase,H;
+    orcWbiConversions::eigenDispdToWbiFrame(Hroot,Hbase);
+    robot->computeH(q.data(),Hbase,index,H);
+
+    orcWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->segPosition[index]);
+
+    return owm_pimpl->segPosition[index];
 }
 
 const Eigen::Twistd& orcWbiModel::getSegmentVelocity(int index) const
 {
+    owm_pimpl->segVelocity[index] = getSegmentJacobian(index)*getJointVelocities();
+    return owm_pimpl->segVelocity[index];
 }
 
 double orcWbiModel::getSegmentMass(int index) const
 {
+    owm_pimpl->segMass[index] = 0.0;
+    return owm_pimpl->segMass[index];
 }
 
 const Eigen::Vector3d& orcWbiModel::getSegmentCoM(int index) const
 {
+    owm_pimpl->segCoM[index] = Eigen::Vector3d::Zero();
+    return owm_pimpl->segCoM[index];
 }
 
 const Eigen::Matrix<double,6,6>& orcWbiModel::getSegmentMassMatrix(int index) const
 {
+    owm_pimpl->segMassMatrix[index] = Eigen::MatrixXd::Zero(6,6);
+    return owm_pimpl->segMassMatrix[index];
 }
 
 const Eigen::Vector3d& orcWbiModel::getSegmentMomentsOfInertia(int index) const
 {
+    owm_pimpl->segMomentsOfInertia[index] = Eigen::Vector3d::Zero();
+    return owm_pimpl->segMomentsOfInertia[index];
 }
 
 const Eigen::Rotation3d& orcWbiModel::getSegmentInertiaAxes(int index) const
 {
+    owm_pimpl->segInertiaAxes[index] = Eigen::Rotation3d::Identity();
+    return owm_pimpl->segInertiaAxes[index];
 }
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(int index) const
 {
+//    Eigen::VectorXd q = getJointPositions();
+//    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+//    wbi::Frame Hbase, H;
+//    orcWbiConversions::eigenDispdToWbiFrame(Hroot, Hbase);
+//    robot->computeJacobian(q.data(), Hbase, index, owm_pimpl->segJacobian_rm[index].data());
+//    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->owm_pimpl->segJacobian_rm[index], owm_pimpl->owm_pimpl->segJacobian_cm[index]);
+//    owm_pimpl->segJacobian[index] = owm_pimpl->owm_pimpl->segJacobian_cm[index];
+
+//    return owm_pimpl->segJacobian[index];
 }
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJdot(int index) const
