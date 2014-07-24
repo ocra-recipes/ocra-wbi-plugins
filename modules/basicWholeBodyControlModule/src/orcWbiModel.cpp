@@ -110,9 +110,8 @@ const Eigen::Twistd& orcWbiModel::getFreeFlyerVelocity() const
 
 const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
 {
-    double q[owm_pimpl->nbInternalDofs];
-    Eigen::Map<Eigen::VectorXd>(q, owm_pimpl->nbInternalDofs) = getJointPositions();
-    bool res = robot->computeMassMatrix(q, wbi::Frame(), owm_pimpl->M.data());
+    Eigen::VectorXd q = getJointPositions();
+    bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M.data());
 
     return owm_pimpl->M;
 }
