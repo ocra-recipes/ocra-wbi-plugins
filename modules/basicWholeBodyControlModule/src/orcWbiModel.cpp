@@ -43,7 +43,7 @@ public:
     Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        J_com; // Jacobian matrix (col major for ORC control)
     Eigen::MatrixXd                                         J_com_cm; // Jacobian matrix (col major MatrixXd for ORC control)
     MatrixXdRm                                              J_com_rm; // Jacobian matrix (row major for WBI)
-    Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>       DJ_com; // derivative of J
+    Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        DJ_com; // derivative of J
     Eigen::MatrixXd                                         DJ_com_cm; // derivative of J
     MatrixXdRm                                              DJ_com_rm; // derivative of J
     Eigen::Vector3d                                         DJDq;
@@ -60,7 +60,9 @@ public:
     std::vector< Eigen::Vector3d >                          segMomentsOfInertia; // not set
     std::vector< Eigen::Rotation3d >                        segInertiaAxes; // not set
 
-    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian; // not set
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian; 
+    std::vector< Eigen::MatrixXd >                                      segJacobian_cm; 
+    std::vector< MatrixXdRm >                                           segJacobian_rm; 
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJdot; // not set
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian; // not set
     std::vector< Eigen::Twistd >                            segJdotQdot; // not set
@@ -96,13 +98,21 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     robot->getJointLimits(owm_pimpl->lowerLimits.data(), owm_pimpl->upperLimits.data(), ALL_JOINTS);
     
     // Setup joint states
-    owm_pimpl->q.resize(owm_pimpl->nbInternalDofs);
-    owm_pimpl->dq.resize(owm_pimpl->nbInternalDofs);
+    owm_pimpl->q = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
+    owm_pimpl->dq = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
 
-    // Setup mass matrix 
+    // Setup mass matrix, damping matrix, c and g terms 
     owm_pimpl->M.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     owm_pimpl->M_rm.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+    owm_pimpl->B = Eigen::MatrixXd::Zero(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+    owm_pimpl->n.resize(owm_pimpl->nbDofs);
+    owm_pimpl->l = Eigen::VectorXd::Zero(owm_pimpl->nbDofs);
+    owm_pimpl->g.resize(owm_pimpl->nbDofs);
 
+    MatrixXdRm M_rm_total_mass(38,38);
+    robot->computeMassMatrix(owm_pimpl->q.data(), wbi::Frame(), M_rm_total_mass.data());
+    owm_pimpl->total_mass = M_rm_total_mass(0,0);
+    
     owm_pimpl->J_com.resize(COM_POS_DIM, owm_pimpl->nbDofs);
     owm_pimpl->J_com_cm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
     owm_pimpl->J_com_rm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
@@ -160,6 +170,8 @@ const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
     Eigen::VectorXd q = getJointPositions();
     bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M_rm.data());
     orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_rm, owm_pimpl->M);
+    
+    std::cout << "SIZE ROWS : " << owm_pimpl->M_rm.rows() << " COLS : " << owm_pimpl->M_rm.cols() << std::endl;
     return owm_pimpl->M;
 }
 
@@ -187,6 +199,7 @@ const Eigen::VectorXd& orcWbiModel::getGravityTerms() const
 
 double orcWbiModel::getMass() const
 {
+    return owm_pimpl->total_mass;
 }
 
 const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
@@ -331,10 +344,11 @@ void orcWbiModel::printAllData()
     std::cout<<"Troot:\n";
     std::cout<<getFreeFlyerVelocity()<<"\n";
 
-/*
+
     std::cout<<"M:\n";
     std::cout<<getInertiaMatrix()<<"\n";
     
+/*
     std::cout<<"Minv:\n";
     std::cout<<getInertiaMatrixInverse()<<"\n";
 */
