@@ -18,7 +18,10 @@ typedef  Eigen::Displacementd::AdjointMatrix  AdjointMatrix;
 
 struct orcWbiModel::orcWbiModel_pimpl
 {
+    
 public:
+    bool                                                    freeRoot;                         
+    MatrixXdRm                                              M_full_rm; // Mass inertia matrix (from WholeBodyInterface, row major)
     int                                                     nbDofs;
     int                                                     nbInternalDofs; // nbDofs + FREE_ROOT_DOF if free root, otherwise the same as nbDofs
 
@@ -31,7 +34,7 @@ public:
     Eigen::Displacementd                                    Hroot; // translation of root
     Eigen::Twistd                                           Troot; // twist of root (velocity)
     Eigen::MatrixXd                                         M; // Mass inertia matrix (col major for ORC control)
-    MatrixXdRm                                              M_rm; // Mass inertia matrix (row major for WBI)
+    Eigen::MatrixXd                                         M_full; // Full Mass inertia matrix (col major)
     Eigen::MatrixXd                                         Minv; // Inverse of mass inertia matrix (col major for ORC control)
     Eigen::MatrixXd                                         B; // Not set, set to ZERO for now (col major for ORC control)
     Eigen::VectorXd                                         n; // non-linear terms in EOM (set as coriolis/centrifugal effects)
@@ -77,6 +80,9 @@ public:
 orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* _wbi, const bool freeRoot)
 :orc::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new orcWbiModel_pimpl)
 {
+    owm_pimpl->freeRoot = freeRoot;
+    int M_Wbi_Size = robotNumDOF+FREE_ROOT_DOF;
+
     // Initialise some constant variables
 
     // THIS GETS FROM WBI ROBOT
@@ -102,20 +108,49 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     owm_pimpl->dq = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
 
     // Setup mass matrix, damping matrix, c and g terms 
+    owm_pimpl->M_full_rm.resize(M_Wbi_Size, M_Wbi_Size);
+    owm_pimpl->M_full.resize(M_Wbi_Size, M_Wbi_Size);
     owm_pimpl->M.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
-    owm_pimpl->M_rm.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     owm_pimpl->B = Eigen::MatrixXd::Zero(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     owm_pimpl->n.resize(owm_pimpl->nbDofs);
     owm_pimpl->l = Eigen::VectorXd::Zero(owm_pimpl->nbDofs);
     owm_pimpl->g.resize(owm_pimpl->nbDofs);
 
-    MatrixXdRm M_rm_total_mass(38,38);
+    // Get full M Matrix once and grab the top corner
+    MatrixXdRm M_rm_total_mass(M_Wbi_Size,M_Wbi_Size);
     robot->computeMassMatrix(owm_pimpl->q.data(), wbi::Frame(), M_rm_total_mass.data());
     owm_pimpl->total_mass = M_rm_total_mass(0,0);
     
     owm_pimpl->J_com.resize(COM_POS_DIM, owm_pimpl->nbDofs);
     owm_pimpl->J_com_cm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
     owm_pimpl->J_com_rm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
+
+
+    Eigen::MatrixXd m11 = 0*Eigen::MatrixXd::Ones(4,4);
+    Eigen::MatrixXd m12 = 1*Eigen::MatrixXd::Ones(4,3);
+    Eigen::MatrixXd m13 = 2*Eigen::MatrixXd::Ones(4,3);
+    Eigen::MatrixXd m21 = 3*Eigen::MatrixXd::Ones(3,4);
+    Eigen::MatrixXd m22 = 4*Eigen::MatrixXd::Ones(3,3);
+    Eigen::MatrixXd m23 = 5*Eigen::MatrixXd::Ones(3,3);
+    Eigen::MatrixXd m31 = 6*Eigen::MatrixXd::Ones(3,4);
+    Eigen::MatrixXd m32 = 7*Eigen::MatrixXd::Ones(3,3);
+    Eigen::MatrixXd m33 = 8*Eigen::MatrixXd::Ones(3,3);
+
+
+    Eigen::MatrixXd M1(10,10);
+    Eigen::MatrixXd M2(10,10);
+    M1 << m11, m12, m13,
+            m21, m22, m23,
+            m31, m32, m33;
+
+    orcWbiConversions::massMatrixWbiToOrc(10, 4, M1, M2);
+
+    std::cout << "TESTING M2\n";
+    std::cout << M1 << std::endl;
+    std::cout << "TESTING M2\n";
+    std::cout << M2 << std::endl;
+
+
 }
 
 orcWbiModel::~orcWbiModel()
@@ -168,21 +203,31 @@ const Eigen::Twistd& orcWbiModel::getFreeFlyerVelocity() const
 const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
 {
     Eigen::VectorXd q = getJointPositions();
-    bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M_rm.data());
-    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_rm, owm_pimpl->M);
-    
-    std::cout << "SIZE ROWS : " << owm_pimpl->M_rm.rows() << " COLS : " << owm_pimpl->M_rm.cols() << std::endl;
+    bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M_full_rm.data());
+    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_full_rm, owm_pimpl->M_full);
+
+    if (owm_pimpl->freeRoot)
+    {
+        orcWbiConversions::massMatrixWbiToOrc(owm_pimpl->nbDofs, owm_pimpl->nbInternalDofs, owm_pimpl->M_full, owm_pimpl->M);
+    }
+    else
+    {   
+        owm_pimpl->M = owm_pimpl->M_full.block(FREE_ROOT_DOF, FREE_ROOT_DOF, owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+    }
+
     return owm_pimpl->M;
 }
 
 const Eigen::MatrixXd& orcWbiModel::getInertiaMatrixInverse() const
 {
+    getInertiaMatrix();
     owm_pimpl->Minv = owm_pimpl->M.inverse();
     return owm_pimpl->Minv;
 }
 
 const Eigen::MatrixXd& orcWbiModel::getDampingMatrix() const
 {
+    return owm_pimpl->B;
 }
 
 const Eigen::VectorXd& orcWbiModel::getNonLinearTerms() const
