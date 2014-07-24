@@ -116,6 +116,14 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     owm_pimpl->J_com.resize(COM_POS_DIM, owm_pimpl->nbDofs);
     owm_pimpl->J_com_cm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
     owm_pimpl->J_com_rm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
+    owm_pimpl->DJ_com = Eigen::MatrixXd::Zero(COM_POS_DIM, owm_pimpl->nbDofs);
+    std::fill(owm_pimpl->segMass.begin(),owm_pimpl->segMass.end(),0.0);
+    std::fill(owm_pimpl->segJointJacobian.begin(),owm_pimpl->segJointJacobian.end(),Eigen::MatrixXd::Zero(6, owm_pimpl->nbDofs));
+    std::fill(owm_pimpl->segCoM.begin(),owm_pimpl->segCoM.end(), Eigen::Vector3d::Zero());
+    std::fill(owm_pimpl->segMassMatrix.begin(), owm_pimpl->segMassMatrix.end(), Eigen::MatrixXd::Zero(6,6));
+    std::fill(owm_pimpl->segMomentsOfInertia.begin(),owm_pimpl->segMomentsOfInertia.end(),Eigen::Vector3d::Zero());
+    std::fill(owm_pimpl->segInertiaAxes.begin(),owm_pimpl->segInertiaAxes.end(),Eigen::Rotation3d::Identity());
+    std::fill(owm_pimpl->segJdot.begin(),owm_pimpl->segJdot.end(),Eigen::MatrixXd::Zero(6, owm_pimpl->nbDofs));
 }
 
 orcWbiModel::~orcWbiModel()
@@ -248,7 +256,6 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacob
 
 const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacobianDot() const
 {
-    owm_pimpl->DJ_com = Eigen::MatrixXd::Zero(COM_POS_DIM, owm_pimpl->nbDofs);
     return owm_pimpl->DJ_com;
 }
 
@@ -273,31 +280,26 @@ const Eigen::Twistd& orcWbiModel::getSegmentVelocity(int index) const
 
 double orcWbiModel::getSegmentMass(int index) const
 {
-    owm_pimpl->segMass[index] = 0.0;
     return owm_pimpl->segMass[index];
 }
 
 const Eigen::Vector3d& orcWbiModel::getSegmentCoM(int index) const
 {
-    owm_pimpl->segCoM[index] = Eigen::Vector3d::Zero();
     return owm_pimpl->segCoM[index];
 }
 
 const Eigen::Matrix<double,6,6>& orcWbiModel::getSegmentMassMatrix(int index) const
 {
-    owm_pimpl->segMassMatrix[index] = Eigen::MatrixXd::Zero(6,6);
     return owm_pimpl->segMassMatrix[index];
 }
 
 const Eigen::Vector3d& orcWbiModel::getSegmentMomentsOfInertia(int index) const
 {
-    owm_pimpl->segMomentsOfInertia[index] = Eigen::Vector3d::Zero();
     return owm_pimpl->segMomentsOfInertia[index];
 }
 
 const Eigen::Rotation3d& orcWbiModel::getSegmentInertiaAxes(int index) const
 {
-    owm_pimpl->segInertiaAxes[index] = Eigen::Rotation3d::Identity();
     return owm_pimpl->segInertiaAxes[index];
 }
 
@@ -316,12 +318,13 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(in
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJdot(int index) const
 {
-    owm_pimpl->segJdot[index] = Eigen::MatrixXd::Zero(6, owm_pimpl->nbDofs);
     return owm_pimpl->segJdot[index];
 }
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getJointJacobian(int index) const
 {
+
+    return owm_pimpl->segJointJacobian[index];
 }
 
 const Eigen::Twistd& orcWbiModel::getSegmentJdotQdot(int index) const
