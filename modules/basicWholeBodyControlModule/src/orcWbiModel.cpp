@@ -10,6 +10,9 @@
 
 #define ALL_JOINTS -1
 #define FREE_ROOT_DOF 6
+#define COM_POS_DIM 3
+#define TRANS_ROT_DIM 6
+
 
 typedef  Eigen::Displacementd::AdjointMatrix  AdjointMatrix;
 
@@ -27,10 +30,46 @@ public:
     Eigen::VectorXd                                         dq; // derivative of q
     Eigen::Displacementd                                    Hroot; // translation of root
     Eigen::Twistd                                           Troot; // twist of root (velocity)
-    Eigen::MatrixXd                                         M_cm; // Mass inertia matrix (col major for ORC control)
+    Eigen::MatrixXd                                         M; // Mass inertia matrix (col major for ORC control)
     MatrixXdRm                                              M_rm; // Mass inertia matrix (row major for WBI)
-    Eigen::MatrixXd                                         Minv_cm; // Inverse of mass inertia matrix (col major for ORC control)
-    Eigen::MatrixXd                                         B_cm; // Not used, set to ZERO for now (col major for ORC control)
+    Eigen::MatrixXd                                         Minv; // Inverse of mass inertia matrix (col major for ORC control)
+    Eigen::MatrixXd                                         B; // Not used, set to ZERO for now (col major for ORC control)
+    Eigen::VectorXd                                         n; // non-linear terms in EOM (set as coriolis/centrifugal effects)
+    Eigen::VectorXd                                         l; // linear terms in EOM (set this to be zero)
+    Eigen::VectorXd                                         g; // gravity term in EOM
+    double                                                  total_mass;
+    Eigen::Vector3d                                         pos_com; // COM position
+    Eigen::Vector3d                                         vel_com; // COM velocity
+    Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        J_com; // Jacobian matrix (col major for ORC control)
+    Eigen::MatrixXd                                         J_com_cm; // Jacobian matrix (col major MatrixXd for ORC control)
+    MatrixXdRm                                              J_com_rm; // Jacobian matrix (row major for WBI)
+    Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamics>       DJ_com; // derivative of J
+    Eigen::MatrixXd                                         DJ_com_cm; // derivative of J
+    MatrixXdRm                                              DJ_com_rm; // derivative of J
+    Eigen::Vector3d                                         DJDq;
+
+    std::vector< Eigen::Displacementd >                     segPosition;
+    std::vector< Eigen::Twistd >                            segVelocity;
+    std::vector< double >                                   segMass; // not set
+    std::vector< Eigen::Vector3d >                          segCoM; // not set
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,TRANS_ROT_DIM> > segMassMatrix; // not set
+/*
+    std::vector< Eigen::Matrixd >                           segMassMatrix_cm; 
+    std::vector< MatrixXdRm >                               segMassMatrix_rm;
+*/
+    std::vector< Eigen::Vector3d >                          segMomentsOfInertia; // not set
+    std::vector< Eigen::Rotation3d >                        segInertiaAxes; // not set
+
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian; // not set
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJdot; // not set
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian; // not set
+    std::vector< Eigen::Twistd >                            segJdotQdot; // not set
+    std::map< std::string, int >                            segIndexFromName;
+    std::vector< std::string >                              segNameFromIndex;
+    std::vector< std::vector< iCubModel_Joint* > >          segJoints; // not set
+    Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      Jroot; 
+    Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      dJroot;
+    
 };
 
 //=================================  Class methods  =================================//
@@ -62,8 +101,13 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     owm_pimpl->dq.resize(owm_pimpl->nbInternalDofs);
 
     // Setup mass matrix 
-    owm_pimpl->M_cm.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+    owm_pimpl->M.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     owm_pimpl->M_rm.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+
+    owm_pimpl->J_com.resize(COM_POS_DIM, owm_pimpl->nbDofs);
+    owm_pimpl->J_com_cm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
+    owm_pimpl->J_com_rm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
+
 }
 
 orcWbiModel::~orcWbiModel()
@@ -117,14 +161,14 @@ const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
 {
     Eigen::VectorXd q = getJointPositions();
     bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M_rm.data());
-    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_rm, owm_pimpl->M_cm);
-    return owm_pimpl->M_cm;
+    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_rm, owm_pimpl->M);
+    return owm_pimpl->M;
 }
 
 const Eigen::MatrixXd& orcWbiModel::getInertiaMatrixInverse() const
 {
-    owm_pimpl->Minv_cm = owm_pimpl->M_cm.inverse();
-    return owm_pimpl->Minv_cm;
+    owm_pimpl->Minv = owm_pimpl->M.inverse();
+    return owm_pimpl->Minv;
 }
 
 const Eigen::MatrixXd& orcWbiModel::getDampingMatrix() const
@@ -149,6 +193,16 @@ double orcWbiModel::getMass() const
 
 const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
 {
+    Eigen::VectorXd q = getJointPositions();
+    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+    wbi::Frame Hbase,H;
+    orcWbiConversions wbiconv;
+    wbiconv.eigenDispdToWbiFrame(Hroot,Hbase);
+    robot->computeH(q.data(),Hbase,wbi::iWholeBodyModel::COM_LINK_ID,H);
+    Eigen::Displacementd Hcom;
+    orcWbiConversions::wbiFrameToEigenDispd(H,Hcom);
+    owm_pimpl->pos_com = Hcom.getTranslation();
+    return owm_pimpl->pos_com;
 }
 
 const Eigen::Vector3d& orcWbiModel::getCoMVelocity() const
@@ -159,11 +213,21 @@ const Eigen::Vector3d& orcWbiModel::getCoMJdotQdot() const
 {
 }
 
-const Eigen::Matrix<double,3,Eigen::Dynamic>& orcWbiModel::getCoMJacobian() const
+const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacobian() const
 {
+
+    Eigen::VectorXd q = getJointPositions();
+    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+    wbi::Frame Hbase, H;
+    orcWbiConversions::eigenDispdToWbiFrame(Hroot, Hbase);
+
+    robot->computeJacobian(q.data(), Hbase, wbi::iWholeBodyModel::COM_LINK_ID, owm_pimpl->J_com_rm.data());
+    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->J_com_rm, owm_pimpl->J_com_cm);
+    owm_pimpl->J_com = owm_pimpl->J_com_cm;
+    return owm_pimpl->J_com;
 }
 
-const Eigen::Matrix<double,3,Eigen::Dynamic>& orcWbiModel::getCoMJacobianDot() const
+const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacobianDot() const
 {
 }
 
