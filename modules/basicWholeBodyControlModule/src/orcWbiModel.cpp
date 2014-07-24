@@ -29,6 +29,8 @@ public:
     Eigen::Twistd                                           Troot;
     Eigen::MatrixXd                                         M;
     MatrixXdRm                                              M_rm;
+    Eigen::Vector3d                                         pos_com;
+    Eigen::MatrixXd                                         J_com;
 };
 
 //=================================  Class methods  =================================//
@@ -62,6 +64,9 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     // Setup mass matrix 
     owm_pimpl->M.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     owm_pimpl->M_rm.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+
+    owm_pimpl->J_com.resize(3, owm_pimpl->nbDofs);
+
 }
 
 orcWbiModel::~orcWbiModel()
@@ -145,6 +150,16 @@ double orcWbiModel::getMass() const
 
 const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
 {
+    Eigen::VectorXd q = getJointPositions();
+    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+    wbi::Frame Hbase,H;
+    orcWbiConversions wbiconv;
+    wbiconv.eigenDispdToWbiFrame(Hroot,Hbase);
+    robot->computeH(q.data(),Hbase,wbi::iWholeBodyModel::COM_LINK_ID,H);
+    Eigen::Displacementd Hcom;
+    orcWbiConversions::wbiFrameToEigenDispd(H,Hcom);
+    owm_pimpl->pos_com = Hcom.getTranslation();
+    return owm_pimpl->pos_com;
 }
 
 const Eigen::Vector3d& orcWbiModel::getCoMVelocity() const
@@ -157,6 +172,16 @@ const Eigen::Vector3d& orcWbiModel::getCoMJdotQdot() const
 
 const Eigen::Matrix<double,3,Eigen::Dynamic>& orcWbiModel::getCoMJacobian() const
 {
+
+    Eigen::VectorXd q = getJointPositions();
+    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+    wbi::Frame Hbase,H;
+    orcWbiConversions wbiconv;
+    wbiconv.eigenDispdToWbiFrame(Hroot,Hbase);
+
+    robot->computeJacobian(q.data(),Hbase,wbi::iWholeBodyModel::COM_LINK_ID,owm_pimpl->J_com.data());
+
+    return owm_pimpl->J_com;
 }
 
 const Eigen::Matrix<double,3,Eigen::Dynamic>& orcWbiModel::getCoMJacobianDot() const

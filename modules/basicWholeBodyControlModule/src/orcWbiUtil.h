@@ -18,7 +18,7 @@ typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> M
     class orcWbiConversions
     {
     public:
-        static bool eigenDispToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame);
+        static bool eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame);
         static bool wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp);
         static bool eigenRowMajorToColMajor(MatrixXdRm &M_rm, Eigen::MatrixXd &M);
     };

@@ -10,7 +10,7 @@
 
 #include "orcWbiUtil.h"
 
-    /* static */ bool orcWbiConversions::eigenDispToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
+    /* static */ bool orcWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
     {
         return false;
     }
