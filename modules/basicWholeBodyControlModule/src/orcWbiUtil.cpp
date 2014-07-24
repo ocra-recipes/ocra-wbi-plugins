@@ -72,5 +72,18 @@
         return true;
     }
 
+    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
+    {
+//    Eigen::MatrixXd jac_cm,jac_bottom,jac_top,jac_rt,jac_rr;
+//    eigenRowMajorToColMajor(jac, jac_cm);
+//    jac_tmp.resize(3,jac_cm.cols());
+//    jac_top = owm_pimpl->segJacobian_cm[index].bottomRows(3);
+//    jac_bottom = owm_pimpl->segJacobian_cm[index].topRows(3);
+//    owm_pimpl->segJacobian[index].topRows(3) = jac_top;
+//    owm_pimpl->segJacobian[index].bottomRows(3) = jac_bottom;
+//    jac_rt = owm_pimpl->segJacobian[index].leftCols(3);
+//    jac_rr = owm_pimpl->segJacobian[index].block<owm_pimpl->segJacobian[index].rows(),3>(0,3);
 
+//    owm_pimpl->segJacobian_cm = owm_pimpl->segJacobian;
+    }
 

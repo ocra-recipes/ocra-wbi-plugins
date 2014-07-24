@@ -21,6 +21,7 @@ typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> M
         static bool eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame);
         static bool wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp);
         static bool eigenRowMajorToColMajor(MatrixXdRm &M_rm, Eigen::MatrixXd &M);
+        static bool wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J);
     };
 
 #endif
