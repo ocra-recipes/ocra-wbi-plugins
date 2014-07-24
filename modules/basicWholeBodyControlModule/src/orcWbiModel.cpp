@@ -33,7 +33,7 @@ public:
     Eigen::MatrixXd                                         M; // Mass inertia matrix (col major for ORC control)
     MatrixXdRm                                              M_rm; // Mass inertia matrix (row major for WBI)
     Eigen::MatrixXd                                         Minv; // Inverse of mass inertia matrix (col major for ORC control)
-    Eigen::MatrixXd                                         B; // Not used, set to ZERO for now (col major for ORC control)
+    Eigen::MatrixXd                                         B; // Not set, set to ZERO for now (col major for ORC control)
     Eigen::VectorXd                                         n; // non-linear terms in EOM (set as coriolis/centrifugal effects)
     Eigen::VectorXd                                         l; // linear terms in EOM (set this to be zero)
     Eigen::VectorXd                                         g; // gravity term in EOM
@@ -43,7 +43,7 @@ public:
     Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        J_com; // Jacobian matrix (col major for ORC control)
     Eigen::MatrixXd                                         J_com_cm; // Jacobian matrix (col major MatrixXd for ORC control)
     MatrixXdRm                                              J_com_rm; // Jacobian matrix (row major for WBI)
-    Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamics>       DJ_com; // derivative of J
+    Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>       DJ_com; // derivative of J
     Eigen::MatrixXd                                         DJ_com_cm; // derivative of J
     MatrixXdRm                                              DJ_com_rm; // derivative of J
     Eigen::Vector3d                                         DJDq;
@@ -66,7 +66,6 @@ public:
     std::vector< Eigen::Twistd >                            segJdotQdot; // not set
     std::map< std::string, int >                            segIndexFromName;
     std::vector< std::string >                              segNameFromIndex;
-    std::vector< std::vector< iCubModel_Joint* > >          segJoints; // not set
     Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      Jroot; 
     Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      dJroot;
     
@@ -107,7 +106,6 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     owm_pimpl->J_com.resize(COM_POS_DIM, owm_pimpl->nbDofs);
     owm_pimpl->J_com_cm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
     owm_pimpl->J_com_rm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
-
 }
 
 orcWbiModel::~orcWbiModel()
