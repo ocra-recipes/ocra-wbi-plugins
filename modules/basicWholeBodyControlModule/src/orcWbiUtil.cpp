@@ -6,19 +6,19 @@
 * Utility functions for working with ORC/Eigen and Whole Body Interface
 */
 
-#include "orcWbiModel.h"
+#include "orcWbiUtil.h"
 
-    /* static */ bool eigenDispToWbiFrame(const Eigen::Displacementd &disp, Frame &frame)
+    /* static */ bool orcWbiConversions::eigenDispToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
     {
         return false;
     }
 
-    /* static */ bool wbiFrameToEigenDispd(const Frame &frame, Eigen::Displacementd &disp)
+    /* static */ bool orcWbiConversions::wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp)
     {   
         return false;
     }
 
-    /* static */ bool eigenRowMajorToColMajor(const Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor>, Eigen::MatrixXd)
+    /* static */ bool orcWbiConversions::eigenRowMajorToColMajor(MatrixXdRm &M_rm, Eigen::MatrixXd &M)
     {
         return false;
     }

@@ -28,6 +28,7 @@ public:
     Eigen::Displacementd                                    Hroot;
     Eigen::Twistd                                           Troot;
     Eigen::MatrixXd                                         M;
+    MatrixXdRm                                              M_rm;
 };
 
 //=================================  Class methods  =================================//
@@ -60,6 +61,7 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
 
     // Setup mass matrix 
     owm_pimpl->M.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
+    owm_pimpl->M_rm.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
 }
 
 orcWbiModel::~orcWbiModel()
@@ -112,7 +114,8 @@ const Eigen::Twistd& orcWbiModel::getFreeFlyerVelocity() const
 const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
 {
     Eigen::VectorXd q = getJointPositions();
-    bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M.data());
+    bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M_rm.data());
+    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_rm, owm_pimpl->M);
     return owm_pimpl->M;
 }
 
