@@ -1,5 +1,6 @@
 
 #include "orcWbiModel.h"
+#include "orcWbiUtil.h"
 
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
 #include <yarp/sig/Matrix.h>
@@ -26,7 +27,7 @@ public:
     Eigen::VectorXd                                         dq;
     Eigen::Displacementd                                    Hroot;
     Eigen::Twistd                                           Troot;
-    Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic>       M;
+    Eigen::MatrixXd                                         M;
 };
 
 //=================================  Class methods  =================================//
@@ -112,7 +113,6 @@ const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
 {
     Eigen::VectorXd q = getJointPositions();
     bool res = robot->computeMassMatrix(q.data(), wbi::Frame(), owm_pimpl->M.data());
-
     return owm_pimpl->M;
 }
 
