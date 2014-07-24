@@ -65,7 +65,7 @@ public:
     std::vector< MatrixXdRm >                                           segJacobian_rm; 
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJdot; // not set
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian; // not set
-    std::vector< Eigen::Twistd >                            segJdotQdot; // not set
+    std::vector< Eigen::Twistd >                            segJdotQdot;
     std::map< std::string, int >                            segIndexFromName;
     std::vector< std::string >                              segNameFromIndex;
     Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      Jroot; 
@@ -303,19 +303,21 @@ const Eigen::Rotation3d& orcWbiModel::getSegmentInertiaAxes(int index) const
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(int index) const
 {
-//    Eigen::VectorXd q = getJointPositions();
-//    Eigen::Displacementd Hroot = getFreeFlyerPosition();
-//    wbi::Frame Hbase, H;
-//    orcWbiConversions::eigenDispdToWbiFrame(Hroot, Hbase);
-//    robot->computeJacobian(q.data(), Hbase, index, owm_pimpl->segJacobian_rm[index].data());
-//    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->owm_pimpl->segJacobian_rm[index], owm_pimpl->owm_pimpl->segJacobian_cm[index]);
-//    owm_pimpl->segJacobian[index] = owm_pimpl->owm_pimpl->segJacobian_cm[index];
+    Eigen::VectorXd q = getJointPositions();
+    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+    wbi::Frame Hbase, H;
+    orcWbiConversions::eigenDispdToWbiFrame(Hroot, Hbase);
+    robot->computeJacobian(q.data(), Hbase, index, owm_pimpl->segJacobian_rm[index].data());
+    orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->segJacobian_rm[index], owm_pimpl->segJacobian_cm[index]);
+    owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_cm[index];
 
-//    return owm_pimpl->segJacobian[index];
+    return owm_pimpl->segJacobian[index];
 }
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJdot(int index) const
 {
+    owm_pimpl->segJdot[index] = Eigen::MatrixXd::Zero(6, owm_pimpl->nbDofs);
+    return owm_pimpl->segJdot[index];
 }
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getJointJacobian(int index) const
@@ -324,6 +326,14 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getJointJacobian(int 
 
 const Eigen::Twistd& orcWbiModel::getSegmentJdotQdot(int index) const
 {
+    Eigen::VectorXd q = getJointPositions();
+    Eigen::VectorXd dq = getJointVelocities();
+    Eigen::Displacementd Hroot = getFreeFlyerPosition();
+    wbi::Frame Hbase,H;
+    orcWbiConversions::eigenDispdToWbiFrame(Hroot,Hbase);
+    Eigen::Twistd Troot = getFreeFlyerVelocity();
+    robot->computeDJdq(q.data(),Hbase,dq.data(),Troot.data(),index,owm_pimpl->segJdotQdot[index].data());
+    return owm_pimpl->segJdotQdot[index];
 }
 
 void orcWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
