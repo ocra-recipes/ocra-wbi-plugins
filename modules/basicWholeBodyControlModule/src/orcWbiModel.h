@@ -56,7 +56,6 @@ public:
     virtual const Eigen::Twistd&                           getSegmentJdotQdot          (int index) const;
 
     void printAllData();
-    void printAllCoMData();
 
 protected:
 

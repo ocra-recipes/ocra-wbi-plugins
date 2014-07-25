@@ -126,6 +126,7 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     owm_pimpl->J_com_rm.resize(COM_POS_DIM, owm_pimpl->nbDofs);
 
     owm_pimpl->DJ_com = Eigen::MatrixXd::Zero(COM_POS_DIM, owm_pimpl->nbDofs);
+    std::fill(owm_pimpl->segPosition.begin(),owm_pimpl->segPosition.end(),Eigen::Displacementd(0,0,0));
     std::fill(owm_pimpl->segMass.begin(),owm_pimpl->segMass.end(),0.0);
     std::fill(owm_pimpl->segJointJacobian.begin(),owm_pimpl->segJointJacobian.end(),Eigen::MatrixXd::Zero(6, owm_pimpl->nbDofs));
     std::fill(owm_pimpl->segCoM.begin(),owm_pimpl->segCoM.end(), Eigen::Vector3d::Zero());
@@ -242,7 +243,6 @@ double orcWbiModel::getMass() const
 const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
 {
     wbi::Frame Hbase,H;
-    owm_pimpl->Hroot = Eigen::Displacementd(0,0,0,1,0,0,0);
     orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
     robot->computeH(owm_pimpl->q.data(),Hbase,wbi::iWholeBodyModel::COM_LINK_ID,H);
     Eigen::Displacementd Hcom;
@@ -291,8 +291,12 @@ const Eigen::Displacementd& orcWbiModel::getSegmentPosition(int index) const
     orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
     robot->computeH(owm_pimpl->q.data(),Hbase,index,H);
 
-    orcWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->segPosition[index]);
-
+    Eigen::Displacementd Hseg;
+    orcWbiConversions::wbiFrameToEigenDispd(H,Hseg);
+    std::cout<<"-----B"<<std::endl;
+    std::cout<<owm_pimpl->segPosition[index].getTranslation()<<std::endl;
+    owm_pimpl->segPosition[index] = Hseg;
+    std::cout<<"-----c"<<std::endl;
     return owm_pimpl->segPosition[index];
 }
 
@@ -388,28 +392,6 @@ const std::string& orcWbiModel::doGetSegmentName(int index) const
 {
 }
 
-void orcWbiModel::printAllCoMData()
-{
-//        getJointPositions();
-//        getJointVelocities();
-//        getFreeFlyerPosition();
-//        getFreeFlyerVelocity();
-
-    std::cout<<"comPosition:\n";
-    std::cout<<getCoMPosition().transpose()<<"\n";
-
-//    std::cout<<"comJacobian:\n";
-//    std::cout<<getCoMJacobian()<<"\n";
-
-    std::cout<<"comVelocity:\n";
-    std::cout<<getCoMVelocity().transpose()<<"\n";
-
-    std::cout<<"comJdotQdot:\n";
-    std::cout<<getCoMJdotQdot().transpose()<<"\n";
-
-    std::cout<<"comJacobianDot:\n";
-    std::cout<<getCoMJacobianDot()<<"\n";
-}
 
 void orcWbiModel::printAllData()
 {
@@ -456,16 +438,15 @@ void orcWbiModel::printAllData()
     std::cout<<"total_mass:\n";
     std::cout<<getMass()<<"\n";
 */
-    
-    std::cout<<"comPosition:\n";
-    std::cout<<getCoMPosition()<<"\n";
-    
 /*
+    std::cout<<"comPosition:\n";
+    std::cout<<getCoMPosition().transpose()<<"\n";
+    
     std::cout<<"comVelocity:\n";
-    std::cout<<getCoMVelocity()<<"\n";
+    std::cout<<getCoMVelocity().transpose()<<"\n";
     
     std::cout<<"comJdotQdot:\n";
-    std::cout<<getCoMJdotQdot()<<"\n";
+    std::cout<<getCoMJdotQdot().transpose()<<"\n";
     
     std::cout<<"comJacobian:\n";
     std::cout<<getCoMJacobian()<<"\n";
@@ -473,7 +454,7 @@ void orcWbiModel::printAllData()
     std::cout<<"comJacobianDot:\n";
     std::cout<<getCoMJacobianDot()<<"\n";
     
-    
+
     
     std::cout<<"B:\n";
     std::cout<<getDampingMatrix()<<"\n";
@@ -487,44 +468,44 @@ void orcWbiModel::printAllData()
     std::cout<<"g:\n";
    std::cout<<getGravityTerms()<<"\n";
     
-    
+*/
     for (int idx=0; idx<nbSegments(); idx++)
     {
-        std::cout<<"segPosition "<<idx<<":\n";
-        std::cout<<getSegmentPosition(idx)<<"\n";
+//        std::cout<<"segPosition "<<idx<<":\n";
+//        std::cout<<getSegmentPosition(idx)<<"\n";
     
-        std::cout<<"segVelocity "<<idx<<":\n";
-        std::cout<<getSegmentVelocity(idx)<<"\n";
+//        std::cout<<"segVelocity "<<idx<<":\n";
+//        std::cout<<getSegmentVelocity(idx)<<"\n";
     
-        std::cout<<"segMass "<<idx<<":\n";
-        std::cout<<getSegmentMass(idx)<<"\n";
+//        std::cout<<"segMass "<<idx<<":\n";
+//        std::cout<<getSegmentMass(idx)<<"\n";
     
-        std::cout<<"segCoM "<<idx<<":\n";
-        std::cout<<getSegmentCoM(idx)<<"\n";
+//        std::cout<<"segCoM "<<idx<<":\n";
+//        std::cout<<getSegmentCoM(idx)<<"\n";
     
-        std::cout<<"segMassMatrix "<<idx<<":\n";
-        std::cout<<getSegmentMassMatrix(idx)<<"\n";
+//        std::cout<<"segMassMatrix "<<idx<<":\n";
+//        std::cout<<getSegmentMassMatrix(idx)<<"\n";
     
-        std::cout<<"segMomentsOfInertia "<<idx<<":\n";
-        std::cout<<getSegmentMomentsOfInertia(idx)<<"\n";
+//        std::cout<<"segMomentsOfInertia "<<idx<<":\n";
+//        std::cout<<getSegmentMomentsOfInertia(idx)<<"\n";
     
-        std::cout<<"segInertiaAxes "<<idx<<":\n";
-        std::cout<<getSegmentInertiaAxes(idx)<<"\n";
+//        std::cout<<"segInertiaAxes "<<idx<<":\n";
+//        std::cout<<getSegmentInertiaAxes(idx)<<"\n";
     
-        std::cout<<"segJacobian "<<idx<<":\n";
-        std::cout<<getSegmentJacobian(idx)<<"\n";
+//        std::cout<<"segJacobian "<<idx<<":\n";
+//        std::cout<<getSegmentJacobian(idx)<<"\n";
     
-        std::cout<<"segJdot "<<idx<<":\n";
-        std::cout<<getSegmentJdot(idx)<<"\n";
+//        std::cout<<"segJdot "<<idx<<":\n";
+//        std::cout<<getSegmentJdot(idx)<<"\n";
     
-        std::cout<<"segJointJacobian "<<idx<<":\n";
-        std::cout<<getJointJacobian(idx)<<"\n";
+//        std::cout<<"segJointJacobian "<<idx<<":\n";
+//        std::cout<<getJointJacobian(idx)<<"\n";
     
-        std::cout<<"segJdotQdot "<<idx<<":\n";
-        std::cout<<getSegmentJdotQdot(idx)<<"\n";
+//        std::cout<<"segJdotQdot "<<idx<<":\n";
+//        std::cout<<getSegmentJdotQdot(idx)<<"\n";
     
     }
-*/
+
     
 }
 
