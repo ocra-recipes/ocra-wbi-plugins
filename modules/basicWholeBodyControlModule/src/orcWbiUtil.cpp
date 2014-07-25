@@ -71,6 +71,17 @@
 		return true;
     }
 
+    /* static */ bool orcWbiConversions::wbiToOrcTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_orc)
+    {
+        Eigen::Vector3d r = t_wbi.head(DIM_R);
+        Eigen::Vector3d t = t_wbi.tail(DIM_T);
+    
+        t_orc << t,
+                r;
+    
+        return true;
+    }
+
     /* static */ bool orcWbiConversions::eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M)
     {
         if((M_rm.cols() != M.cols()) || (M_rm.rows() != M.rows()))

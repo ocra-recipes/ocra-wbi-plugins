@@ -57,6 +57,9 @@ public:
 
     void printAllData();
 
+    // Set state to be used from WBI
+    void wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot);
+
 protected:
 
 //===========================Update state functions===========================//

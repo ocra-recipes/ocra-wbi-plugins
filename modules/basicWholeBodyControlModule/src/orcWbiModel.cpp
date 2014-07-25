@@ -32,14 +32,18 @@ public:
     Eigen::VectorXd                                         q; // state variable
     Eigen::VectorXd                                         dq; // derivative of q
     Eigen::Displacementd                                    Hroot; // translation of root
+    wbi::Frame                                              Hroot_wbi;
     Eigen::Twistd                                           Troot; // twist of root (velocity)
+    Eigen::Twistd                                           Troot_wbi; // twist of root (velocity)
     Eigen::MatrixXd                                         M; // Mass inertia matrix (col major for ORC control)
     Eigen::MatrixXd                                         M_full; // Full Mass inertia matrix (col major)
     Eigen::MatrixXd                                         Minv; // Inverse of mass inertia matrix (col major for ORC control)
     Eigen::MatrixXd                                         B; // Not set, set to ZERO for now (col major for ORC control)
     Eigen::VectorXd                                         nl; // non-linear terms in EOM (set as coriolis/centrifugal effects)
+    Eigen::VectorXd                                         nl_full; // non-linear terms in EOM (full vector from WBI)
     Eigen::VectorXd                                         l; // linear terms in EOM (set this to be zero)
     Eigen::VectorXd                                         g; // gravity term in EOM
+    Eigen::VectorXd                                         g_full; // gravity term in EOM (full vector from WBI)
     double                                                  total_mass;
     Eigen::Vector3d                                         pos_com; // COM position
     Eigen::Vector3d                                         vel_com; // COM velocity
@@ -81,7 +85,7 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
 :orc::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new orcWbiModel_pimpl)
 {
     owm_pimpl->freeRoot = freeRoot;
-    int M_Wbi_Size = robotNumDOF+FREE_ROOT_DOF;
+    int full_wbi_size = robotNumDOF+FREE_ROOT_DOF; // N+6
 
     // Initialise some constant variables
 
@@ -108,16 +112,18 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     owm_pimpl->dq = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
 
     // Setup mass matrix, damping matrix, c and g terms 
-    owm_pimpl->M_full_rm.resize(M_Wbi_Size, M_Wbi_Size);
-    owm_pimpl->M_full.resize(M_Wbi_Size, M_Wbi_Size);
+    owm_pimpl->M_full_rm.resize(full_wbi_size, full_wbi_size);
+    owm_pimpl->M_full.resize(full_wbi_size, full_wbi_size);
     owm_pimpl->M.resize(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     owm_pimpl->B = Eigen::MatrixXd::Zero(owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     owm_pimpl->nl.resize(owm_pimpl->nbDofs);
+    owm_pimpl->nl_full.resize(full_wbi_size);
     owm_pimpl->l = Eigen::VectorXd::Zero(owm_pimpl->nbDofs);
     owm_pimpl->g.resize(owm_pimpl->nbDofs);
+    owm_pimpl->g_full.resize(full_wbi_size);
 
     // Get full M0
-    MatrixXdRm M_rm_total_mass(M_Wbi_Size,M_Wbi_Size);
+    MatrixXdRm M_rm_total_mass(full_wbi_size,full_wbi_size);
     robot->computeMassMatrix(owm_pimpl->q.data(), wbi::Frame(), M_rm_total_mass.data());
     owm_pimpl->total_mass = M_rm_total_mass(0,0);
     
@@ -216,11 +222,16 @@ const Eigen::MatrixXd& orcWbiModel::getInertiaMatrixInverse() const
 
 const Eigen::MatrixXd& orcWbiModel::getDampingMatrix() const
 {
+    // not set so juts pass owm_pimpl->B back
     return owm_pimpl->B;
 }
 
 const Eigen::VectorXd& orcWbiModel::getNonLinearTerms() const
 {
+    wbi::Frame Hbase;
+    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot, Hbase);
+//    bool res = robot->computeGeneralizedBiasForces(owm_pimpl->q, Hbase, owm_pimpl->dq, 
+    
     return owm_pimpl->nl;
 }
 
@@ -348,14 +359,33 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getJointJacobian(int 
 
 const Eigen::Twistd& orcWbiModel::getSegmentJdotQdot(int index) const
 {
-    wbi::Frame Hbase;
-    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
     Eigen::Twistd Troot = getFreeFlyerVelocity();
     Eigen::Twistd Tseg;
-    robot->computeDJdq(owm_pimpl->q.data(),Hbase,owm_pimpl->dq.data(),Troot.data(),index,Tseg.data());
-    owm_pimpl->segJdotQdot[index].head(3) = Tseg.tail(3);
-    owm_pimpl->segJdotQdot[index].tail(3) = Tseg.head(3);
+    robot->computeDJdq(owm_pimpl->q.data(),owm_pimpl->Hroot_wbi,owm_pimpl->dq.data(),owm_pimpl->Troot_wbi.data(),index,Tseg.data());
+
+    orcWbiConversions::wbiToOrcTwistVector(Tseg, owm_pimpl->segJdotQdot[index]);
+
+//    owm_pimpl->segJdotQdot[index].head(3) = Tseg.tail(3);
+//    owm_pimpl->segJdotQdot[index].tail(3) = Tseg.head(3);
     return owm_pimpl->segJdotQdot[index];
+}
+
+void orcWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot)
+{
+    Eigen::Displacementd H;
+    Eigen::Twistd T;
+    // WBI versions
+    owm_pimpl->Hroot_wbi = H_root;
+    owm_pimpl->Troot_wbi = T_root;
+
+    // ORC versions
+    orcWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H); 
+    orcWbiConversions::wbiToOrcTwistVector(owm_pimpl->Troot_wbi, T); 
+
+    setJointPositions(q);
+    setJointVelocities(q_dot);
+    setFreeFlyerPosition(H);
+    setFreeFlyerVelocity(T);
 }
 
 void orcWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
@@ -364,7 +394,7 @@ void orcWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
 }
 
 void orcWbiModel::doSetJointVelocities(const Eigen::VectorXd& dq)
-{
+{ 
     owm_pimpl->dq = dq;
 }
 

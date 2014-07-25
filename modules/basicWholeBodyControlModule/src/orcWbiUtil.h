@@ -20,6 +20,7 @@ typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> M
     public:
         static bool eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame);
         static bool wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp);
+        static bool wbiToOrcTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_orc);
         static bool eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M);
 
         static bool wbiToOrcMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc);

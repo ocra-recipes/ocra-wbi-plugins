@@ -40,7 +40,7 @@ basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
                                                             )
     : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
 {
-    bool isFreeBase = false;
+    bool isFreeBase = true;
     orcModel = new orcWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     printCountdown = 0;
 }
@@ -50,7 +50,7 @@ bool basicWholeBodyControlThread::threadInit()
 {
     fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
     fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
-    fb_Hroot = Eigen::Vector3d::Zero();
+    fb_Hroot = wbi::Frame();
     fb_Troot = Eigen::VectorXd::Zero(DIM_TWIST);
     fb_torque.resize(robot->getDoFs());
     printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
@@ -68,11 +68,11 @@ void basicWholeBodyControlThread::run()
     bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
     bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, fb_torque.data(), ALL_JOINTS);
 
-    // TEMPORARY : set H_root and T_root as zero
-
-
     // SET THE STATE (FREE FLYER POSITION/VELOCITY AND Q)
-    orcModel->setState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
+    if (!orcModel->hasFixedRoot())
+        orcModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
+    else    
+        orcModel->setState(fb_qRad, fb_qdRad);
 
     // compute desired torque by calling the controller
 
