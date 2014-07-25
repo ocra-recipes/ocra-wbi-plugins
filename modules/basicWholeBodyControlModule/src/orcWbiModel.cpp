@@ -254,8 +254,7 @@ const Eigen::Vector3d& orcWbiModel::getCoMJdotQdot() const
 {
     wbi::Frame Hbase;
     orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
-    Eigen::Twistd Troot = getFreeFlyerVelocity();
-    robot->computeDJdq(owm_pimpl->q.data(),Hbase,owm_pimpl->dq.data(),Troot.data(),wbi::iWholeBodyModel::COM_LINK_ID,owm_pimpl->DJDq.data());
+    robot->computeDJdq(owm_pimpl->q.data(),Hbase,owm_pimpl->dq.data(),owm_pimpl->Troot.data(),wbi::iWholeBodyModel::COM_LINK_ID,owm_pimpl->DJDq.data());
     return owm_pimpl->DJDq;
 }
 
@@ -345,9 +344,8 @@ const Eigen::Twistd& orcWbiModel::getSegmentJdotQdot(int index) const
 {
     wbi::Frame Hbase;
     orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
-    Eigen::Twistd Troot = getFreeFlyerVelocity();
     Eigen::Twistd Tseg;
-    robot->computeDJdq(owm_pimpl->q.data(),Hbase,owm_pimpl->dq.data(),Troot.data(),index,Tseg.data());
+    robot->computeDJdq(owm_pimpl->q.data(),Hbase,owm_pimpl->dq.data(),owm_pimpl->Troot.data(),index,Tseg.data());
     owm_pimpl->segJdotQdot[index].head(3) = Tseg.tail(3);
     owm_pimpl->segJdotQdot[index].tail(3) = Tseg.head(3);
     return owm_pimpl->segJdotQdot[index];
@@ -383,10 +381,10 @@ const std::string& orcWbiModel::doGetSegmentName(int index) const
 
 void orcWbiModel::printAllCoMData()
 {
-        getJointPositions();
-        getJointVelocities();
-        getFreeFlyerPosition();
-        getFreeFlyerVelocity();
+//        getJointPositions();
+//        getJointVelocities();
+//        getFreeFlyerPosition();
+//        getFreeFlyerVelocity();
 
     std::cout<<"comPosition:\n";
     std::cout<<getCoMPosition().transpose()<<"\n";
