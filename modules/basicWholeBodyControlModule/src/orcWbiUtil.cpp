@@ -50,7 +50,7 @@
     {   
 		double _x, _y, _z, _w;
 		frame.R.getQuaternion(_x, _y, _z, _w);
-		
+
 		double x, y, z;
 		x = frame.p[0];
 		y = frame.p[1];
@@ -58,16 +58,17 @@
 		
 		Eigen::Vector3d trans;
 		trans << x, y, z;
-		
+
 		Eigen::Displacementd _disp(x,y,z,_w,_x,_y,_z);
+
 		disp = _disp;
-		
+
 		// Check if y-translation value is the same between the two data containers
 		if (disp.getTranslation()(1,0)!=y){
 			std::cerr << "Wbi Frame could not be converted to Displacementd\n";
 			return false;
 		}
-		
+
 		return true;
     }
 
@@ -145,19 +146,48 @@
         return true;
     }
 
-    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
-    {
-//    Eigen::MatrixXd jac_cm,jac_bottom,jac_top,jac_rt,jac_rr;
-//    eigenRowMajorToColMajor(jac, jac_cm);
-//    jac_tmp.resize(3,jac_cm.cols());
-//    jac_top = owm_pimpl->segJacobian_cm[index].bottomRows(3);
-//    jac_bottom = owm_pimpl->segJacobian_cm[index].topRows(3);
-//    owm_pimpl->segJacobian[index].topRows(3) = jac_top;
-//    owm_pimpl->segJacobian[index].bottomRows(3) = jac_bottom;
-//    jac_rt = owm_pimpl->segJacobian[index].leftCols(3);
-//    jac_rr = owm_pimpl->segJacobian[index].block<owm_pimpl->segJacobian[index].rows(),3>(0,3);
 
-//    owm_pimpl->segJacobian_cm = owm_pimpl->segJacobian;
+    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,6,Eigen::Dynamic> &J)
+    {
+        Eigen::MatrixXd jac5,jac6;
+        Eigen::Matrix3d jac1,jac2,jac3,jac4;
+        jac5.resize(3,jac.cols()-6);
+        jac6.resize(3,jac.cols()-6);
+
+
+        jac1 = jac.topLeftCorner(3,3);
+        jac2 = jac.block<3,3>(0,3);
+        jac3 = jac.bottomLeftCorner(3,3);
+        jac4 = jac.block<3,3>(3,3);
+        jac5 = jac.topRightCorner(3,jac.cols()-6);
+        jac6 = jac.bottomRightCorner(3,jac.cols()-6);
+
+        J.topLeftCorner(3,3) = jac4;
+        J.block<3,3>(0,3) = jac3;
+        J.bottomLeftCorner(3,3) = jac2;
+        J.block<3,3>(3,3) = jac1;
+        J.topRightCorner(3,jac.cols()-6) = jac6;
+        J.bottomRightCorner(3,jac.cols()-6) = jac5;
+
+        return true;
+    }
+
+
+    /* static */ bool orcWbiConversions::wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J)
+    {
+        Eigen::MatrixXd jac3;
+        Eigen::Matrix3d jac1,jac2;
+        jac3.resize(3,jac.cols()-6);
+
+        jac1 = jac.topLeftCorner(3,3);
+        jac2 = jac.block<3,3>(0,3);
+        jac3 = jac.topRightCorner(3,jac.cols()-6);
+        J.topLeftCorner(3,3) = jac2;
+        J.block<3,3>(0,3) = jac1;
+        J.topRightCorner(3,jac.cols()-6) = jac3;
+
+
+        return true;
     }
 
 
@@ -168,7 +198,7 @@
     /* static */ bool orcWbiConversions::wbiToOrcBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_orc)
     {
         int dof = qdof + DIM_T + DIM_R;
-        if(dof != v_wbi.size() || dof != v_orc.cols())
+        if(dof != v_wbi.size() || dof != v_orc.size())
         {
             std::cout<<"ERROR: Input and output matrices - Is the model free root?" <<std::endl;
             return false;

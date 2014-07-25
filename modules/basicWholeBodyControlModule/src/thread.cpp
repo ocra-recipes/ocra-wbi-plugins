@@ -40,7 +40,7 @@ basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
                                                             )
     : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
 {
-    bool isFreeBase = true;
+    bool isFreeBase = false;
     orcModel = new orcWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     printCountdown = 0;
 }
@@ -87,7 +87,11 @@ void basicWholeBodyControlThread::run()
         std::cout << "The joint torquess are" << std::endl;
         std::cout << fb_torque.toString() << std::endl;
         
+
+        std::cout << "Data in orcModel" << std::endl;
         orcModel->printAllData();
+
+
     }
 }
 

@@ -21,11 +21,12 @@ typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> M
         static bool eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame);
         static bool wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp);
         static bool wbiToOrcTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_orc);
+        static bool wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,6,Eigen::Dynamic> &J);
+        static bool wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J);
         static bool eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M);
-
         static bool wbiToOrcMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc);
-        static bool wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J);
         static bool wbiToOrcBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_orc);
+
     };
 
 #endif
