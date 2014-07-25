@@ -72,18 +72,44 @@
         return true;
     }
 
-    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
+    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,6,Eigen::Dynamic> &J)
     {
-//    Eigen::MatrixXd jac_cm,jac_bottom,jac_top,jac_rt,jac_rr;
-//    eigenRowMajorToColMajor(jac, jac_cm);
-//    jac_tmp.resize(3,jac_cm.cols());
-//    jac_top = owm_pimpl->segJacobian_cm[index].bottomRows(3);
-//    jac_bottom = owm_pimpl->segJacobian_cm[index].topRows(3);
-//    owm_pimpl->segJacobian[index].topRows(3) = jac_top;
-//    owm_pimpl->segJacobian[index].bottomRows(3) = jac_bottom;
-//    jac_rt = owm_pimpl->segJacobian[index].leftCols(3);
-//    jac_rr = owm_pimpl->segJacobian[index].block<owm_pimpl->segJacobian[index].rows(),3>(0,3);
+        Eigen::MatrixXd jac5,jac6;
+        Eigen::Matrix3d jac1,jac2,jac3,jac4;
+        jac5.resize(3,jac.cols()-6);
+        jac6.resize(3,jac.cols()-6);
 
-//    owm_pimpl->segJacobian_cm = owm_pimpl->segJacobian;
+
+        jac1 = jac.topLeftCorner(3,3);
+        jac2 = jac.block<3,3>(0,3);
+        jac3 = jac.bottomLeftCorner(3,3);
+        jac4 = jac.block<3,3>(3,3);
+        jac5 = jac.topRightCorner(3,jac.cols()-6);
+        jac6 = jac.bottomRightCorner(3,jac.cols()-6);
+
+        J.topLeftCorner(3,3) = jac4;
+        J.block<3,3>(0,3) = jac3;
+        J.bottomLeftCorner(3,3) = jac2;
+        J.block<3,3>(3,3) = jac1;
+        J.topRightCorner(3,jac.cols()-6) = jac6;
+        J.bottomRightCorner(3,jac.cols()-6) = jac5;
+
+        return true;
     }
 
+/* static */ bool orcWbiConversions::wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J)
+{
+    Eigen::MatrixXd jac3;
+    Eigen::Matrix3d jac1,jac2;
+    jac3.resize(3,jac.cols()-6);
+
+    jac1 = jac.topLeftCorner(3,3);
+    jac2 = jac.block<3,3>(0,3);
+    jac3 = jac.topRightCorner(3,jac.cols()-6);
+    J.topLeftCorner(3,3) = jac2;
+    J.block<3,3>(0,3) = jac1;
+    J.topRightCorner(3,jac.cols()-6) = jac3;
+
+
+    return true;
+}

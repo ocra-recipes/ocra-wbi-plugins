@@ -213,6 +213,7 @@ double orcWbiModel::getMass() const
 const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
 {
     wbi::Frame Hbase,H;
+    owm_pimpl->Hroot = Eigen::Displacementd(0,0,0,1,0,0,0);
     orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot,Hbase);
     robot->computeH(owm_pimpl->q.data(),Hbase,wbi::iWholeBodyModel::COM_LINK_ID,H);
     Eigen::Displacementd Hcom;
@@ -223,7 +224,9 @@ const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
 
 const Eigen::Vector3d& orcWbiModel::getCoMVelocity() const
 {
-    owm_pimpl->vel_com = getCoMJacobian()*getJointVelocities();
+
+    Eigen::MatrixXd Jcom = getCoMJacobian();
+    owm_pimpl->vel_com = Jcom*getJointVelocities();
     return owm_pimpl->vel_com;
 }
 
@@ -243,7 +246,8 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& orcWbiModel::getCoMJacob
     orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot, Hbase);
     robot->computeJacobian(owm_pimpl->q.data(), Hbase, wbi::iWholeBodyModel::COM_LINK_ID, owm_pimpl->J_com_rm.data());
     orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->J_com_rm, owm_pimpl->J_com_cm);
-    owm_pimpl->J_com = owm_pimpl->J_com_cm;
+    orcWbiConversions::wbiToOrcCoMJacobian(owm_pimpl->J_com_cm,owm_pimpl->J_com);
+
     return owm_pimpl->J_com;
 }
 
@@ -301,8 +305,8 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(in
     orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot, Hbase);
     robot->computeJacobian(owm_pimpl->q.data(), Hbase, index, owm_pimpl->segJacobian_rm[index].data());
     orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->segJacobian_rm[index], owm_pimpl->segJacobian_cm[index]);
-    owm_pimpl->segJacobian[index].topRows(3) = owm_pimpl->segJacobian_cm[index].bottomRows(3);
-    owm_pimpl->segJacobian[index].bottomRows(3) = owm_pimpl->segJacobian_cm[index].topRows(3);
+    orcWbiConversions::wbiToOrcSegJacobian(owm_pimpl->segJacobian_cm[index],owm_pimpl->segJacobian[index]);
+
     return owm_pimpl->segJacobian[index];
 }
 
@@ -351,6 +355,29 @@ int orcWbiModel::doGetSegmentIndex(const std::string& name) const
 
 const std::string& orcWbiModel::doGetSegmentName(int index) const
 {
+}
+
+void orcWbiModel::printAllCoMData()
+{
+        getJointPositions();
+        getJointVelocities();
+        getFreeFlyerPosition();
+        getFreeFlyerVelocity();
+
+    std::cout<<"comPosition:\n";
+    std::cout<<getCoMPosition().transpose()<<"\n";
+
+//    std::cout<<"comJacobian:\n";
+//    std::cout<<getCoMJacobian()<<"\n";
+
+    std::cout<<"comVelocity:\n";
+    std::cout<<getCoMVelocity().transpose()<<"\n";
+
+    std::cout<<"comJdotQdot:\n";
+    std::cout<<getCoMJdotQdot().transpose()<<"\n";
+
+    std::cout<<"comJacobianDot:\n";
+    std::cout<<getCoMJacobianDot()<<"\n";
 }
 
 void orcWbiModel::printAllData()

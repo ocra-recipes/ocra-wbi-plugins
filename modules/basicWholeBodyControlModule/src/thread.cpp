@@ -80,6 +80,7 @@ void basicWholeBodyControlThread::run()
         
         std::cout << "Data in orcModel" << std::endl;
         orcModel->printAllData();
+        orcModel->printAllCoMData();
     }
 }
 
