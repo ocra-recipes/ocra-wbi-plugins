@@ -28,6 +28,8 @@ using namespace yarp::math;
 using namespace wbiIcub;
 
 #define ALL_JOINTS -1
+#define DIM_DISP 3
+#define DIM_TWIST 6
 
 //*************************************************************************************************************************
 basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
@@ -46,13 +48,15 @@ basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
 //*************************************************************************************************************************
 bool basicWholeBodyControlThread::threadInit()
 {
-    fb_qRad.resize(robot->getDoFs());
+    fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
+    fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
+    fb_Hroot = Eigen::Vector3d::Zero();
+    fb_Troot = Eigen::VectorXd::Zero(DIM_TWIST);
     fb_torque.resize(robot->getDoFs());
     printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
 
     // Set all declared joints in module to TORQUE mode
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
-    return true;
 }
 
 //*************************************************************************************************************************
@@ -61,14 +65,23 @@ void basicWholeBodyControlThread::run()
     // Move this to header so can resize once
     yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
     bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
-    bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qdRad.data(), ALL_JOINTS);
+    bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
     bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, fb_torque.data(), ALL_JOINTS);
+
+    // TEMPORARY : set H_root and T_root as zero
 
 
     // SET THE FREE FLYER POSITION/VELOCITY AND Q HERE
-    std::cout << "TIME 1" << std::endl;
-    orcModel->setState(fb_qRad, fb_qdRad);
-    //orcModel->setJointVelocities(fb_qdRad);
+    std::cout << "THREAD IS SETTING STATE\n";
+    std::cout << "Q" << std::endl;
+    std::cout << fb_qRad.transpose() << std::endl;
+    std::cout << "QD" << std::endl;
+    std::cout << fb_qdRad.transpose() << std::endl;
+    orcModel->setState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
+    std::cout << "THREAD HAS SET STATE\n";
+
+        std::cout << "Data in orcModel" << std::endl;
+    orcModel->printAllData();
 
     // compute desired torque by calling the controller
 
@@ -77,15 +90,16 @@ void basicWholeBodyControlThread::run()
 
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
 
+/*
     if(printCountdown==0) {
         std::cout << "The robot encoders values are: " << std::endl;
         std::cout << fb_qRad << std::endl;
         std::cout << "The joint torquess are" << std::endl;
         std::cout << fb_torque.toString() << std::endl;
         
-        std::cout << "Data in orcModel" << std::endl;
         //orcModel->printAllData();
     }
+*/
 }
 
 //*************************************************************************************************************************

@@ -116,7 +116,7 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     owm_pimpl->l = Eigen::VectorXd::Zero(owm_pimpl->nbDofs);
     owm_pimpl->g.resize(owm_pimpl->nbDofs);
 
-    // Get full M Matrix once and grab the top corner
+    // Get full M0
     MatrixXdRm M_rm_total_mass(M_Wbi_Size,M_Wbi_Size);
     robot->computeMassMatrix(owm_pimpl->q.data(), wbi::Frame(), M_rm_total_mass.data());
     owm_pimpl->total_mass = M_rm_total_mass(0,0);
@@ -243,7 +243,7 @@ const Eigen::Vector3d& orcWbiModel::getCoMPosition() const
 
 const Eigen::Vector3d& orcWbiModel::getCoMVelocity() const
 {
-    owm_pimpl->vel_com = getCoMJacobian()*getJointVelocities();
+    owm_pimpl->vel_com = getCoMJacobian()*owm_pimpl->dq;
     return owm_pimpl->vel_com;
 }
 
@@ -286,7 +286,7 @@ const Eigen::Displacementd& orcWbiModel::getSegmentPosition(int index) const
 
 const Eigen::Twistd& orcWbiModel::getSegmentVelocity(int index) const
 {
-    owm_pimpl->segVelocity[index] = getSegmentJacobian(index)*getJointVelocities();
+    owm_pimpl->segVelocity[index] = getSegmentJacobian(index)*owm_pimpl->dq;
     return owm_pimpl->segVelocity[index];
 }
 
@@ -351,20 +351,22 @@ const Eigen::Twistd& orcWbiModel::getSegmentJdotQdot(int index) const
 
 void orcWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
 {
-    std::cout << "DID I GET CALLED???\n";
+    owm_pimpl->q = q;
 }
 
 void orcWbiModel::doSetJointVelocities(const Eigen::VectorXd& dq)
 {
-    std::cout << "DID I GET CALLED VELOCITIES???\n";
+    owm_pimpl->dq = dq;
 }
 
 void orcWbiModel::doSetFreeFlyerPosition(const Eigen::Displacementd& Hroot)
 {
+    owm_pimpl->Hroot = Hroot;
 }
 
 void orcWbiModel::doSetFreeFlyerVelocity(const Eigen::Twistd& Troot)
 {
+    owm_pimpl->Troot = Troot;
 }
 
 int orcWbiModel::doGetSegmentIndex(const std::string& name) const
@@ -377,6 +379,7 @@ const std::string& orcWbiModel::doGetSegmentName(int index) const
 
 void orcWbiModel::printAllData()
 {
+/*
     std::cout<<"nbSegments:\n";
     std::cout<<nbSegments()<<"\n";
 
@@ -389,31 +392,29 @@ void orcWbiModel::printAllData()
     std::cout<<"actuatedDofs:\n";
     std::cout<<getActuatedDofs()<<"\n";
     
-/*
     std::cout<<"lowerLimits:\n";
     std::cout<<getJointLowerLimits()<<"\n";
     
     std::cout<<"upperLimits:\n";
     std::cout<<getJointUpperLimits()<<"\n";
-*/
     
+*/
     std::cout<<"q:\n";
-    std::cout<<getJointPositions()<<"\n";
+    std::cout<<getJointPositions().transpose()<<"\n";
     
     std::cout<<"dq:\n";
-    std::cout<<getJointVelocities()<<"\n";
-    
+    std::cout<<getJointVelocities().transpose()<<"\n";
+
     std::cout<<"Hroot:\n";
     std::cout<<getFreeFlyerPosition()<<"\n";
     
     std::cout<<"Troot:\n";
-    std::cout<<getFreeFlyerVelocity()<<"\n";
+    std::cout<<getFreeFlyerVelocity().transpose()<<"\n";
 
-
+/*
     std::cout<<"M:\n";
     std::cout<<getInertiaMatrix()<<"\n";
     
-/*
     std::cout<<"Minv:\n";
     std::cout<<getInertiaMatrixInverse()<<"\n";
 */
@@ -448,7 +449,7 @@ void orcWbiModel::printAllData()
     std::cout<<getLinearTerms()<<"\n";
     
     std::cout<<"g:\n";
-    std::cout<<getGravityTerms()<<"\n";
+   std::cout<<getGravityTerms()<<"\n";
     
     
     for (int idx=0; idx<nbSegments(); idx++)
