@@ -86,30 +86,46 @@
         return true;
     }
 
-    /* static */ bool orcWbiConversions::massMatrixWbiToOrc(int dof, int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc)
+    // ONLY USE WHEN MASS MATRIX CONTAINS FREE BASE TRANSLATION AND ROTATION
+    //      Since the translation and rotation are switched
+    //      WBI order [T R Q]
+    //      ORC order [R T Q]
+    /* static */ bool orcWbiConversions::wbiToOrcMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc)
     {
-        Eigen::MatrixXd m11(qdof, qdof);
-        Eigen::MatrixXd m12(qdof, DIM_T);
-        Eigen::MatrixXd m13(qdof, DIM_R);
-        Eigen::MatrixXd m21(DIM_T, qdof);
-        Eigen::MatrixXd m22(DIM_T, DIM_T);
-        Eigen::MatrixXd m23(DIM_T, DIM_R);
-        Eigen::MatrixXd m31(DIM_R, qdof);
-        Eigen::MatrixXd m32(DIM_R, DIM_T);
-        Eigen::MatrixXd m33(DIM_R, DIM_R);
+        int dof = qdof + DIM_T + DIM_R;
+        if(dof != M_wbi.cols() || dof != M_wbi.rows() || dof != M_orc.rows() || dof != M_orc.cols())
+        {
+            std::cout<<"ERROR: Input and output matrices - Is the model free root?" <<std::endl;
+            return false;
+        }
 
-        /*
-            Changes matrix from
-         */
-        m11 = M_wbi.block(0, 0, qdof, qdof);
-        m12 = M_wbi.block(0, qdof, qdof, DIM_T);
-        m13 = M_wbi.block(0, qdof+DIM_T, qdof, DIM_R);
-        m21 = M_wbi.block(qdof, 0, DIM_T, qdof);
-        m22 = M_wbi.block(qdof, qdof, DIM_T, DIM_T);
-        m23 = M_wbi.block(qdof, qdof+DIM_T, DIM_T, DIM_R);
-        m31 = M_wbi.block(qdof+DIM_T, 0, DIM_T, qdof);
-        m32 = M_wbi.block(qdof+DIM_T, qdof, DIM_R, DIM_R);
-        m33 = M_wbi.block(qdof+DIM_T, qdof+DIM_R, DIM_R, DIM_R);
+        // ORIGINAL MATRIX BLOCKS
+        Eigen::MatrixXd m11(DIM_T, DIM_T);
+        m11 = M_wbi.block(0, 0, DIM_T, DIM_T);
+
+        Eigen::MatrixXd m12(DIM_T, DIM_R);
+        m12 = M_wbi.block(0, DIM_T, DIM_T, DIM_R);
+
+        Eigen::MatrixXd m13(DIM_T, qdof);
+        m13 = M_wbi.block(0, DIM_T+DIM_R, DIM_T, qdof);
+
+        Eigen::MatrixXd m21(DIM_R, DIM_T);
+        m21 = M_wbi.block(DIM_T, 0, DIM_R, DIM_T);
+
+        Eigen::MatrixXd m22(DIM_R, DIM_R);
+        m22 = M_wbi.block(DIM_T, DIM_T, DIM_R, DIM_R);
+
+        Eigen::MatrixXd m23(DIM_R, qdof);
+        m23 = M_wbi.block(DIM_T, DIM_T+DIM_R, DIM_R, qdof);
+
+        Eigen::MatrixXd m31(qdof, DIM_T);
+        m31 = M_wbi.block(DIM_T+DIM_R, 0, qdof, DIM_T);
+
+        Eigen::MatrixXd m32(qdof, DIM_R);
+        m32 = M_wbi.block(DIM_T+DIM_R, DIM_T, qdof, DIM_R);
+
+        Eigen::MatrixXd m33(qdof, qdof);
+        m33 = M_wbi.block(DIM_T+DIM_R, DIM_T+DIM_R, qdof, qdof);
 
         M_orc << m22, m21, m23,
                 m12, m11, m13,
@@ -117,6 +133,7 @@
 
         return true;
     }
+
 
     /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,6,Eigen::Dynamic> &J)
     {
@@ -143,6 +160,7 @@
         return true;
     }
 
+
     /* static */ bool orcWbiConversions::wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J)
     {
         Eigen::MatrixXd jac3;
@@ -158,4 +176,31 @@
 
 
         return true;
+    }
+
+
+    // ONLY USE WHEN VECTORS CONTAINS FREE BASE TRANSLATION AND ROTATION
+    //      Since the translation and rotation are switched
+    //      WBI order [T R Q]
+    //      ORC order [R T Q]
+    /* static */ bool orcWbiConversions::wbiToOrcBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_orc)
+    {
+        int dof = qdof + DIM_T + DIM_R;
+        if(dof != v_wbi.size() || dof != v_orc.cols())
+        {
+            std::cout<<"ERROR: Input and output matrices - Is the model free root?" <<std::endl;
+            return false;
+        }
+        
+        Eigen::VectorXd t(DIM_T);
+        Eigen::VectorXd r(DIM_R);
+        Eigen::VectorXd q(qdof);
+
+        t = v_wbi.segment(0, DIM_T);
+        r = v_wbi.segment(DIM_T, DIM_R);
+        q = v_wbi.segment(DIM_T+DIM_R, qdof);
+
+        v_orc << r,
+                t,
+                q;
     }

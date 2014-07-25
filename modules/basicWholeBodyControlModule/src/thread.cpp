@@ -71,17 +71,8 @@ void basicWholeBodyControlThread::run()
     // TEMPORARY : set H_root and T_root as zero
 
 
-    // SET THE FREE FLYER POSITION/VELOCITY AND Q HERE
-    std::cout << "THREAD IS SETTING STATE\n";
-    std::cout << "Q" << std::endl;
-    std::cout << fb_qRad.transpose() << std::endl;
-    std::cout << "QD" << std::endl;
-    std::cout << fb_qdRad.transpose() << std::endl;
+    // SET THE STATE (FREE FLYER POSITION/VELOCITY AND Q)
     orcModel->setState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
-    std::cout << "THREAD HAS SET STATE\n";
-
-        std::cout << "Data in orcModel" << std::endl;
-    orcModel->printAllData();
 
     // compute desired torque by calling the controller
 
@@ -90,10 +81,9 @@ void basicWholeBodyControlThread::run()
 
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
 
-/*
     if(printCountdown==0) {
         std::cout << "The robot encoders values are: " << std::endl;
-        std::cout << fb_qRad << std::endl;
+        std::cout << fb_qRad.transpose() << std::endl;
         std::cout << "The joint torquess are" << std::endl;
         std::cout << fb_torque.toString() << std::endl;
         
@@ -102,8 +92,9 @@ void basicWholeBodyControlThread::run()
         orcModel->printAllData();
         orcModel->printAllCoMData();
 
+        orcModel->printAllData();
+
     }
-*/
 }
 
 //*************************************************************************************************************************
