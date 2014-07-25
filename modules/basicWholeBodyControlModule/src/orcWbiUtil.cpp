@@ -14,6 +14,9 @@
 #include <vector>
 #include "orcWbiUtil.h"
 
+#define DIM_T 3
+#define DIM_R 3
+
     /* static */ bool orcWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
     {
 		double p_wbi[3];
@@ -68,7 +71,7 @@
 		return true;
     }
 
-    /* static */ bool orcWbiConversions::eigenRowMajorToColMajor(MatrixXdRm &M_rm, Eigen::MatrixXd &M)
+    /* static */ bool orcWbiConversions::eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M)
     {
         if((M_rm.cols() != M.cols()) || (M_rm.rows() != M.rows()))
         {
@@ -83,5 +86,49 @@
         return true;
     }
 
+    /* static */ bool orcWbiConversions::massMatrixWbiToOrc(int dof, int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc)
+    {
+        Eigen::MatrixXd m11(qdof, qdof);
+        Eigen::MatrixXd m12(qdof, DIM_T);
+        Eigen::MatrixXd m13(qdof, DIM_R);
+        Eigen::MatrixXd m21(DIM_T, qdof);
+        Eigen::MatrixXd m22(DIM_T, DIM_T);
+        Eigen::MatrixXd m23(DIM_T, DIM_R);
+        Eigen::MatrixXd m31(DIM_R, qdof);
+        Eigen::MatrixXd m32(DIM_R, DIM_T);
+        Eigen::MatrixXd m33(DIM_R, DIM_R);
 
+        /*
+            Changes matrix from
+         */
+        m11 = M_wbi.block(0, 0, qdof, qdof);
+        m12 = M_wbi.block(0, qdof, qdof, DIM_T);
+        m13 = M_wbi.block(0, qdof+DIM_T, qdof, DIM_R);
+        m21 = M_wbi.block(qdof, 0, DIM_T, qdof);
+        m22 = M_wbi.block(qdof, qdof, DIM_T, DIM_T);
+        m23 = M_wbi.block(qdof, qdof+DIM_T, DIM_T, DIM_R);
+        m31 = M_wbi.block(qdof+DIM_T, 0, DIM_T, qdof);
+        m32 = M_wbi.block(qdof+DIM_T, qdof, DIM_R, DIM_R);
+        m33 = M_wbi.block(qdof+DIM_T, qdof+DIM_R, DIM_R, DIM_R);
+
+        M_orc << m22, m21, m23,
+                m12, m11, m13,
+                m32, m31, m33;
+
+        return true;
+    }
+    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
+    {
+//    Eigen::MatrixXd jac_cm,jac_bottom,jac_top,jac_rt,jac_rr;
+//    eigenRowMajorToColMajor(jac, jac_cm);
+//    jac_tmp.resize(3,jac_cm.cols());
+//    jac_top = owm_pimpl->segJacobian_cm[index].bottomRows(3);
+//    jac_bottom = owm_pimpl->segJacobian_cm[index].topRows(3);
+//    owm_pimpl->segJacobian[index].topRows(3) = jac_top;
+//    owm_pimpl->segJacobian[index].bottomRows(3) = jac_bottom;
+//    jac_rt = owm_pimpl->segJacobian[index].leftCols(3);
+//    jac_rr = owm_pimpl->segJacobian[index].block<owm_pimpl->segJacobian[index].rows(),3>(0,3);
+
+//    owm_pimpl->segJacobian_cm = owm_pimpl->segJacobian;
+    }
 
