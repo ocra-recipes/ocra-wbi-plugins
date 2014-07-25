@@ -142,53 +142,62 @@ orcWbiModel::~orcWbiModel()
 
 int orcWbiModel::nbSegments() const
 {
+    // set once, hence just return
     return owm_pimpl->nbSegments;
 }
 
 const Eigen::VectorXd& orcWbiModel::getActuatedDofs() const
 {
+    // set once, hence just return
     return owm_pimpl->actuatedDofs;
 }
 
 const Eigen::VectorXd& orcWbiModel::getJointLowerLimits() const
 {
+    // set once, hence just return
     return owm_pimpl->lowerLimits;
 }
 
 const Eigen::VectorXd& orcWbiModel::getJointUpperLimits() const
 {
+    // set once, hence just return
     return owm_pimpl->upperLimits;
 }
 
 const Eigen::VectorXd& orcWbiModel::getJointPositions() const
 {
+    // set by setState or setJointPositions
     return owm_pimpl->q;
 }
 
 const Eigen::VectorXd& orcWbiModel::getJointVelocities() const
 {
+    // set by setState or setJointVelocities
     return owm_pimpl->dq;
 }
 
 const Eigen::Displacementd& orcWbiModel::getFreeFlyerPosition() const
 {
+    // set by setState or setFreeFlyerPosition
     return owm_pimpl->Hroot;
 }
 
 const Eigen::Twistd& orcWbiModel::getFreeFlyerVelocity() const
 {
+    // set by setState or setFreeFlyerVelocity
     return owm_pimpl->Troot;
 }
 
 const Eigen::MatrixXd& orcWbiModel::getInertiaMatrix() const
 {
-    // NOT DONE, FRAME NEEDS TO BE SOLVED
-    bool res = robot->computeMassMatrix(owm_pimpl->q.data(), wbi::Frame(), owm_pimpl->M_full_rm.data());
+    wbi::Frame Hbase;
+    orcWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot, Hbase);
+    bool res = robot->computeMassMatrix(owm_pimpl->q.data(), Hbase, owm_pimpl->M_full_rm.data());
     orcWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_full_rm, owm_pimpl->M_full);
 
     if (owm_pimpl->freeRoot)
     {
-        orcWbiConversions::massMatrixWbiToOrc(owm_pimpl->nbDofs, owm_pimpl->nbInternalDofs, owm_pimpl->M_full, owm_pimpl->M);
+        orcWbiConversions::wbiToOrcMassMatrix(owm_pimpl->nbInternalDofs, owm_pimpl->M_full, owm_pimpl->M);
     }
     else
     {   
@@ -410,8 +419,8 @@ void orcWbiModel::printAllData()
     
     std::cout<<"Troot:\n";
     std::cout<<getFreeFlyerVelocity().transpose()<<"\n";
-
 /*
+
     std::cout<<"M:\n";
     std::cout<<getInertiaMatrix()<<"\n";
     
@@ -421,10 +430,12 @@ void orcWbiModel::printAllData()
 /*
     std::cout<<"total_mass:\n";
     std::cout<<getMass()<<"\n";
+*/
     
     std::cout<<"comPosition:\n";
     std::cout<<getCoMPosition()<<"\n";
     
+/*
     std::cout<<"comVelocity:\n";
     std::cout<<getCoMVelocity()<<"\n";
     
