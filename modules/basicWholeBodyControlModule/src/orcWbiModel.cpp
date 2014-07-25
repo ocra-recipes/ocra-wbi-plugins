@@ -13,8 +13,11 @@
 #define COM_POS_DIM 3
 #define TRANS_ROT_DIM 6
 
+#define GRAVITY_CONSTANT 9.81
 
 typedef  Eigen::Displacementd::AdjointMatrix  AdjointMatrix;
+
+const double g_vector[3] = {0, 0, GRAVITY_CONSTANT};
 
 struct orcWbiModel::orcWbiModel_pimpl
 {
@@ -271,6 +274,16 @@ const Eigen::VectorXd& orcWbiModel::getLinearTerms() const
 
 const Eigen::VectorXd& orcWbiModel::getGravityTerms() const
 {
+    Eigen::VectorXd dq_zero = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
+    Eigen::Vector3d g(g_vector);
+
+    bool res = robot->computeGeneralizedBiasForces(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, dq_zero.data(), owm_pimpl->Troot_wbi.data(), g.data(), owm_pimpl->g_full.data());
+
+    if (owm_pimpl->freeRoot)
+        orcWbiConversions::wbiToOrcBodyVector(owm_pimpl->nbInternalDofs, owm_pimpl->g_full, owm_pimpl->g);
+    else
+        owm_pimpl->g = owm_pimpl->g_full.segment(FREE_ROOT_DOF, owm_pimpl->nbDofs);
+    
     return owm_pimpl->g;
 }
 
@@ -512,12 +525,12 @@ void orcWbiModel::printAllData()
     std::cout<<"n:\n";
     std::cout<<getNonLinearTerms()<<"\n";
     
+    std::cout<<"g:\n";
+    std::cout<<getGravityTerms()<<"\n";
+
 /*
     std::cout<<"l:\n";
     std::cout<<getLinearTerms()<<"\n";
-    
-    std::cout<<"g:\n";
-   std::cout<<getGravityTerms()<<"\n";
 */
 
 
