@@ -20,9 +20,11 @@ typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> M
     public:
         static bool eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame);
         static bool wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp);
-        static bool eigenRowMajorToColMajor(MatrixXdRm &M_rm, Eigen::MatrixXd &M);
         static bool wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,6,Eigen::Dynamic> &J);
         static bool wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J);
+        static bool eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M);
+        static bool massMatrixWbiToOrc(int dof, int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc);
+
     };
 
 #endif
