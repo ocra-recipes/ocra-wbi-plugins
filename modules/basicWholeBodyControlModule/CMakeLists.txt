@@ -9,14 +9,25 @@ PROJECT(${PROJECTNAME})
 set(CMAKE_CXX_FLAGS "-fpermissive")
 
 find_package(YARP REQUIRED)
+find_package(YCM REQUIRED) 
+
+set(CMAKE_MODULE_PATH ${YARP_MODULE_PATH} ${CMAKE_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${YCM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+
 find_package(Eigen3 REQUIRED)
 find_package(iDynTree REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
+
 
 find_package(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(EIGEN eigen_lgsm REQUIRED)
 PKG_CHECK_MODULES(PC_ORCISIR_ISIRCONTROLLER orcisir_ISIRController REQUIRED)
 PKG_CHECK_MODULES(PC_ORC_FRAMEWORK orc_framework REQUIRED)
+PKG_CHECK_MODULES(PC_MODHELP modHelp REQUIRED)
+
+# new "data" installation - available with yarp2.4
+include(YarpInstallationHelpers)
+yarp_configure_external_installation(codyco)
 
 FILE(GLOB folder_source ./src/*.cpp)
 FILE(GLOB folder_header ./src/*.h)
@@ -26,10 +37,10 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 LINK_DIRECTORIES(${PC_ORCISIR_ISIRCONTROLLER_LIBRARY_DIRS}
                  ${PC_ORC_FRAMEWORK_LIBRARY_DIRS}
-                 ${PC_MODHELP_LIBRARY_DIRS})
+                 ${PC_MODHELP_LIBRARY_DIRS}
+                 )
 
 #ADD_LIBRARY(orcWbiModel SHARED src/orcWbiModel.cpp)
-ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src
                     ${YARP_INCLUDE_DIRS}
@@ -39,7 +50,11 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src
                     ${EIGEN_INCLUDE_DIRS}
                     ${PC_ORCISIR_ISIRCONTROLLER_INCLUDE_DIRS}
                     ${PC_ORC_FRAMEWORK_INCLUDE_DIRS} 
+                    ${PC_MODHELP_INCLUDE_DIRS}
                     )
+
+ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
+
 
 TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
                                      ${ICUB_LIBRARIES}
@@ -47,6 +62,7 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
                                      ${yarpWholeBodyInterface_LIBRARIES}
                                      ${PC_ORCISIR_ISIRCONTROLLER_LIBRARIES}
                                      ${PC_ORC_FRAMEWORK_LIBRARIES}
+                                     ${PC_MODHELP_LIBRARIES}
                                      )
 
 

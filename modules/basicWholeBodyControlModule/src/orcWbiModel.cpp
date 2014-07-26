@@ -77,7 +77,7 @@ public:
     std::vector< Eigen::MatrixXd >                                      segJacobian_full_orc; 
     std::vector< MatrixXdRm >                                           segJacobian_rm; 
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJdot; // not set
-    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian; // not set
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian;
     std::vector< Eigen::Twistd >                            segJdotQdot;
     std::map< std::string, int >                            segIndexFromName;
     std::vector< std::string >                              segNameFromIndex;
@@ -376,6 +376,7 @@ const Eigen::Rotation3d& orcWbiModel::getSegmentInertiaAxes(int index) const
     return owm_pimpl->segInertiaAxes[index];
 }
 
+//compute jacobian in segment frame
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(int index) const
 {
     robot->computeJacobian(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, index, owm_pimpl->segJacobian_rm[index].data());
@@ -385,8 +386,9 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(in
     if (owm_pimpl->freeRoot)
         owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_orc[index];
     else
-        owm_pimpl->segJacobian[index]= owm_pimpl->segJacobian_full_orc[index].topRightCorner(6,owm_pimpl->nbInternalDofs);
+        owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_orc[index].topRightCorner(6,owm_pimpl->nbInternalDofs);
 
+    owm_pimpl->segJacobian[index].noalias() = getSegmentPosition(index).inverse().adjoint()*owm_pimpl->segJacobian[index];
     return owm_pimpl->segJacobian[index];
 }
 
@@ -397,6 +399,8 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJdot(int in
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getJointJacobian(int index) const
 {
+    owm_pimpl->segJointJacobian[index] = getSegmentJacobian(index);
+
     return owm_pimpl->segJointJacobian[index];
 }
 
