@@ -184,8 +184,10 @@ void basicWholeBodyControlThread::run()
 
     // compute desired torque by calling the controller
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(orcModel->nbInternalDofs(), 0.0);
-	//ctrl->computeOutput(eigenTorques);
-	//modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
+	std::cout<<"Test 1 \n";
+	ctrl->computeOutput(eigenTorques);
+	std::cout<<"Test 2 \n";
+	modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
 
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
