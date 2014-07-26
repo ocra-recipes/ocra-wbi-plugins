@@ -149,6 +149,13 @@
 
     /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
     {
+        int dof = DIM_T + DIM_R;
+        if(dof != jac.rows() || dof != J.rows()||jac.cols() != J.cols())
+        {
+            std::cout<<"ERROR: Input and output matrices dimensions should be the same" <<std::endl;
+            return false;
+        }
+
         // FOR FULL n+6 Jacobian ONLY
         Eigen::MatrixXd jac5,jac6;
         Eigen::Matrix3d jac1,jac2,jac3,jac4;
@@ -176,6 +183,12 @@
 
     /* static */ bool orcWbiConversions::wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J)
     {
+
+        if(DIM_T != jac.rows() || jac.cols() != J.cols())
+        {
+            std::cout<<"ERROR: Input and output matrices dimensions should be the same" <<std::endl;
+            return false;
+        }
         Eigen::MatrixXd jac3;
         Eigen::Matrix3d jac1,jac2;
         jac3.resize(3,jac.cols()-6);

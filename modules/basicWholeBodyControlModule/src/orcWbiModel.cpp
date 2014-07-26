@@ -77,7 +77,7 @@ public:
     std::vector< Eigen::MatrixXd >                                      segJacobian_full_orc; 
     std::vector< MatrixXdRm >                                           segJacobian_rm; 
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJdot; // not set
-    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian; // not set
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian;
     std::vector< Eigen::Twistd >                            segJdotQdot;
     std::map< std::string, int >                            segIndexFromName;
     std::vector< std::string >                              segNameFromIndex;
@@ -399,6 +399,8 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJdot(int in
 
 const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getJointJacobian(int index) const
 {
+    owm_pimpl->segJointJacobian[index] = getSegmentJacobian(index);
+
     return owm_pimpl->segJointJacobian[index];
 }
 
