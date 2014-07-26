@@ -24,7 +24,7 @@
 #include <yarp/os/Log.h>
 
 
-#include "orcisir/Solvers/OneLevelSolver.h"
+//#include "orcisir/Solvers/OneLevelSolver.h"
 #include "orcisir/Features/ISIRFeature.h"
 #include "orc/control/Feature.h"
 #include "orc/control/FullState.h"
@@ -70,7 +70,7 @@ bool basicWholeBodyControlThread::threadInit()
     //================ SET UP CONTROLLER ========================================================================//
 
     bool useReducedProblem = false;
-	orcisir::OneLevelSolverWithQuadProg   internalSolver;
+	//orcisir::OneLevelSolverWithQuadProg   internalSolver;
     ctrl = new orcisir::ISIRController("icubControl", *orcModel, internalSolver, useReducedProblem);
 
 	//================ FULL STATE ==============================================================================//
@@ -114,7 +114,7 @@ bool basicWholeBodyControlThread::threadInit()
     CoM_featDes = new orc::PositionFeature("CoM_frame.Des", *CoM_TF, orc::XYZ);
     
     //Set target frame variables
-    CoM_TF->setPosition(Eigen::Displacementd(0.0,0.0,0.6));
+    CoM_TF->setPosition(Eigen::Displacementd());//(0.0,0.0,0.6));
     CoM_TF->setVelocity(Eigen::Twistd());
     CoM_TF->setAcceleration(Eigen::Twistd());
 

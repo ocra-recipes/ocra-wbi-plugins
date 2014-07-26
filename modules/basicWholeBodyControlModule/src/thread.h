@@ -33,6 +33,8 @@
 
 #include "orcWbiModel.h"
 #include "orcisir/ISIRController.h"
+#include "orcisir/Solvers/OneLevelSolver.h"
+
 
 using namespace yarp::os;
 using namespace yarp::sig;
@@ -54,6 +56,7 @@ class basicWholeBodyControlThread: public RateThread
     orcWbiModel *orcModel;
     yarp::os::Property options;
     orcisir::ISIRController *ctrl;
+    orcisir::OneLevelSolverWithQuadProg   internalSolver;
 
     // Member variables
     double printPeriod;
