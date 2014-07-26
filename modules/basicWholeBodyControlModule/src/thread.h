@@ -32,6 +32,7 @@
 #include <wbi/wbi.h>
 
 #include "orcWbiModel.h"
+#include "orcisir/ISIRController.h"
 
 using namespace yarp::os;
 using namespace yarp::sig;
@@ -52,6 +53,7 @@ class basicWholeBodyControlThread: public RateThread
     wholeBodyInterface *robot;
     orcWbiModel *orcModel;
     yarp::os::Property options;
+    orcisir::ISIRController *ctrl;
 
     // Member variables
     double printPeriod;

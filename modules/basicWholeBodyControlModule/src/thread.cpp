@@ -17,10 +17,19 @@
 
 #include "thread.h"
 #include "orcWbiModel.h"
+#include <modHelp/modHelp.h>
 
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Log.h>
+
+
+#include "orcisir/Solvers/OneLevelSolver.h"
+#include "orcisir/Features/ISIRFeature.h"
+#include "orc/control/Feature.h"
+#include "orc/control/FullState.h"
+#include "orc/control/ControlFrame.h"
+#include "orc/control/ControlEnum.h"
 
 
 using namespace basicWholeBodyControlNamespace;
@@ -57,6 +66,66 @@ bool basicWholeBodyControlThread::threadInit()
 
     // Set all declared joints in module to TORQUE mode
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+    
+    //================ SET UP CONTROLLER ========================================================================//
+    std::cout<< "Test 1 \n";
+    bool useReducedProblem = false;
+	orcisir::OneLevelSolverWithQuadProg   internalSolver;
+	std::cout<< "Test 2 \n";
+    ctrl = new orcisir::ISIRController("icubControl", *orcModel, internalSolver, useReducedProblem);
+	std::cout<< "Test 3 \n";
+	//================ FULL STATE ==============================================================================//
+    orc::FullModelState*   FMS;
+    FMS = new orc::FullModelState("torqueTask.FModelState", *orcModel, orc::FullState::INTERNAL); //INTERNAL, FREE_FLYER
+    orc::FullTargetState*  FTS;
+    FTS = new orc::FullTargetState("torqueTask.FTargetState", *orcModel, orc::FullState::INTERNAL);
+    orc::FullStateFeature* feat;
+    feat = new orc::FullStateFeature("torqueTask", *FMS);
+    orc::FullStateFeature* featDes;
+    featDes = new orc::FullStateFeature("torqueTask.Des", *FTS);
+	std::cout<< "Test 4 \n";
+    FTS->set_q(Eigen::VectorXd::Constant(orcModel->nbInternalDofs(), 0.0));
+	std::cout<< "Test 5 \n";
+
+    orcisir::ISIRTask* accTask;
+    std::cout<< "Test 6 \n";
+    accTask = &(ctrl->createISIRTask("accTask", *feat, *featDes));
+    accTask->initAsAccelerationTask();
+    ctrl->addTask(*accTask);
+    accTask->activateAsObjective();
+    accTask->setStiffness(100);
+    accTask->setDamping(4);
+    accTask->setWeight(0.01);
+    std::cout<< "Test 7 \n";
+/*
+    // task for left hand of icub
+    // the segment hosting the frame must be indicated (it is defined in icubfixed.cpp)
+    // frameTask is a Cartesian task
+	//================ FRAME ==============================================================================//
+    orc::SegmentFrame*        SF;
+    SF = new orc::SegmentFrame("frame.SFrame", *model, "l_hand", Eigen::Displacementd());
+    orc::TargetFrame*         TF;
+    TF = new orc::TargetFrame("frame.TFrame", *model);
+    orc::PositionFeature* feat2;
+    feat2 = new orc::PositionFeature("frame", *SF, orc::XYZ);
+    orc::PositionFeature* featDes2;
+    featDes2 = new orc::PositionFeature("frame.Des", *TF, orc::XYZ);
+
+    TF->setPosition(Eigen::Displacementd(-0.3,-0.3,0.2));
+    TF->setVelocity(Eigen::Twistd());
+    TF->setAcceleration(Eigen::Twistd());
+
+    orcisir::ISIRTask* accTask2;
+    accTask2 = &(ctrl.createISIRTask("accTask2", *feat2, *featDes2));
+    accTask2->initAsAccelerationTask();
+    ctrl.addTask(*accTask2);
+    accTask2->activateAsObjective();
+    accTask2->setStiffness(200);//2000000000
+    accTask2->setDamping(80);
+    accTask2->setWeight(100.0);
+*/
+
+	return true;
 }
 
 //*************************************************************************************************************************
@@ -75,6 +144,11 @@ void basicWholeBodyControlThread::run()
         orcModel->setState(fb_qRad, fb_qdRad);
 
     // compute desired torque by calling the controller
+    Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(orcModel->nbInternalDofs(), 0.0);
+    //std::cout<<"eigenTorques.size() == torques_cmd().size() " << eigenTorques.rows() << robot->getDoFs();
+	//ctrl->computeOutput(eigenTorques);
+	//modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
+
 
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());
