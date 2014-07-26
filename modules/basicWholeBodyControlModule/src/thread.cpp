@@ -96,6 +96,7 @@ bool basicWholeBodyControlThread::threadInit()
 
 	//================ CoM Task ===========================================================================//
 	
+/*
 
 	//Create a CoM frame	
     orc::CoMFrame*        CoM_F;
@@ -126,10 +127,11 @@ bool basicWholeBodyControlThread::threadInit()
     ctrl->addTask(*CoM_accTask);
     
     CoM_accTask->activateAsObjective();
-    CoM_accTask->setStiffness(200);//2000000000
-    CoM_accTask->setDamping(80);
-    CoM_accTask->setWeight(100.0);
+    CoM_accTask->setStiffness(4);//2000000000
+    CoM_accTask->setDamping(0.01);
+    CoM_accTask->setWeight(0.01);
     
+*/
 
 	//================ Cartesian Frame Task ================================================================//
 /*	
@@ -184,9 +186,12 @@ void basicWholeBodyControlThread::run()
 
     // compute desired torque by calling the controller
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(orcModel->nbInternalDofs(), 0.0);
-	std::cout<<"Test 1 \n";
 	ctrl->computeOutput(eigenTorques);
-	std::cout<<"Test 2 \n";
+
+    std::cout << "CONTROL LOOP" << std::endl;
+    std::cout << "torque:" << std::endl;
+    std::cout << eigenTorques.transpose() << std::endl;
+
 	modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
 
@@ -196,13 +201,13 @@ void basicWholeBodyControlThread::run()
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
 
     if(printCountdown==0) {
-        std::cout << "The robot encoders values are: " << std::endl;
-        std::cout << fb_qRad.transpose() << std::endl;
-        std::cout << "The joint torquess are" << std::endl;
-        std::cout << fb_torque.toString() << std::endl;
+        //std::cout << "The robot encoders values are: " << std::endl;
+        //std::cout << fb_qRad.transpose() << std::endl;
+        //std::cout << "The joint torquess are" << std::endl;
+        //std::cout << fb_torque.toString() << std::endl;
         
 
-        std::cout << "Data in orcModel" << std::endl;
+        //std::cout << "Data in orcModel" << std::endl;
         //orcModel->printAllData();
 
 
