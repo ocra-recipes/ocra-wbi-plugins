@@ -74,11 +74,11 @@
 
     /* static */ bool orcWbiConversions::wbiToOrcTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_orc)
     {
-        Eigen::Vector3d r = t_wbi.head(DIM_R);
-        Eigen::Vector3d t = t_wbi.tail(DIM_T);
+        Eigen::Vector3d orcr = t_wbi.head(DIM_T);
+        Eigen::Vector3d orct = t_wbi.tail(DIM_R);
     
-        t_orc << t,
-                r;
+        t_orc << orcr,
+                orct;
     
         return true;
     }
@@ -147,8 +147,9 @@
     }
 
 
-    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,6,Eigen::Dynamic> &J)
+    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
     {
+        // FOR FULL n+6 Jacobian ONLY
         Eigen::MatrixXd jac5,jac6;
         Eigen::Matrix3d jac1,jac2,jac3,jac4;
         jac5.resize(3,jac.cols()-6);
