@@ -450,6 +450,9 @@ void orcWbiModel::doSetFreeFlyerVelocity(const Eigen::Twistd& Troot)
 
 int orcWbiModel::doGetSegmentIndex(const std::string& name) const
 {
+    int id; 
+    robot->getLinkId(name.c_str(), id);
+    return id;
 }
 
 const std::string& orcWbiModel::doGetSegmentName(int index) const
