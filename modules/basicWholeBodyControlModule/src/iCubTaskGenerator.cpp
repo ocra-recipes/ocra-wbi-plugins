@@ -44,16 +44,23 @@ orcisir::ISIRTask* iCubCartesianTaskGenerator::getTask()
 }
 
 // Posture task generator
-iCubPostureTaskGenerator::iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager,const std::string& taskName,int state, Eigen::VectorXd& target, double stiffness, double damping, double weight)
-    :model(tManager.getModel())
-    ,taskManager(tManager)
+iCubPostureTaskGenerator::iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager,
+													const std::string& taskName,
+													int state, 
+													Eigen::VectorXd& target, 
+													double stiffness, 
+													double damping, 
+													double weight)
+    
+													:model(tManager.getModel())
+													,taskManager(tManager)
+													,posdes(target)
 {
-    FMS = new orc::FullModelState("torqueTask.FModelState", model, state); //axes=INTERNAL, FREE_FLYER
-    FTS = new orc::FullTargetState("torqueTask.FTargetState", model, state);
+    FMS 	= new orc::FullModelState	(taskName+".FModelState", model, state); //axes=INTERNAL, FREE_FLYER
+    FTS 	= new orc::FullTargetState	(taskName+".FTargetState", model, state);
+    feat 	= new orc::FullStateFeature	(taskName+".feat", *FMS);
+    featDes = new orc::FullStateFeature	(taskName+".featDes", *FTS);
 
-    feat = new orc::FullStateFeature("torqueTask", *FMS);
-    featDes = new orc::FullStateFeature("torqueTask.Des", *FTS);
-    posdes = target;
     FTS->set_q(posdes);
 
     task = &(taskManager.getCtrl().createISIRTask(taskName, *feat, *featDes));
@@ -64,6 +71,41 @@ iCubPostureTaskGenerator::iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager
     task->setStiffness(stiffness);
     task->setDamping(damping);
     task->setWeight(weight);
+
+}
+
+
+iCubPostureTaskGenerator::iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager,
+													const std::string& taskName,
+													Eigen::VectorXi& selected_dof_indices,
+													int state, 
+													Eigen::VectorXd& target, 
+													double stiffness, 
+													double damping, 
+													double weight)
+							
+													:model(tManager.getModel())
+													,taskManager(tManager)
+													,posdes(target)
+{
+
+    PMS 		= new orcisir::PartialModelState   (taskName+".PModelState", model,  selected_dof_indices, state); 
+    PTS 		= new orcisir::PartialTargetState  (taskName+".PTargetState", model, selected_dof_indices, state);
+    p_feat 		= new orcisir::PartialStateFeature (taskName+".P_feat", *PMS);
+    p_featDes 	= new orcisir::PartialStateFeature (taskName+".P_featDes", *PTS);
+
+    PTS->set_q(posdes);
+	
+    task = &(taskManager.getCtrl().createISIRTask(taskName, *p_feat, *p_featDes));
+    std::cout << posdes << "\n\n\n";
+    task->initAsAccelerationTask();
+    taskManager.addTask2TaskList(task);
+
+    task->activateAsObjective();
+    task->setStiffness(stiffness);
+    task->setDamping(damping);
+    task->setWeight(weight);
+    
 
 }
 
@@ -84,3 +126,6 @@ orcisir::ISIRTask* iCubPostureTaskGenerator::getTask()
 {
     return task;
 }
+
+//================ PARTIAL STATE ==============================================================================//
+

@@ -13,12 +13,14 @@
 #include "ISIRCtrlTaskManager.h"
 
 
+
 class iCubCartesianTaskGenerator
 {
 public:
 
 //===========================Constructor/Destructor===========================//
     iCubCartesianTaskGenerator(ISIRCtrlTaskManager& tManager,const std::string& taskName, const std::string& segmentName,orc::ECartesianDof axes, Eigen::Displacementd target, double stiffness, double damping, double weight);
+    
     ~iCubCartesianTaskGenerator();
 
     const std::string getTaskName();
@@ -46,7 +48,25 @@ class iCubPostureTaskGenerator
 public:
 
 //===========================Constructor/Destructor===========================//
-    iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager,const std::string& taskName,int state, Eigen::VectorXd& target, double stiffness, double damping, double weight);
+    iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager,
+								const std::string& taskName,
+								int state, 
+								Eigen::VectorXd& target, 
+								double stiffness, 
+								double damping, 
+								double weight);
+    
+    // Overloaded constructor for partial state posture tasks (torso stabilization for instance)
+    iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager,
+								const std::string& taskName,
+								Eigen::VectorXi& selected_dof_indices,
+								int state, 
+								Eigen::VectorXd& target, 
+								double stiffness, 
+								double damping, 
+								double weight);
+    
+    
     ~iCubPostureTaskGenerator();
 
     const std::string getTaskName();
@@ -60,6 +80,12 @@ private:
     orc::FullTargetState*       FTS;
     orc::FullStateFeature*      feat;
     orc::FullStateFeature*      featDes;
+    
+    orcisir::PartialModelState*   PMS;
+    orcisir::PartialTargetState*  PTS;
+    orcisir::PartialStateFeature* p_feat;
+    orcisir::PartialStateFeature* p_featDes;
+    
     Eigen::VectorXd             posdes;
     Eigen::Twistd               veldes;
     const Model&                     model;
