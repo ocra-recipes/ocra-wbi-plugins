@@ -1,6 +1,35 @@
 
 #include "iCubTaskGenerator.h"
 
+//CoM position control
+iCubCoMTaskGenerator::iCubCoMTaskGenerator(ISIRCtrlTaskManager& tManager,const std::string& taskName, Eigen::Vector3d target, double stiffness, double damping, double weight)
+    :model(tManager.getModel())
+    ,taskManager(tManager)
+{
+    SF = new orc::CoMFrame("frame.CoM_Frame", model);
+    TF = new orc::TargetFrame("frame.CoM_TFrame", model);
+    feat = new orc::PositionFeature("com_frame", *SF, orc::XYZ);
+    featDes = new orc::PositionFeature("com_frame.Des", *TF, orc::XYZ);
+    posdes = Eigen::Displacementd(target);
+    TF->setPosition(posdes);
+    TF->setVelocity(Eigen::Twistd());
+    TF->setAcceleration(Eigen::Twistd());
+    task = &(taskManager.getCtrl().createISIRTask(taskName, *feat, *featDes));
+    task->initAsAccelerationTask();
+    taskManager.addTask2TaskList(task);
+
+    task->activateAsObjective();
+    task->setStiffness(stiffness);
+    task->setDamping(damping);
+    task->setWeight(weight);
+
+}
+
+iCubCoMTaskGenerator::~iCubCoMTaskGenerator()
+{
+
+}
+
 //Cartesian task generator
 iCubCartesianTaskGenerator::iCubCartesianTaskGenerator(ISIRCtrlTaskManager& tManager,const std::string& taskName,const std::string& segmentName,orc::ECartesianDof axes, Eigen::Displacementd target, double stiffness, double damping, double weight)
     :model(tManager.getModel())

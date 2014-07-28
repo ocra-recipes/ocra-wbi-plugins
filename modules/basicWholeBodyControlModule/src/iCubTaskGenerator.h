@@ -12,6 +12,32 @@
 
 #include "ISIRCtrlTaskManager.h"
 
+class iCubCoMTaskGenerator
+{
+public:
+
+//===========================Constructor/Destructor===========================//
+    iCubCoMTaskGenerator(ISIRCtrlTaskManager& tManager,const std::string& taskName, Eigen::Vector3d target, double stiffness, double damping, double weight);
+    ~iCubCoMTaskGenerator();
+
+    const std::string getTaskName();
+    orc::PositionFeature* getFeature();
+    orc::PositionFeature* getFeatureDes();
+    orcisir::ISIRTask* getTask();
+
+private:
+    orcisir::ISIRTask*          task;
+    orc::CoMFrame*              SF;
+    orc::TargetFrame*           TF;
+    orc::PositionFeature*       feat;
+    orc::PositionFeature*       featDes;
+    std::string                 segmentName;
+    Eigen::Displacementd        posdes;
+    Eigen::Twistd               veldes;
+    const Model&                      model;
+    ISIRCtrlTaskManager&            taskManager;
+
+};
 
 class iCubCartesianTaskGenerator
 {
