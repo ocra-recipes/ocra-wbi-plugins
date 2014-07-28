@@ -13,13 +13,55 @@
 #include "ISIRCtrlTaskManager.h"
 
 
+///===========================CoM Tasks===========================///
+class iCubCoMTaskGenerator
+{
+public:
 
+    iCubCoMTaskGenerator(ISIRCtrlTaskManager& tManager,
+							const std::string& taskName, 
+							Eigen::Vector3d target, 
+							double stiffness, 
+							double damping, 
+							double weight);
+    
+    ~iCubCoMTaskGenerator();
+
+    const std::string getTaskName();
+    orc::PositionFeature* getFeature();
+    orc::PositionFeature* getFeatureDes();
+    orcisir::ISIRTask* getTask();
+
+private:
+    orcisir::ISIRTask*          task;
+    orc::CoMFrame*              SF;
+    orc::TargetFrame*           TF;
+    orc::PositionFeature*       feat;
+    orc::PositionFeature*       featDes;
+    std::string                 segmentName;
+    Eigen::Displacementd        posdes;
+    Eigen::Twistd               veldes;
+    const Model&                      model;
+    ISIRCtrlTaskManager&            taskManager;
+
+};
+
+
+
+///===========================Cartesian Segment Task===========================///
 class iCubCartesianTaskGenerator
 {
 public:
 
-//===========================Constructor/Destructor===========================//
-    iCubCartesianTaskGenerator(ISIRCtrlTaskManager& tManager,const std::string& taskName, const std::string& segmentName,orc::ECartesianDof axes, Eigen::Displacementd target, double stiffness, double damping, double weight);
+
+    iCubCartesianTaskGenerator(ISIRCtrlTaskManager& tManager,
+								const std::string& taskName, 
+								const std::string& segmentName,
+								orc::ECartesianDof axes, 
+								Eigen::Displacementd target, 
+								double stiffness, 
+								double damping, 
+								double weight);
     
     ~iCubCartesianTaskGenerator();
 
@@ -43,11 +85,13 @@ private:
 };
 
 
+
+///===========================Full/Partial Posture tasks===========================///
 class iCubPostureTaskGenerator
 {
 public:
 
-//===========================Constructor/Destructor===========================//
+
     iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager,
 								const std::string& taskName,
 								int state, 

@@ -70,6 +70,13 @@ bool basicWholeBodyControlThread::threadInit()
 {
     printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
 
+    bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
+    bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
+    if (!orcModel->hasFixedRoot())
+        orcModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
+    else
+        orcModel->setState(fb_qRad, fb_qdRad);
+
     // Set all declared joints in module to TORQUE mode
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     
@@ -82,7 +89,7 @@ bool basicWholeBodyControlThread::threadInit()
 //*************************************************************************************************************************
 void basicWholeBodyControlThread::run()
 {
-    std::cout << "Running Control Loop" << std::endl;
+//    std::cout << "Running Control Loop" << std::endl;
 
     // Move this to header so can resize once
     yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
