@@ -18,6 +18,7 @@
 #include "thread.h"
 #include "orcWbiModel.h"
 #include <modHelp/modHelp.h>
+#include <iostream>
 
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
 #include <yarp/os/Time.h>
@@ -90,9 +91,10 @@ bool basicWholeBodyControlThread::threadInit()
     accTask->initAsAccelerationTask();
     ctrl->addTask(*accTask);
     accTask->activateAsObjective();
-    accTask->setStiffness(100);
-    accTask->setDamping(4);
+    accTask->setStiffness(30);
+    accTask->setDamping(5);
     accTask->setWeight(0.01);
+
 
 	//================ CoM Task ===========================================================================//
 	
@@ -172,6 +174,8 @@ bool basicWholeBodyControlThread::threadInit()
 //*************************************************************************************************************************
 void basicWholeBodyControlThread::run()
 {
+    std::cout << "Running Control Loop" << std::endl;
+
     // Move this to header so can resize once
     yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
     bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
@@ -188,9 +192,11 @@ void basicWholeBodyControlThread::run()
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(orcModel->nbInternalDofs(), 0.0);
 	ctrl->computeOutput(eigenTorques);
 
-    std::cout << "CONTROL LOOP" << std::endl;
-    std::cout << "torque:" << std::endl;
-    std::cout << eigenTorques.transpose() << std::endl;
+//    std::cout << "task error:" << std::endl;
+//    std::cout << ctrl->getTask("accTask").getError() << std::endl;
+//    std::cout << "torque:" << std::endl;
+//    std::cout << fb_torque.toString() << std::endl;
+//    std::cout << eigenTorques.transpose() << std::endl;
 
 	modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
@@ -217,4 +223,7 @@ void basicWholeBodyControlThread::run()
 //*************************************************************************************************************************
 void basicWholeBodyControlThread::threadRelease()
 {
+    //bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
+    yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
+    robot->setControlReference(torques_cmd.data());
 }

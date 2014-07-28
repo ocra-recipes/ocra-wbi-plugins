@@ -102,7 +102,13 @@ bool basicWholeBodyControlModule::configure(ResourceFinder &rf)
     iCubVersionFromRf(rf,icub_version);
     robotInterface = new icubWholeBodyInterface(moduleName.c_str(), robotName.c_str(),icub_version);
     robotInterface->addJoints(ICUB_MAIN_DYNAMIC_JOINTS);
-    robotInterface->addJoints(ICUB_HEAD_JOINTS);
+    //robotInterface->addJoints(ICUB_TORSO_JOINTS);
+    //robotInterface->addJoints(ICUB_LEFT_ARM_DYNAMIC_JOINTS);
+    //robotInterface->addJoints(ICUB_RIGHT_ARM_DYNAMIC_JOINTS);
+    //robotInterface->addJoints(ICUB_RIGHT_LEG_JOINTS);
+    //robotInterface->addJoints(ICUB_LEFT_LEG_JOINTS);
+//ICUB_MAIN_DYNAMIC_JOINTS (ICUB_TORSO_JOINTS, ICUB_HEAD_JOINTS, ICUB_LEFT_ARM_DYNAMIC_JOINTS, ICUB_RIGHT_ARM_DYNAMIC_JOINTS, ICUB_LEFT_LEG_JOINTS, ICUB_RIGHT_LEG_JOINTS)
+    //robotInterface->addJoints(ICUB_HEAD_JOINTS);
     if(!robotInterface->init()){ fprintf(stderr, "Error while initializing whole body interface. Closing module\n"); return false; }
 
     //--------------------------CTRL THREAD--------------------------

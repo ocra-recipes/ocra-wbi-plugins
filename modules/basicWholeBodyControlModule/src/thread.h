@@ -50,6 +50,8 @@ namespace basicWholeBodyControlNamespace
 
 class basicWholeBodyControlThread: public RateThread
 {
+    
+    Eigen::VectorXd initPose;
     string name;
     string robotName;
     wholeBodyInterface *robot;
