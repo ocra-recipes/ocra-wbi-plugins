@@ -27,7 +27,6 @@
     
     
 	// CoM posture task
-    Eigen::Displacementd posLHandDes(-0.3, -0.3, 0.2, 1, 0, 0, 0);
     Eigen::Vector3d posCoM = model.getCoMPosition();
     iCubCoMTaskGenerator comTask = iCubCoMTaskGenerator(tm,"com_task",posCoM,5,1,100);
     
