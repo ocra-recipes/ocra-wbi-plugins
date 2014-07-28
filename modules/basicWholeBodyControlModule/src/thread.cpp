@@ -131,7 +131,7 @@ void basicWholeBodyControlThread::run()
 //*************************************************************************************************************************
 void basicWholeBodyControlThread::threadRelease()
 {
-    //bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
-    yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
-    robot->setControlReference(torques_cmd.data());
+    bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
+    //yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
+    //robot->setControlReference(torques_cmd.data());
 }
