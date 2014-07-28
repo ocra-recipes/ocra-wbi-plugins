@@ -32,6 +32,7 @@
 #include <wbi/wbi.h>
 
 #include "orcWbiModel.h"
+#include "ISIRCtrlTaskManager.h"
 #include "orcisir/ISIRController.h"
 #include "orcisir/Solvers/OneLevelSolver.h"
 
@@ -50,8 +51,6 @@ namespace basicWholeBodyControlNamespace
 
 class basicWholeBodyControlThread: public RateThread
 {
-    
-    Eigen::VectorXd initPose;
     string name;
     string robotName;
     wholeBodyInterface *robot;
@@ -59,6 +58,8 @@ class basicWholeBodyControlThread: public RateThread
     yarp::os::Property options;
     orcisir::ISIRController *ctrl;
     orcisir::OneLevelSolverWithQuadProg   internalSolver;
+    
+    ISIRCtrlTaskManager taskManager;
 
     // Member variables
     double printPeriod;
