@@ -136,7 +136,29 @@ bool basicWholeBodyControlThread::threadInit()
 */
 
 	//================ Cartesian Frame Task ================================================================//
-/*	
+        orc::SegmentFrame*        SF;
+        SF = new orc::SegmentFrame("frame.SFrame", *orcModel, "l_hand", Eigen::Displacementd());
+        orc::TargetFrame*         TF;
+        TF = new orc::TargetFrame("frame.TFrame", *orcModel);
+        orc::PositionFeature* feat2;
+        feat2 = new orc::PositionFeature("frame", *SF, orc::XYZ);
+        orc::PositionFeature* featDes2;
+        featDes2 = new orc::PositionFeature("frame.Des", *TF, orc::XYZ);
+
+        TF->setPosition(Eigen::Displacementd(0.3,-0.3,0.2));
+        TF->setVelocity(Eigen::Twistd());
+        TF->setAcceleration(Eigen::Twistd());
+
+        orcisir::ISIRTask* accTask3;
+        accTask3 = &(ctrl->createISIRTask("accTask2", *feat2, *featDes2));
+        accTask3->initAsAccelerationTask();
+        ctrl->addTask(*accTask3);
+        accTask3->activateAsObjective();
+        accTask3->setStiffness(4);
+        accTask3->setDamping(0.1);
+        accTask3->setWeight(1.0);
+
+    /*
     orc::SegmentFrame*        SF;
     std::cout<<"Test 1 \n";
     SF = new orc::SegmentFrame("frame.SFrame", *orcModel, "lap_belt_1", Eigen::Displacementd());

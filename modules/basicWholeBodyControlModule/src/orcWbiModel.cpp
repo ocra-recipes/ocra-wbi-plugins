@@ -456,7 +456,7 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(in
     else
         owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_orc[index].topRightCorner(6,owm_pimpl->nbInternalDofs);
 
-    owm_pimpl->segJacobian[index].noalias() = getSegmentPosition(index).inverse().adjoint()*owm_pimpl->segJacobian[index];
+    owm_pimpl->segJacobian[index] = getSegmentPosition(index).inverse().adjoint()*owm_pimpl->segJacobian[index];
     return owm_pimpl->segJacobian[index];
 }
 
