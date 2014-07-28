@@ -41,7 +41,9 @@ using namespace wbiIcub;
 #define DIM_DISP 3
 #define DIM_TWIST 6
 
-#include "taskSet1.h"
+// Task Sets
+//#include "taskSet1.h"
+#include "taskSetTests.h"
 
 //*************************************************************************************************************************
 basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
@@ -80,9 +82,18 @@ bool basicWholeBodyControlThread::threadInit()
     // Set all declared joints in module to TORQUE mode
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     
+    
+    
+    
+    
     //================ SET UP TASK ===================//
-    taskManager = TaskSet1::getTask(*orcModel, *ctrl);
-
+    //taskManager = TaskSet1::getTask(*orcModel, *ctrl);
+    
+	//taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
+	taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
+	//taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+	
+	
 	return true;
 }
 
