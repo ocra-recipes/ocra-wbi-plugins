@@ -102,6 +102,27 @@ bool basicWholeBodyControlModule::configure(ResourceFinder &rf)
     iCubVersionFromRf(rf,icub_version);
     robotInterface = new icubWholeBodyInterface(moduleName.c_str(), robotName.c_str(),icub_version);
     robotInterface->addJoints(ICUB_MAIN_DYNAMIC_JOINTS);
+    
+    if( rf.check("uses_external_torque_control") )
+    {
+		if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
+            printf ("The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
+        
+        else{
+            printf ("ERROR [mdlStart] >> The jointTorqueControl module is not running... \n");
+            return false;
+        }
+
+        yarp::os::Value trueValue;
+        trueValue.fromString ("true");
+        ( (icubWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
+        ( (icubWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
+        ( (icubWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
+    
+    
+	}
+    
+    
     //robotInterface->addJoints(ICUB_TORSO_JOINTS);
     //robotInterface->addJoints(ICUB_LEFT_ARM_DYNAMIC_JOINTS);
     //robotInterface->addJoints(ICUB_RIGHT_ARM_DYNAMIC_JOINTS);
