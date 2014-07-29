@@ -40,6 +40,8 @@ using namespace wbiIcub;
 #define ALL_JOINTS -1
 #define DIM_DISP 3
 #define DIM_TWIST 6
+#define TORQUE_MIN -12
+#define TORQUE_MAX 12
 
 // Task Sets
 //#include "taskSet1.h"
@@ -83,17 +85,13 @@ bool basicWholeBodyControlThread::threadInit()
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     
     
-    tau_max = 12.0;
-    tau_min = -12.0;
-    
-    
     //================ SET UP TASK ===================//
     //taskManager = TaskSet1::getTask(*orcModel, *ctrl);
     
-	//taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
+	taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
 	//taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
-//	taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
-    taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
+	//taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+    //taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
 	
 	
 	return true;
@@ -129,12 +127,11 @@ void basicWholeBodyControlThread::run()
 
     for(int i = 0; i < eigenTorques.size(); ++i)
     {
-      if(eigenTorques(i) > tau_max) eigenTorques(i) = tau_max;
-      else if(eigenTorques(i) < tau_min) eigenTorques(i) = tau_min;
+      if(eigenTorques(i) > TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
+      else if(eigenTorques(i) < TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
 
 	modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
-
 
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());

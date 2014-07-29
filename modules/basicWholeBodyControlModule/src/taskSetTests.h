@@ -34,7 +34,7 @@
     class TaskSet_initialPosHold_leftHandPos
     {
     public:
-        static ISIRCtrlTaskManager getTask(Model& model, orcisir::ISIRController& ctrl);
+        static ISIRCtrlTaskManager getTask(orcWbiModel& model, orcisir::ISIRController& ctrl);
 
     };
     
