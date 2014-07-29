@@ -127,8 +127,8 @@ void basicWholeBodyControlThread::run()
 
     for(int i = 0; i < eigenTorques.size(); ++i)
     {
-      if(eigenTorques(i) > TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
-      else if(eigenTorques(i) < TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
+      if(eigenTorques(i) < TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
+      else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
 
 	modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
