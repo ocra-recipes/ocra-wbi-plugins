@@ -88,7 +88,7 @@ public:
         :nbSegments(nbSeg)
         ,q(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
         ,dq(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
-        ,Hroot(Eigen::Displacementd(0,0,0))
+        ,Hroot(Eigen::Displacementd(0,0,1))
         ,Troot(Eigen::Twistd(0,0,0,0,0,0))
         ,Hroot_wbi(wbi::Frame())
         ,Troot_wbi(Eigen::Twistd(0,0,0,0,0,0))
@@ -129,7 +129,7 @@ public:
 
 //=================================  Class methods  =================================//
 orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* _wbi, const bool freeRoot)
-    :orc::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new orcWbiModel_pimpl(robotNumDOF+1,freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
+    :orc::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new orcWbiModel_pimpl(44,freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
 {
     owm_pimpl->freeRoot = freeRoot;
     int full_wbi_size = robotNumDOF+FREE_ROOT_DOF; // N+6
@@ -456,7 +456,7 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(in
     else
         owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_orc[index].topRightCorner(6,owm_pimpl->nbInternalDofs);
 
-    owm_pimpl->segJacobian[index] = getSegmentPosition(index).inverse().adjoint()*owm_pimpl->segJacobian[index];
+//    owm_pimpl->segJacobian[index] = getSegmentPosition(index).inverse().adjoint()*owm_pimpl->segJacobian[index];
     return owm_pimpl->segJacobian[index];
 }
 
