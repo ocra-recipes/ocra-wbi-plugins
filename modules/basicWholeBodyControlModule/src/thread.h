@@ -69,6 +69,8 @@ class basicWholeBodyControlThread: public RateThread
     wbi::Frame fb_Hroot; // vector that position of root 
     Eigen::Twistd fb_Troot; // vector that contains the twist of root
     yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
+    double tau_max;
+    double tau_min;
 
 public:
     basicWholeBodyControlThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);
