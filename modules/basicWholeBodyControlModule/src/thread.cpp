@@ -125,6 +125,14 @@ void basicWholeBodyControlThread::run()
 //    std::cout << fb_torque.toString() << std::endl;
 //    std::cout << eigenTorques.transpose() << std::endl;
 
+    VectorXd tau_max = orcModel->getJointUpperLimits();
+    VectorXd tau_min = orcModel->getJointLowerLimits();
+    for(int i = 0; i < eigenTorques.size(); ++i)
+    {
+      if(eigenTorques(i) > tau_max(i)) eigenTorques(i) = tau_max(i);
+      else if(eigenTorques(i) < tau_min(i)) eigenTorques(i) = tau_min(i);
+    }
+
 	modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
 
