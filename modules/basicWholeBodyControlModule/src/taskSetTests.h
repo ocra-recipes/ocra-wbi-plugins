@@ -23,7 +23,13 @@
         static ISIRCtrlTaskManager getTask(orcWbiModel& model, orcisir::ISIRController& ctrl);
 
     };
-    
+
+    class TaskSet_initialPosHold_CoMPos_BothHandPos
+    {
+    public:
+        static ISIRCtrlTaskManager getTask(Model& model, orcisir::ISIRController& ctrl);
+
+    };
     
     class TaskSet_initialPosHold_leftHandPos
     {

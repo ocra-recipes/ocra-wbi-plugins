@@ -91,7 +91,8 @@ bool basicWholeBodyControlThread::threadInit()
     
 	//taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
 	//taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
-	taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+//	taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+    taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
 	
 	
 	return true;
@@ -123,6 +124,14 @@ void basicWholeBodyControlThread::run()
 //    std::cout << "torque:" << std::endl;
 //    std::cout << fb_torque.toString() << std::endl;
 //    std::cout << eigenTorques.transpose() << std::endl;
+
+    VectorXd tau_max = orcModel->getJointUpperLimits();
+    VectorXd tau_min = orcModel->getJointLowerLimits();
+    for(int i = 0; i < eigenTorques.size(); ++i)
+    {
+      if(eigenTorques(i) > tau_max(i)) eigenTorques(i) = tau_max(i);
+      else if(eigenTorques(i) < tau_min(i)) eigenTorques(i) = tau_min(i);
+    }
 
 	modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
