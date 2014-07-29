@@ -91,7 +91,8 @@ bool basicWholeBodyControlThread::threadInit()
     
 	//taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
 	//taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
-	taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+//	taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+    taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
 	
 	
 	return true;
