@@ -90,8 +90,8 @@ bool basicWholeBodyControlThread::threadInit()
     //taskManager = TaskSet1::getTask(*orcModel, *ctrl);
     
 	//taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
-	taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
-	//taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+	//taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
+	taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
 	
 	
 	return true;
@@ -100,7 +100,7 @@ bool basicWholeBodyControlThread::threadInit()
 //*************************************************************************************************************************
 void basicWholeBodyControlThread::run()
 {
-//    std::cout << "Running Control Loop" << std::endl;
+    std::cout << "Running Control Loop" << std::endl;
 
     // Move this to header so can resize once
     yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);

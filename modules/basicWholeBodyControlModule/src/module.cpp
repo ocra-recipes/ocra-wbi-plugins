@@ -101,7 +101,7 @@ bool basicWholeBodyControlModule::configure(ResourceFinder &rf)
     iCub::iDynTree::iCubTree_version_tag icub_version;
     iCubVersionFromRf(rf,icub_version);
     robotInterface = new icubWholeBodyInterface(moduleName.c_str(), robotName.c_str(),icub_version);
-    robotInterface->addJoints(ICUB_MAIN_DYNAMIC_JOINTS);
+    robotInterface->addJoints(ICUB_MAIN_JOINTS);
     
     if( rf.check("uses_external_torque_control") )
     {
