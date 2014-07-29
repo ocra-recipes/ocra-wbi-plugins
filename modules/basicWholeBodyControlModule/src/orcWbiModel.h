@@ -26,6 +26,8 @@ public:
     virtual const Eigen::Displacementd&  getFreeFlyerPosition     () const;
     virtual const Eigen::Twistd&         getFreeFlyerVelocity     () const;
 
+    virtual int getDOFId(const std::string &name) const;
+
 //=============================Dynamic functions==============================//
     virtual const Eigen::MatrixXd&       getInertiaMatrix         () const;
     virtual const Eigen::MatrixXd&       getInertiaMatrixInverse  () const;

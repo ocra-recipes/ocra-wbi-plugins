@@ -5,6 +5,13 @@
 #include "orcisir/ISIRController.h"
 #include "orc/control/Model.h"
 
+#include "orcWbiModel.h"
+
+#include <wbi/wbi.h>
+#include <wbiIcub/wholeBodyInterfaceIcub.h>
+
+using namespace wbiIcub;
+
 
 /* static */ ISIRCtrlTaskManager TaskSet_initialPosHold::getTask(Model& model, orcisir::ISIRController& ctrl)
 {
@@ -21,15 +28,19 @@
 
 
 
-/* static */ ISIRCtrlTaskManager TaskSet_initialPosZero::getTask(Model& model, orcisir::ISIRController& ctrl)
+/* static */ ISIRCtrlTaskManager TaskSet_initialPosZero::getTask(orcWbiModel& model, orcisir::ISIRController& ctrl)
 {
     ISIRCtrlTaskManager tm = ISIRCtrlTaskManager(model, ctrl);
     int nbInternalDofs = model.nbInternalDofs();
     
     // Full posture task
     Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(nbInternalDofs);
-    postureTaskQ(7,0) = M_PI / 10;  //l_shoulder_roll 
-    postureTaskQ(14,0) = M_PI / 10;  //r_shoulder_roll 
+
+    std::cout << "TEST\n";
+    std::cout << model.getDOFId("l_shoulder_roll") << std::endl;
+    std::cout << model.getDOFId("r_shoulder_roll") << std::endl;
+    postureTaskQ[model.getDOFId("l_shoulder_roll")] = M_PI / 10;  //l_shoulder_roll 
+    postureTaskQ[model.getDOFId("r_shoulder_roll")] = M_PI / 10;  //r_shoulder_roll 
     iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 10, 3, 0.01);
     
 

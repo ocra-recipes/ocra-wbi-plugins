@@ -137,7 +137,7 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     // Initialise some constant variables
 
     // THIS GETS FROM WBI ROBOT
-    //owm_pimpl->nbDofs = freeRoot?robot->getDoFs()+FREE_ROOT_DOF:robot->getDoFs();
+    //owm_pimpl->nbDofs = freeRoot?robot->getDoFs()+FREE_ROOT_DOF:robot->getDoFs();#include <wbiIcub/wholeBodyInterfaceIcub.h>
     //owm_pimpl->nbInternalDofs = robot->getDoFs();
     // THIS GETS FROM ORC MODEL
     owm_pimpl->nbDofs = nbDofs();
@@ -548,6 +548,14 @@ int orcWbiModel::doGetSegmentIndex(const std::string& name) const
     return id;
 }
 
+int orcWbiModel::getDOFId(const std::string &name) const
+{
+    int id; 
+    id = robot->getJointList().localToGlobalId(wbiIcub::globalToLocalIcubId(name));
+    //robot->getDOFId(name.c_str(), id);
+    return id;
+}
+
 const std::string& orcWbiModel::doGetSegmentName(int index) const
 {
 /*
@@ -665,4 +673,5 @@ void orcWbiModel::printAllData()
 
 }
 
+#include <wbiIcub/wholeBodyInterfaceIcub.h>
 

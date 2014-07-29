@@ -6,6 +6,8 @@
 #include "orcisir/ISIRController.h"
 #include "orc/control/Model.h"
 
+#include "orcWbiModel.h"
+
 
     /* Conversions between types/conventions used in Eigen and WBI */
     class TaskSet_initialPosHold
@@ -18,7 +20,7 @@
     class TaskSet_initialPosZero
     {
     public:
-        static ISIRCtrlTaskManager getTask(Model& model, orcisir::ISIRController& ctrl);
+        static ISIRCtrlTaskManager getTask(orcWbiModel& model, orcisir::ISIRController& ctrl);
 
     };
     
