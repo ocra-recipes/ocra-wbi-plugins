@@ -8,8 +8,8 @@ iCubCoMTaskGenerator::iCubCoMTaskGenerator(ISIRCtrlTaskManager& tManager,const s
 {
     SF = new orc::CoMFrame("frame.CoM_Frame", model);
     TF = new orc::TargetFrame("frame.CoM_TFrame", model);
-    feat = new orc::PositionFeature("com_frame", *SF, orc::XYZ);
-    featDes = new orc::PositionFeature("com_frame.Des", *TF, orc::XYZ);
+    feat = new orc::PositionFeature("com_frame", *SF, orc::XY);
+    featDes = new orc::PositionFeature("com_frame.Des", *TF, orc::XY);
     posdes = Eigen::Displacementd(target);
     TF->setPosition(posdes);
     TF->setVelocity(Eigen::Twistd());
