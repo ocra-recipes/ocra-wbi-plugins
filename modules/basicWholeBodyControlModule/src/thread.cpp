@@ -42,7 +42,8 @@ using namespace wbiIcub;
 #define DIM_TWIST 6
 #define TORQUE_MIN -12
 #define TORQUE_MAX 12
-
+#define HAND_FOOT_TASK 1
+//#define HAND_FOOT_TASK 0
 // Task Sets
 //#include "taskSet1.h"
 #include "taskSetTests.h"
@@ -88,10 +89,11 @@ bool basicWholeBodyControlThread::threadInit()
     //================ SET UP TASK ===================//
     //taskManager = TaskSet1::getTask(*orcModel, *ctrl);
     
-	taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
-	//taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
-	//taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
-    //taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
+//    taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
+//    taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
+    if (HAND_FOOT_TASK)
+            taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+//    taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
 	
 	
 	return true;
@@ -100,7 +102,7 @@ bool basicWholeBodyControlThread::threadInit()
 //*************************************************************************************************************************
 void basicWholeBodyControlThread::run()
 {
-    std::cout << "Running Control Loop" << std::endl;
+//    std::cout << "Running Control Loop" << std::endl;
 
     // Move this to header so can resize once
     yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
@@ -136,9 +138,11 @@ void basicWholeBodyControlThread::run()
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());
 
+
+    printPeriod = 5000;
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
 
-    if(printCountdown==0) {
+    if(printCountdown==0 && HAND_FOOT_TASK) {
         //std::cout << "The robot encoders values are: " << std::endl;
         //std::cout << fb_qRad.transpose() << std::endl;
         //std::cout << "The joint torquess are" << std::endl;
@@ -147,8 +151,27 @@ void basicWholeBodyControlThread::run()
 
         //std::cout << "Data in orcModel" << std::endl;
         //orcModel->printAllData();
+        std::cout << "task target 1" <<ctrl->getTask("l_hand_task").isActiveAsObjective()<< std::endl;
+        std::cout << "task target 2" <<ctrl->getTask("l_hand_task2").isActiveAsObjective()<< std::endl;
+        if (ctrl->getTask("l_hand_task").isActiveAsObjective())
+            ctrl->getTask("l_hand_task").deactivate();
+        else
+            ctrl->getTask("l_hand_task").activateAsObjective();
 
+        if (ctrl->getTask("l_hand_task2").isActiveAsObjective())
+            ctrl->getTask("l_hand_task2").deactivate();
+        else
+            ctrl->getTask("l_hand_task2").activateAsObjective();
 
+        if (ctrl->getTask("r_shank_task").isActiveAsObjective())
+            ctrl->getTask("r_shank_task").deactivate();
+        else
+            ctrl->getTask("r_shank_task").activateAsObjective();
+
+        if (ctrl->getTask("r_shank_task2").isActiveAsObjective())
+            ctrl->getTask("r_shank_task2").deactivate();
+        else
+            ctrl->getTask("r_shank_task2").activateAsObjective();
     }
 }
 
