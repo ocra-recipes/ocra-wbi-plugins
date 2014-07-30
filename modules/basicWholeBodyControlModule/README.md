@@ -3,6 +3,14 @@ README.md
 basicWholeBodyControlModule 
 
 
+Things to remember:
+- The urdf model passed to the controller must match the robot being used or simulated, otherwise the torques will be wrong and potentially cause spastic behavior.
+- Make sure that the codyco-superbuild has been compiled with the CMAKE flag: CODYCO_ICUBWBI_USES_EXTERNAL_TORQUE set to ON to use jointTorqueControl
+- When building codyco-superbuild make sure USES_EIGEN_320 is set to OFF so that the codyco-isir repo can be built.
+- In jointTorqueControl watch out for the GAZEBO_SIM flag. On the real robot the torso DoF indexes are swapped. 
+- use ICUB_MAIN_JOINTS to be compatible with jointTorqueControl (not ICUB_MAIN_DYNAMIC_JOINTS).
+
+
 note: typing in parentheses () are comments
 note: <items_here> are to be filled in by you without the <> at the ends
 
