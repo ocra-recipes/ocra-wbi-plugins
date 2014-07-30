@@ -12,14 +12,16 @@
 
 using namespace wbiIcub;
 
+void getNominalPosture(const orcWbiModel &model, VectorXd &q);
 
 /* static */ ISIRCtrlTaskManager TaskSet_initialPosHold::getTask(Model& model, orcisir::ISIRController& ctrl)
 {
     ISIRCtrlTaskManager tm = ISIRCtrlTaskManager(model, ctrl);
     int nbInternalDofs = model.nbInternalDofs();
+    Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(model.nbInternalDofs());
     
     // Full posture task
-    Eigen::VectorXd postureTaskQ = model.getJointPositions();
+    postureTaskQ = model.getJointPositions();
     iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 10, 3, 0.01);
     
     return tm;
@@ -29,25 +31,35 @@ using namespace wbiIcub;
 {
     ISIRCtrlTaskManager tm = ISIRCtrlTaskManager(model, ctrl);
     int nbInternalDofs = model.nbInternalDofs();
+    Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(model.nbInternalDofs());
     
     // Full posture task
-    Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(nbInternalDofs);
+    getNominalPosture(model, postureTaskQ);
+    //Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(nbInternalDofs);
 
-    postureTaskQ[model.getDOFId("l_shoulder_roll")] = M_PI / 10;  //l_shoulder_roll 
-    postureTaskQ[model.getDOFId("r_shoulder_roll")] = M_PI / 10;  //r_shoulder_roll 
-    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 10, 3, 0.01);
+    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 15, 3, 0.01);
     
     return tm;
 }
 
-/* static */ ISIRCtrlTaskManager TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(Model& model, orcisir::ISIRController& ctrl)
+/* static */ ISIRCtrlTaskManager TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(orcWbiModel& model, orcisir::ISIRController& ctrl)
 {
     ISIRCtrlTaskManager tm = ISIRCtrlTaskManager(model, ctrl);
     int nbInternalDofs = model.nbInternalDofs();
 
+    Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(model.nbInternalDofs());
+    
     // Full posture task
-    Eigen::VectorXd postureTaskQ = model.getJointPositions();
-    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 10, 3, 1);
+    getNominalPosture(model, postureTaskQ);
+
+    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 10, 3, 0.5);
+
+    // Partial (torso) posture task
+    Eigen::VectorXi torso_indices(3);
+    torso_indices << model.getDOFId("torso_pitch"), model.getDOFId("torso_roll"), model.getDOFId("torso_yaw");
+    Eigen::VectorXd torsoTaskPosDes(3);
+    torsoTaskPosDes << M_PI / 18, 0, 0;
+    iCubPostureTaskGenerator torsoTask = iCubPostureTaskGenerator(tm, "partial_task", torso_indices, orc::FullState::INTERNAL, torsoTaskPosDes, 10, 3, 5.0);
 
     // CoM Task
     Eigen::Vector3d posCoM = model.getCoMPosition();
@@ -77,24 +89,41 @@ using namespace wbiIcub;
     int nbInternalDofs = model.nbInternalDofs();
     
     // Full posture task
-    Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(nbInternalDofs);
-    postureTaskQ(model.getDOFId("r_shoulder_pitch")) = -M_PI / 4;
-    postureTaskQ(model.getDOFId("r_shoulder_roll")) = M_PI / 4;
-    postureTaskQ(model.getDOFId("r_elbow")) = M_PI / 2;
+    Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(model.nbInternalDofs());
+    
+    // Full posture task
+    getNominalPosture(model, postureTaskQ);
 
-    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 10, 3, 0.01);
+    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 15, 3, 0.01);
     
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     torso_indices << model.getDOFId("torso_pitch"), model.getDOFId("torso_roll"), model.getDOFId("torso_yaw");
-    Eigen::VectorXd torsoTaskPosDes = Eigen::VectorXd::Zero(3);
+    Eigen::VectorXd torsoTaskPosDes(3);
+    torsoTaskPosDes << M_PI / 18, 0, 0;
     iCubPostureTaskGenerator torsoTask = iCubPostureTaskGenerator(tm, "partial_task", torso_indices, orc::FullState::INTERNAL, torsoTaskPosDes, 10, 3, 1.0);
     
     
     // Left hand cartesian task
     Eigen::Displacementd posLHandDes(0.3, -0.3, 0.2, 1, 0, 0, 0);
-    iCubCartesianTaskGenerator leftHandTask = iCubCartesianTaskGenerator(tm, "l_hand_task", "l_hand", orc::XYZ, posLHandDes, 5, 1, 1.0);
+    iCubCartesianTaskGenerator leftHandTask = iCubCartesianTaskGenerator(tm, "l_hand_task", "l_hand", orc::XYZ, posLHandDes, 10, 2, 1.0);
 
     return tm;
 }
 
+void getNominalPosture(const orcWbiModel &model, VectorXd &q)
+{
+    q[model.getDOFId("torso_pitch")] = M_PI / 18;  
+    q[model.getDOFId("r_elbow")] = M_PI / 4;  
+    q[model.getDOFId("l_elbow")] = M_PI / 4;  
+    q[model.getDOFId("l_shoulder_roll")] = M_PI / 6;  
+    q[model.getDOFId("r_shoulder_roll")] = M_PI / 6;  
+    q[model.getDOFId("l_shoulder_pitch")] = -M_PI / 6;  
+    q[model.getDOFId("r_shoulder_pitch")] = -M_PI / 6;  
+    q[model.getDOFId("l_hip_pitch")] = M_PI / 6; 
+    q[model.getDOFId("r_hip_pitch")] = M_PI / 6;
+    q[model.getDOFId("l_hip_roll")] = M_PI / 18;
+    q[model.getDOFId("r_hip_roll")] = M_PI / 18;
+    q[model.getDOFId("l_knee")] = -M_PI / 4; 
+    q[model.getDOFId("r_knee")] = -M_PI / 4; 
+} 
