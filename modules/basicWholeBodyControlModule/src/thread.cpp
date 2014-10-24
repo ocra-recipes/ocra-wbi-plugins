@@ -93,10 +93,10 @@ bool basicWholeBodyControlThread::threadInit()
 	//taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
 	//taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
     //taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
-//    taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
+    //taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
 //    taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
     if (HAND_FOOT_TASK)
-            taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
+            taskManager = TaskSet_fixed_base_walk::getTask(*orcModel, *ctrl);
 //    taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
 	
 	
@@ -157,6 +157,7 @@ void basicWholeBodyControlThread::run()
         //orcModel->printAllData();
         std::cout << "task target 1" <<ctrl->getTask("l_hand_task").isActiveAsObjective()<< std::endl;
         std::cout << "task target 2" <<ctrl->getTask("l_hand_task2").isActiveAsObjective()<< std::endl;
+        //lhand, rfoot, rshank
         if (ctrl->getTask("l_hand_task").isActiveAsObjective())
             ctrl->getTask("l_hand_task").deactivate();
         else
@@ -176,6 +177,26 @@ void basicWholeBodyControlThread::run()
             ctrl->getTask("r_shank_task2").deactivate();
         else
             ctrl->getTask("r_shank_task2").activateAsObjective();
+        //rhand, lfoot, lshank
+        if (ctrl->getTask("r_hand_task").isActiveAsObjective())
+            ctrl->getTask("r_hand_task").deactivate();
+        else
+            ctrl->getTask("r_hand_task").activateAsObjective();
+
+        if (ctrl->getTask("r_hand_task2").isActiveAsObjective())
+            ctrl->getTask("r_hand_task2").deactivate();
+        else
+            ctrl->getTask("r_hand_task2").activateAsObjective();
+
+        if (ctrl->getTask("l_shank_task").isActiveAsObjective())
+            ctrl->getTask("l_shank_task").deactivate();
+        else
+            ctrl->getTask("l_shank_task").activateAsObjective();
+
+        if (ctrl->getTask("l_shank_task2").isActiveAsObjective())
+            ctrl->getTask("l_shank_task2").deactivate();
+        else
+            ctrl->getTask("l_shank_task2").activateAsObjective();
     }
 }
 

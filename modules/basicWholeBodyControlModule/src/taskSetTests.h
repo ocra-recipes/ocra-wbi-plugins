@@ -31,7 +31,7 @@
 
     };
     
-    class TaskSet_initialPosHold_leftHandPos
+    class TaskSet_fixed_base_walk
     {
     public:
         static ISIRCtrlTaskManager getTask(orcWbiModel& model, orcisir::ISIRController& ctrl);
