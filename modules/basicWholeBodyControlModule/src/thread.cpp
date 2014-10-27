@@ -42,8 +42,8 @@ using namespace wbiIcub;
 #define DIM_TWIST 6
 #define TORQUE_MIN -12
 #define TORQUE_MAX 12
-#define HAND_FOOT_TASK 1
-//#define HAND_FOOT_TASK 0
+//#define HAND_FOOT_TASK 1
+#define HAND_FOOT_TASK 0
 // Task Sets
 //#include "taskSet1.h"
 #include "taskSetTests.h"
@@ -95,9 +95,9 @@ bool basicWholeBodyControlThread::threadInit()
     //taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
     //taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
 //    taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
-    if (HAND_FOOT_TASK)
-            taskManager = TaskSet_fixed_base_walk::getTask(*orcModel, *ctrl);
-//    taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
+//    if (HAND_FOOT_TASK)
+//            taskManager = TaskSet_fixed_base_walk::getTask(*orcModel, *ctrl);
+    taskManager = TaskSet_standing::getTask(*orcModel, *ctrl);
 	
 	
 	return true;

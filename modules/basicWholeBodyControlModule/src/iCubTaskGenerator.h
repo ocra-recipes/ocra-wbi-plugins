@@ -84,7 +84,39 @@ private:
 
 };
 
+class iCubOrientationTaskGenerator
+{
+public:
 
+
+    iCubOrientationTaskGenerator(ISIRCtrlTaskManager& tManager,
+                                const std::string& taskName,
+                                const std::string& segmentName,
+                                Eigen::Displacementd target,
+                                double stiffness,
+                                double damping,
+                                double weight);
+
+    ~iCubOrientationTaskGenerator();
+
+    const std::string getTaskName();
+    orc::OrientationFeature* getFeature();
+    orc::OrientationFeature* getFeatureDes();
+    orcisir::ISIRTask* getTask();
+
+private:
+    orcisir::ISIRTask*          task;
+    orc::SegmentFrame*          SF;
+    orc::TargetFrame*           TF;
+    orc::OrientationFeature*       feat;
+    orc::OrientationFeature*       featDes;
+    std::string                 segmentName;
+    Eigen::Displacementd        posdes;
+    Eigen::Twistd               veldes;
+    const Model&                      model;
+    ISIRCtrlTaskManager&            taskManager;
+
+};
 
 ///===========================Full/Partial Posture tasks===========================///
 class iCubPostureTaskGenerator
@@ -134,6 +166,33 @@ private:
     Eigen::Twistd               veldes;
     const Model&                     model;
     ISIRCtrlTaskManager&            taskManager;
+
+};
+
+class iCubContactTaskGenerator
+{
+public:
+
+    iCubContactTaskGenerator(ISIRCtrlTaskManager& tManager,
+                                   const std::string& taskName,
+                                   const std::string& segmentName,
+                                   Eigen::Displacementd H_segment_frame,
+                                   double mu,
+                                   double margin);
+
+    ~iCubContactTaskGenerator();
+
+    const std::string getTaskName();
+    orc::PointContactFeature* getFeature();
+    orcisir::ISIRTask* getTask();
+
+private:
+    orcisir::ISIRTask* task;
+    orc::SegmentFrame* SF;
+    orc::PointContactFeature* feat;
+    std::string segmentName;
+    const Model& model;
+    ISIRCtrlTaskManager& taskManager;
 
 };
 #endif // ICUBCARTESIANTASKGENERATOR_H

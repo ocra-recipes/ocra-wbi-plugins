@@ -9,6 +9,7 @@
 
 #include <wbi/wbi.h>
 #include <wbiIcub/wholeBodyInterfaceIcub.h>
+#include <math.h>
 
 using namespace wbiIcub;
 
@@ -163,6 +164,78 @@ void getNominalPosture(const orcWbiModel &model, VectorXd &q);
     Eigen::Displacementd posLShankDes2 = Eigen::Displacementd(lspos2);
     iCubCartesianTaskGenerator leftShankTask2 = iCubCartesianTaskGenerator(tm, "l_shank_task2", "l_shank", orc::XYZ, posLShankDes2, 10, 6, 1.0);
     leftShankTask2.getTask()->deactivate();
+    return tm;
+}
+
+/* static */ ISIRCtrlTaskManager TaskSet_standing::getTask(orcWbiModel& model, orcisir::ISIRController& ctrl)
+{
+    ISIRCtrlTaskManager tm = ISIRCtrlTaskManager(model, ctrl);
+    int nbInternalDofs = model.nbInternalDofs();
+
+    Eigen::VectorXd postureTaskQ = Eigen::VectorXd::Zero(model.nbInternalDofs());
+
+    // Full posture task
+    getNominalPosture(model, postureTaskQ);
+
+    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 15, 3, 0.01);
+
+    // Partial (torso) posture task
+    Eigen::VectorXi torso_indices(3);
+    torso_indices << model.getDOFId("torso_pitch"), model.getDOFId("torso_roll"), model.getDOFId("torso_yaw");
+    Eigen::VectorXd torsoTaskPosDes(3);
+    torsoTaskPosDes << M_PI / 18, 0, 0;
+    iCubPostureTaskGenerator torsoTask = iCubPostureTaskGenerator(tm, "partial_task", torso_indices, orc::FullState::INTERNAL, torsoTaskPosDes, 10, 3, 1);
+
+//    // waist task
+//    Eigen::Displacementd posWaist = model.getSegmentPosition(model.getSegmentIndex("chest"));
+//    iCubOrientationTaskGenerator waistTask = iCubOrientationTaskGenerator(tm, "waist_task", "chest", posWaist, 36, 12, 0.4);
+
+    // head task
+//    Eigen::Displacementd posHead = model.getSegmentPosition(model.getSegmentIndex("head"));
+//    iCubOrientationTaskGenerator headTask = iCubOrientationTaskGenerator(tm, "head_task", "head", posHead,10, 6, 0.5);
+
+    // CoM Task
+    Eigen::Vector3d posCoM = model.getCoMPosition();
+    iCubCoMTaskGenerator comTask = iCubCoMTaskGenerator(tm, "com_task", posCoM, 20, 9, 10.0);
+
+    // Left hand cartesian task
+//    Eigen::Displacementd posLHandDes(-0.23, -0.21, 0.3, 1, 0, 0, 0);
+    Eigen::Vector3d lhpos = model.getSegmentPosition(model.getSegmentIndex("l_hand")).getTranslation();
+    lhpos[0]-=0.1;
+    lhpos[2]+=0.3;
+    Eigen::Displacementd posLHandDes = Eigen::Displacementd(lhpos);
+    iCubCartesianTaskGenerator leftHandTask = iCubCartesianTaskGenerator(tm, "l_hand_task", "l_hand", orc::XYZ, posLHandDes, 10, 6,1.0);
+
+//    Eigen::Displacementd posRHandDes(-0.23, 0.21, 0.3, 1, 0, 0, 0);
+    Eigen::Vector3d rhpos = model.getSegmentPosition(model.getSegmentIndex("r_hand")).getTranslation();
+    rhpos[0]-=0.1;
+    rhpos[2]+=0.3;
+    Eigen::Displacementd posRHandDes = Eigen::Displacementd(rhpos);
+    iCubCartesianTaskGenerator rightHandTask = iCubCartesianTaskGenerator(tm, "r_hand_task", "r_hand", orc::XYZ, posRHandDes, 10, 6, 1.0);
+
+    // Foot contact tasks
+
+    double sqrt2on2 = sqrt(2)/2;
+    Eigen::Rotation3d rotLZdown = Eigen::Rotation3d(-sqrt2on2,0,-sqrt2on2,0)*Eigen::Rotation3d(0,1,0,0);
+    Eigen::Rotation3d rotRZdown = Eigen::Rotation3d(0,sqrt2on2,0,sqrt2on2)*Eigen::Rotation3d(0,1,0,0);
+
+    Eigen::Displacementd lfcontact0 = Eigen::Displacementd(Eigen::Vector3d(-0.039,-0.027,-0.031),rotLZdown);
+    Eigen::Displacementd lfcontact1 = Eigen::Displacementd(Eigen::Vector3d(-0.039,0.027,-0.031),rotLZdown);
+    Eigen::Displacementd lfcontact2 = Eigen::Displacementd(Eigen::Vector3d(-0.039,0.027,0.099),rotLZdown);
+    Eigen::Displacementd lfcontact3 = Eigen::Displacementd(Eigen::Vector3d(-0.039,-0.027,-0.099),rotLZdown);
+    iCubContactTaskGenerator leftFootContactTask0 = iCubContactTaskGenerator(tm, "CLF0","l_foot",lfcontact0,1.5,0.0);
+    iCubContactTaskGenerator leftFootContactTask1 = iCubContactTaskGenerator(tm, "CLF1","l_foot",lfcontact1,1.5,0.0);
+    iCubContactTaskGenerator leftFootContactTask2 = iCubContactTaskGenerator(tm, "CLF2","l_foot",lfcontact2,1.5,0.0);
+    iCubContactTaskGenerator leftFootContactTask3 = iCubContactTaskGenerator(tm, "CLF3","l_foot",lfcontact3,1.5,0.0);
+
+    Eigen::Displacementd rfcontact0 = Eigen::Displacementd(Eigen::Vector3d(-0.039,-0.027,0.031),rotRZdown);
+    Eigen::Displacementd rfcontact1 = Eigen::Displacementd(Eigen::Vector3d(-0.039,0.027,0.031),rotRZdown);
+    Eigen::Displacementd rfcontact2 = Eigen::Displacementd(Eigen::Vector3d(-0.039,0.027,-0.099),rotRZdown);
+    Eigen::Displacementd rfcontact3 = Eigen::Displacementd(Eigen::Vector3d(-0.039,-0.027,0.099),rotRZdown);
+    iCubContactTaskGenerator rightFootContactTask0 = iCubContactTaskGenerator(tm, "CRF0","r_foot",rfcontact0,1.5,0.0);
+    iCubContactTaskGenerator rightFootContactTask1 = iCubContactTaskGenerator(tm, "CRF1","r_foot",rfcontact1,1.5,0.0);
+    iCubContactTaskGenerator rightFootContactTask2 = iCubContactTaskGenerator(tm, "CRF2","r_foot",rfcontact2,1.5,0.0);
+    iCubContactTaskGenerator rightFootContactTask3 = iCubContactTaskGenerator(tm, "CRF3","r_foot",rfcontact3,1.5,0.0);
     return tm;
 }
 

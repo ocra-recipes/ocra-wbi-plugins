@@ -37,6 +37,11 @@
         static ISIRCtrlTaskManager getTask(orcWbiModel& model, orcisir::ISIRController& ctrl);
 
     };
-    
+
+    class TaskSet_standing
+    {
+    public:
+        static ISIRCtrlTaskManager getTask(orcWbiModel& model, orcisir::ISIRController& ctrl);
+    };
 #endif // TASKSETTESTS_H
 

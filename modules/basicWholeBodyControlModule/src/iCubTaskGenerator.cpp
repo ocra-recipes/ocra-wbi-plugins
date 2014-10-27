@@ -72,6 +72,50 @@ orcisir::ISIRTask* iCubCartesianTaskGenerator::getTask()
     return task;
 }
 
+
+
+//Orientation task generator
+iCubOrientationTaskGenerator::iCubOrientationTaskGenerator(ISIRCtrlTaskManager& tManager,const std::string& taskName,const std::string& segmentName, Eigen::Displacementd target, double stiffness, double damping, double weight)
+    :model(tManager.getModel())
+    ,taskManager(tManager)
+{
+    SF = new orc::SegmentFrame("frame.SFrame"+segmentName, model, segmentName, Eigen::Displacementd());
+    TF = new orc::TargetFrame("frame.TFrame"+segmentName, model);
+    feat = new orc::OrientationFeature("frame"+segmentName, *SF);
+    featDes = new orc::OrientationFeature("frame.Des"+segmentName, *TF);
+    posdes = target;
+    TF->setPosition(posdes);
+    TF->setVelocity(Eigen::Twistd());
+    TF->setAcceleration(Eigen::Twistd());
+    task = &(taskManager.getCtrl().createISIRTask(taskName, *feat, *featDes));
+    task->initAsAccelerationTask();
+    taskManager.addTask2TaskList(task);
+
+    task->activateAsObjective();
+    task->setStiffness(stiffness);
+    task->setDamping(damping);
+    task->setWeight(weight);
+
+}
+
+iCubOrientationTaskGenerator::~iCubOrientationTaskGenerator()
+{
+
+}
+
+orc::OrientationFeature* iCubOrientationTaskGenerator::getFeature()
+{
+    return feat;
+}
+orc::OrientationFeature* iCubOrientationTaskGenerator::getFeatureDes()
+{
+    return featDes;
+}
+orcisir::ISIRTask* iCubOrientationTaskGenerator::getTask()
+{
+    return task;
+}
+
 // Posture task generator
 iCubPostureTaskGenerator::iCubPostureTaskGenerator(ISIRCtrlTaskManager& tManager,
 													const std::string& taskName,
@@ -156,5 +200,39 @@ orcisir::ISIRTask* iCubPostureTaskGenerator::getTask()
     return task;
 }
 
+//Contact task generator
+iCubContactTaskGenerator::iCubContactTaskGenerator(ISIRCtrlTaskManager& tManager, const std::string& taskName, const std::string& segmentName, Eigen::Displacementd H_segment_frame,double mu, double margin)
+    :model(tManager.getModel())
+    ,taskManager(tManager)
+{
+    SF = new orc::SegmentFrame("frame.SFrame"+segmentName, model, segmentName, H_segment_frame);
+
+    feat = new orc::PointContactFeature("frame"+segmentName, *SF);
+
+    task = &(taskManager.getCtrl().createISIRContactTask(taskName, *feat, mu, margin));
+    task->initAsAccelerationTask();
+    taskManager.addTask2TaskList(task);
+
+    task->activateAsObjective();
+    task->setFrictionCoeff(mu);
+    task->setMargin(margin);
+    task->activateContactMode();
+
+}
+
+iCubContactTaskGenerator::~iCubContactTaskGenerator()
+{
+
+}
+
+orc::PointContactFeature* iCubContactTaskGenerator::getFeature()
+{
+    return feat;
+}
+
+orcisir::ISIRTask* iCubContactTaskGenerator::getTask()
+{
+    return task;
+}
 //================ PARTIAL STATE ==============================================================================//
 
