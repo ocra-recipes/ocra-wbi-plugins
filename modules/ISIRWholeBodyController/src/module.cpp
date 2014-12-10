@@ -40,7 +40,7 @@ YARP_DECLARE_DEVICES(icubmod)
 
 using namespace yarp::dev;
 using namespace wbiIcub;
-using namespace basicWholeBodyControlNamespace;
+using namespace ISIRWholeBodyController;
 
 void iCubVersionFromRf(ResourceFinder & rf, iCub::iDynTree::iCubTree_version_tag & icub_version)
 {
@@ -79,14 +79,14 @@ void iCubVersionFromRf(ResourceFinder & rf, iCub::iDynTree::iCubTree_version_tag
     }
 }
 
-basicWholeBodyControlModule::basicWholeBodyControlModule()
+ISIRWholeBodyControllerModule::ISIRWholeBodyControllerModule()
 {
     ctrlThread = 0;
     robotInterface = 0;
     period = 10;
 }
 
-bool basicWholeBodyControlModule::configure(ResourceFinder &rf)
+bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
 {
     //--------------------------READ FROM CONFIGURATION----------------------
     if( rf.check("robot") )
@@ -126,14 +126,15 @@ bool basicWholeBodyControlModule::configure(ResourceFinder &rf)
 
     //--------------------------CTRL THREAD--------------------------
     yarp::os::Property controller_options;
-
+    std::cout << "GOT HERE\n";
     //If the printPeriod is found in the options, send it to the controller
     if( rf.check("printPeriod") && rf.find("printPeriod").isDouble() )
     {
+        std::cout << "GOT HERE 2\n";
         controller_options.put("printPeriod",rf.find("printPeriod").asDouble());
     }
 
-    ctrlThread = new basicWholeBodyControlThread(moduleName, robotName, period, robotInterface, controller_options);
+    ctrlThread = new ISIRWholeBodyControllerThread(moduleName, robotName, period, robotInterface, controller_options);
     if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing locomotion control thread. Closing module.\n"); return false; }
 
     fprintf(stderr,"basicWholeBodyControl thread started\n");
@@ -142,14 +143,14 @@ bool basicWholeBodyControlModule::configure(ResourceFinder &rf)
 }
 
 
-bool basicWholeBodyControlModule::interruptModule()
+bool ISIRWholeBodyControllerModule::interruptModule()
 {
     if(ctrlThread)
         ctrlThread->suspend();
     return true;
 }
 
-bool basicWholeBodyControlModule::close()
+bool ISIRWholeBodyControllerModule::close()
 {
 //stop threads
     if(ctrlThread){ ctrlThread->stop(); delete ctrlThread; ctrlThread = 0; }
@@ -173,7 +174,7 @@ bool basicWholeBodyControlModule::close()
     return true;
 }
 
-bool basicWholeBodyControlModule::updateModule()
+bool ISIRWholeBodyControllerModule::updateModule()
 {
     if (ctrlThread==0)
     {
@@ -194,7 +195,7 @@ bool basicWholeBodyControlModule::updateModule()
     return true;
 }
 
-double basicWholeBodyControlModule::getPeriod()
+double ISIRWholeBodyControllerModule::getPeriod()
 {
     return period;
 }

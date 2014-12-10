@@ -3,7 +3,7 @@
 # CopyPolicy: Released under the terms of the GNU GPL v2.0 or any later version.
 
 cmake_minimum_required(VERSION 2.8.11)
-SET(PROJECTNAME basicWholeBodyControlModule)
+SET(PROJECTNAME ISIRWholeBodyController)
 PROJECT(${PROJECTNAME})
 
 set(CMAKE_CXX_FLAGS "-fpermissive")
@@ -17,7 +17,6 @@ set(CMAKE_MODULE_PATH ${YCM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 find_package(Eigen3 REQUIRED)
 find_package(iDynTree REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
-
 
 find_package(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(EIGEN eigen_lgsm REQUIRED)

@@ -15,8 +15,8 @@
 * Public License for more details
 */
 
-#ifndef BASICWHOLEBODYINTERFACE_THREAD
-#define BASICWHOLEBODYINTERFACE_THREAD
+#ifndef ISIRWHOLEBODYCONTROLLERTHREAD_H
+#define ISIRWHOLEBODYCONTROLLERTHREAD_H
 
 #include <sstream>
 #include <iomanip>
@@ -33,23 +33,20 @@
 
 #include "orcWbiModel.h"
 #include "ISIRCtrlTaskManager.h"
+#include "taskManagerCollection.h"
 #include "orcisir/ISIRController.h"
 #include "orcisir/Solvers/OneLevelSolver.h"
-
+#include "orcisir/Tasks/ISIRTaskManagerCollectionBase.h"
 
 using namespace yarp::os;
 using namespace yarp::sig;
-
-
 using namespace std;
-
 using namespace wbi;
 
-
-namespace basicWholeBodyControlNamespace
+namespace ISIRWholeBodyController
 {
 
-class basicWholeBodyControlThread: public RateThread
+class ISIRWholeBodyControllerThread: public RateThread
 {
     string name;
     string robotName;
@@ -57,11 +54,16 @@ class basicWholeBodyControlThread: public RateThread
     orcWbiModel *orcModel;
     yarp::os::Property options;
     orcisir::ISIRController *ctrl;
-    orcisir::OneLevelSolverWithQuadProg   internalSolver;
-    
+    orcisir::OneLevelSolverWithQuadProg internalSolver;
+
+    orcisir::ISIRTaskManagerCollectionBase* taskCollection;
+
     ISIRCtrlTaskManager taskManager;
 
+    Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
+
     // Member variables
+    double time_sim;
     double printPeriod;
     double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
     Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the robot
@@ -71,7 +73,7 @@ class basicWholeBodyControlThread: public RateThread
     yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
 public:
-    basicWholeBodyControlThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);
+    ISIRWholeBodyControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);
 
     bool threadInit();
     void run();

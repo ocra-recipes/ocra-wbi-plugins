@@ -33,10 +33,10 @@ using namespace std;
 using namespace yarp::os;
 using namespace wbi;
 
-namespace basicWholeBodyControlNamespace
+namespace ISIRWholeBodyController
 {
 
-class basicWholeBodyControlModule: public RFModule
+class ISIRWholeBodyControllerModule: public RFModule
 {
     /* module parameters */
     string moduleName;
@@ -44,11 +44,11 @@ class basicWholeBodyControlModule: public RFModule
     int period;
     double avgTime, stdDev, avgTimeUsed, stdDevUsed;
 
-    basicWholeBodyControlThread* ctrlThread; // locomotion control thread
+    ISIRWholeBodyControllerThread* ctrlThread; // locomotion control thread
     wholeBodyInterface* robotInterface; // interface to communicate with the robot
 
 public:
-    basicWholeBodyControlModule();
+    ISIRWholeBodyControllerModule();
 
     bool configure(yarp::os::ResourceFinder &rf); // configure all the module parameters and return true if successful
     bool interruptModule(); // interrupt, e.g., the ports

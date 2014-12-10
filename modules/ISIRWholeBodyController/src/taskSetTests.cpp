@@ -53,8 +53,9 @@ void getNominalPosture(const orcWbiModel &model, VectorXd &q);
     // Full posture task
     getNominalPosture(model, postureTaskQ);
 
-    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 10, 3, 0.5);
+    iCubPostureTaskGenerator postureTask = iCubPostureTaskGenerator(tm, "full_task", orc::FullState::INTERNAL, postureTaskQ, 30, 3, 0.001);
 
+/*
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     torso_indices << model.getDOFId("torso_pitch"), model.getDOFId("torso_roll"), model.getDOFId("torso_yaw");
@@ -65,21 +66,26 @@ void getNominalPosture(const orcWbiModel &model, VectorXd &q);
     // CoM Task
     Eigen::Vector3d posCoM = model.getCoMPosition();
     iCubCoMTaskGenerator comTask = iCubCoMTaskGenerator(tm, "com_task", posCoM, 10, 3, 10.0);
+*/
 
     // Left hand cartesian task
-//    Eigen::Displacementd posLHandDes(-0.23, -0.21, 0.3, 1, 0, 0, 0);
+    Eigen::Displacementd posLHandDes(-0.3, -0.1, 0.3, 1, 0, 0, 0);
+/*
     Eigen::Vector3d lhpos = model.getSegmentPosition(model.getSegmentIndex("l_hand")).getTranslation();
     lhpos[0]-=0.1;
     lhpos[2]+=0.5;
     Eigen::Displacementd posLHandDes = Eigen::Displacementd(lhpos);
-    iCubCartesianTaskGenerator leftHandTask = iCubCartesianTaskGenerator(tm, "l_hand_task", "l_hand", orc::XYZ, posLHandDes, 20, 3, 2.0);
+*/
+    iCubCartesianTaskGenerator leftHandTask = iCubCartesianTaskGenerator(tm, "l_hand_task", "l_hand", orc::XYZ, posLHandDes, 30, 3, 10.0);
 
+/*
 //    Eigen::Displacementd posRHandDes(-0.23, 0.21, 0.3, 1, 0, 0, 0);
     Eigen::Vector3d rhpos = model.getSegmentPosition(model.getSegmentIndex("r_hand")).getTranslation();
     rhpos[0]-=0.3;
     rhpos[2]+=0.3;
     Eigen::Displacementd posRHandDes = Eigen::Displacementd(rhpos);
     iCubCartesianTaskGenerator rightHandTask = iCubCartesianTaskGenerator(tm, "r_hand_task", "r_hand", orc::XYZ, posRHandDes, 20, 3, 2.0);
+*/
 
     return tm;
 }

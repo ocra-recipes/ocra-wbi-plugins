@@ -1,7 +1,7 @@
 /*
-* Copyright (C) 2013 CoDyCo
-* Author: Andrea Del Prete
-* email: andrea.delprete@iit.it
+* Copyright (C) 2013 ISIR
+* Author: Darwin Lau, MingXing Liu, Ryan Lober
+* email: lau@isir.upmc.fr
 * Permission is granted to copy, distribute, and/or modify this program
 * under the terms of the GNU General Public License, version 2 or any
 * later version published by the Free Software Foundation.
@@ -33,7 +33,7 @@
 #include "orc/control/ControlEnum.h"
 
 
-using namespace basicWholeBodyControlNamespace;
+using namespace ISIRWholeBodyController;
 using namespace yarp::math;
 using namespace wbiIcub;
 
@@ -44,12 +44,13 @@ using namespace wbiIcub;
 #define TORQUE_MAX 12
 //#define HAND_FOOT_TASK 1
 #define HAND_FOOT_TASK 0
+#define TIME_MSEC_TO_SEC 0.001
 // Task Sets
 //#include "taskSet1.h"
 #include "taskSetTests.h"
 
 //*************************************************************************************************************************
-basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
+ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
                                                              string _robotName,
                                                              int _period,
                                                              wholeBodyInterface *_wbi,
@@ -61,22 +62,25 @@ basicWholeBodyControlThread::basicWholeBodyControlThread(string _name,
     orcModel = new orcWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useReducedProblem = false;
     ctrl = new orcisir::ISIRController("icubControl", *orcModel, internalSolver, useReducedProblem);
+
     fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
     fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
     fb_Hroot = wbi::Frame();
     fb_Troot = Eigen::VectorXd::Zero(DIM_TWIST);
     fb_torque.resize(robot->getDoFs());
 
-    printCountdown = 0;
+    time_sim = 0;
 }
 
 //*************************************************************************************************************************
-bool basicWholeBodyControlThread::threadInit()
+bool ISIRWholeBodyControllerThread::threadInit()
 {
-    printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
+//    printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
+    robot->getEstimates(ESTIMATE_JOINT_POS, q_initial.data(), ALL_JOINTS);
 
     bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
     bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
+
     if (!orcModel->hasFixedRoot())
         orcModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
     else
@@ -84,7 +88,6 @@ bool basicWholeBodyControlThread::threadInit()
 
     // Set all declared joints in module to TORQUE mode
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
-    
     
     //================ SET UP TASK ===================//
     //taskManager = TaskSet1::getTask(*orcModel, *ctrl);
@@ -97,14 +100,20 @@ bool basicWholeBodyControlThread::threadInit()
 //    taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
 //    if (HAND_FOOT_TASK)
 //            taskManager = TaskSet_fixed_base_walk::getTask(*orcModel, *ctrl);
-    taskManager = TaskSet_standing::getTask(*orcModel, *ctrl);
+    //taskManager = TaskSet_standing::getTask(*orcModel, *ctrl);
 	
+
+    taskCollection = new TaskCollection_NominalPose();
+    //taskCollection = new TaskCollection_InitialPoseHold();
+    //taskCollection = new TaskCollection_LeftHandReach();
+    //taskCollection = new TaskCollection_LeftRightHandReach();
+    taskCollection->init(*ctrl, *orcModel);
 	
 	return true;
 }
 
 //*************************************************************************************************************************
-void basicWholeBodyControlThread::run()
+void ISIRWholeBodyControllerThread::run()
 {
 //    std::cout << "Running Control Loop" << std::endl;
 
@@ -120,6 +129,8 @@ void basicWholeBodyControlThread::run()
     else    
         orcModel->setState(fb_qRad, fb_qdRad);
 
+    taskCollection->update(time_sim, *orcModel, NULL);
+    
     // compute desired torque by calling the controller
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(orcModel->nbInternalDofs(), 0.0);
 	ctrl->computeOutput(eigenTorques);
@@ -142,7 +153,13 @@ void basicWholeBodyControlThread::run()
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());
 
-
+    printPeriod = 10000;
+    printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
+    if (printCountdown == 0)
+    {
+        std::cout << "ISIRWholeBodyController thread running..." << std::endl;
+    }
+/*
     printPeriod = 5000;
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
 
@@ -198,12 +215,16 @@ void basicWholeBodyControlThread::run()
         else
             ctrl->getTask("l_shank_task2").activateAsObjective();
     }
+*/
+    time_sim += TIME_MSEC_TO_SEC * getRate();
 }
 
 //*************************************************************************************************************************
-void basicWholeBodyControlThread::threadRelease()
+void ISIRWholeBodyControllerThread::threadRelease()
 {
-    bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
+    //bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
+    bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, q_initial.data(), ALL_JOINTS);
+
     //yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
     //robot->setControlReference(torques_cmd.data());
 }

@@ -31,7 +31,7 @@ using namespace yarp::dev;
 using namespace yarp::sig;
 using namespace yarp::os;
 using namespace std;
-using namespace basicWholeBodyControlNamespace;
+using namespace ISIRWholeBodyController;
 
 
 int main (int argc, char * argv[])
@@ -40,7 +40,7 @@ int main (int argc, char * argv[])
     ResourceFinder rf;
     rf.setVerbose(true);
     rf.setDefaultConfigFile("default.ini"); //default config file name.
-    rf.setDefaultContext("basicWholeBodyInterfaceModule"); //when no parameters are given to the module this is the default context
+    rf.setDefaultContext("ISIRWholeBodyController"); //when no parameters are given to the module this is the default context
     rf.configure(argc,argv);
 
     if (rf.check("help"))
@@ -64,7 +64,8 @@ int main (int argc, char * argv[])
     }
 
     //Creating the module
-    basicWholeBodyControlModule module;
+    ISIRWholeBodyControllerModule module;
+
     return module.runModule(rf);
 }
 
