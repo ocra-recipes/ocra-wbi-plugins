@@ -17,12 +17,13 @@ set(CMAKE_MODULE_PATH ${YCM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 find_package(Eigen3 REQUIRED)
 find_package(iDynTree REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
+find_package(modHelp REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(EIGEN eigen_lgsm REQUIRED)
 PKG_CHECK_MODULES(PC_ORCISIR_ISIRCONTROLLER orcisir_ISIRController REQUIRED)
 PKG_CHECK_MODULES(PC_ORC_FRAMEWORK orc_framework REQUIRED)
-PKG_CHECK_MODULES(PC_MODHELP modHelp REQUIRED)
+#PKG_CHECK_MODULES(PC_MODHELP modHelp REQUIRED)
 
 # new "data" installation - available with yarp2.4
 include(YarpInstallationHelpers)
@@ -36,7 +37,7 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 LINK_DIRECTORIES(${PC_ORCISIR_ISIRCONTROLLER_LIBRARY_DIRS}
                  ${PC_ORC_FRAMEWORK_LIBRARY_DIRS}
-                 ${PC_MODHELP_LIBRARY_DIRS}
+#                 ${PC_MODHELP_LIBRARY_DIRS}
                  )
 
 #ADD_LIBRARY(orcWbiModel SHARED src/orcWbiModel.cpp)
@@ -49,7 +50,8 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src
                     ${EIGEN_INCLUDE_DIRS}
                     ${PC_ORCISIR_ISIRCONTROLLER_INCLUDE_DIRS}
                     ${PC_ORC_FRAMEWORK_INCLUDE_DIRS} 
-                    ${PC_MODHELP_INCLUDE_DIRS}
+                    ${modHelp_INCLUDE_DIRS}/include
+#                    ${PC_MODHELP_INCLUDE_DIRS}
                     )
 
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
@@ -59,9 +61,10 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
                                      ${ICUB_LIBRARIES}
                                      ${iDynTree_LIBRARIES}
                                      ${yarpWholeBodyInterface_LIBRARIES}
+                                     ${modHelp_LIBRARIES}
                                      ${PC_ORCISIR_ISIRCONTROLLER_LIBRARIES}
                                      ${PC_ORC_FRAMEWORK_LIBRARIES}
-                                     ${PC_MODHELP_LIBRARIES}
+#                                     ${PC_MODHELP_LIBRARIES}
                                      )
 
 

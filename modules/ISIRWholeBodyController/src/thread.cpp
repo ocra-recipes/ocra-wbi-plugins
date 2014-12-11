@@ -148,7 +148,7 @@ void ISIRWholeBodyControllerThread::run()
       else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
 
-	modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
+	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());
