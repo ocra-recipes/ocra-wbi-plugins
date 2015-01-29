@@ -15,8 +15,8 @@
 * Public License for more details
 */
 
-#ifndef BASICWHOLEBODYINTERFACE_THREAD
-#define BASICWHOLEBODYINTERFACE_THREAD
+#ifndef ISIRWHOLEBODYCONTROLLERTHREAD_H
+#define ISIRWHOLEBODYCONTROLLERTHREAD_H
 
 #include <sstream>
 #include <iomanip>
@@ -31,32 +31,49 @@
 
 #include <wbi/wbi.h>
 
+#include "orcWbiModel.h"
+//#include "ISIRCtrlTaskManager.h"
+#include <ISIRWholeBodyController/taskManagerCollection.h>
+#include "orcisir/ISIRController.h"
+#include "orcisir/Solvers/OneLevelSolver.h"
+#include "orcisir/Tasks/ISIRTaskManagerCollectionBase.h"
+
 using namespace yarp::os;
 using namespace yarp::sig;
-
-
 using namespace std;
-
 using namespace wbi;
 
-
-namespace basicWholeBodyInterfaceNamespace
+namespace ISIRWholeBodyController
 {
 
-class basicWholeBodyInterfaceThread: public RateThread
+class ISIRWholeBodyControllerThread: public RateThread
 {
     string name;
     string robotName;
     wholeBodyInterface *robot;
+    orcWbiModel *orcModel;
     yarp::os::Property options;
+    orcisir::ISIRController *ctrl;
+    orcisir::OneLevelSolverWithQuadProg internalSolver;
+
+    orcisir::ISIRTaskManagerCollectionBase* taskCollection;
+
+    //ISIRCtrlTaskManager taskManager;
+
+    Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
 
     // Member variables
+    double time_sim;
     double printPeriod;
     double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
-    yarp::sig::Vector qRad; // vector that contains the encoders readed from the robot
+    Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the robot
+    Eigen::VectorXd fb_qdRad; // vector that contains the derivative of encoders read from the robot
+    wbi::Frame fb_Hroot; // vector that position of root 
+    Eigen::Twistd fb_Troot; // vector that contains the twist of root
+    yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
 public:
-    basicWholeBodyInterfaceThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);
+    ISIRWholeBodyControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);
 
     bool threadInit();
     void run();

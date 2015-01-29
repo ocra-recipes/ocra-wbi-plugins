@@ -1,2 +1,1 @@
-add_subdirectory(basicWholeBodyInterfaceModule)
 add_subdirectory(ISIRWholeBodyController)

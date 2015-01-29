@@ -15,12 +15,12 @@
 * Public License for more details
 */
 
-#include "thread.h"
-#include "orcWbiModel.h"
+#include <ISIRWholeBodyController/thread.h>
+#include <ISIRWholeBodyController/orcWbiModel.h>
 #include <modHelp/modHelp.h>
 #include <iostream>
 
-#include <wbiIcub/wholeBodyInterfaceIcub.h>
+#include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Log.h>
 
@@ -35,7 +35,7 @@
 
 using namespace ISIRWholeBodyController;
 using namespace yarp::math;
-using namespace wbiIcub;
+using namespace yarpWbi;
 
 #define ALL_JOINTS -1
 #define DIM_DISP 3
@@ -47,7 +47,7 @@ using namespace wbiIcub;
 #define TIME_MSEC_TO_SEC 0.001
 // Task Sets
 //#include "taskSet1.h"
-#include "taskSetTests.h"
+//#include "taskSetTests.h"
 
 //*************************************************************************************************************************
 ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,

@@ -1,8 +1,7 @@
+#include <ISIRWholeBodyController/orcWbiModel.h>
+#include <ISIRWholeBodyController/orcWbiUtil.h>
 
-#include "orcWbiModel.h"
-#include "orcWbiUtil.h"
-
-#include <wbiIcub/wholeBodyInterfaceIcub.h>
+#include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/sig/Matrix.h>
 #include <map>
 #include <vector>
@@ -545,14 +544,16 @@ int orcWbiModel::doGetSegmentIndex(const std::string& name) const
     printf("Get Segment index : name %s\n", name.c_str());
 */
     int id; 
-    robot->getLinkId(name.c_str(), id);
+    bool ok = robot->getFrameList().idToIndex(name.c_str(), id);
+    //robot->getLinkId(name.c_str(), id);
     return id;
 }
 
 int orcWbiModel::getDOFId(const std::string &name) const
 {
     int id; 
-    id = robot->getJointList().localToGlobalId(wbiIcub::globalToLocalIcubId(name));
+    //id = robot->getJointList().localToGlobalId(wbiIcub::globalToLocalIcubId(name));
+    bool ok = robot->getJointList().idToIndex(name.c_str(), id);
     //robot->getDOFId(name.c_str(), id);
     return id;
 }
@@ -673,6 +674,3 @@ void orcWbiModel::printAllData()
     }
 
 }
-
-#include <wbiIcub/wholeBodyInterfaceIcub.h>
-

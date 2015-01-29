@@ -33,15 +33,16 @@
 #include <iomanip>
 #include <string.h>
 
-#include "thread.h"
-#include "module.h"
+#include <ISIRWholeBodyController/thread.h>
+#include <ISIRWholeBodyController/module.h>
 
 YARP_DECLARE_DEVICES(icubmod)
 
 using namespace yarp::dev;
-using namespace wbiIcub;
+using namespace yarpWbi;
 using namespace ISIRWholeBodyController;
 
+/*
 void iCubVersionFromRf(ResourceFinder & rf, iCub::iDynTree::iCubTree_version_tag & icub_version)
 {
     //Checking iCub parts version
@@ -78,6 +79,7 @@ void iCubVersionFromRf(ResourceFinder & rf, iCub::iDynTree::iCubTree_version_tag
         icub_version.urdf_file = rf.find("urdf").asString().c_str();
     }
 }
+*/
 
 ISIRWholeBodyControllerModule::ISIRWholeBodyControllerModule()
 {
@@ -97,17 +99,40 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
     {
         moduleName = rf.find("local").asString().c_str();
     }
+
+    yarp::os::Property yarpWbiOptions;
+    // Get wbi options from the canonical file
+    if ( !rf.check("wbi_conf_file") )
+    {
+        fprintf(stderr, "[ERR] ISIRWholeBodyController: Impossible to open wholeBodyInterface: wbi_conf_file option missing");
+    }
+    std::string wbiConfFile = rf.findFile("wbi_conf_file");
+    yarpWbiOptions.fromConfigFile(wbiConfFile);
+    // Overwrite the robot parameter that could be present in wbi_conf_file
+    yarpWbiOptions.put("robot", robotName);
+    robotInterface = new yarpWholeBodyInterface(moduleName.c_str(), yarpWbiOptions);
+
+    IDList robotJoints;
+    std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
+    if(!loadIdListFromConfig(robotJointsListName, yarpWbiOptions, robotJoints))
+    {
+        fprintf(stderr, "[ERR] ISIRWholeBodyController: Impossible to load wbiId joint list with name %s\n", robotJointsListName.c_str());
+    }
+    robotInterface->addJoints(robotJoints);
+
+/*
     //--------------------------WHOLE BODY INTERFACE--------------------------
     iCub::iDynTree::iCubTree_version_tag icub_version;
     iCubVersionFromRf(rf,icub_version);
     robotInterface = new icubWholeBodyInterface(moduleName.c_str(), robotName.c_str(),icub_version);
     robotInterface->addJoints(ICUB_MAIN_JOINTS);
+*/
     
     if( rf.check("uses_external_torque_control") )
     {
-		if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
+/*
+		    if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
             printf ("The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
-        
         else{
             printf ("ERROR [mdlStart] >> The jointTorqueControl module is not running... \n");
             return false;
@@ -115,29 +140,31 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
 
         yarp::os::Value trueValue;
         trueValue.fromString ("true");
-        ( (icubWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
-        ( (icubWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
-        ( (icubWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
+        ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
+        ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
+        ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
     
+*/
     
 	}
     
-    if(!robotInterface->init()){ fprintf(stderr, "Error while initializing whole body interface. Closing module\n"); return false; }
+    if(!robotInterface->init())
+    {
+        fprintf(stderr, "Error while initializing whole body interface. Closing module\n"); return false;
+    }
 
     //--------------------------CTRL THREAD--------------------------
     yarp::os::Property controller_options;
-    std::cout << "GOT HERE\n";
     //If the printPeriod is found in the options, send it to the controller
     if( rf.check("printPeriod") && rf.find("printPeriod").isDouble() )
     {
-        std::cout << "GOT HERE 2\n";
         controller_options.put("printPeriod",rf.find("printPeriod").asDouble());
     }
 
     ctrlThread = new ISIRWholeBodyControllerThread(moduleName, robotName, period, robotInterface, controller_options);
     if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing locomotion control thread. Closing module.\n"); return false; }
 
-    fprintf(stderr,"basicWholeBodyControl thread started\n");
+    fprintf(stderr,"ISIRWholeBodyController thread started\n");
 
     return true;
 }

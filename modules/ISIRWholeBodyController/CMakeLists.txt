@@ -1,5 +1,5 @@
-# Copyright (C) 2014 Fondazione Istituto Italiano di Tecnologia
-# Author: Silvio Traversaro
+# Copyright (C) 2014 CoDyCo
+# Author: Darwin Lau, MingXing Liu, Ryan Lober
 # CopyPolicy: Released under the terms of the GNU GPL v2.0 or any later version.
 
 cmake_minimum_required(VERSION 2.8.11)
@@ -30,7 +30,7 @@ include(YarpInstallationHelpers)
 yarp_configure_external_installation(codyco)
 
 FILE(GLOB folder_source ./src/*.cpp)
-FILE(GLOB folder_header ./src/*.h)
+FILE(GLOB folder_header ./include/ISIRWholeBodyController/*.h)
 
 SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
@@ -42,7 +42,7 @@ LINK_DIRECTORIES(${PC_ORCISIR_ISIRCONTROLLER_LIBRARY_DIRS}
 
 #ADD_LIBRARY(orcWbiModel SHARED src/orcWbiModel.cpp)
 
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/src
+INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${YARP_INCLUDE_DIRS}
                     ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${EIGEN3_INCLUDE_DIR}

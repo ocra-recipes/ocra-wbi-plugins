@@ -1,5 +1,5 @@
-#include "taskManagerCollection.h"
-#include "orcWbiModel.h"
+#include <ISIRWholeBodyController/taskManagerCollection.h>
+#include <ISIRWholeBodyController/orcWbiModel.h>
 
 #ifndef PI
 #define PI 3.1415926

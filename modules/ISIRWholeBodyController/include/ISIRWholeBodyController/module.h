@@ -26,7 +26,7 @@
 #include <yarp/os/Vocab.h>
 
 
-#include <wbiIcub/wholeBodyInterfaceIcub.h>
+#include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include "thread.h"
 
 using namespace std;

@@ -8,16 +8,16 @@
 
 #include <iostream>
 
-#include <wbiIcub/wholeBodyInterfaceIcub.h>
+#include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/sig/Matrix.h>
 #include <map>
 #include <vector>
-#include "orcWbiUtil.h"
+#include <ISIRWholeBodyController/orcWbiUtil.h>
 
 #define DIM_T 3
 #define DIM_R 3
 
-    /* static */ bool orcWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
+/* static */ bool orcWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
     {
 		double p_wbi[3];
 		Eigen::Vector3d p;
@@ -46,7 +46,7 @@
 		return true;
     }
 
-    /* static */ bool orcWbiConversions::wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp)
+/* static */ bool orcWbiConversions::wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp)
     {   
 		double _x, _y, _z, _w;
 		frame.R.getQuaternion(_x, _y, _z, _w);
@@ -72,7 +72,7 @@
 		return true;
     }
 
-    /* static */ bool orcWbiConversions::wbiToOrcTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_orc)
+/* static */ bool orcWbiConversions::wbiToOrcTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_orc)
     {
         Eigen::Vector3d orcr = t_wbi.head(DIM_T);
         Eigen::Vector3d orct = t_wbi.tail(DIM_R);
@@ -83,7 +83,7 @@
         return true;
     }
 
-    /* static */ bool orcWbiConversions::eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M)
+/* static */ bool orcWbiConversions::eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M)
     {
         if((M_rm.cols() != M.cols()) || (M_rm.rows() != M.rows()))
         {
@@ -102,7 +102,7 @@
     //      Since the translation and rotation are switched
     //      WBI order [T R Q]
     //      ORC order [R T Q]
-    /* static */ bool orcWbiConversions::wbiToOrcMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc)
+/* static */ bool orcWbiConversions::wbiToOrcMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc)
     {
         int dof = qdof + DIM_T + DIM_R;
         if(dof != M_wbi.cols() || dof != M_wbi.rows() || dof != M_orc.rows() || dof != M_orc.cols())
@@ -147,7 +147,7 @@
     }
 
 
-    /* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
+/* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
     {
         int dof = DIM_T + DIM_R;
         if(dof != jac.rows() || dof != J.rows()||jac.cols() != J.cols())
@@ -181,7 +181,7 @@
     }
 
 
-    /* static */ bool orcWbiConversions::wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J)
+/* static */ bool orcWbiConversions::wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J)
     {
 
         if(DIM_T != jac.rows() || jac.cols() != J.cols())

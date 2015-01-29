@@ -24,8 +24,9 @@
 #include <fstream>
 #include <iomanip>
 
-#include "module.h"
+#include <ISIRWholeBodyController/module.h>
 
+#define DEFAULT_YARP_CONTEXT "ISIRWholeBodyController"
 
 using namespace yarp::dev;
 using namespace yarp::sig;
@@ -40,7 +41,7 @@ int main (int argc, char * argv[])
     ResourceFinder rf;
     rf.setVerbose(true);
     rf.setDefaultConfigFile("default.ini"); //default config file name.
-    rf.setDefaultContext("ISIRWholeBodyController"); //when no parameters are given to the module this is the default context
+    rf.setDefaultContext(DEFAULT_YARP_CONTEXT); //when no parameters are given to the module this is the default context
     rf.configure(argc,argv);
 
     if (rf.check("help"))
