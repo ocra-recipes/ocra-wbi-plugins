@@ -5,22 +5,22 @@
 #define PI 3.1415926
 #endif
 
-void getNominalPosture(orc::Model &model, VectorXd &q);
+void getNominalPosture(orcisir::ISIRModel &model, VectorXd &q);
 
 // TaskCollection_InitialPoseHold
-void TaskCollection_InitialPoseHold::doInit(orcisir::ISIRController& ctrl, orc::Model& model)
+void TaskCollection_InitialPoseHold::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
 {
     Eigen::VectorXd q_init = model.getJointPositions();
     std::cout << "q init: " << q_init << std::endl;
     tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 20.0, 3.0, 1.0, q_init);
 }
 
-void TaskCollection_InitialPoseHold::doUpdate(double time, orc::Model& state, void** args)
+void TaskCollection_InitialPoseHold::doUpdate(double time, orcisir::ISIRModel& state, void** args)
 {
 }
 
 // TaskCollection_NominalPoseHold
-void TaskCollection_NominalPose::doInit(orcisir::ISIRController& ctrl, orc::Model& model)
+void TaskCollection_NominalPose::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
 {
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
@@ -28,7 +28,7 @@ void TaskCollection_NominalPose::doInit(orcisir::ISIRController& ctrl, orc::Mode
     tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 20.0, 5.0, 1, nominal_q);
 }
 
-void TaskCollection_NominalPose::doUpdate(double time, orc::Model& state, void** args)
+void TaskCollection_NominalPose::doUpdate(double time, orcisir::ISIRModel& state, void** args)
 {
     std::cout << "Time: " << time << "[s], Posture error total: " << tmFull->getTaskErrorNorm() << std::endl;
 
@@ -40,7 +40,7 @@ void TaskCollection_NominalPose::doUpdate(double time, orc::Model& state, void**
 }
 
 // TaskCollection_LeftHandReach
-void TaskCollection_LeftHandReach::doInit(orcisir::ISIRController& ctrl, orc::Model& model)
+void TaskCollection_LeftHandReach::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
 {
     orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
     // Full posture task
@@ -54,13 +54,13 @@ void TaskCollection_LeftHandReach::doInit(orcisir::ISIRController& ctrl, orc::Mo
     tmSegCartHandLeft = new orcisir::ISIRSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", orc::XYZ, 10.0, 3.0, 100.0, posLHandDes);
 }
 
-void TaskCollection_LeftHandReach::doUpdate(double time, orc::Model& state, void** args)
+void TaskCollection_LeftHandReach::doUpdate(double time, orcisir::ISIRModel& state, void** args)
 {
 }
 
 
 // TaskCollection_LeftRightHandReach
-void TaskCollection_LeftRightHandReach::doInit(orcisir::ISIRController& ctrl, orc::Model& model)
+void TaskCollection_LeftRightHandReach::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
 {
     orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
     // Full posture task
@@ -72,7 +72,7 @@ void TaskCollection_LeftRightHandReach::doInit(orcisir::ISIRController& ctrl, or
      // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
-    torso_indices << wbiModel.getDOFId("torso_pitch"), wbiModel.getDOFId("torso_roll"), wbiModel.getDOFId("torso_yaw");
+    torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
     tmPartialTorso = new orcisir::ISIRPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", orc::FullState::INTERNAL, torso_indices, 10.0, 3.0, 5.0, torsoTaskPosDes);
 
@@ -91,25 +91,23 @@ void TaskCollection_LeftRightHandReach::doInit(orcisir::ISIRController& ctrl, or
     
 }
 
-void TaskCollection_LeftRightHandReach::doUpdate(double time, orc::Model& state, void** args)
+void TaskCollection_LeftRightHandReach::doUpdate(double time, orcisir::ISIRModel& state, void** args)
 {
 }
 
-void getNominalPosture(orc::Model& orcmodel, VectorXd &q)
+void getNominalPosture(orcisir::ISIRModel& model, VectorXd &q)
 {
-    orcWbiModel& model = dynamic_cast<orcWbiModel&>(orcmodel);
-    
-    q[model.getDOFId("torso_pitch")] = M_PI / 18;
-    q[model.getDOFId("r_elbow")] = M_PI / 4;
-    q[model.getDOFId("l_elbow")] = M_PI / 4;
-    q[model.getDOFId("l_shoulder_roll")] = M_PI / 6;
-    q[model.getDOFId("r_shoulder_roll")] = M_PI / 6;
-    q[model.getDOFId("l_shoulder_pitch")] = -M_PI / 6;
-    q[model.getDOFId("r_shoulder_pitch")] = -M_PI / 6;
-    q[model.getDOFId("l_hip_pitch")] = M_PI / 6;
-    q[model.getDOFId("r_hip_pitch")] = M_PI / 6;
-    q[model.getDOFId("l_hip_roll")] = M_PI / 18;
-    q[model.getDOFId("r_hip_roll")] = M_PI / 18;
-    q[model.getDOFId("l_knee")] = -M_PI / 4;
-    q[model.getDOFId("r_knee")] = -M_PI / 4;
+    q[model.getDofIndex("torso_pitch")] = M_PI / 18;
+    q[model.getDofIndex("r_elbow")] = M_PI / 4;
+    q[model.getDofIndex("l_elbow")] = M_PI / 4;
+    q[model.getDofIndex("l_shoulder_roll")] = M_PI / 6;
+    q[model.getDofIndex("r_shoulder_roll")] = M_PI / 6;
+    q[model.getDofIndex("l_shoulder_pitch")] = -M_PI / 6;
+    q[model.getDofIndex("r_shoulder_pitch")] = -M_PI / 6;
+    q[model.getDofIndex("l_hip_pitch")] = M_PI / 6;
+    q[model.getDofIndex("r_hip_pitch")] = M_PI / 6;
+    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
+    q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
+    q[model.getDofIndex("l_knee")] = -M_PI / 4;
+    q[model.getDofIndex("r_knee")] = -M_PI / 4;
 }

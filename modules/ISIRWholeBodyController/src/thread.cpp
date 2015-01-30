@@ -45,9 +45,6 @@ using namespace yarpWbi;
 //#define HAND_FOOT_TASK 1
 #define HAND_FOOT_TASK 0
 #define TIME_MSEC_TO_SEC 0.001
-// Task Sets
-//#include "taskSet1.h"
-//#include "taskSetTests.h"
 
 //*************************************************************************************************************************
 ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
@@ -90,19 +87,6 @@ bool ISIRWholeBodyControllerThread::threadInit()
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     
     //================ SET UP TASK ===================//
-    //taskManager = TaskSet1::getTask(*orcModel, *ctrl);
-    
-	//taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
-	//taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
-	//taskManager = TaskSet_initialPosHold_leftHandPos::getTask(*orcModel, *ctrl);
-    //taskManager = TaskSet_initialPosHold_CoMPos_BothHandPos::getTask(*orcModel, *ctrl);
-    //taskManager = TaskSet_initialPosHold::getTask(*orcModel, *ctrl);
-//    taskManager = TaskSet_initialPosZero::getTask(*orcModel, *ctrl);
-//    if (HAND_FOOT_TASK)
-//            taskManager = TaskSet_fixed_base_walk::getTask(*orcModel, *ctrl);
-    //taskManager = TaskSet_standing::getTask(*orcModel, *ctrl);
-	
-
     taskCollection = new TaskCollection_NominalPose();
     //taskCollection = new TaskCollection_InitialPoseHold();
     //taskCollection = new TaskCollection_LeftHandReach();

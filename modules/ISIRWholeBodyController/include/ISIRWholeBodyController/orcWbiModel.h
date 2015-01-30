@@ -1,14 +1,12 @@
-
-
 #ifndef ORCWBIMODEL_H
 #define ORCWBIMODEL_H
 
-#include "orc/control/Model.h"
+#include "orcisir/Models/ISIRModel.h"
 #include <wbi/wbi.h>
 
 using namespace wbi;
 
-class orcWbiModel: public orc::Model
+class orcWbiModel: public orcisir::ISIRModel
 {
 public:
 
@@ -25,8 +23,6 @@ public:
     virtual const Eigen::VectorXd&       getJointVelocities       () const;
     virtual const Eigen::Displacementd&  getFreeFlyerPosition     () const;
     virtual const Eigen::Twistd&         getFreeFlyerVelocity     () const;
-
-    virtual int getDOFId(const std::string &name) const;
 
 //=============================Dynamic functions==============================//
     virtual const Eigen::MatrixXd&       getInertiaMatrix         () const;
@@ -73,6 +69,10 @@ protected:
 //============================Index name functions============================//
     virtual int                 doGetSegmentIndex       (const std::string& name) const;
     virtual const std::string&  doGetSegmentName        (int index) const;
+    virtual int                 doGetDofIndex           (const std::string& name) const;
+    virtual const std::string&  doGetDofName            (int index) const;
+
+
 
 
 

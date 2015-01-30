@@ -42,45 +42,6 @@ using namespace yarp::dev;
 using namespace yarpWbi;
 using namespace ISIRWholeBodyController;
 
-/*
-void iCubVersionFromRf(ResourceFinder & rf, iCub::iDynTree::iCubTree_version_tag & icub_version)
-{
-    //Checking iCub parts version
-    /// \todo this part should be replaced by a more general way of accessing robot parameters
-    /// namely urdf for structure parameters and robotInterface xml (or runtime interface) to get available sensors
-    icub_version.head_version = 2;
-    if( rf.check("headV1") ) {
-        icub_version.head_version = 1;
-    }
-    if( rf.check("headV2") ) {
-        icub_version.head_version = 2;
-    }
-
-    icub_version.legs_version = 2;
-    if( rf.check("legsV1") ) {
-        icub_version.legs_version = 1;
-    }
-    if( rf.check("legsV2") ) {
-        icub_version.legs_version = 2;
-    }
-
-    /// \note if feet_version are 2, the presence of FT sensors in the feet is assumed
-    icub_version.feet_ft = true;
-    if( rf.check("feetV1") ) {
-        icub_version.feet_ft = false;
-    }
-    if( rf.check("feetV2") ) {
-        icub_version.feet_ft = true;
-    }
-
-    if( rf.check("urdf") )
-    {
-        icub_version.uses_urdf = true;
-        icub_version.urdf_file = rf.find("urdf").asString().c_str();
-    }
-}
-*/
-
 ISIRWholeBodyControllerModule::ISIRWholeBodyControllerModule()
 {
     ctrlThread = 0;
@@ -120,14 +81,6 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
     }
     robotInterface->addJoints(robotJoints);
 
-/*
-    //--------------------------WHOLE BODY INTERFACE--------------------------
-    iCub::iDynTree::iCubTree_version_tag icub_version;
-    iCubVersionFromRf(rf,icub_version);
-    robotInterface = new icubWholeBodyInterface(moduleName.c_str(), robotName.c_str(),icub_version);
-    robotInterface->addJoints(ICUB_MAIN_JOINTS);
-*/
-    
     if( rf.check("uses_external_torque_control") )
     {
 /*
@@ -148,6 +101,7 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
     
 	}
     
+    // Make sure all the add* functions are done before the "init"
     if(!robotInterface->init())
     {
         fprintf(stderr, "Error while initializing whole body interface. Closing module\n"); return false;

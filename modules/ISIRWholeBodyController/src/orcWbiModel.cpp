@@ -128,7 +128,7 @@ public:
 
 //=================================  Class methods  =================================//
 orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* _wbi, const bool freeRoot)
-    :orc::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new orcWbiModel_pimpl(44,freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
+    :orcisir::ISIRModel(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new orcWbiModel_pimpl(44,freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
 {
     owm_pimpl->freeRoot = freeRoot;
     int full_wbi_size = robotNumDOF+FREE_ROOT_DOF; // N+6
@@ -549,7 +549,7 @@ int orcWbiModel::doGetSegmentIndex(const std::string& name) const
     return id;
 }
 
-int orcWbiModel::getDOFId(const std::string &name) const
+int orcWbiModel::doGetDofIndex(const std::string &name) const
 {
     int id; 
     //id = robot->getJointList().localToGlobalId(wbiIcub::globalToLocalIcubId(name));
@@ -557,6 +557,12 @@ int orcWbiModel::getDOFId(const std::string &name) const
     //robot->getDOFId(name.c_str(), id);
     return id;
 }
+
+const std::string& orcWbiModel::doGetDofName(int index) const
+{
+    throw std::runtime_error("[Model::doGetDofName] This function was not overriden for a specific model");
+}
+
 
 const std::string& orcWbiModel::doGetSegmentName(int index) const
 {

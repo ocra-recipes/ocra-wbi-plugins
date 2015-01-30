@@ -6,8 +6,8 @@
 class TaskCollection_InitialPoseHold : public orcisir::ISIRTaskManagerCollectionBase
 {
     protected: 
-        virtual void doInit(orcisir::ISIRController& ctrl, orc::Model& model);
-        virtual void doUpdate(double time, orc::Model& state, void** args); 
+        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
+        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args); 
     private:
         // Full posture task
         orcisir::ISIRFullPostureTaskManager*            tmFull;
@@ -16,8 +16,8 @@ class TaskCollection_InitialPoseHold : public orcisir::ISIRTaskManagerCollection
 class TaskCollection_NominalPose : public orcisir::ISIRTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orc::Model& model);
-        virtual void doUpdate(double time, orc::Model& state, void** args);
+        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
+        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
     private:
         // Full posture task
         orcisir::ISIRFullPostureTaskManager*            tmFull;
@@ -26,8 +26,8 @@ class TaskCollection_NominalPose : public orcisir::ISIRTaskManagerCollectionBase
 class TaskCollection_LeftHandReach : public orcisir::ISIRTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orc::Model& model);
-        virtual void doUpdate(double time, orc::Model& state, void** args);
+        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
+        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
     private:
         // Full posture task
         orcisir::ISIRFullPostureTaskManager*            tmFull;
@@ -38,8 +38,8 @@ class TaskCollection_LeftHandReach : public orcisir::ISIRTaskManagerCollectionBa
 class TaskCollection_LeftRightHandReach : public orcisir::ISIRTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orc::Model& model);
-        virtual void doUpdate(double time, orc::Model& state, void** args);
+        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
+        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
     private:
         // Full posture task
         orcisir::ISIRFullPostureTaskManager*            tmFull;
