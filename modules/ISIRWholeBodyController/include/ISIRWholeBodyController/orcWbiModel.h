@@ -71,10 +71,8 @@ protected:
     virtual const std::string&  doGetSegmentName        (int index) const;
     virtual int                 doGetDofIndex           (const std::string& name) const;
     virtual const std::string&  doGetDofName            (int index) const;
-
-
-
-
+    virtual const std::string   doSegmentName           (const std::string& name) const;
+    virtual const std::string   doDofName               (const std::string& name) const;
 
 private:
     wholeBodyInterface* robot; // Access to wholeBodyInterface

@@ -540,35 +540,39 @@ void orcWbiModel::doSetFreeFlyerVelocity(const Eigen::Twistd& Troot)
 
 int orcWbiModel::doGetSegmentIndex(const std::string& name) const
 {
-/*
-    printf("Get Segment index : name %s\n", name.c_str());
-*/
     int id; 
     bool ok = robot->getFrameList().idToIndex(name.c_str(), id);
-    //robot->getLinkId(name.c_str(), id);
     return id;
 }
 
 int orcWbiModel::doGetDofIndex(const std::string &name) const
 {
     int id; 
-    //id = robot->getJointList().localToGlobalId(wbiIcub::globalToLocalIcubId(name));
     bool ok = robot->getJointList().idToIndex(name.c_str(), id);
-    //robot->getDOFId(name.c_str(), id);
     return id;
 }
 
 const std::string& orcWbiModel::doGetDofName(int index) const
 {
-    throw std::runtime_error("[Model::doGetDofName] This function was not overriden for a specific model");
+    throw std::runtime_error("[orcWbiModel::doGetDofName] This function was not overriden for a specific model");
 }
 
 
 const std::string& orcWbiModel::doGetSegmentName(int index) const
 {
-/*
-    printf("Get Segment Name : index %d\n", index);
-*/
+    throw std::runtime_error("[orcWbiModel::doGetSegmentName] This function was not overriden for a specific model");
+}
+
+const std::string orcWbiModel::doSegmentName(const std::string& name) const
+{
+    // Return segmentName directly
+    return name;
+}
+
+const std::string orcWbiModel::doDofName(const std::string& name) const
+{
+    // Return dofName directly
+    return name;
 }
 
 
