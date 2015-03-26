@@ -33,7 +33,7 @@
 
 #include "orcWbiModel.h"
 //#include "ISIRCtrlTaskManager.h"
-#include <ISIRWholeBodyController/taskManagerCollection.h>
+#include <ISIRWholeBodyController/sequenceCollection.h>
 #include "orcisir/ISIRController.h"
 #include "orcisir/Solvers/OneLevelSolver.h"
 #include "orcisir/Tasks/ISIRTaskManagerCollectionBase.h"
@@ -56,7 +56,7 @@ class ISIRWholeBodyControllerThread: public RateThread
     orcisir::ISIRController *ctrl;
     orcisir::OneLevelSolverWithQuadProg internalSolver;
 
-    orcisir::ISIRTaskManagerCollectionBase* taskCollection;
+    orcisir::ISIRTaskManagerCollectionBase* sequence;
 
     //ISIRCtrlTaskManager taskManager;
 

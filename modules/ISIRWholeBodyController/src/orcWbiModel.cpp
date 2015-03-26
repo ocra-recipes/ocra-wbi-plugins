@@ -455,8 +455,15 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& orcWbiModel::getSegmentJacobian(in
     else
         owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_orc[index].topRightCorner(6,owm_pimpl->nbInternalDofs);
 
-//    const Eigen::Displacementd::Rotation3D& R = getSegmentPosition(index).getRotation();
-//    owm_pimpl->segJacobian[index].bottomRows(3) = R.inverse().adjoint()*owm_pimpl->segJacobian[index].bottomRows(3);
+    /**
+    * We must project the jacobian in the segment frame orientation in order to work with the controller.
+    */
+    const Eigen::Displacementd::Rotation3D& R = getSegmentPosition(index).getRotation();
+    owm_pimpl->segJacobian[index].bottomRows(3) = R.inverse().adjoint()*owm_pimpl->segJacobian[index].bottomRows(3);
+    owm_pimpl->segJacobian[index].topRows(3) = R.inverse().adjoint()*owm_pimpl->segJacobian[index].topRows(3);
+
+
+
     return owm_pimpl->segJacobian[index];
 }
 

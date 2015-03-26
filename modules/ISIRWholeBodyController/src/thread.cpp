@@ -40,8 +40,8 @@ using namespace yarpWbi;
 #define ALL_JOINTS -1
 #define DIM_DISP 3
 #define DIM_TWIST 6
-#define TORQUE_MIN -12
-#define TORQUE_MAX 12
+#define TORQUE_MIN -24
+#define TORQUE_MAX 24
 //#define HAND_FOOT_TASK 1
 #define HAND_FOOT_TASK 0
 #define TIME_MSEC_TO_SEC 0.001
@@ -87,11 +87,20 @@ bool ISIRWholeBodyControllerThread::threadInit()
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     
     //================ SET UP TASK ===================//
-    taskCollection = new TaskCollection_NominalPose();
-    //taskCollection = new TaskCollection_InitialPoseHold();
-    //taskCollection = new TaskCollection_LeftHandReach();
-    //taskCollection = new TaskCollection_LeftRightHandReach();
-    taskCollection->init(*ctrl, *orcModel);
+    //sequence = new Sequence_NominalPose();
+    //sequence = new Sequence_InitialPoseHold();
+    //sequence = new Sequence_LeftHandReach();
+    //sequence = new Sequence_LeftRightHandReach();
+
+    // sequence = new Sequence_CartesianTest;
+    // sequence = new Sequence_PoseTest;
+    // sequence = new Sequence_OrientationTest;
+    
+
+    sequence = new Sequence_TrajectoryTrackingTest();
+    
+
+    sequence->init(*ctrl, *orcModel);
 	
 	return true;
 }
@@ -113,7 +122,7 @@ void ISIRWholeBodyControllerThread::run()
     else    
         orcModel->setState(fb_qRad, fb_qdRad);
 
-    taskCollection->update(time_sim, *orcModel, NULL);
+    sequence->update(time_sim, *orcModel, NULL);
     
     // compute desired torque by calling the controller
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(orcModel->nbInternalDofs(), 0.0);
@@ -131,6 +140,7 @@ void ISIRWholeBodyControllerThread::run()
       if(eigenTorques(i) < TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
       else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
+      //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(orcModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
 
 	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
