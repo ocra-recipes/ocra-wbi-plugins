@@ -38,6 +38,9 @@
 #include "orcisir/Solvers/OneLevelSolver.h"
 #include "orcisir/Tasks/ISIRTaskManagerCollectionBase.h"
 
+#include "ISIRWholeBodyController/ScenariosICub.h"
+
+
 using namespace yarp::os;
 using namespace yarp::sig;
 using namespace std;
@@ -68,6 +71,11 @@ class ISIRWholeBodyControllerThread: public RateThread
     double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
     Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the robot
     Eigen::VectorXd fb_qdRad; // vector that contains the derivative of encoders read from the robot
+
+    // Eigen::VectorXd fb_Hroot_Vector;
+    yarp::sig::Vector fb_Hroot_Vector;
+    yarp::sig::Vector fb_Troot_Vector;
+
     wbi::Frame fb_Hroot; // vector that position of root 
     Eigen::Twistd fb_Troot; // vector that contains the twist of root
     yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot

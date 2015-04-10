@@ -144,6 +144,19 @@ class Sequence_TrajectoryTrackingTest : public orcisir::ISIRTaskManagerCollectio
         bool isCartesionWaypoints;
 };
 
+
+class Sequence_FloatingBaseEstimationTests : public orcisir::ISIRTaskManagerCollectionBase
+{
+    protected: 
+        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
+        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args); 
+    private:
+        // Full posture task
+        orcisir::ISIRFullPostureTaskManager*            tmFull;
+};
+
+
+
 /*
         // Partial torso posture task
         orcisir::ISIRPartialPostureTaskManager*         tmPartialTorso;
@@ -160,5 +173,38 @@ class Sequence_TrajectoryTrackingTest : public orcisir::ISIRTaskManagerCollectio
         // Segment right foot task
         orcisir::ISIRSegPoseTaskManager*           tmSegCartFootRight;
 */
+
+
+class Sequence_JointTest : public orcisir::ISIRTaskManagerCollectionBase
+{
+    protected:
+        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
+        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+
+        Eigen::VectorXd q_init;
+        Eigen::VectorXd q_des;
+        Eigen::VectorXd jointMin;
+        Eigen::VectorXd jointMax;
+        int nDoF;
+        int jIndex;
+        double taskErr;
+        bool goToMin;
+        bool goToMax;
+        
+
+        std::string jointNames [25];
+        int counter;
+
+        // orcWbiModel& wbiModel;
+
+    private:
+        // Full posture task
+        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        
+
+
+        
+        
+};
 
 #endif // SEQUENCECOLLECTION_H

@@ -136,8 +136,8 @@ orcWbiModel::orcWbiModel(const std::string& robotName, const int robotNumDOF, wh
     // Initialise some constant variables
 
     // THIS GETS FROM WBI ROBOT
-    //owm_pimpl->nbDofs = freeRoot?robot->getDoFs()+FREE_ROOT_DOF:robot->getDoFs();#include <wbiIcub/wholeBodyInterfaceIcub.h>
-    //owm_pimpl->nbInternalDofs = robot->getDoFs();
+    // owm_pimpl->nbDofs = freeRoot?robot->getDoFs()+FREE_ROOT_DOF:robot->getDoFs();#include <wbiIcub/wholeBodyInterfaceIcub.h>
+    // owm_pimpl->nbInternalDofs = robot->getDoFs();
     // THIS GETS FROM ORC MODEL
     owm_pimpl->nbDofs = nbDofs();
     owm_pimpl->nbInternalDofs = nbInternalDofs();
@@ -200,6 +200,15 @@ const Eigen::VectorXd& orcWbiModel::getJointVelocities() const
     // set by setState or setJointVelocities
     return owm_pimpl->dq;
 }
+
+
+const std::string& orcWbiModel::getJointName(int index) const
+{
+    return doGetDofName(index);
+}
+
+
+
 
 const Eigen::Displacementd& orcWbiModel::getFreeFlyerPosition() const
 {
@@ -561,7 +570,10 @@ int orcWbiModel::doGetDofIndex(const std::string &name) const
 
 const std::string& orcWbiModel::doGetDofName(int index) const
 {
-    throw std::runtime_error("[orcWbiModel::doGetDofName] This function was not overriden for a specific model");
+    wbi::ID dofID; //wbi::IDList jList = 
+    bool res = robot->getJointList().indexToID(index, dofID);
+    return dofID.toString();
+    // throw std::runtime_error("[orcWbiModel::doGetDofName] This function was not overriden for a specific model");
 }
 
 

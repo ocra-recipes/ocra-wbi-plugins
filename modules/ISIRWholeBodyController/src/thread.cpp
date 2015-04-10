@@ -62,8 +62,13 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
     fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
     fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
+    
     fb_Hroot = wbi::Frame();
     fb_Troot = Eigen::VectorXd::Zero(DIM_TWIST);
+
+    fb_Hroot_Vector = yarp::sig::Vector(16, 0.0);
+    fb_Troot_Vector = yarp::sig::Vector(6, 0.0);
+    
     fb_torque.resize(robot->getDoFs());
 
     time_sim = 0;
@@ -78,8 +83,16 @@ bool ISIRWholeBodyControllerThread::threadInit()
     bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
     bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
 
-    if (!orcModel->hasFixedRoot())
+    if (!orcModel->hasFixedRoot()){
+        // Get root position as a 12x1 vector and get root vel as a 6x1 vector
+        bool res_fb_Hroot_Vector = robot->getEstimates(ESTIMATE_BASE_POS, fb_Hroot_Vector.data());
+        bool res_fb_Troot = robot->getEstimates(ESTIMATE_BASE_VEL, fb_Troot_Vector.data());
+        // Convert to a wbi::Frame and a "fake" Twistd
+        wbi::frameFromSerialization(fb_Troot_Vector.data(), fb_Hroot);
+        fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
+        
         orcModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
+    }
     else
         orcModel->setState(fb_qRad, fb_qdRad);
 
@@ -87,8 +100,8 @@ bool ISIRWholeBodyControllerThread::threadInit()
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     
     //================ SET UP TASK ===================//
-    //sequence = new Sequence_NominalPose();
-    //sequence = new Sequence_InitialPoseHold();
+    // sequence = new Sequence_NominalPose();
+    // sequence = new Sequence_InitialPoseHold();
     //sequence = new Sequence_LeftHandReach();
     //sequence = new Sequence_LeftRightHandReach();
 
@@ -97,8 +110,18 @@ bool ISIRWholeBodyControllerThread::threadInit()
     // sequence = new Sequence_OrientationTest;
     
 
-    sequence = new Sequence_TrajectoryTrackingTest();
+    // sequence = new Sequence_TrajectoryTrackingTest();
+
+    sequence = new Sequence_JointTest();
+
+    // sequence = new ScenarioICub_01_Standing();
     
+    std::string jointIdList = robot->getJointList().toString();
+    std::cout << jointIdList << std::endl;
+ // res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
+    std::cout << fb_qRad << std::endl;
+    
+
 
     sequence->init(*ctrl, *orcModel);
 	
@@ -116,9 +139,25 @@ void ISIRWholeBodyControllerThread::run()
     bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
     bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, fb_torque.data(), ALL_JOINTS);
 
+
+    // bool res_fb_Hroot_Vector = robot->getEstimates(ESTIMATE_BASE_POS, fb_Hroot_Vector.data());
+    // bool res_fb_Troot = robot->getEstimates(ESTIMATE_BASE_VEL, fb_Troot_Vector.data());
+    // std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(0) << fb_Hroot_Vector(1) << fb_Hroot_Vector(2) << std::endl;
+    // std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) << fb_Troot_Vector(1) << fb_Troot_Vector(2) << "\n---\n";
+
+
+
     // SET THE STATE (FREE FLYER POSITION/VELOCITY AND Q)
-    if (!orcModel->hasFixedRoot())
+    if (!orcModel->hasFixedRoot()){
+        // Get root position as a 12x1 vector and get root vel as a 6x1 vector
+        bool res_fb_Hroot_Vector = robot->getEstimates(ESTIMATE_BASE_POS, fb_Hroot_Vector.data());
+        bool res_fb_Troot = robot->getEstimates(ESTIMATE_BASE_VEL, fb_Troot_Vector.data());
+        // Convert to a wbi::Frame and a "fake" Twistd
+        wbi::frameFromSerialization(fb_Troot_Vector.data(), fb_Hroot);
+        fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
+        
         orcModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
+    }
     else    
         orcModel->setState(fb_qRad, fb_qdRad);
 
@@ -126,7 +165,9 @@ void ISIRWholeBodyControllerThread::run()
     
     // compute desired torque by calling the controller
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(orcModel->nbInternalDofs(), 0.0);
+
 	ctrl->computeOutput(eigenTorques);
+    // std::cout << "torques: "<<eigenTorques.transpose() << std::endl;
 
 //    std::cout << "task error:" << std::endl;
 //    std::cout << ctrl->getTask("accTask").getError() << std::endl;
@@ -147,11 +188,16 @@ void ISIRWholeBodyControllerThread::run()
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());
 
-    printPeriod = 10000;
+    printPeriod = 1000;
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
     if (printCountdown == 0)
     {
-        std::cout << "ISIRWholeBodyController thread running..." << std::endl;
+        if (!orcModel->hasFixedRoot()){
+            std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << fb_Hroot_Vector(7) << fb_Hroot_Vector(11) << std::endl;
+            std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) << fb_Troot_Vector(1) << fb_Troot_Vector(2) << "\n---\n";
+        }
+        // std::cout << "l_ankle_pitch: " << fb_qRad(17) << "   r_ankle_pitch: " << fb_qRad(23) << std::endl;
+        //std::cout << "ISIRWholeBodyController thread running..." << std::endl;
     }
 /*
     printPeriod = 5000;
