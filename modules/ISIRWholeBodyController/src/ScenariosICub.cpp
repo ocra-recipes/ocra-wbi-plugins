@@ -6,7 +6,7 @@
 
 #endif
 
-ScenarioICub_01_Standing::ScenarioICub_01_Standing() : orcisir::ISIRTaskManagerCollectionBase()
+ScenarioICub_01_Standing::ScenarioICub_01_Standing() : wocra::wOcraTaskManagerCollectionBase()
 {
 }
 
@@ -14,7 +14,7 @@ ScenarioICub_01_Standing::~ScenarioICub_01_Standing()
 {
 }
 
-void ScenarioICub_01_Standing::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void ScenarioICub_01_Standing::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
     // Initialise full posture task
     // Eigen::VectorXd q_full = Eigen::VectorXd::Zero(model.nbInternalDofs());
@@ -34,13 +34,13 @@ void ScenarioICub_01_Standing::doInit(orcisir::ISIRController& ctrl, orcisir::IS
     std::cout << "\n\n q_full = \n"<< q_full <<" \n\n";
     
     std::cout << "\n\n tmFull \n\n";
-    taskManagers["tmFull"] = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 10.0, 2*sqrt(10.0), 0.0001, q_full);
+    taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 10.0, 2*sqrt(10.0), 0.0001, q_full);
 
     // Initialise waist pose
     
     // std::cout << "\n\n tmSegPoseWaist \n\n";
     // Eigen::Displacementd desiredWaistPose = Eigen::Displacementd(0.0,0.0,0.58,1.0,0.0,0.0,0.0);
-    // taskManagers["tmSegPoseWaist"] = new orcisir::ISIRSegPoseTaskManager(ctrl, model, "waistPoseTask", "root_link", orc::XYZ, 36.0, 2*sqrt(36.0), 1.0, desiredWaistPose);
+    // taskManagers["tmSegPoseWaist"] = new wocra::wOcraSegPoseTaskManager(ctrl, model, "waistPoseTask", "root_link", ocra::XYZ, 36.0, 2*sqrt(36.0), 1.0, desiredWaistPose);
     
     // Initialise partial posture task
 
@@ -49,7 +49,7 @@ void ScenarioICub_01_Standing::doInit(orcisir::ISIRController& ctrl, orcisir::IS
     // sdofs << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
     // Eigen::VectorXd zero = Eigen::VectorXd::Zero(3);
     // std::cout << "\n\n tmPartialBack \n\n";
-    // taskManagers["tmPartialBack"] = new orcisir::ISIRPartialPostureTaskManager(ctrl, model, "partialPostureBackTask", orc::FullState::INTERNAL, sdofs, 16.0, 2*sqrt(16.0), 0.001, zero);
+    // taskManagers["tmPartialBack"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureBackTask", ocra::FullState::INTERNAL, sdofs, 16.0, 2*sqrt(16.0), 0.001, zero);
 
     // double mu_sys = 0.5;
     // double margin = 0.0;
@@ -66,7 +66,7 @@ void ScenarioICub_01_Standing::doInit(orcisir::ISIRController& ctrl, orcisir::IS
     // LFContacts[2] = Eigen::Displacementd(Eigen::Vector3d(-.039, .027, .099), rotLZdown);
     // LFContacts[3] = Eigen::Displacementd(Eigen::Vector3d(-.039,-.027, .099), rotLZdown);
     // std::cout << "\n\n tmFootContactLeft \n\n";
-    // taskManagers["tmFootContactLeft"] = new orcisir::ISIRContactSetTaskManager(ctrl, model, "leftFootContactTask", "l_foot", LFContacts, 4, mu_sys, margin);
+    // taskManagers["tmFootContactLeft"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "leftFootContactTask", "l_foot", LFContacts, 4, mu_sys, margin);
 
     // // Initailise right foot contacts
     // Eigen::Displacementd RFContacts[4];
@@ -75,12 +75,12 @@ void ScenarioICub_01_Standing::doInit(orcisir::ISIRController& ctrl, orcisir::IS
     // RFContacts[2] = Eigen::Displacementd(Eigen::Vector3d(-.039, .027,-.099), rotRZdown);
     // RFContacts[3] = Eigen::Displacementd(Eigen::Vector3d(-.039,-.027,-.099), rotRZdown);
     // std::cout << "\n\n tmFootContactRight \n\n";
-    // taskManagers["tmFootContactRight"] = new orcisir::ISIRContactSetTaskManager(ctrl, model, "RightFootContactTask", "r_foot", RFContacts, 4, mu_sys, margin);
+    // taskManagers["tmFootContactRight"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "RightFootContactTask", "r_foot", RFContacts, 4, mu_sys, margin);
     std::cout << "\n\n Fully Initialized \n\n";
     
 }
 
-void ScenarioICub_01_Standing::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void ScenarioICub_01_Standing::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
 }
 

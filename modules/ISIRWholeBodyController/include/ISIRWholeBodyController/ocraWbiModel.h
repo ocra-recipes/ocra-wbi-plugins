@@ -1,18 +1,18 @@
-#ifndef ORCWBIMODEL_H
-#define ORCWBIMODEL_H
+#ifndef OCRAWBIMODEL_H
+#define OCRAWBIMODEL_H
 
-#include "orcisir/Models/ISIRModel.h"
+#include "wocra/Models/wOcraModel.h"
 #include <wbi/wbi.h>
 
 using namespace wbi;
 
-class orcWbiModel: public orcisir::ISIRModel
+class ocraWbiModel: public wocra::wOcraModel
 {
 public:
 
 //===========================Constructor/Destructor===========================//
-    orcWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* wbi, const bool freeRoot);
-    virtual ~orcWbiModel();
+    ocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* wbi, const bool freeRoot);
+    virtual ~ocraWbiModel();
 
 //=============================General functions==============================//
     virtual int                          nbSegments               () const;
@@ -77,16 +77,16 @@ protected:
 
 private:
     wholeBodyInterface* robot; // Access to wholeBodyInterface
-    struct orcWbiModel_pimpl;
-    boost::shared_ptr<orcWbiModel_pimpl> owm_pimpl; // where all internal data are saved
+    struct ocraWbiModel_pimpl;
+    boost::shared_ptr<ocraWbiModel_pimpl> owm_pimpl; // where all internal data are saved
 };
 
 /*
 extern "C"
 {
-    orc::Model* CreateICub(const std::string& robotName)
+    ocra::Model* CreateICub(const std::string& robotName)
     {
-        return new orcWbiModel(robotName);
+        return new ocraWbiModel(robotName);
     }
 }
 */

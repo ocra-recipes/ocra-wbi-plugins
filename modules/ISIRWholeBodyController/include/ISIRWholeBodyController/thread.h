@@ -31,12 +31,12 @@
 
 #include <wbi/wbi.h>
 
-#include "orcWbiModel.h"
-//#include "ISIRCtrlTaskManager.h"
+#include "ocraWbiModel.h"
+//#include "wOcraCtrlTaskManager.h"
 #include <ISIRWholeBodyController/sequenceCollection.h>
-#include "orcisir/ISIRController.h"
-#include "orcisir/Solvers/OneLevelSolver.h"
-#include "orcisir/Tasks/ISIRTaskManagerCollectionBase.h"
+#include "wocra/wOcraController.h"
+#include "wocra/Solvers/OneLevelSolver.h"
+#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
 
 #include "ISIRWholeBodyController/ScenariosICub.h"
 
@@ -54,14 +54,14 @@ class ISIRWholeBodyControllerThread: public RateThread
     string name;
     string robotName;
     wholeBodyInterface *robot;
-    orcWbiModel *orcModel;
+    ocraWbiModel *ocraModel;
     yarp::os::Property options;
-    orcisir::ISIRController *ctrl;
-    orcisir::OneLevelSolverWithQuadProg internalSolver;
+    wocra::wOcraController *ctrl;
+    wocra::OneLevelSolverWithQuadProg internalSolver;
 
-    orcisir::ISIRTaskManagerCollectionBase* sequence;
+    wocra::wOcraTaskManagerCollectionBase* sequence;
 
-    //ISIRCtrlTaskManager taskManager;
+    //wOcraCtrlTaskManager taskManager;
 
     Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
 

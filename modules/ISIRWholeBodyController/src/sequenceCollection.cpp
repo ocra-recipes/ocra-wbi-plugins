@@ -1,30 +1,30 @@
 #include <ISIRWholeBodyController/sequenceCollection.h>
-#include <ISIRWholeBodyController/orcWbiModel.h>
+#include <ISIRWholeBodyController/ocraWbiModel.h>
 
 
-#include "orcisir/Trajectory/ISIRMinimumJerkTrajectory.h"
-#include "orcisir/Trajectory/ISIRLinearInterpolationTrajectory.h"
+#include "wocra/Trajectory/wOcraMinimumJerkTrajectory.h"
+#include "wocra/Trajectory/wOcraLinearInterpolationTrajectory.h"
 
 #ifndef PI
 #define PI 3.1415926
 #endif
 
-void getNominalPosture(orcisir::ISIRModel &model, VectorXd &q);
+void getNominalPosture(wocra::wOcraModel &model, VectorXd &q);
 
 // Sequence_InitialPoseHold
-void Sequence_InitialPoseHold::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_InitialPoseHold::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
     Eigen::VectorXd q_init = model.getJointPositions();
     std::cout << "q init: " << q_init << std::endl;
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 20.0, 3.0, 1.0, q_init);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 1.0, q_init);
 }
 
-void Sequence_InitialPoseHold::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_InitialPoseHold::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
 }
 
 // Sequence_NominalPoseHold
-void Sequence_NominalPose::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_NominalPose::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
     tFinal = 5.0;
     tInitial = 0.0;
@@ -33,10 +33,10 @@ void Sequence_NominalPose::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRMo
     nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
 
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 20.0, 5.0, 1, q_init);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 5.0, 1, q_init);
 }
 
-void Sequence_NominalPose::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_NominalPose::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     Eigen::VectorXd q_current;
     if (time <= tFinal){
@@ -63,34 +63,34 @@ void Sequence_NominalPose::doUpdate(double time, orcisir::ISIRModel& state, void
 }
 
 // Sequence_LeftHandReach
-void Sequence_LeftHandReach::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_LeftHandReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
-    orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
 
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 20.0, 3.0, 0.001, nominal_q);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 0.001, nominal_q);
 
     // Left hand cartesian task
     Eigen::Vector3d posLHandDes(-0.3, -0.1, 0.3);
-    tmSegCartHandLeft = new orcisir::ISIRSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", orc::XYZ, 10.0, 3.0, 100.0, posLHandDes);
+    tmSegCartHandLeft = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 10.0, 3.0, 100.0, posLHandDes);
 }
 
-void Sequence_LeftHandReach::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_LeftHandReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
 }
 
 
 // Sequence_LeftRightHandReach
-void Sequence_LeftRightHandReach::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_LeftRightHandReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
-    orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
 
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 20.0, 3.0, 0.01, nominal_q);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 0.01, nominal_q);
 
     // Partial (torso) posture task
     
@@ -98,31 +98,31 @@ void Sequence_LeftRightHandReach::doInit(orcisir::ISIRController& ctrl, orcisir:
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new orcisir::ISIRPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", orc::FullState::INTERNAL, torso_indices, 10.0, 3.0, 5.0, torsoTaskPosDes);
+    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 10.0, 3.0, 5.0, torsoTaskPosDes);
     
 
     // CoM Task
     Eigen::Vector3d posCoM = model.getCoMPosition();
-    tmCoM = new orcisir::ISIRCoMTaskManager(ctrl, model, "CoMTask", 10.0, 3.0, 10.0, posCoM);
+    tmCoM = new wocra::wOcraCoMTaskManager(ctrl, model, "CoMTask", 10.0, 3.0, 10.0, posCoM);
 
     // Left hand cartesian task
     Eigen::Vector3d posLHandDes(-0.3, -0.2, 0.15);
-    tmSegCartHandLeft = new orcisir::ISIRSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", orc::XYZ, 10.0, 3.0, 100.0, posLHandDes);
+    tmSegCartHandLeft = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 10.0, 3.0, 100.0, posLHandDes);
 
     // Right hand cartesian task
     Eigen::Vector3d posRHandDes(-0.15, 0.2, -0.1);
-    tmSegCartHandRight = new orcisir::ISIRSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", orc::XYZ, 10.0, 3.0, 100.0, posRHandDes);
+    tmSegCartHandRight = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, 10.0, 3.0, 100.0, posRHandDes);
 
     
 }
 
-void Sequence_LeftRightHandReach::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_LeftRightHandReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
 }
 
-void Sequence_CartesianTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_CartesianTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
-    orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     
     // Task Coeffs
     double Kp = 10.0;
@@ -134,14 +134,14 @@ void Sequence_CartesianTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIR
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new orcisir::ISIRPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", orc::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
     
     lHandIndex = model.getSegmentIndex("l_hand");
     
@@ -157,11 +157,11 @@ void Sequence_CartesianTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIR
 
 
     // Left hand cartesian task
-    tmLeftHandCart = new orcisir::ISIRSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", orc::XYZ, Kp, Kd, wLeftHandTask, desiredPos);
+    tmLeftHandCart = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp, Kd, wLeftHandTask, desiredPos);
    
 }
 
-void Sequence_CartesianTest::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_CartesianTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     // tmLeftHandCart->setPosition(desiredPos);
     std::cout << "\n---\nDesired position: " << desiredPos.transpose() << std::endl;
@@ -179,9 +179,9 @@ void Sequence_CartesianTest::doUpdate(double time, orcisir::ISIRModel& state, vo
 
 
 
-void Sequence_PoseTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_PoseTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
-    orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     
     // Task Coeffs
     double Kp = 10.0;
@@ -193,14 +193,14 @@ void Sequence_PoseTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new orcisir::ISIRPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", orc::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
     
     lHandIndex = model.getSegmentIndex("l_hand");
     
@@ -220,10 +220,10 @@ void Sequence_PoseTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel
     // endingDispd    = startingDispd;
     std::cout << endingDispd << std::endl;
     // Left hand cartesian task
-    tmLeftHandPose      = new orcisir::ISIRSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", orc::XYZ, Kp, Kd, wLeftHandTask, endingDispd);
+    tmLeftHandPose      = new wocra::wOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp, Kd, wLeftHandTask, endingDispd);
 }
 
-void Sequence_PoseTest::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_PoseTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     // tmLeftHandCart->setPosition(desiredPos);
     std::cout << "\n---\nDesired pose: " << endingDispd << std::endl;
@@ -246,9 +246,9 @@ void Sequence_PoseTest::doUpdate(double time, orcisir::ISIRModel& state, void** 
 
 
 
-void Sequence_OrientationTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_OrientationTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
-    orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     
     // Task Coeffs
     double Kp = 10.0;
@@ -260,14 +260,14 @@ void Sequence_OrientationTest::doInit(orcisir::ISIRController& ctrl, orcisir::IS
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new orcisir::ISIRPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", orc::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
     
     lHandIndex = model.getSegmentIndex("l_hand");
     
@@ -279,10 +279,10 @@ void Sequence_OrientationTest::doInit(orcisir::ISIRController& ctrl, orcisir::IS
 
 
     // Left hand orientation task
-    tmLeftHandOrient    = new orcisir::ISIRSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp, Kd, wLeftHandTask, endingRotd); 
+    tmLeftHandOrient    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp, Kd, wLeftHandTask, endingRotd); 
 }
 
-void Sequence_OrientationTest::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_OrientationTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     std::cout << "\n---\nStarting orientation: " << startingRotd << std::endl;
     std::cout << "Desired orientation: " << endingRotd << std::endl;
@@ -302,9 +302,9 @@ void Sequence_OrientationTest::doUpdate(double time, orcisir::ISIRModel& state, 
 
 
 // Sequence_TrajectoryTrackingTest
-void Sequence_TrajectoryTrackingTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
-    orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     
     // Task Coeffs
     double Kp = 10.0;
@@ -319,14 +319,14 @@ void Sequence_TrajectoryTrackingTest::doInit(orcisir::ISIRController& ctrl, orci
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new orcisir::ISIRPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", orc::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
     
     /**
     * Left hand task. Pick one of these booleans to test the different constructors.
@@ -376,10 +376,10 @@ void Sequence_TrajectoryTrackingTest::doInit(orcisir::ISIRController& ctrl, orci
         /**
         * Linear interpolation trajectory constructor tests:
         */                                                                                                 
-        if      (isDisplacementd)       {leftHandTrajectory = new orcisir::ISIRLinearInterpolationTrajectory(startingDispd, endingDispd);}
-        else if (isRotation3d)          {leftHandTrajectory = new orcisir::ISIRLinearInterpolationTrajectory(startingRotd, endingRotd);}
-        else if (isCartesion)           {leftHandTrajectory = new orcisir::ISIRLinearInterpolationTrajectory(startingPos, desiredPos);}
-        else if (isCartesionWaypoints)  {leftHandTrajectory = new orcisir::ISIRLinearInterpolationTrajectory(waypoints);}
+        if      (isDisplacementd)       {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingDispd, endingDispd);}
+        else if (isRotation3d)          {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingRotd, endingRotd);}
+        else if (isCartesion)           {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingPos, desiredPos);}
+        else if (isCartesionWaypoints)  {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(waypoints);}
         else                            {std::cout << "\nGotta pick a reference type motherfucker!" << std::endl;}
     }
     else if (isMinJerk)
@@ -387,10 +387,10 @@ void Sequence_TrajectoryTrackingTest::doInit(orcisir::ISIRController& ctrl, orci
         /**
         * Minimum jerk trajectory constructor tests:
         */
-        if      (isDisplacementd)       {leftHandTrajectory = new orcisir::ISIRMinimumJerkTrajectory(startingDispd, endingDispd);}
-        else if (isRotation3d)          {leftHandTrajectory = new orcisir::ISIRMinimumJerkTrajectory(startingRotd, endingRotd);}
-        else if (isCartesion)           {leftHandTrajectory = new orcisir::ISIRMinimumJerkTrajectory(startingPos, desiredPos);}
-        else if (isCartesionWaypoints)  {leftHandTrajectory = new orcisir::ISIRMinimumJerkTrajectory(waypoints);}
+        if      (isDisplacementd)       {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingDispd, endingDispd);}
+        else if (isRotation3d)          {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingRotd, endingRotd);}
+        else if (isCartesion)           {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingPos, desiredPos);}
+        else if (isCartesionWaypoints)  {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(waypoints);}
         else                            {std::cout << "\nGotta pick a reference type motherfucker!" << std::endl;}
     }
     else{std::cout << "\nGotta pick a trajectory type motherfucker!" << std::endl;}
@@ -398,14 +398,14 @@ void Sequence_TrajectoryTrackingTest::doInit(orcisir::ISIRController& ctrl, orci
     
     leftHandTrajectory->generateTrajectory(4.0); // set a 4 second duration
 
-    if      (isDisplacementd)      {tmLeftHandPose      = new orcisir::ISIRSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", orc::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingDispd);}
-    else if (isRotation3d)         {tmLeftHandOrient    = new orcisir::ISIRSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingRotd);}
-    else if (isCartesion)          {tmLeftHandCart      = new orcisir::ISIRSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", orc::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
-    else if (isCartesionWaypoints) {tmLeftHandCart      = new orcisir::ISIRSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", orc::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
+    if      (isDisplacementd)      {tmLeftHandPose      = new wocra::wOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingDispd);}
+    else if (isRotation3d)         {tmLeftHandOrient    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingRotd);}
+    else if (isCartesion)          {tmLeftHandCart      = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
+    else if (isCartesionWaypoints) {tmLeftHandCart      = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
 
 }
 
-void Sequence_TrajectoryTrackingTest::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_TrajectoryTrackingTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     if (isDisplacementd) 
     {
@@ -455,14 +455,14 @@ void Sequence_TrajectoryTrackingTest::doUpdate(double time, orcisir::ISIRModel& 
 }
 
 
-void Sequence_FloatingBaseEstimationTests::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_FloatingBaseEstimationTests::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
     Eigen::VectorXd q_init = model.getJointPositions();
     std::cout << "q init: " << q_init << std::endl;
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 20.0, 3.0, 1.0, q_init);
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 1.0, q_init);
 }
 
-void Sequence_FloatingBaseEstimationTests::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_FloatingBaseEstimationTests::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
 }
 
@@ -471,9 +471,9 @@ void Sequence_FloatingBaseEstimationTests::doUpdate(double time, orcisir::ISIRMo
 
 
 // Sequence_LeftRightHandReach
-void Sequence_JointTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model)
+void Sequence_JointTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
-    orcWbiModel& wbiModel = dynamic_cast<orcWbiModel&>(model);
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     // Full posture task
     nDoF = model.nbInternalDofs();
     // Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(nDoF);
@@ -488,7 +488,7 @@ void Sequence_JointTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRMode
     
     jointMax = model.getJointUpperLimits();
     
-    tmFull = new orcisir::ISIRFullPostureTaskManager(ctrl, model, "fullPostureTask", orc::FullState::INTERNAL, 20.0, 2.0*sqrt(20), 1.0, q_init);        
+    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 2.0*sqrt(20), 1.0, q_init);        
     for (int i=0; i<nDoF; i++){
         jointNames[i] = wbiModel.getJointName(i);
     }
@@ -502,7 +502,7 @@ void Sequence_JointTest::doInit(orcisir::ISIRController& ctrl, orcisir::ISIRMode
 
 }
 
-void Sequence_JointTest::doUpdate(double time, orcisir::ISIRModel& state, void** args)
+void Sequence_JointTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     Eigen::VectorXd taskErrorVector = tmFull->getTaskError();
     // std::cout << taskErrorVector.transpose() << std::endl;
@@ -545,7 +545,7 @@ void Sequence_JointTest::doUpdate(double time, orcisir::ISIRModel& state, void**
 }
 
 
-void getNominalPosture(orcisir::ISIRModel& model, VectorXd &q)
+void getNominalPosture(wocra::wOcraModel& model, VectorXd &q)
 {
     q[model.getDofIndex("torso_pitch")] = M_PI / 18;
     q[model.getDofIndex("r_elbow")] = M_PI / 4;

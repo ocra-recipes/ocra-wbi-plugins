@@ -1,28 +1,28 @@
 #ifndef SCENARIOSICUB_H
 #define SCENARIOSICUB_H
 
-#include "orcisir/Tasks/ISIRTaskManagerCollectionBase.h"
+#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
 
-class ScenarioICub_01_Standing: public orcisir::ISIRTaskManagerCollectionBase
+class ScenarioICub_01_Standing: public wocra::wOcraTaskManagerCollectionBase
 {
     public:
         ScenarioICub_01_Standing();
         virtual ~ScenarioICub_01_Standing();
     protected: 
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args); 
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args); 
 /*
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
         // Partial torso posture task
-        orcisir::ISIRPartialPostureTaskManager*         tmPartialBack;
+        wocra::wOcraPartialPostureTaskManager*         tmPartialBack;
         // Left foot contact task
-        orcisir::ISIRContactSetTaskManager*             tmFootContactLeft;
+        wocra::wOcraContactSetTaskManager*             tmFootContactLeft;
         // Right foot contact task
-        orcisir::ISIRContactSetTaskManager*             tmFootContactRight;
+        wocra::wOcraContactSetTaskManager*             tmFootContactRight;
         // Waist task
-        orcisir::ISIRSegPoseTaskManager*                tmSegPoseWaist;
+        wocra::wOcraSegPoseTaskManager*                tmSegPoseWaist;
 */
 };
 

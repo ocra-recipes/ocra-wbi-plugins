@@ -3,7 +3,7 @@
 * Author: Darwin Lau, Mingxing Liu
 * email: 
 *
-* Utility functions for working with ORC/Eigen and Whole Body Interface
+* Utility functions for working with ocra/Eigen and Whole Body Interface
 */
 
 #include <iostream>
@@ -12,12 +12,12 @@
 #include <yarp/sig/Matrix.h>
 #include <map>
 #include <vector>
-#include <ISIRWholeBodyController/orcWbiUtil.h>
+#include <ISIRWholeBodyController/ocraWbiUtil.h>
 
 #define DIM_T 3
 #define DIM_R 3
 
-/* static */ bool orcWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
+/* static */ bool ocraWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
     {
 		double p_wbi[3];
 		Eigen::Vector3d p;
@@ -46,7 +46,7 @@
 		return true;
     }
 
-/* static */ bool orcWbiConversions::wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp)
+/* static */ bool ocraWbiConversions::wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp)
     {   
 		double _x, _y, _z, _w;
 		frame.R.getQuaternion(_x, _y, _z, _w);
@@ -72,18 +72,18 @@
 		return true;
     }
 
-/* static */ bool orcWbiConversions::wbiToOrcTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_orc)
+/* static */ bool ocraWbiConversions::wbiToOcraTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_ocra)
     {
-        Eigen::Vector3d orcr = t_wbi.head(DIM_T);
-        Eigen::Vector3d orct = t_wbi.tail(DIM_R);
+        Eigen::Vector3d ocrar = t_wbi.head(DIM_T);
+        Eigen::Vector3d ocrat = t_wbi.tail(DIM_R);
     
-        t_orc << orcr,
-                orct;
+        t_ocra << ocrar,
+                ocrat;
     
         return true;
     }
 
-/* static */ bool orcWbiConversions::eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M)
+/* static */ bool ocraWbiConversions::eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M)
     {
         if((M_rm.cols() != M.cols()) || (M_rm.rows() != M.rows()))
         {
@@ -101,11 +101,11 @@
     // ONLY USE WHEN MASS MATRIX CONTAINS FREE BASE TRANSLATION AND ROTATION
     //      Since the translation and rotation are switched
     //      WBI order [T R Q]
-    //      ORC order [R T Q]
-/* static */ bool orcWbiConversions::wbiToOrcMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc)
+    //      ocra order [R T Q]
+/* static */ bool ocraWbiConversions::wbiToOcraMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_ocra)
     {
         int dof = qdof + DIM_T + DIM_R;
-        if(dof != M_wbi.cols() || dof != M_wbi.rows() || dof != M_orc.rows() || dof != M_orc.cols())
+        if(dof != M_wbi.cols() || dof != M_wbi.rows() || dof != M_ocra.rows() || dof != M_ocra.cols())
         {
             std::cout<<"ERROR: Input and output matrices - Is the model free root?" <<std::endl;
             return false;
@@ -139,7 +139,7 @@
         Eigen::MatrixXd m33(qdof, qdof);
         m33 = M_wbi.block(DIM_T+DIM_R, DIM_T+DIM_R, qdof, qdof);
 
-        M_orc << m22, m21, m23,
+        M_ocra << m22, m21, m23,
                 m12, m11, m13,
                 m32, m31, m33;
 
@@ -147,7 +147,7 @@
     }
 
 
-/* static */ bool orcWbiConversions::wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
+/* static */ bool ocraWbiConversions::wbiToOcraSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J)
     {
         int dof = DIM_T + DIM_R;
         if(dof != jac.rows() || dof != J.rows()||jac.cols() != J.cols())
@@ -181,7 +181,7 @@
     }
 
 
-/* static */ bool orcWbiConversions::wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J)
+/* static */ bool ocraWbiConversions::wbiToOcraCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J)
     {
 
         if(DIM_T != jac.rows() || jac.cols() != J.cols())
@@ -208,11 +208,11 @@
     // ONLY USE WHEN VECTORS CONTAINS FREE BASE TRANSLATION AND ROTATION
     //      Since the translation and rotation are switched
     //      WBI order [T R Q]
-    //      ORC order [R T Q]
-    /* static */ bool orcWbiConversions::wbiToOrcBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_orc)
+    //      ocra order [R T Q]
+    /* static */ bool ocraWbiConversions::wbiToOcraBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_ocra)
     {
         int dof = qdof + DIM_T + DIM_R;
-        if(dof != v_wbi.size() || dof != v_orc.size())
+        if(dof != v_wbi.size() || dof != v_ocra.size())
         {
             std::cout<<"ERROR: Input and output matrices - Is the model free root?" <<std::endl;
             return false;
@@ -226,7 +226,7 @@
         r = v_wbi.segment(DIM_T, DIM_R);
         q = v_wbi.segment(DIM_T+DIM_R, qdof);
 
-        v_orc << r,
+        v_ocra << r,
                 t,
                 q;
     }

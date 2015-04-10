@@ -3,11 +3,11 @@
 * Author: Darwin Lau, Mingxing Liu
 * email: 
 *
-* Utility functions for working with ORC/Eigen and Whole Body Interface
+* Utility functions for working with OCRA/Eigen and Whole Body Interface
 */
 
-#ifndef ORCWBIUTIL_H
-#define ORCWBIUTIL_H
+#ifndef OCRAWBIUTIL_H
+#define OCRAWBIUTIL_H
 
 #include <Eigen/Lgsm>
 #include <wbi/wbi.h>
@@ -15,17 +15,17 @@
 typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> MatrixXdRm;
 
     /* Conversions between types/conventions used in Eigen and WBI */
-    class orcWbiConversions
+    class ocraWbiConversions
     {
     public:
         static bool eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame);
         static bool wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp);
-        static bool wbiToOrcTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_orc);
-        static bool wbiToOrcSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J);
-        static bool wbiToOrcCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J);
+        static bool wbiToOcraTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_ocra);
+        static bool wbiToOcraSegJacobian(const Eigen::MatrixXd &jac, Eigen::MatrixXd &J);
+        static bool wbiToOcraCoMJacobian(const Eigen::MatrixXd &jac, Eigen::Matrix<double,3,Eigen::Dynamic> &J);
         static bool eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M);
-        static bool wbiToOrcMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_orc);
-        static bool wbiToOrcBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_orc);
+        static bool wbiToOcraMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_ocra);
+        static bool wbiToOcraBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_ocra);
 
     };
 

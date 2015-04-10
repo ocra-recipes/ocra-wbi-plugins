@@ -1,25 +1,25 @@
 #ifndef SEQUENCECOLLECTION_H
 #define SEQUENCECOLLECTION_H
 
-#include "orcisir/Tasks/ISIRTaskManagerCollectionBase.h"
-#include "orcisir/Trajectory/ISIRTrajectory.h"
+#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
+#include "wocra/Trajectory/wOcraTrajectory.h"
 
 
-class Sequence_InitialPoseHold : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_InitialPoseHold : public wocra::wOcraTaskManagerCollectionBase
 {
     protected: 
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args); 
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args); 
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
 };
 
-class Sequence_NominalPose : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_NominalPose : public wocra::wOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
         Eigen::VectorXd                                 q_init;
@@ -28,86 +28,86 @@ class Sequence_NominalPose : public orcisir::ISIRTaskManagerCollectionBase
         double                                          tFinal;
         int                                             t_pich_index;
         
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
 };
 
-class Sequence_LeftHandReach : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_LeftHandReach : public wocra::wOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
         // Segment left hand task
-        orcisir::ISIRSegCartesianTaskManager*           tmSegCartHandLeft;
+        wocra::wOcraSegCartesianTaskManager*           tmSegCartHandLeft;
 };
 
-class Sequence_LeftRightHandReach : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_LeftRightHandReach : public wocra::wOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
         // Partial posture task for torso
-        orcisir::ISIRPartialPostureTaskManager*         tmPartialTorso;
+        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // CoM task for torso
-        orcisir::ISIRCoMTaskManager*                    tmCoM;
+        wocra::wOcraCoMTaskManager*                    tmCoM;
         // Segment left hand task
-        orcisir::ISIRSegCartesianTaskManager*           tmSegCartHandLeft;
+        wocra::wOcraSegCartesianTaskManager*           tmSegCartHandLeft;
         // Segment right hand task
-        orcisir::ISIRSegCartesianTaskManager*           tmSegCartHandRight;
+        wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
 };
 
-class Sequence_CartesianTest : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_CartesianTest : public wocra::wOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
         // Partial posture task
-        orcisir::ISIRPartialPostureTaskManager*         tmPartialTorso;
+        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
-        orcisir::ISIRSegCartesianTaskManager*           tmLeftHandCart;
+        wocra::wOcraSegCartesianTaskManager*           tmLeftHandCart;
         
         Eigen::Vector3d desiredPos;
         int lHandIndex;
 };
 
-class Sequence_PoseTest : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_PoseTest : public wocra::wOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
         // Partial posture task
-        orcisir::ISIRPartialPostureTaskManager*         tmPartialTorso;
+        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
-        orcisir::ISIRSegPoseTaskManager*                tmLeftHandPose;
+        wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
         
         Eigen::Displacementd endingDispd;
         int lHandIndex;
 };
 
 
-class Sequence_OrientationTest : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_OrientationTest : public wocra::wOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
         // Partial posture task
-        orcisir::ISIRPartialPostureTaskManager*         tmPartialTorso;
+        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
-        orcisir::ISIRSegOrientationTaskManager*         tmLeftHandOrient;
+        wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
         
         Eigen::Rotation3d startingRotd;  
         Eigen::Rotation3d endingRotd; 
@@ -116,23 +116,23 @@ class Sequence_OrientationTest : public orcisir::ISIRTaskManagerCollectionBase
 
   
 
-class Sequence_TrajectoryTrackingTest : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
         // Partial posture task
-        orcisir::ISIRPartialPostureTaskManager*         tmPartialTorso;
+        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
-        orcisir::ISIRSegCartesianTaskManager*           tmLeftHandCart;
-        orcisir::ISIRSegPoseTaskManager*                tmLeftHandPose;
-        orcisir::ISIRSegOrientationTaskManager*         tmLeftHandOrient;
+        wocra::wOcraSegCartesianTaskManager*           tmLeftHandCart;
+        wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
+        wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
 
         // trajectory
-        orcisir::ISIRTrajectory*                        leftHandTrajectory;
+        wocra::wOcraTrajectory*                        leftHandTrajectory;
 
         Eigen::Displacementd endingDispd;
         Eigen::Rotation3d endingRotd;
@@ -145,41 +145,41 @@ class Sequence_TrajectoryTrackingTest : public orcisir::ISIRTaskManagerCollectio
 };
 
 
-class Sequence_FloatingBaseEstimationTests : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_FloatingBaseEstimationTests : public wocra::wOcraTaskManagerCollectionBase
 {
     protected: 
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args); 
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args); 
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
 };
 
 
 
 /*
         // Partial torso posture task
-        orcisir::ISIRPartialPostureTaskManager*         tmPartialTorso;
+        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // Left foot contact task
-        orcisir::ISIRContactSetTaskManager*             tmFootContactLeft;
+        wocra::wOcraContactSetTaskManager*             tmFootContactLeft;
         // Right foot contact task
-        orcisir::ISIRContactSetTaskManager*             tmFootContactRight;
+        wocra::wOcraContactSetTaskManager*             tmFootContactRight;
         // CoM task
-        orcisir::ISIRCoMTaskManager*                    tmCoM;
+        wocra::wOcraCoMTaskManager*                    tmCoM;
         // Segment head task
-        orcisir::ISIRSegCartesianTaskManager*           tmSegCartHead;
+        wocra::wOcraSegCartesianTaskManager*           tmSegCartHead;
         // Segment left foot task
-        orcisir::ISIRSegPoseTaskManager*           tmSegCartFootLeft;
+        wocra::wOcraSegPoseTaskManager*           tmSegCartFootLeft;
         // Segment right foot task
-        orcisir::ISIRSegPoseTaskManager*           tmSegCartFootRight;
+        wocra::wOcraSegPoseTaskManager*           tmSegCartFootRight;
 */
 
 
-class Sequence_JointTest : public orcisir::ISIRTaskManagerCollectionBase
+class Sequence_JointTest : public wocra::wOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(orcisir::ISIRController& ctrl, orcisir::ISIRModel& model);
-        virtual void doUpdate(double time, orcisir::ISIRModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
 
         Eigen::VectorXd q_init;
         Eigen::VectorXd q_des;
@@ -195,11 +195,11 @@ class Sequence_JointTest : public orcisir::ISIRTaskManagerCollectionBase
         std::string jointNames [25];
         int counter;
 
-        // orcWbiModel& wbiModel;
+        // ocraWbiModel& wbiModel;
 
     private:
         // Full posture task
-        orcisir::ISIRFullPostureTaskManager*            tmFull;
+        wocra::wOcraFullPostureTaskManager*            tmFull;
         
 
 
