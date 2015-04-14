@@ -207,6 +207,10 @@ const std::string& ocraWbiModel::getJointName(int index) const
     return doGetDofName(index);
 }
 
+const int ocraWbiModel::getSegmentIndex(std::string segmentName) const
+{
+    return doGetSegmentIndex(segmentName);
+}
 
 
 
@@ -389,6 +393,7 @@ const Eigen::Displacementd& ocraWbiModel::getSegmentPosition(int index) const
     printf("Get Segment Position : %d\n", index);
 */
     Frame H;
+    // std::cout << "H_root in get Seg Position\n" << owm_pimpl->Hroot_wbi.toString() << std::endl;
     robot->computeH(owm_pimpl->q.data(),owm_pimpl->Hroot_wbi,index,H);
     ocraWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->segPosition[index]);
     return owm_pimpl->segPosition[index];
@@ -512,17 +517,31 @@ void ocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& 
     Eigen::Displacementd H;
     Eigen::Twistd T;
     // WBI versions
+
+    // std::cout << "H_root_wbi input to Set State\n" << H_root.toString() << std::endl;
     owm_pimpl->Hroot_wbi = H_root;
     owm_pimpl->Troot_wbi = T_root;
+    // std::cout << "\nH_root_wbi in pimpl \n" << owm_pimpl->Hroot_wbi.toString() << std::endl;
 
     // ocra versions
     ocraWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H); 
     ocraWbiConversions::wbiToOcraTwistVector(owm_pimpl->Troot_wbi, T); 
 
+    // std::cout << "\nH_root_ocra \n" << H << std::endl;
+
+    int root_index = getSegmentIndex("root_link");
+    const Eigen::Displacementd::Rotation3D& R = getSegmentPosition(root_index).getRotation();
+    T.bottomRows(3) = R.inverse().adjoint()*T.bottomRows(3);
+    T.topRows(3) = R.inverse().adjoint()*T.topRows(3);
+
+
     setJointPositions(q);
     setJointVelocities(q_dot);
     setFreeFlyerPosition(H);
     setFreeFlyerVelocity(T);
+
+    // std::cout << "\nH_root_ocra from free flyer \n" << getFreeFlyerPosition() << std::endl;
+
 
 }
 

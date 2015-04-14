@@ -21,9 +21,11 @@ public:
     virtual const Eigen::VectorXd&       getJointUpperLimits      () const;
     virtual const Eigen::VectorXd&       getJointPositions        () const;
     virtual const Eigen::VectorXd&       getJointVelocities       () const;
-    virtual const std::string&           getJointName             (int index) const;
     virtual const Eigen::Displacementd&  getFreeFlyerPosition     () const;
     virtual const Eigen::Twistd&         getFreeFlyerVelocity     () const;
+
+    virtual const std::string&           getJointName             (int index) const;
+    virtual const int                    getSegmentIndex          (std::string segmentName) const;
 
 //=============================Dynamic functions==============================//
     virtual const Eigen::MatrixXd&       getInertiaMatrix         () const;

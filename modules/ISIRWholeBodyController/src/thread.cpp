@@ -55,7 +55,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
                                                             )
     : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
 {
-    bool isFreeBase = false;
+    bool isFreeBase = true;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useReducedProblem = false;
     ctrl = new wocra::wOcraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
@@ -88,7 +88,7 @@ bool ISIRWholeBodyControllerThread::threadInit()
         bool res_fb_Hroot_Vector = robot->getEstimates(ESTIMATE_BASE_POS, fb_Hroot_Vector.data());
         bool res_fb_Troot = robot->getEstimates(ESTIMATE_BASE_VEL, fb_Troot_Vector.data());
         // Convert to a wbi::Frame and a "fake" Twistd
-        wbi::frameFromSerialization(fb_Troot_Vector.data(), fb_Hroot);
+        wbi::frameFromSerialization(fb_Hroot_Vector.data(), fb_Hroot);
         fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
         
         ocraModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
@@ -112,14 +112,24 @@ bool ISIRWholeBodyControllerThread::threadInit()
 
     // sequence = new Sequence_TrajectoryTrackingTest();
 
-    sequence = new Sequence_JointTest();
+    // sequence = new Sequence_JointTest();
 
-    // sequence = new ScenarioICub_01_Standing();
+    sequence = new ScenarioICub_01_Standing();
     
     std::string jointIdList = robot->getJointList().toString();
     std::cout << jointIdList << std::endl;
  // res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
+    
     std::cout << fb_qRad << std::endl;
+    
+    int lSoleIndex = ocraModel->getSegmentIndex("l_sole");
+    int rSoleIndex = ocraModel->getSegmentIndex("r_sole");
+
+    Eigen::Displacementd lSoleDisp = ocraModel->getSegmentPosition(lSoleIndex);
+    Eigen::Displacementd rSoleDisp = ocraModel->getSegmentPosition(rSoleIndex);
+    std::cout << "\n\n\nl_sole, index: " << lSoleIndex << " is at (x,y,z): " << lSoleDisp.getTranslation().transpose()  <<std::endl;
+
+    std::cout << "\nr_sole, index: " << rSoleIndex << " is at (x,y,z): " << rSoleDisp.getTranslation().transpose() <<std::endl;
     
 
 
@@ -153,9 +163,14 @@ void ISIRWholeBodyControllerThread::run()
         bool res_fb_Hroot_Vector = robot->getEstimates(ESTIMATE_BASE_POS, fb_Hroot_Vector.data());
         bool res_fb_Troot = robot->getEstimates(ESTIMATE_BASE_VEL, fb_Troot_Vector.data());
         // Convert to a wbi::Frame and a "fake" Twistd
-        wbi::frameFromSerialization(fb_Troot_Vector.data(), fb_Hroot);
+        wbi::frameFromSerialization(fb_Hroot_Vector.data(), fb_Hroot);
+
         fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
         
+
+        // std::cout << "H_root_wbi as a vector\n" << fb_Hroot_Vector.toString() <<"\n\n"<< std::endl;
+        // std::cout << "H_root_wbi BEFORE input to Set State\n" << fb_Hroot.toString() <<"\n\n"<< std::endl;
+
         ocraModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
     }
     else    
@@ -193,8 +208,8 @@ void ISIRWholeBodyControllerThread::run()
     if (printCountdown == 0)
     {
         if (!ocraModel->hasFixedRoot()){
-            std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << fb_Hroot_Vector(7) << fb_Hroot_Vector(11) << std::endl;
-            std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) << fb_Troot_Vector(1) << fb_Troot_Vector(2) << "\n---\n";
+            std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << " "<< fb_Hroot_Vector(7) << " "<< fb_Hroot_Vector(11) << std::endl;
+            std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) <<" "<< fb_Troot_Vector(1) <<" "<< fb_Troot_Vector(2) << "\n---\n";
         }
         // std::cout << "l_ankle_pitch: " << fb_qRad(17) << "   r_ankle_pitch: " << fb_qRad(23) << std::endl;
         //std::cout << "ISIRWholeBodyController thread running..." << std::endl;
