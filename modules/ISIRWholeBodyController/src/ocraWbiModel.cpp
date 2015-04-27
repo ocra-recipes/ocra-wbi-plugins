@@ -128,7 +128,7 @@ public:
 
 //=================================  Class methods  =================================//
 ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* _wbi, const bool freeRoot)
-    :wocra::wOcraModel(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new ocraWbiModel_pimpl(44,freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
+    :wocra::wOcraModel(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new ocraWbiModel_pimpl(robot->getFrameList().size(),freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
 {
     owm_pimpl->freeRoot = freeRoot;
     int full_wbi_size = robotNumDOF+FREE_ROOT_DOF; // N+6
@@ -457,10 +457,8 @@ const Eigen::Rotation3d& ocraWbiModel::getSegmentInertiaAxes(int index) const
 //compute jacobian in segment frame
 const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJacobian(int index) const
 {
-/*
-    printf("Get Segment Jacobian : %d\n", index);
-*/
     robot->computeJacobian(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, index, owm_pimpl->segJacobian_rm[index].data());
+    
     ocraWbiConversions::eigenRowMajorToColMajor(owm_pimpl->segJacobian_rm[index], owm_pimpl->segJacobian_full[index]);
     ocraWbiConversions::wbiToOcraSegJacobian(owm_pimpl->segJacobian_full[index], owm_pimpl->segJacobian_full_ocra[index]);
 
@@ -598,7 +596,9 @@ const std::string& ocraWbiModel::doGetDofName(int index) const
 
 const std::string& ocraWbiModel::doGetSegmentName(int index) const
 {
-    throw std::runtime_error("[ocraWbiModel::doGetSegmentName] This function was not overriden for a specific model");
+    wbi::ID segID;  
+    bool res = robot->getFrameList().indexToID(index, segID);
+    return segID.toString();
 }
 
 const std::string ocraWbiModel::doSegmentName(const std::string& name) const

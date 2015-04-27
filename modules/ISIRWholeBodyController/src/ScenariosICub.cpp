@@ -1,4 +1,7 @@
 #include "ISIRWholeBodyController/ScenariosICub.h"
+
+#include "wocra/Trajectory/wOcraLinearInterpolationTrajectory.h"
+
 #include <cmath>
 
 #ifndef PI
@@ -44,16 +47,20 @@ void ScenarioICub_01_Standing::doInit(wocra::wOcraController& ctrl, wocra::wOcra
     // std::cout << "\n\n tmSegPoseWaist \n\n";
     // Eigen::Displacementd desiredWaistPose = Eigen::Displacementd(0.0,0.0,0.59,1.0,0.0,0.0,0.0);
     // taskManagers["tmSegPoseWaist"] = new wocra::wOcraSegPoseTaskManager(ctrl, model, "waistPoseTask", "root_link", ocra::XYZ, 36.0, 2*sqrt(36.0), 1.0, desiredWaistPose);
+    */
     Eigen::Vector3d desiredWaistPosition, XYZdisp;
     desiredWaistPosition = model.getSegmentPosition(model.getSegmentIndex("root_link")).getTranslation();
-    XYZdisp << -0.03, 0.0, 0.0;
-    desiredWaistPosition = desiredWaistPosition + XYZdisp;
+    
+    
+
+    // XYZdisp << -0.03, 0.0, 0.0;
+    // desiredWaistPosition = desiredWaistPosition + XYZdisp;
     taskManagers["tmSegPoseWaist"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "waistPoseTask", "root_link", ocra::XYZ, 36.0, 2*sqrt(36.0), 1.0, desiredWaistPosition);
 
 
 
 
-*/
+
 
 
 

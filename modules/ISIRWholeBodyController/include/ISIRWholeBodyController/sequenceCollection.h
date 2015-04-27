@@ -131,6 +131,8 @@ class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskManagerCollection
         wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
         wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
 
+        wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
+
         // trajectory
         wocra::wOcraTrajectory*                        leftHandTrajectory;
 

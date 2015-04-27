@@ -109,6 +109,7 @@ void Sequence_LeftRightHandReach::doInit(wocra::wOcraController& ctrl, wocra::wO
     Eigen::Vector3d posLHandDes(-0.3, -0.2, 0.15);
     tmSegCartHandLeft = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 10.0, 3.0, 100.0, posLHandDes);
 
+
     // Right hand cartesian task
     Eigen::Vector3d posRHandDes(-0.15, 0.2, -0.1);
     tmSegCartHandRight = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, 10.0, 3.0, 100.0, posRHandDes);
@@ -313,7 +314,7 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     double Kp_hand = 40.0;
     double Kd_hand = 8.0 ;//* sqrt(Kp_hand);
     double wFullPosture = 0.0001;
-    double wPartialPosture = 0.001;
+    double wPartialPosture = 0.1;
     double wLeftHandTask = 1.0;
 
     // Full posture task
@@ -325,9 +326,21 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
-    torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+    torsoTaskPosDes << 0, -10.0*(M_PI / 180.0), 40.0*(M_PI / 180.0);
+    // torsoTaskPosDes << 0.0, 0.0, 0.0;
+    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 6., 2.0 * sqrt(6.), wPartialPosture, torsoTaskPosDes);
     
+    // Right hand cartesian task
+    Eigen::Vector3d posRHandDesDelta(0.1, 0.08, 0.15);
+
+    Eigen::Vector3d posRHandDes = model.getSegmentPosition(model.getSegmentIndex("r_hand")).getTranslation();
+    posRHandDes = posRHandDes + posRHandDesDelta;
+
+
+    tmSegCartHandRight = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, 1.0, posRHandDes);
+        
+
+
     /**
     * Left hand task. Pick one of these booleans to test the different constructors.
     */
@@ -339,8 +352,8 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     //***************** Type of Reference ******************//
     isDisplacementd         = false;
     isRotation3d            = false;
-    isCartesion             = true;
-    isCartesionWaypoints    = false;
+    isCartesion             = false;
+    isCartesionWaypoints    = true;
     //*****************************************************//
     int boolSum = isCartesion + isCartesionWaypoints + isDisplacementd + isRotation3d;        
     if (boolSum>1){std::cout << "\nYou picked too many reference types." << std::endl;}
@@ -396,14 +409,18 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     else{std::cout << "\nGotta pick a trajectory type motherfucker!" << std::endl;}
 
     
-    leftHandTrajectory->generateTrajectory(4.0); // set a 4 second duration
+    leftHandTrajectory->generateTrajectory(3.0); // set a 4 second duration
 
     if      (isDisplacementd)      {tmLeftHandPose      = new wocra::wOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingDispd);}
     else if (isRotation3d)         {tmLeftHandOrient    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingRotd);}
     else if (isCartesion)          {tmLeftHandCart      = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
     else if (isCartesionWaypoints) {tmLeftHandCart      = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
 
+
+// tmSegCartHandRight = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, posRHandDes);
 }
+
+
 
 void Sequence_TrajectoryTrackingTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
@@ -442,7 +459,7 @@ void Sequence_TrajectoryTrackingTest::doUpdate(double time, wocra::wOcraModel& s
         Eigen::MatrixXd desiredPosVelAcc = leftHandTrajectory->getDesiredValues(time);
         // Eigen::MatrixXd H_adj = state.getSegmentPosition(lHandIndex).getRotation().inverse().adjoint();
         // H_adj*
-        tmLeftHandCart->setState(desiredPosVelAcc.col(0),  desiredPosVelAcc.col(1), desiredPosVelAcc.col(2));
+        tmLeftHandCart->setState(desiredPosVelAcc.col(0));//,  desiredPosVelAcc.col(1), desiredPosVelAcc.col(2));
 
         if(isCartesion){std::cout << "\nFinal desired position: " << desiredPos.transpose() << std::endl;}
         std::cout << "\nDesired position: " << desiredPosVelAcc.col(0).transpose() << std::endl;

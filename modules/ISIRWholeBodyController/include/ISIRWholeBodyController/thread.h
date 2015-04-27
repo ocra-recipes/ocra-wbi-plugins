@@ -60,6 +60,7 @@ class ISIRWholeBodyControllerThread: public RateThread
     wocra::OneLevelSolverWithQuadProg internalSolver;
 
     wocra::wOcraTaskManagerCollectionBase* sequence;
+    // wocra::wOcraTaskManagerCollectionBase* sequence_01;
 
     //wOcraCtrlTaskManager taskManager;
 

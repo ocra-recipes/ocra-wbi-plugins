@@ -55,7 +55,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
                                                             )
     : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
 {
-    bool isFreeBase = true;
+    bool isFreeBase = false;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useReducedProblem = false;
     ctrl = new wocra::wOcraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
@@ -103,18 +103,18 @@ bool ISIRWholeBodyControllerThread::threadInit()
     // sequence = new Sequence_NominalPose();
     // sequence = new Sequence_InitialPoseHold();
     //sequence = new Sequence_LeftHandReach();
-    //sequence = new Sequence_LeftRightHandReach();
+    // sequence = new Sequence_LeftRightHandReach();
 
     // sequence = new Sequence_CartesianTest;
     // sequence = new Sequence_PoseTest;
     // sequence = new Sequence_OrientationTest;
     
 
-    // sequence = new Sequence_TrajectoryTrackingTest();
+    sequence = new Sequence_TrajectoryTrackingTest();
 
     // sequence = new Sequence_JointTest();
 
-    sequence = new ScenarioICub_01_Standing();
+    // sequence = new ScenarioICub_01_Standing();
     
     std::string jointIdList = robot->getJointList().toString();
     std::cout << jointIdList << std::endl;
@@ -134,6 +134,7 @@ bool ISIRWholeBodyControllerThread::threadInit()
 
 
     sequence->init(*ctrl, *ocraModel);
+    // sequence_01->init(*ctrl, *ocraModel);
 	
 	return true;
 }
@@ -177,6 +178,7 @@ void ISIRWholeBodyControllerThread::run()
         ocraModel->setState(fb_qRad, fb_qdRad);
 
     sequence->update(time_sim, *ocraModel, NULL);
+    // sequence_01->update(time_sim, *ocraModel, NULL);
     
     // compute desired torque by calling the controller
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
