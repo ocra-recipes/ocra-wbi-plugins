@@ -1,4 +1,5 @@
 #include "ISIRWholeBodyController/ScenariosICub.h"
+#include <ISIRWholeBodyController/ocraWbiModel.h>
 
 #include "wocra/Trajectory/wOcraLinearInterpolationTrajectory.h"
 
@@ -106,3 +107,98 @@ void ScenarioICub_01_Standing::doUpdate(double time, wocra::wOcraModel& state, v
 {
 }
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+ScenarioICub_02_VariableWeightHandTasks::ScenarioICub_02_VariableWeightHandTasks() : wocra::wOcraTaskManagerCollectionBase()
+{
+}
+
+ScenarioICub_02_VariableWeightHandTasks::~ScenarioICub_02_VariableWeightHandTasks()
+{
+}
+
+void ScenarioICub_02_VariableWeightHandTasks::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+{
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    
+    // Task Coeffs
+    double Kp = 10.0;
+    double Kd = 2.0 * sqrt(Kp);
+
+    double Kp_hand = 40.0;
+    double Kd_hand = 8.0 ;//* sqrt(Kp_hand);
+    double wFullPosture = 0.0001;
+    double wPartialPosture = 0.1;
+    Eigen::Vector3d wLeftHandTask = Eigen::Vector3d::Ones();
+
+    // Full posture task
+    Eigen::VectorXd q = Eigen::VectorXd::Zero(model.nbInternalDofs());
+    q[model.getDofIndex("torso_pitch")] = M_PI / 18;
+    q[model.getDofIndex("r_elbow")] = M_PI / 4;
+    q[model.getDofIndex("l_elbow")] = M_PI / 4;
+    q[model.getDofIndex("l_shoulder_roll")] = M_PI / 6;
+    q[model.getDofIndex("r_shoulder_roll")] = M_PI / 6;
+    q[model.getDofIndex("l_shoulder_pitch")] = -M_PI / 6;
+    q[model.getDofIndex("r_shoulder_pitch")] = -M_PI / 6;
+    q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
+    q[model.getDofIndex("r_hip_pitch")] = M_PI / 8;
+    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
+    q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
+    q[model.getDofIndex("l_knee")] = -M_PI / 6;
+    q[model.getDofIndex("r_knee")] = -M_PI / 6;
+
+    taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, q);
+
+    // Partial (torso) posture task
+    Eigen::VectorXi torso_indices(3);
+    Eigen::VectorXd torsoTaskPosDes(3);
+    torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
+    torsoTaskPosDes << 0, -10.0*(M_PI / 180.0), 40.0*(M_PI / 180.0);
+    // torsoTaskPosDes << 0.0, 0.0, 0.0;
+    taskManagers["tmPartialTorso"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 6., 2.0 * sqrt(6.), wPartialPosture, torsoTaskPosDes);
+    
+    
+    lHandIndex = model.getSegmentIndex("l_hand");
+    
+           
+    // start and end positions
+    Eigen::Vector3d startingPos = model.getSegmentPosition(lHandIndex).getTranslation();
+      
+    
+    // multiple position waypoints
+    Eigen::MatrixXd waypoints(3,5);
+    Eigen::MatrixXd squareDisplacement(3,5);
+    waypoints << startingPos, startingPos, startingPos, startingPos, startingPos;
+    squareDisplacement << 0.0, 0.0, 0.0, 0.0, 0.0,
+                          0.0, 0.2, 0.2, 0.0, 0.0,
+                          0.0, 0.0, 0.2, 0.2, 0.0;
+    waypoints += squareDisplacement;
+
+    leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(waypoints);
+    leftHandTrajectory->generateTrajectory(3.0); // set a 4 second duration
+
+
+    tmLeftHand = new wocra::wOcraVariableWeightsTaskManager(ctrl, model, "leftHandTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingPos);
+
+    Eigen::Vector3d testWeights;
+    testWeights << 0.0, 1.0, 0.0;
+    tmLeftHand->setWeight(testWeights);
+
+    
+}
+
+void ScenarioICub_02_VariableWeightHandTasks::doUpdate(double time, wocra::wOcraModel& state, void** args)
+{
+    Eigen::MatrixXd desiredPosVelAcc = leftHandTrajectory->getDesiredValues(time);
+    tmLeftHand->setState(desiredPosVelAcc.col(0));
+}

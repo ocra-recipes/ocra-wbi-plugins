@@ -102,34 +102,28 @@ bool ISIRWholeBodyControllerThread::threadInit()
     //================ SET UP TASK ===================//
     // sequence = new Sequence_NominalPose();
     // sequence = new Sequence_InitialPoseHold();
-    //sequence = new Sequence_LeftHandReach();
+    // sequence = new Sequence_LeftHandReach();
     // sequence = new Sequence_LeftRightHandReach();
 
     // sequence = new Sequence_CartesianTest;
     // sequence = new Sequence_PoseTest;
     // sequence = new Sequence_OrientationTest;
     
-
-    sequence = new Sequence_TrajectoryTrackingTest();
-
+    // sequence = new Sequence_TrajectoryTrackingTest();
     // sequence = new Sequence_JointTest();
-
     // sequence = new ScenarioICub_01_Standing();
+    sequence = new ScenarioICub_02_VariableWeightHandTasks();
     
-    std::string jointIdList = robot->getJointList().toString();
-    std::cout << jointIdList << std::endl;
- // res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
     
-    std::cout << fb_qRad << std::endl;
     
-    int lSoleIndex = ocraModel->getSegmentIndex("l_sole");
-    int rSoleIndex = ocraModel->getSegmentIndex("r_sole");
+    // int lSoleIndex = ocraModel->getSegmentIndex("l_sole");
+    // int rSoleIndex = ocraModel->getSegmentIndex("r_sole");
 
-    Eigen::Displacementd lSoleDisp = ocraModel->getSegmentPosition(lSoleIndex);
-    Eigen::Displacementd rSoleDisp = ocraModel->getSegmentPosition(rSoleIndex);
-    std::cout << "\n\n\nl_sole, index: " << lSoleIndex << " is at (x,y,z): " << lSoleDisp.getTranslation().transpose()  <<std::endl;
+    // Eigen::Displacementd lSoleDisp = ocraModel->getSegmentPosition(lSoleIndex);
+    // Eigen::Displacementd rSoleDisp = ocraModel->getSegmentPosition(rSoleIndex);
+    // std::cout << "\n\n\nl_sole, index: " << lSoleIndex << " is at (x,y,z): " << lSoleDisp.getTranslation().transpose()  <<std::endl;
 
-    std::cout << "\nr_sole, index: " << rSoleIndex << " is at (x,y,z): " << rSoleDisp.getTranslation().transpose() <<std::endl;
+    // std::cout << "\nr_sole, index: " << rSoleIndex << " is at (x,y,z): " << rSoleDisp.getTranslation().transpose() <<std::endl;
     
 
 

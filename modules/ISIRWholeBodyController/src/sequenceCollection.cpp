@@ -338,9 +338,7 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
 
 
     tmSegCartHandRight = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, 1.0, posRHandDes);
-        
-
-
+    
     /**
     * Left hand task. Pick one of these booleans to test the different constructors.
     */
@@ -461,10 +459,10 @@ void Sequence_TrajectoryTrackingTest::doUpdate(double time, wocra::wOcraModel& s
         // H_adj*
         tmLeftHandCart->setState(desiredPosVelAcc.col(0));//,  desiredPosVelAcc.col(1), desiredPosVelAcc.col(2));
 
-        if(isCartesion){std::cout << "\nFinal desired position: " << desiredPos.transpose() << std::endl;}
-        std::cout << "\nDesired position: " << desiredPosVelAcc.col(0).transpose() << std::endl;
-        std::cout << "Current position: " << state.getSegmentPosition(lHandIndex).getTranslation().transpose()<< std::endl;
-        std::cout << "Error: " << tmLeftHandCart->getTaskError().transpose() << "   norm: " << tmLeftHandCart->getTaskErrorNorm() << std::endl;
+        // if(isCartesion){std::cout << "\nFinal desired position: " << desiredPos.transpose() << std::endl;}
+        // std::cout << "\nDesired position: " << desiredPosVelAcc.col(0).transpose() << std::endl;
+        // std::cout << "Current position: " << state.getSegmentPosition(lHandIndex).getTranslation().transpose()<< std::endl;
+        // std::cout << "Error: " << tmLeftHandCart->getTaskError().transpose() << "   norm: " << tmLeftHandCart->getTaskErrorNorm() << std::endl;
     }
 
     
