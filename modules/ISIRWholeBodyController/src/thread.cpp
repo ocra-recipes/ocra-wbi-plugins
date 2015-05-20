@@ -55,20 +55,20 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
                                                             )
     : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
 {
-    bool isFreeBase = false;
+    bool isFreeBase = false; 
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useReducedProblem = false;
     ctrl = new wocra::wOcraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
 
     fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
     fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
-    
+
     fb_Hroot = wbi::Frame();
     fb_Troot = Eigen::VectorXd::Zero(DIM_TWIST);
 
     fb_Hroot_Vector = yarp::sig::Vector(16, 0.0);
     fb_Troot_Vector = yarp::sig::Vector(6, 0.0);
-    
+
     fb_torque.resize(robot->getDoFs());
 
     time_sim = 0;
@@ -90,7 +90,7 @@ bool ISIRWholeBodyControllerThread::threadInit()
         // Convert to a wbi::Frame and a "fake" Twistd
         wbi::frameFromSerialization(fb_Hroot_Vector.data(), fb_Hroot);
         fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
-        
+
         ocraModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
     }
     else
@@ -98,7 +98,7 @@ bool ISIRWholeBodyControllerThread::threadInit()
 
     // Set all declared joints in module to TORQUE mode
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
-    
+
     //================ SET UP TASK ===================//
     // sequence = new Sequence_NominalPose();
     // sequence = new Sequence_InitialPoseHold();
@@ -108,14 +108,14 @@ bool ISIRWholeBodyControllerThread::threadInit()
     // sequence = new Sequence_CartesianTest;
     // sequence = new Sequence_PoseTest;
     // sequence = new Sequence_OrientationTest;
-    
-    // sequence = new Sequence_TrajectoryTrackingTest();
+
+    sequence = new Sequence_TrajectoryTrackingTest();
     // sequence = new Sequence_JointTest();
     // sequence = new ScenarioICub_01_Standing();
-    sequence = new ScenarioICub_02_VariableWeightHandTasks();
-    
-    
-    
+    // sequence = new ScenarioICub_02_VariableWeightHandTasks();
+
+
+
     // int lSoleIndex = ocraModel->getSegmentIndex("l_sole");
     // int rSoleIndex = ocraModel->getSegmentIndex("r_sole");
 
@@ -124,12 +124,12 @@ bool ISIRWholeBodyControllerThread::threadInit()
     // std::cout << "\n\n\nl_sole, index: " << lSoleIndex << " is at (x,y,z): " << lSoleDisp.getTranslation().transpose()  <<std::endl;
 
     // std::cout << "\nr_sole, index: " << rSoleIndex << " is at (x,y,z): " << rSoleDisp.getTranslation().transpose() <<std::endl;
-    
+
 
 
     sequence->init(*ctrl, *ocraModel);
     // sequence_01->init(*ctrl, *ocraModel);
-	
+
 	return true;
 }
 
@@ -161,19 +161,19 @@ void ISIRWholeBodyControllerThread::run()
         wbi::frameFromSerialization(fb_Hroot_Vector.data(), fb_Hroot);
 
         fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
-        
+
 
         // std::cout << "H_root_wbi as a vector\n" << fb_Hroot_Vector.toString() <<"\n\n"<< std::endl;
         // std::cout << "H_root_wbi BEFORE input to Set State\n" << fb_Hroot.toString() <<"\n\n"<< std::endl;
 
         ocraModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
     }
-    else    
+    else
         ocraModel->setState(fb_qRad, fb_qdRad);
 
     sequence->update(time_sim, *ocraModel, NULL);
     // sequence_01->update(time_sim, *ocraModel, NULL);
-    
+
     // compute desired torque by calling the controller
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
 
@@ -199,13 +199,17 @@ void ISIRWholeBodyControllerThread::run()
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());
 
-    printPeriod = 1000;
+    printPeriod = 500;
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
     if (printCountdown == 0)
     {
         if (!ocraModel->hasFixedRoot()){
             std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << " "<< fb_Hroot_Vector(7) << " "<< fb_Hroot_Vector(11) << std::endl;
+            // std::cout << "root_link pos\n" << ocraModel->getSegmentPosition(ocraModel->getSegmentIndex("root_link")).getTranslation().transpose() << std::endl;
             std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) <<" "<< fb_Troot_Vector(1) <<" "<< fb_Troot_Vector(2) << "\n---\n";
+            std::cout << "root_link vel\n" << ocraModel->getSegmentVelocity(ocraModel->getSegmentIndex("root_link")).getLinearVelocity().transpose() << std::endl;
+
+
         }
         // std::cout << "l_ankle_pitch: " << fb_qRad(17) << "   r_ankle_pitch: " << fb_qRad(23) << std::endl;
         //std::cout << "ISIRWholeBodyController thread running..." << std::endl;
