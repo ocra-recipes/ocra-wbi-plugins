@@ -65,7 +65,7 @@ bool gOcraControllerModule::configure(ResourceFinder &rf)
     // Get wbi options from the canonical file
     if ( !rf.check("wbi_conf_file") )
     {
-        fprintf(stderr, "[ERR] ISIRWholeBodyController: Impossible to open wholeBodyInterface: wbi_conf_file option missing");
+        fprintf(stderr, "[ERR] gOcraController: Impossible to open wholeBodyInterface: wbi_conf_file option missing");
     }
     std::string wbiConfFile = rf.findFile("wbi_conf_file");
     yarpWbiOptions.fromConfigFile(wbiConfFile);
@@ -77,7 +77,7 @@ bool gOcraControllerModule::configure(ResourceFinder &rf)
     std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
     if(!loadIdListFromConfig(robotJointsListName, yarpWbiOptions, robotJoints))
     {
-        fprintf(stderr, "[ERR] ISIRWholeBodyController: Impossible to load wbiId joint list with name %s\n", robotJointsListName.c_str());
+        fprintf(stderr, "[ERR] gOcraController: Impossible to load wbiId joint list with name %s\n", robotJointsListName.c_str());
     }
     robotInterface->addJoints(robotJoints);
 
@@ -115,10 +115,10 @@ bool gOcraControllerModule::configure(ResourceFinder &rf)
         controller_options.put("printPeriod",rf.find("printPeriod").asDouble());
     }
 
-    ctrlThread = new ISIRWholeBodyControllerThread(moduleName, robotName, period, robotInterface, controller_options);
-    if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing locomotion control thread. Closing module.\n"); return false; }
+    ctrlThread = new gOcraControllerThread(moduleName, robotName, period, robotInterface, controller_options);
+    if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing control thread. Closing module.\n"); return false; }
 
-    fprintf(stderr,"ISIRWholeBodyController thread started\n");
+    fprintf(stderr,"gOcraController thread started\n");
 
     return true;
 }

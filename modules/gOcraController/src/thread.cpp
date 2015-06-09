@@ -16,7 +16,7 @@
 */
 
 #include <gOcraController/thread.h>
-#include <../../ISIRWholeBodyController/include/ISIRWholeBodyController/ocraWbiModel.h>
+#include <../../gOcraController/include/gOcraController/ocraWbiModel.h>
 #include <modHelp/modHelp.h>
 #include <iostream>
 
@@ -25,8 +25,8 @@
 #include <yarp/os/Log.h>
 
 
-//#include "wocra/Solvers/OneLevelSolver.h"
-#include "wocra/Features/wOcraFeature.h"
+//#include "gocra/Solvers/OneLevelSolver.h"
+#include "gocra/Features/gOcraFeature.h"
 #include "ocra/control/Feature.h"
 #include "ocra/control/FullState.h"
 #include "ocra/control/ControlFrame.h"
@@ -57,8 +57,8 @@ gOcraControllerThread::gOcraControllerThread(string _name,
 {
     bool isFreeBase = false;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
-    bool useReducedProblem = false;
-    ctrl = new wocra::wOcraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
+    bool useGrav = true;// enable gravity compensation
+    ctrl = new gocra::GHCJTController("icubControl", *ocraModel, internalSolver, useGrav);
 
     fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
     fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
@@ -102,14 +102,14 @@ bool gOcraControllerThread::threadInit()
     //================ SET UP TASK ===================//
     // sequence = new Sequence_NominalPose();
     // sequence = new Sequence_InitialPoseHold();
-    // sequence = new Sequence_LeftHandReach();
+     sequence = new Sequence_LeftHandReach();
     // sequence = new Sequence_LeftRightHandReach();
 
     // sequence = new Sequence_CartesianTest;
     // sequence = new Sequence_PoseTest;
     // sequence = new Sequence_OrientationTest;
 
-    sequence = new Sequence_TrajectoryTrackingTest();
+    //sequence = new Sequence_TrajectoryTrackingTest();
     // sequence = new Sequence_JointTest();
     // sequence = new ScenarioICub_01_Standing();
     // sequence = new ScenarioICub_02_VariableWeightHandTasks();

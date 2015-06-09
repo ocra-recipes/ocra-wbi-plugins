@@ -1,30 +1,35 @@
 #include <gOcraController/gOcraSequenceCollection.h>
-#include <../../ISIRWholeBodyController/include/ISIRWholeBodyController/ocraWbiModel.h>
+#include <../../gOcraController/include/gOcraController/ocraWbiModel.h>
 
 
-#include "wocra/Trajectory/wOcraMinimumJerkTrajectory.h"
-#include "wocra/Trajectory/wOcraLinearInterpolationTrajectory.h"
+//#include "wocra/Trajectory/wOcraMinimumJerkTrajectory.h"
+//#include "wocra/Trajectory/wOcraLinearInterpolationTrajectory.h"
 
 #ifndef PI
 #define PI 3.1415926
 #endif
 
-void getNominalPosture(wocra::wOcraModel &model, VectorXd &q);
+void getNominalPosture(gocra::gOcraModel &model, VectorXd &q);
 
 // Sequence_InitialPoseHold
-void Sequence_InitialPoseHold::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_InitialPoseHold::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     Eigen::VectorXd q_init = model.getJointPositions();
     std::cout << "q init: " << q_init << std::endl;
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 1.0, q_init);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 1, 0.01, q_init);
+    ctrl.setActiveTaskVector();
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority.setZero();
+    ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_InitialPoseHold::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_InitialPoseHold::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
 }
 
 // Sequence_NominalPoseHold
-void Sequence_NominalPose::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     tFinal = 5.0;
     tInitial = 0.0;
@@ -33,10 +38,15 @@ void Sequence_NominalPose::doInit(wocra::wOcraController& ctrl, wocra::wOcraMode
     nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
 
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 5.0, 1, q_init);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 1, 0.01, q_init);
+    ctrl.setActiveTaskVector();
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority.setZero();
+    ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_NominalPose::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_NominalPose::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
     Eigen::VectorXd q_current;
     if (time <= tFinal){
@@ -63,34 +73,40 @@ void Sequence_NominalPose::doUpdate(double time, wocra::wOcraModel& state, void*
 }
 
 // Sequence_LeftHandReach
-void Sequence_LeftHandReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_LeftHandReach::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
 
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 0.001, nominal_q);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 1, 0.01, nominal_q);
 
     // Left hand cartesian task
     Eigen::Vector3d posLHandDes(-0.3, -0.1, 0.3);
-    tmSegCartHandLeft = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 10.0, 3.0, 100.0, posLHandDes);
+    tmSegCartHandLeft = new gocra::gOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 25.0, 10.0, posLHandDes);
+
+    ctrl.setActiveTaskVector();
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority<<0,1,0,0;
+    ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_LeftHandReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_LeftHandReach::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
 }
 
 
 // Sequence_LeftRightHandReach
-void Sequence_LeftRightHandReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_LeftRightHandReach::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
 
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 0.01, nominal_q);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, nominal_q);//w=0.01
 
     // Partial (torso) posture task
 
@@ -98,51 +114,57 @@ void Sequence_LeftRightHandReach::doInit(wocra::wOcraController& ctrl, wocra::wO
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 10.0, 3.0, 5.0, torsoTaskPosDes);
+    tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 10.0, 3.0, torsoTaskPosDes);//w=5
 
 
     // CoM Task
     Eigen::Vector3d posCoM = model.getCoMPosition();
-    tmCoM = new wocra::wOcraCoMTaskManager(ctrl, model, "CoMTask", 10.0, 3.0, 10.0, posCoM);
+    tmCoM = new gocra::gOcraCoMTaskManager(ctrl, model, "CoMTask", 10.0, 3.0, posCoM);//w=10
 
     // Left hand cartesian task
     Eigen::Vector3d posLHandDes(-0.3, -0.2, 0.15);
-    tmSegCartHandLeft = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 10.0, 3.0, 100.0, posLHandDes);
+    tmSegCartHandLeft = new gocra::gOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 10.0, 3.0, posLHandDes);//w=100
 
 
     // Right hand cartesian task
     Eigen::Vector3d posRHandDes(-0.15, 0.2, -0.1);
-    tmSegCartHandRight = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, 10.0, 3.0, 100.0, posRHandDes);
+    tmSegCartHandRight = new gocra::gOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, 10.0, 3.0, posRHandDes);//w=100
 
-
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority<<0,1,1,1,1,
+            0,0,0.9,1,1,
+            0,0,0,0.9,0.9,
+            0,0,0,0,0;
+    ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_LeftRightHandReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_LeftRightHandReach::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
 }
 
-void Sequence_CartesianTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_CartesianTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
     double Kd = 2.0 * sqrt(Kp);
-    double wFullPosture = 0.001;
-    double wPartialPosture = 0.01;
-    double wLeftHandTask = 1.0;
+    //double wFullPosture = 0.001;
+    //double wPartialPosture = 0.01;
+    //double wLeftHandTask = 1.0;
 
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, nominal_q);
 
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+    tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, torsoTaskPosDes);
 
     lHandIndex = model.getSegmentIndex("l_hand");
 
@@ -158,11 +180,19 @@ void Sequence_CartesianTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraMo
 
 
     // Left hand cartesian task
-    tmLeftHandCart = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp, Kd, wLeftHandTask, desiredPos);
+    tmLeftHandCart = new gocra::gOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp, Kd, desiredPos);
+
+    ctrl.setActiveTaskVector();
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority<<0,1,1,
+            0,0,1,
+            0,0,0;
+    ctrl.setTaskProjectors(param_priority);
 
 }
 
-void Sequence_CartesianTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_CartesianTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
     // tmLeftHandCart->setPosition(desiredPos);
     std::cout << "\n---\nDesired position: " << desiredPos.transpose() << std::endl;
@@ -180,28 +210,28 @@ void Sequence_CartesianTest::doUpdate(double time, wocra::wOcraModel& state, voi
 
 
 
-void Sequence_PoseTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_PoseTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
     double Kd = 2.0 * sqrt(Kp);
-    double wFullPosture = 0.001;
-    double wPartialPosture = 0.01;
-    double wLeftHandTask = 1.0;
+    //double wFullPosture = 0.001;
+    //double wPartialPosture = 0.01;
+    //double wLeftHandTask = 1.0;
 
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, nominal_q);
 
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+    tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, torsoTaskPosDes);
 
     lHandIndex = model.getSegmentIndex("l_hand");
 
@@ -221,10 +251,18 @@ void Sequence_PoseTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& 
     // endingDispd    = startingDispd;
     std::cout << endingDispd << std::endl;
     // Left hand cartesian task
-    tmLeftHandPose      = new wocra::wOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp, Kd, wLeftHandTask, endingDispd);
+    tmLeftHandPose      = new gocra::gOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp, Kd, endingDispd);
+
+    ctrl.setActiveTaskVector();
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority<<0,1,1,
+            0,0,1,
+            0,0,0;
+    ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_PoseTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_PoseTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
     // tmLeftHandCart->setPosition(desiredPos);
     std::cout << "\n---\nDesired pose: " << endingDispd << std::endl;
@@ -247,28 +285,28 @@ void Sequence_PoseTest::doUpdate(double time, wocra::wOcraModel& state, void** a
 
 
 
-void Sequence_OrientationTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_OrientationTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
     double Kd = 2.0 * sqrt(Kp);
-    double wFullPosture = 0.001;
-    double wPartialPosture = 0.01;
-    double wLeftHandTask = 1.0;
+    //double wFullPosture = 0.001;
+    //double wPartialPosture = 0.01;
+    //double wLeftHandTask = 1.0;
 
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, nominal_q);
 
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << M_PI / 18, 0, 0;
-    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+    tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, torsoTaskPosDes);
 
     lHandIndex = model.getSegmentIndex("l_hand");
 
@@ -280,10 +318,18 @@ void Sequence_OrientationTest::doInit(wocra::wOcraController& ctrl, wocra::wOcra
 
 
     // Left hand orientation task
-    tmLeftHandOrient    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp, Kd, wLeftHandTask, endingRotd);
+    tmLeftHandOrient    = new gocra::gOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp, Kd, endingRotd);
+
+    ctrl.setActiveTaskVector();
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority<<0,1,1,
+            0,0,1,
+            0,0,0;
+    ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_OrientationTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_OrientationTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
     std::cout << "\n---\nStarting orientation: " << startingRotd << std::endl;
     std::cout << "Desired orientation: " << endingRotd << std::endl;
@@ -300,10 +346,10 @@ void Sequence_OrientationTest::doUpdate(double time, wocra::wOcraModel& state, v
 
 
 
-
+/*
 
 // Sequence_TrajectoryTrackingTest
-void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_TrajectoryTrackingTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
@@ -320,7 +366,7 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, nominal_q);
 
     // Partial (torso) posture task
     Eigen::VectorXi torso_indices(3);
@@ -328,7 +374,7 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << 0, -10.0*(M_PI / 180.0), 40.0*(M_PI / 180.0);
     // torsoTaskPosDes << 0.0, 0.0, 0.0;
-    tmPartialTorso = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 6., 2.0 * sqrt(6.), wPartialPosture, torsoTaskPosDes);
+    tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 6., 2.0 * sqrt(6.), torsoTaskPosDes);
 
     // Right hand cartesian task
     Eigen::Vector3d posRHandDesDelta(0.1, 0.08, 0.15);
@@ -337,22 +383,29 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     posRHandDes = posRHandDes + posRHandDesDelta;
 
 
-    tmSegCartHandRight = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, 1.0, posRHandDes);
+    tmSegCartHandRight = new gocra::gOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, posRHandDes);
 
-    /**
-    * Left hand task. Pick one of these booleans to test the different constructors.
-    */
-    //*************** Type of Trajectory ******************//
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority<<0,1,1,
+            0,0,1,
+            0,0,0;
+    ctrl.setTaskProjectors(param_priority);
+
+
+    // Left hand task. Pick one of these booleans to test the different constructors.
+
+    //Type of Trajectory //
     bool isLinInterp = false;
     bool isMinJerk = true;
-    //*****************************************************//
 
-    //***************** Type of Reference ******************//
+
+    // Type of Reference
     isDisplacementd         = false;
     isRotation3d            = false;
     isCartesion             = false;
     isCartesionWaypoints    = true;
-    //*****************************************************//
+
     int boolSum = isCartesion + isCartesionWaypoints + isDisplacementd + isRotation3d;
     if (boolSum>1){std::cout << "\nYou picked too many reference types." << std::endl;}
     else if (boolSum<1){std::cout << "\nYou picked too few reference types." << std::endl;}
@@ -384,9 +437,9 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
 
     if (isLinInterp)
     {
-        /**
-        * Linear interpolation trajectory constructor tests:
-        */
+
+        // Linear interpolation trajectory constructor tests:
+
         if      (isDisplacementd)       {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingDispd, endingDispd);}
         else if (isRotation3d)          {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingRotd, endingRotd);}
         else if (isCartesion)           {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingPos, desiredPos);}
@@ -395,9 +448,9 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     }
     else if (isMinJerk)
     {
-        /**
-        * Minimum jerk trajectory constructor tests:
-        */
+
+        // Minimum jerk trajectory constructor tests:
+
         if      (isDisplacementd)       {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingDispd, endingDispd);}
         else if (isRotation3d)          {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingRotd, endingRotd);}
         else if (isCartesion)           {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingPos, desiredPos);}
@@ -415,12 +468,12 @@ void Sequence_TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra
     else if (isCartesionWaypoints) {tmLeftHandCart      = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
 
 
-// tmSegCartHandRight = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, posRHandDes);
+// tmSegCartHandRight = new gocra::gOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, posRHandDes);
 }
 
 
 
-void Sequence_TrajectoryTrackingTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_TrajectoryTrackingTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
     if (isDisplacementd)
     {
@@ -468,16 +521,22 @@ void Sequence_TrajectoryTrackingTest::doUpdate(double time, wocra::wOcraModel& s
 
 
 }
+*/
 
-
-void Sequence_FloatingBaseEstimationTests::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_FloatingBaseEstimationTests::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     Eigen::VectorXd q_init = model.getJointPositions();
     std::cout << "q init: " << q_init << std::endl;
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 1.0, q_init);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, q_init);
+
+    ctrl.setActiveTaskVector();
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority.setZero();
+    ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_FloatingBaseEstimationTests::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_FloatingBaseEstimationTests::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
 }
 
@@ -486,7 +545,7 @@ void Sequence_FloatingBaseEstimationTests::doUpdate(double time, wocra::wOcraMod
 
 
 // Sequence_LeftRightHandReach
-void Sequence_JointTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Sequence_JointTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     // Full posture task
@@ -503,7 +562,7 @@ void Sequence_JointTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel&
 
     jointMax = model.getJointUpperLimits();
 
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 2.0*sqrt(20), 1.0, q_init);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 2.0*sqrt(20), q_init);
     for (int i=0; i<nDoF; i++){
         jointNames[i] = wbiModel.getJointName(i);
     }
@@ -513,11 +572,15 @@ void Sequence_JointTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel&
     goToMax = false;
     counter = 401;
 
-
+    ctrl.setActiveTaskVector();
+    int nt = ctrl.getNbActiveTask();
+    Eigen::MatrixXd param_priority(nt,nt);
+    param_priority.setZero();
+    ctrl.setTaskProjectors(param_priority);
 
 }
 
-void Sequence_JointTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Sequence_JointTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
     Eigen::VectorXd taskErrorVector = tmFull->getTaskError();
     // std::cout << taskErrorVector.transpose() << std::endl;
@@ -560,7 +623,7 @@ void Sequence_JointTest::doUpdate(double time, wocra::wOcraModel& state, void** 
 }
 
 
-void getNominalPosture(wocra::wOcraModel& model, VectorXd &q)
+void getNominalPosture(gocra::gOcraModel& model, VectorXd &q)
 {
     q[model.getDofIndex("torso_pitch")] = M_PI / 18;
     q[model.getDofIndex("r_elbow")] = M_PI / 4;

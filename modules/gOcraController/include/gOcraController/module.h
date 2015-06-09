@@ -44,7 +44,7 @@ class gOcraControllerModule: public RFModule
     int period;
     double avgTime, stdDev, avgTimeUsed, stdDevUsed;
 
-    ISIRWholeBodyControllerThread* ctrlThread; // locomotion control thread
+    gOcraControllerThread* ctrlThread; // control thread
     wholeBodyInterface* robotInterface; // interface to communicate with the robot
 
 public:

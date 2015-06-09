@@ -32,11 +32,11 @@
 #include <wbi/wbi.h>
 
 #include "ocraWbiModel.h"
-//#include "wOcraCtrlTaskManager.h"
+//#include "gOcraCtrlTaskManager.h"
 #include <gOcraController/gOcraSequenceCollection.h>
-#include "wocra/wOcraController.h"
-#include "wocra/Solvers/OneLevelSolver.h"
-#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
+#include "gocra/GHCJTController.h"
+#include "gocra/Solvers/OneLevelSolver.h"
+#include "gocra/Tasks/gOcraTaskManagerCollectionBase.h"
 
 
 using namespace yarp::os;
@@ -54,10 +54,10 @@ class gOcraControllerThread: public RateThread
     wholeBodyInterface *robot;
     ocraWbiModel *ocraModel;
     yarp::os::Property options;
-    wocra::wOcraController *ctrl;
-    wocra::OneLevelSolverWithQuadProg internalSolver;
+    gocra::GHCJTController *ctrl;
+    gocra::OneLevelSolverWithQuadProg internalSolver;
 
-    wocra::wOcraTaskManagerCollectionBase* sequence;
+    gocra::gOcraTaskManagerCollectionBase* sequence;
     // wocra::wOcraTaskManagerCollectionBase* sequence_01;
 
     //wOcraCtrlTaskManager taskManager;

@@ -1,25 +1,25 @@
 #ifndef GOCRASEQUENCECOLLECTION_H
 #define GOCRASEQUENCECOLLECTION_H
 
-#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
-#include "wocra/Trajectory/wOcraTrajectory.h"
+#include "gocra/Tasks/gOcraTaskManagerCollectionBase.h"
+//#include "wocra/Trajectory/wOcraTrajectory.h"
 
 
-class Sequence_InitialPoseHold : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_InitialPoseHold : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
 };
 
-class Sequence_NominalPose : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_NominalPose : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
         Eigen::VectorXd                                 q_init;
@@ -28,86 +28,86 @@ class Sequence_NominalPose : public wocra::wOcraTaskManagerCollectionBase
         double                                          tFinal;
         int                                             t_pich_index;
 
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
 };
 
-class Sequence_LeftHandReach : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_LeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
         // Segment left hand task
-        wocra::wOcraSegCartesianTaskManager*           tmSegCartHandLeft;
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartHandLeft;
 };
 
-class Sequence_LeftRightHandReach : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_LeftRightHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
         // Partial posture task for torso
-        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+        gocra::gOcraPartialPostureTaskManager*         tmPartialTorso;
         // CoM task for torso
-        wocra::wOcraCoMTaskManager*                    tmCoM;
+        gocra::gOcraCoMTaskManager*                    tmCoM;
         // Segment left hand task
-        wocra::wOcraSegCartesianTaskManager*           tmSegCartHandLeft;
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartHandLeft;
         // Segment right hand task
-        wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartHandRight;
 };
 
-class Sequence_CartesianTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_CartesianTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
         // Partial posture task
-        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+        gocra::gOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
-        wocra::wOcraSegCartesianTaskManager*           tmLeftHandCart;
+        gocra::gOcraSegCartesianTaskManager*           tmLeftHandCart;
 
         Eigen::Vector3d desiredPos;
         int lHandIndex;
 };
 
-class Sequence_PoseTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_PoseTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
         // Partial posture task
-        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+        gocra::gOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
-        wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
+        gocra::gOcraSegPoseTaskManager*                tmLeftHandPose;
 
         Eigen::Displacementd endingDispd;
         int lHandIndex;
 };
 
 
-class Sequence_OrientationTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_OrientationTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
         // Partial posture task
-        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+        gocra::gOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
-        wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
+        gocra::gOcraSegOrientationTaskManager*         tmLeftHandOrient;
 
         Eigen::Rotation3d startingRotd;
         Eigen::Rotation3d endingRotd;
@@ -115,26 +115,26 @@ class Sequence_OrientationTest : public wocra::wOcraTaskManagerCollectionBase
 };
 
 
-
-class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskManagerCollectionBase
+/*
+class Sequence_TrajectoryTrackingTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
         // Partial posture task
-        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+        gocra::gOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
-        wocra::wOcraSegCartesianTaskManager*           tmLeftHandCart;
-        wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
-        wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
+        gocra::gOcraSegCartesianTaskManager*           tmLeftHandCart;
+        gocra::gOcraSegPoseTaskManager*                tmLeftHandPose;
+        gocra::gOcraSegOrientationTaskManager*         tmLeftHandOrient;
 
-        wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartHandRight;
 
         // trajectory
-        wocra::wOcraTrajectory*                        leftHandTrajectory;
+        gocra::gOcraTrajectory*                        leftHandTrajectory;
 
         Eigen::Displacementd endingDispd;
         Eigen::Rotation3d endingRotd;
@@ -146,42 +146,42 @@ class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskManagerCollection
         bool isCartesionWaypoints;
 };
 
-
-class Sequence_FloatingBaseEstimationTests : public wocra::wOcraTaskManagerCollectionBase
+*/
+class Sequence_FloatingBaseEstimationTests : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
 };
 
 
 
 /*
         // Partial torso posture task
-        wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+        gocra::gOcraPartialPostureTaskManager*         tmPartialTorso;
         // Left foot contact task
-        wocra::wOcraContactSetTaskManager*             tmFootContactLeft;
+        gocra::gOcraContactSetTaskManager*             tmFootContactLeft;
         // Right foot contact task
-        wocra::wOcraContactSetTaskManager*             tmFootContactRight;
+        gocra::gOcraContactSetTaskManager*             tmFootContactRight;
         // CoM task
-        wocra::wOcraCoMTaskManager*                    tmCoM;
+        gocra::gOcraCoMTaskManager*                    tmCoM;
         // Segment head task
-        wocra::wOcraSegCartesianTaskManager*           tmSegCartHead;
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartHead;
         // Segment left foot task
-        wocra::wOcraSegPoseTaskManager*           tmSegCartFootLeft;
+        gocra::gOcraSegPoseTaskManager*           tmSegCartFootLeft;
         // Segment right foot task
-        wocra::wOcraSegPoseTaskManager*           tmSegCartFootRight;
+        gocra::gOcraSegPoseTaskManager*           tmSegCartFootRight;
 */
 
 
-class Sequence_JointTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_JointTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
 
         Eigen::VectorXd q_init;
         Eigen::VectorXd q_des;
@@ -201,7 +201,7 @@ class Sequence_JointTest : public wocra::wOcraTaskManagerCollectionBase
 
     private:
         // Full posture task
-        wocra::wOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*            tmFull;
 
 
 

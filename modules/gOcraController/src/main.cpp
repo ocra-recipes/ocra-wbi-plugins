@@ -32,7 +32,7 @@ using namespace yarp::dev;
 using namespace yarp::sig;
 using namespace yarp::os;
 using namespace std;
-using namespace ISIRWholeBodyController;
+using namespace gOcraController;
 
 
 int main (int argc, char * argv[])
@@ -65,7 +65,7 @@ int main (int argc, char * argv[])
     }
 
     //Creating the module
-    ISIRWholeBodyControllerModule module;
+    gOcraControllerModule module;
 
     return module.runModule(rf);
 }
