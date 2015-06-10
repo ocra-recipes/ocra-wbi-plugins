@@ -192,8 +192,11 @@ void gOcraControllerThread::run()
       if(eigenTorques(i) < TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
       else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
-      //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(ocraModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
 
+    Eigen::VectorXd q_min = ocraModel->getJointLowerLimits();
+    Eigen::VectorXd q_max = ocraModel->getJointUpperLimits();
+
+    //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(ocraModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
 	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)

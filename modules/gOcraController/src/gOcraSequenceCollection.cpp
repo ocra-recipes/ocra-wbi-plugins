@@ -73,28 +73,53 @@ void Sequence_NominalPose::doUpdate(double time, gocra::gOcraModel& state, void*
 }
 
 // Sequence_LeftHandReach
-void Sequence_LeftHandReach::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_LeftHandReach::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& model)
 {
+    ctrl=&controller;
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
 
-    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 1, 0.01, nominal_q);
+    tmFull = new gocra::gOcraFullPostureTaskManager(*ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 1, 0.01, nominal_q);
 
     // Left hand cartesian task
     Eigen::Vector3d posLHandDes(-0.3, -0.1, 0.3);
-    tmSegCartHandLeft = new gocra::gOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 25.0, 10.0, posLHandDes);
+    tmSegCartHandLeft = new gocra::gOcraSegCartesianTaskManager(*ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 25.0, 10.0, posLHandDes);
 
-    ctrl.setActiveTaskVector();
-    int nt = ctrl.getNbActiveTask();
-    Eigen::MatrixXd param_priority(nt,nt);
-    param_priority<<0,1,0,0;
-    ctrl.setTaskProjectors(param_priority);
+
+    ctrl->setActiveTaskVector();
+    nt = ctrl->getNbActiveTask();
+    param_priority = Eigen::MatrixXd::Zero(nt,nt);
+    param_priority(0,1)=1;//param_priority<<0,1,0,0;
+    ctrl->setTaskProjectors(param_priority);
+    tInitialSet=false;
+
 }
 
 void Sequence_LeftHandReach::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
+    if (!tInitialSet){
+        tInitial=time;
+        tInitialSet=true;
+        tSwitch = tInitial + 5.0;
+        switchDuration = 1.0;
+        tFinal = tSwitch + switchDuration;
+    }
+
+    double t = time-tInitial;
+    double coe;
+
+    if (t>tSwitch && t<=tFinal){
+        coe = t - tSwitch;
+        oneToZero = (cos(coe * M_PI/switchDuration) + 1.0)/2.0;
+        zeroToOne = 1.0 - oneToZero;
+        param_priority(0,1) = oneToZero;
+        param_priority(1,0) = zeroToOne;
+        ctrl->setTaskProjectors(param_priority);
+        ctrl->doUpdateProjector();
+     }
+
 }
 
 

@@ -34,13 +34,24 @@ class Sequence_NominalPose : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_LeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doInit(gocra::GHCJTController& controller, gocra::gOcraModel& model);
         virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
         // Segment left hand task
         gocra::gOcraSegCartesianTaskManager*           tmSegCartHandLeft;
+
+        int                                            nt;//nb of active tasks
+        double                                         tInitial;
+        bool                                           tInitialSet;
+        double                                         tSwitch;//start priority switch
+        double                                         tFinal;//stop priority switch
+        double                                         switchDuration;
+        double                                         oneToZero;
+        double                                         zeroToOne;
+        Eigen::MatrixXd                                param_priority;
+        gocra::GHCJTController*                        ctrl;
 };
 
 class Sequence_LeftRightHandReach : public gocra::gOcraTaskManagerCollectionBase
