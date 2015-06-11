@@ -102,8 +102,9 @@ bool gOcraControllerThread::threadInit()
     //================ SET UP TASK ===================//
     // sequence = new Sequence_NominalPose();
     // sequence = new Sequence_InitialPoseHold();
-     sequence = new Sequence_LeftHandReach();
-    // sequence = new Sequence_LeftRightHandReach();
+    //sequence = new Sequence_LeftHandReach();
+    sequence = new Sequence_ComLeftHandReach();
+     //sequence = new Sequence_LeftRightHandReach();
 
     // sequence = new Sequence_CartesianTest;
     // sequence = new Sequence_PoseTest;
@@ -193,8 +194,15 @@ void gOcraControllerThread::run()
       else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
 
-    Eigen::VectorXd q_min = ocraModel->getJointLowerLimits();
-    Eigen::VectorXd q_max = ocraModel->getJointUpperLimits();
+//    Eigen::VectorXd q_min = ocraModel->getJointLowerLimits();
+//    Eigen::VectorXd q_max = ocraModel->getJointUpperLimits();
+//    Eigen::VectorXd q_actual = ocraModel->getJointPositions();
+//    Eigen::VectorXd q_max_actual = q_max - q_actual;
+//    Eigen::VectorXd q_actual_min = q_actual - q_min;
+//    Eigen::VectorXd q_margin = 0.1*Eigen::VectorXd::Ones(robot->getDoFs());
+//    if (!((q_actual.array()<=(q_max-q_margin).array()).all() && (q_actual.array()>=(q_min+q_margin).array()).all())){
+//        std::cout<<"joint limits violated!!!!!!!!!!!"<<std::endl;
+//    }
 
     //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(ocraModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
 	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
