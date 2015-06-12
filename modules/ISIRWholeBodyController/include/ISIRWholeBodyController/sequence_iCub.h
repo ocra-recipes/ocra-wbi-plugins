@@ -1,14 +1,14 @@
-#ifndef SCENARIOSICUB_H
-#define SCENARIOSICUB_H
+#ifndef SEQUENCEICUB_H
+#define SEQUENCEICUB_H
 
-#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
+#include "wocra/Tasks/wOcraTaskSequenceBase.h"
 #include "wocra/Trajectory/wOcraTrajectory.h"
 
-class ScenarioICub_01_Standing: public wocra::wOcraTaskManagerCollectionBase
+class sequence_iCub_01_Standing: public wocra::wOcraTaskSequenceBase
 {
     public:
-        ScenarioICub_01_Standing();
-        virtual ~ScenarioICub_01_Standing();
+        sequence_iCub_01_Standing();
+        virtual ~sequence_iCub_01_Standing();
     protected: 
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
         virtual void doUpdate(double time, wocra::wOcraModel& state, void** args); 
@@ -28,11 +28,11 @@ class ScenarioICub_01_Standing: public wocra::wOcraTaskManagerCollectionBase
 };
 
 
-class ScenarioICub_02_VariableWeightHandTasks: public wocra::wOcraTaskManagerCollectionBase
+class sequence_iCub_02_VariableWeightHandTasks: public wocra::wOcraTaskSequenceBase
 {
     public:
-        ScenarioICub_02_VariableWeightHandTasks();
-        virtual ~ScenarioICub_02_VariableWeightHandTasks();
+        sequence_iCub_02_VariableWeightHandTasks();
+        virtual ~sequence_iCub_02_VariableWeightHandTasks();
     protected: 
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
         virtual void doUpdate(double time, wocra::wOcraModel& state, void** args); 

@@ -1,4 +1,4 @@
-#include "ISIRWholeBodyController/ScenariosICub.h"
+#include "ISIRWholeBodyController/sequence_iCub.h"
 #include <ISIRWholeBodyController/ocraWbiModel.h>
 
 #include "wocra/Trajectory/wOcraLinearInterpolationTrajectory.h"
@@ -10,15 +10,15 @@
 
 #endif
 
-ScenarioICub_01_Standing::ScenarioICub_01_Standing() : wocra::wOcraTaskManagerCollectionBase()
+sequence_iCub_01_Standing::ScenarioICub_01_Standing() : wocra::wOcraTaskManagerCollectionBase()
 {
 }
 
-ScenarioICub_01_Standing::~ScenarioICub_01_Standing()
+sequence_iCub_01_Standing::~ScenarioICub_01_Standing()
 {
 }
 
-void ScenarioICub_01_Standing::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void sequence_iCub_01_Standing::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
     // Initialise full posture task
     // Eigen::VectorXd q_full = Eigen::VectorXd::Zero(model.nbInternalDofs());
@@ -103,7 +103,7 @@ void ScenarioICub_01_Standing::doInit(wocra::wOcraController& ctrl, wocra::wOcra
     
 }
 
-void ScenarioICub_01_Standing::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void sequence_iCub_01_Standing::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
 }
 
@@ -119,15 +119,15 @@ void ScenarioICub_01_Standing::doUpdate(double time, wocra::wOcraModel& state, v
 
 
 
-ScenarioICub_02_VariableWeightHandTasks::ScenarioICub_02_VariableWeightHandTasks() : wocra::wOcraTaskManagerCollectionBase()
+sequence_iCub_02_VariableWeightHandTasks::ScenarioICub_02_VariableWeightHandTasks() : wocra::wOcraTaskManagerCollectionBase()
 {
 }
 
-ScenarioICub_02_VariableWeightHandTasks::~ScenarioICub_02_VariableWeightHandTasks()
+sequence_iCub_02_VariableWeightHandTasks::~ScenarioICub_02_VariableWeightHandTasks()
 {
 }
 
-void ScenarioICub_02_VariableWeightHandTasks::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void sequence_iCub_02_VariableWeightHandTasks::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     
@@ -197,7 +197,7 @@ void ScenarioICub_02_VariableWeightHandTasks::doInit(wocra::wOcraController& ctr
     
 }
 
-void ScenarioICub_02_VariableWeightHandTasks::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void sequence_iCub_02_VariableWeightHandTasks::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     Eigen::MatrixXd desiredPosVelAcc = leftHandTrajectory->getDesiredValues(time);
     tmLeftHand->setState(desiredPosVelAcc.col(0));

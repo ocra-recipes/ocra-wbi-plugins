@@ -1,11 +1,11 @@
 #ifndef SEQUENCECOLLECTION_H
 #define SEQUENCECOLLECTION_H
 
-#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
+#include "wocra/Tasks/wOcraTaskSequenceBase.h"
 #include "wocra/Trajectory/wOcraTrajectory.h"
 
 
-class Sequence_InitialPoseHold : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_InitialPoseHold : public wocra::wOcraTaskSequenceBase
 {
     protected: 
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -15,7 +15,7 @@ class Sequence_InitialPoseHold : public wocra::wOcraTaskManagerCollectionBase
         wocra::wOcraFullPostureTaskManager*            tmFull;
 };
 
-class Sequence_NominalPose : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_NominalPose : public wocra::wOcraTaskSequenceBase
 {
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -31,7 +31,7 @@ class Sequence_NominalPose : public wocra::wOcraTaskManagerCollectionBase
         wocra::wOcraFullPostureTaskManager*            tmFull;
 };
 
-class Sequence_LeftHandReach : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_LeftHandReach : public wocra::wOcraTaskSequenceBase
 {
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -43,7 +43,7 @@ class Sequence_LeftHandReach : public wocra::wOcraTaskManagerCollectionBase
         wocra::wOcraSegCartesianTaskManager*           tmSegCartHandLeft;
 };
 
-class Sequence_LeftRightHandReach : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_LeftRightHandReach : public wocra::wOcraTaskSequenceBase
 {
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -61,7 +61,7 @@ class Sequence_LeftRightHandReach : public wocra::wOcraTaskManagerCollectionBase
         wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
 };
 
-class Sequence_CartesianTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_CartesianTest : public wocra::wOcraTaskSequenceBase
 {
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -78,7 +78,7 @@ class Sequence_CartesianTest : public wocra::wOcraTaskManagerCollectionBase
         int lHandIndex;
 };
 
-class Sequence_PoseTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_PoseTest : public wocra::wOcraTaskSequenceBase
 {
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -96,7 +96,7 @@ class Sequence_PoseTest : public wocra::wOcraTaskManagerCollectionBase
 };
 
 
-class Sequence_OrientationTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_OrientationTest : public wocra::wOcraTaskSequenceBase
 {
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -116,7 +116,7 @@ class Sequence_OrientationTest : public wocra::wOcraTaskManagerCollectionBase
 
   
 
-class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskSequenceBase
 {
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -147,7 +147,7 @@ class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskManagerCollection
 };
 
 
-class Sequence_FloatingBaseEstimationTests : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_FloatingBaseEstimationTests : public wocra::wOcraTaskSequenceBase
 {
     protected: 
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
@@ -177,7 +177,7 @@ class Sequence_FloatingBaseEstimationTests : public wocra::wOcraTaskManagerColle
 */
 
 
-class Sequence_JointTest : public wocra::wOcraTaskManagerCollectionBase
+class Sequence_JointTest : public wocra::wOcraTaskSequenceBase
 {
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
