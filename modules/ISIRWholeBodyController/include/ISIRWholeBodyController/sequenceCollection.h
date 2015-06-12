@@ -4,12 +4,42 @@
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
 #include "wocra/Trajectory/wOcraTrajectory.h"
 
+class Sequence_FixedBaseMinimalTasks : public wocra::wOcraTaskSequenceBase
+{
+    protected:
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+    private:
+        // Full posture task
+        wocra::wOcraFullPostureTaskManager*            tmFull;
+};
+
+class Sequence_FloatingBaseMinimalTasks: public wocra::wOcraTaskSequenceBase
+{
+    protected:
+        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+/*
+    private:
+        // Full posture task
+        wocra::wOcraFullPostureTaskManager*            tmFull;
+        // Partial torso posture task
+        wocra::wOcraPartialPostureTaskManager*         tmPartialBack;
+        // Left foot contact task
+        wocra::wOcraContactSetTaskManager*             tmFootContactLeft;
+        // Right foot contact task
+        wocra::wOcraContactSetTaskManager*             tmFootContactRight;
+        // Waist task
+        wocra::wOcraSegPoseTaskManager*                tmSegPoseWaist;
+*/
+};
+
 
 class Sequence_InitialPoseHold : public wocra::wOcraTaskSequenceBase
 {
-    protected: 
+    protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args); 
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
         wocra::wOcraFullPostureTaskManager*            tmFull;
@@ -27,7 +57,7 @@ class Sequence_NominalPose : public wocra::wOcraTaskSequenceBase
         double                                          tInitial;
         double                                          tFinal;
         int                                             t_pich_index;
-        
+
         wocra::wOcraFullPostureTaskManager*            tmFull;
 };
 
@@ -73,7 +103,7 @@ class Sequence_CartesianTest : public wocra::wOcraTaskSequenceBase
         wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
         wocra::wOcraSegCartesianTaskManager*           tmLeftHandCart;
-        
+
         Eigen::Vector3d desiredPos;
         int lHandIndex;
 };
@@ -90,7 +120,7 @@ class Sequence_PoseTest : public wocra::wOcraTaskSequenceBase
         wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
         wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
-        
+
         Eigen::Displacementd endingDispd;
         int lHandIndex;
 };
@@ -108,13 +138,13 @@ class Sequence_OrientationTest : public wocra::wOcraTaskSequenceBase
         wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
         // Segment left hand task
         wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
-        
-        Eigen::Rotation3d startingRotd;  
-        Eigen::Rotation3d endingRotd; 
+
+        Eigen::Rotation3d startingRotd;
+        Eigen::Rotation3d endingRotd;
         int lHandIndex;
 };
 
-  
+
 
 class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskSequenceBase
 {
@@ -149,9 +179,9 @@ class Sequence_TrajectoryTrackingTest : public wocra::wOcraTaskSequenceBase
 
 class Sequence_FloatingBaseEstimationTests : public wocra::wOcraTaskSequenceBase
 {
-    protected: 
+    protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args); 
+        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
         // Full posture task
         wocra::wOcraFullPostureTaskManager*            tmFull;
@@ -192,7 +222,7 @@ class Sequence_JointTest : public wocra::wOcraTaskSequenceBase
         double taskErr;
         bool goToMin;
         bool goToMax;
-        
+
 
         std::string jointNames [25];
         int counter;
@@ -202,11 +232,11 @@ class Sequence_JointTest : public wocra::wOcraTaskSequenceBase
     private:
         // Full posture task
         wocra::wOcraFullPostureTaskManager*            tmFull;
-        
 
 
-        
-        
+
+
+
 };
 
 #endif // SEQUENCECOLLECTION_H

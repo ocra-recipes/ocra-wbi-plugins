@@ -56,16 +56,19 @@ class ISIRWholeBodyControllerThread: public RateThread
     wholeBodyInterface *robot;
     ocraWbiModel *ocraModel;
     yarp::os::Property options;
-    string startupScenarioPath;
+    string startupTaskSetPath;
+    string startupSequence;
+
 
 
     wocra::wOcraController *ctrl;
     wocra::OneLevelSolverWithQuadProg internalSolver;
 
-    wocra::wOcraTaskSequenceBase* sequence;
-    // wocra::wOcraTaskSequenceBase* sequence_01;
+    wocra::wOcraTaskSequenceBase* baseSequence;
+    wocra::wOcraTaskSequenceBase* xmlSequence;
+    wocra::wOcraTaskSequenceBase* cppSequence;
 
-    //wOcraCtrlTaskManager taskManager;
+    bool baseSequenceIsActive, xmlSequenceIsActive, cppSequenceIsActive;
 
     Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
 
@@ -90,7 +93,8 @@ public:
                                   int _period,
                                   wholeBodyInterface *_wbi,
                                   yarp::os::Property & _options,
-                                  string _startupScenarioPath);
+                                  string _startupTaskSetPath,
+                                  string _startupSequence);
 
     bool threadInit();
     void run();

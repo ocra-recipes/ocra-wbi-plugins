@@ -61,9 +61,14 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
         moduleName = rf.find("local").asString().c_str();
     }
 
-    if( rf.check("scenario") )
+    if( rf.check("taskSet") )
     {
-        startupScenarioPath = rf.find("scenario").asString().c_str();
+        startupTaskSetPath = rf.find("taskSet").asString().c_str();
+    }
+
+    if( rf.check("sequence") )
+    {
+        startupSequence = rf.find("sequence").asString().c_str();
     }
 
     yarp::os::Property yarpWbiOptions;
@@ -120,7 +125,13 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
         controller_options.put("printPeriod",rf.find("printPeriod").asDouble());
     }
 
-    ctrlThread = new ISIRWholeBodyControllerThread(moduleName, robotName, period, robotInterface, controller_options, startupScenarioPath);
+    ctrlThread = new ISIRWholeBodyControllerThread(moduleName,
+                                                   robotName,
+                                                   period,
+                                                   robotInterface,
+                                                   controller_options,
+                                                   startupTaskSetPath,
+                                                   startupSequence);
     if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing locomotion control thread. Closing module.\n"); return false; }
 
     fprintf(stderr,"ISIRWholeBodyController thread started\n");
