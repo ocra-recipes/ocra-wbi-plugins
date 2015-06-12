@@ -1,7 +1,7 @@
 add_subdirectory(ISIRWholeBodyController)
 
 find_package(PkgConfig REQUIRED)
-PKG_CHECK_MODULES(PC_GOCRA gOcra REQUIRED)
+PKG_CHECK_MODULES(PC_GOCRA gOcra)
 
 IF(${PC_GOCRA_FOUND})
     message("Found gOcra libs. Adding gOcraController build.")
