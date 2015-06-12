@@ -137,31 +137,63 @@ void Sequence_LeftHandReach::doUpdate(double time, gocra::gOcraModel& state, voi
 
 
 // Sequence_ComLeftHandReach
-void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& model)
+void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel)
 {
     ctrl = &controller;
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    model = &gmodel;
+//    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
     // Full posture task
-    Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
-    getNominalPosture(model, nominal_q);
+    nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
+    getNominalPosture(*model, nominal_q);
 
-    tmFull = new gocra::gOcraFullPostureTaskManager(*ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 1, 0.01, nominal_q);
+    tmFull = new gocra::gOcraFullPostureTaskManager(*ctrl, *model, "fullPostureTask", ocra::FullState::INTERNAL, 2, 0.5, nominal_q);
 
-    // Left hand cartesian task
-    Eigen::Vector3d posLHandDes(-0.3, -0.1, 0.3);
-    tmSegCartHandLeft = new gocra::gOcraSegCartesianTaskManager(*ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 49.0, 14.0, posLHandDes);
 
-    // CoM Task
-    Eigen::Vector3d posCoM = model.getCoMPosition();
-    tmCoM = new gocra::gOcraCoMTaskManager(*ctrl, model, "CoMTask", 49.0, 14.0, posCoM);//w=10
+
+//    // Left hand cartesian task
+////    Eigen::Vector3d posLHandDes=wbiModel.getSegmentPosition(wbiModel.getSegmentIndex("l_hand")).getTranslation();
+////    posLHandDes(0)-=0.05;
+////    posLHandDes(1)-=0.01;
+////    posLHandDes(2)+=0.0;
+//    Eigen::Vector3d posLHandDes(-0.3, -0.1, 0.3);
+
+//    tmSegCartHandLeft = new gocra::gOcraSegCartesianTaskManager(*ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 64.0, 20.0, posLHandDes);
+
+//    // CoM Task
+//    Eigen::Vector3d posCoM = model.getCoMPosition();
+//    tmCoM = new gocra::gOcraCoMTaskManager(*ctrl, model, "CoMTask", ocra::X, 400.0, 60.0, posCoM);//w=10
+
+//    // Right hand cartesian task
+//    Eigen::Vector3d posRHandDes=wbiModel.getSegmentPosition(wbiModel.getSegmentIndex("r_hand")).getTranslation();
+//    tmSegCartHandRight = new gocra::gOcraSegCartesianTaskManager(*ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, 49.0, 20.0, posRHandDes);//w=100
+
+//    // Partial (torso) posture task
+
+//    Eigen::VectorXi torso_indices(3);
+//    Eigen::VectorXd torsoTaskPosDes(3);
+//    torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
+//    torsoTaskPosDes << M_PI / 18, 0, 0;
+//    tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(*ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 1.0, 0.5, torsoTaskPosDes);//w=5
+
+//    // Right foot cartesian task
+//    Eigen::Vector3d posRFootDes=wbiModel.getSegmentPosition(wbiModel.getSegmentIndex("r_foot")).getTranslation();
+//    tmSegCartFootRight = new gocra::gOcraSegCartesianTaskManager(*ctrl, model, "rightFootCartesianTask", "r_foot", ocra::XYZ, 49.0, 20.0, posRFootDes);//w=100
+
+//    // Left foot cartesian task
+//    Eigen::Vector3d posLFootDes=wbiModel.getSegmentPosition(wbiModel.getSegmentIndex("l_foot")).getTranslation();
+//    tmSegCartFootLeft = new gocra::gOcraSegCartesianTaskManager(*ctrl, model, "leftFootCartesianTask", "l_foot", ocra::XYZ, 49.0, 20.0, posLFootDes);//w=100
 
     ctrl->setActiveTaskVector();
     nt = ctrl->getNbActiveTask();
     param_priority = Eigen::MatrixXd::Zero(nt,nt);
-    param_priority(0,1)=1;
-    param_priority(0,2)=1;
-    param_priority(1,2)=1;//1;0.8;0.8;0;0.6;0.8
-    param_priority(2,1)=0;//0;0.2;0.6;0;0.6;0.8
+
+
+//    param_priority(1,0)=1;                        param_priority(1,2)=1;
+//    param_priority(2,0)=1; param_priority(2,1)=0;
+//    param_priority(3,0)=1; param_priority(3,1)=1; param_priority(3,2)=1;
+//    param_priority(4,0)=1; param_priority(4,1)=1; param_priority(4,2)=1;
+
+
     ctrl->setTaskProjectors(param_priority);
     tInitialSet=false;
 
@@ -170,25 +202,109 @@ void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra
     end = 3000;
     errCoM.resize(100000);
     errLH.resize(100000);
-    errQ.resize(100000);
+    //errQ.resize(100000);
     vecT.resize(100000);
-    resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/GHCJT_motion_change_alpha.txt");
-//    std::cout << "Error LH: " << tmSegCartHandLeft->getTaskError().transpose() << "\n" << std::endl;
-//    std::cout << "Error CoM: " << tmCoM->getTaskError().transpose() << "\n" << std::endl;
-//    std::cout << "Error Pos: " << tmFull->getTaskError().transpose() << "\n" << std::endl;
+//    resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-6/GHCJT_motion_change_alpha.txt");
+    resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_1-0_0-0/GHCJT_motion_change_alpha.txt");
+
 
 }
 
 void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
 
-    if (counter <= end){
-        errCoM[counter] = tmCoM->getTaskError().norm();
-        errLH[counter] = tmSegCartHandLeft->getTaskError().norm();
-        errQ[counter] = tmFull->getTaskError().norm();
-        vecT[counter] = counter*0.01;
 
-        if (counter == end){
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(*model);
+    int start = 1000;
+//    if (counter==500){
+
+//    }
+//    else if (counter>=0.5*start && counter<start){
+//        double coe = counter - 0.5*start;
+//        switchDuration = 0.5*start;
+//        oneToZero = (cos(coe * M_PI/switchDuration) + 1.0)/2.0;
+//        zeroToOne = 1.0 - oneToZero;
+//        param_priority(1,0)= oneToZero;
+//        param_priority(2,0)= oneToZero;
+//        param_priority(3,0)= oneToZero;
+//        param_priority(0,1)= zeroToOne;
+//        param_priority(0,2)= zeroToOne;
+//        param_priority(0,3)= zeroToOne;
+
+////        param_priority(1,2)=0.8;
+////        param_priority(2,1)=0.2;
+//        ctrl->setTaskProjectors(param_priority);
+//        ctrl->doUpdateProjector();
+//    }
+
+    if (counter==start){
+        if (!tInitialSet){
+            // 1: Left hand cartesian task
+            //    Eigen::Vector3d posLHandDes=wbiModel.getSegmentPosition(wbiModel.getSegmentIndex("l_hand")).getTranslation();
+            //    posLHandDes(0)-=0.05;
+            //    posLHandDes(1)-=0.01;
+            //    posLHandDes(2)+=0.0;
+            Eigen::Vector3d posLHandDes(-0.3, -0.3, 0.);
+            tmSegCartHandLeft = new gocra::gOcraSegCartesianTaskManager(*ctrl, *model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 100.0, 20.0, posLHandDes);
+
+            // 2: CoM Task
+            Eigen::Vector3d posCoM = model->getCoMPosition();
+            tmCoM = new gocra::gOcraCoMTaskManager(*ctrl, *model, "CoMTask", ocra::XY, 500.0, 45.0, posCoM);//w=10
+
+            // 3: Right hand cartesian task
+            Eigen::Vector3d posRHandDes=wbiModel.getSegmentPosition(wbiModel.getSegmentIndex("r_hand")).getTranslation();
+            tmSegCartHandRight = new gocra::gOcraSegCartesianTaskManager(*ctrl, *model, "rightHandCartesianTask", "r_hand", ocra::XYZ, 49.0, 20.0, posRHandDes);//w=100
+
+            // 4: Partial (torso) posture task
+
+            Eigen::VectorXi torso_indices(9);
+            Eigen::VectorXd torsoTaskPosDes(9);
+            torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw"), wbiModel.getDofIndex("l_knee"), wbiModel.getDofIndex("r_knee"),
+                    wbiModel.getDofIndex("l_ankle_pitch"), wbiModel.getDofIndex("r_ankle_pitch"),wbiModel.getDofIndex("l_elbow"), wbiModel.getDofIndex("r_elbow");
+//            torsoTaskPosDes << M_PI / 18, 0, 0, -M_PI / 6, -M_PI / 6, -M_PI / 6, -M_PI / 6, M_PI / 4,M_PI / 4;
+            for(int i=0; i<9;++i)
+            {
+                torsoTaskPosDes(i) = nominal_q(torso_indices(i));
+            }
+
+            tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(*ctrl, *model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 2.0, 0.5, torsoTaskPosDes);//w=5
+
+            // 5: Right foot cartesian task
+            Eigen::Vector3d posRFootDes=wbiModel.getSegmentPosition(wbiModel.getSegmentIndex("r_foot")).getTranslation();
+            tmSegCartFootRight = new gocra::gOcraSegCartesianTaskManager(*ctrl, *model, "rightFootCartesianTask", "r_foot", ocra::Y, 49.0, 20.0, posRFootDes);//w=100
+
+            // 6: Left foot cartesian task
+            Eigen::Vector3d posLFootDes=wbiModel.getSegmentPosition(wbiModel.getSegmentIndex("l_foot")).getTranslation();
+            tmSegCartFootLeft = new gocra::gOcraSegCartesianTaskManager(*ctrl, *model, "leftFootCartesianTask", "l_foot", ocra::Y, 49.0, 20.0, posLFootDes);//w=100
+
+            ctrl->setActiveTaskVector();
+            nt = ctrl->getNbActiveTask();
+            param_priority = Eigen::MatrixXd::Zero(nt,nt);
+
+
+            param_priority = Eigen::MatrixXd::Zero(nt,nt);
+            param_priority(0,1)=1; param_priority(0,2)=1; param_priority(0,3)=1; param_priority(0,4)=1; param_priority(0,5)=1; param_priority(0,6)=1;
+            param_priority(1,2)=1.0;//1;0.8;0.8;0;0.6;0.8
+            param_priority(2,1)=0.0;//0;0.2;0.75;0;0.6;0.8
+            param_priority(3,1)=1; param_priority(3,2)=1;
+            param_priority(4,1)=1; param_priority(4,2)=1;
+            param_priority(5,1)=1; param_priority(5,2)=1;
+            param_priority(6,1)=1; param_priority(6,2)=1;
+            ctrl->setTaskProjectors(param_priority);
+            ctrl->doUpdateProjector();
+            tInitialSet = true;
+        }
+
+
+    }
+    else if (counter>start && counter-start <= end){
+        errCoM[counter-start] = tmCoM->getTaskError().norm();
+        errLH[counter-start] = tmSegCartHandLeft->getTaskError().norm();
+        //errQ[counter] = tmFull->getTaskError().norm();
+        vecT[counter-start] = (counter-start)*0.01;
+
+        if (counter-start == end){
+            std::cout<<"end........"<<std::endl;
             int endindex = end-1;
             for (unsigned int i=0;i<endindex;++i)
                 resultFile <<errCoM[i]<<" ";
@@ -196,17 +312,16 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
             for (unsigned int i=0;i<endindex;++i)
                 resultFile <<errLH[i]<<" ";
             resultFile <<errLH[endindex]<<"\n";
-            for (unsigned int i=0;i<endindex;++i)
-                resultFile <<errQ[i]<<" ";
-            resultFile <<errQ[endindex]<<"\n";
+//            for (unsigned int i=0;i<endindex;++i)
+//                resultFile <<errQ[i]<<" ";
+//            resultFile <<errQ[endindex]<<"\n";
             for (unsigned int i=0;i<endindex;++i)
                 resultFile <<vecT[i]<<" ";
              resultFile <<vecT[endindex]<<"\n";
              std::cout<<"result saved."<<std::endl;
          }
-         counter += 1;
-
     }
+    counter += 1;
 }
 
 // Sequence_LeftRightHandReach
@@ -230,7 +345,7 @@ void Sequence_LeftRightHandReach::doInit(gocra::GHCJTController& ctrl, gocra::gO
 
     // CoM Task
     Eigen::Vector3d posCoM = model.getCoMPosition();
-    tmCoM = new gocra::gOcraCoMTaskManager(ctrl, model, "CoMTask", 49.0, 14.0, posCoM);//w=10
+    tmCoM = new gocra::gOcraCoMTaskManager(ctrl, model, "CoMTask", ocra::XYZ, 49.0, 14.0, posCoM);//w=10
 
     // Left hand cartesian task
     Eigen::Vector3d posLHandDes(-0.3, -0.2, 0.15);

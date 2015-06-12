@@ -63,11 +63,18 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
+        // Segment right hand task
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartHandRight;
         // Segment left hand task
         gocra::gOcraSegCartesianTaskManager*           tmSegCartHandLeft;
         // CoM task
         gocra::gOcraCoMTaskManager*                    tmCoM;
-
+        // Partial posture task for torso
+        gocra::gOcraPartialPostureTaskManager*         tmPartialTorso;
+        // Segment right foot task
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartFootRight;
+        // Segment left foot task
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartFootLeft;
         int                                            nt;//nb of active tasks
         double                                         tInitial;
         bool                                           tInitialSet;
@@ -78,6 +85,8 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
         double                                         zeroToOne;
         Eigen::MatrixXd                                param_priority;
         gocra::GHCJTController*                        ctrl;
+        gocra::gOcraModel*                             model;
+        Eigen::VectorXd                                nominal_q;
 
         //plot data
         int                                            counter;
@@ -89,7 +98,7 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_LeftRightHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& gmodel);
         virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
