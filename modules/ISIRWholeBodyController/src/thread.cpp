@@ -73,6 +73,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
     time_sim = 0;
 
+<<<<<<< HEAD
     if (!startupScenarioPath.empty()) {
         std::cout << "\nLoading tasks from scenario: " << startupScenarioPath << std::endl;
     }
@@ -82,6 +83,21 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
 
 
+=======
+    //================ SET UP TASK ===================//
+    // sequence = LoadSequence("Sequence_InitialPoseHold");
+    // sequence = LoadSequence("Sequence_NominalPose");
+    // sequence = LoadSequence("Sequence_LeftHandReach");
+    // sequence = LoadSequence("Sequence_LeftRightHandReach");
+    // sequence = LoadSequence("Sequence_CartesianTest");
+    // sequence = LoadSequence("Sequence_PoseTest");
+    // sequence = LoadSequence("Sequence_OrientationTest");
+    sequence = LoadSequence("Sequence_TrajectoryTrackingTest"); //new Sequence_TrajectoryTrackingTest();
+    // sequence = LoadSequence("Sequence_JointTest");
+    
+    // sequence = new ScenarioICub_01_Standing();
+    // sequence = new ScenarioICub_02_VariableWeightHandTasks();
+>>>>>>> 1d8ff981c6b433b29a237798d0e46b996900e87b
 }
 
 //*************************************************************************************************************************
@@ -109,23 +125,6 @@ bool ISIRWholeBodyControllerThread::threadInit()
     // Set all declared joints in module to TORQUE mode
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
 
-    //================ SET UP TASK ===================//
-    // sequence = new Sequence_NominalPose();
-    // sequence = new Sequence_InitialPoseHold();
-    // sequence = new Sequence_LeftHandReach();
-    // sequence = new Sequence_LeftRightHandReach();
-
-    // sequence = new Sequence_CartesianTest;
-    // sequence = new Sequence_PoseTest;
-    // sequence = new Sequence_OrientationTest;
-
-    sequence = new Sequence_TrajectoryTrackingTest();
-    // sequence = new Sequence_JointTest();
-    // sequence = new ScenarioICub_01_Standing();
-    // sequence = new ScenarioICub_02_VariableWeightHandTasks();
-
-
-
     // int lSoleIndex = ocraModel->getSegmentIndex("l_sole");
     // int rSoleIndex = ocraModel->getSegmentIndex("r_sole");
 
@@ -136,9 +135,8 @@ bool ISIRWholeBodyControllerThread::threadInit()
     // std::cout << "\nr_sole, index: " << rSoleIndex << " is at (x,y,z): " << rSoleDisp.getTranslation().transpose() <<std::endl;
 
 
-
+    // Initialise the sequence
     sequence->init(*ctrl, *ocraModel);
-    // sequence_01->init(*ctrl, *ocraModel);
 
 	return true;
 }
