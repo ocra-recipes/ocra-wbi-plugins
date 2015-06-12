@@ -33,6 +33,9 @@
 #include "ocra/control/ControlEnum.h"
 
 
+#include "ISIRWholeBodyController/sequenceLibrary.h"
+
+
 using namespace ISIRWholeBodyController;
 using namespace yarp::math;
 using namespace yarpWbi;
@@ -73,7 +76,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
     time_sim = 0;
 
-<<<<<<< HEAD
+
     if (!startupScenarioPath.empty()) {
         std::cout << "\nLoading tasks from scenario: " << startupScenarioPath << std::endl;
     }
@@ -83,7 +86,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
 
 
-=======
+
     //================ SET UP TASK ===================//
     // sequence = LoadSequence("Sequence_InitialPoseHold");
     // sequence = LoadSequence("Sequence_NominalPose");
@@ -94,10 +97,10 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     // sequence = LoadSequence("Sequence_OrientationTest");
     sequence = LoadSequence("Sequence_TrajectoryTrackingTest"); //new Sequence_TrajectoryTrackingTest();
     // sequence = LoadSequence("Sequence_JointTest");
-    
+
     // sequence = new ScenarioICub_01_Standing();
     // sequence = new ScenarioICub_02_VariableWeightHandTasks();
->>>>>>> 1d8ff981c6b433b29a237798d0e46b996900e87b
+
 }
 
 //*************************************************************************************************************************

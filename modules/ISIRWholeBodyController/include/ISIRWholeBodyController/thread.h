@@ -36,9 +36,9 @@
 #include <ISIRWholeBodyController/sequenceCollection.h>
 #include "wocra/wOcraController.h"
 #include "wocra/Solvers/OneLevelSolver.h"
-#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
+#include "wocra/Tasks/wOcraTaskSequenceBase.h"
 
-#include "ISIRWholeBodyController/ScenariosICub.h"
+// #include "ISIRWholeBodyController/ScenariosICub.h"
 
 
 using namespace yarp::os;
@@ -62,8 +62,8 @@ class ISIRWholeBodyControllerThread: public RateThread
     wocra::wOcraController *ctrl;
     wocra::OneLevelSolverWithQuadProg internalSolver;
 
-    wocra::wOcraTaskManagerCollectionBase* sequence;
-    // wocra::wOcraTaskManagerCollectionBase* sequence_01;
+    wocra::wOcraTaskSequenceBase* sequence;
+    // wocra::wOcraTaskSequenceBase* sequence_01;
 
     //wOcraCtrlTaskManager taskManager;
 

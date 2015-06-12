@@ -1,8 +1,8 @@
 #ifndef SEQUENCE_LIBRARY_H
 #define SEQUENCE_LIBRARY_H
 
-#include "orcisir/Tasks/ISIRTaskSequenceBase.h"
+#include "wocra/Tasks/wOcraTaskSequenceBase.h"
 
-orcisir::ISIRTaskSequenceBase* LoadSequence(const std::string& name);
+wocra::wOcraTaskSequenceBase* LoadSequence(const std::string& name);
 
 #endif
