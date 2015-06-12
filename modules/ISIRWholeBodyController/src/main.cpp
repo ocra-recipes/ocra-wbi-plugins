@@ -52,9 +52,10 @@ int main (int argc, char * argv[])
         cout<< "\t--rate :Period used by the module. Default set to 10ms." <<endl;
         cout<< "\t--robot :Robot name (icubSim or icub). Set to icub by default." <<endl;
         cout<< "\t--local :Prefix of the ports opened by the module. Set to the module name by default, i.e. basicWholeBodyInterfaceModule." <<endl;
+        cout<< "\t--scenario :A path to an XML file containing task scenarios. The scenario (set of tasks) defined in this file will be created when the controller is started. Set to empty by default." <<endl;
         return 0;
     }
-    
+
     Network yarp;
 
     double network_timeout = 10.0;
@@ -69,5 +70,3 @@ int main (int argc, char * argv[])
 
     return module.runModule(rf);
 }
-
-

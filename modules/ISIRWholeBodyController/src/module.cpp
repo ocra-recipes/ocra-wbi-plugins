@@ -61,6 +61,11 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
         moduleName = rf.find("local").asString().c_str();
     }
 
+    if( rf.check("scenario") )
+    {
+        startupScenarioPath = rf.find("scenario").asString().c_str();
+    }
+
     yarp::os::Property yarpWbiOptions;
     // Get wbi options from the canonical file
     if ( !rf.check("wbi_conf_file") )
@@ -96,11 +101,11 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
         ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
         ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
         ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
-    
+
 */
-    
+
 	}
-    
+
     // Make sure all the add* functions are done before the "init"
     if(!robotInterface->init())
     {
@@ -115,7 +120,7 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
         controller_options.put("printPeriod",rf.find("printPeriod").asDouble());
     }
 
-    ctrlThread = new ISIRWholeBodyControllerThread(moduleName, robotName, period, robotInterface, controller_options);
+    ctrlThread = new ISIRWholeBodyControllerThread(moduleName, robotName, period, robotInterface, controller_options, startupScenarioPath);
     if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing locomotion control thread. Closing module.\n"); return false; }
 
     fprintf(stderr,"ISIRWholeBodyController thread started\n");

@@ -51,11 +51,11 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
                                                              string _robotName,
                                                              int _period,
                                                              wholeBodyInterface *_wbi,
-                                                             yarp::os::Property &_options
-                                                            )
-    : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
+                                                             yarp::os::Property &_options,
+                                                             string _startupScenarioPath)
+    : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options), startupScenarioPath(_startupScenarioPath)
 {
-    bool isFreeBase = false; 
+    bool isFreeBase = false;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useReducedProblem = false;
     ctrl = new wocra::wOcraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
@@ -72,6 +72,16 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     fb_torque.resize(robot->getDoFs());
 
     time_sim = 0;
+
+    if (!startupScenarioPath.empty()) {
+        std::cout << "\nLoading tasks from scenario: " << startupScenarioPath << std::endl;
+    }
+    else{
+        std::cout << "\nNo scenarios loaded on startup. Defaulting to standard initial tasks." << std::endl;
+    }
+
+
+
 }
 
 //*************************************************************************************************************************

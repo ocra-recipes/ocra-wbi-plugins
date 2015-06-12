@@ -56,6 +56,9 @@ class ISIRWholeBodyControllerThread: public RateThread
     wholeBodyInterface *robot;
     ocraWbiModel *ocraModel;
     yarp::os::Property options;
+    string startupScenarioPath;
+
+
     wocra::wOcraController *ctrl;
     wocra::OneLevelSolverWithQuadProg internalSolver;
 
@@ -77,12 +80,17 @@ class ISIRWholeBodyControllerThread: public RateThread
     yarp::sig::Vector fb_Hroot_Vector;
     yarp::sig::Vector fb_Troot_Vector;
 
-    wbi::Frame fb_Hroot; // vector that position of root 
+    wbi::Frame fb_Hroot; // vector that position of root
     Eigen::Twistd fb_Troot; // vector that contains the twist of root
     yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
 public:
-    ISIRWholeBodyControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);
+    ISIRWholeBodyControllerThread(string _name,
+                                  string _robotName,
+                                  int _period,
+                                  wholeBodyInterface *_wbi,
+                                  yarp::os::Property & _options,
+                                  string _startupScenarioPath);
 
     bool threadInit();
     void run();
