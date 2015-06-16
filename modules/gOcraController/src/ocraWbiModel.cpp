@@ -587,7 +587,7 @@ int ocraWbiModel::doGetDofIndex(const std::string &name) const
 
 const std::string& ocraWbiModel::doGetDofName(int index) const
 {
-    wbi::ID dofID; //wbi::IDList jList = 
+    wbi::ID dofID; //wbi::IDList jList =
     bool res = robot->getJointList().indexToID(index, dofID);
     return dofID.toString();
     // throw std::runtime_error("[ocraWbiModel::doGetDofName] This function was not overriden for a specific model");

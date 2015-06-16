@@ -65,6 +65,8 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
         gocra::gOcraFullPostureTaskManager*            tmFull;
         // Segment right hand task
         gocra::gOcraSegCartesianTaskManager*           tmSegCartHandRight;
+        // Segment head task
+        gocra::gOcraSegCartesianTaskManager*           tmHead;
         // Segment left hand task
         gocra::gOcraSegCartesianTaskManager*           tmSegCartHandLeft;
         // CoM task

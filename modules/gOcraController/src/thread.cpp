@@ -179,6 +179,8 @@ void gOcraControllerThread::run()
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
 
 	ctrl->computeOutput(eigenTorques);
+
+
     // std::cout << "torques: "<<eigenTorques.transpose() << std::endl;
 
 //    std::cout << "task error:" << std::endl;
@@ -199,10 +201,34 @@ void gOcraControllerThread::run()
     Eigen::VectorXd q_actual = ocraModel->getJointPositions();
     Eigen::VectorXd q_max_actual = q_max - q_actual;
     Eigen::VectorXd q_actual_min = q_actual - q_min;
-    Eigen::VectorXd q_margin = 0.0001*Eigen::VectorXd::Ones(robot->getDoFs());
-    if (!((q_actual.array()<=(q_max-q_margin).array()).all() && (q_actual.array()>=(q_min+q_margin).array()).all())){
-        std::cout<<"JL! ";
+    Eigen::VectorXd q_margin = 0.000*Eigen::VectorXd::Ones(robot->getDoFs());
+//    if (!((q_actual.array()<=(q_max-q_margin).array()).all() && (q_actual.array()>=(q_min+q_margin).array()).all())){
+//        std::cout<<"JL! ";
+//    }
+    wbi::ID dofID; //wbi::IDList jList =
+//    bool res = robot->getJointList().indexToID(20, dofID);
+//    std::cout<< dofID.toString()<<std::endl;
+
+    if (!((q_actual.array()<=(q_max-q_margin).array()).all()))
+        std::cout<<std::endl<<"UL";
+    for (int i =0; i<robot->getDoFs(); ++i){
+        if (q_actual(i)>q_max(i)){
+            robot->getJointList().indexToID(i, dofID);
+            std::cout<<dofID.toString()<<"";
+//            std::cout<<ocraModel->getJointName(i)<<"";
+        }
     }
+
+    if (!(q_actual.array()>=(q_min+q_margin).array()).all())
+        std::cout<<std::endl<<"LL";
+    for (int i =0; i<robot->getDoFs(); ++i){
+        if (q_actual(i)<q_min(i)){
+            robot->getJointList().indexToID(i, dofID);
+            std::cout<<dofID.toString()<<"";
+//            std::cout<<ocraModel->getJointName(i)<<"";
+        }
+    }
+
 
     //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(ocraModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
 	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
@@ -210,21 +236,21 @@ void gOcraControllerThread::run()
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     robot->setControlReference(torques_cmd.data());
 
-    printPeriod = 500;
-    printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
-    if (printCountdown == 0)
-    {
-        if (!ocraModel->hasFixedRoot()){
-            std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << " "<< fb_Hroot_Vector(7) << " "<< fb_Hroot_Vector(11) << std::endl;
-            // std::cout << "root_link pos\n" << ocraModel->getSegmentPosition(ocraModel->getSegmentIndex("root_link")).getTranslation().transpose() << std::endl;
-            std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) <<" "<< fb_Troot_Vector(1) <<" "<< fb_Troot_Vector(2) << "\n---\n";
-            std::cout << "root_link vel\n" << ocraModel->getSegmentVelocity(ocraModel->getSegmentIndex("root_link")).getLinearVelocity().transpose() << std::endl;
+//    printPeriod = 500;
+//    printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
+//    if (printCountdown == 0)
+//    {
+//        if (!ocraModel->hasFixedRoot()){
+//            std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << " "<< fb_Hroot_Vector(7) << " "<< fb_Hroot_Vector(11) << std::endl;
+//            // std::cout << "root_link pos\n" << ocraModel->getSegmentPosition(ocraModel->getSegmentIndex("root_link")).getTranslation().transpose() << std::endl;
+//            std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) <<" "<< fb_Troot_Vector(1) <<" "<< fb_Troot_Vector(2) << "\n---\n";
+//            std::cout << "root_link vel\n" << ocraModel->getSegmentVelocity(ocraModel->getSegmentIndex("root_link")).getLinearVelocity().transpose() << std::endl;
 
 
-        }
-        // std::cout << "l_ankle_pitch: " << fb_qRad(17) << "   r_ankle_pitch: " << fb_qRad(23) << std::endl;
-        //std::cout << "ISIRWholeBodyController thread running..." << std::endl;
-    }
+//        }
+//        // std::cout << "l_ankle_pitch: " << fb_qRad(17) << "   r_ankle_pitch: " << fb_qRad(23) << std::endl;
+//        //std::cout << "ISIRWholeBodyController thread running..." << std::endl;
+//    }
 /*
     printPeriod = 5000;
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
