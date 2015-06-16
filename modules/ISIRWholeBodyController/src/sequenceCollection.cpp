@@ -9,14 +9,21 @@
 #define PI 3.1415926
 #endif
 
-void getNominalPosture(wocra::wOcraModel &model, VectorXd &q);
+
+#ifndef DEG_TO_RAD
+#define DEG_TO_RAD PI/180.0
+#endif
+
 
 // Sequence_FixedBaseMinimalTasks
 void Sequence_FixedBaseMinimalTasks::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
-    Eigen::VectorXd q_init = model.getJointPositions();
-    std::cout << "q init: " << q_init << std::endl;
-    tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 3.0, 1.0, q_init);
+
+    Eigen::VectorXd q_full = Eigen::VectorXd::Zero(model.nbInternalDofs());
+    getHomePosture(model, q_full);
+
+
+    taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 10.0, 2*sqrt(10.0), 1.0, q_full);
 }
 
 void Sequence_FixedBaseMinimalTasks::doUpdate(double time, wocra::wOcraModel& state, void** args)
@@ -675,4 +682,14 @@ void getNominalPosture(wocra::wOcraModel& model, VectorXd &q)
     q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
     q[model.getDofIndex("l_knee")] = -M_PI / 6;
     q[model.getDofIndex("r_knee")] = -M_PI / 6;
+}
+
+void getHomePosture(wocra::wOcraModel& model, VectorXd &q)
+{
+    q[model.getDofIndex("l_shoulder_roll")]=   20.0*DEG_TO_RAD;//PI/8.0;
+    q[model.getDofIndex("r_shoulder_roll")]=   20.0*DEG_TO_RAD;//PI/8.0;
+    q[model.getDofIndex("l_shoulder_pitch")]=  -25.0*DEG_TO_RAD;//-PI/8.0;
+    q[model.getDofIndex("r_shoulder_pitch")]=  -25.0*DEG_TO_RAD;//-PI/8.0;
+    q[model.getDofIndex("l_elbow")]        =   50.0*DEG_TO_RAD;//PI/4.0;
+    q[model.getDofIndex("r_elbow")]        =   50.0*DEG_TO_RAD;//PI/4.0;
 }

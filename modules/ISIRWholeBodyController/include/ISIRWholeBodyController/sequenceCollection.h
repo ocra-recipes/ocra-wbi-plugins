@@ -4,6 +4,11 @@
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
 #include "wocra/Trajectory/wOcraTrajectory.h"
 
+
+void getNominalPosture(wocra::wOcraModel &model, VectorXd &q);
+void getHomePosture(wocra::wOcraModel &model, VectorXd &q);
+
+
 class Sequence_FixedBaseMinimalTasks : public wocra::wOcraTaskSequenceBase
 {
     protected:

@@ -58,7 +58,9 @@ class ISIRWholeBodyControllerThread: public RateThread
     yarp::os::Property options;
     string startupTaskSetPath;
     string startupSequence;
+    bool runInDebugMode;
 
+    int debugJointIndex;
 
 
     wocra::wOcraController *ctrl;
@@ -78,6 +80,8 @@ class ISIRWholeBodyControllerThread: public RateThread
     double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
     Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the robot
     Eigen::VectorXd fb_qdRad; // vector that contains the derivative of encoders read from the robot
+    Eigen::VectorXd homePosture;
+    Eigen::VectorXd debugPosture;
 
     // Eigen::VectorXd fb_Hroot_Vector;
     yarp::sig::Vector fb_Hroot_Vector;
@@ -87,6 +91,10 @@ class ISIRWholeBodyControllerThread: public RateThread
     Eigen::Twistd fb_Troot; // vector that contains the twist of root
     yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
+
+    yarp::os::BufferedPort<yarp::os::Bottle> debugPort_in;
+    yarp::os::BufferedPort<yarp::os::Bottle> debugPort_out;
+
 public:
     ISIRWholeBodyControllerThread(string _name,
                                   string _robotName,
@@ -94,7 +102,8 @@ public:
                                   wholeBodyInterface *_wbi,
                                   yarp::os::Property & _options,
                                   string _startupTaskSetPath,
-                                  string _startupSequence);
+                                  string _startupSequence,
+                                  bool _runInDebugMode);
 
     bool threadInit();
     void run();

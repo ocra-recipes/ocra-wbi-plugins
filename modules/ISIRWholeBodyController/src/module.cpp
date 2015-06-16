@@ -55,6 +55,7 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
     if( rf.check("robot") )
     {
         robotName = rf.find("robot").asString().c_str();
+        std::cout << "\n\nRobot name is: " << robotName << "\n" << std::endl;
     }
     if( rf.check("local") )
     {
@@ -70,6 +71,11 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
     {
         startupSequence = rf.find("sequence").asString().c_str();
     }
+
+    if( rf.check("debug") )
+    {
+        debugMode = true;
+    }else{debugMode = false;}
 
     yarp::os::Property yarpWbiOptions;
     // Get wbi options from the canonical file
@@ -131,7 +137,8 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
                                                    robotInterface,
                                                    controller_options,
                                                    startupTaskSetPath,
-                                                   startupSequence);
+                                                   startupSequence,
+                                                   debugMode);
     if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing locomotion control thread. Closing module.\n"); return false; }
 
     fprintf(stderr,"ISIRWholeBodyController thread started\n");
