@@ -23,6 +23,7 @@
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Log.h>
+#include <yarp/os/BufferedPort.h>
 
 
 //#include "wocra/Solvers/OneLevelSolver.h"
@@ -31,6 +32,9 @@
 #include "ocra/control/FullState.h"
 #include "ocra/control/ControlFrame.h"
 #include "ocra/control/ControlEnum.h"
+
+
+#include "ISIRWholeBodyController/sequenceLibrary.h"
 
 
 using namespace ISIRWholeBodyController;
@@ -46,22 +50,42 @@ using namespace yarpWbi;
 #define HAND_FOOT_TASK 0
 #define TIME_MSEC_TO_SEC 0.001
 
-//*************************************************************************************************************************
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                               Thread Constructor
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
                                                              string _robotName,
                                                              int _period,
                                                              wholeBodyInterface *_wbi,
-                                                             yarp::os::Property &_options
-                                                            )
-    : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
+                                                             yarp::os::Property &_options,
+                                                             string _startupTaskSetPath,
+                                                             string _startupSequence,
+                                                             bool _runInDebugMode)
+    : RateThread(_period),
+      name(_name),
+      robotName(_robotName),
+      robot(_wbi),
+      options(_options),
+      startupTaskSetPath(_startupTaskSetPath),
+      startupSequence(_startupSequence),
+      runInDebugMode(_runInDebugMode)
 {
-    bool isFreeBase = false; 
+    bool isFreeBase = false;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useReducedProblem = false;
     ctrl = new wocra::wOcraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
 
     fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
     fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
+
+    homePosture = Eigen::VectorXd::Zero(robot->getDoFs());
+    debugPosture = Eigen::VectorXd::Zero(robot->getDoFs());
+    getHomePosture(*ocraModel, homePosture);
+    getNominalPosture(*ocraModel, debugPosture);
+
+
 
     fb_Hroot = wbi::Frame();
     fb_Troot = Eigen::VectorXd::Zero(DIM_TWIST);
@@ -72,9 +96,79 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     fb_torque.resize(robot->getDoFs());
 
     time_sim = 0;
+
+
+    if (runInDebugMode)
+    {
+        if (ocraModel->hasFixedRoot()) {
+            std::cout << "Loading fixed base minimal tasks..." << std::endl;
+            baseSequence = LoadSequence("Sequence_FixedBaseMinimalTasks");
+            baseSequenceIsActive = true;
+            std::cout << "\n\n\t------------------------------" << std::endl;
+            std::cout << "\t  Running in DEBUG mode..." << std::endl;
+            std::cout << "\t------------------------------\n" << std::endl;
+
+            std::string portPrefix = "/WBC/debug";
+            debugPort_in.open((portPrefix+":i").c_str());
+            debugPort_out.open((portPrefix+":o").c_str());
+            debugJointIndex = 0;
+        }
+        else{
+            std::cout << "[ERR] Cannot run debug mode with floating base." << std::endl;
+        }
+
+    }
+    else
+    {
+        //Create XML task set
+        if (!startupTaskSetPath.empty()) {
+            std::cout << "\nLoading tasks from XML file:\n" << startupTaskSetPath << "\n" << std::endl;
+            //TODO: Implement XML parsing
+            xmlSequenceIsActive = true;
+        }
+        else{
+            std::cout << "No XML task set detected." << std::endl;
+            xmlSequenceIsActive = false;
+        }
+
+        //Create cpp sequence
+        if (!startupSequence.empty()) {
+            std::cout << "\nLoading sequence:\n" << startupSequence << "\n" << std::endl;
+            cppSequence = LoadSequence(startupSequence);
+            cppSequenceIsActive = true;
+        }
+        else{
+            std::cout << "No startup sequence detected." << std::endl;
+            cppSequenceIsActive = false;
+        }
+
+        // Create base sequence
+        if(!xmlSequenceIsActive && !cppSequenceIsActive){
+            std::cout << "\nNo tasks or scenarios loaded on startup. Defaulting to standard initial tasks." << std::endl;
+            if (!ocraModel->hasFixedRoot()) {
+                std::cout << "Loading floating base minimal tasks..." << std::endl;
+                baseSequence = LoadSequence("Sequence_FloatingBaseMinimalTasks");
+                baseSequenceIsActive = true;
+            }
+            else{
+                std::cout << "Loading fixed base minimal tasks..." << std::endl;
+                baseSequence = LoadSequence("Sequence_FixedBaseMinimalTasks");
+                baseSequenceIsActive = true;
+            }
+        }
+        else{
+            //TODO: make a check that looks at all of the tasks on the controller and determines whether or not there is a need for the baseSequence
+            baseSequenceIsActive = false;
+        }
+    }
+
 }
 
-//*************************************************************************************************************************
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                               Thread Init
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool ISIRWholeBodyControllerThread::threadInit()
 {
 //    printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
@@ -96,24 +190,17 @@ bool ISIRWholeBodyControllerThread::threadInit()
     else
         ocraModel->setState(fb_qRad, fb_qdRad);
 
-    // Set all declared joints in module to TORQUE mode
-    bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
 
-    //================ SET UP TASK ===================//
-    // sequence = new Sequence_NominalPose();
-    // sequence = new Sequence_InitialPoseHold();
-    // sequence = new Sequence_LeftHandReach();
-    // sequence = new Sequence_LeftRightHandReach();
 
-    // sequence = new Sequence_CartesianTest;
-    // sequence = new Sequence_PoseTest;
-    // sequence = new Sequence_OrientationTest;
-
-    sequence = new Sequence_TrajectoryTrackingTest();
-    // sequence = new Sequence_JointTest();
-    // sequence = new ScenarioICub_01_Standing();
-    // sequence = new ScenarioICub_02_VariableWeightHandTasks();
-
+    if (runInDebugMode)
+    {
+        robot->setControlMode(CTRL_MODE_POS, debugPosture.data(), ALL_JOINTS);
+    }
+    else
+    {
+        // Set all declared joints in module to TORQUE mode
+        bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+    }
 
 
     // int lSoleIndex = ocraModel->getSegmentIndex("l_sole");
@@ -126,17 +213,31 @@ bool ISIRWholeBodyControllerThread::threadInit()
     // std::cout << "\nr_sole, index: " << rSoleIndex << " is at (x,y,z): " << rSoleDisp.getTranslation().transpose() <<std::endl;
 
 
+    // Initialise the sequence
 
-    sequence->init(*ctrl, *ocraModel);
-    // sequence_01->init(*ctrl, *ocraModel);
+    if (baseSequenceIsActive) {baseSequence->init(*ctrl, *ocraModel);}
+
+    // if (xmlSequenceIsActive) {xmlSequence->init(*ctrl, *ocraModel);}
+
+    if (cppSequenceIsActive) {cppSequence->init(*ctrl, *ocraModel);}
+
+
+
 
 	return true;
 }
 
-//*************************************************************************************************************************
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+//                                               Thread Run
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void ISIRWholeBodyControllerThread::run()
 {
-//    std::cout << "Running Control Loop" << std::endl;
+    /******************************************************************************************************
+                                            Update dynamic model
+    ******************************************************************************************************/
 
     // Move this to header so can resize once
     yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
@@ -171,45 +272,97 @@ void ISIRWholeBodyControllerThread::run()
     else
         ocraModel->setState(fb_qRad, fb_qdRad);
 
-    sequence->update(time_sim, *ocraModel, NULL);
-    // sequence_01->update(time_sim, *ocraModel, NULL);
 
-    // compute desired torque by calling the controller
+    /******************************************************************************************************
+                                            Update task sequences
+    ******************************************************************************************************/
+
+    if (runInDebugMode)
+    {
+        yarp::os::Bottle *input = debugPort_in.read(false);
+        if (input != NULL)
+        {
+            int tempDebugIndex = input->get(0).asInt();
+            if (tempDebugIndex>=0 || tempDebugIndex<robot->getDoFs()) {
+                std::cout << "\n-----\nNew joint received...\n" << std::endl;
+                std::cout << "Returning joint: " << debugJointIndex << " to home position." << std::endl;
+                robot->setControlMode(CTRL_MODE_POS, &debugPosture[debugJointIndex], debugJointIndex);
+                debugJointIndex = tempDebugIndex;
+                std::cout << "Now joint: " << debugJointIndex << " is now being tested in torque control.\n-----\n" << std::endl;
+            }
+            else{std::cout << "\n[ERR] (thread.run) The command you sent was not a valid joint index. Please use integers between 0 and "<< robot->getDoFs() << ".\n"<< std::endl;}
+
+        }
+    }
+    else{
+
+        if (baseSequenceIsActive) {baseSequence->update(time_sim, *ocraModel, NULL);}
+
+        // if (xmlSequenceIsActive) {xmlSequence->update(time_sim, *ocraModel, NULL);}
+
+        if (cppSequenceIsActive) {cppSequence->update(time_sim, *ocraModel, NULL);}
+    }
+
+
+    /******************************************************************************************************
+                                Compute desired torque by calling the controller
+    ******************************************************************************************************/
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
 
 	ctrl->computeOutput(eigenTorques);
-    // std::cout << "torques: "<<eigenTorques.transpose() << std::endl;
-
-//    std::cout << "task error:" << std::endl;
-//    std::cout << ctrl->getTask("accTask").getError() << std::endl;
-//    std::cout << "torque:" << std::endl;
-//    std::cout << fb_torque.toString() << std::endl;
-//    std::cout << eigenTorques.transpose() << std::endl;
 
 
+    /******************************************************************************************************
+                                        Threshold the computed torques
+    ******************************************************************************************************/
     for(int i = 0; i < eigenTorques.size(); ++i)
     {
       if(eigenTorques(i) < TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
       else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
-      //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(ocraModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
 
 	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
-    // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
-    robot->setControlReference(torques_cmd.data());
 
+
+    /******************************************************************************************************
+                                    Send the torques to the robot via WBI
+    ******************************************************************************************************/
+
+    if (runInDebugMode) {
+        robot->setControlMode(CTRL_MODE_TORQUE, &torques_cmd[debugJointIndex], debugJointIndex);
+    }
+    else{
+        robot->setControlReference(torques_cmd.data());
+    }
+
+
+    /******************************************************************************************************
+                            Print out useful information at every "printPeriod" (ms)
+    ******************************************************************************************************/
     printPeriod = 500;
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
     if (printCountdown == 0)
     {
-        if (!ocraModel->hasFixedRoot()){
+        if (runInDebugMode)
+        {
+            Bottle& output = debugPort_out.prepare();
+            output.clear();
+
+            output.addString("joint");
+            output.addInt(debugJointIndex);
+            output.addString("torque_desired");
+            output.addDouble(torques_cmd[debugJointIndex]);
+            output.addString("torque_measured");
+            output.addDouble(fb_torque[debugJointIndex]);
+
+            debugPort_out.write();
+        }
+        else if (!ocraModel->hasFixedRoot()){
             std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << " "<< fb_Hroot_Vector(7) << " "<< fb_Hroot_Vector(11) << std::endl;
             // std::cout << "root_link pos\n" << ocraModel->getSegmentPosition(ocraModel->getSegmentIndex("root_link")).getTranslation().transpose() << std::endl;
             std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) <<" "<< fb_Troot_Vector(1) <<" "<< fb_Troot_Vector(2) << "\n---\n";
             std::cout << "root_link vel\n" << ocraModel->getSegmentVelocity(ocraModel->getSegmentIndex("root_link")).getLinearVelocity().transpose() << std::endl;
-
-
         }
         // std::cout << "l_ankle_pitch: " << fb_qRad(17) << "   r_ankle_pitch: " << fb_qRad(23) << std::endl;
         //std::cout << "ISIRWholeBodyController thread running..." << std::endl;

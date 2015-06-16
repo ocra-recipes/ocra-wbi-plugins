@@ -36,9 +36,9 @@
 #include <ISIRWholeBodyController/sequenceCollection.h>
 #include "wocra/wOcraController.h"
 #include "wocra/Solvers/OneLevelSolver.h"
-#include "wocra/Tasks/wOcraTaskManagerCollectionBase.h"
+#include "wocra/Tasks/wOcraTaskSequenceBase.h"
 
-#include "ISIRWholeBodyController/ScenariosICub.h"
+// #include "ISIRWholeBodyController/ScenariosICub.h"
 
 
 using namespace yarp::os;
@@ -56,13 +56,21 @@ class ISIRWholeBodyControllerThread: public RateThread
     wholeBodyInterface *robot;
     ocraWbiModel *ocraModel;
     yarp::os::Property options;
+    string startupTaskSetPath;
+    string startupSequence;
+    bool runInDebugMode;
+
+    int debugJointIndex;
+
+
     wocra::wOcraController *ctrl;
     wocra::OneLevelSolverWithQuadProg internalSolver;
 
-    wocra::wOcraTaskManagerCollectionBase* sequence;
-    // wocra::wOcraTaskManagerCollectionBase* sequence_01;
+    wocra::wOcraTaskSequenceBase* baseSequence;
+    wocra::wOcraTaskSequenceBase* xmlSequence;
+    wocra::wOcraTaskSequenceBase* cppSequence;
 
-    //wOcraCtrlTaskManager taskManager;
+    bool baseSequenceIsActive, xmlSequenceIsActive, cppSequenceIsActive;
 
     Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
 
@@ -72,17 +80,30 @@ class ISIRWholeBodyControllerThread: public RateThread
     double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
     Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the robot
     Eigen::VectorXd fb_qdRad; // vector that contains the derivative of encoders read from the robot
+    Eigen::VectorXd homePosture;
+    Eigen::VectorXd debugPosture;
 
     // Eigen::VectorXd fb_Hroot_Vector;
     yarp::sig::Vector fb_Hroot_Vector;
     yarp::sig::Vector fb_Troot_Vector;
 
-    wbi::Frame fb_Hroot; // vector that position of root 
+    wbi::Frame fb_Hroot; // vector that position of root
     Eigen::Twistd fb_Troot; // vector that contains the twist of root
     yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
+
+    yarp::os::BufferedPort<yarp::os::Bottle> debugPort_in;
+    yarp::os::BufferedPort<yarp::os::Bottle> debugPort_out;
+
 public:
-    ISIRWholeBodyControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);
+    ISIRWholeBodyControllerThread(string _name,
+                                  string _robotName,
+                                  int _period,
+                                  wholeBodyInterface *_wbi,
+                                  yarp::os::Property & _options,
+                                  string _startupTaskSetPath,
+                                  string _startupSequence,
+                                  bool _runInDebugMode);
 
     bool threadInit();
     void run();

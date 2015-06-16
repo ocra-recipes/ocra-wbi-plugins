@@ -41,6 +41,9 @@ class ISIRWholeBodyControllerModule: public RFModule
     /* module parameters */
     string moduleName;
     string robotName;
+    string startupTaskSetPath;
+    string startupSequence;
+    bool debugMode;
     int period;
     double avgTime, stdDev, avgTimeUsed, stdDevUsed;
 
