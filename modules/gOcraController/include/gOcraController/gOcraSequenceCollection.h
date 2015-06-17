@@ -89,6 +89,7 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
         gocra::GHCJTController*                        ctrl;
         gocra::gOcraModel*                             model;
         Eigen::VectorXd                                nominal_q;
+        double                                         kp_posture, kd_posture, kp_lh, kd_lh, kp_head, kd_head, a_lh_head, a_head_lh;
 
         //plot data
         int                                            counter;
