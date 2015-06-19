@@ -32,6 +32,8 @@
 #include "ocra/control/ControlFrame.h"
 #include "ocra/control/ControlEnum.h"
 
+#include <stdio.h>
+#include <stdlib.h>
 
 using namespace gOcraController;
 using namespace yarp::math;
@@ -40,8 +42,8 @@ using namespace yarpWbi;
 #define ALL_JOINTS -1
 #define DIM_DISP 3
 #define DIM_TWIST 6
-#define TORQUE_MIN -24
-#define TORQUE_MAX 24
+#define TORQUE_MIN -12
+#define TORQUE_MAX 12
 //#define HAND_FOOT_TASK 1
 #define HAND_FOOT_TASK 0
 #define TIME_MSEC_TO_SEC 0.001
@@ -120,10 +122,37 @@ bool gOcraControllerThread::threadInit()
 
 
     //================ SET UP TASK ===================//
-    // sequence = new Sequence_NominalPose();
-    // sequence = new Sequence_InitialPoseHold();
-    //sequence = new Sequence_LeftHandReach();
-    sequence = new Sequence_ComLeftHandReach();
+    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/sequence_param.txt", "r");
+    char keyward[256];
+    char value[128];
+    int seq;
+
+    while (fgets(keyward, sizeof(keyward), infile)){
+        if (1 == sscanf(keyward, "sequence = %127s", value)){
+            seq = atoi(value);
+        }
+    }
+
+    if (seq==1){
+        std::cout << "Sequence_NominalPose" << std::endl;
+        sequence = new Sequence_NominalPose();
+    }
+    else if (seq==2){
+        std::cout << "Sequence_InitialPoseHold" << std::endl;
+        sequence = new Sequence_InitialPoseHold();
+    }
+    else if (seq==3){
+        std::cout << "Sequence_LeftHandReach" << std::endl;
+        sequence = new Sequence_LeftHandReach();
+    }
+    else if (seq==4){
+        std::cout << "Sequence_ComLeftHandReach" << std::endl;
+        sequence = new Sequence_ComLeftHandReach();
+    }
+    else{
+        std::cout << "Sequence_NominalPose" << std::endl;
+        sequence = new Sequence_NominalPose();
+    }
      //sequence = new Sequence_LeftRightHandReach();
 
     // sequence = new Sequence_CartesianTest;

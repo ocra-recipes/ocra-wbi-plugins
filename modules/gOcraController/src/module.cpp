@@ -55,6 +55,7 @@ bool gOcraControllerModule::configure(ResourceFinder &rf)
     if( rf.check("robot") )
     {
         robotName = rf.find("robot").asString().c_str();
+        std::cout <<"robot name is " << robotName << std::endl;
     }
     if( rf.check("local") )
     {

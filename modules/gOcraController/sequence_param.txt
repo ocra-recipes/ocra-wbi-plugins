@@ -1,0 +1,5 @@
+#1 sequence = new Sequence_NominalPose();
+#2 sequence = new Sequence_InitialPoseHold();
+#3 sequence = new Sequence_LeftHandReach();
+#4 sequence = new Sequence_ComLeftHandReach();
+sequence = 2
