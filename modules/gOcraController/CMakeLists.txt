@@ -43,8 +43,9 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${YARP_INCLUDE_DIRS}
                     ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${EIGEN3_INCLUDE_DIR}
+                    ${EIGEN3_INCLUDE_DIR}/unsupported
                     ${BOOST_INCLUDE_DIRS}
-                    ${EIGEN_INCLUDE_DIRS}
+                    # ${EIGEN_INCLUDE_DIRS}
                     ${PC_GOCRA_INCLUDE_DIRS}
                     ${PC_OCRA_FRAMEWORK_INCLUDE_DIRS}
                     ${modHelp_INCLUDE_DIRS}/include

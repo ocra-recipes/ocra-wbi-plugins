@@ -61,6 +61,11 @@ bool gOcraControllerModule::configure(ResourceFinder &rf)
         moduleName = rf.find("local").asString().c_str();
     }
 
+    if( rf.check("replay") )
+    {
+        replayJointAnglesPath = rf.find("replay").asString().c_str();
+    }
+
     yarp::os::Property yarpWbiOptions;
     // Get wbi options from the canonical file
     if ( !rf.check("wbi_conf_file") )
@@ -115,7 +120,7 @@ bool gOcraControllerModule::configure(ResourceFinder &rf)
         controller_options.put("printPeriod",rf.find("printPeriod").asDouble());
     }
 
-    ctrlThread = new gOcraControllerThread(moduleName, robotName, period, robotInterface, controller_options);
+    ctrlThread = new gOcraControllerThread(moduleName, robotName, period, robotInterface, controller_options, replayJointAnglesPath);
     if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing control thread. Closing module.\n"); return false; }
 
     fprintf(stderr,"gOcraController thread started\n");

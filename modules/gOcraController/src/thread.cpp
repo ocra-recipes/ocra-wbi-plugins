@@ -48,13 +48,25 @@ using namespace yarpWbi;
 
 //*************************************************************************************************************************
 gOcraControllerThread::gOcraControllerThread(string _name,
-                                                             string _robotName,
-                                                             int _period,
-                                                             wholeBodyInterface *_wbi,
-                                                             yarp::os::Property &_options
-                                                            )
-    : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options)
+                                             string _robotName,
+                                             int _period,
+                                             wholeBodyInterface *_wbi,
+                                             yarp::os::Property &_options,
+                                             std::string _replayJointAnglesPath
+                                            )
+    : RateThread(_period), name(_name), robotName(_robotName), robot(_wbi), options(_options), replayJointAnglesPath(_replayJointAnglesPath)
 {
+    if(!replayJointAnglesPath.empty()){
+      std::cout << "Got the replay flag - replaying joint angles in position mode." << std::endl;
+      std::cout << "Getting joint angles from file:\n" << replayJointAnglesPath << std::endl;
+      //TODO: Parse file path and load joint commands into a big ass matrix
+      //TODO: Pre shape a "PosCommandVector" which will pick the angles at each timestep - this will get passed to the WBI
+      isReplayMode = true;
+    }else{
+      isReplayMode = false;
+    }
+
+
     bool isFreeBase = false;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useGrav = true;// enable gravity compensation
@@ -70,6 +82,8 @@ gOcraControllerThread::gOcraControllerThread(string _name,
     fb_Troot_Vector = yarp::sig::Vector(6, 0.0);
 
     fb_torque.resize(robot->getDoFs());
+
+    position_cmd.resize(robot->getDoFs());
 
     time_sim = 0;
 }
@@ -97,7 +111,13 @@ bool gOcraControllerThread::threadInit()
         ocraModel->setState(fb_qRad, fb_qdRad);
 
     // Set all declared joints in module to TORQUE mode
-    bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+    if (!isReplayMode) {
+      bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+    }
+    else{
+      bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
+    }
+
 
     //================ SET UP TASK ===================//
     // sequence = new Sequence_NominalPose();
@@ -138,6 +158,8 @@ bool gOcraControllerThread::threadInit()
 void gOcraControllerThread::run()
 {
 //    std::cout << "Running Control Loop" << std::endl;
+
+
 
     // Move this to header so can resize once
     yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
@@ -234,7 +256,14 @@ void gOcraControllerThread::run()
 	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
-    robot->setControlReference(torques_cmd.data());
+    if (!isReplayMode) {
+      robot->setControlReference(torques_cmd.data());
+    }
+    else{
+      //TODO: Get new position_cmd from big ass matrix
+      position_cmd = ???;
+      robot->setControlReference(position_cmd.data());
+    }
 
 //    printPeriod = 500;
 //    printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print

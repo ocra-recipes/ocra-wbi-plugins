@@ -41,6 +41,7 @@ class gOcraControllerModule: public RFModule
     /* module parameters */
     string moduleName;
     string robotName;
+    string replayJointAnglesPath;
     int period;
     double avgTime, stdDev, avgTimeUsed, stdDevUsed;
 

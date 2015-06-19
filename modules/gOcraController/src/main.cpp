@@ -52,6 +52,7 @@ int main (int argc, char * argv[])
         cout<< "\t--rate :Period used by the module. Default set to 10ms." <<endl;
         cout<< "\t--robot :Robot name (icubSim or icub). Set to icub by default." <<endl;
         cout<< "\t--local :Prefix of the ports opened by the module. Set to the module name by default, i.e. basicWholeBodyInterfaceModule." <<endl;
+        cout<< "\t--replay :This will put the WBI in position mode and replay joint angles from simulation. Must specify a file path to the joint angles." <<endl;
         return 0;
     }
 

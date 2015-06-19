@@ -51,6 +51,8 @@ class gOcraControllerThread: public RateThread
 {
     string name;
     string robotName;
+    string replayJointAnglesPath;
+    bool isReplayMode;
     wholeBodyInterface *robot;
     ocraWbiModel *ocraModel;
     yarp::os::Property options;
@@ -79,8 +81,10 @@ class gOcraControllerThread: public RateThread
     Eigen::Twistd fb_Troot; // vector that contains the twist of root
     yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
+    yarp::sig::Vector position_cmd;
+
 public:
-    gOcraControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options);
+    gOcraControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options, std::string _replayJointAnglesPath="");
 
     bool threadInit();
     void run();
