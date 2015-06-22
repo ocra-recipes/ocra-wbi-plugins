@@ -34,6 +34,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 using namespace gOcraController;
 using namespace yarp::math;
@@ -60,7 +61,7 @@ gOcraControllerThread::gOcraControllerThread(string _name,
 {
     if(!replayJointAnglesPath.empty()){
       std::cout << "Got the replay flag - replaying joint angles in position mode." << std::endl;
-      std::cout << "Getting joint angles from file:\n" << replayJointAnglesPath << std::endl;
+//      std::cout << "Getting joint angles from file:\n" << replayJointAnglesPath << std::endl;
       //TODO: Parse file path and load joint commands into a big ass matrix
       //TODO: Pre shape a "PosCommandVector" which will pick the angles at each timestep - this will get passed to the WBI
       isReplayMode = true;
@@ -112,13 +113,7 @@ bool gOcraControllerThread::threadInit()
     else
         ocraModel->setState(fb_qRad, fb_qdRad);
 
-    // Set all declared joints in module to TORQUE mode
-    if (!isReplayMode) {
-      bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
-    }
-    else{
-      bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
-    }
+
 
 
     //================ SET UP TASK ===================//
@@ -126,11 +121,14 @@ bool gOcraControllerThread::threadInit()
     char keyward[256];
     char value[128];
     int seq;
+    char positionControl[128];
 
     while (fgets(keyward, sizeof(keyward), infile)){
         if (1 == sscanf(keyward, "sequence = %127s", value)){
             seq = atoi(value);
         }
+        sscanf(keyward, "positionControl = %127s", positionControl);
+
     }
 
     if (seq==1){
@@ -165,20 +163,25 @@ bool gOcraControllerThread::threadInit()
     // sequence = new ScenarioICub_02_VariableWeightHandTasks();
 
 
-
-    // int lSoleIndex = ocraModel->getSegmentIndex("l_sole");
-    // int rSoleIndex = ocraModel->getSegmentIndex("r_sole");
-
-    // Eigen::Displacementd lSoleDisp = ocraModel->getSegmentPosition(lSoleIndex);
-    // Eigen::Displacementd rSoleDisp = ocraModel->getSegmentPosition(rSoleIndex);
-    // std::cout << "\n\n\nl_sole, index: " << lSoleIndex << " is at (x,y,z): " << lSoleDisp.getTranslation().transpose()  <<std::endl;
-
-    // std::cout << "\nr_sole, index: " << rSoleIndex << " is at (x,y,z): " << rSoleDisp.getTranslation().transpose() <<std::endl;
-
-
-
     sequence->init(*ctrl, *ocraModel);
-    // sequence_01->init(*ctrl, *ocraModel);
+
+    // Set control mode
+    if (strcmp(positionControl, "true")==0){
+        isReplayMode=true;
+        std::cout<<"position control mode"<<std::endl;
+    }
+    else{
+         isReplayMode = false;
+         std::cout<<"torque control mode"<<std::endl;
+    }
+
+    if (!isReplayMode) {
+      bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+    }
+    else{
+      bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
+    }
+
 
 	return true;
 }
@@ -224,7 +227,7 @@ void gOcraControllerThread::run()
         ocraModel->setState(fb_qRad, fb_qdRad);
 
     sequence->update(time_sim, *ocraModel, NULL);
-    // sequence_01->update(time_sim, *ocraModel, NULL);
+
 
     // compute desired torque by calling the controller
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
@@ -232,13 +235,7 @@ void gOcraControllerThread::run()
 	ctrl->computeOutput(eigenTorques);
 
 
-    // std::cout << "torques: "<<eigenTorques.transpose() << std::endl;
-
-//    std::cout << "task error:" << std::endl;
-//    std::cout << ctrl->getTask("accTask").getError() << std::endl;
-//    std::cout << "torque:" << std::endl;
-//    std::cout << fb_torque.toString() << std::endl;
-//    std::cout << eigenTorques.transpose() << std::endl;
+//    std::cout << "torques: "<<eigenTorques.transpose() << std::endl;
 
 
     for(int i = 0; i < eigenTorques.size(); ++i)
@@ -247,18 +244,23 @@ void gOcraControllerThread::run()
       else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
 
-    Eigen::VectorXd q_min = ocraModel->getJointLowerLimits();
-    Eigen::VectorXd q_max = ocraModel->getJointUpperLimits();
+    //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(ocraModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
+    modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
+
+
+    Eigen::VectorXd q_margin = 0.01*Eigen::VectorXd::Ones(robot->getDoFs());
+    Eigen::VectorXd q_min = ocraModel->getJointLowerLimits() + q_margin;
+    Eigen::VectorXd q_max = ocraModel->getJointUpperLimits() - q_margin;
     Eigen::VectorXd q_actual = ocraModel->getJointPositions();
-    Eigen::VectorXd q_max_actual = q_max - q_actual;
-    Eigen::VectorXd q_actual_min = q_actual - q_min;
-    Eigen::VectorXd q_margin = 0.000*Eigen::VectorXd::Ones(robot->getDoFs());
+    Eigen::VectorXd q_vel = ocraModel->getJointVelocities();
+//    Eigen::VectorXd q_max_actual = q_max - q_actual;
+//    Eigen::VectorXd q_actual_min = q_actual - q_min;
+
 //    if (!((q_actual.array()<=(q_max-q_margin).array()).all() && (q_actual.array()>=(q_min+q_margin).array()).all())){
 //        std::cout<<"JL! ";
 //    }
-    wbi::ID dofID; //wbi::IDList jList =
-//    bool res = robot->getJointList().indexToID(20, dofID);
-//    std::cout<< dofID.toString()<<std::endl;
+    wbi::ID dofID;
+
 
     if (!((q_actual.array()<=(q_max-q_margin).array()).all()))
         std::cout<<std::endl<<"UL";
@@ -266,7 +268,6 @@ void gOcraControllerThread::run()
         if (q_actual(i)>q_max(i)){
             robot->getJointList().indexToID(i, dofID);
             std::cout<<dofID.toString()<<"";
-//            std::cout<<ocraModel->getJointName(i)<<"";
         }
     }
 
@@ -276,22 +277,39 @@ void gOcraControllerThread::run()
         if (q_actual(i)<q_min(i)){
             robot->getJointList().indexToID(i, dofID);
             std::cout<<dofID.toString()<<"";
-//            std::cout<<ocraModel->getJointName(i)<<"";
         }
     }
 
+    Eigen::VectorXd eigenJointPosition = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
+    double dt = TIME_MSEC_TO_SEC * getRate();
+    Eigen::VectorXd generalizedForces = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
+    if (isReplayMode) {
+        generalizedForces = ocraModel->getGravityTerms() + ocraModel->getNonLinearTerms() + eigenTorques;
+//        std::cout<<"gforces: "<<generalizedForces.transpose()<<std::endl;
+        eigenJointPosition = q_actual + q_vel*dt + 0.5*ocraModel->getInertiaMatrixInverse()*generalizedForces*dt*dt;
+//        std::cout<<"position: "<<eigenJointPosition.transpose()<<std::endl;
+        for (int i =0; i<robot->getDoFs(); ++i){
+            if (eigenJointPosition(i)>q_max(i))
+                eigenJointPosition(i)=q_max(i);
 
-    //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(ocraModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
-	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
+             if (eigenJointPosition(i)<q_min(i))
+                eigenJointPosition(i)=q_min(i);
+        }
+        modHelp::eigenToYarpVector(eigenJointPosition, position_cmd);
+    }
+
 
     // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
     if (!isReplayMode) {
       robot->setControlReference(torques_cmd.data());
     }
     else{
-      //TODO: Get new position_cmd from big ass matrix
-      position_cmd = ???;
+//      //TODO: Get new position_cmd from big ass matrix
+//      position_cmd = ???;
+      position_cmd = yarp::sig::Vector(robot->getDoFs(), 0.1);
       robot->setControlReference(position_cmd.data());
+
+
     }
 
 //    printPeriod = 500;
@@ -309,63 +327,7 @@ void gOcraControllerThread::run()
 //        // std::cout << "l_ankle_pitch: " << fb_qRad(17) << "   r_ankle_pitch: " << fb_qRad(23) << std::endl;
 //        //std::cout << "ISIRWholeBodyController thread running..." << std::endl;
 //    }
-/*
-    printPeriod = 5000;
-    printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
 
-    if(printCountdown==0 && HAND_FOOT_TASK) {
-        //std::cout << "The robot encoders values are: " << std::endl;
-        //std::cout << fb_qRad.transpose() << std::endl;
-        //std::cout << "The joint torquess are" << std::endl;
-        //std::cout << fb_torque.toString() << std::endl;
-
-
-        //std::cout << "Data in ocraModel" << std::endl;
-        //ocraModel->printAllData();
-        std::cout << "task target 1" <<ctrl->getTask("l_hand_task").isActiveAsObjective()<< std::endl;
-        std::cout << "task target 2" <<ctrl->getTask("l_hand_task2").isActiveAsObjective()<< std::endl;
-        //lhand, rfoot, rshank
-        if (ctrl->getTask("l_hand_task").isActiveAsObjective())
-            ctrl->getTask("l_hand_task").deactivate();
-        else
-            ctrl->getTask("l_hand_task").activateAsObjective();
-
-        if (ctrl->getTask("l_hand_task2").isActiveAsObjective())
-            ctrl->getTask("l_hand_task2").deactivate();
-        else
-            ctrl->getTask("l_hand_task2").activateAsObjective();
-
-        if (ctrl->getTask("r_shank_task").isActiveAsObjective())
-            ctrl->getTask("r_shank_task").deactivate();
-        else
-            ctrl->getTask("r_shank_task").activateAsObjective();
-
-        if (ctrl->getTask("r_shank_task2").isActiveAsObjective())
-            ctrl->getTask("r_shank_task2").deactivate();
-        else
-            ctrl->getTask("r_shank_task2").activateAsObjective();
-        //rhand, lfoot, lshank
-        if (ctrl->getTask("r_hand_task").isActiveAsObjective())
-            ctrl->getTask("r_hand_task").deactivate();
-        else
-            ctrl->getTask("r_hand_task").activateAsObjective();
-
-        if (ctrl->getTask("r_hand_task2").isActiveAsObjective())
-            ctrl->getTask("r_hand_task2").deactivate();
-        else
-            ctrl->getTask("r_hand_task2").activateAsObjective();
-
-        if (ctrl->getTask("l_shank_task").isActiveAsObjective())
-            ctrl->getTask("l_shank_task").deactivate();
-        else
-            ctrl->getTask("l_shank_task").activateAsObjective();
-
-        if (ctrl->getTask("l_shank_task2").isActiveAsObjective())
-            ctrl->getTask("l_shank_task2").deactivate();
-        else
-            ctrl->getTask("l_shank_task2").activateAsObjective();
-    }
-*/
     time_sim += TIME_MSEC_TO_SEC * getRate();
 }
 
