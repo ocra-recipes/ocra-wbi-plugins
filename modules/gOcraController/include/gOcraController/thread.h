@@ -82,6 +82,10 @@ class gOcraControllerThread: public RateThread
     yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
     yarp::sig::Vector position_cmd;
+    Eigen::MatrixXd qRef;
+    Eigen::MatrixXd dqRef;
+    int counter;
+    unsigned int replayDataLength;
 
 public:
     gOcraControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options, std::string _replayJointAnglesPath="");

@@ -50,8 +50,9 @@ void Sequence_InitialPoseHold::doUpdate(double time, gocra::gOcraModel& state, v
 }
 
 // Sequence_NominalPoseHold
-void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& gmodel)
 {
+    model = &gmodel;
     FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/param.txt", "r");
     char keyward[256];
     char value[128];
@@ -70,17 +71,22 @@ void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraMode
 
     tFinal = 5.0;
     tInitial = 0.0;
-    t_pich_index = model.getDofIndex("torso_pitch");
-    q_init = model.getJointPositions();
-    nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
-    getNominalPosture(model, nominal_q);
+    t_pich_index = model->getDofIndex("torso_pitch");
+    q_init = model->getJointPositions();
+    nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
+    getNominalPosture(*model, nominal_q);
 
-    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, kp_posture, kd_posture, q_init);
+    tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, *model, "fullPostureTask", ocra::FullState::INTERNAL, kp_posture, kd_posture, q_init);
     ctrl.setActiveTaskVector();
     int nt = ctrl.getNbActiveTask();
     Eigen::MatrixXd param_priority(nt,nt);
     param_priority.setZero();
     ctrl.setTaskProjectors(param_priority);
+
+    jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/nominal/posture.txt");
+    jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/nominal/dq.txt");
+
+    counter = 0;
 }
 
 void Sequence_NominalPose::doUpdate(double time, gocra::gOcraModel& state, void** args)
@@ -95,7 +101,42 @@ void Sequence_NominalPose::doUpdate(double time, gocra::gOcraModel& state, void*
         tmFull->setPosture(q_current);
     }
 
-    Eigen::VectorXd taskError = tmFull->getTaskError();
+    jointPositionVector.push_back(model->getJointPositions());
+    jointVelocityVector.push_back(model->getJointVelocities());
+
+    if (counter == 800){
+        int n = model->nbInternalDofs();
+        Eigen::VectorXd q = Eigen::VectorXd::Zero(n);
+        Eigen::VectorXd dq = Eigen::VectorXd::Zero(n);
+        for(jointPositionVectorIt = jointPositionVector.begin(); jointPositionVectorIt != jointPositionVector.end(); jointPositionVectorIt++)
+        {
+            q = *jointPositionVectorIt;
+            for (unsigned int i=0;i<n;++i)
+                jointPositionFile <<q(i)<<" ";
+
+            jointPositionFile <<"\n";
+        }
+        jointPositionFile.close();
+
+        for(jointVelocityVectorIt = jointVelocityVector.begin(); jointVelocityVectorIt != jointVelocityVector.end(); jointVelocityVectorIt++)
+        {
+            dq = *jointVelocityVectorIt;
+            for (unsigned int i=0;i<n;++i)
+                jointVelocityFile <<dq(i)<<" ";
+
+            jointVelocityFile <<"\n";
+        }
+        jointVelocityFile.close();
+    //             std::ostream_iterator<Eigen::VectorXd> output_iterator(postureFile, "\n");
+    //             std::copy(posture.begin(), posture.end(), output_iterator);
+
+        std::cout<<"result saved."<<std::endl;
+    }
+
+    counter += 1;
+
+//    Eigen::VectorXd taskError = tmFull->getTaskError();
+
     //std::cout << "Time: " << time << "[s], Posture error total: " << tmFull->getTaskErrorNorm() << std::endl;
     // std::cout << "Time: " << time << "[s], Torso Pitch error total: " << taskError(t_pich_index) << std::endl;
 
@@ -199,12 +240,7 @@ void Sequence_LeftHandReach::doUpdate(double time, gocra::gOcraModel& state, voi
 void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel)
 {
     FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/param.txt", "r");
-    char keyward[256];
-    char value[128];
-    char a12[128];
-    char a21[128];
-    char a31[128];
-    char a32[128];
+
 
 
     while (fgets(keyward, sizeof(keyward), infile)){
@@ -314,37 +350,9 @@ void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra
     end = 3000;
     errCoM.resize(100000);
     errLH.resize(100000);
-    //errQ.resize(100000);
     vecT.resize(100000);
 
-    if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
-        resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
-        postureFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/posture.txt");
-    }
-    else if (strcmp(a12,"0.2")==0 && strcmp(a21,"0.8")==0){
-        resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-2_0-8/GHCJT_motion_change_alpha.txt");
-        postureFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-2_0-8/posture.txt");
-    }
-    else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.8")==0){
-        resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-8/GHCJT_motion_change_alpha.txt");
-        postureFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-8/posture.txt");
-    }
-    else if (strcmp(a12,"0.0")==0 && strcmp(a21,"0.0")==0){
-        resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_0-0/GHCJT_motion_change_alpha.txt");
-        postureFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_0-0/posture.txt");
-    }
-    else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.65")==0){
-        resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-6/GHCJT_motion_change_alpha.txt");
-        postureFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-6/posture.txt");
-    }
-    else if (strcmp(a12,"0.8")==0 && strcmp(a21,"0.8")==0){
-        resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-8/GHCJT_motion_change_alpha.txt");
-        postureFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-8/posture.txt");
-    }
-    else{
-        resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha/GHCJT_motion_change_alpha.txt");
-        postureFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha/posture.txt");
-    }
+
 
 }
 
@@ -445,9 +453,46 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
         vecT[counter-start] = (counter-start)*0.01;
 
 
-        posture.push_back(model->getJointPositions());
+        jointPositionVector.push_back(model->getJointPositions());
+        jointVelocityVector.push_back(model->getJointVelocities());
 
         if (counter-start == end){
+            if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/dq.txt");
+            }
+            else if (strcmp(a12,"0.2")==0 && strcmp(a21,"0.8")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-2_0-8/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-2_0-8/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-2_0-8/dq.txt");
+            }
+            else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.8")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-8/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-8/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-8/dq.txt");
+            }
+            else if (strcmp(a12,"0.0")==0 && strcmp(a21,"0.0")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_0-0/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_0-0/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_0-0/dq.txt");
+            }
+            else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.65")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-6/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-6/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-6/dq.txt");
+            }
+            else if (strcmp(a12,"0.8")==0 && strcmp(a21,"0.8")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-8/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-8/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-8/dq.txt");
+            }
+            else{
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha/dq.txt");
+            }
+
             Eigen::Vector3d posLHandDes=model->getSegmentPosition(wbiModel.getSegmentIndex("l_hand")).getTranslation();
             std::cout<<posLHandDes.transpose()<<std::endl;
             Eigen::Vector3d posHeadDes=model->getSegmentPosition(wbiModel.getSegmentIndex("head")).getTranslation();
@@ -471,19 +516,30 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
 
              int n = model->nbInternalDofs();
              Eigen::VectorXd q = Eigen::VectorXd::Zero(n);
-             for(posVectorIt = posture.begin(); posVectorIt != posture.end(); posVectorIt++)
+             Eigen::VectorXd dq = Eigen::VectorXd::Zero(n);
+             for(jointPositionVectorIt = jointPositionVector.begin(); jointPositionVectorIt != jointPositionVector.end(); jointPositionVectorIt++)
              {
-                 q = *posVectorIt;
+                 q = *jointPositionVectorIt;
                  for (unsigned int i=0;i<n;++i)
-                     postureFile <<q(i)<<" ";
+                     jointPositionFile <<q(i)<<" ";
 
-                 postureFile <<"\n";
-
+                 jointPositionFile <<"\n";
              }
-             postureFile.close();
+             jointPositionFile.close();
+
+             for(jointVelocityVectorIt = jointVelocityVector.begin(); jointVelocityVectorIt != jointVelocityVector.end(); jointVelocityVectorIt++)
+             {
+                 dq = *jointVelocityVectorIt;
+                 for (unsigned int i=0;i<n;++i)
+                     jointVelocityFile <<dq(i)<<" ";
+
+                 jointVelocityFile <<"\n";
+             }
+             jointVelocityFile.close();
 //             std::ostream_iterator<Eigen::VectorXd> output_iterator(postureFile, "\n");
 //             std::copy(posture.begin(), posture.end(), output_iterator);
 
+             std::cout<<"result saved."<<std::endl;
          }
     }
     counter += 1;

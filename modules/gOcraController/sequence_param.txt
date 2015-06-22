@@ -3,3 +3,4 @@
 #3 sequence = new Sequence_LeftHandReach();
 #4 sequence = new Sequence_ComLeftHandReach();
 sequence = 2
+positionControl = true

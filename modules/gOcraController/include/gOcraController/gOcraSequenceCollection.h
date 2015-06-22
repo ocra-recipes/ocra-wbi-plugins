@@ -20,7 +20,7 @@ class Sequence_InitialPoseHold : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_NominalPose : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& gmodel);
         virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
@@ -29,8 +29,20 @@ class Sequence_NominalPose : public gocra::gOcraTaskManagerCollectionBase
         double                                          tInitial;
         double                                          tFinal;
         int                                             t_pich_index;
+        gocra::gOcraModel*                              model;
 
-        gocra::gOcraFullPostureTaskManager*            tmFull;
+        gocra::gOcraFullPostureTaskManager*             tmFull;
+
+        //plot data
+        int                                             counter;
+        std::ofstream                                   jointPositionFile;
+        std::ofstream                                   jointVelocityFile;
+        std::vector<Eigen::VectorXd>                    jointPositionVector;
+        std::vector<Eigen::VectorXd>                    jointVelocityVector;
+        std::vector<Eigen::VectorXd>::iterator          jointPositionVectorIt;
+        std::vector<Eigen::VectorXd>::iterator          jointVelocityVectorIt;
+
+
 };
 
 class Sequence_LeftHandReach : public gocra::gOcraTaskManagerCollectionBase
@@ -59,7 +71,7 @@ class Sequence_LeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& controller, gocra::gOcraModel& model);
+        virtual void doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel);
         virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
@@ -91,21 +103,31 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
         gocra::gOcraModel*                             model;
         Eigen::VectorXd                                nominal_q;
         double                                         kp_posture, kd_posture, kp_lh, kd_lh, kp_head, kd_head, a_lh_head, a_head_lh, a_torso_lh, a_torso_head;
+        char keyward[256];
+        char value[128];
+        char a12[128];
+        char a21[128];
+        char a31[128];
+        char a32[128];
 
         //plot data
         int                                            counter;
         int                                            end;
         Eigen::VectorXd                                errCoM,errLH,errQ,vecT;
         std::ofstream                                  resultFile;
-        std::ofstream                                  postureFile;
-        std::vector<Eigen::VectorXd>                   posture;
-        std::vector<Eigen::VectorXd>::iterator         posVectorIt;
+        std::ofstream                                  jointPositionFile;
+        std::ofstream                                  jointVelocityFile;
+        std::vector<Eigen::VectorXd>                   jointPositionVector;
+        std::vector<Eigen::VectorXd>                   jointVelocityVector;
+        std::vector<Eigen::VectorXd>::iterator         jointPositionVectorIt;
+        std::vector<Eigen::VectorXd>::iterator         jointVelocityVectorIt;
+
 };
 
 class Sequence_LeftRightHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& gmodel);
+        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
         virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
     private:
         // Full posture task
