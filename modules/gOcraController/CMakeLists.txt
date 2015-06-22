@@ -45,11 +45,9 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${EIGEN3_INCLUDE_DIR}
                     ${EIGEN3_INCLUDE_DIR}/unsupported
                     ${BOOST_INCLUDE_DIRS}
-                    # ${EIGEN_INCLUDE_DIRS}
                     ${PC_GOCRA_INCLUDE_DIRS}
                     ${PC_OCRA_FRAMEWORK_INCLUDE_DIRS}
                     ${modHelp_INCLUDE_DIRS}/include
-#                    ${PC_MODHELP_INCLUDE_DIRS}
                     )
 
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
@@ -62,7 +60,6 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
                                      ${modHelp_LIBRARIES}
                                      ${PC_GOCRA_LIBRARIES}
                                      ${PC_OCRA_FRAMEWORK_LIBRARIES}
-#                                     ${PC_MODHELP_LIBRARIES}
                                      )
 
 
