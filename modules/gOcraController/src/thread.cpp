@@ -48,8 +48,6 @@ using namespace std;
 #define DIM_TWIST 6
 #define TORQUE_MIN -24
 #define TORQUE_MAX 24
-//#define HAND_FOOT_TASK 1
-#define HAND_FOOT_TASK 0
 #define TIME_MSEC_TO_SEC 0.001
 
 void getNPosture(gocra::gOcraModel &model, VectorXd &q);
@@ -91,9 +89,12 @@ gOcraControllerThread::gOcraControllerThread(string _name,
 
     fb_torque.resize(robot->getDoFs());
 
-    position_cmd.resize(robot->getDoFs());
+//    position_cmd.resize(robot->getDoFs());
+    position_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
 
     time_sim = 0;
+
+
 }
 
 //*************************************************************************************************************************
@@ -169,16 +170,10 @@ bool gOcraControllerThread::threadInit()
       bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     }
     else{
-      bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
-//      yarp::sig::Vector kp_pos(robot->getDoFs(), kp);
-//      yarp::sig::Vector kd_pos(robot->getDoFs(), kd);
-//      yarp::sig::Vector ki_pos(robot->getDoFs(), ki);
-//      bool res_setCTRL_PARAM_KP = robot->setControlParam(CTRL_PARAM_KP, kp_pos.data(), ALL_JOINTS);
-//      bool res_setCTRL_PARAM_KD = robot->setControlParam(CTRL_PARAM_KD, kd_pos.data(), ALL_JOINTS);
-//      bool res_setCTRL_PARAM_KI = robot->setControlParam(CTRL_PARAM_KI, ki_pos.data(), ALL_JOINTS);
+//      bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
+      bool res_setControlMode = robot->setControlMode(CTRL_MODE_DIRECT_POSITION, 0, ALL_JOINTS);
 
-//      ifstream jointPositionFile("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/nominal/posture.txt");
-//      ifstream jointVelocityFile("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/nominal/dq.txt");
+      // read reference motion from files
       ifstream jointPositionFile(qdFilePath);
       ifstream jointVelocityFile(dqdFilePath);
       unsigned int positionFileLength = 0;
@@ -186,7 +181,6 @@ bool gOcraControllerThread::threadInit()
 
       unsigned int velocityFileLength = 0;
       velocityFileLength = std::count(std::istreambuf_iterator<char>(jointVelocityFile), std::istreambuf_iterator<char>(), '\n');
-
 
       replayDataLength = positionFileLength>velocityFileLength?velocityFileLength:positionFileLength;
       std::cout<<"replayDataLength="<<replayDataLength<<std::endl;
@@ -199,20 +193,38 @@ bool gOcraControllerThread::threadInit()
       qRef = Eigen::MatrixXd::Zero(replayDataLength, robot->getDoFs());
       dqRef = Eigen::MatrixXd::Zero(replayDataLength, robot->getDoFs());
 
-      for (int rowIndex=0; rowIndex<replayDataLength; ++rowIndex){
 
-          for (int colIndex=0; colIndex<robot->getDoFs(); ++colIndex){
-              jointPositionFile >> qRef(rowIndex,colIndex);
-              jointVelocityFile >> dqRef(rowIndex,colIndex);
+      int dofmax = 25;
+      double tmp;
+      for (int rowIndex=0; rowIndex<replayDataLength; ++rowIndex){
+          if (robot->getDoFs()<25){ // when left leg is inactive
+              for (int colIndex=0; colIndex<dofmax; ++colIndex){
+                  if (colIndex<=12){
+                      jointPositionFile >> qRef(rowIndex,colIndex);
+                      jointVelocityFile >> dqRef(rowIndex,colIndex);
+                  }
+                  else if (colIndex>12 && colIndex <19){//left leg DOFs
+                      jointPositionFile >> tmp;
+                      jointVelocityFile >> tmp;
+                  }
+                  else{
+                      jointPositionFile >> qRef(rowIndex,colIndex-6);
+                      jointVelocityFile >> dqRef(rowIndex,colIndex-6);
+                  }
+
+              }
+          }
+          else{ // use whole body DOF
+              for (int colIndex=0; colIndex<robot->getDoFs(); ++colIndex){
+                      jointPositionFile >> qRef(rowIndex,colIndex);
+                      jointVelocityFile >> dqRef(rowIndex,colIndex);
+              }
           }
 
       }
 
       jointPositionFile.close();
       jointVelocityFile.close();
-      position_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
-
-
     }
 
 
@@ -238,16 +250,7 @@ bool gOcraControllerThread::threadInit()
             std::cout << "Sequence_NominalPose" << std::endl;
             sequence = new Sequence_NominalPose();
         }
-         //sequence = new Sequence_LeftRightHandReach();
 
-        // sequence = new Sequence_CartesianTest;
-        // sequence = new Sequence_PoseTest;
-        // sequence = new Sequence_OrientationTest;
-
-        //sequence = new Sequence_TrajectoryTrackingTest();
-        // sequence = new Sequence_JointTest();
-        // sequence = new ScenarioICub_01_Standing();
-        // sequence = new ScenarioICub_02_VariableWeightHandTasks();
     }
     else{
         if (seq==4){
@@ -266,6 +269,8 @@ bool gOcraControllerThread::threadInit()
 
     counter = 0;
 
+
+
 	return true;
 }
 
@@ -273,8 +278,6 @@ bool gOcraControllerThread::threadInit()
 void gOcraControllerThread::run()
 {
 //    std::cout << "Running Control Loop" << std::endl;
-
-
 
     // Move this to header so can resize once
     yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
@@ -300,10 +303,6 @@ void gOcraControllerThread::run()
 
         fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
 
-
-        // std::cout << "H_root_wbi as a vector\n" << fb_Hroot_Vector.toString() <<"\n\n"<< std::endl;
-        // std::cout << "H_root_wbi BEFORE input to Set State\n" << fb_Hroot.toString() <<"\n\n"<< std::endl;
-
         ocraModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
     }
     else
@@ -312,26 +311,22 @@ void gOcraControllerThread::run()
     sequence->update(time_sim, *ocraModel, NULL);
 
 
-    // compute desired torque by calling the controller
+    // TORQUE CONTROL MODE: compute desired torque by calling the controller and send command
     Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
+    if (!isReplayMode) {
+        ctrl->computeOutput(eigenTorques);
+        for(int i = 0; i < eigenTorques.size(); ++i)
+        {
+          if(eigenTorques(i) < TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
+          else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
+        }
 
-	ctrl->computeOutput(eigenTorques);
-
-
-//    std::cout << "torques: "<<eigenTorques.transpose() << std::endl;
-
-
-    for(int i = 0; i < eigenTorques.size(); ++i)
-    {
-      if(eigenTorques(i) < TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
-      else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
+        modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
+        robot->setControlReference(torques_cmd.data());
     }
 
-    //std::cout << "\n--\nTorso Pitch Torque = " << eigenTorques(ocraModel->getDofIndex("torso_pitch")) << "\n--\n" << std::endl;
-    modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
-
-
-    Eigen::VectorXd q_margin = 0.01*Eigen::VectorXd::Ones(robot->getDoFs());
+    // verify joint limits
+    Eigen::VectorXd q_margin = 0.0001*Eigen::VectorXd::Ones(robot->getDoFs());
     Eigen::VectorXd q_min = ocraModel->getJointLowerLimits() + q_margin;
     Eigen::VectorXd q_max = ocraModel->getJointUpperLimits() - q_margin;
     Eigen::VectorXd q_actual = ocraModel->getJointPositions();
@@ -342,32 +337,35 @@ void gOcraControllerThread::run()
 //    if (!((q_actual.array()<=(q_max-q_margin).array()).all() && (q_actual.array()>=(q_min+q_margin).array()).all())){
 //        std::cout<<"JL! ";
 //    }
-    wbi::ID dofID;
+//    wbi::ID dofID;
+
+//    for (int i =0; i<robot->getDoFs(); ++i){
+//            robot->getJointList().indexToID(i, dofID);
+//            std::cout<<i<<": "<<dofID.toString()<<std::endl;
+//    }
+
+//    if (!((q_actual.array()<=(q_max-q_margin).array()).all()))
+//        std::cout<<std::endl<<"UL";
+//    for (int i =0; i<robot->getDoFs(); ++i){
+//        if (q_actual(i)>q_max(i)){
+//            robot->getJointList().indexToID(i, dofID);
+//            std::cout<<dofID.toString()<<"";
+//        }
+//    }
+
+//    if (!(q_actual.array()>=(q_min+q_margin).array()).all())
+//        std::cout<<std::endl<<"LL";
+//    for (int i =0; i<robot->getDoFs(); ++i){
+//        if (q_actual(i)<q_min(i)){
+//            robot->getJointList().indexToID(i, dofID);
+//            std::cout<<dofID.toString()<<"";
+//        }
+//    }
 
 
-    if (!((q_actual.array()<=(q_max-q_margin).array()).all()))
-        std::cout<<std::endl<<"UL";
-    for (int i =0; i<robot->getDoFs(); ++i){
-        if (q_actual(i)>q_max(i)){
-            robot->getJointList().indexToID(i, dofID);
-            std::cout<<dofID.toString()<<"";
-        }
-    }
 
-    if (!(q_actual.array()>=(q_min+q_margin).array()).all())
-        std::cout<<std::endl<<"LL";
-    for (int i =0; i<robot->getDoFs(); ++i){
-        if (q_actual(i)<q_min(i)){
-            robot->getJointList().indexToID(i, dofID);
-            std::cout<<dofID.toString()<<"";
-        }
-    }
-
-    // setControlReference(double *ref, int joint) to set joint torque (in torque mode)
-    if (!isReplayMode) {
-      robot->setControlReference(torques_cmd.data());
-    }
-    else {
+    // POSITION CONTROL MODE: get reference motion and send command
+    if (isReplayMode) {
         double dt = TIME_MSEC_TO_SEC * getRate();
 //        Eigen::VectorXd eigenJointPosition = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
 //        Eigen::VectorXd generalizedForces = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
@@ -384,8 +382,8 @@ void gOcraControllerThread::run()
 //        }
 //        modHelp::eigenToYarpVector(q_actual, position_cmd);
         int dof = robot->getDoFs();
-        Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(dof);
-        getNPosture(*ocraModel, nominal_q);
+//        Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(dof);
+//        getNPosture(*ocraModel, nominal_q);
 
         yarp::sig::Vector refSpeed(dof, 0.0);
         yarp::sig::Vector refAcc(dof, 0.0);
@@ -401,46 +399,33 @@ void gOcraControllerThread::run()
         if (counter<replayDataLength){
             refPos = qRef.block(counter,0,1,dof).transpose();
             refVel = dqRef.block(counter,0,1,dof).transpose();
-//            std::cout<<"q="<<qRef.block(counter,0,1,dof)<<std::endl;
-//            std::cout<<"dq="<<dqRef.block(counter,0,1,dof)<<std::endl;
+
+
             modHelp::eigenToYarpVector(refPos, position_cmd);
             modHelp::eigenToYarpVector(refVel, refSpeed);
         }
-        robot->setControlParam(CTRL_PARAM_REF_VEL, refSpeed.data(), ALL_JOINTS);
-        robot->setControlParam(CTRL_PARAM_REF_ACC, refAcc.data(), ALL_JOINTS);
 
-        //      //TODO: Get new position_cmd from big ass matrix
-        //      position_cmd = ???;
+//        robot->setControlParam(CTRL_PARAM_REF_VEL, refSpeed.data());
+//        robot->setControlParam(CTRL_PARAM_REF_ACC, refAcc.data(), ALL_JOINTS);
+
+
 //        position_cmd = yarp::sig::Vector(robot->getDoFs(), 0.1);
         robot->setControlReference(position_cmd.data());
+//        robot->setControlMode(CTRL_MODE_POS, position_cmd.data(), ALL_JOINTS);
 
+        if (counter<10000)
+            counter++;
     }
 
-//    printPeriod = 500;
-//    printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
-//    if (printCountdown == 0)
-//    {
-//        if (!ocraModel->hasFixedRoot()){
-//            std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << " "<< fb_Hroot_Vector(7) << " "<< fb_Hroot_Vector(11) << std::endl;
-//            // std::cout << "root_link pos\n" << ocraModel->getSegmentPosition(ocraModel->getSegmentIndex("root_link")).getTranslation().transpose() << std::endl;
-//            std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) <<" "<< fb_Troot_Vector(1) <<" "<< fb_Troot_Vector(2) << "\n---\n";
-//            std::cout << "root_link vel\n" << ocraModel->getSegmentVelocity(ocraModel->getSegmentIndex("root_link")).getLinearVelocity().transpose() << std::endl;
-
-
-//        }
-//        // std::cout << "l_ankle_pitch: " << fb_qRad(17) << "   r_ankle_pitch: " << fb_qRad(23) << std::endl;
-//        //std::cout << "ISIRWholeBodyController thread running..." << std::endl;
-//    }
-
     time_sim += TIME_MSEC_TO_SEC * getRate();
-    if (counter<10000)
-        counter++;
+
 }
 
 //*************************************************************************************************************************
 void gOcraControllerThread::threadRelease()
 {
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
+
 //    bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, q_initial.data(), ALL_JOINTS);
 
     //yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
@@ -456,11 +441,11 @@ void getNPosture(gocra::gOcraModel& model, VectorXd &q)
     q[model.getDofIndex("r_shoulder_roll")] = M_PI / 6;
     q[model.getDofIndex("l_shoulder_pitch")] = -M_PI / 6;
     q[model.getDofIndex("r_shoulder_pitch")] = -M_PI / 6;
-    q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
+//    q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
     q[model.getDofIndex("r_hip_pitch")] = M_PI / 8;
-    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
+//    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
     q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
-    q[model.getDofIndex("l_knee")] = -M_PI / 6;
+//    q[model.getDofIndex("l_knee")] = -M_PI / 6;
     q[model.getDofIndex("r_knee")] = -M_PI / 6;
 }
 

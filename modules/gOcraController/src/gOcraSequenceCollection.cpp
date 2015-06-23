@@ -74,6 +74,7 @@ void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraMode
     t_pich_index = model->getDofIndex("torso_pitch");
     q_init = model->getJointPositions();
     nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
+    std::cout<<"getNominalPosture"<<std::endl;
     getNominalPosture(*model, nominal_q);
 
     tmFull = new gocra::gOcraFullPostureTaskManager(ctrl, *model, "fullPostureTask", ocra::FullState::INTERNAL, kp_posture, kd_posture, q_init);
@@ -83,6 +84,7 @@ void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraMode
     param_priority.setZero();
     ctrl.setTaskProjectors(param_priority);
 
+    std::cout<<"open file"<<std::endl;
     jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/nominal/posture.txt");
     jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/nominal/dq.txt");
 
@@ -91,6 +93,7 @@ void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraMode
 
 void Sequence_NominalPose::doUpdate(double time, gocra::gOcraModel& state, void** args)
 {
+
     Eigen::VectorXd q_current;
     if (time <= tFinal){
         q_current = (time - tInitial)/(tFinal-tInitial) * (nominal_q - q_init) + q_init;
@@ -626,7 +629,7 @@ void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller,
 
     //plot data
     counter = 0;
-    end = 3000;
+    end = 5000;
     errCoM.resize(100000);
     errLH.resize(100000);
     vecT.resize(100000);
@@ -1229,10 +1232,10 @@ void getNominalPosture(gocra::gOcraModel& model, VectorXd &q)
     q[model.getDofIndex("r_shoulder_roll")] = M_PI / 6;
     q[model.getDofIndex("l_shoulder_pitch")] = -M_PI / 6;
     q[model.getDofIndex("r_shoulder_pitch")] = -M_PI / 6;
-    q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
+//    q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
     q[model.getDofIndex("r_hip_pitch")] = M_PI / 8;
-    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
+//    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
     q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
-    q[model.getDofIndex("l_knee")] = -M_PI / 6;
+//    q[model.getDofIndex("l_knee")] = -M_PI / 6;
     q[model.getDofIndex("r_knee")] = -M_PI / 6;
 }
