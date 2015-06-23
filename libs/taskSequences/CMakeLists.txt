@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 2.8.11)
 SET(PROJECTNAME taskSequences)
 PROJECT(${PROJECTNAME})
 
-set(CMAKE_CXX_FLAGS "-fpermissive")
+list(APPEND CMAKE_CXX_FLAGS "-fpermissive")
 
 find_package(YARP REQUIRED)
 find_package(YCM REQUIRED)
@@ -27,7 +27,7 @@ PKG_CHECK_MODULES(PC_WLQP_CONTROL wLQP-Control REQUIRED)
 include(YarpInstallationHelpers)
 yarp_configure_external_installation(codyco)
 
-FILE(GLOB folder_source ./src/*.cpp)
+FILE(GLOB_RECURSE folder_source ./src/*.cpp)
 FILE(GLOB_RECURSE folder_header ./include/${PROJECTNAME}/*.h)
 
 SOURCE_GROUP("Source Files" FILES ${folder_source})
@@ -52,7 +52,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${modHelp_INCLUDE_DIRS}/include
                     )
 
-ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source})
+ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source} ${folder_header})
 
 
 TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}

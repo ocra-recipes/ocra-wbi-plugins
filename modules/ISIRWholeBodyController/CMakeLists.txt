@@ -19,6 +19,9 @@ find_package(iDynTree REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
 find_package(modHelp REQUIRED)
 
+# find_package(ocraWbiPlugins REQUIRED)
+# find_package(taskSequences REQUIRED)
+
 find_package(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(PC_WLQP_CONTROL wLQP-Control REQUIRED)
 PKG_CHECK_MODULES(PC_OCRA_FRAMEWORK ocra_framework REQUIRED)
@@ -38,7 +41,6 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${ocraWbiPlugins_SOURCE_DIR}/include
                     ${taskSequences_SOURCE_DIR}/include
-                    ${taskSequences_SOURCE_DIR}/include/taskSequences/sequences
                     ${YARP_INCLUDE_DIRS}
                     ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${EIGEN3_INCLUDE_DIR}

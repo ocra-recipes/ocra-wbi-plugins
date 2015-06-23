@@ -162,7 +162,7 @@ bool ISIRWholeBodyControllerModule::close()
     if(robotInterface)
     {
         bool res=robotInterface->close();
-        if(res)
+        if(!res)
             printf("Error while closing robot interface\n");
         delete robotInterface;
         robotInterface = 0;
