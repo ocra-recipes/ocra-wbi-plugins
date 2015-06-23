@@ -545,6 +545,156 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
     counter += 1;
 }
 
+
+// Sequence_ComLeftHandReachReplay
+void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel)
+{
+    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/param.txt", "r");
+
+
+
+    while (fgets(keyward, sizeof(keyward), infile)){
+        if (1 == sscanf(keyward, "kp_posture = %127s", value)){
+            kp_posture = atof(value);
+            std::cout << "kp_posture = " << kp_posture << std::endl;
+        }
+        if (1 == sscanf(keyward, "kd_posture = %127s", value)){
+            kd_posture = atof(value);
+            std::cout << "kd_posture = " << kd_posture << std::endl;
+        }
+        if (1 == sscanf(keyward, "kp_lh = %127s", value)){
+            kp_lh = atof(value);
+            std::cout << "kp_lh = " << kp_lh << std::endl;
+        }
+        if (1 == sscanf(keyward, "kd_lh = %127s", value)){
+            kd_lh = atof(value);
+            std::cout << "kd_lh = " << kd_lh << std::endl;
+        }
+        if (1 == sscanf(keyward, "kp_head = %127s", value)){
+            kp_head = atof(value);
+            std::cout << "kp_head = " << kp_head << std::endl;
+        }
+        if (1 == sscanf(keyward, "kd_head = %127s", value)){
+            kd_head = atof(value);
+            std::cout << "kd_head = " << kd_head << std::endl;
+        }
+        if (1 == sscanf(keyward, "a12 = %127s", a12)){
+            a_lh_head = atof(a12);
+            std::cout << "a_lh_head = " << a_lh_head << std::endl;
+        }
+        if (1 == sscanf(keyward, "a21 = %127s", a21)){
+            a_head_lh = atof(a21);
+            std::cout << "a_head_lh = " << a_head_lh << std::endl;
+        }
+
+    }
+
+    ctrl = &controller;
+    model = &gmodel;
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(gmodel);
+    // Full posture task
+    nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
+    getNominalPosture(*model, nominal_q);
+
+    tmFull = new gocra::gOcraFullPostureTaskManager(*ctrl, *model, "fullPostureTask", ocra::FullState::INTERNAL, kp_posture, kd_posture, nominal_q);
+
+    Eigen::Vector3d posLHandDes(-0.305, -0.25, 0.0);
+//            Eigen::Vector3d posLHandDes(-0.27, -0.255, 0.04);
+    tmSegCartHandLeft = new gocra::gOcraSegCartesianTaskManager(*ctrl, *model, "leftHandCartesianTask", "l_hand", ocra::XYZ, kp_lh, kd_lh, posLHandDes);
+
+    // 2: head cartesian task
+    Eigen::Vector3d posHeadDes(-0.067, -0.006, 0.224);
+    tmHead = new gocra::gOcraSegCartesianTaskManager(*ctrl, *model, "headCartesianTask", "head", ocra::XYZ, kp_head, kd_head, posHeadDes);
+
+//   3: Partial (torso) posture task
+    Eigen::VectorXi torso_indices(7);
+    Eigen::VectorXd torsoTaskPosDes(7);
+    torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw"),
+            wbiModel.getDofIndex("l_elbow"),wbiModel.getDofIndex("l_shoulder_pitch"),wbiModel.getDofIndex("l_shoulder_yaw"),wbiModel.getDofIndex("l_shoulder_roll");
+    for(int i=0; i<7;++i)
+    {
+        torsoTaskPosDes(i) = nominal_q(torso_indices(i));
+    }
+
+    tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(*ctrl, *model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, kp_posture, kd_posture, torsoTaskPosDes);//w=5
+    ctrl->setActiveTaskVector();
+    nt = ctrl->getNbActiveTask();
+    param_priority = Eigen::MatrixXd::Zero(nt,nt);
+
+    ctrl->setTaskProjectors(param_priority);
+
+
+    //plot data
+    counter = 0;
+    end = 3000;
+    errCoM.resize(100000);
+    errLH.resize(100000);
+    vecT.resize(100000);
+
+}
+
+void Sequence_ComLeftHandReachReplay::doUpdate(double time, gocra::gOcraModel& state, void** args)
+{
+
+
+    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(*model);
+
+    if (counter <= end){
+        errCoM[counter] = tmHead->getTaskError().norm();
+        errLH[counter] = tmSegCartHandLeft->getTaskError().norm();
+        vecT[counter] = (counter)*0.01;
+
+
+
+        if (counter == end){
+            if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
+            }
+            else if (strcmp(a12,"0.2")==0 && strcmp(a21,"0.8")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-2_0-8/GHCJT_motion_change_alpha.txt");
+            }
+            else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.8")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-6_0-8/GHCJT_motion_change_alpha.txt");
+            }
+            else if (strcmp(a12,"0.0")==0 && strcmp(a21,"0.0")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-0_0-0/GHCJT_motion_change_alpha.txt");
+            }
+            else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.65")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-6_0-6/GHCJT_motion_change_alpha.txt");
+            }
+            else if (strcmp(a12,"0.8")==0 && strcmp(a21,"0.8")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-8_0-8/GHCJT_motion_change_alpha.txt");
+            }
+            else{
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha/GHCJT_motion_change_alpha.txt");
+            }
+
+            Eigen::Vector3d posLHandDes=model->getSegmentPosition(wbiModel.getSegmentIndex("l_hand")).getTranslation();
+            std::cout<<posLHandDes.transpose()<<std::endl;
+            Eigen::Vector3d posHeadDes=model->getSegmentPosition(wbiModel.getSegmentIndex("head")).getTranslation();
+            std::cout<<posHeadDes.transpose()<<std::endl;
+            int endindex = end-1;
+            for (unsigned int i=0;i<endindex;++i)
+                resultFile <<errCoM[i]<<" ";
+            resultFile <<errCoM[endindex]<<"\n";
+            for (unsigned int i=0;i<endindex;++i)
+                resultFile <<errLH[i]<<" ";
+            resultFile <<errLH[endindex]<<"\n";
+            for (unsigned int i=0;i<endindex;++i)
+                resultFile <<vecT[i]<<" ";
+             resultFile <<vecT[endindex]<<"\n";
+
+             for (unsigned int i=0;i<endindex;++i)
+                 resultFile <<vecT[i]<<" ";
+              resultFile <<vecT[endindex]<<"\n";
+             resultFile.close();
+             std::cout<<"result saved."<<std::endl;
+
+         }
+    }
+    counter += 1;
+}
+
 // Sequence_LeftRightHandReach
 void Sequence_LeftRightHandReach::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {

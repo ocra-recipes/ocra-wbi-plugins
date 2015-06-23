@@ -1,6 +1,15 @@
+kp = 30000
+kd = 2000
+ki = 50
+
 #1 sequence = new Sequence_NominalPose();
 #2 sequence = new Sequence_InitialPoseHold();
 #3 sequence = new Sequence_LeftHandReach();
 #4 sequence = new Sequence_ComLeftHandReach();
-sequence = 2
+sequence = 4
 positionControl = true
+#qdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/nominal/posture.txt
+#dqdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/nominal/dq.txt
+
+qdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/alpha_0-0_1-0/posture.txt
+dqdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/alpha_0-0_1-0/dq.txt

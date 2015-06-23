@@ -36,6 +36,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sstream>
+#include <algorithm>
 
 using namespace gOcraController;
 using namespace yarp::math;
@@ -65,7 +66,7 @@ gOcraControllerThread::gOcraControllerThread(string _name,
 {
 //    if(!replayJointAnglesPath.empty()){
 //      std::cout << "Got the replay flag - replaying joint angles in position mode." << std::endl;
-////      std::cout << "Getting joint angles from file:\n" << replayJointAnglesPath << std::endl;
+//      std::cout << "Getting joint angles from file:\n" << replayJointAnglesPath << std::endl;
 //      //TODO: Parse file path and load joint commands into a big ass matrix
 //      //TODO: Pre shape a "PosCommandVector" which will pick the angles at each timestep - this will get passed to the WBI
 //      isReplayMode = true;
@@ -126,15 +127,33 @@ bool gOcraControllerThread::threadInit()
     char value[128];
     int seq;
     char positionControl[128];
+    char qdFilePath[512];
+    char dqdFilePath[512];
+    double kp,kd,ki;
 
     while (fgets(keyward, sizeof(keyward), infile)){
         if (1 == sscanf(keyward, "sequence = %127s", value)){
             seq = atoi(value);
         }
         sscanf(keyward, "positionControl = %127s", positionControl);
+        sscanf(keyward, "qdFilePath = %127s", qdFilePath);
+        sscanf(keyward, "dqdFilePath = %127s", dqdFilePath);
+        if (1 == sscanf(keyward, "kp = %127s", value)){
+            kp = atof(value);
+            std::cout << "kp = " << kp << std::endl;
+        }
+        if (1 == sscanf(keyward, "kd = %127s", value)){
+            kd = atof(value);
+            std::cout << "kd = " << kd << std::endl;
+        }
+        if (1 == sscanf(keyward, "ki = %127s", value)){
+            ki = atof(value);
+            std::cout << "ki = " << ki << std::endl;
+        }
 
     }
-
+    std::cout<<"qdFilePath ="<< qdFilePath<<std::endl;
+    std::cout<<"dqdFilePath ="<< dqdFilePath<<std::endl;
 
     // Set control mode
     if (strcmp(positionControl, "true")==0){
@@ -151,112 +170,95 @@ bool gOcraControllerThread::threadInit()
     }
     else{
       bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
-//      yarp::sig::Vector kp(robot->getDoFs(), 3);
-//      yarp::sig::Vector kd(robot->getDoFs(), 1);
-//      yarp::sig::Vector ki(robot->getDoFs(), 0.001);
-//      bool res_setCTRL_PARAM_KP = robot->setControlParam(CTRL_PARAM_KP, kp.data(), ALL_JOINTS);
-//      bool res_setCTRL_PARAM_KI = robot->setControlParam(CTRL_PARAM_KI, kd.data(), ALL_JOINTS);
-//      bool res_setCTRL_PARAM_KD = robot->setControlParam(CTRL_PARAM_KD, ki.data(), ALL_JOINTS);
+//      yarp::sig::Vector kp_pos(robot->getDoFs(), kp);
+//      yarp::sig::Vector kd_pos(robot->getDoFs(), kd);
+//      yarp::sig::Vector ki_pos(robot->getDoFs(), ki);
+//      bool res_setCTRL_PARAM_KP = robot->setControlParam(CTRL_PARAM_KP, kp_pos.data(), ALL_JOINTS);
+//      bool res_setCTRL_PARAM_KD = robot->setControlParam(CTRL_PARAM_KD, kd_pos.data(), ALL_JOINTS);
+//      bool res_setCTRL_PARAM_KI = robot->setControlParam(CTRL_PARAM_KI, ki_pos.data(), ALL_JOINTS);
 
-      ifstream jointPositionFile("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/nominal/posture.txt");
-      ifstream jointVelocityFile("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/nominal/dq.txt");
+//      ifstream jointPositionFile("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/nominal/posture.txt");
+//      ifstream jointVelocityFile("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/nominal/dq.txt");
+      ifstream jointPositionFile(qdFilePath);
+      ifstream jointVelocityFile(dqdFilePath);
       unsigned int positionFileLength = 0;
-      while(jointPositionFile.get()!=EOF)
-          positionFileLength++;
+      positionFileLength = std::count(std::istreambuf_iterator<char>(jointPositionFile), std::istreambuf_iterator<char>(), '\n');
+
       unsigned int velocityFileLength = 0;
-      while(jointVelocityFile.get()!=EOF)
-          velocityFileLength++;
+      velocityFileLength = std::count(std::istreambuf_iterator<char>(jointVelocityFile), std::istreambuf_iterator<char>(), '\n');
+
 
       replayDataLength = positionFileLength>velocityFileLength?velocityFileLength:positionFileLength;
+      std::cout<<"replayDataLength="<<replayDataLength<<std::endl;
+
+      jointPositionFile.clear();
+      jointPositionFile.seekg(0, jointPositionFile.beg);
+      jointVelocityFile.clear();
+      jointVelocityFile.seekg(0, jointVelocityFile.beg);
 
       qRef = Eigen::MatrixXd::Zero(replayDataLength, robot->getDoFs());
       dqRef = Eigen::MatrixXd::Zero(replayDataLength, robot->getDoFs());
 
       for (int rowIndex=0; rowIndex<replayDataLength; ++rowIndex){
+
           for (int colIndex=0; colIndex<robot->getDoFs(); ++colIndex){
               jointPositionFile >> qRef(rowIndex,colIndex);
               jointVelocityFile >> dqRef(rowIndex,colIndex);
           }
+
       }
 
       jointPositionFile.close();
       jointVelocityFile.close();
       position_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
-//      string line;
-//      int rowIndex, colIndex;
 
-//      rowIndex = 0;
-//      colIndex = 0;
-//      while (!std::getline(jointPositionFile, line, '\n').eof()){
-//          std::istringstream reader(line);
-//          std::string::const_iterator i = line.begin();
-
-//          while(!reader.eof()){
-//              double val;
-//              reader << val;
-//              if(reader.fail())
-//                  break;
-
-//              qRef(rowIndex,colIndex)=val;
-//              colIndex++;
-//          }
-
-//          rowIndex++;
-//      }
-
-
-
-//      rowIndex = 0;
-//      colIndex = 0;
-//      while (!std::getline(jointVelocityFile, line, '\n').eof()){
-//          std::istringstream reader(line);
-//          std::string::const_iterator i = line.begin();
-//          while(!reader.eof()){
-//              double val;
-//              reader << val;
-//              if(reader.fail())
-//                  break;
-
-//              dqRef(rowIndex,colIndex)=val;
-//              colIndex++;
-//          }
-//          rowIndex++;
-//      }
 
     }
 
 
     // set task sequence
-    if (seq==1){
-        std::cout << "Sequence_NominalPose" << std::endl;
-        sequence = new Sequence_NominalPose();
-    }
-    else if (seq==2){
-        std::cout << "Sequence_InitialPoseHold" << std::endl;
-        sequence = new Sequence_InitialPoseHold();
-    }
-    else if (seq==3){
-        std::cout << "Sequence_LeftHandReach" << std::endl;
-        sequence = new Sequence_LeftHandReach();
-    }
-    else if (seq==4){
-        std::cout << "Sequence_ComLeftHandReach" << std::endl;
-        sequence = new Sequence_ComLeftHandReach();
+    if (!isReplayMode) {
+        if (seq==1){
+            std::cout << "Sequence_NominalPose" << std::endl;
+            sequence = new Sequence_NominalPose();
+        }
+        else if (seq==2){
+            std::cout << "Sequence_InitialPoseHold" << std::endl;
+            sequence = new Sequence_InitialPoseHold();
+        }
+        else if (seq==3){
+            std::cout << "Sequence_LeftHandReach" << std::endl;
+            sequence = new Sequence_LeftHandReach();
+        }
+        else if (seq==4){
+            std::cout << "Sequence_ComLeftHandReach" << std::endl;
+            sequence = new Sequence_ComLeftHandReach();
+        }
+        else{
+            std::cout << "Sequence_NominalPose" << std::endl;
+            sequence = new Sequence_NominalPose();
+        }
+         //sequence = new Sequence_LeftRightHandReach();
+
+        // sequence = new Sequence_CartesianTest;
+        // sequence = new Sequence_PoseTest;
+        // sequence = new Sequence_OrientationTest;
+
+        //sequence = new Sequence_TrajectoryTrackingTest();
+        // sequence = new Sequence_JointTest();
+        // sequence = new ScenarioICub_01_Standing();
+        // sequence = new ScenarioICub_02_VariableWeightHandTasks();
     }
     else{
-        std::cout << "Sequence_NominalPose" << std::endl;
-        sequence = new Sequence_NominalPose();
+        if (seq==4){
+            std::cout << "Sequence_ComLeftHandReachReplay" << std::endl;
+            sequence = new Sequence_ComLeftHandReachReplay();
+        }
+        else{
+            std::cout << "Sequence_NominalPose" << std::endl;
+            sequence = new Sequence_NominalPose();
+        }
     }
-     //sequence = new Sequence_LeftRightHandReach();
-
-    // sequence = new Sequence_CartesianTest;
-    // sequence = new Sequence_PoseTest;
-    // sequence = new Sequence_OrientationTest;
-
-    //sequence = new Sequence_TrajectoryTrackingTest();
-    // sequence = new Sequence_JointTest();
-    // sequence = new ScenarioICub_01_Standing();
-    // sequence = new ScenarioICub_02_VariableWeightHandTasks();
 
 
     sequence->init(*ctrl, *ocraModel);
@@ -399,6 +401,8 @@ void gOcraControllerThread::run()
         if (counter<replayDataLength){
             refPos = qRef.block(counter,0,1,dof).transpose();
             refVel = dqRef.block(counter,0,1,dof).transpose();
+//            std::cout<<"q="<<qRef.block(counter,0,1,dof)<<std::endl;
+//            std::cout<<"dq="<<dqRef.block(counter,0,1,dof)<<std::endl;
             modHelp::eigenToYarpVector(refPos, position_cmd);
             modHelp::eigenToYarpVector(refVel, refSpeed);
         }
@@ -407,7 +411,7 @@ void gOcraControllerThread::run()
 
         //      //TODO: Get new position_cmd from big ass matrix
         //      position_cmd = ???;
-        position_cmd = yarp::sig::Vector(robot->getDoFs(), 0.1);
+//        position_cmd = yarp::sig::Vector(robot->getDoFs(), 0.1);
         robot->setControlReference(position_cmd.data());
 
     }
@@ -459,3 +463,5 @@ void getNPosture(gocra::gOcraModel& model, VectorXd &q)
     q[model.getDofIndex("l_knee")] = -M_PI / 6;
     q[model.getDofIndex("r_knee")] = -M_PI / 6;
 }
+
+

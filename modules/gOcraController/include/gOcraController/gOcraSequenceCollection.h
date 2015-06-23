@@ -103,14 +103,15 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
         gocra::gOcraModel*                             model;
         Eigen::VectorXd                                nominal_q;
         double                                         kp_posture, kd_posture, kp_lh, kd_lh, kp_head, kd_head, a_lh_head, a_head_lh, a_torso_lh, a_torso_head;
+
+
+        //plot data
         char keyward[256];
         char value[128];
         char a12[128];
         char a21[128];
         char a31[128];
         char a32[128];
-
-        //plot data
         int                                            counter;
         int                                            end;
         Eigen::VectorXd                                errCoM,errLH,errQ,vecT;
@@ -121,6 +122,45 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
         std::vector<Eigen::VectorXd>                   jointVelocityVector;
         std::vector<Eigen::VectorXd>::iterator         jointPositionVectorIt;
         std::vector<Eigen::VectorXd>::iterator         jointVelocityVectorIt;
+
+};
+
+class Sequence_ComLeftHandReachReplay : public gocra::gOcraTaskManagerCollectionBase
+{
+    protected:
+        virtual void doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel);
+        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+    private:
+        // Full posture task
+        gocra::gOcraFullPostureTaskManager*            tmFull;
+        // Segment right hand task
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartHandRight;
+        // Segment head task
+        gocra::gOcraSegCartesianTaskManager*           tmHead;
+        // Segment left hand task
+        gocra::gOcraSegCartesianTaskManager*           tmSegCartHandLeft;
+        // CoM task
+        gocra::gOcraCoMTaskManager*                    tmCoM;
+        // Partial posture task for torso
+        gocra::gOcraPartialPostureTaskManager*         tmPartialTorso;
+
+        int                                            nt;//nb of active tasks
+        Eigen::MatrixXd                                param_priority;
+        gocra::GHCJTController*                        ctrl;
+        gocra::gOcraModel*                             model;
+        Eigen::VectorXd                                nominal_q;
+        double                                         kp_posture, kd_posture, kp_lh, kd_lh, kp_head, kd_head, a_lh_head, a_head_lh, a_torso_lh, a_torso_head;
+
+
+        //plot data
+        char keyward[256];
+        char value[128];
+        char a12[128];
+        char a21[128];
+        int                                            counter;
+        int                                            end;
+        Eigen::VectorXd                                errCoM,errLH,vecT;
+        std::ofstream                                  resultFile;
 
 };
 
