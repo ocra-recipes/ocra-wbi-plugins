@@ -31,9 +31,12 @@
 
 #include <wbi/wbi.h>
 
-#include "ocraWbiModel.h"
+#include <ocraWbiPlugins/ocraWbiModel.h>
 //#include "wOcraCtrlTaskManager.h"
-#include <ISIRWholeBodyController/sequenceCollection.h>
+// #include <ISIRWholeBodyController/sequenceCollection.h>
+
+
+
 #include "wocra/wOcraController.h"
 #include "wocra/Solvers/OneLevelSolver.h"
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"

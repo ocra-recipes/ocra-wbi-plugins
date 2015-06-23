@@ -21,9 +21,10 @@ set(CMAKE_MODULE_PATH ${YCM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 include(YarpInstallationHelpers)
 yarp_configure_external_installation(codyco)
 
+
+add_subdirectory(libs)
 add_subdirectory(modules)
 
+
+
 include(AddUninstallTarget)
-
-
-

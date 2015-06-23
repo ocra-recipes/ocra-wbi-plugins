@@ -16,7 +16,9 @@
 */
 
 #include <ISIRWholeBodyController/thread.h>
-#include <ISIRWholeBodyController/ocraWbiModel.h>
+// #include <ISIRWholeBodyController/ocraWbiModel.h>
+#include <ocraWbiPlugins/ocraWbiModel.h>
+
 #include <modHelp/modHelp.h>
 #include <iostream>
 
@@ -34,12 +36,14 @@
 #include "ocra/control/ControlEnum.h"
 
 
-#include "ISIRWholeBodyController/sequenceLibrary.h"
+// #include "ISIRWholeBodyController/sequenceLibrary.h"
+#include "taskSequences/sequenceLibrary.h"
 
 
 using namespace ISIRWholeBodyController;
 using namespace yarp::math;
 using namespace yarpWbi;
+// using namespace sequence;
 
 #define ALL_JOINTS -1
 #define DIM_DISP 3
@@ -102,7 +106,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     {
         if (ocraModel->hasFixedRoot()) {
             std::cout << "Loading fixed base minimal tasks..." << std::endl;
-            baseSequence = LoadSequence("Sequence_FixedBaseMinimalTasks");
+            baseSequence = LoadSequence("FixedBaseMinimalTasks");
             baseSequenceIsActive = true;
             std::cout << "\n\n\t------------------------------" << std::endl;
             std::cout << "\t  Running in DEBUG mode..." << std::endl;
@@ -147,12 +151,12 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
             std::cout << "\nNo tasks or scenarios loaded on startup. Defaulting to standard initial tasks." << std::endl;
             if (!ocraModel->hasFixedRoot()) {
                 std::cout << "Loading floating base minimal tasks..." << std::endl;
-                baseSequence = LoadSequence("Sequence_FloatingBaseMinimalTasks");
+                baseSequence = LoadSequence("FloatingBaseMinimalTasks");
                 baseSequenceIsActive = true;
             }
             else{
                 std::cout << "Loading fixed base minimal tasks..." << std::endl;
-                baseSequence = LoadSequence("Sequence_FixedBaseMinimalTasks");
+                baseSequence = LoadSequence("FixedBaseMinimalTasks");
                 baseSequenceIsActive = true;
             }
         }

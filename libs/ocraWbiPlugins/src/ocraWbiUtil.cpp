@@ -1,7 +1,7 @@
 /*
 * Copyright (C) 2014 ISIR, UPMC
 * Author: Darwin Lau, Mingxing Liu
-* email: 
+* email:
 *
 * Utility functions for working with ocra/Eigen and Whole Body Interface
 */
@@ -12,7 +12,7 @@
 #include <yarp/sig/Matrix.h>
 #include <map>
 #include <vector>
-#include <ISIRWholeBodyController/ocraWbiUtil.h>
+#include <ocraWbiPlugins/ocraWbiUtil.h>
 
 #define DIM_T 3
 #define DIM_R 3
@@ -22,32 +22,32 @@
 		double p_wbi[3];
 		Eigen::Vector3d p;
 		p = disp.getTranslation();
-		
+
 		p_wbi[0] = p[0];
 		p_wbi[1] = p[1];
 		p_wbi[2] = p[2];
-		
+
 		double _x, _y, _z, _w;
 		_x = disp.getRotation().x();
 		_y = disp.getRotation().y();
 		_z = disp.getRotation().z();
 		_w = disp.getRotation().w();
-				
-		wbi::Rotation R;	R.quaternion(_x, _y, _z, _w);	
+
+		wbi::Rotation R;	R.quaternion(_x, _y, _z, _w);
 		wbi::Frame _frame(R, p_wbi);
 		frame = _frame;
-		
+
 		// Check if y-translation value is the same between the two data containers
 		if (frame.p[1]!=p(1,0)){
 			std::cerr << "Displacementd could not be converted to Wbi Frame \n";
 			return false;
 		}
-		
+
 		return true;
     }
 
 /* static */ bool ocraWbiConversions::wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp)
-    {   
+    {
 		double _x, _y, _z, _w;
 		frame.R.getQuaternion(_x, _y, _z, _w);
 
@@ -55,7 +55,7 @@
 		x = frame.p[0];
 		y = frame.p[1];
 		z = frame.p[2];
-		
+
 		Eigen::Vector3d trans;
 		trans << x, y, z;
 
@@ -76,10 +76,10 @@
     {
         Eigen::Vector3d ocrar = t_wbi.head(DIM_T);
         Eigen::Vector3d ocrat = t_wbi.tail(DIM_R);
-    
+
         t_ocra << ocrar,
                 ocrat;
-    
+
         return true;
     }
 
@@ -94,7 +94,7 @@
         for(unsigned int i = 0; i < M_rm.rows(); i++)
             for(unsigned int j = 0; j < M_rm.cols(); j++)
                 M(i,j) = M_rm(i,j);
-            
+
         return true;
     }
 
@@ -217,7 +217,7 @@
             std::cout<<"ERROR: Input and output matrices - Is the model free root?" <<std::endl;
             return false;
         }
-        
+
         Eigen::VectorXd t(DIM_T);
         Eigen::VectorXd r(DIM_R);
         Eigen::VectorXd q(qdof);
