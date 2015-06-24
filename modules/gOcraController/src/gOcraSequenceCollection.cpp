@@ -85,8 +85,8 @@ void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraMode
     ctrl.setTaskProjectors(param_priority);
 
     std::cout<<"open file"<<std::endl;
-    jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/nominal/posture.txt");
-    jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/nominal/dq.txt");
+    jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-_0-/posture.txt");
+    jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-_0-/dq.txt");
 
     counter = 0;
 }
@@ -287,6 +287,7 @@ void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra
             a_torso_head = atof(a32);
             std::cout << "a_torso_head = " << a_torso_head << std::endl;
         }
+        sscanf(keyward, "switch = %127s", switch_priority);
     }
 
     ctrl = &controller;
@@ -351,6 +352,9 @@ void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra
     //plot data
     counter = 0;
     end = 3000;
+    if (strcmp(switch_priority,"true")==0){
+            end = 7000;
+    }
     errCoM.resize(100000);
     errLH.resize(100000);
     vecT.resize(100000);
@@ -424,11 +428,13 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
             tmPartialTorso = new gocra::gOcraPartialPostureTaskManager(*ctrl, *model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, kp_posture, kd_posture, torsoTaskPosDes);//w=5
 
 
-
             ctrl->setActiveTaskVector();
             nt = ctrl->getNbActiveTask();
             param_priority = Eigen::MatrixXd::Zero(nt,nt);
-
+            if (strcmp(switch_priority,"true")==0){
+                    a_lh_head=0.0;
+                    a_head_lh=1.0;
+            }
 
             param_priority = Eigen::MatrixXd::Zero(nt,nt);
             param_priority(0,1)=1.0; param_priority(0,2)=1.0; param_priority(0,3)=0.0;// param_priority(0,4)=1; //param_priority(0,5)=1; param_priority(0,6)=1;
@@ -451,6 +457,41 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
 
     }
     else if (counter>start && counter-start <= end){
+
+
+//        if (strcmp(switch_priority,"true")){
+//            double t = time-tInitial;
+//            double coe;
+//            if (t>tSwitch && t<=tFinal){
+//                coe = t - tSwitch;
+//                oneToZero = (cos(coe * M_PI/switchDuration) + 1.0)/2.0;
+//                zeroToOne = 1.0 - oneToZero;
+//                param_priority(1,2) = zeroToOne;
+//                param_priority(2,1) = oneToZero;
+//                ctrl->setTaskProjectors(param_priority);
+//                ctrl->doUpdateProjector();
+//                std::cout<<"switching priority"<<std::endl;
+//             }
+//        }
+
+
+        if (strcmp(switch_priority,"true")==0 ){
+            int coe;
+            int switch_start = 4500;
+            int switch_end = 5200;//5000
+            if (counter-start >= switch_start && counter-start<switch_end){
+                coe = counter-start-switch_start;
+                oneToZero = (cos(coe * M_PI/(switch_end - switch_start)) + 1.0)/2.0;
+                zeroToOne = 1.0 - oneToZero;
+                param_priority(1,2) = zeroToOne;
+                param_priority(2,1) = oneToZero;
+                param_priority(1,3)=0.8*(param_priority(1,2));param_priority(2,3)=0.8*(param_priority(2,1));
+                ctrl->setTaskProjectors(param_priority);
+                ctrl->doUpdateProjector();
+                std::cout<<"switching priority"<<std::endl;
+             }
+        }
+
         errCoM[counter-start] = tmHead->getTaskError().norm();//tmCoM->getTaskError().norm();
         errLH[counter-start] = tmSegCartHandLeft->getTaskError().norm();
         vecT[counter-start] = (counter-start)*0.01;
@@ -460,7 +501,12 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
         jointVelocityVector.push_back(model->getJointVelocities());
 
         if (counter-start == end){
-            if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
+            if (strcmp(switch_priority,"true")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-s_0-s/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-s_0-s/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-s_0-s/dq.txt");
+            }
+            else if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
                 resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
                 jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/posture.txt");
                 jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/dq.txt");
@@ -589,6 +635,7 @@ void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller,
             a_head_lh = atof(a21);
             std::cout << "a_head_lh = " << a_head_lh << std::endl;
         }
+        sscanf(keyward, "switch = %127s", switch_priority);
 
     }
 
@@ -630,6 +677,9 @@ void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller,
     //plot data
     counter = 0;
     end = 5000;
+    if (strcmp(switch_priority,"true")==0){
+            end = 8000;
+    }
     errCoM.resize(100000);
     errLH.resize(100000);
     vecT.resize(100000);
@@ -650,7 +700,10 @@ void Sequence_ComLeftHandReachReplay::doUpdate(double time, gocra::gOcraModel& s
 
 
         if (counter == end){
-            if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
+            if (strcmp(switch_priority,"true")==0){
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-s_0-s/GHCJT_motion_change_alpha.txt");
+            }
+            else if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
                 resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
             }
             else if (strcmp(a12,"0.2")==0 && strcmp(a21,"0.8")==0){
@@ -1233,9 +1286,9 @@ void getNominalPosture(gocra::gOcraModel& model, VectorXd &q)
     q[model.getDofIndex("l_shoulder_pitch")] = -M_PI / 6;
     q[model.getDofIndex("r_shoulder_pitch")] = -M_PI / 6;
 //    q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
-    q[model.getDofIndex("r_hip_pitch")] = M_PI / 8;
 //    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
-    q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
 //    q[model.getDofIndex("l_knee")] = -M_PI / 6;
+    q[model.getDofIndex("r_hip_pitch")] = M_PI / 8;
+    q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
     q[model.getDofIndex("r_knee")] = -M_PI / 6;
 }

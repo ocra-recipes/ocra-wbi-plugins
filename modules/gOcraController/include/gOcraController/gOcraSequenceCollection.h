@@ -112,6 +112,7 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
         char a21[128];
         char a31[128];
         char a32[128];
+        char switch_priority[128];
         int                                            counter;
         int                                            end;
         Eigen::VectorXd                                errCoM,errLH,errQ,vecT;
@@ -157,6 +158,7 @@ class Sequence_ComLeftHandReachReplay : public gocra::gOcraTaskManagerCollection
         char value[128];
         char a12[128];
         char a21[128];
+        char switch_priority[128];
         int                                            counter;
         int                                            end;
         Eigen::VectorXd                                errCoM,errLH,vecT;

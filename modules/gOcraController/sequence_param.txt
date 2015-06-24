@@ -6,8 +6,8 @@ ki = 50
 #2 sequence = new Sequence_InitialPoseHold();
 #3 sequence = new Sequence_LeftHandReach();
 #4 sequence = new Sequence_ComLeftHandReach();
-sequence = 4
+sequence = 1
 positionControl = true
 
-qdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/alpha_0-8_0-8/posture.txt
-dqdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/alpha_0-8_0-8/dq.txt
+qdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/alpha_0-_0-/posture.txt
+dqdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/alpha_0-_0-/dq.txt
