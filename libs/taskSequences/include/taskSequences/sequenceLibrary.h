@@ -16,6 +16,7 @@
 #include "sequences/TrajectoryTrackingTest.h"
 #include "sequences/FloatingBaseEstimationTests.h"
 #include "sequences/JointTest.h"
+#include "sequences/Debug.h"
 
 // namespace sequence{
 

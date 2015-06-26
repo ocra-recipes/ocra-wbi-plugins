@@ -33,6 +33,8 @@
             return new FloatingBaseEstimationTests();
         else if (name == "JointTest")
             return new JointTest();
+        else if (name == "Debug")
+            return new Debug();
 
         // TODO: It would be nice to handle errors a little more gently here and rather than throwing an error just not create any sequence. This could be done with a separate function doing a string check in thread.cpp. This however adds code. What would be nice is to just have a vector of the different sequence names and be able to figure out the constructor progrmatically rather than having to write it explicitly. Not sure if this is possible.
 
@@ -51,6 +53,7 @@
             errorMessage+="\nTrajectoryTrackingTest";
             errorMessage+="\nFloatingBaseEstimationTests";
             errorMessage+="\nJointTest";
+            errorMessage+="\nDebug";
             throw std::runtime_error(errorMessage);
         }
     }

@@ -20,7 +20,6 @@
             double                                          tFinal;
             int                                             t_pich_index;
 
-            wocra::wOcraFullPostureTaskManager*            tmFull;
     };
 
 // }

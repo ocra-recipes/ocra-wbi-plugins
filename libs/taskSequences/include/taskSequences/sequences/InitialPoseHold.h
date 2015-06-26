@@ -15,7 +15,6 @@
             virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
         private:
             // Full posture task
-            wocra::wOcraFullPostureTaskManager*            tmFull;
     };
 
 

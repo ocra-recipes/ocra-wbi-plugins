@@ -14,16 +14,16 @@
             virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
             virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
         private:
-            // Full posture task
-            wocra::wOcraFullPostureTaskManager*            tmFull;
-            // Partial posture task
-            wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
-            // Segment left hand task
-            wocra::wOcraSegCartesianTaskManager*           tmLeftHandCart;
-            wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
-            wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
-
-            wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
+            // // Full posture task
+            // wocra::wOcraFullPostureTaskManager*            tmFull;
+            // // Partial posture task
+            // wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+            // // Segment left hand task
+            // wocra::wOcraSegCartesianTaskManager*           tmLeftHandCart;
+            // wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
+            // wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
+            //
+            // wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
 
             // trajectory
             wocra::wOcraTrajectory*                        leftHandTrajectory;

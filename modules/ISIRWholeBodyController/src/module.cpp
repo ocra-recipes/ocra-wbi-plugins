@@ -77,6 +77,11 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
         debugMode = true;
     }else{debugMode = false;}
 
+    if( rf.check("floatingBase") )
+    {
+        isFloatingBase = true;
+    }else{isFloatingBase = false;}
+
     yarp::os::Property yarpWbiOptions;
     // Get wbi options from the canonical file
     if ( !rf.check("wbi_conf_file") )
@@ -138,8 +143,9 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
                                                    controller_options,
                                                    startupTaskSetPath,
                                                    startupSequence,
-                                                   debugMode);
-    if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing locomotion control thread. Closing module.\n"); return false; }
+                                                   debugMode,
+                                                   isFloatingBase);
+    if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing ISIRWholeBodyController thread. Closing module.\n"); return false; }
 
     fprintf(stderr,"ISIRWholeBodyController thread started\n");
 

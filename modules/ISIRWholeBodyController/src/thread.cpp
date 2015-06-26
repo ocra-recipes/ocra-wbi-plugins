@@ -66,7 +66,8 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
                                                              yarp::os::Property &_options,
                                                              string _startupTaskSetPath,
                                                              string _startupSequence,
-                                                             bool _runInDebugMode)
+                                                             bool _runInDebugMode,
+                                                             bool _isFreeBase)
     : RateThread(_period),
       name(_name),
       robotName(_robotName),
@@ -76,8 +77,8 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
       startupSequence(_startupSequence),
       runInDebugMode(_runInDebugMode)
 {
-    bool isFreeBase = false;
-    ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
+    // bool _isFreeBase = false;
+    ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, _isFreeBase);
     bool useReducedProblem = false;
     ctrl = new wocra::wOcraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
 
@@ -89,6 +90,8 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     getHomePosture(*ocraModel, homePosture);
     getNominalPosture(*ocraModel, debugPosture);
 
+
+    torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
 
 
     fb_Hroot = wbi::Frame();
@@ -106,7 +109,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     {
         if (ocraModel->hasFixedRoot()) {
             std::cout << "Loading fixed base minimal tasks..." << std::endl;
-            baseSequence = LoadSequence("FixedBaseMinimalTasks");
+            baseSequence = LoadSequence("Debug");
             baseSequenceIsActive = true;
             std::cout << "\n\n\t------------------------------" << std::endl;
             std::cout << "\t  Running in DEBUG mode..." << std::endl;
@@ -199,6 +202,8 @@ bool ISIRWholeBodyControllerThread::threadInit()
     if (runInDebugMode)
     {
         robot->setControlMode(CTRL_MODE_POS, debugPosture.data(), ALL_JOINTS);
+        robot->setControlReference(debugPosture.data());
+        robot->setControlMode(CTRL_MODE_TORQUE, 0, debugJointIndex);
     }
     else
     {
@@ -233,8 +238,7 @@ void ISIRWholeBodyControllerThread::run()
                                             Update dynamic model
     ******************************************************************************************************/
 
-    // Move this to header so can resize once
-    yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
+
     bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
     bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
     bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, fb_torque.data(), ALL_JOINTS);
@@ -267,14 +271,19 @@ void ISIRWholeBodyControllerThread::run()
         if (input != NULL)
         {
             int tempDebugIndex = input->get(0).asInt();
-            if (tempDebugIndex>=0 || tempDebugIndex<robot->getDoFs()) {
+            if (tempDebugIndex>=0 && tempDebugIndex<robot->getDoFs()) {
                 std::cout << "\n-----\nNew joint received...\n" << std::endl;
                 std::cout << "Returning joint: " << debugJointIndex << " to home position." << std::endl;
                 robot->setControlMode(CTRL_MODE_POS, &debugPosture[debugJointIndex], debugJointIndex);
+                robot->setControlReference(&debugPosture[debugJointIndex], debugJointIndex);
+
                 debugJointIndex = tempDebugIndex;
-                std::cout << "Now joint: " << debugJointIndex << " is now being tested in torque control.\n-----\n" << std::endl;
+                if(robot->setControlMode(CTRL_MODE_TORQUE, &torques_cmd[debugJointIndex], debugJointIndex) )
+                {
+                    std::cout << "Now joint: " << debugJointIndex << " is now being tested in torque control.\n-----\n" << std::endl;
+                }
             }
-            else{std::cout << "\n[ERR] (thread.run) The command you sent was not a valid joint index. Please use integers between 0 and "<< robot->getDoFs() << ".\n"<< std::endl;}
+            else{std::cout << "\n[WARNING] (thread.run) The command you sent was not a valid joint index. Please use integers between 0 and "<< robot->getDoFs() - 1 << ".\n"<< std::endl;}
 
         }
     }
@@ -314,7 +323,7 @@ void ISIRWholeBodyControllerThread::run()
     ******************************************************************************************************/
 
     if (runInDebugMode) {
-        robot->setControlMode(CTRL_MODE_TORQUE, &torques_cmd[debugJointIndex], debugJointIndex);
+        robot->setControlReference(&torques_cmd[debugJointIndex], debugJointIndex);
     }
     else{
         robot->setControlReference(torques_cmd.data());
@@ -357,9 +366,16 @@ void ISIRWholeBodyControllerThread::run()
 //*************************************************************************************************************************
 void ISIRWholeBodyControllerThread::threadRelease()
 {
-    //bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
-    bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, q_initial.data());
+    std::cout << "\n\n-->Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
+    bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, homePosture.data(), ALL_JOINTS);
 
-    //yarp::sig::Vector torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
-    //robot->setControlReference(torques_cmd.data());
+    if (ocraModel->hasFixedRoot()) {
+        bool res_setControlReference = robot->setControlReference(homePosture.data());
+    }
+    else{
+        bool res_setControlReference = robot->setControlReference(homePosture.data());
+        //TODO: Implement a safe home park procedure for standing.
+    }
+
+
 }

@@ -30,7 +30,6 @@
 
         private:
             // Full posture task
-            wocra::wOcraFullPostureTaskManager*            tmFull;
 
     };
 

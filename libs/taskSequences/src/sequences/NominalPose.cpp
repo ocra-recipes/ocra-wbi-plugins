@@ -13,23 +13,25 @@
         nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);
 
-        tmFull = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 5.0, 1, q_init);
+        taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 5.0, 1, q_init);
     }
 
     void NominalPose::doUpdate(double time, wocra::wOcraModel& state, void** args)
     {
+        wocra::wOcraFullPostureTaskManager*   tmp_tmFull = dynamic_cast<wocra::wOcraFullPostureTaskManager*>(taskManagers["tmFull"]);
+
         Eigen::VectorXd q_current;
         if (time <= tFinal){
             q_current = (time - tInitial)/(tFinal-tInitial) * (nominal_q - q_init) + q_init;
-            tmFull->setPosture(q_current);
+            tmp_tmFull->setPosture(q_current);
         }
         else{
             q_current = nominal_q;
-            tmFull->setPosture(q_current);
+            tmp_tmFull->setPosture(q_current);
         }
 
-        Eigen::VectorXd taskError = tmFull->getTaskError();
-        //std::cout << "Time: " << time << "[s], Posture error total: " << tmFull->getTaskErrorNorm() << std::endl;
+        // Eigen::VectorXd taskError = tmp_tmFull->getTaskError();
+        //std::cout << "Time: " << time << "[s], Posture error total: " << tmp_tmFull->getTaskErrorNorm() << std::endl;
         // std::cout << "Time: " << time << "[s], Torso Pitch error total: " << taskError(t_pich_index) << std::endl;
 
         /*
