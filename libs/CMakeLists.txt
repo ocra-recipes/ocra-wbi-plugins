@@ -1,0 +1,2 @@
+add_subdirectory(ocraWbiPlugins)
+add_subdirectory(taskSequences)

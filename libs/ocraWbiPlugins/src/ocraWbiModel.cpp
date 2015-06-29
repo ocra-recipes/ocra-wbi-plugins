@@ -1,5 +1,5 @@
-#include <ISIRWholeBodyController/ocraWbiModel.h>
-#include <ISIRWholeBodyController/ocraWbiUtil.h>
+#include <ocraWbiPlugins/ocraWbiModel.h>
+#include <ocraWbiPlugins/ocraWbiUtil.h>
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/sig/Matrix.h>
@@ -20,9 +20,9 @@ const double g_vector[3] = {0, 0, GRAVITY_CONSTANT};
 
 struct ocraWbiModel::ocraWbiModel_pimpl
 {
-    
+
 public:
-    bool                                                    freeRoot;                         
+    bool                                                    freeRoot;
     int                                                     nbDofs;
     int                                                     nbInternalDofs; // nbDofs + FREE_ROOT_DOF if free root, otherwise the same as nbDofs
 
@@ -64,25 +64,25 @@ public:
     std::vector< Eigen::Vector3d >                          segCoM; // not set
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,TRANS_ROT_DIM> > segMassMatrix; // not set
 /*
-    std::vector< Eigen::Matrixd >                           segMassMatrix_cm; 
+    std::vector< Eigen::Matrixd >                           segMassMatrix_cm;
     std::vector< MatrixXdRm >                               segMassMatrix_rm;
 */
     std::vector< Eigen::Vector3d >                          segMomentsOfInertia; // not set
     std::vector< Eigen::Rotation3d >                        segInertiaAxes; // not set
 
-    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian; 
-//    std::vector < Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian_full; 
-    std::vector< Eigen::MatrixXd >                                      segJacobian_full; 
-    std::vector< Eigen::MatrixXd >                                      segJacobian_full_ocra; 
-    std::vector< MatrixXdRm >                                           segJacobian_rm; 
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian;
+//    std::vector < Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian_full;
+    std::vector< Eigen::MatrixXd >                                      segJacobian_full;
+    std::vector< Eigen::MatrixXd >                                      segJacobian_full_ocra;
+    std::vector< MatrixXdRm >                                           segJacobian_rm;
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJdot; // not set
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian;
     std::vector< Eigen::Twistd >                            segJdotQdot;
     std::map< std::string, int >                            segIndexFromName;
     std::vector< std::string >                              segNameFromIndex;
-    Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      Jroot; 
+    Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      Jroot;
     Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      dJroot;
-    
+
     ocraWbiModel_pimpl(int nbSeg, int ndof, int nDofFree)
         :nbSegments(nbSeg)
         ,q(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
@@ -144,7 +144,7 @@ ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, 
 
 //    // Need to FIX THIS TO GET THE VALUE PROPERLY!
 //    owm_pimpl->nbSegments = owm_pimpl->nbInternalDofs + 1;
-    // Ones to indicate that all joints are actuated 
+    // Ones to indicate that all joints are actuated
     owm_pimpl->actuatedDofs = Eigen::VectorXd::Ones(owm_pimpl->nbInternalDofs);
 
     // Setup and get lower/upper joint limits
@@ -152,7 +152,7 @@ ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, 
     owm_pimpl->upperLimits = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
 
     robot->getJointLimits(owm_pimpl->lowerLimits.data(), owm_pimpl->upperLimits.data(), ALL_JOINTS);
-    
+
     // Get full M0
     MatrixXdRm M_rm_total_mass(full_wbi_size,full_wbi_size);
     robot->computeMassMatrix(owm_pimpl->q.data(), wbi::Frame(), M_rm_total_mass.data());
@@ -162,7 +162,7 @@ ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, 
 
 ocraWbiModel::~ocraWbiModel()
 {
-    
+
 }
 
 int ocraWbiModel::nbSegments() const
@@ -236,7 +236,7 @@ const Eigen::MatrixXd& ocraWbiModel::getInertiaMatrix() const
         ocraWbiConversions::wbiToOcraMassMatrix(owm_pimpl->nbInternalDofs, owm_pimpl->M_full, owm_pimpl->M);
     }
     else
-    {   
+    {
         owm_pimpl->M = owm_pimpl->M_full.block(FREE_ROOT_DOF, FREE_ROOT_DOF, owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     }
 
@@ -283,7 +283,7 @@ const Eigen::VectorXd& ocraWbiModel::getNonLinearTerms() const
     printf("Get Non Linear Full\n");
     std::cout << owm_pimpl->nl_full.transpose() << std::endl;
 */
-    
+
     return owm_pimpl->nl;
 }
 
@@ -297,7 +297,7 @@ const Eigen::VectorXd& ocraWbiModel::getLinearTerms() const
 }
 
 const Eigen::VectorXd& ocraWbiModel::getGravityTerms() const
-{ 
+{
     Eigen::VectorXd dq_zero = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
     Eigen::Vector3d g(g_vector);
 
@@ -307,7 +307,7 @@ const Eigen::VectorXd& ocraWbiModel::getGravityTerms() const
         ocraWbiConversions::wbiToOcraBodyVector(owm_pimpl->nbInternalDofs, owm_pimpl->g_full, owm_pimpl->g);
     else
         owm_pimpl->g = owm_pimpl->g_full.segment(FREE_ROOT_DOF, owm_pimpl->nbDofs);
-    
+
 /*
     printf("Get Gravity\n");
     std::cout << owm_pimpl->g.transpose() << std::endl;
@@ -458,7 +458,7 @@ const Eigen::Rotation3d& ocraWbiModel::getSegmentInertiaAxes(int index) const
 const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJacobian(int index) const
 {
     robot->computeJacobian(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, index, owm_pimpl->segJacobian_rm[index].data());
-    
+
     ocraWbiConversions::eigenRowMajorToColMajor(owm_pimpl->segJacobian_rm[index], owm_pimpl->segJacobian_full[index]);
     ocraWbiConversions::wbiToOcraSegJacobian(owm_pimpl->segJacobian_full[index], owm_pimpl->segJacobian_full_ocra[index]);
 
@@ -522,8 +522,8 @@ void ocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& 
     // std::cout << "\nH_root_wbi in pimpl \n" << owm_pimpl->Hroot_wbi.toString() << std::endl;
 
     // ocra versions
-    ocraWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H); 
-    ocraWbiConversions::wbiToOcraTwistVector(owm_pimpl->Troot_wbi, T); 
+    ocraWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H);
+    ocraWbiConversions::wbiToOcraTwistVector(owm_pimpl->Troot_wbi, T);
 
     // std::cout << "\nH_root_ocra \n" << H << std::endl;
 
@@ -553,7 +553,7 @@ void ocraWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
 }
 
 void ocraWbiModel::doSetJointVelocities(const Eigen::VectorXd& dq)
-{ 
+{
 /*
     printf("set joint vel to :\n");
     std::cout << dq.transpose() << std::endl;
@@ -573,21 +573,21 @@ void ocraWbiModel::doSetFreeFlyerVelocity(const Eigen::Twistd& Troot)
 
 int ocraWbiModel::doGetSegmentIndex(const std::string& name) const
 {
-    int id; 
+    int id;
     bool ok = robot->getFrameList().idToIndex(name.c_str(), id);
     return id;
 }
 
 int ocraWbiModel::doGetDofIndex(const std::string &name) const
 {
-    int id; 
+    int id;
     bool ok = robot->getJointList().idToIndex(name.c_str(), id);
     return id;
 }
 
 const std::string& ocraWbiModel::doGetDofName(int index) const
 {
-    wbi::ID dofID; //wbi::IDList jList = 
+    wbi::ID dofID; //wbi::IDList jList =
     bool res = robot->getJointList().indexToID(index, dofID);
     return dofID.toString();
     // throw std::runtime_error("[ocraWbiModel::doGetDofName] This function was not overriden for a specific model");
@@ -596,7 +596,7 @@ const std::string& ocraWbiModel::doGetDofName(int index) const
 
 const std::string& ocraWbiModel::doGetSegmentName(int index) const
 {
-    wbi::ID segID;  
+    wbi::ID segID;
     bool res = robot->getFrameList().indexToID(index, segID);
     return segID.toString();
 }
@@ -621,28 +621,28 @@ void ocraWbiModel::printAllData()
 
     std::cout<<"nbDofs:\n";
     std::cout<<nbDofs()<<std::endl;
-    
+
     std::cout<<"nbInternalDofs:\n";
     std::cout<<nbInternalDofs()<<std::endl;
 
     std::cout<<"actuatedDofs:\n";
     std::cout<<getActuatedDofs()<<"\n";
-    
+
     std::cout<<"lowerLimits:\n";
     std::cout<<getJointLowerLimits()<<"\n";
-    
+
     std::cout<<"upperLimits:\n";
     std::cout<<getJointUpperLimits()<<"\n";
-    
+
     std::cout<<"q:\n";
     std::cout<<getJointPositions().transpose()<<"\n";
-    
+
     std::cout<<"dq:\n";
     std::cout<<getJointVelocities().transpose()<<"\n";
 
     std::cout<<"Hroot:\n";
     std::cout<<getFreeFlyerPosition()<<"\n";
-    
+
     std::cout<<"Troot:\n";
 //    std::cout<<getFreeFlyerVelocity().transpose()<<"\n";
 
@@ -651,16 +651,16 @@ void ocraWbiModel::printAllData()
 
     std::cout<<"M:\n";
     std::cout<<getInertiaMatrix()<<"\n";
-    
+
     std::cout<<"Minv:\n";
     std::cout<<getInertiaMatrixInverse()<<"\n";
 
     std::cout<<"B:\n";
     std::cout<<getDampingMatrix()<<"\n";
-    
+
     std::cout<<"n:\n";
     std::cout<<getNonLinearTerms()<<"\n";
-    
+
     std::cout<<"g:\n";
     std::cout<<getGravityTerms()<<"\n";
 
@@ -682,43 +682,43 @@ void ocraWbiModel::printAllData()
     std::cout<<"comJacobianDot:\n";
     std::cout<<getCoMJacobianDot()<<"\n";
 
-    
-    
+
+
     for (int idx=0; idx<nbSegments(); idx++)
     {
         std::cout<<"segPosition "<<idx<<":\n";
         std::cout<<getSegmentPosition(idx)<<"\n";
-    
+
         std::cout<<"segVelocity "<<idx<<":\n";
         std::cout<<getSegmentVelocity(idx)<<"\n";
-    
+
         std::cout<<"segMass "<<idx<<":\n";
         std::cout<<getSegmentMass(idx)<<"\n";
-    
+
         std::cout<<"segCoM "<<idx<<":\n";
         std::cout<<getSegmentCoM(idx)<<"\n";
-    
+
         std::cout<<"segMassMatrix "<<idx<<":\n";
         std::cout<<getSegmentMassMatrix(idx)<<"\n";
-    
+
         std::cout<<"segMomentsOfInertia "<<idx<<":\n";
         std::cout<<getSegmentMomentsOfInertia(idx)<<"\n";
-    
+
         std::cout<<"segInertiaAxes "<<idx<<":\n";
         std::cout<<getSegmentInertiaAxes(idx)<<"\n";
-    
+
         std::cout<<"segJacobian "<<idx<<":\n";
         std::cout<<getSegmentJacobian(idx)<<"\n";
-    
+
         std::cout<<"segJdot "<<idx<<":\n";
         std::cout<<getSegmentJdot(idx)<<"\n";
-    
+
         std::cout<<"segJointJacobian "<<idx<<":\n";
         std::cout<<getJointJacobian(idx)<<"\n";
-    
+
         std::cout<<"segJdotQdot "<<idx<<":\n";
         std::cout<<getSegmentJdotQdot(idx).transpose()<<"\n";
-    
+
     }
 
 }

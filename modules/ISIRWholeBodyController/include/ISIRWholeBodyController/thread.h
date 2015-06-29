@@ -31,9 +31,12 @@
 
 #include <wbi/wbi.h>
 
-#include "ocraWbiModel.h"
+#include <ocraWbiPlugins/ocraWbiModel.h>
 //#include "wOcraCtrlTaskManager.h"
-#include <ISIRWholeBodyController/sequenceCollection.h>
+// #include <ISIRWholeBodyController/sequenceCollection.h>
+
+
+
 #include "wocra/wOcraController.h"
 #include "wocra/Solvers/OneLevelSolver.h"
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
@@ -86,6 +89,7 @@ class ISIRWholeBodyControllerThread: public RateThread
     // Eigen::VectorXd fb_Hroot_Vector;
     yarp::sig::Vector fb_Hroot_Vector;
     yarp::sig::Vector fb_Troot_Vector;
+    yarp::sig::Vector torques_cmd;
 
     wbi::Frame fb_Hroot; // vector that position of root
     Eigen::Twistd fb_Troot; // vector that contains the twist of root
@@ -103,7 +107,8 @@ public:
                                   yarp::os::Property & _options,
                                   string _startupTaskSetPath,
                                   string _startupSequence,
-                                  bool _runInDebugMode);
+                                  bool _runInDebugMode,
+                                  bool _isFreeBase);
 
     bool threadInit();
     void run();
