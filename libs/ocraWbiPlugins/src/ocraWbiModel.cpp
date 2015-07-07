@@ -58,6 +58,7 @@ public:
     MatrixXdRm                                              DJ_com_rm; // derivative of J
     Eigen::Vector3d                                         DJDq;
 
+    Eigen::Displacementd                                    H_com;
     std::vector< Eigen::Displacementd >                     segPosition;
     std::vector< Eigen::Twistd >                            segVelocity;
     std::vector< double >                                   segMass; // not set
@@ -101,14 +102,15 @@ public:
         ,g(Eigen::VectorXd::Zero(ndof))
         ,g_full(Eigen::VectorXd::Zero(nDofFree))
         ,J_com(COM_POS_DIM, ndof)
-        ,J_com_rm(COM_POS_DIM, nDofFree)
-        ,J_com_full(COM_POS_DIM, nDofFree)
+        ,J_com_rm(TRANS_ROT_DIM, nDofFree)
+        ,J_com_full(TRANS_ROT_DIM, nDofFree)
         ,DJ_com(Eigen::MatrixXd::Zero(COM_POS_DIM, ndof))
         ,DJ_com_rm(MatrixXdRm::Zero(COM_POS_DIM, nDofFree))
         ,DJDq(Eigen::Vector3d(0,0,0))
         ,segPosition(nbSeg, Eigen::Displacementd(0,0,0))
         ,segVelocity(nbSeg, Eigen::Twistd(0,0,0,0,0,0))
         ,segMass(nbSeg, 0)
+        ,H_com(Eigen::Displacementd(0,0,0))
         ,segCoM(nbSeg, Eigen::Vector3d(0,0,0))
         ,segMassMatrix(nbSeg, Eigen::Matrix<double,6,6>::Zero())
         ,segMomentsOfInertia(nbSeg, Eigen::Vector3d(0,0,0))
@@ -327,9 +329,9 @@ const Eigen::Vector3d& ocraWbiModel::getCoMPosition() const
 {
     Frame H;
     robot->computeH(owm_pimpl->q.data(),owm_pimpl->Hroot_wbi,wbi::iWholeBodyModel::COM_LINK_ID,H);
-    Eigen::Displacementd Hcom;
-    ocraWbiConversions::wbiFrameToEigenDispd(H,Hcom);
-    owm_pimpl->pos_com = Hcom.getTranslation();
+
+    ocraWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->H_com);
+    owm_pimpl->pos_com = owm_pimpl->H_com.getTranslation();
 /*
     printf("Get COM Poisiton\n");
     std::cout << owm_pimpl->pos_com << std::endl;
@@ -371,10 +373,18 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMJaco
     robot->computeJacobian(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, wbi::iWholeBodyModel::COM_LINK_ID, owm_pimpl->J_com_rm.data());
     ocraWbiConversions::eigenRowMajorToColMajor(owm_pimpl->J_com_rm, owm_pimpl->J_com_full);
 
+    getCoMPosition();
+
     if (owm_pimpl->freeRoot)
-        ocraWbiConversions::wbiToOcraCoMJacobian(owm_pimpl->J_com_full,owm_pimpl->J_com);
+    {
+        ocraWbiConversions::wbiToOcraCoMJacobian(owm_pimpl->J_com_full.topLeftCorner(COM_POS_DIM,owm_pimpl->nbDofs),owm_pimpl->J_com);
+        owm_pimpl->J_com = owm_pimpl->H_com.getRotation().inverse().adjoint()*owm_pimpl->J_com;
+    }
     else
+    {
         owm_pimpl->J_com = owm_pimpl->J_com_full.topRightCorner(COM_POS_DIM,owm_pimpl->nbInternalDofs);
+        owm_pimpl->J_com = owm_pimpl->H_com.getRotation().inverse().adjoint().topRightCorner(COM_POS_DIM,owm_pimpl->nbInternalDofs)*owm_pimpl->J_com;
+    }
 
     return owm_pimpl->J_com;
 }
@@ -470,6 +480,7 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJacobian(i
     /**
     * We must project the jacobian in the segment frame orientation in order to work with the controller.
     */
+//    owm_pimpl->segJacobian[index] = getSegmentPosition(index).inverse().adjoint()*owm_pimpl->segJacobian[index];
     const Eigen::Displacementd::Rotation3D& R = getSegmentPosition(index).getRotation();
     owm_pimpl->segJacobian[index].bottomRows(3) = R.inverse().adjoint()*owm_pimpl->segJacobian[index].bottomRows(3);
     owm_pimpl->segJacobian[index].topRows(3) = R.inverse().adjoint()*owm_pimpl->segJacobian[index].topRows(3);
@@ -528,7 +539,9 @@ void ocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& 
     // std::cout << "\nH_root_ocra \n" << H << std::endl;
 
     int root_index = getSegmentIndex("root_link");
-    const Eigen::Displacementd::Rotation3D& R = getSegmentPosition(root_index).getRotation();
+//    const Eigen::Displacementd::Rotation3D& R = getSegmentPosition(root_index).getRotation();
+    const Eigen::Displacementd::Rotation3D& R = H.getRotation();
+//    T = H.inverse().adjoint()*T;
     T.bottomRows(3) = R.inverse().adjoint()*T.bottomRows(3);
     T.topRows(3) = R.inverse().adjoint()*T.topRows(3);
 
