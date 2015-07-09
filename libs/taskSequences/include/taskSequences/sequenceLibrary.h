@@ -17,6 +17,7 @@
 #include "sequences/FloatingBaseEstimationTests.h"
 #include "sequences/JointTest.h"
 #include "sequences/Debug.h"
+#include "sequences/Empty.h"
 
 // namespace sequence{
 

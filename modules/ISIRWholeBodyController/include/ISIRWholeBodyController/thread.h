@@ -32,8 +32,6 @@
 #include <wbi/wbi.h>
 
 #include <ocraWbiPlugins/ocraWbiModel.h>
-//#include "wOcraCtrlTaskManager.h"
-// #include <ISIRWholeBodyController/sequenceCollection.h>
 
 
 
@@ -41,7 +39,7 @@
 #include "wocra/Solvers/OneLevelSolver.h"
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
 
-// #include "ISIRWholeBodyController/ScenariosICub.h"
+
 
 
 using namespace yarp::os;
@@ -69,11 +67,7 @@ class ISIRWholeBodyControllerThread: public RateThread
     wocra::wOcraController *ctrl;
     wocra::OneLevelSolverWithQuadProg internalSolver;
 
-    wocra::wOcraTaskSequenceBase* baseSequence;
-    wocra::wOcraTaskSequenceBase* xmlSequence;
-    wocra::wOcraTaskSequenceBase* cppSequence;
-
-    bool baseSequenceIsActive, xmlSequenceIsActive, cppSequenceIsActive;
+    wocra::wOcraTaskSequenceBase* taskSequence;
 
     Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
 
@@ -85,6 +79,8 @@ class ISIRWholeBodyControllerThread: public RateThread
     Eigen::VectorXd fb_qdRad; // vector that contains the derivative of encoders read from the robot
     Eigen::VectorXd homePosture;
     Eigen::VectorXd debugPosture;
+    Eigen::VectorXd refSpeed;
+
 
     // Eigen::VectorXd fb_Hroot_Vector;
     yarp::sig::Vector fb_Hroot_Vector;

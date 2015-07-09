@@ -10,11 +10,11 @@
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
         // Task Coeffs
-        double Kp = 10.0;
+        double Kp = 20.0;
         double Kd = 2.0 * sqrt(Kp);
 
-        double Kp_hand = 40.0;
-        double Kd_hand = 8.0 ;//* sqrt(Kp_hand);
+        double Kp_hand = 120.0;
+        double Kd_hand = 2.0 *sqrt(Kp_hand);
         double wFullPosture = 0.0001;
         double wPartialPosture = 0.1;
         double wLeftHandTask = 1.0;
