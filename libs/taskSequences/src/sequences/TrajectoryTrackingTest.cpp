@@ -11,7 +11,7 @@
 
         // Task Coeffs
         double Kp = 20.0;
-        double Kd = 2.0 * sqrt(Kp);
+        double Kd = 4.0 * sqrt(Kp);
 
         double Kp_hand = 120.0;
         double Kd_hand = 2.0 *sqrt(Kp_hand);
@@ -80,8 +80,8 @@
         Eigen::MatrixXd squareDisplacement(3,5);
         waypoints << startingPos, startingPos, startingPos, startingPos, startingPos;
         squareDisplacement << 0.0, 0.0, 0.0, 0.0, 0.0,
-                              0.0, 0.2, 0.2, 0.0, 0.0,
-                              0.0, 0.0, 0.2, 0.2, 0.0;
+                              0.0, 0.15, 0.15, 0.0, 0.0,
+                              0.0, 0.0, 0.25, 0.25, 0.0;
         waypoints += squareDisplacement;
 
         if (isLinInterp)

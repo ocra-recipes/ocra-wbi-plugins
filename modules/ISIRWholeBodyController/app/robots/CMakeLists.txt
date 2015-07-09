@@ -7,10 +7,17 @@ set(ROBOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${ROBOT_NAME}")
 
 # If no env variable YARP_ROBOT_NAME is defined
 if(CODYCO_INSTALL_ALL_ROBOTS)
-  add_subdirectory(iCubParis02)
-  add_subdirectory(icubGazeboSim)
+    set(robots icubGazeboSim
+               iCubParis02)
 else()
   if(ROBOT_NAME)
-    add_subdirectory(${ROBOT_NAME})
+      set(robots ${ROBOT_NAME})
   endif()
 endif()
+
+
+
+foreach(robot ${robots})
+    yarp_install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${robot}
+                 DESTINATION ${CODYCO_ROBOTS_INSTALL_DIR})
+endforeach()

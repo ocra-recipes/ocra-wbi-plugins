@@ -1,4 +1,4 @@
-#Usage notes for the ISIRWholeBodyController
+#Usage notes for the ISIRWholeBodyController/gOcraController
 
 These notes are written specifically for the iCubParis robots. Please be careful if you are implementing the controller on another platform.
 
@@ -33,7 +33,7 @@ Right now the left leg is not working so it has been deactivated in robotInterfa
 
 
 
- ###Launch
+###Launch
 
   1. Make sure all computers in the cluster are turned on including pc104.
   2. Open `icub-cluster.py` and start yarpserver and yarprun on the computers.
@@ -41,3 +41,13 @@ Right now the left leg is not working so it has been deactivated in robotInterfa
   4. Under `Applications` go to `WBD_JTC_Fixed_Base`. Open the application.
   5. Click `run` (the green play button).
   6. Launch `ISIRWholeBodyController` with whatever task set or sequence desired.
+
+
+###Lookout for...
+ - The function [`getNominalPosture()`](/libs/taskSequences/src/sequenceTools.cpp) tries to access joint indexes on the left leg so when running without the left leg, make sure the appropriate lines are commented out.
+ - Some of the Cpp sequences work well in simulation but need much larger gains on the real robot. Additionally, many of them assume you are starting in the home posture and may cause collisions if starting from some other posture.
+ - Make sure to recalibrate `wholeBodyDynamicsTree` every 15-30 minutes:
+ ```
+ yarp rpc /wholeBodyDynamicsTree/rpc:i
+ calib all 400
+ ```
