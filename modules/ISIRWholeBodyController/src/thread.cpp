@@ -76,7 +76,8 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
       options(_options),
       startupTaskSetPath(_startupTaskSetPath),
       startupSequence(_startupSequence),
-      runInDebugMode(_runInDebugMode)
+      runInDebugMode(_runInDebugMode),
+      processor(*this)
 {
     // bool _isFreeBase = false;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, _isFreeBase);
@@ -129,7 +130,9 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     }
     else
     {
-
+        std::cout << "\n\n=== Creating ISIRWholeBodyController ===" << std::endl;
+        rpcPort.open("/ISIRWholeBodyController/rpc:i");
+        rpcPort.setReader(processor);
 
         //Create cpp sequence
         if (!startupSequence.empty()) {
@@ -167,6 +170,14 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
     }
 
+}
+
+ISIRWholeBodyControllerThread::~ISIRWholeBodyControllerThread()
+{
+    delete(taskSequence);
+    // delete(ocraModel);
+    // delete(ctrl);
+    rpcPort.close();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -357,7 +368,6 @@ void ISIRWholeBodyControllerThread::threadRelease()
 {
     taskSequence->clearSequence();
 
-
     if(robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS) )
     {
         std::cout << "\n\n--> Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
@@ -374,4 +384,90 @@ void ISIRWholeBodyControllerThread::threadRelease()
     else{
         std::cout << "[ERROR] (ISIRWholeBodyControllerThread::threadRelease): Could not set the robot into Position Control mode." << std::endl;
     }
+}
+
+/**************************************************************************************************
+                                    Nested PortReader Class
+**************************************************************************************************/
+ISIRWholeBodyControllerThread::DataProcessor::DataProcessor(ISIRWholeBodyControllerThread& ctThreadRef):ctThread(ctThreadRef)
+{
+    //do nothing
+}
+
+bool ISIRWholeBodyControllerThread::DataProcessor::read(yarp::os::ConnectionReader& connection)
+{
+    yarp::os::Bottle input, reply;
+    bool ok = input.read(connection);
+    if (!ok)
+        return false;
+
+    else{
+        ctThread.parseIncomingMessage(&input, &reply);
+        yarp::os::ConnectionWriter *returnToSender = connection.getWriter();
+        if (returnToSender!=NULL) {
+            reply.write(*returnToSender);
+        }
+        return true;
+    }
+}
+/**************************************************************************************************
+**************************************************************************************************/
+
+
+
+
+
+void ISIRWholeBodyControllerThread::parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply)
+{
+    int btlSize = input->size();
+    for (int i=0; i<btlSize;)
+    {
+        std::string msgTag = input->get(i).asString();
+
+        if(msgTag == "yarp")
+        {
+            std::cout << "Implement yarp task parsing" << std::endl;
+            i++;
+        }
+
+        // Stiffness
+        else if(msgTag == "xml")
+        {
+            i++;
+            wocra::wOcraTaskParser taskParser;
+            taskParser.parseTasksXML( input->get(i).asString().c_str() );
+            taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+            i++;
+        }
+        else if(msgTag == "removeTask")
+        {
+            i++;
+            taskSequence->removeTaskManager(input->get(i).asString());
+            i++;
+        }
+
+        else if (msgTag == "help")
+        {
+            // TODO: Properly print help message to rpc reply
+            // reply->addString(printValidMessageTags());
+            std::cout << printValidMessageTags();
+            i++;
+        }
+
+        // Fallback
+        else
+        {
+            std::cout << "[WARNING] (ISIRWholeBodyControllerThread::parseIncomingMessage): The message tag, " << msgTag << " doesn't exist. Skipping. Use help to see availible options." << std::endl;
+
+            reply->addString("invalid_input");
+            i++;
+        }
+    }
+}
+
+std::string ISIRWholeBodyControllerThread::printValidMessageTags()
+{
+    std::string helpString  = "\n=== Valid message tags are: ===\n";
+    helpString += "removeTask: Allows you to remove a single task manager from the sequence.\n";
+    return helpString;
 }
