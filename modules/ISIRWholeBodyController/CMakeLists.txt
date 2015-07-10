@@ -18,6 +18,8 @@ find_package(Eigen3 REQUIRED)
 find_package(iDynTree REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
 find_package(modHelp REQUIRED)
+find_package(Boost COMPONENTS system filesystem REQUIRED)
+
 
 # find_package(ocraWbiPlugins REQUIRED)
 # find_package(taskSequences REQUIRED)
@@ -49,7 +51,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${PC_WLQP_CONTROL_INCLUDE_DIRS}
                     ${PC_OCRA_FRAMEWORK_INCLUDE_DIRS}
                     ${modHelp_INCLUDE_DIRS}/include
-
+                    ${Boost_INCLUDE_DIR}
                     )
 
 
@@ -72,7 +74,7 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ocraWbiPlugins
                                      ${modHelp_LIBRARIES}
                                      ${PC_WLQP_CONTROL_LIBRARIES}
                                      ${PC_OCRA_FRAMEWORK_LIBRARIES}
-
+                                     ${Boost_LIBRARIES}
                                      )
 
 

@@ -38,6 +38,7 @@
 
 // #include "ISIRWholeBodyController/sequenceLibrary.h"
 #include "taskSequences/sequenceLibrary.h"
+#include "wocra/Tasks/wOcraTaskParser.h"
 
 
 using namespace ISIRWholeBodyController;
@@ -87,9 +88,11 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
     homePosture = Eigen::VectorXd::Zero(robot->getDoFs());
     debugPosture = Eigen::VectorXd::Zero(robot->getDoFs());
+    refSpeed = Eigen::VectorXd::Constant(robot->getDoFs(), 0.17);
+
+
     getHomePosture(*ocraModel, homePosture);
     getNominalPosture(*ocraModel, debugPosture);
-
 
     torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
 
@@ -109,8 +112,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     {
         if (ocraModel->hasFixedRoot()) {
             std::cout << "Loading fixed base minimal tasks..." << std::endl;
-            baseSequence = LoadSequence("Debug");
-            baseSequenceIsActive = true;
+            taskSequence = LoadSequence("Debug");
             std::cout << "\n\n\t------------------------------" << std::endl;
             std::cout << "\t  Running in DEBUG mode..." << std::endl;
             std::cout << "\t------------------------------\n" << std::endl;
@@ -127,46 +129,42 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     }
     else
     {
-        //Create XML task set
-        if (!startupTaskSetPath.empty()) {
-            std::cout << "\nLoading tasks from XML file:\n" << startupTaskSetPath << "\n" << std::endl;
-            //TODO: Implement XML parsing
-            xmlSequenceIsActive = true;
-        }
-        else{
-            std::cout << "No XML task set detected." << std::endl;
-            xmlSequenceIsActive = false;
-        }
+
 
         //Create cpp sequence
         if (!startupSequence.empty()) {
             std::cout << "\nLoading sequence:\n" << startupSequence << "\n" << std::endl;
-            cppSequence = LoadSequence(startupSequence);
-            cppSequenceIsActive = true;
-        }
-        else{
-            std::cout << "No startup sequence detected." << std::endl;
-            cppSequenceIsActive = false;
+            taskSequence = LoadSequence(startupSequence);
         }
 
-        // Create base sequence
-        if(!xmlSequenceIsActive && !cppSequenceIsActive){
+        //Create XML task set
+        if (!startupTaskSetPath.empty()) {
+            if (startupSequence.empty()) {
+                taskSequence = LoadSequence("Empty");
+            }
+            std::cout << "\nLoading tasks from XML file:\n" << startupTaskSetPath << "\n" << std::endl;
+            wocra::wOcraTaskParser taskParser;
+            taskParser.parseTasksXML( startupTaskSetPath.c_str() );
+            taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+        }
+        else{
+            std::cout << "No XML task set detected." << std::endl;
+        }
+
+
+        if ( (startupTaskSetPath.empty()) && (startupSequence.empty()) )
+        {
             std::cout << "\nNo tasks or scenarios loaded on startup. Defaulting to standard initial tasks." << std::endl;
             if (!ocraModel->hasFixedRoot()) {
                 std::cout << "Loading floating base minimal tasks..." << std::endl;
-                baseSequence = LoadSequence("FloatingBaseMinimalTasks");
-                baseSequenceIsActive = true;
+                taskSequence = LoadSequence("FloatingBaseMinimalTasks");
             }
             else{
                 std::cout << "Loading fixed base minimal tasks..." << std::endl;
-                baseSequence = LoadSequence("FixedBaseMinimalTasks");
-                baseSequenceIsActive = true;
+                taskSequence = LoadSequence("FixedBaseMinimalTasks");
             }
         }
-        else{
-            //TODO: make a check that looks at all of the tasks on the controller and determines whether or not there is a need for the baseSequence
-            baseSequenceIsActive = false;
-        }
+
     }
 
 }
@@ -198,6 +196,7 @@ bool ISIRWholeBodyControllerThread::threadInit()
         ocraModel->setState(fb_qRad, fb_qdRad);
 
 
+    robot->setControlParam(CTRL_PARAM_REF_VEL, refSpeed.data());
 
     if (runInDebugMode)
     {
@@ -214,13 +213,7 @@ bool ISIRWholeBodyControllerThread::threadInit()
 
     // Initialise the sequence
 
-    if (baseSequenceIsActive) {baseSequence->init(*ctrl, *ocraModel);}
-
-    // if (xmlSequenceIsActive) {xmlSequence->init(*ctrl, *ocraModel);}
-
-    if (cppSequenceIsActive) {cppSequence->init(*ctrl, *ocraModel);}
-
-
+    taskSequence->init(*ctrl, *ocraModel);
 
 
 	return true;
@@ -289,11 +282,7 @@ void ISIRWholeBodyControllerThread::run()
     }
     else{
 
-        if (baseSequenceIsActive) {baseSequence->update(time_sim, *ocraModel, NULL);}
-
-        // if (xmlSequenceIsActive) {xmlSequence->update(time_sim, *ocraModel, NULL);}
-
-        if (cppSequenceIsActive) {cppSequence->update(time_sim, *ocraModel, NULL);}
+        taskSequence->update(time_sim, *ocraModel, NULL);
     }
 
 
@@ -366,16 +355,23 @@ void ISIRWholeBodyControllerThread::run()
 //*************************************************************************************************************************
 void ISIRWholeBodyControllerThread::threadRelease()
 {
-    std::cout << "\n\n-->Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
-    bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, homePosture.data(), ALL_JOINTS);
+    taskSequence->clearSequence();
 
-    if (ocraModel->hasFixedRoot()) {
-        bool res_setControlReference = robot->setControlReference(homePosture.data());
+
+    if(robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS) )
+    {
+        std::cout << "\n\n--> Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
+
+        if (ocraModel->hasFixedRoot()) {
+            bool res_setControlReference = robot->setControlReference(homePosture.data());
+        }
+        else{
+            bool res_setControlReference = robot->setControlReference(homePosture.data());
+            //TODO: Implement a safe home park procedure for standing.
+        }
+
     }
     else{
-        bool res_setControlReference = robot->setControlReference(homePosture.data());
-        //TODO: Implement a safe home park procedure for standing.
+        std::cout << "[ERROR] (ISIRWholeBodyControllerThread::threadRelease): Could not set the robot into Position Control mode." << std::endl;
     }
-
-
 }

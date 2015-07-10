@@ -11,11 +11,11 @@ void getNominalPosture(wocra::wOcraModel& model, VectorXd &q)
     q[model.getDofIndex("r_shoulder_roll")] = M_PI / 6;
     q[model.getDofIndex("l_shoulder_pitch")] = -M_PI / 6;
     q[model.getDofIndex("r_shoulder_pitch")] = -M_PI / 6;
-    q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
-    q[model.getDofIndex("r_hip_pitch")] = M_PI / 8;
-    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
+    // q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
+    // q[model.getDofIndex("r_hip_pitch")] = M_PI / 8;
+    // q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
     q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
-    q[model.getDofIndex("l_knee")] = -M_PI / 6;
+    // q[model.getDofIndex("l_knee")] = -M_PI / 6;
     q[model.getDofIndex("r_knee")] = -M_PI / 6;
 }
 
