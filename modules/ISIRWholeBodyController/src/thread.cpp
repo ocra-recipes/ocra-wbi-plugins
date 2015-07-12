@@ -443,6 +443,18 @@ void ISIRWholeBodyControllerThread::parseIncomingMessage(yarp::os::Bottle *input
         {
             i++;
             taskSequence->removeTaskManager(input->get(i).asString());
+            reply->addString("Removed:");
+            reply->addString(input->get(i).asString());
+            i++;
+        }
+
+        else if(msgTag == "getTaskList")
+        {
+            reply->addString("tasks:");
+            std::vector<std::string> strVector = taskSequence->getTaskList();
+            for(int j=0; j<strVector.size(); j++){
+                reply->addString(strVector[j]);
+            }
             i++;
         }
 
