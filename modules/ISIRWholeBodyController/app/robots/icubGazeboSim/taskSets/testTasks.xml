@@ -14,13 +14,13 @@
 <task name="cartRightHand" type="wOcraSegCartesianTaskManager">
     <segment>r_hand</segment>
     <params kp="30.0" kd="10.0" weight="1.0" axes="XYZ" />
-    <offset>  0.001 0.002 0.003 </offset>
+    <!-- <offset>  0.001 0.002 0.003 </offset> -->
     <desired> -0.2 0.2 0.2 </desired>
 </task>
 <task name="cartLeftHand" type="wOcraSegCartesianTaskManager">
     <segment>l_hand</segment>
     <params kp="30.0" kd="10.0" weight="1.0" axes="XYZ" />
-    <offset>  0.001 0.002 0.003 </offset>
+    <!-- <offset>  0.001 0.002 0.003 </offset> -->
     <desired> -0.2 -0.3 -0.1 </desired>
 </task>
 <!-- <task name="cartRightFoot" type="wOcraSegCartesianTaskManager">

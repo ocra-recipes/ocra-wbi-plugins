@@ -109,67 +109,6 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
     time_sim = 0;
 
 
-    if (runInDebugMode)
-    {
-        if (ocraModel->hasFixedRoot()) {
-            std::cout << "Loading fixed base minimal tasks..." << std::endl;
-            taskSequence = LoadSequence("Debug");
-            std::cout << "\n\n\t------------------------------" << std::endl;
-            std::cout << "\t  Running in DEBUG mode..." << std::endl;
-            std::cout << "\t------------------------------\n" << std::endl;
-
-            std::string portPrefix = "/WBC/debug";
-            debugPort_in.open((portPrefix+":i").c_str());
-            debugPort_out.open((portPrefix+":o").c_str());
-            debugJointIndex = 0;
-        }
-        else{
-            std::cout << "[ERR] Cannot run debug mode with floating base." << std::endl;
-        }
-
-    }
-    else
-    {
-        std::cout << "\n\n=== Creating ISIRWholeBodyController ===" << std::endl;
-        rpcPort.open("/ISIRWholeBodyController/rpc:i");
-        rpcPort.setReader(processor);
-
-        //Create cpp sequence
-        if (!startupSequence.empty()) {
-            std::cout << "\nLoading sequence:\n" << startupSequence << "\n" << std::endl;
-            taskSequence = LoadSequence(startupSequence);
-        }
-
-        //Create XML task set
-        if (!startupTaskSetPath.empty()) {
-            if (startupSequence.empty()) {
-                taskSequence = LoadSequence("Empty");
-            }
-            std::cout << "\nLoading tasks from XML file:\n" << startupTaskSetPath << "\n" << std::endl;
-            wocra::wOcraTaskParser taskParser;
-            taskParser.parseTasksXML( startupTaskSetPath.c_str() );
-            taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
-        }
-        else{
-            std::cout << "No XML task set detected." << std::endl;
-        }
-
-
-        if ( (startupTaskSetPath.empty()) && (startupSequence.empty()) )
-        {
-            std::cout << "\nNo tasks or scenarios loaded on startup. Defaulting to standard initial tasks." << std::endl;
-            if (!ocraModel->hasFixedRoot()) {
-                std::cout << "Loading floating base minimal tasks..." << std::endl;
-                taskSequence = LoadSequence("FloatingBaseMinimalTasks");
-            }
-            else{
-                std::cout << "Loading fixed base minimal tasks..." << std::endl;
-                taskSequence = LoadSequence("FixedBaseMinimalTasks");
-            }
-        }
-
-    }
-
 }
 
 ISIRWholeBodyControllerThread::~ISIRWholeBodyControllerThread()
@@ -222,7 +161,84 @@ bool ISIRWholeBodyControllerThread::threadInit()
     }
 
 
-    // Initialise the sequence
+    /******************************************************************************************************
+                                        Parse tasks and load sequence
+    ******************************************************************************************************/
+
+
+
+
+    if (runInDebugMode)
+    {
+        if (ocraModel->hasFixedRoot()) {
+            std::cout << "Loading fixed base minimal tasks..." << std::endl;
+            taskSequence = LoadSequence("Debug");
+            std::cout << "\n\n\t------------------------------" << std::endl;
+            std::cout << "\t  Running in DEBUG mode..." << std::endl;
+            std::cout << "\t------------------------------\n" << std::endl;
+
+            std::string portPrefix = "/WBC/debug";
+            debugPort_in.open((portPrefix+":i").c_str());
+            debugPort_out.open((portPrefix+":o").c_str());
+            debugJointIndex = 0;
+        }
+        else{
+            std::cout << "[ERR] Cannot run debug mode with floating base." << std::endl;
+        }
+
+    }
+    else
+    {
+        std::cout << "\n\n=== Creating ISIRWholeBodyController ===" << std::endl;
+        rpcPort.open("/ISIRWholeBodyController/rpc:i");
+        rpcPort.setReader(processor);
+
+        //Create cpp sequence
+        if (!startupSequence.empty()) {
+            std::cout << "\nLoading sequence:\n" << startupSequence << "\n" << std::endl;
+            taskSequence = LoadSequence(startupSequence);
+        }
+
+        //Create XML task set
+        if (!startupTaskSetPath.empty()) {
+            if (startupSequence.empty()) {
+                taskSequence = LoadSequence("Empty");
+            }
+            std::cout << "\nLoading tasks from XML file:\n" << startupTaskSetPath << "\n" << std::endl;
+            wocra::wOcraTaskParser taskParser;
+            if(taskParser.parseTasksXML( startupTaskSetPath.c_str() )){
+                taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+            }
+            else{
+                //TODO: Implement fall pack procedure for failure to parse xml tasks.;
+            }
+        }
+        else{
+            std::cout << "No XML task set detected." << std::endl;
+        }
+
+
+        if ( (startupTaskSetPath.empty()) && (startupSequence.empty()) )
+        {
+            std::cout << "\nNo tasks or scenarios loaded on startup. Defaulting to standard initial tasks." << std::endl;
+            if (!ocraModel->hasFixedRoot()) {
+                std::cout << "Loading floating base minimal tasks..." << std::endl;
+                taskSequence = LoadSequence("FloatingBaseMinimalTasks");
+            }
+            else{
+                std::cout << "Loading fixed base minimal tasks..." << std::endl;
+                taskSequence = LoadSequence("FixedBaseMinimalTasks");
+            }
+        }
+
+    }
+
+
+
+    /******************************************************************************************************
+                                            Initialize sequence
+    ******************************************************************************************************/
+
 
     taskSequence->init(*ctrl, *ocraModel);
 
@@ -424,14 +440,14 @@ void ISIRWholeBodyControllerThread::parseIncomingMessage(yarp::os::Bottle *input
     {
         std::string msgTag = input->get(i).asString();
 
-        if(msgTag == "yarp")
+        if(msgTag == "addTaskYARP")
         {
             std::cout << "Implement yarp task parsing" << std::endl;
             i++;
         }
 
         // Stiffness
-        else if(msgTag == "xml")
+        else if(msgTag == "addTaskXML")
         {
             i++;
             wocra::wOcraTaskParser taskParser;
