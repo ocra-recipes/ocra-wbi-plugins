@@ -458,9 +458,11 @@ void ISIRWholeBodyControllerThread::parseIncomingMessage(yarp::os::Bottle *input
         else if(msgTag == "removeTask")
         {
             i++;
-            taskSequence->removeTaskManager(input->get(i).asString());
+            std::string taskToRemove = input->get(i).asString();
+            taskSequence->removeTaskManager(taskToRemove);
+            ctrl->removeTask(taskToRemove);
             reply->addString("Removed:");
-            reply->addString(input->get(i).asString());
+            reply->addString(taskToRemove);
             i++;
         }
 
@@ -468,6 +470,16 @@ void ISIRWholeBodyControllerThread::parseIncomingMessage(yarp::os::Bottle *input
         {
             reply->addString("tasks:");
             std::vector<std::string> strVector = taskSequence->getTaskList();
+            for(int j=0; j<strVector.size(); j++){
+                reply->addString(strVector[j]);
+            }
+            i++;
+        }
+
+        else if(msgTag == "getTaskPorts")
+        {
+            reply->addString("taskPorts:");
+            std::vector<std::string> strVector = taskSequence->getTaskPorts();
             for(int j=0; j<strVector.size(); j++){
                 reply->addString(strVector[j]);
             }

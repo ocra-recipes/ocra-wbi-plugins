@@ -64,7 +64,7 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
 
     if( rf.check("taskSet") )
     {
-        startupTaskSetPath = rf.find("taskSet").asString().c_str();
+        startupTaskSetPath = rf.findFile("taskSet").c_str();
     }
 
     if( rf.check("sequence") )
