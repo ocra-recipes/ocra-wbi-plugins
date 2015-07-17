@@ -2,6 +2,8 @@
 <task name="fullPosture" type="wOcraFullPostureTaskManager">
    <params kp="10.0" kd="6.0" weight="0.01" />
    <desired> 0.0 0.0 0.0 -0.436332 0.349066 0.0 0.872665 0.0 -0.436332 0.349066 0.0 0.872665 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </desired>
+   <!-- Solicits the right leg joints -->
+   <!-- <desired> 0.0 0.0 0.0 -0.436332 0.349066 0.0 0.872665 0.0 -0.436332 0.349066 0.0 0.872665 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.6 0.2 0.0 -0.8 0.0 0.0 </desired> -->
 </task>
 <task name="torsoPosture" type="wOcraPartialPostureTaskManager">
     <params kp="10.0" kd="6.0" weight="0.1" />
@@ -17,12 +19,30 @@
     <!-- <offset>  0.001 0.002 0.003 </offset> -->
     <desired> -0.2 0.2 0.2 </desired>
 </task>
+
+<!--
 <task name="cartLeftHand" type="wOcraSegCartesianTaskManager">
     <segment>l_hand</segment>
     <params kp="30.0" kd="10.0" weight="1.0" axes="XYZ" />
-    <!-- <offset>  0.001 0.002 0.003 </offset> -->
+    <offset>  0.001 0.002 0.003 </offset>
     <desired> -0.2 -0.3 -0.1 </desired>
+</task> -->
+<!--
+<task name="poseLeftHand" type="wOcraSegPoseTaskManager">
+    <segment>l_hand</segment>
+    <params kp="30.0" kd="10.0" weight="1.0" axes="XYZ" />
+    <offset>  0.001 0.002 0.003 </offset>
+    <desired> -0.2 -0.3 -0.1 1.0 0.0 0.0 0.0 </desired>
+</task> -->
+
+<task name="orientLeftHand" type="wOcraSegOrientationTaskManager">
+    <segment>l_hand</segment>
+    <params kp="30.0" kd="10.0" weight="1.0" axes="XYZ" />
+    <!-- <offset>  0.001 0.002 0.003 </offset> -->
+    <desired> 0.0 0.0 0.0 1.0 </desired>
 </task>
+
+
 <!-- <task name="cartRightFoot" type="wOcraSegCartesianTaskManager">
     <segment>r_foot</segment>
     <params kp="120.0" kd="60.0" weight="1.0" axes="XYZ" />

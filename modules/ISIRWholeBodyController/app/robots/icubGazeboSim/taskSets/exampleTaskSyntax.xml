@@ -53,3 +53,20 @@
     <offset>  0.1 0.2 0.3 </offset>
     <desired> -1.1 -1.2 -1.3 </desired>
 </task>
+
+
+<task name="contactRightFoot" type="wOcraContactTaskManager">
+    <segment>r_sole</segment>
+    <params mu="1.0" margin="10.0" usesYarp="true" />
+    <contactPoint> 0.0 1.0 2.0 3.0 4.0 </contactPoint>
+</task>
+
+
+<task name="contactSetLeftFoot" type="wOcraContactSetTaskManager">
+    <segment>l_sole</segment>
+    <params mu="1.0" margin="10.0" usesYarp="true" />
+    <contactOffset> 0.0 1.0 2.0 3.0 4.0 </contactOffset>
+    <contactOffset> 0.0 1.0 2.0 3.0 4.0 </contactOffset>
+    <contactOffset x="1.1" y="1.2" z="1.3" qw="1.0" qx="0.0" qy="0.0" qz="0.0" />
+    <contactOffset x="1.1" y="1.2" z="1.3" qw="1.0" qx="0.0" qy="0.0" qz="0.0" />
+</task>

@@ -59,20 +59,20 @@
 
 
         // Initialise left foot contacts
-        Eigen::Displacementd LFContacts[4];
-        LFContacts[0] = Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotLZdown);
-        LFContacts[1] = Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotLZdown);
-        LFContacts[2] = Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotLZdown);
-        LFContacts[3] = Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotLZdown);
-        taskManagers["tmFootContactLeft"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "leftFootContactTask", "l_sole", LFContacts, 4, mu_sys, margin);
+        std::vector<Eigen::Displacementd> LFContacts;
+        LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotLZdown));
+        LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotLZdown));
+        LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotLZdown));
+        LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotLZdown));
+        taskManagers["tmFootContactLeft"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
 
         // Initailise right foot contacts
-        Eigen::Displacementd RFContacts[4];
-        RFContacts[0] = Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotRZdown);
-        RFContacts[1] = Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotRZdown);
-        RFContacts[2] = Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotRZdown);
-        RFContacts[3] = Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotRZdown);
-        taskManagers["tmFootContactRight"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "RightFootContactTask", "r_sole", RFContacts, 4, mu_sys, margin);
+        std::vector<Eigen::Displacementd> RFContacts;
+        RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotRZdown));
+        RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotRZdown));
+        RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotRZdown));
+        RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotRZdown));
+        taskManagers["tmFootContactRight"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "RightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
 
     }
 
