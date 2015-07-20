@@ -1,7 +1,7 @@
 /*
-* Copyright (C) 2014 ...
-* Author: ...
-* email: ...
+* Copyright (C) 2013 ISIR
+* Author: Darwin Lau, MingXing Liu, Ryan Lober
+* email: lau@isir.upmc.fr, liu@isir.upmc.fr, lober@isir.upmc.fr
 * Permission is granted to copy, distribute, and/or modify this program
 * under the terms of the GNU General Public License, version 2 or any
 * later version published by the Free Software Foundation.
@@ -15,30 +15,12 @@
 * Public License for more details
 */
 
-#include <yarp/os/BufferedPort.h>
-#include <yarp/os/RFModule.h>
-#include <yarp/os/Time.h>
-#include <yarp/os/Network.h>
-#include <yarp/os/RateThread.h>
-#include <yarp/os/Stamp.h>
-#include <yarp/sig/Vector.h>
-#include <yarp/dev/PolyDriver.h>
-#include <yarp/dev/Drivers.h>
-#include <yarp/dev/ControlBoardInterfaces.h>
-#include <iCub/ctrl/math.h>
-#include <iCub/ctrl/adaptWinPolyEstimator.h>
-
-#include <iostream>
-#include <sstream>
-#include <iomanip>
-#include <string.h>
-
 #include <ISIRWholeBodyController/thread.h>
 #include <ISIRWholeBodyController/module.h>
 
-YARP_DECLARE_DEVICES(icubmod)
+// YARP_DECLARE_DEVICES(icubmod)
 
-using namespace yarp::dev;
+using namespace yarp::os;
 using namespace yarpWbi;
 using namespace ISIRWholeBodyController;
 
@@ -102,25 +84,6 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
     }
     robotInterface->addJoints(robotJoints);
 
-    if( rf.check("uses_external_torque_control") )
-    {
-/*
-		    if(yarp::os::NetworkBase::exists(string("/jtc/info:o").c_str()))
-            printf ("The module jointTorqueControl is running. Proceeding with configuration of the interface...\n");
-        else{
-            printf ("ERROR [mdlStart] >> The jointTorqueControl module is not running... \n");
-            return false;
-        }
-
-        yarp::os::Value trueValue;
-        trueValue.fromString ("true");
-        ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsUseExternalTorqueModule, trueValue);
-        ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleAutoconnect, trueValue);
-        ( (yarpWholeBodyInterface*) robotInterface)->setActuactorConfigurationParameter (icubWholeBodyActuators::icubWholeBodyActuatorsExternalTorqueModuleName, Value ("jtc"));
-
-*/
-
-	}
 
     // Make sure all the add* functions are done before the "init"
     if(!robotInterface->init())

@@ -19,17 +19,12 @@
 #define BASIC_WHOLEBODYINTERFACE_MODULE_H
 
 #include <iostream>
-#include <string>
 
 #include <yarp/os/RFModule.h>
-#include <yarp/os/Network.h>
-#include <yarp/os/Vocab.h>
-
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include "thread.h"
 
-using namespace std;
 using namespace yarp::os;
 using namespace wbi;
 
@@ -39,10 +34,10 @@ namespace ISIRWholeBodyController
 class ISIRWholeBodyControllerModule: public RFModule
 {
     /* module parameters */
-    string moduleName;
-    string robotName;
-    string startupTaskSetPath;
-    string startupSequence;
+    std::string moduleName;
+    std::string robotName;
+    std::string startupTaskSetPath;
+    std::string startupSequence;
     bool debugMode, isFloatingBase;
     int period;
     double avgTime, stdDev, avgTimeUsed, stdDevUsed;

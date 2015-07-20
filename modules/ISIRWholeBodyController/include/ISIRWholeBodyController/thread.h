@@ -1,7 +1,7 @@
 /*
-* Copyright (C) 2014 ...
-* Author: ...
-* email: ...
+* Copyright (C) 2013 ISIR
+* Author: Darwin Lau, MingXing Liu, Ryan Lober
+* email: lau@isir.upmc.fr, liu@isir.upmc.fr, lober@isir.upmc.fr
 * Permission is granted to copy, distribute, and/or modify this program
 * under the terms of the GNU General Public License, version 2 or any
 * later version published by the Free Software Foundation.
@@ -18,14 +18,9 @@
 #ifndef ISIRWHOLEBODYCONTROLLERTHREAD_H
 #define ISIRWHOLEBODYCONTROLLERTHREAD_H
 
-#include <sstream>
-#include <iomanip>
-#include <stdexcept>
-#include <vector>
 
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/RateThread.h>
-#include <yarp/os/Semaphore.h>
 #include <yarp/sig/Vector.h>
 
 

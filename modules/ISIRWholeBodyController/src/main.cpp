@@ -1,7 +1,7 @@
 /*
-* Copyright (C) 2014 ...
-* Author: ...
-* email: ...
+* Copyright (C) 2013 ISIR
+* Author: Darwin Lau, MingXing Liu, Ryan Lober
+* email: lau@isir.upmc.fr, liu@isir.upmc.fr, lober@isir.upmc.fr
 * Permission is granted to copy, distribute, and/or modify this program
 * under the terms of the GNU General Public License, version 2 or any
 * later version published by the Free Software Foundation.
@@ -14,22 +14,14 @@
 * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
 * Public License for more details
 */
-#include <yarp/os/all.h>
-#include <yarp/sig/all.h>
-#include <yarp/dev/all.h>
-#include <yarp/math/Math.h>
 
-#include <string.h>
-#include <iostream>
-#include <fstream>
-#include <iomanip>
+#include <yarp/os/ResourceFinder.h>
+#include <yarp/os/Network.h>
 
 #include <ISIRWholeBodyController/module.h>
 
 #define DEFAULT_YARP_CONTEXT "ISIRWholeBodyController"
 
-using namespace yarp::dev;
-using namespace yarp::sig;
 using namespace yarp::os;
 using namespace std;
 using namespace ISIRWholeBodyController;

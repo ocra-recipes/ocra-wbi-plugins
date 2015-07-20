@@ -1,7 +1,7 @@
 /*
 * Copyright (C) 2013 ISIR
 * Author: Darwin Lau, MingXing Liu, Ryan Lober
-* email: lau@isir.upmc.fr
+* email: lau@isir.upmc.fr, liu@isir.upmc.fr, lober@isir.upmc.fr
 * Permission is granted to copy, distribute, and/or modify this program
 * under the terms of the GNU General Public License, version 2 or any
 * later version published by the Free Software Foundation.
@@ -16,7 +16,6 @@
 */
 
 #include <ISIRWholeBodyController/thread.h>
-// #include <ISIRWholeBodyController/ocraWbiModel.h>
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 #include <modHelp/modHelp.h>
@@ -24,19 +23,7 @@
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/os/Time.h>
-#include <yarp/os/Log.h>
-#include <yarp/os/BufferedPort.h>
 
-
-//#include "wocra/Solvers/OneLevelSolver.h"
-#include "wocra/Features/wOcraFeature.h"
-#include "ocra/control/Feature.h"
-#include "ocra/control/FullState.h"
-#include "ocra/control/ControlFrame.h"
-#include "ocra/control/ControlEnum.h"
-
-
-// #include "ISIRWholeBodyController/sequenceLibrary.h"
 #include "taskSequences/sequenceLibrary.h"
 #include "wocra/Tasks/wOcraTaskParser.h"
 
