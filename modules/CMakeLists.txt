@@ -9,6 +9,3 @@ IF(${PC_GOCRA_FOUND})
 ELSE()
     message("Did NOT find gOcra libs. Skipping gOcraController build.")
 ENDIF()
-
-
-# add_subdirectory(observerModule)
