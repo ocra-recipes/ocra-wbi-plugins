@@ -1,8 +1,7 @@
 #ifndef SEQUENCELIBRARY_H
 #define SEQUENCELIBRARY_H
 
-
-
+#include <map>
 
 #include "sequences/FixedBaseMinimalTasks.h"
 #include "sequences/FloatingBaseMinimalTasks.h"
@@ -19,10 +18,12 @@
 #include "sequences/Debug.h"
 #include "sequences/Empty.h"
 
+
+
 // namespace sequence{
-
+    typedef std::map<std::string, wocra::wOcraTaskSequenceBase*> map_sequence;
+    map_sequence function_list;
     wocra::wOcraTaskSequenceBase* LoadSequence(const std::string& name);
-
 // }
 
 

@@ -66,7 +66,7 @@ int main (int argc, char * argv[])
     }
 
     //Creating the module
-    gOcraControllerModule module;
+    gOcraControllerModule module(10);
 
     return module.runModule(rf);
 }
