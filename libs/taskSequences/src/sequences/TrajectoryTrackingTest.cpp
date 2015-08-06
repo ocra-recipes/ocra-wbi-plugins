@@ -89,7 +89,7 @@
             /**
             * Linear interpolation trajectory constructor tests:
             */
-            leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory();
+            leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(waypoints);
 
             if      (isDisplacementd)       {leftHandTrajectory->setWaypoints(startingDispd, endingDispd);}
             else if (isRotation3d)          {leftHandTrajectory->setWaypoints(startingRotd, endingRotd);}
@@ -102,7 +102,7 @@
             /**
             * Minimum jerk trajectory constructor tests:
             */
-            leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory();
+            leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(waypoints);
 
             if      (isDisplacementd)       {leftHandTrajectory->setWaypoints(startingDispd, endingDispd);}
             else if (isRotation3d)          {leftHandTrajectory->setWaypoints(startingRotd, endingRotd);}
@@ -110,7 +110,9 @@
             else if (isCartesionWaypoints)  {leftHandTrajectory->setWaypoints(waypoints);}
             else                            {std::cout << "\nGotta pick a reference type motherfucker!" << std::endl;}
         }
-        else{std::cout << "\nGotta pick a trajectory type motherfucker!" << std::endl;}
+        else{
+          std::cout << "\nGotta pick a trajectory type motherfucker!" << std::endl;
+          }
 
 
 

@@ -1,7 +1,7 @@
 /*
-* Copyright (C) 2013 ISIR
-* Author: Darwin Lau, MingXing Liu, Ryan Lober
-* email: lau@isir.upmc.fr, liu@isir.upmc.fr, lober@isir.upmc.fr
+* Copyright (C) 2014 ...
+* Author: ...
+* email: ...
 * Permission is granted to copy, distribute, and/or modify this program
 * under the terms of the GNU General Public License, version 2 or any
 * later version published by the Free Software Foundation.
@@ -18,27 +18,27 @@
 #ifndef ISIRWHOLEBODYCONTROLLERTHREAD_H
 #define ISIRWHOLEBODYCONTROLLERTHREAD_H
 
+#include <sstream>
+#include <iomanip>
+#include <stdexcept>
+#include <vector>
 
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/RateThread.h>
+#include <yarp/os/Semaphore.h>
 #include <yarp/sig/Vector.h>
-
 
 #include <wbi/wbi.h>
 
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
-
-
 #include "wocra/wOcraController.h"
 #include "wocra/Solvers/OneLevelSolver.h"
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
 
-
 #include <yarp/os/PortReader.h>
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
-
 
 using namespace yarp::os;
 using namespace yarp::sig;
@@ -87,7 +87,6 @@ class ISIRWholeBodyControllerThread: public RateThread
         /************** DataProcessor *************/
 
     private:
-
         string name;
         string robotName;
         wholeBodyInterface *robot;
@@ -98,7 +97,6 @@ class ISIRWholeBodyControllerThread: public RateThread
         bool runInDebugMode;
 
         int debugJointIndex;
-
 
         wocra::wOcraController *ctrl;
         wocra::OneLevelSolverWithQuadProg internalSolver;
@@ -117,7 +115,6 @@ class ISIRWholeBodyControllerThread: public RateThread
         Eigen::VectorXd debugPosture;
         Eigen::VectorXd refSpeed;
 
-
         // Eigen::VectorXd fb_Hroot_Vector;
         yarp::sig::Vector fb_Hroot_Vector;
         yarp::sig::Vector fb_Troot_Vector;
@@ -127,13 +124,9 @@ class ISIRWholeBodyControllerThread: public RateThread
         Eigen::Twistd fb_Troot; // vector that contains the twist of root
         yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
-
         // TODO: Convert to RPC port as below.
         yarp::os::BufferedPort<yarp::os::Bottle> debugPort_in;
         yarp::os::BufferedPort<yarp::os::Bottle> debugPort_out;
-
-
-
 
         bool usesYARP;
         RpcServer rpcPort;

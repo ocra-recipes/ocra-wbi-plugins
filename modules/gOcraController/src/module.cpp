@@ -49,6 +49,14 @@ gOcraControllerModule::gOcraControllerModule()
     period = 10;
 }
 
+gOcraControllerModule::gOcraControllerModule(int p) : period(p)
+{
+    ctrlThread = 0;
+    robotInterface = 0;
+}
+
+
+
 bool gOcraControllerModule::configure(ResourceFinder &rf)
 {
     //--------------------------READ FROM CONFIGURATION----------------------
