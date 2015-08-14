@@ -74,8 +74,8 @@
 
 /* static */ bool ocraWbiConversions::wbiToOcraTwistVector(Eigen::Twistd &t_wbi, Eigen::Twistd &t_ocra)
     {
-        Eigen::Vector3d ocrar = t_wbi.head(DIM_T);
-        Eigen::Vector3d ocrat = t_wbi.tail(DIM_R);
+        Eigen::Vector3d ocrat = t_wbi.head(DIM_T);
+        Eigen::Vector3d ocrar = t_wbi.tail(DIM_R);
 
         t_ocra << ocrar,
                 ocrat;
@@ -193,12 +193,12 @@
         Eigen::Matrix3d jac1,jac2;
         jac3.resize(3,jac.cols()-6);
 
-        jac1 = jac.topLeftCorner(3,3);
+        jac1 = jac.leftCols(3);
         jac2 = jac.block<3,3>(0,3);
-        jac3 = jac.topRightCorner(3,jac.cols()-6);
-        J.topLeftCorner(3,3) = jac2;
+        jac3 = jac.rightCols(jac.cols()-6);
+        J.leftCols(3) = jac2;
         J.block<3,3>(0,3) = jac1;
-        J.topRightCorner(3,jac.cols()-6) = jac3;
+        J.rightCols(jac.cols()-6) = jac3;
 
 
         return true;

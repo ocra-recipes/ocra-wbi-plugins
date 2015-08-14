@@ -347,7 +347,7 @@ const Eigen::Vector3d& ocraWbiModel::getCoMVelocity() const
     if (owm_pimpl->freeRoot)
     {
         Eigen::MatrixXd J = getCoMJacobian();
-        owm_pimpl->vel_com = J.topLeftCorner(COM_POS_DIM,6)*owm_pimpl->Troot+J.topRightCorner(COM_POS_DIM,owm_pimpl->nbInternalDofs)*owm_pimpl->dq;
+        owm_pimpl->vel_com = J.leftCols(6)*owm_pimpl->Troot+J.rightCols(owm_pimpl->nbInternalDofs)*owm_pimpl->dq;
     }
     else
         owm_pimpl->vel_com = getCoMJacobian()*owm_pimpl->dq;
@@ -377,14 +377,11 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMJaco
 
     if (owm_pimpl->freeRoot)
     {
-        ocraWbiConversions::wbiToOcraCoMJacobian(owm_pimpl->J_com_full.topLeftCorner(COM_POS_DIM,owm_pimpl->nbDofs),owm_pimpl->J_com);
-//        owm_pimpl->J_com.topLeftCorner(COM_POS_DIM,6)=owm_pimpl->J_com.topLeftCorner(COM_POS_DIM,6)*getFreeFlyerPosition().adjoint();
-//        owm_pimpl->J_com = owm_pimpl->H_com.getRotation().inverse().adjoint()*owm_pimpl->J_com;
+        ocraWbiConversions::wbiToOcraCoMJacobian(owm_pimpl->J_com_full.topRows(COM_POS_DIM),owm_pimpl->J_com);
     }
     else
     {
         owm_pimpl->J_com = owm_pimpl->J_com_full.topRightCorner(COM_POS_DIM,owm_pimpl->nbInternalDofs);
-//        owm_pimpl->J_com = owm_pimpl->H_com.getRotation().inverse().adjoint().topRightCorner(COM_POS_DIM,owm_pimpl->nbInternalDofs)*owm_pimpl->J_com;
     }
 
     return owm_pimpl->J_com;
@@ -415,13 +412,15 @@ const Eigen::Twistd& ocraWbiModel::getSegmentVelocity(int index) const
 /*
     printf("Get Segment Velocity : %d\n", index);
 */
+
     if (owm_pimpl->freeRoot)
     {
         Eigen::MatrixXd J = getSegmentJacobian(index);
-        owm_pimpl->segVelocity[index] = J.topLeftCorner(6,6)*owm_pimpl->Troot+J.topRightCorner(6,owm_pimpl->nbInternalDofs)*owm_pimpl->dq;
+        owm_pimpl->segVelocity[index] = J.leftCols(6)*owm_pimpl->Troot+J.rightCols(owm_pimpl->nbInternalDofs)*owm_pimpl->dq;
     }
     else
         owm_pimpl->segVelocity[index] = getSegmentJacobian(index)*owm_pimpl->dq;
+
     return owm_pimpl->segVelocity[index];
 }
 
@@ -482,7 +481,8 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJacobian(i
 //        owm_pimpl->segJacobian[index].topLeftCorner(6,6)=owm_pimpl->segJacobian[index].topLeftCorner(6,6)*getFreeFlyerPosition().adjoint();
 
 
-//        const Eigen::Displacementd::Rotation3D& R_seg_root = (getSegmentPosition(index).inverse()*getFreeFlyerPosition()).getRotation();
+//        const Eigen::Displacementd& H_seg_root = getSegmentPosition(index).inverse()*getFreeFlyerPosition();
+//        owm_pimpl->segJacobian[index].topLeftCorner(6,6) = H_seg_root.adjoint();
 //        owm_pimpl->segJacobian[index].topLeftCorner(3,3)= R_seg_root.adjoint();
 //        owm_pimpl->segJacobian[index].block<3,3>(0,3).setZero();
 //        owm_pimpl->segJacobian[index].block<3,3>(3,0).setZero();
@@ -491,16 +491,17 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJacobian(i
 
     }
     else
-        owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_ocra[index].topRightCorner(6,owm_pimpl->nbInternalDofs);
+        owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_ocra[index].rightCols(owm_pimpl->nbInternalDofs);
 
-    /**
-    * We must project the jacobian in the segment frame orientation in order to work with the controller.
-    */
+//    /**
+//    * We must project the jacobian in the segment frame orientation in order to work with the controller.
+//    */
 //    owm_pimpl->segJacobian[index] = getSegmentPosition(index).inverse().adjoint()*owm_pimpl->segJacobian[index];
-    const Eigen::Displacementd::Rotation3D& R_seg_w = getSegmentPosition(index).getRotation().inverse();
-    owm_pimpl->segJacobian[index].topRows(3) = R_seg_w.adjoint()*owm_pimpl->segJacobian[index].topRows(3);
-    owm_pimpl->segJacobian[index].bottomRows(3) = R_seg_w.adjoint()*owm_pimpl->segJacobian[index].bottomRows(3);
+//    const Eigen::Displacementd::Rotation3D& R_seg_w = getSegmentPosition(index).getRotation().inverse();
+//    owm_pimpl->segJacobian[index].topRows(3) = R_seg_w.adjoint()*owm_pimpl->segJacobian[index].topRows(3);
+//    owm_pimpl->segJacobian[index].bottomRows(3) = R_seg_w.adjoint()*owm_pimpl->segJacobian[index].bottomRows(3);
 
+//    std::cout<<"jac"<<index<<"="<<owm_pimpl->segJacobian[index].topLeftCorner(6,6)<<std::endl;
 //    owm_pimpl->segJacobian[index].topRightCorner(3,owm_pimpl->nbInternalDofs) = R_seg_w.adjoint()*owm_pimpl->segJacobian[index].topRightCorner(3,owm_pimpl->nbInternalDofs);
 //    owm_pimpl->segJacobian[index].bottomRightCorner(3,owm_pimpl->nbInternalDofs) = R_seg_w.adjoint()*owm_pimpl->segJacobian[index].bottomRightCorner(3,owm_pimpl->nbInternalDofs);
 
@@ -536,10 +537,10 @@ const Eigen::Twistd& ocraWbiModel::getSegmentJdotQdot(int index) const
 
     ocraWbiConversions::wbiToOcraTwistVector(Tseg, owm_pimpl->segJdotQdot[index]);
 
-    const Eigen::Displacementd::Rotation3D& R_seg_w = getSegmentPosition(index).getRotation().inverse();
-//    T = H.inverse().adjoint()*T;
-    owm_pimpl->segJdotQdot[index].bottomRows(3) = R_seg_w.adjoint()*owm_pimpl->segJdotQdot[index].bottomRows(3);
-    owm_pimpl->segJdotQdot[index].topRows(3) = R_seg_w.adjoint()*owm_pimpl->segJdotQdot[index].topRows(3);
+//    const Eigen::Displacementd::Rotation3D& R_seg_w = getSegmentPosition(index).getRotation().inverse();
+////    T = H.inverse().adjoint()*T;
+//    owm_pimpl->segJdotQdot[index].bottomRows(3) = R_seg_w.adjoint()*owm_pimpl->segJdotQdot[index].bottomRows(3);
+//    owm_pimpl->segJdotQdot[index].topRows(3) = R_seg_w.adjoint()*owm_pimpl->segJdotQdot[index].topRows(3);
     return owm_pimpl->segJdotQdot[index];
 }
 
@@ -549,23 +550,20 @@ void ocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& 
     Eigen::Twistd T;
     // WBI versions
 
-    // std::cout << "H_root_wbi input to Set State\n" << H_root.toString() << std::endl;
     owm_pimpl->Hroot_wbi = H_root;
     owm_pimpl->Troot_wbi = T_root;
-    // std::cout << "\nH_root_wbi in pimpl \n" << owm_pimpl->Hroot_wbi.toString() << std::endl;
 
     // ocra versions
     ocraWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H);
     ocraWbiConversions::wbiToOcraTwistVector(owm_pimpl->Troot_wbi, T);
 
-    // std::cout << "\nH_root_ocra \n" << H << std::endl;
 
 //    int root_index = getSegmentIndex("root_link");
 //    const Eigen::Displacementd::Rotation3D& R = getSegmentPosition(root_index).getRotation();
-    const Eigen::Displacementd::Rotation3D& R_root_w = H.getRotation().inverse();
+//    const Eigen::Displacementd::Rotation3D& R_root_w = H.getRotation().inverse();
 //    T = H.inverse().adjoint()*T;
-    T.bottomRows(3) = R_root_w.adjoint()*T.bottomRows(3);
-    T.topRows(3) = R_root_w.adjoint()*T.topRows(3);
+//    T.bottomRows(3) = R_root_w.adjoint()*T.bottomRows(3);
+//    T.topRows(3) = R_root_w.adjoint()*T.topRows(3);
 
 
 
