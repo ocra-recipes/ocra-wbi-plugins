@@ -556,7 +556,6 @@ void ocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& 
     // ocra versions
     ocraWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H);
     ocraWbiConversions::wbiToOcraTwistVector(owm_pimpl->Troot_wbi, T);
-    std::cout << "T_root" << T.transpose() << std::endl;
 
 
 //    int root_index = getSegmentIndex("root_link");

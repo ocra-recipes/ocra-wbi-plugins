@@ -8,24 +8,13 @@
     {
         ctrl = &c;
         model = &m;
+        bool usesYARP = true;
 
         // Initialise full posture task
-        // Eigen::VectorXd q_full = Eigen::VectorXd::Zero(model.nbInternalDofs());
         Eigen::VectorXd q_full = model->getJointPositions();
-
-
-        // q_full[model.getDofIndex("l_elbow")]      = PI/8.0;
-        // q_full[model.getDofIndex("r_elbow")]      = PI/8.0;
-        // q_full[model.getDofIndex("l_knee")]             = -0.05;
-        // q_full[model.getDofIndex("r_knee")]             = -0.05;
-        // q_full[model.getDofIndex("l_ankle_pitch")]      = -0.05;
-        // q_full[model.getDofIndex("r_ankle_pitch")]      = -0.05;
-        // q_full[model.getDofIndex("l_shoulder_roll")]    = PI/8.0;
-        // q_full[model.getDofIndex("r_shoulder_roll")]    = PI/8.0;
-
-
-
-        taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(*ctrl, *model, "fullPostureTask", ocra::FullState::INTERNAL, 1.0, 1*sqrt(1.0), 0.001, q_full);
+        q_full[model->getDofIndex("l_knee")] = -PI / 12;
+        q_full[model->getDofIndex("r_knee")] = -PI / 12;
+        taskManagers["fullPostureTask"] = new wocra::wOcraFullPostureTaskManager(*ctrl, *model, "fullPostureTask", ocra::FullState::INTERNAL, 10.0, 1*sqrt(10.0), 0.01, q_full, usesYARP);
 
 
         // Initialise partial posture task
@@ -34,35 +23,35 @@
         q_partial_index<<model->getDofIndex("torso_pitch"),model->getDofIndex("torso_roll"),model->getDofIndex("torso_yaw");
         q_partial<<q_full[model->getDofIndex("torso_pitch")],q_full[model->getDofIndex("torso_roll")],q_full[model->getDofIndex("torso_yaw")];
 
-        taskManagers["tmPartial"] = new wocra::wOcraPartialPostureTaskManager(*ctrl, *model, "partialPostureTask", ocra::FullState::INTERNAL, q_partial_index, 10.0, 1.0*sqrt(10.0), 1.0, q_partial);
+        taskManagers["torsoPostureTask"] = new wocra::wOcraPartialPostureTaskManager(*ctrl, *model, "torsoPostureTask", ocra::FullState::INTERNAL, q_partial_index, 10.0, 2.0*sqrt(10.0), 1.0, q_partial, usesYARP);
 
         // Initialise com task
         Eigen::Vector3d desiredCoMPosition;
         desiredCoMPosition = model->getCoMPosition();
-        taskManagers["tmCoM"] = new wocra::wOcraCoMTaskManager(*ctrl, *model, "CoMTask", 10.0, 1*sqrt(10.0), 10.0, desiredCoMPosition);
-        tmCoM = taskManagers["tmCoM"];
+        taskManagers["CoMTask"] = new wocra::wOcraCoMTaskManager(*ctrl, *model, "CoMTask", 10.0, 2*sqrt(10.0), 10.0, desiredCoMPosition, usesYARP);
+        tmCoM = dynamic_cast<wocra::wOcraCoMTaskManager*>(taskManagers["CoMTask"]);
 
         // Initialise waist pose
         Eigen::Vector3d desiredWaistPosition, XYZdisp;
         desiredWaistPosition = model->getSegmentPosition(model->getSegmentIndex("torso")).getTranslation();
         XYZdisp << 0.0, 0.0, 0.0;
         desiredWaistPosition = desiredWaistPosition + XYZdisp;
-        taskManagers["tmSegPoseWaist"] = new wocra::wOcraSegCartesianTaskManager(*ctrl, *model, "waistPoseTask", "torso", ocra::XYZ, 1.0, 0.1*sqrt(1.0), 1.0, desiredWaistPosition);
+        taskManagers["waistPoseTask"] = new wocra::wOcraSegCartesianTaskManager(*ctrl, *model, "waistPoseTask", "torso", ocra::XYZ, 1.0, 2*sqrt(1.0), 1.0, desiredWaistPosition, usesYARP);
 
         // Initialise head pose
         Eigen::Vector3d desiredHeadPosition, headdisp;
         desiredHeadPosition = model->getSegmentPosition(model->getSegmentIndex("head")).getTranslation();
         headdisp << 0.0, 0.0, 0.0;
         desiredHeadPosition = desiredHeadPosition + headdisp;
-        taskManagers["tmSegPoseHead"] = new wocra::wOcraSegCartesianTaskManager(*ctrl, *model, "headPoseTask", "head", ocra::XYZ, 1.0, 0.1*sqrt(1.0), 1.0, desiredHeadPosition);
+        taskManagers["headPoseTask"] = new wocra::wOcraSegCartesianTaskManager(*ctrl, *model, "headPoseTask", "head", ocra::XYZ, 1.0, 2*sqrt(1.0), 1.0, desiredHeadPosition, usesYARP);
 
 
         // Left hand cartesian task
         Eigen::Vector3d posLHandDes, handdisp;
         posLHandDes = model->getSegmentPosition(model->getSegmentIndex("l_hand")).getTranslation();
-        handdisp<<0.03, -0.01, 0.03;
+        handdisp<< 0.1, 0.1, 0.1;
         posLHandDes = posLHandDes + handdisp;
-        taskManagers["tmSegCartHandLeft"] = new wocra::wOcraSegCartesianTaskManager(*ctrl, *model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 1.0, 1*sqrt(1.0), 1.0, posLHandDes);
+        taskManagers["leftHandCartesianTask"] = new wocra::wOcraSegCartesianTaskManager(*ctrl, *model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 20.0, 2*sqrt(20.0), 1.0, posLHandDes, usesYARP);
 
 
 
@@ -95,13 +84,12 @@
 
     void FloatingBaseMinimalTasks::doUpdate(double time, wocra::wOcraModel& state, void** args)
     {
-        std::cout<<model->getCoMPosition()[0,0]<<std::endl;
         if (time==0.15)
         {
 
             Eigen::Vector3d desiredCoMPosition, CoMdisp;
             desiredCoMPosition = model->getCoMPosition();
-            CoMdisp << 0.01, 0.0, 0.0;
+            CoMdisp << 0.0, 0.0, -0.05;
             desiredCoMPosition = desiredCoMPosition + CoMdisp;
 
             tmCoM->setState(desiredCoMPosition);
