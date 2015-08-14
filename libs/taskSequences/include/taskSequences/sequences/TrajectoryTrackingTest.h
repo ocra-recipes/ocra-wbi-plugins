@@ -4,7 +4,7 @@
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
 #include "../sequenceTools.h"
 
-#include "wocra/Trajectory/wOcraTrajectory.h"
+    #include "wocra/Trajectory/wOcraTrajectory.h"
 
 // namespace sequence {
 

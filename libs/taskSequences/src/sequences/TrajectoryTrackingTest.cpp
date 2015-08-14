@@ -13,7 +13,7 @@
         double Kp = 20.0;
         double Kd = 4.0 * sqrt(Kp);
 
-        double Kp_hand = 120.0;
+        double Kp_hand = 40.0;
         double Kd_hand = 2.0 *sqrt(Kp_hand);
         double wFullPosture = 0.0001;
         double wPartialPosture = 0.1;
@@ -89,10 +89,12 @@
             /**
             * Linear interpolation trajectory constructor tests:
             */
-            if      (isDisplacementd)       {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingDispd, endingDispd);}
-            else if (isRotation3d)          {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingRotd, endingRotd);}
-            else if (isCartesion)           {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(startingPos, desiredPos);}
-            else if (isCartesionWaypoints)  {leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory(waypoints);}
+            leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory();
+
+            if      (isDisplacementd)       {leftHandTrajectory->setWaypoints(startingDispd, endingDispd);}
+            else if (isRotation3d)          {leftHandTrajectory->setWaypoints(startingRotd, endingRotd);}
+            else if (isCartesion)           {leftHandTrajectory->setWaypoints(startingPos, desiredPos);}
+            else if (isCartesionWaypoints)  {leftHandTrajectory->setWaypoints(waypoints);}
             else                            {std::cout << "\nGotta pick a reference type motherfucker!" << std::endl;}
         }
         else if (isMinJerk)
@@ -100,16 +102,17 @@
             /**
             * Minimum jerk trajectory constructor tests:
             */
-            if      (isDisplacementd)       {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingDispd, endingDispd);}
-            else if (isRotation3d)          {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingRotd, endingRotd);}
-            else if (isCartesion)           {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(startingPos, desiredPos);}
-            else if (isCartesionWaypoints)  {leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory(waypoints);}
+            leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory();
+
+            if      (isDisplacementd)       {leftHandTrajectory->setWaypoints(startingDispd, endingDispd);}
+            else if (isRotation3d)          {leftHandTrajectory->setWaypoints(startingRotd, endingRotd);}
+            else if (isCartesion)           {leftHandTrajectory->setWaypoints(startingPos, desiredPos);}
+            else if (isCartesionWaypoints)  {leftHandTrajectory->setWaypoints(waypoints);}
             else                            {std::cout << "\nGotta pick a reference type motherfucker!" << std::endl;}
         }
         else{std::cout << "\nGotta pick a trajectory type motherfucker!" << std::endl;}
 
 
-        leftHandTrajectory->generateTrajectory(3.0); // set a 4 second duration
 
         if      (isDisplacementd)      {taskManagers["tmLeftHandPose"]      = new wocra::wOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingDispd);}
         else if (isRotation3d)         {taskManagers["tmLeftHandOrient"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingRotd);}
