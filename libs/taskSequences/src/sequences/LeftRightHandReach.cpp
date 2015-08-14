@@ -23,7 +23,7 @@
 
         // CoM Task
         Eigen::Vector3d posCoM = model.getCoMPosition();
-        taskManagers["tmCoM"] = new wocra::wOcraCoMTaskManager(ctrl, model, "CoMTask", 10.0, 3.0, 10.0, posCoM);
+        taskManagers["tmCoM"] = new wocra::wOcraCoMTaskManager(ctrl, model, "CoMTask", ocra::XYZ, 10.0, 3.0, 10.0, posCoM);
 
         // Left hand cartesian task
         Eigen::Vector3d posLHandDes(-0.3, -0.2, 0.15);

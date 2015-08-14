@@ -28,7 +28,7 @@
         // Initialise com task
         Eigen::Vector3d desiredCoMPosition;
         desiredCoMPosition = model->getCoMPosition();
-        taskManagers["CoMTask"] = new wocra::wOcraCoMTaskManager(*ctrl, *model, "CoMTask", 10.0, 2*sqrt(10.0), 10.0, desiredCoMPosition, usesYARP);
+        taskManagers["CoMTask"] = new wocra::wOcraCoMTaskManager(*ctrl, *model, "CoMTask", ocra::XY, 10.0, 2*sqrt(10.0), 10.0, desiredCoMPosition, usesYARP);
         tmCoM = dynamic_cast<wocra::wOcraCoMTaskManager*>(taskManagers["CoMTask"]);
 
         // Initialise waist pose
