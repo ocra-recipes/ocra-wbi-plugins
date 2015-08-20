@@ -13,6 +13,8 @@
             return new FloatingBaseMinimalTasks();
 
         //Cpp Sequences
+        else if (name == "FloatingBaseCoMBalancing")
+            return new FloatingBaseCoMBalancing();
         else if (name == "InitialPoseHold")
             return new InitialPoseHold();
         else if (name == "NominalPose")
@@ -45,6 +47,7 @@
 
             errorMessage+="\nFixedBaseMinimalTasks";
             errorMessage+="\nFloatingBaseMinimalTasks";
+            errorMessage+="\nFloatingBaseCoMBalancing";
             errorMessage+="\nInitialPoseHold";
             errorMessage+="\nNominalPose";
             errorMessage+="\nLeftHandReach";

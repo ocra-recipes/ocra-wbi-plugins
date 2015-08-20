@@ -6,6 +6,7 @@
 
 #include "sequences/FixedBaseMinimalTasks.h"
 #include "sequences/FloatingBaseMinimalTasks.h"
+#include "sequences/FloatingBaseCoMBalancing.h"
 #include "sequences/InitialPoseHold.h"
 #include "sequences/NominalPose.h"
 #include "sequences/LeftHandReach.h"
