@@ -40,7 +40,7 @@
         tmCoM = dynamic_cast<wocra::wOcraCoMTaskManager*>(taskManagers["CoMTask"]);
 
 
-
+        // Initialise foot contacts
         double mu_sys = 1.0;
         double margin = 0.05;
         double sqrt2on2 = sqrt(2.0)/2.0;
@@ -49,8 +49,6 @@
         Eigen::Rotation3d rotRZdown = Eigen::Rotation3d(-sqrt2on2, 0.0, 0.0, -sqrt2on2) * Eigen::Rotation3d(0.0, 1.0, 0.0, 0.0);
 
 
-        // Initialise left foot contacts
-
         std::vector<Eigen::Displacementd> LFContacts;
         LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotLZdown));
         LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotLZdown));
@@ -58,7 +56,6 @@
         LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotLZdown));
         taskManagers["leftFootContactTask"] = new wocra::wOcraContactSetTaskManager(*ctrl, *model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
 
-        // Initailise right foot contacts
         std::vector<Eigen::Displacementd> RFContacts;
         RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotRZdown));
         RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotRZdown));
@@ -66,10 +63,10 @@
         RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotRZdown));
         taskManagers["rightFootContactTask"] = new wocra::wOcraContactSetTaskManager(*ctrl, *model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
 
-        // Joint limits
+        // Activate Joint limit Constraint
         setJointLimits(0.1);
 
-        // Joint torque limits
+        // Activate Joint torque limit Constraint
         setJointTorqueLimits();
 
 

@@ -19,21 +19,28 @@
         private:
             wocra::wOcraController*                        ctrl;
             wocra::wOcraModel*                             model;
+
+            //CoM task
             wocra::wOcraCoMTaskManager*                    tmCoM;
+            void sinusoidalTraj(double left, double right, double period, double t, double& posTraj, double& velTraj, double& accTraj);
 
             //Limits
             wocra::JointLimitConstraint*                   jlConstraint;
-            Eigen::VectorXd                                torqueSaturationLimit; /* actuatedDOFs */
+            Eigen::VectorXd                                torqueSaturationLimit;
             wocra::TorqueLimitConstraint*                  tauLimitConstraint;
+            void setJointTorqueLimits();
+            void setJointLimits(double hpos);
 
+            //Record results
             std::ofstream                                  datafile;
             std::vector<double>                            actual_com_y;
             std::vector<double>                            ref_com_y;
             bool                                           recorded;
-            void sinusoidalTraj(double left, double right, double period, double t, double& posTraj, double& velTraj, double& accTraj);
             void saveCoMData();
-            void setJointTorqueLimits();
-            void setJointLimits(double hpos);
+
+
+
+
 
     };
 
