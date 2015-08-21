@@ -67,8 +67,7 @@
         taskManagers["rightFootContactTask"] = new wocra::wOcraContactSetTaskManager(*ctrl, *model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
 
         // Joint limits
-        jlConstraint = new wocra::JointLimitConstraint(*model, model->getJointLowerLimits(), model->getJointUpperLimits(), 0.1);
-        ctrl->addConstraint(*jlConstraint);
+        setJointLimits(0.1);
 
         // Joint torque limits
         setJointTorqueLimits();
