@@ -40,6 +40,7 @@
         tmCoM = dynamic_cast<wocra::wOcraCoMTaskManager*>(taskManagers["CoMTask"]);
 
 
+        taskManagers["CoMMomentumTask"]= new wocra::wOcraCoMMomentumTaskManager(*ctrl, *model, "CoMMomentumTask", ocra::XYZ, 1*sqrt(5.0), 1.0, usesYARP);
         // Initialise foot contacts
         double mu_sys = 1.0;
         double margin = 0.05;

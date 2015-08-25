@@ -44,6 +44,8 @@ public:
     virtual const Eigen::Vector3d&                         getCoMJdotQdot     () const;
     virtual const Eigen::Matrix<double,3,Eigen::Dynamic>&  getCoMJacobian     () const;
     virtual const Eigen::Matrix<double,3,Eigen::Dynamic>&  getCoMJacobianDot  () const;
+    virtual const Eigen::Vector3d&                         getCoMAngularVelocity     () const;
+    virtual const Eigen::Matrix<double,3,Eigen::Dynamic>&  getCoMAngularJacobian     () const;
 
 //=============================Segment functions==============================//
     virtual const Eigen::Displacementd&                    getSegmentPosition          (int index) const;

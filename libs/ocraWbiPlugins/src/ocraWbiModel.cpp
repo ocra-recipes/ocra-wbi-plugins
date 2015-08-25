@@ -48,13 +48,15 @@ public:
     Eigen::VectorXd                                         g_full; // gravity term in EOM (full vector from WBI)
     double                                                  total_mass;
     Eigen::Vector3d                                         pos_com; // COM position
-    Eigen::Vector3d                                         vel_com; // COM velocity
+    Eigen::Vector3d                                         vel_com; // COM linear velocity
+    Eigen::Vector3d                                         vel_com_angular; // COM angular velocity
     Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        J_com; // Jacobian matrix (col major for ocra control)
     Eigen::MatrixXd                                         J_com_full; // Jacobian matrix (full from WBI control)
-    Eigen::MatrixXd                                         J_com_cm; // Jacobian matrix (col major MatrixXd for ocra control)
     MatrixXdRm                                              J_com_rm; // Jacobian matrix (row major for WBI)
+    Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        J_com_angular; // Jacobian matrix (col major for ocra control)
+    Eigen::MatrixXd                                         J_com_full_angular; // Jacobian matrix (col major MatrixXd for ocra control)
+    MatrixXdRm                                              J_com_rm_angular; // Jacobian matrix (row major for WBI)
     Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        DJ_com; // derivative of J
-    Eigen::MatrixXd                                         DJ_com_cm; // derivative of J
     MatrixXdRm                                              DJ_com_rm; // derivative of J
     Eigen::Vector3d                                         DJDq;
 
@@ -104,6 +106,9 @@ public:
         ,J_com(COM_POS_DIM, ndof)
         ,J_com_rm(TRANS_ROT_DIM, nDofFree)
         ,J_com_full(TRANS_ROT_DIM, nDofFree)
+        ,J_com_angular(COM_POS_DIM, ndof)
+        ,J_com_rm_angular(TRANS_ROT_DIM, nDofFree)
+        ,J_com_full_angular(TRANS_ROT_DIM, nDofFree)
         ,DJ_com(Eigen::MatrixXd::Zero(COM_POS_DIM, ndof))
         ,DJ_com_rm(MatrixXdRm::Zero(COM_POS_DIM, nDofFree))
         ,DJDq(Eigen::Vector3d(0,0,0))
@@ -354,6 +359,21 @@ const Eigen::Vector3d& ocraWbiModel::getCoMVelocity() const
     return owm_pimpl->vel_com;
 }
 
+const Eigen::Vector3d& ocraWbiModel::getCoMAngularVelocity() const
+{
+/*
+    printf("Get COM Angular Velocity\n");
+*/
+    if (owm_pimpl->freeRoot)
+    {
+        Eigen::MatrixXd J = getCoMAngularJacobian();
+        owm_pimpl->vel_com_angular = J.leftCols(6)*owm_pimpl->Troot+J.rightCols(owm_pimpl->nbInternalDofs)*owm_pimpl->dq;
+    }
+    else
+        owm_pimpl->vel_com_angular = getCoMAngularJacobian()*owm_pimpl->dq;
+    return owm_pimpl->vel_com_angular;
+}
+
 const Eigen::Vector3d& ocraWbiModel::getCoMJdotQdot() const
 {
 /*
@@ -385,6 +405,28 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMJaco
     }
 
     return owm_pimpl->J_com;
+}
+
+const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMAngularJacobian() const
+{
+/*
+    printf("Get COM Angular Jacobian\n");
+*/
+    robot->computeJacobian(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, wbi::iWholeBodyModel::COM_LINK_ID, owm_pimpl->J_com_rm_angular.data());
+    ocraWbiConversions::eigenRowMajorToColMajor(owm_pimpl->J_com_rm_angular, owm_pimpl->J_com_full_angular);
+
+    getCoMPosition();
+
+    if (owm_pimpl->freeRoot)
+    {
+        ocraWbiConversions::wbiToOcraCoMJacobian(owm_pimpl->J_com_full_angular.bottomRows(COM_POS_DIM),owm_pimpl->J_com_angular);
+    }
+    else
+    {
+        owm_pimpl->J_com_angular = owm_pimpl->J_com_full_angular.bottomRightCorner(COM_POS_DIM,owm_pimpl->nbInternalDofs);
+    }
+
+    return owm_pimpl->J_com_angular;
 }
 
 const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMJacobianDot() const
