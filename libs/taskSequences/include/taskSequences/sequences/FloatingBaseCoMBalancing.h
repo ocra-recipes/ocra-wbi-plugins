@@ -8,6 +8,13 @@
 
 #include <fstream>
 
+//apply external wrench
+#include <string>
+
+#include <yarp/os/Network.h>
+#include <yarp/os/RpcClient.h>
+#include <yarp/os/Bottle.h>
+
 // namespace sequence {
 
 
@@ -22,6 +29,7 @@
 
             //CoM task
             wocra::wOcraCoMTaskManager*                    tmCoM;
+            Eigen::Vector3d                                initialCoMPosition;
             void sinusoidalTraj(double left, double right, double period, double t, double& posTraj, double& velTraj, double& accTraj);
 
             //Limits
@@ -33,13 +41,29 @@
 
             //Record results
             std::ofstream                                  datafile;
+            std::vector<double>                            actual_com_x;
+            std::vector<double>                            ref_com_x;
             std::vector<double>                            actual_com_y;
             std::vector<double>                            ref_com_y;
+            std::vector<double>                            flf_x;
+            std::vector<double>                            flf_y;
+            std::vector<double>                            flf_z;
+            std::vector<double>                            frf_x;
+            std::vector<double>                            frf_y;
+            std::vector<double>                            frf_z;
             bool                                           recorded;
             void saveCoMData();
 
+            yarp::os::Network   yarpNet;
 
+            //apply external wrench
+            void applyExternalWrench(std::string linkName, Eigen::Vector3d& force, Eigen::Vector3d& torque, double duration);
+            bool                                           applyWrench;
 
+            //get contact force
+            Eigen::Vector3d& getContactForce(yarp::os::RpcClient* p, std::string linkName);
+            yarp::os::RpcClient portLFConctact;
+            yarp::os::RpcClient portRFConctact;
 
 
     };

@@ -6,6 +6,7 @@
 #include <math.h>
 
 
+
 #define PI 3.14159265
 #define TAU_MAX_LEG 12.0
 #define TAU_MAX_ARM 8.0
@@ -34,13 +35,13 @@
 
 
         // Initialise com task
-        Eigen::Vector3d desiredCoMPosition;
-        desiredCoMPosition = model->getCoMPosition();
-        taskManagers["CoMTask"] = new wocra::wOcraCoMTaskManager(*ctrl, *model, "CoMTask", ocra::XY, 50.0, 1*sqrt(50.0), 10.0, desiredCoMPosition, usesYARP);
+        Eigen::Vector3d initialCoMPosition;
+        initialCoMPosition = model->getCoMPosition();
+        taskManagers["CoMTask"] = new wocra::wOcraCoMTaskManager(*ctrl, *model, "CoMTask", ocra::XY, 50.0, 1*sqrt(50.0), 10.0, initialCoMPosition, usesYARP);
         tmCoM = dynamic_cast<wocra::wOcraCoMTaskManager*>(taskManagers["CoMTask"]);
 
 
-        taskManagers["CoMMomentumTask"]= new wocra::wOcraCoMMomentumTaskManager(*ctrl, *model, "CoMMomentumTask", ocra::XYZ, 1*sqrt(5.0), 1.0, usesYARP);
+        taskManagers["CoMMomentumTask"]= new wocra::wOcraCoMMomentumTaskManager(*ctrl, *model, "CoMMomentumTask", ocra::XYZ, 2*sqrt(5.0), 10.0, usesYARP);
         // Initialise foot contacts
         double mu_sys = 1.0;
         double margin = 0.05;
@@ -70,15 +71,30 @@
         // Activate Joint torque limit Constraint
         setJointTorqueLimits();
 
+        applyWrench = false;
+
+        portLFConctact.open("/FloatingBaseCoMBalancing/l_foot/getContactForce/rpc:o") ;    // Give it a name on the network.
+        bool lfconnection;
+        lfconnection = yarp::os::Network::connect("/FloatingBaseCoMBalancing/l_foot/getContactForce/rpc:o","/vectorView/l_foot/forceMeasurement/rpc:i");
+        portRFConctact.open("/FloatingBaseCoMBalancing/r_foot/getContactForce/rpc:o");    // Give it a name on the network.
+        bool rfconnection;
+        rfconnection = yarp::os::Network::connect("/FloatingBaseCoMBalancing/r_foot/getContactForce/rpc:o","/vectorView/r_foot/forceMeasurement/rpc:i");
+        if (!lfconnection)
+            std::cout<<"[ERROR] lfoot rpc port connection" << std::endl;
+        if (!rfconnection)
+            std::cout<<"[ERROR] rfoot rpc port connection" << std::endl;
 
     }
 
     void FloatingBaseCoMBalancing::doUpdate(double time, wocra::wOcraModel& state, void** args)
-    {     
+    {
+
         double period = 6;
         double duration = 2*period;
         double ti = 0.2;
-        if (time>=ti && time<ti+duration)
+        if (time<ti)
+            initialCoMPosition = model->getCoMPosition();
+        else if (time>=ti && time<ti+duration)
         {
             double lf = model->getSegmentPosition(model->getSegmentIndex("l_foot")).getTranslation()[1];
             double rf = model->getSegmentPosition(model->getSegmentIndex("r_foot")).getTranslation()[1];
@@ -92,18 +108,44 @@
 
             Eigen::Vector3d desiredCoMPosition, desiredCoMVelocity, desiredCoMAcceleration;
             Eigen::Vector3d actualCoMPosition = model->getCoMPosition();
-            desiredCoMPosition << actualCoMPosition[0], com_y, actualCoMPosition[2];
+            desiredCoMPosition << initialCoMPosition[0], com_y, initialCoMPosition[2];
             desiredCoMVelocity << 0, v_com_y, 0;
             desiredCoMAcceleration << 0, a_com_y, 0;
 
             tmCoM->setState(desiredCoMPosition, desiredCoMVelocity, desiredCoMAcceleration);
-
+            actual_com_x.push_back(actualCoMPosition[0]);
+            ref_com_x.push_back(initialCoMPosition[0]);
             actual_com_y.push_back(actualCoMPosition[1]);
             ref_com_y.push_back(com_y);
+            Eigen::Vector3d force;
+            Eigen::Vector3d torque;
+            force << 7, 7, 0;
+            torque << 0, 0, 0;
+            if (time >= ti+period && applyWrench)
+            {
+                applyExternalWrench("r_hand", force, torque, 1);
+                applyWrench = false;
+            }
+            Eigen::Vector3d lfForce = getContactForce(&portLFConctact, "l_foot");
+            Eigen::Vector3d rfForce = getContactForce(&portRFConctact, "r_foot");
+            flf_x.push_back(lfForce[0]);
+            flf_y.push_back(lfForce[1]);
+            flf_z.push_back(lfForce[2]);
+
+            frf_x.push_back(rfForce[0]);
+            frf_y.push_back(rfForce[1]);
+            frf_z.push_back(rfForce[2]);
         }
+
         else if (time >= ti+duration && !recorded)
         {
             saveCoMData();
+
+            yarp::os::Network::disconnect("/FloatingBaseCoMBalancing/l_foot/getContactForce/rpc:o","/vectorView/l_foot/forceMeasurement/rpc:i");
+            portLFConctact.close();
+            yarp::os::Network::disconnect("/FloatingBaseCoMBalancing/r_foot/getContactForce/rpc:o","/vectorView/r_foot/forceMeasurement/rpc:i");
+            portRFConctact.close();
+
             recorded = true;
         }
     }
@@ -121,13 +163,45 @@
 
     void FloatingBaseCoMBalancing::saveCoMData()
     {
-        datafile.open ("com_data.txt");
+        datafile.open ("./com_data.txt");
 
         for (std::vector<double>::iterator it = ref_com_y.begin() ; it != ref_com_y.end(); ++it)
             datafile << *it <<" ";
         datafile<<"\n";
 
         for (std::vector<double>::iterator it = actual_com_y.begin() ; it != actual_com_y.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = ref_com_x.begin() ; it != ref_com_x.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = actual_com_x.begin() ; it != actual_com_x.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = flf_x.begin() ; it != flf_x.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = flf_y.begin() ; it != flf_y.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = flf_z.begin() ; it != flf_z.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = frf_x.begin() ; it != frf_x.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = frf_y.begin() ; it != frf_y.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = frf_z.begin() ; it != frf_z.end(); ++it)
             datafile << *it <<" ";
         datafile<<"\n";
 
@@ -180,4 +254,63 @@
         jlConstraint = new wocra::JointLimitConstraint(*model, model->getJointLowerLimits(), model->getJointUpperLimits(), hpos);
         ctrl->addConstraint(*jlConstraint);
     }
+
+    void FloatingBaseCoMBalancing::applyExternalWrench(std::string linkName, Eigen::Vector3d& force, Eigen::Vector3d& torque, double duration)//
+    {
+
+        yarp::os::RpcClient p;       // Create a port.
+        p.open("/applyExternalWrench/rpc:o");    // Give it a name on the network.
+        yarp::os::Network::connect("/applyExternalWrench/rpc:o","/icubGazeboSim/applyExternalWrench/rpc:i");
+
+        yarp::os::Bottle cmd, ack;   // Make places to store things.
+        cmd.addString (linkName);              // prepare command "cmd".
+        cmd.addDouble ( force[0] );
+        cmd.addDouble ( force[1] );
+        cmd.addDouble ( force[2] );
+        cmd.addDouble ( torque[0] );
+        cmd.addDouble ( torque[1] );
+        cmd.addDouble ( torque[2] );
+        cmd.addDouble ( duration );
+        p.write(cmd,ack); // send command, wait for reply.
+        std::cout<<"force applied"<<std::endl;
+        std::cout<<ack.get ( 0 ).asString()<<std::endl;// process response "ack".
+
+        cmd.clear();
+        ack.clear();
+        yarp::os::Network::disconnect("/applyExternalWrench/rpc:o","/icubGazeboSim/applyExternalWrench/rpc:i");
+        p.close();
+    }
+
+    Eigen::Vector3d& FloatingBaseCoMBalancing::getContactForce(yarp::os::RpcClient* p, std::string linkName)//
+    {
+        Eigen::Vector3d force;
+
+//        yarp::os::RpcClient p;       // Create a port.
+//        p.open("/FloatingBaseCoMBalancing/"+linkName+"/getContactForce/rpc:o");    // Give it a name on the network.
+//        yarp::os::Network::connect("/FloatingBaseCoMBalancing/"+linkName+"/getContactForce/rpc:o","/vectorView/"+linkName+"/forceMeasurement/rpc:i");
+
+        yarp::os::Bottle cmd, ack;   // Make places to store things.
+        cmd.addString (linkName);              // prepare command "cmd".
+        p->write(cmd,ack); // send command, wait for reply.
+
+        if ( ( ack.get ( 0 ).isDouble() || ack.get ( 0 ).isInt() ) \
+             && ( ack.get ( 1 ).isDouble() || ack.get ( 1 ).isInt() ) \
+             && ( ack.get ( 2 ).isDouble() || ack.get ( 2 ).isInt() ))
+        {
+            force[0]=ack.get ( 0 ).asDouble();
+            force[1]=ack.get ( 1 ).asDouble();
+            force[2]=ack.get ( 2 ).asDouble();
+        }
+        else
+        {
+            std::cout<<ack.get ( 0 ).asString()<<std::endl;// process response "ack".
+        }
+        cmd.clear();
+        ack.clear();
+//        yarp::os::Network::disconnect("/FloatingBaseCoMBalancing/getContactForce/rpc:o","/vectorView/forceMeasurement/rpc:i");
+//        p.close();
+
+        return force;
+    }
+
 // }

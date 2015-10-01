@@ -19,6 +19,7 @@
 #include "sequences/JointTest.h"
 #include "sequences/Debug.h"
 #include "sequences/Empty.h"
+#include "sequences/ForceVisualization.h"
 
 // namespace sequence{
 
