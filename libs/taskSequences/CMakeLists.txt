@@ -11,8 +11,11 @@ list(APPEND CMAKE_CXX_FLAGS "-fpermissive")
 find_package(YARP REQUIRED)
 find_package(YCM REQUIRED)
 
-set(CMAKE_MODULE_PATH ${YARP_MODULE_PATH} ${CMAKE_MODULE_PATH})
-set(CMAKE_MODULE_PATH ${YCM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+list(APPEND CMAKE_MODULE_PATH 
+        ${YARP_MODULE_PATH} 
+        ${YCM_MODULE_PATH} 
+        ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules
+     )
 
 
 find_package(iDynTree REQUIRED)
@@ -21,11 +24,15 @@ find_package(modHelp REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 PKG_CHECK_MODULES(PC_WLQP_CONTROL wLQP-Control REQUIRED)
-# PKG_CHECK_MODULES(PC_OCRA_FRAMEWORK ocra_framework REQUIRED)
-PKG_CHECK_MODULES(PC_EIGEN eigen3<=3.0.5 REQUIRED)
-if(NOT PC_EIGEN_FOUND)
-    message("Failed to detect Eigen, check PKG_CONFIG_PATH." )
-endif(NOT PC_EIGEN_FOUND)
+
+find_package(Eigen REQUIRED)
+find_package(EigenLgsm REQUIRED)
+
+include_directories(
+    ${Eigen_INCLUDE_DIRS}
+    ${EigenLgsm_INCLUDE_DIR}
+)
+
 # new "data" installation - available with yarp2.4
 include(YarpInstallationHelpers)
 yarp_configure_external_installation(codyco)
