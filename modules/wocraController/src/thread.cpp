@@ -15,7 +15,7 @@
 * Public License for more details
 */
 
-#include <ISIRWholeBodyController/thread.h>
+#include <wocraController/thread.h>
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 #include <modHelp/modHelp.h>
@@ -28,7 +28,7 @@
 #include "wocra/Tasks/wOcraTaskParser.h"
 
 
-using namespace ISIRWholeBodyController;
+using namespace wocraController;
 using namespace yarp::math;
 using namespace yarpWbi;
 // using namespace sequence;
@@ -47,7 +47,7 @@ using namespace yarpWbi;
 //                                               Thread Constructor
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
+wocraControllerThread::wocraControllerThread(string _name,
                                                              string _robotName,
                                                              int _period,
                                                              wholeBodyInterface *_wbi,
@@ -98,7 +98,7 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
 }
 
-ISIRWholeBodyControllerThread::~ISIRWholeBodyControllerThread()
+wocraControllerThread::~wocraControllerThread()
 {
     delete(taskSequence);
     // delete(ocraModel);
@@ -111,7 +111,7 @@ ISIRWholeBodyControllerThread::~ISIRWholeBodyControllerThread()
 //                                               Thread Init
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-bool ISIRWholeBodyControllerThread::threadInit()
+bool wocraControllerThread::threadInit()
 {
 //    printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
     robot->getEstimates(ESTIMATE_JOINT_POS, q_initial.data(), ALL_JOINTS);
@@ -176,8 +176,8 @@ bool ISIRWholeBodyControllerThread::threadInit()
     }
     else
     {
-        std::cout << "\n\n=== Creating ISIRWholeBodyController ===" << std::endl;
-        rpcPort.open("/ISIRWholeBodyController/rpc:i");
+        std::cout << "\n\n=== Creating wocraController ===" << std::endl;
+        rpcPort.open("/wocraController/rpc:i");
         rpcPort.setReader(processor);
 
         //Create cpp sequence
@@ -239,7 +239,7 @@ bool ISIRWholeBodyControllerThread::threadInit()
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void ISIRWholeBodyControllerThread::run()
+void wocraControllerThread::run()
 {
     /******************************************************************************************************
                                             Update dynamic model
@@ -367,7 +367,7 @@ void ISIRWholeBodyControllerThread::run()
 }
 
 //*************************************************************************************************************************
-void ISIRWholeBodyControllerThread::threadRelease()
+void wocraControllerThread::threadRelease()
 {
     taskSequence->clearSequence();
 
@@ -385,19 +385,19 @@ void ISIRWholeBodyControllerThread::threadRelease()
 
     }
     else{
-        std::cout << "[ERROR] (ISIRWholeBodyControllerThread::threadRelease): Could not set the robot into Position Control mode." << std::endl;
+        std::cout << "[ERROR] (wocraControllerThread::threadRelease): Could not set the robot into Position Control mode." << std::endl;
     }
 }
 
 /**************************************************************************************************
                                     Nested PortReader Class
 **************************************************************************************************/
-ISIRWholeBodyControllerThread::DataProcessor::DataProcessor(ISIRWholeBodyControllerThread& ctThreadRef):ctThread(ctThreadRef)
+wocraControllerThread::DataProcessor::DataProcessor(wocraControllerThread& ctThreadRef):ctThread(ctThreadRef)
 {
     //do nothing
 }
 
-bool ISIRWholeBodyControllerThread::DataProcessor::read(yarp::os::ConnectionReader& connection)
+bool wocraControllerThread::DataProcessor::read(yarp::os::ConnectionReader& connection)
 {
     yarp::os::Bottle input, reply;
     bool ok = input.read(connection);
@@ -420,7 +420,7 @@ bool ISIRWholeBodyControllerThread::DataProcessor::read(yarp::os::ConnectionRead
 
 
 
-void ISIRWholeBodyControllerThread::parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply)
+void wocraControllerThread::parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply)
 {
     int btlSize = input->size();
     for (int i=0; i<btlSize;)
@@ -484,7 +484,7 @@ void ISIRWholeBodyControllerThread::parseIncomingMessage(yarp::os::Bottle *input
         // Fallback
         else
         {
-            std::cout << "[WARNING] (ISIRWholeBodyControllerThread::parseIncomingMessage): The message tag, " << msgTag << " doesn't exist. Skipping. Use help to see availible options." << std::endl;
+            std::cout << "[WARNING] (wocraControllerThread::parseIncomingMessage): The message tag, " << msgTag << " doesn't exist. Skipping. Use help to see availible options." << std::endl;
 
             reply->addString("invalid_input");
             i++;
@@ -492,7 +492,7 @@ void ISIRWholeBodyControllerThread::parseIncomingMessage(yarp::os::Bottle *input
     }
 }
 
-std::string ISIRWholeBodyControllerThread::printValidMessageTags()
+std::string wocraControllerThread::printValidMessageTags()
 {
     std::string helpString  = "\n=== Valid message tags are: ===\n";
     helpString += "removeTask: Allows you to remove a single task manager from the sequence.\n";

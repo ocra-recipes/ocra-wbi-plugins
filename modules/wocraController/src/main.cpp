@@ -18,13 +18,13 @@
 #include <yarp/os/ResourceFinder.h>
 #include <yarp/os/Network.h>
 
-#include <ISIRWholeBodyController/module.h>
+#include <wocraController/module.h>
 
-#define DEFAULT_YARP_CONTEXT "ISIRWholeBodyController"
+#define DEFAULT_YARP_CONTEXT "wocraController"
 
 using namespace yarp::os;
 using namespace std;
-using namespace ISIRWholeBodyController;
+using namespace wocraController;
 
 
 int main (int argc, char * argv[])
@@ -32,7 +32,7 @@ int main (int argc, char * argv[])
     //Creating and preparing the Resource Finder
     ResourceFinder rf;
     rf.setVerbose(true);
-    rf.setDefaultConfigFile("ISIRWholeBodyController.ini"); //default config file name.
+    rf.setDefaultConfigFile("wocraController.ini"); //default config file name.
     rf.setDefaultContext(DEFAULT_YARP_CONTEXT); //when no parameters are given to the module this is the default context
     rf.configure(argc,argv);
 
@@ -61,7 +61,7 @@ int main (int argc, char * argv[])
     }
 
     //Creating the module
-    ISIRWholeBodyControllerModule module;
+    wocraControllerModule module;
 
     return module.runModule(rf);
 }

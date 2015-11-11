@@ -15,8 +15,8 @@
 * Public License for more details
 */
 
-#ifndef ISIRWHOLEBODYCONTROLLERTHREAD_H
-#define ISIRWHOLEBODYCONTROLLERTHREAD_H
+#ifndef WOCRACONTROLLER_THREAD_H
+#define WOCRACONTROLLER_THREAD_H
 
 
 #include <yarp/os/BufferedPort.h>
@@ -45,16 +45,16 @@ using namespace yarp::sig;
 using namespace std;
 using namespace wbi;
 
-namespace ISIRWholeBodyController
+namespace wocraController
 {
 
-class ISIRWholeBodyControllerThread: public RateThread
+class wocraControllerThread: public RateThread
 {
 
 
 
     public:
-        ISIRWholeBodyControllerThread(string _name,
+        wocraControllerThread(string _name,
                                       string _robotName,
                                       int _period,
                                       wholeBodyInterface *_wbi,
@@ -65,7 +65,7 @@ class ISIRWholeBodyControllerThread: public RateThread
                                       bool _isFreeBase);
 
 
-        virtual ~ISIRWholeBodyControllerThread();
+        virtual ~wocraControllerThread();
         bool threadInit();
         void run();
         void threadRelease();
@@ -77,10 +77,10 @@ class ISIRWholeBodyControllerThread: public RateThread
         /************** DataProcessor *************/
         class DataProcessor : public PortReader {
             private:
-                ISIRWholeBodyControllerThread& ctThread;
+                wocraControllerThread& ctThread;
 
             public:
-                DataProcessor(ISIRWholeBodyControllerThread& ctThreadRef);
+                DataProcessor(wocraControllerThread& ctThreadRef);
 
                 virtual bool read(ConnectionReader& connection);
         };

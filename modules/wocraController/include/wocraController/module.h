@@ -15,8 +15,8 @@
 * Public License for more details
 */
 
-#ifndef BASIC_WHOLEBODYINTERFACE_MODULE_H
-#define BASIC_WHOLEBODYINTERFACE_MODULE_H
+#ifndef WOCRACONTROLLER_MODULE_H
+#define WOCRACONTROLLER_MODULE_H
 
 #include <iostream>
 
@@ -28,10 +28,10 @@
 using namespace yarp::os;
 using namespace wbi;
 
-namespace ISIRWholeBodyController
+namespace wocraController
 {
 
-class ISIRWholeBodyControllerModule: public RFModule
+class wocraControllerModule: public RFModule
 {
     /* module parameters */
     std::string moduleName;
@@ -42,11 +42,11 @@ class ISIRWholeBodyControllerModule: public RFModule
     int period;
     double avgTime, stdDev, avgTimeUsed, stdDevUsed;
 
-    ISIRWholeBodyControllerThread* ctrlThread; // locomotion control thread
+    wocraControllerThread* ctrlThread; // locomotion control thread
     wholeBodyInterface* robotInterface; // interface to communicate with the robot
 
 public:
-    ISIRWholeBodyControllerModule();
+    wocraControllerModule();
 
     bool configure(yarp::os::ResourceFinder &rf); // configure all the module parameters and return true if successful
     bool interruptModule(); // interrupt, e.g., the ports

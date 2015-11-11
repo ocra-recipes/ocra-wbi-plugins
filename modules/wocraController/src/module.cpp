@@ -15,23 +15,23 @@
 * Public License for more details
 */
 
-#include <ISIRWholeBodyController/thread.h>
-#include <ISIRWholeBodyController/module.h>
+#include <wocraController/thread.h>
+#include <wocraController/module.h>
 
 // YARP_DECLARE_DEVICES(icubmod)
 
 using namespace yarp::os;
 using namespace yarpWbi;
-using namespace ISIRWholeBodyController;
+using namespace wocraController;
 
-ISIRWholeBodyControllerModule::ISIRWholeBodyControllerModule()
+wocraControllerModule::wocraControllerModule()
 {
     ctrlThread = 0;
     robotInterface = 0;
     period = 10;
 }
 
-bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
+bool wocraControllerModule::configure(ResourceFinder &rf)
 {
     //--------------------------READ FROM CONFIGURATION----------------------
     if( rf.check("robot") )
@@ -68,7 +68,7 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
     // Get wbi options from the canonical file
     if ( !rf.check("wbi_conf_file") )
     {
-        fprintf(stderr, "[ERR] ISIRWholeBodyController: Impossible to open wholeBodyInterface: wbi_conf_file option missing");
+        fprintf(stderr, "[ERR] wocraController: Impossible to open wholeBodyInterface: wbi_conf_file option missing");
     }
     std::string wbiConfFile = rf.findFile("wbi_conf_file");
     yarpWbiOptions.fromConfigFile(wbiConfFile);
@@ -80,7 +80,7 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
     std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
     if(!loadIdListFromConfig(robotJointsListName, yarpWbiOptions, robotJoints))
     {
-        fprintf(stderr, "[ERR] ISIRWholeBodyController: Impossible to load wbiId joint list with name %s\n", robotJointsListName.c_str());
+        fprintf(stderr, "[ERR] wocraController: Impossible to load wbiId joint list with name %s\n", robotJointsListName.c_str());
     }
     robotInterface->addJoints(robotJoints);
 
@@ -99,7 +99,7 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
         controller_options.put("printPeriod",rf.find("printPeriod").asDouble());
     }
 
-    ctrlThread = new ISIRWholeBodyControllerThread(moduleName,
+    ctrlThread = new wocraControllerThread(moduleName,
                                                    robotName,
                                                    period,
                                                    robotInterface,
@@ -108,22 +108,22 @@ bool ISIRWholeBodyControllerModule::configure(ResourceFinder &rf)
                                                    startupSequence,
                                                    debugMode,
                                                    isFloatingBase);
-    if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing ISIRWholeBodyController thread. Closing module.\n"); return false; }
+    if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing wocraController thread. Closing module.\n"); return false; }
 
-    fprintf(stderr,"ISIRWholeBodyController thread started\n");
+    fprintf(stderr,"wocraController thread started\n");
 
     return true;
 }
 
 
-bool ISIRWholeBodyControllerModule::interruptModule()
+bool wocraControllerModule::interruptModule()
 {
     if(ctrlThread)
         ctrlThread->suspend();
     return true;
 }
 
-bool ISIRWholeBodyControllerModule::close()
+bool wocraControllerModule::close()
 {
 //stop threads
     if(ctrlThread){ ctrlThread->stop(); delete ctrlThread; ctrlThread = 0; }
@@ -147,7 +147,7 @@ bool ISIRWholeBodyControllerModule::close()
     return true;
 }
 
-bool ISIRWholeBodyControllerModule::updateModule()
+bool wocraControllerModule::updateModule()
 {
     if (ctrlThread==0)
     {
@@ -168,7 +168,7 @@ bool ISIRWholeBodyControllerModule::updateModule()
     return true;
 }
 
-double ISIRWholeBodyControllerModule::getPeriod()
+double wocraControllerModule::getPeriod()
 {
     return period;
 }
