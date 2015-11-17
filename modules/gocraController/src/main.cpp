@@ -24,15 +24,15 @@
 #include <fstream>
 #include <iomanip>
 
-#include <gOcraController/module.h>
+#include <gocraController/module.h>
 
-#define DEFAULT_YARP_CONTEXT "gOcraController"
+#define DEFAULT_YARP_CONTEXT "gocraController"
 
 using namespace yarp::dev;
 using namespace yarp::sig;
 using namespace yarp::os;
 using namespace std;
-using namespace gOcraController;
+using namespace gocraController;
 
 
 int main (int argc, char * argv[])
@@ -40,7 +40,7 @@ int main (int argc, char * argv[])
     //Creating and preparing the Resource Finder
     ResourceFinder rf;
     rf.setVerbose(true);
-    rf.setDefaultConfigFile("gOcraController.ini"); //default config file name.
+    rf.setDefaultConfigFile("gocraController.ini"); //default config file name.
     rf.setDefaultContext(DEFAULT_YARP_CONTEXT); //when no parameters are given to the module this is the default context
     rf.configure(argc,argv);
 
@@ -66,7 +66,7 @@ int main (int argc, char * argv[])
     }
 
     //Creating the module
-    gOcraControllerModule module;
+    gocraControllerModule module;
 
     return module.runModule(rf);
 }

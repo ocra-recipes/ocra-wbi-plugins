@@ -17,8 +17,8 @@
 
 #include <wocraController/thread.h>
 #include <ocraWbiPlugins/ocraWbiModel.h>
+#include <ocraWbiPlugins/ocraWbiUtil.h>
 
-#include <modHelp/modHelp.h>
 #include <iostream>
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
@@ -317,7 +317,7 @@ void wocraControllerThread::run()
       else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
     }
 
-	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
+    ocraWbiConversions::eigenToYarpVector(eigenTorques, torques_cmd);
 
 
 

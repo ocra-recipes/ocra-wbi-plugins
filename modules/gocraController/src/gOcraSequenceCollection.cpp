@@ -1,5 +1,5 @@
-#include <gOcraController/gOcraSequenceCollection.h>
-#include <../../gOcraController/include/gOcraController/ocraWbiModel.h>
+#include <gocraController/gOcraSequenceCollection.h>
+#include <../../gocraController/include/gocraController/gocraWbiModel.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +19,7 @@ void getNominalPosture(gocra::gOcraModel &model, VectorXd &q);
 // Sequence_InitialPoseHold
 void Sequence_InitialPoseHold::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
-    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/param.txt", "r");
+    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
     char keyward[256];
     char value[128];
     double kp_posture, kd_posture;
@@ -53,7 +53,7 @@ void Sequence_InitialPoseHold::doUpdate(double time, gocra::gOcraModel& state, v
 void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& gmodel)
 {
     model = &gmodel;
-    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/param.txt", "r");
+    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
     char keyward[256];
     char value[128];
     double kp_posture, kd_posture;
@@ -85,8 +85,8 @@ void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraMode
     ctrl.setTaskProjectors(param_priority);
 
     std::cout<<"open file"<<std::endl;
-    jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-_0-/posture.txt");
-    jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-_0-/dq.txt");
+    jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-_0-/posture.txt");
+    jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-_0-/dq.txt");
 
     counter = 0;
 }
@@ -156,7 +156,7 @@ void Sequence_NominalPose::doUpdate(double time, gocra::gOcraModel& state, void*
 // Sequence_LeftHandReach
 void Sequence_LeftHandReach::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& model)
 {
-    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/param.txt", "r");
+    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
     char keyward[256];
     char value[128];
     double kp_posture, kd_posture, kp_lh, kd_lh;
@@ -181,7 +181,7 @@ void Sequence_LeftHandReach::doInit(gocra::GHCJTController& controller, gocra::g
     }
 
     ctrl = &controller;
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
@@ -242,7 +242,7 @@ void Sequence_LeftHandReach::doUpdate(double time, gocra::gOcraModel& state, voi
 // Sequence_ComLeftHandReach
 void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel)
 {
-    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/param.txt", "r");
+    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
 
 
 
@@ -292,7 +292,7 @@ void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra
 
     ctrl = &controller;
     model = &gmodel;
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(gmodel);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(gmodel);
     // Full posture task
     nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
     getNominalPosture(*model, nominal_q);
@@ -367,7 +367,7 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
 {
 
 
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(*model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(*model);
     int start = 400;
 
     if (counter==start){
@@ -502,44 +502,44 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
 
         if (counter-start == end){
             if (strcmp(switch_priority,"true")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-s_0-s/GHCJT_motion_change_alpha.txt");
-                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-s_0-s/posture.txt");
-                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-s_0-s/dq.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-s_0-s/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-s_0-s/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-s_0-s/dq.txt");
             }
             else if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
-                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/posture.txt");
-                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_1-0/dq.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-0_1-0/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-0_1-0/dq.txt");
             }
             else if (strcmp(a12,"0.2")==0 && strcmp(a21,"0.8")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-2_0-8/GHCJT_motion_change_alpha.txt");
-                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-2_0-8/posture.txt");
-                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-2_0-8/dq.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-2_0-8/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-2_0-8/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-2_0-8/dq.txt");
             }
             else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.8")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-8/GHCJT_motion_change_alpha.txt");
-                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-8/posture.txt");
-                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-8/dq.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-6_0-8/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-6_0-8/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-6_0-8/dq.txt");
             }
             else if (strcmp(a12,"0.0")==0 && strcmp(a21,"0.0")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_0-0/GHCJT_motion_change_alpha.txt");
-                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_0-0/posture.txt");
-                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-0_0-0/dq.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-0_0-0/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-0_0-0/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-0_0-0/dq.txt");
             }
             else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.65")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-6/GHCJT_motion_change_alpha.txt");
-                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-6/posture.txt");
-                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-6_0-6/dq.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-6_0-6/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-6_0-6/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-6_0-6/dq.txt");
             }
             else if (strcmp(a12,"0.8")==0 && strcmp(a21,"0.8")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-8/GHCJT_motion_change_alpha.txt");
-                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-8/posture.txt");
-                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha_0-8_0-8/dq.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-8_0-8/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-8_0-8/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha_0-8_0-8/dq.txt");
             }
             else{
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha/GHCJT_motion_change_alpha.txt");
-                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha/posture.txt");
-                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/results/alpha/dq.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha/GHCJT_motion_change_alpha.txt");
+                jointPositionFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha/posture.txt");
+                jointVelocityFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/results/alpha/dq.txt");
             }
 
             Eigen::Vector3d posLHandDes=model->getSegmentPosition(wbiModel.getSegmentIndex("l_hand")).getTranslation();
@@ -598,7 +598,7 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
 // Sequence_ComLeftHandReachReplay
 void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel)
 {
-    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/param.txt", "r");
+    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
 
 
 
@@ -641,7 +641,7 @@ void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller,
 
     ctrl = &controller;
     model = &gmodel;
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(gmodel);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(gmodel);
     // Full posture task
     nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
     getNominalPosture(*model, nominal_q);
@@ -690,7 +690,7 @@ void Sequence_ComLeftHandReachReplay::doUpdate(double time, gocra::gOcraModel& s
 {
 
 
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(*model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(*model);
 
     if (counter <= end){
         errCoM[counter] = tmHead->getTaskError().norm();
@@ -701,28 +701,28 @@ void Sequence_ComLeftHandReachReplay::doUpdate(double time, gocra::gOcraModel& s
 
         if (counter == end){
             if (strcmp(switch_priority,"true")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-s_0-s/GHCJT_motion_change_alpha.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/replay_results/alpha_0-s_0-s/GHCJT_motion_change_alpha.txt");
             }
             else if (strcmp(a12,"0.0")==0 && strcmp(a21,"1.0")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/replay_results/alpha_0-0_1-0/GHCJT_motion_change_alpha.txt");
             }
             else if (strcmp(a12,"0.2")==0 && strcmp(a21,"0.8")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-2_0-8/GHCJT_motion_change_alpha.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/replay_results/alpha_0-2_0-8/GHCJT_motion_change_alpha.txt");
             }
             else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.8")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-6_0-8/GHCJT_motion_change_alpha.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/replay_results/alpha_0-6_0-8/GHCJT_motion_change_alpha.txt");
             }
             else if (strcmp(a12,"0.0")==0 && strcmp(a21,"0.0")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-0_0-0/GHCJT_motion_change_alpha.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/replay_results/alpha_0-0_0-0/GHCJT_motion_change_alpha.txt");
             }
             else if (strcmp(a12,"0.65")==0 && strcmp(a21,"0.65")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-6_0-6/GHCJT_motion_change_alpha.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/replay_results/alpha_0-6_0-6/GHCJT_motion_change_alpha.txt");
             }
             else if (strcmp(a12,"0.8")==0 && strcmp(a21,"0.8")==0){
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha_0-8_0-8/GHCJT_motion_change_alpha.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/replay_results/alpha_0-8_0-8/GHCJT_motion_change_alpha.txt");
             }
             else{
-                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gOcraController/replay_results/alpha/GHCJT_motion_change_alpha.txt");
+                resultFile.open ("../../../main/ocra-wbi-plugins/modules/gocraController/replay_results/alpha/GHCJT_motion_change_alpha.txt");
             }
 
             Eigen::Vector3d posLHandDes=model->getSegmentPosition(wbiModel.getSegmentIndex("l_hand")).getTranslation();
@@ -754,7 +754,7 @@ void Sequence_ComLeftHandReachReplay::doUpdate(double time, gocra::gOcraModel& s
 // Sequence_LeftRightHandReach
 void Sequence_LeftRightHandReach::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
@@ -798,7 +798,7 @@ void Sequence_LeftRightHandReach::doUpdate(double time, gocra::gOcraModel& state
 
 void Sequence_CartesianTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -865,7 +865,7 @@ void Sequence_CartesianTest::doUpdate(double time, gocra::gOcraModel& state, voi
 
 void Sequence_PoseTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -940,7 +940,7 @@ void Sequence_PoseTest::doUpdate(double time, gocra::gOcraModel& state, void** a
 
 void Sequence_OrientationTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -1004,7 +1004,7 @@ void Sequence_OrientationTest::doUpdate(double time, gocra::gOcraModel& state, v
 // Sequence_TrajectoryTrackingTest
 void Sequence_TrajectoryTrackingTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -1200,7 +1200,7 @@ void Sequence_FloatingBaseEstimationTests::doUpdate(double time, gocra::gOcraMod
 // Sequence_LeftRightHandReach
 void Sequence_JointTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
     // Full posture task
     nDoF = model.nbInternalDofs();
     // Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(nDoF);

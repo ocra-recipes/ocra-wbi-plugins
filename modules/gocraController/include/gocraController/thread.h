@@ -31,9 +31,9 @@
 
 #include <wbi/wbi.h>
 
-#include "ocraWbiModel.h"
+#include "gocraWbiModel.h"
 //#include "gOcraCtrlTaskManager.h"
-#include <gOcraController/gOcraSequenceCollection.h>
+#include <gocraController/gOcraSequenceCollection.h>
 #include "gocra/GHCJTController.h"
 #include "gocra/Solvers/OneLevelSolver.h"
 #include "gocra/Tasks/gOcraTaskManagerCollectionBase.h"
@@ -44,17 +44,17 @@ using namespace yarp::sig;
 using namespace std;
 using namespace wbi;
 
-namespace gOcraController
+namespace gocraController
 {
 
-class gOcraControllerThread: public RateThread
+class gocraControllerThread: public RateThread
 {
     string name;
     string robotName;
     string replayJointAnglesPath;
     bool isReplayMode;
     wholeBodyInterface *robot;
-    ocraWbiModel *ocraModel;
+    gocraWbiModel *ocraModel;
     yarp::os::Property options;
     gocra::GHCJTController *ctrl;
     gocra::OneLevelSolverWithQuadProg internalSolver;
@@ -88,7 +88,7 @@ class gOcraControllerThread: public RateThread
     unsigned int replayDataLength;
 
 public:
-    gOcraControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options, std::string _replayJointAnglesPath="");
+    gocraControllerThread(string _name, string _robotName, int _period, wholeBodyInterface *_wbi, yarp::os::Property & _options, std::string _replayJointAnglesPath="");
 
     bool threadInit();
     void run();

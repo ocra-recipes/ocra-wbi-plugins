@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(ocra-wbi CXX)
 
+
 set(OCRA_WBI_MAJOR_VERSION 0)
 set(OCRA_WBI_MINOR_VERSION 0)
 set(OCRA_WBI_PATCH_VERSION 1)

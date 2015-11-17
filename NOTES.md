@@ -1,4 +1,4 @@
-#Usage notes for the ISIRWholeBodyController/gOcraController
+#Usage notes for the ISIRWholeBodyController/gocraController
 
 These notes are written specifically for the iCubParis robots. Please be careful if you are implementing the controller on another platform.
 

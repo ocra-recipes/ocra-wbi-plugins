@@ -1,20 +1,20 @@
-#ifndef OCRAWBIMODEL_H
-#define OCRAWBIMODEL_H
+#ifndef GOCRAWBIMODEL_H
+#define GOCRAWBIMODEL_H
 
 #include "gocra/Models/gOcraModel.h"
 #include <wbi/wbi.h>
 
 using namespace wbi;
 
-class ocraWbiModel: public gocra::gOcraModel
+class gocraWbiModel: public gocra::gOcraModel
 {
 public:
 
-    
+
 
 //===========================Constructor/Destructor===========================//
-    ocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* wbi, const bool freeRoot);
-    virtual ~ocraWbiModel();
+    gocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* wbi, const bool freeRoot);
+    virtual ~gocraWbiModel();
 
 //=============================General functions==============================//
     virtual int                          nbSegments               () const;
@@ -63,7 +63,7 @@ public:
     // Set state to be used from WBI
     void wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot);
 
-    
+
 protected:
 
 //===========================Update state functions===========================//
@@ -82,8 +82,8 @@ protected:
 
 private:
     wholeBodyInterface* robot; // Access to wholeBodyInterface
-    struct ocraWbiModel_pimpl;
-    boost::shared_ptr<ocraWbiModel_pimpl> owm_pimpl; // where all internal data are saved
+    struct gocraWbiModel_pimpl;
+    boost::shared_ptr<gocraWbiModel_pimpl> owm_pimpl; // where all internal data are saved
 };
 
 /*
@@ -91,7 +91,7 @@ extern "C"
 {
     ocra::Model* CreateICub(const std::string& robotName)
     {
-        return new ocraWbiModel(robotName);
+        return new gocraWbiModel(robotName);
     }
 }
 */

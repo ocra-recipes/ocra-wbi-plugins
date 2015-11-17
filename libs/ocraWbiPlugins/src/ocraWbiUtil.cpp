@@ -230,3 +230,21 @@
                 t,
                 q;
     }
+
+
+    //---------------------------------------------------------
+        bool ocraWbiConversions::eigenToYarpVector(const Eigen::VectorXd &eigenVector, yarp::sig::Vector &yarpVector)
+        {
+            if(eigenVector.size() == 0)
+            {
+                std::cout<<"ERROR: input vector is empty (eigenToYarpVector)"<<std::endl;
+                return false;
+            }
+
+            //resize and fill eigen vector with yarp vector elements
+            yarpVector.resize(eigenVector.size());
+            for(unsigned int i=0; i <eigenVector.size(); i++)
+                    yarpVector(i) = eigenVector(i);
+
+            return true;
+        }

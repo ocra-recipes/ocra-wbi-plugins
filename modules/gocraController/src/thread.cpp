@@ -15,10 +15,11 @@
 * Public License for more details
 */
 
-#include <gOcraController/thread.h>
-#include <../../gOcraController/include/gOcraController/ocraWbiModel.h>
-#include <modHelp/modHelp.h>
+#include <gocraController/thread.h>
+#include <../../gocraController/include/gocraController/gocraWbiModel.h>
 #include <iostream>
+#include <ocraWbiPlugins/ocraWbiUtil.h>
+
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/os/Time.h>
@@ -38,7 +39,7 @@
 #include <sstream>
 #include <algorithm>
 
-using namespace gOcraController;
+using namespace gocraController;
 using namespace yarp::math;
 using namespace yarpWbi;
 using namespace std;
@@ -53,7 +54,7 @@ using namespace std;
 void getNPosture(gocra::gOcraModel &model, VectorXd &q);
 
 //*************************************************************************************************************************
-gOcraControllerThread::gOcraControllerThread(string _name,
+gocraControllerThread::gocraControllerThread(string _name,
                                              string _robotName,
                                              int _period,
                                              wholeBodyInterface *_wbi,
@@ -74,7 +75,7 @@ gOcraControllerThread::gOcraControllerThread(string _name,
 
 
     bool isFreeBase = false;
-    ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
+    ocraModel = new gocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useGrav = true;// enable gravity compensation
     ctrl = new gocra::GHCJTController("icubControl", *ocraModel, internalSolver, useGrav);
 
@@ -98,7 +99,7 @@ gOcraControllerThread::gOcraControllerThread(string _name,
 }
 
 //*************************************************************************************************************************
-bool gOcraControllerThread::threadInit()
+bool gocraControllerThread::threadInit()
 {
 //    printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
     robot->getEstimates(ESTIMATE_JOINT_POS, q_initial.data(), ALL_JOINTS);
@@ -123,7 +124,7 @@ bool gOcraControllerThread::threadInit()
 
 
     //================ SET UP TASK AND CONTROL MODE===================//
-    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/sequence_param.txt", "r");
+    FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/sequence_param.txt", "r");
     char keyward[256];
     char value[128];
     int seq;
@@ -276,7 +277,7 @@ bool gOcraControllerThread::threadInit()
 }
 
 //*************************************************************************************************************************
-void gOcraControllerThread::run()
+void gocraControllerThread::run()
 {
 //    std::cout << "Running Control Loop" << std::endl;
 
@@ -322,7 +323,7 @@ void gOcraControllerThread::run()
           else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
         }
 
-        modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
+        ocraWbiConversions::eigenToYarpVector(eigenTorques, torques_cmd);
         robot->setControlReference(torques_cmd.data());
     }
 
@@ -381,7 +382,7 @@ void gOcraControllerThread::run()
 //             if (eigenJointPosition(i)<q_min(i))
 //                eigenJointPosition(i)=q_min(i);
 //        }
-//        modHelp::eigenToYarpVector(q_actual, position_cmd);
+//        ocraWbiConversions::eigenToYarpVector(q_actual, position_cmd);
         int dof = robot->getDoFs();
 //        Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(dof);
 //        getNPosture(*ocraModel, nominal_q);
@@ -389,8 +390,8 @@ void gOcraControllerThread::run()
         yarp::sig::Vector refSpeed(dof, 0.0);
         yarp::sig::Vector refAcc(dof, 0.0);
 //        yarp::sig::Vector pos(dof, 0.0);
-//         modHelp::eigenToYarpVector(q_actual, pos);
-//         modHelp::eigenToYarpVector(nominal_q, position_cmd);
+//         ocraWbiConversions::eigenToYarpVector(q_actual, pos);
+//         ocraWbiConversions::eigenToYarpVector(nominal_q, position_cmd);
 //        for (int i=0; i<robot->getDoFs(); ++i){
 //            refSpeed[i] = 0.001*(position_cmd[i]-pos[i])/dt;
 //        }
@@ -408,8 +409,8 @@ void gOcraControllerThread::run()
                  if (refPos(i)<q_min(i))
                     refPos(i)=q_min(i);
             }
-            modHelp::eigenToYarpVector(refPos, position_cmd);
-            modHelp::eigenToYarpVector(refVel, refSpeed);
+            ocraWbiConversions::eigenToYarpVector(refPos, position_cmd);
+            ocraWbiConversions::eigenToYarpVector(refVel, refSpeed);
         }
 
 //        robot->setControlParam(CTRL_PARAM_REF_VEL, refSpeed.data());
@@ -429,7 +430,7 @@ void gOcraControllerThread::run()
 }
 
 //*************************************************************************************************************************
-void gOcraControllerThread::threadRelease()
+void gocraControllerThread::threadRelease()
 {
     bool res_setControlMode = robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS);
 
@@ -447,7 +448,7 @@ void getNPosture(gocra::gOcraModel& model, VectorXd &q)
     q[model.getDofIndex("l_shoulder_roll")] = M_PI / 6;
     q[model.getDofIndex("r_shoulder_roll")] = M_PI / 6;
     q[model.getDofIndex("l_shoulder_pitch")] = -M_PI / 6;
-    q[model.getDofIndex("r_shoulder_pitch")] = -M_PI / 6;    
+    q[model.getDofIndex("r_shoulder_pitch")] = -M_PI / 6;
 //    q[model.getDofIndex("l_hip_pitch")] = M_PI / 8;
 //    q[model.getDofIndex("l_hip_roll")] = M_PI / 18;
 //    q[model.getDofIndex("l_knee")] = -M_PI / 6;
@@ -455,5 +456,3 @@ void getNPosture(gocra::gOcraModel& model, VectorXd &q)
     q[model.getDofIndex("r_hip_roll")] = M_PI / 18;
     q[model.getDofIndex("r_knee")] = -M_PI / 6;
 }
-
-

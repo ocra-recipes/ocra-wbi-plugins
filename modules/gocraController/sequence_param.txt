@@ -9,5 +9,5 @@ ki = 50
 sequence = 1
 positionControl = true
 
-qdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/alpha_0-_0-/posture.txt
-dqdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gOcraController/replay/alpha_0-_0-/dq.txt
+qdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/replay/alpha_0-_0-/posture.txt
+dqdFilePath = /home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/replay/alpha_0-_0-/dq.txt

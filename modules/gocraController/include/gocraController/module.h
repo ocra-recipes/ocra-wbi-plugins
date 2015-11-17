@@ -33,10 +33,10 @@ using namespace std;
 using namespace yarp::os;
 using namespace wbi;
 
-namespace gOcraController
+namespace gocraController
 {
 
-class gOcraControllerModule: public RFModule
+class gocraControllerModule: public RFModule
 {
     /* module parameters */
     string moduleName;
@@ -45,11 +45,11 @@ class gOcraControllerModule: public RFModule
     int period;
     double avgTime, stdDev, avgTimeUsed, stdDevUsed;
 
-    gOcraControllerThread* ctrlThread; // control thread
+    gocraControllerThread* ctrlThread; // control thread
     wholeBodyInterface* robotInterface; // interface to communicate with the robot
 
 public:
-    gOcraControllerModule();
+    gocraControllerModule();
 
     bool configure(yarp::os::ResourceFinder &rf); // configure all the module parameters and return true if successful
     bool interruptModule(); // interrupt, e.g., the ports

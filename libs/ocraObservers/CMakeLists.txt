@@ -1,5 +1,5 @@
 SET(PROJECTNAME ocraObservers)
-PROJECT(${PROJECTNAME})
+PROJECT(${PROJECTNAME} CXX)
 
 find_package(iDynTree REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
@@ -26,7 +26,6 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
                                      ${WOCRA_LIBRARIES}
                                      ocraWbiPlugins
                                      )
-
 
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION lib)
 

@@ -1,5 +1,5 @@
-#include <gOcraController/ocraWbiModel.h>
-#include <gOcraController/ocraWbiUtil.h>
+#include <gocraController/gocraWbiModel.h>
+#include <ocraWbiPlugins/ocraWbiUtil.h>
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <yarp/sig/Matrix.h>
@@ -18,11 +18,11 @@ typedef  Eigen::Displacementd::AdjointMatrix  AdjointMatrix;
 
 const double g_vector[3] = {0, 0, GRAVITY_CONSTANT};
 
-struct ocraWbiModel::ocraWbiModel_pimpl
+struct gocraWbiModel::gocraWbiModel_pimpl
 {
-    
+
 public:
-    bool                                                    freeRoot;                         
+    bool                                                    freeRoot;
     int                                                     nbDofs;
     int                                                     nbInternalDofs; // nbDofs + FREE_ROOT_DOF if free root, otherwise the same as nbDofs
 
@@ -64,26 +64,26 @@ public:
     std::vector< Eigen::Vector3d >                          segCoM; // not set
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,TRANS_ROT_DIM> > segMassMatrix; // not set
 /*
-    std::vector< Eigen::Matrixd >                           segMassMatrix_cm; 
+    std::vector< Eigen::Matrixd >                           segMassMatrix_cm;
     std::vector< MatrixXdRm >                               segMassMatrix_rm;
 */
     std::vector< Eigen::Vector3d >                          segMomentsOfInertia; // not set
     std::vector< Eigen::Rotation3d >                        segInertiaAxes; // not set
 
-    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian; 
-//    std::vector < Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian_full; 
-    std::vector< Eigen::MatrixXd >                                      segJacobian_full; 
-    std::vector< Eigen::MatrixXd >                                      segJacobian_full_ocra; 
-    std::vector< MatrixXdRm >                                           segJacobian_rm; 
+    std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian;
+//    std::vector < Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJacobian_full;
+    std::vector< Eigen::MatrixXd >                                      segJacobian_full;
+    std::vector< Eigen::MatrixXd >                                      segJacobian_full_ocra;
+    std::vector< MatrixXdRm >                                           segJacobian_rm;
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJdot; // not set
     std::vector< Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic> >   segJointJacobian;
     std::vector< Eigen::Twistd >                            segJdotQdot;
     std::map< std::string, int >                            segIndexFromName;
     std::vector< std::string >                              segNameFromIndex;
-    Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      Jroot; 
+    Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      Jroot;
     Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>      dJroot;
-    
-    ocraWbiModel_pimpl(int nbSeg, int ndof, int nDofFree)
+
+    gocraWbiModel_pimpl(int nbSeg, int ndof, int nDofFree)
         :nbSegments(nbSeg)
         ,q(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
         ,dq(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
@@ -127,8 +127,8 @@ public:
 };
 
 //=================================  Class methods  =================================//
-ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* _wbi, const bool freeRoot)
-    :gocra::gOcraModel(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new ocraWbiModel_pimpl(robot->getFrameList().size(),freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
+gocraWbiModel::gocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* _wbi, const bool freeRoot)
+    :gocra::gOcraModel(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new gocraWbiModel_pimpl(robot->getFrameList().size(),freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
 {
     owm_pimpl->freeRoot = freeRoot;
     int full_wbi_size = robotNumDOF+FREE_ROOT_DOF; // N+6
@@ -144,7 +144,7 @@ ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, 
 
 //    // Need to FIX THIS TO GET THE VALUE PROPERLY!
 //    owm_pimpl->nbSegments = owm_pimpl->nbInternalDofs + 1;
-    // Ones to indicate that all joints are actuated 
+    // Ones to indicate that all joints are actuated
     owm_pimpl->actuatedDofs = Eigen::VectorXd::Ones(owm_pimpl->nbInternalDofs);
 
     // Setup and get lower/upper joint limits
@@ -152,7 +152,7 @@ ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, 
     owm_pimpl->upperLimits = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
 
     robot->getJointLimits(owm_pimpl->lowerLimits.data(), owm_pimpl->upperLimits.data(), ALL_JOINTS);
-    
+
     // Get full M0
     MatrixXdRm M_rm_total_mass(full_wbi_size,full_wbi_size);
     robot->computeMassMatrix(owm_pimpl->q.data(), wbi::Frame(), M_rm_total_mass.data());
@@ -160,73 +160,73 @@ ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, 
 
 }
 
-ocraWbiModel::~ocraWbiModel()
+gocraWbiModel::~gocraWbiModel()
 {
-    
+
 }
 
-int ocraWbiModel::nbSegments() const
+int gocraWbiModel::nbSegments() const
 {
     // set once, hence just return
     return owm_pimpl->nbSegments;
 }
 
-const Eigen::VectorXd& ocraWbiModel::getActuatedDofs() const
+const Eigen::VectorXd& gocraWbiModel::getActuatedDofs() const
 {
     // set once, hence just return
     return owm_pimpl->actuatedDofs;
 }
 
-const Eigen::VectorXd& ocraWbiModel::getJointLowerLimits() const
+const Eigen::VectorXd& gocraWbiModel::getJointLowerLimits() const
 {
     // set once, hence just return
     return owm_pimpl->lowerLimits;
 }
 
-const Eigen::VectorXd& ocraWbiModel::getJointUpperLimits() const
+const Eigen::VectorXd& gocraWbiModel::getJointUpperLimits() const
 {
     // set once, hence just return
     return owm_pimpl->upperLimits;
 }
 
-const Eigen::VectorXd& ocraWbiModel::getJointPositions() const
+const Eigen::VectorXd& gocraWbiModel::getJointPositions() const
 {
     // set by setState or setJointPositions
     return owm_pimpl->q;
 }
 
-const Eigen::VectorXd& ocraWbiModel::getJointVelocities() const
+const Eigen::VectorXd& gocraWbiModel::getJointVelocities() const
 {
     // set by setState or setJointVelocities
     return owm_pimpl->dq;
 }
 
 
-const std::string& ocraWbiModel::getJointName(int index) const
+const std::string& gocraWbiModel::getJointName(int index) const
 {
     return doGetDofName(index);
 }
 
-const int ocraWbiModel::getSegmentIndex(std::string segmentName) const
+const int gocraWbiModel::getSegmentIndex(std::string segmentName) const
 {
     return doGetSegmentIndex(segmentName);
 }
 
 
 
-const Eigen::Displacementd& ocraWbiModel::getFreeFlyerPosition() const
+const Eigen::Displacementd& gocraWbiModel::getFreeFlyerPosition() const
 {
     // set by setState or setFreeFlyerPosition
     return owm_pimpl->Hroot;
 }
 
-const Eigen::Twistd& ocraWbiModel::getFreeFlyerVelocity() const
+const Eigen::Twistd& gocraWbiModel::getFreeFlyerVelocity() const
 {
     // set by setState or setFreeFlyerVelocity
     return owm_pimpl->Troot;
 }
 
-const Eigen::MatrixXd& ocraWbiModel::getInertiaMatrix() const
+const Eigen::MatrixXd& gocraWbiModel::getInertiaMatrix() const
 {
     bool res = robot->computeMassMatrix(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, owm_pimpl->M_full_rm.data());
     ocraWbiConversions::eigenRowMajorToColMajor(owm_pimpl->M_full_rm, owm_pimpl->M_full);
@@ -236,7 +236,7 @@ const Eigen::MatrixXd& ocraWbiModel::getInertiaMatrix() const
         ocraWbiConversions::wbiToOcraMassMatrix(owm_pimpl->nbInternalDofs, owm_pimpl->M_full, owm_pimpl->M);
     }
     else
-    {   
+    {
         owm_pimpl->M = owm_pimpl->M_full.block(FREE_ROOT_DOF, FREE_ROOT_DOF, owm_pimpl->nbDofs, owm_pimpl->nbDofs);
     }
 
@@ -248,7 +248,7 @@ const Eigen::MatrixXd& ocraWbiModel::getInertiaMatrix() const
     return owm_pimpl->M;
 }
 
-const Eigen::MatrixXd& ocraWbiModel::getInertiaMatrixInverse() const
+const Eigen::MatrixXd& gocraWbiModel::getInertiaMatrixInverse() const
 {
 /*
     printf("Get Inertia Matrix Inverse\n");
@@ -258,7 +258,7 @@ const Eigen::MatrixXd& ocraWbiModel::getInertiaMatrixInverse() const
     return owm_pimpl->Minv;
 }
 
-const Eigen::MatrixXd& ocraWbiModel::getDampingMatrix() const
+const Eigen::MatrixXd& gocraWbiModel::getDampingMatrix() const
 {
 /*
     printf("Get Damping\n");
@@ -267,7 +267,7 @@ const Eigen::MatrixXd& ocraWbiModel::getDampingMatrix() const
     return owm_pimpl->B;
 }
 
-const Eigen::VectorXd& ocraWbiModel::getNonLinearTerms() const
+const Eigen::VectorXd& gocraWbiModel::getNonLinearTerms() const
 {
     Eigen::Vector3d zero = Eigen::Vector3d::Zero();
     bool res = robot->computeGeneralizedBiasForces(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, owm_pimpl->dq.data(), owm_pimpl->Troot_wbi.data(), zero.data(), owm_pimpl->nl_full.data());
@@ -283,11 +283,11 @@ const Eigen::VectorXd& ocraWbiModel::getNonLinearTerms() const
     printf("Get Non Linear Full\n");
     std::cout << owm_pimpl->nl_full.transpose() << std::endl;
 */
-    
+
     return owm_pimpl->nl;
 }
 
-const Eigen::VectorXd& ocraWbiModel::getLinearTerms() const
+const Eigen::VectorXd& gocraWbiModel::getLinearTerms() const
 {
 /*
     printf("Get Linear\n");
@@ -296,8 +296,8 @@ const Eigen::VectorXd& ocraWbiModel::getLinearTerms() const
     return owm_pimpl->l;
 }
 
-const Eigen::VectorXd& ocraWbiModel::getGravityTerms() const
-{ 
+const Eigen::VectorXd& gocraWbiModel::getGravityTerms() const
+{
     Eigen::VectorXd dq_zero = Eigen::VectorXd::Zero(owm_pimpl->nbInternalDofs);
     Eigen::Vector3d g(g_vector);
 
@@ -307,7 +307,7 @@ const Eigen::VectorXd& ocraWbiModel::getGravityTerms() const
         ocraWbiConversions::wbiToOcraBodyVector(owm_pimpl->nbInternalDofs, owm_pimpl->g_full, owm_pimpl->g);
     else
         owm_pimpl->g = owm_pimpl->g_full.segment(FREE_ROOT_DOF, owm_pimpl->nbDofs);
-    
+
 /*
     printf("Get Gravity\n");
     std::cout << owm_pimpl->g.transpose() << std::endl;
@@ -315,7 +315,7 @@ const Eigen::VectorXd& ocraWbiModel::getGravityTerms() const
     return owm_pimpl->g;
 }
 
-double ocraWbiModel::getMass() const
+double gocraWbiModel::getMass() const
 {
 /*
     printf("Get Mass\n");
@@ -323,7 +323,7 @@ double ocraWbiModel::getMass() const
     return owm_pimpl->total_mass;
 }
 
-const Eigen::Vector3d& ocraWbiModel::getCoMPosition() const
+const Eigen::Vector3d& gocraWbiModel::getCoMPosition() const
 {
     Frame H;
     robot->computeH(owm_pimpl->q.data(),owm_pimpl->Hroot_wbi,wbi::iWholeBodyModel::COM_LINK_ID,H);
@@ -337,7 +337,7 @@ const Eigen::Vector3d& ocraWbiModel::getCoMPosition() const
     return owm_pimpl->pos_com;
 }
 
-const Eigen::Vector3d& ocraWbiModel::getCoMVelocity() const
+const Eigen::Vector3d& gocraWbiModel::getCoMVelocity() const
 {
 /*
     printf("Get COM Velocity\n");
@@ -352,7 +352,7 @@ const Eigen::Vector3d& ocraWbiModel::getCoMVelocity() const
     return owm_pimpl->vel_com;
 }
 
-const Eigen::Vector3d& ocraWbiModel::getCoMJdotQdot() const
+const Eigen::Vector3d& gocraWbiModel::getCoMJdotQdot() const
 {
 /*
     printf("Get COM JdotQdot\n");
@@ -363,7 +363,7 @@ const Eigen::Vector3d& ocraWbiModel::getCoMJdotQdot() const
     return owm_pimpl->DJDq;
 }
 
-const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMJacobian() const
+const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& gocraWbiModel::getCoMJacobian() const
 {
 /*
     printf("Get COM Jacobian\n");
@@ -379,7 +379,7 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMJaco
     return owm_pimpl->J_com;
 }
 
-const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMJacobianDot() const
+const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& gocraWbiModel::getCoMJacobianDot() const
 {
 /*
     printf("Get COM Jacobian Dot\n");
@@ -387,7 +387,7 @@ const Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>& ocraWbiModel::getCoMJaco
     return owm_pimpl->DJ_com;
 }
 
-const Eigen::Displacementd& ocraWbiModel::getSegmentPosition(int index) const
+const Eigen::Displacementd& gocraWbiModel::getSegmentPosition(int index) const
 {
 /*
     printf("Get Segment Position : %d\n", index);
@@ -399,7 +399,7 @@ const Eigen::Displacementd& ocraWbiModel::getSegmentPosition(int index) const
     return owm_pimpl->segPosition[index];
 }
 
-const Eigen::Twistd& ocraWbiModel::getSegmentVelocity(int index) const
+const Eigen::Twistd& gocraWbiModel::getSegmentVelocity(int index) const
 {
 /*
     printf("Get Segment Velocity : %d\n", index);
@@ -414,7 +414,7 @@ const Eigen::Twistd& ocraWbiModel::getSegmentVelocity(int index) const
     return owm_pimpl->segVelocity[index];
 }
 
-double ocraWbiModel::getSegmentMass(int index) const
+double gocraWbiModel::getSegmentMass(int index) const
 {
 /*
     printf("Get Segment Mass : %d\n", index);
@@ -422,7 +422,7 @@ double ocraWbiModel::getSegmentMass(int index) const
     return owm_pimpl->segMass[index];
 }
 
-const Eigen::Vector3d& ocraWbiModel::getSegmentCoM(int index) const
+const Eigen::Vector3d& gocraWbiModel::getSegmentCoM(int index) const
 {
 /*
     printf("Get Segment CoM : %d\n", index);
@@ -430,7 +430,7 @@ const Eigen::Vector3d& ocraWbiModel::getSegmentCoM(int index) const
     return owm_pimpl->segCoM[index];
 }
 
-const Eigen::Matrix<double,6,6>& ocraWbiModel::getSegmentMassMatrix(int index) const
+const Eigen::Matrix<double,6,6>& gocraWbiModel::getSegmentMassMatrix(int index) const
 {
 /*
     printf("Get Segment Mass Matrix : %d\n", index);
@@ -438,7 +438,7 @@ const Eigen::Matrix<double,6,6>& ocraWbiModel::getSegmentMassMatrix(int index) c
     return owm_pimpl->segMassMatrix[index];
 }
 
-const Eigen::Vector3d& ocraWbiModel::getSegmentMomentsOfInertia(int index) const
+const Eigen::Vector3d& gocraWbiModel::getSegmentMomentsOfInertia(int index) const
 {
 /*
     printf("Get Segment Moments of Inertia : %d\n", index);
@@ -446,7 +446,7 @@ const Eigen::Vector3d& ocraWbiModel::getSegmentMomentsOfInertia(int index) const
     return owm_pimpl->segMomentsOfInertia[index];
 }
 
-const Eigen::Rotation3d& ocraWbiModel::getSegmentInertiaAxes(int index) const
+const Eigen::Rotation3d& gocraWbiModel::getSegmentInertiaAxes(int index) const
 {
 /*
     printf("Get Segment Inertia Axes : %d\n", index);
@@ -455,10 +455,10 @@ const Eigen::Rotation3d& ocraWbiModel::getSegmentInertiaAxes(int index) const
 }
 
 //compute jacobian in segment frame
-const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJacobian(int index) const
+const Eigen::Matrix<double,6,Eigen::Dynamic>& gocraWbiModel::getSegmentJacobian(int index) const
 {
     robot->computeJacobian(owm_pimpl->q.data(), owm_pimpl->Hroot_wbi, index, owm_pimpl->segJacobian_rm[index].data());
-    
+
     ocraWbiConversions::eigenRowMajorToColMajor(owm_pimpl->segJacobian_rm[index], owm_pimpl->segJacobian_full[index]);
     ocraWbiConversions::wbiToOcraSegJacobian(owm_pimpl->segJacobian_full[index], owm_pimpl->segJacobian_full_ocra[index]);
 
@@ -479,7 +479,7 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJacobian(i
     return owm_pimpl->segJacobian[index];
 }
 
-const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJdot(int index) const
+const Eigen::Matrix<double,6,Eigen::Dynamic>& gocraWbiModel::getSegmentJdot(int index) const
 {
 /*
     printf("Get Segment Jacobian Dot : %d\n", index);
@@ -487,7 +487,7 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getSegmentJdot(int i
     return owm_pimpl->segJdot[index];
 }
 
-const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getJointJacobian(int index) const
+const Eigen::Matrix<double,6,Eigen::Dynamic>& gocraWbiModel::getJointJacobian(int index) const
 {
 /*
     printf("Get Joint Jacobian Dot : %d\n", index);
@@ -497,7 +497,7 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& ocraWbiModel::getJointJacobian(int
     return owm_pimpl->segJointJacobian[index];
 }
 
-const Eigen::Twistd& ocraWbiModel::getSegmentJdotQdot(int index) const
+const Eigen::Twistd& gocraWbiModel::getSegmentJdotQdot(int index) const
 {
 /*
     printf("Get Segment JdotQdot : %d\n", index);
@@ -510,7 +510,7 @@ const Eigen::Twistd& ocraWbiModel::getSegmentJdotQdot(int index) const
     return owm_pimpl->segJdotQdot[index];
 }
 
-void ocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot)
+void gocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot)
 {
     Eigen::Displacementd H;
     Eigen::Twistd T;
@@ -522,8 +522,8 @@ void ocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& 
     // std::cout << "\nH_root_wbi in pimpl \n" << owm_pimpl->Hroot_wbi.toString() << std::endl;
 
     // ocra versions
-    ocraWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H); 
-    ocraWbiConversions::wbiToOcraTwistVector(owm_pimpl->Troot_wbi, T); 
+    ocraWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H);
+    ocraWbiConversions::wbiToOcraTwistVector(owm_pimpl->Troot_wbi, T);
 
     // std::cout << "\nH_root_ocra \n" << H << std::endl;
 
@@ -543,7 +543,7 @@ void ocraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& 
 
 }
 
-void ocraWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
+void gocraWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
 {
 /*
     printf("set joint pos to :\n");
@@ -552,8 +552,8 @@ void ocraWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
     owm_pimpl->q = q;
 }
 
-void ocraWbiModel::doSetJointVelocities(const Eigen::VectorXd& dq)
-{ 
+void gocraWbiModel::doSetJointVelocities(const Eigen::VectorXd& dq)
+{
 /*
     printf("set joint vel to :\n");
     std::cout << dq.transpose() << std::endl;
@@ -561,88 +561,88 @@ void ocraWbiModel::doSetJointVelocities(const Eigen::VectorXd& dq)
     owm_pimpl->dq = dq;
 }
 
-void ocraWbiModel::doSetFreeFlyerPosition(const Eigen::Displacementd& Hroot)
+void gocraWbiModel::doSetFreeFlyerPosition(const Eigen::Displacementd& Hroot)
 {
     owm_pimpl->Hroot = Hroot;
 }
 
-void ocraWbiModel::doSetFreeFlyerVelocity(const Eigen::Twistd& Troot)
+void gocraWbiModel::doSetFreeFlyerVelocity(const Eigen::Twistd& Troot)
 {
     owm_pimpl->Troot = Troot;
 }
 
-int ocraWbiModel::doGetSegmentIndex(const std::string& name) const
+int gocraWbiModel::doGetSegmentIndex(const std::string& name) const
 {
-    int id; 
+    int id;
     bool ok = robot->getFrameList().idToIndex(name.c_str(), id);
     return id;
 }
 
-int ocraWbiModel::doGetDofIndex(const std::string &name) const
+int gocraWbiModel::doGetDofIndex(const std::string &name) const
 {
-    int id; 
+    int id;
     bool ok = robot->getJointList().idToIndex(name.c_str(), id);
     return id;
 }
 
-const std::string& ocraWbiModel::doGetDofName(int index) const
+const std::string& gocraWbiModel::doGetDofName(int index) const
 {
     wbi::ID dofID; //wbi::IDList jList =
     bool res = robot->getJointList().indexToID(index, dofID);
     return dofID.toString();
-    // throw std::runtime_error("[ocraWbiModel::doGetDofName] This function was not overriden for a specific model");
+    // throw std::runtime_error("[gocraWbiModel::doGetDofName] This function was not overriden for a specific model");
 }
 
 
-const std::string& ocraWbiModel::doGetSegmentName(int index) const
+const std::string& gocraWbiModel::doGetSegmentName(int index) const
 {
-    wbi::ID segID;  
+    wbi::ID segID;
     bool res = robot->getFrameList().indexToID(index, segID);
     return segID.toString();
 }
 
-const std::string ocraWbiModel::doSegmentName(const std::string& name) const
+const std::string gocraWbiModel::doSegmentName(const std::string& name) const
 {
     // Return segmentName directly
     return name;
 }
 
-const std::string ocraWbiModel::doDofName(const std::string& name) const
+const std::string gocraWbiModel::doDofName(const std::string& name) const
 {
     // Return dofName directly
     return name;
 }
 
 
-void ocraWbiModel::printAllData()
+void gocraWbiModel::printAllData()
 {
     std::cout<<"nbSegments:\n";
     std::cout<<nbSegments()<<"\n";
 
     std::cout<<"nbDofs:\n";
     std::cout<<nbDofs()<<std::endl;
-    
+
     std::cout<<"nbInternalDofs:\n";
     std::cout<<nbInternalDofs()<<std::endl;
 
     std::cout<<"actuatedDofs:\n";
     std::cout<<getActuatedDofs()<<"\n";
-    
+
     std::cout<<"lowerLimits:\n";
     std::cout<<getJointLowerLimits()<<"\n";
-    
+
     std::cout<<"upperLimits:\n";
     std::cout<<getJointUpperLimits()<<"\n";
-    
+
     std::cout<<"q:\n";
     std::cout<<getJointPositions().transpose()<<"\n";
-    
+
     std::cout<<"dq:\n";
     std::cout<<getJointVelocities().transpose()<<"\n";
 
     std::cout<<"Hroot:\n";
     std::cout<<getFreeFlyerPosition()<<"\n";
-    
+
     std::cout<<"Troot:\n";
 //    std::cout<<getFreeFlyerVelocity().transpose()<<"\n";
 
@@ -651,16 +651,16 @@ void ocraWbiModel::printAllData()
 
     std::cout<<"M:\n";
     std::cout<<getInertiaMatrix()<<"\n";
-    
+
     std::cout<<"Minv:\n";
     std::cout<<getInertiaMatrixInverse()<<"\n";
 
     std::cout<<"B:\n";
     std::cout<<getDampingMatrix()<<"\n";
-    
+
     std::cout<<"n:\n";
     std::cout<<getNonLinearTerms()<<"\n";
-    
+
     std::cout<<"g:\n";
     std::cout<<getGravityTerms()<<"\n";
 
@@ -682,43 +682,43 @@ void ocraWbiModel::printAllData()
     std::cout<<"comJacobianDot:\n";
     std::cout<<getCoMJacobianDot()<<"\n";
 
-    
-    
+
+
     for (int idx=0; idx<nbSegments(); idx++)
     {
         std::cout<<"segPosition "<<idx<<":\n";
         std::cout<<getSegmentPosition(idx)<<"\n";
-    
+
         std::cout<<"segVelocity "<<idx<<":\n";
         std::cout<<getSegmentVelocity(idx)<<"\n";
-    
+
         std::cout<<"segMass "<<idx<<":\n";
         std::cout<<getSegmentMass(idx)<<"\n";
-    
+
         std::cout<<"segCoM "<<idx<<":\n";
         std::cout<<getSegmentCoM(idx)<<"\n";
-    
+
         std::cout<<"segMassMatrix "<<idx<<":\n";
         std::cout<<getSegmentMassMatrix(idx)<<"\n";
-    
+
         std::cout<<"segMomentsOfInertia "<<idx<<":\n";
         std::cout<<getSegmentMomentsOfInertia(idx)<<"\n";
-    
+
         std::cout<<"segInertiaAxes "<<idx<<":\n";
         std::cout<<getSegmentInertiaAxes(idx)<<"\n";
-    
+
         std::cout<<"segJacobian "<<idx<<":\n";
         std::cout<<getSegmentJacobian(idx)<<"\n";
-    
+
         std::cout<<"segJdot "<<idx<<":\n";
         std::cout<<getSegmentJdot(idx)<<"\n";
-    
+
         std::cout<<"segJointJacobian "<<idx<<":\n";
         std::cout<<getJointJacobian(idx)<<"\n";
-    
+
         std::cout<<"segJdotQdot "<<idx<<":\n";
         std::cout<<getSegmentJdotQdot(idx).transpose()<<"\n";
-    
+
     }
 
 }
