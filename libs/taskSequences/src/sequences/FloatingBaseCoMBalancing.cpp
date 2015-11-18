@@ -6,10 +6,9 @@
 #include <math.h>
 
 
-#define PI 3.14159265
 #define TAU_MAX_LEG 12.0
 #define TAU_MAX_ARM 8.0
-#define TAU_MAX 24.0
+#define TAU_MAX_ALL 24.0
 
 // namespace sequence{
     void FloatingBaseCoMBalancing::doInit(wocra::wOcraController& c, wocra::wOcraModel& m)
@@ -74,7 +73,7 @@
     }
 
     void FloatingBaseCoMBalancing::doUpdate(double time, wocra::wOcraModel& state, void** args)
-    {     
+    {
         double period = 6;
         double duration = 2*period;
         double ti = 0.2;
@@ -137,7 +136,7 @@
 
     void FloatingBaseCoMBalancing::setJointTorqueLimits()
     {
-        torqueSaturationLimit = Eigen::VectorXd::Constant(model->nbInternalDofs(),TAU_MAX);
+        torqueSaturationLimit = Eigen::VectorXd::Constant(model->nbInternalDofs(),TAU_MAX_ALL);
         std::vector<std::string> legDofVector;
         legDofVector.push_back("l_hip_pitch");
         legDofVector.push_back("l_hip_roll");
