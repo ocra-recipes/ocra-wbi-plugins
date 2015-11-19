@@ -26,7 +26,6 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
         yarp::os::BufferedPort<yarp::os::Bottle> optVarsPortOut;
         yarp::os::BufferedPort<yarp::os::Bottle> costPortOut;
         yarp::os::BufferedPort<yarp::os::Bottle> optVarsPortIn;
-        // yarp::os::BufferedPort<yarp::os::Bottle> optVarsPort;
 
 
 };

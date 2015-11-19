@@ -11,7 +11,7 @@ FILE(GLOB_RECURSE folder_header ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECTNAM
 find_package(SMLT)
 IF(SMLT_FOUND)
     message("-- SMLT lib found. Compiling gaussian process trajectory.")
-    include_directories(SMLT_INCLUDE_DIRS)
+    include_directories(${SMLT_INCLUDE_DIRS})
     # Set preprocessor macro "USING_SMLT" to true.
     add_definitions( -DUSING_SMLT=1 )
 ELSE()
@@ -32,7 +32,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     )
 
 
-ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source})
+ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source} ${folder_header})
 
 LIST(APPEND link_libs   ${YARP_LIBRARIES}
                         ${ICUB_LIBRARIES}
@@ -45,7 +45,7 @@ IF(SMLT_FOUND)
     LIST(APPEND link_libs ${SMLT_LIBRARIES})
 ENDIF()
 
-TARGET_LINK_LIBRARIES(${PROJECTNAME} ${link_libs} ryan_sucks)
+TARGET_LINK_LIBRARIES(${PROJECTNAME} ${link_libs})
 
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION lib)
 

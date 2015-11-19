@@ -48,7 +48,6 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     optVarsPortOut.open("/opt/vars:o");
     costPortOut.open("/opt/cost:o");
     optVarsPortIn.open("/opt/vars:i");
-    // optVarsPortIn2.open("/opt/vars:i");
 }
 
 

@@ -23,10 +23,11 @@ list(APPEND CMAKE_MODULE_PATH
 find_package(Eigen REQUIRED)
 find_package(EigenLgsm REQUIRED)
 
-include_directories(${Eigen_INCLUDE_DIRS}
+include_directories(AFTER
+                    ${Eigen_INCLUDE_DIRS}
                     ${EigenLgsm_INCLUDE_DIR}
                     ${YARP_INCLUDE_DIRS}
-                    ${yarpWholeBodyInterface_INCLUDE_DIRS}
+                    # ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${BOOST_INCLUDE_DIRS}
                     )
 
