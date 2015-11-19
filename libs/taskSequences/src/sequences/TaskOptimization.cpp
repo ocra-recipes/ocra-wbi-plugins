@@ -1,6 +1,14 @@
 #include <taskSequences/sequences/TaskOptimization.h>
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
+
+TaskOptimization::~TaskOptimization()
+{
+    optVarsPortOut.close();
+    costPortOut.close();
+    optVarsPortIn.close();
+}
+
 void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
@@ -18,7 +26,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
 
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
-    getNominalPosture(model, nominal_q);
+    getHomePosture(model, nominal_q);
     taskManagers["fullPostureTask"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp_posture, Kd_posture, wFullPosture, nominal_q);
 
     // Partial (torso) posture task
@@ -31,11 +39,16 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
 
 
 
-    taskManagers["leftHandCartesianTask"]      = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandCartTask);
+    // taskManagers["leftHandCartesianTask"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandCartTask);
 
 
     taskManagers["rightHandCartesianTask"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, wRightHandCartTask);
 
+
+    optVarsPortOut.open("/opt/vars:o");
+    costPortOut.open("/opt/cost:o");
+    optVarsPortIn.open("/opt/vars:i");
+    // optVarsPortIn2.open("/opt/vars:i");
 }
 
 

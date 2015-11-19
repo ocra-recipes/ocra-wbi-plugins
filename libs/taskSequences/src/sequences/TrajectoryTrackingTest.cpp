@@ -11,7 +11,7 @@
 
         // Task Coeffs
         double Kp = 5.0;
-        double Kd = 4.0 * sqrt(Kp);
+        double Kd = 2.0 * sqrt(Kp);
 
         double Kp_hand = 10.0;
         double Kd_hand = 2.0 *sqrt(Kp_hand);

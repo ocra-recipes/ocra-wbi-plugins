@@ -19,8 +19,10 @@
 #include "sequences/JointTest.h"
 #include "sequences/Debug.h"
 #include "sequences/Empty.h"
-#include "sequences/TaskOptimization.h"
 
+#if USING_SMLT
+#include "sequences/TaskOptimization.h"
+#endif
 // namespace sequence{
 
     wocra::wOcraTaskSequenceBase* LoadSequence(const std::string& name);

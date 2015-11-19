@@ -7,6 +7,12 @@
 #define SMLT_SEQUENCES
 #endif
 
+#if USING_SMLT
+#define SMLT_SEQUENCE_NAME_ERROR errorMessage+="\nTaskOptimization";
+#else
+#define SMLT_SEQUENCE_NAME_ERROR
+#endif
+
 // namespace sequence{
 
     wocra::wOcraTaskSequenceBase* LoadSequence(const std::string& name)
@@ -67,7 +73,7 @@
             errorMessage+="\nJointTest";
             errorMessage+="\nDebug";
             errorMessage+="\nEmpty";
-            errorMessage+="\nTaskOptimization";
+            SMLT_SEQUENCE_NAME_ERROR
             throw std::runtime_error(errorMessage);
         }
     }

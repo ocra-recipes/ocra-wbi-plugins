@@ -10,7 +10,7 @@ class ocraWbiModel: public wocra::wOcraModel
 {
 public:
 
-    
+
 
 //===========================Constructor/Destructor===========================//
     ocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* wbi, const bool freeRoot);
@@ -65,7 +65,7 @@ public:
     // Set state to be used from WBI
     void wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot);
 
-    
+
 protected:
 
 //===========================Update state functions===========================//

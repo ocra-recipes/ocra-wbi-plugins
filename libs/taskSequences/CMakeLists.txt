@@ -19,31 +19,34 @@ ELSE()
     list(REMOVE_ITEM folder_source ${CMAKE_CURRENT_SOURCE_DIR}/src/sequences/TaskOptimization.cpp)
     # Set preprocessor macro "USING_SMLT" to false.
     add_definitions( -DUSING_SMLT=0 )
-
+    #set_property(TARGET ${liddddbrary_name} APPEND PROPERTY COMPILE_DEFINITIONS USING_SMLT=0 XENOMAI=1)
 ENDIF()
 
 
 SOURCE_GROUP("Source Files" FILES ${folder_source})
-SOURCE_GROUP("Header Files" FILES ${folder_header})# ${folder_header_seq})
+SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${WOCRA_INCLUDE_DIRS}
                     ${ocraWbiPlugins_SOURCE_DIR}/include
                     )
 
+
 ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source})
 
+LIST(APPEND link_libs   ${YARP_LIBRARIES}
+                        ${ICUB_LIBRARIES}
+                        ${iDynTree_LIBRARIES}
+                        ${yarpWholeBodyInterface_LIBRARIES}
+                        ${WOCRA_LIBRARIES}
+                        ocraWbiPlugins)
 
-TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
-                                     ${ICUB_LIBRARIES}
-                                     ${iDynTree_LIBRARIES}
-                                     ${yarpWholeBodyInterface_LIBRARIES}
-                                     ${WOCRA_LIBRARIES}
-                                     ocraWbiPlugins
-                                     )
+IF(SMLT_FOUND)
+    LIST(APPEND link_libs ${SMLT_LIBRARIES})
+ENDIF()
 
+TARGET_LINK_LIBRARIES(${PROJECTNAME} ${link_libs} ryan_sucks)
 
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION lib)
 
-INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECTNAME}/sequences DESTINATION include/sequences)
 INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECTNAME} DESTINATION include)
