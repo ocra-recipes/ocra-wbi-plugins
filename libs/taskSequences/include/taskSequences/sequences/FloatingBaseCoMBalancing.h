@@ -51,6 +51,9 @@
             std::vector<double>                            frf_x;
             std::vector<double>                            frf_y;
             std::vector<double>                            frf_z;
+            std::vector<double>                            com_momentum_error_x;
+            std::vector<double>                            com_momentum_error_y;
+            std::vector<double>                            com_momentum_error_z;
             bool                                           recorded;
             void saveCoMData();
 
@@ -64,6 +67,7 @@
             Eigen::Vector3d& getContactForce(yarp::os::RpcClient* p, std::string linkName);
             yarp::os::RpcClient portLFConctact;
             yarp::os::RpcClient portRFConctact;
+            Eigen::Vector3d     force;
 
 
     };

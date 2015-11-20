@@ -41,7 +41,7 @@
         tmCoM = dynamic_cast<wocra::wOcraCoMTaskManager*>(taskManagers["CoMTask"]);
 
 
-        taskManagers["CoMMomentumTask"]= new wocra::wOcraCoMMomentumTaskManager(*ctrl, *model, "CoMMomentumTask", ocra::XYZ, 2*sqrt(5.0), 10.0, usesYARP);
+//        taskManagers["CoMMomentumTask"]= new wocra::wOcraCoMMomentumTaskManager(*ctrl, *model, "CoMMomentumTask", ocra::XYZ, 2*sqrt(5.0), 10.0, usesYARP);
         // Initialise foot contacts
         double mu_sys = 1.0;
         double margin = 0.05;
@@ -71,7 +71,7 @@
         // Activate Joint torque limit Constraint
         setJointTorqueLimits();
 
-        applyWrench = false;
+        applyWrench = true;
 
         portLFConctact.open("/FloatingBaseCoMBalancing/l_foot/getContactForce/rpc:o") ;    // Give it a name on the network.
         bool lfconnection;
@@ -135,6 +135,13 @@
             frf_x.push_back(rfForce[0]);
             frf_y.push_back(rfForce[1]);
             frf_z.push_back(rfForce[2]);
+
+            double kd = 2*sqrt(5.0);
+            Eigen::Vector3d com_mom_error = model->getCoMAngularJacobian()*model->getAccelerationVariable().getValue() - kd * model->getCoMAngularVelocity();
+            com_momentum_error_x.push_back(com_mom_error[0]);
+            com_momentum_error_y.push_back(com_mom_error[1]);
+            com_momentum_error_z.push_back(com_mom_error[2]);
+
         }
 
         else if (time >= ti+duration && !recorded)
@@ -202,6 +209,18 @@
         datafile<<"\n";
 
         for (std::vector<double>::iterator it = frf_z.begin() ; it != frf_z.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = com_momentum_error_x.begin() ; it != com_momentum_error_x.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = com_momentum_error_y.begin() ; it != com_momentum_error_y.end(); ++it)
+            datafile << *it <<" ";
+        datafile<<"\n";
+
+        for (std::vector<double>::iterator it = com_momentum_error_z.begin() ; it != com_momentum_error_z.end(); ++it)
             datafile << *it <<" ";
         datafile<<"\n";
 
@@ -283,7 +302,7 @@
 
     Eigen::Vector3d& FloatingBaseCoMBalancing::getContactForce(yarp::os::RpcClient* p, std::string linkName)//
     {
-        Eigen::Vector3d force;
+//        Eigen::Vector3d force;
 
 //        yarp::os::RpcClient p;       // Create a port.
 //        p.open("/FloatingBaseCoMBalancing/"+linkName+"/getContactForce/rpc:o");    // Give it a name on the network.

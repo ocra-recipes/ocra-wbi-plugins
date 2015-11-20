@@ -39,6 +39,7 @@
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
 
+#include <fstream>
 
 using namespace yarp::os;
 using namespace yarp::sig;
@@ -141,6 +142,11 @@ class ISIRWholeBodyControllerThread: public RateThread
 
         void parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply);
         std::string printValidMessageTags();
+
+        std::ofstream                                  datafile;
+        bool                                           recorded;
+        std::vector<double>                            tau_square;
+
 
 };
 
