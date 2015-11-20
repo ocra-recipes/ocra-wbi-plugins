@@ -108,7 +108,10 @@ bool wocraControllerModule::configure(ResourceFinder &rf)
                                                    startupSequence,
                                                    debugMode,
                                                    isFloatingBase);
-    if(!ctrlThread->start()){ fprintf(stderr, "Error while initializing wocraController thread. Closing module.\n"); return false; }
+    if(!ctrlThread->start())
+    { 
+        fprintf(stderr, "Error while initializing wocraController thread. Closing module.\n"); return false;
+    }
 
     fprintf(stderr,"wocraController thread started\n");
 

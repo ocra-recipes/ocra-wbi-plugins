@@ -27,7 +27,6 @@ include_directories(AFTER
                     ${Eigen_INCLUDE_DIRS}
                     ${EigenLgsm_INCLUDE_DIR}
                     ${YARP_INCLUDE_DIRS}
-                    # ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${BOOST_INCLUDE_DIRS}
                     )
 

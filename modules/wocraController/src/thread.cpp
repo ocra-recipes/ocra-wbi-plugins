@@ -114,6 +114,10 @@ wocraControllerThread::~wocraControllerThread()
 bool wocraControllerThread::threadInit()
 {
 //    printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
+    /******************************************************************************************************
+                                Get WBI estimates and initialize the WOCRA model
+    ******************************************************************************************************/
+
     robot->getEstimates(ESTIMATE_JOINT_POS, q_initial.data(), ALL_JOINTS);
 
     bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
@@ -135,17 +139,7 @@ bool wocraControllerThread::threadInit()
 
     robot->setControlParam(CTRL_PARAM_REF_VEL, refSpeed.data());
 
-    if (runInDebugMode)
-    {
-        robot->setControlMode(CTRL_MODE_POS, debugPosture.data(), ALL_JOINTS);
-        robot->setControlReference(debugPosture.data());
-        robot->setControlMode(CTRL_MODE_TORQUE, 0, debugJointIndex);
-    }
-    else
-    {
-        // Set all declared joints in module to TORQUE mode
-        bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
-    }
+
 
 
     /******************************************************************************************************
@@ -230,6 +224,24 @@ bool wocraControllerThread::threadInit()
     taskSequence->init(*ctrl, *ocraModel);
 
 
+    /******************************************************************************************************
+                                    Set the control mode of the Robot
+    ******************************************************************************************************/
+
+    // Note: We do this after taskSequence->init so that if the task sequence takes a long time to start up, the robot will not fall over because its control mode is already set to torque but it is receiving 0 values.
+
+    if (runInDebugMode)
+    {
+        robot->setControlMode(CTRL_MODE_POS, debugPosture.data(), ALL_JOINTS);
+        robot->setControlReference(debugPosture.data());
+        robot->setControlMode(CTRL_MODE_TORQUE, 0, debugJointIndex);
+    }
+    else
+    {
+        // Set all declared joints in module to TORQUE mode
+        bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+    }
+
 	return true;
 }
 
@@ -244,7 +256,6 @@ void wocraControllerThread::run()
     /******************************************************************************************************
                                             Update dynamic model
     ******************************************************************************************************/
-
 
     bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
     bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
@@ -295,7 +306,6 @@ void wocraControllerThread::run()
         }
     }
     else{
-
         taskSequence->update(time_sim, *ocraModel, NULL);
     }
 

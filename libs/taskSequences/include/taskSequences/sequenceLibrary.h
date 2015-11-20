@@ -19,6 +19,7 @@
 #include "sequences/JointTest.h"
 #include "sequences/Debug.h"
 #include "sequences/Empty.h"
+#include "sequences/Exploration.h"
 
 #if USING_SMLT
 #include "sequences/TaskOptimization.h"

@@ -24,32 +24,20 @@
             return new FloatingBaseMinimalTasks();
 
         //Cpp Sequences
-        else if (name == "FloatingBaseCoMBalancing")
-            return new FloatingBaseCoMBalancing();
-        else if (name == "InitialPoseHold")
-            return new InitialPoseHold();
-        else if (name == "NominalPose")
-            return new NominalPose();
-        else if (name == "LeftHandReach")
-            return new LeftHandReach();
-        else if (name == "LeftRightHandReach")
-            return new LeftRightHandReach();
-        else if (name == "CartesianTest")
-            return new CartesianTest();
-        else if (name == "PoseTest")
-            return new PoseTest();
-        else if (name == "OrientationTest")
-            return new OrientationTest();
-        else if (name == "TrajectoryTrackingTest")
-            return new TrajectoryTrackingTest();
-        else if (name == "FloatingBaseEstimationTests")
-            return new FloatingBaseEstimationTests();
-        else if (name == "JointTest")
-            return new JointTest();
-        else if (name == "Debug")
-            return new Debug();
-        else if (name == "Empty")
-            return new Empty();
+        else if (name == "FloatingBaseCoMBalancing"){return new FloatingBaseCoMBalancing();}
+        else if (name == "InitialPoseHold"){return new InitialPoseHold();}
+        else if (name == "NominalPose"){return new NominalPose();}
+        else if (name == "LeftHandReach"){return new LeftHandReach();}
+        else if (name == "LeftRightHandReach"){return new LeftRightHandReach();}
+        else if (name == "CartesianTest"){return new CartesianTest();}
+        else if (name == "PoseTest"){return new PoseTest();}
+        else if (name == "OrientationTest"){return new OrientationTest();}
+        else if (name == "TrajectoryTrackingTest"){return new TrajectoryTrackingTest();}
+        else if (name == "FloatingBaseEstimationTests"){return new FloatingBaseEstimationTests();}
+        else if (name == "JointTest"){return new JointTest();}
+        else if (name == "Debug"){return new Debug();}
+        else if (name == "Empty"){return new Empty();}
+        else if (name == "Exploration"){return new Exploration();}
 
         SMLT_SEQUENCES
 
@@ -73,6 +61,7 @@
             errorMessage+="\nJointTest";
             errorMessage+="\nDebug";
             errorMessage+="\nEmpty";
+            errorMessage+="\nExploration";
             SMLT_SEQUENCE_NAME_ERROR
             throw std::runtime_error(errorMessage);
         }
