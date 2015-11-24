@@ -109,7 +109,7 @@ bool wocraControllerModule::configure(ResourceFinder &rf)
                                                    debugMode,
                                                    isFloatingBase);
     if(!ctrlThread->start())
-    { 
+    {
         fprintf(stderr, "Error while initializing wocraController thread. Closing module.\n"); return false;
     }
 
@@ -163,8 +163,8 @@ bool wocraControllerModule::updateModule()
 //#ifndef NDEBUG
     if(avgTime > 1.3 * period)
     {
-        printf("[WARNING] Control loop is too slow. Real period: %3.3f+/-%3.3f. Expected period %d.\n", avgTime, stdDev, period);
-        printf("Duration of 'run' method: %3.3f+/-%3.3f.\n", avgTimeUsed, stdDevUsed);
+        // printf("[WARNING] Control loop is too slow. Real period: %3.3f+/-%3.3f. Expected period %d.\n", avgTime, stdDev, period);
+        // printf("Duration of 'run' method: %3.3f+/-%3.3f.\n", avgTimeUsed, stdDevUsed);
     }
 //#endif
 

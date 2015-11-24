@@ -33,22 +33,22 @@ void Exploration::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
     */
     bool usesYARP = true;
     //  fullPosture
-    double Kp_fullPosture       = 20.0;
+    double Kp_fullPosture       = 5.0;
     double Kd_fullPosture       = 2.0 * sqrt(Kp_fullPosture);
     double weight_fullPosture   = 0.0001;
 
     //  torsoPosture
-    double Kp_torsoPosture      = 20.0;
+    double Kp_torsoPosture      = 5.0;
     double Kd_torsoPosture      = 2.0 * sqrt(Kp_torsoPosture);
     double weight_torsoPosture  = 0.01;
 
     //  leftHand
-    double Kp_leftHand = 60.0;
+    double Kp_leftHand = 10.0;
     double Kd_leftHand = 2.0 *sqrt(Kp_leftHand);
     Eigen::Vector3d weights_leftHand = Eigen::Vector3d::Ones(3);
 
     //  rightHand
-    double Kp_rightHand = 60.0;
+    double Kp_rightHand = 10.0;
     double Kd_rightHand = 2.0 *sqrt(Kp_rightHand);
     Eigen::Vector3d weights_rightHand = Eigen::Vector3d::Ones(3);
 
