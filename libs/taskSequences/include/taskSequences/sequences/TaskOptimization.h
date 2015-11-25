@@ -6,6 +6,8 @@
 #include <wocra/Tasks/wOcraTaskSequenceBase.h>
 #include <wocra/Trajectory/wOcraGaussianProcessTrajectory.h>
 
+#include <smlt/smltUtilities.hpp>
+
 #include <yarp/os/Network.h>
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/Bottle.h>
@@ -41,12 +43,12 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
         double calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
         double calculateTrackingCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
         double calculateEnergyCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
-        void checkAndCreateDirectory(const std::string dirPath)
-        {
-            if (!boost::filesystem::exists(dirPath)) {
-                boost::filesystem::create_directories(dirPath);
-            }
-        }
+        // void checkAndCreateDirectory(const std::string dirPath)
+        // {
+        //     if (!boost::filesystem::exists(dirPath)) {
+        //         boost::filesystem::create_directories(dirPath);
+        //     }
+        // }
 
 
         int dofIndex;
@@ -96,7 +98,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         int waitCount;
 
-        bool optimumFound, waitForHomePosition;
+        bool optimumFound, sequenceFinished, waitForHomePosition;
 
 
         int testNumber;
@@ -105,7 +107,9 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
         std::ofstream   totalInstantaneousCostFile,
                         goalInstantaneousCostFile,
                         trackingInstantaneousCostFile,
-                        energyInstantaneousCostFile;
+                        energyInstantaneousCostFile,
+
+                        realTrajectoryFile;
 
         bool openLogFiles(const std::string logFilePathPrefix="./");
         bool closeLogFiles();

@@ -26,7 +26,16 @@ TaskOptimization::TaskOptimization()
 
     logTrajectoryData = true;
 
-    rootLogFilePathPrefix = "/home/ryan/Desktop/tmp-test/A";
+    rootLogFilePathPrefix = "/home/ryan/Desktop/tmp-test/";
+    smlt::checkAndCreateDirectory(rootLogFilePathPrefix);
+    std::ofstream pathFile;
+    pathFile.open((rootLogFilePathPrefix+"/latestLogPath.txt").c_str());
+
+    rootLogFilePathPrefix += "/test-" + smlt::currentDateTime() +"/";
+    smlt::checkAndCreateDirectory(rootLogFilePathPrefix);
+
+    pathFile << rootLogFilePathPrefix;
+    pathFile.close();
 
 }
 
@@ -50,6 +59,10 @@ bool TaskOptimization::openLogFiles(const std::string testLogFilePathPrefix)
     bool retVal = true;
     if (logTrajectoryData)
     {
+        realTrajectoryFile.open((testLogFilePathPrefix + "/realTrajectory.txt").c_str());
+        retVal = retVal && realTrajectoryFile.is_open();
+
+
         totalInstantaneousCostFile.open((testLogFilePathPrefix + "/totalInstantaneousCost.txt").c_str());
         retVal = retVal && totalInstantaneousCostFile.is_open();
 
@@ -78,6 +91,9 @@ bool TaskOptimization::closeLogFiles()
     bool retVal = true;
     if (logTrajectoryData)
     {
+        realTrajectoryFile.close();
+        retVal = retVal && !realTrajectoryFile.is_open();
+
         totalInstantaneousCostFile.close();
         retVal = retVal && !totalInstantaneousCostFile.is_open();
 
@@ -237,10 +253,9 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
 
 
     //Figure out waypoints
-    rHandPosStart = model.getSegmentPosition(model.getSegmentIndex("r_hand")).getTranslation();
-    rHandPosStart(0) = -0.35;
-    rHandPosStart(1) = 0.2;
-    rHandPosStart(2) = 0.0;
+    rHandPosStart(0) = -0.35; // X
+    rHandPosStart(1) = 0.2; // Y
+    rHandPosStart(2) = 0.0; // Z
 
 
     dofIndex = 2;
@@ -248,7 +263,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     rHandDisplacement(dofIndex) = 0.25; // meters
     rHandPosEnd = rHandPosStart + rHandDisplacement;
 
-    std::cout << "\n\n\n rHandPosStart = "<<rHandPosStart.transpose() << "\n rHandPosEnd = " << rHandPosEnd.transpose() << "  \n\n\n" << std::endl;
+    std::cout << "rHandPosStart = "<<rHandPosStart.transpose() << "\nrHandPosEnd = " << rHandPosEnd.transpose() << std::endl;
 
     rightHandTrajectory->setWaypoints(rHandPosStart, rHandPosEnd);
 
@@ -278,6 +293,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     waitForSolver = false;
     waitForHomePosition = false;
     optimumFound = false;
+    sequenceFinished = false;
 
 
 
@@ -286,7 +302,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
 
     newOptVarsReceived = false;
     dataSent_AwaitReply = false;
-    testNumber = 0;
+    testNumber = 1;
 
 
 }
@@ -309,6 +325,8 @@ void TaskOptimization::sendOptimizationParameters()
     {
         optParamsBottle.addDouble(searchSpaceMax(i));
     }
+    optParamsBottle.addString(rootLogFilePathPrefix.c_str());
+    optParamsBottle.addString("Solver");
 
     optParamsPortOut.write();
 }
@@ -316,31 +334,155 @@ void TaskOptimization::sendOptimizationParameters()
 
 void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
+    if(!sequenceFinished)
+    {
+        sendFramePositionsToGazebo();
 
-    sendFramePositionsToGazebo();
-
-    if (initTrigger) {
-        resetTimeRight = time;
-        initTrigger = false;
-        totalCost = 0.0;
-        if (logTrajectoryData) {
-            // Convert an int to a string pre C++11 safe
-            std::ostringstream intAsStream; intAsStream << testNumber;
-            std::string testLogFilePathPrefix = intAsStream.str();
-            // Append log file path with test number
-            testLogFilePathPrefix = rootLogFilePathPrefix +"/"+ testLogFilePathPrefix;
-            checkAndCreateDirectory(testLogFilePathPrefix);
-            if(!openLogFiles(testLogFilePathPrefix))
-            {
-                std::cout << "[ERROR](line: "<< __LINE__ <<") -> Could not open data log files for the trajectory! Tried: "<< testLogFilePathPrefix << std::endl;
+        if (initTrigger) {
+            resetTimeRight = time;
+            initTrigger = false;
+            totalCost = 0.0;
+            if (logTrajectoryData) {
+                // Convert an int to a string pre C++11 safe
+                std::ostringstream intAsStream; intAsStream << testNumber;
+                std::string testLogFilePathPrefix = intAsStream.str();
+                // Append log file path with test number
+                testLogFilePathPrefix = rootLogFilePathPrefix +"/Trajectory/"+ testLogFilePathPrefix;
+                smlt::checkAndCreateDirectory(testLogFilePathPrefix);
+                rightHandTrajectory->saveTrajectoryToFile(testLogFilePathPrefix);
+                rightHandTrajectory->saveWaypointDataToFile(testLogFilePathPrefix);
+                if(!openLogFiles(testLogFilePathPrefix))
+                {
+                    std::cout << "[ERROR](line: "<< __LINE__ <<") -> Could not open data log files for the trajectory! Tried: "<< testLogFilePathPrefix << std::endl;
+                }
             }
         }
-    }
 
 
-    if(!optimumFound)
-    {
-        if(!waitForSolver)
+        if(!optimumFound)
+        {
+            if(!waitForSolver)
+            {
+                double relativeTime = time - resetTimeRight;
+
+                if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex))
+                {
+
+                    // Claculate cost at timestep and write to file if logging.
+                    double instantaneousCost = calculateInstantaneousCost(time, state, rHandIndex);
+                    totalCost += instantaneousCost;
+                    if(logTrajectoryData)
+                    {
+                        totalInstantaneousCostFile << relativeTime << " " << instantaneousCost << std::endl;
+
+                        realTrajectoryFile << relativeTime << " "
+                                            << rightHandTask->getTaskFramePosition().transpose() << " "
+                                            << rightHandTask->getTaskFrameLinearVelocity().transpose() << " "
+                                            << rightHandTask->getTaskFrameLinearAcceleration().transpose() << " "
+                                            << rightHandTask->getWeights().transpose()
+                                            << std::endl;
+                    }
+
+
+                    rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
+                    Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
+                    desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
+                    desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
+
+                    rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
+                    rightHandTask->setWeights(desiredWeights_rightHand);
+
+
+
+
+                }
+                else
+                {
+                    if((abs(relativeTime) > TIME_LIMIT)){
+                        std::cout << "Time limit exceeded!" << std::endl;
+                    }
+                    if (attainedGoal(state, rHandIndex)) {
+                        std::cout << "Goal attained!" << std::endl;
+                    }
+
+                    std::cout << "Going to starting position..." << std::endl;
+                    rightHandTask->setState(rHandPosStart);
+                    rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
+
+                    waitForSolver = true;
+                }
+            }
+            else
+            {
+                if (!dataSent_AwaitReply)
+                {
+                    yarp::os::Bottle& optVarsBottle = optVarsPortOut.prepare();
+                    bottleEigenVector(optVarsBottle, optVariables);
+                    optVarsPortOut.write();
+
+                    yarp::os::Bottle& costBottle = costPortOut.prepare();
+                    costBottle.clear();
+                    costBottle.addDouble(totalCost);
+                    costPortOut.write();
+
+                    dataSent_AwaitReply = true;
+                    std::cout << "Data sent to solver, awaiting new optimal waypoint variables..." << std::endl;
+                }
+                else
+                {
+                    if(!newOptVarsReceived)
+                    {
+                        yarp::os::Bottle *newOptVars = optVarsPortIn.read(false);
+                        if (newOptVars!=NULL)
+                        {
+                            std::cout <<"[NEW TEST VARIABLES]\n"<< newOptVars->toString() <<"\n"<< std::endl;
+                            optimumFound = bool(newOptVars->get(0).asInt());
+                            if (optimumFound) {
+                                // std::cout << "--> Found optimal waypoint variables! Replaying till thread is killed." << std::endl;
+                                std::cout << "Found an optimum!" << std::endl;
+                            }
+
+                            for(int i=0; i<optVariables.size(); i++)
+                            {
+                              optVariables(i) = newOptVars->get(i+1).asDouble();
+                            }
+                            rightHandTrajectory->setBoptVariables(optVariables);
+                            currentOptWaypoint(dofIndex) = optVariables(1);
+                            newOptVarsReceived = true;
+                            waitCount = 0;
+                        }
+                    }
+                    else
+                    {
+                        if(isBackInHomePosition(state, rHandIndex))
+                        {
+                            dataSent_AwaitReply = false;
+                            waitForSolver = false;
+                            newOptVarsReceived = false;
+                            initTrigger = true;
+                            if(logTrajectoryData)
+                            {
+                                if (!closeLogFiles()) {
+                                std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
+                                }
+                            }
+                            testNumber++;
+                        }
+                        else
+                        {
+                            if (waitCount>=100)
+                            {
+                                std::cout << "New test variables received, waiting for robot to return to home position." << std::endl;
+                                waitCount = 0;
+                            }
+                            waitCount++;
+                        }
+                    }
+
+                }
+            }
+        }
+        else
         {
             double relativeTime = time - resetTimeRight;
 
@@ -351,7 +493,16 @@ void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** ar
                 double instantaneousCost = calculateInstantaneousCost(time, state, rHandIndex);
                 totalCost += instantaneousCost;
                 if(logTrajectoryData)
-                {totalInstantaneousCostFile << relativeTime << " " << instantaneousCost << std::endl;}
+                {
+                    totalInstantaneousCostFile << relativeTime << " " << instantaneousCost << std::endl;
+
+                    realTrajectoryFile << relativeTime << " "
+                                        << rightHandTask->getTaskFramePosition().transpose() << " "
+                                        << rightHandTask->getTaskFrameLinearVelocity().transpose() << " "
+                                        << rightHandTask->getTaskFrameLinearAcceleration().transpose() << " "
+                                        << rightHandTask->getWeights().transpose()
+                                        << std::endl;
+                }
 
 
                 rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
@@ -363,6 +514,8 @@ void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** ar
                 rightHandTask->setWeights(desiredWeights_rightHand);
 
 
+
+
             }
             else
             {
@@ -372,121 +525,55 @@ void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** ar
                 if (attainedGoal(state, rHandIndex)) {
                     std::cout << "Goal attained!" << std::endl;
                 }
-
-                std::cout << "Going to starting position..." << std::endl;
-                rightHandTask->setState(rHandPosStart);
-                rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
-
-                waitForSolver = true;
+                sequenceFinished = true;
+                std::cout   << "\n==========================================================\n"
+                            << "\tTaskOptimization sequence finished!"
+                            << "\n==========================================================\n"
+                            << std::endl;
             }
-        }
-        else
-        {
-            if (!dataSent_AwaitReply)
-            {
-                yarp::os::Bottle& optVarsBottle = optVarsPortOut.prepare();
-                bottleEigenVector(optVarsBottle, optVariables);
-                optVarsPortOut.write();
 
-                yarp::os::Bottle& costBottle = costPortOut.prepare();
-                costBottle.clear();
-                costBottle.addDouble(totalCost);
-                costPortOut.write();
 
-                dataSent_AwaitReply = true;
-                std::cout << "Data sent to solver, awaiting new optimal waypoint variables..." << std::endl;
-            }
-            else
-            {
-                if(!newOptVarsReceived)
-                {
-                    yarp::os::Bottle *newOptVars = optVarsPortIn.read(false);
-                    if (newOptVars!=NULL)
-                    {
-                        std::cout <<"[NEW TEST VARIABLES]\n"<< newOptVars->toString() <<"\n"<< std::endl;
-                        optimumFound = bool(newOptVars->get(0).asInt());
-                        if (optimumFound) {
-                            std::cout << "--> Found optimal waypoint variables! Replaying till thread is killed." << std::endl;
-                        }
 
-                        for(int i=0; i<optVariables.size(); i++)
-                        {
-                          optVariables(i) = newOptVars->get(i+1).asDouble();
-                        }
-                        rightHandTrajectory->setBoptVariables(optVariables);
-                        currentOptWaypoint(dofIndex) = optVariables(1);
-                        newOptVarsReceived = true;
-                        waitCount = 0;
-                    }
-                }
-                else
-                {
-                    if(isBackInHomePosition(state, rHandIndex))
-                    {
-                        dataSent_AwaitReply = false;
-                        waitForSolver = false;
-                        newOptVarsReceived = false;
-                        initTrigger = true;
-                        if(logTrajectoryData)
-                        {
-                            if (!closeLogFiles()) {
-                            std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
-                            }
-                        }
-                        testNumber++;
-                    }
-                    else
-                    {
-                        if (waitCount>=100)
-                        {
-                            std::cout << "New test variables received, waiting for robot to return to home position." << std::endl;
-                            waitCount = 0;
-                        }
-                        waitCount++;
-                    }
-                }
 
-            }
+
+        // double relativeTime = time - resetTimeRight;
+        //
+        // if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
+        // {
+        //     rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
+        //     Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
+        //     desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
+        //     desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
+        //
+        //     rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
+        //     rightHandTask->setWeights(desiredWeights_rightHand);
+        //
+        //
+        // }
+        // else
+        // {
+        //     if((abs(relativeTime) > TIME_LIMIT)){
+        //         std::cout << "Time limit exceeded!" << std::endl;
+        //     }
+        //     if (attainedGoal(state, rHandIndex)) {
+        //         std::cout << "Goal attained!" << std::endl;
+        //     }
+        //
+        //     std::cout << "Going to starting position..." << std::endl;
+        //     rightHandTask->setState(rHandPosStart);
+        //     rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
+        //     waitForHomePosition = true;
+        //
+        //     if(isBackInHomePosition(state, rHandIndex))
+        //     {
+        //         initTrigger = true;
+        //         waitForHomePosition = false;
+        //
+        //     }
+        // }
         }
     }
-    else
-    {
-        double relativeTime = time - resetTimeRight;
 
-        if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
-        {
-            rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
-            Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
-            desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
-            desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
-
-            rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
-            rightHandTask->setWeights(desiredWeights_rightHand);
-
-
-        }
-        else
-        {
-            if((abs(relativeTime) > TIME_LIMIT)){
-                std::cout << "Time limit exceeded!" << std::endl;
-            }
-            if (attainedGoal(state, rHandIndex)) {
-                std::cout << "Goal attained!" << std::endl;
-            }
-
-            std::cout << "Going to starting position..." << std::endl;
-            rightHandTask->setState(rHandPosStart);
-            rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
-            waitForHomePosition = true;
-
-            if(isBackInHomePosition(state, rHandIndex))
-            {
-                initTrigger = true;
-                waitForHomePosition = false;
-
-            }
-        }
-    }
 
 
 
