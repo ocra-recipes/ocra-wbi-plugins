@@ -1,6 +1,9 @@
 #ifndef TASKOPTIMIZATION_H
 #define TASKOPTIMIZATION_H
 
+#include <ocraWbiPlugins/ocraWbiModel.h>
+
+
 #include "../sequenceTools.h"
 
 #include <wocra/Tasks/wOcraTaskSequenceBase.h>
@@ -28,6 +31,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
         virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
     private:
+        ocraWbiModel* wbiModel;
 
         void connectYarpPorts();
         void bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::VectorXd& vecToBottle, const bool encapsulate=false);
@@ -39,7 +43,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
         void sendOptimizationParameters();
 
 
-        double calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
+        void calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
         double calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
         double calculateTrackingCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
         double calculateEnergyCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
@@ -62,7 +66,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
         yarp::os::BufferedPort<yarp::os::Bottle> optParamsPortOut;
 
 
-        yarp::os::Port r_hand_port, r_hand_target_port, r_hand_waypoint_port;
+        yarp::os::Port r_hand_port, r_hand_target_port, r_hand_waypoint_port, obstacle_port;
 
 
         std::string optVarsPortOut_name, costPortOut_name, optVarsPortIn_name, optParamsPortOut_name;
@@ -93,7 +97,6 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         bool waitForSolver, dataSent_AwaitReply, newOptVarsReceived;
 
-        double totalCost;
         bool useGoalCost, useTrackingCost, useEnergyCost;
 
         int waitCount;
@@ -111,8 +114,32 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
                         realTrajectoryFile;
 
+
+        Eigen::MatrixXd goalCostMat, trackingCostMat, energyCostMat;
+        int costIterCounter;
+
+        double energyCostScalingFactor;
+
+
         bool openLogFiles(const std::string logFilePathPrefix="./");
         bool closeLogFiles();
+
+        void initializeTrajectory(double time);
+        void executeTrajectory(double relativeTime,  wocra::wOcraModel& state);
+        bool parseNewOptVarsBottle();
+
+        double obstacleTime;
+
+        void insertObstacle();
+        void removeObstacle();
+
+        bool sendTestDataToSolver();
+
+        double postProcessInstantaneousCosts();
+
+
+        bool replayOptimalTrajectory;
+
 
 
 };

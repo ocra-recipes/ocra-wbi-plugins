@@ -1,5 +1,4 @@
 #include <taskSequences/sequences/TaskOptimization.h>
-#include <ocraWbiPlugins/ocraWbiModel.h>
 
 #ifndef ERROR_THRESH
 #define ERROR_THRESH 0.03 // Goal error threshold for hand tasks
@@ -10,19 +9,23 @@
 #endif
 
 #ifndef TIME_LIMIT
-#define TIME_LIMIT 15.0 // Maximum time to be spent on any trajectory.
+#define TIME_LIMIT 10.0 // Maximum time to be spent on any trajectory.
 #endif
 
 TaskOptimization::TaskOptimization()
 {
     connectYarpPorts();
 
+    obstacleTime = 1.0;//1.25;
 
-    useGoalCost = false;
+
+    replayOptimalTrajectory = true;
+
+    useGoalCost = true;
 
     useTrackingCost = true;
 
-    useEnergyCost = false;
+    useEnergyCost = true;
 
     logTrajectoryData = true;
 
@@ -50,7 +53,7 @@ TaskOptimization::~TaskOptimization()
     r_hand_target_port.close();
     r_hand_waypoint_port.close();
 
-
+    obstacle_port.close();
 
 }
 
@@ -175,12 +178,18 @@ void TaskOptimization::connectYarpPorts()
     std::string r_hand_waypoint_port_name = "/rHandWaypoint:o";
     r_hand_waypoint_port.open(r_hand_waypoint_port_name.c_str());
     yarp.connect(r_hand_waypoint_port_name.c_str(), "/rightHandWaypointSphere:i");
+
+    std::string obstacle_port_name = "/obstacle:o";
+    obstacle_port.open(obstacle_port_name.c_str());
+    yarp.connect(obstacle_port_name.c_str(), "/thinPlate:i");
 }
 
 void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
 
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
+    wbiModel = &wbiModelRef;
+    // ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
     varianceThresh = Eigen::Array3d::Constant(VAR_THRESH);
 
@@ -219,7 +228,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     // torsoPosture
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
-    torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
+    torso_indices << wbiModel->getDofIndex("torso_pitch"), wbiModel->getDofIndex("torso_roll"), wbiModel->getDofIndex("torso_yaw");
     torsoTaskPosDes << 0.0, 0.0, 0.0;
 
     taskManagers["torsoPosture"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "torsoPosture", ocra::FullState::INTERNAL, torso_indices, Kp_torsoPosture, Kd_torsoPosture, weight_torsoPosture, torsoTaskPosDes, usesYARP);
@@ -279,11 +288,10 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     dofToOptimize[0] << 0, dofIndex+1;
     optVariables = rightHandTrajectory->getBoptVariables(1, dofToOptimize);
 
-    std::cout << "optVariables\n" << optVariables << std::endl;
+    std::cout << "optVariables:" << optVariables.transpose() << std::endl;
 
     currentOptWaypoint = rHandPosEnd;
     currentOptWaypoint(dofIndex) = optVariables(1);
-
 
 
 
@@ -331,31 +339,189 @@ void TaskOptimization::sendOptimizationParameters()
     optParamsPortOut.write();
 }
 
+void TaskOptimization::initializeTrajectory(double time)
+{
+    resetTimeRight = time;
+    initTrigger = false;
+    costIterCounter = 0;
+    int nRowsMax = ceil((TIME_LIMIT / 0.01)*2);
+    if (useGoalCost){
+        goalCostMat.resize(nRowsMax, 2);
+    }
+    if (useTrackingCost){
+        trackingCostMat.resize(nRowsMax, 2);
+    }
+    if (useEnergyCost){
+        energyCostMat.resize(nRowsMax, 2);
+    }
+
+
+    if (logTrajectoryData) {
+        // Convert an int to a string pre C++11 safe
+        std::ostringstream intAsStream; intAsStream << testNumber;
+        std::string testLogFilePathPrefix = intAsStream.str();
+        // Append log file path with test number
+        testLogFilePathPrefix = rootLogFilePathPrefix +"/Trajectory/"+ testLogFilePathPrefix;
+        smlt::checkAndCreateDirectory(testLogFilePathPrefix);
+        rightHandTrajectory->saveTrajectoryToFile(testLogFilePathPrefix);
+        rightHandTrajectory->saveWaypointDataToFile(testLogFilePathPrefix);
+        if(!openLogFiles(testLogFilePathPrefix))
+        {
+            std::cout << "[ERROR](line: "<< __LINE__ <<") -> Could not open data log files for the trajectory! Tried: "<< testLogFilePathPrefix << std::endl;
+        }
+    }
+}
+
+void TaskOptimization::insertObstacle()
+{
+    Eigen::Vector3d insertPosition(-0.25, 0, 0);
+
+    yarp::os::Bottle obstacleBottle;
+    bottleEigenVector(obstacleBottle, insertPosition);
+    obstacle_port.write(obstacleBottle);
+}
+void TaskOptimization::removeObstacle()
+{
+    Eigen::Vector3d removedPosition(0.4, 0, 0);
+
+    yarp::os::Bottle obstacleBottle;
+    bottleEigenVector(obstacleBottle, removedPosition);
+    // int i = 0;
+    // while(i<20){
+    obstacle_port.write(obstacleBottle);
+    // i++;
+    // }
+}
+
+void TaskOptimization::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
+{
+    if (relativeTime>=obstacleTime) {
+        insertObstacle();
+    }
+    else{
+        removeObstacle();
+    }
+
+    // Claculate cost at timestep and write to file if logging.
+    calculateInstantaneousCost(relativeTime, state, rHandIndex);
+    if(logTrajectoryData)
+    {
+        realTrajectoryFile << relativeTime << " "
+                            << rightHandTask->getTaskFramePosition().transpose() << " "
+                            << rightHandTask->getTaskFrameLinearVelocity().transpose() << " "
+                            << rightHandTask->getTaskFrameLinearAcceleration().transpose() << " "
+                            << rightHandTask->getWeights().transpose()
+                            << std::endl;
+    }
+
+
+    rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
+    Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
+    desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
+    desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
+
+    rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
+    rightHandTask->setWeights(desiredWeights_rightHand);
+}
+
+bool TaskOptimization::sendTestDataToSolver()
+{
+    double totalCost = postProcessInstantaneousCosts();
+
+    yarp::os::Bottle& optVarsBottle = optVarsPortOut.prepare();
+    bottleEigenVector(optVarsBottle, optVariables);
+    optVarsPortOut.write();
+
+    yarp::os::Bottle& costBottle = costPortOut.prepare();
+    costBottle.clear();
+    costBottle.addDouble(totalCost);
+    costPortOut.write();
+
+    return true;
+}
+
+double TaskOptimization::postProcessInstantaneousCosts()
+{
+    Eigen::MatrixXd totalCostMat = Eigen::MatrixXd::Zero(costIterCounter,2);
+
+    if (useGoalCost){
+        goalCostMat = goalCostMat.topRows(costIterCounter).eval();
+        totalCostMat.col(1) += goalCostMat.col(1);
+        totalCostMat.col(0) = goalCostMat.col(0);
+    }
+    if (useTrackingCost){
+        trackingCostMat = trackingCostMat.topRows(costIterCounter).eval();
+        totalCostMat.col(1) += trackingCostMat.col(1);
+        totalCostMat.col(0) = trackingCostMat.col(0);
+    }
+    if (useEnergyCost){
+        energyCostMat = energyCostMat.topRows(costIterCounter).eval();
+        if (testNumber==1) {
+            energyCostScalingFactor = energyCostMat.col(1).maxCoeff();
+        }
+        energyCostMat.col(1) /= energyCostScalingFactor;
+
+        totalCostMat.col(1) += energyCostMat.col(1);
+        totalCostMat.col(0) = energyCostMat.col(0);
+    }
+
+
+    if (logTrajectoryData) {
+
+        if (useGoalCost){
+            goalInstantaneousCostFile << goalCostMat;
+        }
+        if (useTrackingCost){
+            trackingInstantaneousCostFile << trackingCostMat;
+        }
+        if (useEnergyCost){
+            energyInstantaneousCostFile << energyCostMat;
+        }
+        totalInstantaneousCostFile << totalCostMat;
+    }
+
+    double returnCost = totalCostMat.col(1).norm();
+
+    return returnCost;
+}
+
+
+bool TaskOptimization::parseNewOptVarsBottle()
+{
+    yarp::os::Bottle *newOptVars = optVarsPortIn.read(false);
+    if (newOptVars!=NULL)
+    {
+        optimumFound = bool(newOptVars->get(0).asInt());
+        if (optimumFound) {
+            std::cout << "\n---------------\nFound optimum!\n---------------\n" << std::endl;
+            std::cout <<"[OPTIMAL VARIABLES]\n"<< newOptVars->toString() <<"\n"<< std::endl;
+        }else{
+            std::cout <<"[NEW TEST VARIABLES]\n"<< newOptVars->toString() <<"\n"<< std::endl;
+        }
+
+        for(int i=0; i<optVariables.size(); i++)
+        {
+          optVariables(i) = newOptVars->get(i+1).asDouble();
+        }
+        rightHandTrajectory->setBoptVariables(optVariables);
+        currentOptWaypoint(dofIndex) = optVariables(1);
+        return true;
+    }
+    else{return false;}
+}
 
 void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
+
+    sendFramePositionsToGazebo();
+
     if(!sequenceFinished)
     {
-        sendFramePositionsToGazebo();
 
         if (initTrigger) {
-            resetTimeRight = time;
-            initTrigger = false;
-            totalCost = 0.0;
-            if (logTrajectoryData) {
-                // Convert an int to a string pre C++11 safe
-                std::ostringstream intAsStream; intAsStream << testNumber;
-                std::string testLogFilePathPrefix = intAsStream.str();
-                // Append log file path with test number
-                testLogFilePathPrefix = rootLogFilePathPrefix +"/Trajectory/"+ testLogFilePathPrefix;
-                smlt::checkAndCreateDirectory(testLogFilePathPrefix);
-                rightHandTrajectory->saveTrajectoryToFile(testLogFilePathPrefix);
-                rightHandTrajectory->saveWaypointDataToFile(testLogFilePathPrefix);
-                if(!openLogFiles(testLogFilePathPrefix))
-                {
-                    std::cout << "[ERROR](line: "<< __LINE__ <<") -> Could not open data log files for the trajectory! Tried: "<< testLogFilePathPrefix << std::endl;
-                }
-            }
+            std::cout << "initTraj for test number = " << testNumber << std::endl;
+            initializeTrajectory(time);
+            std::cout << "Done..." << std::endl;
         }
 
 
@@ -367,37 +533,11 @@ void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** ar
 
                 if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex))
                 {
-
-                    // Claculate cost at timestep and write to file if logging.
-                    double instantaneousCost = calculateInstantaneousCost(time, state, rHandIndex);
-                    totalCost += instantaneousCost;
-                    if(logTrajectoryData)
-                    {
-                        totalInstantaneousCostFile << relativeTime << " " << instantaneousCost << std::endl;
-
-                        realTrajectoryFile << relativeTime << " "
-                                            << rightHandTask->getTaskFramePosition().transpose() << " "
-                                            << rightHandTask->getTaskFrameLinearVelocity().transpose() << " "
-                                            << rightHandTask->getTaskFrameLinearAcceleration().transpose() << " "
-                                            << rightHandTask->getWeights().transpose()
-                                            << std::endl;
-                    }
-
-
-                    rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
-                    Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
-                    desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
-                    desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
-
-                    rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
-                    rightHandTask->setWeights(desiredWeights_rightHand);
-
-
-
-
+                    executeTrajectory(relativeTime, state);
                 }
                 else
                 {
+                    removeObstacle();
                     if((abs(relativeTime) > TIME_LIMIT)){
                         std::cout << "Time limit exceeded!" << std::endl;
                     }
@@ -414,45 +554,23 @@ void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** ar
             }
             else
             {
+                removeObstacle();
+
                 if (!dataSent_AwaitReply)
                 {
-                    yarp::os::Bottle& optVarsBottle = optVarsPortOut.prepare();
-                    bottleEigenVector(optVarsBottle, optVariables);
-                    optVarsPortOut.write();
-
-                    yarp::os::Bottle& costBottle = costPortOut.prepare();
-                    costBottle.clear();
-                    costBottle.addDouble(totalCost);
-                    costPortOut.write();
-
-                    dataSent_AwaitReply = true;
+                    dataSent_AwaitReply = sendTestDataToSolver();
                     std::cout << "Data sent to solver, awaiting new optimal waypoint variables..." << std::endl;
                 }
                 else
                 {
                     if(!newOptVarsReceived)
                     {
-                        yarp::os::Bottle *newOptVars = optVarsPortIn.read(false);
-                        if (newOptVars!=NULL)
-                        {
-                            std::cout <<"[NEW TEST VARIABLES]\n"<< newOptVars->toString() <<"\n"<< std::endl;
-                            optimumFound = bool(newOptVars->get(0).asInt());
-                            if (optimumFound) {
-                                // std::cout << "--> Found optimal waypoint variables! Replaying till thread is killed." << std::endl;
-                                std::cout << "Found an optimum!" << std::endl;
-                            }
-
-                            for(int i=0; i<optVariables.size(); i++)
-                            {
-                              optVariables(i) = newOptVars->get(i+1).asDouble();
-                            }
-                            rightHandTrajectory->setBoptVariables(optVariables);
-                            currentOptWaypoint(dofIndex) = optVariables(1);
-                            newOptVarsReceived = true;
+                            newOptVarsReceived = parseNewOptVarsBottle();
                             waitCount = 0;
-                        }
                     }
-                    else
+
+
+                    if(newOptVarsReceived)
                     {
                         if(isBackInHomePosition(state, rHandIndex))
                         {
@@ -486,91 +604,47 @@ void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** ar
         {
             double relativeTime = time - resetTimeRight;
 
-            if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex))
+            if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
             {
-
-                // Claculate cost at timestep and write to file if logging.
-                double instantaneousCost = calculateInstantaneousCost(time, state, rHandIndex);
-                totalCost += instantaneousCost;
-                if(logTrajectoryData)
-                {
-                    totalInstantaneousCostFile << relativeTime << " " << instantaneousCost << std::endl;
-
-                    realTrajectoryFile << relativeTime << " "
-                                        << rightHandTask->getTaskFramePosition().transpose() << " "
-                                        << rightHandTask->getTaskFrameLinearVelocity().transpose() << " "
-                                        << rightHandTask->getTaskFrameLinearAcceleration().transpose() << " "
-                                        << rightHandTask->getWeights().transpose()
-                                        << std::endl;
-                }
-
-
-                rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
-                Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
-                desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
-                desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
-
-                rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
-                rightHandTask->setWeights(desiredWeights_rightHand);
-
-
-
-
+                executeTrajectory(relativeTime, state);
             }
             else
             {
-                if((abs(relativeTime) > TIME_LIMIT)){
-                    std::cout << "Time limit exceeded!" << std::endl;
+                if(logTrajectoryData)
+                {
+                    if (!closeLogFiles()) {
+                    std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
+                    }
                 }
-                if (attainedGoal(state, rHandIndex)) {
-                    std::cout << "Goal attained!" << std::endl;
+
+                removeObstacle();
+
+
+                if (replayOptimalTrajectory)
+                {
+                    rightHandTask->setState(rHandPosStart);
+                    rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
+                    waitForHomePosition = true;
+
+                    if(isBackInHomePosition(state, rHandIndex))
+                    {
+                        initTrigger = true;
+                        waitForHomePosition = false;
+                    }
+                    logTrajectoryData = false;
                 }
-                sequenceFinished = true;
-                std::cout   << "\n==========================================================\n"
-                            << "\tTaskOptimization sequence finished!"
-                            << "\n==========================================================\n"
-                            << std::endl;
+                else
+                {
+                    sequenceFinished = true;
+                    std::cout   << "\n==========================================================\n"
+                                << "\tTaskOptimization sequence finished!"
+                                << "\n==========================================================\n"
+                                << std::endl;
+                }
             }
 
 
 
-
-
-        // double relativeTime = time - resetTimeRight;
-        //
-        // if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
-        // {
-        //     rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
-        //     Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
-        //     desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
-        //     desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
-        //
-        //     rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
-        //     rightHandTask->setWeights(desiredWeights_rightHand);
-        //
-        //
-        // }
-        // else
-        // {
-        //     if((abs(relativeTime) > TIME_LIMIT)){
-        //         std::cout << "Time limit exceeded!" << std::endl;
-        //     }
-        //     if (attainedGoal(state, rHandIndex)) {
-        //         std::cout << "Goal attained!" << std::endl;
-        //     }
-        //
-        //     std::cout << "Going to starting position..." << std::endl;
-        //     rightHandTask->setState(rHandPosStart);
-        //     rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
-        //     waitForHomePosition = true;
-        //
-        //     if(isBackInHomePosition(state, rHandIndex))
-        //     {
-        //         initTrigger = true;
-        //         waitForHomePosition = false;
-        //
-        //     }
-        // }
         }
     }
 
@@ -661,38 +735,29 @@ Eigen::VectorXd TaskOptimization::mapVarianceToWeights(Eigen::VectorXd& variance
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-double TaskOptimization::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+void TaskOptimization::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
 {
-    double returnCost = 0.0;
 
     if (useGoalCost){
-        double goalCost = calculateGoalCost(time, state, segmentIndex);
-        if (logTrajectoryData) {
-            goalInstantaneousCostFile << time << goalCost << std::endl;
-        }
-        returnCost += goalCost;
+        goalCostMat.row(costIterCounter) << time, calculateGoalCost(time, state, segmentIndex);
     }
     if (useTrackingCost){
-        double trackingCost = calculateTrackingCost(time, state, segmentIndex);
-        if (logTrajectoryData) {
-            trackingInstantaneousCostFile << time << trackingCost << std::endl;
-        }
-        returnCost += trackingCost;
+        trackingCostMat.row(costIterCounter) << time, calculateTrackingCost(time, state, segmentIndex);
     }
     if (useEnergyCost){
-        double energyCost = calculateEnergyCost(time, state, segmentIndex);
-        if (logTrajectoryData) {
-            energyInstantaneousCostFile << time << energyCost << std::endl;
-        }
-        returnCost += energyCost;
+        energyCostMat.row(costIterCounter) << time, calculateEnergyCost(time, state, segmentIndex);
     }
 
-    return returnCost;
+    costIterCounter++;
+
 }
 
 double TaskOptimization::calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
 {
     double cost = ( rightHandGoalPosition - rightHandTask->getTaskFramePosition() ).squaredNorm();
+    double timeFactor = pow((time / rightHandTrajectory->getDuration()), 2);
+
+    cost *= timeFactor;
     return cost;
 }
 
@@ -706,7 +771,7 @@ double TaskOptimization::calculateTrackingCost(const double time, const wocra::w
 
 double TaskOptimization::calculateEnergyCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
 {
-    double cost = 0.0;
-
-    return cost;
+    Eigen::VectorXd torques;
+    wbiModel->getJointTorques(torques);
+    return torques.squaredNorm();
 }
