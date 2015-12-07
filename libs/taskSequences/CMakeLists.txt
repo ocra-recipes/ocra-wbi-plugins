@@ -30,6 +30,22 @@ yarp_configure_external_installation(codyco)
 FILE(GLOB_RECURSE folder_source ./src/*.cpp)
 FILE(GLOB_RECURSE folder_header ./include/${PROJECTNAME}/*.h)
 
+# Check for SMLT
+find_package(SMLT)
+IF(SMLT_FOUND)
+    message("-- SMLT lib found. Compiling gaussian process trajectory.")
+    include_directories(${SMLT_INCLUDE_DIRS})
+    # Set preprocessor macro "USING_SMLT" to true.
+    add_definitions( -DUSING_SMLT=1 )
+# ELSE()
+#     message("-- SMLT lib NOT found. Removing TaskOptimization sequence from source list.")
+#     list(REMOVE_ITEM folder_source ${CMAKE_CURRENT_SOURCE_DIR}/src/sequences/TaskOptimization.cpp)
+#     # Set preprocessor macro "USING_SMLT" to false.
+#     add_definitions( -DUSING_SMLT=0 )
+#     #set_property(TARGET ${liddddbrary_name} APPEND PROPERTY COMPILE_DEFINITIONS USING_SMLT=0 XENOMAI=1)
+ENDIF()
+
+
 SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
 
@@ -42,7 +58,7 @@ LINK_DIRECTORIES(${PC_WLQP_CONTROL_LIBRARY_DIRS}
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${YARP_INCLUDE_DIRS}
-                    ${yarpWholeBodyInterface_INCLUDE_DIRS}
+                    # ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${PC_EIGEN_INCLUDE_DIRS}
 
                     ${BOOST_INCLUDE_DIRS}

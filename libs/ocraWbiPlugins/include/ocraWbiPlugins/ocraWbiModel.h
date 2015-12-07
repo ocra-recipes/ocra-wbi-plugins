@@ -10,7 +10,7 @@ class ocraWbiModel: public wocra::wOcraModel
 {
 public:
 
-    
+
 
 //===========================Constructor/Destructor===========================//
     ocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* wbi, const bool freeRoot);
@@ -28,6 +28,8 @@ public:
 
     virtual const std::string&           getJointName             (int index) const;
     virtual const int                    getSegmentIndex          (std::string segmentName) const;
+
+
 
 //=============================Dynamic functions==============================//
     virtual const Eigen::MatrixXd&       getInertiaMatrix         () const;
@@ -65,7 +67,9 @@ public:
     // Set state to be used from WBI
     void wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot);
 
-    
+    void getJointTorques(Eigen::VectorXd& wbiTorques);
+
+
 protected:
 
 //===========================Update state functions===========================//

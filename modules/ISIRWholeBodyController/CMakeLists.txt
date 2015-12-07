@@ -35,6 +35,8 @@ yarp_configure_external_installation(codyco)
 FILE(GLOB folder_source ./src/*.cpp)
 FILE(GLOB folder_header ./include/ISIRWholeBodyController/*.h)
 
+
+
 SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
 
@@ -44,9 +46,9 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${ocraWbiPlugins_SOURCE_DIR}/include
                     ${taskSequences_SOURCE_DIR}/include
                     ${YARP_INCLUDE_DIRS}
-                    ${yarpWholeBodyInterface_INCLUDE_DIRS}
+                    # ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${PC_EIGEN_INCLUDE_DIRS}
-                    
+
                     ${BOOST_INCLUDE_DIRS}
                     ${PC_WLQP_CONTROL_INCLUDE_DIRS}
                     ${PC_OCRA_FRAMEWORK_INCLUDE_DIRS}
@@ -54,6 +56,21 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${Boost_INCLUDE_DIR}
                     )
 
+
+# Check for SMLT
+find_package(SMLT)
+IF(SMLT_FOUND)
+    message("-- SMLT lib found. Compiling gaussian process trajectory.")
+    include_directories(${SMLT_INCLUDE_DIRS})
+    # Set preprocessor macro "USING_SMLT" to true.
+    add_definitions( -DUSING_SMLT=1 )
+# ELSE()
+#     message("-- SMLT lib NOT found. Removing TaskOptimization sequence from source list.")
+#     list(REMOVE_ITEM folder_source ${CMAKE_CURRENT_SOURCE_DIR}/src/sequences/TaskOptimization.cpp)
+#     # Set preprocessor macro "USING_SMLT" to false.
+#     add_definitions( -DUSING_SMLT=0 )
+#     #set_property(TARGET ${liddddbrary_name} APPEND PROPERTY COMPILE_DEFINITIONS USING_SMLT=0 XENOMAI=1)
+ENDIF()
 
 LINK_DIRECTORIES(${PC_WLQP_CONTROL_LIBRARY_DIRS}
                  ${PC_OCRA_FRAMEWORK_LIBRARY_DIRS}
@@ -75,6 +92,7 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ocraWbiPlugins
                                      ${PC_WLQP_CONTROL_LIBRARIES}
                                      ${PC_OCRA_FRAMEWORK_LIBRARIES}
                                      ${Boost_LIBRARIES}
+                                     ${SMLT_LIBRARIES}
                                      )
 
 

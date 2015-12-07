@@ -689,6 +689,12 @@ const std::string ocraWbiModel::doDofName(const std::string& name) const
     return name;
 }
 
+void ocraWbiModel::getJointTorques(Eigen::VectorXd& wbiTorques)
+{
+    wbiTorques.resize(robot->getDoFs());
+    robot->getEstimates(ESTIMATE_JOINT_TORQUE, wbiTorques.data(), ALL_JOINTS);
+}
+
 
 void ocraWbiModel::printAllData()
 {

@@ -39,6 +39,7 @@
             return new Debug();
         else if (name == "Empty")
             return new Empty();
+        else if (name == "TaskOptimization"){return new TaskOptimization();}
 	// else if (name == "ForceVisualization")
             // return new ForceVisualization();
 
@@ -62,6 +63,7 @@
             errorMessage+="\nJointTest";
             errorMessage+="\nDebug";
             errorMessage+="\nEmpty";
+            errorMessage+="\nTaskOptimization";
             throw std::runtime_error(errorMessage);
         }
     }

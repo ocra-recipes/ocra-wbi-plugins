@@ -42,7 +42,7 @@ LINK_DIRECTORIES(${PC_WLQP_CONTROL_LIBRARY_DIRS}
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${YARP_INCLUDE_DIRS}
-                    ${yarpWholeBodyInterface_INCLUDE_DIRS}
+                    # ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${PC_EIGEN_INCLUDE_DIRS}
                     
                     ${BOOST_INCLUDE_DIRS}

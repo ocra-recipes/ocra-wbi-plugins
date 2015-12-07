@@ -44,7 +44,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${ocraWbiPlugins_SOURCE_DIR}/include
                     ${taskSequences_SOURCE_DIR}/include
                     ${YARP_INCLUDE_DIRS}
-                    ${yarpWholeBodyInterface_INCLUDE_DIRS}
+                    # ${yarpWholeBodyInterface_INCLUDE_DIRS}
                     ${PC_EIGEN_INCLUDE_DIRS}
                     
                     ${BOOST_INCLUDE_DIRS}
