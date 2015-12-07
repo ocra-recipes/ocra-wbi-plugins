@@ -14,7 +14,7 @@ find_package(YCM REQUIRED)
 set(CMAKE_MODULE_PATH ${YARP_MODULE_PATH} ${CMAKE_MODULE_PATH})
 set(CMAKE_MODULE_PATH ${YCM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 
-find_package(Eigen3 REQUIRED)
+
 find_package(iDynTree REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
 find_package(modHelp REQUIRED)
@@ -45,8 +45,8 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${taskSequences_SOURCE_DIR}/include
                     ${YARP_INCLUDE_DIRS}
                     ${yarpWholeBodyInterface_INCLUDE_DIRS}
-                    ${EIGEN3_INCLUDE_DIR}
-                    ${EIGEN3_INCLUDE_DIR}/unsupported
+                    ${PC_EIGEN_INCLUDE_DIRS}
+                    
                     ${BOOST_INCLUDE_DIRS}
                     ${PC_WLQP_CONTROL_INCLUDE_DIRS}
                     ${PC_OCRA_FRAMEWORK_INCLUDE_DIRS}

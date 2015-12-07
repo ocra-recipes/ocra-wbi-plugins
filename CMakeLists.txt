@@ -21,6 +21,7 @@ set(CMAKE_MODULE_PATH ${YCM_MODULE_PATH} ${CMAKE_MODULE_PATH})
 include(YarpInstallationHelpers)
 yarp_configure_external_installation(codyco)
 
+LIST(APPEND PC_EIGEN_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/eigen_3_0_5/" "${CMAKE_CURRENT_SOURCE_DIR}/eigen_3_0_5/unsupported/")
 
 add_subdirectory(libs)
 add_subdirectory(modules)
