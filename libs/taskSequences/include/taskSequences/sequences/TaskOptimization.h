@@ -66,7 +66,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
         yarp::os::BufferedPort<yarp::os::Bottle> optParamsPortOut;
 
 
-        yarp::os::Port r_hand_port, r_hand_target_port, r_hand_waypoint_port, obstacle_port;
+        yarp::os::Port r_hand_port, r_hand_start_port, r_hand_target_port, r_hand_waypoint_port, obstacle_port;
 
 
         std::string optVarsPortOut_name, costPortOut_name, optVarsPortIn_name, optParamsPortOut_name;
@@ -83,10 +83,11 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         double resetTimeRight;
 
+        double bOptCovarianceScalingFactor;
 
         Eigen::MatrixXd desiredPosVelAcc_rightHand;
         Eigen::VectorXd rightHandGoalPosition;
-        Eigen::Vector3d rightHandGoalPosition_transformed;
+        Eigen::Vector3d rightHandGoalPosition_transformed, rightHandStartPosition_transformed, obstacle3DGazeboPosition;
 
         Eigen::VectorXd desiredVariance_rightHand, desiredWeights_rightHand;
 
@@ -140,6 +141,12 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         bool replayOptimalTrajectory;
 
+
+
+        bool runObstacleTest_1D, runObstacleTest_3D, runArmCrossingTest, useVarianceModulation;
+
+        void obstacleTest_UpdateThread(double time, wocra::wOcraModel& state);
+        void ArmCrossingTest_UpdateThread(double time, wocra::wOcraModel& state);
 
 
 };

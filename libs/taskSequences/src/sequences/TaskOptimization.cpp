@@ -14,10 +14,26 @@
 
 TaskOptimization::TaskOptimization()
 {
+
+    useVarianceModulation = true;
+
+    runObstacleTest_1D = false;
+    runObstacleTest_3D = true;
+    runArmCrossingTest = false;
+
+    // Must come after the runObstacleTest variables...
     connectYarpPorts();
 
-    obstacleTime = 1.0;//1.25;
+    if (runObstacleTest_1D) {
+        obstacleTime = 1.0;
+        bOptCovarianceScalingFactor = 1.0;
 
+    }else if (runObstacleTest_3D) {
+        obstacleTime = 0.0;
+        bOptCovarianceScalingFactor = 5.0;
+    }else if (runArmCrossingTest) {
+        bOptCovarianceScalingFactor = 7.0;
+    }
 
     replayOptimalTrajectory = true;
 
@@ -30,6 +46,20 @@ TaskOptimization::TaskOptimization()
     logTrajectoryData = true;
 
     rootLogFilePathPrefix = "/home/ryan/Desktop/tmp-test/";
+
+    if (runObstacleTest_1D) {
+        rootLogFilePathPrefix += "ObstacleTest_1D";
+    }else if (runObstacleTest_3D) {
+        rootLogFilePathPrefix += "ObstacleTest_3D";
+    }else if (runArmCrossingTest) {
+        rootLogFilePathPrefix += "ArmCrossingTest";
+    }
+
+    if (useVarianceModulation)
+    {
+        rootLogFilePathPrefix += "_VarianceModulated";
+    }
+
     smlt::checkAndCreateDirectory(rootLogFilePathPrefix);
     std::ofstream pathFile;
     pathFile.open((rootLogFilePathPrefix+"/latestLogPath.txt").c_str());
@@ -51,6 +81,7 @@ TaskOptimization::~TaskOptimization()
 
     r_hand_port.close();
     r_hand_target_port.close();
+    r_hand_start_port.close();
     r_hand_waypoint_port.close();
 
     obstacle_port.close();
@@ -171,6 +202,10 @@ void TaskOptimization::connectYarpPorts()
     r_hand_port.open(r_hand_port_name.c_str());
     yarp.connect(r_hand_port_name.c_str(), "/rightHandSphere:i");
 
+    std::string r_hand_start_port_name = "/rHandStart:o";
+    r_hand_start_port.open(r_hand_start_port_name.c_str());
+    yarp.connect(r_hand_start_port_name.c_str(), "/startSphere:i");
+
     std::string r_hand_target_port_name = "/rHandTarget:o";
     r_hand_target_port.open(r_hand_target_port_name.c_str());
     yarp.connect(r_hand_target_port_name.c_str(), "/rightHandTargetSphere:i");
@@ -181,7 +216,13 @@ void TaskOptimization::connectYarpPorts()
 
     std::string obstacle_port_name = "/obstacle:o";
     obstacle_port.open(obstacle_port_name.c_str());
-    yarp.connect(obstacle_port_name.c_str(), "/thinPlate:i");
+
+    if (runObstacleTest_1D) {
+        yarp.connect(obstacle_port_name.c_str(), "/thinPlate:i");
+    }
+    else if (runObstacleTest_3D) {
+        yarp.connect(obstacle_port_name.c_str(), "/boxObstacle:i");
+    }
 }
 
 void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
@@ -189,13 +230,12 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
 
     ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
     wbiModel = &wbiModelRef;
-    // ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
     varianceThresh = Eigen::Array3d::Constant(VAR_THRESH);
 
     /*
     *   Task coefficients
-    */
+*/
     bool usesYARP = true;
     //  fullPosture
     double Kp_fullPosture       = 5.0;
@@ -205,6 +245,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     //  torsoPosture
     double Kp_torsoPosture      = 5.0;
     double Kd_torsoPosture      = 2.0 * sqrt(Kp_torsoPosture);
+    // double weight_torsoPosture  = 0.001;
     double weight_torsoPosture  = 0.01;
 
 
@@ -251,67 +292,129 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     */
     rightHandTask = dynamic_cast<wocra::wOcraVariableWeightsTaskManager*>(taskManagers["rightHand"]);
 
+    if (runObstacleTest_1D)
+    {
+        /*
+        *   Starting Waypoint
+        */
+        rHandPosStart(0) = -0.35; // X
+        rHandPosStart(1) = 0.2; // Y
+        rHandPosStart(2) = 0.0; // Z
+
+        /*
+        *   Ending Waypoint
+        */
+        dofIndex = 2;
+        Eigen::Vector3d rHandDisplacement = Eigen::Vector3d::Zero();
+        rHandDisplacement(dofIndex) = 0.25; // meters
+        rHandPosEnd = rHandPosStart + rHandDisplacement;
+    }
+    else if (runObstacleTest_3D)
+    {
+        /*
+        *   Starting Waypoint
+        */
+        rHandPosStart << -0.2, 0.3, 0.0;
+
+        /*
+        *   Ending Waypoint
+        */
+        // dofIndex = 2;
+        Eigen::Vector3d rHandDisplacement;
+        rHandDisplacement << -0.2, -0.2, 0.2;
+        rHandPosEnd = rHandPosStart + rHandDisplacement;
+    }
+
+    /*
+    *   Set waypoints and traj
+    */
+    rightHandTrajectory->setWaypoints(rHandPosStart, rHandPosEnd);
+
+
+
+    if (runObstacleTest_1D)
+    {
+        /*
+        *   Set opt variables
+        */
+        std::vector<Eigen::VectorXi> dofToOptimize(1);
+        dofToOptimize[0].resize(2);
+        dofToOptimize[0] << 0, dofIndex+1;
+        optVariables = rightHandTrajectory->getBoptVariables(1, dofToOptimize);
+    }
+
+    else if (runObstacleTest_3D)
+    {
+        /*
+        *   Set opt variables
+        */
+        std::vector<Eigen::VectorXi> dofToOptimize(1);
+        dofToOptimize[0].resize(3);
+        dofToOptimize[0] << 1,2,3;
+        optVariables = rightHandTrajectory->getBoptVariables(1, dofToOptimize);
+
+        // optVariables = rightHandTrajectory->getBoptVariables(1);
+    }
+
+    /*
+    *   Send opt params
+    */
+    sendOptimizationParameters();
+
+
+
+    /*
+    *   Get max variance for weight calcs.
+    */
+    maxVariance = rightHandTrajectory->getMaxVariance();
+
 
     /*
     *   Variables used in the doUpdate control logic
     */
     rHandIndex = model.getSegmentIndex("r_hand");
-
-    initTrigger = true;
-
-
-
-    //Figure out waypoints
-    rHandPosStart(0) = -0.35; // X
-    rHandPosStart(1) = 0.2; // Y
-    rHandPosStart(2) = 0.0; // Z
-
-
-    dofIndex = 2;
-    Eigen::Vector3d rHandDisplacement = Eigen::Vector3d::Zero();
-    rHandDisplacement(dofIndex) = 0.25; // meters
-    rHandPosEnd = rHandPosStart + rHandDisplacement;
-
-    std::cout << "rHandPosStart = "<<rHandPosStart.transpose() << "\nrHandPosEnd = " << rHandPosEnd.transpose() << std::endl;
-
-    rightHandTrajectory->setWaypoints(rHandPosStart, rHandPosEnd);
-
-    desiredPosVelAcc_rightHand = Eigen::MatrixXd::Zero(3,3);
-    desiredPosVelAcc_rightHand.col(0) << rHandPosStart;
-
-    rightHandGoalPosition = rHandPosEnd;
-    rightHandGoalPosition_transformed = (rightHandGoalPosition + Eigen::Vector3d(0,0,1)).array() * Eigen::Array3d(-1,-1,1);
-
-
-    std::vector<Eigen::VectorXi> dofToOptimize(1);
-    dofToOptimize[0].resize(2);
-    dofToOptimize[0] << 0, dofIndex+1;
-    optVariables = rightHandTrajectory->getBoptVariables(1, dofToOptimize);
-
-    std::cout << "optVariables:" << optVariables.transpose() << std::endl;
-
-    currentOptWaypoint = rHandPosEnd;
-    currentOptWaypoint(dofIndex) = optVariables(1);
-
-
-
-
-    maxVariance = rightHandTrajectory->getMaxVariance();
-
     waitForSolver = false;
     waitForHomePosition = false;
     optimumFound = false;
     sequenceFinished = false;
-
-
-
-    // Send opt params
-    sendOptimizationParameters();
-
+    initTrigger = true;
     newOptVarsReceived = false;
     dataSent_AwaitReply = false;
     testNumber = 1;
 
+    /*
+    *   For the trajectory logging
+    */
+    desiredPosVelAcc_rightHand = Eigen::MatrixXd::Zero(3,3);
+    desiredPosVelAcc_rightHand.col(0) << rHandPosStart;
+
+
+    /*
+    *   For gazebo
+    */
+    rightHandGoalPosition = rHandPosEnd;
+    rightHandGoalPosition_transformed = (rightHandGoalPosition + Eigen::Vector3d(0,0,1)).array() * Eigen::Array3d(-1,-1,1);
+
+    rightHandStartPosition_transformed = (rHandPosStart + Eigen::Vector3d(0,0,1)).array() * Eigen::Array3d(-1,-1,1);
+
+
+    if (runObstacleTest_1D) {
+        currentOptWaypoint = rHandPosEnd;
+        currentOptWaypoint(dofIndex) = optVariables(1);
+    }else if (runObstacleTest_3D) {
+        currentOptWaypoint = optVariables.tail(3);
+        obstacle3DGazeboPosition = (currentOptWaypoint + Eigen::Vector3d(0,0,1)).array() * Eigen::Array3d(-1,-1,1);
+
+    }
+
+    /*
+    *   Informative
+    */
+    std::cout << "===============================================================\n \t Test Parameters\n===============================================================\n" << std::endl;
+    std::cout << "rHandPosStart = "<<rHandPosStart.transpose() << "\nrHandPosEnd = " << rHandPosEnd.transpose() << std::endl;
+    std::cout << "optVariables:" << optVariables.transpose() << std::endl;
+
+    std::cout << "\n===============================================================\n" << std::endl;
 
 }
 
@@ -335,6 +438,9 @@ void TaskOptimization::sendOptimizationParameters()
     }
     optParamsBottle.addString(rootLogFilePathPrefix.c_str());
     optParamsBottle.addString("Solver");
+
+    optParamsBottle.addDouble(bOptCovarianceScalingFactor);
+
 
     optParamsPortOut.write();
 }
@@ -374,7 +480,12 @@ void TaskOptimization::initializeTrajectory(double time)
 
 void TaskOptimization::insertObstacle()
 {
-    Eigen::Vector3d insertPosition(-0.25, 0, 0);
+    Eigen::Vector3d insertPosition;
+    if (runObstacleTest_1D) {
+        insertPosition << -0.25, 0, 0;
+    }else if (runObstacleTest_3D) {
+        insertPosition = obstacle3DGazeboPosition;
+    }
 
     yarp::os::Bottle obstacleBottle;
     bottleEigenVector(obstacleBottle, insertPosition);
@@ -386,11 +497,7 @@ void TaskOptimization::removeObstacle()
 
     yarp::os::Bottle obstacleBottle;
     bottleEigenVector(obstacleBottle, removedPosition);
-    // int i = 0;
-    // while(i<20){
     obstacle_port.write(obstacleBottle);
-    // i++;
-    // }
 }
 
 void TaskOptimization::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
@@ -416,12 +523,28 @@ void TaskOptimization::executeTrajectory(double relativeTime,  wocra::wOcraModel
 
 
     rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
-    Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
-    desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
-    desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
 
     rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
-    rightHandTask->setWeights(desiredWeights_rightHand);
+
+    if (useVarianceModulation)
+    {
+        Eigen::VectorXd desiredWeights_rightHand_tmp = mapVarianceToWeights(desiredVariance_rightHand);
+        if (runObstacleTest_1D)
+        {
+            desiredWeights_rightHand = Eigen::VectorXd::Ones(3);
+            desiredWeights_rightHand(dofIndex) = desiredWeights_rightHand_tmp(dofIndex);
+        }
+        else if(runObstacleTest_3D)
+        {
+            desiredWeights_rightHand = desiredWeights_rightHand_tmp;
+        }
+
+        rightHandTask->setWeights(desiredWeights_rightHand);
+
+    }
+
+
+
 }
 
 bool TaskOptimization::sendTestDataToSolver()
@@ -504,7 +627,11 @@ bool TaskOptimization::parseNewOptVarsBottle()
           optVariables(i) = newOptVars->get(i+1).asDouble();
         }
         rightHandTrajectory->setBoptVariables(optVariables);
-        currentOptWaypoint(dofIndex) = optVariables(1);
+        if (runObstacleTest_1D) {
+            currentOptWaypoint(dofIndex) = optVariables(1);
+        }else if (runObstacleTest_3D) {
+            currentOptWaypoint = optVariables.tail(3);
+        }
         return true;
     }
     else{return false;}
@@ -515,137 +642,11 @@ void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** ar
 
     sendFramePositionsToGazebo();
 
-    if(!sequenceFinished)
-    {
-
-        if (initTrigger) {
-            std::cout << "initTraj for test number = " << testNumber << std::endl;
-            initializeTrajectory(time);
-            std::cout << "Done..." << std::endl;
-        }
-
-
-        if(!optimumFound)
-        {
-            if(!waitForSolver)
-            {
-                double relativeTime = time - resetTimeRight;
-
-                if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex))
-                {
-                    executeTrajectory(relativeTime, state);
-                }
-                else
-                {
-                    removeObstacle();
-                    if((abs(relativeTime) > TIME_LIMIT)){
-                        std::cout << "Time limit exceeded!" << std::endl;
-                    }
-                    if (attainedGoal(state, rHandIndex)) {
-                        std::cout << "Goal attained!" << std::endl;
-                    }
-
-                    std::cout << "Going to starting position..." << std::endl;
-                    rightHandTask->setState(rHandPosStart);
-                    rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
-
-                    waitForSolver = true;
-                }
-            }
-            else
-            {
-                removeObstacle();
-
-                if (!dataSent_AwaitReply)
-                {
-                    dataSent_AwaitReply = sendTestDataToSolver();
-                    std::cout << "Data sent to solver, awaiting new optimal waypoint variables..." << std::endl;
-                }
-                else
-                {
-                    if(!newOptVarsReceived)
-                    {
-                            newOptVarsReceived = parseNewOptVarsBottle();
-                            waitCount = 0;
-                    }
-
-
-                    if(newOptVarsReceived)
-                    {
-                        if(isBackInHomePosition(state, rHandIndex))
-                        {
-                            dataSent_AwaitReply = false;
-                            waitForSolver = false;
-                            newOptVarsReceived = false;
-                            initTrigger = true;
-                            if(logTrajectoryData)
-                            {
-                                if (!closeLogFiles()) {
-                                std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
-                                }
-                            }
-                            testNumber++;
-                        }
-                        else
-                        {
-                            if (waitCount>=100)
-                            {
-                                std::cout << "New test variables received, waiting for robot to return to home position." << std::endl;
-                                waitCount = 0;
-                            }
-                            waitCount++;
-                        }
-                    }
-
-                }
-            }
-        }
-        else
-        {
-            double relativeTime = time - resetTimeRight;
-
-            if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
-            {
-                executeTrajectory(relativeTime, state);
-            }
-            else
-            {
-                if(logTrajectoryData)
-                {
-                    if (!closeLogFiles()) {
-                    std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
-                    }
-                }
-
-                removeObstacle();
-
-
-                if (replayOptimalTrajectory)
-                {
-                    rightHandTask->setState(rHandPosStart);
-                    rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
-                    waitForHomePosition = true;
-
-                    if(isBackInHomePosition(state, rHandIndex))
-                    {
-                        initTrigger = true;
-                        waitForHomePosition = false;
-                    }
-                    logTrajectoryData = false;
-                }
-                else
-                {
-                    sequenceFinished = true;
-                    std::cout   << "\n==========================================================\n"
-                                << "\tTaskOptimization sequence finished!"
-                                << "\n==========================================================\n"
-                                << std::endl;
-                }
-            }
-
-
-
-        }
+    if (runObstacleTest_1D || runObstacleTest_3D) {
+        obstacleTest_UpdateThread(time, state);
+    }
+    else if (runArmCrossingTest) {
+        ArmCrossingTest_UpdateThread(time, state);
     }
 
 
@@ -669,6 +670,10 @@ void TaskOptimization::sendFramePositionsToGazebo()
     yarp::os::Bottle r_hand_waypoint_output;
     bottleEigenVector(r_hand_waypoint_output, currentOptWaypoint_transformed);
     r_hand_waypoint_port.write(r_hand_waypoint_output);
+
+    yarp::os::Bottle r_hand_start_output;
+    bottleEigenVector(r_hand_start_output, rightHandStartPosition_transformed);
+    r_hand_start_port.write(r_hand_start_output);
 
     yarp::os::Bottle r_hand_target_output;
     bottleEigenVector(r_hand_target_output, rightHandGoalPosition_transformed);
@@ -774,4 +779,174 @@ double TaskOptimization::calculateEnergyCost(const double time, const wocra::wOc
     Eigen::VectorXd torques;
     wbiModel->getJointTorques(torques);
     return torques.squaredNorm();
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/*
+*   1D Obstacle Test
+*/
+void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel& state)
+{
+    if(!sequenceFinished)
+    {
+
+        if (initTrigger) {
+            std::cout << "initTraj for test number = " << testNumber << std::endl;
+            initializeTrajectory(time);
+            std::cout << "Done..." << std::endl;
+        }
+
+
+        if(!optimumFound || (newOptVarsReceived && waitForHomePosition ) )
+        {
+            if(!waitForSolver)
+            {
+                double relativeTime = time - resetTimeRight;
+
+                if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex))
+                {
+                    executeTrajectory(relativeTime, state);
+                }
+                else
+                {
+                    removeObstacle();
+                    if((abs(relativeTime) > TIME_LIMIT)){
+                        std::cout << "Time limit exceeded!" << std::endl;
+                    }
+                    if (attainedGoal(state, rHandIndex)) {
+                        std::cout << "Goal attained!" << std::endl;
+                    }
+
+                    std::cout << "Going to starting position..." << std::endl;
+                    rightHandTask->setState(rHandPosStart);
+                    rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
+
+                    waitForSolver = true;
+                }
+            }
+            else
+            {
+                removeObstacle();
+
+                if (!dataSent_AwaitReply)
+                {
+                    dataSent_AwaitReply = sendTestDataToSolver();
+                    std::cout << "Data sent to solver, awaiting new optimal waypoint variables..." << std::endl;
+                }
+                else
+                {
+                    if(!newOptVarsReceived)
+                    {
+                            newOptVarsReceived = parseNewOptVarsBottle();
+                            waitCount = 0;
+                            waitForHomePosition = true;
+                    }
+                    else
+                    {
+                        if(isBackInHomePosition(state, rHandIndex))
+                        {
+                            dataSent_AwaitReply = false;
+                            waitForSolver = false;
+                            newOptVarsReceived = false;
+                            initTrigger = true;
+                            waitForHomePosition = false;
+                            if(logTrajectoryData)
+                            {
+                                if (!closeLogFiles()) {
+                                std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
+                                }
+                            }
+                            testNumber++;
+                        }
+                        else
+                        {
+                            if (waitCount>=100)
+                            {
+                                rightHandTask->setState(rHandPosStart);
+                                rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
+
+                                std::cout << "New test variables received, waiting for robot to return to home position." << std::endl;
+                                waitCount = 0;
+                            }
+                            waitCount++;
+                        }
+                    }
+
+                }
+            }
+        }
+        else
+        {
+            double relativeTime = time - resetTimeRight;
+
+            if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
+            {
+                executeTrajectory(relativeTime, state);
+            }
+            else
+            {
+                postProcessInstantaneousCosts();
+                if(logTrajectoryData)
+                {
+                    if (!closeLogFiles()) {
+                    std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
+                    }
+                }
+
+                removeObstacle();
+
+
+                if (replayOptimalTrajectory)
+                {
+                    rightHandTask->setState(rHandPosStart);
+                    rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
+                    waitForHomePosition = true;
+
+                    if(isBackInHomePosition(state, rHandIndex))
+                    {
+                        initTrigger = true;
+                        waitForHomePosition = false;
+                    }
+                    logTrajectoryData = false;
+                }
+                else
+                {
+                    sequenceFinished = true;
+                    std::cout   << "\n==========================================================\n"
+                                << "\tTaskOptimization sequence finished!"
+                                << "\n==========================================================\n"
+                                << std::endl;
+                }
+            }
+
+
+
+        }
+    }
+}
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+/*
+*   3D Obstacle Test
+*/
+
+void TaskOptimization::ArmCrossingTest_UpdateThread(double time, wocra::wOcraModel& state)
+{
+    /* code */
 }
