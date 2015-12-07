@@ -20,6 +20,8 @@
 #include "sequences/Debug.h"
 #include "sequences/Empty.h"
 #include "sequences/TaskOptimization.h"
+#include "sequences/StandingReach.h"
+
 // #include "sequences/ForceVisualization.h"
 
 // namespace sequence{

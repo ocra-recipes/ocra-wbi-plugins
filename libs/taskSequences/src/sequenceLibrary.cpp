@@ -40,6 +40,7 @@
         else if (name == "Empty")
             return new Empty();
         else if (name == "TaskOptimization"){return new TaskOptimization();}
+        else if (name == "StandingReach"){return new StandingReach();}
 	// else if (name == "ForceVisualization")
             // return new ForceVisualization();
 
@@ -64,6 +65,7 @@
             errorMessage+="\nDebug";
             errorMessage+="\nEmpty";
             errorMessage+="\nTaskOptimization";
+            errorMessage+="\nStandingReach";
             throw std::runtime_error(errorMessage);
         }
     }

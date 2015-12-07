@@ -235,7 +235,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
 
     /*
     *   Task coefficients
-*/
+    */
     bool usesYARP = true;
     //  fullPosture
     double Kp_fullPosture       = 5.0;

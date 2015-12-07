@@ -95,7 +95,6 @@ ISIRWholeBodyControllerThread::ISIRWholeBodyControllerThread(string _name,
 
     time_sim = 0;
 
-    recorded = false;
 
 
 }
@@ -321,26 +320,6 @@ void ISIRWholeBodyControllerThread::run()
 
 	  modHelp::eigenToYarpVector(eigenTorques, torques_cmd);
 
-
-     //record torque data
-      double period = 6;
-      double duration = 2*period;
-      double ti = 0.2;
-      if (time_sim>=ti && time_sim<ti+duration)
-      {
-          tau_square.push_back(eigenTorques.transpose()*eigenTorques);
-      }
-      else if (time_sim >= ti+duration && !recorded)
-      {
-          datafile.open ("./tau_data.txt");
-
-          for (std::vector<double>::iterator it = tau_square.begin() ; it != tau_square.end(); ++it)
-              datafile << *it <<" ";
-          datafile<<"\n";
-          datafile.close();
-          recorded = true;
-          std::cout<<"tau data saved."<<std::endl;
-      }
 
     /******************************************************************************************************
                                     Send the torques to the robot via WBI

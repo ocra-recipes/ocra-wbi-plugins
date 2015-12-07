@@ -143,9 +143,6 @@ class ISIRWholeBodyControllerThread: public RateThread
         void parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply);
         std::string printValidMessageTags();
 
-        std::ofstream                                  datafile;
-        bool                                           recorded;
-        std::vector<double>                            tau_square;
 
 
 };
