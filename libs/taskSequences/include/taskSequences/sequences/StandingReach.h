@@ -36,7 +36,8 @@ class StandingReach: public wocra::wOcraTaskSequenceBase
         //Right hand task
         bool useVarianceModulation;
 
-        wocra::wOcraVariableWeightsTaskManager* rightHandTask;
+        // wocra::wOcraVariableWeightsTaskManager* rightHandTask;
+        wocra::wOcraSegCartesianTaskManager* rightHandTask;
         wocra::wOcraGaussianProcessTrajectory* rightHandTrajectory;
         Eigen::Vector3d rHandPosStart, rHandPosEnd, currentOptWaypoint;
         Eigen::VectorXd optVariables;
@@ -50,7 +51,7 @@ class StandingReach: public wocra::wOcraTaskSequenceBase
         Eigen::VectorXd desiredVariance_rightHand, desiredWeights_rightHand;
         Eigen::Array3d varianceThresh;
 
-        Eigen::Vector3d rightHandStaticWeight;
+        Eigen::VectorXd rightHandStaticWeight;
 
 
 

@@ -29,7 +29,7 @@
 StandingReach::StandingReach()
 {
 
-    useVarianceModulation = false;
+    useVarianceModulation = true;
 
     connectYarpPorts();
 
@@ -87,7 +87,6 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
     varianceThresh = Eigen::Array3d::Constant(VAR_THRESH);
 
-    useVarianceModulation = false;
     bool usesYARP = true;
 
     double Kp_fullPosture       = 5.0;
@@ -117,8 +116,8 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     double Kp_rightHand = 40.0;
     double Kd_rightHand = 2.0 *sqrt(Kp_rightHand);
 
-    rightHandStaticWeight = Eigen::Vector3d::Ones(3) / VAR_BETA;
-    Eigen::Vector3d weights_rightHand = rightHandStaticWeight;
+    rightHandStaticWeight = Eigen::VectorXd::Ones(3) / VAR_BETA;
+    Eigen::VectorXd weights_rightHand = rightHandStaticWeight;
 
     // Initialise full posture task
     Eigen::VectorXd q_full = wbiModel->getJointPositions();
@@ -252,14 +251,16 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
     //  rightHand
     Eigen::Vector3d r_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    taskManagers["rightHand"] = new wocra::wOcraVariableWeightsTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    // taskManagers["rightHand"] = new wocra::wOcraVariableWeightsTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    taskManagers["rightHand"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
 
 
     // Trajectory constructor
     rightHandTrajectory = new wocra::wOcraGaussianProcessTrajectory();
 
     // Cast tasks to derived classes to access their virtual functions
-    rightHandTask = dynamic_cast<wocra::wOcraVariableWeightsTaskManager*>(taskManagers["rightHand"]);
+    // rightHandTask = dynamic_cast<wocra::wOcraVariableWeightsTaskManager*>(taskManagers["rightHand"]);
+    rightHandTask = dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskManagers["rightHand"]);
 
     rHandPosStart = rightHandTask->getTaskFramePosition();
     Eigen::Vector3d rHandDisplacement;
@@ -357,7 +358,6 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     sendFramePositionsToGazebo();
-
 
     if(!sequenceFinished)
     {
@@ -540,13 +540,14 @@ void StandingReach::executeTrajectory(double relativeTime,  wocra::wOcraModel& s
 {
     // Claculate cost at timestep and write to file if logging.
     calculateInstantaneousCost(relativeTime, state);
+
     if(logTrajectoryData)
     {
         realTrajectoryFile << relativeTime << " "
                             << rightHandTask->getTaskFramePosition().transpose() << " "
                             << rightHandTask->getTaskFrameLinearVelocity().transpose() << " "
                             << rightHandTask->getTaskFrameLinearAcceleration().transpose() << " "
-                            << rightHandTask->getWeights().transpose()
+                            << rightHandTask->getWeight().transpose()
                             << std::endl;
     }
 
@@ -558,7 +559,7 @@ void StandingReach::executeTrajectory(double relativeTime,  wocra::wOcraModel& s
     if (useVarianceModulation)
     {
         desiredWeights_rightHand = mapVarianceToWeights(desiredVariance_rightHand);
-        rightHandTask->setWeights(desiredWeights_rightHand);
+        rightHandTask->setWeight(desiredWeights_rightHand);
     }
 
 
@@ -592,10 +593,10 @@ bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraM
         {
             double factor = (STABILIZATION_TIME - relativeTime) / STABILIZATION_TIME;
             if (factor>=0.0) {
-                Eigen::Vector3d scaledWeights = rightHandStaticWeight * factor;
-                rightHandTask->setWeights(scaledWeights);
+                Eigen::VectorXd scaledWeights = rightHandStaticWeight * factor;
+                rightHandTask->setWeight(scaledWeights);
             }else{
-                rightHandTask->setWeights(Eigen::Vector3d::Zero());
+                rightHandTask->setWeight(Eigen::Vector3d::Zero());
                 rightHandTask->setState(rHandPosStart);
 
             }
@@ -610,10 +611,10 @@ bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraM
         {
             double factor = relativeTime / STABILIZATION_TIME;
             if (factor>=0.0 && factor<=1.0) {
-                Eigen::Vector3d scaledWeights = rightHandStaticWeight * factor;
-                rightHandTask->setWeights(scaledWeights);
+                Eigen::VectorXd scaledWeights = rightHandStaticWeight * factor;
+                rightHandTask->setWeight(scaledWeights);
             }else{
-                rightHandTask->setWeights(rightHandStaticWeight);
+                rightHandTask->setWeight(rightHandStaticWeight);
             }
         }else{
             robotIsStable = isBackInHomePosition(state);
