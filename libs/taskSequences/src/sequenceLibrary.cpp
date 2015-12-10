@@ -2,13 +2,13 @@
 #include "taskSequences/sequenceLibrary.h"
 
 #if USING_SMLT
-#define SMLT_SEQUENCES else if (name == "TaskOptimization"){return new TaskOptimization();}
+#define SMLT_SEQUENCES else if (name == "TaskOptimization"){return new TaskOptimization();} else if (name == "StandingReach"){return new StandingReach();}
 #else
 #define SMLT_SEQUENCES
 #endif
 
 #if USING_SMLT
-#define SMLT_SEQUENCE_NAME_ERROR errorMessage+="\nTaskOptimization";
+#define SMLT_SEQUENCE_NAME_ERROR errorMessage+="\nTaskOptimization"; errorMessage+="\nStandingReach";
 #else
 #define SMLT_SEQUENCE_NAME_ERROR
 #endif
