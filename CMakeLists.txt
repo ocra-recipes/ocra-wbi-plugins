@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(ocra-wbi CXX)
 
+set(CMAKE_CXX_FLAGS "-fpermissive")
+
 
 set(OCRA_WBI_MAJOR_VERSION 0)
 set(OCRA_WBI_MINOR_VERSION 0)
@@ -20,12 +22,10 @@ list(APPEND CMAKE_MODULE_PATH
         ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules
      )
 
-find_package(Eigen REQUIRED)
-find_package(EigenLgsm REQUIRED)
+ LIST(APPEND Eigen_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/eigen_3_0_5/" "${CMAKE_CURRENT_SOURCE_DIR}/eigen_3_0_5/unsupported/")
 
 include_directories(AFTER
                     ${Eigen_INCLUDE_DIRS}
-                    ${EigenLgsm_INCLUDE_DIR}
                     ${YARP_INCLUDE_DIRS}
                     ${BOOST_INCLUDE_DIRS}
                     )

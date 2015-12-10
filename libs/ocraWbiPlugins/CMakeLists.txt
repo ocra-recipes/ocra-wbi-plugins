@@ -1,7 +1,7 @@
 SET(PROJECTNAME ocraWbiPlugins)
 PROJECT(${PROJECTNAME} CXX)
+find_package(OCRA REQUIRED)
 
-find_package(WOCRA REQUIRED)
 
 FILE(GLOB folder_source ./src/*.cpp)
 FILE(GLOB folder_header ./include/${PROJECTNAME}/*.h)
