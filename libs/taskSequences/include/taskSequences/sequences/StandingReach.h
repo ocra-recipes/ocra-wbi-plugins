@@ -50,6 +50,8 @@ class StandingReach: public wocra::wOcraTaskSequenceBase
         Eigen::VectorXd desiredVariance_rightHand, desiredWeights_rightHand;
         Eigen::Array3d varianceThresh;
 
+        Eigen::Vector3d rightHandStaticWeight;
+
 
 
         //YARP
@@ -87,8 +89,10 @@ class StandingReach: public wocra::wOcraTaskSequenceBase
         bool dataSent_AwaitReply;
 
         int testNumber;
-        int waitCount;
 
+        bool initializeStabilization;
+        double stabilizationTime;
+        bool deactivatingHandTask;
 
 
         bool useGoalCost;
@@ -118,7 +122,7 @@ class StandingReach: public wocra::wOcraTaskSequenceBase
 
 
         double bOptCovarianceScalingFactor;
-        
+
 
 
         bool openLogFiles(const std::string testLogFilePathPrefix);
@@ -129,12 +133,14 @@ class StandingReach: public wocra::wOcraTaskSequenceBase
         bool sendTestDataToSolver();
         double postProcessInstantaneousCosts();
         bool parseNewOptVarsBottle();
-        bool isBackInHomePosition(wocra::wOcraModel& state);
-        bool attainedGoal(wocra::wOcraModel& state);
+        bool isBackInHomePosition(const wocra::wOcraModel& state);
+        bool attainedGoal(const wocra::wOcraModel& state);
         void calculateInstantaneousCost(const double time, const wocra::wOcraModel& state);
         double calculateGoalCost(const double time, const wocra::wOcraModel& state);
         double calculateTrackingCost(const double time, const wocra::wOcraModel& state);
         double calculateEnergyCost(const double time, const wocra::wOcraModel& state);
+        bool returnToStablePosture(const double time, const wocra::wOcraModel& state);
+
 
 };
 
