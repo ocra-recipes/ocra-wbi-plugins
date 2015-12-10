@@ -4,6 +4,7 @@ PROJECT(${PROJECTNAME} CXX)
 find_package(OCRA REQUIRED)
 find_package(WOCRA REQUIRED)
 find_package(QUADPROG REQUIRED)
+find_package(modHelp REQUIRED)
 
 FILE(GLOB folder_source ./src/*.cpp)
 FILE(GLOB folder_header ./include/${PROJECTNAME}/*.h)
@@ -15,6 +16,7 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${WOCRA_INCLUDE_DIRS}
                     ${ocraWbiPlugins_SOURCE_DIR}/include
                     ${taskSequences_SOURCE_DIR}/include
+                    ${modHelp_INCLUDE_DIRS}
                     )
 
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
@@ -29,6 +31,7 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
                                      ${Boost_LIBRARIES}
                                      ocraWbiPlugins
                                      taskSequences
+                        ${modHelp_LIBRARIES}
                                      )
 
 

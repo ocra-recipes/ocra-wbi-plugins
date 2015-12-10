@@ -15,8 +15,8 @@
 * Public License for more details
 */
 
-#ifndef WOCRACONTROLLER_MODULE_H
-#define WOCRACONTROLLER_MODULE_H
+#ifndef BASIC_WHOLEBODYINTERFACE_MODULE_H
+#define BASIC_WHOLEBODYINTERFACE_MODULE_H
 
 #include <iostream>
 

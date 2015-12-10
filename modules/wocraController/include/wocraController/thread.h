@@ -15,8 +15,8 @@
 * Public License for more details
 */
 
-#ifndef WOCRACONTROLLER_THREAD_H
-#define WOCRACONTROLLER_THREAD_H
+#ifndef ISIRWHOLEBODYCONTROLLERTHREAD_H
+#define ISIRWHOLEBODYCONTROLLERTHREAD_H
 
 
 #include <yarp/os/BufferedPort.h>
@@ -39,6 +39,7 @@
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
 
+#include <fstream>
 
 using namespace yarp::os;
 using namespace yarp::sig;
@@ -141,6 +142,8 @@ class wocraControllerThread: public RateThread
 
         void parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply);
         std::string printValidMessageTags();
+
+
 
 };
 

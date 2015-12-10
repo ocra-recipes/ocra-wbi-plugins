@@ -1,7 +1,7 @@
 /*
 * Copyright (C) 2014 ISIR, UPMC
 * Author: Darwin Lau, Mingxing Liu
-* email:
+* email: 
 *
 * Utility functions for working with OCRA/Eigen and Whole Body Interface
 */
@@ -11,7 +11,6 @@
 
 #include <Eigen/Lgsm>
 #include <wbi/wbi.h>
-#include <yarp/sig/Vector.h>
 
 typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> MatrixXdRm;
 
@@ -27,9 +26,8 @@ typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> M
         static bool eigenRowMajorToColMajor(const MatrixXdRm &M_rm, Eigen::MatrixXd &M);
         static bool wbiToOcraMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_ocra);
         static bool wbiToOcraBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_ocra);
-        static bool eigenToYarpVector(const Eigen::VectorXd &eigenVector, yarp::sig::Vector &yarpVector);
-
 
     };
 
 #endif
+

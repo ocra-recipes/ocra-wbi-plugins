@@ -1,4 +1,4 @@
-#Usage notes for the ISIRWholeBodyController/gocraController
+#Usage notes for the wocraController/gocraController
 
 These notes are written specifically for the iCubParis robots. Please be careful if you are implementing the controller on another platform.
 
@@ -25,7 +25,7 @@ Right now the left leg is not working so it has been deactivated in robotInterfa
 
  where the actuator ports are prepended with /jtc/. Note that this assumes that JTC is running.
 
- Once this is modified, the [`ISIRWholeBodyController.ini`](/modules/ISIRWholeBodyController/app/robots/iCubParis02/ISIRWholeBodyController.ini) file must too be modified to call `yarpWholeBodyInterface_no_left_leg_jtc.ini`
+ Once this is modified, the [`wocraController.ini`](/modules/wocraController/app/robots/iCubParis02/wocraController.ini) file must too be modified to call `yarpWholeBodyInterface_no_left_leg_jtc.ini`
 
 
  Finally we need to calibrate the JTC gains and coeffs in the various `.ini` files located here:
@@ -40,7 +40,7 @@ Right now the left leg is not working so it has been deactivated in robotInterfa
   3. Open `yarpmanager`.
   4. Under `Applications` go to `WBD_JTC_Fixed_Base`. Open the application.
   5. Click `run` (the green play button).
-  6. Launch `ISIRWholeBodyController` with whatever task set or sequence desired.
+  6. Launch `wocraController` with whatever task set or sequence desired.
 
 
 ###Lookout for...

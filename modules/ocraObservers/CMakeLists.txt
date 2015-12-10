@@ -44,7 +44,7 @@ include(YarpInstallationHelpers)
 yarp_configure_external_installation(codyco)
 
 FILE(GLOB folder_source ./src/*.cpp)
-FILE(GLOB folder_header ./include/ISIRWholeBodyController/*.h)
+FILE(GLOB folder_header ./include/wocraController/*.h)
 
 SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})

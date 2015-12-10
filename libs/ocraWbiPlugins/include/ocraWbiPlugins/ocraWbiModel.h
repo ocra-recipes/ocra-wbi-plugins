@@ -29,6 +29,8 @@ public:
     virtual const std::string&           getJointName             (int index) const;
     virtual const int                    getSegmentIndex          (std::string segmentName) const;
 
+
+
 //=============================Dynamic functions==============================//
     virtual const Eigen::MatrixXd&       getInertiaMatrix         () const;
     virtual const Eigen::MatrixXd&       getInertiaMatrixInverse  () const;
@@ -66,8 +68,6 @@ public:
     void wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot);
 
     void getJointTorques(Eigen::VectorXd& wbiTorques);
-
-
 
 
 protected:
