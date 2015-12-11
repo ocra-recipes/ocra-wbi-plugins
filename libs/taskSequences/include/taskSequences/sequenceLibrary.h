@@ -24,6 +24,7 @@
 #if USING_SMLT
 #include "sequences/TaskOptimization.h"
 #include "sequences/StandingReach.h"
+#include "sequences/MoveWeight.h"
 #endif
 // namespace sequence{
 

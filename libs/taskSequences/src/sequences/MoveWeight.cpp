@@ -1,5 +1,5 @@
 
-#include <taskSequences/sequences/StandingReach.h>
+#include <taskSequences/sequences/MoveWeight.h>
 
 #ifndef ERROR_THRESH
 #define ERROR_THRESH 0.03 // Goal error threshold for hand tasks
@@ -26,10 +26,10 @@
 #endif
 
 
-StandingReach::StandingReach()
+MoveWeight::MoveWeight()
 {
 
-    useVarianceModulation = true;
+    useVarianceModulation = false;
 
     connectYarpPorts();
 
@@ -46,7 +46,7 @@ StandingReach::StandingReach()
 
     rootLogFilePathPrefix = "/home/ryan/Desktop/tmp-test/";
 
-    rootLogFilePathPrefix += "StandingReach";
+    rootLogFilePathPrefix += "MoveWeight";
 
     if (useVarianceModulation)
     {
@@ -65,7 +65,7 @@ StandingReach::StandingReach()
 
 }
 
-StandingReach::~StandingReach()
+MoveWeight::~MoveWeight()
 {
     optVarsPortOut.close();
     costPortOut.close();
@@ -80,7 +80,7 @@ StandingReach::~StandingReach()
 }
 
 
-void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void MoveWeight::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
     ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
     wbiModel = &wbiModelRef;
@@ -113,11 +113,17 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
 
     //  rightHand
-    double Kp_rightHand = 40.0;
+    double Kp_rightHand = 70.0;
     double Kd_rightHand = 2.0 *sqrt(Kp_rightHand);
 
+
+    // rightHandStaticWeight = Eigen::VectorXd::Ones(6) / VAR_BETA;
     rightHandStaticWeight = Eigen::VectorXd::Ones(3) / VAR_BETA;
     Eigen::VectorXd weights_rightHand = rightHandStaticWeight;
+    desiredWeights_rightHand.resize(weights_rightHand.size());
+    // rightHandStaticWeight(3) = 0.0;
+    // rightHandStaticWeight(4) = 0.0;
+    // rightHandStaticWeight(5) = 0.0;
 
     // Initialise full posture task
     Eigen::VectorXd q_full = wbiModel->getJointPositions();
@@ -155,8 +161,8 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
     // w_full[wbiModel->getDofIndex("r_shoulder_pitch")] = 0.00001;
     // w_full[wbiModel->getDofIndex("r_shoulder_roll")] = 0.00001;
-    // w_full[wbiModel->getDofIndex("r_shoulder_yaw")] = 0.00001;
-    w_full[wbiModel->getDofIndex("r_elbow")] = 0.00001;
+    w_full[wbiModel->getDofIndex("r_shoulder_yaw")] = 0.01;
+    w_full[wbiModel->getDofIndex("r_elbow")] = 0.0001;
     w_full[wbiModel->getDofIndex("l_elbow")] = 0.00001;
 
     // w_full[wbiModel->getDofIndex("l_shoulder_roll")] = 1.0;
@@ -216,81 +222,127 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-    // TODO: Add orientation task for the right hand - right now I can't seem to get the orientations correct - probably has to do with the frame they are expressed in.
-    // //  rightHand
-    // double Kp_rightHandOrientation = 10.0;
-    // double Kd_rightHandOrientation = 2.0 *sqrt(Kp_rightHandOrientation);
-    // double weight_rightHandOrientation  = 0.01;
-    //
-    //
-    // taskManagers["rightHandOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, usesYARP);
-
-    //  head
-    // double Kp_headOrientation = 5.0;
-    // double Kd_headOrientation = 2.0 *sqrt(Kp_headOrientation);
-    // double weight_headOrientation  = 0.01;
-    //
-    //
-    // taskManagers["headOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "headOrientationTask", "head", Kp_headOrientation, Kd_headOrientation, weight_headOrientation, usesYARP);
-    double Kp_leftHand = 40.0;
-    double Kd_leftHand = 2.0 *sqrt(Kp_leftHand);
-    double weight_leftHand = 1.0 / VAR_BETA;
-
-
-
-    Eigen::Vector3d desiredPos  = model.getSegmentPosition(model.getSegmentIndex("l_hand")).getTranslation() + Eigen::Vector3d(0.1, 0.1, 0.0);
-
-
-
-    Eigen::Vector3d l_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    taskManagers["leftHand"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHand", "l_hand", l_handDisp, ocra::XYZ, Kp_leftHand, Kd_leftHand, weight_leftHand, desiredPos, usesYARP);
-
-
-
-
     //  rightHand
-    Eigen::Vector3d r_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    // taskManagers["rightHand"] = new wocra::wOcraVariableWeightsTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    double Kp_rightHandOrientation = 80.0;
+    double Kd_rightHandOrientation = 2.0 *sqrt(Kp_rightHandOrientation);
+    Eigen::VectorXd weight_rightHandOrientation  = Eigen::VectorXd::Zero(3);
+    weight_rightHandOrientation(0) = 1.0; // z-axis
+
+    Eigen::Rotation3d desiredRightHandOrientation = Eigen::Rotation3d(sqrt2on2, -sqrt2on2, 0.0, 0.0);
+
+    // taskManagers["rightHandOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, desiredRightHandOrientation, usesYARP);
+
+    Eigen::Vector3d r_handDisp(0.085, 0.04, 0.045); // Moves the task frame to the center of the hand.
     taskManagers["rightHand"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    rightHandTask = dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskManagers["rightHand"]);
+
+
+
+
+    // //  rightHand
+    // Eigen::Displacementd r_handDisp(0.085, 0.04, 0.045, 1.0, 0.0, 0.0, 0.0); // Moves the task frame to the center of the hand.
+    // taskManagers["rightHand"] = new wocra::wOcraSegPoseTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    // Cast tasks to derived classes to access their virtual functions
+    // rightHandTask = dynamic_cast<wocra::wOcraSegPoseTaskManager*>(taskManagers["rightHand"]);
 
 
     // Trajectory constructor
     rightHandTrajectory = new wocra::wOcraGaussianProcessTrajectory();
 
-    // Cast tasks to derived classes to access their virtual functions
-    // rightHandTask = dynamic_cast<wocra::wOcraVariableWeightsTaskManager*>(taskManagers["rightHand"]);
-    rightHandTask = dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskManagers["rightHand"]);
+
 
     rHandPosStart = rightHandTask->getTaskFramePosition();
     Eigen::Vector3d rHandDisplacement;
-    // Works well.
-    // rHandDisplacement << 0.1, 0.1, -0.35;
-    // rHandPosEnd = rHandPosStart + rHandDisplacement;
-    // rHandPosEnd(2) = 0.1;
 
-    rHandDisplacement << 0.1, 0.1, -0.35;
+    rHandDisplacement << 0.05, 0.0, 0.0;
     rHandPosEnd = rHandPosStart + rHandDisplacement;
-    rHandPosEnd(2) = 0.33;
+    rHandPosEnd(2) = 0.41;
 
-    // rHandDisplacement << 0.0, 0.0, 0.0;
-    // rHandPosEnd = rHandPosStart + rHandDisplacement;
-    // rHandPosEnd(2) = 0.18;
+
+    // Set waypoints and traj
+    rightHandTrajectory->setWaypoints(rHandPosStart, rHandPosEnd);
+
+
+
+    /*
+    *   Variables used in the doUpdate control logic
+    */
+    waitForSolver = false;
+    waitForHomePosition = false;
+    optimumFound = false;
+    sequenceFinished = false;
+    initTrigger = true;
+    newOptVarsReceived = false;
+    dataSent_AwaitReply = false;
+    testNumber = 1;
+    initializeStabilization=true;
+    deactivatingHandTask=true;
+    movingToWeight = true;
+
+    /*
+    *   For gazebo
+    */
+    gazeboTranslation << 0.0, 0.0681, 0.0;
+
+
+}
+
+
+void MoveWeight::initializeOptimization()
+{
+    rHandPosStart = rightHandTask->getTaskFramePosition();
+
+    Eigen::Vector3d rHandDisplacement, rHandPosMiddle;
+    rHandDisplacement << 0.1, 0.1, 0.05;
+    rHandPosMiddle = rHandPosStart + rHandDisplacement;
+    rHandDisplacement << 0.15, 0.25, 0.0;
+    rHandPosEnd = rHandPosStart + rHandDisplacement;
+
+    Eigen::MatrixXd trajWaypoints(3,3);
+    trajWaypoints.col(0) << rHandPosStart;
+    trajWaypoints.col(1) << rHandPosMiddle;
+    trajWaypoints.col(2) << rHandPosEnd;
+
 
     // Set waypoints and traj
     rightHandTrajectory->setMaxVelocity(0.05); // default is 0.1 m/s
-    rightHandTrajectory->setWaypoints(rHandPosStart, rHandPosEnd);
+    rightHandTrajectory->setWaypoints(trajWaypoints);
 
 
     /*
     *   Set opt variables
     */
-    std::vector<Eigen::VectorXi> dofToOptimize(1);
-    dofToOptimize[0].resize(3);
-    dofToOptimize[0] << 1,2,3;
-    optVariables = rightHandTrajectory->getBoptVariables(1, dofToOptimize);
+    // std::vector<bool> isMeanWaypoint(5);
+    // isMeanWaypoint[0] =     true;
+    // isMeanWaypoint[1] =     true;
+    // isMeanWaypoint[2] =     true;
+    // testTrajectory->setMeanWaypoints(isMeanWaypoint);
+    //
+    // std::vector<bool> isVarWaypoint(5);
+    // isVarWaypoint[0] =      true;
+    // isVarWaypoint[1] =      true;
+    // isVarWaypoint[2] =      true;
+    // testTrajectory->setVarianceWaypoints(isVarWaypoint);
 
-    // optVariables = rightHandTrajectory->getBoptVariables(1);
+    std::vector<bool> isOptWaypoint(3);
+    isOptWaypoint[0] = false;
+    isOptWaypoint[1] = true;
+    isOptWaypoint[2] = false;
+
+    std::vector<Eigen::VectorXi> dofToOptimize(3);
+    dofToOptimize[0] = Eigen::VectorXi();
+    Eigen::VectorXi tmpVec(3);
+    tmpVec << 1,2,3; // X Y Z
+    dofToOptimize[1] = tmpVec;
+    dofToOptimize[2] = Eigen::VectorXi();
+
+
+    // rightHandTrajectory->setMeanWaypoints(isMeanWaypoint);
+    // rightHandTrajectory->setVarianceWaypoints(isVarWaypoint);
+    rightHandTrajectory->setOptimizationWaypoints(isOptWaypoint);
+    rightHandTrajectory->setDofToOptimize(dofToOptimize);
+
+    optVariables = rightHandTrajectory->getBoptVariables();
 
 
     /*
@@ -307,31 +359,13 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
 
     /*
-    *   Variables used in the doUpdate control logic
-    */
-    waitForSolver = false;
-    waitForHomePosition = false;
-    optimumFound = false;
-    sequenceFinished = false;
-    initTrigger = true;
-    newOptVarsReceived = false;
-    dataSent_AwaitReply = false;
-    testNumber = 1;
-    initializeStabilization=true;
-    deactivatingHandTask=true;
-
-
-    /*
     *   For the trajectory logging
     */
     desiredPosVelAcc_rightHand = Eigen::MatrixXd::Zero(3,3);
     desiredPosVelAcc_rightHand.col(0) << rHandPosStart;
 
 
-    /*
-    *   For gazebo
-    */
-    gazeboTranslation << 0.0, 0.0681, 0.0;
+
     currentOptWaypoint = optVariables.tail(3);
 
 
@@ -339,9 +373,7 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     *   Informative
     */
     rightHandTrajectory->printWaypointData();
-
 }
-
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -356,134 +388,156 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
 
 
-void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void MoveWeight::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
     sendFramePositionsToGazebo();
 
-    if(!sequenceFinished)
+    if(movingToWeight)
     {
+        rightHandTrajectory->getDesiredValues(time, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
 
-        if (initTrigger) {
-            std::cout << "Initialize trajectory for test number = " << testNumber << std::endl;
-            initializeTrajectory(time);
-            std::cout << "Done..." << std::endl;
+        // rightHandTask->setState(Eigen::Displacementd(desiredPosVelAcc_rightHand.col(0), Eigen::Rotation3d::Identity() ));
+        rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
+
+
+        // When finished set up optimization stuff...
+        if (attainedGoal(state))
+        {
+            std::cout << "I have reached the object, now I am initializing my optimization test." << std::endl;
+            initializeOptimization();
+            std::cout << "Optimization test initialization complete. Begining trials..." << std::endl;
+            movingToWeight = false;
         }
 
+    }
+    else
+    {
 
-        if(!optimumFound || (newOptVarsReceived && waitForHomePosition ) )
+        if(!sequenceFinished)
         {
-            if(!waitForSolver)
+
+            if (initTrigger) {
+                std::cout << "Initialize trajectory for test number = " << testNumber << std::endl;
+                initializeTrajectory(time);
+                std::cout << "Done..." << std::endl;
+            }
+
+
+            if(!optimumFound || (newOptVarsReceived && waitForHomePosition ) )
+            {
+                if(!waitForSolver)
+                {
+                    double relativeTime = time - resetTimeRight;
+
+                    if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state))
+                    {
+                        executeTrajectory(relativeTime, state);
+                    }
+                    else
+                    {
+                        if((abs(relativeTime) > TIME_LIMIT)){
+                            std::cout << "Time limit exceeded!" << std::endl;
+                        }
+                        if (attainedGoal(state)) {
+                            std::cout << "Goal attained!" << std::endl;
+                        }
+
+                        waitForSolver = true;
+                    }
+                }
+                else
+                {
+                    bool robotIsStable = returnToStablePosture(time, state);
+
+                    if (!dataSent_AwaitReply)
+                    {
+                        dataSent_AwaitReply = sendTestDataToSolver();
+                        std::cout << "Data sent to solver, awaiting new optimal waypoint variables..." << std::endl;
+                    }
+                    else
+                    {
+                        if(!newOptVarsReceived)
+                        {
+                                newOptVarsReceived = parseNewOptVarsBottle();
+                                waitForHomePosition = true;
+
+                        }
+                        else
+                        {
+                            if(robotIsStable)
+                            {
+                                dataSent_AwaitReply = false;
+                                waitForSolver = false;
+                                newOptVarsReceived = false;
+                                initTrigger = true;
+                                waitForHomePosition = false;
+                                initializeStabilization = true;
+                                deactivatingHandTask = true;
+
+                                if(logTrajectoryData)
+                                {
+                                    if (!closeLogFiles()) {
+                                    std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
+                                    }
+                                }
+                                testNumber++;
+                            }
+
+                        }
+
+                    }
+                }
+            }
+            else
             {
                 double relativeTime = time - resetTimeRight;
 
-                if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state))
+                if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
                 {
                     executeTrajectory(relativeTime, state);
                 }
                 else
                 {
-                    if((abs(relativeTime) > TIME_LIMIT)){
-                        std::cout << "Time limit exceeded!" << std::endl;
-                    }
-                    if (attainedGoal(state)) {
-                        std::cout << "Goal attained!" << std::endl;
-                    }
+                    postProcessInstantaneousCosts();
 
-                    waitForSolver = true;
-                }
-            }
-            else
-            {
-                bool robotIsStable = returnToStablePosture(time, state);
+                    // bool robotIsStable = returnToStablePosture(time, state);
+                    bool robotIsStable = false;
 
-                if (!dataSent_AwaitReply)
-                {
-                    dataSent_AwaitReply = sendTestDataToSolver();
-                    std::cout << "Data sent to solver, awaiting new optimal waypoint variables..." << std::endl;
-                }
-                else
-                {
-                    if(!newOptVarsReceived)
+                    if(logTrajectoryData)
                     {
-                            newOptVarsReceived = parseNewOptVarsBottle();
-                            waitForHomePosition = true;
+                        if (!closeLogFiles()) {
+                        std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
+                        }
+                    }
 
+
+
+                    if (replayOptimalTrajectory)
+                    {
+
+                        waitForHomePosition = true;
+
+                        if(robotIsStable)
+                        {
+                            initTrigger = true;
+                            initializeStabilization = true;
+                            waitForHomePosition = false;
+                        }
+                        logTrajectoryData = false;
                     }
                     else
                     {
-                        if(robotIsStable)
-                        {
-                            dataSent_AwaitReply = false;
-                            waitForSolver = false;
-                            newOptVarsReceived = false;
-                            initTrigger = true;
-                            waitForHomePosition = false;
-                            initializeStabilization = true;
-                            deactivatingHandTask = true;
-
-                            if(logTrajectoryData)
-                            {
-                                if (!closeLogFiles()) {
-                                std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
-                                }
-                            }
-                            testNumber++;
-                        }
-
-                    }
-
-                }
-            }
-        }
-        else
-        {
-            double relativeTime = time - resetTimeRight;
-
-            if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
-            {
-                executeTrajectory(relativeTime, state);
-            }
-            else
-            {
-                postProcessInstantaneousCosts();
-
-                // bool robotIsStable = returnToStablePosture(time, state);
-                bool robotIsStable = false;
-
-                if(logTrajectoryData)
-                {
-                    if (!closeLogFiles()) {
-                    std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
+                        sequenceFinished = true;
+                        std::cout   << "\n==========================================================\n"
+                                    << "\tTaskOptimization sequence finished!"
+                                    << "\n==========================================================\n"
+                                    << std::endl;
                     }
                 }
 
 
 
-                if (replayOptimalTrajectory)
-                {
-
-                    waitForHomePosition = true;
-
-                    if(robotIsStable)
-                    {
-                        initTrigger = true;
-                        initializeStabilization = true;
-                        waitForHomePosition = false;
-                    }
-                    logTrajectoryData = false;
-                }
-                else
-                {
-                    sequenceFinished = true;
-                    std::cout   << "\n==========================================================\n"
-                                << "\tTaskOptimization sequence finished!"
-                                << "\n==========================================================\n"
-                                << std::endl;
-                }
             }
-
-
-
         }
     }
 
@@ -502,7 +556,7 @@ void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void StandingReach::initializeTrajectory(double time)
+void MoveWeight::initializeTrajectory(double time)
 {
     resetTimeRight = time;
     initTrigger = false;
@@ -537,7 +591,7 @@ void StandingReach::initializeTrajectory(double time)
 
 
 
-void StandingReach::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
+void MoveWeight::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
 {
     // Claculate cost at timestep and write to file if logging.
     calculateInstantaneousCost(relativeTime, state);
@@ -555,11 +609,12 @@ void StandingReach::executeTrajectory(double relativeTime,  wocra::wOcraModel& s
 
     rightHandTrajectory->getDesiredValues(relativeTime, desiredPosVelAcc_rightHand, desiredVariance_rightHand);
 
-    rightHandTask->setState(desiredPosVelAcc_rightHand.col(0), desiredPosVelAcc_rightHand.col(1), desiredPosVelAcc_rightHand.col(2));
+    // rightHandTask->setState(Eigen::Displacementd(desiredPosVelAcc_rightHand.col(0), Eigen::Rotation3d::Identity() ));
+    rightHandTask->setState(desiredPosVelAcc_rightHand.col(0));
 
     if (useVarianceModulation)
     {
-        desiredWeights_rightHand = mapVarianceToWeights(desiredVariance_rightHand);
+        desiredWeights_rightHand.head(3) = mapVarianceToWeights(desiredVariance_rightHand);
         rightHandTask->setWeight(desiredWeights_rightHand);
     }
 
@@ -568,7 +623,7 @@ void StandingReach::executeTrajectory(double relativeTime,  wocra::wOcraModel& s
 }
 
 
-Eigen::VectorXd StandingReach::mapVarianceToWeights(Eigen::VectorXd& variance)
+Eigen::VectorXd MoveWeight::mapVarianceToWeights(Eigen::VectorXd& variance)
 {
     variance /= maxVariance;
     variance = variance.array().min(varianceThresh); //limit variance to 0.99 maximum
@@ -576,7 +631,7 @@ Eigen::VectorXd StandingReach::mapVarianceToWeights(Eigen::VectorXd& variance)
     return weights;
 }
 
-bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraModel& state)
+bool MoveWeight::returnToStablePosture(const double time, const wocra::wOcraModel& state)
 {
 
     bool robotIsStable = false;
@@ -597,7 +652,9 @@ bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraM
                 Eigen::VectorXd scaledWeights = rightHandStaticWeight * factor;
                 rightHandTask->setWeight(scaledWeights);
             }else{
-                rightHandTask->setWeight(Eigen::Vector3d::Zero());
+                // rightHandTask->setWeight(Eigen::VectorXd::Zero(6));
+                rightHandTask->setWeight(Eigen::VectorXd::Zero(3));
+                // rightHandTask->setState(Eigen::Displacementd(rHandPosStart, Eigen::Rotation3d::Identity()));
                 rightHandTask->setState(rHandPosStart);
 
             }
@@ -628,7 +685,7 @@ bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraM
 }
 
 
-bool StandingReach::isBackInHomePosition(const wocra::wOcraModel& state)
+bool MoveWeight::isBackInHomePosition(const wocra::wOcraModel& state)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -638,7 +695,7 @@ bool StandingReach::isBackInHomePosition(const wocra::wOcraModel& state)
     return result;
 }
 
-bool StandingReach::attainedGoal(const wocra::wOcraModel& state)
+bool MoveWeight::attainedGoal(const wocra::wOcraModel& state)
 {
     double error;
     error = (rHandPosEnd - rightHandTask->getTaskFramePosition() ).norm();
@@ -657,7 +714,7 @@ bool StandingReach::attainedGoal(const wocra::wOcraModel& state)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void StandingReach::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state)
+void MoveWeight::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state)
 {
 
     if (useGoalCost){
@@ -674,7 +731,7 @@ void StandingReach::calculateInstantaneousCost(const double time, const wocra::w
 
 }
 
-double StandingReach::calculateGoalCost(const double time, const wocra::wOcraModel& state)
+double MoveWeight::calculateGoalCost(const double time, const wocra::wOcraModel& state)
 {
     double cost = ( rHandPosEnd - rightHandTask->getTaskFramePosition() ).squaredNorm();
     double timeFactor = pow((time / rightHandTrajectory->getDuration()), 2);
@@ -684,14 +741,14 @@ double StandingReach::calculateGoalCost(const double time, const wocra::wOcraMod
 }
 
 
-double StandingReach::calculateTrackingCost(const double time, const wocra::wOcraModel& state)
+double MoveWeight::calculateTrackingCost(const double time, const wocra::wOcraModel& state)
 {
     double cost = ( desiredPosVelAcc_rightHand.col(0) - rightHandTask->getTaskFramePosition() ).squaredNorm();
     return cost;
 }
 
 
-double StandingReach::calculateEnergyCost(const double time, const wocra::wOcraModel& state)
+double MoveWeight::calculateEnergyCost(const double time, const wocra::wOcraModel& state)
 {
     Eigen::VectorXd torques;
     wbiModel->getJointTorques(torques);
@@ -699,7 +756,7 @@ double StandingReach::calculateEnergyCost(const double time, const wocra::wOcraM
 }
 
 
-double StandingReach::postProcessInstantaneousCosts()
+double MoveWeight::postProcessInstantaneousCosts()
 {
     Eigen::MatrixXd totalCostMat = Eigen::MatrixXd::Zero(costIterCounter,2);
 
@@ -756,7 +813,7 @@ double StandingReach::postProcessInstantaneousCosts()
 
 
 
-void StandingReach::connectYarpPorts()
+void MoveWeight::connectYarpPorts()
 {
     optVarsPortOut_name = "/opt/task/vars:o";
     costPortOut_name = "/opt/task/cost:o";
@@ -818,7 +875,7 @@ void StandingReach::connectYarpPorts()
 
 
 
-void StandingReach::sendFramePositionsToGazebo()
+void MoveWeight::sendFramePositionsToGazebo()
 {
     Eigen::Vector3d currentRightHandPos = rightHandTask->getTaskFramePosition() + gazeboTranslation;
 
@@ -827,10 +884,12 @@ void StandingReach::sendFramePositionsToGazebo()
     r_hand_port.write(r_hand_output);
 
 
-    yarp::os::Bottle r_hand_waypoint_output;
-    bottleEigenVector(r_hand_waypoint_output, currentOptWaypoint + gazeboTranslation);
-    r_hand_waypoint_port.write(r_hand_waypoint_output);
-
+    if(!movingToWeight)
+    {
+        yarp::os::Bottle r_hand_waypoint_output;
+        bottleEigenVector(r_hand_waypoint_output, currentOptWaypoint + gazeboTranslation);
+        r_hand_waypoint_port.write(r_hand_waypoint_output);
+    }
     yarp::os::Bottle r_hand_start_output;
     bottleEigenVector(r_hand_start_output, rHandPosStart + gazeboTranslation);
     r_hand_start_port.write(r_hand_start_output);
@@ -841,7 +900,7 @@ void StandingReach::sendFramePositionsToGazebo()
 }
 
 
-bool StandingReach::sendTestDataToSolver()
+bool MoveWeight::sendTestDataToSolver()
 {
     double totalCost = postProcessInstantaneousCosts();
 
@@ -859,7 +918,7 @@ bool StandingReach::sendTestDataToSolver()
 
 
 
-bool StandingReach::parseNewOptVarsBottle()
+bool MoveWeight::parseNewOptVarsBottle()
 {
     yarp::os::Bottle *newOptVars = optVarsPortIn.read(false);
     if (newOptVars!=NULL)
@@ -887,7 +946,7 @@ bool StandingReach::parseNewOptVarsBottle()
 
 
 
-void StandingReach::sendOptimizationParameters()
+void MoveWeight::sendOptimizationParameters()
 {
     yarp::os::Bottle& optParamsBottle = optParamsPortOut.prepare();
     optParamsBottle.clear();
@@ -929,18 +988,18 @@ void StandingReach::sendOptimizationParameters()
     double spaceBuffer = -0.02; // -0.05 // positive means search box is inside the movement vector (defined from start to end point) and negative means the search box is bigger than the vector.
 
     // X
-    searchSpaceMin(indexCounter) = wyptData.col(1).minCoeff() + -0.1;
-    searchSpaceMax(indexCounter) = wyptData.col(1).maxCoeff() - -0.1;
+    searchSpaceMin(indexCounter) = wyptData.col(1).minCoeff() + spaceBuffer;
+    searchSpaceMax(indexCounter) = wyptData.col(1).maxCoeff() - spaceBuffer;
     indexCounter++;
 
     // Y
-    searchSpaceMin(indexCounter) = wyptData.col(2).minCoeff() + -0.1;
-    searchSpaceMax(indexCounter) = wyptData.col(2).maxCoeff() - -0.1;
+    searchSpaceMin(indexCounter) = wyptData.col(2).minCoeff() + spaceBuffer;
+    searchSpaceMax(indexCounter) = wyptData.col(2).maxCoeff() - spaceBuffer;
     indexCounter++;
 
     // Z
-    searchSpaceMin(indexCounter) = wyptData.col(3).minCoeff() + 0.01;
-    searchSpaceMax(indexCounter) = wyptData.col(3).maxCoeff() - 0.01;
+    searchSpaceMin(indexCounter) = wyptData.col(3).minCoeff() + spaceBuffer;
+    searchSpaceMax(indexCounter) = wyptData.col(3).maxCoeff() - spaceBuffer;
 
 
 
@@ -963,7 +1022,7 @@ void StandingReach::sendOptimizationParameters()
 }
 
 
-void StandingReach::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::VectorXd& vecToBottle, const bool encapsulate)
+void MoveWeight::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::VectorXd& vecToBottle, const bool encapsulate)
 {
     bottle.clear();
     for(int i =0; i<vecToBottle.size(); i++){
@@ -985,7 +1044,7 @@ void StandingReach::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::Vec
 
 
 
-bool StandingReach::openLogFiles(const std::string testLogFilePathPrefix)
+bool MoveWeight::openLogFiles(const std::string testLogFilePathPrefix)
 {
     bool retVal = true;
     if (logTrajectoryData)
@@ -1017,7 +1076,7 @@ bool StandingReach::openLogFiles(const std::string testLogFilePathPrefix)
 
 }
 
-bool StandingReach::closeLogFiles()
+bool MoveWeight::closeLogFiles()
 {
     bool retVal = true;
     if (logTrajectoryData)
