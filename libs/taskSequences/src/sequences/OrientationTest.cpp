@@ -7,7 +7,7 @@
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
         // Task Coeffs
-        double Kp = 10.0;
+        double Kp = 40.0;
         double Kd = 2.0 * sqrt(Kp);
         double wFullPosture = 0.001;
         double wPartialPosture = 0.01;
@@ -25,17 +25,22 @@
         torsoTaskPosDes << M_PI / 18, 0, 0;
         taskManagers["tmPartialTorso"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
 
-        lHandIndex = model.getSegmentIndex("l_hand");
+        lHandIndex = model.getSegmentIndex("r_hand");
 
         Eigen::Displacementd startingDispd  = model.getSegmentPosition(lHandIndex);
 
         // start and end rotations
         startingRotd      = startingDispd.getRotation();
-        endingRotd        = Eigen::Rotation3d(0.105135,   0.0828095,   0.253438,    -0.958049);// palm down //startingRotd.inverse();
+        // endingRotd        = Eigen::Rotation3d(0.105135,   0.0828095,   0.253438,    -0.958049);// palm down //startingRotd.inverse();
+        std::cout << model.getSegmentPosition(model.getSegmentIndex("root_link")) << std::endl;
+
+        double sqrt2on2 = sqrt(2.0)/2.0;
+        Eigen::Rotation3d yToNegZ = Eigen::Rotation3d(sqrt2on2, 0.0, -sqrt2on2, 0.0);
+        endingRotd        = startingRotd.inverse();// * yToNegZ;
 
 
         // Left hand orientation task
-        taskManagers["tmLeftHandOrient"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp, Kd, wLeftHandTask, endingRotd);
+        taskManagers["tmLeftHandOrient"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "r_hand", Kp, Kd, Eigen::Vector3d(0.0, 1.0, 0.0), endingRotd);
     }
 
     void OrientationTest::doUpdate(double time, wocra::wOcraModel& state, void** args)

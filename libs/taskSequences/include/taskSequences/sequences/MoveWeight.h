@@ -11,6 +11,7 @@
 
 #include <yarp/os/Network.h>
 #include <yarp/os/BufferedPort.h>
+#include <yarp/os/RpcClient.h>
 #include <yarp/os/Bottle.h>
 #include <yarp/os/Time.h>
 
@@ -69,6 +70,8 @@ class MoveWeight: public wocra::wOcraTaskSequenceBase
         yarp::os::Port r_hand_start_port;
         yarp::os::Port r_hand_target_port;
         yarp::os::Port r_hand_waypoint_port;
+
+        yarp::os::RpcClient rpcClientPort;
 
         Eigen::Vector3d gazeboTranslation;
         void connectYarpPorts();
@@ -144,7 +147,12 @@ class MoveWeight: public wocra::wOcraTaskSequenceBase
         double calculateEnergyCost(const double time, const wocra::wOcraModel& state);
         bool returnToStablePosture(const double time, const wocra::wOcraModel& state);
 
+        void setInitialWaypoints();
         void initializeOptimization();
+        void checkSolverStatus();
+
+        bool optimizationInProgress;
+
 
         bool movingToWeight;
 };

@@ -55,6 +55,17 @@
 
 
 
+        // start and end rotations
+        Eigen::Rotation3d startingRotd = model->getSegmentPosition(model->getSegmentIndex("r_hand")).getRotation();
+        // Eigen::Rotation3d yToNegZ = Eigen::Rotation3d(sqrt2on2, 0.0, -sqrt2on2, 0.0);
+        Eigen::Rotation3d endingRotd = startingRotd;//.inverse();// * yToNegZ;
+
+
+        // Left hand orientation task
+        taskManagers["rightHandOrientation"] = new wocra::wOcraSegOrientationTaskManager(*ctrl, *model, "rightHandOrientation", "r_hand", 30, 2*sqrt(30), Eigen::Vector3d(0.0, 1.0, 0.0), endingRotd);
+
+
+
         double mu_sys = 0.5;
         double margin = 0.0;
         double sqrt2on2 = sqrt(2.0)/2.0;

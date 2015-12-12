@@ -10,7 +10,7 @@
 #endif
 
 #ifndef VAR_BETA
-#define VAR_BETA 10.0 //50
+#define VAR_BETA 20.0 //50
 #endif
 
 #ifndef TIME_LIMIT
@@ -33,7 +33,7 @@ MoveWeight::MoveWeight()
 
     connectYarpPorts();
 
-    bOptCovarianceScalingFactor = 2.0;
+    bOptCovarianceScalingFactor = 6.0;
 
     replayOptimalTrajectory = true;
 
@@ -54,14 +54,7 @@ MoveWeight::MoveWeight()
     }
 
     smlt::checkAndCreateDirectory(rootLogFilePathPrefix);
-    std::ofstream pathFile;
-    pathFile.open((rootLogFilePathPrefix+"/latestLogPath.txt").c_str());
 
-    rootLogFilePathPrefix += "/test-" + smlt::currentDateTime() +"/";
-    smlt::checkAndCreateDirectory(rootLogFilePathPrefix);
-
-    pathFile << rootLogFilePathPrefix;
-    pathFile.close();
 
 }
 
@@ -71,6 +64,7 @@ MoveWeight::~MoveWeight()
     costPortOut.close();
     optVarsPortIn.close();
     optParamsPortOut.close();
+    rpcClientPort.close();
 
     r_hand_port.close();
     r_hand_target_port.close();
@@ -223,14 +217,16 @@ void MoveWeight::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //  rightHand
-    double Kp_rightHandOrientation = 80.0;
+    double Kp_rightHandOrientation = 50.0;
     double Kd_rightHandOrientation = 2.0 *sqrt(Kp_rightHandOrientation);
-    Eigen::VectorXd weight_rightHandOrientation  = Eigen::VectorXd::Zero(3);
-    weight_rightHandOrientation(0) = 1.0; // z-axis
+    Eigen::Vector3d weight_rightHandOrientation(0.0, 0.5, 0.0);
 
-    Eigen::Rotation3d desiredRightHandOrientation = Eigen::Rotation3d(sqrt2on2, -sqrt2on2, 0.0, 0.0);
+    Eigen::Rotation3d startingRotd = model.getSegmentPosition(model.getSegmentIndex("r_hand")).getRotation();
+    // std::cout << model.getSegmentPosition(model.getSegmentIndex("l_sole")) << std::endl;
+    // Eigen::Rotation3d yToNegZ = Eigen::Rotation3d(sqrt2on2, -sqrt2on2, 0.0, 0.0);
+    Eigen::Rotation3d desiredRightHandOrientation = startingRotd;//.inverse();// * yToNegZ;
 
-    // taskManagers["rightHandOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, desiredRightHandOrientation, usesYARP);
+    taskManagers["rightHandOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, desiredRightHandOrientation, usesYARP);
 
     Eigen::Vector3d r_handDisp(0.085, 0.04, 0.045); // Moves the task frame to the center of the hand.
     taskManagers["rightHand"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
@@ -254,7 +250,7 @@ void MoveWeight::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
     rHandPosStart = rightHandTask->getTaskFramePosition();
     Eigen::Vector3d rHandDisplacement;
 
-    rHandDisplacement << 0.05, 0.0, 0.0;
+    rHandDisplacement << 0.05, 0.05, 0.0;
     rHandPosEnd = rHandPosStart + rHandDisplacement;
     rHandPosEnd(2) = 0.41;
 
@@ -278,6 +274,7 @@ void MoveWeight::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
     initializeStabilization=true;
     deactivatingHandTask=true;
     movingToWeight = true;
+    optimizationInProgress = false;
 
     /*
     *   For gazebo
@@ -288,9 +285,10 @@ void MoveWeight::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 }
 
 
-void MoveWeight::initializeOptimization()
+void MoveWeight::setInitialWaypoints()
 {
-    rHandPosStart = rightHandTask->getTaskFramePosition();
+    // rHandPosStart = rightHandTask->getTaskFramePosition();
+    rHandPosStart = rHandPosEnd;
 
     Eigen::Vector3d rHandDisplacement, rHandPosMiddle;
     rHandDisplacement << 0.1, 0.1, 0.05;
@@ -345,10 +343,7 @@ void MoveWeight::initializeOptimization()
     optVariables = rightHandTrajectory->getBoptVariables();
 
 
-    /*
-    *   Send opt params
-    */
-    sendOptimizationParameters();
+
 
 
 
@@ -369,6 +364,16 @@ void MoveWeight::initializeOptimization()
     currentOptWaypoint = optVariables.tail(3);
 
 
+
+}
+
+void MoveWeight::initializeOptimization()
+{
+    // setInitialWaypoints();
+    /*
+    *   Send opt params
+    */
+    sendOptimizationParameters();
     /*
     *   Informative
     */
@@ -403,9 +408,15 @@ void MoveWeight::doUpdate(double time, wocra::wOcraModel& state, void** args)
         // When finished set up optimization stuff...
         if (attainedGoal(state))
         {
-            std::cout << "I have reached the object, now I am initializing my optimization test." << std::endl;
-            initializeOptimization();
-            std::cout << "Optimization test initialization complete. Begining trials..." << std::endl;
+            checkSolverStatus();
+            if (!optimizationInProgress) {
+                std::cout << "I have reached the object, now I am initializing my optimization test." << std::endl;
+                initializeOptimization();
+                std::cout << "Optimization test initialization complete. Begining trials..." << std::endl;
+            }
+            else{
+                std::cout << "Picking back up optimization trials on test number " << testNumber << "." << std::endl;
+            }
             movingToWeight = false;
         }
 
@@ -774,6 +785,13 @@ double MoveWeight::postProcessInstantaneousCosts()
         energyCostMat = energyCostMat.topRows(costIterCounter).eval();
         if (testNumber==1) {
             energyCostScalingFactor = energyCostMat.col(1).maxCoeff();
+            std::ofstream energyCostScalingFactorFile;
+            energyCostScalingFactorFile.open((rootLogFilePathPrefix + "/energyCostScalingFactor.txt").c_str());
+            if (energyCostScalingFactorFile.is_open()) {
+                energyCostScalingFactorFile << energyCostScalingFactor;
+            }
+            energyCostScalingFactorFile.close();
+
         }
         energyCostMat.col(1) /= energyCostScalingFactor;
 
@@ -825,6 +843,9 @@ void MoveWeight::connectYarpPorts()
     optVarsPortIn.open(optVarsPortIn_name.c_str());
     optParamsPortOut.open(optParamsPortOut_name.c_str());
 
+    std::string rpcClientPort_name = "/opt/task/rpc:c";
+    rpcClientPort.open(rpcClientPort_name.c_str());
+
     double connectionElapsedTime = 0.0;
     double waitInterval = 2.0;
     double connectionTimeOut = 20.0;
@@ -849,6 +870,12 @@ void MoveWeight::connectYarpPorts()
 
     connectionElapsedTime = 0.0;
     while (!yarp.connect(optParamsPortOut_name.c_str(), "/opt/solver/params:i") && connectionElapsedTime <= connectionTimeOut ){
+        std::cout << "Waiting to connect to solver ports. Please make sure the taskOptimizer module is running." << std::endl;
+        yarp::os::Time::delay(waitInterval);
+        connectionElapsedTime += waitInterval;
+    }
+    connectionElapsedTime = 0.0;
+    while (!yarp.connect(rpcClientPort_name.c_str(), "/opt/solver/rpc:s") && connectionElapsedTime <= connectionTimeOut ){
         std::cout << "Waiting to connect to solver ports. Please make sure the taskOptimizer module is running." << std::endl;
         yarp::os::Time::delay(waitInterval);
         connectionElapsedTime += waitInterval;
@@ -1028,6 +1055,76 @@ void MoveWeight::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::Vector
     for(int i =0; i<vecToBottle.size(); i++){
         bottle.addDouble(vecToBottle(i));
     }
+}
+
+void MoveWeight::checkSolverStatus()
+{
+    setInitialWaypoints();
+
+    yarp::os::Bottle cmd, response;
+    cmd.addString("iteration");
+    rpcClientPort.write(cmd,response);
+    std::cout << "Got response:\n" << response.toString() << std::endl;
+    int currentIter = response.get(0).asInt();
+    if (currentIter>0) {
+
+        std::ifstream pathFile;
+        pathFile.open((rootLogFilePathPrefix+"/latestLogPath.txt").c_str());
+        std::getline(pathFile, rootLogFilePathPrefix);
+        pathFile.close();
+
+
+
+        testNumber = currentIter + 1;
+        optimizationInProgress = true;
+        optimumFound = bool(response.get(1).asInt());
+        int j=0;
+        // int nDims = response.size() - 2;
+        // optVariables.resize(nDims);
+        for(int i=2; i<=response.size(); i++){
+            optVariables(j) = response.get(i).asDouble();
+            j++;
+        }
+        if (optimumFound) {
+            std::cout << "\n---------------\nFound optimum!\n---------------\n" << std::endl;
+            std::cout <<"[OPTIMAL VARIABLES]\n"<< optVariables.transpose() <<"\n"<< std::endl;
+        }else{
+            std::cout <<"[NEW TEST VARIABLES]\n"<< optVariables.transpose() <<"\n"<< std::endl;
+        }
+
+        /*
+        *   Get max variance for weight calcs.
+        */
+        maxVariance = rightHandTrajectory->getMaxVariance();
+
+
+        /*
+        *   For the trajectory logging
+        */
+        desiredPosVelAcc_rightHand = Eigen::MatrixXd::Zero(3,3);
+        desiredPosVelAcc_rightHand.col(0) << rHandPosStart;
+        currentOptWaypoint = optVariables.tail(3);
+
+        rightHandTrajectory->setBoptVariables(optVariables);
+
+        std::ifstream energyCostScalingFactorFile;
+        energyCostScalingFactorFile.open((rootLogFilePathPrefix + "/energyCostScalingFactor.txt").c_str());
+        if (energyCostScalingFactorFile.is_open()) {
+            energyCostScalingFactorFile >> energyCostScalingFactor;
+            std::cout << "energyCostScalingFactor: " << energyCostScalingFactor << std::endl;
+        }
+        energyCostScalingFactorFile.close();
+
+    }else{
+        std::ofstream pathFile;
+        pathFile.open((rootLogFilePathPrefix+"/latestLogPath.txt").c_str());
+        rootLogFilePathPrefix += "/test-" + smlt::currentDateTime() +"/";
+        smlt::checkAndCreateDirectory(rootLogFilePathPrefix);
+        pathFile << rootLogFilePathPrefix;
+        pathFile.close();
+
+    }
+
 }
 
 
