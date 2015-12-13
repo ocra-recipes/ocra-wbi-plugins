@@ -189,6 +189,7 @@ bool wocraControllerThread::threadInit()
             wocra::wOcraTaskParser taskParser;
             if(taskParser.parseTasksXML( startupTaskSetPath.c_str() )){
                 taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+                taskParser.printTaskArguments();
             }
             else{
                 //TODO: Implement fall pack procedure for failure to parse xml tasks.;

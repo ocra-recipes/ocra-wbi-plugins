@@ -31,10 +31,10 @@
 <task name="partialPosture2" type="wOcraPartialPostureTaskManager">
     <params kp="11.1" kd="3.0" weight="1.0" />
     <joints>
-        <joint id="0" des="1.0" />
-        <joint id="1" des="1.0" />
-        <joint id="2" des="1.0" />
-        <joint id="3" des="1.0" />
+        <joint index="0" des="1.0" />
+        <joint index="1" des="1.0" />
+        <joint index="2" des="1.0" />
+        <joint index="3" des="1.0" />
     </joints>
 </task>
 

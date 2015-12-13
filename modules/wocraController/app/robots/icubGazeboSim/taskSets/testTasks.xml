@@ -8,9 +8,9 @@
 <task name="torsoPosture" type="wOcraPartialPostureTaskManager">
     <params kp="10.0" kd="6.0" weight="0.1" />
     <joints>
-        <joint id="0" des="0.0" />
-        <joint id="1" des="0.0" />
-        <joint id="2" des="0.0" />
+        <joint index="0" des="0.0" />
+        <joint index="1" des="0.0" />
+        <joint index="2" des="0.0" />
     </joints>
 </task>
 <task name="cartRightHand" type="wOcraSegCartesianTaskManager">
@@ -52,8 +52,8 @@
 <!-- <task name="rightLegPosture" type="wOcraPartialPostureTaskManager">
     <params kp="10.0" kd="5.0" weight="1.0" />
     <joints>
-        <joint id="0" des="0.0" />
-        <joint id="1" des="0.0" />
-        <joint id="2" des="0.0" />
+        <joint index="0" des="0.0" />
+        <joint index="1" des="0.0" />
+        <joint index="2" des="0.0" />
     </joints>
 </task> -->

@@ -132,13 +132,10 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     w_full[wbiModel->getDofIndex("l_hip_pitch")] = 0.0004; //0.0004
     w_full[wbiModel->getDofIndex("l_hip_roll")] = 0.1;
     w_full[wbiModel->getDofIndex("l_hip_yaw")] = 0.1;
-    // w_full[wbiModel->getDofIndex("l_knee")] = ;
-    // w_full[wbiModel->getDofIndex("l_ankle_roll")] = ;
     w_full[wbiModel->getDofIndex("r_hip_pitch")] = 0.0004; //0.0004
     w_full[wbiModel->getDofIndex("r_hip_roll")] = 0.1;
     w_full[wbiModel->getDofIndex("r_hip_yaw")] = 0.1;
-    // w_full[wbiModel->getDofIndex("r_knee")] = ;
-    // w_full[wbiModel->getDofIndex("r_ankle_roll")] = ;
+
 
     w_full[wbiModel->getDofIndex("l_ankle_pitch")] = 1.0;
     w_full[wbiModel->getDofIndex("r_ankle_pitch")] = 1.0;
@@ -153,11 +150,16 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     w_full[wbiModel->getDofIndex("torso_roll")] = 0.01;
     w_full[wbiModel->getDofIndex("torso_yaw")] = 0.001;
 
+    w_full[wbiModel->getDofIndex("r_elbow")] = 0.00001;
+    w_full[wbiModel->getDofIndex("l_elbow")] = 0.00001;
+
+    // w_full[wbiModel->getDofIndex("l_ankle_roll")] = ;
+    // w_full[wbiModel->getDofIndex("l_knee")] = ;
+    // w_full[wbiModel->getDofIndex("r_knee")] = ;
+    // w_full[wbiModel->getDofIndex("r_ankle_roll")] = ;
     // w_full[wbiModel->getDofIndex("r_shoulder_pitch")] = 0.00001;
     // w_full[wbiModel->getDofIndex("r_shoulder_roll")] = 0.00001;
     // w_full[wbiModel->getDofIndex("r_shoulder_yaw")] = 0.00001;
-    w_full[wbiModel->getDofIndex("r_elbow")] = 0.00001;
-    w_full[wbiModel->getDofIndex("l_elbow")] = 0.00001;
 
     // w_full[wbiModel->getDofIndex("l_shoulder_roll")] = 1.0;
 
@@ -195,6 +197,12 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
     Eigen::Rotation3d rotLZdown = Eigen::Rotation3d(sqrt2on2, 0.0, 0.0, sqrt2on2) * Eigen::Rotation3d(0.0, 1.0, 0.0, 0.0);
     Eigen::Rotation3d rotRZdown = Eigen::Rotation3d(-sqrt2on2, 0.0, 0.0, -sqrt2on2) * Eigen::Rotation3d(0.0, 1.0, 0.0, 0.0);
+
+    // std::cout << "rotLZdown:" << std::endl;
+    // std::cout << " qw = " << rotLZdown.w() << " qx = " << rotLZdown.x() << " qy = " << rotLZdown.y() << " qz = " << rotLZdown.z() << std::endl;
+    //
+    // std::cout << "rotRZdown:" << std::endl;
+    // std::cout << " qw = " << rotRZdown.w() << " qx = " << rotRZdown.x() << " qy = " << rotRZdown.y() << " qz = " << rotRZdown.z() << std::endl;
 
 
     std::vector<Eigen::Displacementd> LFContacts;
