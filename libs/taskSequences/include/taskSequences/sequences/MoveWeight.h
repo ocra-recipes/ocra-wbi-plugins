@@ -153,7 +153,7 @@ class MoveWeight: public wocra::wOcraTaskSequenceBase
 
         bool optimizationInProgress;
 
-
+        bool printedOnce;
         bool movingToWeight;
 };
 

@@ -17,8 +17,13 @@
 #define TIME_LIMIT 15.0 // Maximum time to be spent on any trajectory.
 #endif
 
-#ifndef STABILIZATION_TIME_LIMIT
-#define STABILIZATION_TIME_LIMIT 4.0 // Maximum time to be spent on any trajectory.
+#ifndef DEACTIVATION_TIME_LIMIT
+#define DEACTIVATION_TIME_LIMIT 4.0 // Maximum time to be spent on any trajectory.
+#endif
+
+
+#ifndef ACTIVATION_TIME_LIMIT
+#define ACTIVATION_TIME_LIMIT 8.0 // Maximum time to be spent on any trajectory.
 #endif
 
 #ifndef STABILIZATION_TIME
@@ -33,7 +38,7 @@ MoveWeight::MoveWeight()
 
     connectYarpPorts();
 
-    bOptCovarianceScalingFactor = 6.0;
+    bOptCovarianceScalingFactor = 4.0;
 
     replayOptimalTrajectory = true;
 
@@ -217,9 +222,9 @@ void MoveWeight::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //  rightHand
-    double Kp_rightHandOrientation = 50.0;
+    double Kp_rightHandOrientation = 80.0;
     double Kd_rightHandOrientation = 2.0 *sqrt(Kp_rightHandOrientation);
-    Eigen::Vector3d weight_rightHandOrientation(0.0, 0.5, 0.0);
+    Eigen::Vector3d weight_rightHandOrientation(0.0, 1.0, 0.0);
 
     Eigen::Rotation3d startingRotd = model.getSegmentPosition(model.getSegmentIndex("r_hand")).getRotation();
     // std::cout << model.getSegmentPosition(model.getSegmentIndex("l_sole")) << std::endl;
@@ -275,6 +280,8 @@ void MoveWeight::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
     deactivatingHandTask=true;
     movingToWeight = true;
     optimizationInProgress = false;
+    printedOnce = false;
+
 
     /*
     *   For gazebo
@@ -428,9 +435,9 @@ void MoveWeight::doUpdate(double time, wocra::wOcraModel& state, void** args)
         {
 
             if (initTrigger) {
-                std::cout << "Initialize trajectory for test number = " << testNumber << std::endl;
+                std::cout << "Initialize trajectory for test number = " << testNumber << "... ";
                 initializeTrajectory(time);
-                std::cout << "Done..." << std::endl;
+                std::cout << " Done." << std::endl;
             }
 
 
@@ -471,7 +478,6 @@ void MoveWeight::doUpdate(double time, wocra::wOcraModel& state, void** args)
                         {
                                 newOptVarsReceived = parseNewOptVarsBottle();
                                 waitForHomePosition = true;
-
                         }
                         else
                         {
@@ -493,48 +499,53 @@ void MoveWeight::doUpdate(double time, wocra::wOcraModel& state, void** args)
                                 }
                                 testNumber++;
                             }
-
                         }
-
                     }
                 }
             }
             else
             {
                 double relativeTime = time - resetTimeRight;
-
                 if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
                 {
                     executeTrajectory(relativeTime, state);
                 }
                 else
                 {
-                    postProcessInstantaneousCosts();
+                    waitForHomePosition = true;
+                    if (!printedOnce)
+                    {
+                        postProcessInstantaneousCosts();
 
-                    // bool robotIsStable = returnToStablePosture(time, state);
-                    bool robotIsStable = false;
-
+                        if (attainedGoal(state)) {
+                            std::cout << "Goal attained!" << std::endl;
+                        }else{
+                            std::cout << "Optimal values do not attain goal. Consider lowering the covariance scaling factor to increase cost function resolution." << std::endl;
+                        }
+                        printedOnce = true;
+                    }
+                    bool robotIsStable = returnToStablePosture(time, state);
+                    // bool robotIsStable = false; // Use this to stay at goal location.
                     if(logTrajectoryData)
                     {
+
                         if (!closeLogFiles()) {
                         std::cout << "[ERROR](line: "<< __LINE__ << ") -> Could not close log files for test number: " << testNumber << std::endl;
                         }
+                        logTrajectoryData = false;
+
                     }
-
-
-
                     if (replayOptimalTrajectory)
                     {
-
-                        waitForHomePosition = true;
-
                         if(robotIsStable)
                         {
+                            std::cout << "Replaying optimal trajectory." << std::endl;
                             initTrigger = true;
                             initializeStabilization = true;
                             waitForHomePosition = false;
+                            printedOnce = false;
+                            deactivatingHandTask = true;
                         }
-                        logTrajectoryData = false;
                     }
                     else
                     {
@@ -545,9 +556,6 @@ void MoveWeight::doUpdate(double time, wocra::wOcraModel& state, void** args)
                                     << std::endl;
                     }
                 }
-
-
-
             }
         }
     }
@@ -656,7 +664,7 @@ bool MoveWeight::returnToStablePosture(const double time, const wocra::wOcraMode
 
     if (deactivatingHandTask)
     {
-        if ( abs(relativeTime) <= STABILIZATION_TIME_LIMIT)
+        if ( abs(relativeTime) <= DEACTIVATION_TIME_LIMIT)
         {
             double factor = (STABILIZATION_TIME - relativeTime) / STABILIZATION_TIME;
             if (factor>=0.0) {
@@ -676,7 +684,7 @@ bool MoveWeight::returnToStablePosture(const double time, const wocra::wOcraMode
     }
     else
     {
-        if ( abs(relativeTime) <= STABILIZATION_TIME_LIMIT)
+        if ( abs(relativeTime) <= ACTIVATION_TIME_LIMIT)
         {
             double factor = relativeTime / STABILIZATION_TIME;
             if (factor>=0.0 && factor<=1.0) {
@@ -699,9 +707,7 @@ bool MoveWeight::returnToStablePosture(const double time, const wocra::wOcraMode
 bool MoveWeight::isBackInHomePosition(const wocra::wOcraModel& state)
 {
     double error;
-    Eigen::Vector3d currentDesiredPosition, taskFrame;
-    taskFrame = rightHandTask->getTaskFramePosition();
-    error = (rHandPosStart - taskFrame ).norm();
+    error = (rHandPosStart - rightHandTask->getTaskFramePosition() ).norm();
     bool result = error <= ERROR_THRESH;
     return result;
 }
