@@ -8,7 +8,7 @@ FILE(GLOB_RECURSE folder_source ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 FILE(GLOB_RECURSE folder_header ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECTNAME}/*.h)
 
 # Check for SMLT
-find_package(SMLT)
+find_package(SMLT QUIET)
 IF(SMLT_FOUND)
     message("-- SMLT lib found. Compiling gaussian process trajectory.")
     include_directories(${SMLT_INCLUDE_DIRS})
@@ -17,6 +17,8 @@ IF(SMLT_FOUND)
 ELSE()
     message("-- SMLT lib NOT found. Removing TaskOptimization sequence from source list.")
     list(REMOVE_ITEM folder_source ${CMAKE_CURRENT_SOURCE_DIR}/src/sequences/TaskOptimization.cpp)
+    list(REMOVE_ITEM folder_source ${CMAKE_CURRENT_SOURCE_DIR}/src/sequences/StandingReach.cpp)
+    list(REMOVE_ITEM folder_source ${CMAKE_CURRENT_SOURCE_DIR}/src/sequences/MoveWeight.cpp)
     # Set preprocessor macro "USING_SMLT" to false.
     add_definitions( -DUSING_SMLT=0 )
     #set_property(TARGET ${liddddbrary_name} APPEND PROPERTY COMPILE_DEFINITIONS USING_SMLT=0 XENOMAI=1)
