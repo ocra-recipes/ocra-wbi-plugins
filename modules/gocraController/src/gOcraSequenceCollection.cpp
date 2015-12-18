@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include<string.h>
+#include <string.h>
 
 //#include "wocra/Trajectory/wOcraMinimumJerkTrajectory.h"
 //#include "wocra/Trajectory/wOcraLinearInterpolationTrajectory.h"
@@ -1237,7 +1237,7 @@ void Sequence_JointTest::doUpdate(double time, gocra::gOcraModel& state, void** 
 {
     Eigen::VectorXd taskErrorVector = tmFull->getTaskError();
     // std::cout << taskErrorVector.transpose() << std::endl;
-    taskErr = abs(taskErrorVector(jIndex));
+    taskErr = std::abs(taskErrorVector(jIndex));
     // std::cout << taskErr << std::endl;
 
 

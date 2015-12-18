@@ -156,7 +156,7 @@ void Exploration::doUpdate(double time, wocra::wOcraModel& state, void** args)
     }
 
 
-    if ( (abs(time - resetTimeLeft) >= TIME_LIMIT) || (attainedGoal(state, lHandIndex)) )
+    if ( (std::abs(time - resetTimeLeft) >= TIME_LIMIT) || (attainedGoal(state, lHandIndex)) )
     {
         generateNewWaypoints(state, lHandIndex);
         resetTimeLeft = time;
@@ -172,7 +172,7 @@ void Exploration::doUpdate(double time, wocra::wOcraModel& state, void** args)
 
     }
 
-    if ( (abs(time - resetTimeRight) >= TIME_LIMIT) || (attainedGoal(state, rHandIndex)) )
+    if ( (std::abs(time - resetTimeRight) >= TIME_LIMIT) || (attainedGoal(state, rHandIndex)) )
     {
         generateNewWaypoints(state, rHandIndex);
         resetTimeRight = time;

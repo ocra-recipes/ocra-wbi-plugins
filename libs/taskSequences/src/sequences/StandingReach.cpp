@@ -384,13 +384,13 @@ void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
             {
                 double relativeTime = time - resetTimeRight;
 
-                if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state))
+                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state))
                 {
                     executeTrajectory(relativeTime, state);
                 }
                 else
                 {
-                    if((abs(relativeTime) > TIME_LIMIT)){
+                    if((std::abs(relativeTime) > TIME_LIMIT)){
                         std::cout << "Time limit exceeded!" << std::endl;
                     }
                     if (attainedGoal(state)) {
@@ -447,7 +447,7 @@ void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
         {
             double relativeTime = time - resetTimeRight;
 
-            if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
+            if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
             {
                 executeTrajectory(relativeTime, state);
             }
@@ -598,7 +598,7 @@ bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraM
 
     if (deactivatingHandTask)
     {
-        if ( abs(relativeTime) <= STABILIZATION_TIME_LIMIT)
+        if (std::abs(relativeTime) <= STABILIZATION_TIME_LIMIT)
         {
             double factor = (STABILIZATION_TIME - relativeTime) / STABILIZATION_TIME;
             if (factor>=0.0) {
@@ -616,7 +616,7 @@ bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraM
     }
     else
     {
-        if ( abs(relativeTime) <= STABILIZATION_TIME_LIMIT)
+        if (std::abs(relativeTime) <= STABILIZATION_TIME_LIMIT)
         {
             double factor = relativeTime / STABILIZATION_TIME;
             if (factor>=0.0 && factor<=1.0) {

@@ -813,14 +813,14 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
             {
                 double relativeTime = time - resetTimeRight;
 
-                if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex))
+                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex))
                 {
                     executeTrajectory(relativeTime, state);
                 }
                 else
                 {
                     removeObstacle();
-                    if((abs(relativeTime) > TIME_LIMIT)){
+                    if((std::abs(relativeTime) > TIME_LIMIT)){
                         std::cout << "Time limit exceeded!" << std::endl;
                     }
                     if (attainedGoal(state, rHandIndex)) {
@@ -889,7 +889,7 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
         {
             double relativeTime = time - resetTimeRight;
 
-            if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
+            if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
             {
                 executeTrajectory(relativeTime, state);
             }

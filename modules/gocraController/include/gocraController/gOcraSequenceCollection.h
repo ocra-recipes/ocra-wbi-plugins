@@ -6,6 +6,7 @@
 
 #include <fstream>
 #include <vector>
+#include <cmath>
 
 class Sequence_InitialPoseHold : public gocra::gOcraTaskManagerCollectionBase
 {

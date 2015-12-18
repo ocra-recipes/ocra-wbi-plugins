@@ -41,7 +41,7 @@
 
         Eigen::VectorXd taskErrorVector = tmp_tmFull->getTaskError();
         // std::cout << taskErrorVector.transpose() << std::endl;
-        taskErr = abs(taskErrorVector(jIndex));
+        taskErr = std::abs(taskErrorVector(jIndex));
         // std::cout << taskErr << std::endl;
 
 

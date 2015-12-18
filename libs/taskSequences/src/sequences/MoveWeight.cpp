@@ -447,13 +447,13 @@ void MoveWeight::doUpdate(double time, wocra::wOcraModel& state, void** args)
                 {
                     double relativeTime = time - resetTimeRight;
 
-                    if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state))
+                    if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state))
                     {
                         executeTrajectory(relativeTime, state);
                     }
                     else
                     {
-                        if((abs(relativeTime) > TIME_LIMIT)){
+                        if((std::abs(relativeTime) > TIME_LIMIT)){
                             std::cout << "Time limit exceeded!" << std::endl;
                         }
                         if (attainedGoal(state)) {
@@ -506,7 +506,7 @@ void MoveWeight::doUpdate(double time, wocra::wOcraModel& state, void** args)
             else
             {
                 double relativeTime = time - resetTimeRight;
-                if ( (abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
+                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
                 {
                     executeTrajectory(relativeTime, state);
                 }
@@ -664,7 +664,7 @@ bool MoveWeight::returnToStablePosture(const double time, const wocra::wOcraMode
 
     if (deactivatingHandTask)
     {
-        if ( abs(relativeTime) <= DEACTIVATION_TIME_LIMIT)
+        if (std::abs(relativeTime) <= DEACTIVATION_TIME_LIMIT)
         {
             double factor = (STABILIZATION_TIME - relativeTime) / STABILIZATION_TIME;
             if (factor>=0.0) {
@@ -684,7 +684,7 @@ bool MoveWeight::returnToStablePosture(const double time, const wocra::wOcraMode
     }
     else
     {
-        if ( abs(relativeTime) <= ACTIVATION_TIME_LIMIT)
+        if (std::abs(relativeTime) <= ACTIVATION_TIME_LIMIT)
         {
             double factor = relativeTime / STABILIZATION_TIME;
             if (factor>=0.0 && factor<=1.0) {
