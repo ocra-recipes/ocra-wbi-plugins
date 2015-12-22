@@ -70,5 +70,3 @@ See the video tutorials... Work in progress.
 
  - [Darwin Lau](https://github.com/darwinlau)
  - [Mingxing Liu](https://github.com/mingxing-liu)
- - [Joseph Salini](https://github.com/salini)
- - [Hak Sovannara](https://github.com/sovannara-hak)
