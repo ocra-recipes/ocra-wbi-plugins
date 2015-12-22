@@ -1,37 +1,34 @@
+sudo: required
+dist: trusty
+
 language: cpp
 
 compiler:
   - gcc
   - clang
-
-sudo: required
-dist: trusty
-
+  
 env:
-  - TRAVIS_BUILD_TYPE=Debug, TRAVIS_CMAKE_GENERATOR="Unix Makefiles",
-  - TRAVIS_BUILD_TYPE=Release, TRAVIS_CMAKE_GENERATOR="Unix Makefiles",
-
-before_script:
-  - cd ..  
-  # use superbuild for getting codyco-modules dependencies
-  - git clone https://github.com/robotology/codyco-superbuild
-  - cd codyco-superbuild
-  - pwd
-  # install dependencies using the codyco-superbuild script
-  - chmod +x ./.ci/travis-deps.sh
-  - sh .ci/travis-deps.sh
-  - mkdir build
-  - cd build
-  # using the YCM_EP_MAINTAINER_MODE variable to enable the subproject-dependees target
-  - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DCODYCO_TRAVIS_CI:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DYCM_EP_MAINTAINER_MODE:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
-  - make codyco-modules-dependees
-  - export CMAKE_PREFIX_PATH=/home/travis/build/robotology/codyco-superbuild/build/install
-  - cd ../..
-  # go back to codyco-modules
-  - cd codyco-modules
-
+ - TRAVIS_BUILD_TYPE=Release
+ - TRAVIS_BUILD_TYPE=Debug
+ 
+install:
+    - CI_DIR=$PWD
+    - sudo sh -c 'echo "deb http://www.icub.org/ubuntu trusty contrib/science" > /etc/apt/sources.list.d/icub.list'
+    - sudo apt-get update
+    - sudo apt-get install -qq -y yarp icub --force-yes
+    - sudo apt-get install -qq -y libeigen3-dev libboost-all-dev
+    - cd ~
+    - git clone https://github.com/ocra-recipes/eigen_lgsm.git
+    - cd eigen_lgsm ; mkdir build ; cd build ; cmake ..
+    - sudo make install
+    - cd ~
+    - git clone https://github.com/ocra-recipes/ocra-recipes.git
+    - cd ocra-recipes; mkdir build ; cd build; cmake ..
+    - make -j2
+    - sudo make install
+    - cd $CI_DIR
+    - mkdir build ; cd build ; cmake ..  -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE
 script:
-  - mkdir build
-  - cd build
-  - cmake -DCODYCO_TRAVIS_CI:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
-  - cmake --build . --config ${TRAVIS_BUILD_TYPE}
+    - make -j2
+    - sudo make install
+    #run tests
