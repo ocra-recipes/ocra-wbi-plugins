@@ -1,0 +1,34 @@
+language: cpp
+
+compiler:
+  - gcc
+  - clang
+
+env:
+  - TRAVIS_BUILD_TYPE=Debug, TRAVIS_CMAKE_GENERATOR="Unix Makefiles",
+  - TRAVIS_BUILD_TYPE=Release, TRAVIS_CMAKE_GENERATOR="Unix Makefiles",
+
+before_script:
+  - cd ..  
+  # use superbuild for getting codyco-modules dependencies
+  - git clone https://github.com/robotology/codyco-superbuild
+  - cd codyco-superbuild
+  - pwd
+  # install dependencies using the codyco-superbuild script
+  - chmod +x ./.ci/travis-deps.sh
+  - sh .ci/travis-deps.sh
+  - mkdir build
+  - cd build
+  # using the YCM_EP_MAINTAINER_MODE variable to enable the subproject-dependees target
+  - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DCODYCO_TRAVIS_CI:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DYCM_EP_MAINTAINER_MODE:BOOL=ON -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
+  - make codyco-modules-dependees
+  - export CMAKE_PREFIX_PATH=/home/travis/build/robotology/codyco-superbuild/build/install
+  - cd ../..
+  # go back to codyco-modules
+  - cd codyco-modules
+
+script:
+  - mkdir build
+  - cd build
+  - cmake -DCODYCO_TRAVIS_CI:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
+  - cmake --build . --config ${TRAVIS_BUILD_TYPE}
