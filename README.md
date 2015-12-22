@@ -11,7 +11,7 @@ Here's how everything is laid out...
 
 - [ocraWbiPlugins](https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/libs/ocraWbiPlugins)
 
-    - Interface libraries between WBI and ocra. The interface consists primarily of an inherited `Model` class who's virtual functions are implemented using WBI's functions. A `utilities` class is also available for converting between various dynamic representations.
+    - Interface libraries between WBI and ocra. The interface consists primarily of an inherited [`Model`](https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/libs/ocraWbiPlugins/src/ocraWbiModel.cpp) class who's virtual functions are implemented using WBI's functions. A [`utilities`](https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/libs/ocraWbiPlugins/src/ocraWbiUtil.cpp) class is also available for converting between various dynamic representations.
 
 - [taskSequences](https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/libs/taskSequences)
 
@@ -61,14 +61,14 @@ See the video tutorials... Work in progress.
 
 ###current developers
 
- - [Ryan Lober](@rlober)
- - [Antoine Hoarau](@ahoarau)
- - [Silvio Traversaro](@traversaro)
+ - [Ryan Lober](https://github.com/rlober)
+ - [Antoine Hoarau](https://github.com/ahoarau)
+ - [Silvio Traversaro](https://github.com/traversaro)
 
 
 ###past developers
 
- - [Darwin Lau](@darwinlau)
- - [Mingxing Liu](@mingxing-liu)
- - [Joseph Salini](@salini)
- - [Hak Sovanarra](@sovannara-hak)
+ - [Darwin Lau](https://github.com/darwinlau)
+ - [Mingxing Liu](https://github.com/mingxing-liu)
+ - [Joseph Salini](https://github.com/salini)
+ - [Hak Sovannara](https://github.com/sovannara-hak)
