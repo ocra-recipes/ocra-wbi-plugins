@@ -26,12 +26,18 @@ public:
     virtual void threadRelease();
     virtual void run();
 
-    // controlThreadBase virtual functions
+    // controlThreadBase pure virtual functions
+    virtual bool ct_threadInit()=0;
+    virtual void ct_threadRelease()=0;
+    virtual void ct_run()=0;
 
     // controlThreadBase functions
-    virtual std::string getThreadType();
+    std::string getThreadType(){return controlThreadType;}
 
 protected:
+
+    void setThreadType(const std::string& _threadType = "controlThreadBase"){controlThreadType = _threadType;}
+
     std::string controlThreadType;
 
     // Yarp control ports

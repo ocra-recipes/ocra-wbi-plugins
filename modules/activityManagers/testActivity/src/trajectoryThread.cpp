@@ -4,23 +4,21 @@ trajectoryThread::trajectoryThread(int period, const std::string& taskPortName, 
 controlThreadBase(period, taskPortName),
 trajType(trajectoryType)
 {
-    controlThreadType = "trajectoryThread";
+    setThreadType("trajectoryThread");
 }
 
-bool trajectoryThread::threadInit()
+bool trajectoryThread::ct_threadInit()
 {
     return true;
 }
 
-void trajectoryThread::threadRelease()
+void trajectoryThread::ct_threadRelease()
 {
-    std::cout<< "trajectoryThread:stopping the robot\n";
-    std::cout<< "Done, goodbye from trajectoryThread\n";
+    std::cout<< "trajectoryThread: Trajectory thread finished.\n";
 }
 
-void trajectoryThread::run()
+void trajectoryThread::ct_run()
 {
-    yarp::os::Bottle b;
-    b.addString(getThreadType());
-    outputPort.write(b);
+
+
 }

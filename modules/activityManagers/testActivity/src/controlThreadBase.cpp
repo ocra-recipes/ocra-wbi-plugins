@@ -7,37 +7,45 @@ controlThreadBase::controlThreadBase(int period, const std::string& taskRpcPortN
 RateThread(period),
 taskRpcServerName(taskRpcPortName)
 {
-    controlThreadType = "controlThreadBase";
     controlThreadBase::threadId++;
-    if(openControlPorts())
-    {
-        connectControlPorts();
-    }
-
 }
 
 controlThreadBase::~controlThreadBase()
 {
-    std::cout << "controlThreadBase: Closing control ports...\n";
-    inputPort.close();
-    outputPort.close();
-    std::cout << "Done.";
+
 }
 
 
 bool controlThreadBase::threadInit()
 {
-    return true;
+    if(openControlPorts())
+    {
+        connectControlPorts();
+    }
+    return ct_threadInit();
 }
 
 void controlThreadBase::threadRelease()
 {
-    // Nothing here.
+    std::cout << "controlThreadBase: Closing control ports for thread id = " << controlThreadBase::threadId << ".\n";
+    inputPort.close();
+    outputPort.close();
+    yarp::os::Bottle message, reply;
+    message.addString("closeControlPorts");
+    threadRpcClient.write(message, reply);
+    if (reply.get(0).asInt()) // if 1
+    {
+        threadRpcClient.close();
+    }
+    std::cout << "Done.";
+
+
+    ct_threadRelease();
 }
 
 void controlThreadBase::run()
 {
-    // Nothing here.
+    ct_run();
 }
 
 
@@ -111,9 +119,4 @@ bool controlThreadBase::connectControlPorts()
     }
 
     return portsConnected;
-}
-
-std::string controlThreadBase::getThreadType()
-{
-    return controlThreadType;
 }
