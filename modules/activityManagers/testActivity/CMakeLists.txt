@@ -16,13 +16,31 @@ INCLUDE_DIRECTORIES(
                     ${WOCRA_INCLUDE_DIRS}
                     )
 
+# Check for SMLT
+find_package(SMLT QUIET)
+IF(SMLT_FOUND)
+    message("-- SMLT lib found. Compiling gaussian process trajectory.")
+    include_directories(${SMLT_INCLUDE_DIRS})
+    # Set preprocessor macro "USING_SMLT" to true.
+    add_definitions( -DUSING_SMLT=1 )
+ELSE()
+    message("-- SMLT lib NOT found. Removing TaskOptimization sequence from source list.")
+    # Set preprocessor macro "USING_SMLT" to false.
+    add_definitions( -DUSING_SMLT=0 )
+ENDIF()
+
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
-TARGET_LINK_LIBRARIES(  ${PROJECTNAME}
-                        ${YARP_LIBRARIES}
+LIST(APPEND link_libs   ${YARP_LIBRARIES}
                         ${WOCRA_LIBRARIES}
                         ${QUADPROG_LIBRARIES}
                         ${OCRA_LIBRARIES}
                         )
+
+IF(SMLT_FOUND)
+    LIST(APPEND link_libs ${SMLT_LIBRARIES})
+ENDIF()
+
+TARGET_LINK_LIBRARIES(${PROJECTNAME} ${link_libs})
 
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
