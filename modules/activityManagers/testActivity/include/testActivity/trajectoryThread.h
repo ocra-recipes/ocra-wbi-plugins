@@ -6,8 +6,7 @@
 #include <testActivity/controlThreadBase.h>
 #include <iostream>
 
-#include <wocra/Trajectory/wOcraTrajectory.h>
-#include <wocra/Trajectory/wOcraMinimumJerkTrajectory.h>
+#include <wocra/Trajectory/wOcraTrajectories.h>
 
 
 
