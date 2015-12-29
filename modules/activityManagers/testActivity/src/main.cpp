@@ -29,10 +29,11 @@ int main(int argc, char *argv[])
                     0.1,
                     0.6;
 
-    bool stopAtGoal = true;
-    bool backAndForth = true;
+    TERMINATION_STRATEGY termStrategy = BACK_AND_FORTH;
 
-    trajectoryThread leftHandTrajThread(10, portNames[4], waypoints, trajType, stopAtGoal, backAndForth);
+    trajectoryThread leftHandTrajThread(10, portNames[4], waypoints, trajType, termStrategy);
+
+    leftHandTrajThread.setGoalErrorThreshold(0.045);
 
     std::cout << "Thread started." << std::endl;
     leftHandTrajThread.start();
@@ -42,12 +43,24 @@ int main(int argc, char *argv[])
 
     std::cout << "In the while loop..." << std::endl;
 
+    bool p1, p2, p3;
+    p1 = true;
+    p2 = true;
+    p3 = true;
     while(!done)
     {
 
-        if ((yarp::os::Time::now()-startTime)>30.0){
-            std::cout << "Finished while loop!" << std::endl;
-            done=true;
+        if ((yarp::os::Time::now()-startTime)>10.0){
+            if(p1){std::cout << "Changing to Wait mode:" << std::endl; p1=false;}
+            leftHandTrajThread.setTerminationStrategy(WAIT);
+            if ((yarp::os::Time::now()-startTime)>20.0){
+                if(p2){std::cout << "Changing to Stop mode:" << std::endl; p2=false;}
+                leftHandTrajThread.setTerminationStrategy(STOP_THREAD);
+                if ((yarp::os::Time::now()-startTime)>30.0){
+                    if(p3){std::cout << "Finished while loop!" << std::endl; p3=false;}
+                    done=true;
+                }
+            }
         }
     }
 

@@ -4,64 +4,36 @@
 #define VAR_THRESH 0.99
 #endif
 
-trajectoryThread::trajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE trajectoryType, bool _stopAtGoal, bool _backAndForth):
+trajectoryThread::trajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE trajectoryType, const TERMINATION_STRATEGY _terminationStrategy):
 controlThreadBase(period, taskPortName),
 userWaypoints(waypoints),
 trajType(trajectoryType),
-stopAtGoal(_stopAtGoal),
-backAndForth(_backAndForth),
-weightDimension(0)
+terminationStrategy(_terminationStrategy),
+printWaitingNoticeOnce(true),
+weightDimension(0),
+errorThreshold(0.03)
 {
     setThreadType("trajectoryThread");
+
+    switch (trajType)
+    {
+        case MIN_JERK:
+            trajectory = new wocra::wOcraMinimumJerkTrajectory();
+            break;
+        case LIN_INTERP:
+            trajectory = new wocra::wOcraLinearInterpolationTrajectory();
+            break;
+        case GAUSSIAN_PROCESS:
+            trajectory = new wocra::wOcraGaussianProcessTrajectory();
+            break;
+    }
 }
 
 bool trajectoryThread::ct_threadInit()
 {
     getTaskWeightDimension();
-    if (weightDimension==userWaypoints.rows())
-    {
-        switch (trajType) {
 
-            case MIN_JERK:
-                trajectory = new wocra::wOcraMinimumJerkTrajectory();
-                break;
-
-            case LIN_INTERP:
-                trajectory = new wocra::wOcraLinearInterpolationTrajectory();
-                break;
-
-            case GAUSSIAN_PROCESS:
-                trajectory = new wocra::wOcraGaussianProcessTrajectory();
-                break;
-        }
-
-        allWaypoints = Eigen::MatrixXd(weightDimension, userWaypoints.cols()+1);
-
-        startStateVector = getCurrentState();
-        desiredState = Eigen::VectorXd::Zero(startStateVector.size());
-
-
-        allWaypoints.col(0) << currentStateVector.head(weightDimension);
-        for(int i=0; i<userWaypoints.cols(); i++)
-        {
-            allWaypoints.col(i+1) << userWaypoints.col(i);
-        }
-
-        goalStateVector = allWaypoints.rightCols(1);
-
-        trajectory->setWaypoints(allWaypoints);
-
-        if (trajType==GAUSSIAN_PROCESS)
-        {
-            maximumVariance = dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->getMaxVariance();
-        }
-        return true;
-    }
-    else
-    {
-        std::cout << "[ERROR](): The dimension (# DOF) of the waypoints you provided, " << userWaypoints.rows() << ", does not match the dimension of the task, " << weightDimension <<". Thread not starting." << std::endl;
-        return false;
-    }
+    return setTrajectoryWaypoints(userWaypoints);
 }
 
 void trajectoryThread::ct_threadRelease()
@@ -73,12 +45,23 @@ void trajectoryThread::ct_threadRelease()
 
 void trajectoryThread::ct_run()
 {
-    if (goalAttained(0.045) && stopAtGoal) {
-        if (backAndForth) {
-            flipWaypoints();
-            trajectory->setWaypoints(allWaypoints);
-        }else{
-            stop();
+    if (goalAttained())
+    {
+        switch (terminationStrategy)
+        {
+            case BACK_AND_FORTH:
+                flipWaypoints();
+                trajectory->setWaypoints(allWaypoints);
+                break;
+            case STOP_THREAD:
+                stop();
+                break;
+            case WAIT:
+                if (printWaitingNoticeOnce) {
+                    std::cout << "Trajectory id = "<< controlThreadBase::threadId <<" has attained its goal state. Awaiting new commands..." << std::endl;
+                    printWaitingNoticeOnce = false;
+                }
+                break;
         }
     }
     else{
@@ -143,7 +126,7 @@ Eigen::VectorXd trajectoryThread::varianceToWeights(Eigen::VectorXd& desiredVari
     return desiredWeights;
 }
 
-bool trajectoryThread::goalAttained(const double errorThreshold)
+bool trajectoryThread::goalAttained()
 {
     return (goalStateVector - getCurrentState().head(weightDimension)).norm() <= errorThreshold;
 }
@@ -161,4 +144,40 @@ void trajectoryThread::flipWaypoints()
     }
     allWaypoints = tmp;
     goalStateVector = allWaypoints.rightCols(1);
+}
+
+bool trajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& _userWaypoints)
+{
+    if (weightDimension==_userWaypoints.rows())
+    {
+        allWaypoints = Eigen::MatrixXd(weightDimension, _userWaypoints.cols()+1);
+
+        startStateVector = getCurrentState();
+        desiredState = Eigen::VectorXd::Zero(startStateVector.size());
+
+
+        allWaypoints.col(0) << currentStateVector.head(weightDimension);
+        for(int i=0; i<_userWaypoints.cols(); i++)
+        {
+            allWaypoints.col(i+1) << _userWaypoints.col(i);
+        }
+
+        goalStateVector = allWaypoints.rightCols(1);
+
+        trajectory->setWaypoints(allWaypoints);
+
+        if (trajType==GAUSSIAN_PROCESS)
+        {
+            maximumVariance = dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->getMaxVariance();
+        }
+
+        printWaitingNoticeOnce=true;
+
+        return true;
+    }
+    else
+    {
+        std::cout << "[ERROR](trajectoryThread::setTrajectoryWaypoints): The dimension (# DOF) of the waypoints you provided, " << _userWaypoints.rows() << ", does not match the dimension of the task, " << weightDimension <<". Thread not starting." << std::endl;
+        return false;
+    }
 }

@@ -13,46 +13,63 @@ enum TRAJECTORY_TYPE
     GAUSSIAN_PROCESS
 };
 
+enum TERMINATION_STRATEGY
+{
+    BACK_AND_FORTH,
+    STOP_THREAD,
+    WAIT
+};
 
 class trajectoryThread : public controlThreadBase
 {
 
 public:
-    trajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE = MIN_JERK, bool _stopAtGoal=true, bool _backAndForth=false);
+    trajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE = MIN_JERK, const TERMINATION_STRATEGY _terminationStrategy = STOP_THREAD);
 
     virtual bool ct_threadInit();
     virtual void ct_threadRelease();
     virtual void ct_run();
 
+
+    // Setters
+    bool setTrajectoryWaypoints(const Eigen::MatrixXd& _userWaypoints);
+    void setTerminationStrategy(const TERMINATION_STRATEGY newTermStrat){terminationStrategy = newTermStrat;}
+    void setGoalErrorThreshold(const double newErrorThresh){errorThreshold = newErrorThresh;}
+
+    // Getters
     virtual std::string getThreadType(){return "trajectoryThread";}
+
+    // General assesment functions
+    bool goalAttained();
 
 
 protected:
-    Eigen::MatrixXd userWaypoints;
-    TRAJECTORY_TYPE trajType;
-    wocra::wOcraTrajectory* trajectory;
 
-    Eigen::VectorXd desiredState, desiredVariance;
-    double maximumVariance;
-    Eigen::ArrayXd varianceThresh;
-    yarp::os::Bottle desStateBottle;
+
     Eigen::VectorXd varianceToWeights(Eigen::VectorXd& desiredVariance, const double beta = 1.0);
-
     void getTaskWeightDimension();
-    int weightDimension;
-
-
-    Eigen::VectorXd startStateVector, goalStateVector;
-
-    bool stopAtGoal;
-
-    bool goalAttained(const double errorThreshold = 0.03);
-
     void flipWaypoints();
 
-    Eigen::MatrixXd allWaypoints;
-    bool backAndForth;
+    Eigen::MatrixXd userWaypoints;
+    TRAJECTORY_TYPE trajType;
+    TERMINATION_STRATEGY terminationStrategy;
 
+    wocra::wOcraTrajectory* trajectory;
+
+    int weightDimension;
+    double maximumVariance;
+    Eigen::VectorXd desiredVariance;
+    Eigen::ArrayXd varianceThresh;
+
+    Eigen::VectorXd startStateVector;
+    Eigen::VectorXd goalStateVector;
+    Eigen::MatrixXd allWaypoints;
+    double errorThreshold;
+
+    Eigen::VectorXd desiredState;
+    yarp::os::Bottle desStateBottle;
+
+    bool printWaitingNoticeOnce;
 
 };
 #endif
