@@ -22,7 +22,18 @@ int main(int argc, char *argv[])
 
     std::cout << "portNames[4]: " << portNames[4] << std::endl;
 
-    trajectoryThread leftHandTrajThread(10, portNames[4]); //period is 10ms
+    TRAJECTORY_TYPE trajType = GAUSSIAN_PROCESS;
+
+    Eigen::MatrixXd waypoints(3,1);
+    waypoints <<    0.1,
+                    0.1,
+                    0.6;
+
+    bool stopAtGoal = true;
+    bool backAndForth = true;
+
+    trajectoryThread leftHandTrajThread(10, portNames[4], waypoints, trajType, stopAtGoal, backAndForth);
+
     std::cout << "Thread started." << std::endl;
     leftHandTrajThread.start();
 
@@ -34,7 +45,7 @@ int main(int argc, char *argv[])
     while(!done)
     {
 
-        if ((yarp::os::Time::now()-startTime)>10.0){
+        if ((yarp::os::Time::now()-startTime)>30.0){
             std::cout << "Finished while loop!" << std::endl;
             done=true;
         }
