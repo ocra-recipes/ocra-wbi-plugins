@@ -1,5 +1,5 @@
 #ifndef CONTROLLERCONNECTION_H
-#define CONTROLLERCONNECTION_H value
+#define CONTROLLERCONNECTION_H
 
 #include <yarp/os/Network.h>
 #include <yarp/os/Bottle.h>
@@ -20,16 +20,17 @@ public:
     controllerConnection();
     ~controllerConnection();
     void open();
+    void close();
 
     std::vector<std::string> getTaskPortNames();
 
 private:
 
-    std::vector<yarp::os::RpcClient*> taskRpcClients;
 
     yarp::os::Network yarp;
     yarp::os::RpcClient controllerRpcClient;
 
+    std::vector<yarp::os::RpcClient*> taskRpcClients;
 
     bool connectToController(const std::string& controllerName = "wocraController");
     bool connectToTaskPorts(const std::vector<std::string> taskPortNames);

@@ -11,11 +11,7 @@ controllerConnection::controllerConnection()
 
 controllerConnection::~controllerConnection()
 {
-    controllerRpcClient.close();
-    for(int i=0; i<taskRpcClients.size(); i++)
-    {
-        taskRpcClients[i]->close();
-    }
+    close();
 }
 
 
@@ -38,6 +34,15 @@ void controllerConnection::open()
         }
     }else{
         //error message
+    }
+}
+
+void controllerConnection::close()
+{
+    controllerRpcClient.close();
+    for(int i=0; i<taskRpcClients.size(); i++)
+    {
+        taskRpcClients[i]->close();
     }
 }
 

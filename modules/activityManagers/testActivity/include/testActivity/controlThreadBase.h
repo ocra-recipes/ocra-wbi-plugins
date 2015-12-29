@@ -1,14 +1,18 @@
 #ifndef CONTROLTHREADBASE_H
-#define CONTROLTHREADBASE_H value
+#define CONTROLTHREADBASE_H
 
 #include <yarp/os/Network.h>
 #include <yarp/os/RateThread.h>
 #include <yarp/os/Port.h>
 #include <yarp/os/RpcClient.h>
+#include <yarp/os/Time.h>
+
 
 #include <string>
 #include <sstream>
 #include <iostream>
+
+#include <Eigen/Dense>
 
 class controlThreadBase: public yarp::os::RateThread
 {
@@ -34,6 +38,19 @@ public:
     // controlThreadBase functions
     std::string getThreadType(){return controlThreadType;}
 
+
+    /************** controlInputCallback *************/
+    class inputCallback : public yarp::os::PortReader {
+        private:
+            controlThreadBase& ctBase;
+
+        public:
+            inputCallback(controlThreadBase& ctBaseRef);
+
+            virtual bool read(yarp::os::ConnectionReader& connection);
+    };
+    /************** controlInputCallback *************/
+
 protected:
 
     void setThreadType(const std::string& _threadType = "controlThreadBase"){controlThreadType = _threadType;}
@@ -53,6 +70,19 @@ protected:
 
     bool openControlPorts();
     bool connectControlPorts();
+
+    bool isFirstInputBottle;
+    inputCallback* inpCallback;
+    Eigen::VectorXd currentStateVector;
+    bool parseInput(yarp::os::Bottle* input);
+
+    Eigen::VectorXd getCurrentState();
+    bool waitingForFirstStateMessage;
+    void sendGetStateMessage();
+
+    double controlThreadPeriod;
+
+
 
 };
 

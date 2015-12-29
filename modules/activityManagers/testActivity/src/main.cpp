@@ -20,17 +20,11 @@ int main(int argc, char *argv[])
 
     std::vector<std::string> portNames = ctlCon.getTaskPortNames();
 
-    std::cout << "portNames[1]: " << portNames[1] << std::endl;
-    std::cout << "portNames[2]: " << portNames[2] << std::endl;
+    std::cout << "portNames[4]: " << portNames[4] << std::endl;
 
-    trajectoryThread myThread(100, portNames[1]); //period is 40ms
-    std::cout << "Thread 1 started." << std::endl;
-    myThread.start();
-
-    trajectoryThread myThread2(1000, portNames[2]); //period is 40ms
-    std::cout << "Thread 2 started." << std::endl;
-    myThread2.start();
-
+    trajectoryThread leftHandTrajThread(10, portNames[4]); //period is 10ms
+    std::cout << "Thread started." << std::endl;
+    leftHandTrajThread.start();
 
     bool done=false;
     double startTime=yarp::os::Time::now();
@@ -46,11 +40,9 @@ int main(int argc, char *argv[])
         }
     }
 
-    std::cout << "Stopping thread 1..." << std::endl;
-    myThread.stop();
-    std::cout << "Stopping thread 2..." << std::endl;
-    myThread2.stop();
+    std::cout << "Stopping thread..." << std::endl;
+    leftHandTrajThread.stop();
 
-    std::cout << "Main finished." << std::endl;
+    std::cout << "Module finished." << std::endl;
     return 0;
 }

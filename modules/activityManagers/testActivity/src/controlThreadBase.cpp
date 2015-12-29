@@ -5,7 +5,8 @@ int controlThreadBase::threadId = 0;
 
 controlThreadBase::controlThreadBase(int period, const std::string& taskRpcPortName):
 RateThread(period),
-taskRpcServerName(taskRpcPortName)
+taskRpcServerName(taskRpcPortName),
+controlThreadPeriod(period)
 {
     controlThreadBase::threadId++;
 }
@@ -21,6 +22,10 @@ bool controlThreadBase::threadInit()
     if(openControlPorts())
     {
         connectControlPorts();
+    }
+    while(waitingForFirstStateMessage)
+    {
+        yarp::os::Time::delay(controlThreadPeriod/1000.);
     }
     return ct_threadInit();
 }
@@ -73,6 +78,11 @@ bool controlThreadBase::openControlPorts()
 
         portsOpened = portsOpened && threadRpcClient.open(threadRpcClientName.c_str());
 
+        isFirstInputBottle = true;
+        inpCallback = new inputCallback(*this);
+        inputPort.setReader(*inpCallback);
+
+        waitingForFirstStateMessage = true;
 
     }
     else{
@@ -119,4 +129,54 @@ bool controlThreadBase::connectControlPorts()
     }
 
     return portsConnected;
+}
+
+bool controlThreadBase::parseInput(yarp::os::Bottle* input)
+{
+    if (isFirstInputBottle) {
+        currentStateVector.resize(input->size());
+        isFirstInputBottle = false;
+        waitingForFirstStateMessage = false;
+    }
+    for(int i=0; i<input->size(); i++)
+    {
+        currentStateVector(i) = input->get(i).asDouble();
+    }
+}
+
+
+/**************************************************************************************************
+                                    Nested PortReader Class
+**************************************************************************************************/
+controlThreadBase::inputCallback::inputCallback(controlThreadBase& ctBaseRef):ctBase(ctBaseRef)
+{
+    //do nothing
+}
+
+bool controlThreadBase::inputCallback::read(yarp::os::ConnectionReader& connection)
+{
+    // std::cout << "Got a message!" << std::endl;
+    yarp::os::Bottle input;
+    if (input.read(connection)){
+        return ctBase.parseInput(&input);
+    }
+    else{
+        return false;
+    }
+}
+/**************************************************************************************************
+**************************************************************************************************/
+
+
+Eigen::VectorXd controlThreadBase::getCurrentState()
+{
+    // sendGetStateMessage();
+    return currentStateVector;
+}
+
+void controlThreadBase::sendGetStateMessage()
+{
+    yarp::os::Bottle message;
+    message.addString("updateCurrentStateAndSend");
+    inputPort.write(message);
 }

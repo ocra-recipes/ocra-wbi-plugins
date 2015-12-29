@@ -1,9 +1,15 @@
 #ifndef TRAJECTORYTHREAD_H
-#define TRAJECTORYTHREAD_H value
+#define TRAJECTORYTHREAD_H
 
+#include <yarp/os/Time.h>
 
 #include <testActivity/controlThreadBase.h>
 #include <iostream>
+
+#include <wocra/Trajectory/wOcraTrajectory.h>
+#include <wocra/Trajectory/wOcraMinimumJerkTrajectory.h>
+
+
 
 class trajectoryThread : public controlThreadBase
 {
@@ -23,6 +29,8 @@ public:
 
 private:
     std::string trajType;
+    wocra::wOcraTrajectory* trajectory;
+
 
 };
 #endif
