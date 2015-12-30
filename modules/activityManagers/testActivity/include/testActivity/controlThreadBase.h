@@ -14,6 +14,36 @@
 
 #include <Eigen/Dense>
 
+class taskParameters
+{
+public:
+    double kp;
+    double kd;
+    int dimension;
+    Eigen::VectorXd weight;
+    Eigen::VectorXd desired;
+    Eigen::VectorXd currentState;
+    std::string type;
+    std::string name;
+    bool isActive;
+
+    friend std::ostream& operator<<(std::ostream &out, const taskParameters& params)
+        {
+            out << "kp = " << params.kp << std::endl;
+            out << "kd = " << params.kd << std::endl;
+            out << "dimension = " << params.dimension << std::endl;
+            out << "weight = " << params.weight.transpose() << std::endl;
+            out << "desired = " << params.desired.transpose() << std::endl;
+            out << "currentState = " << params.currentState.transpose() << std::endl;
+            out << "type = " << params.type << std::endl;
+            out << "name = " << params.name << std::endl;
+            out << "isActive = " << params.isActive << std::endl;
+            return out;
+        }
+};
+
+
+
 class controlThreadBase: public yarp::os::RateThread
 {
 
@@ -37,6 +67,10 @@ public:
 
     // controlThreadBase functions
     std::string getThreadType(){return controlThreadType;}
+    bool deactivateTask();
+    bool activateTask();
+
+
 
 
     /************** controlInputCallback *************/
@@ -81,6 +115,15 @@ protected:
     void sendGetStateMessage();
 
     double controlThreadPeriod;
+
+    taskParameters originalTaskParams;
+    taskParameters currentTaskParams;
+
+    int weightDimension;
+    int stateDimension;
+
+    bool getTaskDimensions();
+    bool getTaskParameters(taskParameters& TP);
 
 
 

@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
                     0.1,
                     0.6;
 
-    TERMINATION_STRATEGY termStrategy = BACK_AND_FORTH;
+    TERMINATION_STRATEGY termStrategy = WAIT_DEACTIVATE;
 
     trajectoryThread leftHandTrajThread(10, portNames[4], waypoints, trajType, termStrategy);
 
@@ -51,10 +51,10 @@ int main(int argc, char *argv[])
     {
 
         if ((yarp::os::Time::now()-startTime)>10.0){
-            if(p1){std::cout << "Changing to Wait mode:" << std::endl; p1=false;}
-            leftHandTrajThread.setTerminationStrategy(WAIT);
+            if(p1){std::cout << "Changing to BACK_AND_FORTH mode:" << std::endl; p1=false;}
+            leftHandTrajThread.setTerminationStrategy(BACK_AND_FORTH);
             if ((yarp::os::Time::now()-startTime)>20.0){
-                if(p2){std::cout << "Changing to Stop mode:" << std::endl; p2=false;}
+                if(p2){std::cout << "Changing to STOP_THREAD mode:" << std::endl; p2=false;}
                 leftHandTrajThread.setTerminationStrategy(STOP_THREAD);
                 if ((yarp::os::Time::now()-startTime)>30.0){
                     if(p3){std::cout << "Finished while loop!" << std::endl; p3=false;}

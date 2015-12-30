@@ -10,8 +10,11 @@ userWaypoints(waypoints),
 trajType(trajectoryType),
 terminationStrategy(_terminationStrategy),
 printWaitingNoticeOnce(true),
-weightDimension(0),
-errorThreshold(0.03)
+errorThreshold(0.03),
+useVarianceModulation(true),
+deactivationDelay(0.0),
+deactivationTimeout(5.0),
+deactivationLatch(false)
 {
     setThreadType("trajectoryThread");
 
@@ -31,7 +34,11 @@ errorThreshold(0.03)
 
 bool trajectoryThread::ct_threadInit()
 {
-    getTaskWeightDimension();
+    if (trajType==GAUSSIAN_PROCESS)
+    {
+        desiredVariance = Eigen::VectorXd::Ones(weightDimension);
+        varianceThresh = Eigen::ArrayXd::Constant(weightDimension, VAR_THRESH);
+    }
 
     return setTrajectoryWaypoints(userWaypoints);
 }
@@ -45,44 +52,80 @@ void trajectoryThread::ct_threadRelease()
 
 void trajectoryThread::ct_run()
 {
-    if (goalAttained())
+    if (goalAttained() || deactivationLatch)
     {
         switch (terminationStrategy)
         {
             case BACK_AND_FORTH:
                 flipWaypoints();
                 trajectory->setWaypoints(allWaypoints);
+                deactivationLatch = false;
                 break;
             case STOP_THREAD:
                 stop();
                 break;
+            case STOP_THREAD_DEACTIVATE:
+                if(deactivateTask()){
+                    stop();
+                }else{
+                    std::cout << "[WARNING] Trajectory id = "<< controlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state, but cannot be deactivated." << std::endl;
+                    yarp::os::Time::delay(1.0); // try again in one second.
+                    deactivationDelay += 1.0;
+                    if(deactivationDelay >= deactivationTimeout){
+                        std::cout << "[WARNING] Deactivation timeout." << std::endl;
+                        stop();
+                    }
+                }
+                break;
             case WAIT:
                 if (printWaitingNoticeOnce) {
-                    std::cout << "Trajectory id = "<< controlThreadBase::threadId <<" has attained its goal state. Awaiting new commands..." << std::endl;
+                    std::cout << "Trajectory id = "<< controlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Awaiting new commands." << std::endl;
                     printWaitingNoticeOnce = false;
+                }
+                break;
+            case WAIT_DEACTIVATE:
+                if (printWaitingNoticeOnce) {
+                    if(deactivateTask()){
+                        std::cout << "Trajectory id = "<< controlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Deactivating task and awaiting new commands." << std::endl;
+                        printWaitingNoticeOnce = false;
+                        deactivationLatch = true;
+                    }else{
+                        std::cout << "Trajectory id = "<< controlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state and is awaiting new commands. [WARNING] Could not deactivate the task." << std::endl;
+                        yarp::os::Time::delay(1.0); // try again in one second.
+                        deactivationDelay += 1.0;
+                        if(deactivationDelay >= deactivationTimeout){
+                            printWaitingNoticeOnce = false;
+                            std::cout << "[WARNING] Deactivation timeout." << std::endl;
+                        }
+                    }
                 }
                 break;
         }
     }
     else{
+        if (!currentTaskParams.isActive) {
+            activateTask();
+        }
+
         desStateBottle.clear();
         if (trajType==GAUSSIAN_PROCESS)
-
         {
             Eigen::MatrixXd desiredState_tmp;
             trajectory->getDesiredValues(yarp::os::Time::now(), desiredState_tmp, desiredVariance);
             desiredState << desiredState_tmp;
 
-            Eigen::VectorXd desiredWeights = varianceToWeights(desiredVariance);
 
             for(int i=0; i<desiredState.size(); i++)
             {
                 desStateBottle.addDouble(desiredState(i));
             }
-
-            for(int i=0; i<desiredWeights.size(); i++)
+            if(useVarianceModulation)
             {
-                desStateBottle.addDouble(desiredWeights(i));
+                Eigen::VectorXd desiredWeights = varianceToWeights(desiredVariance);
+                for(int i=0; i<desiredWeights.size(); i++)
+                {
+                    desStateBottle.addDouble(desiredWeights(i));
+                }
             }
         }
         else
@@ -101,22 +144,6 @@ void trajectoryThread::ct_run()
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-void trajectoryThread::getTaskWeightDimension()
-{
-    yarp::os::Bottle message, reply;
-    message.addString("getWeight");
-    threadRpcClient.write(message, reply);
-    if (reply.size() > 1)
-    {
-        std::cout << "weights = " << reply.toString() << std::endl;
-        weightDimension = reply.size() - 1;
-    }else{
-        std::cout << "[ERROR](trajectoryThread::getTaskWeightDimension): Did not get a valid response from the task for its weight dimension. Setting to 0." << std::endl;
-    }
-    desiredVariance = Eigen::VectorXd::Ones(weightDimension);
-    varianceThresh = Eigen::ArrayXd::Constant(weightDimension, VAR_THRESH);
-}
 
 Eigen::VectorXd trajectoryThread::varianceToWeights(Eigen::VectorXd& desiredVariance, const double beta)
 {
@@ -172,6 +199,7 @@ bool trajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& _userWaypoi
         }
 
         printWaitingNoticeOnce=true;
+        deactivationLatch = false;
 
         return true;
     }

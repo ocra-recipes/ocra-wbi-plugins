@@ -6,7 +6,9 @@ int controlThreadBase::threadId = 0;
 controlThreadBase::controlThreadBase(int period, const std::string& taskRpcPortName):
 RateThread(period),
 taskRpcServerName(taskRpcPortName),
-controlThreadPeriod(period)
+controlThreadPeriod(period),
+weightDimension(0),
+stateDimension(0)
 {
     controlThreadBase::threadId++;
 }
@@ -19,9 +21,13 @@ controlThreadBase::~controlThreadBase()
 
 bool controlThreadBase::threadInit()
 {
-    if(openControlPorts())
-    {
-        connectControlPorts();
+    if(openControlPorts()){
+        if(connectControlPorts()){
+            if(getTaskDimensions()){
+                getTaskParameters(originalTaskParams);
+                currentTaskParams = originalTaskParams;
+            }
+        }
     }
     while(waitingForFirstStateMessage)
     {
@@ -170,7 +176,6 @@ bool controlThreadBase::inputCallback::read(yarp::os::ConnectionReader& connecti
 
 Eigen::VectorXd controlThreadBase::getCurrentState()
 {
-    // sendGetStateMessage();
     return currentStateVector;
 }
 
@@ -179,4 +184,139 @@ void controlThreadBase::sendGetStateMessage()
     yarp::os::Bottle message;
     message.addString("updateCurrentStateAndSend");
     inputPort.write(message);
+}
+
+bool controlThreadBase::deactivateTask()
+{
+    yarp::os::Bottle message, reply;
+    message.addString("deactivate");
+    threadRpcClient.write(message, reply);
+    if (reply.get(0).asString()=="deactivated")
+    {
+        getTaskParameters(currentTaskParams);
+        return true;
+    }
+    else{return false;}
+}
+
+bool controlThreadBase::activateTask()
+{
+    yarp::os::Bottle message, reply;
+    message.addString("activate");
+    threadRpcClient.write(message, reply);
+    if (reply.get(0).asString()=="activated")
+    {
+        getTaskParameters(currentTaskParams);
+        return true;
+    }
+    else{return false;}
+}
+
+bool controlThreadBase::getTaskDimensions()
+{
+    yarp::os::Bottle message, reply;
+    message.addString("getWeight");
+    threadRpcClient.write(message, reply);
+    if (reply.size()>1) {
+        weightDimension = reply.size()-1;
+    }else{
+        std::cout << "[ERROR](controlThreadBase::getTaskDimensions): Did not get a valid response from the task for its weight dimension." << std::endl;
+        return false;
+    }
+
+    message.clear();
+    reply.clear();
+    message.addString("getDesired");
+    threadRpcClient.write(message, reply);
+    if (reply.size()>1) {
+        stateDimension = reply.size()-1;
+    }else{
+        std::cout << "[ERROR](controlThreadBase::getTaskDimensions): Did not get a valid response from the task for its state dimension." << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool controlThreadBase::getTaskParameters(taskParameters& TP)
+{
+    TP.weight.resize(weightDimension);
+    TP.desired.resize(stateDimension);
+    TP.currentState.resize(stateDimension);
+
+
+    yarp::os::Bottle message, reply;
+    message.addString("getStiffness");
+    message.addString("getDamping");
+    message.addString("getDimension");
+    message.addString("getWeight");
+    message.addString("getDesired");
+    message.addString("getCurrentState");
+    message.addString("getType");
+    message.addString("getName");
+    message.addString("getActivityStatus");
+
+    int maxCount = message.size();
+    int count=0;
+
+    threadRpcClient.write(message, reply);
+    for(int i=0; i<reply.size(); i++)
+    {
+        if (reply.get(i).asString()=="Kp:"){
+            i++;
+            TP.kp = reply.get(i).asDouble();
+            count++;
+        }
+        else if (reply.get(i).asString()=="Kd:"){
+            i++;
+            TP.kd = reply.get(i).asDouble();
+            count++;
+        }
+        else if (reply.get(i).asString()=="Dimension:"){
+            i++;
+            TP.dimension = reply.get(i).asInt();
+            count++;
+        }
+        else if (reply.get(i).asString()=="Weight:"){
+
+            for(int j=0; j<weightDimension; j++){
+                i++;
+                TP.weight(j) = reply.get(i).asDouble();
+            }
+            count++;
+        }
+        else if (reply.get(i).asString()=="Desired:"){
+
+            for(int j=0; j<stateDimension; j++){
+                i++;
+                TP.desired(j) = reply.get(i).asDouble();
+            }
+            count++;
+        }
+        else if (reply.get(i).asString()=="currentState:"){
+
+            for(int j=0; j<stateDimension; j++){
+                i++;
+                TP.currentState(j) = reply.get(i).asDouble();
+            }
+            count++;
+        }
+        else if (reply.get(i).asString()=="Type:"){
+            i++;
+            TP.type = reply.get(i).asString();
+            count++;
+        }
+        else if (reply.get(i).asString()=="Name:"){
+            i++;
+            TP.name = reply.get(i).asString();
+            count++;
+        }
+        else if (reply.get(i).asString()=="activated"){
+            i++;
+            TP.isActive = reply.get(i).asBool();
+            count++;
+        }
+
+    }
+    return count==maxCount;
+
 }

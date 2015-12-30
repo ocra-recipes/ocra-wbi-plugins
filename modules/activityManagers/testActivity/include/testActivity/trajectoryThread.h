@@ -17,7 +17,9 @@ enum TERMINATION_STRATEGY
 {
     BACK_AND_FORTH,
     STOP_THREAD,
-    WAIT
+    WAIT,
+    STOP_THREAD_DEACTIVATE,
+    WAIT_DEACTIVATE
 };
 
 class trajectoryThread : public controlThreadBase
@@ -35,6 +37,7 @@ public:
     bool setTrajectoryWaypoints(const Eigen::MatrixXd& _userWaypoints);
     void setTerminationStrategy(const TERMINATION_STRATEGY newTermStrat){terminationStrategy = newTermStrat;}
     void setGoalErrorThreshold(const double newErrorThresh){errorThreshold = newErrorThresh;}
+    void setUseVarianceModulation(bool newVarMod){useVarianceModulation = newVarMod;}
 
     // Getters
     virtual std::string getThreadType(){return "trajectoryThread";}
@@ -47,7 +50,7 @@ protected:
 
 
     Eigen::VectorXd varianceToWeights(Eigen::VectorXd& desiredVariance, const double beta = 1.0);
-    void getTaskWeightDimension();
+    // void getTaskWeightDimension();
     void flipWaypoints();
 
     Eigen::MatrixXd userWaypoints;
@@ -56,8 +59,9 @@ protected:
 
     wocra::wOcraTrajectory* trajectory;
 
-    int weightDimension;
+
     double maximumVariance;
+    bool useVarianceModulation;
     Eigen::VectorXd desiredVariance;
     Eigen::ArrayXd varianceThresh;
 
@@ -70,6 +74,10 @@ protected:
     yarp::os::Bottle desStateBottle;
 
     bool printWaitingNoticeOnce;
+
+    double deactivationDelay;
+    double deactivationTimeout;
+    bool deactivationLatch;
 
 };
 #endif
