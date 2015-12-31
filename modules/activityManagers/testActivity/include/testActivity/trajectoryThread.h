@@ -31,16 +31,25 @@ public:
     virtual bool ct_threadInit();
     virtual void ct_threadRelease();
     virtual void ct_run();
+    virtual std::string getThreadType(){return "trajectoryThread";}
 
 
     // Setters
-    bool setTrajectoryWaypoints(const Eigen::MatrixXd& _userWaypoints);
+    bool setDisplacement(double dispDouble);
+    bool setDisplacement(const Eigen::VectorXd& displacementVector);
+    bool setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoints, bool containsStartingWaypoint=false);
     void setTerminationStrategy(const TERMINATION_STRATEGY newTermStrat){terminationStrategy = newTermStrat;}
     void setGoalErrorThreshold(const double newErrorThresh){errorThreshold = newErrorThresh;}
     void setUseVarianceModulation(bool newVarMod){useVarianceModulation = newVarMod;}
 
+    void setMeanWaypoints(std::vector<bool>& isMeanWaypoint);
+    void setVarianceWaypoints(std::vector<bool>& isVarWaypoint);
+    void setOptimizationWaypoints(std::vector<bool>& isOptWaypoint);
+    void setDofToOptimize(std::vector<Eigen::VectorXi>& dofToOptimize);
+
+
     // Getters
-    virtual std::string getThreadType(){return "trajectoryThread";}
+    Eigen::VectorXd getBayesianOptimizationVariables();
 
     // General assesment functions
     bool goalAttained();

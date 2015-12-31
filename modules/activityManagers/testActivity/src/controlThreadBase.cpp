@@ -8,7 +8,8 @@ RateThread(period),
 taskRpcServerName(taskRpcPortName),
 controlThreadPeriod(period),
 weightDimension(0),
-stateDimension(0)
+stateDimension(0),
+closePortTimeout(5.0)
 {
     controlThreadBase::threadId++;
 }
@@ -38,17 +39,27 @@ bool controlThreadBase::threadInit()
 
 void controlThreadBase::threadRelease()
 {
-    std::cout << "controlThreadBase: Closing control ports for thread id = " << controlThreadBase::threadId << ".\n";
+    std::cout << "\ncontrolThreadBase: Closing control ports for thread id = " << controlThreadBase::threadId << " for task: " << originalTaskParams.name << ".\n\n";
     inputPort.close();
     outputPort.close();
     yarp::os::Bottle message, reply;
     message.addString("closeControlPorts");
     threadRpcClient.write(message, reply);
-    if (reply.get(0).asInt()) // if 1
+    double closeDelay = 0.5;
+    double closeDelayTotal = 0.0;
+    while (!reply.get(0).asInt() && closeDelayTotal < closePortTimeout) // if 1
     {
-        threadRpcClient.close();
+        reply.clear();
+        threadRpcClient.write(message, reply);
+        yarp::os::Time::delay(closeDelay);
+        closeDelayTotal += closeDelay;
     }
-    std::cout << "Done.";
+    if (reply.get(0).asInt()) {
+        threadRpcClient.close();
+    }else{
+        std::cout << "[WARNING](controlThreadBase::threadRelease): Couldn't close task control ports." << std::endl;
+    }
+    std::cout << "Done.\n";
 
 
     ct_threadRelease();

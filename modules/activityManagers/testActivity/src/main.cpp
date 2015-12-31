@@ -17,7 +17,6 @@ int main(int argc, char *argv[])
 
     controllerConnection ctlCon;
 
-
     std::vector<std::string> portNames = ctlCon.getTaskPortNames();
 
     std::cout << "portNames[4]: " << portNames[4] << std::endl;
@@ -70,3 +69,51 @@ int main(int argc, char *argv[])
     std::cout << "Module finished." << std::endl;
     return 0;
 }
+
+
+///
+// rHandPosStart = rightHandTask->getTaskFramePosition();
+// Eigen::Vector3d rHandDisplacement;
+//
+// rHandDisplacement << 0.05, 0.05, 0.0;
+// rHandPosEnd = rHandPosStart + rHandDisplacement;
+// rHandPosEnd(2) = 0.41;
+//
+//
+// // Set waypoints and traj
+// rightHandTrajectory->setWaypoints(rHandPosStart, rHandPosEnd);
+//
+// rHandPosStart = rHandPosEnd;
+//
+// Eigen::Vector3d rHandDisplacement, rHandPosMiddle;
+// rHandDisplacement << 0.1, 0.1, 0.05;
+// rHandPosMiddle = rHandPosStart + rHandDisplacement;
+// rHandDisplacement << 0.15, 0.25, 0.0;
+// rHandPosEnd = rHandPosStart + rHandDisplacement;
+//
+// Eigen::MatrixXd trajWaypoints(3,3);
+// trajWaypoints.col(0) << rHandPosStart;
+// trajWaypoints.col(1) << rHandPosMiddle;
+// trajWaypoints.col(2) << rHandPosEnd;
+//
+//
+// // Set waypoints and traj
+// rightHandTrajectory->setMaxVelocity(0.05); // default is 0.1 m/s
+// rightHandTrajectory->setWaypoints(trajWaypoints);
+//
+//
+// std::vector<bool> isOptWaypoint(3);
+// isOptWaypoint[0] = false;
+// isOptWaypoint[1] = true;
+// isOptWaypoint[2] = false;
+//
+// std::vector<Eigen::VectorXi> dofToOptimize(3);
+// dofToOptimize[0] = Eigen::VectorXi();
+// Eigen::VectorXi tmpVec(3);
+// tmpVec << 1,2,3; // X Y Z
+// dofToOptimize[1] = tmpVec;
+// dofToOptimize[2] = Eigen::VectorXi();
+// rightHandTrajectory->setOptimizationWaypoints(isOptWaypoint);
+// rightHandTrajectory->setDofToOptimize(dofToOptimize);
+//
+// optVariables = rightHandTrajectory->getBoptVariables();

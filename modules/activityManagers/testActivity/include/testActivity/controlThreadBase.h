@@ -126,7 +126,7 @@ protected:
     bool getTaskParameters(taskParameters& TP);
 
 
-
+    double closePortTimeout;
 };
 
 #endif

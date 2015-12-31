@@ -47,7 +47,7 @@ void trajectoryThread::ct_threadRelease()
 {
     delete trajectory;
     trajectory = NULL;
-    std::cout<< "trajectoryThread: Trajectory thread finished.\n";
+    std::cout<< "\ntrajectoryThread: Trajectory thread finished.\n";
 }
 
 void trajectoryThread::ct_run()
@@ -58,8 +58,7 @@ void trajectoryThread::ct_run()
         {
             case BACK_AND_FORTH:
                 flipWaypoints();
-                trajectory->setWaypoints(allWaypoints);
-                deactivationLatch = false;
+                setTrajectoryWaypoints(allWaypoints, true);
                 break;
             case STOP_THREAD:
                 stop();
@@ -173,20 +172,28 @@ void trajectoryThread::flipWaypoints()
     goalStateVector = allWaypoints.rightCols(1);
 }
 
-bool trajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& _userWaypoints)
+bool trajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoints, bool containsStartingWaypoint)
 {
+    Eigen::MatrixXd _userWaypoints = userWaypoints; // Copy waypoints first in case we use allWaypoints as an arg.
     if (weightDimension==_userWaypoints.rows())
     {
-        allWaypoints = Eigen::MatrixXd(weightDimension, _userWaypoints.cols()+1);
-
-        startStateVector = getCurrentState();
-        desiredState = Eigen::VectorXd::Zero(startStateVector.size());
-
-
-        allWaypoints.col(0) << currentStateVector.head(weightDimension);
-        for(int i=0; i<_userWaypoints.cols(); i++)
+        if(containsStartingWaypoint)
         {
-            allWaypoints.col(i+1) << _userWaypoints.col(i);
+            allWaypoints = _userWaypoints;
+        }
+        else // Add starting waypoint
+        {
+            allWaypoints = Eigen::MatrixXd(weightDimension, _userWaypoints.cols()+1);
+
+            startStateVector = getCurrentState();
+            desiredState = Eigen::VectorXd::Zero(startStateVector.size());
+
+
+            allWaypoints.col(0) << currentStateVector.head(weightDimension);
+            for(int i=0; i<_userWaypoints.cols(); i++)
+            {
+                allWaypoints.col(i+1) << _userWaypoints.col(i);
+            }
         }
 
         goalStateVector = allWaypoints.rightCols(1);
@@ -206,6 +213,55 @@ bool trajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& _userWaypoi
     else
     {
         std::cout << "[ERROR](trajectoryThread::setTrajectoryWaypoints): The dimension (# DOF) of the waypoints you provided, " << _userWaypoints.rows() << ", does not match the dimension of the task, " << weightDimension <<". Thread not starting." << std::endl;
+        return false;
+    }
+}
+
+
+
+void trajectoryThread::setMeanWaypoints(std::vector<bool>& isMeanWaypoint)
+{
+    dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setMeanWaypoints(isMeanWaypoint);
+}
+
+void trajectoryThread::setVarianceWaypoints(std::vector<bool>& isVarWaypoint)
+{
+    dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setVarianceWaypoints(isVarWaypoint);
+}
+
+void trajectoryThread::setOptimizationWaypoints(std::vector<bool>& isOptWaypoint)
+{
+    dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setOptimizationWaypoints(isOptWaypoint);
+}
+
+void trajectoryThread::setDofToOptimize(std::vector<Eigen::VectorXi>& dofToOptimize)
+{
+    dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setDofToOptimize(dofToOptimize);
+}
+
+Eigen::VectorXd trajectoryThread::getBayesianOptimizationVariables()
+{
+    return dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->getBoptVariables();
+}
+
+
+bool trajectoryThread::setDisplacement(double dispDouble)
+{
+    return setDisplacement(Eigen::VectorXd::Constant(weightDimension, dispDouble));
+}
+
+bool trajectoryThread::setDisplacement(const Eigen::VectorXd& displacementVector)
+{
+    if (weightDimension == displacementVector.rows())
+    {
+        startStateVector = getCurrentState();
+        Eigen::MatrixXd tmpWaypoints = Eigen::MatrixXd::Zero(weightDimension, 2);
+        tmpWaypoints.col(0) << startStateVector;
+        tmpWaypoints.col(1) << startStateVector + displacementVector;
+        setTrajectoryWaypoints(tmpWaypoints, true);
+        return true;
+    }
+    else{
         return false;
     }
 }
