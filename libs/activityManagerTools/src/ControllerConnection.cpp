@@ -1,4 +1,4 @@
-#include <testActivity/ControllerConnection.h>
+#include <activityManagerTools/ControllerConnection.h>
 
 #ifndef CONNECTION_TIMEOUT
 #define CONNECTION_TIMEOUT 20.0

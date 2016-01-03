@@ -1,9 +1,6 @@
-#include <testActivity/ControlThreadBase.h>
-#include <testActivity/TrajectoryThread.h>
-#include <testActivity/ControllerConnection.h>
-// #include <yarp/os/Contact.h>
-// #include <yarp/os/impl/Dispatcher.h>
-// #include <vector>
+#include <activityManagerTools/ControlThreadBase.h>
+#include <activityManagerTools/TrajectoryThread.h>
+#include <activityManagerTools/ControllerConnection.h>
 
 int main(int argc, char *argv[])
 {

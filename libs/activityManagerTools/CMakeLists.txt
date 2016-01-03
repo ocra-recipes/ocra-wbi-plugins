@@ -1,4 +1,4 @@
-SET(PROJECTNAME testActivity)
+SET(PROJECTNAME activityManagerTools)
 PROJECT(${PROJECTNAME} CXX)
 
 find_package(WOCRA REQUIRED)
@@ -14,7 +14,6 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 INCLUDE_DIRECTORIES(
                     ${PROJECT_SOURCE_DIR}/include
                     ${WOCRA_INCLUDE_DIRS}
-                    ${activityManagerTools_SOURCE_DIR}/include
                     )
 
 # Check for SMLT
@@ -30,13 +29,14 @@ ELSE()
     add_definitions( -DUSING_SMLT=0 )
 ENDIF()
 
-ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
+
+ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source} ${folder_header})
+
 
 LIST(APPEND link_libs   ${YARP_LIBRARIES}
                         ${WOCRA_LIBRARIES}
                         ${QUADPROG_LIBRARIES}
                         ${OCRA_LIBRARIES}
-                        activityManagerTools
                         )
 
 IF(SMLT_FOUND)
@@ -45,4 +45,6 @@ ENDIF()
 
 TARGET_LINK_LIBRARIES(${PROJECTNAME} ${link_libs})
 
-INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
+INSTALL(TARGETS ${PROJECTNAME} DESTINATION lib)
+
+INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECTNAME} DESTINATION include)

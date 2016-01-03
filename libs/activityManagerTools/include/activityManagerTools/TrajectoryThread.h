@@ -1,7 +1,7 @@
 #ifndef TRAJECTORYTHREAD_H
 #define TRAJECTORYTHREAD_H
 
-#include <testActivity/ControlThreadBase.h>
+#include <activityManagerTools/ControlThreadBase.h>
 #include <wocra/Trajectory/wOcraTrajectories.h>
 #include <yarp/os/Time.h>
 #include <iostream>

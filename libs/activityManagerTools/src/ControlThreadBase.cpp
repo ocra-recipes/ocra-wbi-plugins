@@ -1,4 +1,4 @@
-#include <testActivity/ControlThreadBase.h>
+#include <activityManagerTools/ControlThreadBase.h>
 
 int ControlThreadBase::threadId = 0;
 

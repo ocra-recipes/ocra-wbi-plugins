@@ -1,4 +1,4 @@
-#include <testActivity/TrajectoryThread.h>
+#include <activityManagerTools/TrajectoryThread.h>
 
 #ifndef VAR_THRESH
 #define VAR_THRESH 0.99
