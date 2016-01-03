@@ -14,7 +14,7 @@
 
 #include <Eigen/Dense>
 
-class taskParameters
+class TaskParameters
 {
 public:
     double kp;
@@ -27,7 +27,7 @@ public:
     std::string name;
     bool isActive;
 
-    friend std::ostream& operator<<(std::ostream &out, const taskParameters& params)
+    friend std::ostream& operator<<(std::ostream &out, const TaskParameters& params)
         {
             out << "kp = " << params.kp << std::endl;
             out << "kd = " << params.kd << std::endl;
@@ -44,13 +44,13 @@ public:
 
 
 
-class controlThreadBase: public yarp::os::RateThread
+class ControlThreadBase: public yarp::os::RateThread
 {
 
 public:
     // Constructor
-    controlThreadBase(int period, const std::string& taskRpcPortName);
-    ~controlThreadBase();
+    ControlThreadBase(int period, const std::string& taskRpcPortName);
+    ~ControlThreadBase();
 
     static int threadId;
 
@@ -60,12 +60,12 @@ public:
     virtual void threadRelease();
     virtual void run();
 
-    // controlThreadBase pure virtual functions
+    // ControlThreadBase pure virtual functions
     virtual bool ct_threadInit()=0;
     virtual void ct_threadRelease()=0;
     virtual void ct_run()=0;
 
-    // controlThreadBase functions
+    // ControlThreadBase functions
     std::string getThreadType(){return controlThreadType;}
     bool deactivateTask();
     bool activateTask();
@@ -76,10 +76,10 @@ public:
     /************** controlInputCallback *************/
     class inputCallback : public yarp::os::PortReader {
         private:
-            controlThreadBase& ctBase;
+            ControlThreadBase& ctBase;
 
         public:
-            inputCallback(controlThreadBase& ctBaseRef);
+            inputCallback(ControlThreadBase& ctBaseRef);
 
             virtual bool read(yarp::os::ConnectionReader& connection);
     };
@@ -87,7 +87,7 @@ public:
 
 protected:
 
-    void setThreadType(const std::string& _threadType = "controlThreadBase"){controlThreadType = _threadType;}
+    void setThreadType(const std::string& _threadType = "ControlThreadBase"){controlThreadType = _threadType;}
 
     std::string controlThreadType;
 
@@ -116,14 +116,14 @@ protected:
 
     double controlThreadPeriod;
 
-    taskParameters originalTaskParams;
-    taskParameters currentTaskParams;
+    TaskParameters originalTaskParams;
+    TaskParameters currentTaskParams;
 
     int weightDimension;
     int stateDimension;
 
     bool getTaskDimensions();
-    bool getTaskParameters(taskParameters& TP);
+    bool getTaskParameters(TaskParameters& TP);
 
 
     double closePortTimeout;

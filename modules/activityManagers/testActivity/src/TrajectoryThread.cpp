@@ -1,11 +1,11 @@
-#include <testActivity/trajectoryThread.h>
+#include <testActivity/TrajectoryThread.h>
 
 #ifndef VAR_THRESH
 #define VAR_THRESH 0.99
 #endif
 
-trajectoryThread::trajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE trajectoryType, const TERMINATION_STRATEGY _terminationStrategy):
-controlThreadBase(period, taskPortName),
+TrajectoryThread::TrajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE trajectoryType, const TERMINATION_STRATEGY _terminationStrategy):
+ControlThreadBase(period, taskPortName),
 userWaypoints(waypoints),
 trajType(trajectoryType),
 terminationStrategy(_terminationStrategy),
@@ -16,7 +16,7 @@ deactivationDelay(0.0),
 deactivationTimeout(5.0),
 deactivationLatch(false)
 {
-    setThreadType("trajectoryThread");
+    setThreadType("TrajectoryThread");
 
     switch (trajType)
     {
@@ -32,7 +32,7 @@ deactivationLatch(false)
     }
 }
 
-bool trajectoryThread::ct_threadInit()
+bool TrajectoryThread::ct_threadInit()
 {
     if (trajType==GAUSSIAN_PROCESS)
     {
@@ -43,14 +43,14 @@ bool trajectoryThread::ct_threadInit()
     return setTrajectoryWaypoints(userWaypoints);
 }
 
-void trajectoryThread::ct_threadRelease()
+void TrajectoryThread::ct_threadRelease()
 {
     delete trajectory;
     trajectory = NULL;
-    std::cout<< "\ntrajectoryThread: Trajectory thread finished.\n";
+    std::cout<< "\nTrajectoryThread: Trajectory thread finished.\n";
 }
 
-void trajectoryThread::ct_run()
+void TrajectoryThread::ct_run()
 {
     if (goalAttained() || deactivationLatch)
     {
@@ -67,7 +67,7 @@ void trajectoryThread::ct_run()
                 if(deactivateTask()){
                     stop();
                 }else{
-                    std::cout << "[WARNING] Trajectory id = "<< controlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state, but cannot be deactivated." << std::endl;
+                    std::cout << "[WARNING] Trajectory id = "<< ControlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state, but cannot be deactivated." << std::endl;
                     yarp::os::Time::delay(1.0); // try again in one second.
                     deactivationDelay += 1.0;
                     if(deactivationDelay >= deactivationTimeout){
@@ -78,18 +78,18 @@ void trajectoryThread::ct_run()
                 break;
             case WAIT:
                 if (printWaitingNoticeOnce) {
-                    std::cout << "Trajectory id = "<< controlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Awaiting new commands." << std::endl;
+                    std::cout << "Trajectory id = "<< ControlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Awaiting new commands." << std::endl;
                     printWaitingNoticeOnce = false;
                 }
                 break;
             case WAIT_DEACTIVATE:
                 if (printWaitingNoticeOnce) {
                     if(deactivateTask()){
-                        std::cout << "Trajectory id = "<< controlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Deactivating task and awaiting new commands." << std::endl;
+                        std::cout << "Trajectory id = "<< ControlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Deactivating task and awaiting new commands." << std::endl;
                         printWaitingNoticeOnce = false;
                         deactivationLatch = true;
                     }else{
-                        std::cout << "Trajectory id = "<< controlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state and is awaiting new commands. [WARNING] Could not deactivate the task." << std::endl;
+                        std::cout << "Trajectory id = "<< ControlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state and is awaiting new commands. [WARNING] Could not deactivate the task." << std::endl;
                         yarp::os::Time::delay(1.0); // try again in one second.
                         deactivationDelay += 1.0;
                         if(deactivationDelay >= deactivationTimeout){
@@ -144,7 +144,7 @@ void trajectoryThread::ct_run()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Eigen::VectorXd trajectoryThread::varianceToWeights(Eigen::VectorXd& desiredVariance, const double beta)
+Eigen::VectorXd TrajectoryThread::varianceToWeights(Eigen::VectorXd& desiredVariance, const double beta)
 {
     desiredVariance /= maximumVariance;
     desiredVariance = desiredVariance.array().min(varianceThresh); //limit desiredVariance to 0.99 maximum
@@ -152,12 +152,12 @@ Eigen::VectorXd trajectoryThread::varianceToWeights(Eigen::VectorXd& desiredVari
     return desiredWeights;
 }
 
-bool trajectoryThread::goalAttained()
+bool TrajectoryThread::goalAttained()
 {
     return (goalStateVector - getCurrentState().head(weightDimension)).norm() <= errorThreshold;
 }
 
-void trajectoryThread::flipWaypoints()
+void TrajectoryThread::flipWaypoints()
 {
     int nCols = allWaypoints.cols();
     Eigen::MatrixXd tmp(allWaypoints.rows(), nCols);
@@ -172,7 +172,7 @@ void trajectoryThread::flipWaypoints()
     goalStateVector = allWaypoints.rightCols(1);
 }
 
-bool trajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoints, bool containsStartingWaypoint)
+bool TrajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoints, bool containsStartingWaypoint)
 {
     Eigen::MatrixXd _userWaypoints = userWaypoints; // Copy waypoints first in case we use allWaypoints as an arg.
     if (weightDimension==_userWaypoints.rows())
@@ -212,45 +212,45 @@ bool trajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoin
     }
     else
     {
-        std::cout << "[ERROR](trajectoryThread::setTrajectoryWaypoints): The dimension (# DOF) of the waypoints you provided, " << _userWaypoints.rows() << ", does not match the dimension of the task, " << weightDimension <<". Thread not starting." << std::endl;
+        std::cout << "[ERROR](TrajectoryThread::setTrajectoryWaypoints): The dimension (# DOF) of the waypoints you provided, " << _userWaypoints.rows() << ", does not match the dimension of the task, " << weightDimension <<". Thread not starting." << std::endl;
         return false;
     }
 }
 
 
 
-void trajectoryThread::setMeanWaypoints(std::vector<bool>& isMeanWaypoint)
+void TrajectoryThread::setMeanWaypoints(std::vector<bool>& isMeanWaypoint)
 {
     dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setMeanWaypoints(isMeanWaypoint);
 }
 
-void trajectoryThread::setVarianceWaypoints(std::vector<bool>& isVarWaypoint)
+void TrajectoryThread::setVarianceWaypoints(std::vector<bool>& isVarWaypoint)
 {
     dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setVarianceWaypoints(isVarWaypoint);
 }
 
-void trajectoryThread::setOptimizationWaypoints(std::vector<bool>& isOptWaypoint)
+void TrajectoryThread::setOptimizationWaypoints(std::vector<bool>& isOptWaypoint)
 {
     dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setOptimizationWaypoints(isOptWaypoint);
 }
 
-void trajectoryThread::setDofToOptimize(std::vector<Eigen::VectorXi>& dofToOptimize)
+void TrajectoryThread::setDofToOptimize(std::vector<Eigen::VectorXi>& dofToOptimize)
 {
     dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setDofToOptimize(dofToOptimize);
 }
 
-Eigen::VectorXd trajectoryThread::getBayesianOptimizationVariables()
+Eigen::VectorXd TrajectoryThread::getBayesianOptimizationVariables()
 {
     return dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->getBoptVariables();
 }
 
 
-bool trajectoryThread::setDisplacement(double dispDouble)
+bool TrajectoryThread::setDisplacement(double dispDouble)
 {
     return setDisplacement(Eigen::VectorXd::Constant(weightDimension, dispDouble));
 }
 
-bool trajectoryThread::setDisplacement(const Eigen::VectorXd& displacementVector)
+bool TrajectoryThread::setDisplacement(const Eigen::VectorXd& displacementVector)
 {
     if (weightDimension == displacementVector.rows())
     {

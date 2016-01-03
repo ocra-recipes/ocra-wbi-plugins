@@ -1,21 +1,21 @@
-#include <testActivity/controllerConnection.h>
+#include <testActivity/ControllerConnection.h>
 
 #ifndef CONNECTION_TIMEOUT
 #define CONNECTION_TIMEOUT 20.0
 #endif
 
-controllerConnection::controllerConnection()
+ControllerConnection::ControllerConnection()
 {
     open();
 }
 
-controllerConnection::~controllerConnection()
+ControllerConnection::~ControllerConnection()
 {
     close();
 }
 
 
-void controllerConnection::open()
+void ControllerConnection::open()
 {
     std::cout << "Making controller connection..." << std::endl;
     if (connectToController()) {
@@ -37,7 +37,7 @@ void controllerConnection::open()
     }
 }
 
-void controllerConnection::close()
+void ControllerConnection::close()
 {
     controllerRpcClient.close();
     for(int i=0; i<taskRpcClients.size(); i++)
@@ -46,10 +46,10 @@ void controllerConnection::close()
     }
 }
 
-bool controllerConnection::connectToController(const std::string& controllerName)
+bool ControllerConnection::connectToController(const std::string& controllerName)
 {
     if (!yarp.checkNetwork()) {
-        std::cout << "[ERROR](controllerConnection::connectToController): Yarp network isn't running." << std::endl;
+        std::cout << "[ERROR](ControllerConnection::connectToController): Yarp network isn't running." << std::endl;
         return false;
     }
     else{
@@ -64,7 +64,7 @@ bool controllerConnection::connectToController(const std::string& controllerName
             yarp::os::Time::delay(delayTime);
             timeDelayed += delayTime;
             if (timeDelayed>= CONNECTION_TIMEOUT) {
-                std::cout << "[ERROR_TIMEOUT](controllerConnection::connectToController): Could not connect to " <<controllerName << "." << std::endl;
+                std::cout << "[ERROR_TIMEOUT](ControllerConnection::connectToController): Could not connect to " <<controllerName << "." << std::endl;
             }
         }
         return connected;
@@ -73,7 +73,7 @@ bool controllerConnection::connectToController(const std::string& controllerName
 }
 
 
-std::vector<std::string> controllerConnection::getTaskPortNames()
+std::vector<std::string> ControllerConnection::getTaskPortNames()
 {
     std::vector<std::string> portNameVec;
     yarp::os::Bottle message, reply;
@@ -86,7 +86,7 @@ std::vector<std::string> controllerConnection::getTaskPortNames()
     return portNameVec;
 }
 
-bool controllerConnection::connectToTaskPorts(const std::vector<std::string> taskPortNames)
+bool ControllerConnection::connectToTaskPorts(const std::vector<std::string> taskPortNames)
 {
     int numberOfTasks = taskPortNames.size();
     taskRpcClients.resize(numberOfTasks);

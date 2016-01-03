@@ -13,12 +13,12 @@
 #include <vector>
 
 
-class controllerConnection
+class ControllerConnection
 {
 
 public:
-    controllerConnection();
-    ~controllerConnection();
+    ControllerConnection();
+    ~ControllerConnection();
     void open();
     void close();
 

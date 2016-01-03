@@ -1,6 +1,6 @@
-#include <testActivity/controlThreadBase.h>
-#include <testActivity/trajectoryThread.h>
-#include <testActivity/controllerConnection.h>
+#include <testActivity/ControlThreadBase.h>
+#include <testActivity/TrajectoryThread.h>
+#include <testActivity/ControllerConnection.h>
 // #include <yarp/os/Contact.h>
 // #include <yarp/os/impl/Dispatcher.h>
 // #include <vector>
@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    controllerConnection ctlCon;
+    ControllerConnection ctlCon;
 
     std::vector<std::string> portNames = ctlCon.getTaskPortNames();
 
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
 
     TERMINATION_STRATEGY termStrategy = WAIT_DEACTIVATE;
 
-    trajectoryThread leftHandTrajThread(10, portNames[4], waypoints, trajType, termStrategy);
+    TrajectoryThread leftHandTrajThread(10, portNames[4], waypoints, trajType, termStrategy);
 
     leftHandTrajThread.setGoalErrorThreshold(0.045);
 

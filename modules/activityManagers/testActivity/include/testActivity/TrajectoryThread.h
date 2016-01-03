@@ -1,7 +1,7 @@
 #ifndef TRAJECTORYTHREAD_H
 #define TRAJECTORYTHREAD_H
 
-#include <testActivity/controlThreadBase.h>
+#include <testActivity/ControlThreadBase.h>
 #include <wocra/Trajectory/wOcraTrajectories.h>
 #include <yarp/os/Time.h>
 #include <iostream>
@@ -22,16 +22,16 @@ enum TERMINATION_STRATEGY
     WAIT_DEACTIVATE
 };
 
-class trajectoryThread : public controlThreadBase
+class TrajectoryThread : public ControlThreadBase
 {
 
 public:
-    trajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE = MIN_JERK, const TERMINATION_STRATEGY _terminationStrategy = STOP_THREAD);
+    TrajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE = MIN_JERK, const TERMINATION_STRATEGY _terminationStrategy = STOP_THREAD);
 
     virtual bool ct_threadInit();
     virtual void ct_threadRelease();
     virtual void ct_run();
-    virtual std::string getThreadType(){return "trajectoryThread";}
+    virtual std::string getThreadType(){return "TrajectoryThread";}
 
 
     // Setters
