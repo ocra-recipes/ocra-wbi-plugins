@@ -46,7 +46,29 @@ bool wocraControllerModule::configure(ResourceFinder &rf)
 
     if( rf.check("taskSet") )
     {
-        startupTaskSetPath = rf.findFile("taskSet").c_str();
+        std::string xmlExt = ".xml";
+        std::string fileName = rf.find("taskSet").asString().c_str();
+
+        std::size_t fileExtensionStart = fileName.find_last_of(".");
+        if (fileExtensionStart == std::string::npos) {
+            fileName += xmlExt;
+        }else{
+            std::string extension = fileName.substr(fileExtensionStart);
+            if (extension != xmlExt) {
+                fileName = fileName.substr(0, fileExtensionStart) + xmlExt;
+            }
+        }
+        std::size_t subDirEnd = fileName.find_first_of("/");
+        if (subDirEnd == std::string::npos) {
+            fileName = "taskSets/" + fileName;
+        }else{
+            std::string subDir = fileName.substr(0,subDirEnd);
+            if (subDir != "taskSets/") {
+                fileName = "taskSets/" + fileName.substr(subDirEnd+1);
+            }
+        }
+
+        startupTaskSetPath = rf.findFileByName(fileName).c_str();
     }
 
     if( rf.check("sequence") )
