@@ -5,7 +5,7 @@
 #endif
 
 TrajectoryThread::TrajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE trajectoryType, const TERMINATION_STRATEGY _terminationStrategy):
-ControlThreadBase(period, taskPortName),
+ControlThread(period, taskPortName),
 userWaypoints(waypoints),
 trajType(trajectoryType),
 terminationStrategy(_terminationStrategy),
@@ -67,7 +67,7 @@ void TrajectoryThread::ct_run()
                 if(deactivateTask()){
                     stop();
                 }else{
-                    std::cout << "[WARNING] Trajectory id = "<< ControlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state, but cannot be deactivated." << std::endl;
+                    std::cout << "[WARNING] Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state, but cannot be deactivated." << std::endl;
                     yarp::os::Time::delay(1.0); // try again in one second.
                     deactivationDelay += 1.0;
                     if(deactivationDelay >= deactivationTimeout){
@@ -78,18 +78,18 @@ void TrajectoryThread::ct_run()
                 break;
             case WAIT:
                 if (printWaitingNoticeOnce) {
-                    std::cout << "Trajectory id = "<< ControlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Awaiting new commands." << std::endl;
+                    std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Awaiting new commands." << std::endl;
                     printWaitingNoticeOnce = false;
                 }
                 break;
             case WAIT_DEACTIVATE:
                 if (printWaitingNoticeOnce) {
                     if(deactivateTask()){
-                        std::cout << "Trajectory id = "<< ControlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Deactivating task and awaiting new commands." << std::endl;
+                        std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Deactivating task and awaiting new commands." << std::endl;
                         printWaitingNoticeOnce = false;
                         deactivationLatch = true;
                     }else{
-                        std::cout << "Trajectory id = "<< ControlThreadBase::threadId << " for task: " << originalTaskParams.name << " has attained its goal state and is awaiting new commands. [WARNING] Could not deactivate the task." << std::endl;
+                        std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state and is awaiting new commands. [WARNING] Could not deactivate the task." << std::endl;
                         yarp::os::Time::delay(1.0); // try again in one second.
                         deactivationDelay += 1.0;
                         if(deactivationDelay >= deactivationTimeout){

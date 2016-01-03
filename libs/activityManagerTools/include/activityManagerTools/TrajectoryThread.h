@@ -1,7 +1,7 @@
 #ifndef TRAJECTORYTHREAD_H
 #define TRAJECTORYTHREAD_H
 
-#include <activityManagerTools/ControlThreadBase.h>
+#include <activityManagerTools/ControlThread.h>
 #include <wocra/Trajectory/wOcraTrajectories.h>
 #include <yarp/os/Time.h>
 #include <iostream>
@@ -22,7 +22,7 @@ enum TERMINATION_STRATEGY
     WAIT_DEACTIVATE
 };
 
-class TrajectoryThread : public ControlThreadBase
+class TrajectoryThread : public ControlThread
 {
 
 public:

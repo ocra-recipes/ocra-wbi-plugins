@@ -1,9 +1,9 @@
-#include <activityManagerTools/ControlThreadBase.h>
+#include <activityManagerTools/ControlThread.h>
 
-int ControlThreadBase::threadId = 0;
+int ControlThread::threadId = 0;
 
 
-ControlThreadBase::ControlThreadBase(int period, const std::string& taskRpcPortName):
+ControlThread::ControlThread(int period, const std::string& taskRpcPortName):
 RateThread(period),
 taskRpcServerName(taskRpcPortName),
 controlThreadPeriod(period),
@@ -11,16 +11,16 @@ weightDimension(0),
 stateDimension(0),
 closePortTimeout(5.0)
 {
-    ControlThreadBase::threadId++;
+    ControlThread::threadId++;
 }
 
-ControlThreadBase::~ControlThreadBase()
+ControlThread::~ControlThread()
 {
 
 }
 
 
-bool ControlThreadBase::threadInit()
+bool ControlThread::threadInit()
 {
     if(openControlPorts()){
         if(connectControlPorts()){
@@ -37,9 +37,9 @@ bool ControlThreadBase::threadInit()
     return ct_threadInit();
 }
 
-void ControlThreadBase::threadRelease()
+void ControlThread::threadRelease()
 {
-    std::cout << "\nControlThreadBase: Closing control ports for thread id = " << ControlThreadBase::threadId << " for task: " << originalTaskParams.name << ".\n\n";
+    std::cout << "\nControlThread: Closing control ports for thread id = " << ControlThread::threadId << " for task: " << originalTaskParams.name << ".\n\n";
     inputPort.close();
     outputPort.close();
     yarp::os::Bottle message, reply;
@@ -57,7 +57,7 @@ void ControlThreadBase::threadRelease()
     if (reply.get(0).asInt()) {
         threadRpcClient.close();
     }else{
-        std::cout << "[WARNING](ControlThreadBase::threadRelease): Couldn't close task control ports." << std::endl;
+        std::cout << "[WARNING](ControlThread::threadRelease): Couldn't close task control ports." << std::endl;
     }
     std::cout << "Done.\n";
 
@@ -65,7 +65,7 @@ void ControlThreadBase::threadRelease()
     ct_threadRelease();
 }
 
-void ControlThreadBase::run()
+void ControlThread::run()
 {
     ct_run();
 }
@@ -73,7 +73,7 @@ void ControlThreadBase::run()
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-bool ControlThreadBase::openControlPorts()
+bool ControlThread::openControlPorts()
 {
     bool portsOpened = yarp.checkNetwork();
 
@@ -81,7 +81,7 @@ bool ControlThreadBase::openControlPorts()
     {
         std::string portNameBase = "/CT/" + getThreadType() + "/id_";
         std::stringstream portNameStream;
-        portNameStream << ControlThreadBase::threadId;
+        portNameStream << ControlThread::threadId;
         portNameBase += portNameStream.str();
 
         inputPortName = portNameBase + ":i";
@@ -103,13 +103,13 @@ bool ControlThreadBase::openControlPorts()
 
     }
     else{
-        std::cout << "[ERROR](ControlThreadBase::openControlPorts): Yarp network not running." << std::endl;
+        std::cout << "[ERROR](ControlThread::openControlPorts): Yarp network not running." << std::endl;
     }
 
     return portsOpened;
 }
 
-bool ControlThreadBase::connectControlPorts()
+bool ControlThread::connectControlPorts()
 {
     bool portsConnected = yarp.checkNetwork();
 
@@ -142,13 +142,13 @@ bool ControlThreadBase::connectControlPorts()
         }
     }
     else{
-        std::cout << "[ERROR](ControlThreadBase::connectControlPorts): Yarp network not running." << std::endl;
+        std::cout << "[ERROR](ControlThread::connectControlPorts): Yarp network not running." << std::endl;
     }
 
     return portsConnected;
 }
 
-bool ControlThreadBase::parseInput(yarp::os::Bottle* input)
+bool ControlThread::parseInput(yarp::os::Bottle* input)
 {
     if (isFirstInputBottle) {
         currentStateVector.resize(input->size());
@@ -165,12 +165,12 @@ bool ControlThreadBase::parseInput(yarp::os::Bottle* input)
 /**************************************************************************************************
                                     Nested PortReader Class
 **************************************************************************************************/
-ControlThreadBase::inputCallback::inputCallback(ControlThreadBase& ctBaseRef):ctBase(ctBaseRef)
+ControlThread::inputCallback::inputCallback(ControlThread& ctBaseRef):ctBase(ctBaseRef)
 {
     //do nothing
 }
 
-bool ControlThreadBase::inputCallback::read(yarp::os::ConnectionReader& connection)
+bool ControlThread::inputCallback::read(yarp::os::ConnectionReader& connection)
 {
     // std::cout << "Got a message!" << std::endl;
     yarp::os::Bottle input;
@@ -185,19 +185,19 @@ bool ControlThreadBase::inputCallback::read(yarp::os::ConnectionReader& connecti
 **************************************************************************************************/
 
 
-Eigen::VectorXd ControlThreadBase::getCurrentState()
+Eigen::VectorXd ControlThread::getCurrentState()
 {
     return currentStateVector;
 }
 
-void ControlThreadBase::sendGetStateMessage()
+void ControlThread::sendGetStateMessage()
 {
     yarp::os::Bottle message;
     message.addString("updateCurrentStateAndSend");
     inputPort.write(message);
 }
 
-bool ControlThreadBase::deactivateTask()
+bool ControlThread::deactivateTask()
 {
     yarp::os::Bottle message, reply;
     message.addString("deactivate");
@@ -210,7 +210,7 @@ bool ControlThreadBase::deactivateTask()
     else{return false;}
 }
 
-bool ControlThreadBase::activateTask()
+bool ControlThread::activateTask()
 {
     yarp::os::Bottle message, reply;
     message.addString("activate");
@@ -223,7 +223,7 @@ bool ControlThreadBase::activateTask()
     else{return false;}
 }
 
-bool ControlThreadBase::getTaskDimensions()
+bool ControlThread::getTaskDimensions()
 {
     yarp::os::Bottle message, reply;
     message.addString("getWeight");
@@ -231,7 +231,7 @@ bool ControlThreadBase::getTaskDimensions()
     if (reply.size()>1) {
         weightDimension = reply.size()-1;
     }else{
-        std::cout << "[ERROR](ControlThreadBase::getTaskDimensions): Did not get a valid response from the task for its weight dimension." << std::endl;
+        std::cout << "[ERROR](ControlThread::getTaskDimensions): Did not get a valid response from the task for its weight dimension." << std::endl;
         return false;
     }
 
@@ -242,13 +242,13 @@ bool ControlThreadBase::getTaskDimensions()
     if (reply.size()>1) {
         stateDimension = reply.size()-1;
     }else{
-        std::cout << "[ERROR](ControlThreadBase::getTaskDimensions): Did not get a valid response from the task for its state dimension." << std::endl;
+        std::cout << "[ERROR](ControlThread::getTaskDimensions): Did not get a valid response from the task for its state dimension." << std::endl;
         return false;
     }
     return true;
 }
 
-bool ControlThreadBase::getTaskParameters(TaskParameters& TP)
+bool ControlThread::getTaskParameters(TaskParameters& TP)
 {
     TP.weight.resize(weightDimension);
     TP.desired.resize(stateDimension);

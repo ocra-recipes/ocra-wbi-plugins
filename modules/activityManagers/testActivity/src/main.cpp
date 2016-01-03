@@ -1,4 +1,4 @@
-#include <activityManagerTools/ControlThreadBase.h>
+#include <activityManagerTools/ControlThread.h>
 #include <activityManagerTools/TrajectoryThread.h>
 #include <activityManagerTools/ControllerConnection.h>
 

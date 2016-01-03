@@ -1,5 +1,5 @@
-#ifndef CONTROLTHREADBASE_H
-#define CONTROLTHREADBASE_H
+#ifndef CONTROLTHREAD_H
+#define CONTROLTHREAD_H
 
 #include <yarp/os/Network.h>
 #include <yarp/os/RateThread.h>
@@ -44,13 +44,13 @@ public:
 
 
 
-class ControlThreadBase: public yarp::os::RateThread
+class ControlThread: public yarp::os::RateThread
 {
 
 public:
     // Constructor
-    ControlThreadBase(int period, const std::string& taskRpcPortName);
-    ~ControlThreadBase();
+    ControlThread(int period, const std::string& taskRpcPortName);
+    ~ControlThread();
 
     static int threadId;
 
@@ -60,12 +60,12 @@ public:
     virtual void threadRelease();
     virtual void run();
 
-    // ControlThreadBase pure virtual functions
+    // ControlThread pure virtual functions
     virtual bool ct_threadInit()=0;
     virtual void ct_threadRelease()=0;
     virtual void ct_run()=0;
 
-    // ControlThreadBase functions
+    // ControlThread functions
     std::string getThreadType(){return controlThreadType;}
     bool deactivateTask();
     bool activateTask();
@@ -76,10 +76,10 @@ public:
     /************** controlInputCallback *************/
     class inputCallback : public yarp::os::PortReader {
         private:
-            ControlThreadBase& ctBase;
+            ControlThread& ctBase;
 
         public:
-            inputCallback(ControlThreadBase& ctBaseRef);
+            inputCallback(ControlThread& ctBaseRef);
 
             virtual bool read(yarp::os::ConnectionReader& connection);
     };
@@ -87,7 +87,7 @@ public:
 
 protected:
 
-    void setThreadType(const std::string& _threadType = "ControlThreadBase"){controlThreadType = _threadType;}
+    void setThreadType(const std::string& _threadType = "ControlThread"){controlThreadType = _threadType;}
 
     std::string controlThreadType;
 
