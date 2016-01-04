@@ -122,8 +122,11 @@ class wocraControllerThread: public RateThread
         Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the robot
         Eigen::VectorXd fb_qdRad; // vector that contains the derivative of encoders read from the robot
         Eigen::VectorXd homePosture;
+        Eigen::VectorXd initialPosture;
         Eigen::VectorXd debugPosture;
         Eigen::VectorXd refSpeed;
+        Eigen::Vector3d initialCoMPosition;
+        Eigen::Vector3d initialTorsoPosition;
 
 
         // Eigen::VectorXd fb_Hroot_Vector;

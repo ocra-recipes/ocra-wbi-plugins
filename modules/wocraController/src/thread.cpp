@@ -80,6 +80,7 @@ wocraControllerThread::wocraControllerThread(string _name,
 
     homePosture = Eigen::VectorXd::Zero(robot->getDoFs());
     debugPosture = Eigen::VectorXd::Zero(robot->getDoFs());
+    initialPosture = Eigen::VectorXd::Zero(robot->getDoFs());
     refSpeed = Eigen::VectorXd::Constant(robot->getDoFs(), 0.17);
 
 
@@ -145,7 +146,9 @@ bool wocraControllerThread::threadInit()
     robot->setControlParam(CTRL_PARAM_REF_VEL, refSpeed.data());
 
 
-
+    initialPosture = fb_qRad;
+    initialCoMPosition = ocraModel->getCoMPosition();
+    initialTorsoPosition = ocraModel->getSegmentPosition(ocraModel->getSegmentIndex("torso")).getTranslation();
 
     /******************************************************************************************************
                                         Parse tasks and load sequence
@@ -396,7 +399,7 @@ void wocraControllerThread::threadRelease()
     }
 
     if(robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS) ){
-        bool res_setControlReference = robot->setControlReference(homePosture.data());
+        bool res_setControlReference = robot->setControlReference(initialPosture.data());
         std::cout << "\n\n--> Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
         taskSequence->clearSequence();
     }
@@ -532,6 +535,14 @@ bool wocraControllerThread::loadStabilizationTasks()
 void wocraControllerThread::stabilizeRobot()
 {
     isStabilizing = true; // prevents sequences from being updated in the run loop.
+
+    std::string postureTaskKey = "stabilization_fullPosture";
+    std::string comTaskKey = "stabilization_comTask";
+    std::string torsoTaskKey = "stabilization_torsoCartesianTask";
+
+    dynamic_cast<wocra::wOcraFullPostureTaskManager*>(taskSequence->getTaskManagerPointer(postureTaskKey))->setPosture(initialPosture);
+    dynamic_cast<wocra::wOcraCoMTaskManager*>(taskSequence->getTaskManagerPointer(comTaskKey))->setState(initialCoMPosition);
+    dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskSequence->getTaskManagerPointer(torsoTaskKey))->setState(initialTorsoPosition);
 
 
     double timeStabilizingStart = yarp::os::Time::now();
