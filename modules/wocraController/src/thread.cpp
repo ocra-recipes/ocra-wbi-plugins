@@ -65,6 +65,7 @@ wocraControllerThread::wocraControllerThread(string _name,
       startupSequence(_startupSequence),
       runInDebugMode(_runInDebugMode),
       processor(*this),
+      isStabilizing(false),
       taskSequence(NULL)//,
     //   ocraModel(NULL),
     //   ctrl(NULL)
@@ -310,7 +311,7 @@ void wocraControllerThread::run()
 
         }
     }
-    else{
+    else if (!isStabilizing){
         taskSequence->update(time_sim, *ocraModel, NULL);
     }
 
@@ -529,6 +530,9 @@ bool wocraControllerThread::loadStabilizationTasks()
 
 void wocraControllerThread::stabilizeRobot()
 {
+    isStabilizing = true; // prevents sequences from being updated in the run loop.
+
+
     double timeStabilizingStart = yarp::os::Time::now();
     double timeStabilizing = 0.0;
     const double STABILIZATION_TIMEOUT = 20.0;

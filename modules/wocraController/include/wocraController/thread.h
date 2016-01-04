@@ -94,7 +94,7 @@ class wocraControllerThread: public RateThread
         bool loadStabilizationTasks();
         void stabilizeRobot();
         bool isRobotStable();
-
+        bool isStabilizing;
 
         string name;
         string robotName;
