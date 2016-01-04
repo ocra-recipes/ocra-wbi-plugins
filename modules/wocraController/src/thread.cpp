@@ -506,6 +506,11 @@ void wocraControllerThread::parseIncomingMessage(yarp::os::Bottle *input, yarp::
 std::string wocraControllerThread::printValidMessageTags()
 {
     std::string helpString  = "\n=== Valid message tags are: ===\n";
+    helpString += "addTaskYARP: NOT IMPLEMENTED.\n";
+    helpString += "addTaskXML: Add task(s) to the task sequence from an xml file.\n";
     helpString += "removeTask: Allows you to remove a single task manager from the sequence.\n";
+    helpString += "getTaskList: Gets a list of all current tasks.\n";
+    helpString += "getTaskPorts: Gets a list of all current task ports.\n";
+    helpString += "help: Prints this message you just read.\n";
     return helpString;
 }
