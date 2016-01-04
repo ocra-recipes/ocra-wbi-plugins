@@ -21,6 +21,7 @@
 
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/RateThread.h>
+#include <yarp/os/ResourceFinder.h>
 #include <yarp/sig/Vector.h>
 
 
@@ -38,6 +39,8 @@
 #include <yarp/os/PortReader.h>
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
+
+#include <cmath>
 
 
 using namespace yarp::os;
@@ -88,6 +91,11 @@ class wocraControllerThread: public RateThread
 
     private:
 
+        bool loadStabilizationTasks();
+        void stabilizeRobot();
+        bool isRobotStable();
+        bool isStabilizing;
+
         string name;
         string robotName;
         wholeBodyInterface *robot;
@@ -114,8 +122,11 @@ class wocraControllerThread: public RateThread
         Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the robot
         Eigen::VectorXd fb_qdRad; // vector that contains the derivative of encoders read from the robot
         Eigen::VectorXd homePosture;
+        Eigen::VectorXd initialPosture;
         Eigen::VectorXd debugPosture;
         Eigen::VectorXd refSpeed;
+        Eigen::Vector3d initialCoMPosition;
+        Eigen::Vector3d initialTorsoPosition;
 
 
         // Eigen::VectorXd fb_Hroot_Vector;

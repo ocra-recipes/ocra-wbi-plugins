@@ -22,10 +22,9 @@ Here's how everything is laid out...
     - *under construction*
     - This library will eventually provide the base set of classes for creating "observerThreads" which can be launched in parallel to the controller for recording data in a way which will not affect controller performance.
 
-- [activityManagers](https://github.com/ocra-recipes/ocra-wbi-plugins/#)
+- [activityManagerTools](https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/libs/activityManagerTools)
 
-    - *under construction*
-    - This library will provide the base classes for creating "activityManagerModules" which will provide high level control logic and task set management.
+    - This library provides the necessary classes and tools for creating [`activityManagers`](https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/modules/activityManagers) which provide high level control logic and task set management.
 
 
 ###modules
@@ -42,6 +41,10 @@ Here's how everything is laid out...
 
     - *under construction*
     - "ObserverThreads" which can be launched in parallel to the controller for recording data in a way which will not affect controller performance will be held here.
+
+- [activityManagers](https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/modules/activityManagers)
+
+    - High level control logic and task set management modules.
 
 
 ###cmake
