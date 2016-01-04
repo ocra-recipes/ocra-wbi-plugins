@@ -398,6 +398,7 @@ void wocraControllerThread::threadRelease()
     if(robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS) ){
         bool res_setControlReference = robot->setControlReference(homePosture.data());
         std::cout << "\n\n--> Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
+        taskSequence->clearSequence();
     }
     else{
         std::cout << "[ERROR] (wocraControllerThread::threadRelease): Could not set the robot into Position Control mode." << std::endl;
