@@ -21,6 +21,7 @@
 
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/RateThread.h>
+#include <yarp/os/ResourceFinder.h>
 #include <yarp/sig/Vector.h>
 
 
@@ -38,6 +39,8 @@
 #include <yarp/os/PortReader.h>
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
+
+#include <cmath>
 
 
 using namespace yarp::os;
@@ -87,6 +90,11 @@ class wocraControllerThread: public RateThread
         /************** DataProcessor *************/
 
     private:
+
+        bool loadStabilizationTasks();
+        void stabilizeRobot();
+        bool isRobotStable();
+
 
         string name;
         string robotName;

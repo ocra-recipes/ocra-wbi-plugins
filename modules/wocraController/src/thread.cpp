@@ -64,7 +64,10 @@ wocraControllerThread::wocraControllerThread(string _name,
       startupTaskSetPath(_startupTaskSetPath),
       startupSequence(_startupSequence),
       runInDebugMode(_runInDebugMode),
-      processor(*this)
+      processor(*this),
+      taskSequence(NULL)//,
+    //   ocraModel(NULL),
+    //   ctrl(NULL)
 {
     // bool _isFreeBase = false;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, _isFreeBase);
@@ -100,9 +103,10 @@ wocraControllerThread::wocraControllerThread(string _name,
 
 wocraControllerThread::~wocraControllerThread()
 {
-    delete(taskSequence);
-    // delete(ocraModel);
-    // delete(ctrl);
+    if(taskSequence!=NULL){delete(taskSequence); taskSequence = NULL;}
+    // TODO: Figure out why these lines call a pure virtual method.
+    // if(ocraModel!=NULL){delete(ocraModel); ocraModel = NULL;}
+    // if(ctrl!=NULL){delete(ctrl); ctrl = NULL;}
     rpcPort.close();
 }
 
@@ -365,11 +369,11 @@ void wocraControllerThread::run()
 
             debugPort_out.write();
         }
+        else if (ocraModel->hasFixedRoot()){
+            // Put whatever you want to print here for fixed base...
+        }
         else if (!ocraModel->hasFixedRoot()){
-            // std::cout<< "\n---\nfb_Hroot:\n" << fb_Hroot_Vector(3) << " "<< fb_Hroot_Vector(7) << " "<< fb_Hroot_Vector(11) << std::endl;
-            // std::cout << "root_link pos\n" << ocraModel->getSegmentPosition(ocraModel->getSegmentIndex("root_link")).getTranslation().transpose() << std::endl;
-            // std::cout<< "fb_Troot:\n" << fb_Troot_Vector(0) <<" "<< fb_Troot_Vector(1) <<" "<< fb_Troot_Vector(2) << "\n---\n";
-            // std::cout << "root_link vel\n" << ocraModel->getSegmentVelocity(ocraModel->getSegmentIndex("root_link")).getLinearVelocity().transpose() << std::endl;
+            // Put whatever you want to print here for floating base...
         }
 
     }
@@ -382,18 +386,17 @@ void wocraControllerThread::threadRelease()
 {
     taskSequence->clearSequence();
 
-    if(robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS) )
-    {
+    if (!ocraModel->hasFixedRoot()){
+        if(loadStabilizationTasks()){
+            stabilizeRobot();
+        }else{
+            std::cout << "[WARNING] Error loading stabilization task set. Could not perform safe stabilization procedure." << std::endl;
+        }
+    }
+
+    if(robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS) ){
+        bool res_setControlReference = robot->setControlReference(homePosture.data());
         std::cout << "\n\n--> Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
-
-        if (ocraModel->hasFixedRoot()) {
-            bool res_setControlReference = robot->setControlReference(homePosture.data());
-        }
-        else{
-            bool res_setControlReference = robot->setControlReference(homePosture.data());
-            //TODO: Implement a safe home park procedure for standing.
-        }
-
     }
     else{
         std::cout << "[ERROR] (wocraControllerThread::threadRelease): Could not set the robot into Position Control mode." << std::endl;
@@ -513,4 +516,46 @@ std::string wocraControllerThread::printValidMessageTags()
     helpString += "getTaskPorts: Gets a list of all current task ports.\n";
     helpString += "help: Prints this message you just read.\n";
     return helpString;
+}
+
+bool wocraControllerThread::loadStabilizationTasks()
+{
+    wocra::wOcraTaskParser taskParser;
+    yarp::os::ResourceFinder RF;
+    std::string filePath = RF.findFileByName("taskSets/stabilizationTaskSet.xml");
+    taskParser.parseTasksXML(filePath.c_str());
+    return taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+}
+
+void wocraControllerThread::stabilizeRobot()
+{
+    double timeStabilizingStart = yarp::os::Time::now();
+    double timeStabilizing = 0.0;
+    const double STABILIZATION_TIMEOUT = 20.0;
+
+
+    std::cout << "Attempting to stabilize the robot's posture. \nTime elapsed:" << std::endl;
+    while(!isRobotStable() && timeStabilizing < STABILIZATION_TIMEOUT)
+    {
+        run();
+        timeStabilizing = yarp::os::Time::now() - timeStabilizingStart;
+
+        if (std::fmod(timeStabilizing, 5.0) <= 0.01) {
+            // Every 5 seconds or so print the time.
+            std::cout << std::setprecision(4) << timeStabilizing << " sec" << std::endl;
+        }
+        if (timeStabilizing >= STABILIZATION_TIMEOUT) {
+            std::cout << "\n****\n[WARNING] Stabilization procedure has timed out. The robot may fall!\n****\n";
+        }
+    }
+    if(isRobotStable())
+    {
+        std::cout << "Stabilization procedure complete!" << std::endl;
+    }
+}
+
+bool wocraControllerThread::isRobotStable()
+{
+    const double ZERO_VELOCITY_THRESHOLD = 0.01;
+    return (ocraModel->getCoMVelocity().norm() + ocraModel->getJointVelocities().norm()) <= ZERO_VELOCITY_THRESHOLD;
 }
