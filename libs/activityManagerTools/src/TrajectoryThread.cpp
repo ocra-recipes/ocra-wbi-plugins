@@ -27,7 +27,12 @@ deactivationLatch(false)
             trajectory = new wocra::wOcraLinearInterpolationTrajectory();
             break;
         case GAUSSIAN_PROCESS:
+            #if USING_SMLT
             trajectory = new wocra::wOcraGaussianProcessTrajectory();
+            #else
+            std::cout << "You need the SMLT libs to use GAUSSIAN_PROCESS type trajectories. I'm gonna make you a MIN_JERK instead." << std::endl;
+            trajectory = new wocra::wOcraMinimumJerkTrajectory();
+            #endif
             break;
     }
 }
@@ -118,6 +123,7 @@ void TrajectoryThread::ct_run()
             {
                 desStateBottle.addDouble(desiredState(i));
             }
+            #if USING_SMLT
             if(useVarianceModulation)
             {
                 Eigen::VectorXd desiredWeights = varianceToWeights(desiredVariance);
@@ -126,6 +132,7 @@ void TrajectoryThread::ct_run()
                     desStateBottle.addDouble(desiredWeights(i));
                 }
             }
+            #endif
         }
         else
         {
@@ -200,10 +207,12 @@ bool TrajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoin
 
         trajectory->setWaypoints(allWaypoints);
 
+        #if USING_SMLT
         if (trajType==GAUSSIAN_PROCESS)
         {
             maximumVariance = dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->getMaxVariance();
         }
+        #endif
 
         printWaitingNoticeOnce=true;
         deactivationLatch = false;
@@ -218,7 +227,30 @@ bool TrajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoin
 }
 
 
+bool TrajectoryThread::setDisplacement(double dispDouble)
+{
+    return setDisplacement(Eigen::VectorXd::Constant(weightDimension, dispDouble));
+}
 
+bool TrajectoryThread::setDisplacement(const Eigen::VectorXd& displacementVector)
+{
+    if (weightDimension == displacementVector.rows())
+    {
+        startStateVector = getCurrentState();
+        Eigen::MatrixXd tmpWaypoints = Eigen::MatrixXd::Zero(weightDimension, 2);
+        tmpWaypoints.col(0) << startStateVector;
+        tmpWaypoints.col(1) << startStateVector + displacementVector;
+        setTrajectoryWaypoints(tmpWaypoints, true);
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+
+
+#if USING_SMLT
 void TrajectoryThread::setMeanWaypoints(std::vector<bool>& isMeanWaypoint)
 {
     dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setMeanWaypoints(isMeanWaypoint);
@@ -243,25 +275,4 @@ Eigen::VectorXd TrajectoryThread::getBayesianOptimizationVariables()
 {
     return dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->getBoptVariables();
 }
-
-
-bool TrajectoryThread::setDisplacement(double dispDouble)
-{
-    return setDisplacement(Eigen::VectorXd::Constant(weightDimension, dispDouble));
-}
-
-bool TrajectoryThread::setDisplacement(const Eigen::VectorXd& displacementVector)
-{
-    if (weightDimension == displacementVector.rows())
-    {
-        startStateVector = getCurrentState();
-        Eigen::MatrixXd tmpWaypoints = Eigen::MatrixXd::Zero(weightDimension, 2);
-        tmpWaypoints.col(0) << startStateVector;
-        tmpWaypoints.col(1) << startStateVector + displacementVector;
-        setTrajectoryWaypoints(tmpWaypoints, true);
-        return true;
-    }
-    else{
-        return false;
-    }
-}
+#endif

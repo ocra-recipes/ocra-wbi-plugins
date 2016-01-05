@@ -41,18 +41,21 @@ public:
     void setTerminationStrategy(const TERMINATION_STRATEGY newTermStrat){terminationStrategy = newTermStrat;}
     void setGoalErrorThreshold(const double newErrorThresh){errorThreshold = newErrorThresh;}
     void setUseVarianceModulation(bool newVarMod){useVarianceModulation = newVarMod;}
+    // Getters
 
+    // General assesment functions
+    bool goalAttained();
+
+    #if USING_SMLT
+    // Setters
     void setMeanWaypoints(std::vector<bool>& isMeanWaypoint);
     void setVarianceWaypoints(std::vector<bool>& isVarWaypoint);
     void setOptimizationWaypoints(std::vector<bool>& isOptWaypoint);
     void setDofToOptimize(std::vector<Eigen::VectorXi>& dofToOptimize);
 
-
     // Getters
     Eigen::VectorXd getBayesianOptimizationVariables();
-
-    // General assesment functions
-    bool goalAttained();
+    #endif
 
 
 protected:
