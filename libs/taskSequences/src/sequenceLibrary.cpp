@@ -2,13 +2,13 @@
 #include "taskSequences/sequenceLibrary.h"
 
 #if USING_SMLT
-#define SMLT_SEQUENCES else if (name == "TaskOptimization"){return new TaskOptimization();} else if (name == "StandingReach"){return new StandingReach();}  else if (name == "MoveWeight"){return new MoveWeight();}
+#define SMLT_SEQUENCES else if (name == "TaskOptimization"){return new TaskOptimization();} else if (name == "StandingReach"){return new StandingReach();}  else if (name == "MoveWeight"){return new MoveWeight();}  else if (name == "Experiment"){return new Experiment();}
 #else
 #define SMLT_SEQUENCES
 #endif
 
 #if USING_SMLT
-#define SMLT_SEQUENCE_NAME_ERROR errorMessage+="\nTaskOptimization"; errorMessage+="\nStandingReach"; errorMessage+="\nMoveWeight";
+#define SMLT_SEQUENCE_NAME_ERROR errorMessage+="\nTaskOptimization"; errorMessage+="\nStandingReach"; errorMessage+="\nMoveWeight"; errorMessage+="\nExperiment";
 #else
 #define SMLT_SEQUENCE_NAME_ERROR
 #endif

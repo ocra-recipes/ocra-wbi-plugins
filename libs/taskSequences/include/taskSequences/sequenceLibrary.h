@@ -25,6 +25,7 @@
 #include "sequences/TaskOptimization.h"
 #include "sequences/StandingReach.h"
 #include "sequences/MoveWeight.h"
+#include "sequences/Experiment.h"
 #endif
 // namespace sequence{
 
