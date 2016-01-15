@@ -8,7 +8,9 @@ set(ROBOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${ROBOT_NAME}")
 # If no env variable YARP_ROBOT_NAME is defined
 if(CODYCO_INSTALL_ALL_ROBOTS)
     set(robots icubGazeboSim
-               iCubParis02)
+               iCubParis02
+               iCubParis01
+               )
 else()
   if(ROBOT_NAME)
       set(robots ${ROBOT_NAME})
