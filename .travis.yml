@@ -46,9 +46,14 @@ install:
     - cd ycm ; mkdir build ; cd build
     - cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE}
     - sudo cmake --build . --config ${TRAVIS_BUILD_TYPE} --target install
+    - git clone https://github.com/robotology/idyntree.git
+    - cd idyntree ; mkdir build ; cd build
+    - cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE}
+    - sudo cmake --build . --config ${TRAVIS_BUILD_TYPE} --target install
+
+script:
     - cd $CI_DIR
     - mkdir build ; cd build ; cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE
-script:
     - make -j2
     - sudo make install
     #run tests
