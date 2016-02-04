@@ -32,6 +32,7 @@ install:
     - CI_DIR=$PWD
     - git clone https://github.com/robotology/codyco-superbuild.git
     - cd codyco-superbuild ; mkdir build ; cd build
+    - sed -i 's/install -qq/install -y -qq/g' ../.ci/travis-deps.sh
     - sh ../.ci/travis-deps.sh
     - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DCODYCO_BUILD_OCRA_MODULES:BOOL=TRUE -DCODYCO_TRAVIS_CI:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
     - sh ../.ci/travis-build.sh
