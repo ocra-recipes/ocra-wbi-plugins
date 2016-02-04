@@ -1,15 +1,36 @@
 sudo: required
 dist: trusty
 
-language: cpp
+os:
+  - linux
+  - osx
 
-compiler:
-  - gcc
-  - clang
-  
+language: c++
+
 env:
- - TRAVIS_BUILD_TYPE=Release
- - TRAVIS_BUILD_TYPE=Debug
+  - TRAVIS_BUILD_TYPE=Debug TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
+  - TRAVIS_BUILD_TYPE=Release TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
+  - TRAVIS_BUILD_TYPE=Debug TRAVIS_CMAKE_GENERATOR="Xcode"
+  - TRAVIS_BUILD_TYPE=Release TRAVIS_CMAKE_GENERATOR="Xcode"
+
+matrix:
+  exclude:
+    - os: linux
+      env: TRAVIS_BUILD_TYPE=Release TRAVIS_CMAKE_GENERATOR="Xcode"
+    - os: linux
+      env: TRAVIS_BUILD_TYPE=Debug TRAVIS_CMAKE_GENERATOR="Xcode"
+
+branches:
+  except:
+  - gh-pages
+  - appveyor
+
+script:
+  - cmake --build . --config ${TRAVIS_BUILD_TYPE}
+
+after_success:
+  - cmake --build . --config ${TRAVIS_BUILD_TYPE} --target install
+
  
 install:
     - CI_DIR=$PWD
@@ -19,15 +40,19 @@ install:
     - sudo apt-get install -qq -y libeigen3-dev libboost-all-dev
     - cd ~
     - git clone https://github.com/ocra-recipes/eigen_lgsm.git
-    - cd eigen_lgsm ; mkdir build ; cd build ; cmake ..
+    - cd eigen_lgsm ; mkdir build ; cd build
+    - cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE}
     - sudo make install
     - cd ~
     - git clone https://github.com/ocra-recipes/ocra-recipes.git
     - cd ocra-recipes; mkdir build ; cd build; cmake ..
-    - make -j2
-    - sudo make install
+    - make -j2 && sudo make install
+    - git clone https://github.com/robotology/ycm.git
+    - cd ycm ; mkdir build ; cd build
+    - cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE}
+    - sudo cmake --build . --config ${TRAVIS_BUILD_TYPE} --target install
     - cd $CI_DIR
-    - mkdir build ; cd build ; cmake ..  -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE
+    - mkdir build ; cd build ; cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE
 script:
     - make -j2
     - sudo make install
