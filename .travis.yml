@@ -6,7 +6,9 @@ os:
   - osx
 
 language: c++
-
+compiler:
+  - gcc
+  - clang
 env:
   - TRAVIS_BUILD_TYPE=Debug TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
   - TRAVIS_BUILD_TYPE=Release TRAVIS_CMAKE_GENERATOR="Unix Makefiles"
@@ -25,13 +27,6 @@ branches:
   - gh-pages
   - appveyor
 
-script:
-  - cmake --build . --config ${TRAVIS_BUILD_TYPE}
-
-after_success:
-  - cmake --build . --config ${TRAVIS_BUILD_TYPE} --target install
-
- 
 install:
     - CI_DIR=$PWD
     - sudo sh -c 'echo "deb http://www.icub.org/ubuntu trusty contrib/science" > /etc/apt/sources.list.d/icub.list'
