@@ -6,6 +6,7 @@ os:
   - osx
 
 language: c++
+
 compiler:
   - gcc
   - clang
@@ -29,31 +30,12 @@ branches:
 
 install:
     - CI_DIR=$PWD
-    - sudo sh -c 'echo "deb http://www.icub.org/ubuntu trusty contrib/science" > /etc/apt/sources.list.d/icub.list'
-    - sudo apt-get update
-    - sudo apt-get install -qq -y yarp icub --force-yes
-    - sudo apt-get install -qq -y libeigen3-dev libboost-all-dev
-    - cd ~
-    - git clone https://github.com/ocra-recipes/eigen_lgsm.git
-    - cd eigen_lgsm ; mkdir build ; cd build
-    - cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE}
-    - sudo make install
-    - cd ~
-    - git clone https://github.com/ocra-recipes/ocra-recipes.git
-    - cd ocra-recipes; mkdir build ; cd build; cmake ..
-    - make -j2 && sudo make install
-    - git clone https://github.com/robotology/ycm.git
-    - cd ycm ; mkdir build ; cd build
-    - cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE}
-    - sudo cmake --build . --config ${TRAVIS_BUILD_TYPE} --target install
-    - git clone https://github.com/robotology/idyntree.git
-    - cd idyntree ; mkdir build ; cd build
-    - cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE}
-    - sudo cmake --build . --config ${TRAVIS_BUILD_TYPE} --target install
+    - git clone https://github.com/robotology/codyco-superbuild.git
+    - cd codyco-superbuild ; mkdir build ; cd build
+    - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DCODYCO_BUILD_OCRA_MODULES:BOOL=TRUE -DCODYCO_TRAVIS_CI:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
+    - sh ../.ci/travis-build.sh
 
 script:
-    - cd $CI_DIR
-    - mkdir build ; cd build ; cmake .. -G"${TRAVIS_CMAKE_GENERATOR}" -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE
     - make -j2
     - sudo make install
     #run tests
