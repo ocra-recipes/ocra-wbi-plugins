@@ -1,7 +1,7 @@
 SET(PROJECTNAME taskSequences)
 PROJECT(${PROJECTNAME} CXX)
 
-find_package(WOCRA REQUIRED)
+find_package(OcraRecipes REQUIRED)
 
 FILE(GLOB_RECURSE folder_source ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
@@ -30,7 +30,7 @@ SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
-                    ${WOCRA_INCLUDE_DIRS}
+                    ${OcraRecipes_INCLUDE_DIRS}
                     ${ocraWbiPlugins_SOURCE_DIR}/include
                     )
 
@@ -41,7 +41,7 @@ LIST(APPEND link_libs   ${YARP_LIBRARIES}
                         ${ICUB_LIBRARIES}
                         ${iDynTree_LIBRARIES}
                         ${yarpWholeBodyInterface_LIBRARIES}
-                        ${WOCRA_LIBRARIES}
+                        ${OcraRecipes_LIBRARIES}
                         ocraWbiPlugins)
 
 IF(SMLT_FOUND)

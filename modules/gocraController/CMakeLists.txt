@@ -1,9 +1,7 @@
 SET(PROJECTNAME gocraController)
 PROJECT(${PROJECTNAME} CXX)
 
-find_package(OCRA REQUIRED)
-find_package(GOCRA REQUIRED)
-find_package(QUADPROG REQUIRED)
+find_package(OcraRecipes REQUIRED)
 find_package(Boost COMPONENTS system filesystem REQUIRED)
 
 FILE(GLOB folder_source ./src/*.cpp)
@@ -14,7 +12,7 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${Boost_INCLUDE_DIR}
-                    ${GOCRA_INCLUDE_DIRS}
+                    ${OcraRecipes_INCLUDE_DIRS}
                     ${ocraWbiPlugins_SOURCE_DIR}/include
                     )
 
@@ -25,7 +23,7 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
                                      ${iDynTree_LIBRARIES}
                                      ${yarpWholeBodyInterface_LIBRARIES}
                                      ${GOCRA_LIBRARIES}
-                                     ${OCRA_LIBRARIES}
+                                     ${OcraRecipes_LIBRARIES}
                                      ${QUADPROG_LIBRARIES}
                                      ${Boost_LIBRARIES}
                                      ocraWbiPlugins
