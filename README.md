@@ -1,4 +1,4 @@
-#ocra-wbi-plugins
+#ocra-wbi-plugins [![Build Status](https://travis-ci.org/ocra-recipes/ocra-wbi-plugins.svg?branch=master)](https://travis-ci.org/ocra-recipes/ocra-wbi-plugins)
 
 Controller implementations and plugins for communicating between the whole body controller libraries developed at ISIR, [`ocra-recipes`](https://github.com/ocra-recipes/ocra-recipes), and the iCub Whole Body Interface, [`WBI`](https://github.com/robotology/wholebodyinterface), libraries.
 
