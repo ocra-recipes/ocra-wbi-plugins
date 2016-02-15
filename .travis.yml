@@ -37,10 +37,7 @@ install:
     - sh .ci/travis-deps.sh
     - mkdir build ; cd build
     - cmake -G"${TRAVIS_CMAKE_GENERATOR}" -DCODYCO_BUILD_OCRA_MODULES:BOOL=TRUE -DCODYCO_TRAVIS_CI:BOOL=ON -DCMAKE_BUILD_TYPE=${TRAVIS_BUILD_TYPE} -DNON_INTERACTIVE_BUILD:BOOL=TRUE ..
-    - sh ../.ci/travis-build.sh
-    
 
 script:
-    - make -j2
-    - sudo make install
-    #run tests
+    - sh ../.ci/travis-build.sh
+
