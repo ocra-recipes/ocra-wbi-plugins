@@ -22,8 +22,6 @@ matrix:
       env: TRAVIS_BUILD_TYPE=Release TRAVIS_CMAKE_GENERATOR="Xcode"
     - os: linux
       env: TRAVIS_BUILD_TYPE=Debug TRAVIS_CMAKE_GENERATOR="Xcode"
-  allow_failures:
-    - os: osx
 
 branches:
   except:
