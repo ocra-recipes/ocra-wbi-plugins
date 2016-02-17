@@ -3,7 +3,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void LeftHandReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void LeftHandReach::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
         // Full posture task
@@ -17,7 +17,7 @@
         taskManagers["tmSegCartHandLeft"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, 10.0, 3.0, 100.0, posLHandDes);
     }
 
-    void LeftHandReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void LeftHandReach::doUpdate(double time, ocra::Model& state, void** args)
     {
     }
 // }

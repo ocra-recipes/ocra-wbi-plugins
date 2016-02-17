@@ -12,7 +12,7 @@ public:
     observerBase();
     virtual ~observerBase();
 
-    // void sample(const double time, wocra::wOcraModel& state);
+    // void sample(const double time, ocra::Model& state);
 
 protected:
 

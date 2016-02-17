@@ -3,7 +3,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void JointTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void JointTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
         // Full posture task
@@ -34,7 +34,7 @@
 
     }
 
-    void JointTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void JointTest::doUpdate(double time, ocra::Model& state, void** args)
     {
 
         wocra::wOcraFullPostureTaskManager*   tmp_tmFull = dynamic_cast<wocra::wOcraFullPostureTaskManager*>(taskManagers["tmFull"]);

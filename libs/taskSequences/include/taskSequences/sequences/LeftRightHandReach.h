@@ -9,8 +9,8 @@
     class LeftRightHandReach : public wocra::wOcraTaskSequenceBase
     {
         protected:
-            virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-            virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+            virtual void doInit(wocra::wOcraController& ctrl, ocra::Model& model);
+            virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
             // // Full posture task
             // wocra::wOcraFullPostureTaskManager*            tmFull;

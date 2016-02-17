@@ -3,7 +3,7 @@
 
 
 // namespace sequence{
-    void CartesianTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void CartesianTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
@@ -44,7 +44,7 @@
 
     }
 
-    void CartesianTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void CartesianTest::doUpdate(double time, ocra::Model& state, void** args)
     {
         wocra::wOcraSegCartesianTaskManager*   tmp_tmLeftHandCart = dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskManagers["tmLeftHandCart"]);
         // tmLeftHandCart->setPosition(desiredPos);

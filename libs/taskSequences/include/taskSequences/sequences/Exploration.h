@@ -15,8 +15,8 @@
         public:
             ~Exploration();
         protected:
-            virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-            virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+            virtual void doInit(wocra::wOcraController& ctrl, ocra::Model& model);
+            virtual void doUpdate(double time, ocra::Model& state, void** args);
 
         private:
             yarp::os::Network yarp;
@@ -38,14 +38,14 @@
             double maxVariance;
             double resetTimeLeft, resetTimeRight;
 
-            bool attainedGoal(wocra::wOcraModel& state, int segmentIndex);
+            bool attainedGoal(ocra::Model& state, int segmentIndex);
 
             Eigen::MatrixXd desiredPosVelAcc_leftHand, desiredPosVelAcc_rightHand;
             Eigen::VectorXd desiredVariance_leftHand, desiredVariance_rightHand, desiredWeights_leftHand, desiredWeights_rightHand;
 
             Eigen::VectorXd mapVarianceToWeights(Eigen::VectorXd& variance);
 
-            void generateNewWaypoints(wocra::wOcraModel& state, int segmentIndex);
+            void generateNewWaypoints(ocra::Model& state, int segmentIndex);
 
             Eigen::VectorXd generateTarget(int segmentIndex);
 

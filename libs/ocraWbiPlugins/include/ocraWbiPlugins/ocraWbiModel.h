@@ -1,12 +1,12 @@
 #ifndef OCRAWBIMODEL_H
 #define OCRAWBIMODEL_H
 
-#include "wocra/Models/wOcraModel.h"
+#include "ocra/control/Model.h"
 #include <wbi/wbi.h>
 
 using namespace wbi;
 
-class ocraWbiModel: public wocra::wOcraModel
+class ocraWbiModel: public ocra::Model
 {
 public:
 

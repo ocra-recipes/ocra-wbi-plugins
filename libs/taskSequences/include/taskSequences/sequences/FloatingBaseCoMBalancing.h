@@ -14,11 +14,11 @@
     class FloatingBaseCoMBalancing: public wocra::wOcraTaskSequenceBase
     {
         protected:
-            virtual void doInit(wocra::wOcraController& c, wocra::wOcraModel& m);
-            virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+            virtual void doInit(wocra::wOcraController& c, ocra::Model& m);
+            virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
             wocra::wOcraController*                        ctrl;
-            wocra::wOcraModel*                             model;
+            ocra::Model*                             model;
 
             //CoM task
             wocra::wOcraCoMTaskManager*                    tmCoM;

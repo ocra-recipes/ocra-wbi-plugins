@@ -5,7 +5,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
@@ -125,7 +125,7 @@
 
 
 
-    void TrajectoryTrackingTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void TrajectoryTrackingTest::doUpdate(double time, ocra::Model& state, void** args)
     {
         if (isDisplacementd)
         {

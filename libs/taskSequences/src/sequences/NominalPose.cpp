@@ -4,7 +4,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void NominalPose::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void NominalPose::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
     {
         tFinal = 5.0;
         tInitial = 0.0;
@@ -16,7 +16,7 @@
         taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 5.0, 1, q_init);
     }
 
-    void NominalPose::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void NominalPose::doUpdate(double time, ocra::Model& state, void** args)
     {
         wocra::wOcraFullPostureTaskManager*   tmp_tmFull = dynamic_cast<wocra::wOcraFullPostureTaskManager*>(taskManagers["tmFull"]);
 

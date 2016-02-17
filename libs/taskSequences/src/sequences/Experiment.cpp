@@ -80,7 +80,7 @@ Experiment::~Experiment()
 }
 
 
-void Experiment::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Experiment::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
 {
     ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
     wbiModel = &wbiModelRef;
@@ -421,7 +421,7 @@ bool Experiment::userConfirmsAction(yarp::os::Bottle* reply)
     }
 }
 
-void Experiment::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Experiment::doUpdate(double time, ocra::Model& state, void** args)
 {
     sendFramePositionsToGazebo();
 
@@ -666,7 +666,7 @@ void Experiment::initializeTrajectory(double time)
 
 
 
-void Experiment::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
+void Experiment::executeTrajectory(double relativeTime,  ocra::Model& state)
 {
     // Claculate cost at timestep and write to file if logging.
     calculateInstantaneousCost(relativeTime, state);
@@ -706,7 +706,7 @@ Eigen::VectorXd Experiment::mapVarianceToWeights(Eigen::VectorXd& variance)
     return weights;
 }
 
-bool Experiment::returnToStablePosture(const double time, const wocra::wOcraModel& state)
+bool Experiment::returnToStablePosture(const double time, const ocra::Model& state)
 {
 
     bool robotIsStable = false;
@@ -760,7 +760,7 @@ bool Experiment::returnToStablePosture(const double time, const wocra::wOcraMode
 }
 
 
-bool Experiment::isBackInHomePosition(const wocra::wOcraModel& state)
+bool Experiment::isBackInHomePosition(const ocra::Model& state)
 {
     double error;
     error = (rHandPosStart - rightHandTask->getTaskFramePosition() ).norm();
@@ -768,7 +768,7 @@ bool Experiment::isBackInHomePosition(const wocra::wOcraModel& state)
     return result;
 }
 
-bool Experiment::attainedGoal(const wocra::wOcraModel& state)
+bool Experiment::attainedGoal(const ocra::Model& state)
 {
     double error;
     error = (rHandPosEnd - rightHandTask->getTaskFramePosition() ).norm();
@@ -787,7 +787,7 @@ bool Experiment::attainedGoal(const wocra::wOcraModel& state)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void Experiment::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state)
+void Experiment::calculateInstantaneousCost(const double time, const ocra::Model& state)
 {
 
     if (useGoalCost){
@@ -804,7 +804,7 @@ void Experiment::calculateInstantaneousCost(const double time, const wocra::wOcr
 
 }
 
-double Experiment::calculateGoalCost(const double time, const wocra::wOcraModel& state)
+double Experiment::calculateGoalCost(const double time, const ocra::Model& state)
 {
     double cost = ( rHandPosEnd - rightHandTask->getTaskFramePosition() ).squaredNorm();
     double timeFactor = pow((time / rightHandTrajectory->getDuration()), 2);
@@ -814,14 +814,14 @@ double Experiment::calculateGoalCost(const double time, const wocra::wOcraModel&
 }
 
 
-double Experiment::calculateTrackingCost(const double time, const wocra::wOcraModel& state)
+double Experiment::calculateTrackingCost(const double time, const ocra::Model& state)
 {
     double cost = ( desiredPosVelAcc_rightHand.col(0) - rightHandTask->getTaskFramePosition() ).squaredNorm();
     return cost;
 }
 
 
-double Experiment::calculateEnergyCost(const double time, const wocra::wOcraModel& state)
+double Experiment::calculateEnergyCost(const double time, const ocra::Model& state)
 {
     Eigen::VectorXd torques;
     wbiModel->getJointTorques(torques);

@@ -2,7 +2,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void PoseTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void PoseTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
@@ -46,7 +46,7 @@
         taskManagers["tmLeftHandPose"]      = new wocra::wOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp, Kd, wLeftHandTask, endingDispd);
     }
 
-    void PoseTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void PoseTest::doUpdate(double time, ocra::Model& state, void** args)
     {
         wocra::wOcraSegPoseTaskManager*   tmp_tmLeftHandPose = dynamic_cast<wocra::wOcraSegPoseTaskManager*>(taskManagers["tmLeftHandPose"]);
         // tmLeftHandCart->setPosition(desiredPos);

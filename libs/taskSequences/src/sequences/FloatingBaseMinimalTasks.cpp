@@ -4,7 +4,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void FloatingBaseMinimalTasks::doInit(wocra::wOcraController& c, wocra::wOcraModel& m)
+    void FloatingBaseMinimalTasks::doInit(wocra::wOcraController& c, ocra::Model& m)
     {
         ctrl = &c;
         model = &m;
@@ -93,7 +93,7 @@
 
     }
 
-    void FloatingBaseMinimalTasks::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void FloatingBaseMinimalTasks::doUpdate(double time, ocra::Model& state, void** args)
     {
         if (time==0.15)
         {

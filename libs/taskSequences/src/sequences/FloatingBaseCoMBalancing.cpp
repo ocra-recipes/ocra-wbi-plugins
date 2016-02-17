@@ -11,7 +11,7 @@
 #define TAU_MAX_ALL 24.0
 
 // namespace sequence{
-    void FloatingBaseCoMBalancing::doInit(wocra::wOcraController& c, wocra::wOcraModel& m)
+    void FloatingBaseCoMBalancing::doInit(wocra::wOcraController& c, ocra::Model& m)
     {
         ctrl = &c;
         model = &m;
@@ -72,7 +72,7 @@
 
     }
 
-    void FloatingBaseCoMBalancing::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void FloatingBaseCoMBalancing::doUpdate(double time, ocra::Model& state, void** args)
     {
         double period = 6;
         double duration = 2*period;

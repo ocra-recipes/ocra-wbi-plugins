@@ -225,7 +225,7 @@ void TaskOptimization::connectYarpPorts()
     }
 }
 
-void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void TaskOptimization::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
 {
 
     ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
@@ -510,7 +510,7 @@ void TaskOptimization::removeObstacle()
     obstacle_port.write(obstacleBottle);
 }
 
-void TaskOptimization::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
+void TaskOptimization::executeTrajectory(double relativeTime,  ocra::Model& state)
 {
     if (relativeTime>=obstacleTime) {
         insertObstacle();
@@ -648,7 +648,7 @@ bool TaskOptimization::parseNewOptVarsBottle()
     else{return false;}
 }
 
-void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void TaskOptimization::doUpdate(double time, ocra::Model& state, void** args)
 {
 
     sendFramePositionsToGazebo();
@@ -704,7 +704,7 @@ void TaskOptimization::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::
 
 // void encapsulateBottleData()
 
-bool TaskOptimization::isBackInHomePosition(wocra::wOcraModel& state, int segmentIndex)
+bool TaskOptimization::isBackInHomePosition(ocra::Model& state, int segmentIndex)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -721,7 +721,7 @@ bool TaskOptimization::isBackInHomePosition(wocra::wOcraModel& state, int segmen
     return result;
 }
 
-bool TaskOptimization::attainedGoal(wocra::wOcraModel& state, int segmentIndex)
+bool TaskOptimization::attainedGoal(ocra::Model& state, int segmentIndex)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -751,7 +751,7 @@ Eigen::VectorXd TaskOptimization::mapVarianceToWeights(Eigen::VectorXd& variance
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void TaskOptimization::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+void TaskOptimization::calculateInstantaneousCost(const double time, const ocra::Model& state, int segmentIndex)
 {
 
     if (useGoalCost){
@@ -768,7 +768,7 @@ void TaskOptimization::calculateInstantaneousCost(const double time, const wocra
 
 }
 
-double TaskOptimization::calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double TaskOptimization::calculateGoalCost(const double time, const ocra::Model& state, int segmentIndex)
 {
     double cost = ( rightHandGoalPosition - rightHandTask->getTaskFramePosition() ).squaredNorm();
     double timeFactor = pow((time / rightHandTrajectory->getDuration()), 10);
@@ -778,14 +778,14 @@ double TaskOptimization::calculateGoalCost(const double time, const wocra::wOcra
 }
 
 
-double TaskOptimization::calculateTrackingCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double TaskOptimization::calculateTrackingCost(const double time, const ocra::Model& state, int segmentIndex)
 {
     double cost = ( desiredPosVelAcc_rightHand.col(0) - rightHandTask->getTaskFramePosition() ).squaredNorm();
     return cost;
 }
 
 
-double TaskOptimization::calculateEnergyCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double TaskOptimization::calculateEnergyCost(const double time, const ocra::Model& state, int segmentIndex)
 {
     Eigen::VectorXd torques;
     wbiModel->getJointTorques(torques);
@@ -806,7 +806,7 @@ double TaskOptimization::calculateEnergyCost(const double time, const wocra::wOc
 /*
 *   1D Obstacle Test
 */
-void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel& state)
+void TaskOptimization::obstacleTest_UpdateThread(double time, ocra::Model& state)
 {
     if(!sequenceFinished)
     {
@@ -957,7 +957,7 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
 *   3D Obstacle Test
 */
 
-void TaskOptimization::ArmCrossingTest_UpdateThread(double time, wocra::wOcraModel& state)
+void TaskOptimization::ArmCrossingTest_UpdateThread(double time, ocra::Model& state)
 {
     /* code */
 }

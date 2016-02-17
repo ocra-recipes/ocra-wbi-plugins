@@ -22,7 +22,7 @@ Exploration::~Exploration()
 }
 
 
-void Exploration::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void Exploration::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
@@ -127,7 +127,7 @@ void Exploration::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 
 
 
-void Exploration::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void Exploration::doUpdate(double time, ocra::Model& state, void** args)
 {
 
     Eigen::Vector3d currentLeftHandPos = (leftHandTask->getTaskFramePosition() + Eigen::Vector3d(0,0,1)).array() * Eigen::Array3d(-1, -1, 1);
@@ -209,7 +209,7 @@ void Exploration::doUpdate(double time, wocra::wOcraModel& state, void** args)
 
 }
 
-bool Exploration::attainedGoal(wocra::wOcraModel& state, int segmentIndex)
+bool Exploration::attainedGoal(ocra::Model& state, int segmentIndex)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -243,7 +243,7 @@ Eigen::VectorXd Exploration::mapVarianceToWeights(Eigen::VectorXd& variance)
 }
 
 
-void Exploration::generateNewWaypoints(wocra::wOcraModel& state, int segmentIndex)
+void Exploration::generateNewWaypoints(ocra::Model& state, int segmentIndex)
 {
     std::cout << "\n==================" << std::endl;
     Eigen::VectorXd startPoint = state.getSegmentPosition(segmentIndex).getTranslation();

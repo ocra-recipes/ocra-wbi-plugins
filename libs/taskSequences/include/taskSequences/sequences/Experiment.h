@@ -25,8 +25,8 @@ class Experiment: public wocra::wOcraTaskSequenceBase
         Experiment();
         ~Experiment();
     protected:
-        virtual void doInit(wocra::wOcraController& c, wocra::wOcraModel& m);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(wocra::wOcraController& c, ocra::Model& m);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         ocraWbiModel* wbiModel;
 
@@ -136,17 +136,17 @@ class Experiment: public wocra::wOcraTaskSequenceBase
         bool closeLogFiles();
         void sendOptimizationParameters();
         void initializeTrajectory(double time);
-        void executeTrajectory(double relativeTime,  wocra::wOcraModel& state);
+        void executeTrajectory(double relativeTime,  ocra::Model& state);
         bool sendTestDataToSolver();
         double postProcessInstantaneousCosts();
         bool parseNewOptVarsBottle();
-        bool isBackInHomePosition(const wocra::wOcraModel& state);
-        bool attainedGoal(const wocra::wOcraModel& state);
-        void calculateInstantaneousCost(const double time, const wocra::wOcraModel& state);
-        double calculateGoalCost(const double time, const wocra::wOcraModel& state);
-        double calculateTrackingCost(const double time, const wocra::wOcraModel& state);
-        double calculateEnergyCost(const double time, const wocra::wOcraModel& state);
-        bool returnToStablePosture(const double time, const wocra::wOcraModel& state);
+        bool isBackInHomePosition(const ocra::Model& state);
+        bool attainedGoal(const ocra::Model& state);
+        void calculateInstantaneousCost(const double time, const ocra::Model& state);
+        double calculateGoalCost(const double time, const ocra::Model& state);
+        double calculateTrackingCost(const double time, const ocra::Model& state);
+        double calculateEnergyCost(const double time, const ocra::Model& state);
+        bool returnToStablePosture(const double time, const ocra::Model& state);
 
         void setInitialWaypoints();
         void initializeOptimization();

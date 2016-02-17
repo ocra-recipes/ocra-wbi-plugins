@@ -2,7 +2,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void OrientationTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void OrientationTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 
@@ -43,7 +43,7 @@
         taskManagers["tmLeftHandOrient"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "r_hand", Kp, Kd, Eigen::Vector3d(0.0, 1.0, 0.0), endingRotd);
     }
 
-    void OrientationTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void OrientationTest::doUpdate(double time, ocra::Model& state, void** args)
     {
         wocra::wOcraSegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<wocra::wOcraSegOrientationTaskManager*>(taskManagers["tmLeftHandOrient"]);
         std::cout << "\n---\nStarting orientation: " << startingRotd << std::endl;

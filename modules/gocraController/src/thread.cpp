@@ -16,9 +16,7 @@
 */
 
 #include <gocraController/thread.h>
-#include <../../gocraController/include/gocraController/gocraWbiModel.h>
 #include <iostream>
-#include <ocraWbiPlugins/ocraWbiUtil.h>
 
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
@@ -51,7 +49,7 @@ using namespace std;
 #define TORQUE_MAX 24
 #define TIME_MSEC_TO_SEC 0.001
 
-void getNPosture(gocra::gOcraModel &model, VectorXd &q);
+void getNPosture(ocra::Model &model, VectorXd &q);
 
 //*************************************************************************************************************************
 gocraControllerThread::gocraControllerThread(string _name,
@@ -75,7 +73,7 @@ gocraControllerThread::gocraControllerThread(string _name,
 
 
     bool isFreeBase = false;
-    ocraModel = new gocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
+    ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useGrav = true;// enable gravity compensation
     ctrl = new gocra::GHCJTController("icubControl", *ocraModel, internalSolver, useGrav);
 
@@ -440,7 +438,7 @@ void gocraControllerThread::threadRelease()
     //robot->setControlReference(torques_cmd.data());
 }
 
-void getNPosture(gocra::gOcraModel& model, VectorXd &q)
+void getNPosture(ocra::Model& model, VectorXd &q)
 {
     q[model.getDofIndex("torso_pitch")] = M_PI / 18;
     q[model.getDofIndex("r_elbow")] = M_PI / 4;

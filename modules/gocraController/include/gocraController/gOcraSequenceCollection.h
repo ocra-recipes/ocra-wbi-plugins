@@ -2,6 +2,8 @@
 #define GOCRASEQUENCECOLLECTION_H
 
 #include "gocra/Tasks/gOcraTaskManagerCollectionBase.h"
+#include <ocraWbiPlugins/ocraWbiModel.h>
+
 //#include "wocra/Trajectory/wOcraTrajectory.h"
 
 #include <fstream>
@@ -11,8 +13,8 @@
 class Sequence_InitialPoseHold : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -21,8 +23,8 @@ class Sequence_InitialPoseHold : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_NominalPose : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& gmodel);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& gmodel);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         Eigen::VectorXd                                 q_init;
@@ -30,7 +32,7 @@ class Sequence_NominalPose : public gocra::gOcraTaskManagerCollectionBase
         double                                          tInitial;
         double                                          tFinal;
         int                                             t_pich_index;
-        gocra::gOcraModel*                              model;
+        ocra::Model*                              model;
 
         gocra::gOcraFullPostureTaskManager*             tmFull;
 
@@ -49,8 +51,8 @@ class Sequence_NominalPose : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_LeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& controller, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& controller, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -72,8 +74,8 @@ class Sequence_LeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& controller, ocra::Model& gmodel);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -101,7 +103,7 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
         double                                         zeroToOne;
         Eigen::MatrixXd                                param_priority;
         gocra::GHCJTController*                        ctrl;
-        gocra::gOcraModel*                             model;
+        ocra::Model*                             model;
         Eigen::VectorXd                                nominal_q;
         double                                         kp_posture, kd_posture, kp_lh, kd_lh, kp_head, kd_head, a_lh_head, a_head_lh, a_torso_lh, a_torso_head;
 
@@ -130,8 +132,8 @@ class Sequence_ComLeftHandReach : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_ComLeftHandReachReplay : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& controller, ocra::Model& gmodel);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -149,7 +151,7 @@ class Sequence_ComLeftHandReachReplay : public gocra::gOcraTaskManagerCollection
         int                                            nt;//nb of active tasks
         Eigen::MatrixXd                                param_priority;
         gocra::GHCJTController*                        ctrl;
-        gocra::gOcraModel*                             model;
+        ocra::Model*                             model;
         Eigen::VectorXd                                nominal_q;
         double                                         kp_posture, kd_posture, kp_lh, kd_lh, kp_head, kd_head, a_lh_head, a_head_lh, a_torso_lh, a_torso_head;
 
@@ -170,8 +172,8 @@ class Sequence_ComLeftHandReachReplay : public gocra::gOcraTaskManagerCollection
 class Sequence_LeftRightHandReach : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -188,8 +190,8 @@ class Sequence_LeftRightHandReach : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_CartesianTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -205,8 +207,8 @@ class Sequence_CartesianTest : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_PoseTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -223,8 +225,8 @@ class Sequence_PoseTest : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_OrientationTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -243,8 +245,8 @@ class Sequence_OrientationTest : public gocra::gOcraTaskManagerCollectionBase
 class Sequence_TrajectoryTrackingTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -274,8 +276,8 @@ class Sequence_TrajectoryTrackingTest : public gocra::gOcraTaskManagerCollection
 class Sequence_FloatingBaseEstimationTests : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         // Full posture task
         gocra::gOcraFullPostureTaskManager*            tmFull;
@@ -304,8 +306,8 @@ class Sequence_FloatingBaseEstimationTests : public gocra::gOcraTaskManagerColle
 class Sequence_JointTest : public gocra::gOcraTaskManagerCollectionBase
 {
     protected:
-        virtual void doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model);
-        virtual void doUpdate(double time, gocra::gOcraModel& state, void** args);
+        virtual void doInit(gocra::GHCJTController& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& state, void** args);
 
         Eigen::VectorXd q_init;
         Eigen::VectorXd q_des;

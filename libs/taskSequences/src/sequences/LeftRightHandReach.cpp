@@ -3,7 +3,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void LeftRightHandReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void LeftRightHandReach::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
         // Full posture task
@@ -37,7 +37,7 @@
 
     }
 
-    void LeftRightHandReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void LeftRightHandReach::doUpdate(double time, ocra::Model& state, void** args)
     {
     }
 // }

@@ -135,7 +135,7 @@ public:
 
 //=================================  Class methods  =================================//
 ocraWbiModel::ocraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* _wbi, const bool freeRoot)
-    :wocra::wOcraModel(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new ocraWbiModel_pimpl(robot->getFrameList().size(),freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
+    :ocra::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(_wbi),owm_pimpl(new ocraWbiModel_pimpl(robot->getFrameList().size(),freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
 {
     owm_pimpl->freeRoot = freeRoot;
     int full_wbi_size = robotNumDOF+FREE_ROOT_DOF; // N+6

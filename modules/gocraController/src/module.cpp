@@ -36,7 +36,7 @@
 #include <gocraController/thread.h>
 #include <gocraController/module.h>
 
-YARP_DECLARE_DEVICES(icubmod)
+// YARP_DECLARE_DEVICES(icubmod)
 
 using namespace yarp::dev;
 using namespace yarpWbi;
