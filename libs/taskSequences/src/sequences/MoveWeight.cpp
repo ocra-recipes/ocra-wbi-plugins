@@ -6,7 +6,7 @@
 #endif
 
 #ifndef VAR_THRESH
-#define VAR_THRESH 0.8
+#define VAR_THRESH 0.5
 #endif
 
 #ifndef VAR_BETA
@@ -38,7 +38,7 @@ MoveWeight::MoveWeight()
 
     connectYarpPorts();
 
-    bOptCovarianceScalingFactor = 4.0;
+    bOptCovarianceScalingFactor = 40.0;
 
     replayOptimalTrajectory = true;
 
@@ -49,7 +49,7 @@ MoveWeight::MoveWeight()
 
     logTrajectoryData = true;
 
-    rootLogFilePathPrefix = "/home/ryan/Desktop/tmp-test/";
+    rootLogFilePathPrefix = "/home/ryan/Dropbox/RSS_2016/raw_data/";//"/home/ryan/Desktop/tmp-test/";
 
     rootLogFilePathPrefix += "MoveWeight";
 
@@ -334,10 +334,17 @@ void MoveWeight::setInitialWaypoints()
     isOptWaypoint[1] = true;
     isOptWaypoint[2] = false;
 
+    // std::vector<Eigen::VectorXi> dofToOptimize(3);
+    // dofToOptimize[0] = Eigen::VectorXi();
+    // Eigen::VectorXi tmpVec(3);
+    // tmpVec << 1,2,3; // X Y Z
+    // dofToOptimize[1] = tmpVec;
+    // dofToOptimize[2] = Eigen::VectorXi();
+
     std::vector<Eigen::VectorXi> dofToOptimize(3);
     dofToOptimize[0] = Eigen::VectorXi();
-    Eigen::VectorXi tmpVec(3);
-    tmpVec << 1,2,3; // X Y Z
+    Eigen::VectorXi tmpVec(4);
+    tmpVec << 0,1,2,3; // t X Y Z
     dofToOptimize[1] = tmpVec;
     dofToOptimize[2] = Eigen::VectorXi();
 
@@ -751,7 +758,7 @@ void MoveWeight::calculateInstantaneousCost(const double time, const wocra::wOcr
 double MoveWeight::calculateGoalCost(const double time, const wocra::wOcraModel& state)
 {
     double cost = ( rHandPosEnd - rightHandTask->getTaskFramePosition() ).squaredNorm();
-    double timeFactor = pow((time / rightHandTrajectory->getDuration()), 2);
+    double timeFactor = pow((time / rightHandTrajectory->getDuration()), 10);
 
     cost *= timeFactor;
     return cost;
@@ -779,7 +786,7 @@ double MoveWeight::postProcessInstantaneousCosts()
 
     if (useGoalCost){
         goalCostMat = goalCostMat.topRows(costIterCounter).eval();
-        totalCostMat.col(1) += goalCostMat.col(1);
+        totalCostMat.col(1) += goalCostMat.col(1);//*1000.0;
         totalCostMat.col(0) = goalCostMat.col(0);
     }
     if (useTrackingCost){
@@ -820,7 +827,9 @@ double MoveWeight::postProcessInstantaneousCosts()
         totalInstantaneousCostFile << totalCostMat;
     }
 
-    double returnCost = totalCostMat.col(1).norm();
+    // double returnCost = totalCostMat.col(1).norm();
+    double timeExecution = totalCostMat.maxCoeff();
+    double returnCost = totalCostMat.col(1).sum() / timeExecution;
 
     return returnCost;
 }
@@ -1007,33 +1016,46 @@ void MoveWeight::sendOptimizationParameters()
 
     Eigen::MatrixXd wyptData = rightHandTrajectory->getWaypointData();
 
-    double tMax = wyptData.col(0).maxCoeff();
-    double tMin = 0.0;
+    // double tMax = wyptData.col(0).maxCoeff();
+    // double tMin = 0.0;
+    double tMid = wyptData(1,0);
+    double tMax = tMid + 1.0;
+    double tMin = tMid - 1.0;
+
+
 
     int indexCounter = 0;
 
     if (nDims==4) {
-        double timeBuffer = 0.5;
-        searchSpaceMin(indexCounter) = tMin + timeBuffer;
-        searchSpaceMax(indexCounter) = tMax - timeBuffer;
+        double timeBuffer = 1.5;
+        searchSpaceMin(indexCounter) = tMin;
+        // searchSpaceMin(indexCounter) = tMin + timeBuffer;
+        searchSpaceMax(indexCounter) = tMax;
+        // searchSpaceMax(indexCounter) = tMax - timeBuffer;
         indexCounter++;
     }
     double spaceBuffer = -0.02; // -0.05 // positive means search box is inside the movement vector (defined from start to end point) and negative means the search box is bigger than the vector.
 
-    // X
-    searchSpaceMin(indexCounter) = wyptData.col(1).minCoeff() + spaceBuffer;
-    searchSpaceMax(indexCounter) = wyptData.col(1).maxCoeff() - spaceBuffer;
-    indexCounter++;
+    // // X
+    // searchSpaceMin(indexCounter) = wyptData.col(1).minCoeff() + spaceBuffer;
+    // searchSpaceMax(indexCounter) = wyptData.col(1).maxCoeff() - spaceBuffer;
+    // indexCounter++;
+    //
+    // // Y
+    // searchSpaceMin(indexCounter) = wyptData.col(2).minCoeff() + spaceBuffer;
+    // searchSpaceMax(indexCounter) = wyptData.col(2).maxCoeff() - spaceBuffer;
+    // indexCounter++;
+    //
+    // // Z
+    // searchSpaceMin(indexCounter) = wyptData.col(3).minCoeff() + spaceBuffer;
+    // searchSpaceMax(indexCounter) = wyptData.col(3).maxCoeff() - spaceBuffer;
 
-    // Y
-    searchSpaceMin(indexCounter) = wyptData.col(2).minCoeff() + spaceBuffer;
-    searchSpaceMax(indexCounter) = wyptData.col(2).maxCoeff() - spaceBuffer;
-    indexCounter++;
 
-    // Z
-    searchSpaceMin(indexCounter) = wyptData.col(3).minCoeff() + spaceBuffer;
-    searchSpaceMax(indexCounter) = wyptData.col(3).maxCoeff() - spaceBuffer;
-
+    Eigen::Vector3d middleWaypoint, searchBox;
+    searchBox = Eigen::Vector3d(0.05, 0.05, 0.02);
+    middleWaypoint = wyptData.rightCols(3).row(1).transpose();
+    searchSpaceMin.tail(3) << middleWaypoint - searchBox;
+    searchSpaceMax.tail(3) << middleWaypoint + searchBox;
 
 
     for(int i=0; i<nDims; i++)

@@ -169,7 +169,7 @@ bool wocraControllerThread::threadInit()
             std::string portPrefix = "/WBC/debug";
             debugPort_in.open((portPrefix+":i").c_str());
             debugPort_out.open((portPrefix+":o").c_str());
-            debugJointIndex = 0;
+            debugJointIndex = 3;
         }
         else{
             std::cout << "[ERR] Cannot run debug mode with floating base." << std::endl;

@@ -17,8 +17,8 @@ TaskOptimization::TaskOptimization()
 
     useVarianceModulation = true;
 
-    runObstacleTest_1D = false;
-    runObstacleTest_3D = true;
+    runObstacleTest_1D = true;
+    runObstacleTest_3D = false;
     runArmCrossingTest = false;
 
     // Must come after the runObstacleTest variables...
@@ -26,7 +26,7 @@ TaskOptimization::TaskOptimization()
 
     if (runObstacleTest_1D) {
         obstacleTime = 1.0;
-        bOptCovarianceScalingFactor = 1.0;
+        bOptCovarianceScalingFactor = 6.0;
 
     }else if (runObstacleTest_3D) {
         obstacleTime = 0.0;
@@ -45,7 +45,7 @@ TaskOptimization::TaskOptimization()
 
     logTrajectoryData = true;
 
-    rootLogFilePathPrefix = "/home/ryan/Desktop/tmp-test/";
+    rootLogFilePathPrefix = "/home/ryan/Dropbox/RSS_2016/raw_data/";//"/home/ryan/Desktop/tmp-test/";
 
     if (runObstacleTest_1D) {
         rootLogFilePathPrefix += "ObstacleTest_1D";
@@ -243,7 +243,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     double weight_fullPosture   = 0.0001;
 
     //  torsoPosture
-    double Kp_torsoPosture      = 5.0;
+    double Kp_torsoPosture      = 30.0;
     double Kd_torsoPosture      = 2.0 * sqrt(Kp_torsoPosture);
     // double weight_torsoPosture  = 0.001;
     double weight_torsoPosture  = 0.01;
@@ -260,6 +260,8 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     */
 
     // fullPosture
+    std::cout << "model.nbInternalDofs(): " << model.nbInternalDofs() << std::endl;
+
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getHomePosture(model, nominal_q);
 
@@ -332,6 +334,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
 
 
 
+
     if (runObstacleTest_1D)
     {
         /*
@@ -341,6 +344,13 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
         dofToOptimize[0].resize(2);
         dofToOptimize[0] << 0, dofIndex+1;
         optVariables = rightHandTrajectory->getBoptVariables(1, dofToOptimize);
+        std::vector<bool> varBoolVec;
+        varBoolVec.push_back(true);
+        varBoolVec.push_back(true);
+        varBoolVec.push_back(false);
+        rightHandTrajectory->setVarianceWaypoints(varBoolVec);
+        rightHandTrajectory->printWaypointData();
+
     }
 
     else if (runObstacleTest_3D)
@@ -603,7 +613,8 @@ double TaskOptimization::postProcessInstantaneousCosts()
         totalInstantaneousCostFile << totalCostMat;
     }
 
-    double returnCost = totalCostMat.col(1).norm();
+    double timeExecution = totalCostMat.maxCoeff();
+    double returnCost = totalCostMat.col(1).sum() / timeExecution;
 
     return returnCost;
 }
@@ -760,7 +771,7 @@ void TaskOptimization::calculateInstantaneousCost(const double time, const wocra
 double TaskOptimization::calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
 {
     double cost = ( rightHandGoalPosition - rightHandTask->getTaskFramePosition() ).squaredNorm();
-    double timeFactor = pow((time / rightHandTrajectory->getDuration()), 2);
+    double timeFactor = pow((time / rightHandTrajectory->getDuration()), 10);
 
     cost *= timeFactor;
     return cost;
