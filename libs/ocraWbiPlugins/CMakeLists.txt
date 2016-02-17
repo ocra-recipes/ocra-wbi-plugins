@@ -15,10 +15,9 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
 
 ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source})
 
-
-TARGET_LINK_LIBRARIES(${PROJECTNAME} ${YARP_LIBRARIES}
-                                     ${ICUB_LIBRARIES}
-                                     ${iDynTree_LIBRARIES}
+TARGET_LINK_LIBRARIES(${PROJECTNAME} #${YARP_LIBRARIES}
+                                     #${ICUB_LIBRARIES}
+                                     #${iDynTree_LIBRARIES}
                                      ${yarpWholeBodyInterface_LIBRARIES}
                                      ${OcraRecipes_LIBRARIES}
                                      )

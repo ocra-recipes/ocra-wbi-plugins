@@ -37,12 +37,13 @@ INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
 
 ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source} ${folder_header})
 
-LIST(APPEND link_libs   ${YARP_LIBRARIES}
-                        ${ICUB_LIBRARIES}
+LIST(APPEND link_libs   #${YARP_LIBRARIES}
+                        #${ICUB_LIBRARIES}
                         ${iDynTree_LIBRARIES}
                         ${yarpWholeBodyInterface_LIBRARIES}
                         ${OcraRecipes_LIBRARIES}
-                        ocraWbiPlugins)
+                        ocraWbiPlugins
+)
 
 IF(SMLT_FOUND)
     LIST(APPEND link_libs ${SMLT_LIBRARIES})
