@@ -32,7 +32,7 @@
 
 
 #include "wocra/wOcraController.h"
-#include "wocra/Solvers/OneLevelSolver.h"
+#include "ocra/optim/OneLevelSolver.h"
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
 
 
@@ -109,7 +109,7 @@ class wocraControllerThread: public RateThread
 
 
         wocra::wOcraController *ctrl;
-        wocra::OneLevelSolverWithQuadProg internalSolver;
+        ocra::OneLevelSolverWithQuadProg internalSolver;
 
         wocra::wOcraTaskSequenceBase* taskSequence;
 

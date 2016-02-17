@@ -36,7 +36,6 @@
 //#include "gOcraCtrlTaskManager.h"
 #include <gocraController/gOcraSequenceCollection.h>
 #include "gocra/GHCJTController.h"
-#include "gocra/Solvers/OneLevelSolver.h"
 #include "gocra/Tasks/gOcraTaskManagerCollectionBase.h"
 
 
@@ -58,7 +57,7 @@ class gocraControllerThread: public RateThread
     ocraWbiModel *ocraModel;
     yarp::os::Property options;
     gocra::GHCJTController *ctrl;
-    gocra::OneLevelSolverWithQuadProg internalSolver;
+    ocra::OneLevelSolverWithQuadProg internalSolver;
 
     gocra::gOcraTaskManagerCollectionBase* sequence;
     // wocra::wOcraTaskManagerCollectionBase* sequence_01;
