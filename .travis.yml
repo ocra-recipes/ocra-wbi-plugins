@@ -27,6 +27,11 @@ branches:
   except:
   - gh-pages
   - appveyor
+  - reorganize
+# whitelist
+branches:
+  only:
+    - master
 
 install:
     - CI_DIR=$PWD
@@ -40,4 +45,3 @@ install:
 
 script:
     - sh ../.ci/travis-build.sh
-
