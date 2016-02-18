@@ -3,7 +3,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void Empty::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void Empty::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
     }
 

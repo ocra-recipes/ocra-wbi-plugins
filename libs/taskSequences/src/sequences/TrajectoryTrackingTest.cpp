@@ -5,7 +5,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void TrajectoryTrackingTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void TrajectoryTrackingTest::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 

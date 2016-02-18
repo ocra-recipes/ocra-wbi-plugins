@@ -25,7 +25,7 @@ class Experiment: public wocra::wOcraTaskSequenceBase
         Experiment();
         ~Experiment();
     protected:
-        virtual void doInit(wocra::wOcraController& c, ocra::Model& m);
+        virtual void doInit(ocra::Controller& c, ocra::Model& m);
         virtual void doUpdate(double time, ocra::Model& state, void** args);
     private:
         ocraWbiModel* wbiModel;

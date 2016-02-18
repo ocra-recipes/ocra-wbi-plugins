@@ -3,7 +3,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void FixedBaseMinimalTasks::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void FixedBaseMinimalTasks::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
 
         Eigen::VectorXd q_full = Eigen::VectorXd::Zero(model.nbInternalDofs());

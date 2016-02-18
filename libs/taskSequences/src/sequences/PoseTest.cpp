@@ -2,7 +2,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void PoseTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void PoseTest::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 

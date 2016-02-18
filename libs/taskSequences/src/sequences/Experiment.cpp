@@ -80,7 +80,7 @@ Experiment::~Experiment()
 }
 
 
-void Experiment::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+void Experiment::doInit(ocra::Controller& ctrl, ocra::Model& model)
 {
     ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
     wbiModel = &wbiModelRef;

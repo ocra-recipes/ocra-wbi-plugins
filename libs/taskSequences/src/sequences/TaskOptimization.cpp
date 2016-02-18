@@ -225,7 +225,7 @@ void TaskOptimization::connectYarpPorts()
     }
 }
 
-void TaskOptimization::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+void TaskOptimization::doInit(ocra::Controller& ctrl, ocra::Model& model)
 {
 
     ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);

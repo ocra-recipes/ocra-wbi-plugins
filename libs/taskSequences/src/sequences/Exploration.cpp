@@ -22,7 +22,7 @@ Exploration::~Exploration()
 }
 
 
-void Exploration::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+void Exploration::doInit(ocra::Controller& ctrl, ocra::Model& model)
 {
     ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 

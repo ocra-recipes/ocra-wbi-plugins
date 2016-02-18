@@ -11,9 +11,9 @@
 #define TAU_MAX_ALL 24.0
 
 // namespace sequence{
-    void FloatingBaseCoMBalancing::doInit(wocra::wOcraController& c, ocra::Model& m)
+    void FloatingBaseCoMBalancing::doInit(ocra::Controller& c, ocra::Model& m)
     {
-        ctrl = &c;
+        ctrl = &dynamic_cast<wocra::wOcraController&>(c);
         model = &m;
         bool usesYARP = true;
         recorded = false;

@@ -4,7 +4,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void NominalPose::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void NominalPose::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
         tFinal = 5.0;
         tInitial = 0.0;

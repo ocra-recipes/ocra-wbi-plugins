@@ -3,7 +3,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void InitialPoseHold::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void InitialPoseHold::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
         Eigen::VectorXd q_init = model.getJointPositions();
         std::cout << "q init: " << q_init << std::endl;

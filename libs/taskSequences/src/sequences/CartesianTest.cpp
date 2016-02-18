@@ -3,7 +3,7 @@
 
 
 // namespace sequence{
-    void CartesianTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void CartesianTest::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 

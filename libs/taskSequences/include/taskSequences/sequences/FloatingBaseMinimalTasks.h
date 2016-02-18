@@ -10,10 +10,9 @@
     class FloatingBaseMinimalTasks: public wocra::wOcraTaskSequenceBase
     {
         protected:
-            virtual void doInit(wocra::wOcraController& c, ocra::Model& m);
+            virtual void doInit(ocra::Controller& c, ocra::Model& m);
             virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
-            wocra::wOcraController*                        ctrl;
             ocra::Model*                             model;
             wocra::wOcraCoMTaskManager*                    tmCoM;
 

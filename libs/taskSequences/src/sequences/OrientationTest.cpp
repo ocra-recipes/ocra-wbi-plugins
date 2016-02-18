@@ -2,7 +2,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void OrientationTest::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void OrientationTest::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
         ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
 

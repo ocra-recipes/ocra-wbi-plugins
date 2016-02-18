@@ -30,7 +30,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 
-
+#include "ocra/control/Controller.h"
 #include "wocra/wOcraController.h"
 #include "ocra/optim/OneLevelSolver.h"
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
@@ -108,7 +108,7 @@ class wocraControllerThread: public RateThread
         int debugJointIndex;
 
 
-        wocra::wOcraController *ctrl;
+        ocra::Controller *ctrl;
         ocra::OneLevelSolverWithQuadProg internalSolver;
 
         wocra::wOcraTaskSequenceBase* taskSequence;

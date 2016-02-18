@@ -6,6 +6,9 @@
 #include "ocra/control/JointLimitConstraint.h"
 #include "../sequenceTools.h"
 
+#include "wocra/wOcraController.h"
+
+
 #include <fstream>
 
 // namespace sequence {
@@ -14,7 +17,7 @@
     class FloatingBaseCoMBalancing: public wocra::wOcraTaskSequenceBase
     {
         protected:
-            virtual void doInit(wocra::wOcraController& c, ocra::Model& m);
+            virtual void doInit(ocra::Controller& c, ocra::Model& m);
             virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
             wocra::wOcraController*                        ctrl;

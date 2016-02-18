@@ -2,7 +2,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void FloatingBaseEstimationTests::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void FloatingBaseEstimationTests::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
         Eigen::VectorXd q_init = model.getJointPositions();
         // std::cout << "q init: " << q_init << std::endl;

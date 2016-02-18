@@ -3,7 +3,7 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
-    void Debug::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+    void Debug::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
 
         Eigen::VectorXd q_full = Eigen::VectorXd::Zero(model.nbInternalDofs());

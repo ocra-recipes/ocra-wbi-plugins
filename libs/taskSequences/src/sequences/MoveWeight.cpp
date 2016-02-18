@@ -79,7 +79,7 @@ MoveWeight::~MoveWeight()
 }
 
 
-void MoveWeight::doInit(wocra::wOcraController& ctrl, ocra::Model& model)
+void MoveWeight::doInit(ocra::Controller& ctrl, ocra::Model& model)
 {
     ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
     wbiModel = &wbiModelRef;
