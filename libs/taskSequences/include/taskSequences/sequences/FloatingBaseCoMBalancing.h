@@ -2,8 +2,8 @@
 #define FLOATINGBASECOMBALANCING_H
 
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
-#include "wocra/Constraints/JointLimitConstraint.h"
 #include "ocra/control/TorqueLimitConstraint.h"
+#include "ocra/control/JointLimitConstraint.h"
 #include "../sequenceTools.h"
 
 #include <fstream>
@@ -25,7 +25,7 @@
             void sinusoidalTraj(double left, double right, double period, double t, double& posTraj, double& velTraj, double& accTraj);
 
             //Limits
-            wocra::JointLimitConstraint*                   jlConstraint;
+            ocra::JointLimitConstraint*                   jlConstraint;
             Eigen::VectorXd                                torqueSaturationLimit;
             ocra::TorqueLimitConstraint*                  tauLimitConstraint;
             void setJointTorqueLimits();

@@ -176,7 +176,7 @@
 
     void FloatingBaseCoMBalancing::setJointLimits(double hpos)
     {
-        jlConstraint = new wocra::JointLimitConstraint(*model, model->getJointLowerLimits(), model->getJointUpperLimits(), hpos);
+        jlConstraint = new ocra::JointLimitConstraint(*model, model->getJointLowerLimits(), model->getJointUpperLimits(), hpos);
         ctrl->addConstraint(*jlConstraint);
     }
 // }
