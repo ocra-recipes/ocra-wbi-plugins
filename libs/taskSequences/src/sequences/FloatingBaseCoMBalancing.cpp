@@ -170,7 +170,7 @@
         for (std::vector<std::string>::iterator it = armDofVector.begin() ; it != armDofVector.end(); ++it)
             torqueSaturationLimit[model->getDofIndex(*it)] = TAU_MAX_ARM;
 
-        tauLimitConstraint = new wocra::TorqueLimitConstraint(*model,torqueSaturationLimit);
+        tauLimitConstraint = new ocra::TorqueLimitConstraint(*model,torqueSaturationLimit);
         ctrl->addConstraint(*tauLimitConstraint);
     }
 

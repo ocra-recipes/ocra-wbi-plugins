@@ -3,7 +3,7 @@
 
 #include "wocra/Tasks/wOcraTaskSequenceBase.h"
 #include "wocra/Constraints/JointLimitConstraint.h"
-#include "wocra/Constraints/TorqueLimitConstraint.h"
+#include "ocra/control/TorqueLimitConstraint.h"
 #include "../sequenceTools.h"
 
 #include <fstream>
@@ -27,7 +27,7 @@
             //Limits
             wocra::JointLimitConstraint*                   jlConstraint;
             Eigen::VectorXd                                torqueSaturationLimit;
-            wocra::TorqueLimitConstraint*                  tauLimitConstraint;
+            ocra::TorqueLimitConstraint*                  tauLimitConstraint;
             void setJointTorqueLimits();
             void setJointLimits(double hpos);
 
