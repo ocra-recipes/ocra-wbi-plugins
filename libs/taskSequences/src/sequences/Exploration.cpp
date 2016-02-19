@@ -61,7 +61,7 @@ void Exploration::doInit(ocra::Controller& ctrl, ocra::Model& model)
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getHomePosture(model, nominal_q);
 
-    taskManagers["fullPosture"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPosture", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, weight_fullPosture, nominal_q, usesYARP);
+    taskManagers["fullPosture"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPosture", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, weight_fullPosture, nominal_q, usesYARP);
 
 
     // torsoPosture
@@ -70,33 +70,33 @@ void Exploration::doInit(ocra::Controller& ctrl, ocra::Model& model)
     torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
     torsoTaskPosDes << 0.0, 0.0, 0.0;
 
-    taskManagers["torsoPosture"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "torsoPosture", ocra::FullState::INTERNAL, torso_indices, Kp_torsoPosture, Kd_torsoPosture, weight_torsoPosture, torsoTaskPosDes, usesYARP);
+    taskManagers["torsoPosture"] = new ocra::PartialPostureTaskManager(ctrl, model, "torsoPosture", ocra::FullState::INTERNAL, torso_indices, Kp_torsoPosture, Kd_torsoPosture, weight_torsoPosture, torsoTaskPosDes, usesYARP);
 
 
     //  leftHand
     Eigen::Vector3d l_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    taskManagers["leftHand"] = new wocra::wOcraVariableWeightsTaskManager(ctrl, model, "leftHand", "l_hand", l_handDisp, Kp_leftHand, Kd_leftHand, weights_leftHand, usesYARP);
+    taskManagers["leftHand"] = new ocra::VariableWeightsTaskManager(ctrl, model, "leftHand", "l_hand", l_handDisp, Kp_leftHand, Kd_leftHand, weights_leftHand, usesYARP);
 
     //  rightHand
     Eigen::Vector3d r_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    taskManagers["rightHand"] = new wocra::wOcraVariableWeightsTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    taskManagers["rightHand"] = new ocra::VariableWeightsTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
 
 
     /*
     *   Trajectory constructors
     */
 
-    leftHandTrajectory = new wocra::wOcraExperimentalTrajectory();
-    rightHandTrajectory = new wocra::wOcraExperimentalTrajectory();
+    leftHandTrajectory = new ocra::ExperimentalTrajectory();
+    rightHandTrajectory = new ocra::ExperimentalTrajectory();
 
     // leftHandTrajectory->setWaypoints(startingPos, desiredPos)
 
     /*
     *   Cast tasks to derived classes to access their virtual functions
     */
-    leftHandTask = dynamic_cast<wocra::wOcraVariableWeightsTaskManager*>(taskManagers["leftHand"]);
+    leftHandTask = dynamic_cast<ocra::VariableWeightsTaskManager*>(taskManagers["leftHand"]);
 
-    rightHandTask = dynamic_cast<wocra::wOcraVariableWeightsTaskManager*>(taskManagers["rightHand"]);
+    rightHandTask = dynamic_cast<ocra::VariableWeightsTaskManager*>(taskManagers["rightHand"]);
 
 
     /*

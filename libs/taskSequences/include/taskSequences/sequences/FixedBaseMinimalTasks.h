@@ -1,12 +1,12 @@
 #ifndef FIXEDBASEMINIMALTASKS_H
 #define FIXEDBASEMINIMALTASKS_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
 // namespace sequence {
 
-    class FixedBaseMinimalTasks : public wocra::wOcraTaskSequenceBase
+    class FixedBaseMinimalTasks : public ocra::TaskSequence
     {
         protected:
             virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);

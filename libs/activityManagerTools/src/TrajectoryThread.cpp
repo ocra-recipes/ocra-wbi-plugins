@@ -21,17 +21,17 @@ deactivationLatch(false)
     switch (trajType)
     {
         case MIN_JERK:
-            trajectory = new wocra::wOcraMinimumJerkTrajectory();
+            trajectory = new ocra::MinimumJerkTrajectory();
             break;
         case LIN_INTERP:
-            trajectory = new wocra::wOcraLinearInterpolationTrajectory();
+            trajectory = new ocra::LinearInterpolationTrajectory();
             break;
         case GAUSSIAN_PROCESS:
             #if USING_SMLT
-            trajectory = new wocra::wOcraGaussianProcessTrajectory();
+            trajectory = new ocra::GaussianProcessTrajectory();
             #else
             std::cout << "You need the SMLT libs to use GAUSSIAN_PROCESS type trajectories. I'm gonna make you a MIN_JERK instead." << std::endl;
-            trajectory = new wocra::wOcraMinimumJerkTrajectory();
+            trajectory = new ocra::MinimumJerkTrajectory();
             #endif
             break;
     }
@@ -210,7 +210,7 @@ bool TrajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoin
         #if USING_SMLT
         if (trajType==GAUSSIAN_PROCESS)
         {
-            maximumVariance = dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->getMaxVariance();
+            maximumVariance = dynamic_cast<ocra::GaussianProcessTrajectory*>(trajectory)->getMaxVariance();
         }
         #endif
 
@@ -253,26 +253,26 @@ bool TrajectoryThread::setDisplacement(const Eigen::VectorXd& displacementVector
 #if USING_SMLT
 void TrajectoryThread::setMeanWaypoints(std::vector<bool>& isMeanWaypoint)
 {
-    dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setMeanWaypoints(isMeanWaypoint);
+    dynamic_cast<ocra::GaussianProcessTrajectory*>(trajectory)->setMeanWaypoints(isMeanWaypoint);
 }
 
 void TrajectoryThread::setVarianceWaypoints(std::vector<bool>& isVarWaypoint)
 {
-    dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setVarianceWaypoints(isVarWaypoint);
+    dynamic_cast<ocra::GaussianProcessTrajectory*>(trajectory)->setVarianceWaypoints(isVarWaypoint);
 }
 
 void TrajectoryThread::setOptimizationWaypoints(std::vector<bool>& isOptWaypoint)
 {
-    dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setOptimizationWaypoints(isOptWaypoint);
+    dynamic_cast<ocra::GaussianProcessTrajectory*>(trajectory)->setOptimizationWaypoints(isOptWaypoint);
 }
 
 void TrajectoryThread::setDofToOptimize(std::vector<Eigen::VectorXi>& dofToOptimize)
 {
-    dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->setDofToOptimize(dofToOptimize);
+    dynamic_cast<ocra::GaussianProcessTrajectory*>(trajectory)->setDofToOptimize(dofToOptimize);
 }
 
 Eigen::VectorXd TrajectoryThread::getBayesianOptimizationVariables()
 {
-    return dynamic_cast<wocra::wOcraGaussianProcessTrajectory*>(trajectory)->getBoptVariables();
+    return dynamic_cast<ocra::GaussianProcessTrajectory*>(trajectory)->getBoptVariables();
 }
 #endif

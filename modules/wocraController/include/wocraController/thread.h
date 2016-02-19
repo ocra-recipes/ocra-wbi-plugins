@@ -31,9 +31,10 @@
 
 
 #include "ocra/control/Controller.h"
-#include "wocra/wOcraController.h"
+#include "wocra/WocraController.h"
 #include "ocra/optim/OneLevelSolver.h"
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
+#include "ocra/control/TaskManagers/TaskParser.h"
 
 
 #include <yarp/os/PortReader.h>
@@ -111,7 +112,7 @@ class wocraControllerThread: public RateThread
         ocra::Controller *ctrl;
         ocra::OneLevelSolverWithQuadProg internalSolver;
 
-        wocra::wOcraTaskSequenceBase* taskSequence;
+        ocra::TaskSequence* taskSequence;
 
         Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
 

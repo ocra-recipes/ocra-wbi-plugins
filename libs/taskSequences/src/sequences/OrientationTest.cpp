@@ -16,14 +16,14 @@
         // Full posture task
         Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);
-        taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+        taskManagers["tmFull"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
         // Partial (torso) posture task
         Eigen::VectorXi torso_indices(3);
         Eigen::VectorXd torsoTaskPosDes(3);
         torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
         torsoTaskPosDes << M_PI / 18, 0, 0;
-        taskManagers["tmPartialTorso"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+        taskManagers["tmPartialTorso"] = new ocra::PartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
 
         lHandIndex = model.getSegmentIndex("r_hand");
 
@@ -40,12 +40,12 @@
 
 
         // Left hand orientation task
-        taskManagers["tmLeftHandOrient"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "r_hand", Kp, Kd, Eigen::Vector3d(0.0, 1.0, 0.0), endingRotd);
+        taskManagers["tmLeftHandOrient"]    = new ocra::SegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "r_hand", Kp, Kd, Eigen::Vector3d(0.0, 1.0, 0.0), endingRotd);
     }
 
     void OrientationTest::doUpdate(double time, ocra::Model& state, void** args)
     {
-        wocra::wOcraSegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<wocra::wOcraSegOrientationTaskManager*>(taskManagers["tmLeftHandOrient"]);
+        ocra::SegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<ocra::SegOrientationTaskManager*>(taskManagers["tmLeftHandOrient"]);
         std::cout << "\n---\nStarting orientation: " << startingRotd << std::endl;
         std::cout << "Desired orientation: " << endingRotd << std::endl;
         std::cout << "Current orientation: " << state.getSegmentPosition(lHandIndex).getRotation()<< std::endl;

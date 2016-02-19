@@ -4,8 +4,8 @@
 #include <ocraWbiPlugins/ocraWbiModel.h>
 #include "../sequenceTools.h"
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
-#include <wocra/Trajectory/wOcraGaussianProcessTrajectory.h>
+#include "ocra/control/TaskManagers/TaskSequence.h"
+#include "ocra/control/Trajectory/GaussianProcessTrajectory.h"
 
 #include <smlt/smltUtilities.hpp>
 
@@ -19,7 +19,7 @@
 
 
 
-class MoveWeight: public wocra::wOcraTaskSequenceBase
+class MoveWeight: public ocra::TaskSequence
 {
     public:
         MoveWeight();
@@ -31,17 +31,17 @@ class MoveWeight: public wocra::wOcraTaskSequenceBase
         ocraWbiModel* wbiModel;
 
         //CoM task
-        wocra::wOcraCoMTaskManager*                    comTask;
+        ocra::CoMTaskManager*                    comTask;
         Eigen::Vector3d                                initialCoMPosition;
 
         //Right hand task
         bool useVarianceModulation;
 
-        // wocra::wOcraSegPoseTaskManager* rightHandTask;
-        wocra::wOcraSegCartesianTaskManager* rightHandTask;
+        // ocra::SegPoseTaskManager* rightHandTask;
+        ocra::SegCartesianTaskManager* rightHandTask;
 
 
-        wocra::wOcraGaussianProcessTrajectory* rightHandTrajectory;
+        ocra::GaussianProcessTrajectory* rightHandTrajectory;
         Eigen::Vector3d rHandPosStart, rHandPosEnd, currentOptWaypoint;
         Eigen::VectorXd optVariables;
 

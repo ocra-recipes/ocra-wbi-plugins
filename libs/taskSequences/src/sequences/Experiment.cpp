@@ -168,14 +168,14 @@ void Experiment::doInit(ocra::Controller& ctrl, ocra::Model& model)
     // w_full[wbiModel->getDofIndex("l_shoulder_roll")] = 1.0;
 
 
-    taskManagers["fullPostureTask"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, w_full, q_full, usesYARP);
+    taskManagers["fullPostureTask"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, w_full, q_full, usesYARP);
 
 
 
     // Initialise com task
     initialCoMPosition = wbiModel->getCoMPosition();
-    taskManagers["CoMTask"] = new wocra::wOcraCoMTaskManager(ctrl, model, "CoMTask", ocra::XY, Kp_CoM, Kd_CoM, weight_CoM, initialCoMPosition, usesYARP);
-    comTask = dynamic_cast<wocra::wOcraCoMTaskManager*>(taskManagers["CoMTask"]);
+    taskManagers["CoMTask"] = new ocra::CoMTaskManager(ctrl, model, "CoMTask", ocra::XY, Kp_CoM, Kd_CoM, weight_CoM, initialCoMPosition, usesYARP);
+    comTask = dynamic_cast<ocra::CoMTaskManager*>(taskManagers["CoMTask"]);
 
 
     // Initialise torso pose
@@ -183,14 +183,14 @@ void Experiment::doInit(ocra::Controller& ctrl, ocra::Model& model)
     desiredTorsoPosition = wbiModel->getSegmentPosition(wbiModel->getSegmentIndex("torso")).getTranslation();
     XYZdisp << 0.0, 0.0, 0.0;
     desiredTorsoPosition = desiredTorsoPosition + XYZdisp;
-    taskManagers["torsoCartesianTask"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "torsoCartesian", "torso", ocra::XY, Kp_torso, Kd_torso, weight_torso, desiredTorsoPosition, usesYARP);
+    taskManagers["torsoCartesianTask"] = new ocra::SegCartesianTaskManager(ctrl, model, "torsoCartesian", "torso", ocra::XY, Kp_torso, Kd_torso, weight_torso, desiredTorsoPosition, usesYARP);
 
     // Initialise root pose
     // Eigen::Vector3d desiredRootPosition;
     // desiredRootPosition = wbiModel->getSegmentPosition(wbiModel->getSegmentIndex("root_link")).getTranslation();
     // // XYZdisp << 0.0, 0.0, 0.0;
     // desiredRootPosition = desiredRootPosition + XYZdisp;
-    // taskManagers["rootCartesianTask"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rootCartesian", "root_link", ocra::XY, Kp_root, Kd_root, weight_root, desiredRootPosition, usesYARP);
+    // taskManagers["rootCartesianTask"] = new ocra::SegCartesianTaskManager(ctrl, model, "rootCartesian", "root_link", ocra::XY, Kp_root, Kd_root, weight_root, desiredRootPosition, usesYARP);
 
 
 
@@ -208,14 +208,14 @@ void Experiment::doInit(ocra::Controller& ctrl, ocra::Model& model)
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotLZdown));
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotLZdown));
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotLZdown));
-    taskManagers["leftFootContactTask"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
+    taskManagers["leftFootContactTask"] = new ocra::ContactSetTaskManager(ctrl, model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
 
     std::vector<Eigen::Displacementd> RFContacts;
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotRZdown));
-    taskManagers["rightFootContactTask"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
+    taskManagers["rightFootContactTask"] = new ocra::ContactSetTaskManager(ctrl, model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,15 +232,15 @@ void Experiment::doInit(ocra::Controller& ctrl, ocra::Model& model)
     // Eigen::Rotation3d yToNegZ = Eigen::Rotation3d(sqrt2on2, -sqrt2on2, 0.0, 0.0);
     Eigen::Rotation3d desiredRightHandOrientation = startingRotd;//.inverse();// * yToNegZ;
 
-    taskManagers["rightHandOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, desiredRightHandOrientation, usesYARP);
+    taskManagers["rightHandOrientationTask"]    = new ocra::SegOrientationTaskManager(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, desiredRightHandOrientation, usesYARP);
 
     Eigen::Vector3d r_handDisp(0.085, 0.04, 0.045); // Moves the task frame to the center of the hand.
-    taskManagers["rightHand"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
-    rightHandTask = dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskManagers["rightHand"]);
+    taskManagers["rightHand"] = new ocra::SegCartesianTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    rightHandTask = dynamic_cast<ocra::SegCartesianTaskManager*>(taskManagers["rightHand"]);
 
 
     // Trajectory constructor
-    rightHandTrajectory = new wocra::wOcraGaussianProcessTrajectory();
+    rightHandTrajectory = new ocra::GaussianProcessTrajectory();
 
 
     rHandPosStart = rightHandTask->getTaskFramePosition();

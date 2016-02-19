@@ -25,7 +25,6 @@
 #include <yarp/os/Time.h>
 
 #include "taskSequences/sequenceLibrary.h"
-#include "wocra/Tasks/wOcraTaskParser.h"
 
 
 using namespace wocraController;
@@ -73,7 +72,7 @@ wocraControllerThread::wocraControllerThread(string _name,
     // bool _isFreeBase = false;
     ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, _isFreeBase);
     bool useReducedProblem = false;
-    ctrl = new wocra::wOcraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
+    ctrl = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
 
     fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
     fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
@@ -194,7 +193,7 @@ bool wocraControllerThread::threadInit()
                 taskSequence = LoadSequence("Empty");
             }
             std::cout << "\nLoading tasks from XML file:\n" << startupTaskSetPath << "\n" << std::endl;
-            wocra::wOcraTaskParser taskParser;
+            ocra::TaskParser taskParser;
             if(taskParser.parseTasksXML( startupTaskSetPath.c_str() )){
                 taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
                 // taskParser.printTaskArguments(); // If you want to see all the parsed args.
@@ -456,7 +455,7 @@ void wocraControllerThread::parseIncomingMessage(yarp::os::Bottle *input, yarp::
         else if(msgTag == "addTaskXML")
         {
             i++;
-            wocra::wOcraTaskParser taskParser;
+            ocra::TaskParser taskParser;
             taskParser.parseTasksXML( input->get(i).asString().c_str() );
             taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
             i++;
@@ -525,7 +524,7 @@ std::string wocraControllerThread::printValidMessageTags()
 
 bool wocraControllerThread::loadStabilizationTasks()
 {
-    wocra::wOcraTaskParser taskParser;
+    ocra::TaskParser taskParser;
     yarp::os::ResourceFinder RF;
     std::string filePath = RF.findFileByName("taskSets/stabilizationTaskSet.xml");
     taskParser.parseTasksXML(filePath.c_str());
@@ -540,9 +539,9 @@ void wocraControllerThread::stabilizeRobot()
     std::string comTaskKey = "stabilization_comTask";
     std::string torsoTaskKey = "stabilization_torsoCartesianTask";
 
-    dynamic_cast<wocra::wOcraFullPostureTaskManager*>(taskSequence->getTaskManagerPointer(postureTaskKey))->setPosture(initialPosture);
-    dynamic_cast<wocra::wOcraCoMTaskManager*>(taskSequence->getTaskManagerPointer(comTaskKey))->setState(initialCoMPosition);
-    dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskSequence->getTaskManagerPointer(torsoTaskKey))->setState(initialTorsoPosition);
+    dynamic_cast<ocra::FullPostureTaskManager*>(taskSequence->getTaskManagerPointer(postureTaskKey))->setPosture(initialPosture);
+    dynamic_cast<ocra::CoMTaskManager*>(taskSequence->getTaskManagerPointer(comTaskKey))->setState(initialCoMPosition);
+    dynamic_cast<ocra::SegCartesianTaskManager*>(taskSequence->getTaskManagerPointer(torsoTaskKey))->setState(initialTorsoPosition);
 
 
     double timeStabilizingStart = yarp::os::Time::now();

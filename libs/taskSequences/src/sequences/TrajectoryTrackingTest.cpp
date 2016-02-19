@@ -1,6 +1,6 @@
 #include <taskSequences/sequences/TrajectoryTrackingTest.h>
-#include "wocra/Trajectory/wOcraMinimumJerkTrajectory.h"
-#include "wocra/Trajectory/wOcraLinearInterpolationTrajectory.h"
+#include "ocra/control/Trajectory/MinimumJerkTrajectory.h"
+#include "ocra/control/Trajectory/LinearInterpolationTrajectory.h"
 // TrajectoryTrackingTest
 #include <ocraWbiPlugins/ocraWbiModel.h>
 
@@ -22,7 +22,7 @@
         // Full posture task
         Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);
-        taskManagers["fullPostureTask"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+        taskManagers["fullPostureTask"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
         // Partial (torso) posture task
         Eigen::VectorXi torso_indices(3);
@@ -30,7 +30,7 @@
         torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
         torsoTaskPosDes << 0, -10.0*(M_PI / 180.0), 40.0*(M_PI / 180.0);
         // torsoTaskPosDes << 0.0, 0.0, 0.0;
-        taskManagers["torsoPostureTask"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "torsoPostureTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+        taskManagers["torsoPostureTask"] = new ocra::PartialPostureTaskManager(ctrl, model, "torsoPostureTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
 
         // Right hand cartesian task
         Eigen::Vector3d posRHandDesDelta(0.1, 0.08, 0.15);
@@ -39,7 +39,7 @@
         posRHandDes = posRHandDes + posRHandDesDelta;
 
 
-        taskManagers["rightHandCartesianTask"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, 1.0, posRHandDes);
+        taskManagers["rightHandCartesianTask"] = new ocra::SegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, 1.0, posRHandDes);
 
         /**
         * Left hand task. Pick one of these booleans to test the different constructors.
@@ -89,7 +89,7 @@
             /**
             * Linear interpolation trajectory constructor tests:
             */
-            leftHandTrajectory = new wocra::wOcraLinearInterpolationTrajectory();
+            leftHandTrajectory = new ocra::LinearInterpolationTrajectory();
 
             if      (isDisplacementd)       {leftHandTrajectory->setWaypoints(startingDispd, endingDispd);}
             else if (isRotation3d)          {leftHandTrajectory->setWaypoints(startingRotd, endingRotd);}
@@ -102,7 +102,7 @@
             /**
             * Minimum jerk trajectory constructor tests:
             */
-            leftHandTrajectory = new wocra::wOcraMinimumJerkTrajectory();
+            leftHandTrajectory = new ocra::MinimumJerkTrajectory();
 
             if      (isDisplacementd)       {leftHandTrajectory->setWaypoints(startingDispd, endingDispd);}
             else if (isRotation3d)          {leftHandTrajectory->setWaypoints(startingRotd, endingRotd);}
@@ -114,10 +114,10 @@
 
 
 
-        if      (isDisplacementd)      {taskManagers["leftHandPoseTask"]      = new wocra::wOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingDispd);}
-        else if (isRotation3d)         {taskManagers["leftHandOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingRotd);}
-        else if (isCartesion)          {taskManagers["leftHandCartesianTask"]      = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
-        else if (isCartesionWaypoints) {taskManagers["leftHandCartesianTask"]      = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
+        if      (isDisplacementd)      {taskManagers["leftHandPoseTask"]      = new ocra::SegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingDispd);}
+        else if (isRotation3d)         {taskManagers["leftHandOrientationTask"]    = new ocra::SegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingRotd);}
+        else if (isCartesion)          {taskManagers["leftHandCartesianTask"]      = new ocra::SegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
+        else if (isCartesionWaypoints) {taskManagers["leftHandCartesianTask"]      = new ocra::SegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
 
 
 
@@ -129,7 +129,7 @@
     {
         if (isDisplacementd)
         {
-            wocra::wOcraSegPoseTaskManager*   tmp_tmLeftHandPose = dynamic_cast<wocra::wOcraSegPoseTaskManager*>(taskManagers["leftHandPoseTask"]);
+            ocra::SegPoseTaskManager*   tmp_tmLeftHandPose = dynamic_cast<ocra::SegPoseTaskManager*>(taskManagers["leftHandPoseTask"]);
 
             Eigen::Displacementd desiredPose;
             Eigen::Twistd desiredVelocity;
@@ -143,7 +143,7 @@
         else if (isRotation3d)
         {
 
-            wocra::wOcraSegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<wocra::wOcraSegOrientationTaskManager*>(taskManagers["leftHandOrientationTask"]);
+            ocra::SegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<ocra::SegOrientationTaskManager*>(taskManagers["leftHandOrientationTask"]);
 
             Eigen::Rotation3d desiredOrientation;
             leftHandTrajectory->getDesiredValues(time, desiredOrientation);
@@ -152,7 +152,7 @@
         }
         else if (isCartesion || isCartesionWaypoints)
         {
-            wocra::wOcraSegCartesianTaskManager*   tmp_tmLeftHandCart = dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskManagers["leftHandCartesianTask"]);
+            ocra::SegCartesianTaskManager*   tmp_tmLeftHandCart = dynamic_cast<ocra::SegCartesianTaskManager*>(taskManagers["leftHandCartesianTask"]);
 
             Eigen::MatrixXd desiredPosVelAcc = leftHandTrajectory->getDesiredValues(time);
 

@@ -1,13 +1,13 @@
 #ifndef NOMINALPOSE_H
 #define NOMINALPOSE_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
 // namespace sequence {
 
 
-    class NominalPose : public wocra::wOcraTaskSequenceBase
+    class NominalPose : public ocra::TaskSequence
     {
         protected:
             virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);

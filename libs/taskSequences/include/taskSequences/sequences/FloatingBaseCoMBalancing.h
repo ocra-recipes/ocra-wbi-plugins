@@ -1,12 +1,12 @@
 #ifndef FLOATINGBASECOMBALANCING_H
 #define FLOATINGBASECOMBALANCING_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "ocra/control/TorqueLimitConstraint.h"
 #include "ocra/control/JointLimitConstraint.h"
 #include "../sequenceTools.h"
 
-#include "wocra/wOcraController.h"
+#include "wocra/WocraController.h"
 
 
 #include <fstream>
@@ -14,17 +14,17 @@
 // namespace sequence {
 
 
-    class FloatingBaseCoMBalancing: public wocra::wOcraTaskSequenceBase
+    class FloatingBaseCoMBalancing: public ocra::TaskSequence
     {
         protected:
             virtual void doInit(ocra::Controller& c, ocra::Model& m);
             virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
-            wocra::wOcraController*                        ctrl;
+            wocra::WocraController*                        ctrl;
             ocra::Model*                             model;
 
             //CoM task
-            wocra::wOcraCoMTaskManager*                    tmCoM;
+            ocra::CoMTaskManager*                    tmCoM;
             void sinusoidalTraj(double left, double right, double period, double t, double& posTraj, double& velTraj, double& accTraj);
 
             //Limits

@@ -1,13 +1,13 @@
 #ifndef LEFTHANDREACH_H
 #define LEFTHANDREACH_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
 // namespace sequence {
 
 
-    class LeftHandReach : public wocra::wOcraTaskSequenceBase
+    class LeftHandReach : public ocra::TaskSequence
     {
         protected:
             virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);

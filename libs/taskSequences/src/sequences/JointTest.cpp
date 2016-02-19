@@ -20,7 +20,7 @@
 
         jointMax = model.getJointUpperLimits();
 
-        taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 2.0*sqrt(20), 1.0, q_init);
+        taskManagers["tmFull"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 2.0*sqrt(20), 1.0, q_init);
         for (int i=0; i<nDoF; i++){
             jointNames[i] = wbiModel.getJointName(i);
         }
@@ -37,7 +37,7 @@
     void JointTest::doUpdate(double time, ocra::Model& state, void** args)
     {
 
-        wocra::wOcraFullPostureTaskManager*   tmp_tmFull = dynamic_cast<wocra::wOcraFullPostureTaskManager*>(taskManagers["tmFull"]);
+        ocra::FullPostureTaskManager*   tmp_tmFull = dynamic_cast<ocra::FullPostureTaskManager*>(taskManagers["tmFull"]);
 
         Eigen::VectorXd taskErrorVector = tmp_tmFull->getTaskError();
         // std::cout << taskErrorVector.transpose() << std::endl;

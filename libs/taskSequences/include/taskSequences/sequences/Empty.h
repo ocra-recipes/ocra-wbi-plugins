@@ -1,12 +1,12 @@
 #ifndef EMPTY_H
 #define EMPTY_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
 // namespace sequence {
 
-    class Empty : public wocra::wOcraTaskSequenceBase
+    class Empty : public ocra::TaskSequence
     {
         protected:
             virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);

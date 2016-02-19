@@ -34,7 +34,6 @@ ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 LIST(APPEND link_libs   ${YARP_LIBRARIES}
                         ${OcraRecipes_LIBRARIES}
                         ${QUADPROG_LIBRARIES}
-                        ${OCRA_LIBRARIES}
                         activityManagerTools
                         )
 

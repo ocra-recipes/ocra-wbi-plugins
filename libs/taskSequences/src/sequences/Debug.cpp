@@ -10,7 +10,7 @@
         getNominalPosture(model, q_full);
 
 
-        taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 150.0, 2*sqrt(150.0), 1.0, q_full);
+        taskManagers["tmFull"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 150.0, 2*sqrt(150.0), 1.0, q_full);
     }
 
     void Debug::doUpdate(double time, ocra::Model& state, void** args)

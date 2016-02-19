@@ -2,7 +2,8 @@
 #define TRAJECTORYTHREAD_H
 
 #include <activityManagerTools/ControlThread.h>
-#include <wocra/Trajectory/wOcraTrajectories.h>
+// #include <wocra/Trajectory/wOcraTrajectories.h>
+#include "ocra/control/Trajectory/Trajectories.h"
 #include <yarp/os/Time.h>
 #include <iostream>
 
@@ -69,7 +70,7 @@ protected:
     TRAJECTORY_TYPE trajType;
     TERMINATION_STRATEGY terminationStrategy;
 
-    wocra::wOcraTrajectory* trajectory;
+    ocra::Trajectory* trajectory;
 
 
     double maximumVariance;

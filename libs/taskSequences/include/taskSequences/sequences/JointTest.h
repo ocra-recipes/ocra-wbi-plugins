@@ -1,12 +1,12 @@
 #ifndef JOINTTEST_H
 #define JOINTTEST_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
 // namespace sequence {
 
-    class JointTest : public wocra::wOcraTaskSequenceBase
+    class JointTest : public ocra::TaskSequence
     {
         protected:
             virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);

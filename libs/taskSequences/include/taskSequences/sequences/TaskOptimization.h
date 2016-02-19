@@ -6,8 +6,8 @@
 
 #include "../sequenceTools.h"
 
-#include <wocra/Tasks/wOcraTaskSequenceBase.h>
-#include <wocra/Trajectory/wOcraGaussianProcessTrajectory.h>
+#include "ocra/control/TaskManagers/TaskSequence.h"
+#include "ocra/control/Trajectory/GaussianProcessTrajectory.h"
 
 #include <smlt/smltUtilities.hpp>
 
@@ -22,7 +22,7 @@
 #include <boost/filesystem.hpp>
 
 
-class TaskOptimization : public wocra::wOcraTaskSequenceBase
+class TaskOptimization : public ocra::TaskSequence
 {
     public:
         TaskOptimization();
@@ -57,7 +57,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         int dofIndex;
 
-        wocra::wOcraGaussianProcessTrajectory* rightHandTrajectory;
+        ocra::GaussianProcessTrajectory* rightHandTrajectory;
 
         yarp::os::Network yarp;
         yarp::os::BufferedPort<yarp::os::Bottle> optVarsPortOut;
@@ -77,7 +77,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         int rHandIndex;
 
-        wocra::wOcraVariableWeightsTaskManager* rightHandTask;
+        ocra::VariableWeightsTaskManager* rightHandTask;
 
         double maxVariance;
 
