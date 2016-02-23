@@ -16,20 +16,25 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 cmake_minimum_required(VERSION 2.8.11)
-project(ocra-wbi CXX)
+project(OcraYarp CXX)
 
-set(OCRA_WBI_MAJOR_VERSION 0)
-set(OCRA_WBI_MINOR_VERSION 0)
-set(OCRA_WBI_PATCH_VERSION 1)
-set(OCRA_WBI_VERSION ${OCRA_WBI_MAJOR_VERSION}.${OCRA_WBI_MINOR_VERSION}.${OCRA_WBI_PATCH_VERSION})
+
+set(VARS_PREFIX "OcraYarp")
+
+set(${VARS_PREFIX}_MAJOR_VERSION 1)
+set(${VARS_PREFIX}_MINOR_VERSION 0)
+set(${VARS_PREFIX}_PATCH_VERSION 0)
+set(${VARS_PREFIX}_VERSION ${${VARS_PREFIX}_MAJOR_VERSION}.${${VARS_PREFIX}_MINOR_VERSION}.${${VARS_PREFIX}_PATCH_VERSION})
+
 
 option(GENERATE_DOCUMENTATION "Generate the doxygen documentation." TRUE)
 
 
-find_package(ICUB REQUIRED)
+find_package(YARP REQUIRED)
 find_package(YCM REQUIRED)
 find_package(iDynTree REQUIRED)
 find_package(yarpWholeBodyInterface REQUIRED)
+find_package(OcraRecipes REQUIRED)
 
 list(APPEND CMAKE_MODULE_PATH
         ${YARP_MODULE_PATH}
@@ -37,13 +42,9 @@ list(APPEND CMAKE_MODULE_PATH
         ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules
      )
 
-find_package(OcraRecipes REQUIRED)
-
-
 include_directories(AFTER
                     ${OcraRecipes_INCLUDE_DIRS}
                     )
-
 
 #add yarp definitions
 add_definitions(${YARP_DEFINES}) #this contains also -D_REENTRANT
@@ -58,9 +59,6 @@ add_subdirectory(modules)
 add_subdirectory(bin)
 
 
-
-include(AddUninstallTarget)
-
 # add a target to generate API documentation with Doxygen
 if(GENERATE_DOCUMENTATION)
     find_package(Doxygen REQUIRED)
@@ -73,3 +71,14 @@ if(GENERATE_DOCUMENTATION)
         COMMENT "Generating API documentation with Doxygen" VERBATIM
     )
 endif(GENERATE_DOCUMENTATION)
+
+
+include(InstallBasicPackageFiles)
+get_property(PACKAGE_${VARS_PREFIX}_INCLUDEDIR GLOBAL PROPERTY PACKAGE_${VARS_PREFIX}_INCLUDEDIR)
+install_basic_package_files(OcraYarp VARS_PREFIX ${VARS_PREFIX}
+                                        VERSION ${${VARS_PREFIX}_VERSION}
+                                        COMPATIBILITY SameMajorVersion
+                                        TARGETS_PROPERTY ${VARS_PREFIX}_TARGETS
+                                        NO_CHECK_REQUIRED_COMPONENTS_MACRO
+                                    )
+include(AddUninstallTarget)

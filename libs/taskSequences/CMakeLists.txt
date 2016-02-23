@@ -26,7 +26,7 @@ FILE(GLOB_RECURSE folder_header ${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECTNAM
 
 # Check for SMLT
 find_package(SMLT QUIET)
-IF(SMLT_FOUND)
+IF(${SMLT_FOUND})
     message("-- SMLT lib found. Compiling gaussian process trajectory.")
     include_directories(${SMLT_INCLUDE_DIRS})
     # Set preprocessor macro "USING_SMLT" to true.
@@ -60,12 +60,19 @@ LIST(APPEND link_libs   #${YARP_LIBRARIES}
                         ${OcraRecipes_LIBRARIES}
 )
 
-IF(SMLT_FOUND)
+IF(${SMLT_FOUND})
     LIST(APPEND link_libs ${SMLT_LIBRARIES})
 ENDIF()
 
 TARGET_LINK_LIBRARIES(${PROJECTNAME} ${link_libs})
 
-INSTALL(TARGETS ${PROJECTNAME} DESTINATION lib)
+install(DIRECTORY include
+        DESTINATION ${CMAKE_INSTALL_PREFIX}
+        FILES_MATCHING PATTERN *.h*)
 
-INSTALL(DIRECTORY ${PROJECT_SOURCE_DIR}/include/${PROJECTNAME} DESTINATION include)
+install(TARGETS ${PROJECTNAME}
+        EXPORT OcraYarp
+        DESTINATION lib)
+
+set_property(GLOBAL APPEND PROPERTY ${VARS_PREFIX}_TARGETS ${PROJECTNAME})
+set_property(GLOBAL APPEND PROPERTY PACKAGE_${VARS_PREFIX}_INCLUDEDIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
