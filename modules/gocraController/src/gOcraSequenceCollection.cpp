@@ -180,7 +180,7 @@ void Sequence_LeftHandReach::doInit(gocra::GHCJTController& controller, ocra::Mo
     }
 
     ctrl = &controller;
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
@@ -291,7 +291,7 @@ void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, ocra:
 
     ctrl = &controller;
     model = &gmodel;
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(gmodel);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(gmodel);
     // Full posture task
     nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
     getNominalPosture(*model, nominal_q);
@@ -366,7 +366,7 @@ void Sequence_ComLeftHandReach::doUpdate(double time, ocra::Model& state, void**
 {
 
 
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(*model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(*model);
     int start = 400;
 
     if (counter==start){
@@ -640,7 +640,7 @@ void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller,
 
     ctrl = &controller;
     model = &gmodel;
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(gmodel);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(gmodel);
     // Full posture task
     nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
     getNominalPosture(*model, nominal_q);
@@ -689,7 +689,7 @@ void Sequence_ComLeftHandReachReplay::doUpdate(double time, ocra::Model& state, 
 {
 
 
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(*model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(*model);
 
     if (counter <= end){
         errCoM[counter] = tmHead->getTaskError().norm();
@@ -753,7 +753,7 @@ void Sequence_ComLeftHandReachReplay::doUpdate(double time, ocra::Model& state, 
 // Sequence_LeftRightHandReach
 void Sequence_LeftRightHandReach::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
@@ -797,7 +797,7 @@ void Sequence_LeftRightHandReach::doUpdate(double time, ocra::Model& state, void
 
 void Sequence_CartesianTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -864,7 +864,7 @@ void Sequence_CartesianTest::doUpdate(double time, ocra::Model& state, void** ar
 
 void Sequence_PoseTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -939,7 +939,7 @@ void Sequence_PoseTest::doUpdate(double time, ocra::Model& state, void** args)
 
 void Sequence_OrientationTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -1003,7 +1003,7 @@ void Sequence_OrientationTest::doUpdate(double time, ocra::Model& state, void** 
 // Sequence_TrajectoryTrackingTest
 void Sequence_TrajectoryTrackingTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -1199,7 +1199,7 @@ void Sequence_FloatingBaseEstimationTests::doUpdate(double time, ocra::Model& st
 // Sequence_LeftRightHandReach
 void Sequence_JointTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
     // Full posture task
     nDoF = model.nbInternalDofs();
     // Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(nDoF);

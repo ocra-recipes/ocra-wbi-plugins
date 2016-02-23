@@ -1,11 +1,11 @@
 #include <taskSequences/sequences/LeftHandReach.h>
 // LeftHandReach
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
     void LeftHandReach::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
-        ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+        // ocraWbiModel& model = dynamic_cast<ocraWbiModel&>(model);
         // Full posture task
         Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);

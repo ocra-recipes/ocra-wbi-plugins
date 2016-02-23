@@ -1,11 +1,9 @@
 #include <taskSequences/sequences/JointTest.h>
 // JointTest
-#include <ocraWbiPlugins/ocraWbiModel.h>
 
 // namespace sequence{
     void JointTest::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
-        ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
         // Full posture task
         nDoF = model.nbInternalDofs();
         // Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(nDoF);
@@ -22,7 +20,7 @@
 
         taskManagers["tmFull"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 2.0*sqrt(20), 1.0, q_init);
         for (int i=0; i<nDoF; i++){
-            jointNames[i] = wbiModel.getJointName(i);
+            jointNames[i] = model.getJointName(i);
         }
         taskErr = 0.0;
         jIndex = 0;

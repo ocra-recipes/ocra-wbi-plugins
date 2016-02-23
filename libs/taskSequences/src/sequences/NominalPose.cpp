@@ -1,7 +1,7 @@
 
 #include <taskSequences/sequences/NominalPose.h>
 // NominalPoseHold
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
     void NominalPose::doInit(ocra::Controller& ctrl, ocra::Model& model)

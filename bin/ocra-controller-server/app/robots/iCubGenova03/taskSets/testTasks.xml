@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<task name="fullPosture" type="FullPostureTaskManager">
+   <params kp="20.0" kd="10.0" weight="0.1" />
+   <desired> 0.0 0.0 0.0 -0.436332 0.349066 0.0 0.872665 0.0 -0.436332 0.349066 0.0 0.872665 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </desired>
+</task>
+<task name="torsoPosture" type="PartialPostureTaskManager">
+    <params kp="20.0" kd="10.0" weight="0.5" />
+    <joints>
+        <joint index="0" des="0.0" />
+        <joint index="1" des="0.0" />
+        <joint index="2" des="0.0" />
+    </joints>
+</task>
+<task name="cartRightHand" type="SegCartesianTaskManager">
+    <segment>r_hand</segment>
+    <params kp="200.0" kd="100.0" weight="1.0" axes="XYZ" />
+    <offset>  0.001 0.002 0.003 </offset>
+    <desired> -0.2 0.2 0.2 </desired>
+</task>
+<task name="cartLeftHand" type="SegCartesianTaskManager">
+    <segment>l_hand</segment>
+    <params kp="200.0" kd="100.0" weight="1.0" axes="XYZ" />
+    <offset>  0.001 0.002 0.003 </offset>
+    <desired> -0.2 -0.3 -0.1 </desired>
+</task>
+
+
+
+
+
+
+<!-- <task name="cartRightFoot" type="SegCartesianTaskManager">
+    <segment>r_foot</segment>
+    <params kp="120.0" kd="60.0" weight="1.0" axes="XYZ" />
+    <offset>  0.001 0.002 0.003 </offset>
+    <desired> 0.2 0.1 -0.4 </desired>
+</task> -->
+<!-- <task name="rightLegPosture" type="PartialPostureTaskManager">
+    <params kp="10.0" kd="5.0" weight="1.0" />
+    <joints>
+        <joint index="0" des="0.0" />
+        <joint index="1" des="0.0" />
+        <joint index="2" des="0.0" />
+    </joints>
+</task> -->

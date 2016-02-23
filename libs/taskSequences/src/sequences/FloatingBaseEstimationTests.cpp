@@ -1,5 +1,5 @@
 #include <taskSequences/sequences/FloatingBaseEstimationTests.h>
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
     void FloatingBaseEstimationTests::doInit(ocra::Controller& ctrl, ocra::Model& model)

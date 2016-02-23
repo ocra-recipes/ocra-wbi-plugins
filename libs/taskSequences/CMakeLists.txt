@@ -31,7 +31,6 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${OcraRecipes_INCLUDE_DIRS}
-                    ${ocraWbiPlugins_SOURCE_DIR}/include
                     )
 
 
@@ -42,7 +41,6 @@ LIST(APPEND link_libs   #${YARP_LIBRARIES}
                         ${iDynTree_LIBRARIES}
                         ${yarpWholeBodyInterface_LIBRARIES}
                         ${OcraRecipes_LIBRARIES}
-                        ocraWbiPlugins
 )
 
 IF(SMLT_FOUND)

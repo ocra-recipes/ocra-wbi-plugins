@@ -1,5 +1,5 @@
 #include <taskSequences/sequences/Exploration.h>
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 #ifndef ERROR_THRESH
 #define ERROR_THRESH 0.03 // Goal error threshold for hand tasks
@@ -24,7 +24,7 @@ Exploration::~Exploration()
 
 void Exploration::doInit(ocra::Controller& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+    // ocraWbiModel& model = dynamic_cast<ocraWbiModel&>(model);
 
     varianceThresh = Eigen::Array3d::Constant(VAR_THRESH);
 
@@ -67,7 +67,7 @@ void Exploration::doInit(ocra::Controller& ctrl, ocra::Model& model)
     // torsoPosture
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
-    torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
+    torso_indices << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
     torsoTaskPosDes << 0.0, 0.0, 0.0;
 
     taskManagers["torsoPosture"] = new ocra::PartialPostureTaskManager(ctrl, model, "torsoPosture", ocra::FullState::INTERNAL, torso_indices, Kp_torsoPosture, Kd_torsoPosture, weight_torsoPosture, torsoTaskPosDes, usesYARP);

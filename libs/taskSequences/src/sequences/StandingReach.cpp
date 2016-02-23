@@ -82,8 +82,6 @@ StandingReach::~StandingReach()
 
 void StandingReach::doInit(ocra::Controller& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
-    wbiModel = &wbiModelRef;
 
     varianceThresh = Eigen::Array3d::Constant(VAR_THRESH);
 
@@ -120,48 +118,48 @@ void StandingReach::doInit(ocra::Controller& ctrl, ocra::Model& model)
     Eigen::VectorXd weights_rightHand = rightHandStaticWeight;
 
     // Initialise full posture task
-    Eigen::VectorXd q_full = wbiModel->getJointPositions();
-    // q_full[wbiModel->getDofIndex("l_knee")] = -PI / 3;
-    // q_full[wbiModel->getDofIndex("r_knee")] = -PI / 3;
+    Eigen::VectorXd q_full = model.getJointPositions();
+    // q_full[model.getDofIndex("l_knee")] = -PI / 3;
+    // q_full[model.getDofIndex("r_knee")] = -PI / 3;
 
-    // q_full[wbiModel->getDofIndex("l_shoulder_roll")] = PI / 6;
-
-
-    Eigen::VectorXd w_full = Eigen::VectorXd::Constant(wbiModel->nbInternalDofs(), weight_fullPosture);
-
-    w_full[wbiModel->getDofIndex("l_hip_pitch")] = 0.0004; //0.0004
-    w_full[wbiModel->getDofIndex("l_hip_roll")] = 0.1;
-    w_full[wbiModel->getDofIndex("l_hip_yaw")] = 0.1;
-    w_full[wbiModel->getDofIndex("r_hip_pitch")] = 0.0004; //0.0004
-    w_full[wbiModel->getDofIndex("r_hip_roll")] = 0.1;
-    w_full[wbiModel->getDofIndex("r_hip_yaw")] = 0.1;
+    // q_full[model.getDofIndex("l_shoulder_roll")] = PI / 6;
 
 
-    w_full[wbiModel->getDofIndex("l_ankle_pitch")] = 1.0;
-    w_full[wbiModel->getDofIndex("r_ankle_pitch")] = 1.0;
+    Eigen::VectorXd w_full = Eigen::VectorXd::Constant(model.nbInternalDofs(), weight_fullPosture);
+
+    w_full[model.getDofIndex("l_hip_pitch")] = 0.0004; //0.0004
+    w_full[model.getDofIndex("l_hip_roll")] = 0.1;
+    w_full[model.getDofIndex("l_hip_yaw")] = 0.1;
+    w_full[model.getDofIndex("r_hip_pitch")] = 0.0004; //0.0004
+    w_full[model.getDofIndex("r_hip_roll")] = 0.1;
+    w_full[model.getDofIndex("r_hip_yaw")] = 0.1;
+
+
+    w_full[model.getDofIndex("l_ankle_pitch")] = 1.0;
+    w_full[model.getDofIndex("r_ankle_pitch")] = 1.0;
 
 
 
-    w_full[wbiModel->getDofIndex("l_knee")] = 0.0004; //0.0004
-    w_full[wbiModel->getDofIndex("r_knee")] = 0.0004; //0.0004
+    w_full[model.getDofIndex("l_knee")] = 0.0004; //0.0004
+    w_full[model.getDofIndex("r_knee")] = 0.0004; //0.0004
 
 
-    w_full[wbiModel->getDofIndex("torso_pitch")] = 0.1;
-    w_full[wbiModel->getDofIndex("torso_roll")] = 0.01;
-    w_full[wbiModel->getDofIndex("torso_yaw")] = 0.001;
+    w_full[model.getDofIndex("torso_pitch")] = 0.1;
+    w_full[model.getDofIndex("torso_roll")] = 0.01;
+    w_full[model.getDofIndex("torso_yaw")] = 0.001;
 
-    w_full[wbiModel->getDofIndex("r_elbow")] = 0.00001;
-    w_full[wbiModel->getDofIndex("l_elbow")] = 0.00001;
+    w_full[model.getDofIndex("r_elbow")] = 0.00001;
+    w_full[model.getDofIndex("l_elbow")] = 0.00001;
 
-    // w_full[wbiModel->getDofIndex("l_ankle_roll")] = ;
-    // w_full[wbiModel->getDofIndex("l_knee")] = ;
-    // w_full[wbiModel->getDofIndex("r_knee")] = ;
-    // w_full[wbiModel->getDofIndex("r_ankle_roll")] = ;
-    // w_full[wbiModel->getDofIndex("r_shoulder_pitch")] = 0.00001;
-    // w_full[wbiModel->getDofIndex("r_shoulder_roll")] = 0.00001;
-    // w_full[wbiModel->getDofIndex("r_shoulder_yaw")] = 0.00001;
+    // w_full[model.getDofIndex("l_ankle_roll")] = ;
+    // w_full[model.getDofIndex("l_knee")] = ;
+    // w_full[model.getDofIndex("r_knee")] = ;
+    // w_full[model.getDofIndex("r_ankle_roll")] = ;
+    // w_full[model.getDofIndex("r_shoulder_pitch")] = 0.00001;
+    // w_full[model.getDofIndex("r_shoulder_roll")] = 0.00001;
+    // w_full[model.getDofIndex("r_shoulder_yaw")] = 0.00001;
 
-    // w_full[wbiModel->getDofIndex("l_shoulder_roll")] = 1.0;
+    // w_full[model.getDofIndex("l_shoulder_roll")] = 1.0;
 
 
     taskManagers["fullPostureTask"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, w_full, q_full, usesYARP);
@@ -169,21 +167,21 @@ void StandingReach::doInit(ocra::Controller& ctrl, ocra::Model& model)
 
 
     // Initialise com task
-    initialCoMPosition = wbiModel->getCoMPosition();
+    initialCoMPosition = model.getCoMPosition();
     taskManagers["CoMTask"] = new ocra::CoMTaskManager(ctrl, model, "CoMTask", ocra::XY, Kp_CoM, Kd_CoM, weight_CoM, initialCoMPosition, usesYARP);
     comTask = dynamic_cast<ocra::CoMTaskManager*>(taskManagers["CoMTask"]);
 
 
     // Initialise torso pose
     Eigen::Vector3d desiredTorsoPosition, XYZdisp;
-    desiredTorsoPosition = wbiModel->getSegmentPosition(wbiModel->getSegmentIndex("torso")).getTranslation();
+    desiredTorsoPosition = model.getSegmentPosition(model.getSegmentIndex("torso")).getTranslation();
     XYZdisp << 0.0, 0.0, 0.0;
     desiredTorsoPosition = desiredTorsoPosition + XYZdisp;
     taskManagers["torsoCartesianTask"] = new ocra::SegCartesianTaskManager(ctrl, model, "torsoCartesian", "torso", ocra::XY, Kp_torso, Kd_torso, weight_torso, desiredTorsoPosition, usesYARP);
 
     // Initialise root pose
     // Eigen::Vector3d desiredRootPosition;
-    // desiredRootPosition = wbiModel->getSegmentPosition(wbiModel->getSegmentIndex("root_link")).getTranslation();
+    // desiredRootPosition = model.getSegmentPosition(model.getSegmentIndex("root_link")).getTranslation();
     // // XYZdisp << 0.0, 0.0, 0.0;
     // desiredRootPosition = desiredRootPosition + XYZdisp;
     // taskManagers["rootCartesianTask"] = new ocra::SegCartesianTaskManager(ctrl, model, "rootCartesian", "root_link", ocra::XY, Kp_root, Kd_root, weight_root, desiredRootPosition, usesYARP);
@@ -364,7 +362,7 @@ void StandingReach::doInit(ocra::Controller& ctrl, ocra::Model& model)
 
 
 
-void StandingReach::doUpdate(double time, ocra::Model& state, void** args)
+void StandingReach::doUpdate(double time, ocra::Model& model, void** args)
 {
     sendFramePositionsToGazebo();
 
@@ -384,16 +382,16 @@ void StandingReach::doUpdate(double time, ocra::Model& state, void** args)
             {
                 double relativeTime = time - resetTimeRight;
 
-                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state))
+                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(model))
                 {
-                    executeTrajectory(relativeTime, state);
+                    executeTrajectory(relativeTime, model);
                 }
                 else
                 {
                     if((std::abs(relativeTime) > TIME_LIMIT)){
                         std::cout << "Time limit exceeded!" << std::endl;
                     }
-                    if (attainedGoal(state)) {
+                    if (attainedGoal(model)) {
                         std::cout << "Goal attained!" << std::endl;
                     }
 
@@ -402,7 +400,7 @@ void StandingReach::doUpdate(double time, ocra::Model& state, void** args)
             }
             else
             {
-                bool robotIsStable = returnToStablePosture(time, state);
+                bool robotIsStable = returnToStablePosture(time, model);
 
                 if (!dataSent_AwaitReply)
                 {
@@ -447,15 +445,15 @@ void StandingReach::doUpdate(double time, ocra::Model& state, void** args)
         {
             double relativeTime = time - resetTimeRight;
 
-            if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
+            if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(model) && !waitForHomePosition)
             {
-                executeTrajectory(relativeTime, state);
+                executeTrajectory(relativeTime, model);
             }
             else
             {
                 postProcessInstantaneousCosts();
 
-                // bool robotIsStable = returnToStablePosture(time, state);
+                // bool robotIsStable = returnToStablePosture(time, model);
                 bool robotIsStable = false;
 
                 if(logTrajectoryData)
@@ -545,10 +543,10 @@ void StandingReach::initializeTrajectory(double time)
 
 
 
-void StandingReach::executeTrajectory(double relativeTime,  ocra::Model& state)
+void StandingReach::executeTrajectory(double relativeTime,  ocra::Model& model)
 {
     // Claculate cost at timestep and write to file if logging.
-    calculateInstantaneousCost(relativeTime, state);
+    calculateInstantaneousCost(relativeTime, model);
 
     if(logTrajectoryData)
     {
@@ -584,7 +582,7 @@ Eigen::VectorXd StandingReach::mapVarianceToWeights(Eigen::VectorXd& variance)
     return weights;
 }
 
-bool StandingReach::returnToStablePosture(const double time, const ocra::Model& state)
+bool StandingReach::returnToStablePosture(const double time, const ocra::Model& model)
 {
 
     bool robotIsStable = false;
@@ -626,7 +624,7 @@ bool StandingReach::returnToStablePosture(const double time, const ocra::Model& 
                 rightHandTask->setWeight(rightHandStaticWeight);
             }
         }else{
-            robotIsStable = isBackInHomePosition(state);
+            robotIsStable = isBackInHomePosition(model);
         }
     }
 
@@ -636,7 +634,7 @@ bool StandingReach::returnToStablePosture(const double time, const ocra::Model& 
 }
 
 
-bool StandingReach::isBackInHomePosition(const ocra::Model& state)
+bool StandingReach::isBackInHomePosition(const ocra::Model& model)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -646,7 +644,7 @@ bool StandingReach::isBackInHomePosition(const ocra::Model& state)
     return result;
 }
 
-bool StandingReach::attainedGoal(const ocra::Model& state)
+bool StandingReach::attainedGoal(const ocra::Model& model)
 {
     double error;
     error = (rHandPosEnd - rightHandTask->getTaskFramePosition() ).norm();
@@ -665,24 +663,24 @@ bool StandingReach::attainedGoal(const ocra::Model& state)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void StandingReach::calculateInstantaneousCost(const double time, const ocra::Model& state)
+void StandingReach::calculateInstantaneousCost(const double time, const ocra::Model& model)
 {
 
     if (useGoalCost){
-        goalCostMat.row(costIterCounter) << time, calculateGoalCost(time, state);
+        goalCostMat.row(costIterCounter) << time, calculateGoalCost(time, model);
     }
     if (useTrackingCost){
-        trackingCostMat.row(costIterCounter) << time, calculateTrackingCost(time, state);
+        trackingCostMat.row(costIterCounter) << time, calculateTrackingCost(time, model);
     }
     if (useEnergyCost){
-        energyCostMat.row(costIterCounter) << time, calculateEnergyCost(time, state);
+        energyCostMat.row(costIterCounter) << time, calculateEnergyCost(time, model);
     }
 
     costIterCounter++;
 
 }
 
-double StandingReach::calculateGoalCost(const double time, const ocra::Model& state)
+double StandingReach::calculateGoalCost(const double time, const ocra::Model& model)
 {
     double cost = ( rHandPosEnd - rightHandTask->getTaskFramePosition() ).squaredNorm();
     double timeFactor = pow((time / rightHandTrajectory->getDuration()), 2);
@@ -692,17 +690,16 @@ double StandingReach::calculateGoalCost(const double time, const ocra::Model& st
 }
 
 
-double StandingReach::calculateTrackingCost(const double time, const ocra::Model& state)
+double StandingReach::calculateTrackingCost(const double time, const ocra::Model& model)
 {
     double cost = ( desiredPosVelAcc_rightHand.col(0) - rightHandTask->getTaskFramePosition() ).squaredNorm();
     return cost;
 }
 
 
-double StandingReach::calculateEnergyCost(const double time, const ocra::Model& state)
+double StandingReach::calculateEnergyCost(const double time, const ocra::Model& model)
 {
-    Eigen::VectorXd torques;
-    wbiModel->getJointTorques(torques);
+    Eigen::VectorXd torques = model.getJointTorques();
     return torques.squaredNorm();
 }
 

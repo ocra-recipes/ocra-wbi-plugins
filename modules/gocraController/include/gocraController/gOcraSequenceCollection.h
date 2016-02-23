@@ -2,7 +2,7 @@
 #define GOCRASEQUENCECOLLECTION_H
 
 #include "gocra/Tasks/gOcraTaskManagerCollectionBase.h"
-#include <ocraWbiPlugins/ocraWbiModel.h>
+#include <ocra-yarp/OcraWbiModel.h>
 
 //#include "wocra/Trajectory/wOcraTrajectory.h"
 
@@ -323,7 +323,7 @@ class Sequence_JointTest : public gocra::gOcraTaskManagerCollectionBase
         std::string jointNames [25];
         int counter;
 
-        // ocraWbiModel& wbiModel;
+        // ocra_yarp::OcraWbiModel& wbiModel;
 
     private:
         // Full posture task

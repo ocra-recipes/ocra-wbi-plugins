@@ -1,7 +1,7 @@
 
 #include <taskSequences/sequences/FloatingBaseMinimalTasks.h>
 // FloatingBaseMinimalTasks
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
     void FloatingBaseMinimalTasks::doInit(ocra::Controller& c, ocra::Model& m)

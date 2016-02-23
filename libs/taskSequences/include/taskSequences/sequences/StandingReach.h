@@ -1,7 +1,6 @@
 #ifndef STANDINGREACH_H
 #define STANDINGREACH_H
 
-#include <ocraWbiPlugins/ocraWbiModel.h>
 #include "../sequenceTools.h"
 
 #include "ocra/control/TaskManagers/TaskSequence.h"
@@ -25,9 +24,8 @@ class StandingReach: public ocra::TaskSequence
         ~StandingReach();
     protected:
         virtual void doInit(ocra::Controller& c, ocra::Model& m);
-        virtual void doUpdate(double time, ocra::Model& state, void** args);
+        virtual void doUpdate(double time, ocra::Model& model, void** args);
     private:
-        ocraWbiModel* wbiModel;
 
         //CoM task
         ocra::CoMTaskManager*                    comTask;
@@ -130,17 +128,17 @@ class StandingReach: public ocra::TaskSequence
         bool closeLogFiles();
         void sendOptimizationParameters();
         void initializeTrajectory(double time);
-        void executeTrajectory(double relativeTime,  ocra::Model& state);
+        void executeTrajectory(double relativeTime,  ocra::Model& model);
         bool sendTestDataToSolver();
         double postProcessInstantaneousCosts();
         bool parseNewOptVarsBottle();
-        bool isBackInHomePosition(const ocra::Model& state);
-        bool attainedGoal(const ocra::Model& state);
-        void calculateInstantaneousCost(const double time, const ocra::Model& state);
-        double calculateGoalCost(const double time, const ocra::Model& state);
-        double calculateTrackingCost(const double time, const ocra::Model& state);
-        double calculateEnergyCost(const double time, const ocra::Model& state);
-        bool returnToStablePosture(const double time, const ocra::Model& state);
+        bool isBackInHomePosition(const ocra::Model& model);
+        bool attainedGoal(const ocra::Model& model);
+        void calculateInstantaneousCost(const double time, const ocra::Model& model);
+        double calculateGoalCost(const double time, const ocra::Model& model);
+        double calculateTrackingCost(const double time, const ocra::Model& model);
+        double calculateEnergyCost(const double time, const ocra::Model& model);
+        bool returnToStablePosture(const double time, const ocra::Model& model);
 
 
 };

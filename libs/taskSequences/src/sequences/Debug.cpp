@@ -1,6 +1,6 @@
 #include <taskSequences/sequences/Debug.h>
 // FixedBaseMinimalTasks
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
     void Debug::doInit(ocra::Controller& ctrl, ocra::Model& model)

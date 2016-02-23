@@ -1,12 +1,10 @@
 #include <taskSequences/sequences/CartesianTest.h>
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 
 // namespace sequence{
     void CartesianTest::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
-        ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
-
         // Task Coeffs
         double Kp = 10.0;
         double Kd = 2.0 * sqrt(Kp);
@@ -22,7 +20,7 @@
         // Partial (torso) posture task
         Eigen::VectorXi torso_indices(3);
         Eigen::VectorXd torsoTaskPosDes(3);
-        torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
+        torso_indices << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
         torsoTaskPosDes << M_PI / 18, 0, 0;
         taskManagers["tmPartialTorso"] = new ocra::PartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
 

@@ -1,6 +1,6 @@
 #include <taskSequences/sequences/InitialPoseHold.h>
 // InitialPoseHold
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
     void InitialPoseHold::doInit(ocra::Controller& ctrl, ocra::Model& model)

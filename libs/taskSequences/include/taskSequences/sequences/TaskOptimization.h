@@ -1,7 +1,6 @@
 #ifndef TASKOPTIMIZATION_H
 #define TASKOPTIMIZATION_H
 
-#include <ocraWbiPlugins/ocraWbiModel.h>
 
 
 #include "../sequenceTools.h"
@@ -29,24 +28,23 @@ class TaskOptimization : public ocra::TaskSequence
         ~TaskOptimization();
     protected:
         virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);
-        virtual void doUpdate(double time, ocra::Model& state, void** args);
+        virtual void doUpdate(double time, ocra::Model& model, void** args);
     private:
-        ocraWbiModel* wbiModel;
 
         void connectYarpPorts();
         void bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::VectorXd& vecToBottle, const bool encapsulate=false);
-        bool attainedGoal(ocra::Model& state, int segmentIndex);
-        bool isBackInHomePosition(ocra::Model& state, int segmentIndex);
+        bool attainedGoal(ocra::Model& model, int segmentIndex);
+        bool isBackInHomePosition(ocra::Model& model, int segmentIndex);
 
         Eigen::VectorXd mapVarianceToWeights(Eigen::VectorXd& variance);
         void sendFramePositionsToGazebo();
         void sendOptimizationParameters();
 
 
-        void calculateInstantaneousCost(const double time, const ocra::Model& state, int segmentIndex);
-        double calculateGoalCost(const double time, const ocra::Model& state, int segmentIndex);
-        double calculateTrackingCost(const double time, const ocra::Model& state, int segmentIndex);
-        double calculateEnergyCost(const double time, const ocra::Model& state, int segmentIndex);
+        void calculateInstantaneousCost(const double time, const ocra::Model& model, int segmentIndex);
+        double calculateGoalCost(const double time, const ocra::Model& model, int segmentIndex);
+        double calculateTrackingCost(const double time, const ocra::Model& model, int segmentIndex);
+        double calculateEnergyCost(const double time, const ocra::Model& model, int segmentIndex);
         // void checkAndCreateDirectory(const std::string dirPath)
         // {
         //     if (!boost::filesystem::exists(dirPath)) {
@@ -126,7 +124,7 @@ class TaskOptimization : public ocra::TaskSequence
         bool closeLogFiles();
 
         void initializeTrajectory(double time);
-        void executeTrajectory(double relativeTime,  ocra::Model& state);
+        void executeTrajectory(double relativeTime,  ocra::Model& model);
         bool parseNewOptVarsBottle();
 
         double obstacleTime;
@@ -145,8 +143,8 @@ class TaskOptimization : public ocra::TaskSequence
 
         bool runObstacleTest_1D, runObstacleTest_3D, runArmCrossingTest, useVarianceModulation;
 
-        void obstacleTest_UpdateThread(double time, ocra::Model& state);
-        void ArmCrossingTest_UpdateThread(double time, ocra::Model& state);
+        void obstacleTest_UpdateThread(double time, ocra::Model& model);
+        void ArmCrossingTest_UpdateThread(double time, ocra::Model& model);
 
 
 };

@@ -1,6 +1,6 @@
 #include <taskSequences/sequences/FixedBaseMinimalTasks.h>
 // FixedBaseMinimalTasks
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
     void FixedBaseMinimalTasks::doInit(ocra::Controller& ctrl, ocra::Model& model)

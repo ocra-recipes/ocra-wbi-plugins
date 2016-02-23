@@ -26,7 +26,6 @@
             std::string jointNames [25];
             int counter;
 
-            // ocraWbiModel& wbiModel;
 
         private:
             // Full posture task

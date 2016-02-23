@@ -13,20 +13,14 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${Boost_INCLUDE_DIR}
                     ${OcraRecipes_INCLUDE_DIRS}
-                    ${ocraWbiPlugins_SOURCE_DIR}/include
+                    ${ocra-yarp_SOURCE_DIR}/include
                     )
 
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
-TARGET_LINK_LIBRARIES(${PROJECTNAME} #${YARP_LIBRARIES}
-                                     #${ICUB_LIBRARIES}
-                                     #${iDynTree_LIBRARIES}
-                                     ${yarpWholeBodyInterface_LIBRARIES}
-                                     #${GOCRA_LIBRARIES}
+TARGET_LINK_LIBRARIES(${PROJECTNAME} ${yarpWholeBodyInterface_LIBRARIES}
                                      ${OcraRecipes_LIBRARIES}
-                                     #${QUADPROG_LIBRARIES}
-                                     #${Boost_LIBRARIES}
-                                     ocraWbiPlugins
+                                     ocra-yarp
                                      )
 
 

@@ -35,6 +35,7 @@ yarp_configure_external_installation(codyco)
 
 add_subdirectory(libs)
 add_subdirectory(modules)
+add_subdirectory(bin)
 
 
 

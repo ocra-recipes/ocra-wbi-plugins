@@ -1,7 +1,7 @@
 
 #include <taskSequences/sequences/FloatingBaseCoMBalancing.h>
 
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 #include <math.h>
 

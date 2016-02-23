@@ -1,11 +1,11 @@
 #include <taskSequences/sequences/LeftRightHandReach.h>
 // LeftRightHandReach
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
     void LeftRightHandReach::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
-        ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+        // ocraWbiModel& model = dynamic_cast<ocraWbiModel&>(model);
         // Full posture task
         Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);
@@ -16,7 +16,7 @@
 
         Eigen::VectorXi torso_indices(3);
         Eigen::VectorXd torsoTaskPosDes(3);
-        torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
+        torso_indices << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
         torsoTaskPosDes << M_PI / 18, 0, 0;
         taskManagers["tmPartialTorso"] = new ocra::PartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, 10.0, 3.0, 5.0, torsoTaskPosDes);
 

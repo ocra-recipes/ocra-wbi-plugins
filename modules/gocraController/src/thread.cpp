@@ -73,7 +73,7 @@ gocraControllerThread::gocraControllerThread(string _name,
 
 
     bool isFreeBase = false;
-    ocraModel = new ocraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
+    ocraModel = new ocra_yarp::OcraWbiModel(robotName, robot->getDoFs(), robot, isFreeBase);
     bool useGrav = true;// enable gravity compensation
     ctrl = new gocra::GHCJTController("icubControl", *ocraModel, internalSolver, useGrav);
 
@@ -321,7 +321,7 @@ void gocraControllerThread::run()
           else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
         }
 
-        ocraWbiConversions::eigenToYarpVector(eigenTorques, torques_cmd);
+        ocra_yarp::OcraWbiConversions::eigenToYarpVector(eigenTorques, torques_cmd);
         robot->setControlReference(torques_cmd.data());
     }
 
@@ -380,7 +380,7 @@ void gocraControllerThread::run()
 //             if (eigenJointPosition(i)<q_min(i))
 //                eigenJointPosition(i)=q_min(i);
 //        }
-//        ocraWbiConversions::eigenToYarpVector(q_actual, position_cmd);
+//        ocra_yarp::OcraWbiConversions::eigenToYarpVector(q_actual, position_cmd);
         int dof = robot->getDoFs();
 //        Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(dof);
 //        getNPosture(*ocraModel, nominal_q);
@@ -388,8 +388,8 @@ void gocraControllerThread::run()
         yarp::sig::Vector refSpeed(dof, 0.0);
         yarp::sig::Vector refAcc(dof, 0.0);
 //        yarp::sig::Vector pos(dof, 0.0);
-//         ocraWbiConversions::eigenToYarpVector(q_actual, pos);
-//         ocraWbiConversions::eigenToYarpVector(nominal_q, position_cmd);
+//         ocra_yarp::OcraWbiConversions::eigenToYarpVector(q_actual, pos);
+//         ocra_yarp::OcraWbiConversions::eigenToYarpVector(nominal_q, position_cmd);
 //        for (int i=0; i<robot->getDoFs(); ++i){
 //            refSpeed[i] = 0.001*(position_cmd[i]-pos[i])/dt;
 //        }
@@ -407,8 +407,8 @@ void gocraControllerThread::run()
                  if (refPos(i)<q_min(i))
                     refPos(i)=q_min(i);
             }
-            ocraWbiConversions::eigenToYarpVector(refPos, position_cmd);
-            ocraWbiConversions::eigenToYarpVector(refVel, refSpeed);
+            ocra_yarp::OcraWbiConversions::eigenToYarpVector(refPos, position_cmd);
+            ocra_yarp::OcraWbiConversions::eigenToYarpVector(refVel, refSpeed);
         }
 
 //        robot->setControlParam(CTRL_PARAM_REF_VEL, refSpeed.data());
