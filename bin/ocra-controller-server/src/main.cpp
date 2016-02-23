@@ -1,5 +1,5 @@
-/*! \file       .cpp
- *  \brief
+/*! \file       main.cpp
+ *  \brief      Basically just launches the server module which then launches the server thread. (...it's a dream within a dream)
  *  \details
  *  \author     [Ryan Lober](http://www.ryanlober.com)
  *  \author     [Antoine Hoarau](http://ahoarau.github.io)
