@@ -52,6 +52,8 @@
 
 #include "ocra-yarp/OcraWbiModel.h"
 #include "ocra-yarp/OcraWbiConversions.h"
+#include "ocra-yarp/OcraWbiModelUpdater.h"
+
 
 #include "taskSequences/sequenceLibrary.h"
 
@@ -106,7 +108,10 @@ class OcraControllerServerThread: public yarp::os::RateThread
         std::string name;
         std::string robotName;
         wholeBodyInterface *robot;
-        OcraWbiModel *ocraModel;
+        // OcraWbiModel *ocraModel;
+        ocra::Model *ocraModel;
+        OcraWbiModelUpdater* modelUpdater;
+
         yarp::os::Property options;
         std::string startupTaskSetPath;
         std::string startupSequence;

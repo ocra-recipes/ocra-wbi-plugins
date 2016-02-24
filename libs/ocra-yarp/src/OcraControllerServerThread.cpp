@@ -31,7 +31,6 @@
 using namespace ocra_yarp;
 using namespace yarp::math;
 using namespace yarpWbi;
-// using namespace sequence;
 
 #define ALL_JOINTS -1
 #define DIM_DISP 3
@@ -74,9 +73,7 @@ OcraControllerServerThread::OcraControllerServerThread( std::string _name,
     ocraModel = new OcraWbiModel(robotName, robot->getDoFs(), robot, _isFreeBase);
     bool useReducedProblem = false;
     ctrl = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
-
-    fb_qRad = Eigen::VectorXd::Zero(robot->getDoFs());
-    fb_qdRad = Eigen::VectorXd::Zero(robot->getDoFs());
+    modelUpdater = new OcraWbiModelUpdater();
 
     homePosture = Eigen::VectorXd::Zero(robot->getDoFs());
     debugPosture = Eigen::VectorXd::Zero(robot->getDoFs());
@@ -89,17 +86,9 @@ OcraControllerServerThread::OcraControllerServerThread( std::string _name,
 
     torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
 
-
-    fb_Hroot = wbi::Frame();
-    fb_Troot = Eigen::VectorXd::Zero(DIM_TWIST);
-
-    fb_Hroot_Vector = yarp::sig::Vector(16, 0.0);
-    fb_Troot_Vector = yarp::sig::Vector(6, 0.0);
-
     fb_torque.resize(robot->getDoFs());
 
     time_sim = 0;
-
 
 }
 
@@ -119,34 +108,16 @@ OcraControllerServerThread::~OcraControllerServerThread()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool OcraControllerServerThread::threadInit()
 {
-//    printPeriod = options.check("printPeriod",Value(1000.0),"Print a debug message every printPeriod milliseconds.").asDouble();
     /******************************************************************************************************
                                 Get WBI estimates and initialize the WOCRA model
     ******************************************************************************************************/
 
-    robot->getEstimates(ESTIMATE_JOINT_POS, q_initial.data(), ALL_JOINTS);
 
-    bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
-    bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
-
-    if (!ocraModel->hasFixedRoot()){
-        // Get root position as a 12x1 vector and get root vel as a 6x1 vector
-        bool res_fb_Hroot_Vector = robot->getEstimates(ESTIMATE_BASE_POS, fb_Hroot_Vector.data());
-        bool res_fb_Troot = robot->getEstimates(ESTIMATE_BASE_VEL, fb_Troot_Vector.data());
-        // Convert to a wbi::Frame and a "fake" Twistd
-        wbi::frameFromSerialization(fb_Hroot_Vector.data(), fb_Hroot);
-        fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
-
-        ocraModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
-    }
-    else
-        ocraModel->setState(fb_qRad, fb_qdRad);
+    if(!modelUpdater->initialize(robot, ocraModel))
+        std::cout << "ERROR with model updater" << std::endl;
 
 
-    robot->setControlParam(CTRL_PARAM_REF_VEL, refSpeed.data());
-
-
-    initialPosture = fb_qRad;
+    robot->getEstimates(ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
     initialCoMPosition = ocraModel->getCoMPosition();
     initialTorsoPosition = ocraModel->getSegmentPosition(ocraModel->getSegmentIndex("torso")).getTranslation();
 
@@ -266,26 +237,10 @@ void OcraControllerServerThread::run()
                                             Update dynamic model
     ******************************************************************************************************/
 
-    bool res_qrad = robot->getEstimates(ESTIMATE_JOINT_POS, fb_qRad.data(), ALL_JOINTS);
-    bool res_qdrad = robot->getEstimates(ESTIMATE_JOINT_VEL, fb_qdRad.data(), ALL_JOINTS);
     bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, fb_torque.data(), ALL_JOINTS);
 
-
-    // SET THE STATE (FREE FLYER POSITION/VELOCITY AND Q)
-    if (!ocraModel->hasFixedRoot()){
-        // Get root position as a 12x1 vector and get root vel as a 6x1 vector
-        bool res_fb_Hroot_Vector = robot->getEstimates(ESTIMATE_BASE_POS, fb_Hroot_Vector.data());
-        bool res_fb_Troot = robot->getEstimates(ESTIMATE_BASE_VEL, fb_Troot_Vector.data());
-        // Convert to a wbi::Frame and a "fake" Twistd
-        wbi::frameFromSerialization(fb_Hroot_Vector.data(), fb_Hroot);
-
-        fb_Troot = Eigen::Twistd(fb_Troot_Vector[0], fb_Troot_Vector[1], fb_Troot_Vector[2], fb_Troot_Vector[3], fb_Troot_Vector[4], fb_Troot_Vector[5]);
-
-
-        ocraModel->wbiSetState(fb_Hroot, fb_qRad, fb_Troot, fb_qdRad);
-    }
-    else
-        ocraModel->setState(fb_qRad, fb_qdRad);
+    if(!modelUpdater->update(robot, ocraModel))
+        std::cout << "ERROR with model updater" << std::endl;
 
 
     /******************************************************************************************************
