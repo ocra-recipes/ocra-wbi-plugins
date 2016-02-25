@@ -26,9 +26,6 @@
 
 #include "ocra-yarp/OcraControllerServerModule.h"
 
-
-using namespace yarp::os;
-using namespace yarpWbi;
 using namespace ocra_yarp;
 
 OcraControllerServerModule::OcraControllerServerModule()
@@ -38,7 +35,7 @@ OcraControllerServerModule::OcraControllerServerModule()
     period = 10;
 }
 
-bool OcraControllerServerModule::configure(ResourceFinder &rf)
+bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
 {
     //--------------------------READ FROM CONFIGURATION----------------------
     if( rf.check("robot") )
@@ -103,11 +100,11 @@ bool OcraControllerServerModule::configure(ResourceFinder &rf)
     yarpWbiOptions.fromConfigFile(wbiConfFile);
     // Overwrite the robot parameter that could be present in wbi_conf_file
     yarpWbiOptions.put("robot", robotName);
-    robotInterface = new yarpWholeBodyInterface(moduleName.c_str(), yarpWbiOptions);
+    robotInterface = new yarpWbi::yarpWholeBodyInterface(moduleName.c_str(), yarpWbiOptions);
 
-    IDList robotJoints;
+    wbi::IDList robotJoints;
     std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
-    if(!loadIdListFromConfig(robotJointsListName, yarpWbiOptions, robotJoints))
+    if(!yarpWbi::loadIdListFromConfig(robotJointsListName, yarpWbiOptions, robotJoints))
     {
         fprintf(stderr, "[ERR] wocraController: Impossible to load wbiId joint list with name %s\n", robotJointsListName.c_str());
     }

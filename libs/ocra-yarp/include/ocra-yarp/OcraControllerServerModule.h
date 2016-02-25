@@ -36,13 +36,10 @@
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include "ocra-yarp/OcraControllerServerThread.h"
 
-using namespace yarp::os;
-using namespace wbi;
-
 namespace ocra_yarp
 {
 
-class OcraControllerServerModule: public RFModule
+class OcraControllerServerModule: public yarp::os::RFModule
 {
     /* module parameters */
     std::string moduleName;
@@ -54,7 +51,7 @@ class OcraControllerServerModule: public RFModule
     double avgTime, stdDev, avgTimeUsed, stdDevUsed;
 
     OcraControllerServerThread* ctrlThread; // locomotion control thread
-    wholeBodyInterface* robotInterface; // interface to communicate with the robot
+    wbi::wholeBodyInterface* robotInterface; // interface to communicate with the robot
 
 public:
     OcraControllerServerModule();
