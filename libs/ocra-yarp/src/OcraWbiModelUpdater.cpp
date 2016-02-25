@@ -37,7 +37,7 @@ OcraWbiModelUpdater::~OcraWbiModelUpdater()
 {
 }
 
-bool OcraWbiModelUpdater::initialize(wbi::wholeBodyInterface* wbiPointer, ocra::Model* modelPointer)
+bool OcraWbiModelUpdater::initialize(std::shared_ptr<wbi::wholeBodyInterface> wbiPointer, ocra::Model* modelPointer)
 {
     fb_qRad = Eigen::VectorXd::Zero(wbiPointer->getDoFs());
     fb_qdRad = Eigen::VectorXd::Zero(wbiPointer->getDoFs());
@@ -51,7 +51,7 @@ bool OcraWbiModelUpdater::initialize(wbi::wholeBodyInterface* wbiPointer, ocra::
     return update(wbiPointer, modelPointer);
 }
 
-bool OcraWbiModelUpdater::update(wbi::wholeBodyInterface* wbiPointer, ocra::Model* modelPointer)
+bool OcraWbiModelUpdater::update(std::shared_ptr<wbi::wholeBodyInterface> wbiPointer, ocra::Model* modelPointer)
 {
     if (wbiPointer==NULL || modelPointer == NULL) {
         return false;

@@ -28,6 +28,7 @@
 #ifndef OCRA_WBI_MODEL_UPDATER_H
 #define OCRA_WBI_MODEL_UPDATER_H
 
+#include <memory>
 #include "ocra-yarp/OcraWbiModel.h"
 
 namespace ocra_yarp
@@ -37,8 +38,8 @@ class OcraWbiModelUpdater
 public:
     OcraWbiModelUpdater();
     ~OcraWbiModelUpdater();
-    bool initialize(wbi::wholeBodyInterface* wbiPointer, ocra::Model* modelPointer);
-    bool update(wbi::wholeBodyInterface* wbiPointer, ocra::Model* modelPointer);
+    bool initialize(std::shared_ptr<wbi::wholeBodyInterface> wbiPointer, ocra::Model* modelPointer);
+    bool update(std::shared_ptr<wbi::wholeBodyInterface> wbiPointer, ocra::Model* modelPointer);
 
 private:
     Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the wbiPointer
