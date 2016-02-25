@@ -33,15 +33,13 @@ using namespace ocra_yarp;
 
 ModelThread::ModelThread(int period, const std::string& wbiConfFile, const bool isFloatingBase):
 RateThread(period),
-wbi(NULL),
-model(NULL),
-modelUpdater(NULL)
+model(NULL)
 {
     yarp::os::Property yarpWbiOptions;
     yarpWbiOptions.fromConfigFile(wbiConfFile);
-    wbi = new yarpWbi::yarpWholeBodyInterface("modelthread", yarpWbiOptions);
+    wbi = std::make_shared<yarpWbi::yarpWholeBodyInterface>("modelthread", yarpWbiOptions);
     model = new OcraWbiModel(yarpWbiOptions.find("robot").asString(), wbi->getDoFs(), wbi, isFloatingBase);
-    modelUpdater = new OcraWbiModelUpdater();
+    modelUpdater = std::make_shared<OcraWbiModelUpdater>();
 }
 
 ModelThread::~ModelThread()

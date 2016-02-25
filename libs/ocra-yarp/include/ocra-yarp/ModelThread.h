@@ -57,8 +57,8 @@ protected:
 
 private:
     ocra::Model* model;
-    wbi::wholeBodyInterface* wbi;
-    OcraWbiModelUpdater* modelUpdater;
+    std::shared_ptr<OcraWbiModelUpdater> modelUpdater;
+    std::shared_ptr<wbi::wholeBodyInterface> wbi;
 
 };
 } // namespace ocra_yarp
