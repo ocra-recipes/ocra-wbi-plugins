@@ -29,6 +29,7 @@
 
 #include <cmath>
 #include <iostream>
+#include <memory>
 
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/RateThread.h>
@@ -39,6 +40,7 @@
 #include <yarp/os/ConnectionReader.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Log.h>
+#include <yarp/os/Property.h>
 
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
@@ -53,117 +55,132 @@
 #include "ocra-yarp/OcraWbiModel.h"
 #include "ocra-yarp/OcraWbiConversions.h"
 #include "ocra-yarp/OcraWbiModelUpdater.h"
+#include "ocra-yarp/OcraYarpVocab.h"
 
 
 #include "taskSequences/sequenceLibrary.h"
 
 namespace ocra_yarp
 {
+class OcraControllerOptions
+{
+public: // Functions
+    /*! Constructor. Initializes all of the possible values.
+     */
+    OcraControllerOptions()
+    : threadPeriod(10)
+    , serverName("")
+    , robotName("")
+    , startupTaskSetPath("")
+    , startupSequence("")
+    , runInDebugMode(false)
+    , isFloatingBase(false)
+    , yarpWbiOptions(yarp::os::Property())
+    , controllerType(WOCRA_CONTROLLER)
+    {
+    }
 
+    /*! Destructor. Does nothing.
+     */
+    ~OcraControllerOptions(){};
+
+public: // Variables
+    int                     threadPeriod; /*!< An int representing the looping period of the controller. */
+    std::string             serverName; /*!< a string with the name of the controller server. */
+    std::string             robotName; /*!< a string with the name of the robot. */
+    std::string             startupTaskSetPath; /*!< a string with the absolute path to an xml file with a set of tasks. */
+    std::string             startupSequence; /*!< a string with the name of a sequence to run **(will be removed)**. */
+    bool                    runInDebugMode; /*!< a boolean which runs the controller in a debugging mode which allows one to check the contorller ouput joint by joint. */
+    bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
+    yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
+    OCRA_CONTROLLER_TYPE    controllerType; /*!< The type of OCRA controller to use. */
+};
+
+
+/*! \class OcraControllerServerThread
+ *  \brief The meat and potatoes of the controller server.
+ *
+ *  \todo Remove task sequences.
+ *  This class sets up an ocra::Model which is constructed from an OcraWbiModel and an ocra::Controller which can be  specified as either a WocraController, a GocraController, or a HocraController. The thread is looped at the period  specified by the user (defaults to 10ms) and on each loop the Model is updated and the control torques are  recalculated. *At the writing of this comment, task sequences are still in use and they too are initialized and  updated here. They will be removed eventually.*
+ */
 class OcraControllerServerThread: public yarp::os::RateThread
 {
+public:
+
+    /*! Constructor
+     *  \param controller_options The various arguments and options used to define what type of controller and tasks to use. See \ref OcraControllerOptions.
+     *  \param wbi A shared pointer to a wholeBodyInterface object.
+     */
+    OcraControllerServerThread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::wholeBodyInterface> wbi);
+
+    virtual ~OcraControllerServerThread();
+    bool threadInit();
+    void run();
+    void threadRelease();
+
+    /************** DataProcessor *************/
+    class DataProcessor : public yarp::os::PortReader {
+        private:
+            OcraControllerServerThread& ctThread;
+
+        public:
+            DataProcessor(OcraControllerServerThread& ctThreadRef);
+
+            virtual bool read(yarp::os::ConnectionReader& connection);
+    };
+    /************** DataProcessor *************/
+
+private:
+    OcraControllerOptions ctrlOptions;
+    std::shared_ptr<wholeBodyInterface> robot;
+
+    ocra::Controller *ctrl;
+    ocra::OneLevelSolverWithQuadProg internalSolver;
+
+    ocra::TaskSequence* taskSequence;
+    ocra::Model *ocraModel;
+    OcraWbiModelUpdater* modelUpdater;
+
+    bool loadStabilizationTasks();
+    void stabilizeRobot();
+    bool isRobotStable();
+    bool isStabilizing;
 
 
-
-    public:
-        OcraControllerServerThread(   std::string _name,
-                                      std::string _robotName,
-                                      int _period,
-                                      wholeBodyInterface *_wbi,
-                                      yarp::os::Property & _options,
-                                      std::string _startupTaskSetPath,
-                                      std::string _startupSequence,
-                                      bool _runInDebugMode,
-                                      bool _isFreeBase);
+    int debugJointIndex;
 
 
-        virtual ~OcraControllerServerThread();
-        bool threadInit();
-        void run();
-        void threadRelease();
+    Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
 
-        /** Start the controller. */
-        void startController();
-
-
-        /************** DataProcessor *************/
-        class DataProcessor : public yarp::os::PortReader {
-            private:
-                OcraControllerServerThread& ctThread;
-
-            public:
-                DataProcessor(OcraControllerServerThread& ctThreadRef);
-
-                virtual bool read(yarp::os::ConnectionReader& connection);
-        };
-        /************** DataProcessor *************/
-
-    private:
-
-        bool loadStabilizationTasks();
-        void stabilizeRobot();
-        bool isRobotStable();
-        bool isStabilizing;
-
-        std::string name;
-        std::string robotName;
-        wholeBodyInterface *robot;
-        // OcraWbiModel *ocraModel;
-        ocra::Model *ocraModel;
-        OcraWbiModelUpdater* modelUpdater;
-
-        yarp::os::Property options;
-        std::string startupTaskSetPath;
-        std::string startupSequence;
-        bool runInDebugMode;
-
-        int debugJointIndex;
+    // Member variables
+    double time_sim;
+    double printPeriod;
+    double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
+    Eigen::VectorXd homePosture;
+    Eigen::VectorXd initialPosture;
+    Eigen::VectorXd debugPosture;
+    Eigen::VectorXd refSpeed;
+    Eigen::Vector3d initialCoMPosition;
+    Eigen::Vector3d initialTorsoPosition;
 
 
-        ocra::Controller *ctrl;
-        ocra::OneLevelSolverWithQuadProg internalSolver;
-
-        ocra::TaskSequence* taskSequence;
-
-        Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
-
-        // Member variables
-        double time_sim;
-        double printPeriod;
-        double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
-        Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the robot
-        Eigen::VectorXd fb_qdRad; // vector that contains the derivative of encoders read from the robot
-        Eigen::VectorXd homePosture;
-        Eigen::VectorXd initialPosture;
-        Eigen::VectorXd debugPosture;
-        Eigen::VectorXd refSpeed;
-        Eigen::Vector3d initialCoMPosition;
-        Eigen::Vector3d initialTorsoPosition;
+    yarp::sig::Vector torques_cmd;
+    yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
 
-        // Eigen::VectorXd fb_Hroot_Vector;
-        yarp::sig::Vector fb_Hroot_Vector;
-        yarp::sig::Vector fb_Troot_Vector;
-        yarp::sig::Vector torques_cmd;
-
-        wbi::Frame fb_Hroot; // vector that position of root
-        Eigen::Twistd fb_Troot; // vector that contains the twist of root
-        yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
-
-
-        // TODO: Convert to RPC port as below.
-        yarp::os::BufferedPort<yarp::os::Bottle> debugPort_in;
-        yarp::os::BufferedPort<yarp::os::Bottle> debugPort_out;
+    // TODO: Convert to RPC port as below.
+    yarp::os::BufferedPort<yarp::os::Bottle> debugPort_in;
+    yarp::os::BufferedPort<yarp::os::Bottle> debugPort_out;
 
 
 
 
-        bool usesYARP;
-        yarp::os::RpcServer rpcPort;
-        DataProcessor processor;
+    bool usesYARP;
+    yarp::os::RpcServer rpcPort;
+    DataProcessor processor;
 
-        void parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply);
-        std::string printValidMessageTags();
+    void parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply);
+    std::string printValidMessageTags();
 
 };
 

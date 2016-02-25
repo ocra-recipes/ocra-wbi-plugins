@@ -29,24 +29,19 @@
 using namespace ocra_yarp;
 
 OcraControllerServerModule::OcraControllerServerModule()
+: controller_options(OcraControllerOptions())
 {
-    ctrlThread = 0;
-    robotInterface = 0;
-    period = 10;
 }
 
 bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
 {
-    //--------------------------READ FROM CONFIGURATION----------------------
-    if( rf.check("robot") )
-    {
-        robotName = rf.find("robot").asString().c_str();
-        std::cout << "\n\nRobot name is: " << robotName << "\n" << std::endl;
-    }
-    if( rf.check("local") )
-    {
-        moduleName = rf.find("local").asString().c_str();
-    }
+    /*!< Parse the configuration file. */
+
+    controller_options.robotName = rf.check("robot") ? rf.find("robot").asString().c_str() : "icub";
+    controller_options.threadPeriod = rf.check("threadPeriod") ? rf.find("threadPeriod").asInt() : DEFAULT_THREAD_PERIOD;
+    controller_options.serverName = rf.check("local") ? rf.find("local").asString().c_str() : "OcraControllerServer";
+    controller_options.runInDebugMode = rf.check("debug");
+    controller_options.isFloatingBase = rf.check("floatingBase");
 
     if( rf.check("taskSet") )
     {
@@ -72,39 +67,30 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
             }
         }
 
-        startupTaskSetPath = rf.findFileByName(fileName).c_str();
+        controller_options.startupTaskSetPath = rf.findFileByName(fileName).c_str();
     }
 
     if( rf.check("sequence") )
     {
-        startupSequence = rf.find("sequence").asString().c_str();
+        controller_options.startupSequence = rf.find("sequence").asString().c_str();
     }
 
-    if( rf.check("debug") )
-    {
-        debugMode = true;
-    }else{debugMode = false;}
 
-    if( rf.check("floatingBase") )
-    {
-        isFloatingBase = true;
-    }else{isFloatingBase = false;}
 
-    yarp::os::Property yarpWbiOptions;
     // Get wbi options from the canonical file
     if ( !rf.check("wbi_conf_file") )
     {
         fprintf(stderr, "[ERR] wocraController: Impossible to open wholeBodyInterface: wbi_conf_file option missing");
     }
     std::string wbiConfFile = rf.findFile("wbi_conf_file");
-    yarpWbiOptions.fromConfigFile(wbiConfFile);
+    controller_options.yarpWbiOptions.fromConfigFile(wbiConfFile);
     // Overwrite the robot parameter that could be present in wbi_conf_file
-    yarpWbiOptions.put("robot", robotName);
-    robotInterface = new yarpWbi::yarpWholeBodyInterface(moduleName.c_str(), yarpWbiOptions);
+    controller_options.yarpWbiOptions.put("robot", controller_options.robotName);
+    robotInterface = std::make_shared<yarpWbi::yarpWholeBodyInterface>(controller_options.serverName.c_str(), controller_options.yarpWbiOptions);
 
     wbi::IDList robotJoints;
     std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
-    if(!yarpWbi::loadIdListFromConfig(robotJointsListName, yarpWbiOptions, robotJoints))
+    if(!yarpWbi::loadIdListFromConfig(robotJointsListName, controller_options.yarpWbiOptions, robotJoints))
     {
         fprintf(stderr, "[ERR] wocraController: Impossible to load wbiId joint list with name %s\n", robotJointsListName.c_str());
     }
@@ -117,23 +103,8 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
         fprintf(stderr, "Error while initializing whole body interface. Closing module\n"); return false;
     }
 
-    //--------------------------CTRL THREAD--------------------------
-    yarp::os::Property controller_options;
-    //If the printPeriod is found in the options, send it to the controller
-    if( rf.check("printPeriod") && rf.find("printPeriod").isDouble() )
-    {
-        controller_options.put("printPeriod",rf.find("printPeriod").asDouble());
-    }
+    ctrlThread = std::make_shared<OcraControllerServerThread>(controller_options, robotInterface);
 
-    ctrlThread = new OcraControllerServerThread(moduleName,
-                                                   robotName,
-                                                   period,
-                                                   robotInterface,
-                                                   controller_options,
-                                                   startupTaskSetPath,
-                                                   startupSequence,
-                                                   debugMode,
-                                                   isFloatingBase);
     if(!ctrlThread->start())
     {
         fprintf(stderr, "Error while initializing wocraController thread. Closing module.\n"); return false;
@@ -154,23 +125,24 @@ bool OcraControllerServerModule::interruptModule()
 
 bool OcraControllerServerModule::close()
 {
-//stop threads
-    if(ctrlThread){ ctrlThread->stop(); delete ctrlThread; ctrlThread = 0; }
-
-    if(robotInterface)
-    {
-        bool res=robotInterface->close();
-        if(!res)
-            printf("Error while closing robot interface\n");
-        delete robotInterface;
-        robotInterface = 0;
+    /* Stop the control thread. */
+    if(ctrlThread){
+        ctrlThread->stop();
     }
+
+    /* Stop the WBI threads. */
+    if(robotInterface){
+        if(!robotInterface->close())
+            printf("Error while closing robot interface\n");
+    }
+
+    /* Print performance information */
     printf("[PERFORMANCE INFORMATION]:\n");
-    printf("Expected period %d ms.\nReal period: %3.1f+/-%3.1f ms.\n", period, avgTime, stdDev);
+    printf("Expected period %d ms.\nReal period: %3.1f+/-%3.1f ms.\n", controller_options.threadPeriod, avgTime, stdDev);
     printf("Real duration of 'run' method: %3.1f+/-%3.1f ms.\n", avgTimeUsed, stdDevUsed);
-    if(avgTimeUsed<0.5*period)
+    if(avgTimeUsed<0.5*controller_options.threadPeriod)
         printf("Next time you could set a lower period to improve the controller performance.\n");
-    else if(avgTime>1.3*period)
+    else if(avgTime>1.3*controller_options.threadPeriod)
         printf("The period you set was impossible to attain. Next time you could set a higher period.\n");
 
     return true;
@@ -186,20 +158,13 @@ bool OcraControllerServerModule::updateModule()
 
     ctrlThread->getEstPeriod(avgTime, stdDev);
     ctrlThread->getEstUsed(avgTimeUsed, stdDevUsed); // real duration of run()
-//#ifndef NDEBUG
-    if(avgTime > 1.3 * period)
+    if(avgTimeUsed > 1.3 * controller_options.threadPeriod)
     {
-        // printf("[WARNING] Control loop is too slow. Real period: %3.3f+/-%3.3f. Expected period %d.\n", avgTime, stdDev, period);
-        // printf("Duration of 'run' method: %3.3f+/-%3.3f.\n", avgTimeUsed, stdDevUsed);
+        printf("[WARNING] Control loop is too slow. Real period: %3.3f+/-%3.3f. Expected period %d.\n", avgTime, stdDev, controller_options.threadPeriod);
+        printf("Duration of 'run' method: %3.3f+/-%3.3f.\n", avgTimeUsed, stdDevUsed);
     }
-//#endif
 
     return true;
-}
-
-double OcraControllerServerModule::getPeriod()
-{
-    return period;
 }
 
 void OcraControllerServerModule::printHelp()

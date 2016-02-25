@@ -46,45 +46,56 @@ using namespace yarpWbi;
 //                                               Thread Constructor
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-OcraControllerServerThread::OcraControllerServerThread( std::string _name,
-                                                        std::string _robotName,
-                                                        int _period,
-                                                        wholeBodyInterface *_wbi,
-                                                        yarp::os::Property &_options,
-                                                        std::string _startupTaskSetPath,
-                                                        std::string _startupSequence,
-                                                        bool _runInDebugMode,
-                                                        bool _isFreeBase)
-    : yarp::os::RateThread(_period),
-      name(_name),
-      robotName(_robotName),
-      robot(_wbi),
-      options(_options),
-      startupTaskSetPath(_startupTaskSetPath),
-      startupSequence(_startupSequence),
-      runInDebugMode(_runInDebugMode),
-      processor(*this),
-      isStabilizing(false),
-      taskSequence(NULL)//,
-    //   ocraModel(NULL),
-    //   ctrl(NULL)
+OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::wholeBodyInterface> wbi)
+: ctrlOptions(controller_options)
+, yarp::os::RateThread(ctrlOptions.threadPeriod)
+, robot(wbi)
+, processor(*this)
+, isStabilizing(false)
 {
+//
+// }
+//
+// // OcraControllerServerThread::OcraControllerServerThread( std::string _name,
+//                                                         std::string _robotName,
+//                                                         int _period,
+//                                                         wholeBodyInterface *_wbi,
+//                                                         yarp::os::Property &_options,
+//                                                         std::string _startupTaskSetPath,
+//                                                         std::string _startupSequence,
+//                                                         bool _runInDebugMode,
+//                                                         bool _isFreeBase)
+//     : yarp::os::RateThread(_period),
+//       name(_name),
+//       robotName(_robotName),
+//       robot(_wbi),
+//       options(_options),
+//       startupTaskSetPath(_startupTaskSetPath),
+//       startupSequence(_startupSequence),
+//       runInDebugMode(_runInDebugMode),
+//       processor(*this),
+//       isStabilizing(false),
+//       taskSequence(NULL)//,
+//     //   ocraModel(NULL),
+//     //   ctrl(NULL)
+// {
     // bool _isFreeBase = false;
-    ocraModel = new OcraWbiModel(robotName, robot->getDoFs(), robot, _isFreeBase);
     bool useReducedProblem = false;
-    ctrl = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
-    modelUpdater = new OcraWbiModelUpdater();
 
-    homePosture = Eigen::VectorXd::Zero(robot->getDoFs());
-    debugPosture = Eigen::VectorXd::Zero(robot->getDoFs());
-    initialPosture = Eigen::VectorXd::Zero(robot->getDoFs());
-    refSpeed = Eigen::VectorXd::Constant(robot->getDoFs(), 0.17);
 
+    ocraModel       = new OcraWbiModel(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
+    ctrl            = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
+    modelUpdater    = new OcraWbiModelUpdater();
+
+    homePosture     = Eigen::VectorXd::Zero(robot->getDoFs());
+    debugPosture    = Eigen::VectorXd::Zero(robot->getDoFs());
+    initialPosture  = Eigen::VectorXd::Zero(robot->getDoFs());
+    refSpeed        = Eigen::VectorXd::Constant(robot->getDoFs(), 0.17);
+    torques_cmd     = yarp::sig::Vector(robot->getDoFs(), 0.0);
 
     getHomePosture(*ocraModel, homePosture);
     getNominalPosture(*ocraModel, debugPosture);
 
-    torques_cmd = yarp::sig::Vector(robot->getDoFs(), 0.0);
 
     fb_torque.resize(robot->getDoFs());
 
@@ -128,7 +139,7 @@ bool OcraControllerServerThread::threadInit()
 
 
 
-    if (runInDebugMode)
+    if (ctrlOptions.runInDebugMode)
     {
         if (ocraModel->hasFixedRoot()) {
             std::cout << "Loading fixed base minimal tasks..." << std::endl;
@@ -154,19 +165,19 @@ bool OcraControllerServerThread::threadInit()
         rpcPort.setReader(processor);
 
         //Create cpp sequence
-        if (!startupSequence.empty()) {
-            std::cout << "\nLoading sequence:\n" << startupSequence << "\n" << std::endl;
-            taskSequence = LoadSequence(startupSequence);
+        if (!ctrlOptions.startupSequence.empty()) {
+            std::cout << "\nLoading sequence:\n" << ctrlOptions.startupSequence << "\n" << std::endl;
+            taskSequence = LoadSequence(ctrlOptions.startupSequence);
         }
 
         //Create XML task set
-        if (!startupTaskSetPath.empty()) {
-            if (startupSequence.empty()) {
+        if (!ctrlOptions.startupTaskSetPath.empty()) {
+            if (ctrlOptions.startupSequence.empty()) {
                 taskSequence = LoadSequence("Empty");
             }
-            std::cout << "\nLoading tasks from XML file:\n" << startupTaskSetPath << "\n" << std::endl;
+            std::cout << "\nLoading tasks from XML file:\n" << ctrlOptions.startupTaskSetPath << "\n" << std::endl;
             ocra::TaskParser taskParser;
-            if(taskParser.parseTasksXML( startupTaskSetPath.c_str() )){
+            if(taskParser.parseTasksXML( ctrlOptions.startupTaskSetPath.c_str() )){
                 taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
                 // taskParser.printTaskArguments(); // If you want to see all the parsed args.
             }
@@ -179,7 +190,7 @@ bool OcraControllerServerThread::threadInit()
         }
 
 
-        if ( (startupTaskSetPath.empty()) && (startupSequence.empty()) )
+        if ( (ctrlOptions.startupTaskSetPath.empty()) && (ctrlOptions.startupSequence.empty()) )
         {
             std::cout << "\nNo tasks or scenarios loaded on startup. Defaulting to standard initial tasks." << std::endl;
             if (!ocraModel->hasFixedRoot()) {
@@ -210,7 +221,7 @@ bool OcraControllerServerThread::threadInit()
 
     // Note: We do this after taskSequence->init so that if the task sequence takes a long time to start up, the robot will not fall over because its control mode is already set to torque but it is receiving 0 values.
 
-    if (runInDebugMode)
+    if (ctrlOptions.runInDebugMode)
     {
         robot->setControlMode(CTRL_MODE_POS, debugPosture.data(), ALL_JOINTS);
         robot->setControlReference(debugPosture.data());
@@ -247,7 +258,7 @@ void OcraControllerServerThread::run()
                                             Update task sequences
     ******************************************************************************************************/
 
-    if (runInDebugMode)
+    if (ctrlOptions.runInDebugMode)
     {
         yarp::os::Bottle *input = debugPort_in.read(false);
         if (input != NULL)
@@ -299,7 +310,7 @@ void OcraControllerServerThread::run()
                                     Send the torques to the robot via WBI
     ******************************************************************************************************/
 
-    if (runInDebugMode) {
+    if (ctrlOptions.runInDebugMode) {
         robot->setControlReference(&torques_cmd[debugJointIndex], debugJointIndex);
     }
     else{
@@ -314,7 +325,7 @@ void OcraControllerServerThread::run()
     printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
     if (printCountdown == 0)
     {
-        if (runInDebugMode)
+        if (ctrlOptions.runInDebugMode)
         {
             yarp::os::Bottle& output = debugPort_out.prepare();
             output.clear();
