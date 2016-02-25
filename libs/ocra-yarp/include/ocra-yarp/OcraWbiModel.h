@@ -27,6 +27,8 @@
 #ifndef OCRA_WBI_MODEL_H
 #define OCRA_WBI_MODEL_H
 
+#include <memory>
+
 #include "ocra/control/Model.h"
 #include <wbi/wbi.h>
 #include <yarp/os/Log.h>
@@ -44,7 +46,7 @@ public:
 
 
 //===========================Constructor/Destructor===========================//
-    OcraWbiModel(const std::string& robotName, const int robotNumDOF, wholeBodyInterface* wbi, const bool freeRoot);
+    OcraWbiModel(const std::string& robotName, const int robotNumDOF, std::shared_ptr<wholeBodyInterface> wbi, const bool freeRoot);
     virtual ~OcraWbiModel();
 
 //=============================General functions==============================//
@@ -120,7 +122,7 @@ protected:
     virtual const std::string   doDofName               (const std::string& name) const;
 
 private:
-    wholeBodyInterface* robot; // Access to wholeBodyInterface
+    std::shared_ptr<wholeBodyInterface> robot; // Access to wholeBodyInterface
     struct OcraWbiModel_pimpl;
     boost::shared_ptr<OcraWbiModel_pimpl> owm_pimpl; // where all internal data are saved
 };
