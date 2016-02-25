@@ -18,8 +18,6 @@
 SET(PROJECTNAME ocra-controller-server)
 PROJECT(${PROJECTNAME} CXX)
 
-find_package(OcraRecipes REQUIRED)
-
 FILE(GLOB folder_source ./src/*.cpp)
 FILE(GLOB folder_header ./include/${PROJECTNAME}/*.h)
 
@@ -28,18 +26,17 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${OcraRecipes_INCLUDE_DIRS}
-                    ${ocra-yarp_SOURCE_DIR}/include
                     ${taskSequences_SOURCE_DIR}/include
+                    ${ocra-yarp_SOURCE_DIR}/include
                     )
 
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
-TARGET_LINK_LIBRARIES(${PROJECTNAME} #${YARP_LIBRARIES}
-                                     #${ICUB_LIBRARIES}
-                                     ${iDynTree_LIBRARIES}
+TARGET_LINK_LIBRARIES(${PROJECTNAME} ${iDynTree_LIBRARIES}
                                      ${yarpWholeBodyInterface_LIBRARIES}
-                                     ${OcraRecipes_LIBRARIES}
                                      ${Boost_LIBRARIES}
+                                     ${OcraRecipes_LIBRARIES}
+                                     taskSequences
                                      ocra-yarp
                                      )
 
