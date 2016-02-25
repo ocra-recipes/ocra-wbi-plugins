@@ -25,7 +25,6 @@
 
 
 //#include "gocra/Solvers/OneLevelSolver.h"
-#include "gocra/Features/gOcraFeature.h"
 #include "ocra/control/Feature.h"
 #include "ocra/control/FullState.h"
 #include "ocra/control/ControlFrame.h"
