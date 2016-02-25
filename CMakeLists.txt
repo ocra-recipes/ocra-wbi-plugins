@@ -62,8 +62,8 @@ yarp_configure_external_installation(codyco)
 
 
 add_subdirectory(libs)
-add_subdirectory(modules)
 add_subdirectory(bin)
+# add_subdirectory(modules)
 
 
 # add a target to generate API documentation with Doxygen
