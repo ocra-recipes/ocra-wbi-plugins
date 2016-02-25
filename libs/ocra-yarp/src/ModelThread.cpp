@@ -54,9 +54,7 @@ bool ModelThread::threadInit()
 
 void ModelThread::threadRelease()
 {
-    delete wbi;
     delete model;
-    delete modelUpdater;
 }
 
 void ModelThread::run()
