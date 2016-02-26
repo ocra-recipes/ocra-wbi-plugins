@@ -59,36 +59,7 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
 , processor(*this)
 , isStabilizing(false)
 {
-//
-// }
-//
-// // OcraControllerServerThread::OcraControllerServerThread( std::string _name,
-//                                                         std::string _robotName,
-//                                                         int _period,
-//                                                         wholeBodyInterface *_wbi,
-//                                                         yarp::os::Property &_options,
-//                                                         std::string _startupTaskSetPath,
-//                                                         std::string _startupSequence,
-//                                                         bool _runInDebugMode,
-//                                                         bool _isFreeBase)
-//     : yarp::os::RateThread(_period),
-//       name(_name),
-//       robotName(_robotName),
-//       robot(_wbi),
-//       options(_options),
-//       startupTaskSetPath(_startupTaskSetPath),
-//       startupSequence(_startupSequence),
-//       runInDebugMode(_runInDebugMode),
-//       processor(*this),
-//       isStabilizing(false),
-//       taskSequence(NULL)//,
-//     //   ocraModel(NULL),
-//     //   ctrl(NULL)
-// {
-    // bool _isFreeBase = false;
     bool useReducedProblem = false;
-
-
     ocraModel       = new OcraWbiModel(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
     ctrl            = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
     modelUpdater    = new OcraWbiModelUpdater();
@@ -96,14 +67,14 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
     homePosture     = Eigen::VectorXd::Zero(robot->getDoFs());
     debugPosture    = Eigen::VectorXd::Zero(robot->getDoFs());
     initialPosture  = Eigen::VectorXd::Zero(robot->getDoFs());
-    refSpeed        = Eigen::VectorXd::Constant(robot->getDoFs(), 0.17);
-    torques_cmd     = yarp::sig::Vector(robot->getDoFs(), 0.0);
+    torques         = Eigen::VectorXd::Zero(robot->getDoFs());
+    measuredTorques = Eigen::VectorXd::Zero(robot->getDoFs());
+    refSpeed        = Eigen::VectorXd::Constant(robot->getDoFs(), REFERENCE_JOINT_VELOCITY);
+    minTorques      = Eigen::VectorXd::Constant(robot->getDoFs(), TORQUE_MIN);
+    maxTorques      = Eigen::VectorXd::Constant(robot->getDoFs(), TORQUE_MAX);
 
     getHomePosture(*ocraModel, homePosture);
     getNominalPosture(*ocraModel, debugPosture);
-
-
-    fb_torque.resize(robot->getDoFs());
 
     time_sim = 0;
 
