@@ -120,6 +120,16 @@ public:
     /************** DataProcessor *************/
 
 private:
+
+    static const int ALL_JOINTS = -1; /*!< WBI all joints selector */
+
+    //TODO: Need to get the torque mins and maxs at the joint level.
+    static const int TORQUE_MIN = -24; /*!< Minimum possible actuator torques */
+    static const int TORQUE_MAX = 24; /*!< Maximum possible actuator torques */
+    static constexpr double TIME_MSEC_TO_SEC = 0.001; /*!< For converting between milliseconds and seconds. */
+    static constexpr double REFERENCE_JOINT_VELOCITY = 0.17; /*!< For converting between milliseconds and seconds. */
+
+
     OcraControllerOptions ctrlOptions;
     std::shared_ptr<wholeBodyInterface> robot;
 
@@ -148,13 +158,17 @@ private:
     Eigen::VectorXd homePosture;
     Eigen::VectorXd initialPosture;
     Eigen::VectorXd debugPosture;
+    Eigen::VectorXd torques;
+    Eigen::VectorXd measuredTorques;
+
     Eigen::VectorXd refSpeed;
+    Eigen::VectorXd minTorques;
+    Eigen::VectorXd maxTorques;
+
     Eigen::Vector3d initialCoMPosition;
     Eigen::Vector3d initialTorsoPosition;
 
 
-    yarp::sig::Vector torques_cmd;
-    yarp::sig::Vector fb_torque; // vector that contains the torque read from the robot
 
 
     // TODO: Convert to RPC port as below.
