@@ -29,17 +29,23 @@
 
 
 using namespace ocra_yarp;
-using namespace yarp::math;
-using namespace yarpWbi;
 
-#define ALL_JOINTS -1
-#define DIM_DISP 3
-#define DIM_TWIST 6
-#define TORQUE_MIN -24
-#define TORQUE_MAX 24
-//#define HAND_FOOT_TASK 1
-#define HAND_FOOT_TASK 0
-#define TIME_MSEC_TO_SEC 0.001
+OcraControllerOptions::OcraControllerOptions()
+: threadPeriod(10)
+, serverName("")
+, robotName("")
+, startupTaskSetPath("")
+, startupSequence("")
+, runInDebugMode(false)
+, isFloatingBase(false)
+, yarpWbiOptions(yarp::os::Property())
+, controllerType(WOCRA_CONTROLLER)
+{
+}
+
+OcraControllerOptions::~OcraControllerOptions()
+{
+}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
