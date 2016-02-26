@@ -490,8 +490,8 @@ void OcraControllerServerThread::stabilizeRobot()
 
 
     std::cout << "Attempting to stabilize the robot's posture. \nTime elapsed:" << std::endl;
-    while(!isRobotStable() && timeStabilizing < STABILIZATION_TIMEOUT)
-    {
+
+    do{
         run();
         timeStabilizing = yarp::os::Time::now() - timeStabilizingStart;
 
@@ -502,7 +502,8 @@ void OcraControllerServerThread::stabilizeRobot()
         if (timeStabilizing >= STABILIZATION_TIMEOUT) {
             std::cout << "\n****\n[WARNING] Stabilization procedure has timed out. The robot may fall!\n****\n";
         }
-    }
+    }while(!isRobotStable() && timeStabilizing < STABILIZATION_TIMEOUT);
+
     if(isRobotStable())
     {
         std::cout << "Stabilization procedure complete!" << std::endl;
@@ -512,5 +513,5 @@ void OcraControllerServerThread::stabilizeRobot()
 bool OcraControllerServerThread::isRobotStable()
 {
     const double ZERO_VELOCITY_THRESHOLD = 0.01;
-    return (ocraModel->getCoMVelocity().norm() + ocraModel->getJointVelocities().norm()) <= ZERO_VELOCITY_THRESHOLD;
+    return (ocraModel->getJointVelocities().norm()) <= ZERO_VELOCITY_THRESHOLD;
 }
