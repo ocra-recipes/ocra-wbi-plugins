@@ -81,14 +81,14 @@ public:
     void printHelp();
 
 private:
+    OcraControllerServerThread::shared_ptr ctrlThread; /*!< The controller thread. This is where the magic happens. */
+    std::shared_ptr<wbi::wholeBodyInterface> robotInterface; /*!< The yarpWBI interface used to get estimates from the robot. */
     yarp::os::Log yLog; /*!< A yarp logging tool. */
     OcraControllerOptions controller_options; /*!< Options used for the controller. */
-    std::shared_ptr<OcraControllerServerThread> ctrlThread; /*!< The controller thread. This is where the magic happens. */
-    std::shared_ptr<wbi::wholeBodyInterface> robotInterface; /*!< The yarpWBI interface used to get estimates from the robot. */
-    double avgTime; /*!< Average time between */
-    double stdDev; /*!< Standard deviation of the average ___ time measurements. */
-    double avgTimeUsed; /*!< Average time for  */
-    double stdDevUsed; /*!< Standard deviation of the average ___ time measurements. */
+    double avgTime; /*!< Average time between successive calls of the `run()` method.*/
+    double stdDev; /*!< Standard deviation of the average time between successive calls of the `run()` method. */
+    double avgTimeUsed; /*!< Average time for the `run()` method to execute. Should be close to avgTime. */
+    double stdDevUsed; /*!< Standard deviation of the average time for the `run()` method to execute. */
 
     static const int DEFAULT_THREAD_PERIOD = 10; /*!< If the user doesn't provide a thread period make it 10ms. */
 };
