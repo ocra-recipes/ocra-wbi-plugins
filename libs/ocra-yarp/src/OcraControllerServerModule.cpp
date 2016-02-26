@@ -80,8 +80,10 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
     // Get wbi options from the canonical file
     if ( !rf.check("wbi_conf_file") )
     {
-        fprintf(stderr, "[ERR] wocraController: Impossible to open wholeBodyInterface: wbi_conf_file option missing");
+        yLog.error() << "Impossible to open wholeBodyInterface: wbi_conf_file option missing";
+        return false;
     }
+
     std::string wbiConfFile = rf.findFile("wbi_conf_file");
     controller_options.yarpWbiOptions.fromConfigFile(wbiConfFile);
     // Overwrite the robot parameter that could be present in wbi_conf_file
@@ -92,7 +94,7 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
     std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
     if(!yarpWbi::loadIdListFromConfig(robotJointsListName, controller_options.yarpWbiOptions, robotJoints))
     {
-        fprintf(stderr, "[ERR] wocraController: Impossible to load wbiId joint list with name %s\n", robotJointsListName.c_str());
+        yLog.error() << "Impossible to load wbiId joint list with name: " << robotJointsListName;
     }
     robotInterface->addJoints(robotJoints);
 
@@ -100,17 +102,19 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
     // Make sure all the add* functions are done before the "init"
     if(!robotInterface->init())
     {
-        fprintf(stderr, "Error while initializing whole body interface. Closing module\n"); return false;
+        yLog.error() << "Error while initializing whole body interface. Closing module.";
+        return false;
     }
 
     ctrlThread = std::make_shared<OcraControllerServerThread>(controller_options, robotInterface);
 
     if(!ctrlThread->start())
     {
-        fprintf(stderr, "Error while initializing wocraController thread. Closing module.\n"); return false;
+        yLog.error() << "Error while initializing controller server thread. Closing module.";
+        return false;
     }
 
-    fprintf(stderr,"wocraController thread started\n");
+    yLog.info() << "Controller server thread started.";
 
     return true;
 }
@@ -133,14 +137,14 @@ bool OcraControllerServerModule::close()
     /* Stop the WBI threads. */
     if(robotInterface){
         if(!robotInterface->close())
-            printf("Error while closing robot interface\n");
+            yLog.error() << "Error while closing robot interface";
     }
 
     /* Print performance information */
     printf("[PERFORMANCE INFORMATION]:\n");
     printf("Expected period %d ms.\nReal period: %3.1f+/-%3.1f ms.\n", controller_options.threadPeriod, avgTime, stdDev);
     printf("Real duration of 'run' method: %3.1f+/-%3.1f ms.\n", avgTimeUsed, stdDevUsed);
-    if(avgTimeUsed<0.5*controller_options.threadPeriod)
+    if(avgTime<0.5*controller_options.threadPeriod)
         printf("Next time you could set a lower period to improve the controller performance.\n");
     else if(avgTime>1.3*controller_options.threadPeriod)
         printf("The period you set was impossible to attain. Next time you could set a higher period.\n");
@@ -152,16 +156,15 @@ bool OcraControllerServerModule::updateModule()
 {
     if (ctrlThread==0)
     {
-        printf("ControlThread pointers are zero\n");
+        yLog.error() << "OcraControllerServerThread pointers are zero.";
         return false;
     }
 
     ctrlThread->getEstPeriod(avgTime, stdDev);
     ctrlThread->getEstUsed(avgTimeUsed, stdDevUsed); // real duration of run()
-    if(avgTimeUsed > 1.3 * controller_options.threadPeriod)
+    if(avgTime > 1.3 * controller_options.threadPeriod)
     {
-        printf("[WARNING] Control loop is too slow. Real period: %3.3f+/-%3.3f. Expected period %d.\n", avgTime, stdDev, controller_options.threadPeriod);
-        printf("Duration of 'run' method: %3.3f+/-%3.3f.\n", avgTimeUsed, stdDevUsed);
+        yLog.warning() << "CONTROL LOOP IS TOO SLOW\nReal period: "<< avgTime <<"+/-"<< stdDev <<"\nExpected period: " << controller_options.threadPeriod<<"\nDuration of 'run' method: "<<avgTimeUsed<<"+/-"<< stdDevUsed<<"\n";
     }
 
     return true;
