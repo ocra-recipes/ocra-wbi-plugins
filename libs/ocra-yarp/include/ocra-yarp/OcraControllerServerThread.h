@@ -27,22 +27,6 @@
 #ifndef OCRA_CONTROLLER_SERVER_THREAD_H
 #define OCRA_CONTROLLER_SERVER_THREAD_H
 
-#include <cmath>
-#include <iostream>
-#include <memory>
-
-#include <yarp/os/BufferedPort.h>
-#include <yarp/os/RateThread.h>
-#include <yarp/os/ResourceFinder.h>
-#include <yarp/sig/Vector.h>
-#include <yarp/os/PortReader.h>
-#include <yarp/os/RpcServer.h>
-#include <yarp/os/ConnectionReader.h>
-#include <yarp/os/Time.h>
-#include <yarp/os/Log.h>
-#include <yarp/os/Property.h>
-
-
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include <wbi/wbi.h>
 
