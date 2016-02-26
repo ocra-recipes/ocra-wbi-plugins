@@ -56,7 +56,7 @@
 #include "ocra-yarp/OcraWbiConversions.h"
 #include "ocra-yarp/OcraWbiModelUpdater.h"
 #include "ocra-yarp/OcraYarpVocab.h"
-
+#include "ocra-yarp/OcraYarpTools.h"
 
 #include "taskSequences/sequenceLibrary.h"
 
@@ -67,22 +67,11 @@ class OcraControllerOptions
 public: // Functions
     /*! Constructor. Initializes all of the possible values.
      */
-    OcraControllerOptions()
-    : threadPeriod(10)
-    , serverName("")
-    , robotName("")
-    , startupTaskSetPath("")
-    , startupSequence("")
-    , runInDebugMode(false)
-    , isFloatingBase(false)
-    , yarpWbiOptions(yarp::os::Property())
-    , controllerType(WOCRA_CONTROLLER)
-    {
-    }
+    OcraControllerOptions();
 
     /*! Destructor. Does nothing.
      */
-    ~OcraControllerOptions(){};
+    ~OcraControllerOptions();
 
 public: // Variables
     int                     threadPeriod; /*!< An int representing the looping period of the controller. */
@@ -105,8 +94,8 @@ public: // Variables
  */
 class OcraControllerServerThread: public yarp::os::RateThread
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerServerThread)
 public:
-
     /*! Constructor
      *  \param controller_options The various arguments and options used to define what type of controller and tasks to use. See \ref OcraControllerOptions.
      *  \param wbi A shared pointer to a wholeBodyInterface object.
