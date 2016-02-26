@@ -225,7 +225,7 @@ void OcraControllerServerThread::run()
                                             Update dynamic model
     ******************************************************************************************************/
 
-    bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, fb_torque.data(), ALL_JOINTS);
+    bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, measuredTorques.data(), ALL_JOINTS);
 
     if(!modelUpdater->update(robot, ocraModel))
         std::cout << "ERROR with model updater" << std::endl;
@@ -248,7 +248,7 @@ void OcraControllerServerThread::run()
                 robot->setControlReference(&debugPosture[debugJointIndex], debugJointIndex);
 
                 debugJointIndex = tempDebugIndex;
-                if(robot->setControlMode(CTRL_MODE_TORQUE, &torques_cmd[debugJointIndex], debugJointIndex) )
+                if(robot->setControlMode(CTRL_MODE_TORQUE, &torques[debugJointIndex], debugJointIndex) )
                 {
                     std::cout << "Now joint: " << debugJointIndex << " is now being tested in torque control.\n-----\n" << std::endl;
                 }
@@ -265,22 +265,18 @@ void OcraControllerServerThread::run()
     /******************************************************************************************************
                                 Compute desired torque by calling the controller
     ******************************************************************************************************/
-    Eigen::VectorXd eigenTorques = Eigen::VectorXd::Constant(ocraModel->nbInternalDofs(), 0.0);
 
-	ctrl->computeOutput(eigenTorques);
+	ctrl->computeOutput(torques);
 
 
     /******************************************************************************************************
                                         Threshold the computed torques
     ******************************************************************************************************/
-    for(int i = 0; i < eigenTorques.size(); ++i)
+    for(int i = 0; i < torques.size(); ++i)
     {
-      if(eigenTorques(i) < TORQUE_MIN) eigenTorques(i) = TORQUE_MIN;
-      else if(eigenTorques(i) > TORQUE_MAX) eigenTorques(i) = TORQUE_MAX;
+      if(torques(i) < TORQUE_MIN) torques(i) = TORQUE_MIN;
+      else if(torques(i) > TORQUE_MAX) torques(i) = TORQUE_MAX;
     }
-
-    OcraWbiConversions::eigenToYarpVector(eigenTorques, torques_cmd);
-
 
 
     /******************************************************************************************************
@@ -288,10 +284,10 @@ void OcraControllerServerThread::run()
     ******************************************************************************************************/
 
     if (ctrlOptions.runInDebugMode) {
-        robot->setControlReference(&torques_cmd[debugJointIndex], debugJointIndex);
+        robot->setControlReference(&torques[debugJointIndex], debugJointIndex);
     }
     else{
-        robot->setControlReference(torques_cmd.data());
+        robot->setControlReference(torques.data());
     }
 
 
@@ -310,9 +306,9 @@ void OcraControllerServerThread::run()
             output.addString("joint");
             output.addInt(debugJointIndex);
             output.addString("torque_desired");
-            output.addDouble(torques_cmd[debugJointIndex]);
+            output.addDouble(torques[debugJointIndex]);
             output.addString("torque_measured");
-            output.addDouble(fb_torque[debugJointIndex]);
+            output.addDouble(measuredTorques[debugJointIndex]);
 
             debugPort_out.write();
         }
