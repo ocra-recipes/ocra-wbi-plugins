@@ -40,6 +40,8 @@
 namespace ocra_yarp
 {
 
+
+
 /*! \class OcraControllerServerModule
  *  \brief The controller module which launches the controller thread.
  *
@@ -47,8 +49,9 @@ namespace ocra_yarp
  */
 class OcraControllerServerModule: public yarp::os::RFModule
 {
-public:
+DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerServerModule)
 
+public:
     /*! Constructor which essentially does nothing.
      */
     OcraControllerServerModule();
