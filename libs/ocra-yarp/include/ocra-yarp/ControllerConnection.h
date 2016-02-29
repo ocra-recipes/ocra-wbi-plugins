@@ -34,15 +34,14 @@
 #include <yarp/os/Time.h>
 
 
-#include <string>
-#include <iostream>
-#include <vector>
+#include "ocra-yarp/OcraYarpTools.h"
 
 namespace ocra_yarp
 {
 
 class ControllerConnection
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(ControllerConnection)
 
 public:
     ControllerConnection();

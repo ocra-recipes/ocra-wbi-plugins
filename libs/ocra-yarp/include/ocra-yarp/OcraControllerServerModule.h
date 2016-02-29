@@ -36,6 +36,7 @@
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include "ocra-yarp/OcraControllerServerThread.h"
+#include "ocra-yarp/OcraYarpTools.h"
 
 namespace ocra_yarp
 {

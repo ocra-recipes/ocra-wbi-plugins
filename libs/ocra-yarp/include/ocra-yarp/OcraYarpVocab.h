@@ -2,6 +2,7 @@
 #define OCRA_YARP_VOCAB_H
 
 #include <iostream>
+#include "ocra-yarp/OcraYarpTools.h"
 
 namespace ocra_yarp
 {

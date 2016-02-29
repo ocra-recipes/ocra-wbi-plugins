@@ -33,6 +33,7 @@
 #include <wbi/wbi.h>
 #include <yarp/os/Log.h>
 #include "ocra-yarp/OcraWbiConversions.h"
+#include "ocra-yarp/OcraYarpTools.h"
 
 using namespace wbi;
 
@@ -41,6 +42,8 @@ namespace ocra_yarp
 
 class OcraWbiModel: public ocra::Model
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(OcraWbiModel)
+
 public:
 
 

@@ -31,6 +31,7 @@
 #include "ocra/control/Trajectory/Trajectories.h"
 #include <yarp/os/Time.h>
 #include <iostream>
+#include "ocra-yarp/OcraYarpTools.h"
 
 namespace ocra_yarp
 {
@@ -52,6 +53,7 @@ enum TERMINATION_STRATEGY
 
 class TrajectoryThread : public ControlThread
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(TrajectoryThread)
 
 public:
     TrajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE = MIN_JERK, const TERMINATION_STRATEGY _terminationStrategy = STOP_THREAD);

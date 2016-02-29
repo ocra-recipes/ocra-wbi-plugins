@@ -35,6 +35,7 @@ namespace ocra_yarp
 {
 class OcraWbiModelUpdater
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(OcraWbiModelUpdater)
 public:
     OcraWbiModelUpdater();
     ~OcraWbiModelUpdater();

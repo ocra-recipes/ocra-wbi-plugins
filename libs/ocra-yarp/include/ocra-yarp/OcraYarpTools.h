@@ -34,18 +34,28 @@
 #include <memory>
 #include <cmath>
 #include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+
 
 // Yarp includes
 #include <yarp/os/BufferedPort.h>
 #include <yarp/os/RateThread.h>
 #include <yarp/os/ResourceFinder.h>
-#include <yarp/sig/Vector.h>
 #include <yarp/os/PortReader.h>
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Log.h>
 #include <yarp/os/Property.h>
+#include <yarp/sig/Vector.h>
+#include <yarp/sig/Matrix.h>
+
+// Eigen includes
+#include <Eigen/Dense>
+#include <Eigen/Lgsm>
+
 
 
 namespace ocra_yarp

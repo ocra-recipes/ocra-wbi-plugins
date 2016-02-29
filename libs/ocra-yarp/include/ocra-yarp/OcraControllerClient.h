@@ -31,12 +31,15 @@
 
 #include <yarp/os/RateThread.h>
 #include <yarp/os/ResourceFinder.h>
+#include "ocra-yarp/OcraYarpTools.h"
 
 namespace ocra_yarp
 {
 
 class OcraControllerClient: public yarp::os::RateThread
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerClient)
+
     // RateThread virtual functions
     virtual bool threadInit();
     virtual void threadRelease();

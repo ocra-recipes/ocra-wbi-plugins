@@ -34,15 +34,14 @@
 #include <yarp/os/Time.h>
 
 
-#include <string>
-#include <sstream>
-#include <iostream>
+#include "ocra-yarp/OcraYarpTools.h"
 
-#include <Eigen/Dense>
 namespace ocra_yarp
 {
 class TaskParameters
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(TaskParameters)
+
 public:
     double kp;
     double kd;
@@ -73,6 +72,7 @@ public:
 
 class ControlThread: public yarp::os::RateThread
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(ControlThread)
 
 public:
     // Constructor

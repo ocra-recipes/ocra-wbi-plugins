@@ -48,6 +48,8 @@ namespace ocra_yarp
 {
 class OcraControllerOptions
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerOptions)
+
 public: // Functions
     /*! Constructor. Initializes all of the possible values.
      */

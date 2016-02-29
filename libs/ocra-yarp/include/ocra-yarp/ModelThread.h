@@ -31,12 +31,14 @@
 #include <yarp/os/Property.h>
 #include <ocra-yarp/OcraWbiModel.h>
 #include <ocra-yarp/OcraWbiModelUpdater.h>
+#include "ocra-yarp/OcraYarpTools.h"
 
 
 namespace ocra_yarp
 {
 class ModelThread: public yarp::os::RateThread
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(ModelThread)
 
 public:
     // Constructor

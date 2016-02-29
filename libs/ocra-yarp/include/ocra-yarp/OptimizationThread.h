@@ -35,11 +35,13 @@
 #include <yarp/os/Port.h>
 #include <yarp/os/RpcClient.h>
 #include <yarp/os/Time.h>
+#include "ocra-yarp/OcraYarpTools.h"
 
 namespace ocra_yarp
 {
 class OptimizationThread : yarp::os::RateThread
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(OptimizationThread)
 
 public:
 
