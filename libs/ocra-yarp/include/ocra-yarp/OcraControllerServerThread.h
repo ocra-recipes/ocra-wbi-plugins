@@ -42,7 +42,7 @@
 #include "ocra-yarp/OcraYarpVocab.h"
 #include "ocra-yarp/OcraYarpTools.h"
 
-#include "taskSequences/sequenceLibrary.h"
+// #include "taskSequences/sequenceLibrary.h"
 
 namespace ocra_yarp
 {
@@ -92,18 +92,15 @@ public:
     bool threadInit();
     void run();
     void threadRelease();
+    void parseIncomingMessage(std::shared_ptr<yarp::os::Bottle> input, std::shared_ptr<yarp::os::Bottle> reply);
+    std::string printValidMessageTags();
 
-    /************** DataProcessor *************/
-    class DataProcessor : public yarp::os::PortReader {
-        private:
-            OcraControllerServerThread& ctThread;
 
-        public:
-            DataProcessor(OcraControllerServerThread& ctThreadRef);
-
-            virtual bool read(yarp::os::ConnectionReader& connection);
-    };
-    /************** DataProcessor *************/
+private:
+    // Stabilization functions.
+    bool loadStabilizationTasks();
+    void stabilizeRobot();
+    bool isRobotStable();
 
 private:
 
@@ -112,47 +109,38 @@ private:
     //TODO: Need to get the torque mins and maxs at the joint level.
     static const int TORQUE_MIN = -24; /*!< Minimum possible actuator torques */
     static const int TORQUE_MAX = 24; /*!< Maximum possible actuator torques */
+    Eigen::ArrayXd minTorques; /*!< An eigen array filled with the min torques. */
+    Eigen::ArrayXd maxTorques; /*!< An eigen array filled with the max torques. */
     static constexpr double TIME_MSEC_TO_SEC = 0.001; /*!< For converting between milliseconds and seconds. */
     static constexpr double REFERENCE_JOINT_VELOCITY = 0.17; /*!< For converting between milliseconds and seconds. */
 
 
-    OcraControllerOptions ctrlOptions;
-    std::shared_ptr<wholeBodyInterface> robot;
+    OcraControllerOptions ctrlOptions; /*!< The controller options. */
+    std::shared_ptr<wholeBodyInterface> robot; /*!< The WBI used to talk to the robot. */
 
-    ocra::Controller *ctrl;
-    ocra::OneLevelSolverWithQuadProg internalSolver;
+    ocra::Controller *ctrl; /*!< The controller. */
+    ocra::OneLevelSolverWithQuadProg internalSolver; /*!< The type of convex solver problem formulation used in the controller. */
 
-    ocra::TaskSequence* taskSequence;
-    ocra::Model *ocraModel;
-    OcraWbiModelUpdater* modelUpdater;
-
-    bool loadStabilizationTasks();
-    void stabilizeRobot();
-    bool isRobotStable();
-    bool isStabilizing;
+    ocra::TaskSequence* taskSequence; /*!< The set of tasks currently being executed. */
+    ocra::Model *ocraModel; /*!< The robot "model" which basically just provides state information to the controller. */
+    OcraWbiModelUpdater::shared_ptr modelUpdater; /*!< A simple helper class which is called periodically to update the model by fetching state estimates from the WBI and passing them to Model. */
 
 
-    int debugJointIndex;
 
 
-    Eigen::VectorXd q_initial; // stores vector with initial pose if we want to reset to this at the end
 
-    // Member variables
-    double time_sim;
-    double printPeriod;
-    double printCountdown;  // every time this is 0 (i.e. every printPeriod ms) print stuff
-    Eigen::VectorXd homePosture;
-    Eigen::VectorXd initialPosture;
-    Eigen::VectorXd debugPosture;
-    Eigen::VectorXd torques;
-    Eigen::VectorXd measuredTorques;
+    int debugJointIndex; /*!< The current joint index being debugged. */
 
-    Eigen::VectorXd refSpeed;
-    Eigen::VectorXd minTorques;
-    Eigen::VectorXd maxTorques;
+    Eigen::VectorXd torques; /*!< The torques calculated at each run() loop. */
+    Eigen::VectorXd refSpeed; /*!< The reference joint velocity when in position mode control. */
 
-    Eigen::Vector3d initialCoMPosition;
-    Eigen::Vector3d initialTorsoPosition;
+    double time_sim; /*!< The relative time the controller has been looping. */
+    double printPeriod; /*!< The frequency at which messages are printed. */
+    double printCountdown;  /*!< When this hits 0.0 then a message is printed. */
+    Eigen::VectorXd homePosture; /*!< The "home" posture of the robot. */
+    Eigen::VectorXd initialPosture; /*!< The initial posture of the robot on controller startup. */
+    Eigen::VectorXd debugPosture; /*!< A special posture used when debugging which solicits all joints to gravity. */
+    Eigen::VectorXd measuredTorques; /*!< Gets torque estimates from the WBI durring debug mode. */
 
 
 
@@ -162,14 +150,11 @@ private:
     yarp::os::BufferedPort<yarp::os::Bottle> debugPort_out;
 
 
-
-
-    bool usesYARP;
-    yarp::os::RpcServer rpcPort;
-    DataProcessor processor;
-
-    void parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply);
-    std::string printValidMessageTags();
+private:
+    // Stabilization variables.
+    bool isStabilizing; /*!< Tells the run() loop to not update the task sequence when stablizing. */
+    Eigen::Vector3d initialCoMPosition; /*!< The initial CoM position when the controller starts. We assume this is a stable CoM position. */
+    Eigen::Vector3d initialTorsoPosition; /*!< The initial Torso position when the controller starts. We assume this is a stable Torso position. */
 
 };
 

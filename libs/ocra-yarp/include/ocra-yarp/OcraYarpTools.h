@@ -41,6 +41,7 @@
 
 // Yarp includes
 #include <yarp/os/BufferedPort.h>
+#include <yarp/os/Bottle.h>
 #include <yarp/os/RateThread.h>
 #include <yarp/os/ResourceFinder.h>
 #include <yarp/os/PortReader.h>
@@ -48,9 +49,16 @@
 #include <yarp/os/ConnectionReader.h>
 #include <yarp/os/Time.h>
 #include <yarp/os/Log.h>
+#include <yarp/os/LogStream.h>
 #include <yarp/os/Property.h>
 #include <yarp/sig/Vector.h>
 #include <yarp/sig/Matrix.h>
+
+// WholeBodyInterface includes
+#include <wbi/wbi.h>
+
+// Ocra includes
+#include "ocra/control/Model.h"
 
 // Eigen includes
 #include <Eigen/Dense>
@@ -74,6 +82,14 @@ using const_shared_ptr    = const std::shared_ptr   <Class>;  \
 using const_unique_ptr    = const std::unique_ptr   <Class>;  \
 using const_weak_ptr      = const std::weak_ptr     <Class>;
 #endif
+
+
+
+static constexpr double DEG_TO_RAD = M_PI/180.0;
+
+
+void getNominalPosture(ocra::Model &model, Eigen::VectorXd &q);
+void getHomePosture(ocra::Model &model, Eigen::VectorXd &q);
 
 } // namespace ocra_yarp
 #endif //OCRA_YARP_TOOLS_H

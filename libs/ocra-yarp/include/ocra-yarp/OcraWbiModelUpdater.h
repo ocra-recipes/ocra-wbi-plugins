@@ -28,8 +28,8 @@
 #ifndef OCRA_WBI_MODEL_UPDATER_H
 #define OCRA_WBI_MODEL_UPDATER_H
 
-#include <memory>
 #include "ocra-yarp/OcraWbiModel.h"
+#include "ocra-yarp/OcraYarpTools.h"
 
 namespace ocra_yarp
 {
