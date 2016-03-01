@@ -22,7 +22,7 @@
         // Full posture task
         Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);
-        taskManagers["fullPostureTask"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+        taskManagers["fullPostureTask"] = std::make_shared<ocra::FullPostureTaskManager>(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
         // Partial (torso) posture task
         Eigen::VectorXi torso_indices(3);
@@ -30,7 +30,7 @@
         torso_indices << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
         torsoTaskPosDes << 0, -10.0*(M_PI / 180.0), 40.0*(M_PI / 180.0);
         // torsoTaskPosDes << 0.0, 0.0, 0.0;
-        taskManagers["torsoPostureTask"] = new ocra::PartialPostureTaskManager(ctrl, model, "torsoPostureTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+        taskManagers["torsoPostureTask"] = std::make_shared<ocra::PartialPostureTaskManager>(ctrl, model, "torsoPostureTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
 
         // Right hand cartesian task
         Eigen::Vector3d posRHandDesDelta(0.1, 0.08, 0.15);
@@ -39,7 +39,7 @@
         posRHandDes = posRHandDes + posRHandDesDelta;
 
 
-        taskManagers["rightHandCartesianTask"] = new ocra::SegCartesianTaskManager(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, 1.0, posRHandDes);
+        taskManagers["rightHandCartesianTask"] = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "rightHandCartesianTask", "r_hand", ocra::XYZ, Kp_hand, Kd_hand, 1.0, posRHandDes);
 
         /**
         * Left hand task. Pick one of these booleans to test the different constructors.
@@ -114,10 +114,10 @@
 
 
 
-        if      (isDisplacementd)      {taskManagers["leftHandPoseTask"]      = new ocra::SegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingDispd);}
-        else if (isRotation3d)         {taskManagers["leftHandOrientationTask"]    = new ocra::SegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingRotd);}
-        else if (isCartesion)          {taskManagers["leftHandCartesianTask"]      = new ocra::SegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
-        else if (isCartesionWaypoints) {taskManagers["leftHandCartesianTask"]      = new ocra::SegCartesianTaskManager(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
+        if      (isDisplacementd)      {taskManagers["leftHandPoseTask"]      = std::make_shared<ocra::SegPoseTaskManager>(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingDispd);}
+        else if (isRotation3d)         {taskManagers["leftHandOrientationTask"] = std::make_shared<ocra::SegOrientationTaskManager>(ctrl, model, "leftHandOrientationTask", "l_hand", Kp_hand, Kd_hand, wLeftHandTask, startingRotd);}
+        else if (isCartesion)          {taskManagers["leftHandCartesianTask"]      = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
+        else if (isCartesionWaypoints) {taskManagers["leftHandCartesianTask"]      = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "leftHandCartesianTask", "l_hand", ocra::XYZ, Kp_hand, Kd_hand, wLeftHandTask, startingPos);}
 
 
 
@@ -129,7 +129,7 @@
     {
         if (isDisplacementd)
         {
-            ocra::SegPoseTaskManager*   tmp_tmLeftHandPose = dynamic_cast<ocra::SegPoseTaskManager*>(taskManagers["leftHandPoseTask"]);
+            ocra::SegPoseTaskManager*   tmp_tmLeftHandPose = dynamic_cast<ocra::SegPoseTaskManager*>(taskManagers["leftHandPoseTask"].get());
 
             Eigen::Displacementd desiredPose;
             Eigen::Twistd desiredVelocity;
@@ -143,7 +143,7 @@
         else if (isRotation3d)
         {
 
-            ocra::SegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<ocra::SegOrientationTaskManager*>(taskManagers["leftHandOrientationTask"]);
+            ocra::SegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<ocra::SegOrientationTaskManager*>(taskManagers["leftHandOrientationTask"].get());
 
             Eigen::Rotation3d desiredOrientation;
             leftHandTrajectory->getDesiredValues(time, desiredOrientation);
@@ -152,7 +152,7 @@
         }
         else if (isCartesion || isCartesionWaypoints)
         {
-            ocra::SegCartesianTaskManager*   tmp_tmLeftHandCart = dynamic_cast<ocra::SegCartesianTaskManager*>(taskManagers["leftHandCartesianTask"]);
+            ocra::SegCartesianTaskManager*   tmp_tmLeftHandCart = dynamic_cast<ocra::SegCartesianTaskManager*>(taskManagers["leftHandCartesianTask"].get());
 
             Eigen::MatrixXd desiredPosVelAcc = leftHandTrajectory->getDesiredValues(time);
 

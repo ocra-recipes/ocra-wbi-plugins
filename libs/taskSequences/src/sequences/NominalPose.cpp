@@ -13,12 +13,12 @@
         nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);
 
-        taskManagers["tmFull"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 5.0, 1, q_init);
+        taskManagers["tmFull"] = std::make_shared<ocra::FullPostureTaskManager>(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, 20.0, 5.0, 1, q_init);
     }
 
     void NominalPose::doUpdate(double time, ocra::Model& state, void** args)
     {
-        ocra::FullPostureTaskManager*   tmp_tmFull = dynamic_cast<ocra::FullPostureTaskManager*>(taskManagers["tmFull"]);
+        ocra::FullPostureTaskManager*   tmp_tmFull = dynamic_cast<ocra::FullPostureTaskManager*>(taskManagers["tmFull"].get());
 
         Eigen::VectorXd q_current;
         if (time <= tFinal){

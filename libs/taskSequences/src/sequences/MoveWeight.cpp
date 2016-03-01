@@ -165,14 +165,14 @@ void MoveWeight::doInit(ocra::Controller& ctrl, ocra::Model& model)
     // w_full[model.getDofIndex("l_shoulder_roll")] = 1.0;
 
 
-    taskManagers["fullPostureTask"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, w_full, q_full, usesYARP);
+    taskManagers["fullPostureTask"] = std::make_shared<ocra::FullPostureTaskManager>(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, w_full, q_full, usesYARP);
 
 
 
     // Initialise com task
     initialCoMPosition = model.getCoMPosition();
-    taskManagers["CoMTask"] = new ocra::CoMTaskManager(ctrl, model, "CoMTask", ocra::XY, Kp_CoM, Kd_CoM, weight_CoM, initialCoMPosition, usesYARP);
-    comTask = dynamic_cast<ocra::CoMTaskManager*>(taskManagers["CoMTask"]);
+    taskManagers["CoMTask"] = std::make_shared<ocra::CoMTaskManager>(ctrl, model, "CoMTask", ocra::XY, Kp_CoM, Kd_CoM, weight_CoM, initialCoMPosition, usesYARP);
+    comTask = dynamic_cast<ocra::CoMTaskManager*>(taskManagers["CoMTask"].get());
 
 
     // Initialise torso pose
@@ -180,14 +180,14 @@ void MoveWeight::doInit(ocra::Controller& ctrl, ocra::Model& model)
     desiredTorsoPosition = model.getSegmentPosition(model.getSegmentIndex("torso")).getTranslation();
     XYZdisp << 0.0, 0.0, 0.0;
     desiredTorsoPosition = desiredTorsoPosition + XYZdisp;
-    taskManagers["torsoCartesianTask"] = new ocra::SegCartesianTaskManager(ctrl, model, "torsoCartesian", "torso", ocra::XY, Kp_torso, Kd_torso, weight_torso, desiredTorsoPosition, usesYARP);
+    taskManagers["torsoCartesianTask"] = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "torsoCartesian", "torso", ocra::XY, Kp_torso, Kd_torso, weight_torso, desiredTorsoPosition, usesYARP);
 
     // Initialise root pose
     // Eigen::Vector3d desiredRootPosition;
     // desiredRootPosition = model.getSegmentPosition(model.getSegmentIndex("root_link")).getTranslation();
     // // XYZdisp << 0.0, 0.0, 0.0;
     // desiredRootPosition = desiredRootPosition + XYZdisp;
-    // taskManagers["rootCartesianTask"] = new ocra::SegCartesianTaskManager(ctrl, model, "rootCartesian", "root_link", ocra::XY, Kp_root, Kd_root, weight_root, desiredRootPosition, usesYARP);
+    // taskManagers["rootCartesianTask"] = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "rootCartesian", "root_link", ocra::XY, Kp_root, Kd_root, weight_root, desiredRootPosition, usesYARP);
 
 
 
@@ -205,14 +205,14 @@ void MoveWeight::doInit(ocra::Controller& ctrl, ocra::Model& model)
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotLZdown));
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotLZdown));
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotLZdown));
-    taskManagers["leftFootContactTask"] = new ocra::ContactSetTaskManager(ctrl, model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
+    taskManagers["leftFootContactTask"] = std::make_shared<ocra::ContactSetTaskManager>(ctrl, model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
 
     std::vector<Eigen::Displacementd> RFContacts;
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotRZdown));
-    taskManagers["rightFootContactTask"] = new ocra::ContactSetTaskManager(ctrl, model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
+    taskManagers["rightFootContactTask"] = std::make_shared<ocra::ContactSetTaskManager>(ctrl, model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -229,20 +229,20 @@ void MoveWeight::doInit(ocra::Controller& ctrl, ocra::Model& model)
     // Eigen::Rotation3d yToNegZ = Eigen::Rotation3d(sqrt2on2, -sqrt2on2, 0.0, 0.0);
     Eigen::Rotation3d desiredRightHandOrientation = startingRotd;//.inverse();// * yToNegZ;
 
-    taskManagers["rightHandOrientationTask"]    = new ocra::SegOrientationTaskManager(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, desiredRightHandOrientation, usesYARP);
+    taskManagers["rightHandOrientationTask"] = std::make_shared<ocra::SegOrientationTaskManager>(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, desiredRightHandOrientation, usesYARP);
 
     Eigen::Vector3d r_handDisp(0.085, 0.04, 0.045); // Moves the task frame to the center of the hand.
-    taskManagers["rightHand"] = new ocra::SegCartesianTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
-    rightHandTask = dynamic_cast<ocra::SegCartesianTaskManager*>(taskManagers["rightHand"]);
+    taskManagers["rightHand"] = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    rightHandTask = dynamic_cast<ocra::SegCartesianTaskManager*>(taskManagers["rightHand"].get());
 
 
 
 
     // //  rightHand
     // Eigen::Displacementd r_handDisp(0.085, 0.04, 0.045, 1.0, 0.0, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    // taskManagers["rightHand"] = new ocra::SegPoseTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    // taskManagers["rightHand"] = std::make_shared<ocra::SegPoseTaskManager>(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
     // Cast tasks to derived classes to access their virtual functions
-    // rightHandTask = dynamic_cast<ocra::SegPoseTaskManager*>(taskManagers["rightHand"]);
+    // rightHandTask = dynamic_cast<ocra::SegPoseTaskManager*>(taskManagers["rightHand"].get());
 
 
     // Trajectory constructor

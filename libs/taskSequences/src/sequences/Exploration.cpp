@@ -61,7 +61,7 @@ void Exploration::doInit(ocra::Controller& ctrl, ocra::Model& model)
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getHomePosture(model, nominal_q);
 
-    taskManagers["fullPosture"] = new ocra::FullPostureTaskManager(ctrl, model, "fullPosture", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, weight_fullPosture, nominal_q, usesYARP);
+    taskManagers["fullPosture"] = std::make_shared<ocra::FullPostureTaskManager>(ctrl, model, "fullPosture", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, weight_fullPosture, nominal_q, usesYARP);
 
 
     // torsoPosture
@@ -70,16 +70,16 @@ void Exploration::doInit(ocra::Controller& ctrl, ocra::Model& model)
     torso_indices << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
     torsoTaskPosDes << 0.0, 0.0, 0.0;
 
-    taskManagers["torsoPosture"] = new ocra::PartialPostureTaskManager(ctrl, model, "torsoPosture", ocra::FullState::INTERNAL, torso_indices, Kp_torsoPosture, Kd_torsoPosture, weight_torsoPosture, torsoTaskPosDes, usesYARP);
+    taskManagers["torsoPosture"] = std::make_shared<ocra::PartialPostureTaskManager>(ctrl, model, "torsoPosture", ocra::FullState::INTERNAL, torso_indices, Kp_torsoPosture, Kd_torsoPosture, weight_torsoPosture, torsoTaskPosDes, usesYARP);
 
 
     //  leftHand
     Eigen::Vector3d l_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    taskManagers["leftHand"] = new ocra::VariableWeightsTaskManager(ctrl, model, "leftHand", "l_hand", l_handDisp, Kp_leftHand, Kd_leftHand, weights_leftHand, usesYARP);
+    taskManagers["leftHand"] = std::make_shared<ocra::VariableWeightsTaskManager>(ctrl, model, "leftHand", "l_hand", l_handDisp, Kp_leftHand, Kd_leftHand, weights_leftHand, usesYARP);
 
     //  rightHand
     Eigen::Vector3d r_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    taskManagers["rightHand"] = new ocra::VariableWeightsTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    taskManagers["rightHand"] = std::make_shared<ocra::VariableWeightsTaskManager>(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
 
 
     /*
@@ -94,9 +94,9 @@ void Exploration::doInit(ocra::Controller& ctrl, ocra::Model& model)
     /*
     *   Cast tasks to derived classes to access their virtual functions
     */
-    leftHandTask = dynamic_cast<ocra::VariableWeightsTaskManager*>(taskManagers["leftHand"]);
+    leftHandTask = dynamic_cast<ocra::VariableWeightsTaskManager*>(taskManagers["leftHand"].get());
 
-    rightHandTask = dynamic_cast<ocra::VariableWeightsTaskManager*>(taskManagers["rightHand"]);
+    rightHandTask = dynamic_cast<ocra::VariableWeightsTaskManager*>(taskManagers["rightHand"].get());
 
 
     /*

@@ -28,18 +28,18 @@
         w_full[model->getDofIndex("torso_roll")] = 1;
         w_full[model->getDofIndex("torso_yaw")] = 1;
 
-        taskManagers["fullPostureTask"] = new ocra::FullPostureTaskManager(*ctrl, *model, "fullPostureTask", ocra::FullState::INTERNAL, 5.0, 2*sqrt(5.0), w_full, q_full, usesYARP);
+        taskManagers["fullPostureTask"] = std::make_shared<ocra::FullPostureTaskManager>(*ctrl, *model, "fullPostureTask", ocra::FullState::INTERNAL, 5.0, 2*sqrt(5.0), w_full, q_full, usesYARP);
 
 
 
         // Initialise com task
         Eigen::Vector3d desiredCoMPosition;
         desiredCoMPosition = model->getCoMPosition();
-        taskManagers["CoMTask"] = new ocra::CoMTaskManager(*ctrl, *model, "CoMTask", ocra::XY, 50.0, 1*sqrt(50.0), 10.0, desiredCoMPosition, usesYARP);
-        tmCoM = dynamic_cast<ocra::CoMTaskManager*>(taskManagers["CoMTask"]);
+        taskManagers["CoMTask"] = std::make_shared<ocra::CoMTaskManager>(*ctrl, *model, "CoMTask", ocra::XY, 50.0, 1*sqrt(50.0), 10.0, desiredCoMPosition, usesYARP);
+        tmCoM = dynamic_cast<ocra::CoMTaskManager*>(taskManagers["CoMTask"].get());
 
 
-        taskManagers["CoMMomentumTask"]= new ocra::CoMMomentumTaskManager(*ctrl, *model, "CoMMomentumTask", ocra::XYZ, 1*sqrt(5.0), 1.0, usesYARP);
+        taskManagers["CoMMomentumTask"] = std::make_shared<ocra::CoMMomentumTaskManager>(*ctrl, *model, "CoMMomentumTask", ocra::XYZ, 1*sqrt(5.0), 1.0, usesYARP);
         // Initialise foot contacts
         double mu_sys = 1.0;
         double margin = 0.05;
@@ -54,14 +54,14 @@
         LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotLZdown));
         LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotLZdown));
         LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotLZdown));
-        taskManagers["leftFootContactTask"] = new ocra::ContactSetTaskManager(*ctrl, *model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
+        taskManagers["leftFootContactTask"] = std::make_shared<ocra::ContactSetTaskManager>(*ctrl, *model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
 
         std::vector<Eigen::Displacementd> RFContacts;
         RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotRZdown));
         RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotRZdown));
         RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotRZdown));
         RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotRZdown));
-        taskManagers["rightFootContactTask"] = new ocra::ContactSetTaskManager(*ctrl, *model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
+        taskManagers["rightFootContactTask"] = std::make_shared<ocra::ContactSetTaskManager>(*ctrl, *model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
 
         // Activate Joint limit Constraint
         setJointLimits(0.1);
