@@ -7,9 +7,24 @@
 namespace ocra_yarp
 {
 
-enum OCRA_YARP_MESSAGE_TAG
+enum OCRA_CONTROLLER_MESSAGE_TAG
 {
-    TEST
+    // Indicators
+    OCRA_FAILURE = 0,
+    OCRA_SUCCESS,
+    OCRA_WARNING,
+    // Task related
+    ADD_TASK,
+    ADD_TASK_FROM_FILE,
+    REMOVE_TASK,
+    REMOVE_TASKS,
+    GET_TASK_LIST,
+    GET_TASK_PORT_LIST,
+    // Other
+    START_CONTROLLER,
+    STOP_CONTROLLER,
+    PAUSE_CONTROLLER,
+    HELP
 };
 
 enum OCRA_CONTROLLER_TYPE
