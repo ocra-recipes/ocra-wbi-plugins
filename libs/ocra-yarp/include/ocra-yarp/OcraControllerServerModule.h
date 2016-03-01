@@ -80,6 +80,10 @@ public:
      */
     OcraControllerServerModule();
 
+    /*! Destructor which essentially does nothing.
+     */
+    ~OcraControllerServerModule();
+
     /*! Configures the module by parsing the RF contents.
      *  \param rf A resource finder instance which is initialized from the command line args.
      *
@@ -107,6 +111,11 @@ public:
 private:
     OcraControllerServerThread::shared_ptr ctrlThread; /*!< The controller thread. This is where the magic happens. */
     std::shared_ptr<wbi::wholeBodyInterface> robotInterface; /*!< The yarpWBI interface used to get estimates from the robot. */
+
+    ControllerRpcServerCallback::shared_ptr rpcServerCallback; /*!< Rpc server port callback function. */
+    yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
+
+
     yarp::os::Log yLog; /*!< A yarp logging tool. */
     OcraControllerOptions controller_options; /*!< Options used for the controller. */
     double avgTime; /*!< Average time between successive calls of the `run()` method.*/
@@ -119,4 +128,4 @@ private:
 
 } // namespace ocra_yarp
 
-#endif //OCRA_CONTROLLER_SERVER_THREAD
+#endif //OCRA_CONTROLLER_SERVER_MODULE_H

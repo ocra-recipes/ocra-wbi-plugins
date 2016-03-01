@@ -110,21 +110,23 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
         controller_options.startupSequence = rf.find("sequence").asString().c_str();
     }
 
-
-
-    // Get wbi options from the canonical file
+    // Get WBI options. Note that if this parameter isn't present then the module will not start.
     if ( !rf.check("wbi_conf_file") )
     {
         yLog.error() << "Impossible to open wholeBodyInterface: wbi_conf_file option missing";
         return false;
     }
 
+    // Setup the WBI config.
     std::string wbiConfFile = rf.findFile("wbi_conf_file");
     controller_options.yarpWbiOptions.fromConfigFile(wbiConfFile);
     // Overwrite the robot parameter that could be present in wbi_conf_file
     controller_options.yarpWbiOptions.put("robot", controller_options.robotName);
+
+    // Create the wholeBodyInterface.
     robotInterface = std::make_shared<yarpWbi::yarpWholeBodyInterface>(controller_options.serverName.c_str(), controller_options.yarpWbiOptions);
 
+    // Add the robot's specific joints to the WBI.
     wbi::IDList robotJoints;
     std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
     if(!yarpWbi::loadIdListFromConfig(robotJointsListName, controller_options.yarpWbiOptions, robotJoints))
@@ -141,8 +143,16 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
         return false;
     }
 
+    // Construct the control thread.
     ctrlThread = std::make_shared<OcraControllerServerThread>(controller_options, robotInterface);
+    // Construct rpc server callback and bind to the control thread.
+    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(ctrlThread);
+    // Open the rpc server port.
+    rpcServerPort.open("/OcraController/rpc:i");
+    // Bind the callback to the port.
+    rpcServerPort.setReader(*rpcServerCallback);
 
+    // Start the control thread loop.
     if(!ctrlThread->start())
     {
         yLog.error() << "Error while initializing controller server thread. Closing module.";
@@ -151,6 +161,7 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
 
     yLog.info() << "Controller server thread started.";
 
+    // If all goes well then return true.
     return true;
 }
 
@@ -184,24 +195,36 @@ bool OcraControllerServerModule::close()
     else if(avgTime>1.3*controller_options.threadPeriod)
         printf("The period you set was impossible to attain. Next time you could set a higher period.\n");
 
+
     return true;
 }
 
 bool OcraControllerServerModule::updateModule()
 {
-    if (ctrlThread==0)
+    /*
+     * All we are doing here is checking the control thread's looping time and making sure it is running at <= the specified period.
+     */
+
+    //  Check if control thread pointer actually points to a valid instance.
+    if (ctrlThread==NULL)
     {
         yLog.error() << "OcraControllerServerThread pointers are zero.";
         return false;
     }
 
+    // Get the average time between two calls of the RateThread.run() method.
     ctrlThread->getEstPeriod(avgTime, stdDev);
-    ctrlThread->getEstUsed(avgTimeUsed, stdDevUsed); // real duration of run()
+
+    // Get the average time the .run() method takes to compute the control.
+    ctrlThread->getEstUsed(avgTimeUsed, stdDevUsed);
+
+    // If the period of the control thread is too slow then print a warning.
     if(avgTime > 1.3 * controller_options.threadPeriod)
     {
         yLog.warning() << "CONTROL LOOP IS TOO SLOW\nReal period: "<< avgTime <<"+/-"<< stdDev <<"\nExpected period: " << controller_options.threadPeriod<<"\nDuration of 'run' method: "<<avgTimeUsed<<"+/-"<< stdDevUsed<<"\n";
     }
 
+    // TODO: Potentially quit if looping is too slow and could result in dangerous behaviors.
     return true;
 }
 
