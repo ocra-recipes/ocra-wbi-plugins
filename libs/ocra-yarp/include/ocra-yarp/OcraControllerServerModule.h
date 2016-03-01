@@ -24,23 +24,46 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OCRA_CONTROLLER_SERVER_THREAD
-#define OCRA_CONTROLLER_SERVER_THREAD
+#ifndef OCRA_CONTROLLER_SERVER_MODULE_H
+#define OCRA_CONTROLLER_SERVER_MODULE_H
 
 #include <iostream>
 #include <memory>
 
 #include <yarp/os/RFModule.h>
-#include <yarp/os/Log.h>
-
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include "ocra-yarp/OcraControllerServerThread.h"
 #include "ocra-yarp/OcraYarpTools.h"
 
+
 namespace ocra_yarp
 {
+/*! \class ControllerRpcServerCallback
+ *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
+ */
+class ControllerRpcServerCallback : public yarp::os::PortReader
+{
+DEFINE_CLASS_POINTER_TYPEDEFS(ControllerRpcServerCallback)
 
+public:
+
+    /*! Constructor
+     *  \param ctThreadPtr A shared pointer to the control thread.
+     */
+    ControllerRpcServerCallback(OcraControllerServerThread::shared_ptr ctThreadPtr);
+
+    /*! read
+     *  \param connection Reads a port connection.
+     *
+     *  \return A boolean which tells whether or not a message was read.
+     */
+    virtual bool read(yarp::os::ConnectionReader& connection);
+
+private:
+
+    OcraControllerServerThread::shared_ptr ctThread; /*!< A shared pointer to the control thread. */
+};
 
 
 /*! \class OcraControllerServerModule

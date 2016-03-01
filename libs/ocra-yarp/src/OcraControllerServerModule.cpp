@@ -28,14 +28,49 @@
 
 using namespace ocra_yarp;
 
+/**************************************************************************************************
+                                    Nested PortReader Class
+**************************************************************************************************/
+ControllerRpcServerCallback::ControllerRpcServerCallback(OcraControllerServerThread::shared_ptr ctThreadPtr)
+: ctThread(ctThreadPtr)
+{
+    //do nothing
+}
+
+bool ControllerRpcServerCallback::read(yarp::os::ConnectionReader& connection)
+{
+    std::shared_ptr<yarp::os::Bottle> input;
+    std::shared_ptr<yarp::os::Bottle> reply;
+
+    if (!input->read(connection)){
+        return false;
+    }
+    else{
+        ctThread->parseIncomingMessage(input, reply);
+        std::shared_ptr<yarp::os::ConnectionWriter> returnToSender(connection.getWriter());
+        if (returnToSender!=NULL) {
+            reply->write(*returnToSender);
+        }
+        return true;
+    }
+}
+/**************************************************************************************************
+**************************************************************************************************/
+
+
+
 OcraControllerServerModule::OcraControllerServerModule()
 : controller_options(OcraControllerOptions())
 {
 }
 
+OcraControllerServerModule::~OcraControllerServerModule()
+{
+}
+
 bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
 {
-    /*!< Parse the configuration file. */
+    // Parse the configuration file.
 
     controller_options.robotName = rf.check("robot") ? rf.find("robot").asString().c_str() : "icub";
     controller_options.threadPeriod = rf.check("threadPeriod") ? rf.find("threadPeriod").asInt() : DEFAULT_THREAD_PERIOD;
