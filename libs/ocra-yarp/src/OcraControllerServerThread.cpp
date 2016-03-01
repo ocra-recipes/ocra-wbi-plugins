@@ -56,13 +56,12 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
 : ctrlOptions(controller_options)
 , yarp::os::RateThread(ctrlOptions.threadPeriod)
 , robot(wbi)
-, processor(*this)
 , isStabilizing(false)
 {
     bool useReducedProblem = false;
     ocraModel       = new OcraWbiModel(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
     ctrl            = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
-    modelUpdater    = new OcraWbiModelUpdater();
+    modelUpdater    = std::make_shared<OcraWbiModelUpdater>();
 
     homePosture     = Eigen::VectorXd::Zero(robot->getDoFs());
     debugPosture    = Eigen::VectorXd::Zero(robot->getDoFs());
@@ -70,8 +69,8 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
     torques         = Eigen::VectorXd::Zero(robot->getDoFs());
     measuredTorques = Eigen::VectorXd::Zero(robot->getDoFs());
     refSpeed        = Eigen::VectorXd::Constant(robot->getDoFs(), REFERENCE_JOINT_VELOCITY);
-    minTorques      = Eigen::VectorXd::Constant(robot->getDoFs(), TORQUE_MIN);
-    maxTorques      = Eigen::VectorXd::Constant(robot->getDoFs(), TORQUE_MAX);
+    minTorques      = Eigen::ArrayXd::Constant(robot->getDoFs(), TORQUE_MIN);
+    maxTorques      = Eigen::ArrayXd::Constant(robot->getDoFs(), TORQUE_MAX);
 
     getHomePosture(*ocraModel, homePosture);
     getNominalPosture(*ocraModel, debugPosture);
@@ -82,11 +81,9 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
 
 OcraControllerServerThread::~OcraControllerServerThread()
 {
-    if(taskSequence!=NULL){delete(taskSequence); taskSequence = NULL;}
-    // TODO: Figure out why these lines call a pure virtual method.
-    // if(ocraModel!=NULL){delete(ocraModel); ocraModel = NULL;}
-    // if(ctrl!=NULL){delete(ctrl); ctrl = NULL;}
-    rpcPort.close();
+    if(taskSequence!=NULL){delete(taskSequence);}
+    if(ctrl!=NULL){delete(ctrl);}
+    if(ocraModel!=NULL){delete(ocraModel);}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,37 +117,38 @@ bool OcraControllerServerThread::threadInit()
     {
         if (ocraModel->hasFixedRoot()) {
             std::cout << "Loading fixed base minimal tasks..." << std::endl;
-            taskSequence = LoadSequence("Debug");
+            // taskSequence = LoadSequence("Debug");
             std::cout << "\n\n\t------------------------------" << std::endl;
             std::cout << "\t  Running in DEBUG mode..." << std::endl;
             std::cout << "\t------------------------------\n" << std::endl;
 
-            std::string portPrefix = "/WBC/debug";
+            std::string portPrefix = "/OcraController/debug";
             debugPort_in.open((portPrefix+":i").c_str());
             debugPort_out.open((portPrefix+":o").c_str());
             debugJointIndex = 3;
         }
         else{
             std::cout << "[ERR] Cannot run debug mode with floating base." << std::endl;
+            return false;
         }
 
     }
     else
     {
         std::cout << "\n\n=== Creating wocraController ===" << std::endl;
-        rpcPort.open("/wocraController/rpc:i");
-        rpcPort.setReader(processor);
+        // rpcPort.open("/OcraController/rpc:i");
+        // rpcPort.setReader(processor);
 
         //Create cpp sequence
         if (!ctrlOptions.startupSequence.empty()) {
             std::cout << "\nLoading sequence:\n" << ctrlOptions.startupSequence << "\n" << std::endl;
-            taskSequence = LoadSequence(ctrlOptions.startupSequence);
+            // taskSequence = LoadSequence(ctrlOptions.startupSequence);
         }
 
         //Create XML task set
         if (!ctrlOptions.startupTaskSetPath.empty()) {
             if (ctrlOptions.startupSequence.empty()) {
-                taskSequence = LoadSequence("Empty");
+                taskSequence = new ocra::TaskSequence();
             }
             std::cout << "\nLoading tasks from XML file:\n" << ctrlOptions.startupTaskSetPath << "\n" << std::endl;
             ocra::TaskParser taskParser;
@@ -172,11 +170,11 @@ bool OcraControllerServerThread::threadInit()
             std::cout << "\nNo tasks or scenarios loaded on startup. Defaulting to standard initial tasks." << std::endl;
             if (!ocraModel->hasFixedRoot()) {
                 std::cout << "Loading floating base minimal tasks..." << std::endl;
-                taskSequence = LoadSequence("FloatingBaseMinimalTasks");
+                // taskSequence = LoadSequence("FloatingBaseMinimalTasks");
             }
             else{
                 std::cout << "Loading fixed base minimal tasks..." << std::endl;
-                taskSequence = LoadSequence("FixedBaseMinimalTasks");
+                // taskSequence = LoadSequence("FixedBaseMinimalTasks");
             }
         }
 
@@ -225,8 +223,6 @@ void OcraControllerServerThread::run()
                                             Update dynamic model
     ******************************************************************************************************/
 
-    bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, measuredTorques.data(), ALL_JOINTS);
-
     if(!modelUpdater->update(robot, ocraModel))
         std::cout << "ERROR with model updater" << std::endl;
 
@@ -272,11 +268,8 @@ void OcraControllerServerThread::run()
     /******************************************************************************************************
                                         Threshold the computed torques
     ******************************************************************************************************/
-    for(int i = 0; i < torques.size(); ++i)
-    {
-      if(torques(i) < TORQUE_MIN) torques(i) = TORQUE_MIN;
-      else if(torques(i) > TORQUE_MAX) torques(i) = TORQUE_MAX;
-    }
+
+    torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
 
 
     /******************************************************************************************************
@@ -300,6 +293,7 @@ void OcraControllerServerThread::run()
     {
         if (ctrlOptions.runInDebugMode)
         {
+            bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, measuredTorques.data(), ALL_JOINTS);
             yarp::os::Bottle& output = debugPort_out.prepare();
             output.clear();
 
@@ -324,7 +318,6 @@ void OcraControllerServerThread::run()
     time_sim += TIME_MSEC_TO_SEC * getRate();
 }
 
-//*************************************************************************************************************************
 void OcraControllerServerThread::threadRelease()
 {
     taskSequence->clearSequence();
@@ -347,38 +340,7 @@ void OcraControllerServerThread::threadRelease()
     }
 }
 
-/**************************************************************************************************
-                                    Nested PortReader Class
-**************************************************************************************************/
-OcraControllerServerThread::DataProcessor::DataProcessor(OcraControllerServerThread& ctThreadRef):ctThread(ctThreadRef)
-{
-    //do nothing
-}
-
-bool OcraControllerServerThread::DataProcessor::read(yarp::os::ConnectionReader& connection)
-{
-    yarp::os::Bottle input, reply;
-    bool ok = input.read(connection);
-    if (!ok)
-        return false;
-
-    else{
-        ctThread.parseIncomingMessage(&input, &reply);
-        yarp::os::ConnectionWriter *returnToSender = connection.getWriter();
-        if (returnToSender!=NULL) {
-            reply.write(*returnToSender);
-        }
-        return true;
-    }
-}
-/**************************************************************************************************
-**************************************************************************************************/
-
-
-
-
-
-void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle *input, yarp::os::Bottle *reply)
+void OcraControllerServerThread::parseIncomingMessage(std::shared_ptr<yarp::os::Bottle> input, std::shared_ptr<yarp::os::Bottle> reply)
 {
     int btlSize = input->size();
     for (int i=0; i<btlSize;)
@@ -479,9 +441,9 @@ void OcraControllerServerThread::stabilizeRobot()
     std::string comTaskKey = "stabilization_comTask";
     std::string torsoTaskKey = "stabilization_torsoCartesianTask";
 
-    dynamic_cast<ocra::FullPostureTaskManager*>(taskSequence->getTaskManagerPointer(postureTaskKey))->setPosture(initialPosture);
-    dynamic_cast<ocra::CoMTaskManager*>(taskSequence->getTaskManagerPointer(comTaskKey))->setState(initialCoMPosition);
-    dynamic_cast<ocra::SegCartesianTaskManager*>(taskSequence->getTaskManagerPointer(torsoTaskKey))->setState(initialTorsoPosition);
+    (std::dynamic_pointer_cast<ocra::FullPostureTaskManager>(taskSequence->getTaskManagerPointer(postureTaskKey)))->setPosture(initialPosture);
+    (std::dynamic_pointer_cast<ocra::CoMTaskManager>(taskSequence->getTaskManagerPointer(comTaskKey)))->setState(initialCoMPosition);
+    (std::dynamic_pointer_cast<ocra::SegCartesianTaskManager>(taskSequence->getTaskManagerPointer(torsoTaskKey)))->setState(initialTorsoPosition);
 
 
     double timeStabilizingStart = yarp::os::Time::now();
