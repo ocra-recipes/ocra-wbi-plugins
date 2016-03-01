@@ -26,7 +26,7 @@ SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
                     ${OcraRecipes_INCLUDE_DIRS}
-                    ${taskSequences_SOURCE_DIR}/include
+                    # ${taskSequences_SOURCE_DIR}/include
                     ${ocra-yarp_SOURCE_DIR}/include
                     )
 
@@ -36,7 +36,7 @@ TARGET_LINK_LIBRARIES(${PROJECTNAME} ${iDynTree_LIBRARIES}
                                      ${yarpWholeBodyInterface_LIBRARIES}
                                      ${Boost_LIBRARIES}
                                      ${OcraRecipes_LIBRARIES}
-                                     taskSequences
+                                    #  taskSequences
                                      ocra-yarp
                                      )
 

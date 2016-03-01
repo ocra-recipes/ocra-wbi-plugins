@@ -49,9 +49,6 @@ list(APPEND CMAKE_MODULE_PATH
         ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules
      )
 
-include_directories(AFTER
-                    ${OcraRecipes_INCLUDE_DIRS}
-                    )
 
 #add yarp definitions
 add_definitions(${YARP_DEFINES}) #this contains also -D_REENTRANT
