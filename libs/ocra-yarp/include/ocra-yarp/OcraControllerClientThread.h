@@ -52,6 +52,8 @@ public:
     void setWbiOptions(yarp::os::Property& wbiOptions);
     // bool initializeWbi();
 
+    int getExpectedPeriod(){return expectedPeriod;}
+
 protected:
     // RateThread virtual functions
     virtual bool threadInit();
@@ -72,6 +74,8 @@ private:
     static int CONTROLLER_CLIENT_THREAD_COUNT;
 
     yarp::os::Log yLog;
+
+    double expectedPeriod;
 };
 
 } // namespace ocra_yarp

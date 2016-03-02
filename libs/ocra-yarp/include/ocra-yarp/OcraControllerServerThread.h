@@ -108,8 +108,7 @@ public:
         /*! Constructor
          *  \param ctThreadPtr A shared pointer to the control thread.
          */
-        // ControllerRpcServerCallback(OcraControllerServerThread::shared_ptr ctThreadPtr);
-        ControllerRpcServerCallback(OcraControllerServerThread& ctThreadPtr);
+        ControllerRpcServerCallback(OcraControllerServerThread& ctThreadRef);
 
         /*! read
          *  \param connection Reads a port connection.
@@ -120,7 +119,6 @@ public:
 
     private:
 
-        // OcraControllerServerThread::shared_ptr ctThread; /*!< A shared pointer to the control thread. */
         OcraControllerServerThread& ctThread; /*!< A shared pointer to the control thread. */
     };
 
@@ -161,7 +159,9 @@ private:
     Eigen::VectorXd torques; /*!< The torques calculated at each run() loop. */
     Eigen::VectorXd refSpeed; /*!< The reference joint velocity when in position mode control. */
 
-    double time_sim; /*!< The relative time the controller has been looping. */
+    bool firstIterationOfRunMethod; /*!< Flips to false after first iter of `run()`. */
+    double controllerTime; /*!< The relative time the controller has been looping. */
+    double controllerStartingTime; /*!< The yarp time at which the controller was started. */
     double printPeriod; /*!< The frequency at which messages are printed. */
     double printCountdown;  /*!< When this hits 0.0 then a message is printed. */
     Eigen::VectorXd homePosture; /*!< The "home" posture of the robot. */

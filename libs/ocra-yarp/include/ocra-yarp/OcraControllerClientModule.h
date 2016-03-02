@@ -31,6 +31,7 @@
 #include <memory>
 
 #include <yarp/os/RFModule.h>
+#include <yarp/os/RpcServer.h>
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include "ocra-yarp/OcraControllerClientThread.h"
@@ -81,8 +82,52 @@ public:
      */
     void printHelp();
 
+    /*! \class moduleCallback
+     *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
+     */
+    class moduleCallback : public yarp::os::PortReader
+    {
+    DEFINE_CLASS_POINTER_TYPEDEFS(moduleCallback)
+
+    public:
+
+        /*! Constructor
+         *  \param ctThreadPtr A shared pointer to the control thread.
+         */
+        moduleCallback(OcraControllerClientModule& newModuleRef);
+
+        /*! read
+         *  \param connection Reads a port connection.
+         *
+         *  \return A boolean which tells whether or not a message was read.
+         */
+        virtual bool read(yarp::os::ConnectionReader& connection);
+
+    private:
+        OcraControllerClientModule& moduleRef; /*!< A ref to the client module. */
+    };
+
+
 private:
-    OcraControllerClientThread::shared_ptr clientThread;
+    void callbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply);
+
+protected:
+    virtual void customCallbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply);
+    virtual bool customUpdateModule();
+
+
+private:
+    OcraControllerClientThread::shared_ptr clientThread; /*!< The controller client thread pointer. */
+    moduleCallback::shared_ptr rpcCallback; /*!< Rpc server port callback function. */
+    yarp::os::RpcServer rpcPort; /*!< Rpc server port. */
+
+    yarp::os::Log yLog;
+
+    int expectedClientThreadPeriod; /*!< The expected period of the client thread. In ms.*/
+    double avgTime; /*!< Average time between successive calls of the `run()` method.*/
+    double stdDev; /*!< Standard deviation of the average time between successive calls of the `run()` method. */
+    double avgTimeUsed; /*!< Average time for the `run()` method to execute. Should be close to avgTime. */
+    double stdDevUsed; /*!< Standard deviation of the average time for the `run()` method to execute. */
 };
 
 } // namespace ocra_yarp

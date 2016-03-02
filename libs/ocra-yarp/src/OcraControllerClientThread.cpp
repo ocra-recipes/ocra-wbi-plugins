@@ -33,6 +33,7 @@ int OcraControllerClientThread::CONTROLLER_CLIENT_THREAD_COUNT = 0;
 
 OcraControllerClientThread::OcraControllerClientThread(const int period)
 : RateThread(period)
+, expectedPeriod(period)
 {
 
 }
