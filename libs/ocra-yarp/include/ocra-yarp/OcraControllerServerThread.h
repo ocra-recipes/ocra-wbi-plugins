@@ -146,10 +146,8 @@ private:
 
     OcraControllerOptions ctrlOptions; /*!< The controller options. */
     std::shared_ptr<wholeBodyInterface> robot; /*!< The WBI used to talk to the robot. */
-
     ocra::Controller *ctrl; /*!< The controller. */
     ocra::OneLevelSolverWithQuadProg internalSolver; /*!< The type of convex solver problem formulation used in the controller. */
-
     ocra::TaskSequence* taskSequence; /*!< The set of tasks currently being executed. */
     ocra::Model *ocraModel; /*!< The robot "model" which basically just provides state information to the controller. */
     OcraWbiModelUpdater::shared_ptr modelUpdater; /*!< A simple helper class which is called periodically to update the model by fetching state estimates from the WBI and passing them to Model. */
@@ -179,8 +177,8 @@ private:
     yarp::os::BufferedPort<yarp::os::Bottle> debugPort_out;
 
 
-    // ControllerRpcServerCallback rpcServerCallback; /*!< Rpc server port callback function. */
-    // yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
+    ControllerRpcServerCallback::shared_ptr rpcServerCallback; /*!< Rpc server port callback function. */
+    yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
 
 
 private:

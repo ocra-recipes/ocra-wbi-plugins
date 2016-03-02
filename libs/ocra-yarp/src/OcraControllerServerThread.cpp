@@ -54,16 +54,17 @@ OcraControllerOptions::~OcraControllerOptions()
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::wholeBodyInterface> wbi)
-: ctrlOptions(controller_options)
-, yarp::os::RateThread(ctrlOptions.threadPeriod)
-, robot(wbi)
+: RateThread(controller_options.threadPeriod)
+, ctrlOptions(controller_options)
 , isStabilizing(false)
 , controllerStatus(OCRA_CONTROLLER_MESSAGE::CONTROLLER_STOPPED)
-// , rpcServerCallback(ControllerRpcServerCallback(*this))
+, taskSequence(NULL)
+, ocraModel(NULL)
+, ctrl(NULL)
 {
-
-
     bool useReducedProblem = false;
+
+    robot           = wbi;
     ocraModel       = new OcraWbiModel(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
     ctrl            = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
     modelUpdater    = std::make_shared<OcraWbiModelUpdater>();
@@ -86,10 +87,10 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
 
 OcraControllerServerThread::~OcraControllerServerThread()
 {
-    if(taskSequence!=NULL){delete(taskSequence);}
-    if(ctrl!=NULL){delete(ctrl);}
-    if(ocraModel!=NULL){delete(ocraModel);}
-    // rpcServerPort.close();
+    // if(taskSequence!=NULL){delete(taskSequence);}
+    // if(ctrl!=NULL){delete(ctrl);}
+    // if(ocraModel!=NULL){delete(ocraModel);}
+    // // rpcServerPort.close();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -99,15 +100,18 @@ OcraControllerServerThread::~OcraControllerServerThread()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool OcraControllerServerThread::threadInit()
 {
-    /******************************************************************************************************
-                                Get WBI estimates and initialize the WOCRA model
-    ******************************************************************************************************/
-    // // Construct rpc server callback and bind to the control thread.
-    // // rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(ctrlThread);
-    // // Open the rpc server port.
-    // rpcServerPort.open("/OCRA/Controller/rpc:i");
-    // // Bind the callback to the port.
-    // rpcServerPort.setReader(rpcServerCallback);
+    // Construct rpc server callback and bind to the control thread.
+    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
+    // rpcServerCallback = ControllerRpcServerCallback(*this)
+    // Open the rpc server port.
+    rpcServerPort.open("/OCRA/Controller/rpc:i");
+    // Bind the callback to the port.
+    rpcServerPort.setReader(*rpcServerCallback);
+
+
+    // /******************************************************************************************************
+    //                             Get WBI estimates and initialize the WOCRA model
+    // ******************************************************************************************************/
 
     if(!modelUpdater->initialize(robot, ocraModel))
         std::cout << "ERROR with model updater" << std::endl;
@@ -133,7 +137,7 @@ bool OcraControllerServerThread::threadInit()
             std::cout << "\t  Running in DEBUG mode..." << std::endl;
             std::cout << "\t------------------------------\n" << std::endl;
 
-            std::string portPrefix = "/OcraController/debug";
+            std::string portPrefix = "/OCRA/Controller/debug";
             debugPort_in.open((portPrefix+":i").c_str());
             debugPort_out.open((portPrefix+":o").c_str());
             debugJointIndex = 3;
@@ -297,36 +301,36 @@ void OcraControllerServerThread::run()
     }
 
 
-    /******************************************************************************************************
-                            Print out useful information at every "printPeriod" (ms)
-    ******************************************************************************************************/
-    printPeriod = 500;
-    printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
-    if (printCountdown == 0)
-    {
-        if (ctrlOptions.runInDebugMode)
-        {
-            bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, measuredTorques.data(), ALL_JOINTS);
-            yarp::os::Bottle& output = debugPort_out.prepare();
-            output.clear();
-
-            output.addString("joint");
-            output.addInt(debugJointIndex);
-            output.addString("torque_desired");
-            output.addDouble(torques[debugJointIndex]);
-            output.addString("torque_measured");
-            output.addDouble(measuredTorques[debugJointIndex]);
-
-            debugPort_out.write();
-        }
-        else if (ocraModel->hasFixedRoot()){
-            // Put whatever you want to print here for fixed base...
-        }
-        else if (!ocraModel->hasFixedRoot()){
-            // Put whatever you want to print here for floating base...
-        }
-
-    }
+    // /******************************************************************************************************
+    //                         Print out useful information at every "printPeriod" (ms)
+    // ******************************************************************************************************/
+    // printPeriod = 500;
+    // printCountdown = (printCountdown>=printPeriod) ? 0 : printCountdown + getRate(); // countdown for next print
+    // if (printCountdown == 0)
+    // {
+    //     if (ctrlOptions.runInDebugMode)
+    //     {
+    //         bool res_torque = robot->getEstimates(ESTIMATE_JOINT_TORQUE, measuredTorques.data(), ALL_JOINTS);
+    //         yarp::os::Bottle& output = debugPort_out.prepare();
+    //         output.clear();
+    //
+    //         output.addString("joint");
+    //         output.addInt(debugJointIndex);
+    //         output.addString("torque_desired");
+    //         output.addDouble(torques[debugJointIndex]);
+    //         output.addString("torque_measured");
+    //         output.addDouble(measuredTorques[debugJointIndex]);
+    //
+    //         debugPort_out.write();
+    //     }
+    //     else if (ocraModel->hasFixedRoot()){
+    //         // Put whatever you want to print here for fixed base...
+    //     }
+    //     else if (!ocraModel->hasFixedRoot()){
+    //         // Put whatever you want to print here for floating base...
+    //     }
+    //
+    // }
 
     time_sim += TIME_MSEC_TO_SEC * getRate();
 }
@@ -424,86 +428,86 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
         }
     }
 }
-
-        // std::string msgTag = input->get(i).asString();
-        //
-        // if(msgTag == "addTaskYARP")
-        // {
-        //     std::cout << "Implement yarp task parsing" << std::endl;
-        //     i++;
-        // }
-        //
-        // // Stiffness
-        // else if(msgTag == "addTaskXML")
-        // {
-        //     i++;
-        //     ocra::TaskParser taskParser;
-        //     taskParser.parseTasksXML( input->get(i).asString().c_str() );
-        //     taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
-        //     i++;
-        // }
-        // else if(msgTag == "removeTask")
-        // {
-        //     i++;
-        //     std::string taskToRemove = input->get(i).asString();
-        //     taskSequence->removeTaskManager(taskToRemove);
-        //     ctrl->removeTask(taskToRemove);
-        //     reply->addString("Removed:");
-        //     reply->addString(taskToRemove);
-        //     i++;
-        // }
-        //
-        // else if(msgTag == "getTaskList")
-        // {
-        //     reply->addString("tasks:");
-        //     std::vector<std::string> strVector = taskSequence->getTaskList();
-        //     for(int j=0; j<strVector.size(); j++){
-        //         reply->addString(strVector[j]);
-        //     }
-        //     i++;
-        // }
-        //
-        // else if(msgTag == "getTaskPorts")
-        // {
-        //     reply->addString("taskPorts:");
-        //     std::vector<std::string> strVector = taskSequence->getTaskPorts();
-        //     for(int j=0; j<strVector.size(); j++){
-        //         reply->addString(strVector[j]);
-        //     }
-        //     i++;
-        // }
-        //
-        // else if (msgTag == "help")
-        // {
-        //     // TODO: Properly print help message to rpc reply
-        //     // reply->addString(printValidMessageTags());
-        //     std::cout << printValidMessageTags();
-        //     i++;
-        // }
-        //
-        // // Fallback
-        // else
-        // {
-        //     std::cout << "[WARNING] (OcraControllerServerThread::parseIncomingMessage): The message tag, " << msgTag << " doesn't exist. Skipping. Use help to see availible options." << std::endl;
-        //
-        //     reply->addString("invalid_input");
-        //     i++;
-        // }
-//     }
+//
+//         // std::string msgTag = input->get(i).asString();
+//         //
+//         // if(msgTag == "addTaskYARP")
+//         // {
+//         //     std::cout << "Implement yarp task parsing" << std::endl;
+//         //     i++;
+//         // }
+//         //
+//         // // Stiffness
+//         // else if(msgTag == "addTaskXML")
+//         // {
+//         //     i++;
+//         //     ocra::TaskParser taskParser;
+//         //     taskParser.parseTasksXML( input->get(i).asString().c_str() );
+//         //     taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+//         //     i++;
+//         // }
+//         // else if(msgTag == "removeTask")
+//         // {
+//         //     i++;
+//         //     std::string taskToRemove = input->get(i).asString();
+//         //     taskSequence->removeTaskManager(taskToRemove);
+//         //     ctrl->removeTask(taskToRemove);
+//         //     reply->addString("Removed:");
+//         //     reply->addString(taskToRemove);
+//         //     i++;
+//         // }
+//         //
+//         // else if(msgTag == "getTaskList")
+//         // {
+//         //     reply->addString("tasks:");
+//         //     std::vector<std::string> strVector = taskSequence->getTaskList();
+//         //     for(int j=0; j<strVector.size(); j++){
+//         //         reply->addString(strVector[j]);
+//         //     }
+//         //     i++;
+//         // }
+//         //
+//         // else if(msgTag == "getTaskPorts")
+//         // {
+//         //     reply->addString("taskPorts:");
+//         //     std::vector<std::string> strVector = taskSequence->getTaskPorts();
+//         //     for(int j=0; j<strVector.size(); j++){
+//         //         reply->addString(strVector[j]);
+//         //     }
+//         //     i++;
+//         // }
+//         //
+//         // else if (msgTag == "help")
+//         // {
+//         //     // TODO: Properly print help message to rpc reply
+//         //     // reply->addString(printValidMessageTags());
+//         //     std::cout << printValidMessageTags();
+//         //     i++;
+//         // }
+//         //
+//         // // Fallback
+//         // else
+//         // {
+//         //     std::cout << "[WARNING] (OcraControllerServerThread::parseIncomingMessage): The message tag, " << msgTag << " doesn't exist. Skipping. Use help to see availible options." << std::endl;
+//         //
+//         //     reply->addString("invalid_input");
+//         //     i++;
+//         // }
+// //     }
+// // }
+//
+// std::string OcraControllerServerThread::printValidMessageTags()
+// {
+//     std::string helpString  = "\n=== Valid message tags are: ===\n";
+//     helpString += "addTaskYARP: NOT IMPLEMENTED.\n";
+//     helpString += "addTaskXML: Add task(s) to the task sequence from an xml file.\n";
+//     helpString += "removeTask: Allows you to remove a single task manager from the sequence.\n";
+//     helpString += "getTaskList: Gets a list of all current tasks.\n";
+//     helpString += "getTaskPorts: Gets a list of all current task ports.\n";
+//     helpString += "help: Prints this message you just read.\n";
+//     return helpString;
 // }
-
-std::string OcraControllerServerThread::printValidMessageTags()
-{
-    std::string helpString  = "\n=== Valid message tags are: ===\n";
-    helpString += "addTaskYARP: NOT IMPLEMENTED.\n";
-    helpString += "addTaskXML: Add task(s) to the task sequence from an xml file.\n";
-    helpString += "removeTask: Allows you to remove a single task manager from the sequence.\n";
-    helpString += "getTaskList: Gets a list of all current tasks.\n";
-    helpString += "getTaskPorts: Gets a list of all current task ports.\n";
-    helpString += "help: Prints this message you just read.\n";
-    return helpString;
-}
-
+//
 bool OcraControllerServerThread::loadStabilizationTasks()
 {
     ocra::TaskParser taskParser;
@@ -528,7 +532,7 @@ void OcraControllerServerThread::stabilizeRobot()
 
     double timeStabilizingStart = yarp::os::Time::now();
     double timeStabilizing = 0.0;
-    const double STABILIZATION_TIMEOUT = 20.0;
+    const double STABILIZATION_TIMEOUT = 1.0;
 
 
     std::cout << "Attempting to stabilize the robot's posture. \nTime elapsed:" << std::endl;

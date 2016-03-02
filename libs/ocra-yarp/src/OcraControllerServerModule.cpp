@@ -45,6 +45,9 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
 
     controller_options.robotName = rf.check("robot") ? rf.find("robot").asString().c_str() : "icub";
     controller_options.threadPeriod = rf.check("threadPeriod") ? rf.find("threadPeriod").asInt() : DEFAULT_THREAD_PERIOD;
+
+    dangerPeriodLoopTime = 1.3 * controller_options.threadPeriod;
+
     controller_options.serverName = rf.check("local") ? rf.find("local").asString().c_str() : "OcraControllerServer";
     controller_options.runInDebugMode = rf.check("debug");
     controller_options.isFloatingBase = rf.check("floatingBase");
@@ -115,10 +118,7 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
     }
 
     // Construct the control thread.
-    // ctrlThread = std::make_shared<OcraControllerServerThread>(controller_options, robotInterface);
-    ctrlThread = std::unique_ptr<OcraControllerServerThread>(new OcraControllerServerThread(controller_options, robotInterface));
-    // ctrlThread = new OcraControllerServerThread(controller_options, robotInterface);
-
+    ctrlThread = std::make_shared<OcraControllerServerThread>(controller_options, robotInterface);
 
     // Start the control thread loop.
     if(!ctrlThread->start())
@@ -173,13 +173,6 @@ bool OcraControllerServerModule::updateModule()
      * All we are doing here is checking the control thread's looping time and making sure it is running at <= the specified period.
      */
 
-    //  Check if control thread pointer actually points to a valid instance.
-    if (ctrlThread==NULL)
-    {
-        yLog.error() << "OcraControllerServerThread pointers are zero.";
-        return false;
-    }
-
     // Get the average time between two calls of the RateThread.run() method.
     ctrlThread->getEstPeriod(avgTime, stdDev);
 
@@ -187,7 +180,7 @@ bool OcraControllerServerModule::updateModule()
     ctrlThread->getEstUsed(avgTimeUsed, stdDevUsed);
 
     // If the period of the control thread is too slow then print a warning.
-    if(avgTime > 1.3 * controller_options.threadPeriod)
+    if(avgTime > dangerPeriodLoopTime)
     {
         yLog.warning() << "CONTROL LOOP IS TOO SLOW\nReal period: "<< avgTime <<"+/-"<< stdDev <<"\nExpected period: " << controller_options.threadPeriod<<"\nDuration of 'run' method: "<<avgTimeUsed<<"+/-"<< stdDevUsed<<"\n";
     }

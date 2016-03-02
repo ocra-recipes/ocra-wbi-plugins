@@ -25,9 +25,8 @@ SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
-                    ${OcraRecipes_INCLUDE_DIRS}
-                    # ${taskSequences_SOURCE_DIR}/include
                     ${ocra-yarp_SOURCE_DIR}/include
+                    ${OcraRecipes_INCLUDE_DIRS}
                     )
 
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
@@ -35,9 +34,8 @@ ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 TARGET_LINK_LIBRARIES(${PROJECTNAME} ${iDynTree_LIBRARIES}
                                      ${yarpWholeBodyInterface_LIBRARIES}
                                      ${Boost_LIBRARIES}
-                                     ${OcraRecipes_LIBRARIES}
-                                    #  taskSequences
                                      ocra-yarp
+                                     ${OcraRecipes_LIBRARIES}
                                      )
 
 
