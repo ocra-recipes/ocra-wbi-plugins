@@ -39,33 +39,6 @@
 
 namespace ocra_yarp
 {
-/*! \class ControllerRpcServerCallback
- *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
- */
-class ControllerRpcServerCallback : public yarp::os::PortReader
-{
-DEFINE_CLASS_POINTER_TYPEDEFS(ControllerRpcServerCallback)
-
-public:
-
-    /*! Constructor
-     *  \param ctThreadPtr A shared pointer to the control thread.
-     */
-    ControllerRpcServerCallback(OcraControllerServerThread::shared_ptr ctThreadPtr);
-
-    /*! read
-     *  \param connection Reads a port connection.
-     *
-     *  \return A boolean which tells whether or not a message was read.
-     */
-    virtual bool read(yarp::os::ConnectionReader& connection);
-
-private:
-
-    OcraControllerServerThread::shared_ptr ctThread; /*!< A shared pointer to the control thread. */
-};
-
-
 /*! \class OcraControllerServerModule
  *  \brief The controller module which launches the controller thread.
  *
@@ -109,12 +82,10 @@ public:
     void printHelp();
 
 private:
-    OcraControllerServerThread::shared_ptr ctrlThread; /*!< The controller thread. This is where the magic happens. */
+    // OcraControllerServerThread::shared_ptr ctrlThread; /*!< The controller thread. This is where the magic happens. */
+    OcraControllerServerThread::unique_ptr ctrlThread; /*!< The controller thread. This is where the magic happens. */
+    // OcraControllerServerThread ctrlThread; /*!< The controller thread. This is where the magic happens. */
     std::shared_ptr<wbi::wholeBodyInterface> robotInterface; /*!< The yarpWBI interface used to get estimates from the robot. */
-
-    ControllerRpcServerCallback::shared_ptr rpcServerCallback; /*!< Rpc server port callback function. */
-    yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
-
 
     yarp::os::Log yLog; /*!< A yarp logging tool. */
     OcraControllerOptions controller_options; /*!< Options used for the controller. */

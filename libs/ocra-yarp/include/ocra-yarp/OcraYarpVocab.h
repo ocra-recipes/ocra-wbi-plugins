@@ -7,13 +7,28 @@
 namespace ocra_yarp
 {
 
-enum OCRA_CONTROLLER_MESSAGE_TAG
+enum OCRA_CONTROLLER_MESSAGE
 {
-    // Indicators
+    // General indicators
     OCRA_FAILURE = 0,
     OCRA_SUCCESS,
     OCRA_WARNING,
-    // Task related
+    
+    // Controller requests
+    GET_CONTROLLER_STATUS,
+    GET_WBI_CONFIG_FILE_PATH,
+    GET_ROBOT_NAME,
+
+    START_CONTROLLER,
+    STOP_CONTROLLER,
+    PAUSE_CONTROLLER,
+
+    // Controller status indicators
+    CONTROLLER_RUNNING,
+    CONTROLLER_STOPPED,
+    CONTROLLER_PAUSED,
+
+    // Task requests
     ADD_TASK,
     ADD_TASK_FROM_FILE,
     REMOVE_TASK,
@@ -21,9 +36,6 @@ enum OCRA_CONTROLLER_MESSAGE_TAG
     GET_TASK_LIST,
     GET_TASK_PORT_LIST,
     // Other
-    START_CONTROLLER,
-    STOP_CONTROLLER,
-    PAUSE_CONTROLLER,
     HELP
 };
 

@@ -33,8 +33,10 @@
 #include <yarp/os/RpcClient.h>
 #include <yarp/os/Time.h>
 
+#include "ocra/control/TaskManagers/TaskManagerMessageVocab.h"
 
 #include "ocra-yarp/OcraYarpTools.h"
+#include "ocra-yarp/OcraYarpVocab.h"
 
 namespace ocra_yarp
 {
@@ -46,26 +48,41 @@ DEFINE_CLASS_POINTER_TYPEDEFS(ControllerConnection)
 public:
     ControllerConnection();
     ~ControllerConnection();
-    void open();
+    bool open(const bool openTaskPorts=true);
     void close();
+
+    yarp::os::Bottle queryController(const OCRA_CONTROLLER_MESSAGE request);
+
+    // void queryController(const OCRA_CONTROLLER_MESSAGE request, yarp::os::Bottle& reply);
+    // void queryTask(const std::string& taskName, const OCRA_CONTROLLER_MESSAGE request, yarp::os::Bottle& reply);
+    // void queryTask(const int taskIndex, const OCRA_CONTROLLER_MESSAGE request, yarp::os::Bottle& reply);
+    // void queryTasks(const OCRA_CONTROLLER_MESSAGE request, std::vector<yarp::os::Bottle&>& replies);
+    // void queryTasks(const std::vector<OCRA_CONTROLLER_MESSAGE>& requests, std::vector<yarp::os::Bottle&>& replies);
 
     std::vector<std::string> getTaskPortNames();
 
 private:
 
 
-    yarp::os::Network yarp;
-    yarp::os::RpcClient controllerRpcClient;
 
+    yarp::os::RpcClient controllerRpcClient;
     std::vector<yarp::os::RpcClient*> taskRpcClients;
 
-    bool connectToController(const std::string& controllerName = "wocraController");
+    yarp::os::Network yarp;
+
+
+    bool connectToController(const std::string& controllerName = "Controller");
     bool connectToTaskPorts(const std::vector<std::string> taskPortNames);
 
+    yarp::os::Log yLog;
 
+    static int CONTROLLER_CONNECTION_COUNT;
 
-protected:
+    static constexpr double CONNECTION_TIMEOUT = 20.0;
 
 };
+
+
+
 } // namespace ocra_yarp
 #endif // CONTROLLER_CONNECTION_H

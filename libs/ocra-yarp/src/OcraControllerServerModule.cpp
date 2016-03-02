@@ -28,35 +28,6 @@
 
 using namespace ocra_yarp;
 
-/**************************************************************************************************
-                                    Nested PortReader Class
-**************************************************************************************************/
-ControllerRpcServerCallback::ControllerRpcServerCallback(OcraControllerServerThread::shared_ptr ctThreadPtr)
-: ctThread(ctThreadPtr)
-{
-    //do nothing
-}
-
-bool ControllerRpcServerCallback::read(yarp::os::ConnectionReader& connection)
-{
-    std::shared_ptr<yarp::os::Bottle> input;
-    std::shared_ptr<yarp::os::Bottle> reply;
-
-    if (!input->read(connection)){
-        return false;
-    }
-    else{
-        ctThread->parseIncomingMessage(input, reply);
-        std::shared_ptr<yarp::os::ConnectionWriter> returnToSender(connection.getWriter());
-        if (returnToSender!=NULL) {
-            reply->write(*returnToSender);
-        }
-        return true;
-    }
-}
-/**************************************************************************************************
-**************************************************************************************************/
-
 
 
 OcraControllerServerModule::OcraControllerServerModule()
@@ -118,8 +89,8 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
     }
 
     // Setup the WBI config.
-    std::string wbiConfFile = rf.findFile("wbi_conf_file");
-    controller_options.yarpWbiOptions.fromConfigFile(wbiConfFile);
+    controller_options.wbiConfigFilePath = rf.findFile("wbi_conf_file");
+    controller_options.yarpWbiOptions.fromConfigFile(controller_options.wbiConfigFilePath);
     // Overwrite the robot parameter that could be present in wbi_conf_file
     controller_options.yarpWbiOptions.put("robot", controller_options.robotName);
 
@@ -144,13 +115,10 @@ bool OcraControllerServerModule::configure(yarp::os::ResourceFinder &rf)
     }
 
     // Construct the control thread.
-    ctrlThread = std::make_shared<OcraControllerServerThread>(controller_options, robotInterface);
-    // Construct rpc server callback and bind to the control thread.
-    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(ctrlThread);
-    // Open the rpc server port.
-    rpcServerPort.open("/OcraController/rpc:i");
-    // Bind the callback to the port.
-    rpcServerPort.setReader(*rpcServerCallback);
+    // ctrlThread = std::make_shared<OcraControllerServerThread>(controller_options, robotInterface);
+    ctrlThread = std::unique_ptr<OcraControllerServerThread>(new OcraControllerServerThread(controller_options, robotInterface));
+    // ctrlThread = new OcraControllerServerThread(controller_options, robotInterface);
+
 
     // Start the control thread loop.
     if(!ctrlThread->start())

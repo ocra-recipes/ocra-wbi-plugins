@@ -36,6 +36,7 @@ OcraControllerOptions::OcraControllerOptions()
 , robotName("")
 , startupTaskSetPath("")
 , startupSequence("")
+, wbiConfigFilePath("")
 , runInDebugMode(false)
 , isFloatingBase(false)
 , yarpWbiOptions(yarp::os::Property())
@@ -57,7 +58,11 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
 , yarp::os::RateThread(ctrlOptions.threadPeriod)
 , robot(wbi)
 , isStabilizing(false)
+, controllerStatus(OCRA_CONTROLLER_MESSAGE::CONTROLLER_STOPPED)
+// , rpcServerCallback(ControllerRpcServerCallback(*this))
 {
+
+
     bool useReducedProblem = false;
     ocraModel       = new OcraWbiModel(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
     ctrl            = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
@@ -84,6 +89,7 @@ OcraControllerServerThread::~OcraControllerServerThread()
     if(taskSequence!=NULL){delete(taskSequence);}
     if(ctrl!=NULL){delete(ctrl);}
     if(ocraModel!=NULL){delete(ocraModel);}
+    // rpcServerPort.close();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -96,7 +102,12 @@ bool OcraControllerServerThread::threadInit()
     /******************************************************************************************************
                                 Get WBI estimates and initialize the WOCRA model
     ******************************************************************************************************/
-
+    // // Construct rpc server callback and bind to the control thread.
+    // // rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(ctrlThread);
+    // // Open the rpc server port.
+    // rpcServerPort.open("/OCRA/Controller/rpc:i");
+    // // Bind the callback to the port.
+    // rpcServerPort.setReader(rpcServerCallback);
 
     if(!modelUpdater->initialize(robot, ocraModel))
         std::cout << "ERROR with model updater" << std::endl;
@@ -207,6 +218,8 @@ bool OcraControllerServerThread::threadInit()
         // Set all declared joints in module to TORQUE mode
         bool res_setControlMode = robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     }
+
+    controllerStatus = OCRA_CONTROLLER_MESSAGE::CONTROLLER_RUNNING;
 
 	return true;
 }
@@ -334,83 +347,150 @@ void OcraControllerServerThread::threadRelease()
         bool res_setControlReference = robot->setControlReference(initialPosture.data());
         std::cout << "\n\n--> Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
         taskSequence->clearSequence();
+        controllerStatus = OCRA_CONTROLLER_MESSAGE::CONTROLLER_STOPPED;
+
     }
     else{
         std::cout << "[ERROR] (OcraControllerServerThread::threadRelease): Could not set the robot into Position Control mode." << std::endl;
     }
 }
 
-void OcraControllerServerThread::parseIncomingMessage(std::shared_ptr<yarp::os::Bottle> input, std::shared_ptr<yarp::os::Bottle> reply)
+void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
 {
-    int btlSize = input->size();
+    int btlSize = input.size();
     for (int i=0; i<btlSize;)
     {
-        std::string msgTag = input->get(i).asString();
-
-        if(msgTag == "addTaskYARP")
-        {
-            std::cout << "Implement yarp task parsing" << std::endl;
+        // OCRA_CONTROLLER_MESSAGE message();
+        switch (input.get(i).asInt()) {
+            case GET_CONTROLLER_STATUS:
             i++;
-        }
-
-        // Stiffness
-        else if(msgTag == "addTaskXML")
-        {
+            std::cout << "Got message: GET_CONTROLLER_STATUS." << std::endl;
+            reply.addInt(controllerStatus);
+            break;
+            case GET_WBI_CONFIG_FILE_PATH:
             i++;
-            ocra::TaskParser taskParser;
-            taskParser.parseTasksXML( input->get(i).asString().c_str() );
-            taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+            std::cout << "Got message: GET_WBI_CONFIG_FILE_PATH." << std::endl;
+            reply.addString(ctrlOptions.wbiConfigFilePath);
+            break;
+            case GET_ROBOT_NAME:
             i++;
-        }
-        else if(msgTag == "removeTask")
-        {
+            std::cout << "Got message: GET_ROBOT_NAME." << std::endl;
+            reply.addString(ctrlOptions.robotName);
+            break;
+            case START_CONTROLLER:
             i++;
-            std::string taskToRemove = input->get(i).asString();
-            taskSequence->removeTaskManager(taskToRemove);
-            ctrl->removeTask(taskToRemove);
-            reply->addString("Removed:");
-            reply->addString(taskToRemove);
+            std::cout << "Got message: START_CONTROLLER." << std::endl;
+            break;
+            case STOP_CONTROLLER:
             i++;
-        }
-
-        else if(msgTag == "getTaskList")
-        {
-            reply->addString("tasks:");
-            std::vector<std::string> strVector = taskSequence->getTaskList();
-            for(int j=0; j<strVector.size(); j++){
-                reply->addString(strVector[j]);
-            }
+            std::cout << "Got message: STOP_CONTROLLER." << std::endl;
+            break;
+            case PAUSE_CONTROLLER:
             i++;
-        }
-
-        else if(msgTag == "getTaskPorts")
-        {
-            reply->addString("taskPorts:");
-            std::vector<std::string> strVector = taskSequence->getTaskPorts();
-            for(int j=0; j<strVector.size(); j++){
-                reply->addString(strVector[j]);
-            }
+            std::cout << "Got message: PAUSE_CONTROLLER." << std::endl;
+            break;
+            case ADD_TASK:
             i++;
-        }
-
-        else if (msgTag == "help")
-        {
-            // TODO: Properly print help message to rpc reply
-            // reply->addString(printValidMessageTags());
-            std::cout << printValidMessageTags();
+            std::cout << "Got message: ADD_TASK." << std::endl;
+            break;
+            case ADD_TASK_FROM_FILE:
             i++;
-        }
-
-        // Fallback
-        else
-        {
-            std::cout << "[WARNING] (OcraControllerServerThread::parseIncomingMessage): The message tag, " << msgTag << " doesn't exist. Skipping. Use help to see availible options." << std::endl;
-
-            reply->addString("invalid_input");
+            std::cout << "Got message: ADD_TASK_FROM_FILE." << std::endl;
+            break;
+            case REMOVE_TASK:
             i++;
+            std::cout << "Got message: REMOVE_TASK." << std::endl;
+            break;
+            case REMOVE_TASKS:
+            i++;
+            std::cout << "Got message: REMOVE_TASKS." << std::endl;
+            break;
+            case GET_TASK_LIST:
+            i++;
+            std::cout << "Got message: GET_TASK_LIST." << std::endl;
+            break;
+            case GET_TASK_PORT_LIST:
+            i++;
+            std::cout << "Got message: GET_TASK_PORT_LIST." << std::endl;
+            break;
+            case HELP:
+            i++;
+            std::cout << "Got message: HELP." << std::endl;
+            break;
+            default:
+            i++;
+            std::cout << "Got message: UNKNOWN." << std::endl;
+            break;
         }
     }
 }
+
+        // std::string msgTag = input->get(i).asString();
+        //
+        // if(msgTag == "addTaskYARP")
+        // {
+        //     std::cout << "Implement yarp task parsing" << std::endl;
+        //     i++;
+        // }
+        //
+        // // Stiffness
+        // else if(msgTag == "addTaskXML")
+        // {
+        //     i++;
+        //     ocra::TaskParser taskParser;
+        //     taskParser.parseTasksXML( input->get(i).asString().c_str() );
+        //     taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+        //     i++;
+        // }
+        // else if(msgTag == "removeTask")
+        // {
+        //     i++;
+        //     std::string taskToRemove = input->get(i).asString();
+        //     taskSequence->removeTaskManager(taskToRemove);
+        //     ctrl->removeTask(taskToRemove);
+        //     reply->addString("Removed:");
+        //     reply->addString(taskToRemove);
+        //     i++;
+        // }
+        //
+        // else if(msgTag == "getTaskList")
+        // {
+        //     reply->addString("tasks:");
+        //     std::vector<std::string> strVector = taskSequence->getTaskList();
+        //     for(int j=0; j<strVector.size(); j++){
+        //         reply->addString(strVector[j]);
+        //     }
+        //     i++;
+        // }
+        //
+        // else if(msgTag == "getTaskPorts")
+        // {
+        //     reply->addString("taskPorts:");
+        //     std::vector<std::string> strVector = taskSequence->getTaskPorts();
+        //     for(int j=0; j<strVector.size(); j++){
+        //         reply->addString(strVector[j]);
+        //     }
+        //     i++;
+        // }
+        //
+        // else if (msgTag == "help")
+        // {
+        //     // TODO: Properly print help message to rpc reply
+        //     // reply->addString(printValidMessageTags());
+        //     std::cout << printValidMessageTags();
+        //     i++;
+        // }
+        //
+        // // Fallback
+        // else
+        // {
+        //     std::cout << "[WARNING] (OcraControllerServerThread::parseIncomingMessage): The message tag, " << msgTag << " doesn't exist. Skipping. Use help to see availible options." << std::endl;
+        //
+        //     reply->addString("invalid_input");
+        //     i++;
+        // }
+//     }
+// }
 
 std::string OcraControllerServerThread::printValidMessageTags()
 {
@@ -477,3 +557,33 @@ bool OcraControllerServerThread::isRobotStable()
     const double ZERO_VELOCITY_THRESHOLD = 0.01;
     return (ocraModel->getJointVelocities().norm()) <= ZERO_VELOCITY_THRESHOLD;
 }
+
+
+/**************************************************************************************************
+                                    Nested PortReader Class
+**************************************************************************************************/
+// ControllerRpcServerCallback::ControllerRpcServerCallback(OcraControllerServerThread::shared_ptr ctThreadPtr)
+OcraControllerServerThread::ControllerRpcServerCallback::ControllerRpcServerCallback(OcraControllerServerThread& ctThreadPtr)
+: ctThread(ctThreadPtr)
+{
+    //do nothing
+}
+
+bool OcraControllerServerThread::ControllerRpcServerCallback::read(yarp::os::ConnectionReader& connection)
+{
+    yarp::os::Bottle input, reply;
+
+    if (!input.read(connection)){
+        return false;
+    }
+    else{
+        ctThread.parseIncomingMessage(input, reply);
+        yarp::os::ConnectionWriter* returnToSender = connection.getWriter();
+        if (returnToSender!=NULL) {
+            reply.write(*returnToSender);
+        }
+        return true;
+    }
+}
+/**************************************************************************************************
+**************************************************************************************************/

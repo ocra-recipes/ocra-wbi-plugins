@@ -1,4 +1,4 @@
-/*! \file       OcraControllerClient.h
+/*! \file       OcraControllerClientThread.h
  *  \brief      A base class for all controller clients.
  *  \details
  *  \author     [Ryan Lober](http://www.ryanlober.com)
@@ -24,31 +24,54 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OCRA_CONTROLLER_CLIENT_H
-#define OCRA_CONTROLLER_CLIENT_H
+#ifndef OCRA_CONTROLLER_CLIENT_THREAD_H
+#define OCRA_CONTROLLER_CLIENT_THREAD_H
 
 #include <iostream>
 
 #include <yarp/os/RateThread.h>
-#include <yarp/os/ResourceFinder.h>
+#include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
+
 #include "ocra-yarp/OcraYarpTools.h"
+#include "ocra-yarp/ControlThread.h"
+#include "ocra-yarp/TrajectoryThread.h"
+#include "ocra-yarp/ControllerConnection.h"
+#include "ocra-yarp/ModelThread.h"
 
 namespace ocra_yarp
 {
 
-class OcraControllerClient: public yarp::os::RateThread
+class OcraControllerClientThread: public yarp::os::RateThread
 {
-DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerClient)
+DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerClientThread)
 
+public:
+    OcraControllerClientThread(const int period = DEFAULT_CLIENT_THREAD_PERIOD);
+    ~OcraControllerClientThread();
+
+    void setWbiOptions(yarp::os::Property& wbiOptions);
+    // bool initializeWbi();
+
+protected:
     // RateThread virtual functions
     virtual bool threadInit();
     virtual void threadRelease();
     virtual void run();
 
-    // OcraControllerClient pure virtual functions
+    // OcraControllerClientThread pure virtual functions
     virtual bool client_threadInit()=0;
     virtual void client_threadRelease()=0;
     virtual void client_run()=0;
+
+private:
+
+    std::shared_ptr<wbi::wholeBodyInterface> robotInterface; /*!< The yarpWBI interface used to get estimates from the robot. */
+    yarp::os::Property yarpWbiOptions;
+    static const int DEFAULT_CLIENT_THREAD_PERIOD = 10; /*!< 10ms */
+
+    static int CONTROLLER_CLIENT_THREAD_COUNT;
+
+    yarp::os::Log yLog;
 };
 
 } // namespace ocra_yarp

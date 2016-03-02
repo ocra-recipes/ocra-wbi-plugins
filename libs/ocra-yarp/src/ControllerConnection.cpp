@@ -26,15 +26,13 @@
 
 #include <ocra-yarp/ControllerConnection.h>
 
-#ifndef CONNECTION_TIMEOUT
-#define CONNECTION_TIMEOUT 20.0
-#endif
-
 using namespace ocra_yarp;
+
+int ControllerConnection::CONTROLLER_CONNECTION_COUNT = 0;
 
 ControllerConnection::ControllerConnection()
 {
-    open();
+    ControllerConnection::CONTROLLER_CONNECTION_COUNT++;
 }
 
 ControllerConnection::~ControllerConnection()
@@ -43,11 +41,15 @@ ControllerConnection::~ControllerConnection()
 }
 
 
-void ControllerConnection::open()
+bool ControllerConnection::open(const bool openTaskPorts)
 {
+    bool res = true;
     std::cout << "Making controller connection..." << std::endl;
-    if (connectToController()) {
-        if(connectToTaskPorts(getTaskPortNames()))
+    res &= connectToController();
+    if (res && openTaskPorts)
+    {
+        res &= connectToTaskPorts(getTaskPortNames());
+        if(res)
         {
             std::cout << "Checking task manager rpc server connections..." << std::endl;
             for(int i=0; i<taskRpcClients.size(); i++)
@@ -58,11 +60,10 @@ void ControllerConnection::open()
                 std::cout << reply.toString() << std::endl;
             }
         }else{
-                //error message
+            yLog.error() << "Couldn't connect to the individual task ports.";
         }
-    }else{
-        //error message
     }
+    return res;
 }
 
 void ControllerConnection::close()
@@ -77,22 +78,22 @@ void ControllerConnection::close()
 bool ControllerConnection::connectToController(const std::string& controllerName)
 {
     if (!yarp.checkNetwork()) {
-        std::cout << "[ERROR](ControllerConnection::connectToController): Yarp network isn't running." << std::endl;
+        yLog.error() << "Yarp network isn't running.";
         return false;
     }
     else{
-        std::string controllerRpcClientName = "/CC/" + controllerName + "/rpc:o";
+        std::string controllerRpcClientName = "/OCRA/ControllerConnection/"+ std::to_string(ControllerConnection::CONTROLLER_CONNECTION_COUNT) +"/rpc:o";
         controllerRpcClient.open(controllerRpcClientName.c_str());
         bool connected = false;
         double timeDelayed = 0.0;
         double delayTime = 1.0;
         while(!connected && timeDelayed < CONNECTION_TIMEOUT)
         {
-            connected = yarp.connect(controllerRpcClientName.c_str(), "/" + controllerName + "/rpc:i");
+            connected = yarp.connect(controllerRpcClientName.c_str(), "/OCRA/" + controllerName + "/rpc:i");
             yarp::os::Time::delay(delayTime);
             timeDelayed += delayTime;
             if (timeDelayed>= CONNECTION_TIMEOUT) {
-                std::cout << "[ERROR_TIMEOUT](ControllerConnection::connectToController): Could not connect to " <<controllerName << "." << std::endl;
+                yLog.error() << "Could not connect to the ocra controller port. Are you sure it is running?";
             }
         }
         return connected;
@@ -122,7 +123,7 @@ bool ControllerConnection::connectToTaskPorts(const std::vector<std::string> tas
 
     for(int i=0; i<numberOfTasks; i++)
     {
-        std::string tmpTaskPortName = "/CC";
+        std::string tmpTaskPortName = "/OCRA/ControllerConnection/"+ std::to_string(ControllerConnection::CONTROLLER_CONNECTION_COUNT);
         tmpTaskPortName += taskPortNames[i].substr(3, taskPortNames[i].size()-1);
         tmpTaskPortName += "o";
         taskRpcClients[i] = new yarp::os::RpcClient;
@@ -131,4 +132,12 @@ bool ControllerConnection::connectToTaskPorts(const std::vector<std::string> tas
     }
 
     return taskConnected;
+}
+
+yarp::os::Bottle ControllerConnection::queryController(const OCRA_CONTROLLER_MESSAGE request)
+{
+    yarp::os::Bottle requestBottle, reply;
+    requestBottle.addInt(request);
+    controllerRpcClient.write(requestBottle, reply);
+    return reply;
 }

@@ -65,6 +65,7 @@ public: // Variables
     std::string             robotName; /*!< a string with the name of the robot. */
     std::string             startupTaskSetPath; /*!< a string with the absolute path to an xml file with a set of tasks. */
     std::string             startupSequence; /*!< a string with the name of a sequence to run **(will be removed)**. */
+    std::string             wbiConfigFilePath; /*!< The absolute path to the configuration file used to initialize the yarpWBI. */
     bool                    runInDebugMode; /*!< a boolean which runs the controller in a debugging mode which allows one to check the contorller ouput joint by joint. */
     bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
     yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
@@ -92,8 +93,36 @@ public:
     bool threadInit();
     void run();
     void threadRelease();
-    void parseIncomingMessage(std::shared_ptr<yarp::os::Bottle> input, std::shared_ptr<yarp::os::Bottle> reply);
+    void parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     std::string printValidMessageTags();
+
+    /*! \class ControllerRpcServerCallback
+     *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
+     */
+    class ControllerRpcServerCallback : public yarp::os::PortReader
+    {
+    DEFINE_CLASS_POINTER_TYPEDEFS(ControllerRpcServerCallback)
+
+    public:
+
+        /*! Constructor
+         *  \param ctThreadPtr A shared pointer to the control thread.
+         */
+        // ControllerRpcServerCallback(OcraControllerServerThread::shared_ptr ctThreadPtr);
+        ControllerRpcServerCallback(OcraControllerServerThread& ctThreadPtr);
+
+        /*! read
+         *  \param connection Reads a port connection.
+         *
+         *  \return A boolean which tells whether or not a message was read.
+         */
+        virtual bool read(yarp::os::ConnectionReader& connection);
+
+    private:
+
+        // OcraControllerServerThread::shared_ptr ctThread; /*!< A shared pointer to the control thread. */
+        OcraControllerServerThread& ctThread; /*!< A shared pointer to the control thread. */
+    };
 
 
 private:
@@ -126,7 +155,7 @@ private:
     OcraWbiModelUpdater::shared_ptr modelUpdater; /*!< A simple helper class which is called periodically to update the model by fetching state estimates from the WBI and passing them to Model. */
 
 
-
+    OCRA_CONTROLLER_MESSAGE controllerStatus; /*!< The current status of the controller state. */
 
 
     int debugJointIndex; /*!< The current joint index being debugged. */
@@ -148,6 +177,10 @@ private:
     // TODO: Convert to RPC port as below.
     yarp::os::BufferedPort<yarp::os::Bottle> debugPort_in;
     yarp::os::BufferedPort<yarp::os::Bottle> debugPort_out;
+
+
+    // ControllerRpcServerCallback rpcServerCallback; /*!< Rpc server port callback function. */
+    // yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
 
 
 private:
