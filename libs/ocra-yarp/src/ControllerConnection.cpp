@@ -32,7 +32,7 @@ int ControllerConnection::CONTROLLER_CONNECTION_COUNT = 0;
 
 ControllerConnection::ControllerConnection()
 {
-    ControllerConnection::CONTROLLER_CONNECTION_COUNT++;
+    controllerConnectionNumber = ++ControllerConnection::CONTROLLER_CONNECTION_COUNT;
 }
 
 ControllerConnection::~ControllerConnection()
@@ -41,8 +41,14 @@ ControllerConnection::~ControllerConnection()
 }
 
 
-bool ControllerConnection::open(const bool openTaskPorts)
+bool ControllerConnection::open(const bool openTaskPorts, const std::string& connectionName)
 {
+    controllerConnectionName = connectionName;
+
+    if (controllerConnectionName == "ControllerConnection_") {
+        controllerConnectionName += std::to_string(controllerConnectionNumber);
+    }
+
     bool res = true;
     std::cout << "Making controller connection..." << std::endl;
     res &= connectToController();
@@ -52,13 +58,14 @@ bool ControllerConnection::open(const bool openTaskPorts)
         if(res)
         {
             std::cout << "Checking task manager rpc server connections..." << std::endl;
-            for(int i=0; i<taskRpcClients.size(); i++)
+            for(auto rpc_i : taskRpcClients)
             {
                 yarp::os::Bottle message, reply;
                 message.addString("getType");
-                taskRpcClients[i]->write(message, reply);
+                rpc_i->write(message, reply);
                 std::cout << reply.toString() << std::endl;
             }
+            std::cout << "All set!" << std::endl;
         }else{
             yLog.error() << "Couldn't connect to the individual task ports.";
         }
@@ -69,9 +76,9 @@ bool ControllerConnection::open(const bool openTaskPorts)
 void ControllerConnection::close()
 {
     controllerRpcClient.close();
-    for(int i=0; i<taskRpcClients.size(); i++)
+    for(auto rpc_i : taskRpcClients)
     {
-        taskRpcClients[i]->close();
+        rpc_i->close();
     }
 }
 
@@ -82,7 +89,7 @@ bool ControllerConnection::connectToController(const std::string& controllerName
         return false;
     }
     else{
-        std::string controllerRpcClientName = "/OCRA/ControllerConnection/"+ std::to_string(ControllerConnection::CONTROLLER_CONNECTION_COUNT) +"/rpc:o";
+        std::string controllerRpcClientName = "/OCRA/"+ controllerConnectionName +"/rpc:o";
         controllerRpcClient.open(controllerRpcClientName.c_str());
         bool connected = false;
         double timeDelayed = 0.0;

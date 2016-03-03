@@ -48,7 +48,7 @@ DEFINE_CLASS_POINTER_TYPEDEFS(ControllerConnection)
 public:
     ControllerConnection();
     ~ControllerConnection();
-    bool open(const bool openTaskPorts=true);
+    bool open(const bool openTaskPorts=true, const std::string& connectionName="ControllerConnection_");
     void close();
 
     yarp::os::Bottle queryController(const OCRA_CONTROLLER_MESSAGE request);
@@ -66,7 +66,7 @@ private:
 
 
     yarp::os::RpcClient controllerRpcClient;
-    std::vector<yarp::os::RpcClient*> taskRpcClients;
+    std::vector< std::shared_ptr<yarp::os::RpcClient> > taskRpcClients;
 
     yarp::os::Network yarp;
 
@@ -76,6 +76,8 @@ private:
 
     yarp::os::Log yLog;
 
+    int controllerConnectionNumber; /*!< The unique control connection number. */
+    std::string controllerConnectionName; /*!< The name of the connection - serves as a port id. */
     static int CONTROLLER_CONNECTION_COUNT;
 
     static constexpr double CONNECTION_TIMEOUT = 20.0;
