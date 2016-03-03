@@ -82,6 +82,13 @@ public:
      */
     void printHelp();
 
+    /*! Gets the name of the module. Override this function to set a different name.
+     *  \return A string with the module name.
+     */
+    virtual std::string getModuleName();
+
+
+public:
     /*! \class moduleCallback
      *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
      */
@@ -92,7 +99,7 @@ public:
     public:
 
         /*! Constructor
-         *  \param ctThreadPtr A shared pointer to the control thread.
+         *  \param newModuleRef A shared pointer to the control thread.
          */
         moduleCallback(OcraControllerClientModule& newModuleRef);
 
@@ -117,17 +124,22 @@ protected:
 
 
 private:
-    OcraControllerClientThread::shared_ptr clientThread; /*!< The controller client thread pointer. */
-    moduleCallback::shared_ptr rpcCallback; /*!< Rpc server port callback function. */
-    yarp::os::RpcServer rpcPort; /*!< Rpc server port. */
+    OcraControllerClientThread::shared_ptr clientThread;    /*!< The controller client thread pointer. */
+    moduleCallback::shared_ptr rpcCallback;                 /*!< Rpc server port callback function. */
+    yarp::os::RpcServer rpcPort;                            /*!< Rpc server port. */
+    yarp::os::Log yLog;                                     /*!< For logging in yarp. */
 
-    yarp::os::Log yLog;
+    int expectedClientThreadPeriod;                         /*!< The expected period of the client thread. In ms.*/
+    double avgTime;                                         /*!< Average time between successive calls of the `run()` method.*/
+    double stdDev;                                          /*!< Standard deviation of the average time between successive calls of the `run()` method. */
+    double avgTimeUsed;                                     /*!< Average time for the `run()` method to execute. Should be close to avgTime. */
+    double stdDevUsed;                                      /*!< Standard deviation of the average time for the `run()` method to execute. */
 
-    int expectedClientThreadPeriod; /*!< The expected period of the client thread. In ms.*/
-    double avgTime; /*!< Average time between successive calls of the `run()` method.*/
-    double stdDev; /*!< Standard deviation of the average time between successive calls of the `run()` method. */
-    double avgTimeUsed; /*!< Average time for the `run()` method to execute. Should be close to avgTime. */
-    double stdDevUsed; /*!< Standard deviation of the average time for the `run()` method to execute. */
+    std::string rpcPortName;                                /*!< The name of the rpc port for the thread. */
+
+    static int CONTROLLER_CLIENT_MODULE_COUNT;              /*!< A count that is incremented each time a client thread is constructed. */
+    int moduleNumber;                                       /*!< The unique thread number. */
+
 };
 
 } // namespace ocra_yarp

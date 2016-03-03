@@ -28,9 +28,13 @@
 
 using namespace ocra_yarp;
 
+int OcraControllerClientModule::CONTROLLER_CLIENT_MODULE_COUNT = 0;
 
 OcraControllerClientModule::OcraControllerClientModule(OcraControllerClientThread::shared_ptr customClientThread)
 {
+    // Increment the module counter and save it in module number.
+    moduleNumber = ++OcraControllerClientModule::CONTROLLER_CLIENT_MODULE_COUNT;
+
     clientThread = customClientThread;
     expectedClientThreadPeriod = clientThread->getExpectedPeriod();
 
@@ -54,13 +58,14 @@ OcraControllerClientModule::OcraControllerClientModule(OcraControllerClientThrea
             yarpWbiOptions.fromConfigFile(wbiConfigFilePath);
             // Overwrite the robot parameter that could be present in wbi_conf_file
             yarpWbiOptions.put("robot", robotName);
-
+            // Initialize the WBI in the client thread.
             clientThread->setWbiOptions(yarpWbiOptions);
-
             // Construct rpc server callback and bind to the control thread.
             rpcCallback = std::make_shared<moduleCallback>(*this);
+            // Make the port name
+            rpcPortName = "/OCRA/" + getModuleName() + "/rpc:i";
             // Open the rpc server port.
-            rpcPort.open("/OCRA/ClientModule/rpc:i");
+            rpcPort.open(rpcPortName);
             // Bind the callback to the port.
             rpcPort.setReader(*rpcCallback);
 
@@ -73,9 +78,15 @@ OcraControllerClientModule::~OcraControllerClientModule()
     rpcPort.close();
 }
 
+
+std::string OcraControllerClientModule::getModuleName()
+{
+    return "ControllerClientModule_"+std::to_string(moduleNumber);
+}
+
 bool OcraControllerClientModule::configure(yarp::os::ResourceFinder &rf)
 {
-
+    clientThread->start();
     return true;
 }
 
@@ -147,7 +158,7 @@ bool OcraControllerClientModule::customUpdateModule()
 
 
 /**************************************************************************************************
-                                    Nested PortReader Class
+                                    Nested moduleCallback Class
 **************************************************************************************************/
 OcraControllerClientModule::moduleCallback::moduleCallback(OcraControllerClientModule& newModuleRef)
 : moduleRef(newModuleRef)

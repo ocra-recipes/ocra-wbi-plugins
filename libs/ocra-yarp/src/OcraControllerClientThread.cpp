@@ -35,25 +35,52 @@ OcraControllerClientThread::OcraControllerClientThread(const int period)
 : RateThread(period)
 , expectedPeriod(period)
 {
+    // Increment the thread counter and save it in thread number.
+    threadNumber = ++OcraControllerClientThread::CONTROLLER_CLIENT_THREAD_COUNT;
 
+    // Construct rpc server callback and bind to the control thread.
+    rpcCallback = std::make_shared<threadCallback>(*this);
+    // Make the port name
+    rpcPortName = "/OCRA/" + getThreadName() + "/rpc:i";
+    // Open the rpc server port.
+    rpcPort.open(rpcPortName);
+    // Bind the callback to the port.
+    rpcPort.setReader(*rpcCallback);
 }
 
 OcraControllerClientThread::~OcraControllerClientThread()
 {
-
+    rpcPort.close();
 }
 
 bool OcraControllerClientThread::threadInit()
 {
+    // Open a controller connection.
+    ctrlCon = std::make_shared<ControllerConnection>();
+    bool openTaskPorts = true;
+    ctrlCon->open(openTaskPorts, getThreadName());
+    
     return client_threadInit();
 }
+
 void OcraControllerClientThread::threadRelease()
 {
     client_threadRelease();
 }
+
 void OcraControllerClientThread::run()
 {
     client_run();
+}
+
+int OcraControllerClientThread::getExpectedPeriod()
+{
+    return expectedPeriod;
+}
+
+std::string OcraControllerClientThread::getThreadName()
+{
+    return "ControllerClientThread_"+std::to_string(threadNumber);
 }
 
 void OcraControllerClientThread::setWbiOptions(yarp::os::Property& wbiOptions)
@@ -61,7 +88,7 @@ void OcraControllerClientThread::setWbiOptions(yarp::os::Property& wbiOptions)
     yarpWbiOptions = wbiOptions;
 
     // Create the wholeBodyInterface.
-    std::string robotInterfaceName = "ControllerClientThreadWBI_"+std::to_string(OcraControllerClientThread::CONTROLLER_CLIENT_THREAD_COUNT);
+    std::string robotInterfaceName = getThreadName() + "_WBI";
     robotInterface = std::make_shared<yarpWbi::yarpWholeBodyInterface>(robotInterfaceName.c_str(), yarpWbiOptions);
 
     // Add the robot's specific joints to the WBI.
@@ -73,3 +100,44 @@ void OcraControllerClientThread::setWbiOptions(yarp::os::Property& wbiOptions)
     }
     robotInterface->addJoints(robotJoints);
 }
+
+void OcraControllerClientThread::callbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply)
+{
+    if (message.size() != 0) {
+        reply.clear();
+        customCallbackParser(message, reply);
+    }
+}
+
+void OcraControllerClientThread::customCallbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply)
+{
+    // Do nothing if not implemented.
+}
+
+/**************************************************************************************************
+                                    Nested threadCallback Class
+**************************************************************************************************/
+OcraControllerClientThread::threadCallback::threadCallback(OcraControllerClientThread& newThreadRef)
+: threadRef(newThreadRef)
+{
+    //do nothing
+}
+
+bool OcraControllerClientThread::threadCallback::read(yarp::os::ConnectionReader& connection)
+{
+    yarp::os::Bottle input, reply;
+
+    if (!input.read(connection)){
+        return false;
+    }
+    else{
+        threadRef.callbackParser(input, reply);
+        yarp::os::ConnectionWriter* returnToSender = connection.getWriter();
+        if (returnToSender!=NULL) {
+            reply.write(*returnToSender);
+        }
+        return true;
+    }
+}
+/**************************************************************************************************
+**************************************************************************************************/
