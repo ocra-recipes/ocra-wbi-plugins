@@ -113,9 +113,9 @@ std::vector<std::string> ControllerConnection::getTaskPortNames()
 {
     std::vector<std::string> portNameVec;
     yarp::os::Bottle message, reply;
-    message.addString("getTaskPorts");
+    message.addInt(OCRA_CONTROLLER_MESSAGE::GET_TASK_PORT_LIST);
     controllerRpcClient.write(message, reply);
-    for(int i=1; i<reply.size(); i++)
+    for(auto i=0; i<reply.size(); ++i)
     {
         portNameVec.push_back(reply.get(i).asString());
     }
@@ -124,18 +124,17 @@ std::vector<std::string> ControllerConnection::getTaskPortNames()
 
 bool ControllerConnection::connectToTaskPorts(const std::vector<std::string> taskPortNames)
 {
-    int numberOfTasks = taskPortNames.size();
-    taskRpcClients.resize(numberOfTasks);
+    taskRpcClients.resize(taskPortNames.size());
     bool taskConnected = true;
 
-    for(int i=0; i<numberOfTasks; i++)
+    for(auto i=0; i<taskRpcClients.size(); ++i)
     {
-        std::string tmpTaskPortName = "/OCRA/ControllerConnection/"+ std::to_string(ControllerConnection::CONTROLLER_CONNECTION_COUNT);
+        std::string tmpTaskPortName = "/OCRA/" + controllerConnectionName;
         tmpTaskPortName += taskPortNames[i].substr(3, taskPortNames[i].size()-1);
         tmpTaskPortName += "o";
-        taskRpcClients[i] = new yarp::os::RpcClient;
+        taskRpcClients[i] = std::make_shared<yarp::os::RpcClient>();
         taskRpcClients[i]->open(tmpTaskPortName.c_str());
-        taskConnected = taskConnected && yarp.connect(tmpTaskPortName.c_str(), taskPortNames[i].c_str());
+        taskConnected &= yarp.connect(tmpTaskPortName.c_str(), taskPortNames[i].c_str());
     }
 
     return taskConnected;
