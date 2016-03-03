@@ -421,6 +421,9 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
             case GET_TASK_PORT_LIST:
             i++;
             std::cout << "Got message: GET_TASK_PORT_LIST." << std::endl;
+            for(auto taskPort : taskSequence->getTaskPorts()){
+                reply.addString(taskPort);
+            }
             break;
             case HELP:
             i++;
