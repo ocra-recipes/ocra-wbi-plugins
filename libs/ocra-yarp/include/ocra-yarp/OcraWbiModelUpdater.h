@@ -38,9 +38,11 @@ class OcraWbiModelUpdater
 DEFINE_CLASS_POINTER_TYPEDEFS(OcraWbiModelUpdater)
 public:
     OcraWbiModelUpdater();
+    OcraWbiModelUpdater(std::shared_ptr<wbi::wholeBodyInterface> wbiPointer, std::shared_ptr<ocra::Model> modelPointer);
+
     ~OcraWbiModelUpdater();
-    bool initialize(std::shared_ptr<wbi::wholeBodyInterface> wbiPointer, ocra::Model* modelPointer);
-    bool update(std::shared_ptr<wbi::wholeBodyInterface> wbiPointer, ocra::Model* modelPointer);
+    bool initialize(std::shared_ptr<wbi::wholeBodyInterface> wbiPointer, std::shared_ptr<ocra::Model> modelPointer);
+    bool update();
 
 private:
     Eigen::VectorXd fb_qRad; // vector that contains the encoders read from the wbiPointer
@@ -51,6 +53,11 @@ private:
 
     wbi::Frame fb_Hroot; // vector that position of root
     Eigen::Twistd fb_Troot; // vector that contains the twist of root
+
+    std::shared_ptr<wbi::wholeBodyInterface>    wbi;
+    std::shared_ptr<ocra::Model>                model;
+
+    yarp::os::Log yLog;
 
     static const int ALL_JOINTS = -1;
 };
