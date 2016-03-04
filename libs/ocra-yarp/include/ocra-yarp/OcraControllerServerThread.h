@@ -36,6 +36,8 @@
 #include "ocra/control/TaskManagers/TaskSequence.h"
 #include "ocra/control/TaskManagers/TaskParser.h"
 
+#include "ocra/control/TaskManagers/TaskManagerSet.h"
+
 #include "ocra-yarp/OcraWbiModel.h"
 #include "ocra-yarp/OcraWbiConversions.h"
 #include "ocra-yarp/OcraWbiModelUpdater.h"
@@ -149,6 +151,8 @@ private:
     ocra::TaskSequence* taskSequence; /*!< The set of tasks currently being executed. */
     ocra::Model *ocraModel; /*!< The robot "model" which basically just provides state information to the controller. */
     OcraWbiModelUpdater::shared_ptr modelUpdater; /*!< A simple helper class which is called periodically to update the model by fetching state estimates from the WBI and passing them to Model. */
+
+    std::shared_ptr<ocra::TaskManagerSet> taskManagerSet;
 
 
     OCRA_CONTROLLER_MESSAGE controllerStatus; /*!< The current status of the controller state. */
