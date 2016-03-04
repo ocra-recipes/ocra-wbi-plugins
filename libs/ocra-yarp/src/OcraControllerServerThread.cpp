@@ -96,6 +96,7 @@ OcraControllerServerThread::~OcraControllerServerThread()
     // if(ctrl!=NULL){delete(ctrl);}
     // if(ocraModel!=NULL){delete(ocraModel);}
     rpcServerPort.close();
+    controllerOutputPort.close();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -109,6 +110,8 @@ bool OcraControllerServerThread::threadInit()
     rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
     // Open the rpc server port.
     rpcServerPort.open("/OCRA/Controller/rpc:i");
+    // Open the output port.
+    controllerOutputPort.open("/OCRA/Controller:o");
     // Bind the callback to the port.
     rpcServerPort.setReader(*rpcServerCallback);
 
@@ -450,10 +453,10 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
                     bool taskRemoved = taskManagerSet->removeTaskManager(taskToRemove);
                     if (taskRemoved) {
                         reply.addInt(OCRA_CONTROLLER_MESSAGE::OCRA_SUCCESS);
-                        // yarp::os::Bottle controllerMessage;
-                        // controllerMessage.addInt(OCRA_CONTROLLER_MESSAGE::REMOVE_TASK_PORT);
-                        // controllerMessage.addString(taskToRemove);
-                        // rpcClientPort.write(controllerMessage);
+                        yarp::os::Bottle controllerMessage;
+                        controllerMessage.addInt(OCRA_CONTROLLER_MESSAGE::REMOVE_TASK_PORT);
+                        controllerMessage.addString(taskToRemove);
+                        controllerOutputPort.write(controllerMessage);
                     }else{
                         reply.addInt(OCRA_CONTROLLER_MESSAGE::OCRA_FAILURE);
                     }

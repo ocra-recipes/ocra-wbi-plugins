@@ -45,6 +45,7 @@
 #include <yarp/os/RateThread.h>
 #include <yarp/os/ResourceFinder.h>
 #include <yarp/os/PortReader.h>
+#include <yarp/os/RpcClient.h>
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
 #include <yarp/os/Time.h>

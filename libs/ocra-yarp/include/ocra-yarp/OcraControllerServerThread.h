@@ -185,6 +185,7 @@ private:
 
     ControllerRpcServerCallback::shared_ptr rpcServerCallback; /*!< Rpc server port callback function. */
     yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
+    yarp::os::Port controllerOutputPort; /*!< Output port. */
 
 
 private:

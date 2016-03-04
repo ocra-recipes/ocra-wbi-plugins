@@ -27,11 +27,11 @@
 #ifndef CONTROLLER_CONNECTION_H
 #define CONTROLLER_CONNECTION_H
 
-#include <yarp/os/Network.h>
-#include <yarp/os/Bottle.h>
-#include <yarp/os/Port.h>
-#include <yarp/os/RpcClient.h>
-#include <yarp/os/Time.h>
+// #include <yarp/os/Network.h>
+// #include <yarp/os/Bottle.h>
+// #include <yarp/os/Port.h>
+// #include <yarp/os/RpcClient.h>
+// #include <yarp/os/Time.h>
 
 #include "ocra/control/TaskManagers/TaskManagerMessageVocab.h"
 
@@ -45,12 +45,16 @@ class ControllerConnection
 {
 DEFINE_CLASS_POINTER_TYPEDEFS(ControllerConnection)
 
+using TaskPortMap = std::map<std::string, std::shared_ptr<yarp::os::RpcClient> >;
+
 public:
     ControllerConnection();
     ~ControllerConnection();
     bool open(const bool openTaskPorts=true, const std::string& connectionName="ControllerConnection_");
     void close();
+    void close(const std::string& taskName);
 
+    yarp::os::Bottle queryController(yarp::os::Bottle& requestBottle);
     yarp::os::Bottle queryController(const OCRA_CONTROLLER_MESSAGE request);
     yarp::os::Bottle queryController(const std::vector<OCRA_CONTROLLER_MESSAGE> requestVector);
 
@@ -62,12 +66,44 @@ public:
 
     std::vector<std::string> getTaskPortNames();
 
+    void parseControllerMessage(yarp::os::Bottle& input);
+
+
+    /*! \class ConnectionRpcServerCallback
+     *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
+     */
+    class ConnectionRpcServerCallback : public yarp::os::PortReader
+    {
+    DEFINE_CLASS_POINTER_TYPEDEFS(ConnectionRpcServerCallback)
+
+    public:
+
+        /*! Constructor
+         *  \param parentConnectionRef A ref to the controller connection.
+         */
+        ConnectionRpcServerCallback(ControllerConnection& parentConnectionRef);
+
+        /*! read
+         *  \param connection Reads a port connection.
+         *
+         *  \return A boolean which tells whether or not a message was read.
+         */
+        virtual bool read(yarp::os::ConnectionReader& connection);
+
+    private:
+
+        ControllerConnection& parentConnection; /*!< A shared pointer to the control thread. */
+    };
+
+
 private:
 
+    ConnectionRpcServerCallback::shared_ptr rpcServerCallback;
 
-
+    yarp::os::Port controllerListenerPort;
     yarp::os::RpcClient controllerRpcClient;
-    std::vector< std::shared_ptr<yarp::os::RpcClient> > taskRpcClients;
+    // std::vector< std::shared_ptr<yarp::os::RpcClient> > taskRpcClients;
+    TaskPortMap taskRpcClients;
 
     yarp::os::Network yarp;
 

@@ -139,10 +139,13 @@ public:
         OcraControllerClientThread& threadRef;  /*!< A ref to the client thread. */
     };
 
+public: // class variables
+
+    ControllerConnection::shared_ptr ctrlCon;                   /*!< The controller connection for the thread. */
+
 private: // class variables
 
     std::shared_ptr<wbi::wholeBodyInterface> robotInterface;    /*!< The yarpWBI interface used to get estimates from the robot. */
-    ControllerConnection::shared_ptr ctrlCon;                   /*!< The controller connection for the thread. */
     threadCallback::shared_ptr rpcCallback;                     /*!< Rpc server port callback function. */
     yarp::os::RpcServer rpcPort;                                /*!< Rpc server port. */
     yarp::os::Property yarpWbiOptions;

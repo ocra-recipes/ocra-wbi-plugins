@@ -62,7 +62,7 @@ bool ControllerConnection::open(const bool openTaskPorts, const std::string& con
             {
                 yarp::os::Bottle message, reply;
                 message.addString("getType");
-                rpc_i->write(message, reply);
+                rpc_i.second->write(message, reply);
                 std::cout << reply.toString() << std::endl;
             }
             std::cout << "All set!" << std::endl;
@@ -78,8 +78,19 @@ void ControllerConnection::close()
     controllerRpcClient.close();
     for(auto rpc_i : taskRpcClients)
     {
-        rpc_i->close();
+        rpc_i.second->close();
     }
+    taskRpcClients.clear();
+}
+
+void ControllerConnection::close(const std::string& taskName)
+{
+    if(taskRpcClients.find(taskName) != taskRpcClients.end())
+    {
+        taskRpcClients[taskName]->close();
+        taskRpcClients.erase(taskName);
+    }
+    taskRpcClients.clear();
 }
 
 bool ControllerConnection::connectToController(const std::string& controllerName)
@@ -91,12 +102,30 @@ bool ControllerConnection::connectToController(const std::string& controllerName
     else{
         std::string controllerRpcClientName = "/OCRA/"+ controllerConnectionName +"/rpc:o";
         controllerRpcClient.open(controllerRpcClientName.c_str());
+        std::string controllerListenerPortName = "/OCRA/"+ controllerConnectionName +":i";
+        controllerListenerPort.open(controllerListenerPortName.c_str());
+        rpcServerCallback = std::make_shared<ConnectionRpcServerCallback>(*this);
+        controllerListenerPort.setReader(*rpcServerCallback);
+
+
         bool connected = false;
         double timeDelayed = 0.0;
         double delayTime = 1.0;
         while(!connected && timeDelayed < CONNECTION_TIMEOUT)
         {
             connected = yarp.connect(controllerRpcClientName.c_str(), "/OCRA/" + controllerName + "/rpc:i");
+            yarp::os::Time::delay(delayTime);
+            timeDelayed += delayTime;
+            if (timeDelayed>= CONNECTION_TIMEOUT) {
+                yLog.error() << "Could not connect to the ocra controller port. Are you sure it is running?";
+            }
+        }
+
+        connected = false;
+        timeDelayed = 0.0;
+        while(!connected && timeDelayed < CONNECTION_TIMEOUT)
+        {
+            connected = yarp.connect("/OCRA/" + controllerName + ":o", controllerListenerPortName.c_str());
             yarp::os::Time::delay(delayTime);
             timeDelayed += delayTime;
             if (timeDelayed>= CONNECTION_TIMEOUT) {
@@ -124,20 +153,29 @@ std::vector<std::string> ControllerConnection::getTaskPortNames()
 
 bool ControllerConnection::connectToTaskPorts(const std::vector<std::string> taskPortNames)
 {
-    taskRpcClients.resize(taskPortNames.size());
+    // taskRpcClients.resize(taskPortNames.size());
     bool taskConnected = true;
 
-    for(auto i=0; i<taskRpcClients.size(); ++i)
+    // for(auto i=0; i<taskRpcClients.size(); ++i)
+    for(auto i=0; i<taskPortNames.size(); ++i)
     {
+        std::string tmpTaskName = taskPortNames[i].substr(3, taskPortNames[i].size()-1);
         std::string tmpTaskPortName = "/OCRA/" + controllerConnectionName;
-        tmpTaskPortName += taskPortNames[i].substr(3, taskPortNames[i].size()-1);
+        tmpTaskPortName += tmpTaskName;
         tmpTaskPortName += "o";
-        taskRpcClients[i] = std::make_shared<yarp::os::RpcClient>();
-        taskRpcClients[i]->open(tmpTaskPortName.c_str());
+        taskRpcClients[tmpTaskName] = std::make_shared<yarp::os::RpcClient>();
+        taskRpcClients[tmpTaskName]->open(tmpTaskPortName.c_str());
         taskConnected &= yarp.connect(tmpTaskPortName.c_str(), taskPortNames[i].c_str());
     }
 
     return taskConnected;
+}
+
+yarp::os::Bottle ControllerConnection::queryController(yarp::os::Bottle& requestBottle)
+{
+    yarp::os::Bottle reply;
+    controllerRpcClient.write(requestBottle, reply);
+    return reply;
 }
 
 yarp::os::Bottle ControllerConnection::queryController(const OCRA_CONTROLLER_MESSAGE request)
@@ -157,3 +195,49 @@ yarp::os::Bottle ControllerConnection::queryController(const std::vector<OCRA_CO
     controllerRpcClient.write(requestBottle, reply);
     return reply;
 }
+
+void ControllerConnection::parseControllerMessage(yarp::os::Bottle& input)
+{
+    int btlSize = input.size();
+    for (int i=0; i<btlSize;)
+    {
+        // OCRA_CONTROLLER_MESSAGE message();
+        switch (input.get(i).asInt()) {
+            case REMOVE_TASK_PORT:
+                {
+                    ++i;
+                    std::cout << "Got message: REMOVE_TASK_PORT." << input.get(i).asString() << std::endl;
+                    close(input.get(i).asString());
+                    ++i;
+                }break;
+        }
+    }
+}
+
+/**************************************************************************************************
+                                    Nested ConnectionRpcServerCallback Class
+**************************************************************************************************/
+ControllerConnection::ConnectionRpcServerCallback::ConnectionRpcServerCallback(ControllerConnection& parentConnectionRef)
+: parentConnection(parentConnectionRef)
+{
+    //do nothing
+}
+
+bool ControllerConnection::ConnectionRpcServerCallback::read(yarp::os::ConnectionReader& connection)
+{
+    yarp::os::Bottle input;
+
+    if (!input.read(connection)){
+        return false;
+    }
+    else{
+        parentConnection.parseControllerMessage(input);
+        // yarp::os::ConnectionWriter* returnToSender = connection.getWriter();
+        // if (returnToSender!=NULL) {
+        //     reply.write(*returnToSender);
+        // }
+        return true;
+    }
+}
+/**************************************************************************************************
+**************************************************************************************************/
