@@ -146,10 +146,12 @@ private:
 
     OcraControllerOptions ctrlOptions; /*!< The controller options. */
     std::shared_ptr<wholeBodyInterface> robot; /*!< The WBI used to talk to the robot. */
-    ocra::Controller *ctrl; /*!< The controller. */
+    // ocra::Controller *ctrl; /*!< The controller. */
+    std::shared_ptr<ocra::Controller> ctrl; /*!< The controller. */
     ocra::OneLevelSolverWithQuadProg internalSolver; /*!< The type of convex solver problem formulation used in the controller. */
-    ocra::TaskSequence* taskSequence; /*!< The set of tasks currently being executed. */
-    ocra::Model *ocraModel; /*!< The robot "model" which basically just provides state information to the controller. */
+    // ocra::TaskSequence* taskSequence; /*!< The set of tasks currently being executed. */
+    // ocra::Model *ocraModel; /*!< The robot "model" which basically just provides state information to the controller. */
+    std::shared_ptr<ocra::Model> ocraModel; /*!< The robot "model" which basically just provides state information to the controller. */
     OcraWbiModelUpdater::shared_ptr modelUpdater; /*!< A simple helper class which is called periodically to update the model by fetching state estimates from the WBI and passing them to Model. */
 
     std::shared_ptr<ocra::TaskManagerSet> taskManagerSet;

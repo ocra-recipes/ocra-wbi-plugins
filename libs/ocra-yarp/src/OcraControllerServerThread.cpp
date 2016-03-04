@@ -58,19 +58,21 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
 , ctrlOptions(controller_options)
 , isStabilizing(false)
 , controllerStatus(OCRA_CONTROLLER_MESSAGE::CONTROLLER_STOPPED)
-, taskSequence(NULL)
-, ocraModel(NULL)
-, ctrl(NULL)
+// , taskSequence(NULL)
+// , ocraModel(NULL)
+// , ctrl(NULL)
 , firstIterationOfRunMethod(true)
 {
     bool useReducedProblem = false;
 
     robot           = wbi;
-    ocraModel       = new OcraWbiModel(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
-    ctrl            = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
-    modelUpdater    = std::make_shared<OcraWbiModelUpdater>();
-    // TODO:
-    // taskManagerSet  = std::make_shared<ocra::TaskManagerSet>(ctrl, ocraModel);
+    // ocraModel       = new OcraWbiModel(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
+    ocraModel       = std::make_shared<OcraWbiModel>(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
+    // ctrl            = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
+    ctrl            = std::make_shared<wocra::WocraController>("icubControl", *ocraModel, internalSolver, useReducedProblem);
+    modelUpdater    = std::make_shared<OcraWbiModelUpdater>(robot, ocraModel);
+
+    taskManagerSet  = std::make_shared<ocra::TaskManagerSet>(ctrl, ocraModel);
 
     homePosture     = Eigen::VectorXd::Zero(robot->getDoFs());
     debugPosture    = Eigen::VectorXd::Zero(robot->getDoFs());
@@ -112,12 +114,8 @@ bool OcraControllerServerThread::threadInit()
 
 
     // /******************************************************************************************************
-    //                             Get WBI estimates and initialize the WOCRA model
+    //                             Get WBI estimates for stabilization stuff
     // ******************************************************************************************************/
-
-    if(!modelUpdater->initialize(robot, ocraModel))
-        std::cout << "ERROR with model updater" << std::endl;
-
 
     robot->getEstimates(ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
     initialCoMPosition = ocraModel->getCoMPosition();
@@ -165,15 +163,15 @@ bool OcraControllerServerThread::threadInit()
         //Create XML task set
         if (!ctrlOptions.startupTaskSetPath.empty()) {
             if (ctrlOptions.startupSequence.empty()) {
-                taskSequence = new ocra::TaskSequence();
+                // taskSequence = new ocra::TaskSequence();
             }
             std::cout << "\nLoading tasks from XML file:\n" << ctrlOptions.startupTaskSetPath << "\n" << std::endl;
             ocra::TaskParser taskParser;
             if(taskParser.parseTasksXML( ctrlOptions.startupTaskSetPath.c_str() )){
-                taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+                // taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
 
                 // TODO:
-                // taskParser.addTaskManagersToSequence(ctrl, ocraModel, taskManagerSet);
+                taskParser.addTaskManagersToSequence(ctrl, ocraModel, taskManagerSet);
 
 
                 // taskParser.printTaskArguments(); // If you want to see all the parsed args.
@@ -209,7 +207,7 @@ bool OcraControllerServerThread::threadInit()
     ******************************************************************************************************/
 
 
-    taskSequence->init(*ctrl, *ocraModel);
+    // taskSequence->init(*ctrl, *ocraModel);
 
 
     /******************************************************************************************************
@@ -247,7 +245,7 @@ void OcraControllerServerThread::run()
                                             Update dynamic model
     ******************************************************************************************************/
 
-    if(!modelUpdater->update(robot, ocraModel))
+    if(!modelUpdater->update())
         std::cout << "ERROR with model updater" << std::endl;
 
 
@@ -277,9 +275,9 @@ void OcraControllerServerThread::run()
 
         }
     }
-    else if (!isStabilizing){
-        taskSequence->update(controllerTime, *ocraModel, NULL);
-    }
+    // else if (!isStabilizing){
+    //     // taskSequence->update(controllerTime, *ocraModel, NULL);
+    // }
 
 
     /******************************************************************************************************
@@ -349,7 +347,8 @@ void OcraControllerServerThread::run()
 
 void OcraControllerServerThread::threadRelease()
 {
-    taskSequence->clearSequence();
+    taskManagerSet->clearSet();
+    // taskSequence->clearSequence();
 
     if (!ocraModel->hasFixedRoot()){
         if(loadStabilizationTasks()){
@@ -362,7 +361,8 @@ void OcraControllerServerThread::threadRelease()
     if(robot->setControlMode(CTRL_MODE_POS, 0, ALL_JOINTS) ){
         bool res_setControlReference = robot->setControlReference(initialPosture.data());
         std::cout << "\n\n--> Closing controller thread. Switching to POSITION mode and returning to home pose.\n" << std::endl;
-        taskSequence->clearSequence();
+        // taskSequence->clearSequence();
+        taskManagerSet->clearSet();
         controllerStatus = OCRA_CONTROLLER_MESSAGE::CONTROLLER_STOPPED;
 
     }
@@ -379,94 +379,112 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
         // OCRA_CONTROLLER_MESSAGE message();
         switch (input.get(i).asInt()) {
             case GET_CONTROLLER_STATUS:
-                i++;
-                std::cout << "Got message: GET_CONTROLLER_STATUS." << std::endl;
-                reply.addInt(controllerStatus);
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: GET_CONTROLLER_STATUS." << std::endl;
+                    reply.addInt(controllerStatus);
+                }break;
 
             case GET_WBI_CONFIG_FILE_PATH:
-                i++;
-                std::cout << "Got message: GET_WBI_CONFIG_FILE_PATH." << std::endl;
-                reply.addString(ctrlOptions.wbiConfigFilePath);
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: GET_WBI_CONFIG_FILE_PATH." << std::endl;
+                    reply.addString(ctrlOptions.wbiConfigFilePath);
+                }break;
 
             case GET_ROBOT_NAME:
-                i++;
-                std::cout << "Got message: GET_ROBOT_NAME." << std::endl;
-                reply.addString(ctrlOptions.robotName);
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: GET_ROBOT_NAME." << std::endl;
+                    reply.addString(ctrlOptions.robotName);
+                }break;
 
             case START_CONTROLLER:
-                i++;
-                std::cout << "Got message: START_CONTROLLER." << std::endl;
-                this->start();
-                // TODO: make a switch case for if the controller is suspended then resume but if it is stopped then start.
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: START_CONTROLLER." << std::endl;
+                    this->start();
+                    // TODO: make a switch case for if the controller is suspended then resume but if it is stopped then start.
+                }break;
 
             case STOP_CONTROLLER:
-                i++;
-                std::cout << "Got message: STOP_CONTROLLER." << std::endl;
-                this->stop();
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: STOP_CONTROLLER." << std::endl;
+                    this->stop();
+                }break;
 
             case PAUSE_CONTROLLER:
-                i++;
-                std::cout << "Got message: PAUSE_CONTROLLER." << std::endl;
-                this->suspend();
-                // TODO: Make a custom function that puts the robot in pos mode before suspend.
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: PAUSE_CONTROLLER." << std::endl;
+                    this->suspend();
+                    // TODO: Make a custom function that puts the robot in pos mode before suspend.
+                }break;
 
             case ADD_TASK:
-                i++;
-                std::cout << "Got message: ADD_TASK." << std::endl;
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: ADD_TASK." << std::endl;
+                }break;
 
             case ADD_TASK_FROM_FILE:
-                i++;
-                std::cout << "Got message: ADD_TASK_FROM_FILE." << std::endl;
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: ADD_TASK_FROM_FILE." << std::endl;
+                }break;
 
             case REMOVE_TASK:
-                i++;
-                std::cout << "Got message: REMOVE_TASK." << std::endl;
-                std::string taskToRemove = input->get(i).asString();
-                taskSequence->removeTaskManager(taskToRemove);
-
-                // TODO:
-                // taskManagerSet->removeTaskManager(taskToRemove);
-
-                reply->addString("Removed:");
-                reply->addString(taskToRemove);
-                i++;
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: REMOVE_TASK." << std::endl;
+                    std::string taskToRemove = input.get(i).asString();
+                    // taskManagerSet->removeTaskManager(taskToRemove);
+                    bool taskRemoved = taskManagerSet->removeTaskManager(taskToRemove);
+                    if (taskRemoved) {
+                        reply.addInt(OCRA_CONTROLLER_MESSAGE::OCRA_SUCCESS);
+                        // yarp::os::Bottle controllerMessage;
+                        // controllerMessage.addInt(OCRA_CONTROLLER_MESSAGE::REMOVE_TASK_PORT);
+                        // controllerMessage.addString(taskToRemove);
+                        // rpcClientPort.write(controllerMessage);
+                    }else{
+                        reply.addInt(OCRA_CONTROLLER_MESSAGE::OCRA_FAILURE);
+                    }
+                    i++;
+                }break;
 
             case REMOVE_TASKS:
-                i++;
-                std::cout << "Got message: REMOVE_TASKS." << std::endl;
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: REMOVE_TASKS." << std::endl;
+                }break;
 
             case GET_TASK_LIST:
-                i++;
-                std::cout << "Got message: GET_TASK_LIST." << std::endl;
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: GET_TASK_LIST." << std::endl;
+                }break;
 
             case GET_TASK_PORT_LIST:
-                i++;
-                std::cout << "Got message: GET_TASK_PORT_LIST." << std::endl;
-                for(auto taskPort : taskSequence->getTaskPorts()){
-                    reply.addString(taskPort);
-                }
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: GET_TASK_PORT_LIST." << std::endl;
+                    for(auto taskPort : taskManagerSet->getTaskPorts()){
+                        reply.addString(taskPort);
+                    }
+                }break;
 
             case HELP:
-                i++;
-                std::cout << "Got message: HELP." << std::endl;
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: HELP." << std::endl;
+                }break;
 
             default:
-                i++;
-                std::cout << "Got message: UNKNOWN." << std::endl;
-                break;
+                {
+                    i++;
+                    std::cout << "Got message: UNKNOWN." << std::endl;
+                }break;
 
         }
     }
@@ -490,7 +508,8 @@ bool OcraControllerServerThread::loadStabilizationTasks()
     yarp::os::ResourceFinder RF;
     std::string filePath = RF.findFileByName("taskSets/stabilizationTaskSet.xml");
     taskParser.parseTasksXML(filePath.c_str());
-    return taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+    // return taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+    return taskParser.addTaskManagersToSequence(ctrl, ocraModel, taskManagerSet);
 }
 
 void OcraControllerServerThread::stabilizeRobot()
@@ -501,9 +520,12 @@ void OcraControllerServerThread::stabilizeRobot()
     std::string comTaskKey = "stabilization_comTask";
     std::string torsoTaskKey = "stabilization_torsoCartesianTask";
 
-    (std::dynamic_pointer_cast<ocra::FullPostureTaskManager>(taskSequence->getTaskManagerPointer(postureTaskKey)))->setPosture(initialPosture);
-    (std::dynamic_pointer_cast<ocra::CoMTaskManager>(taskSequence->getTaskManagerPointer(comTaskKey)))->setState(initialCoMPosition);
-    (std::dynamic_pointer_cast<ocra::SegCartesianTaskManager>(taskSequence->getTaskManagerPointer(torsoTaskKey)))->setState(initialTorsoPosition);
+    (std::dynamic_pointer_cast<ocra::FullPostureTaskManager>(taskManagerSet->getTaskManagerPointer(postureTaskKey)))->setPosture(initialPosture);
+    // (std::dynamic_pointer_cast<ocra::FullPostureTaskManager>(taskSequence->getTaskManagerPointer(postureTaskKey)))->setPosture(initialPosture);
+    (std::dynamic_pointer_cast<ocra::CoMTaskManager>(taskManagerSet->getTaskManagerPointer(comTaskKey)))->setState(initialCoMPosition);
+    // (std::dynamic_pointer_cast<ocra::CoMTaskManager>(taskSequence->getTaskManagerPointer(comTaskKey)))->setState(initialCoMPosition);
+    (std::dynamic_pointer_cast<ocra::SegCartesianTaskManager>(taskManagerSet->getTaskManagerPointer(torsoTaskKey)))->setState(initialTorsoPosition);
+    // (std::dynamic_pointer_cast<ocra::SegCartesianTaskManager>(taskSequence->getTaskManagerPointer(torsoTaskKey)))->setState(initialTorsoPosition);
 
 
     double timeStabilizingStart = yarp::os::Time::now();
