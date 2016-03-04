@@ -32,14 +32,14 @@ using namespace ocra_yarp;
 
 
 ModelThread::ModelThread(int period, const std::string& wbiConfFile, const bool isFloatingBase):
-RateThread(period),
-model(NULL)
+RateThread(period)
 {
     yarp::os::Property yarpWbiOptions;
     yarpWbiOptions.fromConfigFile(wbiConfFile);
     wbi = std::make_shared<yarpWbi::yarpWholeBodyInterface>("modelthread", yarpWbiOptions);
-    model = new OcraWbiModel(yarpWbiOptions.find("robot").asString(), wbi->getDoFs(), wbi, isFloatingBase);
-    modelUpdater = std::make_shared<OcraWbiModelUpdater>();
+    // model = new OcraWbiModel(yarpWbiOptions.find("robot").asString(), wbi->getDoFs(), wbi, isFloatingBase);
+    model = std::make_shared<OcraWbiModel>(yarpWbiOptions.find("robot").asString(), wbi->getDoFs(), wbi, isFloatingBase);
+    modelUpdater = std::make_shared<OcraWbiModelUpdater>(wbi, model);
 }
 
 ModelThread::~ModelThread()
@@ -49,20 +49,20 @@ ModelThread::~ModelThread()
 
 bool ModelThread::threadInit()
 {
-    modelUpdater->initialize(wbi, model);
+    // modelUpdater->initialize(wbi, model);
 }
 
 void ModelThread::threadRelease()
 {
-    delete model;
+    // delete model;
 }
 
 void ModelThread::run()
 {
-    modelUpdater->update(wbi, model);
+    modelUpdater->update();
 }
 
-const ocra::Model* ModelThread::getModelPointer()
+const std::shared_ptr<ocra::Model> ModelThread::getModelPointer()
 {
     return model;
 }

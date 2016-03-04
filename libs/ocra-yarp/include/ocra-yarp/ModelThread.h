@@ -52,13 +52,13 @@ public:
     virtual void run();
 
     //Public interface
-    const ocra::Model* getModelPointer();
+    const std::shared_ptr<ocra::Model> getModelPointer();
 
 
 protected:
 
 private:
-    ocra::Model* model;
+    std::shared_ptr<ocra::Model> model;
     std::shared_ptr<OcraWbiModelUpdater> modelUpdater;
     std::shared_ptr<wbi::wholeBodyInterface> wbi;
 
