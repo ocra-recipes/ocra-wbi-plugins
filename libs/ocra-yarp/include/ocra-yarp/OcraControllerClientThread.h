@@ -66,12 +66,21 @@ public:
     /*! Sets the whole body interface configuration.
      *  \param wbiOptions a Yarp Property object with the appropriate options for WBI
      */
-    void setWbiOptions(yarp::os::Property& wbiOptions);
+    void setWbiOptions(yarp::os::Property& wbiOptions, const bool floatingBase);
 
     /*! Gets the thread period desired by the user.
      *  \return The thread period in ms.
      */
     int getExpectedPeriod();
+
+    /*! Starts the internal model thread for users who need state info from the robot.
+     *  \return True is model thread successfully starts.
+     */
+    bool startModelThread();
+
+    /*! Stops the internal model thread.
+     */
+    void stopModelThread();
 
 public: // public virtual functions
 
@@ -143,6 +152,10 @@ private: // class variables
     double expectedPeriod;                                      /*!< The user provided period. */
     std::string rpcPortName;                                    /*!< The name of the rpc port for the thread. */
     int threadNumber;                                           /*!< The unique thread number. */
+
+    ModelThread::shared_ptr modelThread;                        /*!< A pointer to a model thread. */
+    static const int MODEL_THREAD_PERIOD = 10;                  /*!< The period for the module thread in ms. */
+    bool isFloatingBase;                                        /*!< Is the robot model floating or fixed base. */
 };
 
 } // namespace ocra_yarp

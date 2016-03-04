@@ -59,7 +59,7 @@ bool OcraControllerClientThread::threadInit()
     ctrlCon = std::make_shared<ControllerConnection>();
     bool openTaskPorts = true;
     ctrlCon->open(openTaskPorts, getThreadName());
-    
+
     return client_threadInit();
 }
 
@@ -78,17 +78,32 @@ int OcraControllerClientThread::getExpectedPeriod()
     return expectedPeriod;
 }
 
+bool OcraControllerClientThread::startModelThread()
+{
+    if (!modelThread) {
+        modelThread = std::make_shared<ModelThread>(MODEL_THREAD_PERIOD, robotInterface, yarpWbiOptions.find("robot").asString(), isFloatingBase);
+    }
+    return modelThread->start();
+}
+
+void OcraControllerClientThread::stopModelThread()
+{
+    modelThread->stop();
+}
+
+
 std::string OcraControllerClientThread::getThreadName()
 {
     return "ControllerClientThread_"+std::to_string(threadNumber);
 }
 
-void OcraControllerClientThread::setWbiOptions(yarp::os::Property& wbiOptions)
+void OcraControllerClientThread::setWbiOptions(yarp::os::Property& wbiOptions, const bool floatingBase)
 {
     yarpWbiOptions = wbiOptions;
+    isFloatingBase = floatingBase;
 
     // Create the wholeBodyInterface.
-    std::string robotInterfaceName = getThreadName() + "_WBI";
+    std::string robotInterfaceName = getThreadName() + "_WBI/";
     robotInterface = std::make_shared<yarpWbi::yarpWholeBodyInterface>(robotInterfaceName.c_str(), yarpWbiOptions);
 
     // Add the robot's specific joints to the WBI.
