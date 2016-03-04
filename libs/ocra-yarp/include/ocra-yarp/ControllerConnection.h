@@ -52,6 +52,7 @@ public:
     void close();
 
     yarp::os::Bottle queryController(const OCRA_CONTROLLER_MESSAGE request);
+    yarp::os::Bottle queryController(const std::vector<OCRA_CONTROLLER_MESSAGE> requestVector);
 
     // void queryController(const OCRA_CONTROLLER_MESSAGE request, yarp::os::Bottle& reply);
     // void queryTask(const std::string& taskName, const OCRA_CONTROLLER_MESSAGE request, yarp::os::Bottle& reply);

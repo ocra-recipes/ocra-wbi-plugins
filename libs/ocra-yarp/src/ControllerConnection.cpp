@@ -147,3 +147,13 @@ yarp::os::Bottle ControllerConnection::queryController(const OCRA_CONTROLLER_MES
     controllerRpcClient.write(requestBottle, reply);
     return reply;
 }
+
+yarp::os::Bottle ControllerConnection::queryController(const std::vector<OCRA_CONTROLLER_MESSAGE> requestVector)
+{
+    yarp::os::Bottle requestBottle, reply;
+    for(auto request : requestVector){
+        requestBottle.addInt(request);
+    }
+    controllerRpcClient.write(requestBottle, reply);
+    return reply;
+}
