@@ -380,28 +380,35 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
         switch (input.get(i).asInt()) {
             case GET_CONTROLLER_STATUS:
                 {
-                    i++;
                     std::cout << "Got message: GET_CONTROLLER_STATUS." << std::endl;
                     reply.addInt(controllerStatus);
+                    ++i;
                 }break;
 
             case GET_WBI_CONFIG_FILE_PATH:
                 {
-                    i++;
                     std::cout << "Got message: GET_WBI_CONFIG_FILE_PATH." << std::endl;
                     reply.addString(ctrlOptions.wbiConfigFilePath);
+                    ++i;
                 }break;
 
             case GET_ROBOT_NAME:
                 {
-                    i++;
                     std::cout << "Got message: GET_ROBOT_NAME." << std::endl;
                     reply.addString(ctrlOptions.robotName);
+                    ++i;
+                }break;
+
+            case GET_IS_FLOATING_BASE:
+                {
+                    std::cout << "Got message: GET_IS_FLOATING_BASE." << std::endl;
+                    reply.addInt(ctrlOptions.isFloatingBase);
+                    ++i;
                 }break;
 
             case START_CONTROLLER:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: START_CONTROLLER." << std::endl;
                     this->start();
                     // TODO: make a switch case for if the controller is suspended then resume but if it is stopped then start.
@@ -409,14 +416,14 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
 
             case STOP_CONTROLLER:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: STOP_CONTROLLER." << std::endl;
                     this->stop();
                 }break;
 
             case PAUSE_CONTROLLER:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: PAUSE_CONTROLLER." << std::endl;
                     this->suspend();
                     // TODO: Make a custom function that puts the robot in pos mode before suspend.
@@ -424,19 +431,19 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
 
             case ADD_TASK:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: ADD_TASK." << std::endl;
                 }break;
 
             case ADD_TASK_FROM_FILE:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: ADD_TASK_FROM_FILE." << std::endl;
                 }break;
 
             case REMOVE_TASK:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: REMOVE_TASK." << std::endl;
                     std::string taskToRemove = input.get(i).asString();
                     // taskManagerSet->removeTaskManager(taskToRemove);
@@ -450,24 +457,24 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
                     }else{
                         reply.addInt(OCRA_CONTROLLER_MESSAGE::OCRA_FAILURE);
                     }
-                    i++;
+                    ++i;
                 }break;
 
             case REMOVE_TASKS:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: REMOVE_TASKS." << std::endl;
                 }break;
 
             case GET_TASK_LIST:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: GET_TASK_LIST." << std::endl;
                 }break;
 
             case GET_TASK_PORT_LIST:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: GET_TASK_PORT_LIST." << std::endl;
                     for(auto taskPort : taskManagerSet->getTaskPorts()){
                         reply.addString(taskPort);
@@ -476,13 +483,13 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
 
             case HELP:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: HELP." << std::endl;
                 }break;
 
             default:
                 {
-                    i++;
+                    ++i;
                     std::cout << "Got message: UNKNOWN." << std::endl;
                 }break;
 
