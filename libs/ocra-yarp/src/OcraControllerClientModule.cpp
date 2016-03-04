@@ -44,22 +44,31 @@ OcraControllerClientModule::OcraControllerClientModule(OcraControllerClientThrea
     if (ctrlCon.open(openTaskPorts))
     {
         yarp::os::Bottle reply;
-        reply = ctrlCon.queryController(OCRA_CONTROLLER_MESSAGE::GET_CONTROLLER_STATUS);
-        if (reply.get(0).asInt() == OCRA_CONTROLLER_MESSAGE::CONTROLLER_RUNNING) {
-            reply = ctrlCon.queryController(OCRA_CONTROLLER_MESSAGE::GET_WBI_CONFIG_FILE_PATH);
+
+        // Check if the controller is running.
+        reply = ctrlCon.queryController(GET_CONTROLLER_STATUS);
+        if (reply.get(0).asInt() == CONTROLLER_RUNNING) {
+            // Get the WBI file path, robot name and if the robot has a floating base.
+            std::vector<OCRA_CONTROLLER_MESSAGE> messageVec {GET_WBI_CONFIG_FILE_PATH, GET_ROBOT_NAME, GET_IS_FLOATING_BASE};
+            // Ask the controller
+            reply = ctrlCon.queryController(messageVec);
+            // Parse the replies
             std::string wbiConfigFilePath = reply.get(0).asString();
+            std::string robotName = reply.get(1).asString();
+            bool isFloatingBase = reply.get(2).asBool();
 
-            reply = ctrlCon.queryController(OCRA_CONTROLLER_MESSAGE::GET_ROBOT_NAME);
-            std::string robotName = reply.get(0).asString();
+            yLog.info() << "Found WBI config file here: " << wbiConfigFilePath;
+            yLog.info() << "Robot name is: " << robotName;
+            yLog.info() << "Robot has floating base: " << isFloatingBase;
 
-            std::cout << "Found WBI config file here: " << wbiConfigFilePath << std::endl;
+            // Create the yarpWBI options
             yarp::os::Property yarpWbiOptions;
-
+            // Parse from the file we found.
             yarpWbiOptions.fromConfigFile(wbiConfigFilePath);
             // Overwrite the robot parameter that could be present in wbi_conf_file
             yarpWbiOptions.put("robot", robotName);
             // Initialize the WBI in the client thread.
-            clientThread->setWbiOptions(yarpWbiOptions);
+            clientThread->setWbiOptions(yarpWbiOptions, isFloatingBase);
             // Construct rpc server callback and bind to the control thread.
             rpcCallback = std::make_shared<moduleCallback>(*this);
             // Make the port name
