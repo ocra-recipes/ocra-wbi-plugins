@@ -30,26 +30,57 @@
 
 using namespace ocra_yarp;
 
+int ModelThread::MODEL_THREAD_COUNT = 0;
 
-ModelThread::ModelThread(int period, const std::string& wbiConfFile, const bool isFloatingBase):
-RateThread(period)
+ModelThread::ModelThread(int period, const std::string& wbiConfFile, const std::string& givenRobotName, const bool isFloatingBase)
+: RateThread(period)
+, floatingBase(isFloatingBase)
+, robotName(givenRobotName)
 {
+    uniqueModelThreadId = ++ModelThread::MODEL_THREAD_COUNT;
     yarp::os::Property yarpWbiOptions;
     yarpWbiOptions.fromConfigFile(wbiConfFile);
-    wbi = std::make_shared<yarpWbi::yarpWholeBodyInterface>("modelthread", yarpWbiOptions);
-    // model = new OcraWbiModel(yarpWbiOptions.find("robot").asString(), wbi->getDoFs(), wbi, isFloatingBase);
-    model = std::make_shared<OcraWbiModel>(yarpWbiOptions.find("robot").asString(), wbi->getDoFs(), wbi, isFloatingBase);
-    modelUpdater = std::make_shared<OcraWbiModelUpdater>(wbi, model);
+    // Overwrite the robot parameter that could be present in wbi_conf_file
+    yarpWbiOptions.put("robot", robotName);
+    // Initialize the WBI
+    wbi = std::make_shared<yarpWbi::yarpWholeBodyInterface>(getModelThreadName().c_str(), yarpWbiOptions);
+    // Add the robot's specific joints to the WBI.
+    wbi::IDList robotJoints;
+    std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
+    if(!yarpWbi::loadIdListFromConfig(robotJointsListName, yarpWbiOptions, robotJoints))
+    {
+        yLog.error() << "Impossible to load wbiId joint list with name: " << robotJointsListName;
+    }
+    wbi->addJoints(robotJoints);
+}
+
+ModelThread::ModelThread(int period, std::shared_ptr<wbi::wholeBodyInterface> wbiPtr, const std::string& givenRobotName, const bool isFloatingBase)
+: RateThread(period)
+, floatingBase(isFloatingBase)
+, robotName(givenRobotName)
+{
+    uniqueModelThreadId = ++ModelThread::MODEL_THREAD_COUNT;
+    wbi = wbiPtr;
 }
 
 ModelThread::~ModelThread()
 {
 }
 
+std::string ModelThread::getModelThreadName()
+{
+    return "ModelThread_" + std::to_string(ModelThread::MODEL_THREAD_COUNT)+"/";
+}
 
 bool ModelThread::threadInit()
 {
-    // modelUpdater->initialize(wbi, model);
+    if(wbi->init()){
+        model = std::make_shared<OcraWbiModel>(robotName, wbi->getDoFs(), wbi, floatingBase);
+        modelUpdater = std::make_shared<OcraWbiModelUpdater>(wbi, model);
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void ModelThread::threadRelease()

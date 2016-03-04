@@ -42,8 +42,12 @@ DEFINE_CLASS_POINTER_TYPEDEFS(ModelThread)
 
 public:
     // Constructor
-    ModelThread(int period, const std::string& wbiConfFile, const bool isFloatingBase);
+    ModelThread(int period, const std::string& wbiConfFile, const std::string& robotName, const bool isFloatingBase);
+    ModelThread(int period, std::shared_ptr<wbi::wholeBodyInterface> wbiPtr, const std::string& robotName, const bool isFloatingBase);
     ~ModelThread();
+
+    std::string getModelThreadName();
+
 
 
     // RateThread virtual functions
@@ -62,6 +66,13 @@ private:
     std::shared_ptr<OcraWbiModelUpdater> modelUpdater;
     std::shared_ptr<wbi::wholeBodyInterface> wbi;
 
+    yarp::os::Log yLog;
+    bool floatingBase;
+
+    static int MODEL_THREAD_COUNT;
+    int uniqueModelThreadId;
+
+    std::string robotName;
 };
 } // namespace ocra_yarp
 #endif //MODEL_THREAD_H
