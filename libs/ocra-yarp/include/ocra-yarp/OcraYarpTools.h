@@ -88,8 +88,8 @@ using const_weak_ptr      = const std::weak_ptr     <Class>;
 static constexpr double DEG_TO_RAD = M_PI/180.0;
 
 
-void getNominalPosture(ocra::Model &model, Eigen::VectorXd &q);
-void getHomePosture(ocra::Model &model, Eigen::VectorXd &q);
+void getNominalPosture(const ocra::Model &model, Eigen::VectorXd &q);
+void getHomePosture(const ocra::Model &model, Eigen::VectorXd &q);
 
 } // namespace ocra_yarp
 #endif //OCRA_YARP_TOOLS_H

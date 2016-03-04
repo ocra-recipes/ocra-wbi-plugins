@@ -28,7 +28,7 @@
 namespace ocra_yarp
 {
 
-void getNominalPosture(ocra::Model& model, Eigen::VectorXd &q)
+void getNominalPosture(const ocra::Model& model, Eigen::VectorXd &q)
 {
     q[model.getDofIndex("torso_pitch")] = M_PI / 18;
     q[model.getDofIndex("r_elbow")] = M_PI / 4;
@@ -45,7 +45,7 @@ void getNominalPosture(ocra::Model& model, Eigen::VectorXd &q)
     q[model.getDofIndex("r_knee")] = -M_PI / 6;
 }
 
-void getHomePosture(ocra::Model& model, Eigen::VectorXd &q)
+void getHomePosture(const ocra::Model& model, Eigen::VectorXd &q)
 {
     q[model.getDofIndex("l_shoulder_roll")]=   20.0*DEG_TO_RAD;//PI/8.0;
     q[model.getDofIndex("r_shoulder_roll")]=   20.0*DEG_TO_RAD;//PI/8.0;
