@@ -65,6 +65,7 @@ public:
     // void queryTasks(const std::vector<OCRA_CONTROLLER_MESSAGE>& requests, std::vector<yarp::os::Bottle&>& replies);
 
     std::vector<std::string> getTaskPortNames();
+    std::vector<std::string> getTaskNames();
 
     void parseControllerMessage(yarp::os::Bottle& input);
 
@@ -109,7 +110,7 @@ private:
 
 
     bool connectToController(const std::string& controllerName = "Controller");
-    bool connectToTaskPorts(const std::vector<std::string> taskPortNames);
+    bool connectToTaskPorts(const std::vector<std::string> taskNames, const std::vector<std::string> taskPortNames);
 
     yarp::os::Log yLog;
 

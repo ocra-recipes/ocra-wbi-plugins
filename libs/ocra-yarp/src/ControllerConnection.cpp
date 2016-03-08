@@ -54,7 +54,7 @@ bool ControllerConnection::open(const bool openTaskPorts, const std::string& con
     res &= connectToController();
     if (res && openTaskPorts)
     {
-        res &= connectToTaskPorts(getTaskPortNames());
+        res &= connectToTaskPorts(getTaskNames(), getTaskPortNames());
         if(res)
         {
             std::cout << "Checking task manager rpc server connections..." << std::endl;
@@ -150,21 +150,34 @@ std::vector<std::string> ControllerConnection::getTaskPortNames()
     return portNameVec;
 }
 
-bool ControllerConnection::connectToTaskPorts(const std::vector<std::string> taskPortNames)
+std::vector<std::string> ControllerConnection::getTaskNames()
 {
-    // taskRpcClients.resize(taskPortNames.size());
-    bool taskConnected = true;
-
-    // for(auto i=0; i<taskRpcClients.size(); ++i)
-    for(auto i=0; i<taskPortNames.size(); ++i)
+    std::vector<std::string> nameVec;
+    yarp::os::Bottle message, reply;
+    message.addInt(OCRA_CONTROLLER_MESSAGE::GET_TASK_LIST);
+    controllerRpcClient.write(message, reply);
+    for(auto i=0; i<reply.size(); ++i)
     {
-        std::string tmpTaskName = taskPortNames[i].substr(3, taskPortNames[i].size()-1);
-        std::string tmpTaskPortName = "/OCRA/" + controllerConnectionName;
-        tmpTaskPortName += tmpTaskName;
-        tmpTaskPortName += "o";
-        taskRpcClients[tmpTaskName] = std::make_shared<yarp::os::RpcClient>();
-        taskRpcClients[tmpTaskName]->open(tmpTaskPortName.c_str());
-        taskConnected &= yarp.connect(tmpTaskPortName.c_str(), taskPortNames[i].c_str());
+        nameVec.push_back(reply.get(i).asString());
+    }
+    return nameVec;
+}
+
+bool ControllerConnection::connectToTaskPorts(const std::vector<std::string> taskNames, const std::vector<std::string> taskPortNames)
+{
+    bool taskConnected = taskNames.size() == taskPortNames.size();
+
+    if(taskConnected)
+    {
+        for(auto i=0; i<taskPortNames.size(); ++i)
+        {
+            std::string tmpTaskPortName = "/OCRA/" + controllerConnectionName + "/" + taskNames[i] + ":o";
+            taskRpcClients[taskNames[i]] = std::make_shared<yarp::os::RpcClient>();
+            taskRpcClients[taskNames[i]]->open(tmpTaskPortName.c_str());
+            taskConnected &= yarp.connect(tmpTaskPortName.c_str(), taskPortNames[i].c_str());
+        }
+    }else{
+        yLog.error() << "The number of task ports and names does not match! Can't connect to task RPC ports.";
     }
 
     return taskConnected;

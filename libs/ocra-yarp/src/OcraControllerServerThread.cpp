@@ -473,6 +473,9 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
                 {
                     ++i;
                     std::cout << "Got message: GET_TASK_LIST." << std::endl;
+                    for(auto taskName : taskManagerSet->getTaskList()){
+                        reply.addString(taskName);
+                    }
                 }break;
 
             case GET_TASK_PORT_LIST:
