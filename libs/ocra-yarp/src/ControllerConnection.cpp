@@ -90,7 +90,6 @@ void ControllerConnection::close(const std::string& taskName)
         taskRpcClients[taskName]->close();
         taskRpcClients.erase(taskName);
     }
-    taskRpcClients.clear();
 }
 
 bool ControllerConnection::connectToController(const std::string& controllerName)
@@ -104,13 +103,13 @@ bool ControllerConnection::connectToController(const std::string& controllerName
         controllerRpcClient.open(controllerRpcClientName.c_str());
         std::string controllerListenerPortName = "/OCRA/"+ controllerConnectionName +":i";
         controllerListenerPort.open(controllerListenerPortName.c_str());
-        rpcServerCallback = std::make_shared<ConnectionRpcServerCallback>(*this);
-        controllerListenerPort.setReader(*rpcServerCallback);
+        listenerCallback = std::make_shared<ListenerPortCallback>(*this);
+        controllerListenerPort.setReader(*listenerCallback);
 
 
         bool connected = false;
         double timeDelayed = 0.0;
-        double delayTime = 1.0;
+        double delayTime = 0.1;
         while(!connected && timeDelayed < CONNECTION_TIMEOUT)
         {
             connected = yarp.connect(controllerRpcClientName.c_str(), "/OCRA/" + controllerName + "/rpc:i");
@@ -206,7 +205,7 @@ void ControllerConnection::parseControllerMessage(yarp::os::Bottle& input)
             case REMOVE_TASK_PORT:
                 {
                     ++i;
-                    std::cout << "Got message: REMOVE_TASK_PORT." << input.get(i).asString() << std::endl;
+                    std::cout << "Got message: REMOVE_TASK_PORT - " << input.get(i).asString() << std::endl;
                     close(input.get(i).asString());
                     ++i;
                 }break;
@@ -215,15 +214,15 @@ void ControllerConnection::parseControllerMessage(yarp::os::Bottle& input)
 }
 
 /**************************************************************************************************
-                                    Nested ConnectionRpcServerCallback Class
+                                    Nested ListenerPortCallback Class
 **************************************************************************************************/
-ControllerConnection::ConnectionRpcServerCallback::ConnectionRpcServerCallback(ControllerConnection& parentConnectionRef)
+ControllerConnection::ListenerPortCallback::ListenerPortCallback(ControllerConnection& parentConnectionRef)
 : parentConnection(parentConnectionRef)
 {
     //do nothing
 }
 
-bool ControllerConnection::ConnectionRpcServerCallback::read(yarp::os::ConnectionReader& connection)
+bool ControllerConnection::ListenerPortCallback::read(yarp::os::ConnectionReader& connection)
 {
     yarp::os::Bottle input;
 

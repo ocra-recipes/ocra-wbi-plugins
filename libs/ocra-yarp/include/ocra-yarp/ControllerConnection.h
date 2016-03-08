@@ -69,19 +69,19 @@ public:
     void parseControllerMessage(yarp::os::Bottle& input);
 
 
-    /*! \class ConnectionRpcServerCallback
+    /*! \class ListenerPortCallback
      *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
      */
-    class ConnectionRpcServerCallback : public yarp::os::PortReader
+    class ListenerPortCallback : public yarp::os::PortReader
     {
-    DEFINE_CLASS_POINTER_TYPEDEFS(ConnectionRpcServerCallback)
+    DEFINE_CLASS_POINTER_TYPEDEFS(ListenerPortCallback)
 
     public:
 
         /*! Constructor
          *  \param parentConnectionRef A ref to the controller connection.
          */
-        ConnectionRpcServerCallback(ControllerConnection& parentConnectionRef);
+        ListenerPortCallback(ControllerConnection& parentConnectionRef);
 
         /*! read
          *  \param connection Reads a port connection.
@@ -98,7 +98,7 @@ public:
 
 private:
 
-    ConnectionRpcServerCallback::shared_ptr rpcServerCallback;
+    ListenerPortCallback::shared_ptr listenerCallback;
 
     yarp::os::Port controllerListenerPort;
     yarp::os::RpcClient controllerRpcClient;
