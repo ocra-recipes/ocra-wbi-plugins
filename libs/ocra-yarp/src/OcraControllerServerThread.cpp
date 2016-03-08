@@ -69,7 +69,8 @@ OcraControllerServerThread::OcraControllerServerThread(OcraControllerOptions& co
     // ocraModel       = new OcraWbiModel(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
     ocraModel       = std::make_shared<OcraWbiModel>(ctrlOptions.robotName, robot->getDoFs(), robot, ctrlOptions.isFloatingBase);
     // ctrl            = new wocra::WocraController("icubControl", *ocraModel, internalSolver, useReducedProblem);
-    ctrl            = std::make_shared<wocra::WocraController>("icubControl", *ocraModel, internalSolver, useReducedProblem);
+    internalSolver = std::make_shared<ocra::OneLevelSolverWithQuadProg>();
+    ctrl            = std::make_shared<wocra::WocraController>("icubControl", *ocraModel, *internalSolver, useReducedProblem);
     modelUpdater    = std::make_shared<OcraWbiModelUpdater>(robot, ocraModel);
 
     taskManagerSet  = std::make_shared<ocra::TaskManagerSet>(ctrl, ocraModel);
@@ -449,7 +450,6 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
                     ++i;
                     std::cout << "Got message: REMOVE_TASK." << std::endl;
                     std::string taskToRemove = input.get(i).asString();
-                    // taskManagerSet->removeTaskManager(taskToRemove);
                     bool taskRemoved = taskManagerSet->removeTaskManager(taskToRemove);
                     if (taskRemoved) {
                         reply.addInt(OCRA_CONTROLLER_MESSAGE::OCRA_SUCCESS);
