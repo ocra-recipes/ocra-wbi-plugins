@@ -66,6 +66,7 @@ public:
 
     std::vector<std::string> getTaskPortNames();
     std::vector<std::string> getTaskNames();
+    std::shared_ptr<yarp::os::RpcClient> getTaskClient(const std::string& taskName);
 
     void parseControllerMessage(yarp::os::Bottle& input);
 

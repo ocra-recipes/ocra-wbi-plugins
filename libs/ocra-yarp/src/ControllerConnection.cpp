@@ -163,6 +163,17 @@ std::vector<std::string> ControllerConnection::getTaskNames()
     return nameVec;
 }
 
+std::shared_ptr<yarp::os::RpcClient> ControllerConnection::getTaskClient(const std::string& taskName)
+{
+    if(taskRpcClients.find(taskName) != taskRpcClients.end())
+    {
+        return taskRpcClients[taskName];
+    }else{
+        //TODO: return a proper null pointer.
+    }
+}
+
+
 bool ControllerConnection::connectToTaskPorts(const std::vector<std::string> taskNames, const std::vector<std::string> taskPortNames)
 {
     bool taskConnected = taskNames.size() == taskPortNames.size();
