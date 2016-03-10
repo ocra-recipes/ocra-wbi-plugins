@@ -60,6 +60,7 @@ deactivationLatch(false)
             trajectory = new ocra::GaussianProcessTrajectory();
             #else
             std::cout << "You need the SMLT libs to use GAUSSIAN_PROCESS type trajectories. I'm gonna make you a MIN_JERK instead." << std::endl;
+            trajType = MIN_JERK;
             trajectory = new ocra::MinimumJerkTrajectory();
             #endif
             break;
