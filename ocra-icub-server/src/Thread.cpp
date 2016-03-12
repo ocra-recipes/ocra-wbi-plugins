@@ -59,11 +59,13 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
 {
     robot = wbi;
     bool usingInterprocessCommunication = false;
-    ctrlServer = IcubControllerServer(  robot,
+    ctrlServer = std::make_shared<IcubControllerServer>(  robot,
                                         ctrlOptions.robotName,
                                         ctrlOptions.isFloatingBase,
                                         ctrlOptions.controllerType,
                                         usingInterprocessCommunication);
+
+    ctrlServer->initialize();
 }
 
 Thread::~Thread()
@@ -77,8 +79,13 @@ Thread::~Thread()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool Thread::threadInit()
 {
-    ctrlServer.initialize();
-	return true;
+    ctrlServer->addTaskManagersFromXmlFile(ctrlOptions.startupTaskSetPath);
+    minTorques      = Eigen::ArrayXd::Constant(robot->getDoFs(), TORQUE_MIN);
+    maxTorques      = Eigen::ArrayXd::Constant(robot->getDoFs(), TORQUE_MAX);
+    initialPosture  = Eigen::VectorXd::Zero(robot->getDoFs());
+    robot->getEstimates(ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+
+	return robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -89,21 +96,14 @@ bool Thread::threadInit()
 
 void Thread::run()
 {
-
-
-    /******************************************************************************************************
-                                Compute desired torque by calling the controller
-    ******************************************************************************************************/
-
-	torques = ctrlServer.computeTorques();
+	ctrlServer->computeTorques(torques);
     torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
     robot->setControlReference(torques.data());
-
-
-
 }
 
 void Thread::threadRelease()
 {
+    robot->setControlMode(CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+    robot->setControlReference(initialPosture.data());
 
 }

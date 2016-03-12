@@ -82,7 +82,8 @@ public:
 
 
 private:
-    IcubControllerServer ctrlServer;
+    std::shared_ptr<IcubControllerServer> ctrlServer;
+    static const int ALL_JOINTS = -1; /*!< Maximum possible actuator torques */
 
     //TODO: Need to get the torque mins and maxs at the joint level.
     static const int TORQUE_MIN = -24; /*!< Minimum possible actuator torques */
@@ -94,6 +95,7 @@ private:
     OcraControllerOptions ctrlOptions; /*!< The controller options. */
     std::shared_ptr<wbi::wholeBodyInterface> robot; /*!< The WBI used to talk to the robot. */
     Eigen::VectorXd torques; /*!< The torques calculated at each run() loop. */
+    Eigen::VectorXd initialPosture; /*!< The torques calculated at each run() loop. */
 };
 
 

@@ -160,7 +160,9 @@ public:
 
 //=================================  Class methods  =================================//
 OcraWbiModel::OcraWbiModel(const std::string& robotName, const int robotNumDOF, std::shared_ptr<wholeBodyInterface> wbi, const bool freeRoot)
-    :ocra::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot),robot(wbi),owm_pimpl(new OcraWbiModel_pimpl(robot->getFrameList().size(),freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF,robotNumDOF+FREE_ROOT_DOF))
+: ocra::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot)
+, robot(wbi)
+, owm_pimpl(new OcraWbiModel_pimpl(robot->getFrameList().size(), freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, robotNumDOF+FREE_ROOT_DOF))
 {
     owm_pimpl->freeRoot = freeRoot;
     int full_wbi_size = robotNumDOF+FREE_ROOT_DOF; // N+6
@@ -670,11 +672,13 @@ void OcraWbiModel::doSetJointVelocities(const Eigen::VectorXd& dq)
 void OcraWbiModel::doSetFreeFlyerPosition(const Eigen::Displacementd& Hroot)
 {
     owm_pimpl->Hroot = Hroot;
+    OcraWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot, owm_pimpl->Hroot_wbi);
 }
 
 void OcraWbiModel::doSetFreeFlyerVelocity(const Eigen::Twistd& Troot)
 {
     owm_pimpl->Troot = Troot;
+    OcraWbiConversions::ocraToWbiTwistVector(owm_pimpl->Troot, owm_pimpl->Troot_wbi);
 }
 
 int OcraWbiModel::doGetSegmentIndex(const std::string& name) const
@@ -722,19 +726,24 @@ const std::string OcraWbiModel::doDofName(const std::string& name) const
 
 void OcraWbiModel::doSetState(const Eigen::VectorXd& q, const Eigen::VectorXd& q_dot)
 {
-    owm_pimpl->q = q;
-    owm_pimpl->dq = q_dot;
+    // owm_pimpl->q = q;
+    // owm_pimpl->dq = q_dot;
 }
 
 void OcraWbiModel::doSetState(const Eigen::Displacementd& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot)
 {
-    owm_pimpl->q = q;
-    owm_pimpl->dq = q_dot;
-    owm_pimpl->Hroot = H_root;
-    owm_pimpl->Troot = T_root;
+    // owm_pimpl->q = q;
+    // owm_pimpl->dq = q_dot;
+    // owm_pimpl->Hroot = H_root;
+    // owm_pimpl->Troot = T_root;
     // The only thing we have to do is fill the OcraWbiModel Pimpl with the root state using WBI Frame and Twist
-    OcraWbiConversions::eigenDispdToWbiFrame(owm_pimpl->Hroot, owm_pimpl->Hroot_wbi);
-    OcraWbiConversions::ocraToWbiTwistVector(owm_pimpl->Troot, owm_pimpl->Troot_wbi);
+    // Eigen::Twistd tmpTwist = T_root;
+    // OcraWbiConversions::eigenDispdToWbiFrame(H_root, owm_pimpl->Hroot_wbi);
+    // std::cout << "tmpTwist: " tmpTwist << std::endl;
+    // OcraWbiConversions::ocraToWbiTwistVector(tmpTwist, owm_pimpl->Troot_wbi);
+    // std::cout << "tmpTwist: " tmpTwist << std::endl;
+    // std::cout << "tmpTwist: " tmpTwist << std::endl;
+
 }
 
 

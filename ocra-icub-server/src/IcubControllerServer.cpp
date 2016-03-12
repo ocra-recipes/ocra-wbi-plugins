@@ -59,6 +59,14 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
                                 wbi_T_root_Vector[0],
                                 wbi_T_root_Vector[1],
                                 wbi_T_root_Vector[2]);
+        // Eigen::Twistd T_root_wbi = Eigen::Twistd( wbi_T_root_Vector[0],
+        //                         wbi_T_root_Vector[1],
+        //                         wbi_T_root_Vector[2],
+        //                         wbi_T_root_Vector[3],
+        //                         wbi_T_root_Vector[4],
+        //                         wbi_T_root_Vector[5]);
+        // OcraWbiConversions::wbiToOcraTwistVector(T_root_wbi, T_root);
+
 
     }
 }
