@@ -60,6 +60,7 @@ yarp_configure_external_installation(codyco)
 
 add_subdirectory(libs)
 add_subdirectory(bin)
+add_subdirectory(ocra-icub-server)
 # add_subdirectory(modules)
 
 
