@@ -170,15 +170,15 @@ bool OcraControllerServerThread::threadInit()
                 // taskSequence = new ocra::TaskSequence();
             }
             std::cout << "\nLoading tasks from XML file:\n" << ctrlOptions.startupTaskSetPath << "\n" << std::endl;
-            ocra::TaskParser taskParser;
-            if(taskParser.parseTasksXML( ctrlOptions.startupTaskSetPath.c_str() )){
-                // taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
+            ocra::TaskManagerFactory taskFactory;
+            if(taskFactory.parseTasksXML( ctrlOptions.startupTaskSetPath.c_str() )){
+                // taskFactory.addTaskManagersToSet(*ctrl, *ocraModel, taskSequence);
 
                 // TODO:
-                taskParser.addTaskManagersToSequence(ctrl, ocraModel, taskManagerSet);
+                taskFactory.addTaskManagersToSet(ctrl, ocraModel, taskManagerSet);
 
 
-                // taskParser.printTaskArguments(); // If you want to see all the parsed args.
+                // taskFactory.printTaskArguments(); // If you want to see all the parsed args.
             }
             else{
                 //TODO: Implement fall pack procedure for failure to parse xml tasks.;
@@ -517,12 +517,12 @@ void OcraControllerServerThread::parseIncomingMessage(yarp::os::Bottle& input, y
 //
 bool OcraControllerServerThread::loadStabilizationTasks()
 {
-    ocra::TaskParser taskParser;
+    ocra::TaskManagerFactory taskFactory;
     yarp::os::ResourceFinder RF;
     std::string filePath = RF.findFileByName("taskSets/stabilizationTaskSet.xml");
-    taskParser.parseTasksXML(filePath.c_str());
-    // return taskParser.addTaskManagersToSequence(*ctrl, *ocraModel, taskSequence);
-    return taskParser.addTaskManagersToSequence(ctrl, ocraModel, taskManagerSet);
+    taskFactory.parseTasksXML(filePath.c_str());
+    // return taskFactory.addTaskManagersToSet(*ctrl, *ocraModel, taskSequence);
+    return taskFactory.addTaskManagersToSet(ctrl, ocraModel, taskManagerSet);
 }
 
 void OcraControllerServerThread::stabilizeRobot()

@@ -34,7 +34,7 @@
 #include "wocra/WocraController.h"
 #include "ocra/optim/OneLevelSolver.h"
 #include "ocra/control/TaskManagers/TaskSequence.h"
-#include "ocra/control/TaskManagers/TaskParser.h"
+#include "ocra/control/TaskManagers/TaskManagerFactory.h"
 
 #include "ocra/control/TaskManagers/TaskManagerSet.h"
 
