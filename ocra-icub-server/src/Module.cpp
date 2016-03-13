@@ -118,9 +118,7 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
     }
 
     // Construct the control thread.
-    std::cout << "\n\n Test 1" << std::endl;
     ctrlThread = std::make_shared<Thread>(controller_options, robotInterface);
-    std::cout << "\n\n Test 1" << std::endl;
 
     // Start the control thread loop.
     if(!ctrlThread->start())

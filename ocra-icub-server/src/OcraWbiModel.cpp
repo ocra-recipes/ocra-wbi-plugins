@@ -726,24 +726,12 @@ const std::string OcraWbiModel::doDofName(const std::string& name) const
 
 void OcraWbiModel::doSetState(const Eigen::VectorXd& q, const Eigen::VectorXd& q_dot)
 {
-    // owm_pimpl->q = q;
-    // owm_pimpl->dq = q_dot;
+    // Do nothing
 }
 
 void OcraWbiModel::doSetState(const Eigen::Displacementd& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot)
 {
-    // owm_pimpl->q = q;
-    // owm_pimpl->dq = q_dot;
-    // owm_pimpl->Hroot = H_root;
-    // owm_pimpl->Troot = T_root;
-    // The only thing we have to do is fill the OcraWbiModel Pimpl with the root state using WBI Frame and Twist
-    // Eigen::Twistd tmpTwist = T_root;
-    // OcraWbiConversions::eigenDispdToWbiFrame(H_root, owm_pimpl->Hroot_wbi);
-    // std::cout << "tmpTwist: " tmpTwist << std::endl;
-    // OcraWbiConversions::ocraToWbiTwistVector(tmpTwist, owm_pimpl->Troot_wbi);
-    // std::cout << "tmpTwist: " tmpTwist << std::endl;
-    // std::cout << "tmpTwist: " tmpTwist << std::endl;
-
+    // Do nothing
 }
 
 
