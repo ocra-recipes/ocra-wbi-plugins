@@ -29,16 +29,8 @@
 
 /* static */ bool OcraWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
     {
-		double p_wbi[3];
-
-		p_wbi[0] = disp.x();
-		p_wbi[1] = disp.y();
-		p_wbi[2] = disp.z();
-
-        wbi::Rotation R = wbi::Rotation::quaternion(disp.qx(), disp.qy(), disp.qz(), disp.qw());
-
-		frame = wbi::Frame(R, p_wbi);
-
+		double p_wbi[3] = {disp.x(), disp.y(), disp.z()};
+		frame = wbi::Frame(wbi::Rotation::quaternion(disp.qx(), disp.qy(), disp.qz(), disp.qw()), p_wbi);
 		return true;
     }
 
@@ -46,15 +38,7 @@
     {
 		double qx, qy, qz, qw;
 		frame.R.getQuaternion(qx, qy, qz, qw);
-
-		disp  = Eigen::Displacementd( frame.p[0],
-                                        frame.p[1],
-                                        frame.p[2],
-                                        qw,
-                                        qx,
-                                        qy,
-                                        qz);
-
+		disp  = Eigen::Displacementd(frame.p[0], frame.p[1], frame.p[2], qw, qx, qy, qz);
 		return true;
     }
 
