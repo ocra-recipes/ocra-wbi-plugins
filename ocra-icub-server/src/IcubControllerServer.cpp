@@ -28,7 +28,7 @@ IcubControllerServer::~IcubControllerServer()
 
 }
 
-std::shared_ptr<Model> IcubControllerServer::setRobotModel()
+std::shared_ptr<Model> IcubControllerServer::loadRobotModel()
 {
     return std::make_shared<OcraWbiModel>(robotName, wbi->getDoFs(), wbi, isFloatingBase);
 }
