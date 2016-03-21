@@ -58,7 +58,8 @@ public:
     static bool wbiToOcraBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_ocra);
     static bool eigenToYarpVector(const Eigen::VectorXd &eigenVector, yarp::sig::Vector &yarpVector);
 
-
+    static const int DIM_T = 3;
+    static const int DIM_R = 3;
 };
 } // namespace ocra_yarp
 #endif //OCRA_WBI_CONVERSIONS_H
