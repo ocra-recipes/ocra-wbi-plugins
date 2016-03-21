@@ -28,6 +28,8 @@ endif()
 
 set(VARS_PREFIX "OcraYarp")
 
+set(CMAKE_BUILD_TYPE Release)
+
 set(${VARS_PREFIX}_MAJOR_VERSION 1)
 set(${VARS_PREFIX}_MINOR_VERSION 0)
 set(${VARS_PREFIX}_PATCH_VERSION 0)
@@ -58,8 +60,8 @@ include(YarpInstallationHelpers)
 yarp_configure_external_installation(codyco)
 
 
-add_subdirectory(libs)
-add_subdirectory(bin)
+# add_subdirectory(libs)
+# add_subdirectory(bin)
 add_subdirectory(ocra-icub-server)
 # add_subdirectory(modules)
 
@@ -78,12 +80,12 @@ if(GENERATE_DOCUMENTATION)
 endif(GENERATE_DOCUMENTATION)
 
 
-include(InstallBasicPackageFiles)
-get_property(PACKAGE_${VARS_PREFIX}_INCLUDEDIR GLOBAL PROPERTY PACKAGE_${VARS_PREFIX}_INCLUDEDIR)
-install_basic_package_files(OcraYarp VARS_PREFIX ${VARS_PREFIX}
-                                        VERSION ${${VARS_PREFIX}_VERSION}
-                                        COMPATIBILITY SameMajorVersion
-                                        TARGETS_PROPERTY ${VARS_PREFIX}_TARGETS
-                                        NO_CHECK_REQUIRED_COMPONENTS_MACRO
-                                    )
+# include(InstallBasicPackageFiles)
+# get_property(PACKAGE_${VARS_PREFIX}_INCLUDEDIR GLOBAL PROPERTY PACKAGE_${VARS_PREFIX}_INCLUDEDIR)
+# install_basic_package_files(OcraYarp VARS_PREFIX ${VARS_PREFIX}
+#                                         VERSION ${${VARS_PREFIX}_VERSION}
+#                                         COMPATIBILITY SameMajorVersion
+#                                         TARGETS_PROPERTY ${VARS_PREFIX}_TARGETS
+#                                         NO_CHECK_REQUIRED_COMPONENTS_MACRO
+#                                     )
 include(AddUninstallTarget)

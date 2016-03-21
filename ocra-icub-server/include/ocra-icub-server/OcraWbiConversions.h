@@ -24,8 +24,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OCRA_WBI_CONVERSIONS_H
-#define OCRA_WBI_CONVERSIONS_H
+#ifndef OCRA_WBI_CONVERSIONS_H__
+#define OCRA_WBI_CONVERSIONS_H__
 
 #include <iostream>
 #include <map>
@@ -57,12 +57,7 @@ public:
     static bool wbiToOcraMassMatrix(int qdof, const Eigen::MatrixXd &M_wbi, Eigen::MatrixXd &M_ocra);
     static bool wbiToOcraBodyVector(int qdof, const Eigen::VectorXd &v_wbi, Eigen::VectorXd &v_ocra);
     static bool eigenToYarpVector(const Eigen::VectorXd &eigenVector, yarp::sig::Vector &yarpVector);
-
-
-
-
-    static const int DIM_T = 3;
-    static const int DIM_R = 3;
-
+    static const int DIM_TRANSLATION = 3;
+    static const int DIM_ROTATION = 3;
 };
 #endif //OCRA_WBI_CONVERSIONS_H
