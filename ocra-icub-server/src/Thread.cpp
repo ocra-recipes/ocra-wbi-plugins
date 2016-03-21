@@ -58,7 +58,7 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
 , ctrlOptions(controller_options)
 {
     robot = wbi;
-    bool usingInterprocessCommunication = false;
+    bool usingInterprocessCommunication = true;
     ctrlServer = std::make_shared<IcubControllerServer>(  robot,
                                         ctrlOptions.robotName,
                                         ctrlOptions.isFloatingBase,
