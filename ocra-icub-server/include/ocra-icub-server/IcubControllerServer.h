@@ -4,7 +4,7 @@
 #include <wbi/wbi.h>
 #include <ocra-recipes/ControllerServer.h>
 #include <Eigen/Dense>
-#include <ocra-icub-server/OcraWbiModel.h>
+#include <ocra-icub/OcraWbiModel.h>
 
 class IcubControllerServer : public ocra_recipes::ControllerServer
 {

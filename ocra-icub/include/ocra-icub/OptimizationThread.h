@@ -9,7 +9,7 @@
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-yarp.
+ *  This file is part of ocra-icub.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@
 #include <yarp/os/Port.h>
 #include <yarp/os/RpcClient.h>
 #include <yarp/os/Time.h>
-#include "ocra-yarp/OcraYarpTools.h"
+#include "ocra-icub/Utilities.h"
 
 namespace ocra_yarp
 {

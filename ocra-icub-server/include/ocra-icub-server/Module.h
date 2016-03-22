@@ -34,7 +34,7 @@
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 #include "ocra-icub-server/Thread.h"
-#include "ocra-icub-server/Utilities.h"
+#include "ocra-icub/Utilities.h"
 
 
 /*! \class Module

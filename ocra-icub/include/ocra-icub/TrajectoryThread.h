@@ -7,7 +7,7 @@
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-yarp.
+ *  This file is part of ocra-icub.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -27,11 +27,11 @@
 #ifndef TRAJECTORY_THREAD_H
 #define TRAJECTORY_THREAD_H
 
-#include <ocra-yarp/ControlThread.h>
+#include <ocra-icub/ControlThread.h>
 #include "ocra/control/Trajectory/Trajectories.h"
 #include <yarp/os/Time.h>
 #include <iostream>
-#include "ocra-yarp/OcraYarpTools.h"
+#include "ocra-icub/Utilities.h"
 
 namespace ocra_yarp
 {

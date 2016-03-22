@@ -7,7 +7,7 @@
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-yarp.
+ *  This file is part of ocra-icub.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "ocra-yarp/OcraControllerClientThread.h"
+#include "ocra-icub/OcraControllerClientThread.h"
 
 
 using namespace ocra_yarp;
@@ -55,11 +55,6 @@ OcraControllerClientThread::~OcraControllerClientThread()
 
 bool OcraControllerClientThread::threadInit()
 {
-    // Open a controller connection.
-    ctrlCon = std::make_shared<ControllerConnection>();
-    bool openTaskPorts = true;
-    ctrlCon->open(openTaskPorts, getThreadName());
-
     return client_threadInit();
 }
 
@@ -80,15 +75,10 @@ int OcraControllerClientThread::getExpectedPeriod()
 
 bool OcraControllerClientThread::startModelThread()
 {
-    if (!modelThread) {
-        modelThread = std::make_shared<ModelThread>(MODEL_THREAD_PERIOD, robotInterface, yarpWbiOptions.find("robot").asString(), isFloatingBase);
-    }
-    return modelThread->start();
 }
 
 void OcraControllerClientThread::stopModelThread()
 {
-    modelThread->stop();
 }
 
 

@@ -7,7 +7,7 @@
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-yarp.
+ *  This file is part of ocra-icub.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,11 +32,9 @@
 #include <yarp/os/RateThread.h>
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 
-#include "ocra-yarp/OcraYarpTools.h"
-#include "ocra-yarp/ControlThread.h"
-#include "ocra-yarp/TrajectoryThread.h"
-#include "ocra-yarp/ControllerConnection.h"
-#include "ocra-yarp/ModelThread.h"
+#include "ocra-icub/Utilities.h"
+#include "ocra-icub/ControlThread.h"
+#include "ocra-icub/TrajectoryThread.h"
 
 namespace ocra_yarp
 {
@@ -141,7 +139,6 @@ public:
 
 public: // class variables
 
-    ControllerConnection::shared_ptr ctrlCon;                   /*!< The controller connection for the thread. */
 
 private: // class variables
 
@@ -156,7 +153,6 @@ private: // class variables
     std::string rpcPortName;                                    /*!< The name of the rpc port for the thread. */
     int threadNumber;                                           /*!< The unique thread number. */
 
-    ModelThread::shared_ptr modelThread;                        /*!< A pointer to a model thread. */
     static const int MODEL_THREAD_PERIOD = 10;                  /*!< The period for the module thread in ms. */
     bool isFloatingBase;                                        /*!< Is the robot model floating or fixed base. */
 };

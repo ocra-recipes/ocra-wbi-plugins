@@ -7,7 +7,7 @@
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-yarp.
+ *  This file is part of ocra-icub.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -32,8 +32,8 @@
 #include "ocra/control/Model.h"
 #include <wbi/wbi.h>
 #include <yarp/os/Log.h>
-#include "ocra-icub-server/OcraWbiConversions.h"
-#include "ocra-icub-server/Utilities.h"
+#include "ocra-icub/OcraWbiConversions.h"
+#include "ocra-icub/Utilities.h"
 
 using namespace wbi;
 

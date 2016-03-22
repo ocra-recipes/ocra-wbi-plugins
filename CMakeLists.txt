@@ -26,7 +26,7 @@ else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
-set(VARS_PREFIX "OcraYarp")
+set(VARS_PREFIX "OcraIcub")
 
 set(CMAKE_BUILD_TYPE Release)
 
@@ -62,6 +62,7 @@ yarp_configure_external_installation(codyco)
 
 # add_subdirectory(libs)
 # add_subdirectory(bin)
+add_subdirectory(ocra-icub)
 add_subdirectory(ocra-icub-server)
 # add_subdirectory(modules)
 

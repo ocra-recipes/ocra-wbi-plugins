@@ -7,7 +7,7 @@
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-yarp.
+ *  This file is part of ocra-icub.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "ocra-yarp/OcraControllerClientModule.h"
+#include "ocra-icub/OcraControllerClientModule.h"
 
 using namespace ocra_yarp;
 
@@ -38,48 +38,48 @@ OcraControllerClientModule::OcraControllerClientModule(OcraControllerClientThrea
     clientThread = customClientThread;
     expectedClientThreadPeriod = clientThread->getExpectedPeriod();
 
-    // open controller connection
-    ControllerConnection ctrlCon;
-    bool openTaskPorts = false;
-    if (ctrlCon.open(openTaskPorts))
-    {
-        yarp::os::Bottle reply;
-
-        // Check if the controller is running.
-        reply = ctrlCon.queryController(GET_CONTROLLER_STATUS);
-        if (reply.get(0).asInt() == CONTROLLER_RUNNING) {
-            // Get the WBI file path, robot name and if the robot has a floating base.
-            std::vector<OCRA_CONTROLLER_MESSAGE> messageVec {GET_WBI_CONFIG_FILE_PATH, GET_ROBOT_NAME, GET_IS_FLOATING_BASE};
-            // Ask the controller
-            reply = ctrlCon.queryController(messageVec);
-            // Parse the replies
-            std::string wbiConfigFilePath = reply.get(0).asString();
-            std::string robotName = reply.get(1).asString();
-            bool isFloatingBase = reply.get(2).asBool();
-
-            yLog.info() << "Found WBI config file here: " << wbiConfigFilePath;
-            yLog.info() << "Robot name is: " << robotName;
-            yLog.info() << "Robot has floating base: " << isFloatingBase;
-
-            // Create the yarpWBI options
-            yarp::os::Property yarpWbiOptions;
-            // Parse from the file we found.
-            yarpWbiOptions.fromConfigFile(wbiConfigFilePath);
-            // Overwrite the robot parameter that could be present in wbi_conf_file
-            yarpWbiOptions.put("robot", robotName);
-            // Initialize the WBI in the client thread.
-            clientThread->setWbiOptions(yarpWbiOptions, isFloatingBase);
-            // Construct rpc server callback and bind to the control thread.
-            rpcCallback = std::make_shared<moduleCallback>(*this);
-            // Make the port name
-            rpcPortName = "/OCRA/" + getModuleName() + "/rpc:i";
-            // Open the rpc server port.
-            rpcPort.open(rpcPortName);
-            // Bind the callback to the port.
-            rpcPort.setReader(*rpcCallback);
-
-        }
-    }
+    // // open controller connection
+    // ControllerConnection ctrlCon;
+    // bool openTaskPorts = false;
+    // if (ctrlCon.open(openTaskPorts))
+    // {
+    //     yarp::os::Bottle reply;
+    //
+    //     // Check if the controller is running.
+    //     reply = ctrlCon.queryController(GET_CONTROLLER_STATUS);
+    //     if (reply.get(0).asInt() == CONTROLLER_RUNNING) {
+    //         // Get the WBI file path, robot name and if the robot has a floating base.
+    //         std::vector<OCRA_CONTROLLER_MESSAGE> messageVec {GET_WBI_CONFIG_FILE_PATH, GET_ROBOT_NAME, GET_IS_FLOATING_BASE};
+    //         // Ask the controller
+    //         reply = ctrlCon.queryController(messageVec);
+    //         // Parse the replies
+    //         std::string wbiConfigFilePath = reply.get(0).asString();
+    //         std::string robotName = reply.get(1).asString();
+    //         bool isFloatingBase = reply.get(2).asBool();
+    //
+    //         yLog.info() << "Found WBI config file here: " << wbiConfigFilePath;
+    //         yLog.info() << "Robot name is: " << robotName;
+    //         yLog.info() << "Robot has floating base: " << isFloatingBase;
+    //
+    //         // Create the yarpWBI options
+    //         yarp::os::Property yarpWbiOptions;
+    //         // Parse from the file we found.
+    //         yarpWbiOptions.fromConfigFile(wbiConfigFilePath);
+    //         // Overwrite the robot parameter that could be present in wbi_conf_file
+    //         yarpWbiOptions.put("robot", robotName);
+    //         // Initialize the WBI in the client thread.
+    //         clientThread->setWbiOptions(yarpWbiOptions, isFloatingBase);
+    //         // Construct rpc server callback and bind to the control thread.
+    //         rpcCallback = std::make_shared<moduleCallback>(*this);
+    //         // Make the port name
+    //         rpcPortName = "/OCRA/" + getModuleName() + "/rpc:i";
+    //         // Open the rpc server port.
+    //         rpcPort.open(rpcPortName);
+    //         // Bind the callback to the port.
+    //         rpcPort.setReader(*rpcCallback);
+    //
+    //     }
+    // }
 }
 
 OcraControllerClientModule::~OcraControllerClientModule()

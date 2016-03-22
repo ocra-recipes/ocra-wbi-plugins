@@ -1,12 +1,12 @@
 /*! \file       Utilities.cpp
- *  \brief      Some useful tools for the ocra-yarp lib.
- *  \details    This file is for all the various macros and helper classes that are generic to ocra-yarp. It is also a place for all the repeated includes like standard stl includes etc.
+ *  \brief      Some useful tools for the ocra-icub lib.
+ *  \details    This file is for all the various macros and helper classes that are generic to ocra-icub. It is also a place for all the repeated includes like standard stl includes etc.
  *  \author     [Ryan Lober](http://www.ryanlober.com)
  *  \date       Feb 2016
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-yarp.
+ *  This file is part of ocra-icub.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -22,7 +22,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-#include "ocra-icub-server/Utilities.h"
+#include "ocra-icub/Utilities.h"
 
 
 namespace ocra_yarp

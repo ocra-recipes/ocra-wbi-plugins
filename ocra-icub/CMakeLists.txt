@@ -1,4 +1,4 @@
-# This file is part of ocra-yarp.
+# This file is part of ocra-icub.
 # Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
 # author(s): Ryan Lober, Antoine Hoarau
 #
@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-SET(PROJECTNAME ocra-yarp)
+SET(PROJECTNAME ocra-icub)
 PROJECT(${PROJECTNAME} CXX)
 
 FILE(GLOB folder_source src/*.cpp)
@@ -25,16 +25,19 @@ SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
-                    ${OcraRecipes_INCLUDE_DIRS}
-                    )
+${OcraRecipes_INCLUDE_DIRS}
+)
 
 
 ADD_LIBRARY(${PROJECTNAME} SHARED ${folder_source})
 
-TARGET_LINK_LIBRARIES(${PROJECTNAME} ${yarpWholeBodyInterface_LIBRARIES}
-                                     ${iDynTree_LIBRARIES}
-                                     ${OcraRecipes_LIBRARIES}
-                                     )
+TARGET_LINK_LIBRARIES(${PROJECTNAME}
+${yarpWholeBodyInterface_LIBRARIES}
+${iDynTree_LIBRARIES}
+${OcraRecipes_LIBRARIES}
+)
+
+set(OcraIcub_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/include CACHE PATH "")
 
 
 install(DIRECTORY include
@@ -42,7 +45,7 @@ install(DIRECTORY include
         FILES_MATCHING PATTERN *.h*)
 
 install(TARGETS ${PROJECTNAME}
-        EXPORT OcraYarp
+        EXPORT OcraIcub
         DESTINATION lib)
 
 set_property(GLOBAL APPEND PROPERTY ${VARS_PREFIX}_TARGETS ${PROJECTNAME})

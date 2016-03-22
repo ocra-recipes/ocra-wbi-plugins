@@ -7,7 +7,7 @@
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-yarp.
+ *  This file is part of ocra-icub.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
@@ -24,7 +24,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <ocra-icub-server/OcraWbiModel.h>
+#include <ocra-icub/OcraWbiModel.h>
 
 
 #define ALL_JOINTS -1

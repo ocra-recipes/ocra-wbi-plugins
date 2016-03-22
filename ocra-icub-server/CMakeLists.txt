@@ -25,21 +25,20 @@ SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
-                    ${OcraRecipes_INCLUDE_DIRS}
-                    )
-                    get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
-                    foreach(dir ${dirs})
-                      message(STATUS "dir='${dir}'")
-                    endforeach()
+${OcraRecipes_INCLUDE_DIRS}
+${OcraIcub_INCLUDE_DIRS}
+)
+
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
-TARGET_LINK_LIBRARIES(${PROJECTNAME} ${OcraRecipes_LIBRARIES}
-                                     ${iDynTree_LIBRARIES}
-                                     ${yarpWholeBodyInterface_LIBRARIES}
-                                     ${Boost_LIBRARIES}
-                                     )
-
-
+TARGET_LINK_LIBRARIES(
+${PROJECTNAME}
+${OcraRecipes_LIBRARIES}
+ocra-icub
+${iDynTree_LIBRARIES}
+${yarpWholeBodyInterface_LIBRARIES}
+${Boost_LIBRARIES}
+)
 
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
 
