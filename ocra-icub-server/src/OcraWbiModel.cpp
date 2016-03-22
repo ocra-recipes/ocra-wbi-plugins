@@ -618,39 +618,6 @@ const Eigen::Twistd& OcraWbiModel::getSegmentJdotQdot(int index) const
     return owm_pimpl->segJdotQdot[index];
 }
 
-void OcraWbiModel::wbiSetState(const wbi::Frame& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot)
-{
-    Eigen::Displacementd H;
-    Eigen::Twistd T;
-    // WBI versions
-
-    owm_pimpl->Hroot_wbi = H_root;
-    owm_pimpl->Troot_wbi = T_root;
-
-    // ocra versions
-    OcraWbiConversions::wbiFrameToEigenDispd(owm_pimpl->Hroot_wbi, H);
-    OcraWbiConversions::wbiToOcraTwistVector(owm_pimpl->Troot_wbi, T);
-
-
-//    int root_index = getSegmentIndex("root_link");
-//    const Eigen::Displacementd::Rotation3D& R = getSegmentPosition(root_index).getRotation();
-//    const Eigen::Displacementd::Rotation3D& R_root_w = H.getRotation().inverse();
-//    T = H.inverse().adjoint()*T;
-//    T.bottomRows(3) = R_root_w.adjoint()*T.bottomRows(3);
-//    T.topRows(3) = R_root_w.adjoint()*T.topRows(3);
-
-
-
-    setJointPositions(q);
-    setJointVelocities(q_dot);
-    setFreeFlyerPosition(H);
-    setFreeFlyerVelocity(T);
-
-    // std::cout << "\nH_root_ocra from free flyer \n" << getFreeFlyerPosition() << std::endl;
-
-
-}
-
 void OcraWbiModel::doSetJointPositions(const Eigen::VectorXd& q)
 {
 /*
@@ -733,9 +700,6 @@ void OcraWbiModel::doSetState(const Eigen::Displacementd& H_root, const Eigen::V
 {
     // Do nothing
 }
-
-
-
 
 void OcraWbiModel::printAllData()
 {

@@ -93,7 +93,7 @@ private:
 
 
     OcraControllerOptions ctrlOptions; /*!< The controller options. */
-    std::shared_ptr<wbi::wholeBodyInterface> robot; /*!< The WBI used to talk to the robot. */
+    std::shared_ptr<wbi::wholeBodyInterface> yarpWbi; /*!< The WBI used to talk to the robot. */
     Eigen::VectorXd torques; /*!< The torques calculated at each run() loop. */
     Eigen::VectorXd initialPosture; /*!< The torques calculated at each run() loop. */
 };

@@ -57,9 +57,9 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
 : RateThread(controller_options.threadPeriod)
 , ctrlOptions(controller_options)
 {
-    robot = wbi;
+    yarpWbi = wbi;
     bool usingInterprocessCommunication = true;
-    ctrlServer = std::make_shared<IcubControllerServer>(  robot,
+    ctrlServer = std::make_shared<IcubControllerServer>(  yarpWbi,
                                         ctrlOptions.robotName,
                                         ctrlOptions.isFloatingBase,
                                         ctrlOptions.controllerType,
@@ -80,12 +80,12 @@ Thread::~Thread()
 bool Thread::threadInit()
 {
     ctrlServer->addTaskManagersFromXmlFile(ctrlOptions.startupTaskSetPath);
-    minTorques      = Eigen::ArrayXd::Constant(robot->getDoFs(), TORQUE_MIN);
-    maxTorques      = Eigen::ArrayXd::Constant(robot->getDoFs(), TORQUE_MAX);
-    initialPosture  = Eigen::VectorXd::Zero(robot->getDoFs());
-    robot->getEstimates(ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+    minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
+    maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
+    initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
+    yarpWbi->getEstimates(ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
 
-	return robot->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+	return yarpWbi->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,12 +98,12 @@ void Thread::run()
 {
 	ctrlServer->computeTorques(torques);
     torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
-    robot->setControlReference(torques.data());
+    yarpWbi->setControlReference(torques.data());
 }
 
 void Thread::threadRelease()
 {
-    robot->setControlMode(CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
-    robot->setControlReference(initialPosture.data());
+    yarpWbi->setControlMode(CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+    yarpWbi->setControlReference(initialPosture.data());
 
 }
