@@ -37,7 +37,7 @@
 #include <yarp/os/Time.h>
 #include "ocra-icub/Utilities.h"
 
-namespace ocra_yarp
+namespace ocra_icub
 {
 class OptimizationThread : yarp::os::RateThread
 {
@@ -52,5 +52,5 @@ private:
 
 
 };
-} // namespace ocra_yarp
+} // namespace ocra_icub
 #endif // OPTIMIZATION_THREAD_H

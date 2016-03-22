@@ -26,6 +26,7 @@
 
 #include <ocra-icub/OcraWbiConversions.h>
 
+using namespace ocra_icub;
 
 /* static */ bool OcraWbiConversions::eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame)
     {

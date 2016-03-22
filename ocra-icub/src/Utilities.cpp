@@ -24,9 +24,8 @@
 */
 #include "ocra-icub/Utilities.h"
 
+using namespace ocra_icub;
 
-namespace ocra_yarp
-{
 
 void getNominalPosture(const ocra::Model& model, Eigen::VectorXd &q)
 {
@@ -53,5 +52,4 @@ void getHomePosture(const ocra::Model& model, Eigen::VectorXd &q)
     q[model.getDofIndex("r_shoulder_pitch")]=  -25.0*DEG_TO_RAD;//-PI/8.0;
     q[model.getDofIndex("l_elbow")]        =   50.0*DEG_TO_RAD;//PI/4.0;
     q[model.getDofIndex("r_elbow")]        =   50.0*DEG_TO_RAD;//PI/4.0;
-}
 }

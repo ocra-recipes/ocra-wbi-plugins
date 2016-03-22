@@ -35,8 +35,8 @@
 #include "ocra-icub/OcraWbiConversions.h"
 #include "ocra-icub/Utilities.h"
 
-using namespace wbi;
-
+namespace ocra_icub
+{
 
 class OcraWbiModel: public ocra::Model
 {
@@ -47,7 +47,7 @@ public:
 
 
 //===========================Constructor/Destructor===========================//
-    OcraWbiModel(const std::string& robotName, const int robotNumDOF, std::shared_ptr<wholeBodyInterface> wbi, const bool freeRoot);
+    OcraWbiModel(const std::string& robotName, const int robotNumDOF, std::shared_ptr<wbi::wholeBodyInterface> wbi, const bool freeRoot);
     virtual ~OcraWbiModel();
 
 //=============================General functions==============================//
@@ -124,9 +124,10 @@ protected:
     virtual const std::string   doDofName               (const std::string& name) const;
 
 private:
-    std::shared_ptr<wholeBodyInterface> robot; // Access to wholeBodyInterface
+    std::shared_ptr<wbi::wholeBodyInterface> robot; // Access to wholeBodyInterface
     struct OcraWbiModel_pimpl;
     boost::shared_ptr<OcraWbiModel_pimpl> owm_pimpl; // where all internal data are saved
 };
+} /* ocra_icub */
 
 #endif // OCRA_WBI_MODEL_H

@@ -26,6 +26,7 @@
 
 #include <ocra-icub/OcraWbiModel.h>
 
+using namespace ocra_icub;
 
 #define ALL_JOINTS -1
 #define FREE_ROOT_DOF 6
@@ -159,7 +160,7 @@ public:
 };
 
 //=================================  Class methods  =================================//
-OcraWbiModel::OcraWbiModel(const std::string& robotName, const int robotNumDOF, std::shared_ptr<wholeBodyInterface> wbi, const bool freeRoot)
+OcraWbiModel::OcraWbiModel(const std::string& robotName, const int robotNumDOF, std::shared_ptr<wbi::wholeBodyInterface> wbi, const bool freeRoot)
 : ocra::Model(robotName, freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, freeRoot)
 , robot(wbi)
 , owm_pimpl(new OcraWbiModel_pimpl(robot->getFrameList().size(), freeRoot?robotNumDOF+FREE_ROOT_DOF:robotNumDOF, robotNumDOF+FREE_ROOT_DOF))
@@ -237,7 +238,7 @@ const Eigen::VectorXd& OcraWbiModel::getJointVelocities() const
 
 const Eigen::VectorXd& OcraWbiModel::getJointTorques() const
 {
-    robot->getEstimates(ESTIMATE_JOINT_TORQUE, owm_pimpl->tau.data(), ALL_JOINTS);
+    robot->getEstimates(wbi::ESTIMATE_JOINT_TORQUE, owm_pimpl->tau.data(), ALL_JOINTS);
     return owm_pimpl->tau;
 }
 
@@ -364,7 +365,7 @@ double OcraWbiModel::getMass() const
 
 const Eigen::Vector3d& OcraWbiModel::getCoMPosition() const
 {
-    Frame H;
+    wbi::Frame H;
     robot->computeH(owm_pimpl->q.data(),owm_pimpl->Hroot_wbi,wbi::iWholeBodyModel::COM_LINK_ID,H);
 
     OcraWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->H_com);
@@ -474,7 +475,7 @@ const Eigen::Displacementd& OcraWbiModel::getSegmentPosition(int index) const
 /*
     printf("Get Segment Position : %d\n", index);
 */
-    Frame H;
+    wbi::Frame H;
     // std::cout << "H_root in get Seg Position\n" << owm_pimpl->Hroot_wbi.toString() << std::endl;
     robot->computeH(owm_pimpl->q.data(),owm_pimpl->Hroot_wbi,index,H);
     OcraWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->segPosition[index]);

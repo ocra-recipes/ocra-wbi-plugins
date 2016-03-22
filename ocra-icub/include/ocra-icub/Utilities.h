@@ -66,6 +66,8 @@
 #include <Eigen/Lgsm>
 
 
+namespace ocra_icub
+{
 
 /*! Macro function which basically just defines pointer typdefs for classes. Note that normally macros are evil monsters but I think this is a perfect usage case to cut down on repeated code.
  *  \param Class Just pop this bad boy below the class definition and it will do the rest.
@@ -90,4 +92,5 @@ static constexpr double DEG_TO_RAD = M_PI/180.0;
 void getNominalPosture(const ocra::Model &model, Eigen::VectorXd &q);
 void getHomePosture(const ocra::Model &model, Eigen::VectorXd &q);
 
+} /* ocra_icub */
 #endif //OCRA_YARP_TOOLS_H

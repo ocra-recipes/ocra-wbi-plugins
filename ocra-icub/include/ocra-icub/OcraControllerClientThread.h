@@ -36,7 +36,7 @@
 #include "ocra-icub/ControlThread.h"
 #include "ocra-icub/TrajectoryThread.h"
 
-namespace ocra_yarp
+namespace ocra_icub
 {
 /*! \class OcraControllerClientThread
  *  \brief A RateThread implementation which provides a framework for ocra-controller-client threads.
@@ -157,6 +157,6 @@ private: // class variables
     bool isFloatingBase;                                        /*!< Is the robot model floating or fixed base. */
 };
 
-} // namespace ocra_yarp
+} // namespace ocra_icub
 
 #endif // OCRA_CONTROLLER_CLIENT_H

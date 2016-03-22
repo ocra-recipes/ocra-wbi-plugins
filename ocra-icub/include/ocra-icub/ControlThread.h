@@ -36,7 +36,7 @@
 
 #include "ocra-icub/Utilities.h"
 
-namespace ocra_yarp
+namespace ocra_icub
 {
 class TaskParameters
 {
@@ -155,5 +155,5 @@ protected:
 
     double closePortTimeout;
 };
-} // namespace ocra_yarp
+} // namespace ocra_icub
 #endif //CONTROL_THREAD_H

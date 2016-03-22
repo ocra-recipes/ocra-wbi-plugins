@@ -38,6 +38,8 @@
 
 #include "ocra-icub/Utilities.h"
 
+namespace ocra_icub
+{
 
 
 typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> MatrixXdRm;
@@ -60,4 +62,5 @@ public:
     static const int DIM_TRANSLATION = 3;
     static const int DIM_ROTATION = 3;
 };
+} /* ocra_icub */
 #endif //OCRA_WBI_CONVERSIONS_H

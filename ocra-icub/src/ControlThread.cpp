@@ -28,7 +28,7 @@
 
 
 
-using namespace ocra_yarp;
+using namespace ocra_icub;
 
 int ControlThread::threadId = 0;
 

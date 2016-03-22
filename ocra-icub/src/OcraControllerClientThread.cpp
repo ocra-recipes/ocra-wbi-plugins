@@ -27,7 +27,7 @@
 #include "ocra-icub/OcraControllerClientThread.h"
 
 
-using namespace ocra_yarp;
+using namespace ocra_icub;
 
 int OcraControllerClientThread::CONTROLLER_CLIENT_THREAD_COUNT = 0;
 

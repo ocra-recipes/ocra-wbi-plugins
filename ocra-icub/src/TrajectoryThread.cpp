@@ -30,7 +30,7 @@
 #define VAR_THRESH 0.99
 #endif
 
-using namespace ocra_yarp;
+using namespace ocra_icub;
 
 
 TrajectoryThread::TrajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE trajectoryType, const TERMINATION_STRATEGY _terminationStrategy):

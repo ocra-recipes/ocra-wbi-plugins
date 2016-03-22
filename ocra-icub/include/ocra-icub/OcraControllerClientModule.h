@@ -38,7 +38,7 @@
 #include "ocra-icub/Utilities.h"
 
 
-namespace ocra_yarp
+namespace ocra_icub
 {
 /*! \class OcraControllerClientModule
  *  \brief The controller module which launches the controller thread.
@@ -142,6 +142,6 @@ private:
 
 };
 
-} // namespace ocra_yarp
+} // namespace ocra_icub
 
 #endif //OCRA_CONTROLLER_CLIENT_MODULE_H

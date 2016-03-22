@@ -30,7 +30,7 @@ IcubControllerServer::~IcubControllerServer()
 
 std::shared_ptr<Model> IcubControllerServer::loadRobotModel()
 {
-    return std::make_shared<OcraWbiModel>(robotName, wbi->getDoFs(), wbi, isFloatingBase);
+    return std::make_shared<ocra_icub::OcraWbiModel>(robotName, wbi->getDoFs(), wbi, isFloatingBase);
 }
 
 void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd, Eigen::Displacementd& H_root, Eigen::Twistd& T_root)
@@ -49,7 +49,7 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
 
         // Convert to a wbi::Frame then to a Dispd
         wbi::frameFromSerialization(wbi_H_root_Vector.data(), wbi_H_root);
-        OcraWbiConversions::wbiFrameToEigenDispd(wbi_H_root, H_root);
+        ocra_icub::OcraWbiConversions::wbiFrameToEigenDispd(wbi_H_root, H_root);
 
         // Fill the Twist.
         // Rotation then Translation

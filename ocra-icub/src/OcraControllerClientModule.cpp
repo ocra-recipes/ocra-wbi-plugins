@@ -26,7 +26,7 @@
 
 #include "ocra-icub/OcraControllerClientModule.h"
 
-using namespace ocra_yarp;
+using namespace ocra_icub;
 
 int OcraControllerClientModule::CONTROLLER_CLIENT_MODULE_COUNT = 0;
 

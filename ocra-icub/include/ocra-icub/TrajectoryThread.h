@@ -33,7 +33,7 @@
 #include <iostream>
 #include "ocra-icub/Utilities.h"
 
-namespace ocra_yarp
+namespace ocra_icub
 {
 enum TRAJECTORY_TYPE
 {
@@ -122,5 +122,5 @@ protected:
     bool deactivationLatch;
 
 };
-} // namespace ocra_yarp
+} // namespace ocra_icub
 #endif // TRAJECTORY_THREAD_H
