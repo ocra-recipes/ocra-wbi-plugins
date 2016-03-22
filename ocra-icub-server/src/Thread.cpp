@@ -83,9 +83,9 @@ bool Thread::threadInit()
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
-    yarpWbi->getEstimates(ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+    yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
 
-	return yarpWbi->setControlMode(CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+	return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +103,7 @@ void Thread::run()
 
 void Thread::threadRelease()
 {
-    yarpWbi->setControlMode(CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+    yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
     yarpWbi->setControlReference(initialPosture.data());
 
 }
