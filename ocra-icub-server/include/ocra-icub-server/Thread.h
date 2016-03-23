@@ -32,6 +32,13 @@
 
 #include <ocra-icub-server/IcubControllerServer.h>
 
+#include <ocra-icub/Utilities.h>
+
+#include <yarp/os/Bottle.h>
+#include <yarp/os/RpcServer.h>
+#include <yarp/os/ConnectionReader.h>
+
+
 class OcraControllerOptions
 {
 // DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerOptions)
@@ -80,6 +87,36 @@ public:
     void run();
     void threadRelease();
 
+public:
+    /*! \class ControllerRpcServerCallback
+     *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
+     */
+    class ControllerRpcServerCallback : public yarp::os::PortReader
+    {
+    DEFINE_CLASS_POINTER_TYPEDEFS(ControllerRpcServerCallback)
+
+    public:
+
+        /*! Constructor
+         *  \param ctThreadPtr A shared pointer to the control thread.
+         */
+        ControllerRpcServerCallback(Thread& threadRef);
+
+        /*! read
+         *  \param connection Reads a port connection.
+         *
+         *  \return A boolean which tells whether or not a message was read.
+         */
+        virtual bool read(yarp::os::ConnectionReader& connection);
+
+    private:
+
+        Thread& thread; /*!< A shared pointer to the control thread. */
+    };
+
+private:
+    void parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
+
 
 private:
     std::shared_ptr<IcubControllerServer> ctrlServer;
@@ -96,6 +133,12 @@ private:
     std::shared_ptr<wbi::wholeBodyInterface> yarpWbi; /*!< The WBI used to talk to the robot. */
     Eigen::VectorXd torques; /*!< The torques calculated at each run() loop. */
     Eigen::VectorXd initialPosture; /*!< The torques calculated at each run() loop. */
+
+
+    ocra_icub::OCRA_ICUB_MESSAGE controllerStatus;
+    ControllerRpcServerCallback::shared_ptr rpcServerCallback; /*!< Rpc server port callback function. */
+    yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
+
 };
 
 

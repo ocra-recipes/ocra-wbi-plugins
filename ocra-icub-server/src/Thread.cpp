@@ -56,6 +56,7 @@ OcraControllerOptions::~OcraControllerOptions()
 Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::wholeBodyInterface> wbi)
 : RateThread(controller_options.threadPeriod)
 , ctrlOptions(controller_options)
+, controllerStatus(ocra_icub::CONTROLLER_SERVER_STOPPED)
 {
     yarpWbi = wbi;
     bool usingInterprocessCommunication = true;
@@ -66,10 +67,19 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
                                         usingInterprocessCommunication);
 
     ctrlServer->initialize();
+
+
+    // Construct rpc server callback and bind to the control thread.
+    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
+    // Open the rpc server port.
+    rpcServerPort.open("/IcubControllerServer/info/rpc:i");
+    // Bind the callback to the port.
+    rpcServerPort.setReader(*rpcServerCallback);
 }
 
 Thread::~Thread()
 {
+    rpcServerPort.close();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -86,6 +96,7 @@ bool Thread::threadInit()
     yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
 
 	return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+    controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -103,7 +114,79 @@ void Thread::run()
 
 void Thread::threadRelease()
 {
+    controllerStatus = ocra_icub::CONTROLLER_SERVER_STOPPED;
+
     yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
     yarpWbi->setControlReference(initialPosture.data());
 
 }
+
+
+
+
+void Thread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
+{
+    int btlSize = input.size();
+    for (int i=0; i<btlSize;)
+    {
+        // OCRA_CONTROLLER_MESSAGE message();
+        switch (input.get(i).asInt()) {
+            case ocra_icub::GET_CONTROLLER_SERVER_STATUS:
+                {
+                    std::cout << "Got message: GET_CONTROLLER_SERVER_STATUS." << std::endl;
+                    reply.addInt(controllerStatus);
+                    ++i;
+                }break;
+
+            case ocra_icub::GET_MODEL_CONFIG_INFO:
+                {
+                    std::cout << "Got message: GET_MODEL_CONFIG_INFO." << std::endl;
+                    reply.addString(ctrlOptions.wbiConfigFilePath);
+                    reply.addString(ctrlOptions.robotName);
+                    reply.addInt(ctrlOptions.isFloatingBase);
+                    ++i;
+                }break;
+
+            case ocra_icub::HELP:
+                {
+                    ++i;
+                    std::cout << "Got message: HELP." << std::endl;
+                }break;
+
+            default:
+                {
+                    ++i;
+                    std::cout << "Got message: UNKNOWN." << std::endl;
+                }break;
+
+        }
+    }
+}
+
+/**************************************************************************************************
+                                    Nested PortReader Class
+**************************************************************************************************/
+Thread::ControllerRpcServerCallback::ControllerRpcServerCallback(Thread& threadRef)
+: thread(threadRef)
+{
+    //do nothing
+}
+
+bool Thread::ControllerRpcServerCallback::read(yarp::os::ConnectionReader& connection)
+{
+    yarp::os::Bottle input, reply;
+
+    if (!input.read(connection)){
+        return false;
+    }
+    else{
+        thread.parseIncomingMessage(input, reply);
+        yarp::os::ConnectionWriter* returnToSender = connection.getWriter();
+        if (returnToSender!=NULL) {
+            reply.write(*returnToSender);
+        }
+        return true;
+    }
+}
+/**************************************************************************************************
+**************************************************************************************************/
