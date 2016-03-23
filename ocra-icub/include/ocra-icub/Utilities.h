@@ -95,7 +95,17 @@ void getHomePosture(const ocra::Model &model, Eigen::VectorXd &q);
 
 enum OCRA_ICUB_MESSAGE
 {
-    GET_MODEL_CONFIG_INFO = 0
+    FAILURE = 0,
+    SUCCESS,
+
+    GET_MODEL_CONFIG_INFO,
+    GET_CONTROLLER_SERVER_STATUS,
+
+    CONTROLLER_SERVER_RUNNING,
+    CONTROLLER_SERVER_STOPPED,
+    CONTROLLER_SERVER_PAUSED,
+
+    HELP
 };
 
 } /* ocra_icub */
