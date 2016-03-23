@@ -23,8 +23,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OCRA_YARP_TOOLS_H
-#define OCRA_YARP_TOOLS_H
+#ifndef UTILITIES_H
+#define UTILITIES_H
 
 /*
  *  Let's include some shit!!!! Here we go...
@@ -92,5 +92,11 @@ static constexpr double DEG_TO_RAD = M_PI/180.0;
 void getNominalPosture(const ocra::Model &model, Eigen::VectorXd &q);
 void getHomePosture(const ocra::Model &model, Eigen::VectorXd &q);
 
+
+enum OCRA_ICUB_MESSAGE
+{
+    GET_MODEL_CONFIG_INFO = 0
+};
+
 } /* ocra_icub */
-#endif //OCRA_YARP_TOOLS_H
+#endif //UTILITIES_H

@@ -1,4 +1,4 @@
-/*! \file       OcraControllerClientModule.h
+/*! \file       IcubControllerClientManager.h
  *  \brief      Module class for the controller Client.
  *  \details
  *  \author     [Ryan Lober](http://www.ryanlober.com)
@@ -40,23 +40,23 @@
 
 namespace ocra_icub
 {
-/*! \class OcraControllerClientModule
+/*! \class IcubControllerClientManager
  *  \brief The controller module which launches the controller thread.
  *
  *  Basically all this does is parse the command line arguments and look for the various config and task set files. It then instantiates a WBI instance (yarpWBI specifically) and a \ref OcraControllerClientThread instance. It launches these threads and then basically just waits till it gets a kill (ctrl+c) command to close them down. Does a little keeping track of time as well.
  */
-class OcraControllerClientModule: public yarp::os::RFModule
+class IcubControllerClientManager: public yarp::os::RFModule
 {
-DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerClientModule)
+DEFINE_CLASS_POINTER_TYPEDEFS(IcubControllerClientManager)
 
 public:
     /*! Constructor which essentially does nothing.
      */
-    OcraControllerClientModule(OcraControllerClientThread::shared_ptr customClientThread);
+    IcubControllerClientManager(OcraControllerClientThread::shared_ptr customClientThread);
 
     /*! Destructor which essentially does nothing.
      */
-    ~OcraControllerClientModule();
+    ~IcubControllerClientManager();
 
     /*! Configures the module by parsing the RF contents.
      *  \param rf A resource finder instance which is initialized from the command line args.
@@ -73,7 +73,7 @@ public:
      */
     bool close();
 
-    /*! Updates the OcraControllerClientModule. Basically just clocks the thread run() method.
+    /*! Updates the IcubControllerClientManager. Basically just clocks the thread run() method.
      *  \return Whether or not the clocking functions worked.
      */
     bool updateModule();
@@ -101,7 +101,7 @@ public:
         /*! Constructor
          *  \param newModuleRef A shared pointer to the control thread.
          */
-        moduleCallback(OcraControllerClientModule& newModuleRef);
+        moduleCallback(IcubControllerClientManager& newModuleRef);
 
         /*! read
          *  \param connection Reads a port connection.
@@ -111,7 +111,7 @@ public:
         virtual bool read(yarp::os::ConnectionReader& connection);
 
     private:
-        OcraControllerClientModule& moduleRef; /*!< A ref to the client module. */
+        IcubControllerClientManager& moduleRef; /*!< A ref to the client module. */
     };
 
 

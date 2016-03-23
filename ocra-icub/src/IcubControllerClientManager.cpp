@@ -1,4 +1,4 @@
-/*! \file       OcraControllerClientModule.h
+/*! \file       IcubControllerClientManager.h
  *  \brief      Module class for the controller Client.
  *  \details
  *  \author     [Ryan Lober](http://www.ryanlober.com)
@@ -24,90 +24,49 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "ocra-icub/OcraControllerClientModule.h"
+#include "ocra-icub/IcubControllerClientManager.h"
 
 using namespace ocra_icub;
 
-int OcraControllerClientModule::CONTROLLER_CLIENT_MODULE_COUNT = 0;
+int IcubControllerClientManager::CONTROLLER_CLIENT_MODULE_COUNT = 0;
 
-OcraControllerClientModule::OcraControllerClientModule(OcraControllerClientThread::shared_ptr customClientThread)
+IcubControllerClientManager::IcubControllerClientManager(OcraControllerClientThread::shared_ptr customClientThread)
 {
     // Increment the module counter and save it in module number.
-    moduleNumber = ++OcraControllerClientModule::CONTROLLER_CLIENT_MODULE_COUNT;
+    moduleNumber = ++IcubControllerClientManager::CONTROLLER_CLIENT_MODULE_COUNT;
 
     clientThread = customClientThread;
     expectedClientThreadPeriod = clientThread->getExpectedPeriod();
-
-    // // open controller connection
-    // ControllerConnection ctrlCon;
-    // bool openTaskPorts = false;
-    // if (ctrlCon.open(openTaskPorts))
-    // {
-    //     yarp::os::Bottle reply;
-    //
-    //     // Check if the controller is running.
-    //     reply = ctrlCon.queryController(GET_CONTROLLER_STATUS);
-    //     if (reply.get(0).asInt() == CONTROLLER_RUNNING) {
-    //         // Get the WBI file path, robot name and if the robot has a floating base.
-    //         std::vector<OCRA_CONTROLLER_MESSAGE> messageVec {GET_WBI_CONFIG_FILE_PATH, GET_ROBOT_NAME, GET_IS_FLOATING_BASE};
-    //         // Ask the controller
-    //         reply = ctrlCon.queryController(messageVec);
-    //         // Parse the replies
-    //         std::string wbiConfigFilePath = reply.get(0).asString();
-    //         std::string robotName = reply.get(1).asString();
-    //         bool isFloatingBase = reply.get(2).asBool();
-    //
-    //         yLog.info() << "Found WBI config file here: " << wbiConfigFilePath;
-    //         yLog.info() << "Robot name is: " << robotName;
-    //         yLog.info() << "Robot has floating base: " << isFloatingBase;
-    //
-    //         // Create the yarpWBI options
-    //         yarp::os::Property yarpWbiOptions;
-    //         // Parse from the file we found.
-    //         yarpWbiOptions.fromConfigFile(wbiConfigFilePath);
-    //         // Overwrite the robot parameter that could be present in wbi_conf_file
-    //         yarpWbiOptions.put("robot", robotName);
-    //         // Initialize the WBI in the client thread.
-    //         clientThread->setWbiOptions(yarpWbiOptions, isFloatingBase);
-    //         // Construct rpc server callback and bind to the control thread.
-    //         rpcCallback = std::make_shared<moduleCallback>(*this);
-    //         // Make the port name
-    //         rpcPortName = "/OCRA/" + getModuleName() + "/rpc:i";
-    //         // Open the rpc server port.
-    //         rpcPort.open(rpcPortName);
-    //         // Bind the callback to the port.
-    //         rpcPort.setReader(*rpcCallback);
-    //
-    //     }
-    // }
 }
 
-OcraControllerClientModule::~OcraControllerClientModule()
+
+
+IcubControllerClientManager::~IcubControllerClientManager()
 {
     rpcPort.close();
 }
 
 
-std::string OcraControllerClientModule::getModuleName()
+std::string IcubControllerClientManager::getModuleName()
 {
     return "ControllerClientModule_"+std::to_string(moduleNumber);
 }
 
-bool OcraControllerClientModule::configure(yarp::os::ResourceFinder &rf)
+bool IcubControllerClientManager::configure(yarp::os::ResourceFinder &rf)
 {
     clientThread->start();
     return true;
 }
 
 
-bool OcraControllerClientModule::interruptModule()
+bool IcubControllerClientManager::interruptModule()
 {
     if(clientThread)
         clientThread->suspend();
     return true;
 }
 
-bool OcraControllerClientModule::close()
+bool IcubControllerClientManager::close()
 {
     /* Stop the control thread. */
     if(clientThread){
@@ -125,7 +84,7 @@ bool OcraControllerClientModule::close()
     return true;
 }
 
-bool OcraControllerClientModule::updateModule()
+bool IcubControllerClientManager::updateModule()
 {
     // Get the average time between two calls of the RateThread.run() method.
     clientThread->getEstPeriod(avgTime, stdDev);
@@ -142,12 +101,12 @@ bool OcraControllerClientModule::updateModule()
     return customUpdateModule();
 }
 
-void OcraControllerClientModule::printHelp()
+void IcubControllerClientManager::printHelp()
 {
 
 }
 
-void OcraControllerClientModule::callbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply)
+void IcubControllerClientManager::callbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply)
 {
     if (message.size() != 0) {
         reply.clear();
@@ -155,11 +114,11 @@ void OcraControllerClientModule::callbackParser(yarp::os::Bottle& message, yarp:
     }
 }
 
-void OcraControllerClientModule::customCallbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply)
+void IcubControllerClientManager::customCallbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply)
 {
     // Do nothing if not implemented.
 }
-bool OcraControllerClientModule::customUpdateModule()
+bool IcubControllerClientManager::customUpdateModule()
 {
     // Do nothing if not implemented.
     return true;
@@ -169,13 +128,13 @@ bool OcraControllerClientModule::customUpdateModule()
 /**************************************************************************************************
                                     Nested moduleCallback Class
 **************************************************************************************************/
-OcraControllerClientModule::moduleCallback::moduleCallback(OcraControllerClientModule& newModuleRef)
+IcubControllerClientManager::moduleCallback::moduleCallback(IcubControllerClientManager& newModuleRef)
 : moduleRef(newModuleRef)
 {
     //do nothing
 }
 
-bool OcraControllerClientModule::moduleCallback::read(yarp::os::ConnectionReader& connection)
+bool IcubControllerClientManager::moduleCallback::read(yarp::os::ConnectionReader& connection)
 {
     yarp::os::Bottle input, reply;
 
