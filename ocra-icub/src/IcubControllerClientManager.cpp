@@ -28,24 +28,21 @@
 
 using namespace ocra_icub;
 
-int IcubControllerClientManager::CONTROLLER_CLIENT_MODULE_COUNT = 0;
+int IcubControllerClientManager::CONTROLLER_CLIENT_MANAGER_COUNT = 0;
 
-IcubControllerClientManager::IcubControllerClientManager(OcraControllerClientThread::shared_ptr customClientThread)
+IcubControllerClientManager::IcubControllerClientManager(IcubControllerClient::shared_ptr customClient)
 {
     // Increment the module counter and save it in module number.
-    moduleNumber = ++IcubControllerClientManager::CONTROLLER_CLIENT_MODULE_COUNT;
+    moduleNumber = ++IcubControllerClientManager::CONTROLLER_CLIENT_MANAGER_COUNT;
 
-    clientThread = customClientThread;
-    expectedClientThreadPeriod = clientThread->getExpectedPeriod();
+    client = customClient;
+    expectedClientPeriod = client->getExpectedPeriod();
 }
-
-
 
 IcubControllerClientManager::~IcubControllerClientManager()
 {
     rpcPort.close();
 }
-
 
 std::string IcubControllerClientManager::getModuleName()
 {
@@ -54,48 +51,52 @@ std::string IcubControllerClientManager::getModuleName()
 
 bool IcubControllerClientManager::configure(yarp::os::ResourceFinder &rf)
 {
-    clientThread->start();
-    return true;
+    return client->configure(rf);
 }
 
+int IcubControllerClientManager::launchClient()
+{
+    client->start();
+    return runModule();
+}
 
 bool IcubControllerClientManager::interruptModule()
 {
-    if(clientThread)
-        clientThread->suspend();
+    if(client)
+        client->suspend();
     return true;
 }
 
 bool IcubControllerClientManager::close()
 {
     /* Stop the control thread. */
-    if(clientThread){
-        clientThread->stop();
+    if(client){
+        client->stop();
     }
 
     /* Print performance information */
     printf("[PERFORMANCE INFORMATION]:\n");
-    printf("Expected period %d ms.\nReal period: %3.1f+/-%3.1f ms.\n", expectedClientThreadPeriod, avgTime, stdDev);
+    printf("Expected period %d ms.\nReal period: %3.1f+/-%3.1f ms.\n", expectedClientPeriod, avgTime, stdDev);
     printf("Real duration of 'run' method: %3.1f+/-%3.1f ms.\n", avgTimeUsed, stdDevUsed);
-    if(avgTime<0.5*(double)expectedClientThreadPeriod)
+    if(avgTime<0.5*(double)expectedClientPeriod)
         printf("Next time you could set a lower period to improve the controller performance.\n");
-    else if(avgTime>1.3*(double)expectedClientThreadPeriod)
+    else if(avgTime>1.3*(double)expectedClientPeriod)
         printf("The period you set was impossible to attain. Next time you could set a higher period.\n");
     return true;
 }
 
 bool IcubControllerClientManager::updateModule()
 {
-    // Get the average time between two calls of the RateThread.run() method.
-    clientThread->getEstPeriod(avgTime, stdDev);
+    // Get the average time between two calls of the Rate.run() method.
+    client->getEstPeriod(avgTime, stdDev);
 
     // Get the average time the .run() method takes to compute the control.
-    clientThread->getEstUsed(avgTimeUsed, stdDevUsed);
+    client->getEstUsed(avgTimeUsed, stdDevUsed);
 
     // If the period of the control thread is too slow then print a warning.
-    if(avgTime > 1.3*(double)expectedClientThreadPeriod)
+    if(avgTime > 1.3*(double)expectedClientPeriod)
     {
-        yLog.warning() << "CLIENT THREAD LOOP IS TOO SLOW\nReal period: "<< avgTime <<"+/-"<< stdDev <<"\nExpected period: " << expectedClientThreadPeriod <<"\nDuration of 'run' method: "<<avgTimeUsed<<"+/-"<< stdDevUsed<<"\n";
+        yLog.warning() << "CLIENT THREAD LOOP IS TOO SLOW\nReal period: "<< avgTime <<"+/-"<< stdDev <<"\nExpected period: " << expectedClientPeriod <<"\nDuration of 'run' method: "<<avgTimeUsed<<"+/-"<< stdDevUsed<<"\n";
     }
 
     return customUpdateModule();
@@ -103,7 +104,8 @@ bool IcubControllerClientManager::updateModule()
 
 void IcubControllerClientManager::printHelp()
 {
-
+    std::cout << "Hey there this is the help for the IcubControllerClientManager. Here is what the client is saying..." << std::endl;
+    client->printHelp();
 }
 
 void IcubControllerClientManager::callbackParser(yarp::os::Bottle& message, yarp::os::Bottle& reply)

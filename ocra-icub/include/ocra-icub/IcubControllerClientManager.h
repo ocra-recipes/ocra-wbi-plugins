@@ -24,8 +24,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef OCRA_CONTROLLER_CLIENT_MODULE_H
-#define OCRA_CONTROLLER_CLIENT_MODULE_H
+#ifndef OCRA_CONTROLLER_CLIENT_MANAGER_H
+#define OCRA_CONTROLLER_CLIENT_MANAGER_H
 
 #include <iostream>
 #include <memory>
@@ -34,7 +34,7 @@
 #include <yarp/os/RpcServer.h>
 
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
-#include "ocra-icub/OcraControllerClientThread.h"
+#include "ocra-icub/IcubControllerClient.h"
 #include "ocra-icub/Utilities.h"
 
 
@@ -43,7 +43,7 @@ namespace ocra_icub
 /*! \class IcubControllerClientManager
  *  \brief The controller module which launches the controller thread.
  *
- *  Basically all this does is parse the command line arguments and look for the various config and task set files. It then instantiates a WBI instance (yarpWBI specifically) and a \ref OcraControllerClientThread instance. It launches these threads and then basically just waits till it gets a kill (ctrl+c) command to close them down. Does a little keeping track of time as well.
+ *  Basically all this does is parse the command line arguments and look for the various config and task set files. It then instantiates a WBI instance (yarpWBI specifically) and a \ref IcubControllerClient instance. It launches these threads and then basically just waits till it gets a kill (ctrl+c) command to close them down. Does a little keeping track of time as well.
  */
 class IcubControllerClientManager: public yarp::os::RFModule
 {
@@ -52,18 +52,22 @@ DEFINE_CLASS_POINTER_TYPEDEFS(IcubControllerClientManager)
 public:
     /*! Constructor which essentially does nothing.
      */
-    IcubControllerClientManager(OcraControllerClientThread::shared_ptr customClientThread);
+    IcubControllerClientManager(IcubControllerClient::shared_ptr customClient);
 
     /*! Destructor which essentially does nothing.
      */
     ~IcubControllerClientManager();
 
-    /*! Configures the module by parsing the RF contents.
+    /*! Configures the module by parsing the RF contents. Passes to client when done.
      *  \param rf A resource finder instance which is initialized from the command line args.
      *
      *  \return True or false if the configuration was successful.
      */
     bool configure(yarp::os::ResourceFinder &rf);
+
+    /*! Simply calls client->start() then runModule()
+     */
+    int launchClient();
 
     /*! Interrupts the module execution and stops the control and wbi threads.
      */
@@ -124,12 +128,12 @@ protected:
 
 
 private:
-    OcraControllerClientThread::shared_ptr clientThread;    /*!< The controller client thread pointer. */
+    IcubControllerClient::shared_ptr client;    /*!< The controller client thread pointer. */
     moduleCallback::shared_ptr rpcCallback;                 /*!< Rpc server port callback function. */
     yarp::os::RpcServer rpcPort;                            /*!< Rpc server port. */
     yarp::os::Log yLog;                                     /*!< For logging in yarp. */
 
-    int expectedClientThreadPeriod;                         /*!< The expected period of the client thread. In ms.*/
+    int expectedClientPeriod;                         /*!< The expected period of the client thread. In ms.*/
     double avgTime;                                         /*!< Average time between successive calls of the `run()` method.*/
     double stdDev;                                          /*!< Standard deviation of the average time between successive calls of the `run()` method. */
     double avgTimeUsed;                                     /*!< Average time for the `run()` method to execute. Should be close to avgTime. */
@@ -137,11 +141,11 @@ private:
 
     std::string rpcPortName;                                /*!< The name of the rpc port for the thread. */
 
-    static int CONTROLLER_CLIENT_MODULE_COUNT;              /*!< A count that is incremented each time a client thread is constructed. */
+    static int CONTROLLER_CLIENT_MANAGER_COUNT;              /*!< A count that is incremented each time a client thread is constructed. */
     int moduleNumber;                                       /*!< The unique thread number. */
 
 };
 
 } // namespace ocra_icub
 
-#endif //OCRA_CONTROLLER_CLIENT_MODULE_H
+#endif //OCRA_CONTROLLER_CLIENT_MANAGER_H
