@@ -18,3 +18,8 @@ IcubControllerClient::~IcubControllerClient()
 {
 
 }
+
+void IcubControllerClient::printHelp()
+{
+    std::cout << "This is a help statement from the client." << std::endl;
+}

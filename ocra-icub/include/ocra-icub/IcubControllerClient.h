@@ -7,17 +7,28 @@
 
 #include <yarp/os/RateThread.h>
 #include <yarp/os/RFModule.h>
+#include <yarp/os/ResourceFinder.h>
 
 
 namespace ocra_icub
 {
 class IcubControllerClient : public ocra_recipes::ControllerClient
 {
+DEFINE_CLASS_POINTER_TYPEDEFS(IcubControllerClient)
 
 public:
     IcubControllerClient ();
     IcubControllerClient (std::shared_ptr<ocra_icub::OcraWbiModel> modelPtr, const int loopPeriod=10);
     virtual ~IcubControllerClient ();
+
+    virtual void printHelp();
+
+    /*! Configures the module by parsing the RF contents.
+     *  \param rf A resource finder instance which is initialized from the command line args.
+     *
+     *  \return True or false if the configuration was successful.
+     */
+    virtual bool configure(yarp::os::ResourceFinder &rf){return true;};
 
 protected:
     virtual bool initialize(){return true;}
@@ -25,6 +36,7 @@ protected:
     virtual void loop() = 0;
 
 private:
+
 
 };
 
