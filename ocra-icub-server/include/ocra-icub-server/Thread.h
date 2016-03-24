@@ -63,6 +63,7 @@ public: // Variables
     bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
     yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
     ocra_recipes::CONTROLLER_TYPE    controllerType; /*!< The type of OCRA controller to use. */
+    ocra_recipes::SOLVER_TYPE    solver; /*!< The type of OCRA controller to use. */
 };
 
 

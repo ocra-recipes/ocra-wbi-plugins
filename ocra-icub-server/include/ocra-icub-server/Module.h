@@ -29,6 +29,8 @@
 
 #include <iostream>
 #include <memory>
+#include <algorithm>
+#include <locale>
 
 #include <yarp/os/RFModule.h>
 

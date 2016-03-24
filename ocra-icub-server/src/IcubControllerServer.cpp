@@ -9,9 +9,10 @@ IcubControllerServer::IcubControllerServer( std::shared_ptr<wbi::wholeBodyInterf
                                             std::string icubName,
                                             const bool usingFloatingBase,
                                             const ocra_recipes::CONTROLLER_TYPE ctrlType,
+                                            const ocra_recipes::SOLVER_TYPE solver,
                                             const bool usingInterprocessCommunication
                                         )
-: ocra_recipes::ControllerServer(ctrlType, usingInterprocessCommunication)
+: ocra_recipes::ControllerServer(ctrlType, solver, usingInterprocessCommunication)
 , wbi(robot)
 , robotName(icubName)
 , isFloatingBase(usingFloatingBase)

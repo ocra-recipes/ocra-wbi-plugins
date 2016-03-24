@@ -41,6 +41,7 @@ OcraControllerOptions::OcraControllerOptions()
 , isFloatingBase(false)
 , yarpWbiOptions(yarp::os::Property())
 , controllerType(ocra_recipes::WOCRA_CONTROLLER)
+, solver(ocra_recipes::QUADPROG)
 {
 }
 
@@ -64,6 +65,7 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
                                         ctrlOptions.robotName,
                                         ctrlOptions.isFloatingBase,
                                         ctrlOptions.controllerType,
+                                        ctrlOptions.solver,
                                         usingInterprocessCommunication);
 
     ctrlServer->initialize();

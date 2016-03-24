@@ -14,6 +14,7 @@ public:
                             std::string icubName,
                             const bool usingFloatingBase,
                             const ocra_recipes::CONTROLLER_TYPE ctrlType=ocra_recipes::WOCRA_CONTROLLER,
+                            const ocra_recipes::SOLVER_TYPE solver=ocra_recipes::QUADPROG,
                             const bool usingInterprocessCommunication=true
                         );
     virtual ~IcubControllerServer();

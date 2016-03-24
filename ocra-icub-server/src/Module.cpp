@@ -52,6 +52,23 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
     controller_options.runInDebugMode = rf.check("debug");
     controller_options.isFloatingBase = rf.check("floatingBase");
 
+    if( rf.check("solver") )
+    {
+        std::string solverString = rf.find("solver").asString().c_str();
+        // Convert string to Uppercase.
+        std::transform(solverString.begin(), solverString.end(), solverString.begin(), toupper);
+        if (solverString == "QUADPROG"){
+            controller_options.solver = ocra_recipes::QUADPROG;
+        }
+        else if (solverString == "QPOASES"){
+            controller_options.solver = ocra_recipes::QPOASES;
+        }
+        else{
+            controller_options.solver = ocra_recipes::QUADPROG;
+        }
+    }
+
+
     if( rf.check("taskSet") )
     {
         std::string xmlExt = ".xml";
