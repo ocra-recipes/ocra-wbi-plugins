@@ -2,6 +2,7 @@
 #define MODEL_INITIALIZER_H
 
 #include <ocra-icub/OcraWbiModel.h>
+#include <ocra/control/Model.h>
 #include <yarpWholeBodyInterface/yarpWholeBodyInterface.h>
 
 #include <yarp/os/RpcClient.h>
@@ -15,7 +16,7 @@ namespace ocra_icub
 class ModelInitializer {
 private:
     std::shared_ptr<yarpWbi::yarpWholeBodyInterface> robotInterface;
-    std::shared_ptr<OcraWbiModel> wbiModel;
+    std::shared_ptr<ocra::Model> model;
 
     std::string wbiConfigFilePath;
     std::string robotName;
@@ -35,7 +36,7 @@ public:
     ModelInitializer ();
     virtual ~ModelInitializer ();
 
-    std::shared_ptr<OcraWbiModel> getModel(){return wbiModel;}
+    std::shared_ptr<ocra::Model> getModel(){return model;}
 
 
 };
