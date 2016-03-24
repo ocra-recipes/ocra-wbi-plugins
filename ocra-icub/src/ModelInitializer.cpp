@@ -8,8 +8,11 @@ ModelInitializer::ModelInitializer()
 {
     modInitNumber = ++MODEL_INITIALIZER_COUNT;
     if( getConfigurationInfoFromControllerServer() )
-        if ( configureWbi() )
-            constructModel();
+    {
+        if ( configureWbi() ){
+             constructModel();
+        }
+    }
 }
 
 ModelInitializer::~ModelInitializer()
@@ -44,7 +47,7 @@ bool ModelInitializer::getConfigurationInfoFromControllerServer()
     {
         wbiConfigFilePath = reply.get(0).asString();
         robotName = reply.get(1).asString();
-        isFloatingBase = reply.get(2).asBool();
+        isFloatingBase = reply.get(2).asInt();
         retVal = true;
     }
     else
@@ -72,22 +75,35 @@ bool ModelInitializer::configureWbi()
     // Overwrite the robot parameter that could be present in wbi_conf_file
     yarpWbiOptions.put("robot", robotName);
     // Create the wholeBodyInterface.
-    std::string robotInterfaceName =  + "_WBI/";
     robotInterface = std::make_shared<yarpWbi::yarpWholeBodyInterface>(getUniqueWbiName().c_str(), yarpWbiOptions);
 
+    if (!robotInterface) {
+        yLog.fatal() << "Could not create the yarp wholeBodyInterface!";
+        return false;
+    }
     // Add the robot's specific joints to the WBI.
     wbi::IDList robotJoints;
     std::string robotJointsListName = "ROBOT_MAIN_JOINTS";
     if(!yarpWbi::loadIdListFromConfig(robotJointsListName, yarpWbiOptions, robotJoints))
     {
         yLog.error() << "Impossible to load wbiId joint list with name: " << robotJointsListName;
+        return false;
     }
     robotInterface->addJoints(robotJoints);
+
+    // Make sure all the add* functions are done before the "init"
+    if(!robotInterface->init())
+    {
+        yLog.fatal() << "Error while initializing whole body interface. Closing.";
+        return false;
+    }
+
+    return true;
 }
 
 void ModelInitializer::constructModel()
 {
-    wbiModel = std::make_shared<OcraWbiModel>(robotName, robotInterface->getDoFs(), robotInterface, isFloatingBase);
+    model = std::make_shared<OcraWbiModel>(robotName, robotInterface->getDoFs(), robotInterface, isFloatingBase);
 }
 
 std::string ModelInitializer::getUniqueWbiName()
