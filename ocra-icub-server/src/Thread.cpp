@@ -49,6 +49,25 @@ OcraControllerOptions::~OcraControllerOptions()
 {
 }
 
+
+std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
+{
+    out << "----------------------\n" << "Controller Options" << "\n----------------------";
+    out << "threadPeriod: " << opts.threadPeriod << "\n\n";
+    out << "serverName: " << opts.serverName << "\n\n";
+    out << "robotName: " << opts.robotName << "\n\n";
+    out << "startupTaskSetPath: " << opts.startupTaskSetPath << "\n\n";
+    out << "startupSequence: " << opts.startupSequence << "\n\n";
+    out << "wbiConfigFilePath: " << opts.wbiConfigFilePath << "\n\n";
+    out << "runInDebugMode: " << opts.runInDebugMode << "\n\n";
+    out << "isFloatingBase: " << opts.isFloatingBase << "\n\n";
+    // out << "yarpWbiOptions: " << opts.yarpWbiOptions << "\n\n";
+    out << "controllerType: " << opts.controllerType << "\n\n";
+    out << "solver: " << opts.solver << "\n\n";
+
+    return out;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 //                                               Thread Constructor
@@ -59,6 +78,8 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
 , ctrlOptions(controller_options)
 , controllerStatus(ocra_icub::CONTROLLER_SERVER_STOPPED)
 {
+    std::cout << ctrlOptions << std::endl;
+
     yarpWbi = wbi;
     bool usingInterprocessCommunication = true;
     ctrlServer = std::make_shared<IcubControllerServer>(  yarpWbi,
