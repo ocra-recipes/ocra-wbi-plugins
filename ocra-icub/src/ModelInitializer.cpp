@@ -108,7 +108,7 @@ void ModelInitializer::constructModel()
 
 std::string ModelInitializer::getUniqueWbiName()
 {
-    std::string robotInterfaceName = "/ModelInitializer_"+ std::to_string(modInitNumber) +"_WBI/";
+    std::string robotInterfaceName = "ModelInitializer_"+ std::to_string(modInitNumber) +"_WBI/";
 
     return robotInterfaceName;
 }
