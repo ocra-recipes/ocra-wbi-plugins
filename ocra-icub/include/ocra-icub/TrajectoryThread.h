@@ -56,7 +56,10 @@ class TrajectoryThread : public ControlThread
 DEFINE_CLASS_POINTER_TYPEDEFS(TrajectoryThread)
 
 public:
+    // TrajectoryThread();
+    TrajectoryThread(int period, const std::string& taskPortName, const TRAJECTORY_TYPE = MIN_JERK, const TERMINATION_STRATEGY _terminationStrategy = STOP_THREAD);
     TrajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE = MIN_JERK, const TERMINATION_STRATEGY _terminationStrategy = STOP_THREAD);
+    ~TrajectoryThread();
 
     virtual bool ct_threadInit();
     virtual void ct_threadRelease();
@@ -65,6 +68,8 @@ public:
 
 
     // Setters
+    void setMaxVelocity(double maxVel){trajectory->setMaxVelocity(maxVel);}
+
     bool setDisplacement(double dispDouble);
     bool setDisplacement(const Eigen::VectorXd& displacementVector);
     bool setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoints, bool containsStartingWaypoint=false);

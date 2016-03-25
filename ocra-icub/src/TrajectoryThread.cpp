@@ -101,7 +101,12 @@ bool TrajectoryThread::ct_threadInit()
         varianceThresh = Eigen::ArrayXd::Constant(weightDimension, VAR_THRESH);
     }
 
-    return setTrajectoryWaypoints(userWaypoints);
+    if (waypointsHaveBeenSet) {
+        return setTrajectoryWaypoints(userWaypoints);
+    }
+    else {
+        return true;
+    }
 }
 
 void TrajectoryThread::ct_threadRelease()
@@ -113,94 +118,96 @@ void TrajectoryThread::ct_threadRelease()
 
 void TrajectoryThread::ct_run()
 {
-    if (goalAttained() || deactivationLatch)
-    {
-        switch (terminationStrategy)
+    if (waypointsHaveBeenSet) {
+        if (goalAttained() || deactivationLatch)
         {
-            case BACK_AND_FORTH:
-                flipWaypoints();
-                setTrajectoryWaypoints(allWaypoints, true);
-                break;
-            case STOP_THREAD:
-                stop();
-                break;
-            case STOP_THREAD_DEACTIVATE:
-                if(deactivateTask()){
+            switch (terminationStrategy)
+            {
+                case BACK_AND_FORTH:
+                    flipWaypoints();
+                    setTrajectoryWaypoints(allWaypoints, true);
+                    break;
+                case STOP_THREAD:
                     stop();
-                }else{
-                    std::cout << "[WARNING] Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state, but cannot be deactivated." << std::endl;
-                    yarp::os::Time::delay(1.0); // try again in one second.
-                    deactivationDelay += 1.0;
-                    if(deactivationDelay >= deactivationTimeout){
-                        std::cout << "[WARNING] Deactivation timeout." << std::endl;
-                        stop();
-                    }
-                }
-                break;
-            case WAIT:
-                if (printWaitingNoticeOnce) {
-                    std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Awaiting new commands." << std::endl;
-                    printWaitingNoticeOnce = false;
-                }
-                break;
-            case WAIT_DEACTIVATE:
-                if (printWaitingNoticeOnce) {
+                    break;
+                case STOP_THREAD_DEACTIVATE:
                     if(deactivateTask()){
-                        std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Deactivating task and awaiting new commands." << std::endl;
-                        printWaitingNoticeOnce = false;
-                        deactivationLatch = true;
+                        stop();
                     }else{
-                        std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state and is awaiting new commands. [WARNING] Could not deactivate the task." << std::endl;
+                        std::cout << "[WARNING] Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state, but cannot be deactivated." << std::endl;
                         yarp::os::Time::delay(1.0); // try again in one second.
                         deactivationDelay += 1.0;
                         if(deactivationDelay >= deactivationTimeout){
-                            printWaitingNoticeOnce = false;
                             std::cout << "[WARNING] Deactivation timeout." << std::endl;
+                            stop();
                         }
                     }
-                }
-                break;
-        }
-    }
-    else{
-        if (!currentTaskParams.isActive) {
-            activateTask();
-        }
-
-        desStateBottle.clear();
-        if (trajType==GAUSSIAN_PROCESS)
-        {
-            Eigen::MatrixXd desiredState_tmp;
-            trajectory->getDesiredValues(yarp::os::Time::now(), desiredState_tmp, desiredVariance);
-            desiredState << desiredState_tmp;
-
-
-            for(int i=0; i<desiredState.size(); i++)
-            {
-                desStateBottle.addDouble(desiredState(i));
+                    break;
+                case WAIT:
+                    if (printWaitingNoticeOnce) {
+                        std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Awaiting new commands." << std::endl;
+                        printWaitingNoticeOnce = false;
+                    }
+                    break;
+                case WAIT_DEACTIVATE:
+                    if (printWaitingNoticeOnce) {
+                        if(deactivateTask()){
+                            std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state. Deactivating task and awaiting new commands." << std::endl;
+                            printWaitingNoticeOnce = false;
+                            deactivationLatch = true;
+                        }else{
+                            std::cout << "Trajectory id = "<< ControlThread::threadId << " for task: " << originalTaskParams.name << " has attained its goal state and is awaiting new commands. [WARNING] Could not deactivate the task." << std::endl;
+                            yarp::os::Time::delay(1.0); // try again in one second.
+                            deactivationDelay += 1.0;
+                            if(deactivationDelay >= deactivationTimeout){
+                                printWaitingNoticeOnce = false;
+                                std::cout << "[WARNING] Deactivation timeout." << std::endl;
+                            }
+                        }
+                    }
+                    break;
             }
-            #if USING_SMLT
-            if(useVarianceModulation)
+        }
+        else{
+            if (!currentTaskParams.isActive) {
+                activateTask();
+            }
+
+            desStateBottle.clear();
+            if (trajType==GAUSSIAN_PROCESS)
             {
-                Eigen::VectorXd desiredWeights = varianceToWeights(desiredVariance);
-                for(int i=0; i<desiredWeights.size(); i++)
+                Eigen::MatrixXd desiredState_tmp;
+                trajectory->getDesiredValues(yarp::os::Time::now(), desiredState_tmp, desiredVariance);
+                desiredState << desiredState_tmp;
+
+
+                for(int i=0; i<desiredState.size(); i++)
                 {
-                    desStateBottle.addDouble(desiredWeights(i));
+                    desStateBottle.addDouble(desiredState(i));
+                }
+                #if USING_SMLT
+                if(useVarianceModulation)
+                {
+                    Eigen::VectorXd desiredWeights = varianceToWeights(desiredVariance);
+                    for(int i=0; i<desiredWeights.size(); i++)
+                    {
+                        desStateBottle.addDouble(desiredWeights(i));
+                    }
+                }
+                #endif
+            }
+            else
+            {
+                desiredState << trajectory->getDesiredValues(yarp::os::Time::now());
+                for(int i=0; i<desiredState.size(); i++)
+                {
+                    desStateBottle.addDouble(desiredState(i));
                 }
             }
-            #endif
-        }
-        else
-        {
-            desiredState << trajectory->getDesiredValues(yarp::os::Time::now());
-            for(int i=0; i<desiredState.size(); i++)
-            {
-                desStateBottle.addDouble(desiredState(i));
-            }
-        }
 
 
-        outputPort.write(desStateBottle);
+            outputPort.write(desStateBottle);
+        }
     }
 }
 
@@ -272,7 +279,7 @@ bool TrajectoryThread::setTrajectoryWaypoints(const Eigen::MatrixXd& userWaypoin
 
         printWaitingNoticeOnce=true;
         deactivationLatch = false;
-
+        waypointsHaveBeenSet = true;
         return true;
     }
     else
