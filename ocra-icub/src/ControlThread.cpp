@@ -30,7 +30,7 @@
 
 using namespace ocra_icub;
 
-int ControlThread::threadId = 0;
+int ControlThread::CONTROL_THREAD_COUNT = 0;
 
 ControlThread::ControlThread(int period, const std::string& taskRpcPortName):
 RateThread(period),
@@ -40,7 +40,7 @@ weightDimension(0),
 stateDimension(0),
 closePortTimeout(5.0)
 {
-    ControlThread::threadId++;
+    threadId = ++ControlThread::CONTROL_THREAD_COUNT;
 }
 
 ControlThread::~ControlThread()
@@ -68,7 +68,7 @@ bool ControlThread::threadInit()
 
 void ControlThread::threadRelease()
 {
-    std::cout << "\nControlThread: Closing control ports for thread id = " << ControlThread::threadId << " for task: " << originalTaskParams.name << ".\n\n";
+    std::cout << "\nControlThread: Closing control ports for thread id = " << threadId << " for task: " << originalTaskParams.name << ".\n\n";
     inputPort.close();
     outputPort.close();
     yarp::os::Bottle message, reply;
@@ -110,7 +110,7 @@ bool ControlThread::openControlPorts()
     {
         std::string portNameBase = "/CT/" + getThreadType() + "/id_";
         std::stringstream portNameStream;
-        portNameStream << ControlThread::threadId;
+        portNameStream << threadId;
         portNameBase += portNameStream.str();
 
         inputPortName = portNameBase + ":i";

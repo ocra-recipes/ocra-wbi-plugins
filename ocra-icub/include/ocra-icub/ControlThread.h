@@ -79,8 +79,8 @@ public:
     ControlThread(int period, const std::string& taskRpcPortName);
     ~ControlThread();
 
-    static int threadId;
-
+    int threadId;
+    static int CONTROL_THREAD_COUNT;
 
     // RateThread virtual functions
     virtual bool threadInit();
