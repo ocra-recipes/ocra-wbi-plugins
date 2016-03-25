@@ -89,8 +89,9 @@ public:
 
 
 protected:
+    void init();
 
-
+    bool waypointsHaveBeenSet;
     Eigen::VectorXd varianceToWeights(Eigen::VectorXd& desiredVariance, const double beta = 1.0);
     // void getTaskWeightDimension();
     void flipWaypoints();

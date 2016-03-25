@@ -32,19 +32,45 @@
 
 using namespace ocra_icub;
 
+// TrajectoryThread::TrajectoryThread()
+// {
+//
+// }
+
+TrajectoryThread::~TrajectoryThread()
+{
+
+}
+
+TrajectoryThread::TrajectoryThread(int period, const std::string& taskPortName, const TRAJECTORY_TYPE trajectoryType, const TERMINATION_STRATEGY _terminationStrategy):
+ControlThread(period, taskPortName),
+trajType(trajectoryType),
+terminationStrategy(_terminationStrategy),
+waypointsHaveBeenSet(false)
+{
+    init();
+}
 
 TrajectoryThread::TrajectoryThread(int period, const std::string& taskPortName, const Eigen::MatrixXd& waypoints, const TRAJECTORY_TYPE trajectoryType, const TERMINATION_STRATEGY _terminationStrategy):
 ControlThread(period, taskPortName),
 userWaypoints(waypoints),
 trajType(trajectoryType),
 terminationStrategy(_terminationStrategy),
-printWaitingNoticeOnce(true),
-errorThreshold(0.03),
-useVarianceModulation(true),
-deactivationDelay(0.0),
-deactivationTimeout(5.0),
-deactivationLatch(false)
+waypointsHaveBeenSet(true)
 {
+    init();
+}
+
+void TrajectoryThread::init()
+{
+    // Set up class variables:
+    printWaitingNoticeOnce = true;
+    errorThreshold = 0.03;
+    useVarianceModulation = true;
+    deactivationDelay = 0.0;
+    deactivationTimeout = 5.0;
+    deactivationLatch = false;
+
     setThreadType("TrajectoryThread");
 
     switch (trajType)
