@@ -1,0 +1,68 @@
+<?xml version="1.0" ?>
+<!-- TODO: Add a tag for expressing angles in degrees or radians. -->
+<!-- <anglesExpressedIn>degrees</anglesExpressedIn> -->
+
+<!-- Note:
+        Not providing a desired value for joint tasks will default to the current joint position.
+ -->
+<task name="fullPosture" type="FullPostureTaskManager">
+   <params kp="5.0" kd="4.5" weight="0.0001" />
+   <joints>
+       <joint name="l_hip_pitch"    weight="0.0004"/>
+       <joint name="l_hip_roll"     weight="0.1"/>
+       <joint name="l_hip_yaw"      weight="0.1"/>
+       <joint name="r_hip_pitch"    weight="0.0004"/>
+       <joint name="r_hip_roll"     weight="0.1"/>
+       <joint name="r_hip_yaw"      weight="0.1"/>
+       <joint name="l_ankle_pitch"  weight="1.0"/>
+       <joint name="r_ankle_pitch"  weight="1.0"/>
+       <joint name="l_knee"         weight="0.0004"/>
+       <joint name="r_knee"         weight="0.0004"/>
+       <joint name="torso_pitch"    weight="0.1"/>
+       <joint name="torso_roll"     weight="0.01"/>
+       <joint name="torso_yaw"      weight="0.001"/>
+       <joint name="r_elbow"        weight="0.00001"/>
+       <joint name="l_elbow"        weight="0.00001"/>
+   </joints>
+</task>
+
+<task name="comTask" type="CoMTaskManager">
+    <params kp="40" weight="1.0" axes="XY"/>
+</task>
+
+<task name="torsoCartesianTask" type="SegCartesianTaskManager">
+    <segment>torso</segment>
+    <params kp="1" kd="2" weight="0.01" axes="XY"/>
+</task>
+
+<task name="contactSetLeftFoot" type="ContactSetTaskManager">
+    <segment>l_sole</segment>
+    <params mu="1.0" margin="0.05" usesYarp="true" />
+    <offset x="-0.02" y="-0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+    <offset x=" 0.06" y="-0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+    <offset x="-0.02" y=" 0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+    <offset x=" 0.06" y=" 0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+</task>
+
+<task name="contactSetRightFoot" type="ContactSetTaskManager">
+    <segment>r_sole</segment>
+    <params mu="1.0" margin="0.05" usesYarp="true" />
+    <offset x="-0.02" y="-0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+    <offset x=" 0.06" y="-0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+    <offset x="-0.02" y=" 0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+    <offset x=" 0.06" y=" 0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+</task>
+
+
+<task name="leftFootCartesian" type="SegCartesianTaskManager">
+    <segment>l_sole</segment>
+    <params kp="40.0" kd="12.6" weight="1.0" axes="XYZ" />
+    <!-- <offset  x="0.5" y="0.0" z="0.0" /> -->
+</task>
+
+
+<task name="rightFootCartesian" type="SegCartesianTaskManager">
+    <segment>r_sole</segment>
+    <params kp="40.0" kd="12.6" weight="1.0" axes="XYZ" />
+    <!-- <offset  x="0.5" y="0.0" z="0.0" /> -->
+</task>
