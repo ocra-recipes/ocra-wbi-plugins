@@ -6,7 +6,7 @@
         Not providing a desired value for joint tasks will default to the current joint position.
  -->
 <task name="fullPosture" type="FullPostureTaskManager">
-   <params kp="5.0" kd="4.5" weight="0.0001" />
+   <params kp="5.0" kd="4.5" weight="0.001" />
    <joints>
        <joint name="l_hip_pitch"    weight="0.0004"/>
        <joint name="l_hip_roll"     weight="0.1"/>
@@ -27,13 +27,13 @@
 </task>
 
 <task name="comTask" type="CoMTaskManager">
-    <params kp="40" weight="1.0" axes="XY"/>
+    <params kp="30" weight="1.0" axes="XY"/>
 </task>
 
-<task name="torsoCartesianTask" type="SegCartesianTaskManager">
+<!-- <task name="torsoCartesianTask" type="SegCartesianTaskManager">
     <segment>torso</segment>
     <params kp="1" kd="2" weight="0.01" axes="XY"/>
-</task>
+</task> -->
 
 <task name="contactSetLeftFoot" type="ContactSetTaskManager">
     <segment>l_sole</segment>
@@ -64,5 +64,18 @@
 <task name="rightFootCartesian" type="SegCartesianTaskManager">
     <segment>r_sole</segment>
     <params kp="40.0" weight="1.0" axes="XYZ" />
+    <!-- <offset  x="0.5" y="0.0" z="0.0" /> -->
+</task>
+
+<task name="leftFootOrientation" type="SegOrientationTaskManager">
+    <segment>l_sole</segment>
+    <params kp="40.0" weight="1.0" />
+    <!-- <offset  x="0.5" y="0.0" z="0.0" /> -->
+</task>
+
+
+<task name="rightFootOrientation" type="SegOrientationTaskManager">
+    <segment>r_sole</segment>
+    <params kp="40.0" weight="1.0" />
     <!-- <offset  x="0.5" y="0.0" z="0.0" /> -->
 </task>
