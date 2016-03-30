@@ -58,6 +58,7 @@
     <segment>l_sole</segment>
     <params kp="40.0" weight="1.0" axes="XYZ" />
     <!-- <offset  x="0.5" y="0.0" z="0.0" /> -->
+    <!-- <desired  x="0.5" y="0.0" z="0.0" /> -->
 </task>
 
 
