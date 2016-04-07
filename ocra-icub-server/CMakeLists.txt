@@ -24,7 +24,8 @@ FILE(GLOB folder_header include/${PROJECTNAME}/*.h)
 SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
 
-INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR}/include
+INCLUDE_DIRECTORIES(
+${PROJECT_SOURCE_DIR}/include
 ${OcraRecipes_INCLUDE_DIRS}
 ${OcraIcub_INCLUDE_DIRS}
 )
@@ -33,11 +34,11 @@ ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
 TARGET_LINK_LIBRARIES(
 ${PROJECTNAME}
-${OcraRecipes_LIBRARIES}
 ocra-icub
-${iDynTree_LIBRARIES}
-${yarpWholeBodyInterface_LIBRARIES}
-${Boost_LIBRARIES}
+# ${OcraRecipes_LIBRARIES}
+# ${iDynTree_LIBRARIES}
+# ${yarpWholeBodyInterface_LIBRARIES}
+# ${Boost_LIBRARIES}
 )
 
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
