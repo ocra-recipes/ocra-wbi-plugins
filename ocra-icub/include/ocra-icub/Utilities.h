@@ -72,8 +72,8 @@ namespace ocra_icub
 /*! Macro function which basically just defines pointer typdefs for classes. Note that normally macros are evil monsters but I think this is a perfect usage case to cut down on repeated code.
  *  \param Class Just pop this bad boy below the class definition and it will do the rest.
  */
-#ifndef DEFINE_CLASS_POINTER_TYPEDEFS
-#define DEFINE_CLASS_POINTER_TYPEDEFS(Class) public:\
+#ifndef CLASS_POINTER_TYPEDEFS
+#define CLASS_POINTER_TYPEDEFS(Class) public:\
 using ptr           = std::shared_ptr   <Class>;  \
 using shared_ptr    = std::shared_ptr   <Class>;  \
 using unique_ptr    = std::unique_ptr   <Class>;  \

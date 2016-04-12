@@ -46,7 +46,7 @@
  */
 class Module: public yarp::os::RFModule
 {
-// DEFINE_CLASS_POINTER_TYPEDEFS(Module)
+// CLASS_POINTER_TYPEDEFS(Module)
 
 public:
     /*! Constructor which essentially does nothing.

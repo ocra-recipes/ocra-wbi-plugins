@@ -47,7 +47,7 @@ typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> M
 /* Conversions between types/conventions used in Eigen and WBI */
 class OcraWbiConversions
 {
-// DEFINE_CLASS_POINTER_TYPEDEFS(OcraWbiConversions)
+// CLASS_POINTER_TYPEDEFS(OcraWbiConversions)
 public:
     static bool eigenDispdToWbiFrame(const Eigen::Displacementd &disp, wbi::Frame &frame);
     static bool wbiFrameToEigenDispd(const wbi::Frame &frame, Eigen::Displacementd &disp);

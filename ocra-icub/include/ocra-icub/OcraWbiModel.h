@@ -40,7 +40,7 @@ namespace ocra_icub
 
 class OcraWbiModel: public ocra::Model
 {
-// DEFINE_CLASS_POINTER_TYPEDEFS(OcraWbiModel)
+// CLASS_POINTER_TYPEDEFS(OcraWbiModel)
 
 public:
 

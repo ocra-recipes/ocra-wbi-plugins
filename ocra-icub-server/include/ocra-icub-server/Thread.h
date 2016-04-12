@@ -41,7 +41,7 @@
 
 class OcraControllerOptions
 {
-// DEFINE_CLASS_POINTER_TYPEDEFS(OcraControllerOptions)
+// CLASS_POINTER_TYPEDEFS(OcraControllerOptions)
 
 public: // Functions
     /*! Constructor. Initializes all of the possible values.
@@ -75,7 +75,7 @@ public: // Variables
  */
 class Thread: public yarp::os::RateThread
 {
-// DEFINE_CLASS_POINTER_TYPEDEFS(Thread)
+// CLASS_POINTER_TYPEDEFS(Thread)
 public:
     /*! Constructor
      *  \param controller_options The various arguments and options used to define what type of controller and tasks to use. See \ref OcraControllerOptions.
@@ -94,7 +94,7 @@ public:
      */
     class ControllerRpcServerCallback : public yarp::os::PortReader
     {
-    DEFINE_CLASS_POINTER_TYPEDEFS(ControllerRpcServerCallback)
+    CLASS_POINTER_TYPEDEFS(ControllerRpcServerCallback)
 
     public:
 
