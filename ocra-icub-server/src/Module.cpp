@@ -67,7 +67,22 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
             controller_options.solver = ocra_recipes::QUADPROG;
         }
     }
-
+    
+    if( rf.check("controllerType") )
+    {
+        std::string s = rf.find("controllerType").asString().c_str();
+        // Convert string to Uppercase.
+        std::transform(s.begin(), s.end(), s.begin(), toupper);
+        if (s == "HOCRA"){
+            controller_options.controllerType = ocra_recipes::HOCRA_CONTROLLER;
+        }
+        else if (s == "WOCRA"){
+            controller_options.controllerType = ocra_recipes::WOCRA_CONTROLLER;
+        }
+        else{
+            controller_options.controllerType = ocra_recipes::WOCRA_CONTROLLER;
+        }
+    }
 
     if( rf.check("taskSet") )
     {
