@@ -1,9 +1,9 @@
 #include <ocra-icub-server/IcubControllerServer.h>
 
-IcubControllerServer::IcubControllerServer()
-{
-
-}
+// IcubControllerServer::IcubControllerServer()
+// {
+//
+// }
 
 IcubControllerServer::IcubControllerServer( std::shared_ptr<wbi::wholeBodyInterface> robot,
                                             std::string icubName,

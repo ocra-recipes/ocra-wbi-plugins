@@ -9,7 +9,7 @@
 class IcubControllerServer : public ocra_recipes::ControllerServer
 {
 public:
-    IcubControllerServer();
+    // IcubControllerServer();
     IcubControllerServer(   std::shared_ptr<wbi::wholeBodyInterface> robot,
                             std::string icubName,
                             const bool usingFloatingBase,
