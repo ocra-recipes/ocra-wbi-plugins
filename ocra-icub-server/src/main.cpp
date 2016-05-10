@@ -42,10 +42,15 @@ int main (int argc, char * argv[])
     yarp::os::Log yLog;
 
 
-    rf.setVerbose(true);
     rf.setDefaultConfigFile("ocra-icub-server.ini"); //default config file name.
     rf.setDefaultContext(DEFAULT_YARP_CONTEXT); //when no parameters are given to the module this is the default context
     rf.configure(argc,argv);
+
+    if (rf.check("verbose")) {
+      rf.setVerbose(true);
+    }else{
+        rf.setVerbose(false);
+    }
 
     if (rf.check("help"))
     {
