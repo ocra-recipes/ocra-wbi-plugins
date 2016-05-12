@@ -1,0 +1,82 @@
+<?xml version="1.0" ?>
+ <task name="fullPosture" type="FullPostureTaskManager">
+    <params kp="10.1" kd="3.0" weight="0.001" />
+    <desired> 0.0 1.0 2.0 3.0 4.0 5.0 6.0 0.1 1.1 2.1 3.1 4.1 5.1 6.1 </desired>
+</task>
+
+<task name="poseLeftFoot" type="SegPoseTaskManager">
+    <segment>l_sole</segment>
+    <params kp="10.0" kd="3.0" weight="1.0" axes="XYZR" />
+    <offset> 0.1 0.2 0.3 0.0 0.0 0.0 1.0</offset>
+    <desired> 1.0 2.0 3.0 0.0 0.0 0.0 1.0</desired>
+</task>
+
+
+
+
+<task name="poseRightFoot" type="SegPoseTaskManager">
+    <segment>r_sole</segment>
+    <params kp="10.0" kd="3.0" weight="1.0" axes="XYZ" />
+    <offset  x="0.1" y="0.2" z="0.3" qx="0.0" qy="0.0" qz="0.0" qw="1.0" />
+    <desired x="1.1" y="1.2" z="1.3" qy="1.0" qx="0.0" qz="0.0" qw="1.1" />
+</task>
+
+
+<task name="partialPosture1" type="PartialPostureTaskManager">
+    <params kp="10.1" kd="3.0" weight="1.0" />
+    <jointIndexes> 0 1 2 3 4 </jointIndexes>
+    <desired> 0.0 1.0 2.0 3.0 4.0 </desired>
+</task>
+
+<task name="partialPosture2" type="PartialPostureTaskManager">
+    <params kp="11.1" kd="3.0" weight="1.0" />
+    <joints>
+        <joint index="0" des="1.0" />
+        <joint index="1" des="1.0" />
+        <joint index="2" des="1.0" />
+        <joint index="3" des="1.0" />
+    </joints>
+</task>
+
+
+<task name="cartLeftHand" type="SegCartesianTaskManager">
+    <segment>l_hand</segment>
+    <params kp="10.0" kd="3.0" weight="1.0" axes="XYZ" />
+    <offset  x="0.1" y="0.2" z="0.3" />
+    <desired x="1.1" y="1.2" z="1.3" />
+</task>
+
+
+<task name="cartRightHand" type="SegCartesianTaskManager">
+    <segment>r_hand</segment>
+    <params kp="10.0" kd="3.0" weight="1.0" axes="XYZ" />
+    <offset>  0.1 0.2 0.3 </offset>
+    <desired> -1.1 -1.2 -1.3 </desired>
+</task>
+
+
+<task name="contactRightFoot" type="ContactTaskManager">
+    <segment>r_sole</segment>
+    <params mu="1.0" margin="10.0" usesYarp="true" />
+    <contactPoint> 0.0 1.0 2.0 3.0 4.0 </contactPoint>
+</task>
+
+
+<task name="contactSetLeftFoot" type="ContactSetTaskManager">
+    <segment>l_sole</segment>
+    <params mu="1.0" margin="10.0" usesYarp="true" />
+    <contactOffset> 0.0 1.0 2.0 3.0 4.0 </contactOffset>
+    <contactOffset> 0.0 1.0 2.0 3.0 4.0 </contactOffset>
+    <contactOffset x="1.1" y="1.2" z="1.3" qw="1.0" qx="0.0" qy="0.0" qz="0.0" />
+    <contactOffset x="1.1" y="1.2" z="1.3" qw="1.0" qx="0.0" qy="0.0" qz="0.0" />
+</task>
+
+
+<task name="torsoPosture" type="PartialPostureTaskManager">
+    <params kp="10.0" kd="6.0" weight="0.1" />
+    <joints>
+        <joint name="torso_yaw" weight="1.0" />
+        <joint name="torso_roll" des="0.0" />
+        <joint name="torso_pitch" des="0.5" />
+    </joints>
+</task>

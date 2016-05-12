@@ -1,11 +1,10 @@
 #ifndef EXPERIMENT_H
 #define EXPERIMENT_H
 
-#include <ocraWbiPlugins/ocraWbiModel.h>
 #include "../sequenceTools.h"
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
-#include <wocra/Trajectory/wOcraGaussianProcessTrajectory.h>
+#include "ocra/control/TaskManagers/TaskSequence.h"
+#include "ocra/control/Trajectory/GaussianProcessTrajectory.h"
 
 #include <smlt/smltUtilities.hpp>
 
@@ -19,29 +18,28 @@
 
 
 
-class Experiment: public wocra::wOcraTaskSequenceBase
+class Experiment: public ocra::TaskSequence
 {
     public:
         Experiment();
         ~Experiment();
     protected:
-        virtual void doInit(wocra::wOcraController& c, wocra::wOcraModel& m);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(ocra::Controller& c, ocra::Model& m);
+        virtual void doUpdate(double time, ocra::Model& model, void** args);
     private:
-        ocraWbiModel* wbiModel;
 
         //CoM task
-        wocra::wOcraCoMTaskManager*                    comTask;
+        ocra::CoMTaskManager*                    comTask;
         Eigen::Vector3d                                initialCoMPosition;
 
         //Right hand task
         bool useVarianceModulation;
 
-        // wocra::wOcraSegPoseTaskManager* rightHandTask;
-        wocra::wOcraSegCartesianTaskManager* rightHandTask;
+        // ocra::SegPoseTaskManager* rightHandTask;
+        ocra::SegCartesianTaskManager* rightHandTask;
 
 
-        wocra::wOcraGaussianProcessTrajectory* rightHandTrajectory;
+        ocra::GaussianProcessTrajectory* rightHandTrajectory;
         Eigen::Vector3d rHandPosStart, rHandPosEnd, currentOptWaypoint;
         Eigen::VectorXd optVariables;
 
@@ -136,17 +134,17 @@ class Experiment: public wocra::wOcraTaskSequenceBase
         bool closeLogFiles();
         void sendOptimizationParameters();
         void initializeTrajectory(double time);
-        void executeTrajectory(double relativeTime,  wocra::wOcraModel& state);
+        void executeTrajectory(double relativeTime,  ocra::Model& model);
         bool sendTestDataToSolver();
         double postProcessInstantaneousCosts();
         bool parseNewOptVarsBottle();
-        bool isBackInHomePosition(const wocra::wOcraModel& state);
-        bool attainedGoal(const wocra::wOcraModel& state);
-        void calculateInstantaneousCost(const double time, const wocra::wOcraModel& state);
-        double calculateGoalCost(const double time, const wocra::wOcraModel& state);
-        double calculateTrackingCost(const double time, const wocra::wOcraModel& state);
-        double calculateEnergyCost(const double time, const wocra::wOcraModel& state);
-        bool returnToStablePosture(const double time, const wocra::wOcraModel& state);
+        bool isBackInHomePosition(const ocra::Model& model);
+        bool attainedGoal(const ocra::Model& model);
+        void calculateInstantaneousCost(const double time, const ocra::Model& model);
+        double calculateGoalCost(const double time, const ocra::Model& model);
+        double calculateTrackingCost(const double time, const ocra::Model& model);
+        double calculateEnergyCost(const double time, const ocra::Model& model);
+        bool returnToStablePosture(const double time, const ocra::Model& model);
 
         void setInitialWaypoints();
         void initializeOptimization();

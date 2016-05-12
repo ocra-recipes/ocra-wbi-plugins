@@ -1,18 +1,18 @@
 #ifndef INITIALPOSEHOLD_H
 #define INITIALPOSEHOLD_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
 // namespace sequence {
 
 
 
-    class InitialPoseHold : public wocra::wOcraTaskSequenceBase
+    class InitialPoseHold : public ocra::TaskSequence
     {
         protected:
-            virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-            virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+            virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);
+            virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
             // Full posture task
     };

@@ -1,32 +1,32 @@
 #ifndef TRAJECTORYTRACKINGTEST_H
 #define TRAJECTORYTRACKINGTEST_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
-    #include "wocra/Trajectory/wOcraTrajectory.h"
+#include "ocra/control/Trajectory/Trajectory.h"
 
 // namespace sequence {
 
-    class TrajectoryTrackingTest : public wocra::wOcraTaskSequenceBase
+    class TrajectoryTrackingTest : public ocra::TaskSequence
     {
         protected:
-            virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-            virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+            virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);
+            virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
             // // Full posture task
-            // wocra::wOcraFullPostureTaskManager*            tmFull;
+            // ocra::FullPostureTaskManager*            tmFull;
             // // Partial posture task
-            // wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+            // ocra::PartialPostureTaskManager*         tmPartialTorso;
             // // Segment left hand task
-            // wocra::wOcraSegCartesianTaskManager*           tmLeftHandCart;
-            // wocra::wOcraSegPoseTaskManager*                tmLeftHandPose;
-            // wocra::wOcraSegOrientationTaskManager*         tmLeftHandOrient;
+            // ocra::SegCartesianTaskManager*           tmLeftHandCart;
+            // ocra::SegPoseTaskManager*                tmLeftHandPose;
+            // ocra::SegOrientationTaskManager*         tmLeftHandOrient;
             //
-            // wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
+            // ocra::SegCartesianTaskManager*           tmSegCartHandRight;
 
             // trajectory
-            wocra::wOcraTrajectory*                        leftHandTrajectory;
+            ocra::Trajectory*                        leftHandTrajectory;
 
             Eigen::Displacementd endingDispd;
             Eigen::Rotation3d endingRotd;

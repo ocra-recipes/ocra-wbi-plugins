@@ -1,5 +1,4 @@
 #include <gocraController/gOcraSequenceCollection.h>
-#include <../../gocraController/include/gocraController/gocraWbiModel.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,10 +13,10 @@
 #define PI 3.1415926
 #endif
 
-void getNominalPosture(gocra::gOcraModel &model, VectorXd &q);
+void getNominalPosture(ocra::Model &model, VectorXd &q);
 
 // Sequence_InitialPoseHold
-void Sequence_InitialPoseHold::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_InitialPoseHold::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
     FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
     char keyward[256];
@@ -45,12 +44,12 @@ void Sequence_InitialPoseHold::doInit(gocra::GHCJTController& ctrl, gocra::gOcra
     ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_InitialPoseHold::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_InitialPoseHold::doUpdate(double time, ocra::Model& state, void** args)
 {
 }
 
 // Sequence_NominalPoseHold
-void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& gmodel)
+void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, ocra::Model& gmodel)
 {
     model = &gmodel;
     FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
@@ -91,7 +90,7 @@ void Sequence_NominalPose::doInit(gocra::GHCJTController& ctrl, gocra::gOcraMode
     counter = 0;
 }
 
-void Sequence_NominalPose::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_NominalPose::doUpdate(double time, ocra::Model& state, void** args)
 {
 
     Eigen::VectorXd q_current;
@@ -154,7 +153,7 @@ void Sequence_NominalPose::doUpdate(double time, gocra::gOcraModel& state, void*
 }
 
 // Sequence_LeftHandReach
-void Sequence_LeftHandReach::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& model)
+void Sequence_LeftHandReach::doInit(gocra::GHCJTController& controller, ocra::Model& model)
 {
     FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
     char keyward[256];
@@ -181,7 +180,7 @@ void Sequence_LeftHandReach::doInit(gocra::GHCJTController& controller, gocra::g
     }
 
     ctrl = &controller;
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
@@ -205,7 +204,7 @@ void Sequence_LeftHandReach::doInit(gocra::GHCJTController& controller, gocra::g
 
 }
 
-void Sequence_LeftHandReach::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_LeftHandReach::doUpdate(double time, ocra::Model& state, void** args)
 {
     if (!tInitialSet){
         tInitial=time;
@@ -240,7 +239,7 @@ void Sequence_LeftHandReach::doUpdate(double time, gocra::gOcraModel& state, voi
 
 
 // Sequence_ComLeftHandReach
-void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel)
+void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, ocra::Model& gmodel)
 {
     FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
 
@@ -292,7 +291,7 @@ void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra
 
     ctrl = &controller;
     model = &gmodel;
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(gmodel);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(gmodel);
     // Full posture task
     nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
     getNominalPosture(*model, nominal_q);
@@ -363,11 +362,11 @@ void Sequence_ComLeftHandReach::doInit(gocra::GHCJTController& controller, gocra
 
 }
 
-void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_ComLeftHandReach::doUpdate(double time, ocra::Model& state, void** args)
 {
 
 
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(*model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(*model);
     int start = 400;
 
     if (counter==start){
@@ -596,7 +595,7 @@ void Sequence_ComLeftHandReach::doUpdate(double time, gocra::gOcraModel& state, 
 
 
 // Sequence_ComLeftHandReachReplay
-void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller, gocra::gOcraModel& gmodel)
+void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller, ocra::Model& gmodel)
 {
     FILE *infile = fopen("/home/codyco/icub/software/src/codyco-superbuild/main/ocra-wbi-plugins/modules/gocraController/param.txt", "r");
 
@@ -641,7 +640,7 @@ void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller,
 
     ctrl = &controller;
     model = &gmodel;
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(gmodel);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(gmodel);
     // Full posture task
     nominal_q = Eigen::VectorXd::Zero(model->nbInternalDofs());
     getNominalPosture(*model, nominal_q);
@@ -686,11 +685,11 @@ void Sequence_ComLeftHandReachReplay::doInit(gocra::GHCJTController& controller,
 
 }
 
-void Sequence_ComLeftHandReachReplay::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_ComLeftHandReachReplay::doUpdate(double time, ocra::Model& state, void** args)
 {
 
 
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(*model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(*model);
 
     if (counter <= end){
         errCoM[counter] = tmHead->getTaskError().norm();
@@ -752,9 +751,9 @@ void Sequence_ComLeftHandReachReplay::doUpdate(double time, gocra::gOcraModel& s
 }
 
 // Sequence_LeftRightHandReach
-void Sequence_LeftRightHandReach::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_LeftRightHandReach::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
     // Full posture task
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getNominalPosture(model, nominal_q);
@@ -792,13 +791,13 @@ void Sequence_LeftRightHandReach::doInit(gocra::GHCJTController& ctrl, gocra::gO
     ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_LeftRightHandReach::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_LeftRightHandReach::doUpdate(double time, ocra::Model& state, void** args)
 {
 }
 
-void Sequence_CartesianTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_CartesianTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -845,7 +844,7 @@ void Sequence_CartesianTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraMo
 
 }
 
-void Sequence_CartesianTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_CartesianTest::doUpdate(double time, ocra::Model& state, void** args)
 {
     // tmLeftHandCart->setPosition(desiredPos);
     std::cout << "\n---\nDesired position: " << desiredPos.transpose() << std::endl;
@@ -863,9 +862,9 @@ void Sequence_CartesianTest::doUpdate(double time, gocra::gOcraModel& state, voi
 
 
 
-void Sequence_PoseTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_PoseTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -915,7 +914,7 @@ void Sequence_PoseTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& 
     ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_PoseTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_PoseTest::doUpdate(double time, ocra::Model& state, void** args)
 {
     // tmLeftHandCart->setPosition(desiredPos);
     std::cout << "\n---\nDesired pose: " << endingDispd << std::endl;
@@ -938,9 +937,9 @@ void Sequence_PoseTest::doUpdate(double time, gocra::gOcraModel& state, void** a
 
 
 
-void Sequence_OrientationTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_OrientationTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -982,7 +981,7 @@ void Sequence_OrientationTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcra
     ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_OrientationTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_OrientationTest::doUpdate(double time, ocra::Model& state, void** args)
 {
     std::cout << "\n---\nStarting orientation: " << startingRotd << std::endl;
     std::cout << "Desired orientation: " << endingRotd << std::endl;
@@ -1002,9 +1001,9 @@ void Sequence_OrientationTest::doUpdate(double time, gocra::gOcraModel& state, v
 /*
 
 // Sequence_TrajectoryTrackingTest
-void Sequence_TrajectoryTrackingTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_TrajectoryTrackingTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
 
     // Task Coeffs
     double Kp = 10.0;
@@ -1126,7 +1125,7 @@ void Sequence_TrajectoryTrackingTest::doInit(gocra::GHCJTController& ctrl, gocra
 
 
 
-void Sequence_TrajectoryTrackingTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_TrajectoryTrackingTest::doUpdate(double time, ocra::Model& state, void** args)
 {
     if (isDisplacementd)
     {
@@ -1176,7 +1175,7 @@ void Sequence_TrajectoryTrackingTest::doUpdate(double time, gocra::gOcraModel& s
 }
 */
 
-void Sequence_FloatingBaseEstimationTests::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_FloatingBaseEstimationTests::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
     Eigen::VectorXd q_init = model.getJointPositions();
     std::cout << "q init: " << q_init << std::endl;
@@ -1189,7 +1188,7 @@ void Sequence_FloatingBaseEstimationTests::doInit(gocra::GHCJTController& ctrl, 
     ctrl.setTaskProjectors(param_priority);
 }
 
-void Sequence_FloatingBaseEstimationTests::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_FloatingBaseEstimationTests::doUpdate(double time, ocra::Model& state, void** args)
 {
 }
 
@@ -1198,9 +1197,9 @@ void Sequence_FloatingBaseEstimationTests::doUpdate(double time, gocra::gOcraMod
 
 
 // Sequence_LeftRightHandReach
-void Sequence_JointTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel& model)
+void Sequence_JointTest::doInit(gocra::GHCJTController& ctrl, ocra::Model& model)
 {
-    gocraWbiModel& wbiModel = dynamic_cast<gocraWbiModel&>(model);
+    ocra_yarp::OcraWbiModel& wbiModel = dynamic_cast<ocra_yarp::OcraWbiModel&>(model);
     // Full posture task
     nDoF = model.nbInternalDofs();
     // Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(nDoF);
@@ -1233,7 +1232,7 @@ void Sequence_JointTest::doInit(gocra::GHCJTController& ctrl, gocra::gOcraModel&
 
 }
 
-void Sequence_JointTest::doUpdate(double time, gocra::gOcraModel& state, void** args)
+void Sequence_JointTest::doUpdate(double time, ocra::Model& state, void** args)
 {
     Eigen::VectorXd taskErrorVector = tmFull->getTaskError();
     // std::cout << taskErrorVector.transpose() << std::endl;
@@ -1276,7 +1275,7 @@ void Sequence_JointTest::doUpdate(double time, gocra::gOcraModel& state, void** 
 }
 
 
-void getNominalPosture(gocra::gOcraModel& model, VectorXd &q)
+void getNominalPosture(ocra::Model& model, VectorXd &q)
 {
     q[model.getDofIndex("torso_pitch")] = M_PI / 18;
     q[model.getDofIndex("r_elbow")] = M_PI / 4;

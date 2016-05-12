@@ -1,13 +1,12 @@
 #ifndef TASKOPTIMIZATION_H
 #define TASKOPTIMIZATION_H
 
-#include <ocraWbiPlugins/ocraWbiModel.h>
 
 
 #include "../sequenceTools.h"
 
-#include <wocra/Tasks/wOcraTaskSequenceBase.h>
-#include <wocra/Trajectory/wOcraGaussianProcessTrajectory.h>
+#include "ocra/control/TaskManagers/TaskSequence.h"
+#include "ocra/control/Trajectory/GaussianProcessTrajectory.h"
 
 #include <smlt/smltUtilities.hpp>
 
@@ -22,31 +21,30 @@
 #include <boost/filesystem.hpp>
 
 
-class TaskOptimization : public wocra::wOcraTaskSequenceBase
+class TaskOptimization : public ocra::TaskSequence
 {
     public:
         TaskOptimization();
         ~TaskOptimization();
     protected:
-        virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-        virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+        virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);
+        virtual void doUpdate(double time, ocra::Model& model, void** args);
     private:
-        ocraWbiModel* wbiModel;
 
         void connectYarpPorts();
         void bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::VectorXd& vecToBottle, const bool encapsulate=false);
-        bool attainedGoal(wocra::wOcraModel& state, int segmentIndex);
-        bool isBackInHomePosition(wocra::wOcraModel& state, int segmentIndex);
+        bool attainedGoal(ocra::Model& model, int segmentIndex);
+        bool isBackInHomePosition(ocra::Model& model, int segmentIndex);
 
         Eigen::VectorXd mapVarianceToWeights(Eigen::VectorXd& variance);
         void sendFramePositionsToGazebo();
         void sendOptimizationParameters();
 
 
-        void calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
-        double calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
-        double calculateTrackingCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
-        double calculateEnergyCost(const double time, const wocra::wOcraModel& state, int segmentIndex);
+        void calculateInstantaneousCost(const double time, const ocra::Model& model, int segmentIndex);
+        double calculateGoalCost(const double time, const ocra::Model& model, int segmentIndex);
+        double calculateTrackingCost(const double time, const ocra::Model& model, int segmentIndex);
+        double calculateEnergyCost(const double time, const ocra::Model& model, int segmentIndex);
         // void checkAndCreateDirectory(const std::string dirPath)
         // {
         //     if (!boost::filesystem::exists(dirPath)) {
@@ -57,7 +55,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         int dofIndex;
 
-        wocra::wOcraGaussianProcessTrajectory* rightHandTrajectory;
+        ocra::GaussianProcessTrajectory* rightHandTrajectory;
 
         yarp::os::Network yarp;
         yarp::os::BufferedPort<yarp::os::Bottle> optVarsPortOut;
@@ -77,7 +75,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         int rHandIndex;
 
-        wocra::wOcraVariableWeightsTaskManager* rightHandTask;
+        ocra::VariableWeightsTaskManager* rightHandTask;
 
         double maxVariance;
 
@@ -126,7 +124,7 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
         bool closeLogFiles();
 
         void initializeTrajectory(double time);
-        void executeTrajectory(double relativeTime,  wocra::wOcraModel& state);
+        void executeTrajectory(double relativeTime,  ocra::Model& model);
         bool parseNewOptVarsBottle();
 
         double obstacleTime;
@@ -145,8 +143,8 @@ class TaskOptimization : public wocra::wOcraTaskSequenceBase
 
         bool runObstacleTest_1D, runObstacleTest_3D, runArmCrossingTest, useVarianceModulation;
 
-        void obstacleTest_UpdateThread(double time, wocra::wOcraModel& state);
-        void ArmCrossingTest_UpdateThread(double time, wocra::wOcraModel& state);
+        void obstacleTest_UpdateThread(double time, ocra::Model& model);
+        void ArmCrossingTest_UpdateThread(double time, ocra::Model& model);
 
 
 };

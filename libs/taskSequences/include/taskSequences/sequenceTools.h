@@ -1,7 +1,7 @@
 #ifndef SEQUENCETOOLS_H
 #define SEQUENCETOOLS_H
 
-#include "wocra/Models/wOcraModel.h"
+#include "ocra/control/Model.h"
 #include <Eigen/Dense>
 
 
@@ -17,8 +17,8 @@
 
 using namespace Eigen;
 
-void getNominalPosture(wocra::wOcraModel &model, VectorXd &q);
-void getHomePosture(wocra::wOcraModel &model, VectorXd &q);
+void getNominalPosture(ocra::Model &model, VectorXd &q);
+void getHomePosture(ocra::Model &model, VectorXd &q);
 
 
 #endif

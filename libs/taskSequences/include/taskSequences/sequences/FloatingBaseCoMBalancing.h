@@ -1,33 +1,36 @@
 #ifndef FLOATINGBASECOMBALANCING_H
 #define FLOATINGBASECOMBALANCING_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
-#include "wocra/Constraints/JointLimitConstraint.h"
-#include "wocra/Constraints/TorqueLimitConstraint.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
+#include "ocra/control/TorqueLimitConstraint.h"
+#include "ocra/control/JointLimitConstraint.h"
 #include "../sequenceTools.h"
+
+#include "wocra/WocraController.h"
+
 
 #include <fstream>
 
 // namespace sequence {
 
 
-    class FloatingBaseCoMBalancing: public wocra::wOcraTaskSequenceBase
+    class FloatingBaseCoMBalancing: public ocra::TaskSequence
     {
         protected:
-            virtual void doInit(wocra::wOcraController& c, wocra::wOcraModel& m);
-            virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+            virtual void doInit(ocra::Controller& c, ocra::Model& m);
+            virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
-            wocra::wOcraController*                        ctrl;
-            wocra::wOcraModel*                             model;
+            wocra::WocraController*                        ctrl;
+            ocra::Model*                             model;
 
             //CoM task
-            wocra::wOcraCoMTaskManager*                    tmCoM;
+            ocra::CoMTaskManager*                    tmCoM;
             void sinusoidalTraj(double left, double right, double period, double t, double& posTraj, double& velTraj, double& accTraj);
 
             //Limits
-            wocra::JointLimitConstraint*                   jlConstraint;
+            ocra::JointLimitConstraint*                   jlConstraint;
             Eigen::VectorXd                                torqueSaturationLimit;
-            wocra::TorqueLimitConstraint*                  tauLimitConstraint;
+            ocra::TorqueLimitConstraint*                  tauLimitConstraint;
             void setJointTorqueLimits();
             void setJointLimits(double hpos);
 

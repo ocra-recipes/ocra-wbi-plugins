@@ -80,10 +80,8 @@ StandingReach::~StandingReach()
 }
 
 
-void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void StandingReach::doInit(ocra::Controller& ctrl, ocra::Model& model)
 {
-    ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
-    wbiModel = &wbiModelRef;
 
     varianceThresh = Eigen::Array3d::Constant(VAR_THRESH);
 
@@ -120,73 +118,73 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     Eigen::VectorXd weights_rightHand = rightHandStaticWeight;
 
     // Initialise full posture task
-    Eigen::VectorXd q_full = wbiModel->getJointPositions();
-    // q_full[wbiModel->getDofIndex("l_knee")] = -PI / 3;
-    // q_full[wbiModel->getDofIndex("r_knee")] = -PI / 3;
+    Eigen::VectorXd q_full = model.getJointPositions();
+    // q_full[model.getDofIndex("l_knee")] = -PI / 3;
+    // q_full[model.getDofIndex("r_knee")] = -PI / 3;
 
-    // q_full[wbiModel->getDofIndex("l_shoulder_roll")] = PI / 6;
-
-
-    Eigen::VectorXd w_full = Eigen::VectorXd::Constant(wbiModel->nbInternalDofs(), weight_fullPosture);
-
-    w_full[wbiModel->getDofIndex("l_hip_pitch")] = 0.0004; //0.0004
-    w_full[wbiModel->getDofIndex("l_hip_roll")] = 0.1;
-    w_full[wbiModel->getDofIndex("l_hip_yaw")] = 0.1;
-    w_full[wbiModel->getDofIndex("r_hip_pitch")] = 0.0004; //0.0004
-    w_full[wbiModel->getDofIndex("r_hip_roll")] = 0.1;
-    w_full[wbiModel->getDofIndex("r_hip_yaw")] = 0.1;
+    // q_full[model.getDofIndex("l_shoulder_roll")] = PI / 6;
 
 
-    w_full[wbiModel->getDofIndex("l_ankle_pitch")] = 1.0;
-    w_full[wbiModel->getDofIndex("r_ankle_pitch")] = 1.0;
+    Eigen::VectorXd w_full = Eigen::VectorXd::Constant(model.nbInternalDofs(), weight_fullPosture);
+
+    w_full[model.getDofIndex("l_hip_pitch")] = 0.0004; //0.0004
+    w_full[model.getDofIndex("l_hip_roll")] = 0.1;
+    w_full[model.getDofIndex("l_hip_yaw")] = 0.1;
+    w_full[model.getDofIndex("r_hip_pitch")] = 0.0004; //0.0004
+    w_full[model.getDofIndex("r_hip_roll")] = 0.1;
+    w_full[model.getDofIndex("r_hip_yaw")] = 0.1;
+
+
+    w_full[model.getDofIndex("l_ankle_pitch")] = 1.0;
+    w_full[model.getDofIndex("r_ankle_pitch")] = 1.0;
 
 
 
-    w_full[wbiModel->getDofIndex("l_knee")] = 0.0004; //0.0004
-    w_full[wbiModel->getDofIndex("r_knee")] = 0.0004; //0.0004
+    w_full[model.getDofIndex("l_knee")] = 0.0004; //0.0004
+    w_full[model.getDofIndex("r_knee")] = 0.0004; //0.0004
 
 
-    w_full[wbiModel->getDofIndex("torso_pitch")] = 0.1;
-    w_full[wbiModel->getDofIndex("torso_roll")] = 0.01;
-    w_full[wbiModel->getDofIndex("torso_yaw")] = 0.001;
+    w_full[model.getDofIndex("torso_pitch")] = 0.1;
+    w_full[model.getDofIndex("torso_roll")] = 0.01;
+    w_full[model.getDofIndex("torso_yaw")] = 0.001;
 
-    w_full[wbiModel->getDofIndex("r_elbow")] = 0.00001;
-    w_full[wbiModel->getDofIndex("l_elbow")] = 0.00001;
+    w_full[model.getDofIndex("r_elbow")] = 0.00001;
+    w_full[model.getDofIndex("l_elbow")] = 0.00001;
 
-    // w_full[wbiModel->getDofIndex("l_ankle_roll")] = ;
-    // w_full[wbiModel->getDofIndex("l_knee")] = ;
-    // w_full[wbiModel->getDofIndex("r_knee")] = ;
-    // w_full[wbiModel->getDofIndex("r_ankle_roll")] = ;
-    // w_full[wbiModel->getDofIndex("r_shoulder_pitch")] = 0.00001;
-    // w_full[wbiModel->getDofIndex("r_shoulder_roll")] = 0.00001;
-    // w_full[wbiModel->getDofIndex("r_shoulder_yaw")] = 0.00001;
+    // w_full[model.getDofIndex("l_ankle_roll")] = ;
+    // w_full[model.getDofIndex("l_knee")] = ;
+    // w_full[model.getDofIndex("r_knee")] = ;
+    // w_full[model.getDofIndex("r_ankle_roll")] = ;
+    // w_full[model.getDofIndex("r_shoulder_pitch")] = 0.00001;
+    // w_full[model.getDofIndex("r_shoulder_roll")] = 0.00001;
+    // w_full[model.getDofIndex("r_shoulder_yaw")] = 0.00001;
 
-    // w_full[wbiModel->getDofIndex("l_shoulder_roll")] = 1.0;
+    // w_full[model.getDofIndex("l_shoulder_roll")] = 1.0;
 
 
-    taskManagers["fullPostureTask"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, w_full, q_full, usesYARP);
+    taskManagers["fullPostureTask"] = std::make_shared<ocra::FullPostureTaskManager>(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, w_full, q_full, usesYARP);
 
 
 
     // Initialise com task
-    initialCoMPosition = wbiModel->getCoMPosition();
-    taskManagers["CoMTask"] = new wocra::wOcraCoMTaskManager(ctrl, model, "CoMTask", ocra::XY, Kp_CoM, Kd_CoM, weight_CoM, initialCoMPosition, usesYARP);
-    comTask = dynamic_cast<wocra::wOcraCoMTaskManager*>(taskManagers["CoMTask"]);
+    initialCoMPosition = model.getCoMPosition();
+    taskManagers["CoMTask"] = std::make_shared<ocra::CoMTaskManager>(ctrl, model, "CoMTask", ocra::XY, Kp_CoM, Kd_CoM, weight_CoM, initialCoMPosition, usesYARP);
+    comTask = dynamic_cast<ocra::CoMTaskManager*>(taskManagers["CoMTask"].get());
 
 
     // Initialise torso pose
     Eigen::Vector3d desiredTorsoPosition, XYZdisp;
-    desiredTorsoPosition = wbiModel->getSegmentPosition(wbiModel->getSegmentIndex("torso")).getTranslation();
+    desiredTorsoPosition = model.getSegmentPosition(model.getSegmentIndex("torso")).getTranslation();
     XYZdisp << 0.0, 0.0, 0.0;
     desiredTorsoPosition = desiredTorsoPosition + XYZdisp;
-    taskManagers["torsoCartesianTask"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "torsoCartesian", "torso", ocra::XY, Kp_torso, Kd_torso, weight_torso, desiredTorsoPosition, usesYARP);
+    taskManagers["torsoCartesianTask"] = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "torsoCartesian", "torso", ocra::XY, Kp_torso, Kd_torso, weight_torso, desiredTorsoPosition, usesYARP);
 
     // Initialise root pose
     // Eigen::Vector3d desiredRootPosition;
-    // desiredRootPosition = wbiModel->getSegmentPosition(wbiModel->getSegmentIndex("root_link")).getTranslation();
+    // desiredRootPosition = model.getSegmentPosition(model.getSegmentIndex("root_link")).getTranslation();
     // // XYZdisp << 0.0, 0.0, 0.0;
     // desiredRootPosition = desiredRootPosition + XYZdisp;
-    // taskManagers["rootCartesianTask"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rootCartesian", "root_link", ocra::XY, Kp_root, Kd_root, weight_root, desiredRootPosition, usesYARP);
+    // taskManagers["rootCartesianTask"] = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "rootCartesian", "root_link", ocra::XY, Kp_root, Kd_root, weight_root, desiredRootPosition, usesYARP);
 
 
 
@@ -210,14 +208,14 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotLZdown));
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotLZdown));
     LFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotLZdown));
-    taskManagers["leftFootContactTask"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
+    taskManagers["leftFootContactTask"] = std::make_shared<ocra::ContactSetTaskManager>(ctrl, model, "leftFootContactTask", "l_sole", LFContacts, mu_sys, margin);
 
     std::vector<Eigen::Displacementd> RFContacts;
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02,-0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06,-0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d(-0.02, 0.02,0.0), rotRZdown));
     RFContacts.push_back(Eigen::Displacementd(Eigen::Vector3d( 0.06, 0.02,0.0), rotRZdown));
-    taskManagers["rightFootContactTask"] = new wocra::wOcraContactSetTaskManager(ctrl, model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
+    taskManagers["rightFootContactTask"] = std::make_shared<ocra::ContactSetTaskManager>(ctrl, model, "rightFootContactTask", "r_sole", RFContacts, mu_sys, margin);
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,7 +230,7 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     // double weight_rightHandOrientation  = 0.01;
     //
     //
-    // taskManagers["rightHandOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, usesYARP);
+    // taskManagers["rightHandOrientationTask"] = std::make_shared<ocra::SegOrientationTaskManager>(ctrl, model, "rightHandOrientationTask", "r_hand", Kp_rightHandOrientation, Kd_rightHandOrientation, weight_rightHandOrientation, usesYARP);
 
     //  head
     // double Kp_headOrientation = 5.0;
@@ -240,7 +238,7 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
     // double weight_headOrientation  = 0.01;
     //
     //
-    // taskManagers["headOrientationTask"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "headOrientationTask", "head", Kp_headOrientation, Kd_headOrientation, weight_headOrientation, usesYARP);
+    // taskManagers["headOrientationTask"] = std::make_shared<ocra::SegOrientationTaskManager>(ctrl, model, "headOrientationTask", "head", Kp_headOrientation, Kd_headOrientation, weight_headOrientation, usesYARP);
     double Kp_leftHand = 40.0;
     double Kd_leftHand = 2.0 *sqrt(Kp_leftHand);
     double weight_leftHand = 1.0 / VAR_BETA;
@@ -252,23 +250,23 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
 
     Eigen::Vector3d l_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    taskManagers["leftHand"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "leftHand", "l_hand", l_handDisp, ocra::XYZ, Kp_leftHand, Kd_leftHand, weight_leftHand, desiredPos, usesYARP);
+    taskManagers["leftHand"] = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "leftHand", "l_hand", l_handDisp, ocra::XYZ, Kp_leftHand, Kd_leftHand, weight_leftHand, desiredPos, usesYARP);
 
 
 
 
     //  rightHand
     Eigen::Vector3d r_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    // taskManagers["rightHand"] = new wocra::wOcraVariableWeightsTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
-    taskManagers["rightHand"] = new wocra::wOcraSegCartesianTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    // taskManagers["rightHand"] = std::make_shared<ocra::VariableWeightsTaskManager>(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    taskManagers["rightHand"] = std::make_shared<ocra::SegCartesianTaskManager>(ctrl, model, "rightHand", "r_hand", r_handDisp, ocra::XYZ, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
 
 
     // Trajectory constructor
-    rightHandTrajectory = new wocra::wOcraGaussianProcessTrajectory();
+    rightHandTrajectory = new ocra::GaussianProcessTrajectory();
 
     // Cast tasks to derived classes to access their virtual functions
-    // rightHandTask = dynamic_cast<wocra::wOcraVariableWeightsTaskManager*>(taskManagers["rightHand"]);
-    rightHandTask = dynamic_cast<wocra::wOcraSegCartesianTaskManager*>(taskManagers["rightHand"]);
+    // rightHandTask = dynamic_cast<ocra::VariableWeightsTaskManager*>(taskManagers["rightHand"].get());
+    rightHandTask = dynamic_cast<ocra::SegCartesianTaskManager*>(taskManagers["rightHand"].get());
 
     rHandPosStart = rightHandTask->getTaskFramePosition();
     Eigen::Vector3d rHandDisplacement;
@@ -364,7 +362,7 @@ void StandingReach::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& mode
 
 
 
-void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void StandingReach::doUpdate(double time, ocra::Model& model, void** args)
 {
     sendFramePositionsToGazebo();
 
@@ -384,16 +382,16 @@ void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
             {
                 double relativeTime = time - resetTimeRight;
 
-                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state))
+                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(model))
                 {
-                    executeTrajectory(relativeTime, state);
+                    executeTrajectory(relativeTime, model);
                 }
                 else
                 {
                     if((std::abs(relativeTime) > TIME_LIMIT)){
                         std::cout << "Time limit exceeded!" << std::endl;
                     }
-                    if (attainedGoal(state)) {
+                    if (attainedGoal(model)) {
                         std::cout << "Goal attained!" << std::endl;
                     }
 
@@ -402,7 +400,7 @@ void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
             }
             else
             {
-                bool robotIsStable = returnToStablePosture(time, state);
+                bool robotIsStable = returnToStablePosture(time, model);
 
                 if (!dataSent_AwaitReply)
                 {
@@ -447,15 +445,15 @@ void StandingReach::doUpdate(double time, wocra::wOcraModel& state, void** args)
         {
             double relativeTime = time - resetTimeRight;
 
-            if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state) && !waitForHomePosition)
+            if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(model) && !waitForHomePosition)
             {
-                executeTrajectory(relativeTime, state);
+                executeTrajectory(relativeTime, model);
             }
             else
             {
                 postProcessInstantaneousCosts();
 
-                // bool robotIsStable = returnToStablePosture(time, state);
+                // bool robotIsStable = returnToStablePosture(time, model);
                 bool robotIsStable = false;
 
                 if(logTrajectoryData)
@@ -545,10 +543,10 @@ void StandingReach::initializeTrajectory(double time)
 
 
 
-void StandingReach::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
+void StandingReach::executeTrajectory(double relativeTime,  ocra::Model& model)
 {
     // Claculate cost at timestep and write to file if logging.
-    calculateInstantaneousCost(relativeTime, state);
+    calculateInstantaneousCost(relativeTime, model);
 
     if(logTrajectoryData)
     {
@@ -584,7 +582,7 @@ Eigen::VectorXd StandingReach::mapVarianceToWeights(Eigen::VectorXd& variance)
     return weights;
 }
 
-bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraModel& state)
+bool StandingReach::returnToStablePosture(const double time, const ocra::Model& model)
 {
 
     bool robotIsStable = false;
@@ -626,7 +624,7 @@ bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraM
                 rightHandTask->setWeight(rightHandStaticWeight);
             }
         }else{
-            robotIsStable = isBackInHomePosition(state);
+            robotIsStable = isBackInHomePosition(model);
         }
     }
 
@@ -636,7 +634,7 @@ bool StandingReach::returnToStablePosture(const double time, const wocra::wOcraM
 }
 
 
-bool StandingReach::isBackInHomePosition(const wocra::wOcraModel& state)
+bool StandingReach::isBackInHomePosition(const ocra::Model& model)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -646,7 +644,7 @@ bool StandingReach::isBackInHomePosition(const wocra::wOcraModel& state)
     return result;
 }
 
-bool StandingReach::attainedGoal(const wocra::wOcraModel& state)
+bool StandingReach::attainedGoal(const ocra::Model& model)
 {
     double error;
     error = (rHandPosEnd - rightHandTask->getTaskFramePosition() ).norm();
@@ -665,24 +663,24 @@ bool StandingReach::attainedGoal(const wocra::wOcraModel& state)
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-void StandingReach::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state)
+void StandingReach::calculateInstantaneousCost(const double time, const ocra::Model& model)
 {
 
     if (useGoalCost){
-        goalCostMat.row(costIterCounter) << time, calculateGoalCost(time, state);
+        goalCostMat.row(costIterCounter) << time, calculateGoalCost(time, model);
     }
     if (useTrackingCost){
-        trackingCostMat.row(costIterCounter) << time, calculateTrackingCost(time, state);
+        trackingCostMat.row(costIterCounter) << time, calculateTrackingCost(time, model);
     }
     if (useEnergyCost){
-        energyCostMat.row(costIterCounter) << time, calculateEnergyCost(time, state);
+        energyCostMat.row(costIterCounter) << time, calculateEnergyCost(time, model);
     }
 
     costIterCounter++;
 
 }
 
-double StandingReach::calculateGoalCost(const double time, const wocra::wOcraModel& state)
+double StandingReach::calculateGoalCost(const double time, const ocra::Model& model)
 {
     double cost = ( rHandPosEnd - rightHandTask->getTaskFramePosition() ).squaredNorm();
     double timeFactor = pow((time / rightHandTrajectory->getDuration()), 2);
@@ -692,17 +690,16 @@ double StandingReach::calculateGoalCost(const double time, const wocra::wOcraMod
 }
 
 
-double StandingReach::calculateTrackingCost(const double time, const wocra::wOcraModel& state)
+double StandingReach::calculateTrackingCost(const double time, const ocra::Model& model)
 {
     double cost = ( desiredPosVelAcc_rightHand.col(0) - rightHandTask->getTaskFramePosition() ).squaredNorm();
     return cost;
 }
 
 
-double StandingReach::calculateEnergyCost(const double time, const wocra::wOcraModel& state)
+double StandingReach::calculateEnergyCost(const double time, const ocra::Model& model)
 {
-    Eigen::VectorXd torques;
-    wbiModel->getJointTorques(torques);
+    Eigen::VectorXd torques = model.getJointTorques();
     return torques.squaredNorm();
 }
 

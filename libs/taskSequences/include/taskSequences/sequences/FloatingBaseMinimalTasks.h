@@ -1,21 +1,20 @@
 #ifndef FLOATINGBASEMINIMALTASKS_H
 #define FLOATINGBASEMINIMALTASKS_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
 // namespace sequence {
 
 
-    class FloatingBaseMinimalTasks: public wocra::wOcraTaskSequenceBase
+    class FloatingBaseMinimalTasks: public ocra::TaskSequence
     {
         protected:
-            virtual void doInit(wocra::wOcraController& c, wocra::wOcraModel& m);
-            virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+            virtual void doInit(ocra::Controller& c, ocra::Model& m);
+            virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
-            wocra::wOcraController*                        ctrl;
-            wocra::wOcraModel*                             model;
-            wocra::wOcraCoMTaskManager*                    tmCoM;
+            ocra::Model*                             model;
+            ocra::CoMTaskManager*                    tmCoM;
 
     };
 

@@ -1,27 +1,27 @@
 #ifndef LEFTRIGHTHANDREACH_H
 #define LEFTRIGHTHANDREACH_H
 
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "../sequenceTools.h"
 
 // namespace sequence {
 
-    class LeftRightHandReach : public wocra::wOcraTaskSequenceBase
+    class LeftRightHandReach : public ocra::TaskSequence
     {
         protected:
-            virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
-            virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);
+            virtual void doInit(ocra::Controller& ctrl, ocra::Model& model);
+            virtual void doUpdate(double time, ocra::Model& state, void** args);
         private:
             // // Full posture task
-            // wocra::wOcraFullPostureTaskManager*            tmFull;
+            // ocra::FullPostureTaskManager*            tmFull;
             // // Partial posture task for torso
-            // wocra::wOcraPartialPostureTaskManager*         tmPartialTorso;
+            // ocra::PartialPostureTaskManager*         tmPartialTorso;
             // // CoM task for torso
-            // wocra::wOcraCoMTaskManager*                    tmCoM;
+            // ocra::CoMTaskManager*                    tmCoM;
             // // Segment left hand task
-            // wocra::wOcraSegCartesianTaskManager*           tmSegCartHandLeft;
+            // ocra::SegCartesianTaskManager*           tmSegCartHandLeft;
             // // Segment right hand task
-            // wocra::wOcraSegCartesianTaskManager*           tmSegCartHandRight;
+            // ocra::SegCartesianTaskManager*           tmSegCartHandRight;
     };
 
 // }

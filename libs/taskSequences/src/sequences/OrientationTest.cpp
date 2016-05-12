@@ -1,10 +1,10 @@
 #include <taskSequences/sequences/OrientationTest.h>
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
-    void OrientationTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void OrientationTest::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
-        ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+        // ocraWbiModel& model = dynamic_cast<ocraWbiModel&>(model);
 
         // Task Coeffs
         double Kp = 40.0;
@@ -16,14 +16,14 @@
         // Full posture task
         Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);
-        taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+        taskManagers["tmFull"] = std::make_shared<ocra::FullPostureTaskManager>(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
         // Partial (torso) posture task
         Eigen::VectorXi torso_indices(3);
         Eigen::VectorXd torsoTaskPosDes(3);
-        torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
+        torso_indices << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
         torsoTaskPosDes << M_PI / 18, 0, 0;
-        taskManagers["tmPartialTorso"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+        taskManagers["tmPartialTorso"] = std::make_shared<ocra::PartialPostureTaskManager>(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
 
         lHandIndex = model.getSegmentIndex("r_hand");
 
@@ -40,12 +40,12 @@
 
 
         // Left hand orientation task
-        taskManagers["tmLeftHandOrient"]    = new wocra::wOcraSegOrientationTaskManager(ctrl, model, "leftHandOrientationTask", "r_hand", Kp, Kd, Eigen::Vector3d(0.0, 1.0, 0.0), endingRotd);
+        taskManagers["tmLeftHandOrient"] = std::make_shared<ocra::SegOrientationTaskManager>(ctrl, model, "leftHandOrientationTask", "r_hand", Kp, Kd, Eigen::Vector3d(0.0, 1.0, 0.0), endingRotd);
     }
 
-    void OrientationTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void OrientationTest::doUpdate(double time, ocra::Model& state, void** args)
     {
-        wocra::wOcraSegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<wocra::wOcraSegOrientationTaskManager*>(taskManagers["tmLeftHandOrient"]);
+        ocra::SegOrientationTaskManager*   tmp_tmLeftHandOrient = dynamic_cast<ocra::SegOrientationTaskManager*>(taskManagers["tmLeftHandOrient"].get());
         std::cout << "\n---\nStarting orientation: " << startingRotd << std::endl;
         std::cout << "Desired orientation: " << endingRotd << std::endl;
         std::cout << "Current orientation: " << state.getSegmentPosition(lHandIndex).getRotation()<< std::endl;

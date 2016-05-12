@@ -31,11 +31,11 @@
 
 #include <wbi/wbi.h>
 
-#include "gocraWbiModel.h"
+#include <ocra-yarp/OcraWbiModel.h>
+#include <ocra-yarp/OcraWbiConversions.h>
 //#include "gOcraCtrlTaskManager.h"
 #include <gocraController/gOcraSequenceCollection.h>
 #include "gocra/GHCJTController.h"
-#include "gocra/Solvers/OneLevelSolver.h"
 #include "gocra/Tasks/gOcraTaskManagerCollectionBase.h"
 
 
@@ -54,10 +54,10 @@ class gocraControllerThread: public RateThread
     string replayJointAnglesPath;
     bool isReplayMode;
     wholeBodyInterface *robot;
-    gocraWbiModel *ocraModel;
+    ocra_yarp::OcraWbiModel *ocraModel;
     yarp::os::Property options;
     gocra::GHCJTController *ctrl;
-    gocra::OneLevelSolverWithQuadProg internalSolver;
+    ocra::OneLevelSolverWithQuadProg internalSolver;
 
     gocra::gOcraTaskManagerCollectionBase* sequence;
     // wocra::wOcraTaskManagerCollectionBase* sequence_01;

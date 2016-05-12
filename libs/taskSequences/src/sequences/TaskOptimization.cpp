@@ -225,11 +225,10 @@ void TaskOptimization::connectYarpPorts()
     }
 }
 
-void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void TaskOptimization::doInit(ocra::Controller& ctrl, ocra::Model& model)
 {
 
-    ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
-    wbiModel = &wbiModelRef;
+
 
     varianceThresh = Eigen::Array3d::Constant(VAR_THRESH);
 
@@ -265,34 +264,34 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
     Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
     getHomePosture(model, nominal_q);
 
-    taskManagers["fullPosture"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPosture", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, weight_fullPosture, nominal_q, usesYARP);
+    taskManagers["fullPosture"] = std::make_shared<ocra::FullPostureTaskManager>(ctrl, model, "fullPosture", ocra::FullState::INTERNAL, Kp_fullPosture, Kd_fullPosture, weight_fullPosture, nominal_q, usesYARP);
 
 
     // torsoPosture
     Eigen::VectorXi torso_indices(3);
     Eigen::VectorXd torsoTaskPosDes(3);
-    torso_indices << wbiModel->getDofIndex("torso_pitch"), wbiModel->getDofIndex("torso_roll"), wbiModel->getDofIndex("torso_yaw");
+    torso_indices << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
     torsoTaskPosDes << 0.0, 0.0, 0.0;
 
-    taskManagers["torsoPosture"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "torsoPosture", ocra::FullState::INTERNAL, torso_indices, Kp_torsoPosture, Kd_torsoPosture, weight_torsoPosture, torsoTaskPosDes, usesYARP);
+    taskManagers["torsoPosture"] = std::make_shared<ocra::PartialPostureTaskManager>(ctrl, model, "torsoPosture", ocra::FullState::INTERNAL, torso_indices, Kp_torsoPosture, Kd_torsoPosture, weight_torsoPosture, torsoTaskPosDes, usesYARP);
 
 
     //  rightHand
     Eigen::Vector3d r_handDisp(0.05, 0.0, 0.0); // Moves the task frame to the center of the hand.
-    taskManagers["rightHand"] = new wocra::wOcraVariableWeightsTaskManager(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
+    taskManagers["rightHand"] = std::make_shared<ocra::VariableWeightsTaskManager>(ctrl, model, "rightHand", "r_hand", r_handDisp, Kp_rightHand, Kd_rightHand, weights_rightHand, usesYARP);
 
 
     /*
     *   Trajectory constructors
     */
 
-    rightHandTrajectory = new wocra::wOcraGaussianProcessTrajectory();
+    rightHandTrajectory = new ocra::GaussianProcessTrajectory();
 
 
     /*
     *   Cast tasks to derived classes to access their virtual functions
     */
-    rightHandTask = dynamic_cast<wocra::wOcraVariableWeightsTaskManager*>(taskManagers["rightHand"]);
+    rightHandTask = dynamic_cast<ocra::VariableWeightsTaskManager*>(taskManagers["rightHand"].get());
 
     if (runObstacleTest_1D)
     {
@@ -510,7 +509,7 @@ void TaskOptimization::removeObstacle()
     obstacle_port.write(obstacleBottle);
 }
 
-void TaskOptimization::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
+void TaskOptimization::executeTrajectory(double relativeTime,  ocra::Model& model)
 {
     if (relativeTime>=obstacleTime) {
         insertObstacle();
@@ -520,7 +519,7 @@ void TaskOptimization::executeTrajectory(double relativeTime,  wocra::wOcraModel
     }
 
     // Claculate cost at timestep and write to file if logging.
-    calculateInstantaneousCost(relativeTime, state, rHandIndex);
+    calculateInstantaneousCost(relativeTime, model, rHandIndex);
     if(logTrajectoryData)
     {
         realTrajectoryFile << relativeTime << " "
@@ -648,16 +647,16 @@ bool TaskOptimization::parseNewOptVarsBottle()
     else{return false;}
 }
 
-void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void TaskOptimization::doUpdate(double time, ocra::Model& model, void** args)
 {
 
     sendFramePositionsToGazebo();
 
     if (runObstacleTest_1D || runObstacleTest_3D) {
-        obstacleTest_UpdateThread(time, state);
+        obstacleTest_UpdateThread(time, model);
     }
     else if (runArmCrossingTest) {
-        ArmCrossingTest_UpdateThread(time, state);
+        ArmCrossingTest_UpdateThread(time, model);
     }
 
 
@@ -704,7 +703,7 @@ void TaskOptimization::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::
 
 // void encapsulateBottleData()
 
-bool TaskOptimization::isBackInHomePosition(wocra::wOcraModel& state, int segmentIndex)
+bool TaskOptimization::isBackInHomePosition(ocra::Model& model, int segmentIndex)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -721,7 +720,7 @@ bool TaskOptimization::isBackInHomePosition(wocra::wOcraModel& state, int segmen
     return result;
 }
 
-bool TaskOptimization::attainedGoal(wocra::wOcraModel& state, int segmentIndex)
+bool TaskOptimization::attainedGoal(ocra::Model& model, int segmentIndex)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -751,24 +750,24 @@ Eigen::VectorXd TaskOptimization::mapVarianceToWeights(Eigen::VectorXd& variance
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void TaskOptimization::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+void TaskOptimization::calculateInstantaneousCost(const double time, const ocra::Model& model, int segmentIndex)
 {
 
     if (useGoalCost){
-        goalCostMat.row(costIterCounter) << time, calculateGoalCost(time, state, segmentIndex);
+        goalCostMat.row(costIterCounter) << time, calculateGoalCost(time, model, segmentIndex);
     }
     if (useTrackingCost){
-        trackingCostMat.row(costIterCounter) << time, calculateTrackingCost(time, state, segmentIndex);
+        trackingCostMat.row(costIterCounter) << time, calculateTrackingCost(time, model, segmentIndex);
     }
     if (useEnergyCost){
-        energyCostMat.row(costIterCounter) << time, calculateEnergyCost(time, state, segmentIndex);
+        energyCostMat.row(costIterCounter) << time, calculateEnergyCost(time, model, segmentIndex);
     }
 
     costIterCounter++;
 
 }
 
-double TaskOptimization::calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double TaskOptimization::calculateGoalCost(const double time, const ocra::Model& model, int segmentIndex)
 {
     double cost = ( rightHandGoalPosition - rightHandTask->getTaskFramePosition() ).squaredNorm();
     double timeFactor = pow((time / rightHandTrajectory->getDuration()), 10);
@@ -778,17 +777,16 @@ double TaskOptimization::calculateGoalCost(const double time, const wocra::wOcra
 }
 
 
-double TaskOptimization::calculateTrackingCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double TaskOptimization::calculateTrackingCost(const double time, const ocra::Model& model, int segmentIndex)
 {
     double cost = ( desiredPosVelAcc_rightHand.col(0) - rightHandTask->getTaskFramePosition() ).squaredNorm();
     return cost;
 }
 
 
-double TaskOptimization::calculateEnergyCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double TaskOptimization::calculateEnergyCost(const double time, const ocra::Model& model, int segmentIndex)
 {
-    Eigen::VectorXd torques;
-    wbiModel->getJointTorques(torques);
+    Eigen::VectorXd torques = model.getJointTorques();
     return torques.squaredNorm();
 }
 
@@ -806,7 +804,7 @@ double TaskOptimization::calculateEnergyCost(const double time, const wocra::wOc
 /*
 *   1D Obstacle Test
 */
-void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel& state)
+void TaskOptimization::obstacleTest_UpdateThread(double time, ocra::Model& model)
 {
     if(!sequenceFinished)
     {
@@ -824,9 +822,9 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
             {
                 double relativeTime = time - resetTimeRight;
 
-                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex))
+                if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(model, rHandIndex))
                 {
-                    executeTrajectory(relativeTime, state);
+                    executeTrajectory(relativeTime, model);
                 }
                 else
                 {
@@ -834,7 +832,7 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
                     if((std::abs(relativeTime) > TIME_LIMIT)){
                         std::cout << "Time limit exceeded!" << std::endl;
                     }
-                    if (attainedGoal(state, rHandIndex)) {
+                    if (attainedGoal(model, rHandIndex)) {
                         std::cout << "Goal attained!" << std::endl;
                     }
 
@@ -864,7 +862,7 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
                     }
                     else
                     {
-                        if(isBackInHomePosition(state, rHandIndex))
+                        if(isBackInHomePosition(model, rHandIndex))
                         {
                             dataSent_AwaitReply = false;
                             waitForSolver = false;
@@ -900,9 +898,9 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
         {
             double relativeTime = time - resetTimeRight;
 
-            if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(state, rHandIndex) && !waitForHomePosition)
+            if ( (std::abs(relativeTime) <= TIME_LIMIT) && !attainedGoal(model, rHandIndex) && !waitForHomePosition)
             {
-                executeTrajectory(relativeTime, state);
+                executeTrajectory(relativeTime, model);
             }
             else
             {
@@ -923,7 +921,7 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
                     rightHandTask->setWeights(Eigen::Vector3d::Ones(3));
                     waitForHomePosition = true;
 
-                    if(isBackInHomePosition(state, rHandIndex))
+                    if(isBackInHomePosition(model, rHandIndex))
                     {
                         initTrigger = true;
                         waitForHomePosition = false;
@@ -957,7 +955,7 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
 *   3D Obstacle Test
 */
 
-void TaskOptimization::ArmCrossingTest_UpdateThread(double time, wocra::wOcraModel& state)
+void TaskOptimization::ArmCrossingTest_UpdateThread(double time, ocra::Model& model)
 {
     /* code */
 }

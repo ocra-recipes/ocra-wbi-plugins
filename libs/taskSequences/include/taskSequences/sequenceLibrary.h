@@ -29,7 +29,7 @@
 #endif
 // namespace sequence{
 
-    wocra::wOcraTaskSequenceBase* LoadSequence(const std::string& name);
+    ocra::TaskSequence* LoadSequence(const std::string& name);
 
 // }
 

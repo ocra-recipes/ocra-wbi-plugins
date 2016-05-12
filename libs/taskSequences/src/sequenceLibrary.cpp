@@ -1,4 +1,5 @@
-#include "wocra/Tasks/wOcraTaskSequenceBase.h"
+// #include "ocra/control/TaskManagers/TaskSequence.h"
+#include "ocra/control/TaskManagers/TaskSequence.h"
 #include "taskSequences/sequenceLibrary.h"
 
 #if USING_SMLT
@@ -15,7 +16,7 @@
 
 // namespace sequence{
 
-    wocra::wOcraTaskSequenceBase* LoadSequence(const std::string& name)
+    ocra::TaskSequence* LoadSequence(const std::string& name)
     {
         //Base Sequences
         if (name == "FixedBaseMinimalTasks")

@@ -1,0 +1,17 @@
+set(OcraIcub_VERSION @OcraIcub_VERSION@)
+
+@PACKAGE_INIT@
+
+if(NOT TARGET OcraIcub::ocra-control)
+  include("${CMAKE_CURRENT_LIST_DIR}/OcraIcubTargets.cmake")
+endif()
+
+find_package(YARP REQUIRED)
+find_package(YCM REQUIRED)
+find_package(iDynTree REQUIRED)
+find_package(yarpWholeBodyInterface REQUIRED)
+find_package(OcraRecipes REQUIRED)
+find_package(TinyXML REQUIRED)
+
+set(OcraIcub_LIBRARIES "@OcraIcub_TARGETS@" "${Boost_LIBRARIES};${TinyXML_LIBRARIES};${YARP_LIBRARIES}")
+set(OcraIcub_INCLUDE_DIRS "@PACKAGE_OcraIcub_INCLUDEDIR@" "${Boost_INCLUDE_DIRS};${TinyXML_INCLUDE_DIRS};${YARP_INCLUDE_DIRS};${Eigen_INCLUDE_DIRS};${EigenLgsm_INCLUDE_DIRS}")

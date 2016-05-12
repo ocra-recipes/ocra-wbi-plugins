@@ -1,0 +1,37 @@
+<?xml version="1.0" ?>
+<!-- TODO: Add a tag for expressing angles in degrees or radians. -->
+<!-- <anglesExpressedIn>degrees</anglesExpressedIn> -->
+
+<!-- Note:
+        Not providing a desired value for joint tasks will default to the current joint position.
+ -->
+<task name="stabilization_fullPosture" type="FullPostureTaskManager">
+   <params kp="5.0" weight="0.01" />
+</task>
+
+<task name="stabilization_comTask" type="CoMTaskManager">
+    <params kp="50" weight="1.0" axes="XY"/>
+</task>
+
+<task name="stabilization_torsoCartesianTask" type="SegCartesianTaskManager">
+    <segment>torso</segment>
+    <params kp="1" weight="0.01" axes="XY"/>
+</task>
+
+<task name="stabilization_contactSetLeftFoot" type="ContactSetTaskManager">
+    <segment>l_sole</segment>
+    <params mu="1.0" margin="0.05" usesYarp="true" />
+    <offset x="-0.02" y="-0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+    <offset x=" 0.06" y="-0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+    <offset x="-0.02" y=" 0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+    <offset x=" 0.06" y=" 0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+</task>
+
+<task name="stabilization_contactSetRightFoot" type="ContactSetTaskManager">
+    <segment>r_sole</segment>
+    <params mu="1.0" margin="0.05" usesYarp="true" />
+    <offset x="-0.02" y="-0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+    <offset x=" 0.06" y="-0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+    <offset x="-0.02" y=" 0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+    <offset x=" 0.06" y=" 0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+</task>

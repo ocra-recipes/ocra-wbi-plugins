@@ -1,10 +1,10 @@
 #include <taskSequences/sequences/PoseTest.h>
-#include <ocraWbiPlugins/ocraWbiModel.h>
+
 
 // namespace sequence{
-    void PoseTest::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+    void PoseTest::doInit(ocra::Controller& ctrl, ocra::Model& model)
     {
-        ocraWbiModel& wbiModel = dynamic_cast<ocraWbiModel&>(model);
+        // ocraWbiModel& model = dynamic_cast<ocraWbiModel&>(model);
 
         // Task Coeffs
         double Kp = 10.0;
@@ -16,14 +16,14 @@
         // Full posture task
         Eigen::VectorXd nominal_q = Eigen::VectorXd::Zero(model.nbInternalDofs());
         getNominalPosture(model, nominal_q);
-        taskManagers["tmFull"] = new wocra::wOcraFullPostureTaskManager(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
+        taskManagers["tmFull"] = std::make_shared<ocra::FullPostureTaskManager>(ctrl, model, "fullPostureTask", ocra::FullState::INTERNAL, Kp, Kd, wFullPosture, nominal_q);
 
         // Partial (torso) posture task
         Eigen::VectorXi torso_indices(3);
         Eigen::VectorXd torsoTaskPosDes(3);
-        torso_indices << wbiModel.getDofIndex("torso_pitch"), wbiModel.getDofIndex("torso_roll"), wbiModel.getDofIndex("torso_yaw");
+        torso_indices << model.getDofIndex("torso_pitch"), model.getDofIndex("torso_roll"), model.getDofIndex("torso_yaw");
         torsoTaskPosDes << M_PI / 18, 0, 0;
-        taskManagers["tmPartialTorso"] = new wocra::wOcraPartialPostureTaskManager(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
+        taskManagers["tmPartialTorso"] = std::make_shared<ocra::PartialPostureTaskManager>(ctrl, model, "partialPostureTorsoTask", ocra::FullState::INTERNAL, torso_indices, Kp, Kd, wPartialPosture, torsoTaskPosDes);
 
         lHandIndex = model.getSegmentIndex("l_hand");
 
@@ -43,12 +43,12 @@
         // endingDispd    = startingDispd;
         std::cout << endingDispd << std::endl;
         // Left hand cartesian task
-        taskManagers["tmLeftHandPose"]      = new wocra::wOcraSegPoseTaskManager(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp, Kd, wLeftHandTask, endingDispd);
+        taskManagers["tmLeftHandPose"]      = std::make_shared<ocra::SegPoseTaskManager>(ctrl, model, "leftHandPoseTask", "l_hand", ocra::XYZ, Kp, Kd, wLeftHandTask, endingDispd);
     }
 
-    void PoseTest::doUpdate(double time, wocra::wOcraModel& state, void** args)
+    void PoseTest::doUpdate(double time, ocra::Model& state, void** args)
     {
-        wocra::wOcraSegPoseTaskManager*   tmp_tmLeftHandPose = dynamic_cast<wocra::wOcraSegPoseTaskManager*>(taskManagers["tmLeftHandPose"]);
+        ocra::SegPoseTaskManager*   tmp_tmLeftHandPose = dynamic_cast<ocra::SegPoseTaskManager*>(taskManagers["tmLeftHandPose"].get());
         // tmLeftHandCart->setPosition(desiredPos);
         std::cout << "\n---\nDesired pose: " << endingDispd << std::endl;
         std::cout << "Current pose: " << state.getSegmentPosition(lHandIndex)<< std::endl;
