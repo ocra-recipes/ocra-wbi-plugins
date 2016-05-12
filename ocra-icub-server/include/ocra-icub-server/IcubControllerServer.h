@@ -5,6 +5,8 @@
 #include <ocra-recipes/ControllerServer.h>
 #include <Eigen/Dense>
 #include <ocra-icub/OcraWbiModel.h>
+#include <fstream>
+
 
 class IcubControllerServer : public ocra_recipes::ControllerServer
 {
@@ -34,6 +36,7 @@ private:
     Eigen::VectorXd wbi_T_root_Vector;
     wbi::Frame wbi_H_root;
 
+    std::ofstream basePoseLogFile, baseTwistLogFile;
 
 };
 
