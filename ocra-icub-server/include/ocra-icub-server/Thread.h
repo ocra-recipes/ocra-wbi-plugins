@@ -37,6 +37,7 @@
 #include <yarp/os/Bottle.h>
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
+#include <fstream>
 
 
 class OcraControllerOptions
@@ -139,6 +140,8 @@ private:
     ocra_icub::OCRA_ICUB_MESSAGE controllerStatus;
     ControllerRpcServerCallback::shared_ptr rpcServerCallback; /*!< Rpc server port callback function. */
     yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
+
+    std::ofstream torquesLogFile;
 
 };
 

@@ -35,7 +35,7 @@ set(${VARS_PREFIX}_MINOR_VERSION 0)
 set(${VARS_PREFIX}_PATCH_VERSION 0)
 set(${VARS_PREFIX}_VERSION ${${VARS_PREFIX}_MAJOR_VERSION}.${${VARS_PREFIX}_MINOR_VERSION}.${${VARS_PREFIX}_PATCH_VERSION})
 
-option(GENERATE_DOCUMENTATION "Generate the doxygen documentation." TRUE)
+option(GENERATE_DOCUMENTATION "Generate the doxygen documentation." FALSE)
 
 find_package(YARP REQUIRED)
 find_package(YCM REQUIRED)
