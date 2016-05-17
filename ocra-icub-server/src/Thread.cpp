@@ -98,11 +98,15 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
     rpcServerPort.open("/IcubControllerServer/info/rpc:i");
     // Bind the callback to the port.
     rpcServerPort.setReader(*rpcServerCallback);
+    torquesLogFile.open("./torques_log.txt");
+
 }
 
 Thread::~Thread()
 {
     rpcServerPort.close();
+    torquesLogFile.close();
+    
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -120,6 +124,7 @@ bool Thread::threadInit()
 
 	return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -133,6 +138,8 @@ void Thread::run()
 	ctrlServer->computeTorques(torques);
     torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
     yarpWbi->setControlReference(torques.data());
+    torquesLogFile << torques.transpose() << "\n";
+
 }
 
 void Thread::threadRelease()
@@ -141,6 +148,8 @@ void Thread::threadRelease()
 
     yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
     yarpWbi->setControlReference(initialPosture.data());
+
+
 
 }
 
