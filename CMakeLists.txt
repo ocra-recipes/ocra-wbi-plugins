@@ -56,6 +56,14 @@ add_definitions(${YARP_DEFINES}) #this contains also -D_REENTRANT
 include(YarpInstallationHelpers)
 yarp_configure_external_installation(codyco)
 
+# Adding RPATH support
+option(OCRA_ICUB_ENABLE_RPATH "Enable RPATH for this library" FALSE)
+# mark_as_advanced(OCRA_ICUB_ENABLE_RPATH)
+include(AddInstallRPATHSupport)
+add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/bin"
+                          LIB_DIRS "${CMAKE_INSTALL_PREFIX}/lib"
+                          DEPENDS OCRA_ICUB_ENABLE_RPATH
+                          USE_LINK_PATH)
 
 add_subdirectory(ocra-icub)
 add_subdirectory(ocra-icub-server)
