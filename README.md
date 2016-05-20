@@ -66,7 +66,6 @@ See the video tutorials... Work in progress.
 
  - [Ryan Lober](https://github.com/rlober)
  - [Antoine Hoarau](https://github.com/ahoarau)
- - [Jorhabib Eljaik](https://github.com/jeljaik)
  - [Silvio Traversaro](https://github.com/traversaro)
 
 

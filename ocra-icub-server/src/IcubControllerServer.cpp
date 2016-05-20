@@ -22,15 +22,11 @@ IcubControllerServer::IcubControllerServer( std::shared_ptr<wbi::wholeBodyInterf
 
     wbi_H_root_Vector = Eigen::VectorXd::Zero(16);
     wbi_T_root_Vector = Eigen::VectorXd::Zero(6);
-
-    basePoseLogFile.open("./base_pose_log.txt");
-    baseTwistLogFile.open("./base_twist_log.txt");
 }
 
 IcubControllerServer::~IcubControllerServer()
 {
-    basePoseLogFile.close();
-    baseTwistLogFile.close();
+
 }
 
 std::shared_ptr<Model> IcubControllerServer::loadRobotModel()
@@ -64,9 +60,6 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
                                 wbi_T_root_Vector[0],
                                 wbi_T_root_Vector[1],
                                 wbi_T_root_Vector[2]);
-
-        baseTwistLogFile << T_root.transpose() << "\n";
-        basePoseLogFile << H_root << "\n";
 
     }
 }
