@@ -1,4 +1,4 @@
-# This file is part of ocra-yarp.
+# This file is part of ocra-icub.
 # Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
 # author(s): Ryan Lober, Antoine Hoarau
 #

@@ -1,4 +1,4 @@
-# This file is part of ocra-yarp.
+# This file is part of ocra-icub.
 # Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
 # author(s): Ryan Lober, Antoine Hoarau
 #
@@ -59,6 +59,7 @@ yarp_configure_external_installation(codyco)
 
 add_subdirectory(ocra-icub)
 add_subdirectory(ocra-icub-server)
+add_subdirectory(ocra-icub-clients)
 
 
 # add a target to generate API documentation with Doxygen
