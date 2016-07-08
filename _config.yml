@@ -1,10 +1,10 @@
-title: John Smith
-description: My Personal Blog
-author: John Smith
-logo: http://aboutashu.com/hcz-jekyll-blog/static/img/avatar.png
-github: https://github.com/ashutosh2k12
-about: Freelance developer
-disqus_shortname: aboutashu
+title: O C R A
+description: Optimiztion Based Control for Robotics Applications
+author: OCRA
+logo: http://ocra-recipes.github.io/ocra-wbi-plugins/static/img/avatar.png
+github: https://github.com/ocra-recipes/ocra-wbi-plugins
+about: Optimization Based Control for Robotics Applications
+disqus_shortname: ocra
 google_analytics: UA-72862926-1
 urls:
     - text: Home
@@ -21,22 +21,18 @@ urls:
       url: '#'
       icon: fa-graduation-cap
     - text: Github
-      url: https://github.com/ashutosh2k12
+      url: https://github.com/ocra-recipes/ocra-wbi-plugins
       icon: fa-github
     - text: XML Feed
       url: /feed.xml
       icon: fa-feed
-      
+
 social:
-    - icon: fa-facebook
-      link: '#'
     - icon: fa-skype
       link: '#'
     - icon: fa-twitter
       link: '#'
     - icon: fa-linkedin
-      link: '#'
-    - icon: fa-stack-exchange
       link: '#'
 
 share:
