@@ -19,7 +19,7 @@ public:
                         );
     virtual ~IcubControllerServer();
 
-    virtual std::shared_ptr<Model> loadRobotModel();
+    virtual ocra::Model::Ptr loadRobotModel();
 
     virtual void getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd, Eigen::Displacementd& H_root, Eigen::Twistd& T_root);
 

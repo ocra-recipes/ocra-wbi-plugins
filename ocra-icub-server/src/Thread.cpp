@@ -112,14 +112,15 @@ Thread::~Thread()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool Thread::threadInit()
 {
+    // TODO: Add a check to make sure the tasks get loaded in and if not - don't change the control mode. return false;
     ctrlServer->addTaskManagersFromXmlFile(ctrlOptions.startupTaskSetPath);
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
     yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
 
-	return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
+	return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
