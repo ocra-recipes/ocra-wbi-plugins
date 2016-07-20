@@ -15,6 +15,7 @@ layout: default
     			<!-- <a href="/static/projects/{{ i.image }}" class="thickbox"> -->
           <a href="{{site.url}}/static/projects/{{i.image}}" class="thickbox">
     			<div class="project-img bordered" style="background-image: url('/static/projects/{{ i.image }}');"></div>
+          <div class="project-img bordered" style="background-image: url('{{site.url}}/static/projects/{{ i.image }}');"></div>
                 </a>
                 {% if i.url %} <a href="{{ i.url }}"> {% endif %}
     			<h3 class="project-headlines">{{ i.name }}</h3>
