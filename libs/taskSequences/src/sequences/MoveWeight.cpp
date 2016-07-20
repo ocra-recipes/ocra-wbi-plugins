@@ -49,7 +49,7 @@ MoveWeight::MoveWeight()
 
     logTrajectoryData = true;
 
-    rootLogFilePathPrefix = "/home/ryan/Dropbox/RSS_2016/raw_data/";//"/home/ryan/Desktop/tmp-test/";
+    rootLogFilePathPrefix = "./MoveWeight/raw_data/";
 
     rootLogFilePathPrefix += "MoveWeight";
 

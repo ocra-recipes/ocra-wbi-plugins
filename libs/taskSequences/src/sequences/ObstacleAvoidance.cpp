@@ -45,7 +45,7 @@ ObstacleAvoidance::ObstacleAvoidance()
 
     logTrajectoryData = true;
 
-    rootLogFilePathPrefix = "/home/ryan/Dropbox/RSS_2016/raw_data/";//"/home/ryan/Desktop/tmp-test/";
+    rootLogFilePathPrefix = "./ObstacleAvoidance/raw_data/";
 
     if (runObstacleTest_1D) {
         rootLogFilePathPrefix += "ObstacleTest_1D";
