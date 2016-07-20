@@ -41,9 +41,15 @@ protected:
     virtual void loop();
 
 private:
-    std::shared_ptr<ocra_recipes::TaskConnection> leftFootContacts;
-    std::shared_ptr<ocra_recipes::TaskConnection> rightFootContacts;
+    ocra_recipes::TaskConnection::Ptr LeftFootContact_BackLeft;
+    ocra_recipes::TaskConnection::Ptr LeftFootContact_FrontLeft;
+    ocra_recipes::TaskConnection::Ptr LeftFootContact_BackRight;
+    ocra_recipes::TaskConnection::Ptr LeftFootContact_FrontRight;
 
+    ocra_recipes::TaskConnection::Ptr RightFootContact_BackLeft;
+    ocra_recipes::TaskConnection::Ptr RightFootContact_FrontLeft;
+    ocra_recipes::TaskConnection::Ptr RightFootContact_BackRight;
+    ocra_recipes::TaskConnection::Ptr RightFootContact_FrontRight;
 
     Eigen::Vector3d getLeftFootPosition();
     Eigen::Vector3d getRightFootPosition();

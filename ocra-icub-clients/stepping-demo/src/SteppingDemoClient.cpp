@@ -26,11 +26,11 @@ bool SteppingDemoClient::initialize()
     int trajThreadPeriod = 10;
 
 
-    leftFoot_TrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(trajThreadPeriod, "leftFootCartesian", trajType, termStrategy);
+    leftFoot_TrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(trajThreadPeriod, "LeftFootCartesian", trajType, termStrategy);
 
-    rightFoot_TrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(trajThreadPeriod, "rightFootCartesian", trajType, termStrategy);
+    rightFoot_TrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(trajThreadPeriod, "RightFootCartesian", trajType, termStrategy);
 
-    com_TrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(trajThreadPeriod, "comTask", trajType, termStrategy);
+    com_TrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(trajThreadPeriod, "ComTask", trajType, termStrategy);
 
 
     leftFoot_TrajThread->setMaxVelocity(0.02);
@@ -48,8 +48,16 @@ bool SteppingDemoClient::initialize()
     getInitialValues = true;
     startTime = yarp::os::Time::now();
 
-    leftFootContacts = std::make_shared<ocra_recipes::TaskConnection>("contactSetLeftFoot");
-    rightFootContacts = std::make_shared<ocra_recipes::TaskConnection>("contactSetRightFoot");
+    LeftFootContact_BackLeft = std::make_shared<ocra_recipes::TaskConnection>("LeftFootContact_BackLeft");
+    LeftFootContact_FrontLeft = std::make_shared<ocra_recipes::TaskConnection>("LeftFootContact_FrontLeft");
+    LeftFootContact_BackRight = std::make_shared<ocra_recipes::TaskConnection>("LeftFootContact_BackRight");
+    LeftFootContact_FrontRight = std::make_shared<ocra_recipes::TaskConnection>("LeftFootContact_FrontRight");
+
+    RightFootContact_BackLeft = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_BackLeft");
+    RightFootContact_FrontLeft = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_FrontLeft");
+    RightFootContact_BackRight = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_BackRight");
+    RightFootContact_FrontRight = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_FrontRight");
+
 
     isInLeftSupportMode = true;
     isInRightSupportMode = true;
@@ -225,7 +233,7 @@ void SteppingDemoClient::positionCoMOver(COM_SUPPORT_POSITION newSupportPos)
 
     std::cout << "newCoMGoalPosition: " << newCoMGoalPosition.transpose() << std::endl;
 
-    com_TrajThread->setTrajectoryWaypoints(newCoMGoalPosition);
+    com_TrajThread->setTrajectoryWaypoints(newCoMGoalPosition.head(2));
 }
 
 
@@ -252,14 +260,24 @@ void SteppingDemoClient::deactivateFootContacts(FOOT_CONTACTS foot)
     switch (foot) {
         case LEFT_FOOT:
         {
-            if(leftFootContacts->deactivate() ) {
+            bool res;
+            res = LeftFootContact_BackLeft->deactivate();
+            res &= LeftFootContact_FrontLeft->deactivate();
+            res &= LeftFootContact_BackRight->deactivate();
+            res &= LeftFootContact_FrontRight->deactivate();
+            if(res) {
                 std::cout << "Deactivated left foot contacts." << std::endl;
             }
         }break;
 
         case RIGHT_FOOT:
         {
-            if (rightFootContacts->deactivate()) {
+            bool res;
+            res = RightFootContact_BackLeft->deactivate();
+            res &= RightFootContact_FrontLeft->deactivate();
+            res &= RightFootContact_BackRight->deactivate();
+            res &= RightFootContact_FrontRight->deactivate();
+            if(res) {
                 std::cout << "Deactivated right foot contacts." << std::endl;
             }
         }break;
@@ -274,14 +292,24 @@ void SteppingDemoClient::activateFootContacts(FOOT_CONTACTS foot)
     switch (foot) {
         case LEFT_FOOT:
         {
-            if(leftFootContacts->activate() ) {
+            bool res;
+            res = LeftFootContact_BackLeft->activate();
+            res &= LeftFootContact_FrontLeft->activate();
+            res &= LeftFootContact_BackRight->activate();
+            res &= LeftFootContact_FrontRight->activate();
+            if(res) {
                 std::cout << "Activated left foot contacts." << std::endl;
             }
         }break;
 
         case RIGHT_FOOT:
         {
-            if (rightFootContacts->activate()) {
+            bool res;
+            res = RightFootContact_BackLeft->activate();
+            res &= RightFootContact_FrontLeft->activate();
+            res &= RightFootContact_BackRight->activate();
+            res &= RightFootContact_FrontRight->activate();
+            if(res) {
                 std::cout << "Activated right foot contacts." << std::endl;
             }
         }break;
@@ -310,8 +338,8 @@ bool SteppingDemoClient::isFootInContact(FOOT_CONTACTS foot)
         break;
     }
 
-    std::cout << "---------------------" << std::endl;
-    std::cout << "foot_z " << foot_z << std::endl;
+    // std::cout << "---------------------" << std::endl;
+    // std::cout << "foot_z " << foot_z << std::endl;
     // std::cout << "rightFoot_z " << rightFoot_z << std::endl;
 
     double footContactRealeaseThreshold = 0.01;
