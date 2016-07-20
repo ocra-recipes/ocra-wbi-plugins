@@ -1,5 +1,5 @@
 ---
-layout: project
-title: Projects
+layout: clients
+title: Clients
 permalink: /clients/
 ---

@@ -1,9 +1,9 @@
 title: OCRA
-description: Optimiztion Based Control for Robotics Applications
-author: OCRA
-logo: http://ocra-recipes.github.io/ocra-wbi-plugins/static/img/avatar2.png
+description: Optimization Based Control for Robotics Applications
+author: ISIR - Institute Systems Intelligents Et De Robotique
+logo: http://ocra-recipes.github.io/ocra-wbi-plugins/static/img/logo-extended.png
 github: https://github.com/ocra-recipes/ocra-wbi-plugins
-about: Optimization Based Control for Robotics Applications
+# about: SYROCO - SYstèmes RObotiques COmplexes
 disqus_shortname: ocra
 google_analytics: UA-72862926-1
 urls:

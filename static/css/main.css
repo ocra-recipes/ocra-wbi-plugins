@@ -6,9 +6,8 @@
 }
 .full{ font-size: 16px; }
 .logo-img {
-    width: 56px;
-    height: 56px;
-    border-radius: 60px;
+    /*width: 100px;
+    height: 56px;*/
     margin: 0 auto;
 }
 .logo-turner {
