@@ -24,7 +24,7 @@ IF(SMLT_FOUND)
     # Set preprocessor macro "USING_SMLT" to true.
     add_definitions( -DUSING_SMLT=1 )
 ELSE()
-    message("-- SMLT lib NOT found. Removing TaskOptimization sequence from source list.")
+    message("-- SMLT lib NOT found. Removing ObstacleAvoidance sequence from source list.")
     # Set preprocessor macro "USING_SMLT" to false.
     add_definitions( -DUSING_SMLT=0 )
 ENDIF()

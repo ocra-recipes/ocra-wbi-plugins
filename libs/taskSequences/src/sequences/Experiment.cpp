@@ -607,7 +607,7 @@ void Experiment::doUpdate(double time, wocra::wOcraModel& state, void** args)
                     {
                         sequenceFinished = true;
                         std::cout   << "\n==========================================================\n"
-                                    << "\tTaskOptimization sequence finished!"
+                                    << "\tObstacleAvoidance sequence finished!"
                                     << "\n==========================================================\n"
                                     << std::endl;
                     }

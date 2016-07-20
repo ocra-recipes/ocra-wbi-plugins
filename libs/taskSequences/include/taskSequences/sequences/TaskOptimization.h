@@ -22,11 +22,11 @@
 #include <boost/filesystem.hpp>
 
 
-class TaskOptimization : public wocra::wOcraTaskSequenceBase
+class ObstacleAvoidance : public wocra::wOcraTaskSequenceBase
 {
     public:
-        TaskOptimization();
-        ~TaskOptimization();
+        ObstacleAvoidance();
+        ~ObstacleAvoidance();
     protected:
         virtual void doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model);
         virtual void doUpdate(double time, wocra::wOcraModel& state, void** args);

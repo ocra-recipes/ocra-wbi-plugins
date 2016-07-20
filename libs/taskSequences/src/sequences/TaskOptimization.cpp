@@ -1,4 +1,4 @@
-#include <taskSequences/sequences/TaskOptimization.h>
+#include <taskSequences/sequences/ObstacleAvoidance.h>
 
 #ifndef ERROR_THRESH
 #define ERROR_THRESH 0.03 // Goal error threshold for hand tasks
@@ -12,7 +12,7 @@
 #define TIME_LIMIT 10.0 // Maximum time to be spent on any trajectory.
 #endif
 
-TaskOptimization::TaskOptimization()
+ObstacleAvoidance::ObstacleAvoidance()
 {
 
     useVarianceModulation = true;
@@ -72,7 +72,7 @@ TaskOptimization::TaskOptimization()
 
 }
 
-TaskOptimization::~TaskOptimization()
+ObstacleAvoidance::~ObstacleAvoidance()
 {
     optVarsPortOut.close();
     costPortOut.close();
@@ -88,7 +88,7 @@ TaskOptimization::~TaskOptimization()
 
 }
 
-bool TaskOptimization::openLogFiles(const std::string testLogFilePathPrefix)
+bool ObstacleAvoidance::openLogFiles(const std::string testLogFilePathPrefix)
 {
     bool retVal = true;
     if (logTrajectoryData)
@@ -120,7 +120,7 @@ bool TaskOptimization::openLogFiles(const std::string testLogFilePathPrefix)
 
 }
 
-bool TaskOptimization::closeLogFiles()
+bool ObstacleAvoidance::closeLogFiles()
 {
     bool retVal = true;
     if (logTrajectoryData)
@@ -157,7 +157,7 @@ bool TaskOptimization::closeLogFiles()
     return retVal;
 }
 
-void TaskOptimization::connectYarpPorts()
+void ObstacleAvoidance::connectYarpPorts()
 {
     optVarsPortOut_name = "/opt/task/vars:o";
     costPortOut_name = "/opt/task/cost:o";
@@ -225,7 +225,7 @@ void TaskOptimization::connectYarpPorts()
     }
 }
 
-void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
+void ObstacleAvoidance::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& model)
 {
 
     ocraWbiModel& wbiModelRef = dynamic_cast<ocraWbiModel&>(model);
@@ -428,7 +428,7 @@ void TaskOptimization::doInit(wocra::wOcraController& ctrl, wocra::wOcraModel& m
 
 }
 
-void TaskOptimization::sendOptimizationParameters()
+void ObstacleAvoidance::sendOptimizationParameters()
 {
     yarp::os::Bottle& optParamsBottle = optParamsPortOut.prepare();
     optParamsBottle.clear();
@@ -455,7 +455,7 @@ void TaskOptimization::sendOptimizationParameters()
     optParamsPortOut.write();
 }
 
-void TaskOptimization::initializeTrajectory(double time)
+void ObstacleAvoidance::initializeTrajectory(double time)
 {
     resetTimeRight = time;
     initTrigger = false;
@@ -488,7 +488,7 @@ void TaskOptimization::initializeTrajectory(double time)
     }
 }
 
-void TaskOptimization::insertObstacle()
+void ObstacleAvoidance::insertObstacle()
 {
     Eigen::Vector3d insertPosition;
     if (runObstacleTest_1D) {
@@ -501,7 +501,7 @@ void TaskOptimization::insertObstacle()
     bottleEigenVector(obstacleBottle, insertPosition);
     obstacle_port.write(obstacleBottle);
 }
-void TaskOptimization::removeObstacle()
+void ObstacleAvoidance::removeObstacle()
 {
     Eigen::Vector3d removedPosition(0.4, 0, 0);
 
@@ -510,7 +510,7 @@ void TaskOptimization::removeObstacle()
     obstacle_port.write(obstacleBottle);
 }
 
-void TaskOptimization::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
+void ObstacleAvoidance::executeTrajectory(double relativeTime,  wocra::wOcraModel& state)
 {
     if (relativeTime>=obstacleTime) {
         insertObstacle();
@@ -557,7 +557,7 @@ void TaskOptimization::executeTrajectory(double relativeTime,  wocra::wOcraModel
 
 }
 
-bool TaskOptimization::sendTestDataToSolver()
+bool ObstacleAvoidance::sendTestDataToSolver()
 {
     double totalCost = postProcessInstantaneousCosts();
 
@@ -573,7 +573,7 @@ bool TaskOptimization::sendTestDataToSolver()
     return true;
 }
 
-double TaskOptimization::postProcessInstantaneousCosts()
+double ObstacleAvoidance::postProcessInstantaneousCosts()
 {
     Eigen::MatrixXd totalCostMat = Eigen::MatrixXd::Zero(costIterCounter,2);
 
@@ -620,7 +620,7 @@ double TaskOptimization::postProcessInstantaneousCosts()
 }
 
 
-bool TaskOptimization::parseNewOptVarsBottle()
+bool ObstacleAvoidance::parseNewOptVarsBottle()
 {
     yarp::os::Bottle *newOptVars = optVarsPortIn.read(false);
     if (newOptVars!=NULL)
@@ -648,7 +648,7 @@ bool TaskOptimization::parseNewOptVarsBottle()
     else{return false;}
 }
 
-void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** args)
+void ObstacleAvoidance::doUpdate(double time, wocra::wOcraModel& state, void** args)
 {
 
     sendFramePositionsToGazebo();
@@ -668,7 +668,7 @@ void TaskOptimization::doUpdate(double time, wocra::wOcraModel& state, void** ar
 
 }
 
-void TaskOptimization::sendFramePositionsToGazebo()
+void ObstacleAvoidance::sendFramePositionsToGazebo()
 {
     Eigen::Vector3d currentRightHandPos = (rightHandTask->getTaskFramePosition() + Eigen::Vector3d(0,0,1)).array() * Eigen::Array3d(-1, -1, 1);
 
@@ -694,7 +694,7 @@ void TaskOptimization::sendFramePositionsToGazebo()
 
 
 
-void TaskOptimization::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::VectorXd& vecToBottle, const bool encapsulate)
+void ObstacleAvoidance::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::VectorXd& vecToBottle, const bool encapsulate)
 {
     bottle.clear();
     for(int i =0; i<vecToBottle.size(); i++){
@@ -704,7 +704,7 @@ void TaskOptimization::bottleEigenVector(yarp::os::Bottle& bottle, const Eigen::
 
 // void encapsulateBottleData()
 
-bool TaskOptimization::isBackInHomePosition(wocra::wOcraModel& state, int segmentIndex)
+bool ObstacleAvoidance::isBackInHomePosition(wocra::wOcraModel& state, int segmentIndex)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -712,7 +712,7 @@ bool TaskOptimization::isBackInHomePosition(wocra::wOcraModel& state, int segmen
         taskFrame = rightHandTask->getTaskFramePosition();
     }
     else{
-        std::cout << "[ERROR] TaskOptimization::attainedGoal - segment name doesn't match either l_hand or r_hand" << std::endl;
+        std::cout << "[ERROR] ObstacleAvoidance::attainedGoal - segment name doesn't match either l_hand or r_hand" << std::endl;
         return false;
     }
 
@@ -721,7 +721,7 @@ bool TaskOptimization::isBackInHomePosition(wocra::wOcraModel& state, int segmen
     return result;
 }
 
-bool TaskOptimization::attainedGoal(wocra::wOcraModel& state, int segmentIndex)
+bool ObstacleAvoidance::attainedGoal(wocra::wOcraModel& state, int segmentIndex)
 {
     double error;
     Eigen::Vector3d currentDesiredPosition, taskFrame;
@@ -730,7 +730,7 @@ bool TaskOptimization::attainedGoal(wocra::wOcraModel& state, int segmentIndex)
         taskFrame = rightHandTask->getTaskFramePosition();
     }
     else{
-        std::cout << "[ERROR] TaskOptimization::attainedGoal - segment name doesn't match either l_hand or r_hand" << std::endl;
+        std::cout << "[ERROR] ObstacleAvoidance::attainedGoal - segment name doesn't match either l_hand or r_hand" << std::endl;
         return false;
     }
 
@@ -740,7 +740,7 @@ bool TaskOptimization::attainedGoal(wocra::wOcraModel& state, int segmentIndex)
 }
 
 
-Eigen::VectorXd TaskOptimization::mapVarianceToWeights(Eigen::VectorXd& variance)
+Eigen::VectorXd ObstacleAvoidance::mapVarianceToWeights(Eigen::VectorXd& variance)
 {
     double beta = 1.0;
     variance /= maxVariance;
@@ -751,7 +751,7 @@ Eigen::VectorXd TaskOptimization::mapVarianceToWeights(Eigen::VectorXd& variance
 
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void TaskOptimization::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+void ObstacleAvoidance::calculateInstantaneousCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
 {
 
     if (useGoalCost){
@@ -768,7 +768,7 @@ void TaskOptimization::calculateInstantaneousCost(const double time, const wocra
 
 }
 
-double TaskOptimization::calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double ObstacleAvoidance::calculateGoalCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
 {
     double cost = ( rightHandGoalPosition - rightHandTask->getTaskFramePosition() ).squaredNorm();
     double timeFactor = pow((time / rightHandTrajectory->getDuration()), 10);
@@ -778,14 +778,14 @@ double TaskOptimization::calculateGoalCost(const double time, const wocra::wOcra
 }
 
 
-double TaskOptimization::calculateTrackingCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double ObstacleAvoidance::calculateTrackingCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
 {
     double cost = ( desiredPosVelAcc_rightHand.col(0) - rightHandTask->getTaskFramePosition() ).squaredNorm();
     return cost;
 }
 
 
-double TaskOptimization::calculateEnergyCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
+double ObstacleAvoidance::calculateEnergyCost(const double time, const wocra::wOcraModel& state, int segmentIndex)
 {
     Eigen::VectorXd torques;
     wbiModel->getJointTorques(torques);
@@ -806,7 +806,7 @@ double TaskOptimization::calculateEnergyCost(const double time, const wocra::wOc
 /*
 *   1D Obstacle Test
 */
-void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel& state)
+void ObstacleAvoidance::obstacleTest_UpdateThread(double time, wocra::wOcraModel& state)
 {
     if(!sequenceFinished)
     {
@@ -934,7 +934,7 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
                 {
                     sequenceFinished = true;
                     std::cout   << "\n==========================================================\n"
-                                << "\tTaskOptimization sequence finished!"
+                                << "\tObstacleAvoidance sequence finished!"
                                 << "\n==========================================================\n"
                                 << std::endl;
                 }
@@ -957,7 +957,7 @@ void TaskOptimization::obstacleTest_UpdateThread(double time, wocra::wOcraModel&
 *   3D Obstacle Test
 */
 
-void TaskOptimization::ArmCrossingTest_UpdateThread(double time, wocra::wOcraModel& state)
+void ObstacleAvoidance::ArmCrossingTest_UpdateThread(double time, wocra::wOcraModel& state)
 {
     /* code */
 }
