@@ -30,7 +30,11 @@ layout: default
     			</div>
     			<div class="project-footer">
     				{% if i.url %}
-    				<a href="{{ i.url }}" class="btn btn-info btn-raised btn-sm project-link">View</a>
+            <!-- Different from the template since it puts the github icon before the button text -->
+            <a href="{{ i.url }}" class="btn btn-info btn-raised btn-sm project-link">
+                  <span class="fa fa-github"></span> Source Code
+                </a>
+            <!-- <a href="{{ i.url }}" class="btn btn-info btn-raised btn-sm project-link fa fa-github">Source Code</a> -->
     				{% endif %}
     				<span class="project-timeline">{{ i.date }}</span>
     			</div>
