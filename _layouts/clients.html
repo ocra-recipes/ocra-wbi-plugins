@@ -15,7 +15,7 @@ layout: default
     			<a href="/static/projects/{{ i.image }}" class="thickbox">
     			<div class="project-img bordered" style="background-image: url('/static/projects/{{ i.image }}');"></div>
                 </a>
-                {% if i.url %} <a href="{{ i.url }}"> {% endif %}
+                {% if i.url %} <a href="{{site.baseurl}}{{ i.url }}"> {% endif %}
     			<h3 class="project-headlines">{{ i.name }}</h3>
     			{% if i.url %} </a> {% endif %}
     			<div class="project-content">
@@ -30,11 +30,8 @@ layout: default
     			</div>
     			<div class="project-footer">
     				{% if i.url %}
-            <!-- Different from the template since it puts the github icon before the button text -->
             <a href="{{ i.url }}" class="btn btn-info btn-raised btn-sm project-link">
-                  <span class="fa fa-github"></span> Source Code
-                </a>
-            <!-- <a href="{{ i.url }}" class="btn btn-info btn-raised btn-sm project-link fa fa-github">Source Code</a> -->
+                  <span class="fa fa-github"></span> Source Code</a>
     				{% endif %}
     				<span class="project-timeline">{{ i.date }}</span>
     			</div>
