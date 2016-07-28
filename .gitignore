@@ -4,3 +4,4 @@ tmp/
 build
 .kdev4
 *.kdev4
+html/
