@@ -68,6 +68,7 @@ add_install_rpath_support(BIN_DIRS "${CMAKE_INSTALL_PREFIX}/bin"
 add_subdirectory(ocra-icub)
 add_subdirectory(ocra-icub-server)
 add_subdirectory(ocra-icub-clients)
+add_subdirectory(ocra-icub-tools)
 
 
 # add a target to generate API documentation with Doxygen
