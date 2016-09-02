@@ -24,8 +24,8 @@ int main(int argc, char const *argv[])
     if (argc == 2) {
         clientName = argv[1];
     } else {
-        std::cout << "[ERROR] Must provide a client name." << std::endl;
-        return -1;
+        std::cout << "Please provide a client name." << std::endl;
+        std::cin >> clientName;
     }
 
     if (!checkClientNameFormat(clientName, className)) {
