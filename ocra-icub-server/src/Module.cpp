@@ -67,7 +67,7 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
             controller_options.solver = ocra_recipes::QUADPROG;
         }
     }
-    
+
     if( rf.check("controllerType") )
     {
         std::string s = rf.find("controllerType").asString().c_str();
@@ -98,17 +98,21 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
                 fileName = fileName.substr(0, fileExtensionStart) + xmlExt;
             }
         }
-        std::size_t subDirEnd = fileName.find_first_of("/");
-        if (subDirEnd == std::string::npos) {
-            fileName = "taskSets/" + fileName;
-        }else{
-            std::string subDir = fileName.substr(0,subDirEnd);
-            if (subDir != "taskSets/") {
-                fileName = "taskSets/" + fileName.substr(subDirEnd+1);
+        if (rf.check("absolutePath")) {
+            controller_options.startupTaskSetPath = rf.findFileByName(fileName).c_str();
+        } else {
+                std::size_t subDirEnd = fileName.find_first_of("/");
+            if (subDirEnd == std::string::npos) {
+                fileName = "taskSets/" + fileName;
+            }else{
+                std::string subDir = fileName.substr(0,subDirEnd);
+                if (subDir != "taskSets/") {
+                    fileName = "taskSets/" + fileName.substr(subDirEnd+1);
+                }
             }
-        }
 
-        controller_options.startupTaskSetPath = rf.findFileByName(fileName).c_str();
+            controller_options.startupTaskSetPath = rf.findFileByName(fileName).c_str();
+        }
     }
 
     if( rf.check("sequence") )
@@ -233,4 +237,5 @@ void Module::printHelp()
     std::cout<< "\t--sequence :A string identifying a predefined scenario. The scenarios (sets of tasks and control logic) are defined in sequenceCollection and will be created when the controller is started. Set to empty by default." <<std::endl;
     std::cout<< "\t--debug :If this flag is present then the controller will run in Debug mode which allows each joint to be tested individually." <<std::endl;
     std::cout<< "\t--floatingBase :If this flag is present then the controller will run in using a floating base dynamic model and control. Defaults to false, or fixed base if no flag is present." <<std::endl;
+    std::cout << "\t--absolutePath :If you use this in conjunction with a task set then the controller will look for the task set exactly where you tell it to." << std::endl;
 }
