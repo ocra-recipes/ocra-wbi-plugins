@@ -38,6 +38,9 @@
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
 
+#include <sstream>
+#include <string>
+
 
 class OcraControllerOptions
 {
@@ -115,11 +118,41 @@ public:
         Thread& thread; /*!< A shared pointer to the control thread. */
     };
 
+public:
+    /*! \class DebugRpcServerCallback
+     *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
+     */
+    class DebugRpcServerCallback : public yarp::os::PortReader
+    {
+    CLASS_POINTER_TYPEDEFS(DebugRpcServerCallback)
+
+    public:
+
+        /*! Constructor
+         *  \param ctThreadPtr A shared pointer to the control thread.
+         */
+        DebugRpcServerCallback(Thread& threadRef);
+
+        /*! read
+         *  \param connection Reads a port connection.
+         *
+         *  \return A boolean which tells whether or not a message was read.
+         */
+        virtual bool read(yarp::os::ConnectionReader& connection);
+
+    private:
+
+        Thread& thread; /*!< A shared pointer to the control thread. */
+    };
+
 private:
     void parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
+    void parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
+    void writeDebugData();
 
 
 private:
+    ocra::Model::Ptr model;
     std::shared_ptr<IcubControllerServer> ctrlServer;
     static const int ALL_JOINTS = -1; /*!< Maximum possible actuator torques */
 
@@ -139,6 +172,16 @@ private:
     ocra_icub::OCRA_ICUB_MESSAGE controllerStatus;
     ControllerRpcServerCallback::shared_ptr rpcServerCallback; /*!< Rpc server port callback function. */
     yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
+
+    // Debugging related
+    int debugJointIndex;
+    yarp::os::RpcServer debugRpcPort;
+    yarp::os::Port debugRefOutPort;
+    yarp::os::Port debugRealOutPort;
+    DebugRpcServerCallback::shared_ptr debugRpcCallback; /*!< Rpc server port callback function. */
+
+    double realTorque;
+    double refTorque;
 
 };
 

@@ -653,6 +653,9 @@ int OcraWbiModel::doGetSegmentIndex(const std::string& name) const
 {
     int id;
     bool ok = robot->getFrameList().idToIndex(name.c_str(), id);
+    if (!ok) {
+        yLog.fatal() << "The requested segment/link frame does not exist. The following are valid options:\n" << robot->getFrameList().toString();
+    }
     return id;
 }
 

@@ -127,6 +127,7 @@ private:
     std::shared_ptr<wbi::wholeBodyInterface> robot; // Access to wholeBodyInterface
     struct OcraWbiModel_pimpl;
     boost::shared_ptr<OcraWbiModel_pimpl> owm_pimpl; // where all internal data are saved
+    yarp::os::Log yLog;
 };
 } /* ocra_icub */
 

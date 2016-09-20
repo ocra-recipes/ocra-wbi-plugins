@@ -42,7 +42,6 @@ Module::~Module()
 bool Module::configure(yarp::os::ResourceFinder &rf)
 {
     // Parse the configuration file.
-
     controller_options.robotName = rf.check("robot") ? rf.find("robot").asString().c_str() : "icub";
     controller_options.threadPeriod = rf.check("threadPeriod") ? rf.find("threadPeriod").asInt() : DEFAULT_THREAD_PERIOD;
 
