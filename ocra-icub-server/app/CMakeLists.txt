@@ -18,6 +18,6 @@
 file(GLOB conf ${CMAKE_CURRENT_SOURCE_DIR}/conf/*.ini)
 
 yarp_install( FILES ${conf}
-              DESTINATION ${CODYCO_CONTEXTS_INSTALL_DIR}/${PROJECTNAME})
+              DESTINATION ${CODYCO_ROBOTS_INSTALL_DIR})
 
 add_subdirectory(robots)
