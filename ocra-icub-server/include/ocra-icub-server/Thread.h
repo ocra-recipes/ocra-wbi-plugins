@@ -180,9 +180,8 @@ private:
     yarp::os::Port debugRealOutPort;
     DebugRpcServerCallback::shared_ptr debugRpcCallback; /*!< Rpc server port callback function. */
 
-    double realTorque;
-    double refTorque;
-
+    Eigen::VectorXd measuredTorques;
+    bool debuggingAllJoints;
 };
 
 

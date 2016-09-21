@@ -150,8 +150,6 @@ bool Thread::threadInit()
         std::cout << "Debugging joint index: " << debugJointIndex << " ("<< jointName <<")" << std::endl;
 
 
-        realTorque = 0.0;
-        refTorque = 0.0;
         yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
         yarpWbi->setControlReference(initialPosture.data());
         return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, debugJointIndex);
@@ -172,10 +170,14 @@ void Thread::run()
     torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
 
     if (ctrlOptions.runInDebugMode) {
-        realTorque = model->getJointTorques()(debugJointIndex);
+        measuredTorques = model->getJointTorques();
         writeDebugData();
-        refTorque = torques(debugJointIndex);
-        yarpWbi->setControlReference(&refTorque, debugJointIndex);
+        if (debuggingAllJoints) {
+            yarpWbi->setControlReference(torques.data());
+        } else {
+            double refTau = torques(debugJointIndex);
+            yarpWbi->setControlReference(&refTau, debugJointIndex);
+        }
     } else {
         yarpWbi->setControlReference(torques.data());
     }
@@ -194,8 +196,10 @@ void Thread::threadRelease()
 void Thread::writeDebugData()
 {
     yarp::os::Bottle refBottle, realBottle;
-    refBottle.addDouble(refTorque);
-    realBottle.addDouble(realTorque);
+    for (int i=0; i<torques.size(); ++i) {
+        refBottle.addDouble(torques(i));
+        realBottle.addDouble(measuredTorques(i));
+    }
     debugRefOutPort.write(refBottle);
     debugRealOutPort.write(realBottle);
 }
