@@ -255,12 +255,12 @@ void Thread::parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
                 yarpWbi->setControlMode(wbi::CTRL_MODE_POS, &initialPosture(debugJointIndex), debugJointIndex);
                 yarpWbi->setControlReference(&initialPosture(debugJointIndex), debugJointIndex);
 
-                debugJointIndex = newIndex;
-                if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &torques(debugJointIndex), debugJointIndex) ) {
+                if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &torques(newIndex), newIndex) ) {
                     replyString = "Success! Debugging joint index: " + jointString + " (" + jointName +")";
                 } else {
                     replyString = "FAILED! Could not set the control mode of joint " + jointString + " ("+jointName+") to TORQUE mode.";
                 }
+                debugJointIndex = newIndex;
             } else {
                 replyString = "FAILED! The index " + jointString + " is outside of the valid range, [0-" + std::to_string(initialPosture.rows() - 1)+ "]. Type [listJoints] or [help] for details.";
             }
