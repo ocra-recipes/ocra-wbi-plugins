@@ -14,8 +14,8 @@
                color="Red"
                title="Reference"
                type="lines"
-               size="2" />
-        <graph remote="'/ocra-icub-server/debug/real:o'"
+               size="3" />
+        <graph remote="/ocra-icub-server/debug/real:o"
                index="0"
                color="Blue"
                title="Real"
