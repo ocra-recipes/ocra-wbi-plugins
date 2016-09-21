@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portscope rows="1" columns="1" carrier="udp">
+    <plot gridx="0"
+          gridy="0"
+          hspan="1"
+          vspan="1"
+          title="Plot 00"
+          size="60"
+          minval="-100"
+          maxval="100"
+          bgcolor="LightSlateGrey">
+        <graph remote="/ocra-icub-server/debug/ref:o"
+               index="0"
+               color="Red"
+               title="Reference"
+               type="lines"
+               size="2" />
+        <graph remote="'/ocra-icub-server/debug/real:o'"
+               index="0"
+               color="Blue"
+               title="Real"
+               size="2"
+               type="lines" />
+    </plot>
+</portscope>
