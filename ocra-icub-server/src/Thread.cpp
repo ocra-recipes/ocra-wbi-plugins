@@ -146,7 +146,8 @@ bool Thread::threadInit()
         std::cout << "-- Output port open at: " << debugRefOutPortName << std::endl;
         std::cout << "-- Input port open at: " << debugRealOutPortName << std::endl;
         std::cout << "-----------------------------------------------------------------" << std::endl;
-        // std::cout << "Debugging joint index: " << debugJointIndex << " ("<< model->getJointName(debugJointIndex) <<")" << std::endl;
+        std::string jointName = model->getJointName(debugJointIndex);
+        std::cout << "Debugging joint index: " << debugJointIndex << " ("<< jointName <<")" << std::endl;
 
 
         realTorque = 0.0;
@@ -242,34 +243,52 @@ void Thread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& rep
 void Thread::parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
 {
     int btlSize = input.size();
-    for (int i=0; i<btlSize;)
+    for (int i=0; i<btlSize; ++i)
     {
         std::string key = input.get(i).asString();
         if (key == "setJoint") {
-            int newIndex = input.get(i).asInt();
-            if (newIndex>=0 && newIndex<model->nbInternalDofs()) {
+            std::string replyString;
+            int newIndex = input.get(++i).asInt();
+            std::string jointName = model->getJointName(newIndex);
+            std::string jointString = std::to_string(newIndex);
+            if (newIndex >= 0 && newIndex < initialPosture.rows()) {
                 yarpWbi->setControlMode(wbi::CTRL_MODE_POS, &initialPosture(debugJointIndex), debugJointIndex);
                 yarpWbi->setControlReference(&initialPosture(debugJointIndex), debugJointIndex);
 
                 debugJointIndex = newIndex;
                 if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &torques(debugJointIndex), debugJointIndex) ) {
-                    std::string replyString = "Success! Now debugging joint index: " + std::to_string(debugJointIndex) + " (" + model->getJointName(debugJointIndex) +")";
-                    reply.addVocab(yarp::os::Vocab::encode("many"));
-                    reply.addString(replyString);
+                    replyString = "Success! Debugging joint index: " + jointString + " (" + jointName +")";
                 } else {
-                    reply.addString("FAILED!");
+                    replyString = "FAILED! Could not set the control mode of joint " + jointString + " ("+jointName+") to TORQUE mode.";
                 }
+            } else {
+                replyString = "FAILED! The index " + jointString + " is outside of the valid range, [0-" + std::to_string(initialPosture.rows() - 1)+ "]. Type [listJoints] or [help] for details.";
             }
+            reply.addVocab(yarp::os::Vocab::encode("many"));
+            reply.addString(replyString);
+            std::cout << replyString << std::endl;
+
         } else if (key == "listJoints") {
+            std::string replyString("Joint List:\n");
+            for (int i=0; i<initialPosture.rows(); ++i) {
+                wbi::ID dofID;
+                yarpWbi->getJointList().indexToID(i, dofID);
+                replyString += std::to_string(i) + " : " + dofID.toString() + "\n";
+            }
+
+            reply.addVocab(yarp::os::Vocab::encode("many"));
+            reply.addString(replyString);
+            std::cout << replyString << std::endl;
 
         } else if (key == "help") {
-            std::string helpStream;
-            helpStream += "Valid commands: \n";
-            helpStream += "-- setJoint [index]\n";
-            helpStream += "-- listJoints\n";
-            helpStream += "-- help\n";
+            std::string helpString("");
+            helpString += "Valid commands: \n";
+            helpString += "-- setJoint [index]\n";
+            helpString += "-- listJoints\n";
+            helpString += "-- help\n";
+            std::cout << helpString << std::endl;
             reply.addVocab(yarp::os::Vocab::encode("many"));
-            reply.addString(helpStream);
+            reply.addString(helpString);
         } else {
             reply.addString("Unknown command. Type [help] for usage details.");
         }
