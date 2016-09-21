@@ -128,6 +128,7 @@ bool Thread::threadInit()
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
     if(ctrlOptions.runInDebugMode) {
         debugJointIndex = 0;
+        debuggingAllJoints = false;
         std::string debugRpcPortName("/ocra-icub-server/debug/rpc:i");
         std::string debugRefOutPortName("/ocra-icub-server/debug/ref:o");
         std::string debugRealOutPortName("/ocra-icub-server/debug/real:o");
@@ -251,22 +252,39 @@ void Thread::parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
     {
         std::string key = input.get(i).asString();
         if (key == "setJoint") {
+            std::string jointName;
+            std::string jointString;
             std::string replyString;
             int newIndex = input.get(++i).asInt();
-            std::string jointName = model->getJointName(newIndex);
-            std::string jointString = std::to_string(newIndex);
-            if (newIndex >= 0 && newIndex < initialPosture.rows()) {
-                yarpWbi->setControlMode(wbi::CTRL_MODE_POS, &initialPosture(debugJointIndex), debugJointIndex);
-                yarpWbi->setControlReference(&initialPosture(debugJointIndex), debugJointIndex);
-
-                if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &torques(newIndex), newIndex) ) {
-                    replyString = "Success! Debugging joint index: " + jointString + " (" + jointName +")";
+            if (newIndex == -1) {
+                if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, torques.data(), ALL_JOINTS) ) {
+                    debuggingAllJoints = true;
+                    replyString = "Success! Setting all joints to TORQUE control mode.";
                 } else {
-                    replyString = "FAILED! Could not set the control mode of joint " + jointString + " ("+jointName+") to TORQUE mode.";
+                    replyString = "FAILED! Could not set the control mode of the joints to TORQUE mode.";
                 }
-                debugJointIndex = newIndex;
             } else {
-                replyString = "FAILED! The index " + jointString + " is outside of the valid range, [0-" + std::to_string(initialPosture.rows() - 1)+ "]. Type [listJoints] or [help] for details.";
+                jointName = model->getJointName(newIndex);
+                jointString = std::to_string(newIndex);
+                if (newIndex >= 0 && newIndex < initialPosture.rows()) {
+                    if (debuggingAllJoints) {
+                        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+                        yarpWbi->setControlReference(initialPosture.data(), ALL_JOINTS);
+                        debuggingAllJoints = false;
+                    } else {
+                        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, &initialPosture(debugJointIndex), debugJointIndex);
+                        yarpWbi->setControlReference(&initialPosture(debugJointIndex), debugJointIndex);
+                    }
+
+                    if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &torques(newIndex), newIndex) ) {
+                        replyString = "Success! Debugging joint index: " + jointString + " (" + jointName +")";
+                    } else {
+                        replyString = "FAILED! Could not set the control mode of joint " + jointString + " ("+jointName+") to TORQUE mode.";
+                    }
+                    debugJointIndex = newIndex;
+                } else {
+                    replyString = "FAILED! The index " + jointString + " is outside of the valid range, [0-" + std::to_string(initialPosture.rows() - 1)+ "] Use index = -1 for all joints. Type [listJoints] or [help] for details.";
+                }
             }
             reply.addVocab(yarp::os::Vocab::encode("many"));
             reply.addString(replyString);
@@ -274,14 +292,15 @@ void Thread::parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
 
         } else if (key == "listJoints") {
             std::string replyString("Joint List:\n");
+            reply.addVocab(yarp::os::Vocab::encode("many"));
             for (int i=0; i<initialPosture.rows(); ++i) {
                 wbi::ID dofID;
                 yarpWbi->getJointList().indexToID(i, dofID);
-                replyString += std::to_string(i) + " : " + dofID.toString() + "\n";
+                std::string tmp = std::to_string(i) + " : " + dofID.toString();
+                replyString += tmp + "\n";
+                reply.addString(tmp);
             }
 
-            reply.addVocab(yarp::os::Vocab::encode("many"));
-            reply.addString(replyString);
             std::cout << replyString << std::endl;
 
         } else if (key == "help") {
