@@ -120,7 +120,7 @@ Thread::~Thread()
 bool Thread::threadInit()
 {
     // TODO: Add a check to make sure the tasks get loaded in and if not - don't change the control mode. return false;
-    ctrlServer->addTaskManagersFromXmlFile(ctrlOptions.startupTaskSetPath);
+    ctrlServer->addTasksFromXmlFile(ctrlOptions.startupTaskSetPath);
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
