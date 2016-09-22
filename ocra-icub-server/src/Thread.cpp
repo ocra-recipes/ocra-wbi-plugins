@@ -169,7 +169,6 @@ void Thread::run()
 {
 	ctrlServer->computeTorques(torques);
     torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
-
     if (ctrlOptions.runInDebugMode) {
         measuredTorques = model->getJointTorques();
         writeDebugData();
