@@ -3,12 +3,12 @@
 SteppingDemoClient::SteppingDemoClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod)
 {
-    // poopoo
+
 }
 
 SteppingDemoClient::~SteppingDemoClient()
 {
-    //caca
+
 }
 
 bool SteppingDemoClient::initialize()
@@ -40,9 +40,10 @@ bool SteppingDemoClient::initialize()
 
     currentPhase = MOVE_TO_LEFT_SUPPORT;
     isMovingCoM = false;
-    com_TrajThread->start();
-    leftFoot_TrajThread->start();
-    rightFoot_TrajThread->start();
+    
+    if (!com_TrajThread->start()) return false;
+    if (!leftFoot_TrajThread->start()) return false;
+    if (!rightFoot_TrajThread->start()) return false;
     std::cout << "Thread started." << std::endl;
 
     getInitialValues = true;

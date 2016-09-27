@@ -1,4 +1,4 @@
-/*! \file       example-client.cpp
+/*! \file       stepping-demo.cpp
  *  \brief
  *  \details
  *  \author     [Ryan Lober](http://www.ryanlober.com)
