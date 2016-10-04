@@ -160,7 +160,7 @@ private:
      *
      *  @param foot LEFT_FOOT or RIGHT_FOOT
      *
-     *  @return True only after the foot has established contact again and the trajectory is over. False while the foot is still moving back down looking for contact or simply, the goal hasn't been attained. 
+     *  @return True only after the foot has established contact again and the trajectory is over. False while the foot is still moving back down looking for contact or simply, the goal hasn't been attained.
      */
     bool setDownFoot(FOOT_CONTACTS foot);
 
