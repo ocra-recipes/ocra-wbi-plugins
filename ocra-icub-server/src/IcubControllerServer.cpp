@@ -84,8 +84,9 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
 
 bool IcubControllerServer::initializeOdometry(std::string model_file, std::string initialFixedFrame)
 {
-    // TODO: Load URDF model found by the resource finder.
-    if (!odometry.loadModelFromFile(model_file)) {
+    // The URDF file has mode joints than those used by the yarpWholeBodyInterface, and these two should match. Therefore, the following method creates a list of joints as those that constitute ROBOT_MAIN_JOINTS in yarpWholeBodyInterface.ini
+    std::vector<std::string> consideredJoints = getCanonical_iCubJoints();
+    if (!odometry.loadModelFromFileWithSpecifiedDOFs(model_file, consideredJoints)) {
         std::cout << "[ERROR] icubcontrollerServer::initializeOdometry  Could not load URDF model of the robot from the specified path: " << model_file << std::endl;
         return false;
     }
@@ -118,3 +119,39 @@ bool IcubControllerServer::initializeOdometry(std::string model_file, std::strin
     std::cout << "\033[1;31m[DEBUG-ODOMETRY IcubControllerServer::initializeOdometry]\033[0m Odometry was fully initialized!" << std::endl;
     return true;
 }
+
+std::vector<std::string> IcubControllerServer::getCanonical_iCubJoints()
+{
+    std::vector<std::string> consideredJoints;
+    
+    // These are the joints that constitute ROBOT_MAIN_JOINTS and that will be hardcoded here just because the list name ROBOT_MAIN_JOINTS is hardcoded anyways. If that list was changed, then this must be changed too.
+    consideredJoints.push_back("torso_pitch");
+    consideredJoints.push_back("torso_roll");
+    consideredJoints.push_back("torso_yaw");
+    consideredJoints.push_back("l_shoulder_pitch");
+    consideredJoints.push_back("l_shoulder_roll");
+    consideredJoints.push_back("l_shoulder_yaw");
+    consideredJoints.push_back("l_elbow");
+    consideredJoints.push_back("l_wrist_prosup");
+    consideredJoints.push_back("r_shoulder_pitch");
+    consideredJoints.push_back("r_shoulder_roll");
+    consideredJoints.push_back("r_shoulder_yaw");
+    consideredJoints.push_back("r_elbow");
+    consideredJoints.push_back("r_wrist_prosup");
+    consideredJoints.push_back("l_hip_pitch");
+    consideredJoints.push_back("l_hip_roll");
+    consideredJoints.push_back("l_hip_yaw");
+    consideredJoints.push_back("l_knee");
+    consideredJoints.push_back("l_ankle_pitch");
+    consideredJoints.push_back("l_ankle_roll");
+    consideredJoints.push_back("r_hip_pitch");
+    consideredJoints.push_back("r_hip_roll");
+    consideredJoints.push_back("r_hip_yaw");
+    consideredJoints.push_back("r_knee");
+    consideredJoints.push_back("r_ankle_pitch");
+    consideredJoints.push_back("r_ankle_roll");
+    
+    return consideredJoints;
+}
+
+

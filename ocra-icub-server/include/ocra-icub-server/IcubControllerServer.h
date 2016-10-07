@@ -25,8 +25,9 @@ public:
 
     virtual void getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd, Eigen::Displacementd& H_root, Eigen::Twistd& T_root);
     
+    // Odometry related methods
     bool initializeOdometry(std::string model_file, std::string initialFixedFrame);
-
+    std::vector<std::string> getCanonical_iCubJoints();
 private:
     std::shared_ptr<wbi::wholeBodyInterface> wbi; /*!< The WBI used to talk to the robot. */
     std::string robotName;
@@ -40,7 +41,7 @@ private:
     wbi::Frame wbi_H_root;
     
     iDynTree::SimpleLeggedOdometry odometry;
-
+    
 };
 
 #endif
