@@ -61,6 +61,7 @@ std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
     out << "wbiConfigFilePath: " << opts.wbiConfigFilePath << "\n\n";
     out << "runInDebugMode: " << opts.runInDebugMode << "\n\n";
     out << "isFloatingBase: " << opts.isFloatingBase << "\n\n";
+    out << "useOdometry: " << opts.useOdometry << "\n\n";
     // out << "yarpWbiOptions: " << opts.yarpWbiOptions << "\n\n";
     out << "controllerType: " << opts.controllerType << "\n\n";
     out << "solver: " << opts.solver << "\n\n";
@@ -82,22 +83,26 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
 
     yarpWbi = wbi;
     bool usingInterprocessCommunication = true;
-    ctrlServer = std::make_shared<IcubControllerServer>(  yarpWbi,
-                                        ctrlOptions.robotName,
-                                        ctrlOptions.isFloatingBase,
-                                        ctrlOptions.controllerType,
-                                        ctrlOptions.solver,
-                                        usingInterprocessCommunication);
+    ctrlServer = std::make_shared<IcubControllerServer>( yarpWbi,
+                                                         ctrlOptions.robotName,
+                                                         ctrlOptions.isFloatingBase,
+                                                         ctrlOptions.controllerType,
+                                                         ctrlOptions.solver,
+                                                         usingInterprocessCommunication,
+                                                         ctrlOptions.useOdometry
+                                                       );
 
-    ctrlServer->initialize();
-
-    model = ctrlServer->getRobotModel();
-    // Construct rpc server callback and bind to the control thread.
-    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
-    // Open the rpc server port.
-    rpcServerPort.open("/ocra-icub-server/info/rpc:i");
-    // Bind the callback to the port.
-    rpcServerPort.setReader(*rpcServerCallback);
+//    ctrlServer->initialize();
+//    if (ctrlOptions.useOdometry)
+//        ctrlServer->updateModel();
+//
+//    model = ctrlServer->getRobotModel();
+//    // Construct rpc server callback and bind to the control thread.
+//    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
+//    // Open the rpc server port.
+//    rpcServerPort.open("/ocra-icub-server/info/rpc:i");
+//    // Bind the callback to the port.
+//    rpcServerPort.setReader(*rpcServerCallback);
 
 
 }
@@ -119,12 +124,44 @@ Thread::~Thread()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool Thread::threadInit()
 {
+    /* ======== This block was originally in the constructor of this thread ======= */
+    // The server will initialize but without calling updateModel() at the end, if useOdometry is true.
+    ctrlServer->initialize();
+    
+    // Odometry initialization. Odometry assumes one foot to be fixed to the ground.
+    if (ctrlOptions.useOdometry && ctrlOptions.isFloatingBase) {
+        yarp::os::Bottle wbiStateOptionsGroup = ctrlOptions.yarpWbiOptions.findGroup("WBI_STATE_OPTIONS");
+        std::string initialFixedFrame = wbiStateOptionsGroup.find("localWorldReferenceFrame").asString();
+        std::cout << "\033[1;31m[DEBUG-ODOMETRY Thread::threadInit]\033[0m ocra-icub-server calls initiliazeOdometry" << std::endl;
+        if (!ctrlServer->initializeOdometry(ctrlOptions.urdfModelPath, initialFixedFrame)) {
+            std::cout << "\033[1;31m[ERROR-ODOMETRY Thread::threadInit]\033[0m Odometry could not be initialized" << std::endl;
+            return false;
+        }
+    } else {
+        if (ctrlOptions.useOdometry && !ctrlOptions.isFloatingBase)
+            std::cout << "\033[1;31m[WARNING-ODOMETRY Thread::threadInit]\033[0m You're trying to activate ODOMETRY but isFloatingBase is false. Launch ocra-icub-server again with --floatingBase" << std::endl;
+    }
+
+    yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+
+    if (ctrlOptions.useOdometry)
+        ctrlServer->updateModel();
+    
+    model = ctrlServer->getRobotModel();
+    // Construct rpc server callback and bind to the control thread.
+    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
+    // Open the rpc server port.
+    rpcServerPort.open("/ocra-icub-server/info/rpc:i");
+    // Bind the callback to the port.
+    rpcServerPort.setReader(*rpcServerCallback);
+    /* ============================================================================= */
+    
     // TODO: Add a check to make sure the tasks get loaded in and if not - don't change the control mode. return false;
     ctrlServer->addTasksFromXmlFile(ctrlOptions.startupTaskSetPath);
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
-    yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+    
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
     if(ctrlOptions.runInDebugMode) {
         debugJointIndex = 0;

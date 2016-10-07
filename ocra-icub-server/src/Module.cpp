@@ -50,6 +50,7 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
     controller_options.serverName = rf.check("local") ? rf.find("local").asString().c_str() : "OcraControllerServer";
     controller_options.runInDebugMode = rf.check("debug");
     controller_options.isFloatingBase = rf.check("floatingBase");
+    controller_options.useOdometry = rf.check("useOdometry");
 
     if( rf.check("solver") )
     {
@@ -128,7 +129,10 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
 
     // Setup the WBI config.
     controller_options.wbiConfigFilePath = rf.findFile("wbi_conf_file");
+    std::cout << "\033[1;31m[DEBUG-ODOMETRY]\033[0m The MODULE looks for the URDF model file..." << std::endl;
     controller_options.yarpWbiOptions.fromConfigFile(controller_options.wbiConfigFilePath);
+    std::cout << "\033[1;31m[DEBUG-ODOMETRY]\033[0m URDF MODEL NAME TO BE FOUND: " << controller_options.yarpWbiOptions.find("urdf").asString() << std::endl;
+    controller_options.urdfModelPath = rf.findFile(controller_options.yarpWbiOptions.find("urdf").asString());
     // Overwrite the robot parameter that could be present in wbi_conf_file
     controller_options.yarpWbiOptions.put("robot", controller_options.robotName);
 
@@ -237,4 +241,5 @@ void Module::printHelp()
     std::cout<< "\t--debug :If this flag is present then the controller will run in Debug mode which allows each joint to be tested individually." <<std::endl;
     std::cout<< "\t--floatingBase :If this flag is present then the controller will run in using a floating base dynamic model and control. Defaults to false, or fixed base if no flag is present." <<std::endl;
     std::cout << "\t--absolutePath :If you use this in conjunction with a task set then the controller will look for the task set exactly where you tell it to." << std::endl;
+    std::cout << "\t--useOdometry :This will enable odometry leavint the world reference frame attached a non-moving point." << std::endl;
 }

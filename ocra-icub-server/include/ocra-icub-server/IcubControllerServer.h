@@ -5,6 +5,7 @@
 #include <ocra-recipes/ControllerServer.h>
 #include <Eigen/Dense>
 #include <ocra-icub/OcraWbiModel.h>
+#include <iDynTree/Estimation/SimpleLeggedOdometry.h>
 
 class IcubControllerServer : public ocra_recipes::ControllerServer
 {
@@ -15,25 +16,30 @@ public:
                             const bool usingFloatingBase,
                             const ocra_recipes::CONTROLLER_TYPE ctrlType=ocra_recipes::WOCRA_CONTROLLER,
                             const ocra_recipes::SOLVER_TYPE solver=ocra_recipes::QUADPROG,
-                            const bool usingInterprocessCommunication=true
+                            const bool usingInterprocessCommunication=true,
+                            const bool useOdometry=false
                         );
     virtual ~IcubControllerServer();
 
     virtual ocra::Model::Ptr loadRobotModel();
 
     virtual void getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd, Eigen::Displacementd& H_root, Eigen::Twistd& T_root);
+    
+    bool initializeOdometry(std::string model_file, std::string initialFixedFrame);
 
 private:
     std::shared_ptr<wbi::wholeBodyInterface> wbi; /*!< The WBI used to talk to the robot. */
     std::string robotName;
     bool isFloatingBase;
+    bool useOdometry;
     static const int ALL_JOINTS = -1;
     int nDoF;
 
     Eigen::VectorXd wbi_H_root_Vector;
     Eigen::VectorXd wbi_T_root_Vector;
     wbi::Frame wbi_H_root;
-
+    
+    iDynTree::SimpleLeggedOdometry odometry;
 
 };
 
