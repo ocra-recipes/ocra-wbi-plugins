@@ -20,7 +20,6 @@ IcubControllerServer::IcubControllerServer( std::shared_ptr<wbi::wholeBodyInterf
 , useOdometry(useOdometry)
 , nDoF(wbi->getDoFs())
 {
-    std::cout << "[DEBUG iCubControllerServer::icubControllerServer()  At construction time useOdometry is: " << this->useOdometry << std::endl;
     wbi_H_root = wbi::Frame();
 
     wbi_H_root_Vector = Eigen::VectorXd::Zero(16);
@@ -41,6 +40,8 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
 {
     q.resize(nDoF);
     qd.resize(nDoF);
+    iDynTree::JointPosDoubleArray qj;
+    qj.resize(nDoF);
 
     wbi->getEstimates(wbi::ESTIMATE_JOINT_POS, q.data(), ALL_JOINTS);
     wbi->getEstimates(wbi::ESTIMATE_JOINT_VEL, qd.data(), ALL_JOINTS);
@@ -48,21 +49,26 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
     if (isFloatingBase)
     {
         if (useOdometry) {
-            iDynTree::JointPosDoubleArray qj(nDoF);
+            qj.zero();
             wbi->getEstimates(wbi::ESTIMATE_JOINT_POS, qj.data(), ALL_JOINTS);
             std::cout << "\033[1;31m[DEBUG-ODOMETRY icubControllerServer::getRobotState]\033[0m Current joint configuration used to update kinematics is: " << qj.toString() << std::endl;
+            
             // Fill wbi_H_root_Vector "manually" from odometry
             odometry.updateKinematics(qj);
-            iDynTree::Transform wbi_H_root_Transform = odometry.getWorldLinkTransform(odometry.model().getLinkIndex("root_link"));
-//            Eigen::VectorXd wbi_H_root_Vector_tmp(wbi_H_root_Transform.asHomogeneousTransform().data());
-            Matrix<double, 16, 1> wbi_H_root_Vector(wbi_H_root_Transform.asHomogeneousTransform().data());
-            std::cout << "\033[1;31m[DEBUG-ODOMETRY icubControllerServer::getRobotState]\033[0m Rototrans from world to root is wbi_H_root_Vector: " << wbi_H_root_Vector << std::endl;
-            // TODO: Velocity missing.
-            // --------
+            iDynTree::Transform wbi_H_root_Transform = odometry.getWorldLinkTransform(odometry.model().getDefaultBaseLink());
+            std::cout << "\033[1;31m[DEBUG-ODOMETRY icubControllerServer::getRobotState]\033[0m  wbi_H_rot_Transform: " << std::endl << wbi_H_root_Transform.toString() << std::endl;
+            // This mapping is ROW-WISE
+            Matrix<double, 16, 1> wbi_H_root_Vector_tmp(wbi_H_root_Transform.asHomogeneousTransform().data());
+            std::cout << "\033[1;31m[DEBUG-ODOMETRY icubControllerServer::getRobotState]\033[0m Rototrans from world to root is wbi_H_root_Vector: " << wbi_H_root_Vector_tmp << std::endl;
+            wbi_H_root_Vector = wbi_H_root_Vector_tmp;
+            
+            // TODO: Rotate this velocity to coincide with the new world reference frame's orientation.
             wbi->getEstimates(wbi::ESTIMATE_BASE_VEL, wbi_T_root_Vector.data());
+            // TODO: Let's zero this for now but it's very important to have an expression for the floating base velocity.
+            wbi_T_root_Vector.setZero();
             
         } else {
-            // Get root position as a 12x1 vector and get root vel as a 6x1 vector
+            // Get root position as a 16x1 vector and get root vel as a 6x1 vector
             wbi->getEstimates(wbi::ESTIMATE_BASE_POS, wbi_H_root_Vector.data());
             wbi->getEstimates(wbi::ESTIMATE_BASE_VEL, wbi_T_root_Vector.data());
         }
@@ -105,7 +111,7 @@ bool IcubControllerServer::initializeOdometry(std::string model_file, std::strin
     if (odometry.updateKinematics(qj)) {
         std::cout << "\033[1;31m[DEBUG-ODOMETRY IcubControllerServer::initializeOdometry]\033[0m Odometry's kinematics was updated..." << std::endl;
         // By just specifying which is the initialFixedFrame, the default orientation of the world reference frame will be the same as the localWorldReferenceFrame found in yarpWholeBodyInterface.ini.
-        if (odometry.init(initialFixedFrame)) {
+        if (odometry.init(initialFixedFrame, "l_sole")) {
             std::cout << "\033[1;31m[DEBUG-ODOMETRY IcubControllerServer::initializeOdometry]\033[0m Odometry was initialized... " << std::endl;
         } else {
             std::cout << "\033[1;31m[DEBUG-ODOMETRY IcubControllerServer::initializeOdometry]\033[0m Odometry could not be initialized!" << std::endl;
