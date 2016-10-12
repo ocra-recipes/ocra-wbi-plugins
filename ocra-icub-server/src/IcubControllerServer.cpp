@@ -61,11 +61,13 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
             Matrix<double, 16, 1> wbi_H_root_Vector_tmp(wbi_H_root_Transform.asHomogeneousTransform().data());
             std::cout << "\033[1;31m[DEBUG-ODOMETRY icubControllerServer::getRobotState]\033[0m Rototrans from world to root is wbi_H_root_Vector: " << wbi_H_root_Vector_tmp << std::endl;
             wbi_H_root_Vector = wbi_H_root_Vector_tmp;
-            
-            // TODO: Rotate this velocity to coincide with the new world reference frame's orientation.
-            wbi->getEstimates(wbi::ESTIMATE_BASE_VEL, wbi_T_root_Vector.data());
-            // TODO: Let's zero this for now but it's very important to have an expression for the floating base velocity.
-            wbi_T_root_Vector.setZero();
+                        
+            //TODO: Compute root_link velocity
+            Eigen::MatrixXd jacobianRootLink(6,nDoF);
+            jacobianRootLink.setZero();
+            wbi::Frame xBase(wbi_H_root_Transform.asHomogeneousTransform().data());
+            wbi->computeJacobian(q.data(), xBase,  odometry.model().getLinkIndex("root_link"), jacobianRootLink.data());
+            wbi_T_root_Vector = jacobianRootLink*qd;
             
         } else {
             // Get root position as a 16x1 vector and get root vel as a 6x1 vector
