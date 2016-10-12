@@ -37,6 +37,7 @@
 #include <yarp/os/Bottle.h>
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
+#include <yarp/os/Time.h>
 
 #include <sstream>
 #include <string>
