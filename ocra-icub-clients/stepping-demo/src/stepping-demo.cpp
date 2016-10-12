@@ -71,8 +71,8 @@ int main (int argc, char * argv[])
     std::cout << "Resource finder stuff" << std::endl;
     yarp::os::ResourceFinder rf;
     rf.setVerbose(true);
-    rf.setDefaultConfigFile("example-client.ini"); //default config file name.
-    rf.setDefaultContext("example-client"); //when no parameters are given to the module this is the default context
+    rf.setDefaultConfigFile("stepping-demo.ini"); //default config file name.
+    rf.setDefaultContext("stepping-demo"); //when no parameters are given to the module this is the default context
     rf.configure(argc,argv);
 
     if (rf.check("help"))
