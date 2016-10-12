@@ -389,6 +389,9 @@ bool SteppingDemoClient::liftFoot(FOOT_CONTACTS foot)
                 yarp::os::Time::delay(delayTime);
                 deactivateFootContacts(LEFT_FOOT);
                 footTrajectoryStarted = true;
+                // Switch fixedLink if odometry is active on the server-side
+                this->changeFixedLink("r_sole");
+                std::cout << "FIXED LINK WAS SWITCHED TO THE RIGHT FOOT" << std::endl;
                 return false;
             } else {
                 if(leftFoot_TrajThread->goalAttained()) {
