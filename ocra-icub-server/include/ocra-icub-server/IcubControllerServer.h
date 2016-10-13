@@ -28,6 +28,14 @@ public:
     // Odometry related methods
     bool initializeOdometry(std::string model_file, std::string initialFixedFrame);
     std::vector<std::string> getCanonical_iCubJoints();
+    // Not in the virtual class
+    void rootFrameVelocity(Eigen::VectorXd& q,
+                           Eigen::VectorXd& qd,
+                           double           regularization,
+                           int              LEFT_FOOT_CONTACT,
+                           int              RIGHT_FOOT_CONTACT,
+                           Eigen::VectorXd& twist);
+    void pinv(Eigen::MatrixXd mat, Eigen::MatrixXd& pinvmat, double pinvtoler=1.0e-6) const;
 private:
     std::shared_ptr<wbi::wholeBodyInterface> wbi; /*!< The WBI used to talk to the robot. */
     std::string robotName;

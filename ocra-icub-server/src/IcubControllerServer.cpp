@@ -63,13 +63,18 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
             wbi_H_root_Vector = wbi_H_root_Vector_tmp;
             
             //TODO: Compute root_link velocity
-            Eigen::MatrixXd jacobianRootLink(6,nDoF);
-            jacobianRootLink.setZero();
-            wbi::Frame xBase(wbi_H_root_Transform.asHomogeneousTransform().data());
-            int rootLinkID;
-            wbi->getFrameList().idToIndex("root_link", rootLinkID);
-            wbi->computeJacobian(q.data(), xBase, rootLinkID, jacobianRootLink.data());
-            wbi_T_root_Vector = jacobianRootLink*qd;
+//            Eigen::MatrixXd jacobianRootLink(6,nDoF);
+//            jacobianRootLink.setZero();
+//            wbi::Frame xBase(wbi_H_root_Transform.asHomogeneousTransform().data());
+//            int rootLinkID;
+//            wbi->getFrameList().idToIndex("root_link", rootLinkID);
+//            wbi->computeJacobian(q.data(), xBase, rootLinkID, jacobianRootLink.data());
+            
+            // For now assuming that contact of left and right foot is permanent for debugging purposes
+            rootFrameVelocity(q, qd, 0, 1, 1, wbi_T_root_Vector);
+            Eigen::MatrixXd jacobianRootLink = model->getSegmentJacobian("root_link");
+            wbi_T_root_Vector += jacobianRootLink*qd;
+            
             
         } else {
             // Get root position as a 16x1 vector and get root vel as a 6x1 vector
@@ -164,4 +169,35 @@ std::vector<std::string> IcubControllerServer::getCanonical_iCubJoints()
     return consideredJoints;
 }
 
+void IcubControllerServer::rootFrameVelocity(Eigen::VectorXd& q,
+                                             Eigen::VectorXd& qd,
+                                             double           regularization,
+                                             int              LEFT_FOOT_CONTACT,
+                                             int              RIGHT_FOOT_CONTACT,
+                                             Eigen::VectorXd& twist
+                                             )
+{
+    // Jacobian composed by the active constraints (for now left and right stacked! but THE LEFT OR RIGHT FOOT JACOBIANS SHOULD BE ZEROED WHEN THEY'RE DEACTIVATED. LEFT_FOOT_CONTACT and RIGHT_FOOT_CONTACT are binary variables (0 or 1) that indicate the activation of the contact.
+    // Left foot jacobian
+    Eigen::MatrixXd leftFootJacobian = LEFT_FOOT_CONTACT*model->getSegmentJacobian("l_sole");
+    // Right foot jacobian
+    Eigen::MatrixXd rightFootJacobian = RIGHT_FOOT_CONTACT*model->getSegmentJacobian("r_sole");
+    // Concatenated jacobians
+    Eigen::MatrixXd systemJacobian(leftFootJacobian.rows()+rightFootJacobian.rows(), leftFootJacobian.cols());
+    // Concatenated jacobians for contacts contributions
+    Eigen::MatrixXd contactsJacobianJointsContrib = systemJacobian.rightCols(nDoF);
+    // 6x(nDoF+6) Jacobian including floating base part "Jacobian of the Floating Base Contribution"
+    Eigen::MatrixXd jacobianBaseContrib = model->getSegmentJacobian("root_link").leftCols(6);
+    // Pseudoinverse of the jacobian base contribution
+    Eigen::MatrixXd pinvJacobianBaseContrib;
+    pinv(jacobianBaseContrib, pinvJacobianBaseContrib);
+    // Floating-base velocity
+    twist = -pinvJacobianBaseContrib * contactsJacobianJointsContrib * qd;
+}
+
+void IcubControllerServer::pinv(Eigen::MatrixXd mat, Eigen::MatrixXd& pinvmat, double pinvtoler) const
+{
+    Matrix<double,6,6> tmp = mat.transpose()*mat + pinvtoler*Eigen::Matrix<double,6,6>::Identity();
+    pinvmat = tmp.inverse()*mat;
+}
 
