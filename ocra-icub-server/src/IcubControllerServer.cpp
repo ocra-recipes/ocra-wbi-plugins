@@ -72,8 +72,8 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
             
             // For now assuming that contact of left and right foot is permanent for debugging purposes
             rootFrameVelocity(q, qd, 0, 1, 1, wbi_T_root_Vector);
-            Eigen::MatrixXd jacobianRootLink = model->getSegmentJacobian("root_link");
-            wbi_T_root_Vector += jacobianRootLink*qd;
+//            Eigen::MatrixXd jacobianRootLink = model->getSegmentJacobian("root_link");
+//            wbi_T_root_Vector += jacobianRootLink*qd;
             
             
         } else {
