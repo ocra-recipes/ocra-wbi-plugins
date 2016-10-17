@@ -80,7 +80,7 @@ int main (int argc, char * argv[])
         clientManager->printHelp();
         return 0;
     }
-
+    
     std::cout << "Configuring" << std::endl;
     clientManager->configure(rf);
 
