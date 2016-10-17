@@ -141,8 +141,6 @@ bool Thread::threadInit()
         if (ctrlOptions.useOdometry && !ctrlOptions.isFloatingBase)
             std::cout << "\033[1;31m[WARNING-ODOMETRY Thread::threadInit]\033[0m You're trying to activate ODOMETRY but isFloatingBase is false. Launch ocra-icub-server again with --floatingBase" << std::endl;
     }
-    // NOTE: IS THIS NECESSARY?
-    yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
 
     if (ctrlOptions.useOdometry)
         ctrlServer->updateModel();

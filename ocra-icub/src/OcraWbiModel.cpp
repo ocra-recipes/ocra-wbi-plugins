@@ -584,6 +584,23 @@ const Eigen::Matrix<double,6,Eigen::Dynamic>& OcraWbiModel::getSegmentJacobian(i
     return owm_pimpl->segJacobian[index];
 }
 
+const Eigen::Matrix<double,6,Eigen::Dynamic>& OcraWbiModel::getSegmentJacobian(int index, wbi::Frame H_world_root) const
+{
+            robot->computeJacobian(owm_pimpl->q.data(), H_world_root, index, owm_pimpl->segJacobian_rm[index].data());
+
+    OcraWbiConversions::eigenRowMajorToColMajor(owm_pimpl->segJacobian_rm[index], owm_pimpl->segJacobian_full[index]);
+    OcraWbiConversions::wbiToOcraSegJacobian(owm_pimpl->segJacobian_full[index], owm_pimpl->segJacobian_full_ocra[index]);
+
+    if (owm_pimpl->freeRoot)
+    {
+        owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_ocra[index];
+    }
+    else
+        owm_pimpl->segJacobian[index] = owm_pimpl->segJacobian_full_ocra[index].rightCols(owm_pimpl->nbInternalDofs);
+    
+    return owm_pimpl->segJacobian[index];
+}
+
 const Eigen::Matrix<double,6,Eigen::Dynamic>& OcraWbiModel::getSegmentJdot(int index) const
 {
 /*

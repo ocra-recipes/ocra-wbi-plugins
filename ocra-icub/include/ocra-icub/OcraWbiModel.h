@@ -92,6 +92,7 @@ public:
     virtual const Eigen::Vector3d&                         getSegmentMomentsOfInertia  (int index) const;
     virtual const Eigen::Rotation3d&                       getSegmentInertiaAxes       (int index) const;
     virtual const Eigen::Matrix<double,6,Eigen::Dynamic>&  getSegmentJacobian          (int index) const;
+    virtual const Eigen::Matrix<double,6,Eigen::Dynamic>&  getSegmentJacobian          (int index, wbi::Frame H_world_root) const;
     virtual const Eigen::Matrix<double,6,Eigen::Dynamic>&  getSegmentJdot              (int index) const;
     virtual const Eigen::Matrix<double,6,Eigen::Dynamic>&  getJointJacobian            (int index) const;
     virtual const Eigen::Twistd&                           getSegmentJdotQdot          (int index) const;

@@ -61,17 +61,11 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
             Matrix<double, 16, 1> wbi_H_root_Vector_tmp(wbi_H_root_Transform.asHomogeneousTransform().data());
 //             std::cout << "\033[1;31m[DEBUG-ODOMETRY icubControllerServer::getRobotState]\033[0m Rototrans from world to root is wbi_H_root_Vector: " << wbi_H_root_Vector_tmp << std::endl;
             wbi_H_root_Vector = wbi_H_root_Vector_tmp;
-            
-            //TODO: Compute root_link velocity
-//            Eigen::MatrixXd jacobianRootLink(6,nDoF);
-//            jacobianRootLink.setZero();
-//            wbi::Frame xBase(wbi_H_root_Transform.asHomogeneousTransform().data());
-//            int rootLinkID;
-//            wbi->getFrameList().idToIndex("root_link", rootLinkID);
-//            wbi->computeJacobian(q.data(), xBase, rootLinkID, jacobianRootLink.data());
-            
+                      
             // For now assuming that contact of left and right foot is permanent for debugging purposes
-            rootFrameVelocity(q, qd, 0, 1, 1, wbi_T_root_Vector);
+            rootFrameVelocity(q, qd, wbi_H_root_Transform, 1.0e-6, 1, 1, wbi_T_root_Vector);
+//             rootFrameVelocityPivLU(q, qd, wbi_H_root_Transform, 1.0e-6, 1, 1, wbi_T_root_Vector);
+//             std::cout << "Root velocity is: " << wbi_T_root_Vector.transpose() << std::endl;
 //            Eigen::MatrixXd jacobianRootLink = model->getSegmentJacobian("root_link");
 //            wbi_T_root_Vector += jacobianRootLink*qd;
             
@@ -171,33 +165,89 @@ std::vector<std::string> IcubControllerServer::getCanonical_iCubJoints()
 
 void IcubControllerServer::rootFrameVelocity(Eigen::VectorXd& q,
                                              Eigen::VectorXd& qd,
+                                             iDynTree::Transform& wbi_H_root_Transform,
                                              double           regularization,
                                              int              LEFT_FOOT_CONTACT,
                                              int              RIGHT_FOOT_CONTACT,
-                                             Eigen::VectorXd& twist
-                                             )
+                                             Eigen::VectorXd& twist)
 {
+    wbi::Frame xBase(wbi_H_root_Transform.asHomogeneousTransform().data());
+    int rootLinkID, leftFootID, rightFootID;
+    wbi->getFrameList().idToIndex("root_link", rootLinkID);
+    wbi->getFrameList().idToIndex("l_sole", leftFootID);
+    wbi->getFrameList().idToIndex("r_sole", rightFootID);
+
     // Jacobian composed by the active constraints (for now left and right stacked! but THE LEFT OR RIGHT FOOT JACOBIANS SHOULD BE ZEROED WHEN THEY'RE DEACTIVATED. LEFT_FOOT_CONTACT and RIGHT_FOOT_CONTACT are binary variables (0 or 1) that indicate the activation of the contact.
     // Left foot jacobian
-    Eigen::MatrixXd leftFootJacobian = LEFT_FOOT_CONTACT*model->getSegmentJacobian("l_sole");
+    Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor> leftFootJacobian = Eigen::MatrixXd::Zero(6,nDoF+6);
+    wbi->computeJacobian(q.data(), xBase, leftFootID, leftFootJacobian.data());
+//     std::cout << "Left Foot Jacobian: " << std::endl;
+//     std::cout << leftFootJacobian << std::endl;
+    
     // Right foot jacobian
-    Eigen::MatrixXd rightFootJacobian = RIGHT_FOOT_CONTACT*model->getSegmentJacobian("r_sole");
+    Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor> rightFootJacobian = Eigen::MatrixXd::Zero(6,nDoF+6);
+    wbi->computeJacobian(q.data(), xBase, rightFootID, rightFootJacobian.data());
+//     std::cout << "Right foot Jacobian: " << std::endl;
+//     std::cout << rightFootJacobian << std::endl;
+    
     // Concatenated jacobians
     Eigen::MatrixXd systemJacobian(leftFootJacobian.rows()+rightFootJacobian.rows(), leftFootJacobian.cols());
+    systemJacobian.setZero();
+    systemJacobian << leftFootJacobian, rightFootJacobian;
     // Concatenated jacobians for contacts contributions
+//     std::cout << "Sytem Jacobian: " << std::endl;
+//     std::cout << systemJacobian << std::endl;
     Eigen::MatrixXd contactsJacobianJointsContrib = systemJacobian.rightCols(nDoF);
-    // 6x(nDoF+6) Jacobian including floating base part "Jacobian of the Floating Base Contribution"
-    Eigen::MatrixXd jacobianBaseContrib = model->getSegmentJacobian("root_link").leftCols(6);
+    // 6x6 Jacobian including floating base part "Jacobian of the Floating Base Contribution"
+//     Eigen::MatrixXd jacobianBaseContrib = model->getSegmentJacobian("root_link").leftCols(6);
+    Eigen::MatrixXd jacobianBaseContrib = systemJacobian.leftCols(6);
+//     std::cout << "Jacobian Base Contrib" << std::endl;
+//     std::cout << jacobianBaseContrib << std::endl;
     // Pseudoinverse of the jacobian base contribution
     Eigen::MatrixXd pinvJacobianBaseContrib;
-    pinv(jacobianBaseContrib, pinvJacobianBaseContrib);
+    pinv(jacobianBaseContrib, pinvJacobianBaseContrib, 0.01);
     // Floating-base velocity
-    twist = -pinvJacobianBaseContrib * contactsJacobianJointsContrib * qd;
+    twist = -pinvJacobianBaseContrib * (contactsJacobianJointsContrib * qd);
+    
+}
+
+void IcubControllerServer::rootFrameVelocityPivLU(Eigen::VectorXd& q,
+                                                  Eigen::VectorXd& qd,
+                                                  iDynTree::Transform& wbi_H_root_Transform,
+                                                  double           regularization,
+                                                  int              LEFT_FOOT_CONTACT,
+                                                  int              RIGHT_FOOT_CONTACT,
+                                                  Eigen::VectorXd& twist) 
+{
+    wbi::Frame xBase(wbi_H_root_Transform.asHomogeneousTransform().data());
+    int rootLinkID, leftFootID, rightFootID;
+    wbi->getFrameList().idToIndex("root_link", rootLinkID);
+    wbi->getFrameList().idToIndex("l_sole", leftFootID);
+    wbi->getFrameList().idToIndex("r_sole", rightFootID);
+    
+    // Left foot jacobian
+    Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor> leftFootJacobian = Eigen::MatrixXd::Zero(6,nDoF+6);
+//     leftFootJacobian
+    wbi->computeJacobian(q.data(), xBase, leftFootID, leftFootJacobian.data());
+//     std::cout << "Left Foot Jacobian: " << std::endl;
+//     std::cout << leftFootJacobian << std::endl;
+
+    // Right foot jacobian
+    Eigen::Matrix<double, 6, Eigen::Dynamic, Eigen::RowMajor> rightFootJacobian = Eigen::MatrixXd::Zero(6,nDoF+6);
+    wbi->computeJacobian(q.data(), xBase, rightFootID, rightFootJacobian.data());
+//     std::cout << rightFootJacobian << std::endl;
+   
+    
+    // Using EIGEN. For now using lefFootJacobian (although it should the whole system's - concatenated jacobians)
+    Eigen::PartialPivLU<Eigen::MatrixXd::PlainObject> luDecompositionBaseJacobian(6);
+    luDecompositionBaseJacobian.compute(leftFootJacobian.leftCols<6>());
+    twist = -luDecompositionBaseJacobian.solve(leftFootJacobian.rightCols(nDoF) * qd);
 }
 
 void IcubControllerServer::pinv(Eigen::MatrixXd mat, Eigen::MatrixXd& pinvmat, double pinvtoler) const
 {
     Matrix<double,6,6> tmp = mat.transpose()*mat + pinvtoler*Eigen::Matrix<double,6,6>::Identity();
-    pinvmat = tmp.inverse()*mat;
+    pinvmat = tmp.inverse()*mat.transpose();
 }
+
 

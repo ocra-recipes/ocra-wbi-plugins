@@ -31,10 +31,19 @@ public:
     // Not in the virtual class
     void rootFrameVelocity(Eigen::VectorXd& q,
                            Eigen::VectorXd& qd,
+                           iDynTree::Transform& wbi_H_root_Transform,
                            double           regularization,
                            int              LEFT_FOOT_CONTACT,
                            int              RIGHT_FOOT_CONTACT,
                            Eigen::VectorXd& twist);
+    
+    void rootFrameVelocityPivLU(Eigen::VectorXd& q,
+                                Eigen::VectorXd& qd,
+                                iDynTree::Transform& wbi_H_root_Transform,
+                                double           regularization,
+                                int              LEFT_FOOT_CONTACT,
+                                int              RIGHT_FOOT_CONTACT,
+                                Eigen::VectorXd& twist);
     void pinv(Eigen::MatrixXd mat, Eigen::MatrixXd& pinvmat, double pinvtoler=1.0e-6) const;
 private:
     std::shared_ptr<wbi::wholeBodyInterface> wbi; /*!< The WBI used to talk to the robot. */

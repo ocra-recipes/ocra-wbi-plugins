@@ -27,7 +27,7 @@ else()
 endif()
 
 set(VARS_PREFIX "OcraIcub")
-set(CMAKE_BUILD_TYPE Release)
+# set(CMAKE_BUILD_TYPE Release)
 # set(CMAKE_BUILD_TYPE Debug)
 
 set(${VARS_PREFIX}_MAJOR_VERSION 1)
