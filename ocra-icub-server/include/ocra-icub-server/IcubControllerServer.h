@@ -6,6 +6,7 @@
 #include <Eigen/Dense>
 #include <ocra-icub/OcraWbiModel.h>
 #include <iDynTree/Estimation/SimpleLeggedOdometry.h>
+#include <ocra/util/ErrorsHelper.h>
 
 class IcubControllerServer : public ocra_recipes::ControllerServer
 {

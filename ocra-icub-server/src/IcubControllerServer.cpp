@@ -67,9 +67,12 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
 //             std::cout << "\033[1;31m[DEBUG-ODOMETRY icubControllerServer::getRobotState]\033[0m Rototrans from world to root is wbi_H_root_Vector: " << wbi_H_root_Vector_tmp << std::endl;
             wbi_H_root_Vector = wbi_H_root_Vector_tmp;
                       
+            // Find out which tasks are active
+            int leftSupport = 1; int rightSupport = 1;
+            this->controller->getContactState(leftSupport, rightSupport);            
             // For now assuming that contact of left and right foot is permanent for debugging purposes
-//             rootFrameVelocity(q, qd, wbi_H_root_Transform, 1.0e-6, 1, 1, wbi_T_root_Vector);
-            rootFrameVelocityPivLU(q, qd, wbi_H_root_Transform, 1.0e-6, 1, 1, wbi_T_root_Vector);
+            rootFrameVelocity(q, qd, wbi_H_root_Transform, 1.0e-6, leftSupport, rightSupport, wbi_T_root_Vector);
+//             rootFrameVelocityPivLU(q, qd, wbi_H_root_Transform, 1.0e-6, leftSupport, rightSupport, wbi_T_root_Vector);
 //             std::cout << "Root velocity is: " << wbi_T_root_Vector.transpose() << std::endl;
            
             
@@ -200,7 +203,7 @@ void IcubControllerServer::rootFrameVelocity(Eigen::VectorXd& q,
     // Concatenated jacobians
     Eigen::MatrixXd systemJacobian(leftFootJacobian.rows()+rightFootJacobian.rows(), leftFootJacobian.cols());
     systemJacobian.setZero();
-    systemJacobian << leftFootJacobian, rightFootJacobian;
+    systemJacobian << LEFT_FOOT_CONTACT*leftFootJacobian, RIGHT_FOOT_CONTACT*rightFootJacobian;
     // Concatenated jacobians for contacts contributions
 //     std::cout << "Sytem Jacobian: " << std::endl;
 //     std::cout << systemJacobian << std::endl;
@@ -244,8 +247,6 @@ void IcubControllerServer::rootFrameVelocityPivLU(Eigen::VectorXd& q,
     wbi->computeJacobian(q.data(), xBase, rightFootID, rightFootJacobian.data());
 //     std::cout << rightFootJacobian << std::endl;
    
-    
-    // Using EIGEN. For now using lefFootJacobian (although it should the whole system's - concatenated jacobians)
     Eigen::PartialPivLU<Eigen::MatrixXd::PlainObject> luDecompositionBaseJacobian(6);
     luDecompositionBaseJacobian.compute(leftFootJacobian.leftCols<6>());
     twist = -luDecompositionBaseJacobian.solve(leftFootJacobian.rightCols(nDoF) * qd);
@@ -256,5 +257,3 @@ void IcubControllerServer::pinv(Eigen::MatrixXd mat, Eigen::MatrixXd& pinvmat, d
     Matrix<double,6,6> tmp = mat.transpose()*mat + pinvtoler*Eigen::Matrix<double,6,6>::Identity();
     pinvmat = tmp.inverse()*mat.transpose();
 }
-
-

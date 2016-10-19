@@ -5,6 +5,7 @@
 #include <ocra-recipes/TrajectoryThread.h>
 #include <ocra-recipes/ControllerClient.h>
 // #include <ocra/control/Model.h>
+#include <ocra/util/ErrorsHelper.h>
 
 enum COM_SUPPORT_POSITION
 {
@@ -154,6 +155,19 @@ private:
      *  @return True after the foot contact is deactivated.
      */
     bool liftFoot(FOOT_CONTACTS foot);
+    
+     /**
+     *  Sets the right or left foot waypoint to rightFootTarget or leftFootTarget accordingly (where the foot will be lifted). 
+     *  These values are harcoded in the loop() method and updated only during the very first iteration when the 
+     *  variable getInitialValues is set to true. 
+     *
+     *  @param foot LEFT_FOOT or RIGHT_FOOT
+     *  @param isLeftFootInContact  Updates the current state of the left foot contact.
+     *  @param isRightFootInContact Updates the current state of the right foot contact.
+     *
+     *  @return True after the foot contact is deactivated.
+     */
+    bool liftFoot(FOOT_CONTACTS foot, bool isLeftFootInContact, bool isRightFootInContact);
     
     /**
      *  Sets the right or left foot waypoint to rightFootHome or leftFootHome accordingly (where the foot will land). These values are harcoded in the loop() method and updated only during the very first iteration when the variable getInitialValues is set to true.
