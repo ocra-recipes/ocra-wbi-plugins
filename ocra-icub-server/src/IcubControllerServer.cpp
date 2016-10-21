@@ -215,7 +215,7 @@ void IcubControllerServer::rootFrameVelocity(Eigen::VectorXd& q,
 //     std::cout << jacobianBaseContrib << std::endl;
     // Pseudoinverse of the jacobian base contribution
     Eigen::MatrixXd pinvJacobianBaseContrib;
-    pinv(jacobianBaseContrib, pinvJacobianBaseContrib, 0.01);
+    pinv(jacobianBaseContrib, pinvJacobianBaseContrib, 0.001);
     // Floating-base velocity
     twist = -pinvJacobianBaseContrib * (contactsJacobianJointsContrib * qd);
     

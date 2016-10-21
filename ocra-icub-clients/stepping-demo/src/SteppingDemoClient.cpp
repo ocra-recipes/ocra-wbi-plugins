@@ -93,14 +93,14 @@ void SteppingDemoClient::loop()
             leftFootTarget = leftFootHome + Eigen::Vector3d(0.05, -0.01, 0.05);
             rightFootTarget = rightFootHome + Eigen::Vector3d(0.05, 0.01, 0.05);
 
-            leftFootHome += Eigen::Vector3d(0.0, 0.0, -0.005);
-            rightFootHome += Eigen::Vector3d(0.0, 0.0, -0.005);
+            leftFootHome += Eigen::Vector3d(0.0, 0.0, -0.01);
+            rightFootHome += Eigen::Vector3d(0.0, 0.0, -0.01);
 
             OCRA_INFO(" leftFootHome: " << leftFootHome.transpose());
-            std::cout << " rightFootHome: " << rightFootHome.transpose() << std::endl;
-            std::cout << " comHome: " << comHome.transpose() << std::endl;
-            std::cout << " leftFootTarget: " << leftFootTarget.transpose() << std::endl;
-            std::cout << " rightFootTarget: " << rightFootTarget.transpose() << std::endl;
+            OCRA_INFO(" rightFootHome: " << rightFootHome.transpose());
+            OCRA_INFO(" comHome: " << comHome.transpose());
+            OCRA_INFO(" leftFootTarget: " << leftFootTarget.transpose());
+            OCRA_INFO(" rightFootTarget: " << rightFootTarget.transpose());
 
             getInitialValues = false;
         }
