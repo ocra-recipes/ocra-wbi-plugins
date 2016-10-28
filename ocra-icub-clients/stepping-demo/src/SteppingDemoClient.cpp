@@ -93,8 +93,8 @@ void SteppingDemoClient::loop()
             leftFootTarget = leftFootHome + Eigen::Vector3d(0.05, -0.01, 0.05);
             rightFootTarget = rightFootHome + Eigen::Vector3d(0.05, 0.01, 0.05);
 
-            leftFootHome += Eigen::Vector3d(0.0, 0.0, -0.01);
-            rightFootHome += Eigen::Vector3d(0.0, 0.0, -0.01);
+//             leftFootHome += Eigen::Vector3d(0.0, 0.0, 0.0);
+//             rightFootHome += Eigen::Vector3d(0.0, 0.0, 0.0);
 
             OCRA_INFO(" leftFootHome: " << leftFootHome.transpose());
             OCRA_INFO(" rightFootHome: " << rightFootHome.transpose());
@@ -300,6 +300,8 @@ void SteppingDemoClient::activateFootContacts(FOOT_CONTACTS foot)
             res &= LeftFootContact_FrontRight->activate();
             if(res) {
                 std::cout << "Activated left foot contacts." << std::endl;
+            } else {
+                OCRA_ERROR("One or more contacts could not be activated");
             }
         }break;
 
@@ -312,6 +314,8 @@ void SteppingDemoClient::activateFootContacts(FOOT_CONTACTS foot)
             res &= RightFootContact_FrontRight->activate();
             if(res) {
                 std::cout << "Activated right foot contacts." << std::endl;
+            } else {
+                OCRA_ERROR("One or more contacts could not be activated");
             }
         }break;
 

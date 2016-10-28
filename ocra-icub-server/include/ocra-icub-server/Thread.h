@@ -33,6 +33,7 @@
 #include <ocra-icub-server/IcubControllerServer.h>
 
 #include <ocra-icub/Utilities.h>
+#include <ocra/util/ErrorsHelper.h>
 
 #include <yarp/os/Bottle.h>
 #include <yarp/os/RpcServer.h>

@@ -372,7 +372,10 @@ bool Thread::ControllerRpcServerCallback::read(yarp::os::ConnectionReader& conne
         thread.parseIncomingMessage(input, reply);
         yarp::os::ConnectionWriter* returnToSender = connection.getWriter();
         if (returnToSender!=NULL) {
-            reply.write(*returnToSender);
+            if (!reply.write(*returnToSender)) {
+                OCRA_ERROR("Could send a reply");
+                return false;
+            }
         }
         return true;
     }

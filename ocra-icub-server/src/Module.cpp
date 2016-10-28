@@ -236,6 +236,7 @@ void Module::printHelp()
     std::cout<< "\t--rate :Period used by the module. Default set to 10ms." <<std::endl;
     std::cout<< "\t--robot :Robot name (icubSim or icub). Set to icub by default." <<std::endl;
     std::cout<< "\t--local :Prefix of the ports opened by the module. Set to the module name by default, i.e. basicWholeBodyInterfaceModule." <<std::endl;
+    std::cout<< "\t--solver:Name of the solver used by the controller. Options are: QUADPROG, QPOASES." << std::endl;
     std::cout<< "\t--taskSet :A path to an XML file containing a set of tasks. The tasks will be created when the controller is started. Set to empty by default." <<std::endl;
     std::cout<< "\t--sequence :A string identifying a predefined scenario. The scenarios (sets of tasks and control logic) are defined in sequenceCollection and will be created when the controller is started. Set to empty by default." <<std::endl;
     std::cout<< "\t--debug :If this flag is present then the controller will run in Debug mode which allows each joint to be tested individually." <<std::endl;

@@ -41,11 +41,18 @@ public:
     void rootFrameVelocityPivLU(Eigen::VectorXd& q,
                                 Eigen::VectorXd& qd,
                                 iDynTree::Transform& wbi_H_root_Transform,
-                                double           regularization,
+                                Eigen::VectorXd& twist);
+    
+    void rootFrameVelocityPivLU(Eigen::VectorXd& q,
+                                Eigen::VectorXd& qd,
+                                iDynTree::Transform& wbi_H_root_Transform,
                                 int              LEFT_FOOT_CONTACT,
                                 int              RIGHT_FOOT_CONTACT,
                                 Eigen::VectorXd& twist);
+    
     void pinv(Eigen::MatrixXd mat, Eigen::MatrixXd& pinvmat, double pinvtoler=1.0e-6) const;
+    
+    void velocityError(Eigen::MatrixXd A, Eigen::MatrixXd B, Eigen::MatrixXd X);
 private:
     std::shared_ptr<wbi::wholeBodyInterface> wbi; /*!< The WBI used to talk to the robot. */
     std::string robotName;
