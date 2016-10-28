@@ -3,7 +3,7 @@
  *  \details
  *  \author     [Ryan Lober](http://www.ryanlober.com)
  *  \author     [Antoine Hoarau](http://ahoarau.github.io)
- *  \date       Feb 2016 
+ *  \date       Feb 2016
  *  \copyright  GNU General Public License.
  */
 /*
@@ -155,9 +155,9 @@ bool Thread::threadInit()
         yarpWbi->setControlReference(initialPosture.data());
         return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, debugJointIndex);
     } else {
-        yarp::os::Time timer;
-        timer.delay(5.0);
-        std::cout << "First timer over" << std::endl;
+        // yarp::os::Time timer;
+        // timer.delay(5.0);
+        // std::cout << "First timer over" << std::endl;
         return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
 
         // jorh: This is mostly for when I'm debugging. Read current torques and set references, otherwise the robot will just fall under the action of zero torques being set when the control mode is set.
