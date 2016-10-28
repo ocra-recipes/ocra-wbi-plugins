@@ -344,11 +344,7 @@ bool SteppingDemoClient::isFootInContact(FOOT_CONTACTS foot)
         break;
     }
 
-    std::cout << "---------------------" << std::endl;
-    std::cout << "foot_z " << foot_z << std::endl;
-
     double footContactRealeaseThreshold = 0.005;
-//     double footContactRealeaseThreshold = -0.0001;
 
     if (foot_z <= footContactRealeaseThreshold) {
         activateFootContacts(foot);
