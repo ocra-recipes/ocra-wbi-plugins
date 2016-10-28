@@ -39,7 +39,6 @@ bool SteppingDemoClient::initialize()
     com_TrajThread->setGoalErrorThreshold(0.01);
 
     currentPhase = MOVE_TO_LEFT_SUPPORT;
-//     currentPhase = MOVE_TO_RIGHT_SUPPORT;
     isMovingCoM = false;
     
     if (!com_TrajThread->start()) return false;
