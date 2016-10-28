@@ -39,6 +39,7 @@ bool SteppingDemoClient::initialize()
     com_TrajThread->setGoalErrorThreshold(0.01);
 
     currentPhase = MOVE_TO_LEFT_SUPPORT;
+//     currentPhase = MOVE_TO_RIGHT_SUPPORT;
     isMovingCoM = false;
     
     if (!com_TrajThread->start()) return false;
@@ -91,6 +92,7 @@ void SteppingDemoClient::loop()
             comHome = getCoMPosition();
 
             leftFootTarget = leftFootHome + Eigen::Vector3d(0.05, -0.01, 0.05);
+//             leftFootTarget = leftFootHome + Eigen::Vector3d(0.0, 0.0, 0.0);
             rightFootTarget = rightFootHome + Eigen::Vector3d(0.05, 0.01, 0.05);
 
             leftFootHome += Eigen::Vector3d(0.0, 0.0, -0.01);
@@ -105,7 +107,7 @@ void SteppingDemoClient::loop()
             getInitialValues = false;
         }
 
-
+//         std::cout<<"Left foot pose: " << getLeftFootPosition().transpose() << std::endl;
         if(isBalanced() && pauseFinished())
         {
             // std::cout << "Hey I am balanced!" << std::endl;
@@ -207,7 +209,7 @@ void SteppingDemoClient::positionCoMOver(COM_SUPPORT_POSITION newSupportPos)
         case LEFT_FOOT_XY:
         {
             newCoMGoalPosition = getLeftFootPosition();
-            std::cout << "newCoMGoalPosition: " << newCoMGoalPosition.transpose() << std::endl;
+//             std::cout << "newCoMGoalPosition: " << newCoMGoalPosition.transpose() << std::endl;
 
         }break;
         case RIGHT_FOOT_XY:
@@ -339,12 +341,11 @@ bool SteppingDemoClient::isFootInContact(FOOT_CONTACTS foot)
         break;
     }
 
-    // std::cout << "---------------------" << std::endl;
-    // std::cout << "foot_z " << foot_z << std::endl;
-    // std::cout << "rightFoot_z " << rightFoot_z << std::endl;
+    std::cout << "---------------------" << std::endl;
+    std::cout << "foot_z " << foot_z << std::endl;
 
-    double footContactRealeaseThreshold = 0.01;
-
+    double footContactRealeaseThreshold = 0.005;
+//     double footContactRealeaseThreshold = -0.0001;
 
     if (foot_z <= footContactRealeaseThreshold) {
         activateFootContacts(foot);
