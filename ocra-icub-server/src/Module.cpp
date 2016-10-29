@@ -50,6 +50,7 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
     controller_options.serverName = rf.check("local") ? rf.find("local").asString().c_str() : "OcraControllerServer";
     controller_options.runInDebugMode = rf.check("debug");
     controller_options.isFloatingBase = rf.check("floatingBase");
+    controller_options.useOdometry = rf.check("useOdometry");
 
     if( rf.check("solver") )
     {
@@ -128,7 +129,10 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
 
     // Setup the WBI config.
     controller_options.wbiConfigFilePath = rf.findFile("wbi_conf_file");
+    std::cout << "\033[1;31m[DEBUG-ODOMETRY]\033[0m The MODULE looks for the URDF model file..." << std::endl;
     controller_options.yarpWbiOptions.fromConfigFile(controller_options.wbiConfigFilePath);
+    std::cout << "\033[1;31m[DEBUG-ODOMETRY]\033[0m URDF MODEL NAME TO BE FOUND: " << controller_options.yarpWbiOptions.find("urdf").asString() << std::endl;
+    controller_options.urdfModelPath = rf.findFile(controller_options.yarpWbiOptions.find("urdf").asString());
     // Overwrite the robot parameter that could be present in wbi_conf_file
     controller_options.yarpWbiOptions.put("robot", controller_options.robotName);
 
@@ -232,9 +236,11 @@ void Module::printHelp()
     std::cout<< "\t--rate :Period used by the module. Default set to 10ms." <<std::endl;
     std::cout<< "\t--robot :Robot name (icubSim or icub). Set to icub by default." <<std::endl;
     std::cout<< "\t--local :Prefix of the ports opened by the module. Set to the module name by default, i.e. basicWholeBodyInterfaceModule." <<std::endl;
+    std::cout<< "\t--solver:Name of the solver used by the controller. Options are: QUADPROG, QPOASES." << std::endl;
     std::cout<< "\t--taskSet :A path to an XML file containing a set of tasks. The tasks will be created when the controller is started. Set to empty by default." <<std::endl;
     std::cout<< "\t--sequence :A string identifying a predefined scenario. The scenarios (sets of tasks and control logic) are defined in sequenceCollection and will be created when the controller is started. Set to empty by default." <<std::endl;
     std::cout<< "\t--debug :If this flag is present then the controller will run in Debug mode which allows each joint to be tested individually." <<std::endl;
     std::cout<< "\t--floatingBase :If this flag is present then the controller will run in using a floating base dynamic model and control. Defaults to false, or fixed base if no flag is present." <<std::endl;
     std::cout << "\t--absolutePath :If you use this in conjunction with a task set then the controller will look for the task set exactly where you tell it to." << std::endl;
+    std::cout << "\t--useOdometry :This will enable odometry leavint the world reference frame attached a non-moving point." << std::endl;
 }

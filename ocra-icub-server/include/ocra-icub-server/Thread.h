@@ -33,6 +33,7 @@
 #include <ocra-icub-server/IcubControllerServer.h>
 
 #include <ocra-icub/Utilities.h>
+#include <ocra/util/ErrorsHelper.h>
 
 #include <yarp/os/Bottle.h>
 #include <yarp/os/RpcServer.h>
@@ -41,6 +42,8 @@
 
 #include <sstream>
 #include <string>
+
+#include <iDynTree/Estimation/SimpleLeggedOdometry.h>
 
 
 class OcraControllerOptions
@@ -63,8 +66,10 @@ public: // Variables
     std::string             startupTaskSetPath; /*!< a string with the absolute path to an xml file with a set of tasks. */
     std::string             startupSequence; /*!< a string with the name of a sequence to run **(will be removed)**. */
     std::string             wbiConfigFilePath; /*!< The absolute path to the configuration file used to initialize the yarpWBI. */
-    bool                    runInDebugMode; /*!< a boolean which runs the controller in a debugging mode which allows one to check the contorller ouput joint by joint. */
+    std::string             urdfModelPath; /*!< Absolute path to the urdf model. Used for the odometry. */
+    bool                    runInDebugMode; /*!< a boolean which runs the controller in a debugging mode which allows one to check the controller ouput joint by joint. */
     bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
+    bool                    useOdometry; /*!< a boolean which tells the controller to start the odometry, meaning that the world reference frame remains attached to the ground*/
     yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
     ocra_recipes::CONTROLLER_TYPE    controllerType; /*!< The type of OCRA controller to use. */
     ocra_recipes::SOLVER_TYPE    solver; /*!< The type of OCRA controller to use. */
@@ -183,6 +188,8 @@ private:
 
     Eigen::VectorXd measuredTorques;
     bool debuggingAllJoints;
+    
+    iDynTree::SimpleLeggedOdometry odometry; /*!< Odometry object */
 };
 
 

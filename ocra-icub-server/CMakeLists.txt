@@ -18,6 +18,9 @@
 SET(PROJECTNAME ocra-icub-server)
 PROJECT(${PROJECTNAME} CXX)
 
+# For the moment this dependency is introduced only for performing legged-odometry
+find_package(iDynTree REQUIRED)
+
 FILE(GLOB folder_source src/*.cpp)
 FILE(GLOB folder_header include/${PROJECTNAME}/*.h)
 
@@ -30,11 +33,13 @@ ${OcraRecipes_INCLUDE_DIRS}
 ${OcraIcub_INCLUDE_DIRS}
 )
 
+# For SimpleLeggedOdometry
+INCLUDE_DIRECTORIES(SYSTEM ${iDynTree_INCLUDE_DIRS})
+
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
-TARGET_LINK_LIBRARIES(
-${PROJECTNAME}
-ocra-icub
+TARGET_LINK_LIBRARIES( ${PROJECTNAME} ocra-icub
+                                      ${iDynTree_LIBRARIES}
 )
 
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
