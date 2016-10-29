@@ -1,0 +1,523 @@
+\hypertarget{classSteppingDemoClient}{}\section{Stepping\+Demo\+Client Class Reference}
+\label{classSteppingDemoClient}\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+
+
+{\ttfamily \#include $<$Stepping\+Demo\+Client.\+h$>$}
+
+Inheritance diagram for Stepping\+Demo\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSteppingDemoClient}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classSteppingDemoClient_a28e41547ba5641741ceb3b378a5983db}{Stepping\+Demo\+Client} (std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$ model\+Ptr, const int loop\+Period)
+\item 
+virtual \hyperlink{classSteppingDemoClient_a573eed904c7262c5cdbaf6e254d72559}{$\sim$\+Stepping\+Demo\+Client} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{classSteppingDemoClient_a08dce195eece162eed175ac9487667c2}{initialize} ()
+\item 
+virtual void \hyperlink{classSteppingDemoClient_aafcb227c0d7ce24823957e2331caa88b}{release} ()
+\item 
+virtual void \hyperlink{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb5}{loop} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_af6a814243828f5136476aa5e99ea0079}{get\+Left\+Foot\+Position} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_ae9c0d72756c109f49c269a7e1b06454a}{get\+Right\+Foot\+Position} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_a857aa530a4ab94443d0b0869121baf76}{get\+Co\+M\+Position} ()
+\item 
+void \hyperlink{classSteppingDemoClient_a18609e5634a283423c228106bb0e3a45}{position\+Co\+M\+Over} (\hyperlink{SteppingDemoClient_8h_ac0c3848a609566394821d9826e0fdd5b}{C\+O\+M\+\_\+\+S\+U\+P\+P\+O\+R\+T\+\_\+\+P\+O\+S\+I\+T\+I\+ON} new\+Support\+Pos)
+\item 
+bool \hyperlink{classSteppingDemoClient_ad8fbc186267a47a73bb77e78199f2b8c}{is\+Balanced} ()
+\item 
+void \hyperlink{classSteppingDemoClient_a62b5028bdc99de117cfffc576478a0f1}{deactivate\+Foot\+Contacts} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot)
+\item 
+void \hyperlink{classSteppingDemoClient_abf583698c8c03620516acf3ec6eb9e41}{activate\+Foot\+Contacts} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot)
+\item 
+bool \hyperlink{classSteppingDemoClient_aeeaa9fac47e3e5a141647b07fa2feaa3}{is\+Foot\+In\+Contact} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot)
+\item 
+void \hyperlink{classSteppingDemoClient_a6b5d8bf0ce08c8b9f66ac2c1bbd5bcd7}{pause\+For} (double \+\_\+pause\+Duration)
+\item 
+bool \hyperlink{classSteppingDemoClient_afe78b799d8b8c63cff7d1e8765b7e1fa}{pause\+Finished} ()
+\item 
+bool \hyperlink{classSteppingDemoClient_a927c8615104a5fd5968ea4ece2c22926}{lift\+Foot} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot)
+\item 
+bool \hyperlink{classSteppingDemoClient_ae406e5c8f755f234272b63de4d6a774f}{lift\+Foot} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot, bool is\+Left\+Foot\+In\+Contact, bool is\+Right\+Foot\+In\+Contact)
+\item 
+bool \hyperlink{classSteppingDemoClient_a930123dad5658ea8a3bb5f23cb4cb369}{set\+Down\+Foot} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classSteppingDemoClient_a5dd71720cd8f7a17d21f74d20b3c23ff}{Left\+Foot\+Contact\+\_\+\+Back\+Left}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classSteppingDemoClient_a32e69816ec216b3d6502385e2346d22d}{Left\+Foot\+Contact\+\_\+\+Front\+Left}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classSteppingDemoClient_a946ab9de6d55274e5cb9b9a8743a30b8}{Left\+Foot\+Contact\+\_\+\+Back\+Right}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classSteppingDemoClient_ae2c0ca1ba0ef69b5f09fd3cd982fb772}{Left\+Foot\+Contact\+\_\+\+Front\+Right}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classSteppingDemoClient_aaaf5dee15bf151def4b4070751d1ca84}{Right\+Foot\+Contact\+\_\+\+Back\+Left}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classSteppingDemoClient_ad10f639e025b003fd383f4cc933da15f}{Right\+Foot\+Contact\+\_\+\+Front\+Left}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classSteppingDemoClient_a93e209732588c3ef2b04e39e3df40d3e}{Right\+Foot\+Contact\+\_\+\+Back\+Right}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classSteppingDemoClient_a781be1c0ffd7e7147eb2b2de66ba3231}{Right\+Foot\+Contact\+\_\+\+Front\+Right}
+\item 
+double \hyperlink{classSteppingDemoClient_a13a5deff16d52936f788bb9b0af6e9c9}{pause\+Trigger\+Time}
+\item 
+double \hyperlink{classSteppingDemoClient_a92b810b2d2c50e359da18e5d91163340}{pause\+Duration}
+\item 
+double \hyperlink{classSteppingDemoClient_a1bb7d42cf09778349ae1ecd31d2ac116}{current\+Time}
+\item 
+bool \hyperlink{classSteppingDemoClient_a29e7765300c7d2e2d5108025fbdcbc2c}{is\+Pausing}
+\item 
+bool \hyperlink{classSteppingDemoClient_a88b84ed8fc7808ea3fb68f2ec3d29ebe}{is\+In\+Left\+Support\+Mode}
+\item 
+bool \hyperlink{classSteppingDemoClient_a7697070e5db6c635aa2eff70bce29176}{is\+In\+Right\+Support\+Mode}
+\item 
+bool \hyperlink{classSteppingDemoClient_a6036e2d0b604648ca39e4d64b41a9d6e}{foot\+Trajectory\+Started}
+\item 
+std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Trajectory\+Thread $>$ \hyperlink{classSteppingDemoClient_afd18627088c2c12f172ff9e976da5330}{left\+Foot\+\_\+\+Traj\+Thread}
+\item 
+std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Trajectory\+Thread $>$ \hyperlink{classSteppingDemoClient_a8b4b931d41b47d9923417506fac107f3}{right\+Foot\+\_\+\+Traj\+Thread}
+\item 
+std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Trajectory\+Thread $>$ \hyperlink{classSteppingDemoClient_a9f3d1cdc49cc26a10f9b8fb0d0c68cab}{com\+\_\+\+Traj\+Thread}
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_acd4cb9dbe053979701574f5d1d4ef349}{left\+Foot\+Home}
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_ae2a3bdaafc7784b5afece8ae9ebaff7d}{right\+Foot\+Home}
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_aa018c1f2734d63f962be512461c9e010}{com\+Home}
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_a2360933e2902d1b1a374787bd67e14e7}{left\+Foot\+Target}
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_abfe6635a0ad50fa4baa6fa10b8c56d9e}{right\+Foot\+Target}
+\item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_ab4a77111abbf3630280a64d17ac59eef}{new\+Co\+M\+Goal\+Position}
+\item 
+double \hyperlink{classSteppingDemoClient_af7b6e48319ef9d35fb975edc3bb2a137}{start\+Time}
+\item 
+bool \hyperlink{classSteppingDemoClient_aedd8bb5bca60afbdd2b8de3b5d1829d7}{get\+Initial\+Values}
+\item 
+\hyperlink{SteppingDemoClient_8h_af2a8507bf21c3ce9b0e67a23381251c6}{C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+H\+A\+SE} \hyperlink{classSteppingDemoClient_afe0aa2a02ea8117d644bf5444a03ac62}{current\+Phase}
+\item 
+\hyperlink{SteppingDemoClient_8h_af2a8507bf21c3ce9b0e67a23381251c6}{C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+H\+A\+SE} \hyperlink{classSteppingDemoClient_ab5a3b82049a9786162a60d0ae94f96d9}{next\+Phase}
+\item 
+bool \hyperlink{classSteppingDemoClient_ad7e3950d053af7c1aca33b3e7c3b20c5}{is\+Moving\+CoM}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classSteppingDemoClient_a28e41547ba5641741ceb3b378a5983db}{}\label{classSteppingDemoClient_a28e41547ba5641741ceb3b378a5983db} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Stepping\+Demo\+Client()}{SteppingDemoClient()}}
+{\footnotesize\ttfamily Stepping\+Demo\+Client\+::\+Stepping\+Demo\+Client (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$}]{model\+Ptr,  }\item[{const int}]{loop\+Period }\end{DoxyParamCaption})}
+
+\hypertarget{classSteppingDemoClient_a573eed904c7262c5cdbaf6e254d72559}{}\label{classSteppingDemoClient_a573eed904c7262c5cdbaf6e254d72559} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!````~Stepping\+Demo\+Client@{$\sim$\+Stepping\+Demo\+Client}}
+\index{````~Stepping\+Demo\+Client@{$\sim$\+Stepping\+Demo\+Client}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{$\sim$\+Stepping\+Demo\+Client()}{~SteppingDemoClient()}}
+{\footnotesize\ttfamily Stepping\+Demo\+Client\+::$\sim$\+Stepping\+Demo\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classSteppingDemoClient_abf583698c8c03620516acf3ec6eb9e41}{}\label{classSteppingDemoClient_abf583698c8c03620516acf3ec6eb9e41} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!activate\+Foot\+Contacts@{activate\+Foot\+Contacts}}
+\index{activate\+Foot\+Contacts@{activate\+Foot\+Contacts}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{activate\+Foot\+Contacts()}{activateFootContacts()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::activate\+Foot\+Contacts (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS}}]{foot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+This method asks the ocra-\/icub-\/server to activate one by one the feet \char`\"{}corner\char`\"{} contact tasks for the specified foot.
+
+
+\begin{DoxyParams}{Parameters}
+{\em foot} & L\+E\+F\+T\+\_\+\+F\+O\+OT or R\+I\+G\+H\+T\+\_\+\+F\+O\+OT. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSteppingDemoClient_a62b5028bdc99de117cfffc576478a0f1}{}\label{classSteppingDemoClient_a62b5028bdc99de117cfffc576478a0f1} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!deactivate\+Foot\+Contacts@{deactivate\+Foot\+Contacts}}
+\index{deactivate\+Foot\+Contacts@{deactivate\+Foot\+Contacts}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{deactivate\+Foot\+Contacts()}{deactivateFootContacts()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::deactivate\+Foot\+Contacts (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS}}]{foot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Remember the right and left feet contact tasks? created in \hyperlink{classSteppingDemoClient_a08dce195eece162eed175ac9487667c2}{initialize()}. This method acts the ocra-\/icub-\/server to deactivate one by one the feet \char`\"{}corner\char`\"{} contact tasks for the specified foot.
+
+
+\begin{DoxyParams}{Parameters}
+{\em foot} & L\+E\+F\+T\+\_\+\+F\+O\+OT or R\+I\+G\+H\+T\+\_\+\+F\+O\+OT. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSteppingDemoClient_a857aa530a4ab94443d0b0869121baf76}{}\label{classSteppingDemoClient_a857aa530a4ab94443d0b0869121baf76} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!get\+Co\+M\+Position@{get\+Co\+M\+Position}}
+\index{get\+Co\+M\+Position@{get\+Co\+M\+Position}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{get\+Co\+M\+Position()}{getCoMPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::get\+Co\+M\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Retrieves the 3D position of the \char`\"{}\+Co\+M\char`\"{} as done by the yarp\+Whole\+Body\+Interface.
+
+\begin{DoxyReturn}{Returns}
+3D position of the C\+OM. 
+\end{DoxyReturn}
+\hypertarget{classSteppingDemoClient_af6a814243828f5136476aa5e99ea0079}{}\label{classSteppingDemoClient_af6a814243828f5136476aa5e99ea0079} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!get\+Left\+Foot\+Position@{get\+Left\+Foot\+Position}}
+\index{get\+Left\+Foot\+Position@{get\+Left\+Foot\+Position}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{get\+Left\+Foot\+Position()}{getLeftFootPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::get\+Left\+Foot\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Retrieves the 3D position of the \char`\"{}l\+\_\+sole\char`\"{} frame from the i\+Cub model.
+
+\begin{DoxyReturn}{Returns}
+3D position of the left foot. 
+\end{DoxyReturn}
+\hypertarget{classSteppingDemoClient_ae9c0d72756c109f49c269a7e1b06454a}{}\label{classSteppingDemoClient_ae9c0d72756c109f49c269a7e1b06454a} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!get\+Right\+Foot\+Position@{get\+Right\+Foot\+Position}}
+\index{get\+Right\+Foot\+Position@{get\+Right\+Foot\+Position}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{get\+Right\+Foot\+Position()}{getRightFootPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::get\+Right\+Foot\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Retrieves the 3D position of the \char`\"{}r\+\_\+sole\char`\"{} frame from the i\+Cub model.
+
+\begin{DoxyReturn}{Returns}
+3D position of the right foot. 
+\end{DoxyReturn}
+\hypertarget{classSteppingDemoClient_a08dce195eece162eed175ac9487667c2}{}\label{classSteppingDemoClient_a08dce195eece162eed175ac9487667c2} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!initialize@{initialize}}
+\index{initialize@{initialize}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+The initialization consists of the following\+:
+\begin{DoxyEnumerate}
+\item Defines trajectory types (e.\+g. Min. Jerk)
+\item Defines the termination strategy
+\item Instantiates trajectory threads for the left and right foot as well as for the CoM, sets them up (max velocity, error threshold) and finally starts them.
+\item Instantiates ocra\+::\+Task\+Connection objects for the left and right feet contacts (4 per foot on each corner).
+\end{DoxyEnumerate}
+\begin{DoxyItemize}
+\item returns\+: True if everything has been initialized properly, false otherwise. 
+\end{DoxyItemize}\hypertarget{classSteppingDemoClient_ad8fbc186267a47a73bb77e78199f2b8c}{}\label{classSteppingDemoClient_ad8fbc186267a47a73bb77e78199f2b8c} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!is\+Balanced@{is\+Balanced}}
+\index{is\+Balanced@{is\+Balanced}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{is\+Balanced()}{isBalanced()}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::is\+Balanced (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Uses the norm of the C\+OM and joint velocities to understand if the robot is balanced.
+
+\begin{DoxyReturn}{Returns}
+True when both the norm of the C\+OM and joint velocities are below com\+Vel\+Threshold and joint\+Threshold. 
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]A more balance-\/centered criterion should be used for this, Z\+M\+P-\/based for example. \end{DoxyRefDesc}
+\hypertarget{classSteppingDemoClient_aeeaa9fac47e3e5a141647b07fa2feaa3}{}\label{classSteppingDemoClient_aeeaa9fac47e3e5a141647b07fa2feaa3} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!is\+Foot\+In\+Contact@{is\+Foot\+In\+Contact}}
+\index{is\+Foot\+In\+Contact@{is\+Foot\+In\+Contact}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{is\+Foot\+In\+Contact()}{isFootInContact()}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::is\+Foot\+In\+Contact (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS}}]{foot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+If the foot height is less than or equal to foot\+Contact\+Release\+Threshold, the feet contacts tasks are activated.
+
+
+\begin{DoxyParams}{Parameters}
+{\em foot} & L\+E\+F\+T\+\_\+\+F\+O\+OT or R\+I\+G\+H\+T\+\_\+\+F\+O\+OT.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the activation of the contact happens successfully. False if the foot\textquotesingle{}s elevation is not under the foot\+Contact\+Release\+Threshold. 
+\end{DoxyReturn}
+\hypertarget{classSteppingDemoClient_a927c8615104a5fd5968ea4ece2c22926}{}\label{classSteppingDemoClient_a927c8615104a5fd5968ea4ece2c22926} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!lift\+Foot@{lift\+Foot}}
+\index{lift\+Foot@{lift\+Foot}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{lift\+Foot()}{liftFoot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::lift\+Foot (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS}}]{foot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Sets the right or left foot waypoint to right\+Foot\+Target or left\+Foot\+Target accordingly (where the foot will be lifted). These values are harcoded in the \hyperlink{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb5}{loop()} method and updated only during the very first iteration when the variable get\+Initial\+Values is set to true.
+
+
+\begin{DoxyParams}{Parameters}
+{\em foot} & L\+E\+F\+T\+\_\+\+F\+O\+OT or R\+I\+G\+H\+T\+\_\+\+F\+O\+OT\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True after the foot contact is deactivated. 
+\end{DoxyReturn}
+\hypertarget{classSteppingDemoClient_ae406e5c8f755f234272b63de4d6a774f}{}\label{classSteppingDemoClient_ae406e5c8f755f234272b63de4d6a774f} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!lift\+Foot@{lift\+Foot}}
+\index{lift\+Foot@{lift\+Foot}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{lift\+Foot()}{liftFoot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::lift\+Foot (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS}}]{foot,  }\item[{bool}]{is\+Left\+Foot\+In\+Contact,  }\item[{bool}]{is\+Right\+Foot\+In\+Contact }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Sets the right or left foot waypoint to right\+Foot\+Target or left\+Foot\+Target accordingly (where the foot will be lifted). These values are harcoded in the \hyperlink{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb5}{loop()} method and updated only during the very first iteration when the variable get\+Initial\+Values is set to true.
+
+
+\begin{DoxyParams}{Parameters}
+{\em foot} & L\+E\+F\+T\+\_\+\+F\+O\+OT or R\+I\+G\+H\+T\+\_\+\+F\+O\+OT \\
+\hline
+{\em is\+Left\+Foot\+In\+Contact} & Updates the current state of the left foot contact. \\
+\hline
+{\em is\+Right\+Foot\+In\+Contact} & Updates the current state of the right foot contact.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True after the foot contact is deactivated. 
+\end{DoxyReturn}
+\hypertarget{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb5}{}\label{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb5} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!loop@{loop}}
+\index{loop@{loop}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Initially waits for two seconds, to make sure that all model states have been correctly updated during the initialization. During the first loop it retrieves left and right feet positions along with the com\textquotesingle{}s. \hypertarget{classSteppingDemoClient_afe78b799d8b8c63cff7d1e8765b7e1fa}{}\label{classSteppingDemoClient_afe78b799d8b8c63cff7d1e8765b7e1fa} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!pause\+Finished@{pause\+Finished}}
+\index{pause\+Finished@{pause\+Finished}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{pause\+Finished()}{pauseFinished()}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::pause\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Sets is\+Pausing to false when pause\+Duration has passed.
+
+\begin{DoxyReturn}{Returns}
+True when the pause duration is over. False otherwise. 
+\end{DoxyReturn}
+\hypertarget{classSteppingDemoClient_a6b5d8bf0ce08c8b9f66ac2c1bbd5bcd7}{}\label{classSteppingDemoClient_a6b5d8bf0ce08c8b9f66ac2c1bbd5bcd7} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!pause\+For@{pause\+For}}
+\index{pause\+For@{pause\+For}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{pause\+For()}{pauseFor()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::pause\+For (\begin{DoxyParamCaption}\item[{double}]{\+\_\+pause\+Duration }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Mainly sets is\+Pausing to true and stores the time at which the pause was called.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+pause\+Duration} & Pause duration. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSteppingDemoClient_a18609e5634a283423c228106bb0e3a45}{}\label{classSteppingDemoClient_a18609e5634a283423c228106bb0e3a45} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!position\+Co\+M\+Over@{position\+Co\+M\+Over}}
+\index{position\+Co\+M\+Over@{position\+Co\+M\+Over}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{position\+Co\+M\+Over()}{positionCoMOver()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::position\+Co\+M\+Over (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ac0c3848a609566394821d9826e0fdd5b}{C\+O\+M\+\_\+\+S\+U\+P\+P\+O\+R\+T\+\_\+\+P\+O\+S\+I\+T\+I\+ON}}]{new\+Support\+Pos }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Sets C\+OM trajectory waypoints according to the desired support position\+: L\+E\+F\+T\+\_\+\+F\+O\+O\+T\+\_\+\+XY\+: The C\+OM goal position is set to be on top of the left foot. R\+I\+G\+H\+T\+\_\+\+F\+O\+O\+T\+\_\+\+XY\+: The C\+OM goal position is set to be on top of the right foot. C\+E\+N\+T\+E\+R\+E\+D\+\_\+\+B\+E\+T\+W\+E\+E\+N\+\_\+\+F\+E\+E\+T\+\_\+\+XY\+: The C\+OM goal position is set between both feet. The height of the com is always the current C\+OM\textquotesingle{}s height. Since the thread must have started before calling this method, it will update the current waypoint trajectory it has or start it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Support\+Pos} & New support position. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classSteppingDemoClient_aafcb227c0d7ce24823957e2331caa88b}{}\label{classSteppingDemoClient_aafcb227c0d7ce24823957e2331caa88b} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!release@{release}}
+\index{release@{release}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{release()}{release()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Stops the trajectory threads of the CoM, left and right feet. \hypertarget{classSteppingDemoClient_a930123dad5658ea8a3bb5f23cb4cb369}{}\label{classSteppingDemoClient_a930123dad5658ea8a3bb5f23cb4cb369} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!set\+Down\+Foot@{set\+Down\+Foot}}
+\index{set\+Down\+Foot@{set\+Down\+Foot}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{set\+Down\+Foot()}{setDownFoot()}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::set\+Down\+Foot (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS}}]{foot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Sets the right or left foot waypoint to right\+Foot\+Home or left\+Foot\+Home accordingly (where the foot will land). These values are harcoded in the \hyperlink{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb5}{loop()} method and updated only during the very first iteration when the variable get\+Initial\+Values is set to true.
+
+
+\begin{DoxyParams}{Parameters}
+{\em foot} & L\+E\+F\+T\+\_\+\+F\+O\+OT or R\+I\+G\+H\+T\+\_\+\+F\+O\+OT\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True only after the foot has established contact again and the trajectory is over. False while the foot is still moving back down looking for contact or simply, the goal hasn\textquotesingle{}t been attained. 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classSteppingDemoClient_a9f3d1cdc49cc26a10f9b8fb0d0c68cab}{}\label{classSteppingDemoClient_a9f3d1cdc49cc26a10f9b8fb0d0c68cab} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!com\+\_\+\+Traj\+Thread@{com\+\_\+\+Traj\+Thread}}
+\index{com\+\_\+\+Traj\+Thread@{com\+\_\+\+Traj\+Thread}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{com\+\_\+\+Traj\+Thread}{com\_TrajThread}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ocra\+\_\+recipes\+::\+Trajectory\+Thread$>$ Stepping\+Demo\+Client\+::com\+\_\+\+Traj\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_aa018c1f2734d63f962be512461c9e010}{}\label{classSteppingDemoClient_aa018c1f2734d63f962be512461c9e010} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!com\+Home@{com\+Home}}
+\index{com\+Home@{com\+Home}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{com\+Home}{comHome}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::com\+Home\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_afe0aa2a02ea8117d644bf5444a03ac62}{}\label{classSteppingDemoClient_afe0aa2a02ea8117d644bf5444a03ac62} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!current\+Phase@{current\+Phase}}
+\index{current\+Phase@{current\+Phase}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{current\+Phase}{currentPhase}}
+{\footnotesize\ttfamily \hyperlink{SteppingDemoClient_8h_af2a8507bf21c3ce9b0e67a23381251c6}{C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+H\+A\+SE} Stepping\+Demo\+Client\+::current\+Phase\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a1bb7d42cf09778349ae1ecd31d2ac116}{}\label{classSteppingDemoClient_a1bb7d42cf09778349ae1ecd31d2ac116} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!current\+Time@{current\+Time}}
+\index{current\+Time@{current\+Time}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{current\+Time}{currentTime}}
+{\footnotesize\ttfamily double Stepping\+Demo\+Client\+::current\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a6036e2d0b604648ca39e4d64b41a9d6e}{}\label{classSteppingDemoClient_a6036e2d0b604648ca39e4d64b41a9d6e} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!foot\+Trajectory\+Started@{foot\+Trajectory\+Started}}
+\index{foot\+Trajectory\+Started@{foot\+Trajectory\+Started}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{foot\+Trajectory\+Started}{footTrajectoryStarted}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::foot\+Trajectory\+Started\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_aedd8bb5bca60afbdd2b8de3b5d1829d7}{}\label{classSteppingDemoClient_aedd8bb5bca60afbdd2b8de3b5d1829d7} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!get\+Initial\+Values@{get\+Initial\+Values}}
+\index{get\+Initial\+Values@{get\+Initial\+Values}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{get\+Initial\+Values}{getInitialValues}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::get\+Initial\+Values\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a88b84ed8fc7808ea3fb68f2ec3d29ebe}{}\label{classSteppingDemoClient_a88b84ed8fc7808ea3fb68f2ec3d29ebe} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!is\+In\+Left\+Support\+Mode@{is\+In\+Left\+Support\+Mode}}
+\index{is\+In\+Left\+Support\+Mode@{is\+In\+Left\+Support\+Mode}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{is\+In\+Left\+Support\+Mode}{isInLeftSupportMode}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::is\+In\+Left\+Support\+Mode\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a7697070e5db6c635aa2eff70bce29176}{}\label{classSteppingDemoClient_a7697070e5db6c635aa2eff70bce29176} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!is\+In\+Right\+Support\+Mode@{is\+In\+Right\+Support\+Mode}}
+\index{is\+In\+Right\+Support\+Mode@{is\+In\+Right\+Support\+Mode}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{is\+In\+Right\+Support\+Mode}{isInRightSupportMode}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::is\+In\+Right\+Support\+Mode\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_ad7e3950d053af7c1aca33b3e7c3b20c5}{}\label{classSteppingDemoClient_ad7e3950d053af7c1aca33b3e7c3b20c5} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!is\+Moving\+CoM@{is\+Moving\+CoM}}
+\index{is\+Moving\+CoM@{is\+Moving\+CoM}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{is\+Moving\+CoM}{isMovingCoM}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::is\+Moving\+CoM\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a29e7765300c7d2e2d5108025fbdcbc2c}{}\label{classSteppingDemoClient_a29e7765300c7d2e2d5108025fbdcbc2c} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!is\+Pausing@{is\+Pausing}}
+\index{is\+Pausing@{is\+Pausing}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{is\+Pausing}{isPausing}}
+{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::is\+Pausing\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_afd18627088c2c12f172ff9e976da5330}{}\label{classSteppingDemoClient_afd18627088c2c12f172ff9e976da5330} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!left\+Foot\+\_\+\+Traj\+Thread@{left\+Foot\+\_\+\+Traj\+Thread}}
+\index{left\+Foot\+\_\+\+Traj\+Thread@{left\+Foot\+\_\+\+Traj\+Thread}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{left\+Foot\+\_\+\+Traj\+Thread}{leftFoot\_TrajThread}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ocra\+\_\+recipes\+::\+Trajectory\+Thread$>$ Stepping\+Demo\+Client\+::left\+Foot\+\_\+\+Traj\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a5dd71720cd8f7a17d21f74d20b3c23ff}{}\label{classSteppingDemoClient_a5dd71720cd8f7a17d21f74d20b3c23ff} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Left\+Foot\+Contact\+\_\+\+Back\+Left@{Left\+Foot\+Contact\+\_\+\+Back\+Left}}
+\index{Left\+Foot\+Contact\+\_\+\+Back\+Left@{Left\+Foot\+Contact\+\_\+\+Back\+Left}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Left\+Foot\+Contact\+\_\+\+Back\+Left}{LeftFootContact\_BackLeft}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Stepping\+Demo\+Client\+::\+Left\+Foot\+Contact\+\_\+\+Back\+Left\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a946ab9de6d55274e5cb9b9a8743a30b8}{}\label{classSteppingDemoClient_a946ab9de6d55274e5cb9b9a8743a30b8} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Left\+Foot\+Contact\+\_\+\+Back\+Right@{Left\+Foot\+Contact\+\_\+\+Back\+Right}}
+\index{Left\+Foot\+Contact\+\_\+\+Back\+Right@{Left\+Foot\+Contact\+\_\+\+Back\+Right}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Left\+Foot\+Contact\+\_\+\+Back\+Right}{LeftFootContact\_BackRight}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Stepping\+Demo\+Client\+::\+Left\+Foot\+Contact\+\_\+\+Back\+Right\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a32e69816ec216b3d6502385e2346d22d}{}\label{classSteppingDemoClient_a32e69816ec216b3d6502385e2346d22d} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Left\+Foot\+Contact\+\_\+\+Front\+Left@{Left\+Foot\+Contact\+\_\+\+Front\+Left}}
+\index{Left\+Foot\+Contact\+\_\+\+Front\+Left@{Left\+Foot\+Contact\+\_\+\+Front\+Left}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Left\+Foot\+Contact\+\_\+\+Front\+Left}{LeftFootContact\_FrontLeft}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Stepping\+Demo\+Client\+::\+Left\+Foot\+Contact\+\_\+\+Front\+Left\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_ae2c0ca1ba0ef69b5f09fd3cd982fb772}{}\label{classSteppingDemoClient_ae2c0ca1ba0ef69b5f09fd3cd982fb772} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Left\+Foot\+Contact\+\_\+\+Front\+Right@{Left\+Foot\+Contact\+\_\+\+Front\+Right}}
+\index{Left\+Foot\+Contact\+\_\+\+Front\+Right@{Left\+Foot\+Contact\+\_\+\+Front\+Right}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Left\+Foot\+Contact\+\_\+\+Front\+Right}{LeftFootContact\_FrontRight}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Stepping\+Demo\+Client\+::\+Left\+Foot\+Contact\+\_\+\+Front\+Right\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_acd4cb9dbe053979701574f5d1d4ef349}{}\label{classSteppingDemoClient_acd4cb9dbe053979701574f5d1d4ef349} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!left\+Foot\+Home@{left\+Foot\+Home}}
+\index{left\+Foot\+Home@{left\+Foot\+Home}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{left\+Foot\+Home}{leftFootHome}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::left\+Foot\+Home\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a2360933e2902d1b1a374787bd67e14e7}{}\label{classSteppingDemoClient_a2360933e2902d1b1a374787bd67e14e7} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!left\+Foot\+Target@{left\+Foot\+Target}}
+\index{left\+Foot\+Target@{left\+Foot\+Target}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{left\+Foot\+Target}{leftFootTarget}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::left\+Foot\+Target\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_ab4a77111abbf3630280a64d17ac59eef}{}\label{classSteppingDemoClient_ab4a77111abbf3630280a64d17ac59eef} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!new\+Co\+M\+Goal\+Position@{new\+Co\+M\+Goal\+Position}}
+\index{new\+Co\+M\+Goal\+Position@{new\+Co\+M\+Goal\+Position}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{new\+Co\+M\+Goal\+Position}{newCoMGoalPosition}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::new\+Co\+M\+Goal\+Position\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_ab5a3b82049a9786162a60d0ae94f96d9}{}\label{classSteppingDemoClient_ab5a3b82049a9786162a60d0ae94f96d9} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!next\+Phase@{next\+Phase}}
+\index{next\+Phase@{next\+Phase}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{next\+Phase}{nextPhase}}
+{\footnotesize\ttfamily \hyperlink{SteppingDemoClient_8h_af2a8507bf21c3ce9b0e67a23381251c6}{C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+H\+A\+SE} Stepping\+Demo\+Client\+::next\+Phase\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a92b810b2d2c50e359da18e5d91163340}{}\label{classSteppingDemoClient_a92b810b2d2c50e359da18e5d91163340} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!pause\+Duration@{pause\+Duration}}
+\index{pause\+Duration@{pause\+Duration}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{pause\+Duration}{pauseDuration}}
+{\footnotesize\ttfamily double Stepping\+Demo\+Client\+::pause\+Duration\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a13a5deff16d52936f788bb9b0af6e9c9}{}\label{classSteppingDemoClient_a13a5deff16d52936f788bb9b0af6e9c9} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!pause\+Trigger\+Time@{pause\+Trigger\+Time}}
+\index{pause\+Trigger\+Time@{pause\+Trigger\+Time}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{pause\+Trigger\+Time}{pauseTriggerTime}}
+{\footnotesize\ttfamily double Stepping\+Demo\+Client\+::pause\+Trigger\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a8b4b931d41b47d9923417506fac107f3}{}\label{classSteppingDemoClient_a8b4b931d41b47d9923417506fac107f3} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!right\+Foot\+\_\+\+Traj\+Thread@{right\+Foot\+\_\+\+Traj\+Thread}}
+\index{right\+Foot\+\_\+\+Traj\+Thread@{right\+Foot\+\_\+\+Traj\+Thread}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{right\+Foot\+\_\+\+Traj\+Thread}{rightFoot\_TrajThread}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ocra\+\_\+recipes\+::\+Trajectory\+Thread$>$ Stepping\+Demo\+Client\+::right\+Foot\+\_\+\+Traj\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_aaaf5dee15bf151def4b4070751d1ca84}{}\label{classSteppingDemoClient_aaaf5dee15bf151def4b4070751d1ca84} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Right\+Foot\+Contact\+\_\+\+Back\+Left@{Right\+Foot\+Contact\+\_\+\+Back\+Left}}
+\index{Right\+Foot\+Contact\+\_\+\+Back\+Left@{Right\+Foot\+Contact\+\_\+\+Back\+Left}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Right\+Foot\+Contact\+\_\+\+Back\+Left}{RightFootContact\_BackLeft}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Stepping\+Demo\+Client\+::\+Right\+Foot\+Contact\+\_\+\+Back\+Left\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a93e209732588c3ef2b04e39e3df40d3e}{}\label{classSteppingDemoClient_a93e209732588c3ef2b04e39e3df40d3e} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Right\+Foot\+Contact\+\_\+\+Back\+Right@{Right\+Foot\+Contact\+\_\+\+Back\+Right}}
+\index{Right\+Foot\+Contact\+\_\+\+Back\+Right@{Right\+Foot\+Contact\+\_\+\+Back\+Right}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Right\+Foot\+Contact\+\_\+\+Back\+Right}{RightFootContact\_BackRight}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Stepping\+Demo\+Client\+::\+Right\+Foot\+Contact\+\_\+\+Back\+Right\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_ad10f639e025b003fd383f4cc933da15f}{}\label{classSteppingDemoClient_ad10f639e025b003fd383f4cc933da15f} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Right\+Foot\+Contact\+\_\+\+Front\+Left@{Right\+Foot\+Contact\+\_\+\+Front\+Left}}
+\index{Right\+Foot\+Contact\+\_\+\+Front\+Left@{Right\+Foot\+Contact\+\_\+\+Front\+Left}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Right\+Foot\+Contact\+\_\+\+Front\+Left}{RightFootContact\_FrontLeft}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Stepping\+Demo\+Client\+::\+Right\+Foot\+Contact\+\_\+\+Front\+Left\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a781be1c0ffd7e7147eb2b2de66ba3231}{}\label{classSteppingDemoClient_a781be1c0ffd7e7147eb2b2de66ba3231} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!Right\+Foot\+Contact\+\_\+\+Front\+Right@{Right\+Foot\+Contact\+\_\+\+Front\+Right}}
+\index{Right\+Foot\+Contact\+\_\+\+Front\+Right@{Right\+Foot\+Contact\+\_\+\+Front\+Right}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Right\+Foot\+Contact\+\_\+\+Front\+Right}{RightFootContact\_FrontRight}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Stepping\+Demo\+Client\+::\+Right\+Foot\+Contact\+\_\+\+Front\+Right\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_ae2a3bdaafc7784b5afece8ae9ebaff7d}{}\label{classSteppingDemoClient_ae2a3bdaafc7784b5afece8ae9ebaff7d} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!right\+Foot\+Home@{right\+Foot\+Home}}
+\index{right\+Foot\+Home@{right\+Foot\+Home}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{right\+Foot\+Home}{rightFootHome}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::right\+Foot\+Home\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_abfe6635a0ad50fa4baa6fa10b8c56d9e}{}\label{classSteppingDemoClient_abfe6635a0ad50fa4baa6fa10b8c56d9e} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!right\+Foot\+Target@{right\+Foot\+Target}}
+\index{right\+Foot\+Target@{right\+Foot\+Target}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{right\+Foot\+Target}{rightFootTarget}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::right\+Foot\+Target\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_af7b6e48319ef9d35fb975edc3bb2a137}{}\label{classSteppingDemoClient_af7b6e48319ef9d35fb975edc3bb2a137} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!start\+Time@{start\+Time}}
+\index{start\+Time@{start\+Time}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{start\+Time}{startTime}}
+{\footnotesize\ttfamily double Stepping\+Demo\+Client\+::start\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub-\/clients/stepping-\/demo/include/stepping-\/demo/\hyperlink{SteppingDemoClient_8h}{Stepping\+Demo\+Client.\+h}\item 
+/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub-\/clients/stepping-\/demo/src/\hyperlink{SteppingDemoClient_8cpp}{Stepping\+Demo\+Client.\+cpp}\end{DoxyCompactItemize}
