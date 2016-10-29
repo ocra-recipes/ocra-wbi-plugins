@@ -1,0 +1,371 @@
+\hypertarget{classocra_1_1CompositeVariable}{}\section{ocra\+:\+:Composite\+Variable Class Reference}
+\label{classocra_1_1CompositeVariable}\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+
+
+A concatenation of base variables and other composite variables.  
+
+
+
+
+{\ttfamily \#include $<$Variable.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Composite\+Variable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.100629cm]{d2/d7c/classocra_1_1CompositeVariable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1CompositeVariable_a1611f9c8b278c183ca68837e0b91f4f0}{Composite\+Variable} (const std\+::string \&name)
+\item 
+\hyperlink{classocra_1_1CompositeVariable_a131e1ee2f3b4dcd3439b8eb389777f81}{Composite\+Variable} (const std\+::string \&name, \hyperlink{classocra_1_1Variable}{Variable} \&var)
+\item 
+\hyperlink{classocra_1_1CompositeVariable_a7dce5cb02821d4da44f606a45407e0ae}{Composite\+Variable} (const std\+::string \&name, \hyperlink{classocra_1_1Variable}{Variable} \&var1, \hyperlink{classocra_1_1Variable}{Variable} \&var2)
+\item 
+\hyperlink{classocra_1_1CompositeVariable_a80c80db8037f36c9ac84a9b03171013f}{Composite\+Variable} (const std\+::string \&name, const std\+::vector$<$ \hyperlink{classocra_1_1Variable}{Variable} $\ast$$>$ \&vars)
+\item 
+void \hyperlink{classocra_1_1CompositeVariable_a64e6f462d217b4d3ab3d2b5364373ce8}{clear} ()
+\begin{DoxyCompactList}\small\item\em Detaches all children. \end{DoxyCompactList}\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1CompositeVariable_a6cbd2ebea33e1fd523453b9448b3fde2}{operator()} (size\+\_\+t i)
+\item 
+\hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& \hyperlink{classocra_1_1CompositeVariable_a9b09f9bf88fd58fcdad695d762c11d13}{add\+By\+Merge} (\hyperlink{classocra_1_1Variable}{Variable} \&v)
+\item 
+\hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& \hyperlink{classocra_1_1CompositeVariable_ad4c753d254356c1b3686a3da04b0d499}{get\+Time\+Derivative} ()
+\begin{DoxyCompactList}\small\item\em Get the time derivative/primitive of the variable. \end{DoxyCompactList}\item 
+\hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& \hyperlink{classocra_1_1CompositeVariable_a7870c51e9904734593d7990033a7cca4}{get\+Time\+Primitive} ()
+\item 
+const \hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1CompositeVariable_ae539d99db2156258b02f6cf4474f2d94}{operator()} (size\+\_\+t i) const
+\item 
+int \hyperlink{classocra_1_1CompositeVariable_a6601ac71bdd683d06a7a6bfe4fa7252c}{is\+Ancestor\+Of} (const \hyperlink{classocra_1_1Variable}{Variable} \&var) const
+\begin{DoxyCompactList}\small\item\em Returns the number of levels that separate the component from a potential child. \end{DoxyCompactList}\item 
+void \hyperlink{classocra_1_1CompositeVariable_ac2015499d8f01ee39ef7bfbe33363a10}{print\+Sub\+Tree} (int depth, std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em Overload in Component\+Derived and Composite\+Derived to simply call \hyperlink{classocra_1_1Composite_a99934c9b17849dd55075c4c773008dae}{print\+Tree\+\_\+impl()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& \hyperlink{classocra_1_1CompositeVariable_a3915b8d93a37f7431ce682bdbf725758}{add} (\hyperlink{classocra_1_1Variable}{Variable} \&child)
+\begin{DoxyCompactList}\small\item\em Attach/detach the child to/from this node. \end{DoxyCompactList}\item 
+\hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& \hyperlink{classocra_1_1CompositeVariable_ada9e93c4f85c641e2ec8f1152c0b851a}{remove} (\hyperlink{classocra_1_1Variable}{Variable} \&child)
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1CompositeVariable_aa2d9ca737bf529e2686ba9a3ee1126e5}{do\+\_\+set\+Value} (const Vector\+Xd \&value)
+\begin{DoxyCompactList}\small\item\em This method will attempt to assign a given value to the memory map. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classocra_1_1CompositeVariable_aa61eea64fe90aea3ebccad355a9e8fb0}{do\+\_\+get\+Number\+Of\+Children} () const
+\begin{DoxyCompactList}\small\item\em Always return get\+Num\+Childhoods. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1CompositeVariable_a995a870aa6b0a9933ebffd975ce6f6a5}{on\+Attached\+Child} (const \hyperlink{classocra_1_1Variable_a88444b2124cf5aab069f46734822f31f}{parenthood\+\_\+t} \&child)
+\item 
+void \hyperlink{classocra_1_1CompositeVariable_a76b21bf2425a09aded03b3d7a22c8db8}{on\+Detached\+Child} (const \hyperlink{classocra_1_1Variable_a88444b2124cf5aab069f46734822f31f}{parenthood\+\_\+t} \&child)
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} $\ast$ \hyperlink{classocra_1_1CompositeVariable_a4ac0f033cea1cb5e4bfdb414765c3743}{do\+\_\+create\+Time\+Derivative} (const std\+::string \&name)
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} $\ast$ \hyperlink{classocra_1_1CompositeVariable_a09fb82df36205326b995aca1dd8f14ba}{do\+\_\+create\+Time\+Primitive} (const std\+::string \&name)
+\end{DoxyCompactItemize}
+
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A concatenation of base variables and other composite variables. 
+
+Definition at line 357 of file Variable.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1CompositeVariable_a1611f9c8b278c183ca68837e0b91f4f0}{}\label{classocra_1_1CompositeVariable_a1611f9c8b278c183ca68837e0b91f4f0} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!Composite\+Variable@{Composite\+Variable}}
+\index{Composite\+Variable@{Composite\+Variable}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{Composite\+Variable()}{CompositeVariable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily ocra\+::\+Composite\+Variable\+::\+Composite\+Variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 410 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a131e1ee2f3b4dcd3439b8eb389777f81}{}\label{classocra_1_1CompositeVariable_a131e1ee2f3b4dcd3439b8eb389777f81} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!Composite\+Variable@{Composite\+Variable}}
+\index{Composite\+Variable@{Composite\+Variable}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{Composite\+Variable()}{CompositeVariable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily ocra\+::\+Composite\+Variable\+::\+Composite\+Variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{var }\end{DoxyParamCaption})}
+
+
+
+Definition at line 415 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a7dce5cb02821d4da44f606a45407e0ae}{}\label{classocra_1_1CompositeVariable_a7dce5cb02821d4da44f606a45407e0ae} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!Composite\+Variable@{Composite\+Variable}}
+\index{Composite\+Variable@{Composite\+Variable}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{Composite\+Variable()}{CompositeVariable()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily ocra\+::\+Composite\+Variable\+::\+Composite\+Variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{var1,  }\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{var2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 421 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a80c80db8037f36c9ac84a9b03171013f}{}\label{classocra_1_1CompositeVariable_a80c80db8037f36c9ac84a9b03171013f} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!Composite\+Variable@{Composite\+Variable}}
+\index{Composite\+Variable@{Composite\+Variable}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{Composite\+Variable()}{CompositeVariable()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily ocra\+::\+Composite\+Variable\+::\+Composite\+Variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const std\+::vector$<$ \hyperlink{classocra_1_1Variable}{Variable} $\ast$$>$ \&}]{vars }\end{DoxyParamCaption})}
+
+
+
+Definition at line 428 of file Variable.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1CompositeVariable_a3915b8d93a37f7431ce682bdbf725758}{}\label{classocra_1_1CompositeVariable_a3915b8d93a37f7431ce682bdbf725758} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!add@{add}}
+\index{add@{add}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& ocra\+::\+Composite\+Variable\+::add (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Attach/detach the child to/from this node. 
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Composite_a6751fd4b421edc193c10c858b5f00a34}{ocra\+::\+Composite$<$ Variable, Composite\+Variable, Variable\+Parenthood $>$}.
+
+
+
+Definition at line 580 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a9b09f9bf88fd58fcdad695d762c11d13}{}\label{classocra_1_1CompositeVariable_a9b09f9bf88fd58fcdad695d762c11d13} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!add\+By\+Merge@{add\+By\+Merge}}
+\index{add\+By\+Merge@{add\+By\+Merge}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{add\+By\+Merge()}{addByMerge()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& ocra\+::\+Composite\+Variable\+::add\+By\+Merge (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{v }\end{DoxyParamCaption})}
+
+
+
+Definition at line 475 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a64e6f462d217b4d3ab3d2b5364373ce8}{}\label{classocra_1_1CompositeVariable_a64e6f462d217b4d3ab3d2b5364373ce8} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!clear@{clear}}
+\index{clear@{clear}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void ocra\+::\+Composite\+Variable\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Detaches all children. 
+
+
+
+Definition at line 435 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a4ac0f033cea1cb5e4bfdb414765c3743}{}\label{classocra_1_1CompositeVariable_a4ac0f033cea1cb5e4bfdb414765c3743} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!do\+\_\+create\+Time\+Derivative@{do\+\_\+create\+Time\+Derivative}}
+\index{do\+\_\+create\+Time\+Derivative@{do\+\_\+create\+Time\+Derivative}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{do\+\_\+create\+Time\+Derivative()}{do\_createTimeDerivative()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable} $\ast$ ocra\+::\+Composite\+Variable\+::do\+\_\+create\+Time\+Derivative (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+class \hyperlink{classocra_1_1Variable}{ocra\+::\+Variable} 
+\end{DoxySeeAlso}
+
+
+Implements \hyperlink{classocra_1_1Variable_aaed3c9bb3258cc1120ae8f93722a12bb}{ocra\+::\+Variable}.
+
+
+
+Definition at line 519 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a09fb82df36205326b995aca1dd8f14ba}{}\label{classocra_1_1CompositeVariable_a09fb82df36205326b995aca1dd8f14ba} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!do\+\_\+create\+Time\+Primitive@{do\+\_\+create\+Time\+Primitive}}
+\index{do\+\_\+create\+Time\+Primitive@{do\+\_\+create\+Time\+Primitive}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{do\+\_\+create\+Time\+Primitive()}{do\_createTimePrimitive()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable} $\ast$ ocra\+::\+Composite\+Variable\+::do\+\_\+create\+Time\+Primitive (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Variable_ae37610cbde7630dcda3dd6e09e251057}{ocra\+::\+Variable}.
+
+
+
+Definition at line 551 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_aa61eea64fe90aea3ebccad355a9e8fb0}{}\label{classocra_1_1CompositeVariable_aa61eea64fe90aea3ebccad355a9e8fb0} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!do\+\_\+get\+Number\+Of\+Children@{do\+\_\+get\+Number\+Of\+Children}}
+\index{do\+\_\+get\+Number\+Of\+Children@{do\+\_\+get\+Number\+Of\+Children}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{do\+\_\+get\+Number\+Of\+Children()}{do\_getNumberOfChildren()}}
+{\footnotesize\ttfamily size\+\_\+t ocra\+::\+Composite\+Variable\+::do\+\_\+get\+Number\+Of\+Children (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Always return get\+Num\+Childhoods. 
+
+
+
+Implements \hyperlink{classocra_1_1Variable_a65de5b31613b74d83baab58f0eb43b35}{ocra\+::\+Variable}.
+
+
+
+Definition at line 641 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_aa2d9ca737bf529e2686ba9a3ee1126e5}{}\label{classocra_1_1CompositeVariable_aa2d9ca737bf529e2686ba9a3ee1126e5} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!do\+\_\+set\+Value@{do\+\_\+set\+Value}}
+\index{do\+\_\+set\+Value@{do\+\_\+set\+Value}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{do\+\_\+set\+Value()}{do\_setValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Composite\+Variable\+::do\+\_\+set\+Value (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This method will attempt to assign a given value to the memory map. 
+
+
+
+Implements \hyperlink{classocra_1_1Variable_a73ff767d0a620f1803573b33f93c69f8}{ocra\+::\+Variable}.
+
+
+
+Definition at line 441 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_ad4c753d254356c1b3686a3da04b0d499}{}\label{classocra_1_1CompositeVariable_ad4c753d254356c1b3686a3da04b0d499} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!get\+Time\+Derivative@{get\+Time\+Derivative}}
+\index{get\+Time\+Derivative@{get\+Time\+Derivative}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{get\+Time\+Derivative()}{getTimeDerivative()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& ocra\+::\+Composite\+Variable\+::get\+Time\+Derivative (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get the time derivative/primitive of the variable. 
+
+If the derivative/primitive doesn\textquotesingle{}t exist, it will be created automatically at the first call to this method. 
+
+Reimplemented from \hyperlink{classocra_1_1Variable_a06ee384364d5c6bd1ea4bc4b38d6268c}{ocra\+::\+Variable}.
+
+
+
+Definition at line 455 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a7870c51e9904734593d7990033a7cca4}{}\label{classocra_1_1CompositeVariable_a7870c51e9904734593d7990033a7cca4} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!get\+Time\+Primitive@{get\+Time\+Primitive}}
+\index{get\+Time\+Primitive@{get\+Time\+Primitive}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{get\+Time\+Primitive()}{getTimePrimitive()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& ocra\+::\+Composite\+Variable\+::get\+Time\+Primitive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Variable_aca32d63e60dc79de340b2f122dad0dc5}{ocra\+::\+Variable}.
+
+
+
+Definition at line 460 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a6601ac71bdd683d06a7a6bfe4fa7252c}{}\label{classocra_1_1CompositeVariable_a6601ac71bdd683d06a7a6bfe4fa7252c} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!is\+Ancestor\+Of@{is\+Ancestor\+Of}}
+\index{is\+Ancestor\+Of@{is\+Ancestor\+Of}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{is\+Ancestor\+Of()}{isAncestorOf()}}
+{\footnotesize\ttfamily int ocra\+::\+Composite\+Variable\+::is\+Ancestor\+Of (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the number of levels that separate the component from a potential child. 
+
+
+
+Implements \hyperlink{classocra_1_1Component_a8a0e052f36c60889562e921751b02a37}{ocra\+::\+Component$<$ Variable, Composite\+Variable, Variable\+Parenthood $>$}.
+
+
+
+Definition at line 509 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a995a870aa6b0a9933ebffd975ce6f6a5}{}\label{classocra_1_1CompositeVariable_a995a870aa6b0a9933ebffd975ce6f6a5} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!on\+Attached\+Child@{on\+Attached\+Child}}
+\index{on\+Attached\+Child@{on\+Attached\+Child}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{on\+Attached\+Child()}{onAttachedChild()}}
+{\footnotesize\ttfamily void ocra\+::\+Composite\+Variable\+::on\+Attached\+Child (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable_a88444b2124cf5aab069f46734822f31f}{parenthood\+\_\+t} \&}]{child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 492 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a76b21bf2425a09aded03b3d7a22c8db8}{}\label{classocra_1_1CompositeVariable_a76b21bf2425a09aded03b3d7a22c8db8} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!on\+Detached\+Child@{on\+Detached\+Child}}
+\index{on\+Detached\+Child@{on\+Detached\+Child}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{on\+Detached\+Child()}{onDetachedChild()}}
+{\footnotesize\ttfamily void ocra\+::\+Composite\+Variable\+::on\+Detached\+Child (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable_a88444b2124cf5aab069f46734822f31f}{parenthood\+\_\+t} \&}]{child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 501 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_a6cbd2ebea33e1fd523453b9448b3fde2}{}\label{classocra_1_1CompositeVariable_a6cbd2ebea33e1fd523453b9448b3fde2} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!operator()@{operator()}}
+\index{operator()@{operator()}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable} \& ocra\+::\+Composite\+Variable\+::operator() (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})}
+
+
+
+Definition at line 465 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_ae539d99db2156258b02f6cf4474f2d94}{}\label{classocra_1_1CompositeVariable_ae539d99db2156258b02f6cf4474f2d94} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!operator()@{operator()}}
+\index{operator()@{operator()}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Variable}{Variable} \& ocra\+::\+Composite\+Variable\+::operator() (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 470 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_ac2015499d8f01ee39ef7bfbe33363a10}{}\label{classocra_1_1CompositeVariable_ac2015499d8f01ee39ef7bfbe33363a10} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!print\+Sub\+Tree@{print\+Sub\+Tree}}
+\index{print\+Sub\+Tree@{print\+Sub\+Tree}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{print\+Sub\+Tree()}{printSubTree()}}
+{\footnotesize\ttfamily void ocra\+::\+Composite\+Variable\+::print\+Sub\+Tree (\begin{DoxyParamCaption}\item[{int}]{depth,  }\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Overload in Component\+Derived and Composite\+Derived to simply call \hyperlink{classocra_1_1Composite_a99934c9b17849dd55075c4c773008dae}{print\+Tree\+\_\+impl()}. 
+
+You can also choose to reimplement the while function rather than calling the proposed print\+Tree\+\_\+impl method. 
+\begin{DoxyParams}{Parameters}
+{\em depth} & is the current depth of the node. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classocra_1_1Component_a3687a02c1524694fc616893264ca8199}{ocra\+::\+Component$<$ Variable, Composite\+Variable, Variable\+Parenthood $>$}.
+
+
+
+Definition at line 514 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1CompositeVariable_ada9e93c4f85c641e2ec8f1152c0b851a}{}\label{classocra_1_1CompositeVariable_ada9e93c4f85c641e2ec8f1152c0b851a} 
+\index{ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}!remove@{remove}}
+\index{remove@{remove}!ocra\+::\+Composite\+Variable@{ocra\+::\+Composite\+Variable}}
+\subsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \& ocra\+::\+Composite\+Variable\+::remove (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{child }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Composite_a93b8f85ae3267400fdddad9078945e07}{ocra\+::\+Composite$<$ Variable, Composite\+Variable, Variable\+Parenthood $>$}.
+
+
+
+Definition at line 620 of file Variable.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Variable_8h}{Variable.\+h}\item 
+\hyperlink{Variable_8cpp}{Variable.\+cpp}\end{DoxyCompactItemize}

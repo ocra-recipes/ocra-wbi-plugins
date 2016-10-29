@@ -1,0 +1,254 @@
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager}{}\section{gocra\+:\+:g\+Ocra\+Full\+Posture\+Task\+Manager Class Reference}
+\label{classgocra_1_1gOcraFullPostureTaskManager}\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+
+
+g\+Ocra Task Manager for the joint space posture  
+
+
+
+
+{\ttfamily \#include $<$g\+Ocra\+Full\+Posture\+Task\+Manager.\+h$>$}
+
+Inheritance diagram for gocra\+:\+:g\+Ocra\+Full\+Posture\+Task\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d5/db1/classgocra_1_1gOcraFullPostureTaskManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a71c039da046e968235f40e53838018c0}{g\+Ocra\+Full\+Posture\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, int full\+State\+Type, double stiffness, double damping)
+\item 
+\hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a29b20652dfa8665e85cf88a75b1e681f}{g\+Ocra\+Full\+Posture\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, int full\+State\+Type, double stiffness, double damping, const Eigen\+::\+Vector\+Xd \&init\+\_\+q)
+\item 
+\hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a20b181dde0293c33ed654036e9dcdbc0}{$\sim$g\+Ocra\+Full\+Posture\+Task\+Manager} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a24c2b63ff065c8d7b056ccadddf55b59}{activate} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_aa53994ddf44ba5d9768ea3d3e5ba9931}{deactivate} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a80bcb1334e7a9bb8604c8b091e32933d}{set\+Posture} (const Eigen\+::\+Vector\+Xd \&q)
+\item 
+void \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a86952f16b120b50f85fa75ce3ccd4ad0}{set\+Posture} (const Eigen\+::\+Vector\+Xd \&q, const Eigen\+::\+Vector\+Xd \&qdot, const Eigen\+::\+Vector\+Xd \&qddot)
+\item 
+void \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a30df8f38f4084c0404337f168ad741dc}{set\+Stiffness} (double stiffness)
+\item 
+double \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a34270c93e3c25b35c54e618d5af964d0}{get\+Stiffness} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a0080d88c68d85320d0f0f68baf0260ad}{set\+Damping} (double damping)
+\item 
+double \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a946558f7ec0b0c58cbb3b83d19c4aad1}{get\+Damping} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classgocra_1_1gOcraFullPostureTaskManager_a8be4aac1fe7ec4f68e31f72a8aab6af8}{get\+Task\+Error} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+g\+Ocra Task Manager for the joint space posture 
+
+
+
+Definition at line 18 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a71c039da046e968235f40e53838018c0}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a71c039da046e968235f40e53838018c0} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!g\+Ocra\+Full\+Posture\+Task\+Manager@{g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\index{g\+Ocra\+Full\+Posture\+Task\+Manager@{g\+Ocra\+Full\+Posture\+Task\+Manager}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Full\+Posture\+Task\+Manager()}{gOcraFullPostureTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::g\+Ocra\+Full\+Posture\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{int}]{\+\_\+full\+State\+Type,  }\item[{double}]{\+\_\+stiffness,  }\item[{double}]{\+\_\+damping }\end{DoxyParamCaption})}
+
+Base constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em \+\_\+model} & ocra model to setup the task \\
+\hline
+{\em \+\_\+task\+Name} & Name of the task \\
+\hline
+{\em \+\_\+full\+State\+Type} & \hyperlink{classocra_1_1FullState}{ocra\+::\+Full\+State} enum specifying between (\hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519af5d38d391c1a3c23006d51e6db4adea8}{ocra\+::\+Full\+State\+::\+F\+U\+L\+L\+\_\+\+S\+T\+A\+TE}, \hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519a2b23349d3727ddf8b0d10a6c06dfcc31}{ocra\+::\+Full\+State\+::\+F\+R\+E\+E\+\_\+\+F\+L\+Y\+ER}, \hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519a6c76abe0ec381b256a1e2429308126a5}{ocra\+::\+Full\+State\+::\+I\+N\+T\+E\+R\+N\+AL}) \\
+\hline
+{\em \+\_\+stiffness} & Stiffness constant for task \\
+\hline
+{\em \+\_\+damping} & Damping constant for task \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a29b20652dfa8665e85cf88a75b1e681f}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a29b20652dfa8665e85cf88a75b1e681f} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!g\+Ocra\+Full\+Posture\+Task\+Manager@{g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\index{g\+Ocra\+Full\+Posture\+Task\+Manager@{g\+Ocra\+Full\+Posture\+Task\+Manager}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Full\+Posture\+Task\+Manager()}{gOcraFullPostureTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::g\+Ocra\+Full\+Posture\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{int}]{\+\_\+full\+State\+Type,  }\item[{double}]{\+\_\+stiffness,  }\item[{double}]{\+\_\+damping,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+init\+\_\+q }\end{DoxyParamCaption})}
+
+Constructor with desired joint space posture
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em \+\_\+model} & ocra model to setup the task \\
+\hline
+{\em \+\_\+task\+Name} & Name of the task \\
+\hline
+{\em \+\_\+full\+State\+Type} & \hyperlink{classocra_1_1FullState}{ocra\+::\+Full\+State} enum specifying between (\hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519af5d38d391c1a3c23006d51e6db4adea8}{ocra\+::\+Full\+State\+::\+F\+U\+L\+L\+\_\+\+S\+T\+A\+TE}, \hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519a2b23349d3727ddf8b0d10a6c06dfcc31}{ocra\+::\+Full\+State\+::\+F\+R\+E\+E\+\_\+\+F\+L\+Y\+ER}, \hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519a6c76abe0ec381b256a1e2429308126a5}{ocra\+::\+Full\+State\+::\+I\+N\+T\+E\+R\+N\+AL}) \\
+\hline
+{\em \+\_\+stiffness} & Stiffness constant for task \\
+\hline
+{\em \+\_\+damping} & Damping constant for task \\
+\hline
+{\em \+\_\+init\+\_\+q} & Initial posture \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a20b181dde0293c33ed654036e9dcdbc0}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a20b181dde0293c33ed654036e9dcdbc0} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!````~g\+Ocra\+Full\+Posture\+Task\+Manager@{$\sim$g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\index{````~g\+Ocra\+Full\+Posture\+Task\+Manager@{$\sim$g\+Ocra\+Full\+Posture\+Task\+Manager}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$g\+Ocra\+Full\+Posture\+Task\+Manager()}{~gOcraFullPostureTaskManager()}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::$\sim$g\+Ocra\+Full\+Posture\+Task\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a24c2b63ff065c8d7b056ccadddf55b59}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a24c2b63ff065c8d7b056ccadddf55b59} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!activate@{activate}}
+\index{activate@{activate}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{activate()}{activate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::activate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Activate function 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a50cf1c408749d6e9dcfaf50bcab77dee}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 135 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_aa53994ddf44ba5d9768ea3d3e5ba9931}{}\label{classgocra_1_1gOcraFullPostureTaskManager_aa53994ddf44ba5d9768ea3d3e5ba9931} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{deactivate()}{deactivate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::deactivate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Deactivate function 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a7cf9111e69aee47a39fe0f2976a20d6c}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 143 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a946558f7ec0b0c58cbb3b83d19c4aad1}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a946558f7ec0b0c58cbb3b83d19c4aad1} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!get\+Damping@{get\+Damping}}
+\index{get\+Damping@{get\+Damping}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Damping()}{getDamping()}}
+{\footnotesize\ttfamily double gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::get\+Damping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the damping constant for this task
+
+\begin{DoxyReturn}{Returns}
+The damping for this task 
+\end{DoxyReturn}
+
+
+Definition at line 126 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a34270c93e3c25b35c54e618d5af964d0}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a34270c93e3c25b35c54e618d5af964d0} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!get\+Stiffness@{get\+Stiffness}}
+\index{get\+Stiffness@{get\+Stiffness}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Stiffness()}{getStiffness()}}
+{\footnotesize\ttfamily double gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::get\+Stiffness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the stiffness constant for this task
+
+\begin{DoxyReturn}{Returns}
+The stiffness for this task 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a8be4aac1fe7ec4f68e31f72a8aab6af8}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a8be4aac1fe7ec4f68e31f72a8aab6af8} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!get\+Task\+Error@{get\+Task\+Error}}
+\index{get\+Task\+Error@{get\+Task\+Error}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Task\+Error()}{getTaskError()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::get\+Task\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Gets the error for this task (posture error) 
+
+Reimplemented from \hyperlink{classgocra_1_1gOcraTaskManagerBase_a5c40a14b3a1d5a6519da422310d28f97}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 151 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a0080d88c68d85320d0f0f68baf0260ad}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a0080d88c68d85320d0f0f68baf0260ad} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::set\+Damping (\begin{DoxyParamCaption}\item[{double}]{damping }\end{DoxyParamCaption})}
+
+Sets the damping for this task
+
+
+\begin{DoxyParams}{Parameters}
+{\em damping} & Desired damping \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 117 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a80bcb1334e7a9bb8604c8b091e32933d}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a80bcb1334e7a9bb8604c8b091e32933d} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!set\+Posture@{set\+Posture}}
+\index{set\+Posture@{set\+Posture}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Posture()}{setPosture()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::set\+Posture (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{q }\end{DoxyParamCaption})}
+
+Sets the full joint space posture for the task 
+
+Definition at line 63 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a86952f16b120b50f85fa75ce3ccd4ad0}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a86952f16b120b50f85fa75ce3ccd4ad0} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!set\+Posture@{set\+Posture}}
+\index{set\+Posture@{set\+Posture}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Posture()}{setPosture()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::set\+Posture (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{q,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{qdot,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{qddot }\end{DoxyParamCaption})}
+
+Sets the full joint space posture, velocity and acceleration for the task 
+
+Definition at line 71 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraFullPostureTaskManager_a30df8f38f4084c0404337f168ad741dc}{}\label{classgocra_1_1gOcraFullPostureTaskManager_a30df8f38f4084c0404337f168ad741dc} 
+\index{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Full\+Posture\+Task\+Manager\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{double}]{stiffness }\end{DoxyParamCaption})}
+
+Sets the stiffness for this task
+
+
+\begin{DoxyParams}{Parameters}
+{\em stiffness} & Desired stiffness \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 98 of file g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{gOcraFullPostureTaskManager_8h}{g\+Ocra\+Full\+Posture\+Task\+Manager.\+h}\item 
+\hyperlink{gOcraFullPostureTaskManager_8cpp}{g\+Ocra\+Full\+Posture\+Task\+Manager.\+cpp}\end{DoxyCompactItemize}

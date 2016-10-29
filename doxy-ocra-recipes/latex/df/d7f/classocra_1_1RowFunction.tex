@@ -1,0 +1,204 @@
+\hypertarget{classocra_1_1RowFunction}{}\section{ocra\+:\+:Row\+Function$<$ T $>$ Class Template Reference}
+\label{classocra_1_1RowFunction}\index{ocra\+::\+Row\+Function$<$ T $>$@{ocra\+::\+Row\+Function$<$ T $>$}}
+
+
+Row\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Row\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Row\+Function$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{df/d7f/classocra_1_1RowFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef T \hyperlink{classocra_1_1RowFunction_a4b6faf57022f367fdcff681c2dc98306}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1RowFunction_aed18ba241ac62a2c8013593f424b60d5}{Row\+Function} (T $\ast$function, const cfl\+\_\+size\+\_\+t index)
+\item 
+\hyperlink{classocra_1_1RowFunction_a19b2063d4ec61b91fdd8793321414f7d}{Row\+Function} (T $\ast$function, const std\+::vector$<$ int $>$ \&indices)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1RowFunction_a99dfb80d85d71b217b49c9ef22dcd361}{compute\+Value} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1RowFunction_a3d32e6e76f2f4aed5630e0a59cf08756}{compute\+Gradient} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1RowFunction_ab9d6a1f29d2a3756700e2200d402b4fb}{compute\+Hessian} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1RowFunction_a1ec66fcc1c35b323c38f3798f2439172}{compute\+Jdot} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1RowFunction_a6e6009f89040ce403c6b1463dc82b29d}{compute\+Jdot\+Xdot} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1RowFunction_ae2072d38459752174b456af8497da969}{do\+Update\+Size} (void)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1RowFunction_a336ba922ce93c2c1357b4298acfd0c2b}{\+\_\+f}
+\item 
+std\+::vector$<$ int $>$ \hyperlink{classocra_1_1RowFunction_afaa713596ca3c785cd9bb7599518ab0e}{\+\_\+indices}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class ocra\+::\+Row\+Function$<$ T $>$}
+
+Row\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+A single row of an other \hyperlink{classocra_1_1Function}{Function}. Be careful with this class, it still implies the full computation of the original function, and it involves a copy. T\+O\+DO \mbox{[}mineur\mbox{]} \+: modify this comment in case this row functionality is implemented directly in the \hyperlink{classocra_1_1Function}{Function} class 
+
+Definition at line 35 of file Row\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1RowFunction_a4b6faf57022f367fdcff681c2dc98306}{}\label{classocra_1_1RowFunction_a4b6faf57022f367fdcff681c2dc98306} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+typedef T \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::\hyperlink{classocra_1_1RowFunction_a4b6faf57022f367fdcff681c2dc98306}{function\+Type\+\_\+t}}
+
+
+
+Definition at line 39 of file Row\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1RowFunction_aed18ba241ac62a2c8013593f424b60d5}{}\label{classocra_1_1RowFunction_aed18ba241ac62a2c8013593f424b60d5} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!Row\+Function@{Row\+Function}}
+\index{Row\+Function@{Row\+Function}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{Row\+Function()}{RowFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::\hyperlink{classocra_1_1RowFunction}{Row\+Function} (\begin{DoxyParamCaption}\item[{T $\ast$}]{function,  }\item[{const cfl\+\_\+size\+\_\+t}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 102 of file Row\+Function.\+h.
+
+\hypertarget{classocra_1_1RowFunction_a19b2063d4ec61b91fdd8793321414f7d}{}\label{classocra_1_1RowFunction_a19b2063d4ec61b91fdd8793321414f7d} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!Row\+Function@{Row\+Function}}
+\index{Row\+Function@{Row\+Function}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{Row\+Function()}{RowFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::\hyperlink{classocra_1_1RowFunction}{Row\+Function} (\begin{DoxyParamCaption}\item[{T $\ast$}]{function,  }\item[{const std\+::vector$<$ int $>$ \&}]{indices }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 113 of file Row\+Function.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1RowFunction_a3d32e6e76f2f4aed5630e0a59cf08756}{}\label{classocra_1_1RowFunction_a3d32e6e76f2f4aed5630e0a59cf08756} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!compute\+Gradient@{compute\+Gradient}}
+\index{compute\+Gradient@{compute\+Gradient}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{compute\+Gradient()}{computeGradient()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::compute\+Gradient (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 132 of file Row\+Function.\+h.
+
+\hypertarget{classocra_1_1RowFunction_ab9d6a1f29d2a3756700e2200d402b4fb}{}\label{classocra_1_1RowFunction_ab9d6a1f29d2a3756700e2200d402b4fb} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!compute\+Hessian@{compute\+Hessian}}
+\index{compute\+Hessian@{compute\+Hessian}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{compute\+Hessian()}{computeHessian()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::compute\+Hessian (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 145 of file Row\+Function.\+h.
+
+\hypertarget{classocra_1_1RowFunction_a1ec66fcc1c35b323c38f3798f2439172}{}\label{classocra_1_1RowFunction_a1ec66fcc1c35b323c38f3798f2439172} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!compute\+Jdot@{compute\+Jdot}}
+\index{compute\+Jdot@{compute\+Jdot}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{compute\+Jdot()}{computeJdot()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::compute\+Jdot (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 156 of file Row\+Function.\+h.
+
+\hypertarget{classocra_1_1RowFunction_a6e6009f89040ce403c6b1463dc82b29d}{}\label{classocra_1_1RowFunction_a6e6009f89040ce403c6b1463dc82b29d} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!compute\+Jdot\+Xdot@{compute\+Jdot\+Xdot}}
+\index{compute\+Jdot\+Xdot@{compute\+Jdot\+Xdot}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{compute\+Jdot\+Xdot()}{computeJdotXdot()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::compute\+Jdot\+Xdot (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 169 of file Row\+Function.\+h.
+
+\hypertarget{classocra_1_1RowFunction_a99dfb80d85d71b217b49c9ef22dcd361}{}\label{classocra_1_1RowFunction_a99dfb80d85d71b217b49c9ef22dcd361} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!compute\+Value@{compute\+Value}}
+\index{compute\+Value@{compute\+Value}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{compute\+Value()}{computeValue()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::compute\+Value (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 124 of file Row\+Function.\+h.
+
+\hypertarget{classocra_1_1RowFunction_ae2072d38459752174b456af8497da969}{}\label{classocra_1_1RowFunction_ae2072d38459752174b456af8497da969} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!do\+Update\+Size@{do\+Update\+Size}}
+\index{do\+Update\+Size@{do\+Update\+Size}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Size()}{doUpdateSize()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+void \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::do\+Update\+Size (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 179 of file Row\+Function.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1RowFunction_a336ba922ce93c2c1357b4298acfd0c2b}{}\label{classocra_1_1RowFunction_a336ba922ce93c2c1357b4298acfd0c2b} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!\+\_\+f@{\+\_\+f}}
+\index{\+\_\+f@{\+\_\+f}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+f}{\_f}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1Function}{Function}$\ast$ \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::\+\_\+f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 88 of file Row\+Function.\+h.
+
+\hypertarget{classocra_1_1RowFunction_afaa713596ca3c785cd9bb7599518ab0e}{}\label{classocra_1_1RowFunction_afaa713596ca3c785cd9bb7599518ab0e} 
+\index{ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}!\+\_\+indices@{\+\_\+indices}}
+\index{\+\_\+indices@{\+\_\+indices}!ocra\+::\+Row\+Function@{ocra\+::\+Row\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+indices}{\_indices}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+std\+::vector$<$int$>$ \hyperlink{classocra_1_1RowFunction}{ocra\+::\+Row\+Function}$<$ T $>$\+::\+\_\+indices\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 89 of file Row\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{RowFunction_8h}{Row\+Function.\+h}\end{DoxyCompactItemize}

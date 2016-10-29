@@ -1,0 +1,296 @@
+\hypertarget{namespaceocra_1_1util}{}\section{ocra\+:\+:util Namespace Reference}
+\label{namespaceocra_1_1util}\index{ocra\+::util@{ocra\+::util}}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1util_a64b5072529ea69c67bc426e571972087}{eigen\+Vector\+To\+Displacementd} (const Eigen\+::\+Vector\+Xd \&eigen\+Vector)
+\item 
+std\+::vector$<$ Eigen\+::\+Displacementd $>$ \hyperlink{namespaceocra_1_1util_aa7cf44a7c937b97604d2765f2283e706}{eigen\+Vector\+To\+Displacementd} (const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&eigen\+Vector)
+\item 
+Eigen\+::\+Twistd \hyperlink{namespaceocra_1_1util_acc4ef0218e3bb719ff6444afbed77c71}{eigen\+Vector\+To\+Twistd} (const Eigen\+::\+Vector\+Xd \&eigen\+Vector, bool linear\+Only=true, bool angular\+Only=false)
+\item 
+Eigen\+::\+Wrenchd \hyperlink{namespaceocra_1_1util_a16659a9542a5680a4704e4b9f8896b24}{eigen\+Vector\+To\+Wrenchd} (const Eigen\+::\+Vector\+Xd \&eigen\+Vector, bool linear\+Only=true, bool angular\+Only=false)
+\item 
+std\+::string \hyperlink{namespaceocra_1_1util_a52405129ed430671a96cedd22bbfbd07}{convert\+To\+Lower\+Case} (const std\+::string \&original\+String)
+\item 
+std\+::string \hyperlink{namespaceocra_1_1util_a98431f64f2119e4cb762c39e7959a531}{convert\+To\+Upper\+Case} (const std\+::string \&original\+String)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{namespaceocra_1_1util_a34b1e831cf424dfc9bbd089e30f1ae32}{string\+To\+Vector\+Xd} (const char $\ast$value\+String)
+\item 
+Eigen\+::\+Vector\+Xi \hyperlink{namespaceocra_1_1util_a9ae02be8142f960af91a4db9bbf78820}{string\+To\+Vector\+Xi} (const char $\ast$value\+String)
+\item 
+std\+::string \hyperlink{namespaceocra_1_1util_a56277b8b7b0af28ba5eb7d5e952493e2}{get\+Displacement\+Args} (Ti\+Xml\+Element $\ast$xml\+Elem)
+\item 
+std\+::vector$<$ double $>$ \hyperlink{namespaceocra_1_1util_ae43554408032d294cf5486321de608ad}{pour\+Bottle\+Into\+Std\+Vector} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{namespaceocra_1_1util_a3fd47a8322cedd8f4e6417af69c1b350}{pour\+Bottle\+Into\+Eigen\+Vector} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Vector\+Xi \hyperlink{namespaceocra_1_1util_a2bdcb149a446d1048692192e2ce82e9d}{pour\+Bottle\+Into\+Eigen\+Vector\+Xi} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1util_a39b8fa7b650ca10472587a7cf02ef5bf}{pour\+Bottle\+Into\+Displacementd} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Twistd \hyperlink{namespaceocra_1_1util_af97e92d4d6f71f03338183e6f5ea1188}{pour\+Bottle\+Into\+Twistd} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Wrenchd \hyperlink{namespaceocra_1_1util_a68e8e18301fe4f4167e8dee988df2d3c}{pour\+Bottle\+Into\+Wrenchd} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{namespaceocra_1_1util_ac8a4000b730a87cee5e5806134090be4}{pour\+Bottle\+Into\+Eigen\+Matrix} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+void \hyperlink{namespaceocra_1_1util_abe236d2f67284737d18ea3f5913aacab}{pour\+Std\+Vector\+Into\+Bottle} (const std\+::vector$<$ double $>$ \&vec, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_a6010148e34dccf066481599d26c575c9}{pour\+Eigen\+Vector\+Into\+Bottle} (const Eigen\+::\+Vector\+Xd \&vec, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_a8dd17e44dac9cc815cfc9f009afc8633}{pour\+Eigen\+Vector\+Xi\+Into\+Bottle} (const Eigen\+::\+Vector\+Xi \&vec, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_ac6e4695aa2be35591a1dc78eaf557c60}{pour\+Eigen\+Matrix\+Into\+Bottle} (const Eigen\+::\+Matrix\+Xd \&mat, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_aa823d67f5ccb816d579756460867720f}{pour\+Displacementd\+Into\+Bottle} (const Eigen\+::\+Displacementd \&disp, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_abfc4d8245c114e3ac49b4cbffe90851c}{pour\+Twistd\+Into\+Bottle} (const Eigen\+::\+Twistd \&twist, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_a139674d4658e91e350b4d8704f38ab42}{pour\+Wrenchd\+Into\+Bottle} (const Eigen\+::\+Wrenchd \&wrench, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+yarp\+::os\+::\+Bottle \hyperlink{namespaceocra_1_1util_a1cf3abfc2f03c824eb23f3881acfc7de}{trim\+Bottle} (const yarp\+::os\+::\+Bottle \&bottle, int start\+Index, int end\+Index=-\/1)
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceocra_1_1util_a52405129ed430671a96cedd22bbfbd07}{}\label{namespaceocra_1_1util_a52405129ed430671a96cedd22bbfbd07} 
+\index{ocra\+::util@{ocra\+::util}!convert\+To\+Lower\+Case@{convert\+To\+Lower\+Case}}
+\index{convert\+To\+Lower\+Case@{convert\+To\+Lower\+Case}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{convert\+To\+Lower\+Case()}{convertToLowerCase()}}
+{\footnotesize\ttfamily std\+::string ocra\+::util\+::convert\+To\+Lower\+Case (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{original\+String }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 13 of file String\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a98431f64f2119e4cb762c39e7959a531}{}\label{namespaceocra_1_1util_a98431f64f2119e4cb762c39e7959a531} 
+\index{ocra\+::util@{ocra\+::util}!convert\+To\+Upper\+Case@{convert\+To\+Upper\+Case}}
+\index{convert\+To\+Upper\+Case@{convert\+To\+Upper\+Case}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{convert\+To\+Upper\+Case()}{convertToUpperCase()}}
+{\footnotesize\ttfamily std\+::string ocra\+::util\+::convert\+To\+Upper\+Case (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{original\+String }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 20 of file String\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a64b5072529ea69c67bc426e571972087}{}\label{namespaceocra_1_1util_a64b5072529ea69c67bc426e571972087} 
+\index{ocra\+::util@{ocra\+::util}!eigen\+Vector\+To\+Displacementd@{eigen\+Vector\+To\+Displacementd}}
+\index{eigen\+Vector\+To\+Displacementd@{eigen\+Vector\+To\+Displacementd}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{eigen\+Vector\+To\+Displacementd()}{eigenVectorToDisplacementd()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::util\+::eigen\+Vector\+To\+Displacementd (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{eigen\+Vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 12 of file Eigen\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_aa7cf44a7c937b97604d2765f2283e706}{}\label{namespaceocra_1_1util_aa7cf44a7c937b97604d2765f2283e706} 
+\index{ocra\+::util@{ocra\+::util}!eigen\+Vector\+To\+Displacementd@{eigen\+Vector\+To\+Displacementd}}
+\index{eigen\+Vector\+To\+Displacementd@{eigen\+Vector\+To\+Displacementd}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{eigen\+Vector\+To\+Displacementd()}{eigenVectorToDisplacementd()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::vector$<$Eigen\+::\+Displacementd$>$ ocra\+::util\+::eigen\+Vector\+To\+Displacementd (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{eigen\+Vector }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 29 of file Eigen\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_acc4ef0218e3bb719ff6444afbed77c71}{}\label{namespaceocra_1_1util_acc4ef0218e3bb719ff6444afbed77c71} 
+\index{ocra\+::util@{ocra\+::util}!eigen\+Vector\+To\+Twistd@{eigen\+Vector\+To\+Twistd}}
+\index{eigen\+Vector\+To\+Twistd@{eigen\+Vector\+To\+Twistd}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{eigen\+Vector\+To\+Twistd()}{eigenVectorToTwistd()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd ocra\+::util\+::eigen\+Vector\+To\+Twistd (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{eigen\+Vector,  }\item[{bool}]{linear\+Only = {\ttfamily true},  }\item[{bool}]{angular\+Only = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 39 of file Eigen\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a16659a9542a5680a4704e4b9f8896b24}{}\label{namespaceocra_1_1util_a16659a9542a5680a4704e4b9f8896b24} 
+\index{ocra\+::util@{ocra\+::util}!eigen\+Vector\+To\+Wrenchd@{eigen\+Vector\+To\+Wrenchd}}
+\index{eigen\+Vector\+To\+Wrenchd@{eigen\+Vector\+To\+Wrenchd}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{eigen\+Vector\+To\+Wrenchd()}{eigenVectorToWrenchd()}}
+{\footnotesize\ttfamily Eigen\+::\+Wrenchd ocra\+::util\+::eigen\+Vector\+To\+Wrenchd (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{eigen\+Vector,  }\item[{bool}]{linear\+Only = {\ttfamily true},  }\item[{bool}]{angular\+Only = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 54 of file Eigen\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a56277b8b7b0af28ba5eb7d5e952493e2}{}\label{namespaceocra_1_1util_a56277b8b7b0af28ba5eb7d5e952493e2} 
+\index{ocra\+::util@{ocra\+::util}!get\+Displacement\+Args@{get\+Displacement\+Args}}
+\index{get\+Displacement\+Args@{get\+Displacement\+Args}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{get\+Displacement\+Args()}{getDisplacementArgs()}}
+{\footnotesize\ttfamily std\+::string ocra\+::util\+::get\+Displacement\+Args (\begin{DoxyParamCaption}\item[{Ti\+Xml\+Element $\ast$}]{xml\+Elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 13 of file Xml\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a39b8fa7b650ca10472587a7cf02ef5bf}{}\label{namespaceocra_1_1util_a39b8fa7b650ca10472587a7cf02ef5bf} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Bottle\+Into\+Displacementd@{pour\+Bottle\+Into\+Displacementd}}
+\index{pour\+Bottle\+Into\+Displacementd@{pour\+Bottle\+Into\+Displacementd}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Bottle\+Into\+Displacementd()}{pourBottleIntoDisplacementd()}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::util\+::pour\+Bottle\+Into\+Displacementd (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle}]{bottle,  }\item[{int \&}]{indexes\+To\+Skip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 49 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_ac8a4000b730a87cee5e5806134090be4}{}\label{namespaceocra_1_1util_ac8a4000b730a87cee5e5806134090be4} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Bottle\+Into\+Eigen\+Matrix@{pour\+Bottle\+Into\+Eigen\+Matrix}}
+\index{pour\+Bottle\+Into\+Eigen\+Matrix@{pour\+Bottle\+Into\+Eigen\+Matrix}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Bottle\+Into\+Eigen\+Matrix()}{pourBottleIntoEigenMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::util\+::pour\+Bottle\+Into\+Eigen\+Matrix (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle}]{bottle,  }\item[{int \&}]{indexes\+To\+Skip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 92 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a3fd47a8322cedd8f4e6417af69c1b350}{}\label{namespaceocra_1_1util_a3fd47a8322cedd8f4e6417af69c1b350} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Bottle\+Into\+Eigen\+Vector@{pour\+Bottle\+Into\+Eigen\+Vector}}
+\index{pour\+Bottle\+Into\+Eigen\+Vector@{pour\+Bottle\+Into\+Eigen\+Vector}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Bottle\+Into\+Eigen\+Vector()}{pourBottleIntoEigenVector()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::util\+::pour\+Bottle\+Into\+Eigen\+Vector (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle}]{bottle,  }\item[{int \&}]{indexes\+To\+Skip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 27 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a2bdcb149a446d1048692192e2ce82e9d}{}\label{namespaceocra_1_1util_a2bdcb149a446d1048692192e2ce82e9d} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Bottle\+Into\+Eigen\+Vector\+Xi@{pour\+Bottle\+Into\+Eigen\+Vector\+Xi}}
+\index{pour\+Bottle\+Into\+Eigen\+Vector\+Xi@{pour\+Bottle\+Into\+Eigen\+Vector\+Xi}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Bottle\+Into\+Eigen\+Vector\+Xi()}{pourBottleIntoEigenVectorXi()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xi ocra\+::util\+::pour\+Bottle\+Into\+Eigen\+Vector\+Xi (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle}]{bottle,  }\item[{int \&}]{indexes\+To\+Skip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 38 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_ae43554408032d294cf5486321de608ad}{}\label{namespaceocra_1_1util_ae43554408032d294cf5486321de608ad} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Bottle\+Into\+Std\+Vector@{pour\+Bottle\+Into\+Std\+Vector}}
+\index{pour\+Bottle\+Into\+Std\+Vector@{pour\+Bottle\+Into\+Std\+Vector}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Bottle\+Into\+Std\+Vector()}{pourBottleIntoStdVector()}}
+{\footnotesize\ttfamily std\+::vector$<$double$>$ ocra\+::util\+::pour\+Bottle\+Into\+Std\+Vector (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle}]{bottle,  }\item[{int \&}]{indexes\+To\+Skip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 16 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_af97e92d4d6f71f03338183e6f5ea1188}{}\label{namespaceocra_1_1util_af97e92d4d6f71f03338183e6f5ea1188} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Bottle\+Into\+Twistd@{pour\+Bottle\+Into\+Twistd}}
+\index{pour\+Bottle\+Into\+Twistd@{pour\+Bottle\+Into\+Twistd}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Bottle\+Into\+Twistd()}{pourBottleIntoTwistd()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd ocra\+::util\+::pour\+Bottle\+Into\+Twistd (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle}]{bottle,  }\item[{int \&}]{indexes\+To\+Skip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 64 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a68e8e18301fe4f4167e8dee988df2d3c}{}\label{namespaceocra_1_1util_a68e8e18301fe4f4167e8dee988df2d3c} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Bottle\+Into\+Wrenchd@{pour\+Bottle\+Into\+Wrenchd}}
+\index{pour\+Bottle\+Into\+Wrenchd@{pour\+Bottle\+Into\+Wrenchd}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Bottle\+Into\+Wrenchd()}{pourBottleIntoWrenchd()}}
+{\footnotesize\ttfamily Eigen\+::\+Wrenchd ocra\+::util\+::pour\+Bottle\+Into\+Wrenchd (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle}]{bottle,  }\item[{int \&}]{indexes\+To\+Skip }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 78 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_aa823d67f5ccb816d579756460867720f}{}\label{namespaceocra_1_1util_aa823d67f5ccb816d579756460867720f} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Displacementd\+Into\+Bottle@{pour\+Displacementd\+Into\+Bottle}}
+\index{pour\+Displacementd\+Into\+Bottle@{pour\+Displacementd\+Into\+Bottle}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Displacementd\+Into\+Bottle()}{pourDisplacementdIntoBottle()}}
+{\footnotesize\ttfamily void ocra\+::util\+::pour\+Displacementd\+Into\+Bottle (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Displacementd \&}]{disp,  }\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 160 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_ac6e4695aa2be35591a1dc78eaf557c60}{}\label{namespaceocra_1_1util_ac6e4695aa2be35591a1dc78eaf557c60} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Eigen\+Matrix\+Into\+Bottle@{pour\+Eigen\+Matrix\+Into\+Bottle}}
+\index{pour\+Eigen\+Matrix\+Into\+Bottle@{pour\+Eigen\+Matrix\+Into\+Bottle}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Eigen\+Matrix\+Into\+Bottle()}{pourEigenMatrixIntoBottle()}}
+{\footnotesize\ttfamily void ocra\+::util\+::pour\+Eigen\+Matrix\+Into\+Bottle (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{mat,  }\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 145 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a6010148e34dccf066481599d26c575c9}{}\label{namespaceocra_1_1util_a6010148e34dccf066481599d26c575c9} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Eigen\+Vector\+Into\+Bottle@{pour\+Eigen\+Vector\+Into\+Bottle}}
+\index{pour\+Eigen\+Vector\+Into\+Bottle@{pour\+Eigen\+Vector\+Into\+Bottle}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Eigen\+Vector\+Into\+Bottle()}{pourEigenVectorIntoBottle()}}
+{\footnotesize\ttfamily void ocra\+::util\+::pour\+Eigen\+Vector\+Into\+Bottle (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{vec,  }\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 121 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a8dd17e44dac9cc815cfc9f009afc8633}{}\label{namespaceocra_1_1util_a8dd17e44dac9cc815cfc9f009afc8633} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Eigen\+Vector\+Xi\+Into\+Bottle@{pour\+Eigen\+Vector\+Xi\+Into\+Bottle}}
+\index{pour\+Eigen\+Vector\+Xi\+Into\+Bottle@{pour\+Eigen\+Vector\+Xi\+Into\+Bottle}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Eigen\+Vector\+Xi\+Into\+Bottle()}{pourEigenVectorXiIntoBottle()}}
+{\footnotesize\ttfamily void ocra\+::util\+::pour\+Eigen\+Vector\+Xi\+Into\+Bottle (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xi \&}]{vec,  }\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 133 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_abe236d2f67284737d18ea3f5913aacab}{}\label{namespaceocra_1_1util_abe236d2f67284737d18ea3f5913aacab} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Std\+Vector\+Into\+Bottle@{pour\+Std\+Vector\+Into\+Bottle}}
+\index{pour\+Std\+Vector\+Into\+Bottle@{pour\+Std\+Vector\+Into\+Bottle}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Std\+Vector\+Into\+Bottle()}{pourStdVectorIntoBottle()}}
+{\footnotesize\ttfamily void ocra\+::util\+::pour\+Std\+Vector\+Into\+Bottle (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{vec,  }\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 109 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_abfc4d8245c114e3ac49b4cbffe90851c}{}\label{namespaceocra_1_1util_abfc4d8245c114e3ac49b4cbffe90851c} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Twistd\+Into\+Bottle@{pour\+Twistd\+Into\+Bottle}}
+\index{pour\+Twistd\+Into\+Bottle@{pour\+Twistd\+Into\+Bottle}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Twistd\+Into\+Bottle()}{pourTwistdIntoBottle()}}
+{\footnotesize\ttfamily void ocra\+::util\+::pour\+Twistd\+Into\+Bottle (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Twistd \&}]{twist,  }\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 175 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a139674d4658e91e350b4d8704f38ab42}{}\label{namespaceocra_1_1util_a139674d4658e91e350b4d8704f38ab42} 
+\index{ocra\+::util@{ocra\+::util}!pour\+Wrenchd\+Into\+Bottle@{pour\+Wrenchd\+Into\+Bottle}}
+\index{pour\+Wrenchd\+Into\+Bottle@{pour\+Wrenchd\+Into\+Bottle}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{pour\+Wrenchd\+Into\+Bottle()}{pourWrenchdIntoBottle()}}
+{\footnotesize\ttfamily void ocra\+::util\+::pour\+Wrenchd\+Into\+Bottle (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Wrenchd \&}]{wrench,  }\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 188 of file Yarp\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a34b1e831cf424dfc9bbd089e30f1ae32}{}\label{namespaceocra_1_1util_a34b1e831cf424dfc9bbd089e30f1ae32} 
+\index{ocra\+::util@{ocra\+::util}!string\+To\+Vector\+Xd@{string\+To\+Vector\+Xd}}
+\index{string\+To\+Vector\+Xd@{string\+To\+Vector\+Xd}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{string\+To\+Vector\+Xd()}{stringToVectorXd()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::util\+::string\+To\+Vector\+Xd (\begin{DoxyParamCaption}\item[{const char $\ast$}]{value\+String }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 27 of file String\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a9ae02be8142f960af91a4db9bbf78820}{}\label{namespaceocra_1_1util_a9ae02be8142f960af91a4db9bbf78820} 
+\index{ocra\+::util@{ocra\+::util}!string\+To\+Vector\+Xi@{string\+To\+Vector\+Xi}}
+\index{string\+To\+Vector\+Xi@{string\+To\+Vector\+Xi}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{string\+To\+Vector\+Xi()}{stringToVectorXi()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xi ocra\+::util\+::string\+To\+Vector\+Xi (\begin{DoxyParamCaption}\item[{const char $\ast$}]{value\+String }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 60 of file String\+Utilities.\+h.
+
+\hypertarget{namespaceocra_1_1util_a1cf3abfc2f03c824eb23f3881acfc7de}{}\label{namespaceocra_1_1util_a1cf3abfc2f03c824eb23f3881acfc7de} 
+\index{ocra\+::util@{ocra\+::util}!trim\+Bottle@{trim\+Bottle}}
+\index{trim\+Bottle@{trim\+Bottle}!ocra\+::util@{ocra\+::util}}
+\subsubsection{\texorpdfstring{trim\+Bottle()}{trimBottle()}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Bottle ocra\+::util\+::trim\+Bottle (\begin{DoxyParamCaption}\item[{const yarp\+::os\+::\+Bottle \&}]{bottle,  }\item[{int}]{start\+Index,  }\item[{int}]{end\+Index = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 201 of file Yarp\+Utilities.\+h.
+

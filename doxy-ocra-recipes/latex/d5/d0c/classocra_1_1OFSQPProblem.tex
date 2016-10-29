@@ -1,0 +1,162 @@
+\hypertarget{classocra_1_1OFSQPProblem}{}\section{ocra\+:\+:O\+F\+S\+Q\+P\+Problem Class Reference}
+\label{classocra_1_1OFSQPProblem}\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+
+
+{\ttfamily \#include $<$O\+F\+S\+Q\+P.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:O\+F\+S\+Q\+P\+Problem\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.314554cm]{d5/d0c/classocra_1_1OFSQPProblem}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1OFSQPProblem_affaeb6cbf6326ef2e9dab6b7ee8c80f6}{O\+F\+S\+Q\+P\+Problem} ()
+\item 
+virtual void \hyperlink{classocra_1_1OFSQPProblem_adca0c224eb1b9f6e0c2d17f07277a899}{obj} (int nparam, int j, double $\ast$x, double $\ast$fj, void $\ast$cd)=0
+\item 
+virtual void \hyperlink{classocra_1_1OFSQPProblem_a2049a97008ac6eaa306c3cb05ef7d394}{constr} (int nparam, int j, double $\ast$x, double $\ast$gj, void $\ast$cd)=0
+\item 
+virtual void \hyperlink{classocra_1_1OFSQPProblem_a1300d237d9b87df1f71db7129c38458a}{gradob} (int nparam, int j, double $\ast$x, double $\ast$gradfj, void $\ast$cd)
+\item 
+virtual void \hyperlink{classocra_1_1OFSQPProblem_ab89eefbaf9b86a89a0ceede0b4b61284}{gradcn} (int nparam, int j, double $\ast$x, double $\ast$gradgj, void $\ast$cd)
+\item 
+void \hyperlink{classocra_1_1OFSQPProblem_a65096824ee00c0254cfeee877dba0141}{invalidateX} ()
+\item 
+void \hyperlink{classocra_1_1OFSQPProblem_a4877a5ab95e85c32c32eca22d2db1147}{validateX} ()
+\item 
+bool \hyperlink{classocra_1_1OFSQPProblem_a3c43fbd5d2ef3aeb9c6d936c83d34464}{is\+X\+New} ()
+\item 
+void \hyperlink{classocra_1_1OFSQPProblem_ae57b5fa2934e2ae619e748079335d3b7}{set\+F\+S\+Q\+Pstruct} (\hyperlink{structocra_1_1fsqpDetails_1_1Grd}{fsqp\+Details\+::\+Grd} \&grd, \hyperlink{structocra_1_1fsqpDetails_1_1Prnt}{fsqp\+Details\+::\+Prnt} \&prnt)
+\item 
+void \hyperlink{classocra_1_1OFSQPProblem_a774f1a1e9d5014ea878b8de4750c3a13}{reset\+F\+S\+Q\+Pstruct} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 38 of file O\+F\+S\+Q\+P.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1OFSQPProblem_affaeb6cbf6326ef2e9dab6b7ee8c80f6}{}\label{classocra_1_1OFSQPProblem_affaeb6cbf6326ef2e9dab6b7ee8c80f6} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!O\+F\+S\+Q\+P\+Problem@{O\+F\+S\+Q\+P\+Problem}}
+\index{O\+F\+S\+Q\+P\+Problem@{O\+F\+S\+Q\+P\+Problem}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{O\+F\+S\+Q\+P\+Problem()}{OFSQPProblem()}}
+{\footnotesize\ttfamily ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::\+O\+F\+S\+Q\+P\+Problem (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 8 of file O\+F\+S\+Q\+P.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1OFSQPProblem_a2049a97008ac6eaa306c3cb05ef7d394}{}\label{classocra_1_1OFSQPProblem_a2049a97008ac6eaa306c3cb05ef7d394} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!constr@{constr}}
+\index{constr@{constr}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{constr()}{constr()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::constr (\begin{DoxyParamCaption}\item[{int}]{nparam,  }\item[{int}]{j,  }\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{gj,  }\item[{void $\ast$}]{cd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1FSQPSolver_ae989c0c32f87ea5e4e5a85e11683fcff}{ocra\+::\+F\+S\+Q\+P\+Solver}.
+
+\hypertarget{classocra_1_1OFSQPProblem_ab89eefbaf9b86a89a0ceede0b4b61284}{}\label{classocra_1_1OFSQPProblem_ab89eefbaf9b86a89a0ceede0b4b61284} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!gradcn@{gradcn}}
+\index{gradcn@{gradcn}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{gradcn()}{gradcn()}}
+{\footnotesize\ttfamily void ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::gradcn (\begin{DoxyParamCaption}\item[{int}]{nparam,  }\item[{int}]{j,  }\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{gradgj,  }\item[{void $\ast$}]{cd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1FSQPSolver_aea97ea5c3c2480976ad27c190b60077d}{ocra\+::\+F\+S\+Q\+P\+Solver}.
+
+
+
+Definition at line 41 of file O\+F\+S\+Q\+P.\+cpp.
+
+\hypertarget{classocra_1_1OFSQPProblem_a1300d237d9b87df1f71db7129c38458a}{}\label{classocra_1_1OFSQPProblem_a1300d237d9b87df1f71db7129c38458a} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!gradob@{gradob}}
+\index{gradob@{gradob}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{gradob()}{gradob()}}
+{\footnotesize\ttfamily void ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::gradob (\begin{DoxyParamCaption}\item[{int}]{nparam,  }\item[{int}]{j,  }\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{gradfj,  }\item[{void $\ast$}]{cd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1FSQPSolver_ac88cddc691c4bf9862f9d6f30599a098}{ocra\+::\+F\+S\+Q\+P\+Solver}.
+
+
+
+Definition at line 13 of file O\+F\+S\+Q\+P.\+cpp.
+
+\hypertarget{classocra_1_1OFSQPProblem_a65096824ee00c0254cfeee877dba0141}{}\label{classocra_1_1OFSQPProblem_a65096824ee00c0254cfeee877dba0141} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!invalidateX@{invalidateX}}
+\index{invalidateX@{invalidateX}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{invalidate\+X()}{invalidateX()}}
+{\footnotesize\ttfamily void ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::invalidateX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 69 of file O\+F\+S\+Q\+P.\+cpp.
+
+\hypertarget{classocra_1_1OFSQPProblem_a3c43fbd5d2ef3aeb9c6d936c83d34464}{}\label{classocra_1_1OFSQPProblem_a3c43fbd5d2ef3aeb9c6d936c83d34464} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!is\+X\+New@{is\+X\+New}}
+\index{is\+X\+New@{is\+X\+New}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{is\+X\+New()}{isXNew()}}
+{\footnotesize\ttfamily bool ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::is\+X\+New (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 79 of file O\+F\+S\+Q\+P.\+cpp.
+
+\hypertarget{classocra_1_1OFSQPProblem_adca0c224eb1b9f6e0c2d17f07277a899}{}\label{classocra_1_1OFSQPProblem_adca0c224eb1b9f6e0c2d17f07277a899} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!obj@{obj}}
+\index{obj@{obj}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{obj()}{obj()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::obj (\begin{DoxyParamCaption}\item[{int}]{nparam,  }\item[{int}]{j,  }\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{fj,  }\item[{void $\ast$}]{cd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1FSQPSolver_a1275a02361629480cc18d44ce46d915c}{ocra\+::\+F\+S\+Q\+P\+Solver}.
+
+\hypertarget{classocra_1_1OFSQPProblem_a774f1a1e9d5014ea878b8de4750c3a13}{}\label{classocra_1_1OFSQPProblem_a774f1a1e9d5014ea878b8de4750c3a13} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!reset\+F\+S\+Q\+Pstruct@{reset\+F\+S\+Q\+Pstruct}}
+\index{reset\+F\+S\+Q\+Pstruct@{reset\+F\+S\+Q\+Pstruct}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{reset\+F\+S\+Q\+Pstruct()}{resetFSQPstruct()}}
+{\footnotesize\ttfamily void ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::reset\+F\+S\+Q\+Pstruct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 90 of file O\+F\+S\+Q\+P.\+cpp.
+
+\hypertarget{classocra_1_1OFSQPProblem_ae57b5fa2934e2ae619e748079335d3b7}{}\label{classocra_1_1OFSQPProblem_ae57b5fa2934e2ae619e748079335d3b7} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!set\+F\+S\+Q\+Pstruct@{set\+F\+S\+Q\+Pstruct}}
+\index{set\+F\+S\+Q\+Pstruct@{set\+F\+S\+Q\+Pstruct}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{set\+F\+S\+Q\+Pstruct()}{setFSQPstruct()}}
+{\footnotesize\ttfamily void ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::set\+F\+S\+Q\+Pstruct (\begin{DoxyParamCaption}\item[{\hyperlink{structocra_1_1fsqpDetails_1_1Grd}{fsqp\+Details\+::\+Grd} \&}]{grd,  }\item[{\hyperlink{structocra_1_1fsqpDetails_1_1Prnt}{fsqp\+Details\+::\+Prnt} \&}]{prnt }\end{DoxyParamCaption})}
+
+
+
+Definition at line 84 of file O\+F\+S\+Q\+P.\+cpp.
+
+\hypertarget{classocra_1_1OFSQPProblem_a4877a5ab95e85c32c32eca22d2db1147}{}\label{classocra_1_1OFSQPProblem_a4877a5ab95e85c32c32eca22d2db1147} 
+\index{ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}!validateX@{validateX}}
+\index{validateX@{validateX}!ocra\+::\+O\+F\+S\+Q\+P\+Problem@{ocra\+::\+O\+F\+S\+Q\+P\+Problem}}
+\subsubsection{\texorpdfstring{validate\+X()}{validateX()}}
+{\footnotesize\ttfamily void ocra\+::\+O\+F\+S\+Q\+P\+Problem\+::validateX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 74 of file O\+F\+S\+Q\+P.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{OFSQP_8h}{O\+F\+S\+Q\+P.\+h}\item 
+\hyperlink{OFSQP_8cpp}{O\+F\+S\+Q\+P.\+cpp}\end{DoxyCompactItemize}

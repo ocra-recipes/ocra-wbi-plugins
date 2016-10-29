@@ -1,0 +1,598 @@
+\hypertarget{classocra_1_1Function}{}\section{ocra\+:\+:Function Class Reference}
+\label{classocra_1_1Function}\index{ocra\+::\+Function@{ocra\+::\+Function}}
+
+
+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.705314cm]{d2/d99/classocra_1_1Function}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classocra_1_1Function_a1889abdbc50386e4b4710912dbba89bd}{$\sim$\+Function} ()
+\item 
+int \hyperlink{classocra_1_1Function_a85da5fba27502737b0c7027c24cc6170}{get\+Dimension} () const
+\item 
+virtual void \hyperlink{classocra_1_1Function_a2f09ce859333f22fdd527ff08aee6e6e}{update\+Fdot} () const
+\item 
+virtual void \hyperlink{classocra_1_1Function_a81490edf4f79b4dc730c5647e542231c}{update\+Fddot} () const
+\item 
+virtual void \hyperlink{classocra_1_1Function_a5b3356ce1094f19f4af6e38b319fdfe3}{update\+Jdot\+Xdot} () const
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+const \hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1Function_a6748e5c8a2bb40655bf574baac33dfdd}{get\+Variable} () const
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1Function_a2528d95d06e21e60eff14bb3ee484345}{get\+Variable} ()
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\void \hyperlink{classocra_1_1Function_aa66bc14ed8c17e88224fa2469d7d3a7e}{invalidate} ()
+\item 
+void \hyperlink{classocra_1_1Function_ae33c94ee0c807b05869609f7a166ff82}{invalidate\+All} (int timestamp)
+\item 
+void \hyperlink{classocra_1_1Function_a2ebd8ade069fc19b03e6ab9cef2c09c3}{invalidate\+All} ()
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\bool \hyperlink{classocra_1_1Function_a277bdd8c1ece035f5ab5fc2b996ddced}{is\+Valid} () const
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\bool \hyperlink{classocra_1_1Function_a9483d0d23002c7e1a20033e6ea224e2d}{can\+Compute} () const
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\const \hyperlink{classocra_1_1IFunction}{I\+Function}$<$ Ability $>$\+::return\+\_\+type \& \hyperlink{classocra_1_1Function_a244404069d9ab169fbb23309785693b8}{get} () const
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\\hyperlink{classocra_1_1IFunction}{I\+Function}$<$ Ability $>$\+::return\+\_\+sub\+\_\+type \hyperlink{classocra_1_1Function_add7bf02dbd416bd2f9fab547566fc6ed}{get} (int index) const
+\item 
+const Vector\+Xd \& \hyperlink{classocra_1_1Function_a0b8c9f91088218ca55e73679e8c56e87}{get\+Value} () const
+\item 
+double \hyperlink{classocra_1_1Function_a4447b2e6194552d6536f37f0156b9c29}{get\+Value} (int index) const
+\item 
+const Matrix\+Xd \& \hyperlink{classocra_1_1Function_a14d855bebcf8a03878c0ff7857b27d37}{get\+Jacobian} () const
+\item 
+\hyperlink{namespaceocra_a608bf0522317ed1df3bbfc6a5753bc01}{Matrix\+Xd\+Row} \hyperlink{classocra_1_1Function_a1e0bdc0fd8b5aa7e7a29076858a5d28c}{get\+Jacobian} (int index) const
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Function_a34f827361369b0e38802fbc93a055014}{Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, int dimension, \hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity} linearity=\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226abadd86a2dd3240e6df49a6e422b5abe075}{L\+I\+N\+E\+A\+R\+I\+T\+Y\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}, \hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity} convexity=\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119a40aab88792841afe151808f879cfaa99}{C\+O\+N\+V\+E\+X\+I\+T\+Y\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}, int continuity=\hyperlink{namespaceocra_ae5102ad1959d0c0dbf2eaa5610bbf728ad66557aadcf8856f9f135ff26db1a862}{C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+U\+N\+K\+N\+O\+WN}, bool explicitly\+Time\+Dependant=false, bool separable\+Time\+Dependancy=true)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classocra_1_1Function}{Function} Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classocra_1_1Function_a0b0f0b2bf97e25130b51ed7b6c62c357}{disconnect\+Variable} ()
+\item 
+void \hyperlink{classocra_1_1Function_ad9800654d8a33fd91d7ea52038c2fb94}{change\+Function\+Dimension} (int new\+Dimension)
+\item 
+void \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size} (int timestamp)
+\item 
+void \hyperlink{classocra_1_1Function_aa59cd6d7965f6b2222261ef460d4899c}{resize} ()
+\item 
+virtual int \hyperlink{classocra_1_1Function_a95241fd426f887c5eb3add3f1e55a09c}{compute\+Dimension\+From\+Input\+Size} () const
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+virtual void \hyperlink{classocra_1_1Function_a39f6d91b72eff2d32da7e4a85ee79f7d}{do\+Update\+Input\+Size\+End} ()
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1Function_afdf98e9f43fde97a5256af88a50cbb39}{do\+Update\+Dimension\+Begin} (int new\+Dimension)
+\item 
+virtual void \hyperlink{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d}{do\+Update\+Dimension\+End} (int old\+Dimension)
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}
+\item 
+Vector\+Xd \& \hyperlink{classocra_1_1Function_adf9ae8a4ca631a787c99c4b499bea094}{\+\_\+value}
+\item 
+Matrix\+Xd \& \hyperlink{classocra_1_1Function_ade18c5f3f678fe0245dfc397e99112dc}{\+\_\+jacobian}
+\item 
+const int \& \hyperlink{classocra_1_1Function_a1b5d0dcebb8b435c7a5e70f8e6fbafcc}{\+\_\+dim}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Function class. 
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+\end{DoxyAuthor}
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Base class for a function $ f_A $ defined as follows\+: $x$ is time-\/dependant n-\/dimensional variable living in $R^n$, A is a set of (possibly changing) parameters. $ f_A $ is a function of $x$ with a possible explicit time dependency. Thus we have $ f_A : R^n \times R \rightarrow R^m $, with $ f_A(x,t) = (f_{1_A}(x,t), \cdots, f_{m_A}(x,t))^T $ The set of parameters is considered to be constant with respect to the time on a mathematical point of view, yet the user can change it anytime. Although $ f $ might be explicitly time-\/dependant, no interfaces are given at this level to specify the value of variable $ t $. This responsibility is transfered to the derived classes.
+
+\hyperlink{classocra_1_1Function}{Function} inherits from several \hyperlink{classocra_1_1IFunction}{I\+Function}, each of which comes with a virtual method that need to be overloaded if the corresponding ability is {\itshape used}. Below is the list of abilities with the corresponding methods and return types. In case of doubt or out-\/of-\/date documentation, please see the use of the macro D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS in \hyperlink{IFunction_8h}{I\+Function.\+h}. For the most usual abilities, some shortcuts are implemented to ease both programming and reading.
+
+Ability return type virtual update method buffer alias getter alias F\+U\+N\+\_\+\+V\+A\+L\+UE Vector\+Xd update\+Value \+\_\+value get\+Value P\+A\+R\+T\+I\+A\+L\+\_\+X Matrix\+Xd update\+Jacobian \+\_\+jacobian get\+Jacobian P\+A\+R\+T\+I\+A\+L\+\_\+T Vector\+Xd update\+PartialT F\+U\+N\+\_\+\+D\+OT Vector\+Xd update\+Fdot P\+A\+R\+T\+I\+A\+L\+\_\+\+X\+\_\+\+D\+OT Matrix\+Xd update\+Jdot P\+A\+R\+T\+I\+A\+L\+\_\+\+XX std\+::vector$<$\+Matrix\+Xd$\ast$$>$ update\+Hessian F\+U\+N\+\_\+\+D\+D\+OT Vector\+Xd update\+Fddot P\+A\+R\+T\+I\+A\+L\+\_\+\+TT Vector\+Xd update\+Partial\+TT P\+A\+R\+T\+I\+A\+L\+\_\+\+TX Matrix\+Xd update\+Partial\+TX P\+A\+R\+T\+I\+A\+L\+\_\+\+XT Matrix\+Xd update\+Partial\+XT P\+A\+R\+T\+I\+A\+L\+\_\+\+T\+\_\+\+D\+OT Vector\+Xd update\+Partial\+Tdot P\+A\+R\+T\+I\+A\+L\+\_\+\+X\+\_\+\+D\+O\+T\+\_\+\+X\+\_\+\+D\+OT Vector\+Xd update\+Jdot\+Xdot
+
+\mbox{[}Please U\+P\+D\+A\+TE if you add abilities\mbox{]}
+
+\hyperlink{classocra_1_1Function}{Function} also inherits from \hyperlink{classocra_1_1IFunctionProperties}{I\+Function\+Properties} and as such is given an interface of trivial getters and setters which don\textquotesingle{}t appear here. \begin{DoxySeeAlso}{See also}
+I\+Function\+Property 
+\end{DoxySeeAlso}
+
+
+Definition at line 77 of file Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1Function_a34f827361369b0e38802fbc93a055014}{}\label{classocra_1_1Function_a34f827361369b0e38802fbc93a055014} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!Function@{Function}}
+\index{Function@{Function}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{Function()}{Function()}}
+{\footnotesize\ttfamily ocra\+::\+Function\+::\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{int}]{dimension,  }\item[{\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity}}]{linearity = {\ttfamily \hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226abadd86a2dd3240e6df49a6e422b5abe075}{L\+I\+N\+E\+A\+R\+I\+T\+Y\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}},  }\item[{\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity}}]{convexity = {\ttfamily \hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119a40aab88792841afe151808f879cfaa99}{C\+O\+N\+V\+E\+X\+I\+T\+Y\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}},  }\item[{int}]{continuity = {\ttfamily \hyperlink{namespaceocra_ae5102ad1959d0c0dbf2eaa5610bbf728ad66557aadcf8856f9f135ff26db1a862}{C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+U\+N\+K\+N\+O\+WN}},  }\item[{bool}]{explicitly\+Time\+Dependant = {\ttfamily false},  }\item[{bool}]{separable\+Time\+Dependancy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\hyperlink{classocra_1_1Function}{Function} Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & The time-\/dependant variable on which f is defined. \\
+\hline
+\mbox{\tt in}  & {\em dimension} & The dimension of the output space, {\itshape m} in the description of the class. \\
+\hline
+\mbox{\tt in}  & {\em linearity} & Linearity property of the function. \\
+\hline
+\mbox{\tt in}  & {\em convexity} & Convexity property of the function. \\
+\hline
+\mbox{\tt in}  & {\em continuity} & Continuity property of the function. \\
+\hline
+\mbox{\tt in}  & {\em explicitly\+Time\+Dependant} & \\
+\hline
+\mbox{\tt in}  & {\em separable\+Time\+Dependancy} & \\
+\hline
+\mbox{\tt in}  & {\em use\mbox{[}\+Some\+Ability\mbox{]}} & Indicates wether the function must perform memory allocation and computation for the corresponding ability.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+(continuity==C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+U\+N\+K\+N\+O\+WN) $\vert$$\vert$ (continuity$>$0 \&\& continuity$<$=C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+C\+I\+NF) 
+\end{DoxyPrecond}
+
+
+Definition at line 6 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a1889abdbc50386e4b4710912dbba89bd}{}\label{classocra_1_1Function_a1889abdbc50386e4b4710912dbba89bd} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!````~Function@{$\sim$\+Function}}
+\index{````~Function@{$\sim$\+Function}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Function()}{~Function()}}
+{\footnotesize\ttfamily ocra\+::\+Function\+::$\sim$\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 27 of file Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1Function_a9483d0d23002c7e1a20033e6ea224e2d}{}\label{classocra_1_1Function_a9483d0d23002c7e1a20033e6ea224e2d} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!can\+Compute@{can\+Compute}}
+\index{can\+Compute@{can\+Compute}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{can\+Compute()}{canCompute()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Ability$>$ \\
+bool ocra\+::\+Function\+::can\+Compute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+return true if the corresponding ability is enabled 
+
+Definition at line 347 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_ad9800654d8a33fd91d7ea52038c2fb94}{}\label{classocra_1_1Function_ad9800654d8a33fd91d7ea52038c2fb94} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!change\+Function\+Dimension@{change\+Function\+Dimension}}
+\index{change\+Function\+Dimension@{change\+Function\+Dimension}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{change\+Function\+Dimension()}{changeFunctionDimension()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::change\+Function\+Dimension (\begin{DoxyParamCaption}\item[{int}]{new\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Changes the dimension of the function to {\itshape new\+Dimension}. This changes the value of \+\_\+dimension by performing the following actions\+:
+\begin{DoxyItemize}
+\item calls change\+Function\+Dimension\+Impl which (i) invokes \hyperlink{classocra_1_1Function_afdf98e9f43fde97a5256af88a50cbb39}{do\+Update\+Dimension\+Begin()}, (ii) set \+\_\+dimension to its new value (iii) calls \hyperlink{classocra_1_1Function_aa59cd6d7965f6b2222261ef460d4899c}{resize()}, (iv) and calls \hyperlink{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d}{do\+Update\+Dimension\+End()} in that order
+\item fires a E\+V\+T\+\_\+\+R\+E\+S\+I\+ZE.
+\end{DoxyItemize}
+
+This method calls {\ttfamily do\+Update\+Dimension\+Begin} before executing its core and do\+Update\+Dimension\+End after. These virtual methods might throw exceptions depending on their overloaded implementation. By default, do\+Update\+Size\+Begin throws a runtime\+\_\+error\+: the programmer of a new function needs to overloaded it if his/her function supports function resizing.
+
+\begin{DoxyPostcond}{Postcondition}
+Each I\+Function$<$\+Ability$>$\+::\+\_\+validated must be false. 
+\end{DoxyPostcond}
+
+
+Definition at line 56 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a95241fd426f887c5eb3add3f1e55a09c}{}\label{classocra_1_1Function_a95241fd426f887c5eb3add3f1e55a09c} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!compute\+Dimension\+From\+Input\+Size@{compute\+Dimension\+From\+Input\+Size}}
+\index{compute\+Dimension\+From\+Input\+Size@{compute\+Dimension\+From\+Input\+Size}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{compute\+Dimension\+From\+Input\+Size()}{computeDimensionFromInputSize()}}
+{\footnotesize\ttfamily int ocra\+::\+Function\+::compute\+Dimension\+From\+Input\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Does what it tells... 
+
+Reimplemented in \hyperlink{classocra_1_1DiagonalLinearFunction_af41faa708f35e39c2f797f70ae7ce695}{ocra\+::\+Diagonal\+Linear\+Function}, and \hyperlink{classocra_1_1DoubleDiagonalLinearFunction_af449f5bb219672d4f316a0d626436ec8}{ocra\+::\+Double\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 103 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a0b0f0b2bf97e25130b51ed7b6c62c357}{}\label{classocra_1_1Function_a0b0f0b2bf97e25130b51ed7b6c62c357} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!disconnect\+Variable@{disconnect\+Variable}}
+\index{disconnect\+Variable@{disconnect\+Variable}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{disconnect\+Variable()}{disconnectVariable()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::disconnect\+Variable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Call this method before deleting, if needed, the variable \&x in any child classes. Else it\textquotesingle{}s automatically called in $\sim$\+Function. Error prone design inside(tm) 
+
+Definition at line 31 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_afdf98e9f43fde97a5256af88a50cbb39}{}\label{classocra_1_1Function_afdf98e9f43fde97a5256af88a50cbb39} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!do\+Update\+Dimension\+Begin@{do\+Update\+Dimension\+Begin}}
+\index{do\+Update\+Dimension\+Begin@{do\+Update\+Dimension\+Begin}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Dimension\+Begin()}{doUpdateDimensionBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::do\+Update\+Dimension\+Begin (\begin{DoxyParamCaption}\item[{int}]{new\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the dimension of the function has changed. Default implementation of do\+Update\+Dimension\+End does nothing, do\+Update\+Dimension\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d}{do\+Update\+Dimension\+End()}} must comply with the post condition of {\ttfamily update\+Dimension()}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented in \hyperlink{classocra_1_1DiagonalLinearFunction_a86b326e3578c8405806eab4ec6522ab2}{ocra\+::\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1ContactAvoidanceFunction_a4f33ca5589b08a96207be800b9f4bd57}{ocra\+::\+Contact\+Avoidance\+Function}, \hyperlink{classocra_1_1DoubleDiagonalLinearFunction_af834599e9b414f8778e0618efc552661}{ocra\+::\+Double\+Diagonal\+Linear\+Function}, and \hyperlink{classocra_1_1LinearTask_a31c1140426b2f327e6a126fd917b04cd}{ocra\+::\+Linear\+Task}.
+
+
+
+Definition at line 109 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d}{}\label{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!do\+Update\+Dimension\+End@{do\+Update\+Dimension\+End}}
+\index{do\+Update\+Dimension\+End@{do\+Update\+Dimension\+End}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Dimension\+End()}{doUpdateDimensionEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::do\+Update\+Dimension\+End (\begin{DoxyParamCaption}\item[{int}]{old\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1ContactAvoidanceFunction_ad81a7b03b0fb7e8b2a037bccf5faea84}{ocra\+::\+Contact\+Avoidance\+Function}, \hyperlink{classocra_1_1QuadraticFunction_ad9b92a56e1c91c33630a5ba3f118c7b9}{ocra\+::\+Quadratic\+Function}, and \hyperlink{classocra_1_1LinearTask_aab97e5a858909e724ae8426f141c319b}{ocra\+::\+Linear\+Task}.
+
+
+
+Definition at line 114 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{}\label{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1Function_a39f6d91b72eff2d32da7e4a85ee79f7d}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented in \hyperlink{classFunction3_a00a1ea6f2a0fdc5df66004e23038fff0}{Function3}, \hyperlink{classFunction2_ab05887e9f8995782cdc3f9399c476c4e}{Function2}, \hyperlink{classocra_1_1DiagonalLinearFunction_a2071e4c52785c88119917460b94773cb}{ocra\+::\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1DoubleDiagonalLinearFunction_a91fd529bf34bffd327fcd545035bec67}{ocra\+::\+Double\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1LinearTask_a9db869913d96b6917b2d40211761c019}{ocra\+::\+Linear\+Task}, \hyperlink{classocra_1_1WeightedSquareDistanceFunction_aff6adfc9daa9242233f58a8c2c16ba7d}{ocra\+::\+Weighted\+Square\+Distance\+Function}, \hyperlink{classocra_1_1SquaredLinearFunction_a95faea59867ec734fbdb46d936067d77}{ocra\+::\+Squared\+Linear\+Function}, \hyperlink{classFunction1_aec0bc51f050a1bd32cece26e524e5c97}{Function1}, \hyperlink{group__constraint_gadbdce52af8ba057e93ea923db5a3ce04}{ocra\+::\+Full\+Dynamic\+Equation\+Function}, \hyperlink{classocra_1_1DynamicEquationFunction_a6fc52fcd947fa303e55729dbb286b92c}{ocra\+::\+Dynamic\+Equation\+Function}, \hyperlink{classocra_1_1IdentityFunction_aa8d5ff0e25422b3b5a4a2a8621120790}{ocra\+::\+Identity\+Function}, \hyperlink{classocra_1_1SumOfLinearFunctions_a7cfc7b9339509922c2ea6173d4d4d141}{ocra\+::\+Sum\+Of\+Linear\+Functions}, \hyperlink{classocra_1_1FcQuadraticFunction_a1e350f138eb82cfe3e8cf049942e626c}{ocra\+::\+Fc\+Quadratic\+Function}, and \hyperlink{classocra_1_1VariableChiFunction_ad58b8fbb68e8cb27aab585f40875918f}{ocra\+::\+Variable\+Chi\+Function}.
+
+
+
+Definition at line 93 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a39f6d91b72eff2d32da7e4a85ee79f7d}{}\label{classocra_1_1Function_a39f6d91b72eff2d32da7e4a85ee79f7d} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classFunction2_a6a875214e7fa8b07f064cd699ac29ff6}{Function2}, \hyperlink{classocra_1_1DiagonalLinearFunction_a8a51d23c302c9bad9579b95e29481f55}{ocra\+::\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1LinearFunction_ac6bdf62ad6634397778d5f4223ed6d82}{ocra\+::\+Linear\+Function}, \hyperlink{classocra_1_1QuadraticFunction_ab3d5478fd8ded343453e0489c595e580}{ocra\+::\+Quadratic\+Function}, \hyperlink{classocra_1_1DoubleDiagonalLinearFunction_a89070f8f2b068d8b6b3e216433e50538}{ocra\+::\+Double\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1WeightedSquareDistanceFunction_ab05ab6021a40ed308b7e0d67b5a55b82}{ocra\+::\+Weighted\+Square\+Distance\+Function}, \hyperlink{group__constraint_ga8c14a0ff3f87c32d030a3a1753b7a77e}{ocra\+::\+Full\+Dynamic\+Equation\+Function}, \hyperlink{classocra_1_1IdentityFunction_adcfa8a32491113a590e7066f0062fbc6}{ocra\+::\+Identity\+Function}, \hyperlink{classocra_1_1DynamicEquationFunction_a8d20f6ed1e3983d1fddf648729eba955}{ocra\+::\+Dynamic\+Equation\+Function}, and \hyperlink{classocra_1_1VariableChiFunction_adbc1bb06d86e8ef65e8cdeb55db15353}{ocra\+::\+Variable\+Chi\+Function}.
+
+
+
+Definition at line 98 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a244404069d9ab169fbb23309785693b8}{}\label{classocra_1_1Function_a244404069d9ab169fbb23309785693b8} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get@{get}}
+\index{get@{get}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Ability$>$ \\
+const \hyperlink{classocra_1_1IFunction}{I\+Function}$<$ Ability $>$\+::return\+\_\+type \& ocra\+::\+Function\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the value of the quantity corresponding to the function ability specified by {\itshape Ability}. This value is recomputed if needed in a transparent way for the user.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Ability} & The label of the ability\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyPrecond}{Precondition}
+\hyperlink{classocra_1_1IFunction_a18703c0b7573f9a1629236c9e10150d9}{I\+Function$<$\+Ability$>$\+::can\+Be\+Computed()}==true. If this is not the case, no physical memory is allocated for the corresponding memory buffer and computation will fail or worse result in a buffer overflow.
+\end{DoxyPrecond}
+Throws std\+::runtime\+\_\+error if the virtual update method has not been overloaded for this ability.
+
+For performance reasons, no exceptions are thrown when this method is called for an ability which is not used. A high-\/level usage should make its own check by calling first {\ttfamily \hyperlink{classocra_1_1IFunction_a18703c0b7573f9a1629236c9e10150d9}{I\+Function$<$\+Ability$>$\+::can\+Be\+Computed}}.
+
+For example, \hyperlink{classocra_1_1Function_a244404069d9ab169fbb23309785693b8}{get$<$\+P\+A\+R\+T\+I\+A\+L\+\_\+\+T\+X$>$()} returns $ \frac{\partial^2 f}{\partial t \partial x}$ computed at the current (x,t).
+
+For some abilities, there exist aliases. \begin{DoxySeeAlso}{See also}
+\hyperlink{classocra_1_1Function_a0b8c9f91088218ca55e73679e8c56e87}{get\+Value()}, \hyperlink{classocra_1_1Function_a14d855bebcf8a03878c0ff7857b27d37}{get\+Jacobian()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 353 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_add7bf02dbd416bd2f9fab547566fc6ed}{}\label{classocra_1_1Function_add7bf02dbd416bd2f9fab547566fc6ed} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get@{get}}
+\index{get@{get}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Ability$>$ \\
+\hyperlink{classocra_1_1IFunction}{I\+Function}$<$ Ability $>$\+::return\+\_\+sub\+\_\+type ocra\+::\+Function\+::get (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get a subpart of the value of the quantity corresponding to the function ability specified by {\itshape Ability}. This value is recomputed if needed in a transparent way for the user.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Ability} & The label of the ability. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em index} & The index of the subpart of the value (corresponding to f\+\_\+index).\\
+\hline
+\end{DoxyParams}
+For example, get$<$\+P\+A\+R\+T\+I\+A\+L\+\_\+\+X$>$(i) returns $ \frac{\partial f_i}{\partial x}$ computed at the current (x,t).
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classocra_1_1Function_a244404069d9ab169fbb23309785693b8}{get()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 359 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_a85da5fba27502737b0c7027c24cc6170}{}\label{classocra_1_1Function_a85da5fba27502737b0c7027c24cc6170} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get\+Dimension@{get\+Dimension}}
+\index{get\+Dimension@{get\+Dimension}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get\+Dimension()}{getDimension()}}
+{\footnotesize\ttfamily int ocra\+::\+Function\+::get\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+get the dimension m of the output space 
+
+Definition at line 41 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a14d855bebcf8a03878c0ff7857b27d37}{}\label{classocra_1_1Function_a14d855bebcf8a03878c0ff7857b27d37} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get\+Jacobian@{get\+Jacobian}}
+\index{get\+Jacobian@{get\+Jacobian}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get\+Jacobian()}{getJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Function\+::get\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+return the jacobian of the function at the current (x,t). Synonym for \hyperlink{classocra_1_1Function_a244404069d9ab169fbb23309785693b8}{get$<$\+P\+A\+R\+T\+I\+A\+L\+\_\+\+X$>$()} 
+
+Definition at line 375 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_a1e0bdc0fd8b5aa7e7a29076858a5d28c}{}\label{classocra_1_1Function_a1e0bdc0fd8b5aa7e7a29076858a5d28c} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get\+Jacobian@{get\+Jacobian}}
+\index{get\+Jacobian@{get\+Jacobian}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get\+Jacobian()}{getJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_a608bf0522317ed1df3bbfc6a5753bc01}{Matrix\+Xd\+Row} ocra\+::\+Function\+::get\+Jacobian (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+return the ith component of the jacobian of the function at the current (x,t). Synonym for get$<$\+P\+A\+R\+T\+I\+A\+L\+\_\+\+X$>$(index) 
+
+Definition at line 380 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_a0b8c9f91088218ca55e73679e8c56e87}{}\label{classocra_1_1Function_a0b8c9f91088218ca55e73679e8c56e87} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Function\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+aliases return the value of the function at the current (x,t). Synonym for \hyperlink{classocra_1_1Function_a244404069d9ab169fbb23309785693b8}{get$<$\+F\+U\+N\+\_\+\+V\+A\+L\+U\+E$>$()} 
+
+Definition at line 365 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_a4447b2e6194552d6536f37f0156b9c29}{}\label{classocra_1_1Function_a4447b2e6194552d6536f37f0156b9c29} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double ocra\+::\+Function\+::get\+Value (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+return the ith component of the value of the function at the current (x,t). Synonym for get$<$\+F\+U\+N\+\_\+\+V\+A\+L\+U\+E$>$(index) 
+
+Definition at line 370 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_a6748e5c8a2bb40655bf574baac33dfdd}{}\label{classocra_1_1Function_a6748e5c8a2bb40655bf574baac33dfdd} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get\+Variable@{get\+Variable}}
+\index{get\+Variable@{get\+Variable}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get\+Variable()}{getVariable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Variable}{Variable} \& ocra\+::\+Function\+::get\+Variable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+get the variable {\itshape x} on which the function is defined 
+
+Definition at line 46 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a2528d95d06e21e60eff14bb3ee484345}{}\label{classocra_1_1Function_a2528d95d06e21e60eff14bb3ee484345} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!get\+Variable@{get\+Variable}}
+\index{get\+Variable@{get\+Variable}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{get\+Variable()}{getVariable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable} \& ocra\+::\+Function\+::get\+Variable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 51 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_aa66bc14ed8c17e88224fa2469d7d3a7e}{}\label{classocra_1_1Function_aa66bc14ed8c17e88224fa2469d7d3a7e} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!invalidate@{invalidate}}
+\index{invalidate@{invalidate}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{invalidate()}{invalidate()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Ability$>$ \\
+void ocra\+::\+Function\+::invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+invalidate the value of the corresponding ability 
+
+Definition at line 325 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_ae33c94ee0c807b05869609f7a166ff82}{}\label{classocra_1_1Function_ae33c94ee0c807b05869609f7a166ff82} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!invalidate\+All@{invalidate\+All}}
+\index{invalidate\+All@{invalidate\+All}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{invalidate\+All()}{invalidateAll()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::invalidate\+All (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+invalidate the value of each ability 
+
+Definition at line 335 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_a2ebd8ade069fc19b03e6ab9cef2c09c3}{}\label{classocra_1_1Function_a2ebd8ade069fc19b03e6ab9cef2c09c3} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!invalidate\+All@{invalidate\+All}}
+\index{invalidate\+All@{invalidate\+All}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{invalidate\+All()}{invalidateAll()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::invalidate\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 330 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_a277bdd8c1ece035f5ab5fc2b996ddced}{}\label{classocra_1_1Function_a277bdd8c1ece035f5ab5fc2b996ddced} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{is\+Valid()}{isValid()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Ability$>$ \\
+bool ocra\+::\+Function\+::is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+check the validity of the value of the corresponding ability 
+
+Definition at line 341 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_aa59cd6d7965f6b2222261ef460d4899c}{}\label{classocra_1_1Function_aa59cd6d7965f6b2222261ef460d4899c} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!resize@{resize}}
+\index{resize@{resize}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::resize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Core of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}} and Update the size of the memory buffers according to the size of the input variable and the dimension {\itshape m} of the function. Only the buffers corresponding to used ability are resized. This implies that their values are invalidated. 
+
+Definition at line 86 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a81490edf4f79b4dc730c5647e542231c}{}\label{classocra_1_1Function_a81490edf4f79b4dc730c5647e542231c} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!update\+Fddot@{update\+Fddot}}
+\index{update\+Fddot@{update\+Fddot}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{update\+Fddot()}{updateFddot()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::update\+Fddot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generic implentation of update\+Fddot.
+
+\begin{DoxyPrecond}{Precondition}
+The first and second time-\/derivative of the variable exist. 
+
+Values partial\+\_\+X and partial\+\_\+\+X\+\_\+\+D\+OT needs to be computable. 
+
+Values partial\+\_\+\+XT and partial\+TT needs to be computable if the function depends explicitly on time.
+\end{DoxyPrecond}
+This is not an optimal implementation in case it is known wether the function depends explicitly on time or not. A test is indeed performed at runtime to decide which computations need to be done. 
+
+Definition at line 130 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a2f09ce859333f22fdd527ff08aee6e6e}{}\label{classocra_1_1Function_a2f09ce859333f22fdd527ff08aee6e6e} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!update\+Fdot@{update\+Fdot}}
+\index{update\+Fdot@{update\+Fdot}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{update\+Fdot()}{updateFdot()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::update\+Fdot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generic implementation of update\+Fdot.
+
+\begin{DoxyPrecond}{Precondition}
+The first time derivative of the variable exists. 
+
+Value partial\+\_\+X needs to be computable. 
+
+Value partial\+\_\+T needs to be computable if the function depends explicitly on time.
+\end{DoxyPrecond}
+This is not an optimal implementation in case it is known wether the function depends explicitly on the time or not. A test is indeed performed at runtime to decide which computations need to be done. 
+
+Reimplemented in \hyperlink{classMyFunction_af0219da97114570582c6a02cf072a7db}{My\+Function}.
+
+
+
+Definition at line 119 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{}\label{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!update\+Input\+Size@{update\+Input\+Size}}
+\index{update\+Input\+Size@{update\+Input\+Size}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{update\+Input\+Size()}{updateInputSize()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::update\+Input\+Size (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Update the size of the memory buffers according to the size of the input variable and the current dimension {\itshape m} of the function. Only the buffers corresponding to used abilities are resized. This implies that their values are invalidated. This method is automaticaly invoked when the function variable {\ttfamily x} is resized.
+
+This method calls {\ttfamily do\+Update\+Size\+Begin} before executing its core and do\+Update\+Size\+End after. These virtual methods might throw exceptions depending on their overloaded implementation. By default, do\+Update\+Size\+Begin throws a runtime\+\_\+error\+: the programmer of a new function needs to overloaded it if his/her function supports variable resizing.
+
+\begin{DoxyPostcond}{Postcondition}
+Each I\+Function$<$\+Ability$>$\+::\+\_\+validated must be false. 
+\end{DoxyPostcond}
+
+
+Definition at line 71 of file Function.\+cpp.
+
+\hypertarget{classocra_1_1Function_a5b3356ce1094f19f4af6e38b319fdfe3}{}\label{classocra_1_1Function_a5b3356ce1094f19f4af6e38b319fdfe3} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!update\+Jdot\+Xdot@{update\+Jdot\+Xdot}}
+\index{update\+Jdot\+Xdot@{update\+Jdot\+Xdot}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{update\+Jdot\+Xdot()}{updateJdotXdot()}}
+{\footnotesize\ttfamily void ocra\+::\+Function\+::update\+Jdot\+Xdot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Generic implementation of update\+Jdot\+Xdot.
+
+\begin{DoxyPrecond}{Precondition}
+The first time derivative of the variable exists. 
+
+Value partial\+\_\+\+X\+\_\+\+D\+OT needs to be computable. 
+\end{DoxyPrecond}
+
+
+Definition at line 145 of file Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1Function_a1b5d0dcebb8b435c7a5e70f8e6fbafcc}{}\label{classocra_1_1Function_a1b5d0dcebb8b435c7a5e70f8e6fbafcc} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!\+\_\+dim@{\+\_\+dim}}
+\index{\+\_\+dim@{\+\_\+dim}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+dim}{\_dim}}
+{\footnotesize\ttfamily const int\& ocra\+::\+Function\+::\+\_\+dim\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 320 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_ade18c5f3f678fe0245dfc397e99112dc}{}\label{classocra_1_1Function_ade18c5f3f678fe0245dfc397e99112dc} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!\+\_\+jacobian@{\+\_\+jacobian}}
+\index{\+\_\+jacobian@{\+\_\+jacobian}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+jacobian}{\_jacobian}}
+{\footnotesize\ttfamily Matrix\+Xd\& ocra\+::\+Function\+::\+\_\+jacobian\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 313 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_adf9ae8a4ca631a787c99c4b499bea094}{}\label{classocra_1_1Function_adf9ae8a4ca631a787c99c4b499bea094} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!\+\_\+value@{\+\_\+value}}
+\index{\+\_\+value@{\+\_\+value}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+value}{\_value}}
+{\footnotesize\ttfamily Vector\+Xd\& ocra\+::\+Function\+::\+\_\+value\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 312 of file Function.\+h.
+
+\hypertarget{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{}\label{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486} 
+\index{ocra\+::\+Function@{ocra\+::\+Function}!x@{x}}
+\index{x@{x}!ocra\+::\+Function@{ocra\+::\+Function}}
+\subsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable}\& ocra\+::\+Function\+::x\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 309 of file Function.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Function_8h}{Function.\+h}\item 
+\hyperlink{Function_8cpp}{Function.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,339 @@
+\hypertarget{classocra_1_1LinearFunction}{}\section{ocra\+:\+:Linear\+Function Class Reference}
+\label{classocra_1_1LinearFunction}\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+
+
+Linear\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Linear\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Linear\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.066023cm]{de/d3a/classocra_1_1LinearFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classocra_1_1LinearFunction_adaf7f13c522f2001ced48c64a361c2e6}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Base $>$ }\\\hyperlink{classocra_1_1LinearFunction_afb4fddc341c3c726f346acc962bead78}{Linear\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const Matrix\+Base$<$ Derived $>$ \&A, const Vector\+Base \&b)
+\item 
+\hyperlink{classocra_1_1LinearFunction_a0bdb80bc2a85566bc02dd143b6db7fdf}{$\sim$\+Linear\+Function} ()
+\item 
+void \hyperlink{classocra_1_1LinearFunction_a3faf4257b2a8ebd6426a054f4242fec8}{invalidateb} (int timestamp)
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+const Matrix\+Xd \& \hyperlink{classocra_1_1LinearFunction_a7035c5f9ab621e976e09560c85a12fb2}{getA} () const
+\item 
+const Vector\+Xd \& \hyperlink{classocra_1_1LinearFunction_a485d83b0a3ad4c91e86f62494f9d7cef}{getb} () const
+\item 
+void \hyperlink{classocra_1_1LinearFunction_ab3ce18953520f3984fc260444775d157}{changeA} (const Matrix\+Xd \&A)
+\item 
+void \hyperlink{classocra_1_1LinearFunction_a2c62940f1529c04b4888a2f4d4bc235d}{changeb} (const Vector\+Xd \&b)
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1LinearFunction_af44da8931811a95725d1d25c697aa5d2}{Linear\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, int dimension)
+\item 
+virtual void \hyperlink{classocra_1_1LinearFunction_a546454cd8d0909f99433ffc0e700c9e3}{updateb} () const
+\item 
+virtual void \hyperlink{classocra_1_1LinearFunction_ac6bdf62ad6634397778d5f4223ed6d82}{do\+Update\+Input\+Size\+End} ()
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1LinearFunction_a1b9fd7a03a8630055c117d19e0ff019a}{update\+Value} () const
+\item 
+virtual void \hyperlink{classocra_1_1LinearFunction_a30926f977c0124a0b0f65b854ab39636}{update\+Jacobian} () const
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1LinearFunction_ab573c2f615d2edefb647979d3cc3cf46}{do\+ChangeA} (const Matrix\+Xd \&A)
+\item 
+virtual void \hyperlink{classocra_1_1LinearFunction_ad6003a64fd49102599620206ca161345}{do\+Changeb} (const Vector\+Xd \&b)
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1LinearFunction_a08b286c3cdc1ab8407ba7a9ce9eba8c7}{inhibit\+Propagation\+Fromb} () const
+\item 
+void \hyperlink{classocra_1_1LinearFunction_ace93b1e909f57e1a49faa37041916c7c}{desinhibit\+Propagation\+Fromb} () const
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector\+Xd \hyperlink{classocra_1_1LinearFunction_ab556d7683de415e8273bdbf955f7da02}{\+\_\+b}
+\item 
+bool \hyperlink{classocra_1_1LinearFunction_a97de5274c98711b37b04aed99c237ce6}{\+\_\+b\+Is\+Up\+To\+Date}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Linear\+Function class. 
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+\end{DoxyAuthor}
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+A linear function Ax+b. The class is implemented for A et b are constant, but can be overloaded for A and b being functions of other parameters. The update\+Value ensure to take A and b up-\/to-\/date (provided the methods to update are correct). 
+
+Definition at line 37 of file Linear\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1LinearFunction_adaf7f13c522f2001ced48c64a361c2e6}{}\label{classocra_1_1LinearFunction_adaf7f13c522f2001ced48c64a361c2e6} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classocra_1_1LinearFunction_adaf7f13c522f2001ced48c64a361c2e6}{ocra\+::\+Linear\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 42 of file Linear\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1LinearFunction_af44da8931811a95725d1d25c697aa5d2}{}\label{classocra_1_1LinearFunction_af44da8931811a95725d1d25c697aa5d2} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!Linear\+Function@{Linear\+Function}}
+\index{Linear\+Function@{Linear\+Function}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{Linear\+Function()}{LinearFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ocra\+::\+Linear\+Function\+::\+Linear\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{int}]{dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+A light constructor for derived class 
+
+Definition at line 11 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_afb4fddc341c3c726f346acc962bead78}{}\label{classocra_1_1LinearFunction_afb4fddc341c3c726f346acc962bead78} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!Linear\+Function@{Linear\+Function}}
+\index{Linear\+Function@{Linear\+Function}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{Linear\+Function()}{LinearFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived , class Vector\+Base $>$ \\
+ocra\+::\+Linear\+Function\+::\+Linear\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const Matrix\+Base$<$ Derived $>$ \&}]{A,  }\item[{const Vector\+Base \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for A and b constant 
+
+Definition at line 118 of file Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1LinearFunction_a0bdb80bc2a85566bc02dd143b6db7fdf}{}\label{classocra_1_1LinearFunction_a0bdb80bc2a85566bc02dd143b6db7fdf} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!````~Linear\+Function@{$\sim$\+Linear\+Function}}
+\index{````~Linear\+Function@{$\sim$\+Linear\+Function}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Linear\+Function()}{~LinearFunction()}}
+{\footnotesize\ttfamily ocra\+::\+Linear\+Function\+::$\sim$\+Linear\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file Linear\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1LinearFunction_ab3ce18953520f3984fc260444775d157}{}\label{classocra_1_1LinearFunction_ab3ce18953520f3984fc260444775d157} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!changeA@{changeA}}
+\index{changeA@{changeA}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{change\+A()}{changeA()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::changeA (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{A }\end{DoxyParamCaption})}
+
+
+
+Definition at line 41 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_a2c62940f1529c04b4888a2f4d4bc235d}{}\label{classocra_1_1LinearFunction_a2c62940f1529c04b4888a2f4d4bc235d} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!changeb@{changeb}}
+\index{changeb@{changeb}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{changeb()}{changeb()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::changeb (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{b }\end{DoxyParamCaption})}
+
+
+
+Definition at line 49 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_ace93b1e909f57e1a49faa37041916c7c}{}\label{classocra_1_1LinearFunction_ace93b1e909f57e1a49faa37041916c7c} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!desinhibit\+Propagation\+Fromb@{desinhibit\+Propagation\+Fromb}}
+\index{desinhibit\+Propagation\+Fromb@{desinhibit\+Propagation\+Fromb}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{desinhibit\+Propagation\+Fromb()}{desinhibitPropagationFromb()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::desinhibit\+Propagation\+Fromb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 101 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_ab573c2f615d2edefb647979d3cc3cf46}{}\label{classocra_1_1LinearFunction_ab573c2f615d2edefb647979d3cc3cf46} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!do\+ChangeA@{do\+ChangeA}}
+\index{do\+ChangeA@{do\+ChangeA}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+A()}{doChangeA()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::do\+ChangeA (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods to be called in ChangeA and Change b 
+
+Reimplemented in \hyperlink{classocra_1_1DiagonalLinearFunction_addc4f984a5a71b170137788f15e2d12c}{ocra\+::\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1DoubleDiagonalLinearFunction_a55bd813c1f86402eea01bb403c6257bb}{ocra\+::\+Double\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1IdentityFunction_aa1a9f42b9b1b62182d99ea32dae6e815}{ocra\+::\+Identity\+Function}, and \hyperlink{classocra_1_1SumOfLinearFunctions_a49346ac5b041b40540ce0c1ae5a6b0d2}{ocra\+::\+Sum\+Of\+Linear\+Functions}.
+
+
+
+Definition at line 57 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_ad6003a64fd49102599620206ca161345}{}\label{classocra_1_1LinearFunction_ad6003a64fd49102599620206ca161345} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!do\+Changeb@{do\+Changeb}}
+\index{do\+Changeb@{do\+Changeb}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Changeb()}{doChangeb()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::do\+Changeb (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1SumOfLinearFunctions_ab66be55a88e1c4e7d4e6f663f0a36683}{ocra\+::\+Sum\+Of\+Linear\+Functions}.
+
+
+
+Definition at line 62 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_ac6bdf62ad6634397778d5f4223ed6d82}{}\label{classocra_1_1LinearFunction_ac6bdf62ad6634397778d5f4223ed6d82} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+This methods ensures \+\_\+b has the good size at the end of a resize, yet it will not be called in \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} itself because the class does not overload \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{do\+Update\+Input\+Size\+Begin()} which throws an runtime\+\_\+error by default. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a39f6d91b72eff2d32da7e4a85ee79f7d}{ocra\+::\+Function}.
+
+
+
+Reimplemented in \hyperlink{classocra_1_1DiagonalLinearFunction_a8a51d23c302c9bad9579b95e29481f55}{ocra\+::\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1DoubleDiagonalLinearFunction_a89070f8f2b068d8b6b3e216433e50538}{ocra\+::\+Double\+Diagonal\+Linear\+Function}, \hyperlink{group__constraint_ga8c14a0ff3f87c32d030a3a1753b7a77e}{ocra\+::\+Full\+Dynamic\+Equation\+Function}, \hyperlink{classocra_1_1IdentityFunction_adcfa8a32491113a590e7066f0062fbc6}{ocra\+::\+Identity\+Function}, \hyperlink{classocra_1_1DynamicEquationFunction_a8d20f6ed1e3983d1fddf648729eba955}{ocra\+::\+Dynamic\+Equation\+Function}, and \hyperlink{classocra_1_1VariableChiFunction_adbc1bb06d86e8ef65e8cdeb55db15353}{ocra\+::\+Variable\+Chi\+Function}.
+
+
+
+Definition at line 90 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_a7035c5f9ab621e976e09560c85a12fb2}{}\label{classocra_1_1LinearFunction_a7035c5f9ab621e976e09560c85a12fb2} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!getA@{getA}}
+\index{getA@{getA}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{get\+A()}{getA()}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Linear\+Function\+::getA (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+getters/setters for A and b \begin{DoxyPrecond}{Precondition}
+A and b must have the size of the data they replace. 
+\end{DoxyPrecond}
+
+
+Definition at line 26 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_a485d83b0a3ad4c91e86f62494f9d7cef}{}\label{classocra_1_1LinearFunction_a485d83b0a3ad4c91e86f62494f9d7cef} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!getb@{getb}}
+\index{getb@{getb}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{getb()}{getb()}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Linear\+Function\+::getb (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 31 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_a08b286c3cdc1ab8407ba7a9ce9eba8c7}{}\label{classocra_1_1LinearFunction_a08b286c3cdc1ab8407ba7a9ce9eba8c7} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!inhibit\+Propagation\+Fromb@{inhibit\+Propagation\+Fromb}}
+\index{inhibit\+Propagation\+Fromb@{inhibit\+Propagation\+Fromb}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{inhibit\+Propagation\+Fromb()}{inhibitPropagationFromb()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::inhibit\+Propagation\+Fromb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Inhibit/\+Desinhibit the fact that a call to invalidateb triggers a E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+V\+A\+L\+UE event, which is done by default. This is meant to prevent multiple propagation of E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+V\+A\+L\+UE in case of complex update dependencies. 
+
+Definition at line 96 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_a3faf4257b2a8ebd6426a054f4242fec8}{}\label{classocra_1_1LinearFunction_a3faf4257b2a8ebd6426a054f4242fec8} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!invalidateb@{invalidateb}}
+\index{invalidateb@{invalidateb}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{invalidateb()}{invalidateb()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::invalidateb (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})}
+
+Invalidate the value of b. Meant to be used as a callback. 
+
+Definition at line 67 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_a546454cd8d0909f99433ffc0e700c9e3}{}\label{classocra_1_1LinearFunction_a546454cd8d0909f99433ffc0e700c9e3} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!updateb@{updateb}}
+\index{updateb@{updateb}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{updateb()}{updateb()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::updateb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Update the value of b. Does nothing in \hyperlink{classocra_1_1LinearFunction}{Linear\+Function}. It is provided so that derived class may overload it. 
+
+Reimplemented in \hyperlink{classocra_1_1ReducedContactAvoidanceFunction_ac39227a19a650de28f4ae603511bfb73}{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}, \hyperlink{classocra_1_1ReducedJointLimitFunction_aaf30e3ac7c3053707a04a147b545126c}{ocra\+::\+Reduced\+Joint\+Limit\+Function}, \hyperlink{classocra_1_1FullContactAvoidanceFunction_ae24690ecd464eefd43936907e33c4cb9}{ocra\+::\+Full\+Contact\+Avoidance\+Function}, \hyperlink{classocra_1_1FullJointLimitFunction_a3c9bcab2026535cc5f2c0176552d449d}{ocra\+::\+Full\+Joint\+Limit\+Function}, \hyperlink{classocra_1_1ContactAvoidanceFunction_aed2f145f17ff9fd8dd646018376ea7e9}{ocra\+::\+Contact\+Avoidance\+Function}, \hyperlink{classocra_1_1LinearTask_a83fc0c9f16a8338d3e66db91fef2a319}{ocra\+::\+Linear\+Task}, \hyperlink{group__constraint_gafab74164b55cd66d2b132915774b59f0}{ocra\+::\+Full\+Dynamic\+Equation\+Function}, \hyperlink{classocra_1_1DynamicEquationFunction_ae1fe835a481f5f0bde6c8b0fa8ea09b2}{ocra\+::\+Dynamic\+Equation\+Function}, \hyperlink{classocra_1_1TorqueLimitFunction_a157cb13ffdc53d3a7ed568b59154b0d0}{ocra\+::\+Torque\+Limit\+Function}, and \hyperlink{classocra_1_1SumOfLinearFunctions_ad28c3b6f03dbe68080c06c0d9e4abffa}{ocra\+::\+Sum\+Of\+Linear\+Functions}.
+
+
+
+Definition at line 85 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_a30926f977c0124a0b0f65b854ab39636}{}\label{classocra_1_1LinearFunction_a30926f977c0124a0b0f65b854ab39636} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1ReducedJointLimitFunction_a3b2b65be504eda131ad8d00304304fd3}{ocra\+::\+Reduced\+Joint\+Limit\+Function}, \hyperlink{classocra_1_1FullContactAvoidanceFunction_a91b21004faed7ffa6a51e975abc93797}{ocra\+::\+Full\+Contact\+Avoidance\+Function}, \hyperlink{classocra_1_1ContactAvoidanceFunction_aca72dc43ecd3d95bb917139ac6ae19c1}{ocra\+::\+Contact\+Avoidance\+Function}, \hyperlink{classocra_1_1LinearTask_a9d2845b746d3af713458b9246b011328}{ocra\+::\+Linear\+Task}, \hyperlink{group__constraint_ga5b4ea2e9706cd848923c835e2df0eff5}{ocra\+::\+Full\+Dynamic\+Equation\+Function}, \hyperlink{classocra_1_1DynamicEquationFunction_a81d71c87d0f52b3d321614c6219022ad}{ocra\+::\+Dynamic\+Equation\+Function}, \hyperlink{classocra_1_1TorqueLimitFunction_ad33a9f6f6af6edd6b3c0cda6f915336b}{ocra\+::\+Torque\+Limit\+Function}, and \hyperlink{classocra_1_1SumOfLinearFunctions_a4597593267a02c2087ea84a327eae5dc}{ocra\+::\+Sum\+Of\+Linear\+Functions}.
+
+
+
+Definition at line 80 of file Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearFunction_a1b9fd7a03a8630055c117d19e0ff019a}{}\label{classocra_1_1LinearFunction_a1b9fd7a03a8630055c117d19e0ff019a} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Function\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Overloads of the \hyperlink{classocra_1_1Function}{Function} methods 
+
+Reimplemented in \hyperlink{classocra_1_1DiagonalLinearFunction_a69523347749429dae6ae041326e40d43}{ocra\+::\+Diagonal\+Linear\+Function}, \hyperlink{classocra_1_1DoubleDiagonalLinearFunction_aee6f818b93d5832a21aa439f13510a49}{ocra\+::\+Double\+Diagonal\+Linear\+Function}, and \hyperlink{classocra_1_1IdentityFunction_afd77529674b7b6db3db2542aaeedbb16}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 74 of file Linear\+Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1LinearFunction_ab556d7683de415e8273bdbf955f7da02}{}\label{classocra_1_1LinearFunction_ab556d7683de415e8273bdbf955f7da02} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!\+\_\+b@{\+\_\+b}}
+\index{\+\_\+b@{\+\_\+b}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+b}{\_b}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Linear\+Function\+::\+\_\+b\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 109 of file Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1LinearFunction_a97de5274c98711b37b04aed99c237ce6}{}\label{classocra_1_1LinearFunction_a97de5274c98711b37b04aed99c237ce6} 
+\index{ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}!\+\_\+b\+Is\+Up\+To\+Date@{\+\_\+b\+Is\+Up\+To\+Date}}
+\index{\+\_\+b\+Is\+Up\+To\+Date@{\+\_\+b\+Is\+Up\+To\+Date}!ocra\+::\+Linear\+Function@{ocra\+::\+Linear\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+b\+Is\+Up\+To\+Date}{\_bIsUpToDate}}
+{\footnotesize\ttfamily bool ocra\+::\+Linear\+Function\+::\+\_\+b\+Is\+Up\+To\+Date\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 110 of file Linear\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{LinearFunction_8h}{Linear\+Function.\+h}\item 
+\hyperlink{LinearFunction_8cpp}{Linear\+Function.\+cpp}\end{DoxyCompactItemize}

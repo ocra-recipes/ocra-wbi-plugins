@@ -1,0 +1,55 @@
+\hypertarget{ControlEnum_8h}{}\section{Control\+Enum.\+h File Reference}
+\label{ControlEnum_8h}\index{Control\+Enum.\+h@{Control\+Enum.\+h}}
+
+
+Some enumerations for the control.  
+
+
+{\ttfamily \#include $<$ocra/util/\+String\+Utilities.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceocra_1_1utils}{ocra\+::utils}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{ocra\+::\+E\+Cartesian\+Dof} \{ \newline
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a456e873fdd3f4c086fe423ad233392c4}{ocra\+::\+N\+O\+NE} =0, 
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{ocra\+::X}, 
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a3f012261aad5ddc1adbe90406d2dd388}{ocra\+::Y}, 
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a04d12417315a0a1b02d6abb07b9ba4ea}{ocra\+::\+XY}, 
+\newline
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a8f46999eafdd97465edef45c5353f8f0}{ocra\+::Z}, 
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a76215fbf855151f481cfad29d6c62438}{ocra\+::\+XZ}, 
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a70f8ab0a8fae1a50de0a2c4250c2a85a}{ocra\+::\+YZ}, 
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260ac391bb1035f39278511d424f00f5e3f6}{ocra\+::\+X\+YZ}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespaceocra_1_1utils_abf6a0e8241cd263067cbf1c434952a01}{ocra\+::utils\+::compute\+Dimension\+For} (E\+Cartesian\+Dof fixed\+Position, E\+Cartesian\+Dof fixed\+Orientation)
+\begin{DoxyCompactList}\small\item\em Computes the number of directions specified by two E\+Cartesian\+Dof enums. \end{DoxyCompactList}\item 
+int \hyperlink{namespaceocra_1_1utils_a27a97693df87c348850488eb7aeed12a}{ocra\+::utils\+::compute\+Dimension\+For} (E\+Cartesian\+Dof c\+DoF)
+\item 
+E\+Cartesian\+Dof \hyperlink{namespaceocra_1_1utils_acfe425f7bacb0a3c69e868e7f368d99c}{ocra\+::utils\+::cartesian\+Dof\+From\+String} (const std\+::string \&dof\+String)
+\item 
+std\+::string \hyperlink{namespaceocra_1_1utils_a5e098489ff3bc369635762ab1a208b0e}{ocra\+::utils\+::cartesian\+Dof\+To\+String} (const E\+Cartesian\+Dof dof\+Enum)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Some enumerations for the control. 
+
+Copyright (C) 2010 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+I\+A\+S\+I/\+L\+SI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+10/03/01 
+\end{DoxyDate}

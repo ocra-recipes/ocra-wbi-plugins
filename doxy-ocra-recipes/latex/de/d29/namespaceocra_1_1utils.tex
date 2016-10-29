@@ -1,0 +1,743 @@
+\hypertarget{namespaceocra_1_1utils}{}\section{ocra\+:\+:utils Namespace Reference}
+\label{namespaceocra_1_1utils}\index{ocra\+::utils@{ocra\+::utils}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra_1_1utils_1_1details}{details}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1add__functor}{add\+\_\+functor}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1assign__functor}{assign\+\_\+functor}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1max__functor}{max\+\_\+functor}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1min__functor}{min\+\_\+functor}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1specialized__max}{specialized\+\_\+max}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1specialized__max_3_01double_00_01double_01_4}{specialized\+\_\+max$<$ double, double $>$}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1specialized__min}{specialized\+\_\+min}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1specialized__min_3_01double_00_01double_01_4}{specialized\+\_\+min$<$ double, double $>$}
+\item 
+struct \hyperlink{structocra_1_1utils_1_1uncompress}{uncompress}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{namespaceocra_1_1utils_abf6a0e8241cd263067cbf1c434952a01}{compute\+Dimension\+For} (\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} fixed\+Position, \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} fixed\+Orientation)
+\begin{DoxyCompactList}\small\item\em Computes the number of directions specified by two E\+Cartesian\+Dof enums. \end{DoxyCompactList}\item 
+int \hyperlink{namespaceocra_1_1utils_a27a97693df87c348850488eb7aeed12a}{compute\+Dimension\+For} (\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} c\+DoF)
+\item 
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} \hyperlink{namespaceocra_1_1utils_acfe425f7bacb0a3c69e868e7f368d99c}{cartesian\+Dof\+From\+String} (const std\+::string \&dof\+String)
+\item 
+std\+::string \hyperlink{namespaceocra_1_1utils_a5e098489ff3bc369635762ab1a208b0e}{cartesian\+Dof\+To\+String} (const \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} dof\+Enum)
+\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_1_1utils_a2253567d0df64a629bad3bdb7e2bd30b}{cartesian\+P\+D\+Coupling} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kp, const Eigen\+::\+Displacementd \&Hdes, const Eigen\+::\+Displacementd \&H, const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kv, const Eigen\+::\+Twistd \&Tdes, const Eigen\+::\+Twistd \&T)
+\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_1_1utils_aef5a7c74e8cfa9b803cd2a18d6401d1d}{cartesian\+P\+Coupling} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kp, const Eigen\+::\+Displacementd \&Hdes, const Eigen\+::\+Displacementd \&H)
+\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_1_1utils_aea2b40d346ee7532a6cdb9392e7c5767}{cartesian\+D\+Coupling} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kv, const Eigen\+::\+Twistd \&Tdes, const Eigen\+::\+Twistd \&T)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{namespaceocra_1_1utils_ad8e0359ef8aba5d4f7de70014e9ab324}{adapt\+K\+To\+Inertia} (const Eigen\+::\+Vector\+Xd \&K, const Model \&model, double scale=1.)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a9158ce8ea082d7620fd3204979c75c09}{compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1} (const Eigen\+::\+Displacementd \&H\+\_\+1\+\_\+in\+\_\+ref, const Eigen\+::\+Displacementd \&H\+\_\+2\+\_\+in\+\_\+ref)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a54960ab215262788c23ca1eee8786b5a}{compute\+Ego\+Frame} (Model \&model, const Eigen\+::\+Vector3d \&fwd\+Direction\+\_\+in\+\_\+phantom)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a8d939e7ed429dffde760d84e41258940}{interpolate} (const Eigen\+::\+Displacementd \&Hstart, const Eigen\+::\+Displacementd \&Hend, double t)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a0c4be9b19e14fb7dfb9ae92650267dba}{project\+Rotation} (const Eigen\+::\+Displacementd \&H, const Eigen\+::\+Vector3d \&n, double \&theta)
+\item 
+int \hyperlink{namespaceocra_1_1utils_a71c5c6a8257c9a5bc5cc84e9a4fc2e68}{get\+Add\+Type} (const \hyperlink{classocra_1_1Function}{Function} \&f1, const \hyperlink{classocra_1_1Function}{Function} \&f2)
+\item 
+int \hyperlink{namespaceocra_1_1utils_a176daae05084971fbcba56c06170cb25}{get\+Add\+Continuity\+Property} (const \hyperlink{classocra_1_1Function}{Function} \&f1, const \hyperlink{classocra_1_1Function}{Function} \&f2)
+\item 
+bool \hyperlink{namespaceocra_1_1utils_a02a6c3a9f1fe61b2ae034dee1b75a795}{compute\+Gradient} (const \hyperlink{classocra_1_1Function}{Function} \&f1, const \hyperlink{classocra_1_1Function}{Function} \&f2)
+\item 
+bool \hyperlink{namespaceocra_1_1utils_a3fba5c6f77b54b0eee4cdd49f7991957}{compute\+Hessian} (const \hyperlink{classocra_1_1Function}{Function} \&f1, const \hyperlink{classocra_1_1Function}{Function} \&f2)
+\item 
+int \hyperlink{namespaceocra_1_1utils_a7a11f7cb798c473b72d7677b83ed859e}{get\+Opposite\+Convexity\+Property} (const \hyperlink{classocra_1_1Function}{Function} \&f)
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} $\ast$ \hyperlink{namespaceocra_1_1utils_ab8a4ac5aa3bfae2c0732c7abd21a84c9}{create\+Output\+Variable} (\hyperlink{classocra_1_1Function}{Function} \&f)
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Base $>$ }\\void \hyperlink{namespaceocra_1_1utils_aaf649f13f39cd8d32b0311ac2bfe2b4d}{print\+Linear\+Equation} (const Matrix\+Base$<$ Derived $>$ \&A, const Vector\+Base \&b, int space=9, int precision=3)
+\item 
+void \hyperlink{namespaceocra_1_1utils_aa928598a03da10c32b029f77c571788a}{print\+Solution} (const Vector\+Xd \&result, const \hyperlink{classocra_1_1Variable}{Variable} \&var, int space=9, int precision=3)
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Base1 , class Vector\+Base2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a5d9dfa0a2dc2197c50ba35951f19586e}{convert} (const \hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \&cstr, const std\+::vector$<$ int $>$ \&mapping, \hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051}{e\+Constraint\+Output} type, Matrix\+Base$<$ Derived $>$ \&A, Vector\+Base1 \&b, Vector\+Base2 \&l, double infinity=0.)
+\item 
+{\footnotesize template$<$class Vector\+Base1 , class Vector\+Base2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aa835270370ca3a7f7b9e2858ef37dae0}{intersect\+Bounds} (const \hyperlink{namespaceocra_ab310e2c53f5e52ec3aba0a832f7dc79e}{Diagonal\+Linear\+Constraint} \&bounds, const std\+::vector$<$ int $>$ \&mapping, Vector\+Base1 \&bl, Vector\+Base2 \&bu)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_adecf442a59dee26f5836a070533bcac4}{uncompress\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ae2055de35b65215e1f23b0988fe20705}{uncompress\+By\+Col} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a151ee2cecba7ea9527fbdc8be061cd98}{uncompress\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aa1f9829f8b85e3b006b691a924b12e3f}{uncompress\+By\+Row} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a6336653c4ed344718fdf1c888c668a58}{uncompress2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a5189699a011acaa6413bd14c178254c3}{uncompress2d} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a4a6965e28f8a5284f406ca2cea54a221}{add\+Compressed\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a8b6a78df5f205a61d8b4d29a2a82c864}{add\+Compressed\+By\+Col} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a8256ba2ed6ce4d6066c03631e64e27f9}{add\+Compressed\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a0ca59cf5c0fd0b8e92a0aa53d85e0aca}{add\+Compressed\+By\+Row} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ad4dfd96e7620a1cadabe53db0cdf969d}{add\+Compressed2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_af486ff6d7c311e33a0c7d647eb45bcd6}{add\+Compressed2d} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ab527c3744d4c3ca93750164c91a9c3dd}{min\+Compressed\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aa4b4cd7a5d18ae426d5aa2fb46d20902}{min\+Compressed\+By\+Col} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ae8dc2eb14db238a75ea0a8bf499e4902}{min\+Compressed\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_af79aa2317a885467a28ba54e7b287ec8}{min\+Compressed\+By\+Row} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aef09b232677b6a4a8d6177c04345f1d3}{min\+Compressed2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a9b0fce276b5edf71568e40517bf567ac}{min\+Compressed2d} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a9de6baf9d21a683ff798695ac099055a}{max\+Compressed\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a86da8040ccbcb2a583b7e628dc8265ea}{max\+Compressed\+By\+Col} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a6216ad7fe2fb3ce0e894167f8f7d08b8}{max\+Compressed\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a0d2b985e493c0d62782921b92d0f92a9}{max\+Compressed\+By\+Row} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ac4a24bd4a452b6c09129dcf5b7f620a2}{max\+Compressed2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ab1811bfb0b7d5ab451e9fea88093027e}{max\+Compressed2d} (const \hyperlink{classocra_1_1Variable}{Variable} \&base, const \hyperlink{classocra_1_1Variable}{Variable} \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived $>$ }\\void \hyperlink{namespaceocra_1_1utils_a3f12986cd4d4a40293f6003d9a86a45c}{write\+In\+File} (const Matrix\+Base$<$ Derived $>$ \&m, const std\+::string \&file\+Name, bool app=false)
+\item 
+{\footnotesize template$<$class Derived $>$ }\\std\+::ostream \& \hyperlink{namespaceocra_1_1utils_ac3e209e5a700c28cc6e38d79113017f2}{write\+In\+File} (std\+::ostream \&s, const Matrix\+Base$<$ Derived $>$ \&m, int precision=-\/1, const std\+::string \&coeff\+Separator=\char`\"{} \char`\"{}, const std\+::string \&row\+Separator=\char`\"{}\textbackslash{}, const std\+::string \&row\+Prefix=\char`\"{}\char`\"{}, const std\+::string \&row\+Suffix=\char`\"{}\char`\"{}, const std\+::string \&mat\+Prefix=\char`\"{}\char`\"{}, const std\+::string \&mat\+Suffix=\char`\"{}\char`\"{})
+\item 
+{\footnotesize template$<$class Derived $>$ }\\std\+::ostream \& \hyperlink{namespaceocra_1_1utils_af94bc08a67cf20092611bb37f4528b28}{write\+In\+File} (std\+::ostream \&s, const Matrix\+Base$<$ Derived $>$ \&v, int precision=-\/1, const std\+::string \&coeff\+Separator=\char`\"{} \char`\"{}, const std\+::string \&vect\+Prefix=\char`\"{}\char`\"{}, const std\+::string \&vect\+Suffix=\char`\"{}\char`\"{})
+\item 
+{\footnotesize template$<$class Derived $>$ }\\std\+::ostream \& \hyperlink{namespaceocra_1_1utils_a11933c4ad5ae5b9bdce3005941bdd433}{write\+In\+File\+For\+Scilab} (std\+::ostream \&s, const Matrix\+Base$<$ Derived $>$ \&m, int precision=-\/1)
+\item 
+Vector\+Xd \hyperlink{namespaceocra_1_1utils_acfdf52324cf9c44fbe5225d17d5ff926}{adapt\+K\+To\+Inertia} (const Vector\+Xd \&K, const Model \&model, double scale)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_aaad3b464589711bcc5fecec8c8b9af76}{compute\+Ego\+Frame} (Model \&model, const Vector3d \&fwd\+Direction\+\_\+in\+\_\+phantom)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a07cf93b22e02458b2c184ddd5787a6b2}{project\+Rotation} (const Eigen\+::\+Displacementd \&H, const Vector3d \&n, double \&theta)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{details\+::e\+Convert\+Case} \hyperlink{namespaceocra_1_1utils_a4775079ee4f9f6c7620af882e8092c62}{conversion\+\_\+cases} \mbox{[}7\mbox{]}\mbox{[}7\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceocra_1_1utils_acfdf52324cf9c44fbe5225d17d5ff926}{}\label{namespaceocra_1_1utils_acfdf52324cf9c44fbe5225d17d5ff926} 
+\index{ocra\+::utils@{ocra\+::utils}!adapt\+K\+To\+Inertia@{adapt\+K\+To\+Inertia}}
+\index{adapt\+K\+To\+Inertia@{adapt\+K\+To\+Inertia}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{adapt\+K\+To\+Inertia()}{adaptKToInertia()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::utils\+::adapt\+K\+To\+Inertia (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{K,  }\item[{const Model \&}]{model,  }\item[{double}]{scale }\end{DoxyParamCaption})}
+
+
+
+Definition at line 29 of file control\+Utils.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_ad8e0359ef8aba5d4f7de70014e9ab324}{}\label{namespaceocra_1_1utils_ad8e0359ef8aba5d4f7de70014e9ab324} 
+\index{ocra\+::utils@{ocra\+::utils}!adapt\+K\+To\+Inertia@{adapt\+K\+To\+Inertia}}
+\index{adapt\+K\+To\+Inertia@{adapt\+K\+To\+Inertia}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{adapt\+K\+To\+Inertia()}{adaptKToInertia()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::utils\+::adapt\+K\+To\+Inertia (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{K,  }\item[{const Model \&}]{model,  }\item[{double}]{scale = {\ttfamily 1.} }\end{DoxyParamCaption})}
+
+Multiply a vector of gains by the diagonal of an inertia matrix and a scale. \begin{DoxyReturn}{Returns}
+v, where v(i) = K(i) $\ast$ model.\+get\+Inertia\+Matrix()(i, i) $\ast$ scale. 
+\end{DoxyReturn}
+\hypertarget{namespaceocra_1_1utils_ad4dfd96e7620a1cadabe53db0cdf969d}{}\label{namespaceocra_1_1utils_ad4dfd96e7620a1cadabe53db0cdf969d} 
+\index{ocra\+::utils@{ocra\+::utils}!add\+Compressed2d@{add\+Compressed2d}}
+\index{add\+Compressed2d@{add\+Compressed2d}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{add\+Compressed2d()}{addCompressed2d()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::add\+Compressed2d (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 226 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_af486ff6d7c311e33a0c7d647eb45bcd6}{}\label{namespaceocra_1_1utils_af486ff6d7c311e33a0c7d647eb45bcd6} 
+\index{ocra\+::utils@{ocra\+::utils}!add\+Compressed2d@{add\+Compressed2d}}
+\index{add\+Compressed2d@{add\+Compressed2d}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{add\+Compressed2d()}{addCompressed2d()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::add\+Compressed2d (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 237 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a4a6965e28f8a5284f406ca2cea54a221}{}\label{namespaceocra_1_1utils_a4a6965e28f8a5284f406ca2cea54a221} 
+\index{ocra\+::utils@{ocra\+::utils}!add\+Compressed\+By\+Col@{add\+Compressed\+By\+Col}}
+\index{add\+Compressed\+By\+Col@{add\+Compressed\+By\+Col}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{add\+Compressed\+By\+Col()}{addCompressedByCol()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::add\+Compressed\+By\+Col (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 172 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a8b6a78df5f205a61d8b4d29a2a82c864}{}\label{namespaceocra_1_1utils_a8b6a78df5f205a61d8b4d29a2a82c864} 
+\index{ocra\+::utils@{ocra\+::utils}!add\+Compressed\+By\+Col@{add\+Compressed\+By\+Col}}
+\index{add\+Compressed\+By\+Col@{add\+Compressed\+By\+Col}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{add\+Compressed\+By\+Col()}{addCompressedByCol()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::add\+Compressed\+By\+Col (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 183 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a8256ba2ed6ce4d6066c03631e64e27f9}{}\label{namespaceocra_1_1utils_a8256ba2ed6ce4d6066c03631e64e27f9} 
+\index{ocra\+::utils@{ocra\+::utils}!add\+Compressed\+By\+Row@{add\+Compressed\+By\+Row}}
+\index{add\+Compressed\+By\+Row@{add\+Compressed\+By\+Row}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{add\+Compressed\+By\+Row()}{addCompressedByRow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::add\+Compressed\+By\+Row (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 199 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a0ca59cf5c0fd0b8e92a0aa53d85e0aca}{}\label{namespaceocra_1_1utils_a0ca59cf5c0fd0b8e92a0aa53d85e0aca} 
+\index{ocra\+::utils@{ocra\+::utils}!add\+Compressed\+By\+Row@{add\+Compressed\+By\+Row}}
+\index{add\+Compressed\+By\+Row@{add\+Compressed\+By\+Row}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{add\+Compressed\+By\+Row()}{addCompressedByRow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::add\+Compressed\+By\+Row (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 210 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_aea2b40d346ee7532a6cdb9392e7c5767}{}\label{namespaceocra_1_1utils_aea2b40d346ee7532a6cdb9392e7c5767} 
+\index{ocra\+::utils@{ocra\+::utils}!cartesian\+D\+Coupling@{cartesian\+D\+Coupling}}
+\index{cartesian\+D\+Coupling@{cartesian\+D\+Coupling}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{cartesian\+D\+Coupling()}{cartesianDCoupling()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_a72fe7d6cf8411efbfc475a3a78209867}{Vector6d} ocra\+::utils\+::cartesian\+D\+Coupling (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&}]{kv,  }\item[{const Eigen\+::\+Twistd \&}]{Tdes,  }\item[{const Eigen\+::\+Twistd \&}]{T }\end{DoxyParamCaption})}
+
+Compute kv $\ast$  T where  T = Tdes-\/T where  p = pdes -\/ p and  r = log(\+Rdes$^\wedge$\+T$\ast$\+R) 
+
+Definition at line 17 of file control\+Utils.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_acfe425f7bacb0a3c69e868e7f368d99c}{}\label{namespaceocra_1_1utils_acfe425f7bacb0a3c69e868e7f368d99c} 
+\index{ocra\+::utils@{ocra\+::utils}!cartesian\+Dof\+From\+String@{cartesian\+Dof\+From\+String}}
+\index{cartesian\+Dof\+From\+String@{cartesian\+Dof\+From\+String}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{cartesian\+Dof\+From\+String()}{cartesianDofFromString()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} ocra\+::utils\+::cartesian\+Dof\+From\+String (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{dof\+String }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 58 of file Control\+Enum.\+h.
+
+\hypertarget{namespaceocra_1_1utils_a5e098489ff3bc369635762ab1a208b0e}{}\label{namespaceocra_1_1utils_a5e098489ff3bc369635762ab1a208b0e} 
+\index{ocra\+::utils@{ocra\+::utils}!cartesian\+Dof\+To\+String@{cartesian\+Dof\+To\+String}}
+\index{cartesian\+Dof\+To\+String@{cartesian\+Dof\+To\+String}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{cartesian\+Dof\+To\+String()}{cartesianDofToString()}}
+{\footnotesize\ttfamily std\+::string ocra\+::utils\+::cartesian\+Dof\+To\+String (\begin{DoxyParamCaption}\item[{const \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof}}]{dof\+Enum }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 75 of file Control\+Enum.\+h.
+
+\hypertarget{namespaceocra_1_1utils_aef5a7c74e8cfa9b803cd2a18d6401d1d}{}\label{namespaceocra_1_1utils_aef5a7c74e8cfa9b803cd2a18d6401d1d} 
+\index{ocra\+::utils@{ocra\+::utils}!cartesian\+P\+Coupling@{cartesian\+P\+Coupling}}
+\index{cartesian\+P\+Coupling@{cartesian\+P\+Coupling}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{cartesian\+P\+Coupling()}{cartesianPCoupling()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_a72fe7d6cf8411efbfc475a3a78209867}{Vector6d} ocra\+::utils\+::cartesian\+P\+Coupling (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&}]{kp,  }\item[{const Eigen\+::\+Displacementd \&}]{Hdes,  }\item[{const Eigen\+::\+Displacementd \&}]{H }\end{DoxyParamCaption})}
+
+Compute kp$\ast$ H where  H = ( p  r)$^\wedge$T where  p = pdes -\/ p and  r = log(\+Rdes$^\wedge$\+T$\ast$\+R) 
+
+Definition at line 7 of file control\+Utils.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a2253567d0df64a629bad3bdb7e2bd30b}{}\label{namespaceocra_1_1utils_a2253567d0df64a629bad3bdb7e2bd30b} 
+\index{ocra\+::utils@{ocra\+::utils}!cartesian\+P\+D\+Coupling@{cartesian\+P\+D\+Coupling}}
+\index{cartesian\+P\+D\+Coupling@{cartesian\+P\+D\+Coupling}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{cartesian\+P\+D\+Coupling()}{cartesianPDCoupling()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_a72fe7d6cf8411efbfc475a3a78209867}{Vector6d} ocra\+::utils\+::cartesian\+P\+D\+Coupling (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&}]{kp,  }\item[{const Eigen\+::\+Displacementd \&}]{Hdes,  }\item[{const Eigen\+::\+Displacementd \&}]{H,  }\item[{const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&}]{kv,  }\item[{const Eigen\+::\+Twistd \&}]{Tdes,  }\item[{const Eigen\+::\+Twistd \&}]{T }\end{DoxyParamCaption})}
+
+Compute kp$\ast$ H + kv $\ast$  T where  H = ( p  r)$^\wedge$T and  T = Tdes-\/T where  p = pdes -\/ p and  r = log(\+Rdes$^\wedge$\+T$\ast$\+R) 
+
+Definition at line 23 of file control\+Utils.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a9158ce8ea082d7620fd3204979c75c09}{}\label{namespaceocra_1_1utils_a9158ce8ea082d7620fd3204979c75c09} 
+\index{ocra\+::utils@{ocra\+::utils}!compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1@{compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1}}
+\index{compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1@{compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1()}{compute\_H\_2\_in\_1()}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1 (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Displacementd \&}]{H\+\_\+1\+\_\+in\+\_\+ref,  }\item[{const Eigen\+::\+Displacementd \&}]{H\+\_\+2\+\_\+in\+\_\+ref }\end{DoxyParamCaption})}
+
+\begin{DoxyWarning}{Warning}
+This function is deprecated. This function is useful in scripts where Displacements were not completely bound. In such contexts, you cannot write H1.\+inverse() $\ast$ H2, so this function can do it for you. \mbox{[}T\+O\+DO\mbox{]} Remove this function. 
+\end{DoxyWarning}
+
+
+Definition at line 40 of file control\+Utils.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_abf6a0e8241cd263067cbf1c434952a01}{}\label{namespaceocra_1_1utils_abf6a0e8241cd263067cbf1c434952a01} 
+\index{ocra\+::utils@{ocra\+::utils}!compute\+Dimension\+For@{compute\+Dimension\+For}}
+\index{compute\+Dimension\+For@{compute\+Dimension\+For}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{compute\+Dimension\+For()}{computeDimensionFor()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int ocra\+::utils\+::compute\+Dimension\+For (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof}}]{fixed\+Position,  }\item[{\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof}}]{fixed\+Orientation }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Computes the number of directions specified by two E\+Cartesian\+Dof enums. 
+
+Examples\+: compute\+Dimension\+For(\+N\+O\+N\+E, N\+O\+N\+E) == 0 compute\+Dimension\+For(\+X\+Y, X\+Y\+Z) == 5 compute\+Dimension\+For(\+Z, N\+O\+N\+E) == 1 
+
+Definition at line 39 of file Control\+Enum.\+h.
+
+\hypertarget{namespaceocra_1_1utils_a27a97693df87c348850488eb7aeed12a}{}\label{namespaceocra_1_1utils_a27a97693df87c348850488eb7aeed12a} 
+\index{ocra\+::utils@{ocra\+::utils}!compute\+Dimension\+For@{compute\+Dimension\+For}}
+\index{compute\+Dimension\+For@{compute\+Dimension\+For}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{compute\+Dimension\+For()}{computeDimensionFor()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int ocra\+::utils\+::compute\+Dimension\+For (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof}}]{c\+DoF }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 45 of file Control\+Enum.\+h.
+
+\hypertarget{namespaceocra_1_1utils_aaad3b464589711bcc5fecec8c8b9af76}{}\label{namespaceocra_1_1utils_aaad3b464589711bcc5fecec8c8b9af76} 
+\index{ocra\+::utils@{ocra\+::utils}!compute\+Ego\+Frame@{compute\+Ego\+Frame}}
+\index{compute\+Ego\+Frame@{compute\+Ego\+Frame}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{compute\+Ego\+Frame()}{computeEgoFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::compute\+Ego\+Frame (\begin{DoxyParamCaption}\item[{Model \&}]{model,  }\item[{const Vector3d \&}]{fwd\+Direction\+\_\+in\+\_\+phantom }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file control\+Utils.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a54960ab215262788c23ca1eee8786b5a}{}\label{namespaceocra_1_1utils_a54960ab215262788c23ca1eee8786b5a} 
+\index{ocra\+::utils@{ocra\+::utils}!compute\+Ego\+Frame@{compute\+Ego\+Frame}}
+\index{compute\+Ego\+Frame@{compute\+Ego\+Frame}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{compute\+Ego\+Frame()}{computeEgoFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::compute\+Ego\+Frame (\begin{DoxyParamCaption}\item[{Model \&}]{model,  }\item[{const Eigen\+::\+Vector3d \&}]{fwd\+Direction\+\_\+in\+\_\+phantom }\end{DoxyParamCaption})}
+
+Computes the displacement of an ego frame wrt the world frame for a manikin. The ego frame is built as follows\+: the x direction is defined by the user, by giving its coordinates in the root frame of the robot; this vector is supposed to represent the \textquotesingle{}forward\textquotesingle{} direction of the manikin. the z direction is the world frame z; y = z cross x. \hypertarget{namespaceocra_1_1utils_a02a6c3a9f1fe61b2ae034dee1b75a795}{}\label{namespaceocra_1_1utils_a02a6c3a9f1fe61b2ae034dee1b75a795} 
+\index{ocra\+::utils@{ocra\+::utils}!compute\+Gradient@{compute\+Gradient}}
+\index{compute\+Gradient@{compute\+Gradient}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{compute\+Gradient()}{computeGradient()}}
+{\footnotesize\ttfamily bool ocra\+::utils\+::compute\+Gradient (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f1,  }\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 53 of file Function\+Utilities.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a3fba5c6f77b54b0eee4cdd49f7991957}{}\label{namespaceocra_1_1utils_a3fba5c6f77b54b0eee4cdd49f7991957} 
+\index{ocra\+::utils@{ocra\+::utils}!compute\+Hessian@{compute\+Hessian}}
+\index{compute\+Hessian@{compute\+Hessian}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{compute\+Hessian()}{computeHessian()}}
+{\footnotesize\ttfamily bool ocra\+::utils\+::compute\+Hessian (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f1,  }\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 58 of file Function\+Utilities.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a5d9dfa0a2dc2197c50ba35951f19586e}{}\label{namespaceocra_1_1utils_a5d9dfa0a2dc2197c50ba35951f19586e} 
+\index{ocra\+::utils@{ocra\+::utils}!convert@{convert}}
+\index{convert@{convert}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily template$<$class Derived , class Vector\+Base1 , class Vector\+Base2 $>$ \\
+void ocra\+::utils\+::convert (\begin{DoxyParamCaption}\item[{const \hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \&}]{cstr,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{\hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051}{e\+Constraint\+Output}}]{type,  }\item[{Matrix\+Base$<$ Derived $>$ \&}]{A,  }\item[{Vector\+Base1 \&}]{b,  }\item[{Vector\+Base2 \&}]{l,  }\item[{double}]{infinity = {\ttfamily 0.} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 478 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_ab8a4ac5aa3bfae2c0732c7abd21a84c9}{}\label{namespaceocra_1_1utils_ab8a4ac5aa3bfae2c0732c7abd21a84c9} 
+\index{ocra\+::utils@{ocra\+::utils}!create\+Output\+Variable@{create\+Output\+Variable}}
+\index{create\+Output\+Variable@{create\+Output\+Variable}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{create\+Output\+Variable()}{createOutputVariable()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable} $\ast$ ocra\+::utils\+::create\+Output\+Variable (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} \&}]{f }\end{DoxyParamCaption})}
+
+
+
+Definition at line 115 of file Function\+Utilities.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a176daae05084971fbcba56c06170cb25}{}\label{namespaceocra_1_1utils_a176daae05084971fbcba56c06170cb25} 
+\index{ocra\+::utils@{ocra\+::utils}!get\+Add\+Continuity\+Property@{get\+Add\+Continuity\+Property}}
+\index{get\+Add\+Continuity\+Property@{get\+Add\+Continuity\+Property}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{get\+Add\+Continuity\+Property()}{getAddContinuityProperty()}}
+{\footnotesize\ttfamily int ocra\+::utils\+::get\+Add\+Continuity\+Property (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f1,  }\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 48 of file Function\+Utilities.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a71c5c6a8257c9a5bc5cc84e9a4fc2e68}{}\label{namespaceocra_1_1utils_a71c5c6a8257c9a5bc5cc84e9a4fc2e68} 
+\index{ocra\+::utils@{ocra\+::utils}!get\+Add\+Type@{get\+Add\+Type}}
+\index{get\+Add\+Type@{get\+Add\+Type}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{get\+Add\+Type()}{getAddType()}}
+{\footnotesize\ttfamily int ocra\+::utils\+::get\+Add\+Type (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f1,  }\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f2 }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file Function\+Utilities.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a7a11f7cb798c473b72d7677b83ed859e}{}\label{namespaceocra_1_1utils_a7a11f7cb798c473b72d7677b83ed859e} 
+\index{ocra\+::utils@{ocra\+::utils}!get\+Opposite\+Convexity\+Property@{get\+Opposite\+Convexity\+Property}}
+\index{get\+Opposite\+Convexity\+Property@{get\+Opposite\+Convexity\+Property}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{get\+Opposite\+Convexity\+Property()}{getOppositeConvexityProperty()}}
+{\footnotesize\ttfamily int ocra\+::utils\+::get\+Opposite\+Convexity\+Property (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Function}{Function} \&}]{f }\end{DoxyParamCaption})}
+
+
+
+Definition at line 75 of file Function\+Utilities.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a8d939e7ed429dffde760d84e41258940}{}\label{namespaceocra_1_1utils_a8d939e7ed429dffde760d84e41258940} 
+\index{ocra\+::utils@{ocra\+::utils}!interpolate@{interpolate}}
+\index{interpolate@{interpolate}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{interpolate()}{interpolate()}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::interpolate (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Displacementd \&}]{Hstart,  }\item[{const Eigen\+::\+Displacementd \&}]{Hend,  }\item[{double}]{t }\end{DoxyParamCaption})}
+
+Spline interpolator. 
+
+Definition at line 56 of file control\+Utils.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_aa835270370ca3a7f7b9e2858ef37dae0}{}\label{namespaceocra_1_1utils_aa835270370ca3a7f7b9e2858ef37dae0} 
+\index{ocra\+::utils@{ocra\+::utils}!intersect\+Bounds@{intersect\+Bounds}}
+\index{intersect\+Bounds@{intersect\+Bounds}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{intersect\+Bounds()}{intersectBounds()}}
+{\footnotesize\ttfamily template$<$class Vector\+Base1 , class Vector\+Base2 $>$ \\
+void ocra\+::utils\+::intersect\+Bounds (\begin{DoxyParamCaption}\item[{const \hyperlink{namespaceocra_ab310e2c53f5e52ec3aba0a832f7dc79e}{Diagonal\+Linear\+Constraint} \&}]{bounds,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{Vector\+Base1 \&}]{bl,  }\item[{Vector\+Base2 \&}]{bu }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Intersects the set described by {\itshape bounds} with the one already described by {\itshape bl} and {\itshape bu} and put the result into {\itshape bl} and {\itshape bu}. {\itshape bounds} must be either a Identity\+Constraint or a Bound\+Constraint 
+
+Definition at line 556 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_ac4a24bd4a452b6c09129dcf5b7f620a2}{}\label{namespaceocra_1_1utils_ac4a24bd4a452b6c09129dcf5b7f620a2} 
+\index{ocra\+::utils@{ocra\+::utils}!max\+Compressed2d@{max\+Compressed2d}}
+\index{max\+Compressed2d@{max\+Compressed2d}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{max\+Compressed2d()}{maxCompressed2d()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::max\+Compressed2d (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 398 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_ab1811bfb0b7d5ab451e9fea88093027e}{}\label{namespaceocra_1_1utils_ab1811bfb0b7d5ab451e9fea88093027e} 
+\index{ocra\+::utils@{ocra\+::utils}!max\+Compressed2d@{max\+Compressed2d}}
+\index{max\+Compressed2d@{max\+Compressed2d}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{max\+Compressed2d()}{maxCompressed2d()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::max\+Compressed2d (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 409 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a9de6baf9d21a683ff798695ac099055a}{}\label{namespaceocra_1_1utils_a9de6baf9d21a683ff798695ac099055a} 
+\index{ocra\+::utils@{ocra\+::utils}!max\+Compressed\+By\+Col@{max\+Compressed\+By\+Col}}
+\index{max\+Compressed\+By\+Col@{max\+Compressed\+By\+Col}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{max\+Compressed\+By\+Col()}{maxCompressedByCol()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::max\+Compressed\+By\+Col (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 344 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a86da8040ccbcb2a583b7e628dc8265ea}{}\label{namespaceocra_1_1utils_a86da8040ccbcb2a583b7e628dc8265ea} 
+\index{ocra\+::utils@{ocra\+::utils}!max\+Compressed\+By\+Col@{max\+Compressed\+By\+Col}}
+\index{max\+Compressed\+By\+Col@{max\+Compressed\+By\+Col}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{max\+Compressed\+By\+Col()}{maxCompressedByCol()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::max\+Compressed\+By\+Col (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 355 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a6216ad7fe2fb3ce0e894167f8f7d08b8}{}\label{namespaceocra_1_1utils_a6216ad7fe2fb3ce0e894167f8f7d08b8} 
+\index{ocra\+::utils@{ocra\+::utils}!max\+Compressed\+By\+Row@{max\+Compressed\+By\+Row}}
+\index{max\+Compressed\+By\+Row@{max\+Compressed\+By\+Row}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{max\+Compressed\+By\+Row()}{maxCompressedByRow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::max\+Compressed\+By\+Row (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 371 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a0d2b985e493c0d62782921b92d0f92a9}{}\label{namespaceocra_1_1utils_a0d2b985e493c0d62782921b92d0f92a9} 
+\index{ocra\+::utils@{ocra\+::utils}!max\+Compressed\+By\+Row@{max\+Compressed\+By\+Row}}
+\index{max\+Compressed\+By\+Row@{max\+Compressed\+By\+Row}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{max\+Compressed\+By\+Row()}{maxCompressedByRow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::max\+Compressed\+By\+Row (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 382 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_aef09b232677b6a4a8d6177c04345f1d3}{}\label{namespaceocra_1_1utils_aef09b232677b6a4a8d6177c04345f1d3} 
+\index{ocra\+::utils@{ocra\+::utils}!min\+Compressed2d@{min\+Compressed2d}}
+\index{min\+Compressed2d@{min\+Compressed2d}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{min\+Compressed2d()}{minCompressed2d()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::min\+Compressed2d (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 313 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a9b0fce276b5edf71568e40517bf567ac}{}\label{namespaceocra_1_1utils_a9b0fce276b5edf71568e40517bf567ac} 
+\index{ocra\+::utils@{ocra\+::utils}!min\+Compressed2d@{min\+Compressed2d}}
+\index{min\+Compressed2d@{min\+Compressed2d}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{min\+Compressed2d()}{minCompressed2d()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::min\+Compressed2d (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 324 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_ab527c3744d4c3ca93750164c91a9c3dd}{}\label{namespaceocra_1_1utils_ab527c3744d4c3ca93750164c91a9c3dd} 
+\index{ocra\+::utils@{ocra\+::utils}!min\+Compressed\+By\+Col@{min\+Compressed\+By\+Col}}
+\index{min\+Compressed\+By\+Col@{min\+Compressed\+By\+Col}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{min\+Compressed\+By\+Col()}{minCompressedByCol()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::min\+Compressed\+By\+Col (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 259 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_aa4b4cd7a5d18ae426d5aa2fb46d20902}{}\label{namespaceocra_1_1utils_aa4b4cd7a5d18ae426d5aa2fb46d20902} 
+\index{ocra\+::utils@{ocra\+::utils}!min\+Compressed\+By\+Col@{min\+Compressed\+By\+Col}}
+\index{min\+Compressed\+By\+Col@{min\+Compressed\+By\+Col}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{min\+Compressed\+By\+Col()}{minCompressedByCol()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::min\+Compressed\+By\+Col (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 270 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_ae8dc2eb14db238a75ea0a8bf499e4902}{}\label{namespaceocra_1_1utils_ae8dc2eb14db238a75ea0a8bf499e4902} 
+\index{ocra\+::utils@{ocra\+::utils}!min\+Compressed\+By\+Row@{min\+Compressed\+By\+Row}}
+\index{min\+Compressed\+By\+Row@{min\+Compressed\+By\+Row}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{min\+Compressed\+By\+Row()}{minCompressedByRow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::min\+Compressed\+By\+Row (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 286 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_af79aa2317a885467a28ba54e7b287ec8}{}\label{namespaceocra_1_1utils_af79aa2317a885467a28ba54e7b287ec8} 
+\index{ocra\+::utils@{ocra\+::utils}!min\+Compressed\+By\+Row@{min\+Compressed\+By\+Row}}
+\index{min\+Compressed\+By\+Row@{min\+Compressed\+By\+Row}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{min\+Compressed\+By\+Row()}{minCompressedByRow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::min\+Compressed\+By\+Row (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 297 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_aaf649f13f39cd8d32b0311ac2bfe2b4d}{}\label{namespaceocra_1_1utils_aaf649f13f39cd8d32b0311ac2bfe2b4d} 
+\index{ocra\+::utils@{ocra\+::utils}!print\+Linear\+Equation@{print\+Linear\+Equation}}
+\index{print\+Linear\+Equation@{print\+Linear\+Equation}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{print\+Linear\+Equation()}{printLinearEquation()}}
+{\footnotesize\ttfamily template$<$class Derived , class Vector\+Base $>$ \\
+void ocra\+::utils\+::print\+Linear\+Equation (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived $>$ \&}]{A,  }\item[{const Vector\+Base \&}]{b,  }\item[{int}]{space = {\ttfamily 9},  }\item[{int}]{precision = {\ttfamily 3} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Print in a formated way the coefficient of a linear equation described by {\itshape A} and {\itshape b} 
+
+Definition at line 13 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_aa928598a03da10c32b029f77c571788a}{}\label{namespaceocra_1_1utils_aa928598a03da10c32b029f77c571788a} 
+\index{ocra\+::utils@{ocra\+::utils}!print\+Solution@{print\+Solution}}
+\index{print\+Solution@{print\+Solution}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{print\+Solution()}{printSolution()}}
+{\footnotesize\ttfamily void ocra\+::utils\+::print\+Solution (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{result,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{var,  }\item[{int}]{space = {\ttfamily 9},  }\item[{int}]{precision = {\ttfamily 3} }\end{DoxyParamCaption})}
+
+Print the solution stored in {\itshape result} according to the form of the variable {\itshape var} 
+
+Definition at line 39 of file Solver\+Utilities.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a0c4be9b19e14fb7dfb9ae92650267dba}{}\label{namespaceocra_1_1utils_a0c4be9b19e14fb7dfb9ae92650267dba} 
+\index{ocra\+::utils@{ocra\+::utils}!project\+Rotation@{project\+Rotation}}
+\index{project\+Rotation@{project\+Rotation}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{project\+Rotation()}{projectRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::project\+Rotation (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Displacementd \&}]{H,  }\item[{const Eigen\+::\+Vector3d \&}]{n,  }\item[{double \&}]{theta }\end{DoxyParamCaption})}
+
+project the rotation R\+: Rp = I + sin(theta)\mbox{[}n\mbox{]} + (1-\/cos(theta))\mbox{[}n\mbox{]}$^\wedge$2 = sin(theta)\mbox{[}n\mbox{]} + (1-\/cos(theta))nn$^\wedge$t + cos(theta)$\ast$I theta minimize -\/tr(R$^\wedge$t$\ast$\+Rp) \hypertarget{namespaceocra_1_1utils_a07cf93b22e02458b2c184ddd5787a6b2}{}\label{namespaceocra_1_1utils_a07cf93b22e02458b2c184ddd5787a6b2} 
+\index{ocra\+::utils@{ocra\+::utils}!project\+Rotation@{project\+Rotation}}
+\index{project\+Rotation@{project\+Rotation}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{project\+Rotation()}{projectRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::project\+Rotation (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Displacementd \&}]{H,  }\item[{const Vector3d \&}]{n,  }\item[{double \&}]{theta }\end{DoxyParamCaption})}
+
+
+
+Definition at line 79 of file control\+Utils.\+cpp.
+
+\hypertarget{namespaceocra_1_1utils_a6336653c4ed344718fdf1c888c668a58}{}\label{namespaceocra_1_1utils_a6336653c4ed344718fdf1c888c668a58} 
+\index{ocra\+::utils@{ocra\+::utils}!uncompress2d@{uncompress2d}}
+\index{uncompress2d@{uncompress2d}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{uncompress2d()}{uncompress2d()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::uncompress2d (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 140 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a5189699a011acaa6413bd14c178254c3}{}\label{namespaceocra_1_1utils_a5189699a011acaa6413bd14c178254c3} 
+\index{ocra\+::utils@{ocra\+::utils}!uncompress2d@{uncompress2d}}
+\index{uncompress2d@{uncompress2d}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{uncompress2d()}{uncompress2d()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::uncompress2d (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 151 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_adecf442a59dee26f5836a070533bcac4}{}\label{namespaceocra_1_1utils_adecf442a59dee26f5836a070533bcac4} 
+\index{ocra\+::utils@{ocra\+::utils}!uncompress\+By\+Col@{uncompress\+By\+Col}}
+\index{uncompress\+By\+Col@{uncompress\+By\+Col}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{uncompress\+By\+Col()}{uncompressByCol()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::uncompress\+By\+Col (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 83 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_ae2055de35b65215e1f23b0988fe20705}{}\label{namespaceocra_1_1utils_ae2055de35b65215e1f23b0988fe20705} 
+\index{ocra\+::utils@{ocra\+::utils}!uncompress\+By\+Col@{uncompress\+By\+Col}}
+\index{uncompress\+By\+Col@{uncompress\+By\+Col}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{uncompress\+By\+Col()}{uncompressByCol()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::uncompress\+By\+Col (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 96 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a151ee2cecba7ea9527fbdc8be061cd98}{}\label{namespaceocra_1_1utils_a151ee2cecba7ea9527fbdc8be061cd98} 
+\index{ocra\+::utils@{ocra\+::utils}!uncompress\+By\+Row@{uncompress\+By\+Row}}
+\index{uncompress\+By\+Row@{uncompress\+By\+Row}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{uncompress\+By\+Row()}{uncompressByRow()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::uncompress\+By\+Row (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{\+\_\+out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale,  }\item[{bool}]{reverse\+Mapping }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 113 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_aa1f9829f8b85e3b006b691a924b12e3f}{}\label{namespaceocra_1_1utils_aa1f9829f8b85e3b006b691a924b12e3f} 
+\index{ocra\+::utils@{ocra\+::utils}!uncompress\+By\+Row@{uncompress\+By\+Row}}
+\index{uncompress\+By\+Row@{uncompress\+By\+Row}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{uncompress\+By\+Row()}{uncompressByRow()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived1 , class Derived2 $>$ \\
+void ocra\+::utils\+::uncompress\+By\+Row (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{base,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{rel,  }\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ const \&}]{out,  }\item[{std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 124 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_a3f12986cd4d4a40293f6003d9a86a45c}{}\label{namespaceocra_1_1utils_a3f12986cd4d4a40293f6003d9a86a45c} 
+\index{ocra\+::utils@{ocra\+::utils}!write\+In\+File@{write\+In\+File}}
+\index{write\+In\+File@{write\+In\+File}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{write\+In\+File()}{writeInFile()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+void ocra\+::utils\+::write\+In\+File (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived $>$ \&}]{m,  }\item[{const std\+::string \&}]{file\+Name,  }\item[{bool}]{app = {\ttfamily false} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 27 of file File\+Operations.\+h.
+
+\hypertarget{namespaceocra_1_1utils_ac3e209e5a700c28cc6e38d79113017f2}{}\label{namespaceocra_1_1utils_ac3e209e5a700c28cc6e38d79113017f2} 
+\index{ocra\+::utils@{ocra\+::utils}!write\+In\+File@{write\+In\+File}}
+\index{write\+In\+File@{write\+In\+File}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{write\+In\+File()}{writeInFile()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+std\+::ostream\& ocra\+::utils\+::write\+In\+File (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{s,  }\item[{const Matrix\+Base$<$ Derived $>$ \&}]{m,  }\item[{int}]{precision = {\ttfamily -\/1},  }\item[{const std\+::string \&}]{coeff\+Separator = {\ttfamily \char`\"{}~\char`\"{}},  }\item[{const std\+::string \&}]{row\+Separator = {\ttfamily \char`\"{}\textbackslash{}n\char`\"{}},  }\item[{const std\+::string \&}]{row\+Prefix = {\ttfamily \char`\"{}\char`\"{}},  }\item[{const std\+::string \&}]{row\+Suffix = {\ttfamily \char`\"{}\char`\"{}},  }\item[{const std\+::string \&}]{mat\+Prefix = {\ttfamily \char`\"{}\char`\"{}},  }\item[{const std\+::string \&}]{mat\+Suffix = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 50 of file File\+Operations.\+h.
+
+\hypertarget{namespaceocra_1_1utils_af94bc08a67cf20092611bb37f4528b28}{}\label{namespaceocra_1_1utils_af94bc08a67cf20092611bb37f4528b28} 
+\index{ocra\+::utils@{ocra\+::utils}!write\+In\+File@{write\+In\+File}}
+\index{write\+In\+File@{write\+In\+File}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{write\+In\+File()}{writeInFile()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+std\+::ostream\& ocra\+::utils\+::write\+In\+File (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{s,  }\item[{const Matrix\+Base$<$ Derived $>$ \&}]{v,  }\item[{int}]{precision = {\ttfamily -\/1},  }\item[{const std\+::string \&}]{coeff\+Separator = {\ttfamily \char`\"{}~\char`\"{}},  }\item[{const std\+::string \&}]{vect\+Prefix = {\ttfamily \char`\"{}\char`\"{}},  }\item[{const std\+::string \&}]{vect\+Suffix = {\ttfamily \char`\"{}\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Overload for a vector 
+
+Definition at line 88 of file File\+Operations.\+h.
+
+\hypertarget{namespaceocra_1_1utils_a11933c4ad5ae5b9bdce3005941bdd433}{}\label{namespaceocra_1_1utils_a11933c4ad5ae5b9bdce3005941bdd433} 
+\index{ocra\+::utils@{ocra\+::utils}!write\+In\+File\+For\+Scilab@{write\+In\+File\+For\+Scilab}}
+\index{write\+In\+File\+For\+Scilab@{write\+In\+File\+For\+Scilab}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{write\+In\+File\+For\+Scilab()}{writeInFileForScilab()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+std\+::ostream\& ocra\+::utils\+::write\+In\+File\+For\+Scilab (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{s,  }\item[{const Matrix\+Base$<$ Derived $>$ \&}]{m,  }\item[{int}]{precision = {\ttfamily -\/1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 107 of file File\+Operations.\+h.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespaceocra_1_1utils_a4775079ee4f9f6c7620af882e8092c62}{}\label{namespaceocra_1_1utils_a4775079ee4f9f6c7620af882e8092c62} 
+\index{ocra\+::utils@{ocra\+::utils}!conversion\+\_\+cases@{conversion\+\_\+cases}}
+\index{conversion\+\_\+cases@{conversion\+\_\+cases}!ocra\+::utils@{ocra\+::utils}}
+\subsubsection{\texorpdfstring{conversion\+\_\+cases}{conversion\_cases}}
+{\footnotesize\ttfamily const \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{e\+Convert\+Case} ocra\+::utils\+::conversion\+\_\+cases}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+      \{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a03eb35928d61fd2a957cf41c6c4578ca}{PLUS\_A\_PLUS\_B}  , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a5c4183c0fd47b8c64276843dda690de7}{PLUS\_A\_PLUS\_BV} , 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE} , IMPOSSIBLE\_CASE\},
+      \{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b}{PLUS\_A\_MINUS\_B} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff}{PLUS\_A\_MINUS\_BV}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE} , IMPOSSIBLE\_CASE\},
+      \{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a03eb35928d61fd2a957cf41c6c4578ca}{PLUS\_A\_PLUS\_B}  , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a5c4183c0fd47b8c64276843dda690de7}{PLUS\_A\_PLUS\_BV}  , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399afb7decc69a9b25a7b762f2084e9d52f0}{MINUS\_A\_MINUS\_B}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a10d452d5d1cdb90b7216e1e49ad73b8e}{MINUS\_A\_MINUS\_BV}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399ac32fdefb96f856fd13bfad381529309e}{SPECIAL\_CASE}   \},
+      \{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b}{PLUS\_A\_MINUS\_B} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff}{PLUS\_A\_MINUS\_BV} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399aa51f84eadd7c02e17fcae444cd646c79}{MINUS\_A\_PLUS\_B} , 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a6de905f897737b898a7c188c7d9c85b8}{MINUS\_A\_PLUS\_BV} , SPECIAL\_CASE   \},
+      \{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399afb7decc69a9b25a7b762f2084e9d52f0}{MINUS\_A\_MINUS\_B}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a10d452d5d1cdb90b7216e1e49ad73b8e}{MINUS\_A\_MINUS\_BV}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a03eb35928d61fd2a957cf41c6c4578ca}{PLUS\_A\_PLUS\_B}  , 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a5c4183c0fd47b8c64276843dda690de7}{PLUS\_A\_PLUS\_BV}  , SPECIAL\_CASE   \},
+      \{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399aa51f84eadd7c02e17fcae444cd646c79}{MINUS\_A\_PLUS\_B} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a6de905f897737b898a7c188c7d9c85b8}{MINUS\_A\_PLUS\_BV} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b}{PLUS\_A\_MINUS\_B} , 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff}{PLUS\_A\_MINUS\_BV} , SPECIAL\_CASE   \},
+      \{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{IMPOSSIBLE\_CASE}, 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b}{PLUS\_A\_MINUS\_B} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff}{PLUS\_A\_MINUS\_BV} , \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b}{PLUS\_A\_MINUS\_B} , 
+      \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff}{PLUS\_A\_MINUS\_BV} , SPECIAL\_CASE   \}
+    \}
+\end{DoxyCode}
+
+
+Definition at line 27 of file Solver\+Utilities.\+cpp.
+

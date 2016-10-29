@@ -1,0 +1,410 @@
+\hypertarget{structModel3T_1_1Pimpl}{}\section{Model3T\+:\+:Pimpl Struct Reference}
+\label{structModel3T_1_1Pimpl}\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structModel3T_1_1Pimpl_a087fecc74d3a9f4867e971a6f4f379ef}{Pimpl} (const std\+::string \&robot\+Name)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector\+Xd \hyperlink{structModel3T_1_1Pimpl_aafa871718688ff6322cbfffed9ada401}{q}
+\item 
+Vector\+Xd \hyperlink{structModel3T_1_1Pimpl_a38a7e4a5908517ee2bd63c75eb570f63}{dq}
+\item 
+Displacementd \hyperlink{structModel3T_1_1Pimpl_a02c47a2c2920e1ddfce6457502061f0b}{Hroot}
+\item 
+Twistd \hyperlink{structModel3T_1_1Pimpl_a5b282557f05769af0f2e60709d348a43}{Troot}
+\item 
+Vector\+Xd \hyperlink{structModel3T_1_1Pimpl_a7bf8960ca39185d73d9dcc28451ae7a3}{actuated\+Dofs}
+\item 
+Vector\+Xd \hyperlink{structModel3T_1_1Pimpl_a635ed979bb210444627f06eb65db8f29}{lower\+Limits}
+\item 
+Vector\+Xd \hyperlink{structModel3T_1_1Pimpl_a3b3b41e690971ea00156bdfefb813a5c}{upper\+Limits}
+\item 
+Vector3d \hyperlink{structModel3T_1_1Pimpl_a61412bd640cbf9f3bffa791261123328}{com\+Position}
+\item 
+Vector3d \hyperlink{structModel3T_1_1Pimpl_a80c7336da4224ba5105c067870e818bb}{com\+Velocity}
+\item 
+Vector3d \hyperlink{structModel3T_1_1Pimpl_a997711d057aa854ab997992497fe276b}{com\+Jdot\+Qdot}
+\item 
+Matrix$<$ double, 3, Dynamic $>$ \hyperlink{structModel3T_1_1Pimpl_ab93624d4ec1d08338eb24528b8a3ca68}{com\+Jacobian}
+\item 
+Matrix$<$ double, 3, Dynamic $>$ \hyperlink{structModel3T_1_1Pimpl_ad1f6cba54dc65db31d3a4e54ba00acdf}{com\+Jacobian\+Dot}
+\item 
+Matrix\+Xd \hyperlink{structModel3T_1_1Pimpl_a2756947646bc2a7485760f1599011764}{M}
+\item 
+Matrix\+Xd \hyperlink{structModel3T_1_1Pimpl_a6e50170f8b2b58e1e7a91244ffe1691c}{Minv}
+\item 
+Matrix\+Xd \hyperlink{structModel3T_1_1Pimpl_a79e662bd2907360085b1adda5a2217b6}{B}
+\item 
+Vector\+Xd \hyperlink{structModel3T_1_1Pimpl_a964360277690839fc358bb663a2cd949}{n}
+\item 
+Vector\+Xd \hyperlink{structModel3T_1_1Pimpl_a7fcae8ba57e320a9066aa9b640f414cb}{l}
+\item 
+Vector\+Xd \hyperlink{structModel3T_1_1Pimpl_a8a6bd5458703a775e213e47794a59d7d}{g}
+\item 
+std\+::vector$<$ Displacementd $>$ \hyperlink{structModel3T_1_1Pimpl_a95a2564c9002bdb208279d591fca70ad}{seg\+Position}
+\item 
+std\+::vector$<$ Twistd $>$ \hyperlink{structModel3T_1_1Pimpl_a53fc477028c2bc87ee7c5e04879e8c20}{seg\+Velocity}
+\item 
+std\+::vector$<$ Matrix$<$ double, 6, Dynamic $>$ $>$ \hyperlink{structModel3T_1_1Pimpl_ab1a67acf0553a0bf04275f5f20c2a69e}{seg\+Jacobian}
+\item 
+std\+::vector$<$ Matrix$<$ double, 6, Dynamic $>$ $>$ \hyperlink{structModel3T_1_1Pimpl_af9cd027badf0a713437cd6d1a924cfb6}{seg\+Jdot}
+\item 
+std\+::vector$<$ Twistd $>$ \hyperlink{structModel3T_1_1Pimpl_a504aa134750da2f42dfe8fa7e431b9cd}{seg\+Jdot\+Qdot}
+\item 
+std\+::vector$<$ Matrix$<$ double, 6, Dynamic $>$ $>$ \hyperlink{structModel3T_1_1Pimpl_a8dbebd103170b8f5b8aa5ce4dd383696}{joint\+Jacobian}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{structModel3T_1_1Pimpl_a96656676ff3aa9cddb99f58f453786c7}{seg\+Mass}
+\item 
+std\+::vector$<$ Vector3d $>$ \hyperlink{structModel3T_1_1Pimpl_add8bdb5e94533189b2173a43102eee84}{seg\+CoM}
+\item 
+std\+::vector$<$ Matrix$<$ double, 6, 6 $>$ $>$ \hyperlink{structModel3T_1_1Pimpl_a7d3d20f64bbe278275b6e74a49ebf9f6}{seg\+Mass\+Matrix}
+\item 
+std\+::vector$<$ Matrix$<$ double, 6, 6 $>$ $>$ \hyperlink{structModel3T_1_1Pimpl_a13b0782e9a8fb952f2fa33227277102f}{seg\+N\+L\+Effects}
+\item 
+std\+::vector$<$ Vector3d $>$ \hyperlink{structModel3T_1_1Pimpl_a4c64f2048ff9ce34719e3ea2a384a263}{seg\+Moments\+Of\+Inertia}
+\item 
+std\+::vector$<$ Rotation3d $>$ \hyperlink{structModel3T_1_1Pimpl_aeb0889ba54a539cba37b30d2826ad61b}{seg\+Inertia\+Axes}
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{structModel3T_1_1Pimpl_a2cab0a9da7f7c37d10152cac8c8e6cfc}{seg\+Name}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 30 of file Model3\+T.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structModel3T_1_1Pimpl_a087fecc74d3a9f4867e971a6f4f379ef}{}\label{structModel3T_1_1Pimpl_a087fecc74d3a9f4867e971a6f4f379ef} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!Pimpl@{Pimpl}}
+\index{Pimpl@{Pimpl}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Pimpl()}{Pimpl()}}
+{\footnotesize\ttfamily Model3\+T\+::\+Pimpl\+::\+Pimpl (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{robot\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 69 of file Model3\+T.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structModel3T_1_1Pimpl_a7bf8960ca39185d73d9dcc28451ae7a3}{}\label{structModel3T_1_1Pimpl_a7bf8960ca39185d73d9dcc28451ae7a3} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!actuated\+Dofs@{actuated\+Dofs}}
+\index{actuated\+Dofs@{actuated\+Dofs}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{actuated\+Dofs}{actuatedDofs}}
+{\footnotesize\ttfamily Vector\+Xd Model3\+T\+::\+Pimpl\+::actuated\+Dofs}
+
+
+
+Definition at line 38 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a79e662bd2907360085b1adda5a2217b6}{}\label{structModel3T_1_1Pimpl_a79e662bd2907360085b1adda5a2217b6} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!B@{B}}
+\index{B@{B}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{B}{B}}
+{\footnotesize\ttfamily Matrix\+Xd Model3\+T\+::\+Pimpl\+::B}
+
+
+
+Definition at line 50 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_ab93624d4ec1d08338eb24528b8a3ca68}{}\label{structModel3T_1_1Pimpl_ab93624d4ec1d08338eb24528b8a3ca68} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!com\+Jacobian@{com\+Jacobian}}
+\index{com\+Jacobian@{com\+Jacobian}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{com\+Jacobian}{comJacobian}}
+{\footnotesize\ttfamily Matrix$<$ double,3, Dynamic $>$ Model3\+T\+::\+Pimpl\+::com\+Jacobian}
+
+
+
+Definition at line 45 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_ad1f6cba54dc65db31d3a4e54ba00acdf}{}\label{structModel3T_1_1Pimpl_ad1f6cba54dc65db31d3a4e54ba00acdf} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!com\+Jacobian\+Dot@{com\+Jacobian\+Dot}}
+\index{com\+Jacobian\+Dot@{com\+Jacobian\+Dot}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{com\+Jacobian\+Dot}{comJacobianDot}}
+{\footnotesize\ttfamily Matrix$<$ double,3, Dynamic $>$ Model3\+T\+::\+Pimpl\+::com\+Jacobian\+Dot}
+
+
+
+Definition at line 46 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a997711d057aa854ab997992497fe276b}{}\label{structModel3T_1_1Pimpl_a997711d057aa854ab997992497fe276b} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!com\+Jdot\+Qdot@{com\+Jdot\+Qdot}}
+\index{com\+Jdot\+Qdot@{com\+Jdot\+Qdot}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{com\+Jdot\+Qdot}{comJdotQdot}}
+{\footnotesize\ttfamily Vector3d Model3\+T\+::\+Pimpl\+::com\+Jdot\+Qdot}
+
+
+
+Definition at line 44 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a61412bd640cbf9f3bffa791261123328}{}\label{structModel3T_1_1Pimpl_a61412bd640cbf9f3bffa791261123328} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!com\+Position@{com\+Position}}
+\index{com\+Position@{com\+Position}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{com\+Position}{comPosition}}
+{\footnotesize\ttfamily Vector3d Model3\+T\+::\+Pimpl\+::com\+Position}
+
+
+
+Definition at line 42 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a80c7336da4224ba5105c067870e818bb}{}\label{structModel3T_1_1Pimpl_a80c7336da4224ba5105c067870e818bb} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!com\+Velocity@{com\+Velocity}}
+\index{com\+Velocity@{com\+Velocity}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{com\+Velocity}{comVelocity}}
+{\footnotesize\ttfamily Vector3d Model3\+T\+::\+Pimpl\+::com\+Velocity}
+
+
+
+Definition at line 43 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a38a7e4a5908517ee2bd63c75eb570f63}{}\label{structModel3T_1_1Pimpl_a38a7e4a5908517ee2bd63c75eb570f63} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!dq@{dq}}
+\index{dq@{dq}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{dq}{dq}}
+{\footnotesize\ttfamily Vector\+Xd Model3\+T\+::\+Pimpl\+::dq}
+
+
+
+Definition at line 34 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a8a6bd5458703a775e213e47794a59d7d}{}\label{structModel3T_1_1Pimpl_a8a6bd5458703a775e213e47794a59d7d} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!g@{g}}
+\index{g@{g}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily Vector\+Xd Model3\+T\+::\+Pimpl\+::g}
+
+
+
+Definition at line 53 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a02c47a2c2920e1ddfce6457502061f0b}{}\label{structModel3T_1_1Pimpl_a02c47a2c2920e1ddfce6457502061f0b} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!Hroot@{Hroot}}
+\index{Hroot@{Hroot}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Hroot}{Hroot}}
+{\footnotesize\ttfamily Displacementd Model3\+T\+::\+Pimpl\+::\+Hroot}
+
+
+
+Definition at line 35 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a8dbebd103170b8f5b8aa5ce4dd383696}{}\label{structModel3T_1_1Pimpl_a8dbebd103170b8f5b8aa5ce4dd383696} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!joint\+Jacobian@{joint\+Jacobian}}
+\index{joint\+Jacobian@{joint\+Jacobian}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{joint\+Jacobian}{jointJacobian}}
+{\footnotesize\ttfamily std\+::vector$<$ Matrix$<$double,6,Dynamic$>$ $>$ Model3\+T\+::\+Pimpl\+::joint\+Jacobian}
+
+
+
+Definition at line 60 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a7fcae8ba57e320a9066aa9b640f414cb}{}\label{structModel3T_1_1Pimpl_a7fcae8ba57e320a9066aa9b640f414cb} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!l@{l}}
+\index{l@{l}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{l}{l}}
+{\footnotesize\ttfamily Vector\+Xd Model3\+T\+::\+Pimpl\+::l}
+
+
+
+Definition at line 52 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a635ed979bb210444627f06eb65db8f29}{}\label{structModel3T_1_1Pimpl_a635ed979bb210444627f06eb65db8f29} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!lower\+Limits@{lower\+Limits}}
+\index{lower\+Limits@{lower\+Limits}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{lower\+Limits}{lowerLimits}}
+{\footnotesize\ttfamily Vector\+Xd Model3\+T\+::\+Pimpl\+::lower\+Limits}
+
+
+
+Definition at line 39 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a2756947646bc2a7485760f1599011764}{}\label{structModel3T_1_1Pimpl_a2756947646bc2a7485760f1599011764} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!M@{M}}
+\index{M@{M}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{M}{M}}
+{\footnotesize\ttfamily Matrix\+Xd Model3\+T\+::\+Pimpl\+::M}
+
+
+
+Definition at line 48 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a6e50170f8b2b58e1e7a91244ffe1691c}{}\label{structModel3T_1_1Pimpl_a6e50170f8b2b58e1e7a91244ffe1691c} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!Minv@{Minv}}
+\index{Minv@{Minv}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Minv}{Minv}}
+{\footnotesize\ttfamily Matrix\+Xd Model3\+T\+::\+Pimpl\+::\+Minv}
+
+
+
+Definition at line 49 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a964360277690839fc358bb663a2cd949}{}\label{structModel3T_1_1Pimpl_a964360277690839fc358bb663a2cd949} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!n@{n}}
+\index{n@{n}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily Vector\+Xd Model3\+T\+::\+Pimpl\+::n}
+
+
+
+Definition at line 51 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_aafa871718688ff6322cbfffed9ada401}{}\label{structModel3T_1_1Pimpl_aafa871718688ff6322cbfffed9ada401} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!q@{q}}
+\index{q@{q}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily Vector\+Xd Model3\+T\+::\+Pimpl\+::q}
+
+
+
+Definition at line 33 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_add8bdb5e94533189b2173a43102eee84}{}\label{structModel3T_1_1Pimpl_add8bdb5e94533189b2173a43102eee84} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+CoM@{seg\+CoM}}
+\index{seg\+CoM@{seg\+CoM}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+CoM}{segCoM}}
+{\footnotesize\ttfamily std\+::vector$<$ Vector3d $>$ Model3\+T\+::\+Pimpl\+::seg\+CoM}
+
+
+
+Definition at line 62 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_aeb0889ba54a539cba37b30d2826ad61b}{}\label{structModel3T_1_1Pimpl_aeb0889ba54a539cba37b30d2826ad61b} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Inertia\+Axes@{seg\+Inertia\+Axes}}
+\index{seg\+Inertia\+Axes@{seg\+Inertia\+Axes}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Inertia\+Axes}{segInertiaAxes}}
+{\footnotesize\ttfamily std\+::vector$<$ Rotation3d $>$ Model3\+T\+::\+Pimpl\+::seg\+Inertia\+Axes}
+
+
+
+Definition at line 66 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_ab1a67acf0553a0bf04275f5f20c2a69e}{}\label{structModel3T_1_1Pimpl_ab1a67acf0553a0bf04275f5f20c2a69e} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Jacobian@{seg\+Jacobian}}
+\index{seg\+Jacobian@{seg\+Jacobian}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Jacobian}{segJacobian}}
+{\footnotesize\ttfamily std\+::vector$<$ Matrix$<$double,6,Dynamic$>$ $>$ Model3\+T\+::\+Pimpl\+::seg\+Jacobian}
+
+
+
+Definition at line 57 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_af9cd027badf0a713437cd6d1a924cfb6}{}\label{structModel3T_1_1Pimpl_af9cd027badf0a713437cd6d1a924cfb6} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Jdot@{seg\+Jdot}}
+\index{seg\+Jdot@{seg\+Jdot}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Jdot}{segJdot}}
+{\footnotesize\ttfamily std\+::vector$<$ Matrix$<$double,6,Dynamic$>$ $>$ Model3\+T\+::\+Pimpl\+::seg\+Jdot}
+
+
+
+Definition at line 58 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a504aa134750da2f42dfe8fa7e431b9cd}{}\label{structModel3T_1_1Pimpl_a504aa134750da2f42dfe8fa7e431b9cd} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Jdot\+Qdot@{seg\+Jdot\+Qdot}}
+\index{seg\+Jdot\+Qdot@{seg\+Jdot\+Qdot}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Jdot\+Qdot}{segJdotQdot}}
+{\footnotesize\ttfamily std\+::vector$<$ Twistd $>$ Model3\+T\+::\+Pimpl\+::seg\+Jdot\+Qdot}
+
+
+
+Definition at line 59 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a96656676ff3aa9cddb99f58f453786c7}{}\label{structModel3T_1_1Pimpl_a96656676ff3aa9cddb99f58f453786c7} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Mass@{seg\+Mass}}
+\index{seg\+Mass@{seg\+Mass}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Mass}{segMass}}
+{\footnotesize\ttfamily std\+::vector$<$ double $>$ Model3\+T\+::\+Pimpl\+::seg\+Mass}
+
+
+
+Definition at line 61 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a7d3d20f64bbe278275b6e74a49ebf9f6}{}\label{structModel3T_1_1Pimpl_a7d3d20f64bbe278275b6e74a49ebf9f6} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Mass\+Matrix@{seg\+Mass\+Matrix}}
+\index{seg\+Mass\+Matrix@{seg\+Mass\+Matrix}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Mass\+Matrix}{segMassMatrix}}
+{\footnotesize\ttfamily std\+::vector$<$ Matrix$<$double, 6, 6$>$ $>$ Model3\+T\+::\+Pimpl\+::seg\+Mass\+Matrix}
+
+
+
+Definition at line 63 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a4c64f2048ff9ce34719e3ea2a384a263}{}\label{structModel3T_1_1Pimpl_a4c64f2048ff9ce34719e3ea2a384a263} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Moments\+Of\+Inertia@{seg\+Moments\+Of\+Inertia}}
+\index{seg\+Moments\+Of\+Inertia@{seg\+Moments\+Of\+Inertia}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Moments\+Of\+Inertia}{segMomentsOfInertia}}
+{\footnotesize\ttfamily std\+::vector$<$ Vector3d $>$ Model3\+T\+::\+Pimpl\+::seg\+Moments\+Of\+Inertia}
+
+
+
+Definition at line 65 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a2cab0a9da7f7c37d10152cac8c8e6cfc}{}\label{structModel3T_1_1Pimpl_a2cab0a9da7f7c37d10152cac8c8e6cfc} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Name@{seg\+Name}}
+\index{seg\+Name@{seg\+Name}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Name}{segName}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Model3\+T\+::\+Pimpl\+::seg\+Name}
+
+
+
+Definition at line 67 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a13b0782e9a8fb952f2fa33227277102f}{}\label{structModel3T_1_1Pimpl_a13b0782e9a8fb952f2fa33227277102f} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+N\+L\+Effects@{seg\+N\+L\+Effects}}
+\index{seg\+N\+L\+Effects@{seg\+N\+L\+Effects}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+N\+L\+Effects}{segNLEffects}}
+{\footnotesize\ttfamily std\+::vector$<$ Matrix$<$double, 6, 6$>$ $>$ Model3\+T\+::\+Pimpl\+::seg\+N\+L\+Effects}
+
+
+
+Definition at line 64 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a95a2564c9002bdb208279d591fca70ad}{}\label{structModel3T_1_1Pimpl_a95a2564c9002bdb208279d591fca70ad} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Position@{seg\+Position}}
+\index{seg\+Position@{seg\+Position}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Position}{segPosition}}
+{\footnotesize\ttfamily std\+::vector$<$ Displacementd $>$ Model3\+T\+::\+Pimpl\+::seg\+Position}
+
+
+
+Definition at line 55 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a53fc477028c2bc87ee7c5e04879e8c20}{}\label{structModel3T_1_1Pimpl_a53fc477028c2bc87ee7c5e04879e8c20} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!seg\+Velocity@{seg\+Velocity}}
+\index{seg\+Velocity@{seg\+Velocity}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{seg\+Velocity}{segVelocity}}
+{\footnotesize\ttfamily std\+::vector$<$ Twistd $>$ Model3\+T\+::\+Pimpl\+::seg\+Velocity}
+
+
+
+Definition at line 56 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a5b282557f05769af0f2e60709d348a43}{}\label{structModel3T_1_1Pimpl_a5b282557f05769af0f2e60709d348a43} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!Troot@{Troot}}
+\index{Troot@{Troot}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Troot}{Troot}}
+{\footnotesize\ttfamily Twistd Model3\+T\+::\+Pimpl\+::\+Troot}
+
+
+
+Definition at line 36 of file Model3\+T.\+cpp.
+
+\hypertarget{structModel3T_1_1Pimpl_a3b3b41e690971ea00156bdfefb813a5c}{}\label{structModel3T_1_1Pimpl_a3b3b41e690971ea00156bdfefb813a5c} 
+\index{Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}!upper\+Limits@{upper\+Limits}}
+\index{upper\+Limits@{upper\+Limits}!Model3\+T\+::\+Pimpl@{Model3\+T\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{upper\+Limits}{upperLimits}}
+{\footnotesize\ttfamily Vector\+Xd Model3\+T\+::\+Pimpl\+::upper\+Limits}
+
+
+
+Definition at line 40 of file Model3\+T.\+cpp.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Model3T_8cpp}{Model3\+T.\+cpp}\end{DoxyCompactItemize}

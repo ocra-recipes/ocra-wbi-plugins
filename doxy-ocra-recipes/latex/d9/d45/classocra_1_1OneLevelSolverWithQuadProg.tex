@@ -1,0 +1,137 @@
+\hypertarget{classocra_1_1OneLevelSolverWithQuadProg}{}\section{ocra\+:\+:One\+Level\+Solver\+With\+Quad\+Prog Class Reference}
+\label{classocra_1_1OneLevelSolverWithQuadProg}\index{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}}
+
+
+\hyperlink{classocra_1_1Solver}{Solver} class that only consider one level of importance for all tasks using Quadprog++.  
+
+
+
+
+{\ttfamily \#include $<$One\+Level\+Solver.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:One\+Level\+Solver\+With\+Quad\+Prog\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.623188cm]{d9/d45/classocra_1_1OneLevelSolverWithQuadProg}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual One\+Level\+Solver\+::\+Ptr \hyperlink{classocra_1_1OneLevelSolverWithQuadProg_a706e7772885ae7ab3e78565d51286eac}{clone} () const
+\item 
+\hyperlink{classocra_1_1OneLevelSolverWithQuadProg_a0d7f639dd36c79056c264f0c09d5be50}{One\+Level\+Solver\+With\+Quad\+Prog} ()
+\item 
+virtual \hyperlink{classocra_1_1OneLevelSolverWithQuadProg_a27d12b82fcaec15ca7041064bd7f9095}{$\sim$\+One\+Level\+Solver\+With\+Quad\+Prog} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1OneLevelSolverWithQuadProg_aa6e7517459ef68106e83a7f0dc09c977}{do\+Solve} ()
+\item 
+virtual void \hyperlink{classocra_1_1OneLevelSolverWithQuadProg_a3c36b4620ee75c8f6c104244350087c2}{update\+Objective\+Equations} ()
+\item 
+virtual void \hyperlink{classocra_1_1OneLevelSolverWithQuadProg_a0276b1005f8b5812b313aa594d01118a}{update\+Constraint\+Equations} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classocra_1_1Solver}{Solver} class that only consider one level of importance for all tasks using Quadprog++. 
+
+It uses a linear quadratic program which comes from \href{http://quadprog.sourceforge.net/}{\tt http\+://quadprog.\+sourceforge.\+net/} .
+
+Quadprog++ solve the following problem\+:
+
+\begin{align*} \argmin{\x} &: \; \frac{1}{2} \x\tp G \x + \vec{g}_0\tp \x \\ & CE \x + \vec{ce}_0 = \vec{0} \\ & CI \x + \vec{ci}_0 \geq \vec{0} \end{align*} 
+
+Definition at line 151 of file One\+Level\+Solver.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1OneLevelSolverWithQuadProg_a0d7f639dd36c79056c264f0c09d5be50}{}\label{classocra_1_1OneLevelSolverWithQuadProg_a0d7f639dd36c79056c264f0c09d5be50} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}!One\+Level\+Solver\+With\+Quad\+Prog@{One\+Level\+Solver\+With\+Quad\+Prog}}
+\index{One\+Level\+Solver\+With\+Quad\+Prog@{One\+Level\+Solver\+With\+Quad\+Prog}!ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}}
+\subsubsection{\texorpdfstring{One\+Level\+Solver\+With\+Quad\+Prog()}{OneLevelSolverWithQuadProg()}}
+{\footnotesize\ttfamily One\+Level\+Solver\+With\+Quad\+Prog\+::\+One\+Level\+Solver\+With\+Quad\+Prog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Instanciate a concrete one level solver with Quadprog++. 
+
+Definition at line 236 of file One\+Level\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQuadProg_a27d12b82fcaec15ca7041064bd7f9095}{}\label{classocra_1_1OneLevelSolverWithQuadProg_a27d12b82fcaec15ca7041064bd7f9095} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}!````~One\+Level\+Solver\+With\+Quad\+Prog@{$\sim$\+One\+Level\+Solver\+With\+Quad\+Prog}}
+\index{````~One\+Level\+Solver\+With\+Quad\+Prog@{$\sim$\+One\+Level\+Solver\+With\+Quad\+Prog}!ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}}
+\subsubsection{\texorpdfstring{$\sim$\+One\+Level\+Solver\+With\+Quad\+Prog()}{~OneLevelSolverWithQuadProg()}}
+{\footnotesize\ttfamily One\+Level\+Solver\+With\+Quad\+Prog\+::$\sim$\+One\+Level\+Solver\+With\+Quad\+Prog (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor 
+
+Definition at line 246 of file One\+Level\+Solver.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1OneLevelSolverWithQuadProg_a706e7772885ae7ab3e78565d51286eac}{}\label{classocra_1_1OneLevelSolverWithQuadProg_a706e7772885ae7ab3e78565d51286eac} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}!clone@{clone}}
+\index{clone@{clone}!ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily virtual One\+Level\+Solver\+::\+Ptr ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+retuns a pointer to a new instance, very usefull in Hocra 
+
+Implements \hyperlink{classocra_1_1OneLevelSolver_a08ecd92d4295e03aa03075a71d481f48}{ocra\+::\+One\+Level\+Solver}.
+
+
+
+Definition at line 155 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQuadProg_aa6e7517459ef68106e83a7f0dc09c977}{}\label{classocra_1_1OneLevelSolverWithQuadProg_aa6e7517459ef68106e83a7f0dc09c977} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}!do\+Solve@{do\+Solve}}
+\index{do\+Solve@{do\+Solve}!ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}}
+\subsubsection{\texorpdfstring{do\+Solve()}{doSolve()}}
+{\footnotesize\ttfamily void One\+Level\+Solver\+With\+Quad\+Prog\+::do\+Solve (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Do the call Quadprog++ to find a solution of the problem. 
+
+Implements \hyperlink{classocra_1_1OneLevelSolver_aeb4fb349df382921c5c0064d7a05c48b}{ocra\+::\+One\+Level\+Solver}.
+
+
+
+Definition at line 344 of file One\+Level\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQuadProg_a0276b1005f8b5812b313aa594d01118a}{}\label{classocra_1_1OneLevelSolverWithQuadProg_a0276b1005f8b5812b313aa594d01118a} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}!update\+Constraint\+Equations@{update\+Constraint\+Equations}}
+\index{update\+Constraint\+Equations@{update\+Constraint\+Equations}!ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}}
+\subsubsection{\texorpdfstring{update\+Constraint\+Equations()}{updateConstraintEquations()}}
+{\footnotesize\ttfamily void One\+Level\+Solver\+With\+Quad\+Prog\+::update\+Constraint\+Equations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Update the constraint set, by considering all the active ones. 
+
+Implements \hyperlink{classocra_1_1OneLevelSolver_af592dc713af6cf22e67abcdfba09ca5e}{ocra\+::\+One\+Level\+Solver}.
+
+
+
+Definition at line 278 of file One\+Level\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQuadProg_a3c36b4620ee75c8f6c104244350087c2}{}\label{classocra_1_1OneLevelSolverWithQuadProg_a3c36b4620ee75c8f6c104244350087c2} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}!update\+Objective\+Equations@{update\+Objective\+Equations}}
+\index{update\+Objective\+Equations@{update\+Objective\+Equations}!ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog@{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}}
+\subsubsection{\texorpdfstring{update\+Objective\+Equations()}{updateObjectiveEquations()}}
+{\footnotesize\ttfamily void One\+Level\+Solver\+With\+Quad\+Prog\+::update\+Objective\+Equations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Update the objective function, by considering all the active registered tasks. 
+
+Implements \hyperlink{classocra_1_1OneLevelSolver_a150b377a35e30ae9c347147c10fddb33}{ocra\+::\+One\+Level\+Solver}.
+
+
+
+Definition at line 254 of file One\+Level\+Solver.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{OneLevelSolver_8h}{One\+Level\+Solver.\+h}\item 
+\hyperlink{OneLevelSolver_8cpp}{One\+Level\+Solver.\+cpp}\end{DoxyCompactItemize}

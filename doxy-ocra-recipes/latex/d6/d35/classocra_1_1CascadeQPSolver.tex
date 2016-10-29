@@ -1,0 +1,304 @@
+\hypertarget{classocra_1_1CascadeQPSolver}{}\section{ocra\+:\+:Cascade\+Q\+P\+Solver Class Reference}
+\label{classocra_1_1CascadeQPSolver}\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+
+
+Cascade\+Q\+P\+Solver class.  
+
+
+
+
+{\ttfamily \#include $<$Cascade\+Q\+P\+Solver.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Cascade\+Q\+P\+Solver\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.352657cm]{d6/d35/classocra_1_1CascadeQPSolver}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1CascadeQPSolver_1_1StandardObjectivesAndConstraints}{Standard\+Objectives\+And\+Constraints}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1CascadeQPSolver_a85f1b7a863230a61f0bc3ce9ab93a908}{Cascade\+Q\+P\+Solver} (const std\+::string \&\+\_\+ctrl\+Name, Model\+::\+Ptr \+\_\+inner\+Model, One\+Level\+Solver\+::\+Ptr \+\_\+level\+Solver, bool \+\_\+use\+Reduced\+Problem)
+\item 
+void \hyperlink{classocra_1_1CascadeQPSolver_a42c413b6eeef99c2bdee577991f1e9a4}{add\+Task} (Task\+::\+Ptr task)
+\item 
+void \hyperlink{classocra_1_1CascadeQPSolver_af0c103a167f7c63adcfb28af29bae544}{add\+Solver} (One\+Level\+Solver\+::\+Ptr solver, int level)
+\item 
+One\+Level\+Solver\+::\+Ptr \hyperlink{classocra_1_1CascadeQPSolver_a7c0dff6ffa567d1bf6663bbc45fc22d4}{get\+Solver} (int level)
+\item 
+virtual std\+::string \hyperlink{classocra_1_1CascadeQPSolver_a411f14ee5770be6a3f04d665ac844e6c}{to\+String} ()
+\item 
+const std\+::map$<$ int, One\+Level\+Solver\+::\+Ptr $>$ \& \hyperlink{classocra_1_1CascadeQPSolver_a2f433d5b3029e998396c7d40fba6caa5}{get\+Solvers} ()
+\item 
+void \hyperlink{classocra_1_1CascadeQPSolver_afeca9e40c6424236d4527d4c1b97fe51}{update\+Hierarchical\+Contraints} (int level)
+\item 
+int \hyperlink{classocra_1_1CascadeQPSolver_aa943fac9f6ab708fc0d5d80977878d20}{get\+Number\+Of\+Levels\+Above} (int current\+\_\+level)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1CascadeQPSolver_aea57e3bc9dabe277161d742af5cd88dc}{do\+Solve} (void)
+\item 
+virtual void \hyperlink{classocra_1_1CascadeQPSolver_a2ccca21b47e23667be94cd215c890d5e}{do\+Prepare} (void)
+\item 
+virtual void \hyperlink{classocra_1_1CascadeQPSolver_af180fd8b7323b29246512af6109845d2}{do\+Conclude} ()
+\item 
+virtual void \hyperlink{classocra_1_1CascadeQPSolver_a1f4c5d709ce4545c596c864b1d99d08c}{print\+Values\+At\+Solution} ()
+\item 
+void \hyperlink{classocra_1_1CascadeQPSolver_a9308f8943177b4ea78e7f15a3ab55832}{exclude\+Objective} (int at\+\_\+level, const \hyperlink{namespaceocra_a37a91885f4fa5c523d22cb15d5673062}{ocra\+::\+Generic\+Objective} \&obj)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{structocra_1_1CascadeQPSolver_1_1StandardObjectivesAndConstraints}{Standard\+Objectives\+And\+Constraints} $>$ \hyperlink{classocra_1_1CascadeQPSolver_aec6bf15caf1f29d7e1ec5aab696b1e7b}{own\+\_\+obj}
+\item 
+std\+::vector$<$ int $>$ \hyperlink{classocra_1_1CascadeQPSolver_a9d45b623d0012aae018b8eb8d4a66646}{solver\+Initialized}
+\item 
+std\+::map$<$ int, std\+::shared\+\_\+ptr$<$ \hyperlink{structocra_1_1CascadeQPSolver_1_1StandardObjectivesAndConstraints}{Standard\+Objectives\+And\+Constraints} $>$ $>$ \hyperlink{classocra_1_1CascadeQPSolver_aafe2d2d5226c421fc53880570a25a665}{std\+\_\+obj}
+\item 
+One\+Level\+Solver\+::\+Ptr \hyperlink{classocra_1_1CascadeQPSolver_a119ac44ca89426cddf6484577962726d}{level\+Solver}
+\item 
+bool \hyperlink{classocra_1_1CascadeQPSolver_a8703a516e8ce6adb088867d8b39dfa4d}{use\+Reduced\+Problem}
+\item 
+Model\+::\+Ptr \hyperlink{classocra_1_1CascadeQPSolver_a3a7c69b86a236e8b0ffc678be798109f}{inner\+Model}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Cascade\+Q\+P\+Solver class. 
+
+Hierarchical solver based on \hyperlink{classocra_1_1CascadeQP}{Cascade\+QP} 
+
+Definition at line 57 of file Cascade\+Q\+P\+Solver.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1CascadeQPSolver_a85f1b7a863230a61f0bc3ce9ab93a908}{}\label{classocra_1_1CascadeQPSolver_a85f1b7a863230a61f0bc3ce9ab93a908} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!Cascade\+Q\+P\+Solver@{Cascade\+Q\+P\+Solver}}
+\index{Cascade\+Q\+P\+Solver@{Cascade\+Q\+P\+Solver}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{Cascade\+Q\+P\+Solver()}{CascadeQPSolver()}}
+{\footnotesize\ttfamily ocra\+::\+Cascade\+Q\+P\+Solver\+::\+Cascade\+Q\+P\+Solver (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+ctrl\+Name,  }\item[{Model\+::\+Ptr}]{\+\_\+inner\+Model,  }\item[{One\+Level\+Solver\+::\+Ptr}]{\+\_\+level\+Solver,  }\item[{bool}]{\+\_\+use\+Reduced\+Problem }\end{DoxyParamCaption})}
+
+
+
+Definition at line 51 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1CascadeQPSolver_af0c103a167f7c63adcfb28af29bae544}{}\label{classocra_1_1CascadeQPSolver_af0c103a167f7c63adcfb28af29bae544} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!add\+Solver@{add\+Solver}}
+\index{add\+Solver@{add\+Solver}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{add\+Solver()}{addSolver()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+Solver\+::add\+Solver (\begin{DoxyParamCaption}\item[{One\+Level\+Solver\+::\+Ptr}]{solver,  }\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+Definition at line 182 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a42c413b6eeef99c2bdee577991f1e9a4}{}\label{classocra_1_1CascadeQPSolver_a42c413b6eeef99c2bdee577991f1e9a4} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!add\+Task@{add\+Task}}
+\index{add\+Task@{add\+Task}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{add\+Task()}{addTask()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+Solver\+::add\+Task (\begin{DoxyParamCaption}\item[{Task\+::\+Ptr}]{task }\end{DoxyParamCaption})}
+
+
+
+Definition at line 232 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_af180fd8b7323b29246512af6109845d2}{}\label{classocra_1_1CascadeQPSolver_af180fd8b7323b29246512af6109845d2} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!do\+Conclude@{do\+Conclude}}
+\index{do\+Conclude@{do\+Conclude}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{do\+Conclude()}{doConclude()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+Solver\+::do\+Conclude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_ac9d2d41d544b57a75e0d03db073d646e}{ocra\+::\+Solver}.
+
+
+
+Definition at line 167 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a2ccca21b47e23667be94cd215c890d5e}{}\label{classocra_1_1CascadeQPSolver_a2ccca21b47e23667be94cd215c890d5e} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!do\+Prepare@{do\+Prepare}}
+\index{do\+Prepare@{do\+Prepare}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{do\+Prepare()}{doPrepare()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+Solver\+::do\+Prepare (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_a9ab90e87025e3da7239141c48d28ab4a}{ocra\+::\+Solver}.
+
+
+
+Definition at line 161 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_aea57e3bc9dabe277161d742af5cd88dc}{}\label{classocra_1_1CascadeQPSolver_aea57e3bc9dabe277161d742af5cd88dc} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!do\+Solve@{do\+Solve}}
+\index{do\+Solve@{do\+Solve}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{do\+Solve()}{doSolve()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+Solver\+::do\+Solve (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_ace2d7cfe741611de6dc87a0de7e7f3a9}{ocra\+::\+Solver}.
+
+
+
+Definition at line 139 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a9308f8943177b4ea78e7f15a3ab55832}{}\label{classocra_1_1CascadeQPSolver_a9308f8943177b4ea78e7f15a3ab55832} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!exclude\+Objective@{exclude\+Objective}}
+\index{exclude\+Objective@{exclude\+Objective}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{exclude\+Objective()}{excludeObjective()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+Solver\+::exclude\+Objective (\begin{DoxyParamCaption}\item[{int}]{at\+\_\+level,  }\item[{const \hyperlink{namespaceocra_a37a91885f4fa5c523d22cb15d5673062}{ocra\+::\+Generic\+Objective} \&}]{obj }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 218 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_aa943fac9f6ab708fc0d5d80977878d20}{}\label{classocra_1_1CascadeQPSolver_aa943fac9f6ab708fc0d5d80977878d20} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!get\+Number\+Of\+Levels\+Above@{get\+Number\+Of\+Levels\+Above}}
+\index{get\+Number\+Of\+Levels\+Above@{get\+Number\+Of\+Levels\+Above}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Number\+Of\+Levels\+Above()}{getNumberOfLevelsAbove()}}
+{\footnotesize\ttfamily int ocra\+::\+Cascade\+Q\+P\+Solver\+::get\+Number\+Of\+Levels\+Above (\begin{DoxyParamCaption}\item[{int}]{current\+\_\+level }\end{DoxyParamCaption})}
+
+
+
+Definition at line 128 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a7c0dff6ffa567d1bf6663bbc45fc22d4}{}\label{classocra_1_1CascadeQPSolver_a7c0dff6ffa567d1bf6663bbc45fc22d4} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!get\+Solver@{get\+Solver}}
+\index{get\+Solver@{get\+Solver}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Solver()}{getSolver()}}
+{\footnotesize\ttfamily One\+Level\+Solver\+::\+Ptr ocra\+::\+Cascade\+Q\+P\+Solver\+::get\+Solver (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+Definition at line 214 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a2f433d5b3029e998396c7d40fba6caa5}{}\label{classocra_1_1CascadeQPSolver_a2f433d5b3029e998396c7d40fba6caa5} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!get\+Solvers@{get\+Solvers}}
+\index{get\+Solvers@{get\+Solvers}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Solvers()}{getSolvers()}}
+{\footnotesize\ttfamily const std\+::map$<$ int, One\+Level\+Solver\+::\+Ptr $>$ \& ocra\+::\+Cascade\+Q\+P\+Solver\+::get\+Solvers (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 177 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a1f4c5d709ce4545c596c864b1d99d08c}{}\label{classocra_1_1CascadeQPSolver_a1f4c5d709ce4545c596c864b1d99d08c} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!print\+Values\+At\+Solution@{print\+Values\+At\+Solution}}
+\index{print\+Values\+At\+Solution@{print\+Values\+At\+Solution}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{print\+Values\+At\+Solution()}{printValuesAtSolution()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+Solver\+::print\+Values\+At\+Solution (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_ab1903098e25c16a9f92c36d37967e8fa}{ocra\+::\+Solver}.
+
+
+
+Definition at line 270 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a411f14ee5770be6a3f04d665ac844e6c}{}\label{classocra_1_1CascadeQPSolver_a411f14ee5770be6a3f04d665ac844e6c} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily std\+::string ocra\+::\+Cascade\+Q\+P\+Solver\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the state of the solver (e.\+g. matrices) as a string. 
+
+Implements \hyperlink{classocra_1_1Solver_ab3783d1c208500bfb1daa3e1abf34146}{ocra\+::\+Solver}.
+
+
+
+Definition at line 173 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1CascadeQPSolver_afeca9e40c6424236d4527d4c1b97fe51}{}\label{classocra_1_1CascadeQPSolver_afeca9e40c6424236d4527d4c1b97fe51} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!update\+Hierarchical\+Contraints@{update\+Hierarchical\+Contraints}}
+\index{update\+Hierarchical\+Contraints@{update\+Hierarchical\+Contraints}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{update\+Hierarchical\+Contraints()}{updateHierarchicalContraints()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+Solver\+::update\+Hierarchical\+Contraints (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+Definition at line 71 of file Cascade\+Q\+P\+Solver.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1CascadeQPSolver_a3a7c69b86a236e8b0ffc678be798109f}{}\label{classocra_1_1CascadeQPSolver_a3a7c69b86a236e8b0ffc678be798109f} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!inner\+Model@{inner\+Model}}
+\index{inner\+Model@{inner\+Model}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{inner\+Model}{innerModel}}
+{\footnotesize\ttfamily Model\+::\+Ptr ocra\+::\+Cascade\+Q\+P\+Solver\+::inner\+Model\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 91 of file Cascade\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a119ac44ca89426cddf6484577962726d}{}\label{classocra_1_1CascadeQPSolver_a119ac44ca89426cddf6484577962726d} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!level\+Solver@{level\+Solver}}
+\index{level\+Solver@{level\+Solver}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{level\+Solver}{levelSolver}}
+{\footnotesize\ttfamily One\+Level\+Solver\+::\+Ptr ocra\+::\+Cascade\+Q\+P\+Solver\+::level\+Solver\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 89 of file Cascade\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1CascadeQPSolver_aec6bf15caf1f29d7e1ec5aab696b1e7b}{}\label{classocra_1_1CascadeQPSolver_aec6bf15caf1f29d7e1ec5aab696b1e7b} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!own\+\_\+obj@{own\+\_\+obj}}
+\index{own\+\_\+obj@{own\+\_\+obj}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{own\+\_\+obj}{own\_obj}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{structocra_1_1CascadeQPSolver_1_1StandardObjectivesAndConstraints}{Standard\+Objectives\+And\+Constraints}$>$ ocra\+::\+Cascade\+Q\+P\+Solver\+::own\+\_\+obj\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 85 of file Cascade\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a9d45b623d0012aae018b8eb8d4a66646}{}\label{classocra_1_1CascadeQPSolver_a9d45b623d0012aae018b8eb8d4a66646} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!solver\+Initialized@{solver\+Initialized}}
+\index{solver\+Initialized@{solver\+Initialized}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{solver\+Initialized}{solverInitialized}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ ocra\+::\+Cascade\+Q\+P\+Solver\+::solver\+Initialized\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 87 of file Cascade\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1CascadeQPSolver_aafe2d2d5226c421fc53880570a25a665}{}\label{classocra_1_1CascadeQPSolver_aafe2d2d5226c421fc53880570a25a665} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!std\+\_\+obj@{std\+\_\+obj}}
+\index{std\+\_\+obj@{std\+\_\+obj}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{std\+\_\+obj}{std\_obj}}
+{\footnotesize\ttfamily std\+::map$<$int,std\+::shared\+\_\+ptr$<$\hyperlink{structocra_1_1CascadeQPSolver_1_1StandardObjectivesAndConstraints}{Standard\+Objectives\+And\+Constraints}$>$ $>$ ocra\+::\+Cascade\+Q\+P\+Solver\+::std\+\_\+obj\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 88 of file Cascade\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1CascadeQPSolver_a8703a516e8ce6adb088867d8b39dfa4d}{}\label{classocra_1_1CascadeQPSolver_a8703a516e8ce6adb088867d8b39dfa4d} 
+\index{ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}!use\+Reduced\+Problem@{use\+Reduced\+Problem}}
+\index{use\+Reduced\+Problem@{use\+Reduced\+Problem}!ocra\+::\+Cascade\+Q\+P\+Solver@{ocra\+::\+Cascade\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{use\+Reduced\+Problem}{useReducedProblem}}
+{\footnotesize\ttfamily bool ocra\+::\+Cascade\+Q\+P\+Solver\+::use\+Reduced\+Problem\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 90 of file Cascade\+Q\+P\+Solver.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{CascadeQPSolver_8h}{Cascade\+Q\+P\+Solver.\+h}\item 
+\hyperlink{CascadeQPSolver_8cpp}{Cascade\+Q\+P\+Solver.\+cpp}\end{DoxyCompactItemize}

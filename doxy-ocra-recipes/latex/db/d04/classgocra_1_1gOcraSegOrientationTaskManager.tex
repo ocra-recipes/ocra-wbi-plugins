@@ -1,0 +1,249 @@
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager}{}\section{gocra\+:\+:g\+Ocra\+Seg\+Orientation\+Task\+Manager Class Reference}
+\label{classgocra_1_1gOcraSegOrientationTaskManager}\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+
+
+Task Manager for the Center of Mass (CoM) task with the g\+Ocra Controller.  
+
+
+
+
+{\ttfamily \#include $<$g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+h$>$}
+
+Inheritance diagram for gocra\+:\+:g\+Ocra\+Seg\+Orientation\+Task\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{db/d04/classgocra_1_1gOcraSegOrientationTaskManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_a4d14922b755ae527247c7c82b1c99cdb}{g\+Ocra\+Seg\+Orientation\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, const std\+::string \&segment\+Name, double stiffness, double damping)
+\item 
+\hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_abdf3dc20892fc1308806b72b9976461e}{g\+Ocra\+Seg\+Orientation\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, const std\+::string \&segment\+Name, double stiffness, double damping, const Eigen\+::\+Rotation3d \&target\+Pose)
+\item 
+\hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_a24289f538bb64660dc9e294fcab261ae}{$\sim$g\+Ocra\+Seg\+Orientation\+Task\+Manager} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_a3e0d8d41f14d2368777b5b84e0ef5d4f}{set\+Orientation} (const Eigen\+::\+Rotation3d \&pos)
+\item 
+void \hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_aafe5bc35406c5d99288d05d6468e041f}{activate} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_a5ebf0c1a5813c6a2895965d973f77539}{deactivate} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_abca07f3d06e8731757a9946b5255a20c}{set\+Stiffness} (double stiffness)
+\item 
+double \hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_a4003635cf40005d447614d2759280145}{get\+Stiffness} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_acca4be597440e5da0e3ded3d78116c18}{set\+Damping} (double damping)
+\item 
+double \hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_aa702c1703f667054e3d84e9a6791d15f}{get\+Damping} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classgocra_1_1gOcraSegOrientationTaskManager_a37aa69c90bd5d3d0318de77aa56cd4dd}{get\+Task\+Error} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Task Manager for the Center of Mass (CoM) task with the g\+Ocra Controller. 
+
+
+
+Definition at line 17 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_a4d14922b755ae527247c7c82b1c99cdb}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_a4d14922b755ae527247c7c82b1c99cdb} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!g\+Ocra\+Seg\+Orientation\+Task\+Manager@{g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\index{g\+Ocra\+Seg\+Orientation\+Task\+Manager@{g\+Ocra\+Seg\+Orientation\+Task\+Manager}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Seg\+Orientation\+Task\+Manager()}{gOcraSegOrientationTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{const std\+::string \&}]{\+\_\+segment\+Name,  }\item[{double}]{\+\_\+stiffness,  }\item[{double}]{\+\_\+damping }\end{DoxyParamCaption})}
+
+Base constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em \+\_\+model} & ocra model to setup the task \\
+\hline
+{\em \+\_\+task\+Name} & Name of the task \\
+\hline
+{\em \+\_\+segment\+Name} & Name of the segment for the task \\
+\hline
+{\em \+\_\+stiffness} & Stiffness constant for task \\
+\hline
+{\em \+\_\+damping} & Damping constant for task \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 15 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_abdf3dc20892fc1308806b72b9976461e}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_abdf3dc20892fc1308806b72b9976461e} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!g\+Ocra\+Seg\+Orientation\+Task\+Manager@{g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\index{g\+Ocra\+Seg\+Orientation\+Task\+Manager@{g\+Ocra\+Seg\+Orientation\+Task\+Manager}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Seg\+Orientation\+Task\+Manager()}{gOcraSegOrientationTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{const std\+::string \&}]{\+\_\+segment\+Name,  }\item[{double}]{\+\_\+stiffness,  }\item[{double}]{\+\_\+damping,  }\item[{const Eigen\+::\+Rotation3d \&}]{\+\_\+orientation\+Des }\end{DoxyParamCaption})}
+
+Constructor with desired pose
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em \+\_\+model} & ocra model to setup the task \\
+\hline
+{\em \+\_\+task\+Name} & Name of the task \\
+\hline
+{\em \+\_\+segment\+Name} & Name of the segment for the task \\
+\hline
+{\em \+\_\+stiffness} & Stiffness constant for task \\
+\hline
+{\em \+\_\+damping} & Damping constant for task \\
+\hline
+{\em \+\_\+orientation\+Des} & Initial orientation for task \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 31 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_a24289f538bb64660dc9e294fcab261ae}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_a24289f538bb64660dc9e294fcab261ae} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!````~g\+Ocra\+Seg\+Orientation\+Task\+Manager@{$\sim$g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\index{````~g\+Ocra\+Seg\+Orientation\+Task\+Manager@{$\sim$g\+Ocra\+Seg\+Orientation\+Task\+Manager}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$g\+Ocra\+Seg\+Orientation\+Task\+Manager()}{~gOcraSegOrientationTaskManager()}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::$\sim$g\+Ocra\+Seg\+Orientation\+Task\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_aafe5bc35406c5d99288d05d6468e041f}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_aafe5bc35406c5d99288d05d6468e041f} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!activate@{activate}}
+\index{activate@{activate}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{activate()}{activate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::activate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Activates the task 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a50cf1c408749d6e9dcfaf50bcab77dee}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 115 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_a5ebf0c1a5813c6a2895965d973f77539}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_a5ebf0c1a5813c6a2895965d973f77539} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{deactivate()}{deactivate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::deactivate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Deactivates the task 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a7cf9111e69aee47a39fe0f2976a20d6c}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 123 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_aa702c1703f667054e3d84e9a6791d15f}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_aa702c1703f667054e3d84e9a6791d15f} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!get\+Damping@{get\+Damping}}
+\index{get\+Damping@{get\+Damping}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Damping()}{getDamping()}}
+{\footnotesize\ttfamily double gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::get\+Damping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the damping constant for this task
+
+\begin{DoxyReturn}{Returns}
+The damping for this task 
+\end{DoxyReturn}
+
+
+Definition at line 106 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_a4003635cf40005d447614d2759280145}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_a4003635cf40005d447614d2759280145} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!get\+Stiffness@{get\+Stiffness}}
+\index{get\+Stiffness@{get\+Stiffness}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Stiffness()}{getStiffness()}}
+{\footnotesize\ttfamily double gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::get\+Stiffness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the stiffness constant for this task
+
+\begin{DoxyReturn}{Returns}
+The stiffness for this task 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_a37aa69c90bd5d3d0318de77aa56cd4dd}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_a37aa69c90bd5d3d0318de77aa56cd4dd} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!get\+Task\+Error@{get\+Task\+Error}}
+\index{get\+Task\+Error@{get\+Task\+Error}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Task\+Error()}{getTaskError()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::get\+Task\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Gets the error for this task (C\+OM position error) 
+
+Reimplemented from \hyperlink{classgocra_1_1gOcraTaskManagerBase_a5c40a14b3a1d5a6519da422310d28f97}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 131 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_acca4be597440e5da0e3ded3d78116c18}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_acca4be597440e5da0e3ded3d78116c18} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::set\+Damping (\begin{DoxyParamCaption}\item[{double}]{damping }\end{DoxyParamCaption})}
+
+Sets the damping for this task
+
+
+\begin{DoxyParams}{Parameters}
+{\em damping} & Desired damping \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 97 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_a3e0d8d41f14d2368777b5b84e0ef5d4f}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_a3e0d8d41f14d2368777b5b84e0ef5d4f} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!set\+Orientation@{set\+Orientation}}
+\index{set\+Orientation@{set\+Orientation}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Orientation()}{setOrientation()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::set\+Orientation (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Rotation3d \&}]{orientation }\end{DoxyParamCaption})}
+
+Sets the orientation for the task, only the rotational pose
+
+
+\begin{DoxyParams}{Parameters}
+{\em orientation} & Desired orientation \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 65 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraSegOrientationTaskManager_abca07f3d06e8731757a9946b5255a20c}{}\label{classgocra_1_1gOcraSegOrientationTaskManager_abca07f3d06e8731757a9946b5255a20c} 
+\index{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager@{gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Seg\+Orientation\+Task\+Manager\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{double}]{stiffness }\end{DoxyParamCaption})}
+
+Sets the stiffness for this task
+
+
+\begin{DoxyParams}{Parameters}
+{\em stiffness} & Desired stiffness \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 78 of file g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{gOcraSegOrientationTaskManager_8h}{g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+h}\item 
+\hyperlink{gOcraSegOrientationTaskManager_8cpp}{g\+Ocra\+Seg\+Orientation\+Task\+Manager.\+cpp}\end{DoxyCompactItemize}

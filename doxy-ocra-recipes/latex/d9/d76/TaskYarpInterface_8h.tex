@@ -1,0 +1,41 @@
+\hypertarget{TaskYarpInterface_8h}{}\section{Task\+Yarp\+Interface.\+h File Reference}
+\label{TaskYarpInterface_8h}\index{Task\+Yarp\+Interface.\+h@{Task\+Yarp\+Interface.\+h}}
+{\ttfamily \#include \char`\"{}ocra/util/\+Macros.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/util/\+Errors\+Helper.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Task.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Task\+State.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Task\+Yarp\+Interface\+Vocab.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Trajectory/\+Trajectories.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Network.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Port\+Reader.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Rpc\+Server.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Connection\+Reader.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Port.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Rate\+Thread.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Log.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Log\+Stream.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1TaskYarpInterface}{ocra\+::\+Task\+Yarp\+Interface}
+\item 
+class \hyperlink{classocra_1_1TaskYarpInterface_1_1RpcMessageCallback}{ocra\+::\+Task\+Yarp\+Interface\+::\+Rpc\+Message\+Callback}
+\begin{DoxyCompactList}\small\item\em a short description \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1TaskYarpInterface_1_1ControlInputCallback}{ocra\+::\+Task\+Yarp\+Interface\+::\+Control\+Input\+Callback}
+\begin{DoxyCompactList}\small\item\em a short description \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1TaskYarpInterface_1_1StateUpdateThread}{ocra\+::\+Task\+Yarp\+Interface\+::\+State\+Update\+Thread}
+\begin{DoxyCompactList}\small\item\em a short description \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra_a2ed783528071ed7ee7a57d923637595f}{ocra\+::\+T\+A\+S\+K\+\_\+\+M\+O\+DE} \{ \hyperlink{namespaceocra_a2ed783528071ed7ee7a57d923637595fa086654d2e2cafe228fdcc540c5fb253f}{ocra\+::\+T\+A\+S\+K\+\_\+\+A\+S\+\_\+\+O\+B\+J\+E\+C\+T\+I\+VE}, 
+\hyperlink{namespaceocra_a2ed783528071ed7ee7a57d923637595facc8c343cec041cea691138acda51cfc7}{ocra\+::\+T\+A\+S\+K\+\_\+\+A\+S\+\_\+\+C\+O\+N\+S\+T\+R\+A\+I\+NT}, 
+\hyperlink{namespaceocra_a2ed783528071ed7ee7a57d923637595fa316a03f6aa426232839267753d019c5e}{ocra\+::\+T\+A\+S\+K\+\_\+\+N\+O\+T\+\_\+\+D\+E\+F\+I\+N\+ED}
+ \}\begin{DoxyCompactList}\small\item\em A basic enumeration for the different types of tasks we can have. \end{DoxyCompactList}
+\end{DoxyCompactItemize}

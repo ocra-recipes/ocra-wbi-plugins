@@ -1,0 +1,26 @@
+\hypertarget{Macros_8h}{}\section{Macros.\+h File Reference}
+\label{Macros_8h}\index{Macros.\+h@{Macros.\+h}}
+{\ttfamily \#include $<$memory$>$}\newline
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Macros_8h_aaee0c41455f84101a62dc9d50eff0ec4}{D\+E\+F\+I\+N\+E\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+E\+FS}(Class)~public \+: using Ptr = std\+::shared\+\_\+ptr$<$Class$>$;
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{Macros_8h_aaee0c41455f84101a62dc9d50eff0ec4}{}\label{Macros_8h_aaee0c41455f84101a62dc9d50eff0ec4} 
+\index{Macros.\+h@{Macros.\+h}!D\+E\+F\+I\+N\+E\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+E\+FS@{D\+E\+F\+I\+N\+E\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+E\+FS}}
+\index{D\+E\+F\+I\+N\+E\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+E\+FS@{D\+E\+F\+I\+N\+E\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+E\+FS}!Macros.\+h@{Macros.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+F\+I\+N\+E\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+E\+FS}{DEFINE\_CLASS\_POINTER\_TYPEDEFS}}
+{\footnotesize\ttfamily \#define D\+E\+F\+I\+N\+E\+\_\+\+C\+L\+A\+S\+S\+\_\+\+P\+O\+I\+N\+T\+E\+R\+\_\+\+T\+Y\+P\+E\+D\+E\+FS(\begin{DoxyParamCaption}\item[{}]{Class }\end{DoxyParamCaption})~public \+: using Ptr = std\+::shared\+\_\+ptr$<$Class$>$;}
+
+Macro function which basically just defines pointer typdefs for classes. Note that normally macros are evil monsters but I think this is a perfect usage case to cut down on repeated code. 
+\begin{DoxyParams}{Parameters}
+{\em Class} & Just pop this bad boy below the class definition and it will do the rest. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 8 of file Macros.\+h.
+

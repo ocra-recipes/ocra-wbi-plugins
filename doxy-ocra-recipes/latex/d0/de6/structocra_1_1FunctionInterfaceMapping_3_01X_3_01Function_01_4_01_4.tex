@@ -1,0 +1,331 @@
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4}{}\section{ocra\+:\+:Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$ Struct Template Reference}
+\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4}\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+
+
+{\ttfamily \#include $<$Function\+Interface\+Mapping.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aa9a3b67499ae7d460a55a83aa3731c73}{get\+Dimension} () const
+\item 
+void \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aebf253ed862abb394f5586709002252e}{change\+Dimension} (int new\+Dimension)
+\item 
+const std\+::string \& \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af2bb88848088abbb7ddb9dccb267fd0d}{get\+Name} () const
+\item 
+const \hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a9058e43e7454b244cb55433205ecc163}{get\+Variable} () const
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a799447e899dab515b46d322223e8b2cf}{get\+Variable} ()
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\void \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_ac4e31f7faf096831c52691ef361054b1}{invalidate} ()
+\item 
+void \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a1c8b1fac294850b4b70641761acc2542}{invalidate\+All} ()
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\bool \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af951c325ee8497589c3f79b9fcdf003e}{is\+Valid} () const
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\bool \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a0e4d65bb9b0548cf131585fcb1a2a17f}{can\+Compute} () const
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\const \hyperlink{classocra_1_1IFunction}{I\+Function}$<$ Ability $>$\+::return\+\_\+type \& \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af42a6175afbf22787ab4dd7dab5b0152}{get} () const
+\item 
+{\footnotesize template$<$e\+Function\+Ability Ability$>$ }\\\hyperlink{classocra_1_1IFunction}{I\+Function}$<$ Ability $>$\+::return\+\_\+sub\+\_\+type \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a6212b1a19d132697be6950665075208e}{get} (int index) const
+\item 
+const Vector\+Xd \& \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a80402679b788ec002d7fa16a2c36838f}{get\+Value} () const
+\item 
+double \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a97e745dc7e7a8a2af03e57d71aefa31c}{get\+Value} (int index) const
+\item 
+const Matrix\+Xd \& \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a273e455d6ab21d57da6c7f37d9d4a7cb}{get\+Jacobian} () const
+\item 
+\hyperlink{namespaceocra_a608bf0522317ed1df3bbfc6a5753bc01}{Matrix\+Xd\+Row} \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a65d422e9ec5829299f0485e78391d4b6}{get\+Jacobian} (int index) const
+\item 
+\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity} \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aa94a871947504091aa69bd1b704d5120}{get\+Type} (void) const
+\item 
+\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity} \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a35d5a52fad803ab14e8840201b99badb}{get\+Convexity\+Property} (void) const
+\item 
+int \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a4fa10e2380f7b0933e8a68bdd51d97c7}{get\+Continuity\+Property} (void) const
+\item 
+const std\+::string \& \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a88001c322d25b358b7a88662268ccd12}{get\+Property} (int i) const
+\item 
+int \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a2b76f1e86519c85c2e6f8147356f2139}{get\+Number\+Of\+Properties} (void) const
+\item 
+bool \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a8fbc174cf47fff622585a56db6444286}{has\+Property} (const std\+::string \&function\+Property) const
+\item 
+bool \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a7fb5dac6a6f5657491398e5df37a4d66}{is\+Explicitly\+Time\+Dependant} (void) const
+\item 
+bool \hyperlink{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a42c4de44a91e30e07db6934ed81ead09}{has\+Separable\+Time\+Dependancy} (void) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$template$<$ class $>$ class X$>$\newline
+struct ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}
+
+
+
+Definition at line 37 of file Function\+Interface\+Mapping.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a0e4d65bb9b0548cf131585fcb1a2a17f}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a0e4d65bb9b0548cf131585fcb1a2a17f} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!can\+Compute@{can\+Compute}}
+\index{can\+Compute@{can\+Compute}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{can\+Compute()}{canCompute()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+template$<$e\+Function\+Ability Ability$>$ \\
+bool \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::can\+Compute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 50 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aebf253ed862abb394f5586709002252e}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aebf253ed862abb394f5586709002252e} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!change\+Dimension@{change\+Dimension}}
+\index{change\+Dimension@{change\+Dimension}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{change\+Dimension()}{changeDimension()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+void \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::change\+Dimension (\begin{DoxyParamCaption}\item[{int}]{new\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 40 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af42a6175afbf22787ab4dd7dab5b0152}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af42a6175afbf22787ab4dd7dab5b0152} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get@{get}}
+\index{get@{get}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+template$<$e\+Function\+Ability Ability$>$ \\
+const \hyperlink{classocra_1_1IFunction}{I\+Function}$<$Ability$>$\+::return\+\_\+type\& \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 52 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a6212b1a19d132697be6950665075208e}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a6212b1a19d132697be6950665075208e} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get@{get}}
+\index{get@{get}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+template$<$e\+Function\+Ability Ability$>$ \\
+\hyperlink{classocra_1_1IFunction}{I\+Function}$<$Ability$>$\+::return\+\_\+sub\+\_\+type \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 54 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a4fa10e2380f7b0933e8a68bdd51d97c7}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a4fa10e2380f7b0933e8a68bdd51d97c7} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Continuity\+Property@{get\+Continuity\+Property}}
+\index{get\+Continuity\+Property@{get\+Continuity\+Property}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Continuity\+Property()}{getContinuityProperty()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+int \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Continuity\+Property (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 63 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a35d5a52fad803ab14e8840201b99badb}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a35d5a52fad803ab14e8840201b99badb} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Convexity\+Property@{get\+Convexity\+Property}}
+\index{get\+Convexity\+Property@{get\+Convexity\+Property}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Convexity\+Property()}{getConvexityProperty()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity} \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Convexity\+Property (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 62 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aa9a3b67499ae7d460a55a83aa3731c73}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aa9a3b67499ae7d460a55a83aa3731c73} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Dimension@{get\+Dimension}}
+\index{get\+Dimension@{get\+Dimension}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Dimension()}{getDimension()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+int \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 39 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a273e455d6ab21d57da6c7f37d9d4a7cb}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a273e455d6ab21d57da6c7f37d9d4a7cb} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Jacobian@{get\+Jacobian}}
+\index{get\+Jacobian@{get\+Jacobian}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Jacobian()}{getJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+const Matrix\+Xd\& \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 57 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a65d422e9ec5829299f0485e78391d4b6}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a65d422e9ec5829299f0485e78391d4b6} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Jacobian@{get\+Jacobian}}
+\index{get\+Jacobian@{get\+Jacobian}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Jacobian()}{getJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+\hyperlink{namespaceocra_a608bf0522317ed1df3bbfc6a5753bc01}{Matrix\+Xd\+Row} \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Jacobian (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 58 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af2bb88848088abbb7ddb9dccb267fd0d}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af2bb88848088abbb7ddb9dccb267fd0d} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Name()}{getName()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+const std\+::string\& \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 41 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a2b76f1e86519c85c2e6f8147356f2139}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a2b76f1e86519c85c2e6f8147356f2139} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Number\+Of\+Properties@{get\+Number\+Of\+Properties}}
+\index{get\+Number\+Of\+Properties@{get\+Number\+Of\+Properties}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Number\+Of\+Properties()}{getNumberOfProperties()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+int \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Number\+Of\+Properties (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 65 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a88001c322d25b358b7a88662268ccd12}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a88001c322d25b358b7a88662268ccd12} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Property@{get\+Property}}
+\index{get\+Property@{get\+Property}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Property()}{getProperty()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+const std\+::string\& \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Property (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 64 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aa94a871947504091aa69bd1b704d5120}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_aa94a871947504091aa69bd1b704d5120} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Type()}{getType()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity} \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 61 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a80402679b788ec002d7fa16a2c36838f}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a80402679b788ec002d7fa16a2c36838f} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+const Vector\+Xd\& \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 55 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a97e745dc7e7a8a2af03e57d71aefa31c}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a97e745dc7e7a8a2af03e57d71aefa31c} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Value@{get\+Value}}
+\index{get\+Value@{get\+Value}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Value()}{getValue()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+double \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Value (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 56 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a9058e43e7454b244cb55433205ecc163}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a9058e43e7454b244cb55433205ecc163} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Variable@{get\+Variable}}
+\index{get\+Variable@{get\+Variable}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Variable()}{getVariable()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+const \hyperlink{classocra_1_1Variable}{Variable}\& \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Variable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 42 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a799447e899dab515b46d322223e8b2cf}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a799447e899dab515b46d322223e8b2cf} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!get\+Variable@{get\+Variable}}
+\index{get\+Variable@{get\+Variable}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{get\+Variable()}{getVariable()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+\hyperlink{classocra_1_1Variable}{Variable}\& \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::get\+Variable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 43 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a8fbc174cf47fff622585a56db6444286}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a8fbc174cf47fff622585a56db6444286} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!has\+Property@{has\+Property}}
+\index{has\+Property@{has\+Property}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{has\+Property()}{hasProperty()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+bool \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::has\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{function\+Property }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 66 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a42c4de44a91e30e07db6934ed81ead09}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a42c4de44a91e30e07db6934ed81ead09} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!has\+Separable\+Time\+Dependancy@{has\+Separable\+Time\+Dependancy}}
+\index{has\+Separable\+Time\+Dependancy@{has\+Separable\+Time\+Dependancy}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{has\+Separable\+Time\+Dependancy()}{hasSeparableTimeDependancy()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+bool \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::has\+Separable\+Time\+Dependancy (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 68 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_ac4e31f7faf096831c52691ef361054b1}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_ac4e31f7faf096831c52691ef361054b1} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!invalidate@{invalidate}}
+\index{invalidate@{invalidate}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{invalidate()}{invalidate()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+template$<$e\+Function\+Ability Ability$>$ \\
+void \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 45 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a1c8b1fac294850b4b70641761acc2542}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a1c8b1fac294850b4b70641761acc2542} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!invalidate\+All@{invalidate\+All}}
+\index{invalidate\+All@{invalidate\+All}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{invalidate\+All()}{invalidateAll()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+void \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::invalidate\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 46 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a7fb5dac6a6f5657491398e5df37a4d66}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_a7fb5dac6a6f5657491398e5df37a4d66} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!is\+Explicitly\+Time\+Dependant@{is\+Explicitly\+Time\+Dependant}}
+\index{is\+Explicitly\+Time\+Dependant@{is\+Explicitly\+Time\+Dependant}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{is\+Explicitly\+Time\+Dependant()}{isExplicitlyTimeDependant()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+bool \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::is\+Explicitly\+Time\+Dependant (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 67 of file Function\+Interface\+Mapping.\+h.
+
+\hypertarget{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af951c325ee8497589c3f79b9fcdf003e}{}\label{structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4_af951c325ee8497589c3f79b9fcdf003e} 
+\index{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$@{ocra\+::\+Function\+Interface\+Mapping$<$ X$<$ Function $>$ $>$}}
+\subsubsection{\texorpdfstring{is\+Valid()}{isValid()}}
+{\footnotesize\ttfamily template$<$template$<$ class $>$ class X$>$ \\
+template$<$e\+Function\+Ability Ability$>$ \\
+bool \hyperlink{structocra_1_1FunctionInterfaceMapping}{ocra\+::\+Function\+Interface\+Mapping}$<$ \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237}{X}$<$ \hyperlink{classocra_1_1Function}{Function} $>$ $>$\+::is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 48 of file Function\+Interface\+Mapping.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{FunctionInterfaceMapping_8h}{Function\+Interface\+Mapping.\+h}\end{DoxyCompactItemize}

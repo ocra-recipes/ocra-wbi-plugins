@@ -1,0 +1,644 @@
+\hypertarget{classocra_1_1TaskYarpInterface}{}\section{ocra\+:\+:Task\+Yarp\+Interface Class Reference}
+\label{classocra_1_1TaskYarpInterface}\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+
+
+{\ttfamily \#include $<$Task\+Yarp\+Interface.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1TaskYarpInterface_1_1ControlInputCallback}{Control\+Input\+Callback}
+\begin{DoxyCompactList}\small\item\em a short description \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1TaskYarpInterface_1_1RpcMessageCallback}{Rpc\+Message\+Callback}
+\begin{DoxyCompactList}\small\item\em a short description \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1TaskYarpInterface_1_1StateUpdateThread}{State\+Update\+Thread}
+\begin{DoxyCompactList}\small\item\em a short description \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1TaskYarpInterface_a152f24acc269a21955f1649de712938b}{Task\+Yarp\+Interface} (Task\+::\+Ptr task\+Ptr)
+\item 
+virtual \hyperlink{classocra_1_1TaskYarpInterface_a61d873b107d555d393746e79ba962fc6}{$\sim$\+Task\+Yarp\+Interface} ()
+\item 
+bool \hyperlink{classocra_1_1TaskYarpInterface_abf74ad0cab419197271b1d476522f0bf}{activate} ()
+\item 
+bool \hyperlink{classocra_1_1TaskYarpInterface_a787a849cd5abd30816d5f2a9abceb9d6}{activate} (const \hyperlink{namespaceocra_a2ed783528071ed7ee7a57d923637595f}{T\+A\+S\+K\+\_\+\+M\+O\+DE} tmode)
+\item 
+bool \hyperlink{classocra_1_1TaskYarpInterface_a4189dabbbaf0e5efe338dfb94e506407}{deactivate} ()
+\item 
+\hyperlink{namespaceocra_a2ed783528071ed7ee7a57d923637595f}{T\+A\+S\+K\+\_\+\+M\+O\+DE} \hyperlink{classocra_1_1TaskYarpInterface_a37db4979419a10881dd8f888330cfa28}{get\+Task\+Mode} ()
+\item 
+std\+::string \hyperlink{classocra_1_1TaskYarpInterface_a9b8f66267bb3a92b4d5bf3e2154fd27d}{get\+Port\+Name} ()
+\item 
+bool \hyperlink{classocra_1_1TaskYarpInterface_ad5e0f75caab96459b864699b18fd60ff}{is\+Activated} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1TaskYarpInterface_aba04c31ffba30d3fb42dd82b0529a7b8}{get\+Task\+Error} ()
+\item 
+int \hyperlink{classocra_1_1TaskYarpInterface_a2f15f22139495aa6c70b7b957cf1c27d}{get\+Task\+Hierarchy\+Level} ()
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_a689d81f3b07ffa4e0d10413013cc4ee9}{set\+Task\+Hierarchy\+Level} (int level)
+\item 
+double \hyperlink{classocra_1_1TaskYarpInterface_af42ea4ecfb28af2f865efdfd40e5dc85}{get\+Task\+Error\+Norm} ()
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_ac95555408e5b6b834066cf9e88572b1e}{set\+Stiffness} (double K)
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_aa97913caf4381af86b5f84d404fac832}{set\+Stiffness} (const Vector\+Xd \&K)
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_ab8b1a2c280686f67d7af869bb639e1f5}{set\+Stiffness} (const Matrix\+Xd \&K)
+\item 
+double \hyperlink{classocra_1_1TaskYarpInterface_ac8fe0e816f2ded6c2280ee0fef70ae54}{get\+Stiffness} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1TaskYarpInterface_a8295f6038a0a1bde584eb0e94d3defa7}{get\+Stiffness\+Matrix} ()
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_af8523d8d22368ee189c840dc96df66c4}{set\+Damping} (double B)
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_a8545fbcd2c83f7b852d63750c3ec375e}{set\+Damping} (const Vector\+Xd \&B)
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_ac6c7216e9c32fde4bf129956fe44fbea}{set\+Damping} (const Matrix\+Xd \&B)
+\item 
+double \hyperlink{classocra_1_1TaskYarpInterface_ae458959630ee96b24ce9dcfa174994bc}{get\+Damping} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1TaskYarpInterface_afdb2df2def4dec4067bd4696489a3b36}{get\+Damping\+Matrix} ()
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_aa66137afb92c94c1c261c067444b2f2d}{set\+Weight} (double weight)
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_a06929d4d2480cd39dbcf0ef9f04fd849}{set\+Weight} (const Eigen\+::\+Vector\+Xd \&weights)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1TaskYarpInterface_a3e97841d50244fa093734e1d098caf79}{get\+Weight} ()
+\item 
+\hyperlink{classocra_1_1TaskState}{Task\+State} \hyperlink{classocra_1_1TaskYarpInterface_abf9665d9838a617c156012243aae047e}{get\+Task\+State} ()
+\item 
+\hyperlink{classocra_1_1TaskState}{Task\+State} \hyperlink{classocra_1_1TaskYarpInterface_ad41a96c26d189b6d5546f6a75a6fc4be}{get\+Desired\+Task\+State} ()
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_a9b26a53ccbb968ffe2652e8a22386651}{set\+Desired\+Task\+State} (const \hyperlink{classocra_1_1TaskState}{Task\+State} \&new\+Desired\+Task\+State)
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_a23efa660fd247e4ac34ff67899291ae8}{set\+Desired\+Task\+State\+Direct} (const \hyperlink{classocra_1_1TaskState}{Task\+State} \&new\+Desired\+Task\+State)
+\item 
+void \hyperlink{classocra_1_1TaskYarpInterface_a758e222fe2e69f6932b13e275636e7be}{publish\+Task\+State} ()
+\item 
+Eigen\+::\+Displacementd \hyperlink{classocra_1_1TaskYarpInterface_aedcb64b913403fa8d5ba41be208732d1}{get\+Task\+Frame\+Displacement} ()
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra_1_1TaskYarpInterface_a073e124334125ce712c194a5e6826038}{get\+Task\+Frame\+Velocity} ()
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra_1_1TaskYarpInterface_a59a7442dac9b971d36ba792b05d2afba}{get\+Task\+Frame\+Acceleration} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra_1_1TaskYarpInterface_a5bdab48cc56cd473f007bb6f1c9c739d}{get\+Task\+Frame\+Position} ()
+\item 
+Eigen\+::\+Rotation3d \hyperlink{classocra_1_1TaskYarpInterface_a9878b0030948a97cacbe6aef76846a48}{get\+Task\+Frame\+Orientation} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra_1_1TaskYarpInterface_ab7773bffb7b1cb3fc9968108afa30665}{get\+Task\+Frame\+Linear\+Velocity} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra_1_1TaskYarpInterface_adc74f01320a4326756d855b1e24e395f}{get\+Task\+Frame\+Angular\+Velocity} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra_1_1TaskYarpInterface_a798dc2edfbffa9759353dcc0afe96fff}{get\+Task\+Frame\+Linear\+Acceleration} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra_1_1TaskYarpInterface_a68eee445c141dec3251ab40a38314c81}{get\+Task\+Frame\+Angular\+Acceleration} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+a long description 
+
+Definition at line 41 of file Task\+Yarp\+Interface.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1TaskYarpInterface_a152f24acc269a21955f1649de712938b}{}\label{classocra_1_1TaskYarpInterface_a152f24acc269a21955f1649de712938b} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!Task\+Yarp\+Interface@{Task\+Yarp\+Interface}}
+\index{Task\+Yarp\+Interface@{Task\+Yarp\+Interface}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{Task\+Yarp\+Interface()}{TaskYarpInterface()}}
+{\footnotesize\ttfamily Task\+Yarp\+Interface\+::\+Task\+Yarp\+Interface (\begin{DoxyParamCaption}\item[{Task\+::\+Ptr}]{task\+Ptr }\end{DoxyParamCaption})}
+
+Constructor. 
+\begin{DoxyParams}{Parameters}
+{\em ctrl} & A reference to an ocra controller. \\
+\hline
+{\em model} & A reference to and ocra model. \\
+\hline
+{\em name} & The name of the task. \\
+\hline
+{\em name} & The hierarchy level for Hocra \\
+\hline
+{\em uses\+Yarp\+Ports} & Whether or not to use yarp for interprocess communication with the task. True by defualt.\\
+\hline
+\end{DoxyParams}
+base constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctrl} & \hyperlink{classocra_1_1Controller}{ocra\+::\+Controller} to connect to \\
+\hline
+{\em model} & ocra model to setup the task \\
+\hline
+{\em task\+Name} & Name of the task \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 12 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a61d873b107d555d393746e79ba962fc6}{}\label{classocra_1_1TaskYarpInterface_a61d873b107d555d393746e79ba962fc6} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!````~Task\+Yarp\+Interface@{$\sim$\+Task\+Yarp\+Interface}}
+\index{````~Task\+Yarp\+Interface@{$\sim$\+Task\+Yarp\+Interface}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{$\sim$\+Task\+Yarp\+Interface()}{~TaskYarpInterface()}}
+{\footnotesize\ttfamily Task\+Yarp\+Interface\+::$\sim$\+Task\+Yarp\+Interface (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor. Mostly just closes yarp ports and threads. 
+
+Definition at line 28 of file Task\+Yarp\+Interface.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1TaskYarpInterface_abf74ad0cab419197271b1d476522f0bf}{}\label{classocra_1_1TaskYarpInterface_abf74ad0cab419197271b1d476522f0bf} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!activate@{activate}}
+\index{activate@{activate}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{activate()}{activate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Task\+Yarp\+Interface\+::activate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Activates the underlying task(s) \begin{DoxyNote}{Note}
+{\ttfamily \hyperlink{classocra_1_1TaskYarpInterface_a4189dabbbaf0e5efe338dfb94e506407}{deactivate()}} must be called before this function to work properly.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the operation. 
+\end{DoxyReturn}
+
+
+Definition at line 48 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a787a849cd5abd30816d5f2a9abceb9d6}{}\label{classocra_1_1TaskYarpInterface_a787a849cd5abd30816d5f2a9abceb9d6} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!activate@{activate}}
+\index{activate@{activate}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{activate()}{activate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Task\+Yarp\+Interface\+::activate (\begin{DoxyParamCaption}\item[{const \hyperlink{namespaceocra_a2ed783528071ed7ee7a57d923637595f}{T\+A\+S\+K\+\_\+\+M\+O\+DE}}]{tmode }\end{DoxyParamCaption})}
+
+Activates a single task as either an objective or a constraint. \begin{DoxyNote}{Note}
+{\ttfamily \hyperlink{classocra_1_1TaskYarpInterface_a4189dabbbaf0e5efe338dfb94e506407}{deactivate()}} must be called before this function to work properly.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the operation. 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a4189dabbbaf0e5efe338dfb94e506407}{}\label{classocra_1_1TaskYarpInterface_a4189dabbbaf0e5efe338dfb94e506407} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{deactivate()}{deactivate()}}
+{\footnotesize\ttfamily bool Task\+Yarp\+Interface\+::deactivate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Deactivates the underlying task(s). This is where we call \hyperlink{classocra_1_1TaskYarpInterface_a37db4979419a10881dd8f888330cfa28}{get\+Task\+Mode()} to see if the task in an objective or a constraint.
+
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the operation. 
+\end{DoxyReturn}
+
+
+Definition at line 94 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_ae458959630ee96b24ce9dcfa174994bc}{}\label{classocra_1_1TaskYarpInterface_ae458959630ee96b24ce9dcfa174994bc} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Damping@{get\+Damping}}
+\index{get\+Damping@{get\+Damping}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Damping()}{getDamping()}}
+{\footnotesize\ttfamily double Task\+Yarp\+Interface\+::get\+Damping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current damping, or damping (Kd) gain, of the task.
+
+\begin{DoxyReturn}{Returns}
+The first diagonal entry of the damping matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 208 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_afdb2df2def4dec4067bd4696489a3b36}{}\label{classocra_1_1TaskYarpInterface_afdb2df2def4dec4067bd4696489a3b36} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Damping\+Matrix@{get\+Damping\+Matrix}}
+\index{get\+Damping\+Matrix@{get\+Damping\+Matrix}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Damping\+Matrix()}{getDampingMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Task\+Yarp\+Interface\+::get\+Damping\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current damping, or damping (Kd) gain, of the task.
+
+\begin{DoxyReturn}{Returns}
+The damping matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 219 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_ad41a96c26d189b6d5546f6a75a6fc4be}{}\label{classocra_1_1TaskYarpInterface_ad41a96c26d189b6d5546f6a75a6fc4be} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Desired\+Task\+State@{get\+Desired\+Task\+State}}
+\index{get\+Desired\+Task\+State@{get\+Desired\+Task\+State}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Desired\+Task\+State()}{getDesiredTaskState()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1TaskState}{Task\+State} Task\+Yarp\+Interface\+::get\+Desired\+Task\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 259 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a9b8f66267bb3a92b4d5bf3e2154fd27d}{}\label{classocra_1_1TaskYarpInterface_a9b8f66267bb3a92b4d5bf3e2154fd27d} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Port\+Name@{get\+Port\+Name}}
+\index{get\+Port\+Name@{get\+Port\+Name}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Port\+Name()}{getPortName()}}
+{\footnotesize\ttfamily std\+::string Task\+Yarp\+Interface\+::get\+Port\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the name of the task manager\textquotesingle{}s R\+PC server port.
+
+\begin{DoxyReturn}{Returns}
+The port\textquotesingle{}s full name as a string. 
+\end{DoxyReturn}
+
+
+Definition at line 409 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_ac8fe0e816f2ded6c2280ee0fef70ae54}{}\label{classocra_1_1TaskYarpInterface_ac8fe0e816f2ded6c2280ee0fef70ae54} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Stiffness@{get\+Stiffness}}
+\index{get\+Stiffness@{get\+Stiffness}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Stiffness()}{getStiffness()}}
+{\footnotesize\ttfamily double Task\+Yarp\+Interface\+::get\+Stiffness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current stiffness, or proportional (Kp) gain, of the task.
+
+\begin{DoxyReturn}{Returns}
+The first diagonal entry of the stiffness matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 166 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a8295f6038a0a1bde584eb0e94d3defa7}{}\label{classocra_1_1TaskYarpInterface_a8295f6038a0a1bde584eb0e94d3defa7} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Stiffness\+Matrix@{get\+Stiffness\+Matrix}}
+\index{get\+Stiffness\+Matrix@{get\+Stiffness\+Matrix}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Stiffness\+Matrix()}{getStiffnessMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Task\+Yarp\+Interface\+::get\+Stiffness\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current stiffness, or proportional (Kp) gain, of the task.
+
+\begin{DoxyReturn}{Returns}
+The stiffness matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 177 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_aba04c31ffba30d3fb42dd82b0529a7b8}{}\label{classocra_1_1TaskYarpInterface_aba04c31ffba30d3fb42dd82b0529a7b8} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Error@{get\+Task\+Error}}
+\index{get\+Task\+Error@{get\+Task\+Error}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Error()}{getTaskError()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Task\+Yarp\+Interface\+::get\+Task\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current error vector of the task.  Only valid for task managers with 1 task, not sets of tasks.
+
+\begin{DoxyReturn}{Returns}
+A vector of errors in each DoF of the task. 
+\end{DoxyReturn}
+
+
+Definition at line 129 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_af42ea4ecfb28af2f865efdfd40e5dc85}{}\label{classocra_1_1TaskYarpInterface_af42ea4ecfb28af2f865efdfd40e5dc85} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Error\+Norm@{get\+Task\+Error\+Norm}}
+\index{get\+Task\+Error\+Norm@{get\+Task\+Error\+Norm}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Error\+Norm()}{getTaskErrorNorm()}}
+{\footnotesize\ttfamily double Task\+Yarp\+Interface\+::get\+Task\+Error\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current error vector norm of the task.  Only valid for task managers with 1 task, not sets of tasks.
+
+\begin{DoxyReturn}{Returns}
+The norm of the task error vector. 
+\end{DoxyReturn}
+
+
+Definition at line 138 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a59a7442dac9b971d36ba792b05d2afba}{}\label{classocra_1_1TaskYarpInterface_a59a7442dac9b971d36ba792b05d2afba} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Acceleration@{get\+Task\+Frame\+Acceleration}}
+\index{get\+Task\+Frame\+Acceleration@{get\+Task\+Frame\+Acceleration}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Acceleration()}{getTaskFrameAcceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd Task\+Yarp\+Interface\+::get\+Task\+Frame\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 370 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a68eee445c141dec3251ab40a38314c81}{}\label{classocra_1_1TaskYarpInterface_a68eee445c141dec3251ab40a38314c81} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Angular\+Acceleration@{get\+Task\+Frame\+Angular\+Acceleration}}
+\index{get\+Task\+Frame\+Angular\+Acceleration@{get\+Task\+Frame\+Angular\+Acceleration}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Angular\+Acceleration()}{getTaskFrameAngularAcceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Yarp\+Interface\+::get\+Task\+Frame\+Angular\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 400 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_adc74f01320a4326756d855b1e24e395f}{}\label{classocra_1_1TaskYarpInterface_adc74f01320a4326756d855b1e24e395f} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Angular\+Velocity@{get\+Task\+Frame\+Angular\+Velocity}}
+\index{get\+Task\+Frame\+Angular\+Velocity@{get\+Task\+Frame\+Angular\+Velocity}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Angular\+Velocity()}{getTaskFrameAngularVelocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Yarp\+Interface\+::get\+Task\+Frame\+Angular\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 390 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_aedcb64b913403fa8d5ba41be208732d1}{}\label{classocra_1_1TaskYarpInterface_aedcb64b913403fa8d5ba41be208732d1} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Displacement@{get\+Task\+Frame\+Displacement}}
+\index{get\+Task\+Frame\+Displacement@{get\+Task\+Frame\+Displacement}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Displacement()}{getTaskFrameDisplacement()}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd Task\+Yarp\+Interface\+::get\+Task\+Frame\+Displacement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 360 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a798dc2edfbffa9759353dcc0afe96fff}{}\label{classocra_1_1TaskYarpInterface_a798dc2edfbffa9759353dcc0afe96fff} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Linear\+Acceleration@{get\+Task\+Frame\+Linear\+Acceleration}}
+\index{get\+Task\+Frame\+Linear\+Acceleration@{get\+Task\+Frame\+Linear\+Acceleration}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Linear\+Acceleration()}{getTaskFrameLinearAcceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Yarp\+Interface\+::get\+Task\+Frame\+Linear\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 395 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_ab7773bffb7b1cb3fc9968108afa30665}{}\label{classocra_1_1TaskYarpInterface_ab7773bffb7b1cb3fc9968108afa30665} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Linear\+Velocity@{get\+Task\+Frame\+Linear\+Velocity}}
+\index{get\+Task\+Frame\+Linear\+Velocity@{get\+Task\+Frame\+Linear\+Velocity}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Linear\+Velocity()}{getTaskFrameLinearVelocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Yarp\+Interface\+::get\+Task\+Frame\+Linear\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 385 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a9878b0030948a97cacbe6aef76846a48}{}\label{classocra_1_1TaskYarpInterface_a9878b0030948a97cacbe6aef76846a48} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Orientation@{get\+Task\+Frame\+Orientation}}
+\index{get\+Task\+Frame\+Orientation@{get\+Task\+Frame\+Orientation}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Orientation()}{getTaskFrameOrientation()}}
+{\footnotesize\ttfamily Eigen\+::\+Rotation3d Task\+Yarp\+Interface\+::get\+Task\+Frame\+Orientation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 380 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a5bdab48cc56cd473f007bb6f1c9c739d}{}\label{classocra_1_1TaskYarpInterface_a5bdab48cc56cd473f007bb6f1c9c739d} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Position@{get\+Task\+Frame\+Position}}
+\index{get\+Task\+Frame\+Position@{get\+Task\+Frame\+Position}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Position()}{getTaskFramePosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Yarp\+Interface\+::get\+Task\+Frame\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 375 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a073e124334125ce712c194a5e6826038}{}\label{classocra_1_1TaskYarpInterface_a073e124334125ce712c194a5e6826038} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Frame\+Velocity@{get\+Task\+Frame\+Velocity}}
+\index{get\+Task\+Frame\+Velocity@{get\+Task\+Frame\+Velocity}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Velocity()}{getTaskFrameVelocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd Task\+Yarp\+Interface\+::get\+Task\+Frame\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 365 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a2f15f22139495aa6c70b7b957cf1c27d}{}\label{classocra_1_1TaskYarpInterface_a2f15f22139495aa6c70b7b957cf1c27d} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Hierarchy\+Level@{get\+Task\+Hierarchy\+Level}}
+\index{get\+Task\+Hierarchy\+Level@{get\+Task\+Hierarchy\+Level}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Hierarchy\+Level()}{getTaskHierarchyLevel()}}
+{\footnotesize\ttfamily int Task\+Yarp\+Interface\+::get\+Task\+Hierarchy\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the defined Level for a task  Cannot be changed at runtime .
+
+\begin{DoxyReturn}{Returns}
+The level. 
+\end{DoxyReturn}
+
+
+Definition at line 37 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a37db4979419a10881dd8f888330cfa28}{}\label{classocra_1_1TaskYarpInterface_a37db4979419a10881dd8f888330cfa28} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+Mode@{get\+Task\+Mode}}
+\index{get\+Task\+Mode@{get\+Task\+Mode}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+Mode()}{getTaskMode()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_a2ed783528071ed7ee7a57d923637595f}{T\+A\+S\+K\+\_\+\+M\+O\+DE} Task\+Yarp\+Interface\+::get\+Task\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current task mode. Either objective, constraint or undefined. 
+\begin{DoxyParams}{Parameters}
+{\em tsk} & A pointer to a single task.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The mode of that task. 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_abf9665d9838a617c156012243aae047e}{}\label{classocra_1_1TaskYarpInterface_abf9665d9838a617c156012243aae047e} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Task\+State@{get\+Task\+State}}
+\index{get\+Task\+State@{get\+Task\+State}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Task\+State()}{getTaskState()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1TaskState}{Task\+State} Task\+Yarp\+Interface\+::get\+Task\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 254 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a3e97841d50244fa093734e1d098caf79}{}\label{classocra_1_1TaskYarpInterface_a3e97841d50244fa093734e1d098caf79} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{get\+Weight()}{getWeight()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Task\+Yarp\+Interface\+::get\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the weights associated with the task. Often a task will have a single weight but it is still represented as a vector to be applied to each DoF of the task.
+
+\begin{DoxyReturn}{Returns}
+The vector of task weights. 
+\end{DoxyReturn}
+
+
+Definition at line 243 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_ad5e0f75caab96459b864699b18fd60ff}{}\label{classocra_1_1TaskYarpInterface_ad5e0f75caab96459b864699b18fd60ff} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!is\+Activated@{is\+Activated}}
+\index{is\+Activated@{is\+Activated}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{is\+Activated()}{isActivated()}}
+{\footnotesize\ttfamily bool Task\+Yarp\+Interface\+::is\+Activated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Check if the task is active as either an objective or a constraint.
+
+\begin{DoxyReturn}{Returns}
+A boolean indicating the task(s) activity. 
+\end{DoxyReturn}
+
+
+Definition at line 119 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a758e222fe2e69f6932b13e275636e7be}{}\label{classocra_1_1TaskYarpInterface_a758e222fe2e69f6932b13e275636e7be} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!publish\+Task\+State@{publish\+Task\+State}}
+\index{publish\+Task\+State@{publish\+Task\+State}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{publish\+Task\+State()}{publishTaskState()}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::publish\+Task\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 274 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_af8523d8d22368ee189c840dc96df66c4}{}\label{classocra_1_1TaskYarpInterface_af8523d8d22368ee189c840dc96df66c4} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Damping (\begin{DoxyParamCaption}\item[{double}]{B }\end{DoxyParamCaption})}
+
+Sets the damping, or damping (Kd) gain, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The damping gain to set. Fills a diagonal matrix. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 187 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a8545fbcd2c83f7b852d63750c3ec375e}{}\label{classocra_1_1TaskYarpInterface_a8545fbcd2c83f7b852d63750c3ec375e} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Damping (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{B }\end{DoxyParamCaption})}
+
+Sets the damping, or damping (Kd) gains, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The damping gains to set for each DoF. Creates a diagonal matrix from K. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 194 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_ac6c7216e9c32fde4bf129956fe44fbea}{}\label{classocra_1_1TaskYarpInterface_ac6c7216e9c32fde4bf129956fe44fbea} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Damping (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{B }\end{DoxyParamCaption})}
+
+Sets the damping, or damping (Kd) gains, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The damping gains to set for the task. Off diagonal components will create damping correlations between the task DoF. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 201 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a9b26a53ccbb968ffe2652e8a22386651}{}\label{classocra_1_1TaskYarpInterface_a9b26a53ccbb968ffe2652e8a22386651} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Desired\+Task\+State@{set\+Desired\+Task\+State}}
+\index{set\+Desired\+Task\+State@{set\+Desired\+Task\+State}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Desired\+Task\+State()}{setDesiredTaskState()}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Desired\+Task\+State (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1TaskState}{Task\+State} \&}]{new\+Desired\+Task\+State }\end{DoxyParamCaption})}
+
+
+
+Definition at line 264 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a23efa660fd247e4ac34ff67899291ae8}{}\label{classocra_1_1TaskYarpInterface_a23efa660fd247e4ac34ff67899291ae8} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Desired\+Task\+State\+Direct@{set\+Desired\+Task\+State\+Direct}}
+\index{set\+Desired\+Task\+State\+Direct@{set\+Desired\+Task\+State\+Direct}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Desired\+Task\+State\+Direct()}{setDesiredTaskStateDirect()}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Desired\+Task\+State\+Direct (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1TaskState}{Task\+State} \&}]{new\+Desired\+Task\+State }\end{DoxyParamCaption})}
+
+
+
+Definition at line 269 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_ac95555408e5b6b834066cf9e88572b1e}{}\label{classocra_1_1TaskYarpInterface_ac95555408e5b6b834066cf9e88572b1e} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{double}]{K }\end{DoxyParamCaption})}
+
+Sets the stiffness, or proportional (Kp) gain, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The proportional gain to set. Fills a diagonal matrix. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 143 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_aa97913caf4381af86b5f84d404fac832}{}\label{classocra_1_1TaskYarpInterface_aa97913caf4381af86b5f84d404fac832} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{K }\end{DoxyParamCaption})}
+
+Sets the stiffness, or proportional (Kp) gains, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The proportional gains to set for each DoF. Creates a diagonal matrix from K. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 152 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_ab8b1a2c280686f67d7af869bb639e1f5}{}\label{classocra_1_1TaskYarpInterface_ab8b1a2c280686f67d7af869bb639e1f5} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{K }\end{DoxyParamCaption})}
+
+Sets the stiffness, or proportional (Kp) gains, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The proportional gains to set for the task. Off diagonal components will create stiffness correlations between the task DoF. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 159 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a689d81f3b07ffa4e0d10413013cc4ee9}{}\label{classocra_1_1TaskYarpInterface_a689d81f3b07ffa4e0d10413013cc4ee9} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Task\+Hierarchy\+Level@{set\+Task\+Hierarchy\+Level}}
+\index{set\+Task\+Hierarchy\+Level@{set\+Task\+Hierarchy\+Level}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Task\+Hierarchy\+Level()}{setTaskHierarchyLevel()}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Task\+Hierarchy\+Level (\begin{DoxyParamCaption}\item[{int}]{level }\end{DoxyParamCaption})}
+
+
+
+Definition at line 42 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_aa66137afb92c94c1c261c067444b2f2d}{}\label{classocra_1_1TaskYarpInterface_aa66137afb92c94c1c261c067444b2f2d} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Weight@{set\+Weight}}
+\index{set\+Weight@{set\+Weight}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Weight()}{setWeight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Weight (\begin{DoxyParamCaption}\item[{double}]{weight }\end{DoxyParamCaption})}
+
+Sets the weight for all DoF of a task. 
+\begin{DoxyParams}{Parameters}
+{\em weight} & The weight to apply to all task DoF. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 229 of file Task\+Yarp\+Interface.\+cpp.
+
+\hypertarget{classocra_1_1TaskYarpInterface_a06929d4d2480cd39dbcf0ef9f04fd849}{}\label{classocra_1_1TaskYarpInterface_a06929d4d2480cd39dbcf0ef9f04fd849} 
+\index{ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}!set\+Weight@{set\+Weight}}
+\index{set\+Weight@{set\+Weight}!ocra\+::\+Task\+Yarp\+Interface@{ocra\+::\+Task\+Yarp\+Interface}}
+\subsubsection{\texorpdfstring{set\+Weight()}{setWeight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Task\+Yarp\+Interface\+::set\+Weight (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{weights }\end{DoxyParamCaption})}
+
+Sets the weights for each DoF of a task. 
+\begin{DoxyParams}{Parameters}
+{\em weights} & A vector of weights to apply to each task DoF individually. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 236 of file Task\+Yarp\+Interface.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TaskYarpInterface_8h}{Task\+Yarp\+Interface.\+h}\item 
+\hyperlink{TaskYarpInterface_8cpp}{Task\+Yarp\+Interface.\+cpp}\end{DoxyCompactItemize}

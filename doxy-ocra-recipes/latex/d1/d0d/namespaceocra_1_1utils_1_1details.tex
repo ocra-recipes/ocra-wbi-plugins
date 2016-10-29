@@ -1,0 +1,107 @@
+\hypertarget{namespaceocra_1_1utils_1_1details}{}\section{ocra\+:\+:utils\+:\+:details Namespace Reference}
+\label{namespaceocra_1_1utils_1_1details}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{e\+Convert\+Case} \{ \newline
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a03eb35928d61fd2a957cf41c6c4578ca}{P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B} =0, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b}{P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a5c4183c0fd47b8c64276843dda690de7}{P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff}{P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV}, 
+\newline
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399aa51f84eadd7c02e17fcae444cd646c79}{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399afb7decc69a9b25a7b762f2084e9d52f0}{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a6de905f897737b898a7c188c7d9c85b8}{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a10d452d5d1cdb90b7216e1e49ad73b8e}{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV}, 
+\newline
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399ac32fdefb96f856fd13bfad381529309e}{S\+P\+E\+C\+I\+A\+L\+\_\+\+C\+A\+SE}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{I\+M\+P\+O\+S\+S\+I\+B\+L\+E\+\_\+\+C\+A\+SE}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Derived $>$ }\\void \hyperlink{namespaceocra_1_1utils_1_1details_a47a75bc377ce3547c94c54c6d500fffb}{convert\+\_\+} (const \hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \&cstr, \hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939b}{e\+Constraint\+Type} apparent\+Type, const std\+::vector$<$ int $>$ \&mapping, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{e\+Convert\+Case} convert\+Case, Matrix\+Base$<$ Derived $>$ \&A, Matrix\+Base$<$ Vector\+Derived $>$ const \&\+\_\+b)
+\item 
+{\footnotesize template$<$class Derived\+In , class Vector\+Base\+In1 , class Vector\+Base\+In2 , class Derived\+Out , class Vector\+Base\+Out $>$ }\\void \hyperlink{namespaceocra_1_1utils_1_1details_a127392d7e9e17996ff887583037da190}{convert} (const Matrix\+Base$<$ Derived\+In $>$ \&M, const Vector\+Base\+In1 \&v1, const Vector\+Base\+In2 \&v2, Matrix\+Base$<$ Derived\+Out $>$ \&A, Vector\+Base\+Out \&b, const std\+::vector$<$ int $>$ \&mapping, \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{details\+::e\+Convert\+Case} convert\+Case)
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399} 
+\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!e\+Convert\+Case@{e\+Convert\+Case}}
+\index{e\+Convert\+Case@{e\+Convert\+Case}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}
+\subsubsection{\texorpdfstring{e\+Convert\+Case}{eConvertCase}}
+{\footnotesize\ttfamily enum \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{ocra\+::utils\+::details\+::e\+Convert\+Case}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B@{P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B@{P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a03eb35928d61fd2a957cf41c6c4578ca}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a03eb35928d61fd2a957cf41c6c4578ca} 
+P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B@{P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B@{P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b} 
+P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV@{P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV@{P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a5c4183c0fd47b8c64276843dda690de7}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a5c4183c0fd47b8c64276843dda690de7} 
+P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV@{P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV@{P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff} 
+P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B@{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B@{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399aa51f84eadd7c02e17fcae444cd646c79}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399aa51f84eadd7c02e17fcae444cd646c79} 
+M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B@{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B@{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399afb7decc69a9b25a7b762f2084e9d52f0}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399afb7decc69a9b25a7b762f2084e9d52f0} 
+M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV@{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV@{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a6de905f897737b898a7c188c7d9c85b8}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a6de905f897737b898a7c188c7d9c85b8} 
+M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV@{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV@{M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a10d452d5d1cdb90b7216e1e49ad73b8e}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a10d452d5d1cdb90b7216e1e49ad73b8e} 
+M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+P\+E\+C\+I\+A\+L\+\_\+\+C\+A\+SE@{S\+P\+E\+C\+I\+A\+L\+\_\+\+C\+A\+SE}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!S\+P\+E\+C\+I\+A\+L\+\_\+\+C\+A\+SE@{S\+P\+E\+C\+I\+A\+L\+\_\+\+C\+A\+SE}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399ac32fdefb96f856fd13bfad381529309e}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399ac32fdefb96f856fd13bfad381529309e} 
+S\+P\+E\+C\+I\+A\+L\+\_\+\+C\+A\+SE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+M\+P\+O\+S\+S\+I\+B\+L\+E\+\_\+\+C\+A\+SE@{I\+M\+P\+O\+S\+S\+I\+B\+L\+E\+\_\+\+C\+A\+SE}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!I\+M\+P\+O\+S\+S\+I\+B\+L\+E\+\_\+\+C\+A\+SE@{I\+M\+P\+O\+S\+S\+I\+B\+L\+E\+\_\+\+C\+A\+SE}}}\hypertarget{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{}\label{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178} 
+I\+M\+P\+O\+S\+S\+I\+B\+L\+E\+\_\+\+C\+A\+SE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 61 of file Solver\+Utilities.\+h.
+
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceocra_1_1utils_1_1details_a127392d7e9e17996ff887583037da190}{}\label{namespaceocra_1_1utils_1_1details_a127392d7e9e17996ff887583037da190} 
+\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!convert@{convert}}
+\index{convert@{convert}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}
+\subsubsection{\texorpdfstring{convert()}{convert()}}
+{\footnotesize\ttfamily template$<$class Derived\+In , class Vector\+Base\+In1 , class Vector\+Base\+In2 , class Derived\+Out , class Vector\+Base\+Out $>$ \\
+void ocra\+::utils\+::details\+::convert (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived\+In $>$ \&}]{M,  }\item[{const Vector\+Base\+In1 \&}]{v1,  }\item[{const Vector\+Base\+In2 \&}]{v2,  }\item[{Matrix\+Base$<$ Derived\+Out $>$ \&}]{A,  }\item[{Vector\+Base\+Out \&}]{b,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{details\+::e\+Convert\+Case}}]{convert\+Case }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 448 of file Solver\+Utilities.\+hxx.
+
+\hypertarget{namespaceocra_1_1utils_1_1details_a47a75bc377ce3547c94c54c6d500fffb}{}\label{namespaceocra_1_1utils_1_1details_a47a75bc377ce3547c94c54c6d500fffb} 
+\index{ocra\+::utils\+::details@{ocra\+::utils\+::details}!convert\+\_\+@{convert\+\_\+}}
+\index{convert\+\_\+@{convert\+\_\+}!ocra\+::utils\+::details@{ocra\+::utils\+::details}}
+\subsubsection{\texorpdfstring{convert\+\_\+()}{convert\_()}}
+{\footnotesize\ttfamily template$<$class Derived , class Vector\+Derived $>$ \\
+void ocra\+::utils\+::details\+::convert\+\_\+ (\begin{DoxyParamCaption}\item[{const \hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \&}]{cstr,  }\item[{\hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939b}{e\+Constraint\+Type}}]{apparent\+Type,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{e\+Convert\+Case}}]{convert\+Case,  }\item[{Matrix\+Base$<$ Derived $>$ \&}]{A,  }\item[{Matrix\+Base$<$ Vector\+Derived $>$ const \&}]{\+\_\+b }\end{DoxyParamCaption})}
+
+
+
+Definition at line 428 of file Solver\+Utilities.\+hxx.
+

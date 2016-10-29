@@ -1,0 +1,91 @@
+\hypertarget{classMyFunction}{}\section{My\+Function Class Reference}
+\label{classMyFunction}\index{My\+Function@{My\+Function}}
+Inheritance diagram for My\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.901771cm]{db/d8c/classMyFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classMyFunction_addcad41fa4e120bf9decb70b4b22f935}{My\+Function} (\hyperlink{classocra_1_1Variable}{ocra\+::\+Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, int dimension)
+\item 
+virtual void \hyperlink{classMyFunction_a53829722ebc3fce3d1fa9b96c61b2b53}{update\+Value} () const
+\item 
+void \hyperlink{classMyFunction_a5ff3f1717385a96fe60fb1b993db0ef3}{update\+Jacobian} () const
+\item 
+void \hyperlink{classMyFunction_af0219da97114570582c6a02cf072a7db}{update\+Fdot} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 156 of file Function.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classMyFunction_addcad41fa4e120bf9decb70b4b22f935}{}\label{classMyFunction_addcad41fa4e120bf9decb70b4b22f935} 
+\index{My\+Function@{My\+Function}!My\+Function@{My\+Function}}
+\index{My\+Function@{My\+Function}!My\+Function@{My\+Function}}
+\subsubsection{\texorpdfstring{My\+Function()}{MyFunction()}}
+{\footnotesize\ttfamily My\+Function\+::\+My\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{ocra\+::\+Variable} \&}]{x,  }\item[{int}]{dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 159 of file Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classMyFunction_af0219da97114570582c6a02cf072a7db}{}\label{classMyFunction_af0219da97114570582c6a02cf072a7db} 
+\index{My\+Function@{My\+Function}!update\+Fdot@{update\+Fdot}}
+\index{update\+Fdot@{update\+Fdot}!My\+Function@{My\+Function}}
+\subsubsection{\texorpdfstring{update\+Fdot()}{updateFdot()}}
+{\footnotesize\ttfamily void My\+Function\+::update\+Fdot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Generic implementation of update\+Fdot.
+
+\begin{DoxyPrecond}{Precondition}
+The first time derivative of the variable exists. 
+
+Value partial\+\_\+X needs to be computable. 
+
+Value partial\+\_\+T needs to be computable if the function depends explicitly on time.
+\end{DoxyPrecond}
+This is not an optimal implementation in case it is known wether the function depends explicitly on the time or not. A test is indeed performed at runtime to decide which computations need to be done. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a2f09ce859333f22fdd527ff08aee6e6e}{ocra\+::\+Function}.
+
+
+
+Definition at line 177 of file Function.\+cpp.
+
+\hypertarget{classMyFunction_a5ff3f1717385a96fe60fb1b993db0ef3}{}\label{classMyFunction_a5ff3f1717385a96fe60fb1b993db0ef3} 
+\index{My\+Function@{My\+Function}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!My\+Function@{My\+Function}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void My\+Function\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 172 of file Function.\+cpp.
+
+\hypertarget{classMyFunction_a53829722ebc3fce3d1fa9b96c61b2b53}{}\label{classMyFunction_a53829722ebc3fce3d1fa9b96c61b2b53} 
+\index{My\+Function@{My\+Function}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!My\+Function@{My\+Function}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily virtual void My\+Function\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 167 of file Function.\+cpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Function_8cpp}{Function.\+cpp}\end{DoxyCompactItemize}

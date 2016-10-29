@@ -1,0 +1,71 @@
+\hypertarget{TaskYarpInterfaceVocab_8h}{}\section{Task\+Yarp\+Interface\+Vocab.\+h File Reference}
+\label{TaskYarpInterfaceVocab_8h}\index{Task\+Yarp\+Interface\+Vocab.\+h@{Task\+Yarp\+Interface\+Vocab.\+h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Lgsm$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Bottle.\+h$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$regex$>$}\newline
+{\ttfamily \#include $<$iterator$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1TaskMessageHandler}{ocra\+::\+Task\+Message\+Handler}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dd}{ocra\+::\+T\+A\+S\+K\+\_\+\+M\+E\+S\+S\+A\+GE} \{ \newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddaa9cb33f64a24c52cd191bdaa2634c341}{ocra\+::\+O\+C\+R\+A\+\_\+\+F\+A\+I\+L\+U\+RE} = 0, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda50a83b446115e623dd81f698e32f30f4}{ocra\+::\+O\+C\+R\+A\+\_\+\+S\+U\+C\+C\+E\+SS}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda187e77df0298e28d4a41bac1b2803f1a}{ocra\+::\+O\+C\+R\+A\+\_\+\+W\+A\+R\+N\+I\+NG}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda304b89c536487e57cd489114def30332}{ocra\+::\+G\+E\+T\+\_\+\+C\+U\+R\+R\+E\+N\+T\+\_\+\+S\+T\+A\+TE}, 
+\newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda00870302f6d9fef375ccca58d693245b}{ocra\+::\+G\+E\+T\+\_\+\+S\+T\+I\+F\+F\+N\+E\+SS}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda0263f815a5b0e4c4af90766674cc93fc}{ocra\+::\+G\+E\+T\+\_\+\+D\+A\+M\+P\+I\+NG}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda2ec5e5ead8615e9578ce0c425242b2a8}{ocra\+::\+G\+E\+T\+\_\+\+W\+E\+I\+G\+H\+TS}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda0f00b76df38826c9315e8e76d07c1d06}{ocra\+::\+G\+E\+T\+\_\+\+A\+C\+T\+I\+V\+I\+T\+Y\+\_\+\+S\+T\+A\+T\+US}, 
+\newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda5ec63de49e94267ab2433aaa624fc0d8}{ocra\+::\+G\+E\+T\+\_\+\+D\+I\+M\+E\+N\+S\+I\+ON}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddab832b31e328bb810d39cc5b96a6f66d4}{ocra\+::\+G\+E\+T\+\_\+\+T\+Y\+PE}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda8ef928c50ace260497fcee69055fb1c0}{ocra\+::\+G\+E\+T\+\_\+\+T\+Y\+P\+E\+\_\+\+A\+S\+\_\+\+S\+T\+R\+I\+NG}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda930c7052a4310e9461b31e260043ddec}{ocra\+::\+G\+E\+T\+\_\+\+N\+A\+ME}, 
+\newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda7e6ab88132707eae37efe46660849c18}{ocra\+::\+G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+O\+R\+T\+\_\+\+N\+A\+M\+ES}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddae156ba094082c07802eed5b0f9597ce8}{ocra\+::\+G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+N\+A\+ME}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda51bc9c82fdbe1afb6fd9c17d6dbd57de}{ocra\+::\+G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+E\+R\+R\+OR}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda31be446bada225e1bdc48becc15d2659}{ocra\+::\+G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+TE}, 
+\newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda5016d12db9cc693eb76128d4aedb3654}{ocra\+::\+G\+E\+T\+\_\+\+D\+E\+S\+I\+R\+E\+D\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+TE}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddae92c2b3356e04d12fc40073d0451343c}{ocra\+::\+G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+S\+I\+T\+I\+ON}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddaef157060128ea0f266cf656ce2d24e5b}{ocra\+::\+G\+E\+T\+\_\+\+D\+E\+S\+I\+R\+E\+D\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+S\+I\+T\+I\+ON}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddaee9b8fe73285b0e5643e49cce653869e}{ocra\+::\+S\+E\+T\+\_\+\+S\+T\+I\+F\+F\+N\+E\+SS}, 
+\newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda86cf3f003113905c1cfd2fec661d9c44}{ocra\+::\+S\+E\+T\+\_\+\+S\+T\+I\+F\+F\+N\+E\+S\+S\+\_\+\+V\+E\+C\+T\+OR}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda3c3e311379abb914f9063195fbbff2f6}{ocra\+::\+S\+E\+T\+\_\+\+S\+T\+I\+F\+F\+N\+E\+S\+S\+\_\+\+M\+A\+T\+R\+IX}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda76582ebc912d3b8d98758ef0eb76bf30}{ocra\+::\+S\+E\+T\+\_\+\+D\+A\+M\+P\+I\+NG}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda32c861983cd730bb41d564836522ff3c}{ocra\+::\+S\+E\+T\+\_\+\+D\+A\+M\+P\+I\+N\+G\+\_\+\+V\+E\+C\+T\+OR}, 
+\newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda229579f3aa8b1213306ccf2b2f005340}{ocra\+::\+S\+E\+T\+\_\+\+D\+A\+M\+P\+I\+N\+G\+\_\+\+M\+A\+T\+R\+IX}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda2a727ba5ad0bf20ab9329b7b6c01f1b3}{ocra\+::\+S\+E\+T\+\_\+\+W\+E\+I\+G\+HT}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda32bb8a18cc2343ab5f12ecb437be9e91}{ocra\+::\+S\+E\+T\+\_\+\+W\+E\+I\+G\+H\+T\+\_\+\+V\+E\+C\+T\+OR}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddaf0205a9edc1392e6b517916df0bbb91f}{ocra\+::\+S\+E\+T\+\_\+\+D\+E\+S\+I\+R\+E\+D\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+TE}, 
+\newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda310b7be3d55cc24f06af0d553b8de283}{ocra\+::\+S\+E\+T\+\_\+\+D\+E\+S\+I\+R\+E\+D\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+S\+I\+T\+I\+ON}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda6bb000bc3baa0546f0b4a3fe1f75e9c3}{ocra\+::\+A\+C\+T\+I\+V\+A\+TE}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda0f002e56b9ca368062e0fb2335b40e0f}{ocra\+::\+D\+E\+A\+C\+T\+I\+V\+A\+TE}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda3ba7725b7888609ce1e4f7299a2dcaba}{ocra\+::\+T\+A\+S\+K\+\_\+\+I\+S\+\_\+\+A\+C\+T\+I\+V\+A\+T\+ED}, 
+\newline
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda7ce6ebcd9220ff9a426b42612603b81d}{ocra\+::\+T\+A\+S\+K\+\_\+\+I\+S\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+T\+ED}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddadd9ce8911c5477aa387936e89b06fca2}{ocra\+::\+O\+P\+E\+N\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+O\+R\+TS}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216ddade9cd90476b62974254b4f257e99f89d}{ocra\+::\+C\+L\+O\+S\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+O\+R\+TS}, 
+\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dda2c0c3df383085258b258cf99f0035aef}{ocra\+::\+H\+E\+LP}
+ \}
+\end{DoxyCompactItemize}

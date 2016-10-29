@@ -1,0 +1,250 @@
+\hypertarget{classocra_1_1JointLimitConstraint}{}\section{ocra\+:\+:Joint\+Limit\+Constraint Class Reference}
+\label{classocra_1_1JointLimitConstraint}\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+
+
+{\ttfamily \#include $<$Joint\+Limit\+Constraint.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Joint\+Limit\+Constraint\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d4/d69/classocra_1_1JointLimitConstraint}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1JointLimitConstraint_af81ce81f8c90e5bf4272cc6ab592ae69}{Joint\+Limit\+Constraint} (const Model \&model, double hpos=.\+2)
+\item 
+\hyperlink{classocra_1_1JointLimitConstraint_a8e767f982c1d41192b03a0aafbd3ced5}{Joint\+Limit\+Constraint} (const Model \&model, const Eigen\+::\+Vector\+Xd \&lower\+Limits, const Eigen\+::\+Vector\+Xd \&upper\+Limits, double hpos=.\+2)
+\item 
+virtual \hyperlink{classocra_1_1JointLimitConstraint_a5cb58e4dd8fe8c313a50e8601306e0dd}{$\sim$\+Joint\+Limit\+Constraint} ()
+\item 
+double \hyperlink{classocra_1_1JointLimitConstraint_af7d78cabe18ed94eb2f2efa61efa8516}{get\+Horizon\+Of\+Prediction} () const
+\item 
+void \hyperlink{classocra_1_1JointLimitConstraint_a6903c0e8ea1024dd050b604e741634a6}{set\+Horizon\+Of\+Prediction} (double new\+Hpos)
+\item 
+void \hyperlink{classocra_1_1JointLimitConstraint_ab2dcfcc6420510ddc291dbae83e38c40}{set\+Joint\+Limits} (const Eigen\+::\+Vector\+Xd \&lower\+Limits, const Eigen\+::\+Vector\+Xd \&upper\+Limits)
+\item 
+void \hyperlink{classocra_1_1JointLimitConstraint_a1ef49a88ac2646a45bac289a9b623b8f}{set\+Joint\+Lower\+Limits} (const Eigen\+::\+Vector\+Xd \&new\+Lower\+Limits)
+\item 
+void \hyperlink{classocra_1_1JointLimitConstraint_ad019e751fdb343ea0bd29efab8f4d5d2}{set\+Joint\+Upper\+Limits} (const Eigen\+::\+Vector\+Xd \&new\+Upper\+Limits)
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1JointLimitConstraint_a207e245abf812538eacf10fb9d9e704d}{get\+Joint\+Lower\+Limits} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1JointLimitConstraint_a5055bb2f327a4fef0b43a3e92309e16f}{get\+Joint\+Upper\+Limits} () const
+\item 
+void \hyperlink{classocra_1_1JointLimitConstraint_a774667152d3cd376ef3101a4db889c3f}{set\+Joint\+Limit} (int i, double new\+Lower\+Limit, double new\+Upper\+Limit)
+\item 
+void \hyperlink{classocra_1_1JointLimitConstraint_abeac7915f147b24c8afd43ba44ce000c}{set\+Joint\+Lower\+Limit} (int i, double new\+Lower\+Limit)
+\item 
+void \hyperlink{classocra_1_1JointLimitConstraint_a4dd11a29e4ba9655efa588292335559d}{set\+Joint\+Upper\+Limit} (int i, double new\+Upper\+Limit)
+\item 
+double \hyperlink{classocra_1_1JointLimitConstraint_a4140ce4adf0c699b65ab1f9d33b4d487}{get\+Joint\+Lower\+Limit} (int i) const
+\item 
+double \hyperlink{classocra_1_1JointLimitConstraint_af08f9fe570f139055dc609e34d44e062}{get\+Joint\+Upper\+Limit} (int i) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1JointLimitConstraint_a71cfd04e493f270e44b79fb5a46c1601}{connect\+To\+Controller} (const \hyperlink{classocra_1_1FullDynamicEquationFunction}{Full\+Dynamic\+Equation\+Function} \&dynamic\+Equation, bool use\+Reduced\+Problem)
+\item 
+virtual void \hyperlink{classocra_1_1JointLimitConstraint_a5f91d3b746f76f17f71a03b68de1f8ee}{disconnect\+From\+Controller} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 176 of file Joint\+Limit\+Constraint.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1JointLimitConstraint_af81ce81f8c90e5bf4272cc6ab592ae69}{}\label{classocra_1_1JointLimitConstraint_af81ce81f8c90e5bf4272cc6ab592ae69} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!Joint\+Limit\+Constraint@{Joint\+Limit\+Constraint}}
+\index{Joint\+Limit\+Constraint@{Joint\+Limit\+Constraint}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{Joint\+Limit\+Constraint()}{JointLimitConstraint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Joint\+Limit\+Constraint\+::\+Joint\+Limit\+Constraint (\begin{DoxyParamCaption}\item[{const Model \&}]{model,  }\item[{double}]{hpos = {\ttfamily .2} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 453 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a8e767f982c1d41192b03a0aafbd3ced5}{}\label{classocra_1_1JointLimitConstraint_a8e767f982c1d41192b03a0aafbd3ced5} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!Joint\+Limit\+Constraint@{Joint\+Limit\+Constraint}}
+\index{Joint\+Limit\+Constraint@{Joint\+Limit\+Constraint}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{Joint\+Limit\+Constraint()}{JointLimitConstraint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Joint\+Limit\+Constraint\+::\+Joint\+Limit\+Constraint (\begin{DoxyParamCaption}\item[{const Model \&}]{model,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{lower\+Limits,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{upper\+Limits,  }\item[{double}]{hpos = {\ttfamily .2} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 462 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a5cb58e4dd8fe8c313a50e8601306e0dd}{}\label{classocra_1_1JointLimitConstraint_a5cb58e4dd8fe8c313a50e8601306e0dd} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!````~Joint\+Limit\+Constraint@{$\sim$\+Joint\+Limit\+Constraint}}
+\index{````~Joint\+Limit\+Constraint@{$\sim$\+Joint\+Limit\+Constraint}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{$\sim$\+Joint\+Limit\+Constraint()}{~JointLimitConstraint()}}
+{\footnotesize\ttfamily virtual ocra\+::\+Joint\+Limit\+Constraint\+::$\sim$\+Joint\+Limit\+Constraint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 181 of file Joint\+Limit\+Constraint.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1JointLimitConstraint_a71cfd04e493f270e44b79fb5a46c1601}{}\label{classocra_1_1JointLimitConstraint_a71cfd04e493f270e44b79fb5a46c1601} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!connect\+To\+Controller@{connect\+To\+Controller}}
+\index{connect\+To\+Controller@{connect\+To\+Controller}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{connect\+To\+Controller()}{connectToController()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::connect\+To\+Controller (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1FullDynamicEquationFunction}{Full\+Dynamic\+Equation\+Function} \&}]{dynamic\+Equation,  }\item[{bool}]{use\+Reduced\+Problem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlConstraint_a04dabdc1c469146e7b3240dfe0a5172c}{ocra\+::\+Control\+Constraint}.
+
+
+
+Definition at line 548 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a5f91d3b746f76f17f71a03b68de1f8ee}{}\label{classocra_1_1JointLimitConstraint_a5f91d3b746f76f17f71a03b68de1f8ee} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!disconnect\+From\+Controller@{disconnect\+From\+Controller}}
+\index{disconnect\+From\+Controller@{disconnect\+From\+Controller}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{disconnect\+From\+Controller()}{disconnectFromController()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::disconnect\+From\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlConstraint_adbd15b36773c775a06a0b7bde46ec799}{ocra\+::\+Control\+Constraint}.
+
+
+
+Definition at line 564 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_af7d78cabe18ed94eb2f2efa61efa8516}{}\label{classocra_1_1JointLimitConstraint_af7d78cabe18ed94eb2f2efa61efa8516} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!get\+Horizon\+Of\+Prediction@{get\+Horizon\+Of\+Prediction}}
+\index{get\+Horizon\+Of\+Prediction@{get\+Horizon\+Of\+Prediction}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{get\+Horizon\+Of\+Prediction()}{getHorizonOfPrediction()}}
+{\footnotesize\ttfamily double Joint\+Limit\+Constraint\+::get\+Horizon\+Of\+Prediction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 473 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a4140ce4adf0c699b65ab1f9d33b4d487}{}\label{classocra_1_1JointLimitConstraint_a4140ce4adf0c699b65ab1f9d33b4d487} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!get\+Joint\+Lower\+Limit@{get\+Joint\+Lower\+Limit}}
+\index{get\+Joint\+Lower\+Limit@{get\+Joint\+Lower\+Limit}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{get\+Joint\+Lower\+Limit()}{getJointLowerLimit()}}
+{\footnotesize\ttfamily double Joint\+Limit\+Constraint\+::get\+Joint\+Lower\+Limit (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 487 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a207e245abf812538eacf10fb9d9e704d}{}\label{classocra_1_1JointLimitConstraint_a207e245abf812538eacf10fb9d9e704d} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!get\+Joint\+Lower\+Limits@{get\+Joint\+Lower\+Limits}}
+\index{get\+Joint\+Lower\+Limits@{get\+Joint\+Lower\+Limits}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{get\+Joint\+Lower\+Limits()}{getJointLowerLimits()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& Joint\+Limit\+Constraint\+::get\+Joint\+Lower\+Limits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 477 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_af08f9fe570f139055dc609e34d44e062}{}\label{classocra_1_1JointLimitConstraint_af08f9fe570f139055dc609e34d44e062} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!get\+Joint\+Upper\+Limit@{get\+Joint\+Upper\+Limit}}
+\index{get\+Joint\+Upper\+Limit@{get\+Joint\+Upper\+Limit}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{get\+Joint\+Upper\+Limit()}{getJointUpperLimit()}}
+{\footnotesize\ttfamily double Joint\+Limit\+Constraint\+::get\+Joint\+Upper\+Limit (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 492 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a5055bb2f327a4fef0b43a3e92309e16f}{}\label{classocra_1_1JointLimitConstraint_a5055bb2f327a4fef0b43a3e92309e16f} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!get\+Joint\+Upper\+Limits@{get\+Joint\+Upper\+Limits}}
+\index{get\+Joint\+Upper\+Limits@{get\+Joint\+Upper\+Limits}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{get\+Joint\+Upper\+Limits()}{getJointUpperLimits()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& Joint\+Limit\+Constraint\+::get\+Joint\+Upper\+Limits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 482 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a6903c0e8ea1024dd050b604e741634a6}{}\label{classocra_1_1JointLimitConstraint_a6903c0e8ea1024dd050b604e741634a6} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!set\+Horizon\+Of\+Prediction@{set\+Horizon\+Of\+Prediction}}
+\index{set\+Horizon\+Of\+Prediction@{set\+Horizon\+Of\+Prediction}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{set\+Horizon\+Of\+Prediction()}{setHorizonOfPrediction()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::set\+Horizon\+Of\+Prediction (\begin{DoxyParamCaption}\item[{double}]{new\+Hpos }\end{DoxyParamCaption})}
+
+
+
+Definition at line 497 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a774667152d3cd376ef3101a4db889c3f}{}\label{classocra_1_1JointLimitConstraint_a774667152d3cd376ef3101a4db889c3f} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!set\+Joint\+Limit@{set\+Joint\+Limit}}
+\index{set\+Joint\+Limit@{set\+Joint\+Limit}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{set\+Joint\+Limit()}{setJointLimit()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::set\+Joint\+Limit (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{new\+Lower\+Limit,  }\item[{double}]{new\+Upper\+Limit }\end{DoxyParamCaption})}
+
+
+
+Definition at line 526 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_ab2dcfcc6420510ddc291dbae83e38c40}{}\label{classocra_1_1JointLimitConstraint_ab2dcfcc6420510ddc291dbae83e38c40} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!set\+Joint\+Limits@{set\+Joint\+Limits}}
+\index{set\+Joint\+Limits@{set\+Joint\+Limits}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{set\+Joint\+Limits()}{setJointLimits()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::set\+Joint\+Limits (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{lower\+Limits,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{upper\+Limits }\end{DoxyParamCaption})}
+
+
+
+Definition at line 504 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_abeac7915f147b24c8afd43ba44ce000c}{}\label{classocra_1_1JointLimitConstraint_abeac7915f147b24c8afd43ba44ce000c} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!set\+Joint\+Lower\+Limit@{set\+Joint\+Lower\+Limit}}
+\index{set\+Joint\+Lower\+Limit@{set\+Joint\+Lower\+Limit}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{set\+Joint\+Lower\+Limit()}{setJointLowerLimit()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::set\+Joint\+Lower\+Limit (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{new\+Lower\+Limit }\end{DoxyParamCaption})}
+
+
+
+Definition at line 533 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a1ef49a88ac2646a45bac289a9b623b8f}{}\label{classocra_1_1JointLimitConstraint_a1ef49a88ac2646a45bac289a9b623b8f} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!set\+Joint\+Lower\+Limits@{set\+Joint\+Lower\+Limits}}
+\index{set\+Joint\+Lower\+Limits@{set\+Joint\+Lower\+Limits}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{set\+Joint\+Lower\+Limits()}{setJointLowerLimits()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::set\+Joint\+Lower\+Limits (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{new\+Lower\+Limits }\end{DoxyParamCaption})}
+
+
+
+Definition at line 512 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_a4dd11a29e4ba9655efa588292335559d}{}\label{classocra_1_1JointLimitConstraint_a4dd11a29e4ba9655efa588292335559d} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!set\+Joint\+Upper\+Limit@{set\+Joint\+Upper\+Limit}}
+\index{set\+Joint\+Upper\+Limit@{set\+Joint\+Upper\+Limit}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{set\+Joint\+Upper\+Limit()}{setJointUpperLimit()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::set\+Joint\+Upper\+Limit (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{new\+Upper\+Limit }\end{DoxyParamCaption})}
+
+
+
+Definition at line 540 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitConstraint_ad019e751fdb343ea0bd29efab8f4d5d2}{}\label{classocra_1_1JointLimitConstraint_ad019e751fdb343ea0bd29efab8f4d5d2} 
+\index{ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}!set\+Joint\+Upper\+Limits@{set\+Joint\+Upper\+Limits}}
+\index{set\+Joint\+Upper\+Limits@{set\+Joint\+Upper\+Limits}!ocra\+::\+Joint\+Limit\+Constraint@{ocra\+::\+Joint\+Limit\+Constraint}}
+\subsubsection{\texorpdfstring{set\+Joint\+Upper\+Limits()}{setJointUpperLimits()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Constraint\+::set\+Joint\+Upper\+Limits (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{new\+Upper\+Limits }\end{DoxyParamCaption})}
+
+
+
+Definition at line 519 of file Joint\+Limit\+Constraint.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{JointLimitConstraint_8h}{Joint\+Limit\+Constraint.\+h}\item 
+\hyperlink{JointLimitConstraint_8cpp}{Joint\+Limit\+Constraint.\+cpp}\end{DoxyCompactItemize}

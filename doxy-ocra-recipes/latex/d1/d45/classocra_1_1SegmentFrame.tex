@@ -1,0 +1,217 @@
+\hypertarget{classocra_1_1SegmentFrame}{}\section{ocra\+:\+:Segment\+Frame Class Reference}
+\label{classocra_1_1SegmentFrame}\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+
+
+A frame attached to a segment of a model.  
+
+
+
+
+{\ttfamily \#include $<$Control\+Frame.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Segment\+Frame\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d1/d45/classocra_1_1SegmentFrame}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1SegmentFrame_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1SegmentFrame_ab05987e2ecc0f904c905b9e66269ce84}{Segment\+Frame} (const std\+::string \&name, const Model \&model, const std\+::string \&segname)
+\item 
+\hyperlink{classocra_1_1SegmentFrame_ad9cd47c330239c77e913d38029af808d}{Segment\+Frame} (const std\+::string \&name, const Model \&model, const std\+::string \&segname, const Eigen\+::\+Displacementd \&H\+\_\+local)
+\item 
+\hyperlink{classocra_1_1SegmentFrame_a01156da94eca5bf4961077a3310fc271}{Segment\+Frame} (const std\+::string \&name, const Model \&model, int segment\+Id)
+\item 
+\hyperlink{classocra_1_1SegmentFrame_a3864bc8263c40f7afa11de3c8c2dd76b}{Segment\+Frame} (const std\+::string \&name, const Model \&model, int segment\+Id, const Eigen\+::\+Displacementd \&H\+\_\+local)
+\item 
+Eigen\+::\+Displacementd \hyperlink{classocra_1_1SegmentFrame_ad0c5aa3b15b384cd5a4774ddd534b32e}{get\+Position} () const
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra_1_1SegmentFrame_a6a45d4901408704ead9bbd1f5b99a666}{get\+Velocity} () const
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra_1_1SegmentFrame_aa8f7f9544b59da591d94ac8e6a8a9e5d}{get\+Acceleration} () const
+\item 
+Eigen\+::\+Wrenchd \hyperlink{classocra_1_1SegmentFrame_a47bebcb9817083395ab034fe8fb72a19}{get\+Wrench} () const
+\item 
+Eigen\+::\+Matrix$<$ double, 6, Eigen\+::\+Dynamic $>$ \hyperlink{classocra_1_1SegmentFrame_a1ece38dd51a3331dfe3de7911ad9291e}{get\+Jacobian} () const
+\item 
+bool \hyperlink{classocra_1_1SegmentFrame_a68708b5ced24d192fbb0bfd9e3647925}{depends\+On\+Model\+Configuration} () const
+\item 
+const Model \& \hyperlink{classocra_1_1SegmentFrame_a3a14b77753ad98507db9968b33c582e4}{get\+Model} () const
+\item 
+int \hyperlink{classocra_1_1SegmentFrame_a8f651dccb13afc25504531efd17c8eef}{get\+Segment\+Index} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A frame attached to a segment of a model. 
+
+Definition at line 103 of file Control\+Frame.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1SegmentFrame_ab05987e2ecc0f904c905b9e66269ce84}{}\label{classocra_1_1SegmentFrame_ab05987e2ecc0f904c905b9e66269ce84} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!Segment\+Frame@{Segment\+Frame}}
+\index{Segment\+Frame@{Segment\+Frame}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{Segment\+Frame()}{SegmentFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{const std\+::string \&}]{segname }\end{DoxyParamCaption})}
+
+
+
+Definition at line 141 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_ad9cd47c330239c77e913d38029af808d}{}\label{classocra_1_1SegmentFrame_ad9cd47c330239c77e913d38029af808d} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!Segment\+Frame@{Segment\+Frame}}
+\index{Segment\+Frame@{Segment\+Frame}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{Segment\+Frame()}{SegmentFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{const std\+::string \&}]{segname,  }\item[{const Eigen\+::\+Displacementd \&}]{H\+\_\+local }\end{DoxyParamCaption})}
+
+
+
+Definition at line 147 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_a01156da94eca5bf4961077a3310fc271}{}\label{classocra_1_1SegmentFrame_a01156da94eca5bf4961077a3310fc271} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!Segment\+Frame@{Segment\+Frame}}
+\index{Segment\+Frame@{Segment\+Frame}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{Segment\+Frame()}{SegmentFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{int}]{segment\+Id }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_a3864bc8263c40f7afa11de3c8c2dd76b}{}\label{classocra_1_1SegmentFrame_a3864bc8263c40f7afa11de3c8c2dd76b} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!Segment\+Frame@{Segment\+Frame}}
+\index{Segment\+Frame@{Segment\+Frame}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{Segment\+Frame()}{SegmentFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{int}]{segment\+Id,  }\item[{const Eigen\+::\+Displacementd \&}]{H\+\_\+local }\end{DoxyParamCaption})}
+
+
+
+Definition at line 159 of file Control\+Frame.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1SegmentFrame_a68708b5ced24d192fbb0bfd9e3647925}{}\label{classocra_1_1SegmentFrame_a68708b5ced24d192fbb0bfd9e3647925} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!depends\+On\+Model\+Configuration@{depends\+On\+Model\+Configuration}}
+\index{depends\+On\+Model\+Configuration@{depends\+On\+Model\+Configuration}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{depends\+On\+Model\+Configuration()}{dependsOnModelConfiguration()}}
+{\footnotesize\ttfamily bool ocra\+::\+Segment\+Frame\+::depends\+On\+Model\+Configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a65833d1f3f42bc8d452f8b1fb671e142}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 190 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_aa8f7f9544b59da591d94ac8e6a8a9e5d}{}\label{classocra_1_1SegmentFrame_aa8f7f9544b59da591d94ac8e6a8a9e5d} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!get\+Acceleration@{get\+Acceleration}}
+\index{get\+Acceleration@{get\+Acceleration}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{get\+Acceleration()}{getAcceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd ocra\+::\+Segment\+Frame\+::get\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a0ceb7cd7c3fe90fa0ef311b96a6f5c88}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 175 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_a1ece38dd51a3331dfe3de7911ad9291e}{}\label{classocra_1_1SegmentFrame_a1ece38dd51a3331dfe3de7911ad9291e} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!get\+Jacobian@{get\+Jacobian}}
+\index{get\+Jacobian@{get\+Jacobian}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{get\+Jacobian()}{getJacobian()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_ac73b015f9f7cb0c252c4d5c4800f559a}{Jacobian6d} ocra\+::\+Segment\+Frame\+::get\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a14e0b855979be5dbd360314f25191e77}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 185 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_a3a14b77753ad98507db9968b33c582e4}{}\label{classocra_1_1SegmentFrame_a3a14b77753ad98507db9968b33c582e4} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!get\+Model@{get\+Model}}
+\index{get\+Model@{get\+Model}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{get\+Model()}{getModel()}}
+{\footnotesize\ttfamily const Model \& ocra\+::\+Segment\+Frame\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_ab8a1e5e3d96d7524112b4c88bf0bc5ee}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 195 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_ad0c5aa3b15b384cd5a4774ddd534b32e}{}\label{classocra_1_1SegmentFrame_ad0c5aa3b15b384cd5a4774ddd534b32e} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::\+Segment\+Frame\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_aaadbbfbcdd5b8e197a0f181ffb2fdcbe}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 165 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_a8f651dccb13afc25504531efd17c8eef}{}\label{classocra_1_1SegmentFrame_a8f651dccb13afc25504531efd17c8eef} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!get\+Segment\+Index@{get\+Segment\+Index}}
+\index{get\+Segment\+Index@{get\+Segment\+Index}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{get\+Segment\+Index()}{getSegmentIndex()}}
+{\footnotesize\ttfamily int ocra\+::\+Segment\+Frame\+::get\+Segment\+Index (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 200 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_a6a45d4901408704ead9bbd1f5b99a666}{}\label{classocra_1_1SegmentFrame_a6a45d4901408704ead9bbd1f5b99a666} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!get\+Velocity@{get\+Velocity}}
+\index{get\+Velocity@{get\+Velocity}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{get\+Velocity()}{getVelocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd ocra\+::\+Segment\+Frame\+::get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a398df839f75886867c86a8e70ac9bf24}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 170 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1SegmentFrame_a47bebcb9817083395ab034fe8fb72a19}{}\label{classocra_1_1SegmentFrame_a47bebcb9817083395ab034fe8fb72a19} 
+\index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!get\+Wrench@{get\+Wrench}}
+\index{get\+Wrench@{get\+Wrench}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
+\subsubsection{\texorpdfstring{get\+Wrench()}{getWrench()}}
+{\footnotesize\ttfamily Eigen\+::\+Wrenchd ocra\+::\+Segment\+Frame\+::get\+Wrench (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a069aaf1eab98598fbffee263fcde0c56}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 180 of file Control\+Frame.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ControlFrame_8h}{Control\+Frame.\+h}\item 
+\hyperlink{ControlFrame_8cpp}{Control\+Frame.\+cpp}\end{DoxyCompactItemize}

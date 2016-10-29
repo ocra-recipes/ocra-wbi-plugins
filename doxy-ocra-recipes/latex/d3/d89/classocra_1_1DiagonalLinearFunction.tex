@@ -1,0 +1,490 @@
+\hypertarget{classocra_1_1DiagonalLinearFunction}{}\section{ocra\+:\+:Diagonal\+Linear\+Function Class Reference}
+\label{classocra_1_1DiagonalLinearFunction}\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+
+
+Diagonal\+Linear\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Diagonal\+Linear\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Diagonal\+Linear\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.262480cm]{d3/d89/classocra_1_1DiagonalLinearFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1DiagonalLinearFunction_ab1d33ba63aea16f86fa88bf574333a39}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1DiagonalLinearFunction_a0ef4d3d73af4c8e884d799024887d1ae}{change\+Diagonal} (const Vector\+Xd \&d)
+\item 
+void \hyperlink{classocra_1_1DiagonalLinearFunction_ac17d245b02f9388fea8bf1a724ec0106}{change\+Diagonal} (const double diagonal\+Element\+Value, const bool change\+Default=true)
+\item 
+void \hyperlink{classocra_1_1DiagonalLinearFunction_a8912906e227dc8ebce7339eceb09e72e}{change\+Default\+Diagonal\+Value} (const double v)
+\item 
+void \hyperlink{classocra_1_1DiagonalLinearFunction_a728b7f4b453ad06f385601b736290979}{change\+Defaultb\+Value} (const double v)
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Vector\+Base1 , class Vector\+Base2 $>$ }\\\hyperlink{classocra_1_1DiagonalLinearFunction_ab96ebb7bcf93104dad806f1ac47a2e8f}{Diagonal\+Linear\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const Vector\+Base1 \&d, const Vector\+Base2 \&b, const bool use\+Default\+Value=false, const double default\+Diag\+Value=1., const double defaultb\+Value=0.)
+\item 
+{\footnotesize template$<$class Vector\+Base $>$ }\\\hyperlink{classocra_1_1DiagonalLinearFunction_af144cecdab815f972418891a35f8ee2c}{Diagonal\+Linear\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const double diagonal\+Element\+Value, const Vector\+Base \&b, const bool use\+Default\+Value=false, const double defaultb\+Value=0.)
+\item 
+{\footnotesize template$<$class Vector\+Base $>$ }\\\hyperlink{classocra_1_1DiagonalLinearFunction_a4cd597044d6af815e1c6cec976958c54}{Diagonal\+Linear\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const Vector\+Base \&d, const double vector\+Element\+Value, const bool use\+Default\+Value=false, const double default\+Diag\+Value=1.)
+\item 
+\hyperlink{classocra_1_1DiagonalLinearFunction_a363e6ca5190cedaf2bbce516d27127f9}{Diagonal\+Linear\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const double diagonal\+Element\+Value, const double vector\+Element\+Value, const bool use\+Default\+Value=false)
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+const Vector\+Xd \& \hyperlink{classocra_1_1DiagonalLinearFunction_a1b2acc7225716b75ef0cf9995a49406b}{get\+Diagonal} () const
+\item 
+double \hyperlink{classocra_1_1DiagonalLinearFunction_a01a923080ce21e1328503c29b1b57c6e}{get\+Default\+Diagonal\+Value} () const
+\item 
+double \hyperlink{classocra_1_1DiagonalLinearFunction_afc676bfa2611945421d73b18e2740bd0}{get\+Defaultb\+Value} () const
+\item 
+bool \hyperlink{classocra_1_1DiagonalLinearFunction_a8cca25ae530e9af992acf44e3b95da2a}{is\+Using\+Default\+Value} () const
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1DiagonalLinearFunction_ac2c460e4eedb9feba5a74ec967719654}{Diagonal\+Linear\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x})
+\item 
+virtual void \hyperlink{classocra_1_1DiagonalLinearFunction_a69523347749429dae6ae041326e40d43}{update\+Value} () const
+\item 
+virtual void \hyperlink{classocra_1_1DiagonalLinearFunction_a2071e4c52785c88119917460b94773cb}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+virtual void \hyperlink{classocra_1_1DiagonalLinearFunction_a8a51d23c302c9bad9579b95e29481f55}{do\+Update\+Input\+Size\+End} ()
+\item 
+virtual void \hyperlink{classocra_1_1DiagonalLinearFunction_a5355515d58348a3eea92f36e35b1c7d5}{do\+Change\+Diagonal} (const Vector\+Xd \&d)
+\item 
+virtual void \hyperlink{classocra_1_1DiagonalLinearFunction_a0673bfe405d5637182c4749dd2737e95}{do\+Change\+Diagonal} (const double diagonal\+Element\+Value, const bool change\+Default=true)
+\item 
+virtual void \hyperlink{classocra_1_1DiagonalLinearFunction_a81120f5a61cc53cc940f4e71b35174ff}{do\+Change\+Default\+Diagonal\+Value} (const double v)
+\item 
+virtual void \hyperlink{classocra_1_1DiagonalLinearFunction_a9995af94055dc443c10018869a393635}{do\+Change\+Defaultb\+Value} (const double v)
+\item 
+virtual void \hyperlink{classocra_1_1DiagonalLinearFunction_addc4f984a5a71b170137788f15e2d12c}{do\+ChangeA} (const Matrix\+Xd \&A)
+\item 
+int \hyperlink{classocra_1_1DiagonalLinearFunction_af41faa708f35e39c2f797f70ae7ce695}{compute\+Dimension\+From\+Input\+Size} () const
+\item 
+void \hyperlink{classocra_1_1DiagonalLinearFunction_a86b326e3578c8405806eab4ec6522ab2}{do\+Update\+Dimension\+Begin} (int new\+Dimension)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector\+Xd \hyperlink{classocra_1_1DiagonalLinearFunction_adf9d157af394f4322d71720bea545f00}{\+\_\+d}
+\item 
+double \hyperlink{classocra_1_1DiagonalLinearFunction_aa7150368fce9c7c6c3724b801f498749}{\+\_\+default\+Diagonal\+Value}
+\item 
+double \hyperlink{classocra_1_1DiagonalLinearFunction_ab004421a9f01bd2c3fa5b97b7532c6c2}{\+\_\+defaultb\+Value}
+\item 
+bool \hyperlink{classocra_1_1DiagonalLinearFunction_a27e25618f0812c42967b363ad3f77fd6}{\+\_\+use\+Default\+Value}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Diagonal\+Linear\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Implements a function of the type $ Dx+b $ with $ D=diag(d) $ a diagonal matrix whose diagonal is given by the vector $ d $. It is possible to specify a default value for the new diagonal elements in case the size of the variable, and thus the dimension of the function, change. Note that the values of the last diagonal elements are lost when the dimension decreases. Thus going from dimension n to dimension n\textquotesingle{}$<$n then back to n will set the last n-\/n\textquotesingle{} diagonal elements to the default value. 
+
+Definition at line 40 of file Diagonal\+Linear\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1DiagonalLinearFunction_ab1d33ba63aea16f86fa88bf574333a39}{}\label{classocra_1_1DiagonalLinearFunction_ab1d33ba63aea16f86fa88bf574333a39} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1DiagonalLinearFunction_ab1d33ba63aea16f86fa88bf574333a39}{ocra\+::\+Diagonal\+Linear\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 44 of file Diagonal\+Linear\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1DiagonalLinearFunction_ab96ebb7bcf93104dad806f1ac47a2e8f}{}\label{classocra_1_1DiagonalLinearFunction_ab96ebb7bcf93104dad806f1ac47a2e8f} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}}
+\index{Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{Diagonal\+Linear\+Function()}{DiagonalLinearFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$class Vector\+Base1 , class Vector\+Base2 $>$ \\
+ocra\+::\+Diagonal\+Linear\+Function\+::\+Diagonal\+Linear\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const Vector\+Base1 \&}]{d,  }\item[{const Vector\+Base2 \&}]{b,  }\item[{const bool}]{use\+Default\+Value = {\ttfamily false},  }\item[{const double}]{default\+Diag\+Value = {\ttfamily 1.},  }\item[{const double}]{defaultb\+Value = {\ttfamily 0.} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+A set of constructors where {\itshape d} and {\itshape b} are specified either by a vector or by a double.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & The variable on which to build the function. \\
+\hline
+\mbox{\tt in}  & {\em d} & The value of d. \\
+\hline
+\mbox{\tt in}  & {\em b} & The value of b. \\
+\hline
+\mbox{\tt in}  & {\em diagonal\+Element\+Value} & The value of each element of d. \\
+\hline
+\mbox{\tt in}  & {\em vector\+Element\+Value} & The value of each element of b. \\
+\hline
+\mbox{\tt in}  & {\em use\+Default\+Value} & true if the function can use a default value when resizing to a bigger dimension. Note that if use\+Default\+Value is false, the function can still be downsized. \\
+\hline
+\mbox{\tt in}  & {\em default\+Diag\+Value} & The default value for the last value of d when resizing to a bigger dimension. \\
+\hline
+\mbox{\tt in}  & {\em defaultb\+Value} & The default value for the last value of b when resizing to a bigger dimension.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyWarning}{Warning}
+You need to put {\itshape real} double for diagonal\+Element\+Value and vector\+Element\+Value. All other type will be considered as Vector\+Base and will trigger the static assertion on th Vector\+Base type. For example, Diagonal\+Linear\+Function(x, 1, b), where x is a variable and b is a vector, is not valid. The correct way to write it is \hyperlink{classocra_1_1DiagonalLinearFunction}{Diagonal\+Linear\+Function}(x, 1., b), because 1. is a double, but 1 is an int so the compiler will not try to cast it into a double and call the wrong constructor. 
+\end{DoxyWarning}
+
+
+Definition at line 156 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_af144cecdab815f972418891a35f8ee2c}{}\label{classocra_1_1DiagonalLinearFunction_af144cecdab815f972418891a35f8ee2c} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}}
+\index{Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{Diagonal\+Linear\+Function()}{DiagonalLinearFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$class Vector\+Base $>$ \\
+ocra\+::\+Diagonal\+Linear\+Function\+::\+Diagonal\+Linear\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const double}]{diagonal\+Element\+Value,  }\item[{const Vector\+Base \&}]{b,  }\item[{const bool}]{use\+Default\+Value = {\ttfamily false},  }\item[{const double}]{defaultb\+Value = {\ttfamily 0.} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 183 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a4cd597044d6af815e1c6cec976958c54}{}\label{classocra_1_1DiagonalLinearFunction_a4cd597044d6af815e1c6cec976958c54} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}}
+\index{Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{Diagonal\+Linear\+Function()}{DiagonalLinearFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$class Vector\+Base $>$ \\
+ocra\+::\+Diagonal\+Linear\+Function\+::\+Diagonal\+Linear\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const Vector\+Base \&}]{d,  }\item[{const double}]{vector\+Element\+Value,  }\item[{const bool}]{use\+Default\+Value = {\ttfamily false},  }\item[{const double}]{default\+Diag\+Value = {\ttfamily 1.} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 205 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a363e6ca5190cedaf2bbce516d27127f9}{}\label{classocra_1_1DiagonalLinearFunction_a363e6ca5190cedaf2bbce516d27127f9} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}}
+\index{Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{Diagonal\+Linear\+Function()}{DiagonalLinearFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily ocra\+::\+Diagonal\+Linear\+Function\+::\+Diagonal\+Linear\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const double}]{diagonal\+Element\+Value,  }\item[{const double}]{vector\+Element\+Value,  }\item[{const bool}]{use\+Default\+Value = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 7 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_ac2c460e4eedb9feba5a74ec967719654}{}\label{classocra_1_1DiagonalLinearFunction_ac2c460e4eedb9feba5a74ec967719654} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}}
+\index{Diagonal\+Linear\+Function@{Diagonal\+Linear\+Function}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{Diagonal\+Linear\+Function()}{DiagonalLinearFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily ocra\+::\+Diagonal\+Linear\+Function\+::\+Diagonal\+Linear\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+A light constructor for derived class 
+
+Definition at line 25 of file Diagonal\+Linear\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1DiagonalLinearFunction_a728b7f4b453ad06f385601b736290979}{}\label{classocra_1_1DiagonalLinearFunction_a728b7f4b453ad06f385601b736290979} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!change\+Defaultb\+Value@{change\+Defaultb\+Value}}
+\index{change\+Defaultb\+Value@{change\+Defaultb\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{change\+Defaultb\+Value()}{changeDefaultbValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::change\+Defaultb\+Value (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})}
+
+Set the default value for b to {\itshape v}. (To change b, a method is directly accessible on \hyperlink{classocra_1_1LinearFunction}{Linear\+Function}) 
+
+Definition at line 58 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a8912906e227dc8ebce7339eceb09e72e}{}\label{classocra_1_1DiagonalLinearFunction_a8912906e227dc8ebce7339eceb09e72e} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!change\+Default\+Diagonal\+Value@{change\+Default\+Diagonal\+Value}}
+\index{change\+Default\+Diagonal\+Value@{change\+Default\+Diagonal\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{change\+Default\+Diagonal\+Value()}{changeDefaultDiagonalValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::change\+Default\+Diagonal\+Value (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})}
+
+Change only the diagonal default value 
+
+Definition at line 52 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a0ef4d3d73af4c8e884d799024887d1ae}{}\label{classocra_1_1DiagonalLinearFunction_a0ef4d3d73af4c8e884d799024887d1ae} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!change\+Diagonal@{change\+Diagonal}}
+\index{change\+Diagonal@{change\+Diagonal}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{change\+Diagonal()}{changeDiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::change\+Diagonal (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{d }\end{DoxyParamCaption})}
+
+Set the diagonal to {\itshape d} \begin{DoxyPrecond}{Precondition}
+d.\+size() == \+\_\+dim Calls buildA which triggers a E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+V\+A\+L\+UE event. 
+\end{DoxyPrecond}
+
+
+Definition at line 37 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_ac17d245b02f9388fea8bf1a724ec0106}{}\label{classocra_1_1DiagonalLinearFunction_ac17d245b02f9388fea8bf1a724ec0106} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!change\+Diagonal@{change\+Diagonal}}
+\index{change\+Diagonal@{change\+Diagonal}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{change\+Diagonal()}{changeDiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::change\+Diagonal (\begin{DoxyParamCaption}\item[{const double}]{diagonal\+Element\+Value,  }\item[{const bool}]{change\+Default = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Set the diagonal to {\itshape diagonal\+Element\+Value} and the default diagonal value to the same value if change\+Default is true. Calls buildA which triggers a E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+V\+A\+L\+UE event. 
+
+Definition at line 45 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_af41faa708f35e39c2f797f70ae7ce695}{}\label{classocra_1_1DiagonalLinearFunction_af41faa708f35e39c2f797f70ae7ce695} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!compute\+Dimension\+From\+Input\+Size@{compute\+Dimension\+From\+Input\+Size}}
+\index{compute\+Dimension\+From\+Input\+Size@{compute\+Dimension\+From\+Input\+Size}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{compute\+Dimension\+From\+Input\+Size()}{computeDimensionFromInputSize()}}
+{\footnotesize\ttfamily int ocra\+::\+Diagonal\+Linear\+Function\+::compute\+Dimension\+From\+Input\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Does what it tells... 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a95241fd426f887c5eb3add3f1e55a09c}{ocra\+::\+Function}.
+
+
+
+Definition at line 150 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_addc4f984a5a71b170137788f15e2d12c}{}\label{classocra_1_1DiagonalLinearFunction_addc4f984a5a71b170137788f15e2d12c} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!do\+ChangeA@{do\+ChangeA}}
+\index{do\+ChangeA@{do\+ChangeA}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+A()}{doChangeA()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::do\+ChangeA (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods to be called in ChangeA and Change b 
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_ab573c2f615d2edefb647979d3cc3cf46}{ocra\+::\+Linear\+Function}.
+
+
+
+Reimplemented in \hyperlink{classocra_1_1IdentityFunction_aa1a9f42b9b1b62182d99ea32dae6e815}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 91 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a9995af94055dc443c10018869a393635}{}\label{classocra_1_1DiagonalLinearFunction_a9995af94055dc443c10018869a393635} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!do\+Change\+Defaultb\+Value@{do\+Change\+Defaultb\+Value}}
+\index{do\+Change\+Defaultb\+Value@{do\+Change\+Defaultb\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Defaultb\+Value()}{doChangeDefaultbValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::do\+Change\+Defaultb\+Value (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1BoundFunction_aa861028f4a37e45b4fc68b7852d7e451}{ocra\+::\+Bound\+Function}, and \hyperlink{classocra_1_1IdentityFunction_a989f91f6ec4e2e00aa5ac3cc8b6a2b66}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 84 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a81120f5a61cc53cc940f4e71b35174ff}{}\label{classocra_1_1DiagonalLinearFunction_a81120f5a61cc53cc940f4e71b35174ff} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!do\+Change\+Default\+Diagonal\+Value@{do\+Change\+Default\+Diagonal\+Value}}
+\index{do\+Change\+Default\+Diagonal\+Value@{do\+Change\+Default\+Diagonal\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Default\+Diagonal\+Value()}{doChangeDefaultDiagonalValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::do\+Change\+Default\+Diagonal\+Value (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1BoundFunction_af02c8fc499fb37596c758861d98cfbf6}{ocra\+::\+Bound\+Function}, and \hyperlink{classocra_1_1IdentityFunction_ad54cf6c0b28f6d4955f15ebd53c6ca1f}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 78 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a5355515d58348a3eea92f36e35b1c7d5}{}\label{classocra_1_1DiagonalLinearFunction_a5355515d58348a3eea92f36e35b1c7d5} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!do\+Change\+Diagonal@{do\+Change\+Diagonal}}
+\index{do\+Change\+Diagonal@{do\+Change\+Diagonal}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Diagonal()}{doChangeDiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::do\+Change\+Diagonal (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1BoundFunction_a95e8e97598f5ca779b9c171c56a7342a}{ocra\+::\+Bound\+Function}, and \hyperlink{classocra_1_1IdentityFunction_aea94175430c2c785dbb9d551922be9ad}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 64 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a0673bfe405d5637182c4749dd2737e95}{}\label{classocra_1_1DiagonalLinearFunction_a0673bfe405d5637182c4749dd2737e95} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!do\+Change\+Diagonal@{do\+Change\+Diagonal}}
+\index{do\+Change\+Diagonal@{do\+Change\+Diagonal}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Diagonal()}{doChangeDiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::do\+Change\+Diagonal (\begin{DoxyParamCaption}\item[{const double}]{diagonal\+Element\+Value,  }\item[{const bool}]{change\+Default = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1BoundFunction_ac1a1b78b8b1796543b4c83ae5d8de755}{ocra\+::\+Bound\+Function}, and \hyperlink{classocra_1_1IdentityFunction_ac6350bcc2107b56e96642cacbbee2404}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 70 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a86b326e3578c8405806eab4ec6522ab2}{}\label{classocra_1_1DiagonalLinearFunction_a86b326e3578c8405806eab4ec6522ab2} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!do\+Update\+Dimension\+Begin@{do\+Update\+Dimension\+Begin}}
+\index{do\+Update\+Dimension\+Begin@{do\+Update\+Dimension\+Begin}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Dimension\+Begin()}{doUpdateDimensionBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::do\+Update\+Dimension\+Begin (\begin{DoxyParamCaption}\item[{int}]{new\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the dimension of the function has changed. Default implementation of do\+Update\+Dimension\+End does nothing, do\+Update\+Dimension\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d}{do\+Update\+Dimension\+End()}} must comply with the post condition of {\ttfamily update\+Dimension()}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_afdf98e9f43fde97a5256af88a50cbb39}{ocra\+::\+Function}.
+
+
+
+Definition at line 155 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a2071e4c52785c88119917460b94773cb}{}\label{classocra_1_1DiagonalLinearFunction_a2071e4c52785c88119917460b94773cb} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1DiagonalLinearFunction_a8a51d23c302c9bad9579b95e29481f55}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Reimplemented in \hyperlink{classocra_1_1IdentityFunction_aa8d5ff0e25422b3b5a4a2a8621120790}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 105 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a8a51d23c302c9bad9579b95e29481f55}{}\label{classocra_1_1DiagonalLinearFunction_a8a51d23c302c9bad9579b95e29481f55} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+This methods ensures \+\_\+b has the good size at the end of a resize, yet it will not be called in \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} itself because the class does not overload \hyperlink{classocra_1_1DiagonalLinearFunction_a2071e4c52785c88119917460b94773cb}{do\+Update\+Input\+Size\+Begin()} which throws an runtime\+\_\+error by default. 
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_ac6bdf62ad6634397778d5f4223ed6d82}{ocra\+::\+Linear\+Function}.
+
+
+
+Reimplemented in \hyperlink{classocra_1_1IdentityFunction_adcfa8a32491113a590e7066f0062fbc6}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 136 of file Diagonal\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_afc676bfa2611945421d73b18e2740bd0}{}\label{classocra_1_1DiagonalLinearFunction_afc676bfa2611945421d73b18e2740bd0} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!get\+Defaultb\+Value@{get\+Defaultb\+Value}}
+\index{get\+Defaultb\+Value@{get\+Defaultb\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{get\+Defaultb\+Value()}{getDefaultbValue()}}
+{\footnotesize\ttfamily double ocra\+::\+Diagonal\+Linear\+Function\+::get\+Defaultb\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 239 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a01a923080ce21e1328503c29b1b57c6e}{}\label{classocra_1_1DiagonalLinearFunction_a01a923080ce21e1328503c29b1b57c6e} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!get\+Default\+Diagonal\+Value@{get\+Default\+Diagonal\+Value}}
+\index{get\+Default\+Diagonal\+Value@{get\+Default\+Diagonal\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{get\+Default\+Diagonal\+Value()}{getDefaultDiagonalValue()}}
+{\footnotesize\ttfamily double ocra\+::\+Diagonal\+Linear\+Function\+::get\+Default\+Diagonal\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 233 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a1b2acc7225716b75ef0cf9995a49406b}{}\label{classocra_1_1DiagonalLinearFunction_a1b2acc7225716b75ef0cf9995a49406b} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!get\+Diagonal@{get\+Diagonal}}
+\index{get\+Diagonal@{get\+Diagonal}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{get\+Diagonal()}{getDiagonal()}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Diagonal\+Linear\+Function\+::get\+Diagonal (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Trivial getters. 
+
+Definition at line 227 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a8cca25ae530e9af992acf44e3b95da2a}{}\label{classocra_1_1DiagonalLinearFunction_a8cca25ae530e9af992acf44e3b95da2a} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!is\+Using\+Default\+Value@{is\+Using\+Default\+Value}}
+\index{is\+Using\+Default\+Value@{is\+Using\+Default\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{is\+Using\+Default\+Value()}{isUsingDefaultValue()}}
+{\footnotesize\ttfamily bool ocra\+::\+Diagonal\+Linear\+Function\+::is\+Using\+Default\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 245 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a69523347749429dae6ae041326e40d43}{}\label{classocra_1_1DiagonalLinearFunction_a69523347749429dae6ae041326e40d43} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Diagonal\+Linear\+Function\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Overloads of the \hyperlink{classocra_1_1Function}{Function} methods 
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a1b9fd7a03a8630055c117d19e0ff019a}{ocra\+::\+Linear\+Function}.
+
+
+
+Reimplemented in \hyperlink{classocra_1_1IdentityFunction_afd77529674b7b6db3db2542aaeedbb16}{ocra\+::\+Identity\+Function}.
+
+
+
+Definition at line 99 of file Diagonal\+Linear\+Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1DiagonalLinearFunction_adf9d157af394f4322d71720bea545f00}{}\label{classocra_1_1DiagonalLinearFunction_adf9d157af394f4322d71720bea545f00} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!\+\_\+d@{\+\_\+d}}
+\index{\+\_\+d@{\+\_\+d}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+d}{\_d}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Diagonal\+Linear\+Function\+::\+\_\+d\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 148 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_ab004421a9f01bd2c3fa5b97b7532c6c2}{}\label{classocra_1_1DiagonalLinearFunction_ab004421a9f01bd2c3fa5b97b7532c6c2} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!\+\_\+defaultb\+Value@{\+\_\+defaultb\+Value}}
+\index{\+\_\+defaultb\+Value@{\+\_\+defaultb\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+defaultb\+Value}{\_defaultbValue}}
+{\footnotesize\ttfamily double ocra\+::\+Diagonal\+Linear\+Function\+::\+\_\+defaultb\+Value\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 150 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_aa7150368fce9c7c6c3724b801f498749}{}\label{classocra_1_1DiagonalLinearFunction_aa7150368fce9c7c6c3724b801f498749} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!\+\_\+default\+Diagonal\+Value@{\+\_\+default\+Diagonal\+Value}}
+\index{\+\_\+default\+Diagonal\+Value@{\+\_\+default\+Diagonal\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+default\+Diagonal\+Value}{\_defaultDiagonalValue}}
+{\footnotesize\ttfamily double ocra\+::\+Diagonal\+Linear\+Function\+::\+\_\+default\+Diagonal\+Value\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 149 of file Diagonal\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1DiagonalLinearFunction_a27e25618f0812c42967b363ad3f77fd6}{}\label{classocra_1_1DiagonalLinearFunction_a27e25618f0812c42967b363ad3f77fd6} 
+\index{ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}!\+\_\+use\+Default\+Value@{\+\_\+use\+Default\+Value}}
+\index{\+\_\+use\+Default\+Value@{\+\_\+use\+Default\+Value}!ocra\+::\+Diagonal\+Linear\+Function@{ocra\+::\+Diagonal\+Linear\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+use\+Default\+Value}{\_useDefaultValue}}
+{\footnotesize\ttfamily bool ocra\+::\+Diagonal\+Linear\+Function\+::\+\_\+use\+Default\+Value\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 151 of file Diagonal\+Linear\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{DiagonalLinearFunction_8h}{Diagonal\+Linear\+Function.\+h}\item 
+\hyperlink{DiagonalLinearFunction_8cpp}{Diagonal\+Linear\+Function.\+cpp}\end{DoxyCompactItemize}

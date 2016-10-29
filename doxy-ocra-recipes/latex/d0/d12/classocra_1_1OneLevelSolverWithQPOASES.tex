@@ -1,0 +1,422 @@
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES}{}\section{ocra\+:\+:One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES Class Reference}
+\label{classocra_1_1OneLevelSolverWithQPOASES}\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+
+
+\hyperlink{classocra_1_1Solver}{Solver} class that only consider one level of importance for all tasks using Q\+P\+O\+A\+S\+ES.  
+
+
+
+
+{\ttfamily \#include $<$One\+Level\+Solver.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.623188cm]{d0/d12/classocra_1_1OneLevelSolverWithQPOASES}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual One\+Level\+Solver\+::\+Ptr \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_ac92f5e6885ada1f68b2f3b31cacf43f5}{clone} () const
+\item 
+\hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a5540c732d87204ed0779b3fbaa5667b7}{One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES} ()
+\item 
+virtual \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_adf42bcbdf5c169be4fe51c025ed49c53}{$\sim$\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_aa2d1343a6e0f5c8913496c3384c0cd40}{do\+Solve} ()
+\item 
+virtual void \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a6a0e2cdfe22731fde09af26442a9cc85}{update\+Objective\+Equations} ()
+\item 
+virtual void \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_abbe458ba193d545d6c07b09f582d6ce7}{update\+Constraint\+Equations} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294b}{ocra\+::e\+Return\+Info} \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a8fa99c1dbded56a7ecc69a3d756f1277}{to\+Ocra\+Ret\+Value} (const qp\+O\+A\+S\+E\+S\+::return\+Value \&ret)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::unique\+\_\+ptr$<$ qp\+O\+A\+S\+E\+S\+::\+S\+Q\+Problem $>$ \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_ad432bd42a6211d668efc3b2e2d3df238}{sqp\+\_\+prob}
+\item 
+qp\+O\+A\+S\+E\+S\+::\+Options \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_ace333e6d7333a5bcd9c7be5bc7d98c7b}{sqp\+\_\+options}
+\item 
+std\+::vector$<$ qp\+O\+A\+S\+E\+S\+::real\+\_\+t $>$ \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_aba3bdf7d777d9e3e8015570652cf396a}{H}
+\item 
+qp\+O\+A\+S\+E\+S\+::real\+\_\+t $\ast$ \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a56fea8397d0c6b40fee373d8863f0b26}{g}
+\item 
+qp\+O\+A\+S\+E\+S\+::real\+\_\+t $\ast$ \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a82eaebae8f92464066e9b5348b1737f9}{lb}
+\item 
+qp\+O\+A\+S\+E\+S\+::real\+\_\+t $\ast$ \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a53854c9775b3ff65f4a0621bab17613c}{ub}
+\item 
+qp\+O\+A\+S\+E\+S\+::real\+\_\+t $\ast$ \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a8263c27c6bda731ab9dc9550a668e491}{A}
+\item 
+qp\+O\+A\+S\+E\+S\+::real\+\_\+t $\ast$ \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a268dd33567d130672824404fdf98882a}{lbA}
+\item 
+qp\+O\+A\+S\+E\+S\+::real\+\_\+t $\ast$ \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a2cb624cfce8e1940c5107251418ee7dd}{ubA}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a67a41fa1b101ce2885012b796c8bfe47}{\+\_\+xl}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a23dd435ea8582fc67bf77373e0afc3e0}{\+\_\+xu}
+\item 
+\hyperlink{group__solver_ga70eb87299c2fc1db3c4aac05df67d889}{Matrix\+Xd\+Rm} \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_ae427c9c48cc3538994f0c2b6b06da7d6}{\+\_\+\+AandG}
+\item 
+\hyperlink{group__solver_ga70eb87299c2fc1db3c4aac05df67d889}{Matrix\+Xd\+Rm} \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a5ad3c2a2670e8d7862735fefe2df6553}{\+\_\+\+C\+\_\+row\+\_\+major}
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a586d9c2c84fac9044466d33dabac9f79}{\+\_\+\+Reg\+Term}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_ad7277d89275d722da93143ea58888579}{\+\_\+lb\+AandG}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_afa4902490254547640625dc2d9512577}{\+\_\+ub\+AandG}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a3004e673e3f883cfba0b53f0a078ccd4}{\+\_\+lbA}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_ace6b99f95cf3d633fb0bb96c7871c57f}{\+\_\+lbG}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_a9e476513e7486c38bdb69c8fdd3b35d1}{\+\_\+ubA}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_ac3b8f982ead7c50e7396d99e63f02ac3}{\+\_\+ubG}
+\item 
+int \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_af1bb606a75434adb15ad68b6db213848}{\+\_\+n\+W\+S\+R\+\_\+every\+\_\+run}
+\item 
+int \hyperlink{classocra_1_1OneLevelSolverWithQPOASES_aa9c7ddcbafeff12cacea92ac658a63d6}{n\+W\+SR}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classocra_1_1Solver}{Solver} class that only consider one level of importance for all tasks using Q\+P\+O\+A\+S\+ES. 
+
+It uses a linear quadratic program which comes from \href{https://projects.coin-or.org/qpOASES}{\tt https\+://projects.\+coin-\/or.\+org/qp\+O\+A\+S\+ES} .
+
+Q\+P\+O\+A\+S\+ES solve the following problem\+:
+
+\begin{align*} \argmin{\x} &: \; \frac{1}{2} \x\tp G \x + \vec{g}_0\tp \x \\ & CE \x + \vec{ce}_0 = \vec{0} \\ & CI \x + \vec{ci}_0 \geq \vec{0} \end{align*} 
+
+Definition at line 183 of file One\+Level\+Solver.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a5540c732d87204ed0779b3fbaa5667b7}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a5540c732d87204ed0779b3fbaa5667b7} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\index{One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S()}{OneLevelSolverWithQPOASES()}}
+{\footnotesize\ttfamily One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 360 of file One\+Level\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_adf42bcbdf5c169be4fe51c025ed49c53}{}\label{classocra_1_1OneLevelSolverWithQPOASES_adf42bcbdf5c169be4fe51c025ed49c53} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!````~One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{$\sim$\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\index{````~One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{$\sim$\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{$\sim$\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S()}{~OneLevelSolverWithQPOASES()}}
+{\footnotesize\ttfamily virtual ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::$\sim$\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 190 of file One\+Level\+Solver.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_ac92f5e6885ada1f68b2f3b31cacf43f5}{}\label{classocra_1_1OneLevelSolverWithQPOASES_ac92f5e6885ada1f68b2f3b31cacf43f5} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!clone@{clone}}
+\index{clone@{clone}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{clone()}{clone()}}
+{\footnotesize\ttfamily virtual One\+Level\+Solver\+::\+Ptr ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::clone (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+retuns a pointer to a new instance, very usefull in Hocra 
+
+Implements \hyperlink{classocra_1_1OneLevelSolver_a08ecd92d4295e03aa03075a71d481f48}{ocra\+::\+One\+Level\+Solver}.
+
+
+
+Definition at line 187 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_aa2d1343a6e0f5c8913496c3384c0cd40}{}\label{classocra_1_1OneLevelSolverWithQPOASES_aa2d1343a6e0f5c8913496c3384c0cd40} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!do\+Solve@{do\+Solve}}
+\index{do\+Solve@{do\+Solve}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{do\+Solve()}{doSolve()}}
+{\footnotesize\ttfamily void One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::do\+Solve (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1OneLevelSolver_aeb4fb349df382921c5c0064d7a05c48b}{ocra\+::\+One\+Level\+Solver}.
+
+
+
+Definition at line 525 of file One\+Level\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a8fa99c1dbded56a7ecc69a3d756f1277}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a8fa99c1dbded56a7ecc69a3d756f1277} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!to\+Ocra\+Ret\+Value@{to\+Ocra\+Ret\+Value}}
+\index{to\+Ocra\+Ret\+Value@{to\+Ocra\+Ret\+Value}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{to\+Ocra\+Ret\+Value()}{toOcraRetValue()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294b}{e\+Return\+Info} One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::to\+Ocra\+Ret\+Value (\begin{DoxyParamCaption}\item[{const qp\+O\+A\+S\+E\+S\+::return\+Value \&}]{ret }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 512 of file One\+Level\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_abbe458ba193d545d6c07b09f582d6ce7}{}\label{classocra_1_1OneLevelSolverWithQPOASES_abbe458ba193d545d6c07b09f582d6ce7} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!update\+Constraint\+Equations@{update\+Constraint\+Equations}}
+\index{update\+Constraint\+Equations@{update\+Constraint\+Equations}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{update\+Constraint\+Equations()}{updateConstraintEquations()}}
+{\footnotesize\ttfamily void One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::update\+Constraint\+Equations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1OneLevelSolver_af592dc713af6cf22e67abcdfba09ca5e}{ocra\+::\+One\+Level\+Solver}.
+
+
+
+Definition at line 371 of file One\+Level\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a6a0e2cdfe22731fde09af26442a9cc85}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a6a0e2cdfe22731fde09af26442a9cc85} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!update\+Objective\+Equations@{update\+Objective\+Equations}}
+\index{update\+Objective\+Equations@{update\+Objective\+Equations}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{update\+Objective\+Equations()}{updateObjectiveEquations()}}
+{\footnotesize\ttfamily void One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::update\+Objective\+Equations (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1OneLevelSolver_a150b377a35e30ae9c347147c10fddb33}{ocra\+::\+One\+Level\+Solver}.
+
+
+
+Definition at line 484 of file One\+Level\+Solver.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_ae427c9c48cc3538994f0c2b6b06da7d6}{}\label{classocra_1_1OneLevelSolverWithQPOASES_ae427c9c48cc3538994f0c2b6b06da7d6} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+\+AandG@{\+\_\+\+AandG}}
+\index{\+\_\+\+AandG@{\+\_\+\+AandG}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+\+AandG}{\_AandG}}
+{\footnotesize\ttfamily \hyperlink{group__solver_ga70eb87299c2fc1db3c4aac05df67d889}{Matrix\+Xd\+Rm} ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+\+AandG\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 208 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a5ad3c2a2670e8d7862735fefe2df6553}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a5ad3c2a2670e8d7862735fefe2df6553} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+\+C\+\_\+row\+\_\+major@{\+\_\+\+C\+\_\+row\+\_\+major}}
+\index{\+\_\+\+C\+\_\+row\+\_\+major@{\+\_\+\+C\+\_\+row\+\_\+major}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+\+C\+\_\+row\+\_\+major}{\_C\_row\_major}}
+{\footnotesize\ttfamily \hyperlink{group__solver_ga70eb87299c2fc1db3c4aac05df67d889}{Matrix\+Xd\+Rm} ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+\+C\+\_\+row\+\_\+major\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 208 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a3004e673e3f883cfba0b53f0a078ccd4}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a3004e673e3f883cfba0b53f0a078ccd4} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+lbA@{\+\_\+lbA}}
+\index{\+\_\+lbA@{\+\_\+lbA}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+lbA}{\_lbA}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+lbA\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 211 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_ad7277d89275d722da93143ea58888579}{}\label{classocra_1_1OneLevelSolverWithQPOASES_ad7277d89275d722da93143ea58888579} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+lb\+AandG@{\+\_\+lb\+AandG}}
+\index{\+\_\+lb\+AandG@{\+\_\+lb\+AandG}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+lb\+AandG}{\_lbAandG}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+lb\+AandG\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 210 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_ace6b99f95cf3d633fb0bb96c7871c57f}{}\label{classocra_1_1OneLevelSolverWithQPOASES_ace6b99f95cf3d633fb0bb96c7871c57f} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+lbG@{\+\_\+lbG}}
+\index{\+\_\+lbG@{\+\_\+lbG}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+lbG}{\_lbG}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+lbG\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 211 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_af1bb606a75434adb15ad68b6db213848}{}\label{classocra_1_1OneLevelSolverWithQPOASES_af1bb606a75434adb15ad68b6db213848} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+n\+W\+S\+R\+\_\+every\+\_\+run@{\+\_\+n\+W\+S\+R\+\_\+every\+\_\+run}}
+\index{\+\_\+n\+W\+S\+R\+\_\+every\+\_\+run@{\+\_\+n\+W\+S\+R\+\_\+every\+\_\+run}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+n\+W\+S\+R\+\_\+every\+\_\+run}{\_nWSR\_every\_run}}
+{\footnotesize\ttfamily int ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+n\+W\+S\+R\+\_\+every\+\_\+run\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 213 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a586d9c2c84fac9044466d33dabac9f79}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a586d9c2c84fac9044466d33dabac9f79} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+\+Reg\+Term@{\+\_\+\+Reg\+Term}}
+\index{\+\_\+\+Reg\+Term@{\+\_\+\+Reg\+Term}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+\+Reg\+Term}{\_RegTerm}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+\+Reg\+Term\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 209 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a9e476513e7486c38bdb69c8fdd3b35d1}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a9e476513e7486c38bdb69c8fdd3b35d1} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+ubA@{\+\_\+ubA}}
+\index{\+\_\+ubA@{\+\_\+ubA}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+ubA}{\_ubA}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+ubA\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 211 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_afa4902490254547640625dc2d9512577}{}\label{classocra_1_1OneLevelSolverWithQPOASES_afa4902490254547640625dc2d9512577} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+ub\+AandG@{\+\_\+ub\+AandG}}
+\index{\+\_\+ub\+AandG@{\+\_\+ub\+AandG}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+ub\+AandG}{\_ubAandG}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+ub\+AandG\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 210 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_ac3b8f982ead7c50e7396d99e63f02ac3}{}\label{classocra_1_1OneLevelSolverWithQPOASES_ac3b8f982ead7c50e7396d99e63f02ac3} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+ubG@{\+\_\+ubG}}
+\index{\+\_\+ubG@{\+\_\+ubG}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+ubG}{\_ubG}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+ubG\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 211 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a67a41fa1b101ce2885012b796c8bfe47}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a67a41fa1b101ce2885012b796c8bfe47} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+xl@{\+\_\+xl}}
+\index{\+\_\+xl@{\+\_\+xl}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+xl}{\_xl}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+xl\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 205 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a23dd435ea8582fc67bf77373e0afc3e0}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a23dd435ea8582fc67bf77373e0afc3e0} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!\+\_\+xu@{\+\_\+xu}}
+\index{\+\_\+xu@{\+\_\+xu}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{\+\_\+xu}{\_xu}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::\+\_\+xu\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 206 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a8263c27c6bda731ab9dc9550a668e491}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a8263c27c6bda731ab9dc9550a668e491} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!A@{A}}
+\index{A@{A}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{A}{A}}
+{\footnotesize\ttfamily qp\+O\+A\+S\+E\+S\+::real\+\_\+t$\ast$ ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::A\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 200 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a56fea8397d0c6b40fee373d8863f0b26}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a56fea8397d0c6b40fee373d8863f0b26} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!g@{g}}
+\index{g@{g}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily qp\+O\+A\+S\+E\+S\+::real\+\_\+t$\ast$ ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::g\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 197 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_aba3bdf7d777d9e3e8015570652cf396a}{}\label{classocra_1_1OneLevelSolverWithQPOASES_aba3bdf7d777d9e3e8015570652cf396a} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!H@{H}}
+\index{H@{H}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{H}{H}}
+{\footnotesize\ttfamily std\+::vector$<$qp\+O\+A\+S\+E\+S\+::real\+\_\+t$>$ ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::H\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 196 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a82eaebae8f92464066e9b5348b1737f9}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a82eaebae8f92464066e9b5348b1737f9} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!lb@{lb}}
+\index{lb@{lb}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{lb}{lb}}
+{\footnotesize\ttfamily qp\+O\+A\+S\+E\+S\+::real\+\_\+t$\ast$ ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::lb\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 198 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a268dd33567d130672824404fdf98882a}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a268dd33567d130672824404fdf98882a} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!lbA@{lbA}}
+\index{lbA@{lbA}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{lbA}{lbA}}
+{\footnotesize\ttfamily qp\+O\+A\+S\+E\+S\+::real\+\_\+t$\ast$ ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::lbA\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 201 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_aa9c7ddcbafeff12cacea92ac658a63d6}{}\label{classocra_1_1OneLevelSolverWithQPOASES_aa9c7ddcbafeff12cacea92ac658a63d6} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!n\+W\+SR@{n\+W\+SR}}
+\index{n\+W\+SR@{n\+W\+SR}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{n\+W\+SR}{nWSR}}
+{\footnotesize\ttfamily int ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::n\+W\+SR\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 213 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_ace333e6d7333a5bcd9c7be5bc7d98c7b}{}\label{classocra_1_1OneLevelSolverWithQPOASES_ace333e6d7333a5bcd9c7be5bc7d98c7b} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!sqp\+\_\+options@{sqp\+\_\+options}}
+\index{sqp\+\_\+options@{sqp\+\_\+options}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{sqp\+\_\+options}{sqp\_options}}
+{\footnotesize\ttfamily qp\+O\+A\+S\+E\+S\+::\+Options ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::sqp\+\_\+options\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 194 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_ad432bd42a6211d668efc3b2e2d3df238}{}\label{classocra_1_1OneLevelSolverWithQPOASES_ad432bd42a6211d668efc3b2e2d3df238} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!sqp\+\_\+prob@{sqp\+\_\+prob}}
+\index{sqp\+\_\+prob@{sqp\+\_\+prob}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{sqp\+\_\+prob}{sqp\_prob}}
+{\footnotesize\ttfamily std\+::unique\+\_\+ptr$<$qp\+O\+A\+S\+E\+S\+::\+S\+Q\+Problem$>$ ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::sqp\+\_\+prob\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 190 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a53854c9775b3ff65f4a0621bab17613c}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a53854c9775b3ff65f4a0621bab17613c} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!ub@{ub}}
+\index{ub@{ub}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{ub}{ub}}
+{\footnotesize\ttfamily qp\+O\+A\+S\+E\+S\+::real\+\_\+t$\ast$ ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::ub\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 199 of file One\+Level\+Solver.\+h.
+
+\hypertarget{classocra_1_1OneLevelSolverWithQPOASES_a2cb624cfce8e1940c5107251418ee7dd}{}\label{classocra_1_1OneLevelSolverWithQPOASES_a2cb624cfce8e1940c5107251418ee7dd} 
+\index{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}!ubA@{ubA}}
+\index{ubA@{ubA}!ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES@{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}}
+\subsubsection{\texorpdfstring{ubA}{ubA}}
+{\footnotesize\ttfamily qp\+O\+A\+S\+E\+S\+::real\+\_\+t$\ast$ ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+E\+S\+::ubA\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 202 of file One\+Level\+Solver.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{OneLevelSolver_8h}{One\+Level\+Solver.\+h}\item 
+\hyperlink{OneLevelSolver_8cpp}{One\+Level\+Solver.\+cpp}\end{DoxyCompactItemize}

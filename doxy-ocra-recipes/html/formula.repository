@@ -1,0 +1,135 @@
+\form#0:$ \vec{0} < \vec{d}_{oa} $
+\form#1:$ \vec{d}_{oa} $
+\form#2:\begin{align*} \vec{d}_{oa} - \vec{m} &> \vec{d}_{oa}(h) \quad \text{at instant h} \\ \vec{d}_{oa} - \vec{m} &> \dot{\vec{d}}_{oa} h + \ddot{\vec{d}}_{oa} \frac{h^2}{2} \\ \vec{d}_{oa} - \vec{m} &> \dot{\vec{d}}_{oa} h + \left( \J_{oa} \ddq + \dJ_{oa} \dq \right) \frac{h^2}{2} \end{align*}
+\form#3:$ \vec{m} $
+\form#4:\begin{align*} \A \x + \b &> \vec{0} & &\Leftrightarrow & \begin{bmatrix} - \J_{oa} \end{bmatrix} \ddq + \begin{bmatrix} - \dJ_{oa} \dq + 2 \left( \vec{d}_{oa} - \vec{m} - \dot{\vec{d}}_{oa} h \right) / h^2 \end{bmatrix} & > \vec{0} \end{align*}
+\form#5:\begin{align*} t_{max} &= 2*(\vec{d}_{oa} - \vec{m}) / \dot{\vec{d}}_{oa} & & \text{(element-wise operations)} \end{align*}
+\form#6:$ i $
+\form#7:$ 0 < t_{max}[i] < h$
+\form#8:\begin{align*} \ddot{\vec{d}}_{max}[i] &= \frac{ \dot{\vec{d}}_{oa}[i]^2 }{ 2( \vec{d}_{oa}[i] - \vec{m}[i] ) } & & \Rightarrow & \begin{bmatrix} - \J_{oa} \end{bmatrix} [i] \ddq + \ddot{\vec{d}}_{max}[i] > 0 \end{align*}
+\form#9:\[ \M \ddq + \n + \g = S \torque - \J_c\tp \force_c \]
+\form#10:$ \x = \begin{bmatrix} \ddq\tp & \torque\tp & \force_c\tp\end{bmatrix}\tp $
+\form#11:\begin{align*} \A \x + \b &= \vec{0} & &\Leftrightarrow & \begin{bmatrix} \M & -S & \J_c\tp \end{bmatrix} . \begin{bmatrix} \ddq \\ \torque \\ \force_c\end{bmatrix} + [ \n + \g ] = \vec{0} \end{align*}
+\form#12:$ \q_{min} < \q < \q{max} $
+\form#13:$ \ddq $
+\form#14:\begin{align*} \q_{min} < \q + \dq h + \ddq \frac{h^2}{2} < \q_{max} \end{align*}
+\form#15:\begin{align*} A \x + \b &> \vec{0} & &\Leftrightarrow & \begin{bmatrix} - \Id{} \\ \Id{} \end{bmatrix} \ddq + 2 \begin{bmatrix} \q_{max} - \q + \dq h \\ \q_{min} - \q + \dq h \end{bmatrix} / h^2 &> \vec{0} \end{align*}
+\form#16:\begin{align*} t_{max} &= - 2 ( \q - \q_{max} ) / \dq & &\text{(element-wise operations)} \\ t_{min} &= - 2 ( \q - \q_{min} ) / \dq \end{align*}
+\form#17:\begin{align*} \ddq_{max}[i] &= \frac{ \dq[i]^2 }{ 2(\q[i] - \q_{max}[i] ) } & & \Rightarrow & \ddq [i] + \ddq_{max}[i] > 0 \end{align*}
+\form#18:$ 0 < t_{min}[i] < h $
+\form#19:\begin{align*} \ddq_{min}[i] &= \frac{ \dq[i]^2 }{ 2(\q[i] - \q_{min}[i] ) } & & \Rightarrow & \ddq [i] + \ddq_{min}[i] > 0 \end{align*}
+\form#20:$2\sqrt(k_p)$
+\form#21:\[ - \torque_{max} < \torque < \torque_{max} \]
+\form#22:\begin{align*} \A \x + \b &> \vec{0} & &\Leftrightarrow & \begin{bmatrix} - \Id{} \\ \Id{} \end{bmatrix} . \torque + \begin{bmatrix} \torque_{max} \\ \torque_{max} \end{bmatrix} &> \vec{0} \end{align*}
+\form#23:$ x<x^+ $
+\form#24:$ x>x^- $
+\form#25:$ f $
+\form#26:$ x \in R^n $
+\form#27:$ t $
+\form#28:$ l \le f(x,t) \le u $
+\form#29:$ l $
+\form#30:$ u $
+\form#31:$ m $
+\form#32:$ \left(R\cup\left\{-\infty,+\infty\right\}\right)^m $
+\form#33:$ l \le u $
+\form#34:$ l = u = b $
+\form#35:$ l = -\infty $
+\form#36:$ u = +\infty $
+\form#37:$ f(x,t) = 0 $
+\form#38:$ f(x,t) \le 0 $
+\form#39:$ f(x,t) = b $
+\form#40:$ f(x,t) \le u $
+\form#41:$ f(x,t) \ge 0 $
+\form#42:$ f(x,t) \ge l $
+\form#43:$ f(x,t) = u $
+\form#44:$ Dx+b $
+\form#45:$ D=diag(d) $
+\form#46:$ d $
+\form#47:$ f_A $
+\form#48:$x$
+\form#49:$R^n$
+\form#50:$ f_A : R^n \times R \rightarrow R^m $
+\form#51:$ f_A(x,t) = (f_{1_A}(x,t), \cdots, f_{m_A}(x,t))^T $
+\form#52:$ \frac{\partial^2 f}{\partial t \partial x}$
+\form#53:$ \frac{\partial f_i}{\partial x}$
+\form#54:$ \left(x(t),t\right) $
+\form#55:$ f: R^n \times R \rightarrow R^m $
+\form#56:$ f(x,t) $
+\form#57:$ \frac{\partial^2 f}{\partial t \partial x}(x,t) $
+\form#58:$ f(x,t) = g(x)+h(t)$
+\form#59:$ \left\|f_t\right\| - \mu f_n $
+\form#60:$ Af+b \le 0 $
+\form#61:$ x $
+\form#62:$ \frac{\partial f}{\partial x} \dot{x} + L(f(x)) $
+\form#63:$ L $
+\form#64:$ L(y) = \Lambda y $
+\form#65:$ \Lambda $
+\form#66:$ \mbox{min.} \dfrac{1}{2} \sum_i{ w_i \left\| f_i \right\|^2_2} $
+\form#67:$ f_i $
+\form#68:$ J_i^t J_i $
+\form#69:$ J_i $
+\form#70:$ F(x) = \dfrac{1}{2} \sum_i{ w_i \left\| f_i(x) \right\|^2_2} $
+\form#71:$ H(x)=\frac{\partial^2 F}{\partial x^2}(x)$
+\form#72:$ x_0 $
+\form#73:$ x_{n+1} = x_n - \alpha H(x_n)^{-1} \nabla F(x_n) $
+\form#74:$ \left\|x_{n+1} - x_n\right\|_2$
+\form#75:$ \epsilon $
+\form#76:$ \alpha $
+\form#77:$ x_0=0 $
+\form#78:$ x_n $
+\form#79:$ \alpha f(x,t) $
+\form#80:$ alpha $
+\form#81:\begin{align*} \argmin{\x} &: \; \frac{1}{2} \x\tp G \x + \vec{g}_0\tp \x \\ & CE \x + \vec{ce}_0 = \vec{0} \\ & CI \x + \vec{ci}_0 \geq \vec{0} \end{align*}
+\form#82:\begin{align*} \argmin{\x} &: \; \frac{1}{2} \x\tp P \x + \vec{q}\tp \x \\ & \A \x + \b \geqq \vec{0} \\ & \x_{min} \leq \x \leq \x_{max} \end{align*}
+\form#83:\begin{align*} \A \x + \b &\geqq \vec{0} & &\Leftrightarrow &\begin{bmatrix} CE \\ CI \end{bmatrix} \x + \begin{bmatrix} \vec{ce}_0 \\ \vec{ci}_0 \end{bmatrix} & \quad \begin{matrix} = \\ \geq \end{matrix} \quad \begin{bmatrix} \vec{0} \\ \vec{0} \end{bmatrix} \end{align*}
+\form#84:$ P_i $
+\form#85:$ q_i $
+\form#86:$ r_i $
+\form#87:$ \x = [ \ddq \; \torque \; \force_c ] $
+\form#88:$ \x = [ \torque \; \force_c ] $
+\form#89:$ h $
+\form#90:$ = \dJ_{Obst} \dq $
+\form#91:$ \A $
+\form#92:$ \b $
+\form#93:$ \A = \begin{bmatrix} \M & -S & \J_c\tp \end{bmatrix} $
+\form#94:$ \M $
+\form#95:$ \J_c $
+\form#96:$ S $
+\form#97:$ \b = \n + \g $
+\form#98:$ \A = \begin{bmatrix} 0 & -S & 0 \end{bmatrix} $
+\form#99:$ \torque $
+\form#100:$ \force_c $
+\form#101:$ \q_{min}, \q_{max} $
+\form#102:$ \q_{min} $
+\form#103:$ \q_{max} $
+\form#104:$ \q_{min}[i], \q_{max}[i] $
+\form#105:$ \q_{min}[i] $
+\form#106:$ \q_{max}[i] $
+\form#107:$ \vec{a}^{des} = - \left( \vec{a}_{ref} + K_p (\vec{p}^{des} - vec{p}) + K_d (\vec{v}^{des} - vec{v}) \right) $
+\form#108:\begin{align*} \A &= J_{task} . \left( \M^{-1} \J_{\tav}\tp \right) & \b &= \vec{a}^{des} - \left( J_{task} \M^{-1} ( \g - \n) \right) \end{align*}
+\form#109:\begin{align*} \A &= J_{task} & \b &= \vec{a}^{des} \end{align*}
+\form#110:$ \b = \begin{bmatrix} \torque_{max} \\ \torque_{max} \end{bmatrix} $
+\form#111:$ \torque_{max} $
+\form#112:$ T_0 $
+\form#113:$ \A = U . S . V\tp $
+\form#114:$ r $
+\form#115:\begin{align*} \A_r &= S[0:r, :] V[:, 0:r] \tp & & & \b_r &= U[:, 0:r] \tp \b \end{align*}
+\form#116:$ R^3 \rightarrow R $
+\form#117:$ f(x,y,z) = 3x^2y+2\frac{\sqrt{z}}{x}$
+\form#118:$ f: R^n \rightarrow R $
+\form#119:$ f(x) = \left(\prod_{i=1}^n x_i\right)^(1/n) $
+\form#120:$ f_A:R^3 \rightarrow R $
+\form#121:$ A = \left(t_0, x_0, \dot{x}_0, \ddot{x}_0, y_0, \dot{y}_0, \ddot{y}_0, z_0, \dot{z}_0, \ddot{z}_0 \right) $
+\form#122:$ f_A(u_x,u_y,u_z) = \left(\begin{array}{c c c} x_0 & \dot{x}_0 & \ddot{x}_0 \\ y_0 & \dot{y}_0 & \ddot{y}_0 \\ z_0 & \dot{z}_0 & \ddot{z}_0 \end{array}\right) \left(\begin{array}{c} 1 \\ (t-t_0) \\ (t-t_0)^2/2 \end{array}\right) + \frac{(t-t_0)^3}{6} \left(\begin{array}{c} u_x \\ u_y \\ u_z \end{array}\right) $
+\form#123:$ f(x,y,z) = 3x^2y+2\frac{z}{x}$
+\form#124:$J(x,y,z) = \begin{array}{lcr} 6xy - 2 \frac{\sqrt{z}}{x^2} & 3x^2 & \frac{1}{x \sqrt{z}} \end{array} $
+\form#125:$ H(x,y,z) = \left(\begin{array}{lcr} 6y + 4\frac{\sqrt{z}}{x^3} & 6x & -\frac{1}{x^2 \sqrt{z}} \\ 6x & 0 & 0 \\ -\frac{1}{x^2 \sqrt{z}} & 0 & -\frac{1}{2xz \sqrt{z}} \end{array}\right) $
+\form#126:$ [ \ddq, \torque, \force_c ] $
+\form#127:$ [ \torque, \force_c ] $
+\form#128:$ [ \torque \; \force_c ] $
+\form#129:$ [ \ddq \; \torque \; \force_c ] $
+\form#130:$ \mu $
+\form#131:$ \Vert \force_t \Vert < \mu \force_n $
+\form#132:$ x = [ \ddq \; \tau \; \force_c ] $
+\form#133:$ x = [ \tau \; \force_c ] $
+\form#134:$ \tau $

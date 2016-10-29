@@ -1,0 +1,259 @@
+\hypertarget{classocra_1_1IFunctionProperties}{}\section{ocra\+:\+:I\+Function\+Properties Class Reference}
+\label{classocra_1_1IFunctionProperties}\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+
+
+{\ttfamily \#include $<$I\+Function\+Properties.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:I\+Function\+Properties\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=12.000000cm]{dd/d68/classocra_1_1IFunctionProperties}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classocra_1_1IFunctionProperties_abc723a9def6656293c2e9ffeef133d65}{has\+Separable\+Time\+Dependancy} (void) const
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity} \hyperlink{classocra_1_1IFunctionProperties_a247de3887681fa72014273d131a2e090}{get\+Type} (void) const
+\item 
+\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity} \hyperlink{classocra_1_1IFunctionProperties_a53e39be08b8883d55193c87168743e3e}{get\+Convexity\+Property} (void) const
+\item 
+int \hyperlink{classocra_1_1IFunctionProperties_a2b999c6d608ee84135d7daf56a86420f}{get\+Continuity\+Property} (void) const
+\item 
+const std\+::string \& \hyperlink{classocra_1_1IFunctionProperties_a80d578a7679e4f87594322f963974ef9}{get\+Property} (int i) const
+\item 
+int \hyperlink{classocra_1_1IFunctionProperties_ae0290dc1f3be7295512af731ede8c981}{get\+Number\+Of\+Properties} (void) const
+\item 
+bool \hyperlink{classocra_1_1IFunctionProperties_a9484dcc696cc2425ae1e1e10fa79b5ba}{has\+Property} (const std\+::string \&function\+Property) const
+\item 
+bool \hyperlink{classocra_1_1IFunctionProperties_a02751762b878ab2ccefb36f2bec696e5}{is\+Explicitly\+Time\+Dependant} (void) const
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1IFunctionProperties_aee18136916b7dea9df2573cea45464ca}{I\+Function\+Properties} (\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity} linearity=\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226abadd86a2dd3240e6df49a6e422b5abe075}{L\+I\+N\+E\+A\+R\+I\+T\+Y\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}, \hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity} convexity=\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119a40aab88792841afe151808f879cfaa99}{C\+O\+N\+V\+E\+X\+I\+T\+Y\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}, int continuity=\hyperlink{namespaceocra_ae5102ad1959d0c0dbf2eaa5610bbf728ad66557aadcf8856f9f135ff26db1a862}{C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+U\+N\+K\+N\+O\+WN}, bool explicitly\+Time\+Dependant=false, bool separable\+Time\+Dependancy=true)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classocra_1_1IFunctionProperties}{I\+Function\+Properties} Constructor. \end{DoxyCompactList}\item 
+void \hyperlink{classocra_1_1IFunctionProperties_a49eb26106db8a6db9f3fbe87a641f433}{change\+Type} (\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity} new\+Type)
+\item 
+void \hyperlink{classocra_1_1IFunctionProperties_a95fa18db8916e8671fed59cfdb40026c}{change\+Convexity\+Property} (\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity} new\+Property)
+\item 
+void \hyperlink{classocra_1_1IFunctionProperties_aba0abe2bbb7a6670b5af4fceaf7cce12}{change\+Continuity\+Property} (int new\+Property)
+\item 
+void \hyperlink{classocra_1_1IFunctionProperties_a2443a62c2cf3f5bc39f4fab1ddb1c66e}{add\+Property} (const std\+::string \&function\+Property)
+\item 
+void \hyperlink{classocra_1_1IFunctionProperties_a87bba6ce19795439ea768f148fb47391}{remove\+Property} (const std\+::string \&function\+Property)
+\item 
+void \hyperlink{classocra_1_1IFunctionProperties_a9081aa3e1561cb63c598e19d6e03797f}{change\+Explicit\+Time\+Dependancy} (bool b)
+\item 
+void \hyperlink{classocra_1_1IFunctionProperties_a2277e7388dcfac99b5722a8155deb793}{change\+Separable\+Time\+Dependancy} (bool b)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class groups the properties a function can have. The usual properties used by an optimization software are described by the use of the enumerations e\+Function\+Continuity, e\+Function\+Linearity and e\+Function\+Continuity. Furthermore two flags are used to indicate wether the function has an explicit time-\/dependancy and if it is the case if this time dependancy is separable from the variable dependancy\+: $ f(x,t) = g(x)+h(t)$ Additionnal properties can be added with the help of strings. 
+
+Definition at line 74 of file I\+Function\+Properties.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1IFunctionProperties_aee18136916b7dea9df2573cea45464ca}{}\label{classocra_1_1IFunctionProperties_aee18136916b7dea9df2573cea45464ca} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!I\+Function\+Properties@{I\+Function\+Properties}}
+\index{I\+Function\+Properties@{I\+Function\+Properties}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{I\+Function\+Properties()}{IFunctionProperties()}}
+{\footnotesize\ttfamily ocra\+::\+I\+Function\+Properties\+::\+I\+Function\+Properties (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity}}]{linearity = {\ttfamily \hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226abadd86a2dd3240e6df49a6e422b5abe075}{L\+I\+N\+E\+A\+R\+I\+T\+Y\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}},  }\item[{\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity}}]{convexity = {\ttfamily \hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119a40aab88792841afe151808f879cfaa99}{C\+O\+N\+V\+E\+X\+I\+T\+Y\+\_\+\+U\+N\+D\+E\+F\+I\+N\+ED}},  }\item[{int}]{continuity = {\ttfamily \hyperlink{namespaceocra_ae5102ad1959d0c0dbf2eaa5610bbf728ad66557aadcf8856f9f135ff26db1a862}{C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+U\+N\+K\+N\+O\+WN}},  }\item[{bool}]{explicitly\+Time\+Dependant = {\ttfamily false},  }\item[{bool}]{separable\+Time\+Dependancy = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\hyperlink{classocra_1_1IFunctionProperties}{I\+Function\+Properties} Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em linearity} & Linearity property of the function. \\
+\hline
+\mbox{\tt in}  & {\em convexity} & Convexity property of the function. \\
+\hline
+\mbox{\tt in}  & {\em continuity} & Continuity property of the function.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyPrecond}{Precondition}
+(continuity==C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+U\+N\+K\+N\+O\+WN) $\vert$$\vert$ (continuity$>$0 \&\& continuity$<$=C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+C\+I\+NF) 
+\end{DoxyPrecond}
+
+
+Definition at line 8 of file I\+Function\+Properties.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1IFunctionProperties_a2443a62c2cf3f5bc39f4fab1ddb1c66e}{}\label{classocra_1_1IFunctionProperties_a2443a62c2cf3f5bc39f4fab1ddb1c66e} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!add\+Property@{add\+Property}}
+\index{add\+Property@{add\+Property}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{add\+Property()}{addProperty()}}
+{\footnotesize\ttfamily void ocra\+::\+I\+Function\+Properties\+::add\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{function\+Property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+add a property to the function If the property already exist for the function, it will not be added again 
+
+Definition at line 51 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_aba0abe2bbb7a6670b5af4fceaf7cce12}{}\label{classocra_1_1IFunctionProperties_aba0abe2bbb7a6670b5af4fceaf7cce12} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!change\+Continuity\+Property@{change\+Continuity\+Property}}
+\index{change\+Continuity\+Property@{change\+Continuity\+Property}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{change\+Continuity\+Property()}{changeContinuityProperty()}}
+{\footnotesize\ttfamily void ocra\+::\+I\+Function\+Properties\+::change\+Continuity\+Property (\begin{DoxyParamCaption}\item[{int}]{new\+Property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+change the continuity property of the function to {\itshape new\+Property} 
+
+\begin{DoxyPrecond}{Precondition}
+(new\+Property==C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+U\+N\+K\+N\+O\+WN) $\vert$$\vert$ (new\+Property$>$0 \&\& new\+Property$<$=C\+O\+N\+T\+I\+N\+U\+I\+T\+Y\+\_\+\+C\+I\+NF) 
+\end{DoxyPrecond}
+
+
+Definition at line 45 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a95fa18db8916e8671fed59cfdb40026c}{}\label{classocra_1_1IFunctionProperties_a95fa18db8916e8671fed59cfdb40026c} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!change\+Convexity\+Property@{change\+Convexity\+Property}}
+\index{change\+Convexity\+Property@{change\+Convexity\+Property}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{change\+Convexity\+Property()}{changeConvexityProperty()}}
+{\footnotesize\ttfamily void ocra\+::\+I\+Function\+Properties\+::change\+Convexity\+Property (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity}}]{new\+Property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+change the convexity property of the function to {\itshape new\+Property} 
+
+Definition at line 40 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a9081aa3e1561cb63c598e19d6e03797f}{}\label{classocra_1_1IFunctionProperties_a9081aa3e1561cb63c598e19d6e03797f} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!change\+Explicit\+Time\+Dependancy@{change\+Explicit\+Time\+Dependancy}}
+\index{change\+Explicit\+Time\+Dependancy@{change\+Explicit\+Time\+Dependancy}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{change\+Explicit\+Time\+Dependancy()}{changeExplicitTimeDependancy()}}
+{\footnotesize\ttfamily void ocra\+::\+I\+Function\+Properties\+::change\+Explicit\+Time\+Dependancy (\begin{DoxyParamCaption}\item[{bool}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+set the explicit time dependancy property to {\itshape b} 
+
+Definition at line 93 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a2277e7388dcfac99b5722a8155deb793}{}\label{classocra_1_1IFunctionProperties_a2277e7388dcfac99b5722a8155deb793} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!change\+Separable\+Time\+Dependancy@{change\+Separable\+Time\+Dependancy}}
+\index{change\+Separable\+Time\+Dependancy@{change\+Separable\+Time\+Dependancy}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{change\+Separable\+Time\+Dependancy()}{changeSeparableTimeDependancy()}}
+{\footnotesize\ttfamily void ocra\+::\+I\+Function\+Properties\+::change\+Separable\+Time\+Dependancy (\begin{DoxyParamCaption}\item[{bool}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+set the separable time dependancy property to {\itshape b} However, has\+Separable\+Time\+Dependancy will always return true, if there is no explicit time dependancy. 
+
+Definition at line 98 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a49eb26106db8a6db9f3fbe87a641f433}{}\label{classocra_1_1IFunctionProperties_a49eb26106db8a6db9f3fbe87a641f433} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!change\+Type@{change\+Type}}
+\index{change\+Type@{change\+Type}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{change\+Type()}{changeType()}}
+{\footnotesize\ttfamily void ocra\+::\+I\+Function\+Properties\+::change\+Type (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity}}]{new\+Type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+change the linearity property of the function to {\itshape new\+Type} 
+
+Definition at line 35 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a2b999c6d608ee84135d7daf56a86420f}{}\label{classocra_1_1IFunctionProperties_a2b999c6d608ee84135d7daf56a86420f} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!get\+Continuity\+Property@{get\+Continuity\+Property}}
+\index{get\+Continuity\+Property@{get\+Continuity\+Property}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{get\+Continuity\+Property()}{getContinuityProperty()}}
+{\footnotesize\ttfamily int ocra\+::\+I\+Function\+Properties\+::get\+Continuity\+Property (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 30 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a53e39be08b8883d55193c87168743e3e}{}\label{classocra_1_1IFunctionProperties_a53e39be08b8883d55193c87168743e3e} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!get\+Convexity\+Property@{get\+Convexity\+Property}}
+\index{get\+Convexity\+Property@{get\+Convexity\+Property}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{get\+Convexity\+Property()}{getConvexityProperty()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_ae6e8dca6121e9618486a449754876119}{e\+Function\+Convexity} ocra\+::\+I\+Function\+Properties\+::get\+Convexity\+Property (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 25 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_ae0290dc1f3be7295512af731ede8c981}{}\label{classocra_1_1IFunctionProperties_ae0290dc1f3be7295512af731ede8c981} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!get\+Number\+Of\+Properties@{get\+Number\+Of\+Properties}}
+\index{get\+Number\+Of\+Properties@{get\+Number\+Of\+Properties}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{get\+Number\+Of\+Properties()}{getNumberOfProperties()}}
+{\footnotesize\ttfamily int ocra\+::\+I\+Function\+Properties\+::get\+Number\+Of\+Properties (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 72 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a80d578a7679e4f87594322f963974ef9}{}\label{classocra_1_1IFunctionProperties_a80d578a7679e4f87594322f963974ef9} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!get\+Property@{get\+Property}}
+\index{get\+Property@{get\+Property}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{get\+Property()}{getProperty()}}
+{\footnotesize\ttfamily const std\+::string \& ocra\+::\+I\+Function\+Properties\+::get\+Property (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 67 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a247de3887681fa72014273d131a2e090}{}\label{classocra_1_1IFunctionProperties_a247de3887681fa72014273d131a2e090} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!get\+Type@{get\+Type}}
+\index{get\+Type@{get\+Type}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{get\+Type()}{getType()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_a87b525b5508b0f6e9d931f14c7c226ab}{e\+Function\+Linearity} ocra\+::\+I\+Function\+Properties\+::get\+Type (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+Accessors 
+
+Definition at line 20 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a9484dcc696cc2425ae1e1e10fa79b5ba}{}\label{classocra_1_1IFunctionProperties_a9484dcc696cc2425ae1e1e10fa79b5ba} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!has\+Property@{has\+Property}}
+\index{has\+Property@{has\+Property}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{has\+Property()}{hasProperty()}}
+{\footnotesize\ttfamily bool ocra\+::\+I\+Function\+Properties\+::has\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{function\+Property }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 77 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_abc723a9def6656293c2e9ffeef133d65}{}\label{classocra_1_1IFunctionProperties_abc723a9def6656293c2e9ffeef133d65} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!has\+Separable\+Time\+Dependancy@{has\+Separable\+Time\+Dependancy}}
+\index{has\+Separable\+Time\+Dependancy@{has\+Separable\+Time\+Dependancy}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{has\+Separable\+Time\+Dependancy()}{hasSeparableTimeDependancy()}}
+{\footnotesize\ttfamily bool ocra\+::\+I\+Function\+Properties\+::has\+Separable\+Time\+Dependancy (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+Return true if f(x,t) can be written g(x)+h(t). It includes the case when there is no explicit time dependancy since in that case g(x) = f(x,t) and h(t)=0. 
+
+Definition at line 88 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a02751762b878ab2ccefb36f2bec696e5}{}\label{classocra_1_1IFunctionProperties_a02751762b878ab2ccefb36f2bec696e5} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!is\+Explicitly\+Time\+Dependant@{is\+Explicitly\+Time\+Dependant}}
+\index{is\+Explicitly\+Time\+Dependant@{is\+Explicitly\+Time\+Dependant}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{is\+Explicitly\+Time\+Dependant()}{isExplicitlyTimeDependant()}}
+{\footnotesize\ttfamily bool ocra\+::\+I\+Function\+Properties\+::is\+Explicitly\+Time\+Dependant (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 83 of file I\+Function\+Properties.\+cpp.
+
+\hypertarget{classocra_1_1IFunctionProperties_a87bba6ce19795439ea768f148fb47391}{}\label{classocra_1_1IFunctionProperties_a87bba6ce19795439ea768f148fb47391} 
+\index{ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}!remove\+Property@{remove\+Property}}
+\index{remove\+Property@{remove\+Property}!ocra\+::\+I\+Function\+Properties@{ocra\+::\+I\+Function\+Properties}}
+\subsubsection{\texorpdfstring{remove\+Property()}{removeProperty()}}
+{\footnotesize\ttfamily void ocra\+::\+I\+Function\+Properties\+::remove\+Property (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{function\+Property }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+remove a property from the function If the property doesn\textquotesingle{}t exist for this function, nothing happens.
+
+\begin{DoxyPostcond}{Postcondition}
+function\+Property doesn\textquotesingle{}t appear anymore in the function properties 
+\end{DoxyPostcond}
+
+
+Definition at line 58 of file I\+Function\+Properties.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{IFunctionProperties_8h}{I\+Function\+Properties.\+h}\item 
+\hyperlink{IFunctionProperties_8cpp}{I\+Function\+Properties.\+cpp}\end{DoxyCompactItemize}

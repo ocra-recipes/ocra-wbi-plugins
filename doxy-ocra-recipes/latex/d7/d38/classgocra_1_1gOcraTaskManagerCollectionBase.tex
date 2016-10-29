@@ -1,0 +1,101 @@
+\hypertarget{classgocra_1_1gOcraTaskManagerCollectionBase}{}\section{gocra\+:\+:g\+Ocra\+Task\+Manager\+Collection\+Base Class Reference}
+\label{classgocra_1_1gOcraTaskManagerCollectionBase}\index{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}}
+
+
+{\ttfamily \#include $<$g\+Ocra\+Task\+Manager\+Collection\+Base.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classgocra_1_1gOcraTaskManagerCollectionBase_afe4a8d100c2a8aae6263249145a2d941}{$\sim$g\+Ocra\+Task\+Manager\+Collection\+Base} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraTaskManagerCollectionBase_ae962f18a286bc706ee867eede15822b6}{init} (\hyperlink{classgocra_1_1GHCJTController}{gocra\+::\+G\+H\+C\+J\+T\+Controller} \&ctrl, ocra\+::\+Model \&model)
+\item 
+void \hyperlink{classgocra_1_1gOcraTaskManagerCollectionBase_a08764673857307135233d7a69ad49a69}{update} (double time, ocra\+::\+Model \&state, void $\ast$$\ast$args)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classgocra_1_1gOcraTaskManagerCollectionBase_a81b68fbc3c26897cb4c971bd53199b78}{do\+Init} (\hyperlink{classgocra_1_1GHCJTController}{gocra\+::\+G\+H\+C\+J\+T\+Controller} \&ctrl, ocra\+::\+Model \&model)=0
+\item 
+virtual void \hyperlink{classgocra_1_1gOcraTaskManagerCollectionBase_a42f29543b66d4ff1e297225e0f5c6501}{do\+Update} (double time, ocra\+::\+Model \&state, void $\ast$$\ast$args)=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespacegocra_ad407175473be2e361f2937acf73ca06c}{Task\+Manager\+Dict} \hyperlink{classgocra_1_1gOcraTaskManagerCollectionBase_a247b32be87662be87239195b726fabca}{task\+Managers}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 22 of file g\+Ocra\+Task\+Manager\+Collection\+Base.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgocra_1_1gOcraTaskManagerCollectionBase_afe4a8d100c2a8aae6263249145a2d941}{}\label{classgocra_1_1gOcraTaskManagerCollectionBase_afe4a8d100c2a8aae6263249145a2d941} 
+\index{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}!````~g\+Ocra\+Task\+Manager\+Collection\+Base@{$\sim$g\+Ocra\+Task\+Manager\+Collection\+Base}}
+\index{````~g\+Ocra\+Task\+Manager\+Collection\+Base@{$\sim$g\+Ocra\+Task\+Manager\+Collection\+Base}!gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}}
+\subsubsection{\texorpdfstring{$\sim$g\+Ocra\+Task\+Manager\+Collection\+Base()}{~gOcraTaskManagerCollectionBase()}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base\+::$\sim$g\+Ocra\+Task\+Manager\+Collection\+Base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 6 of file g\+Ocra\+Task\+Manager\+Collection\+Base.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgocra_1_1gOcraTaskManagerCollectionBase_a81b68fbc3c26897cb4c971bd53199b78}{}\label{classgocra_1_1gOcraTaskManagerCollectionBase_a81b68fbc3c26897cb4c971bd53199b78} 
+\index{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}!do\+Init@{do\+Init}}
+\index{do\+Init@{do\+Init}!gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}}
+\subsubsection{\texorpdfstring{do\+Init()}{doInit()}}
+{\footnotesize\ttfamily virtual void gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base\+::do\+Init (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{gocra\+::\+G\+H\+C\+J\+T\+Controller} \&}]{ctrl,  }\item[{ocra\+::\+Model \&}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+\hypertarget{classgocra_1_1gOcraTaskManagerCollectionBase_a42f29543b66d4ff1e297225e0f5c6501}{}\label{classgocra_1_1gOcraTaskManagerCollectionBase_a42f29543b66d4ff1e297225e0f5c6501} 
+\index{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}!do\+Update@{do\+Update}}
+\index{do\+Update@{do\+Update}!gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}}
+\subsubsection{\texorpdfstring{do\+Update()}{doUpdate()}}
+{\footnotesize\ttfamily virtual void gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base\+::do\+Update (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{ocra\+::\+Model \&}]{state,  }\item[{void $\ast$$\ast$}]{args }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+\hypertarget{classgocra_1_1gOcraTaskManagerCollectionBase_ae962f18a286bc706ee867eede15822b6}{}\label{classgocra_1_1gOcraTaskManagerCollectionBase_ae962f18a286bc706ee867eede15822b6} 
+\index{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}!init@{init}}
+\index{init@{init}!gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base\+::init (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{gocra\+::\+G\+H\+C\+J\+T\+Controller} \&}]{ctrl,  }\item[{ocra\+::\+Model \&}]{model }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file g\+Ocra\+Task\+Manager\+Collection\+Base.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraTaskManagerCollectionBase_a08764673857307135233d7a69ad49a69}{}\label{classgocra_1_1gOcraTaskManagerCollectionBase_a08764673857307135233d7a69ad49a69} 
+\index{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}!update@{update}}
+\index{update@{update}!gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}}
+\subsubsection{\texorpdfstring{update()}{update()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base\+::update (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{ocra\+::\+Model \&}]{state,  }\item[{void $\ast$$\ast$}]{args }\end{DoxyParamCaption})}
+
+
+
+Definition at line 15 of file g\+Ocra\+Task\+Manager\+Collection\+Base.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgocra_1_1gOcraTaskManagerCollectionBase_a247b32be87662be87239195b726fabca}{}\label{classgocra_1_1gOcraTaskManagerCollectionBase_a247b32be87662be87239195b726fabca} 
+\index{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}!task\+Managers@{task\+Managers}}
+\index{task\+Managers@{task\+Managers}!gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base@{gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base}}
+\subsubsection{\texorpdfstring{task\+Managers}{taskManagers}}
+{\footnotesize\ttfamily \hyperlink{namespacegocra_ad407175473be2e361f2937acf73ca06c}{Task\+Manager\+Dict} gocra\+::g\+Ocra\+Task\+Manager\+Collection\+Base\+::task\+Managers\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 32 of file g\+Ocra\+Task\+Manager\+Collection\+Base.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{gOcraTaskManagerCollectionBase_8h}{g\+Ocra\+Task\+Manager\+Collection\+Base.\+h}\item 
+\hyperlink{gOcraTaskManagerCollectionBase_8cpp}{g\+Ocra\+Task\+Manager\+Collection\+Base.\+cpp}\end{DoxyCompactItemize}

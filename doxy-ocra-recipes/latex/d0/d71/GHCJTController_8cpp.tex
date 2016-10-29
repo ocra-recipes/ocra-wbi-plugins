@@ -1,0 +1,38 @@
+\hypertarget{GHCJTController_8cpp}{}\section{G\+H\+C\+J\+T\+Controller.\+cpp File Reference}
+\label{GHCJTController_8cpp}\index{G\+H\+C\+J\+T\+Controller.\+cpp@{G\+H\+C\+J\+T\+Controller.\+cpp}}
+
+
+Implement the quasi-\/static Generalized Hierarchical Control based on Jacobian Transpose (G\+H\+C\+JT).  
+
+
+{\ttfamily \#include \char`\"{}gocra/\+G\+H\+C\+J\+T\+Controller.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+One\+Level\+Solver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Quadratic\+Function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Function\+Helpers.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Sum\+Of\+Linear\+Functions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Full\+State.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Feature.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Model.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Contact\+Set.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gocra/\+Tasks/\+G\+H\+C\+J\+T\+Task.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gocra/\+Performances.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}gocra/\+Orthonormal\+Family.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl}{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacegocra}{gocra}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implement the quasi-\/static Generalized Hierarchical Control based on Jacobian Transpose (G\+H\+C\+JT). 
+
+\begin{DoxyAuthor}{Author}
+Mingxing Liu 
+\end{DoxyAuthor}

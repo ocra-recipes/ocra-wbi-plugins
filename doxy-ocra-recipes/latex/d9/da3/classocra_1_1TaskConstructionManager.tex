@@ -1,0 +1,148 @@
+\hypertarget{classocra_1_1TaskConstructionManager}{}\section{ocra\+:\+:Task\+Construction\+Manager Class Reference}
+\label{classocra_1_1TaskConstructionManager}\index{ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}}
+
+
+{\ttfamily \#include $<$Task\+Construction\+Manager.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1TaskConstructionManager_aaca5f4d8ed3ee26c1d26dcee88532428}{Task\+Construction\+Manager} ()
+\item 
+\hyperlink{classocra_1_1TaskConstructionManager_a290841cfd953f5162913f849e9b5eeaf}{Task\+Construction\+Manager} (Model\+::\+Ptr model, Controller\+::\+Ptr controller, std\+::vector$<$ \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} $>$ options\+Vector)
+\item 
+\hyperlink{classocra_1_1TaskConstructionManager_a946b02d5d8d3a75f927c3b87f3aeea1a}{Task\+Construction\+Manager} (Model\+::\+Ptr model, Controller\+::\+Ptr controller, const std\+::string \&options\+Xml\+File\+Path)
+\item 
+virtual \hyperlink{classocra_1_1TaskConstructionManager_a6a12b900d600357c304cd445674a3004}{$\sim$\+Task\+Construction\+Manager} ()
+\item 
+void \hyperlink{classocra_1_1TaskConstructionManager_a86c218a04949b010a7ee4f99a8b0cd56}{add\+Tasks\+To\+Controller} (Model\+::\+Ptr model, Controller\+::\+Ptr controller, std\+::vector$<$ \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} $>$ options\+Vector)
+\item 
+Task\+Builder\+::\+Ptr \hyperlink{classocra_1_1TaskConstructionManager_a5fac8f2d0057aba4856a7c7fd280eb92}{get\+Builder} (\hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} options, Model\+::\+Ptr model)
+\item 
+std\+::vector$<$ \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} $>$ \hyperlink{classocra_1_1TaskConstructionManager_ac15f4ecd951f446e1f8a8bb33cc6c044}{parse\+Task\+Options\+From\+Xml} (const std\+::string \&options\+Xml\+File\+Path)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 42 of file Task\+Construction\+Manager.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1TaskConstructionManager_aaca5f4d8ed3ee26c1d26dcee88532428}{}\label{classocra_1_1TaskConstructionManager_aaca5f4d8ed3ee26c1d26dcee88532428} 
+\index{ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}!Task\+Construction\+Manager@{Task\+Construction\+Manager}}
+\index{Task\+Construction\+Manager@{Task\+Construction\+Manager}!ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}}
+\subsubsection{\texorpdfstring{Task\+Construction\+Manager()}{TaskConstructionManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Task\+Construction\+Manager\+::\+Task\+Construction\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file Task\+Construction\+Manager.\+cpp.
+
+\hypertarget{classocra_1_1TaskConstructionManager_a290841cfd953f5162913f849e9b5eeaf}{}\label{classocra_1_1TaskConstructionManager_a290841cfd953f5162913f849e9b5eeaf} 
+\index{ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}!Task\+Construction\+Manager@{Task\+Construction\+Manager}}
+\index{Task\+Construction\+Manager@{Task\+Construction\+Manager}!ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}}
+\subsubsection{\texorpdfstring{Task\+Construction\+Manager()}{TaskConstructionManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Task\+Construction\+Manager\+::\+Task\+Construction\+Manager (\begin{DoxyParamCaption}\item[{Model\+::\+Ptr}]{model,  }\item[{Controller\+::\+Ptr}]{controller,  }\item[{std\+::vector$<$ \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} $>$}]{options\+Vector }\end{DoxyParamCaption})}
+
+
+
+Definition at line 11 of file Task\+Construction\+Manager.\+cpp.
+
+\hypertarget{classocra_1_1TaskConstructionManager_a946b02d5d8d3a75f927c3b87f3aeea1a}{}\label{classocra_1_1TaskConstructionManager_a946b02d5d8d3a75f927c3b87f3aeea1a} 
+\index{ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}!Task\+Construction\+Manager@{Task\+Construction\+Manager}}
+\index{Task\+Construction\+Manager@{Task\+Construction\+Manager}!ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}}
+\subsubsection{\texorpdfstring{Task\+Construction\+Manager()}{TaskConstructionManager()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Task\+Construction\+Manager\+::\+Task\+Construction\+Manager (\begin{DoxyParamCaption}\item[{Model\+::\+Ptr}]{model,  }\item[{Controller\+::\+Ptr}]{controller,  }\item[{const std\+::string \&}]{options\+Xml\+File\+Path }\end{DoxyParamCaption})}
+
+
+
+Definition at line 16 of file Task\+Construction\+Manager.\+cpp.
+
+\hypertarget{classocra_1_1TaskConstructionManager_a6a12b900d600357c304cd445674a3004}{}\label{classocra_1_1TaskConstructionManager_a6a12b900d600357c304cd445674a3004} 
+\index{ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}!````~Task\+Construction\+Manager@{$\sim$\+Task\+Construction\+Manager}}
+\index{````~Task\+Construction\+Manager@{$\sim$\+Task\+Construction\+Manager}!ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$\+Task\+Construction\+Manager()}{~TaskConstructionManager()}}
+{\footnotesize\ttfamily Task\+Construction\+Manager\+::$\sim$\+Task\+Construction\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 21 of file Task\+Construction\+Manager.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1TaskConstructionManager_a86c218a04949b010a7ee4f99a8b0cd56}{}\label{classocra_1_1TaskConstructionManager_a86c218a04949b010a7ee4f99a8b0cd56} 
+\index{ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}!add\+Tasks\+To\+Controller@{add\+Tasks\+To\+Controller}}
+\index{add\+Tasks\+To\+Controller@{add\+Tasks\+To\+Controller}!ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}}
+\subsubsection{\texorpdfstring{add\+Tasks\+To\+Controller()}{addTasksToController()}}
+{\footnotesize\ttfamily void Task\+Construction\+Manager\+::add\+Tasks\+To\+Controller (\begin{DoxyParamCaption}\item[{Model\+::\+Ptr}]{model,  }\item[{Controller\+::\+Ptr}]{controller,  }\item[{std\+::vector$<$ \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} $>$}]{options\+Vector }\end{DoxyParamCaption})}
+
+This method is called during the instantiation of an object of type \hyperlink{classocra_1_1TaskConstructionManager}{Task\+Construction\+Manager} when the corresponding parameters are passed to the constructor. For every task specified through X\+ML it creates a corresponding \hyperlink{classocra_1_1TaskBuilder}{Task\+Builder} object, builds the task, then tells the \hyperlink{classocra_1_1Controller}{Controller} to add this task to its stack of tasks and finally specifies whether the task is an objective or a constraint, what its level, weight, stiffness and damping. We call this, setting the \char`\"{}task parameters\char`\"{}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Pointer to ocra model. \\
+\hline
+{\em controller} & Pointer to ocra controller. \\
+\hline
+{\em options\+Vector} & A vector of N \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} elements, where N is the number of tasks described in the task\+Set X\+ML file. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 26 of file Task\+Construction\+Manager.\+cpp.
+
+\hypertarget{classocra_1_1TaskConstructionManager_a5fac8f2d0057aba4856a7c7fd280eb92}{}\label{classocra_1_1TaskConstructionManager_a5fac8f2d0057aba4856a7c7fd280eb92} 
+\index{ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}!get\+Builder@{get\+Builder}}
+\index{get\+Builder@{get\+Builder}!ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}}
+\subsubsection{\texorpdfstring{get\+Builder()}{getBuilder()}}
+{\footnotesize\ttfamily Task\+Builder\+::\+Ptr Task\+Construction\+Manager\+::get\+Builder (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options}}]{options,  }\item[{Model\+::\+Ptr}]{model }\end{DoxyParamCaption})}
+
+First calls correct\+Articular\+Variables on the parsed options of a single task. Depending on the type of this task it will then return a pointer to a task-\/stype-\/pecific \hyperlink{classocra_1_1TaskBuilder}{Task\+Builder} class. Examples of these specific classes are\+: \hyperlink{classocra_1_1CartesianTaskBuilder}{Cartesian\+Task\+Builder}, \hyperlink{classocra_1_1PoseTaskBuilder}{Pose\+Task\+Builder}, \hyperlink{classocra_1_1OrientationTaskBuilder}{Orientation\+Task\+Builder}, \hyperlink{classocra_1_1ComTaskBuilder}{Com\+Task\+Builder}, \hyperlink{classocra_1_1FullPostureTaskBuilder}{Full\+Posture\+Task\+Builder}, \hyperlink{classocra_1_1PartialPostureTaskBuilder}{Partial\+Posture\+Task\+Builder} and \hyperlink{classocra_1_1PointContactTaskBuilder}{Point\+Contact\+Task\+Builder}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em options} & Options for a single task. \\
+\hline
+{\em model} & Robot\textquotesingle{}s O\+C\+RA model.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the task-\/type-\/specific \hyperlink{classocra_1_1TaskBuilder}{Task\+Builder}. 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file Task\+Construction\+Manager.\+cpp.
+
+\hypertarget{classocra_1_1TaskConstructionManager_ac15f4ecd951f446e1f8a8bb33cc6c044}{}\label{classocra_1_1TaskConstructionManager_ac15f4ecd951f446e1f8a8bb33cc6c044} 
+\index{ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}!parse\+Task\+Options\+From\+Xml@{parse\+Task\+Options\+From\+Xml}}
+\index{parse\+Task\+Options\+From\+Xml@{parse\+Task\+Options\+From\+Xml}!ocra\+::\+Task\+Construction\+Manager@{ocra\+::\+Task\+Construction\+Manager}}
+\subsubsection{\texorpdfstring{parse\+Task\+Options\+From\+Xml()}{parseTaskOptionsFromXml()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} $>$ Task\+Construction\+Manager\+::parse\+Task\+Options\+From\+Xml (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{options\+Xml\+File\+Path }\end{DoxyParamCaption})}
+
+Given an X\+ML description of control tasks it first checks the X\+ML existance and then parses each task description through Task\+Construction\+Manager\+::parse\+Task\+Options\+From\+Xml(\+Ti\+Xml\+Document$\ast$ new\+Tasks\+File).
+
+
+\begin{DoxyParams}{Parameters}
+{\em options\+Xml\+File\+Path} & Full path to X\+ML tasks description.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of elements of type \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options}. 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+Task\+Construction\+Manager\+::parse\+Task\+Options\+From\+Xml(\+Ti\+Xml\+Document$\ast$ new\+Tasks\+File) 
+\end{DoxySeeAlso}
+
+
+Definition at line 63 of file Task\+Construction\+Manager.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TaskConstructionManager_8h}{Task\+Construction\+Manager.\+h}\item 
+\hyperlink{TaskConstructionManager_8cpp}{Task\+Construction\+Manager.\+cpp}\end{DoxyCompactItemize}

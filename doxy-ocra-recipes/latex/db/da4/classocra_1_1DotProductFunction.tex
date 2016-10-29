@@ -1,0 +1,203 @@
+\hypertarget{classocra_1_1DotProductFunction}{}\section{ocra\+:\+:Dot\+Product\+Function Class Reference}
+\label{classocra_1_1DotProductFunction}\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+
+
+Dot\+Product\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Dot\+Product\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Dot\+Product\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.901771cm]{db/da4/classocra_1_1DotProductFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classocra_1_1DotProductFunction_abdc60b6380ffedc075792224bd908c48}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1DotProductFunction_a70f7d2b9c9fefba0203fbee84607c9e9}{Dot\+Product\+Function} (\hyperlink{classocra_1_1Function}{Function} $\ast$f1, \hyperlink{classocra_1_1Function}{Function} $\ast$f2)
+\item 
+\hyperlink{classocra_1_1DotProductFunction_a369a245fec0cfe2d4f72bfd577ab7ad0}{Dot\+Product\+Function} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, const Vector \&v)
+\item 
+void \hyperlink{classocra_1_1DotProductFunction_a2c7c65e80d7fb5ac1da43421a792f77b}{changeV} (const Vector \&v)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1DotProductFunction_ac0dcd9911e638ebcd8e9594dbf0fa9ed}{compute\+Value} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1DotProductFunction_af088997b35bf792a1f1c9c6fb78c0fe1}{compute\+Gradient} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1DotProductFunction_a97dcdd721c76f80cb20e257aca4f8a58}{compute\+Hessian} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1DotProductFunction_a707474c43d42fad3a8c5bbd896ca8f4b}{compute\+Jdot} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1DotProductFunction_a07f6a0a7e676a8849732f3469d70bcae}{compute\+Jdot\+Xdot} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1DotProductFunction_af943f9e456e44b3cbe108a964697f239}{do\+Update\+Size} (void)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classocra_1_1DotProductFunction_a8450996eff9607045cf57a4502ff0944}{\+\_\+two\+Functions}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1DotProductFunction_a3e39a9ce09fc27131afbe8e7a6758681}{\+\_\+f1}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1DotProductFunction_a7de350aefad539fdd84453b11019e936}{\+\_\+f2}
+\item 
+Vector \hyperlink{classocra_1_1DotProductFunction_a6405d1f78159e5fc16801bd73eb32a68}{\+\_\+v}
+\item 
+Vector \hyperlink{classocra_1_1DotProductFunction_a82d2cb16e4b9b6d50e59fabfb25fc222}{\+\_\+tmp}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Dot\+Product\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+scalar product between two vectors that can either be \hyperlink{classocra_1_1Function}{Function} output or contant 
+
+Definition at line 29 of file Dot\+Product\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1DotProductFunction_abdc60b6380ffedc075792224bd908c48}{}\label{classocra_1_1DotProductFunction_abdc60b6380ffedc075792224bd908c48} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classocra_1_1DotProductFunction_abdc60b6380ffedc075792224bd908c48}{ocra\+::\+Dot\+Product\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 33 of file Dot\+Product\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1DotProductFunction_a70f7d2b9c9fefba0203fbee84607c9e9}{}\label{classocra_1_1DotProductFunction_a70f7d2b9c9fefba0203fbee84607c9e9} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!Dot\+Product\+Function@{Dot\+Product\+Function}}
+\index{Dot\+Product\+Function@{Dot\+Product\+Function}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{Dot\+Product\+Function()}{DotProductFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ocra\+::\+Dot\+Product\+Function\+::\+Dot\+Product\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f1,  }\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f2 }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1DotProductFunction_a369a245fec0cfe2d4f72bfd577ab7ad0}{}\label{classocra_1_1DotProductFunction_a369a245fec0cfe2d4f72bfd577ab7ad0} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!Dot\+Product\+Function@{Dot\+Product\+Function}}
+\index{Dot\+Product\+Function@{Dot\+Product\+Function}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{Dot\+Product\+Function()}{DotProductFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ocra\+::\+Dot\+Product\+Function\+::\+Dot\+Product\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{const Vector \&}]{v }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1DotProductFunction_a2c7c65e80d7fb5ac1da43421a792f77b}{}\label{classocra_1_1DotProductFunction_a2c7c65e80d7fb5ac1da43421a792f77b} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!changeV@{changeV}}
+\index{changeV@{changeV}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{change\+V()}{changeV()}}
+{\footnotesize\ttfamily void ocra\+::\+Dot\+Product\+Function\+::changeV (\begin{DoxyParamCaption}\item[{const Vector \&}]{v }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1DotProductFunction_af088997b35bf792a1f1c9c6fb78c0fe1}{}\label{classocra_1_1DotProductFunction_af088997b35bf792a1f1c9c6fb78c0fe1} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!compute\+Gradient@{compute\+Gradient}}
+\index{compute\+Gradient@{compute\+Gradient}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{compute\+Gradient()}{computeGradient()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Dot\+Product\+Function\+::compute\+Gradient (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1DotProductFunction_a97dcdd721c76f80cb20e257aca4f8a58}{}\label{classocra_1_1DotProductFunction_a97dcdd721c76f80cb20e257aca4f8a58} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!compute\+Hessian@{compute\+Hessian}}
+\index{compute\+Hessian@{compute\+Hessian}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{compute\+Hessian()}{computeHessian()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Dot\+Product\+Function\+::compute\+Hessian (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1DotProductFunction_a707474c43d42fad3a8c5bbd896ca8f4b}{}\label{classocra_1_1DotProductFunction_a707474c43d42fad3a8c5bbd896ca8f4b} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!compute\+Jdot@{compute\+Jdot}}
+\index{compute\+Jdot@{compute\+Jdot}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{compute\+Jdot()}{computeJdot()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Dot\+Product\+Function\+::compute\+Jdot (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1DotProductFunction_a07f6a0a7e676a8849732f3469d70bcae}{}\label{classocra_1_1DotProductFunction_a07f6a0a7e676a8849732f3469d70bcae} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!compute\+Jdot\+Xdot@{compute\+Jdot\+Xdot}}
+\index{compute\+Jdot\+Xdot@{compute\+Jdot\+Xdot}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{compute\+Jdot\+Xdot()}{computeJdotXdot()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Dot\+Product\+Function\+::compute\+Jdot\+Xdot (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1DotProductFunction_ac0dcd9911e638ebcd8e9594dbf0fa9ed}{}\label{classocra_1_1DotProductFunction_ac0dcd9911e638ebcd8e9594dbf0fa9ed} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!compute\+Value@{compute\+Value}}
+\index{compute\+Value@{compute\+Value}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{compute\+Value()}{computeValue()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Dot\+Product\+Function\+::compute\+Value (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1DotProductFunction_af943f9e456e44b3cbe108a964697f239}{}\label{classocra_1_1DotProductFunction_af943f9e456e44b3cbe108a964697f239} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!do\+Update\+Size@{do\+Update\+Size}}
+\index{do\+Update\+Size@{do\+Update\+Size}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Size()}{doUpdateSize()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Dot\+Product\+Function\+::do\+Update\+Size (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1DotProductFunction_a3e39a9ce09fc27131afbe8e7a6758681}{}\label{classocra_1_1DotProductFunction_a3e39a9ce09fc27131afbe8e7a6758681} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!\+\_\+f1@{\+\_\+f1}}
+\index{\+\_\+f1@{\+\_\+f1}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+f1}{\_f1}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function}$\ast$ ocra\+::\+Dot\+Product\+Function\+::\+\_\+f1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 82 of file Dot\+Product\+Function.\+h.
+
+\hypertarget{classocra_1_1DotProductFunction_a7de350aefad539fdd84453b11019e936}{}\label{classocra_1_1DotProductFunction_a7de350aefad539fdd84453b11019e936} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!\+\_\+f2@{\+\_\+f2}}
+\index{\+\_\+f2@{\+\_\+f2}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+f2}{\_f2}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function}$\ast$ ocra\+::\+Dot\+Product\+Function\+::\+\_\+f2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 83 of file Dot\+Product\+Function.\+h.
+
+\hypertarget{classocra_1_1DotProductFunction_a82d2cb16e4b9b6d50e59fabfb25fc222}{}\label{classocra_1_1DotProductFunction_a82d2cb16e4b9b6d50e59fabfb25fc222} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!\+\_\+tmp@{\+\_\+tmp}}
+\index{\+\_\+tmp@{\+\_\+tmp}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+tmp}{\_tmp}}
+{\footnotesize\ttfamily Vector ocra\+::\+Dot\+Product\+Function\+::\+\_\+tmp\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 85 of file Dot\+Product\+Function.\+h.
+
+\hypertarget{classocra_1_1DotProductFunction_a8450996eff9607045cf57a4502ff0944}{}\label{classocra_1_1DotProductFunction_a8450996eff9607045cf57a4502ff0944} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!\+\_\+two\+Functions@{\+\_\+two\+Functions}}
+\index{\+\_\+two\+Functions@{\+\_\+two\+Functions}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+two\+Functions}{\_twoFunctions}}
+{\footnotesize\ttfamily bool ocra\+::\+Dot\+Product\+Function\+::\+\_\+two\+Functions\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 81 of file Dot\+Product\+Function.\+h.
+
+\hypertarget{classocra_1_1DotProductFunction_a6405d1f78159e5fc16801bd73eb32a68}{}\label{classocra_1_1DotProductFunction_a6405d1f78159e5fc16801bd73eb32a68} 
+\index{ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}!\+\_\+v@{\+\_\+v}}
+\index{\+\_\+v@{\+\_\+v}!ocra\+::\+Dot\+Product\+Function@{ocra\+::\+Dot\+Product\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+v}{\_v}}
+{\footnotesize\ttfamily Vector ocra\+::\+Dot\+Product\+Function\+::\+\_\+v\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 84 of file Dot\+Product\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{DotProductFunction_8h}{Dot\+Product\+Function.\+h}\end{DoxyCompactItemize}

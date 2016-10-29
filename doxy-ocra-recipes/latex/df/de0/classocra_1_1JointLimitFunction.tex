@@ -1,0 +1,462 @@
+\hypertarget{classocra_1_1JointLimitFunction}{}\section{ocra\+:\+:Joint\+Limit\+Function Class Reference}
+\label{classocra_1_1JointLimitFunction}\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+
+
+Create a linear function that represents the joint limit function.  
+
+
+
+
+{\ttfamily \#include $<$Joint\+Limit\+Constraint.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Joint\+Limit\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.262480cm]{df/de0/classocra_1_1JointLimitFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1JointLimitFunction_af300f2c709840b94759c445130ec9a18}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1JointLimitFunction_a00952411e7a7906fc6e5aedcfcfc6bc3}{Joint\+Limit\+Function} (const Model \&m, \hyperlink{classocra_1_1Variable}{Variable} \&var)
+\item 
+\hyperlink{classocra_1_1JointLimitFunction_aa028e738a7dd0e89ef05628abf32d79f}{$\sim$\+Joint\+Limit\+Function} ()
+\item 
+double \hyperlink{classocra_1_1JointLimitFunction_ad7afccc24fc2bc685583bfd5032ca568}{get\+Horizon\+Of\+Prediction} () const
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_a02dfaf445e997387b2fd915bc398dc73}{set\+Horizon\+Of\+Prediction} (double new\+Hpos)
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_a9647e0888530d880ff412a057f83295d}{set\+Joint\+Limits} (const Eigen\+::\+Vector\+Xd \&lower\+Limits, const Eigen\+::\+Vector\+Xd \&upper\+Limits)
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_af08943f266069853dce1c491ef7f4e08}{set\+Joint\+Lower\+Limits} (const Eigen\+::\+Vector\+Xd \&new\+Lower\+Limits)
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_a661a85585b10ec71cbbbe6cb12523507}{set\+Joint\+Upper\+Limits} (const Eigen\+::\+Vector\+Xd \&new\+Upper\+Limits)
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1JointLimitFunction_ae9a3d083f00c608ed09a687447d086f1}{get\+Joint\+Lower\+Limits} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1JointLimitFunction_aeed410787750256bdd52fdd5ca3c519f}{get\+Joint\+Upper\+Limits} () const
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_a41432c4d8d08c17e90892a26963d3d5e}{set\+Joint\+Limit} (int i, double new\+Lower\+Limit, double new\+Upper\+Limit)
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_a490c1e19dd3897097a61d616a3e1709d}{set\+Joint\+Lower\+Limit} (int i, double new\+Lower\+Limit)
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_a0f83df6fab80175c07070c00d26a41b5}{set\+Joint\+Upper\+Limit} (int i, double new\+Upper\+Limit)
+\item 
+double \hyperlink{classocra_1_1JointLimitFunction_aa5ad56143f8d257e89b308cabb5fd560}{get\+Joint\+Lower\+Limit} (int i) const
+\item 
+double \hyperlink{classocra_1_1JointLimitFunction_ae39c838b6618f3d1dded5aad16751e60}{get\+Joint\+Upper\+Limit} (int i) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_a0ef515cc395c59313a60ae497528b52e}{compute\+Full\+Jacobian} (int var\+Dofs, int n\+I\+Dofs, Eigen\+::\+Matrix\+Xd \&full\+Jacobian) const
+\item 
+void \hyperlink{classocra_1_1JointLimitFunction_a254ef5b5095410a802976c95f04fe0a4}{compute\+Fullb} (const Eigen\+::\+Vector\+Xd \&gpos, const Eigen\+::\+Vector\+Xd \&gvel, Eigen\+::\+Vector\+Xd \&fullb) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1JointLimitFunction_ab0dbcf53e97b8f4b7a56478bd09240f1}{joint\+Lower\+Limits}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1JointLimitFunction_a8ea9cd9be8cc3eb55d7d988ba8c5f7e4}{joint\+Upper\+Limits}
+\item 
+double \hyperlink{classocra_1_1JointLimitFunction_affab56a4cc60a886b51c2ef0644d44ba}{hpos}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Create a linear function that represents the joint limit function. 
+
+The joint limit function $ \q_{min} < \q < \q{max} $ defined in this controller is composed of a couple of inequalities\+: \begin{DoxyVerb} - the first one is computed on a horizon h. The system brakes far from the limit, but can pass inside the constraint when close to it (because it only constrains the final point, not the middle ones).
+ - the second one is computed with the time of inflexion. The system brakes when close to the limits, but some singularities appears when it is on the limits.
+\end{DoxyVerb}
+
+
+The two computation have their drawbacks, but together they allow limits avoidance properly.
+
+ The first one which constrains the last point over the horizon h can be expressed as follows (depending on $ \ddq $)\+:
+
+\begin{align*} \q_{min} < \q + \dq h + \ddq \frac{h^2}{2} < \q_{max} \end{align*}
+
+\begin{align*} A \x + \b &> \vec{0} & &\Leftrightarrow & \begin{bmatrix} - \Id{} \\ \Id{} \end{bmatrix} \ddq + 2 \begin{bmatrix} \q_{max} - \q + \dq h \\ \q_{min} - \q + \dq h \end{bmatrix} / h^2 &> \vec{0} \end{align*}
+
+The second one is more \char`\"{}tricky\char`\"{}. First it computes the times of inflexion for a constant acceleration such as the inflexion point is on 0\+:
+
+\begin{align*} t_{max} &= - 2 ( \q - \q_{max} ) / \dq & &\text{(element-wise operations)} \\ t_{min} &= - 2 ( \q - \q_{min} ) / \dq \end{align*}
+
+For each dof (each line $ i $ ), we test where is the time of inflexion. If $ 0 < t_{max}[i] < h$, then the inflexion point is in the horizon of time, we should consider to constrain the motion of this dof\+:
+
+\begin{align*} \ddq_{max}[i] &= \frac{ \dq[i]^2 }{ 2(\q[i] - \q_{max}[i] ) } & & \Rightarrow & \ddq [i] + \ddq_{max}[i] > 0 \end{align*}
+
+Again, if $ 0 < t_{min}[i] < h $ \+:
+
+\begin{align*} \ddq_{min}[i] &= \frac{ \dq[i]^2 }{ 2(\q[i] - \q_{min}[i] ) } & & \Rightarrow & \ddq [i] + \ddq_{min}[i] > 0 \end{align*}
+
+When all these constraints have been defined, we select the tightest ones for each dof.
+
+
+
+Definition at line 72 of file Joint\+Limit\+Constraint.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1JointLimitFunction_af300f2c709840b94759c445130ec9a18}{}\label{classocra_1_1JointLimitFunction_af300f2c709840b94759c445130ec9a18} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1JointLimitFunction_af300f2c709840b94759c445130ec9a18}{ocra\+::\+Joint\+Limit\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 75 of file Joint\+Limit\+Constraint.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1JointLimitFunction_a00952411e7a7906fc6e5aedcfcfc6bc3}{}\label{classocra_1_1JointLimitFunction_a00952411e7a7906fc6e5aedcfcfc6bc3} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!Joint\+Limit\+Function@{Joint\+Limit\+Function}}
+\index{Joint\+Limit\+Function@{Joint\+Limit\+Function}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{Joint\+Limit\+Function()}{JointLimitFunction()}}
+{\footnotesize\ttfamily Joint\+Limit\+Function\+::\+Joint\+Limit\+Function (\begin{DoxyParamCaption}\item[{const Model \&}]{model,  }\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{var }\end{DoxyParamCaption})}
+
+Initialize the joint limit constraint function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The Model on which we will get the dynamic parameters \\
+\hline
+{\em var} & The problem variable that will be used to write this constraint\\
+\hline
+\end{DoxyParams}
+This class is a generic class to compute matrices for the joint limit function, but {\bfseries it should not be used}. You would rather choose one of the following derivative classes, depending on the choosen formalism, either full $ \x = [ \ddq \; \torque \; \force_c ] $ or reduced $ \x = [ \torque \; \force_c ] $\+: \begin{DoxyVerb} - wFullJointLimitFunction
+ - wReducedJointLimitFunction
+\end{DoxyVerb}
+
+
+The function is on the form\+: $\vert$ O -\/I $\vert$ $\vert$ ddqmax $\vert$ $\vert$ O I $\vert$ ddq + $\vert$ ddqmin $\vert$
+
+where O (nx6) is defined if the model has a free-\/floating base (we cannot limit the range of this \char`\"{}joint\char`\"{}), else O is a void matrix (nx0)
+
+The associated constraint is\+: A ddq + b $>$= 0 
+
+Definition at line 38 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_aa028e738a7dd0e89ef05628abf32d79f}{}\label{classocra_1_1JointLimitFunction_aa028e738a7dd0e89ef05628abf32d79f} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!````~Joint\+Limit\+Function@{$\sim$\+Joint\+Limit\+Function}}
+\index{````~Joint\+Limit\+Function@{$\sim$\+Joint\+Limit\+Function}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Joint\+Limit\+Function()}{~JointLimitFunction()}}
+{\footnotesize\ttfamily Joint\+Limit\+Function\+::$\sim$\+Joint\+Limit\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+Definition at line 52 of file Joint\+Limit\+Constraint.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1JointLimitFunction_a254ef5b5095410a802976c95f04fe0a4}{}\label{classocra_1_1JointLimitFunction_a254ef5b5095410a802976c95f04fe0a4} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!compute\+Fullb@{compute\+Fullb}}
+\index{compute\+Fullb@{compute\+Fullb}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{compute\+Fullb()}{computeFullb()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::compute\+Fullb (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{gpos,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{gvel,  }\item[{Eigen\+::\+Vector\+Xd \&}]{fullb }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Compute the vector $ \b $ for the joint limits constraint.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpos} & The genralized position \\
+\hline
+{\em gvel} & The generalized velocity \\
+\hline
+{\em fullb} & The vector instance where to write the limits vector in the full formalism\\
+\hline
+\end{DoxyParams}
+This function compute vector $ \b $ for the full formalism. When using the reduced one, this vector is first computed, and then transformed (see sec\+\_\+transform\+\_\+formalism) to fit the new variable.
+
+The computation of $ \b $ is explained in w\+Joint\+Limit\+Function 
+
+Definition at line 205 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_a0ef515cc395c59313a60ae497528b52e}{}\label{classocra_1_1JointLimitFunction_a0ef515cc395c59313a60ae497528b52e} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!compute\+Full\+Jacobian@{compute\+Full\+Jacobian}}
+\index{compute\+Full\+Jacobian@{compute\+Full\+Jacobian}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{compute\+Full\+Jacobian()}{computeFullJacobian()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::compute\+Full\+Jacobian (\begin{DoxyParamCaption}\item[{int}]{var\+Dofs,  }\item[{int}]{n\+I\+Dofs,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{full\+Jacobian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Compute the Jacobian matrix for the joint limits constraint.
+
+
+\begin{DoxyParams}{Parameters}
+{\em var\+Dofs} & The variable dimension \\
+\hline
+{\em n\+I\+Dofs} & Number of internal dof of the robot \\
+\hline
+{\em full\+Jacobian} & The jacobian matrix instance where to write the jacobian in the full formalism\\
+\hline
+\end{DoxyParams}
+This function compute matrix $ \A $ for the full formalism. When using the reduced one, this matrix is first computed, and then transformed (see sec\+\_\+transform\+\_\+formalism) to fit the new variable.
+
+The computation of $ \A $ is explained in w\+Joint\+Limit\+Function 
+
+Definition at line 185 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_ad7afccc24fc2bc685583bfd5032ca568}{}\label{classocra_1_1JointLimitFunction_ad7afccc24fc2bc685583bfd5032ca568} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!get\+Horizon\+Of\+Prediction@{get\+Horizon\+Of\+Prediction}}
+\index{get\+Horizon\+Of\+Prediction@{get\+Horizon\+Of\+Prediction}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{get\+Horizon\+Of\+Prediction()}{getHorizonOfPrediction()}}
+{\footnotesize\ttfamily double Joint\+Limit\+Function\+::get\+Horizon\+Of\+Prediction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the time horizon of prediction $ h $ for the joint limit function.
+
+\begin{DoxyReturn}{Returns}
+The time horizon (s) 
+\end{DoxyReturn}
+
+
+Definition at line 61 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_aa5ad56143f8d257e89b308cabb5fd560}{}\label{classocra_1_1JointLimitFunction_aa5ad56143f8d257e89b308cabb5fd560} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!get\+Joint\+Lower\+Limit@{get\+Joint\+Lower\+Limit}}
+\index{get\+Joint\+Lower\+Limit@{get\+Joint\+Lower\+Limit}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{get\+Joint\+Lower\+Limit()}{getJointLowerLimit()}}
+{\footnotesize\ttfamily double Joint\+Limit\+Function\+::get\+Joint\+Lower\+Limit (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+Get the joint limit for one dof $ \q_{min}[i] $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The dof index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The lower bound 
+\end{DoxyReturn}
+
+
+Definition at line 159 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_ae9a3d083f00c608ed09a687447d086f1}{}\label{classocra_1_1JointLimitFunction_ae9a3d083f00c608ed09a687447d086f1} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!get\+Joint\+Lower\+Limits@{get\+Joint\+Lower\+Limits}}
+\index{get\+Joint\+Lower\+Limits@{get\+Joint\+Lower\+Limits}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{get\+Joint\+Lower\+Limits()}{getJointLowerLimits()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& Joint\+Limit\+Function\+::get\+Joint\+Lower\+Limits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the joint limit $ \q_{min} $.
+
+\begin{DoxyReturn}{Returns}
+The lower bound 
+\end{DoxyReturn}
+
+
+Definition at line 140 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_ae39c838b6618f3d1dded5aad16751e60}{}\label{classocra_1_1JointLimitFunction_ae39c838b6618f3d1dded5aad16751e60} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!get\+Joint\+Upper\+Limit@{get\+Joint\+Upper\+Limit}}
+\index{get\+Joint\+Upper\+Limit@{get\+Joint\+Upper\+Limit}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{get\+Joint\+Upper\+Limit()}{getJointUpperLimit()}}
+{\footnotesize\ttfamily double Joint\+Limit\+Function\+::get\+Joint\+Upper\+Limit (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+Get the joint limit for one dof $ \q_{max}[i] $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The dof index \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The upper bound 
+\end{DoxyReturn}
+
+
+Definition at line 169 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_aeed410787750256bdd52fdd5ca3c519f}{}\label{classocra_1_1JointLimitFunction_aeed410787750256bdd52fdd5ca3c519f} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!get\+Joint\+Upper\+Limits@{get\+Joint\+Upper\+Limits}}
+\index{get\+Joint\+Upper\+Limits@{get\+Joint\+Upper\+Limits}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{get\+Joint\+Upper\+Limits()}{getJointUpperLimits()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& Joint\+Limit\+Function\+::get\+Joint\+Upper\+Limits (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the joint limit $ \q_{max} $.
+
+\begin{DoxyReturn}{Returns}
+The upper bound 
+\end{DoxyReturn}
+
+
+Definition at line 149 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_a02dfaf445e997387b2fd915bc398dc73}{}\label{classocra_1_1JointLimitFunction_a02dfaf445e997387b2fd915bc398dc73} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!set\+Horizon\+Of\+Prediction@{set\+Horizon\+Of\+Prediction}}
+\index{set\+Horizon\+Of\+Prediction@{set\+Horizon\+Of\+Prediction}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{set\+Horizon\+Of\+Prediction()}{setHorizonOfPrediction()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::set\+Horizon\+Of\+Prediction (\begin{DoxyParamCaption}\item[{double}]{new\+Hpos }\end{DoxyParamCaption})}
+
+Set the time horizon of prediction $ h $ for the joint limit function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Hpos} & The new time horizon (s) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 70 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_a41432c4d8d08c17e90892a26963d3d5e}{}\label{classocra_1_1JointLimitFunction_a41432c4d8d08c17e90892a26963d3d5e} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!set\+Joint\+Limit@{set\+Joint\+Limit}}
+\index{set\+Joint\+Limit@{set\+Joint\+Limit}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{set\+Joint\+Limit()}{setJointLimit()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::set\+Joint\+Limit (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{new\+Lower\+Limit,  }\item[{double}]{new\+Upper\+Limit }\end{DoxyParamCaption})}
+
+Set the joint limits for one dof $ \q_{min}[i], \q_{max}[i] $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The dof index whose bounds are modified \\
+\hline
+{\em new\+Lower\+Limit} & The lower bound \\
+\hline
+{\em new\+Upper\+Limit} & The upper bound \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 110 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_a9647e0888530d880ff412a057f83295d}{}\label{classocra_1_1JointLimitFunction_a9647e0888530d880ff412a057f83295d} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!set\+Joint\+Limits@{set\+Joint\+Limits}}
+\index{set\+Joint\+Limits@{set\+Joint\+Limits}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{set\+Joint\+Limits()}{setJointLimits()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::set\+Joint\+Limits (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{lower\+Limits,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{upper\+Limits }\end{DoxyParamCaption})}
+
+Set the joint limits $ \q_{min}, \q_{max} $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em lower\+Limits} & The lower bound \\
+\hline
+{\em upper\+Limits} & The upper bound \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 80 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_a490c1e19dd3897097a61d616a3e1709d}{}\label{classocra_1_1JointLimitFunction_a490c1e19dd3897097a61d616a3e1709d} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!set\+Joint\+Lower\+Limit@{set\+Joint\+Lower\+Limit}}
+\index{set\+Joint\+Lower\+Limit@{set\+Joint\+Lower\+Limit}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{set\+Joint\+Lower\+Limit()}{setJointLowerLimit()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::set\+Joint\+Lower\+Limit (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{new\+Lower\+Limit }\end{DoxyParamCaption})}
+
+Set the joint limit for one dof $ \q_{min}[i] $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The dof index whose bound is modified \\
+\hline
+{\em new\+Lower\+Limit} & The lower bound \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 121 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_af08943f266069853dce1c491ef7f4e08}{}\label{classocra_1_1JointLimitFunction_af08943f266069853dce1c491ef7f4e08} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!set\+Joint\+Lower\+Limits@{set\+Joint\+Lower\+Limits}}
+\index{set\+Joint\+Lower\+Limits@{set\+Joint\+Lower\+Limits}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{set\+Joint\+Lower\+Limits()}{setJointLowerLimits()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::set\+Joint\+Lower\+Limits (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{new\+Lower\+Limits }\end{DoxyParamCaption})}
+
+Set the joint limit $ \q_{min} $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Lower\+Limits} & The lower bound \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 90 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_a0f83df6fab80175c07070c00d26a41b5}{}\label{classocra_1_1JointLimitFunction_a0f83df6fab80175c07070c00d26a41b5} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!set\+Joint\+Upper\+Limit@{set\+Joint\+Upper\+Limit}}
+\index{set\+Joint\+Upper\+Limit@{set\+Joint\+Upper\+Limit}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{set\+Joint\+Upper\+Limit()}{setJointUpperLimit()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::set\+Joint\+Upper\+Limit (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{double}]{new\+Upper\+Limit }\end{DoxyParamCaption})}
+
+Set the joint limit for one dof $ \q_{max}[i] $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & The dof index whose bound is modified \\
+\hline
+{\em new\+Upper\+Limit} & The upper bound \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 131 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1JointLimitFunction_a661a85585b10ec71cbbbe6cb12523507}{}\label{classocra_1_1JointLimitFunction_a661a85585b10ec71cbbbe6cb12523507} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!set\+Joint\+Upper\+Limits@{set\+Joint\+Upper\+Limits}}
+\index{set\+Joint\+Upper\+Limits@{set\+Joint\+Upper\+Limits}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{set\+Joint\+Upper\+Limits()}{setJointUpperLimits()}}
+{\footnotesize\ttfamily void Joint\+Limit\+Function\+::set\+Joint\+Upper\+Limits (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{new\+Upper\+Limits }\end{DoxyParamCaption})}
+
+Set the joint limits $ \q_{max} $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Upper\+Limits} & The upper bound \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 99 of file Joint\+Limit\+Constraint.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1JointLimitFunction_affab56a4cc60a886b51c2ef0644d44ba}{}\label{classocra_1_1JointLimitFunction_affab56a4cc60a886b51c2ef0644d44ba} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!hpos@{hpos}}
+\index{hpos@{hpos}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{hpos}{hpos}}
+{\footnotesize\ttfamily double ocra\+::\+Joint\+Limit\+Function\+::hpos\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 105 of file Joint\+Limit\+Constraint.\+h.
+
+\hypertarget{classocra_1_1JointLimitFunction_ab0dbcf53e97b8f4b7a56478bd09240f1}{}\label{classocra_1_1JointLimitFunction_ab0dbcf53e97b8f4b7a56478bd09240f1} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!joint\+Lower\+Limits@{joint\+Lower\+Limits}}
+\index{joint\+Lower\+Limits@{joint\+Lower\+Limits}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{joint\+Lower\+Limits}{jointLowerLimits}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Joint\+Limit\+Function\+::joint\+Lower\+Limits\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 103 of file Joint\+Limit\+Constraint.\+h.
+
+\hypertarget{classocra_1_1JointLimitFunction_a8ea9cd9be8cc3eb55d7d988ba8c5f7e4}{}\label{classocra_1_1JointLimitFunction_a8ea9cd9be8cc3eb55d7d988ba8c5f7e4} 
+\index{ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}!joint\+Upper\+Limits@{joint\+Upper\+Limits}}
+\index{joint\+Upper\+Limits@{joint\+Upper\+Limits}!ocra\+::\+Joint\+Limit\+Function@{ocra\+::\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{joint\+Upper\+Limits}{jointUpperLimits}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Joint\+Limit\+Function\+::joint\+Upper\+Limits\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 104 of file Joint\+Limit\+Constraint.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{JointLimitConstraint_8h}{Joint\+Limit\+Constraint.\+h}\item 
+\hyperlink{JointLimitConstraint_8cpp}{Joint\+Limit\+Constraint.\+cpp}\end{DoxyCompactItemize}

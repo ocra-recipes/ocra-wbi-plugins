@@ -1,0 +1,211 @@
+\hypertarget{classocra_1_1SubtractionFunction}{}\section{ocra\+:\+:Subtraction\+Function Class Reference}
+\label{classocra_1_1SubtractionFunction}\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+
+
+Subtraction\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Subtraction\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Subtraction\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.901771cm]{df/d5a/classocra_1_1SubtractionFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classocra_1_1SubtractionFunction_a371966d5def8140a019099fc4346f413}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1SubtractionFunction_a65b777d9cbd05c1e14063fd0bb99f262}{Subtraction\+Function} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, const Vector \&v)
+\item 
+\hyperlink{classocra_1_1SubtractionFunction_ab825dea759ffedcdd1c30b19e1df02f1}{Subtraction\+Function} (const Vector \&v, \hyperlink{classocra_1_1Function}{Function} $\ast$f)
+\item 
+virtual \hyperlink{classocra_1_1SubtractionFunction_a87e030eb99b05722464881e3bb220027}{$\sim$\+Subtraction\+Function} ()
+\item 
+void \hyperlink{classocra_1_1SubtractionFunction_a00ed4b4afd66bd91dea2f2ebbcd5b615}{changeV} (const Vector \&v)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1SubtractionFunction_a4cdbb66a83d1113ecea252898ec1bda3}{compute\+Value} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1SubtractionFunction_a117739796f68e8cf8e8931606ff09443}{compute\+Gradient} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1SubtractionFunction_ac6558a3de7573facbc7a4d1b03128e43}{compute\+Hessian} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1SubtractionFunction_a2bbae38f5ddcfacb9bc5f4114ffb7b02}{compute\+Jdot} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1SubtractionFunction_aeca1fe085ed1302c87e7ed4ee80082ed}{compute\+Jdot\+Xdot} (void) const
+\item 
+virtual void \hyperlink{classocra_1_1SubtractionFunction_abeccbd4ec6cabf7bf18169e052a993d5}{do\+Update\+Size} (void)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classocra_1_1SubtractionFunction_a2acdf28df1d3018d7c25cb8b16c879d1}{\+\_\+case}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1SubtractionFunction_a9adc6a235a48bdf90fe1ad4d4a18b7a0}{\+\_\+f1}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1SubtractionFunction_a22e626b681ffd6b9dd90ec4189ad431c}{\+\_\+f2}
+\item 
+Vector \hyperlink{classocra_1_1SubtractionFunction_a802ca5db967765779131701423f1b207}{\+\_\+v1}
+\item 
+Vector \hyperlink{classocra_1_1SubtractionFunction_a10736fb0de7f83a54a09055251cf4ad5}{\+\_\+v2}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Subtraction\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Subtraction between two functions, or a function and a constant 
+
+Definition at line 30 of file Subtraction\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1SubtractionFunction_a371966d5def8140a019099fc4346f413}{}\label{classocra_1_1SubtractionFunction_a371966d5def8140a019099fc4346f413} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classocra_1_1SubtractionFunction_a371966d5def8140a019099fc4346f413}{ocra\+::\+Subtraction\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 34 of file Subtraction\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1SubtractionFunction_a65b777d9cbd05c1e14063fd0bb99f262}{}\label{classocra_1_1SubtractionFunction_a65b777d9cbd05c1e14063fd0bb99f262} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!Subtraction\+Function@{Subtraction\+Function}}
+\index{Subtraction\+Function@{Subtraction\+Function}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{Subtraction\+Function()}{SubtractionFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ocra\+::\+Subtraction\+Function\+::\+Subtraction\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{const Vector \&}]{v }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1SubtractionFunction_ab825dea759ffedcdd1c30b19e1df02f1}{}\label{classocra_1_1SubtractionFunction_ab825dea759ffedcdd1c30b19e1df02f1} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!Subtraction\+Function@{Subtraction\+Function}}
+\index{Subtraction\+Function@{Subtraction\+Function}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{Subtraction\+Function()}{SubtractionFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ocra\+::\+Subtraction\+Function\+::\+Subtraction\+Function (\begin{DoxyParamCaption}\item[{const Vector \&}]{v,  }\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1SubtractionFunction_a87e030eb99b05722464881e3bb220027}{}\label{classocra_1_1SubtractionFunction_a87e030eb99b05722464881e3bb220027} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!````~Subtraction\+Function@{$\sim$\+Subtraction\+Function}}
+\index{````~Subtraction\+Function@{$\sim$\+Subtraction\+Function}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Subtraction\+Function()}{~SubtractionFunction()}}
+{\footnotesize\ttfamily virtual ocra\+::\+Subtraction\+Function\+::$\sim$\+Subtraction\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1SubtractionFunction_a00ed4b4afd66bd91dea2f2ebbcd5b615}{}\label{classocra_1_1SubtractionFunction_a00ed4b4afd66bd91dea2f2ebbcd5b615} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!changeV@{changeV}}
+\index{changeV@{changeV}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{change\+V()}{changeV()}}
+{\footnotesize\ttfamily void ocra\+::\+Subtraction\+Function\+::changeV (\begin{DoxyParamCaption}\item[{const Vector \&}]{v }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1SubtractionFunction_a117739796f68e8cf8e8931606ff09443}{}\label{classocra_1_1SubtractionFunction_a117739796f68e8cf8e8931606ff09443} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!compute\+Gradient@{compute\+Gradient}}
+\index{compute\+Gradient@{compute\+Gradient}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{compute\+Gradient()}{computeGradient()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Subtraction\+Function\+::compute\+Gradient (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1SubtractionFunction_ac6558a3de7573facbc7a4d1b03128e43}{}\label{classocra_1_1SubtractionFunction_ac6558a3de7573facbc7a4d1b03128e43} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!compute\+Hessian@{compute\+Hessian}}
+\index{compute\+Hessian@{compute\+Hessian}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{compute\+Hessian()}{computeHessian()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Subtraction\+Function\+::compute\+Hessian (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1SubtractionFunction_a2bbae38f5ddcfacb9bc5f4114ffb7b02}{}\label{classocra_1_1SubtractionFunction_a2bbae38f5ddcfacb9bc5f4114ffb7b02} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!compute\+Jdot@{compute\+Jdot}}
+\index{compute\+Jdot@{compute\+Jdot}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{compute\+Jdot()}{computeJdot()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Subtraction\+Function\+::compute\+Jdot (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1SubtractionFunction_aeca1fe085ed1302c87e7ed4ee80082ed}{}\label{classocra_1_1SubtractionFunction_aeca1fe085ed1302c87e7ed4ee80082ed} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!compute\+Jdot\+Xdot@{compute\+Jdot\+Xdot}}
+\index{compute\+Jdot\+Xdot@{compute\+Jdot\+Xdot}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{compute\+Jdot\+Xdot()}{computeJdotXdot()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Subtraction\+Function\+::compute\+Jdot\+Xdot (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1SubtractionFunction_a4cdbb66a83d1113ecea252898ec1bda3}{}\label{classocra_1_1SubtractionFunction_a4cdbb66a83d1113ecea252898ec1bda3} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!compute\+Value@{compute\+Value}}
+\index{compute\+Value@{compute\+Value}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{compute\+Value()}{computeValue()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Subtraction\+Function\+::compute\+Value (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classocra_1_1SubtractionFunction_abeccbd4ec6cabf7bf18169e052a993d5}{}\label{classocra_1_1SubtractionFunction_abeccbd4ec6cabf7bf18169e052a993d5} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!do\+Update\+Size@{do\+Update\+Size}}
+\index{do\+Update\+Size@{do\+Update\+Size}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Size()}{doUpdateSize()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Subtraction\+Function\+::do\+Update\+Size (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1SubtractionFunction_a2acdf28df1d3018d7c25cb8b16c879d1}{}\label{classocra_1_1SubtractionFunction_a2acdf28df1d3018d7c25cb8b16c879d1} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!\+\_\+case@{\+\_\+case}}
+\index{\+\_\+case@{\+\_\+case}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+case}{\_case}}
+{\footnotesize\ttfamily int ocra\+::\+Subtraction\+Function\+::\+\_\+case\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 85 of file Subtraction\+Function.\+h.
+
+\hypertarget{classocra_1_1SubtractionFunction_a9adc6a235a48bdf90fe1ad4d4a18b7a0}{}\label{classocra_1_1SubtractionFunction_a9adc6a235a48bdf90fe1ad4d4a18b7a0} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!\+\_\+f1@{\+\_\+f1}}
+\index{\+\_\+f1@{\+\_\+f1}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+f1}{\_f1}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function}$\ast$ ocra\+::\+Subtraction\+Function\+::\+\_\+f1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 86 of file Subtraction\+Function.\+h.
+
+\hypertarget{classocra_1_1SubtractionFunction_a22e626b681ffd6b9dd90ec4189ad431c}{}\label{classocra_1_1SubtractionFunction_a22e626b681ffd6b9dd90ec4189ad431c} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!\+\_\+f2@{\+\_\+f2}}
+\index{\+\_\+f2@{\+\_\+f2}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+f2}{\_f2}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function}$\ast$ ocra\+::\+Subtraction\+Function\+::\+\_\+f2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 87 of file Subtraction\+Function.\+h.
+
+\hypertarget{classocra_1_1SubtractionFunction_a802ca5db967765779131701423f1b207}{}\label{classocra_1_1SubtractionFunction_a802ca5db967765779131701423f1b207} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!\+\_\+v1@{\+\_\+v1}}
+\index{\+\_\+v1@{\+\_\+v1}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+v1}{\_v1}}
+{\footnotesize\ttfamily Vector ocra\+::\+Subtraction\+Function\+::\+\_\+v1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 88 of file Subtraction\+Function.\+h.
+
+\hypertarget{classocra_1_1SubtractionFunction_a10736fb0de7f83a54a09055251cf4ad5}{}\label{classocra_1_1SubtractionFunction_a10736fb0de7f83a54a09055251cf4ad5} 
+\index{ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}!\+\_\+v2@{\+\_\+v2}}
+\index{\+\_\+v2@{\+\_\+v2}!ocra\+::\+Subtraction\+Function@{ocra\+::\+Subtraction\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+v2}{\_v2}}
+{\footnotesize\ttfamily Vector ocra\+::\+Subtraction\+Function\+::\+\_\+v2\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 89 of file Subtraction\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{SubtractionFunction_8h}{Subtraction\+Function.\+h}\end{DoxyCompactItemize}

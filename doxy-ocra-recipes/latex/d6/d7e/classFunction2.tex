@@ -1,0 +1,149 @@
+\hypertarget{classFunction2}{}\section{Function2 Class Reference}
+\label{classFunction2}\index{Function2@{Function2}}
+Inheritance diagram for Function2\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.901771cm]{d6/d7e/classFunction2}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFunction2_ad907d2408853a2d278f87293abfcdf47}{Function2} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x})
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classFunction2_ae491a20ff42d37d6512bc5b45b1a2566}{update\+Value} () const
+\item 
+void \hyperlink{classFunction2_aed704dcbe5332636a56a49d91f40d65f}{update\+Jacobian} () const
+\item 
+void \hyperlink{classFunction2_ac5152db91aedd2eddb4b69e6bd446659}{update\+PartialT} () const
+\item 
+void \hyperlink{classFunction2_ad1ba3ed750cfec23435dcd9f37c10eec}{set\+Zero\+Values} ()
+\item 
+void \hyperlink{classFunction2_a134ead37ced770c93bbce1ef656564bb}{update\+Jdot} () const
+\item 
+void \hyperlink{classFunction2_a79440b2c9d2e8f80abe1d35352f49a1c}{update\+Hessian} () const
+\item 
+void \hyperlink{classFunction2_ab05887e9f8995782cdc3f9399c476c4e}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+void \hyperlink{classFunction2_a6a875214e7fa8b07f064cd699ac29ff6}{do\+Update\+Input\+Size\+End} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Another real-\/valued function with some additional properties and abilities\+: the geometric mean function $ f: R^n \rightarrow R $ with $ f(x) = \left(\prod_{i=1}^n x_i\right)^(1/n) $. This function is concave and we consider x as a function of the time. It demonstrates a more generic use of Function with a variable of generic size. 
+
+Definition at line 114 of file Test\+Function.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classFunction2_ad907d2408853a2d278f87293abfcdf47}{}\label{classFunction2_ad907d2408853a2d278f87293abfcdf47} 
+\index{Function2@{Function2}!Function2@{Function2}}
+\index{Function2@{Function2}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{Function2()}{Function2()}}
+{\footnotesize\ttfamily Function2\+::\+Function2 (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 117 of file Test\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classFunction2_ab05887e9f8995782cdc3f9399c476c4e}{}\label{classFunction2_ab05887e9f8995782cdc3f9399c476c4e} 
+\index{Function2@{Function2}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void Function2\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classFunction2_a6a875214e7fa8b07f064cd699ac29ff6}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 177 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction2_a6a875214e7fa8b07f064cd699ac29ff6}{}\label{classFunction2_a6a875214e7fa8b07f064cd699ac29ff6} 
+\index{Function2@{Function2}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void Function2\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+The buffer of abilities has been changed, we need to reset the constant ones 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a39f6d91b72eff2d32da7e4a85ee79f7d}{ocra\+::\+Function}.
+
+
+
+Definition at line 183 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction2_ad1ba3ed750cfec23435dcd9f37c10eec}{}\label{classFunction2_ad1ba3ed750cfec23435dcd9f37c10eec} 
+\index{Function2@{Function2}!set\+Zero\+Values@{set\+Zero\+Values}}
+\index{set\+Zero\+Values@{set\+Zero\+Values}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{set\+Zero\+Values()}{setZeroValues()}}
+{\footnotesize\ttfamily void Function2\+::set\+Zero\+Values (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Set to zero the \+\_\+values of abilities that are constant and null. 
+
+Definition at line 149 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction2_a79440b2c9d2e8f80abe1d35352f49a1c}{}\label{classFunction2_a79440b2c9d2e8f80abe1d35352f49a1c} 
+\index{Function2@{Function2}!update\+Hessian@{update\+Hessian}}
+\index{update\+Hessian@{update\+Hessian}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{update\+Hessian()}{updateHessian()}}
+{\footnotesize\ttfamily void Function2\+::update\+Hessian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 168 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction2_aed704dcbe5332636a56a49d91f40d65f}{}\label{classFunction2_aed704dcbe5332636a56a49d91f40d65f} 
+\index{Function2@{Function2}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void Function2\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 136 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction2_a134ead37ced770c93bbce1ef656564bb}{}\label{classFunction2_a134ead37ced770c93bbce1ef656564bb} 
+\index{Function2@{Function2}!update\+Jdot@{update\+Jdot}}
+\index{update\+Jdot@{update\+Jdot}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{update\+Jdot()}{updateJdot()}}
+{\footnotesize\ttfamily void Function2\+::update\+Jdot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 155 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction2_ac5152db91aedd2eddb4b69e6bd446659}{}\label{classFunction2_ac5152db91aedd2eddb4b69e6bd446659} 
+\index{Function2@{Function2}!update\+PartialT@{update\+PartialT}}
+\index{update\+PartialT@{update\+PartialT}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{update\+Partial\+T()}{updatePartialT()}}
+{\footnotesize\ttfamily void Function2\+::update\+PartialT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 143 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction2_ae491a20ff42d37d6512bc5b45b1a2566}{}\label{classFunction2_ae491a20ff42d37d6512bc5b45b1a2566} 
+\index{Function2@{Function2}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!Function2@{Function2}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily void Function2\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 127 of file Test\+Function.\+cpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TestFunction_8cpp}{Test\+Function.\+cpp}\end{DoxyCompactItemize}

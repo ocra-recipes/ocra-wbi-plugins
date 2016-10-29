@@ -1,0 +1,232 @@
+\hypertarget{classocra_1_1ExperimentalTrajectory}{}\section{ocra\+:\+:Experimental\+Trajectory Class Reference}
+\label{classocra_1_1ExperimentalTrajectory}\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+
+
+{\ttfamily \#include $<$Experimental\+Trajectory.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Experimental\+Trajectory\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d5/d74/classocra_1_1ExperimentalTrajectory}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1ExperimentalTrajectory_a227d08649657b7951248c0b626808d9e}{calculate\+Variance\+Parameters} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1ExperimentalTrajectory_a9b9ed4d7b7a96c9a2b33624b5fc1ecf6}{get\+Desired\+Values} (double time)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1ExperimentalTrajectory_a1c3d421e3b08e2332747c6c3559d8b2d}{get\+Variance} (double time)
+\item 
+void \hyperlink{classocra_1_1ExperimentalTrajectory_a8d0b41849d2e99a13dd2ef1ae0b0eb46}{get\+Desired\+Values} (double time, Eigen\+::\+Matrix\+Xd \&desired\+Values, Eigen\+::\+Vector\+Xd \&variance)
+\item 
+void \hyperlink{classocra_1_1ExperimentalTrajectory_a8f920fd57e5207ac784411ba3a2594a3}{get\+Desired\+Values} (double time, Eigen\+::\+Displacementd \&position, Eigen\+::\+Twistd \&velocity, Eigen\+::\+Twistd \&acceleration)
+\item 
+double \hyperlink{classocra_1_1ExperimentalTrajectory_a76f4aa686308735dec24eec98d4c0ab8}{get\+Max\+Variance} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1ExperimentalTrajectory_a5a70f13ad9c0a6c8716972dcbe29b2b0}{get\+Waypoint\+Data} ()
+\item 
+void \hyperlink{classocra_1_1ExperimentalTrajectory_a5bd433112f5712a77e857636ed2dd11b}{add\+New\+Waypoint} (Eigen\+::\+Vector\+Xd new\+Waypoint, double waypoint\+Time)
+\item 
+void \hyperlink{classocra_1_1ExperimentalTrajectory_a64e0ded52fdbe54ccb85f32c67824d3a}{remove\+Youngest\+Waypoint} ()
+\item 
+void \hyperlink{classocra_1_1ExperimentalTrajectory_a6b5cdffc1575ca98a73251d6214521a3}{remove\+Waypoint} (int index)
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1ExperimentalTrajectory_ae3a97f92f11c74f9ffc42c33a8a95149}{get\+Rbfn\+Kernel\+Curves} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1ExperimentalTrajectory_a4e214517be9848835a63641578e3269d}{initialize\+Trajectory} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classocra_1_1ExperimentalTrajectory_a56b5a0d236891f5087b81cda85aae0be}{t0}
+\item 
+double \hyperlink{classocra_1_1ExperimentalTrajectory_a90502f229cbccfd19bd884d7b87f734d}{t0\+\_\+variance}
+\item 
+bool \hyperlink{classocra_1_1ExperimentalTrajectory_ab10b037615b07e20b0d6f81c48b7fd23}{variance\+Start\+Trigger}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 11 of file Experimental\+Trajectory.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ExperimentalTrajectory_a5bd433112f5712a77e857636ed2dd11b}{}\label{classocra_1_1ExperimentalTrajectory_a5bd433112f5712a77e857636ed2dd11b} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!add\+New\+Waypoint@{add\+New\+Waypoint}}
+\index{add\+New\+Waypoint@{add\+New\+Waypoint}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{add\+New\+Waypoint()}{addNewWaypoint()}}
+{\footnotesize\ttfamily void ocra\+::\+Experimental\+Trajectory\+::add\+New\+Waypoint (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{new\+Waypoint,  }\item[{double}]{waypoint\+Time }\end{DoxyParamCaption})}
+
+
+
+Definition at line 327 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a227d08649657b7951248c0b626808d9e}{}\label{classocra_1_1ExperimentalTrajectory_a227d08649657b7951248c0b626808d9e} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!calculate\+Variance\+Parameters@{calculate\+Variance\+Parameters}}
+\index{calculate\+Variance\+Parameters@{calculate\+Variance\+Parameters}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{calculate\+Variance\+Parameters()}{calculateVarianceParameters()}}
+{\footnotesize\ttfamily void ocra\+::\+Experimental\+Trajectory\+::calculate\+Variance\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 12 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a9b9ed4d7b7a96c9a2b33624b5fc1ecf6}{}\label{classocra_1_1ExperimentalTrajectory_a9b9ed4d7b7a96c9a2b33624b5fc1ecf6} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Experimental\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+For details on the analytical point to point min-\/jerk formulation see\+: \href{http://www.jneurosci.org/content/5/7/1688.full.pdf}{\tt http\+://www.\+jneurosci.\+org/content/5/7/1688.\+full.\+pdf} \href{http://shadmehrlab.org/book/minimum_jerk/minimumjerk.htm}{\tt http\+://shadmehrlab.\+org/book/minimum\+\_\+jerk/minimumjerk.\+htm}
+
+Reimplemented from \hyperlink{classocra_1_1Trajectory_a2102a829e6dad497f7c773c346d499b7}{ocra\+::\+Trajectory}.
+
+
+
+Definition at line 175 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a8d0b41849d2e99a13dd2ef1ae0b0eb46}{}\label{classocra_1_1ExperimentalTrajectory_a8d0b41849d2e99a13dd2ef1ae0b0eb46} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void ocra\+::\+Experimental\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{desired\+Values,  }\item[{Eigen\+::\+Vector\+Xd \&}]{variance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Trajectory_aab6869cf5bc4a7c44eac36a0e49255b9}{ocra\+::\+Trajectory}.
+
+
+
+Definition at line 253 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a8f920fd57e5207ac784411ba3a2594a3}{}\label{classocra_1_1ExperimentalTrajectory_a8f920fd57e5207ac784411ba3a2594a3} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void ocra\+::\+Experimental\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{Eigen\+::\+Displacementd \&}]{position,  }\item[{Eigen\+::\+Twistd \&}]{velocity,  }\item[{Eigen\+::\+Twistd \&}]{acceleration }\end{DoxyParamCaption})}
+
+
+
+Definition at line 260 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a76f4aa686308735dec24eec98d4c0ab8}{}\label{classocra_1_1ExperimentalTrajectory_a76f4aa686308735dec24eec98d4c0ab8} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!get\+Max\+Variance@{get\+Max\+Variance}}
+\index{get\+Max\+Variance@{get\+Max\+Variance}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Max\+Variance()}{getMaxVariance()}}
+{\footnotesize\ttfamily double ocra\+::\+Experimental\+Trajectory\+::get\+Max\+Variance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 309 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_ae3a97f92f11c74f9ffc42c33a8a95149}{}\label{classocra_1_1ExperimentalTrajectory_ae3a97f92f11c74f9ffc42c33a8a95149} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!get\+Rbfn\+Kernel\+Curves@{get\+Rbfn\+Kernel\+Curves}}
+\index{get\+Rbfn\+Kernel\+Curves@{get\+Rbfn\+Kernel\+Curves}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Rbfn\+Kernel\+Curves()}{getRbfnKernelCurves()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Experimental\+Trajectory\+::get\+Rbfn\+Kernel\+Curves (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 421 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a1c3d421e3b08e2332747c6c3559d8b2d}{}\label{classocra_1_1ExperimentalTrajectory_a1c3d421e3b08e2332747c6c3559d8b2d} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!get\+Variance@{get\+Variance}}
+\index{get\+Variance@{get\+Variance}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Variance()}{getVariance()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Experimental\+Trajectory\+::get\+Variance (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})}
+
+
+
+Definition at line 229 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a5a70f13ad9c0a6c8716972dcbe29b2b0}{}\label{classocra_1_1ExperimentalTrajectory_a5a70f13ad9c0a6c8716972dcbe29b2b0} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!get\+Waypoint\+Data@{get\+Waypoint\+Data}}
+\index{get\+Waypoint\+Data@{get\+Waypoint\+Data}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Waypoint\+Data()}{getWaypointData()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Experimental\+Trajectory\+::get\+Waypoint\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 39 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a4e214517be9848835a63641578e3269d}{}\label{classocra_1_1ExperimentalTrajectory_a4e214517be9848835a63641578e3269d} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!initialize\+Trajectory@{initialize\+Trajectory}}
+\index{initialize\+Trajectory@{initialize\+Trajectory}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{initialize\+Trajectory()}{initializeTrajectory()}}
+{\footnotesize\ttfamily void ocra\+::\+Experimental\+Trajectory\+::initialize\+Trajectory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Trajectory_aa49b123abf79be71f131c138ff2a88b2}{ocra\+::\+Trajectory}.
+
+
+
+Definition at line 267 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a6b5cdffc1575ca98a73251d6214521a3}{}\label{classocra_1_1ExperimentalTrajectory_a6b5cdffc1575ca98a73251d6214521a3} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!remove\+Waypoint@{remove\+Waypoint}}
+\index{remove\+Waypoint@{remove\+Waypoint}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{remove\+Waypoint()}{removeWaypoint()}}
+{\footnotesize\ttfamily void ocra\+::\+Experimental\+Trajectory\+::remove\+Waypoint (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 388 of file Experimental\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a64e0ded52fdbe54ccb85f32c67824d3a}{}\label{classocra_1_1ExperimentalTrajectory_a64e0ded52fdbe54ccb85f32c67824d3a} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!remove\+Youngest\+Waypoint@{remove\+Youngest\+Waypoint}}
+\index{remove\+Youngest\+Waypoint@{remove\+Youngest\+Waypoint}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{remove\+Youngest\+Waypoint()}{removeYoungestWaypoint()}}
+{\footnotesize\ttfamily void ocra\+::\+Experimental\+Trajectory\+::remove\+Youngest\+Waypoint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 383 of file Experimental\+Trajectory.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1ExperimentalTrajectory_a56b5a0d236891f5087b81cda85aae0be}{}\label{classocra_1_1ExperimentalTrajectory_a56b5a0d236891f5087b81cda85aae0be} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!t0@{t0}}
+\index{t0@{t0}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{t0}{t0}}
+{\footnotesize\ttfamily double ocra\+::\+Experimental\+Trajectory\+::t0\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 38 of file Experimental\+Trajectory.\+h.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_a90502f229cbccfd19bd884d7b87f734d}{}\label{classocra_1_1ExperimentalTrajectory_a90502f229cbccfd19bd884d7b87f734d} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!t0\+\_\+variance@{t0\+\_\+variance}}
+\index{t0\+\_\+variance@{t0\+\_\+variance}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{t0\+\_\+variance}{t0\_variance}}
+{\footnotesize\ttfamily double ocra\+::\+Experimental\+Trajectory\+::t0\+\_\+variance\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 38 of file Experimental\+Trajectory.\+h.
+
+\hypertarget{classocra_1_1ExperimentalTrajectory_ab10b037615b07e20b0d6f81c48b7fd23}{}\label{classocra_1_1ExperimentalTrajectory_ab10b037615b07e20b0d6f81c48b7fd23} 
+\index{ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}!variance\+Start\+Trigger@{variance\+Start\+Trigger}}
+\index{variance\+Start\+Trigger@{variance\+Start\+Trigger}!ocra\+::\+Experimental\+Trajectory@{ocra\+::\+Experimental\+Trajectory}}
+\subsubsection{\texorpdfstring{variance\+Start\+Trigger}{varianceStartTrigger}}
+{\footnotesize\ttfamily bool ocra\+::\+Experimental\+Trajectory\+::variance\+Start\+Trigger\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 39 of file Experimental\+Trajectory.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ExperimentalTrajectory_8h}{Experimental\+Trajectory.\+h}\item 
+\hyperlink{ExperimentalTrajectory_8cpp}{Experimental\+Trajectory.\+cpp}\end{DoxyCompactItemize}

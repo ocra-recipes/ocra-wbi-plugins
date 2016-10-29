@@ -1,0 +1,222 @@
+\hypertarget{classocra_1_1IdentityFunction}{}\section{ocra\+:\+:Identity\+Function Class Reference}
+\label{classocra_1_1IdentityFunction}\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+
+
+Identity\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Identity\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Identity\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.262480cm]{d4/d58/classocra_1_1IdentityFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1DiagonalLinearFunction}{Diagonal\+Linear\+Function} \hyperlink{classocra_1_1IdentityFunction_a4598384746d901d0a13b712666288894}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1IdentityFunction_a65a20f4b0036a5a6ca7b0e92e34dc1b0}{Identity\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, bool resizable=true)
+\item 
+bool \hyperlink{classocra_1_1IdentityFunction_aa468e3e90c544e901ed2d81f6d0eb9f3}{is\+Resizable} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1IdentityFunction_afd77529674b7b6db3db2542aaeedbb16}{update\+Value} () const
+\item 
+virtual void \hyperlink{classocra_1_1IdentityFunction_aa8d5ff0e25422b3b5a4a2a8621120790}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+virtual void \hyperlink{classocra_1_1IdentityFunction_adcfa8a32491113a590e7066f0062fbc6}{do\+Update\+Input\+Size\+End} ()
+\item 
+virtual void \hyperlink{classocra_1_1IdentityFunction_aa1a9f42b9b1b62182d99ea32dae6e815}{do\+ChangeA} (const Matrix\+Xd \&A)
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1IdentityFunction_aea94175430c2c785dbb9d551922be9ad}{do\+Change\+Diagonal} (const Vector\+Xd \&d)
+\item 
+virtual void \hyperlink{classocra_1_1IdentityFunction_ac6350bcc2107b56e96642cacbbee2404}{do\+Change\+Diagonal} (const double diagonal\+Element\+Value, const bool change\+Default=true)
+\item 
+virtual void \hyperlink{classocra_1_1IdentityFunction_ad54cf6c0b28f6d4955f15ebd53c6ca1f}{do\+Change\+Default\+Diagonal\+Value} (const double v)
+\item 
+virtual void \hyperlink{classocra_1_1IdentityFunction_a989f91f6ec4e2e00aa5ac3cc8b6a2b66}{do\+Change\+Defaultb\+Value} (const double v)
+\end{DoxyCompactItemize}
+
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Identity\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Identity function 
+
+Definition at line 27 of file Identity\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1IdentityFunction_a4598384746d901d0a13b712666288894}{}\label{classocra_1_1IdentityFunction_a4598384746d901d0a13b712666288894} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1DiagonalLinearFunction}{Diagonal\+Linear\+Function} \hyperlink{classocra_1_1IdentityFunction_a4598384746d901d0a13b712666288894}{ocra\+::\+Identity\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 31 of file Identity\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1IdentityFunction_a65a20f4b0036a5a6ca7b0e92e34dc1b0}{}\label{classocra_1_1IdentityFunction_a65a20f4b0036a5a6ca7b0e92e34dc1b0} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!Identity\+Function@{Identity\+Function}}
+\index{Identity\+Function@{Identity\+Function}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{Identity\+Function()}{IdentityFunction()}}
+{\footnotesize\ttfamily ocra\+::\+Identity\+Function\+::\+Identity\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{bool}]{resizable = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Trivial constructor. If resizable is false, a runtime\+\_\+error will be thrown upon resizing. 
+
+Definition at line 6 of file Identity\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1IdentityFunction_aa1a9f42b9b1b62182d99ea32dae6e815}{}\label{classocra_1_1IdentityFunction_aa1a9f42b9b1b62182d99ea32dae6e815} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!do\+ChangeA@{do\+ChangeA}}
+\index{do\+ChangeA@{do\+ChangeA}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+A()}{doChangeA()}}
+{\footnotesize\ttfamily void ocra\+::\+Identity\+Function\+::do\+ChangeA (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{A }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Overload checking if {\itshape A} is a diagonal matrix. It is here just in case, changing A on a Identity is not very helpfull... 
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_addc4f984a5a71b170137788f15e2d12c}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 62 of file Identity\+Function.\+cpp.
+
+\hypertarget{classocra_1_1IdentityFunction_a989f91f6ec4e2e00aa5ac3cc8b6a2b66}{}\label{classocra_1_1IdentityFunction_a989f91f6ec4e2e00aa5ac3cc8b6a2b66} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!do\+Change\+Defaultb\+Value@{do\+Change\+Defaultb\+Value}}
+\index{do\+Change\+Defaultb\+Value@{do\+Change\+Defaultb\+Value}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Defaultb\+Value()}{doChangeDefaultbValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Identity\+Function\+::do\+Change\+Defaultb\+Value (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a9995af94055dc443c10018869a393635}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 56 of file Identity\+Function.\+cpp.
+
+\hypertarget{classocra_1_1IdentityFunction_ad54cf6c0b28f6d4955f15ebd53c6ca1f}{}\label{classocra_1_1IdentityFunction_ad54cf6c0b28f6d4955f15ebd53c6ca1f} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!do\+Change\+Default\+Diagonal\+Value@{do\+Change\+Default\+Diagonal\+Value}}
+\index{do\+Change\+Default\+Diagonal\+Value@{do\+Change\+Default\+Diagonal\+Value}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Default\+Diagonal\+Value()}{doChangeDefaultDiagonalValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Identity\+Function\+::do\+Change\+Default\+Diagonal\+Value (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a81120f5a61cc53cc940f4e71b35174ff}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 50 of file Identity\+Function.\+cpp.
+
+\hypertarget{classocra_1_1IdentityFunction_aea94175430c2c785dbb9d551922be9ad}{}\label{classocra_1_1IdentityFunction_aea94175430c2c785dbb9d551922be9ad} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!do\+Change\+Diagonal@{do\+Change\+Diagonal}}
+\index{do\+Change\+Diagonal@{do\+Change\+Diagonal}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Diagonal()}{doChangeDiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Identity\+Function\+::do\+Change\+Diagonal (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+This methods throw a runtime\+\_\+error because diagonal and default value can\textquotesingle{}t be changed for a Indentity\+Function 
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a5355515d58348a3eea92f36e35b1c7d5}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 38 of file Identity\+Function.\+cpp.
+
+\hypertarget{classocra_1_1IdentityFunction_ac6350bcc2107b56e96642cacbbee2404}{}\label{classocra_1_1IdentityFunction_ac6350bcc2107b56e96642cacbbee2404} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!do\+Change\+Diagonal@{do\+Change\+Diagonal}}
+\index{do\+Change\+Diagonal@{do\+Change\+Diagonal}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Diagonal()}{doChangeDiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Identity\+Function\+::do\+Change\+Diagonal (\begin{DoxyParamCaption}\item[{const double}]{diagonal\+Element\+Value,  }\item[{const bool}]{change\+Default = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a0673bfe405d5637182c4749dd2737e95}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 44 of file Identity\+Function.\+cpp.
+
+\hypertarget{classocra_1_1IdentityFunction_aa8d5ff0e25422b3b5a4a2a8621120790}{}\label{classocra_1_1IdentityFunction_aa8d5ff0e25422b3b5a4a2a8621120790} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Identity\+Function\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Throw a runtime\+\_\+error if this function is not resizable 
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a2071e4c52785c88119917460b94773cb}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 27 of file Identity\+Function.\+cpp.
+
+\hypertarget{classocra_1_1IdentityFunction_adcfa8a32491113a590e7066f0062fbc6}{}\label{classocra_1_1IdentityFunction_adcfa8a32491113a590e7066f0062fbc6} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Identity\+Function\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Rebuild the jacobian and b 
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a8a51d23c302c9bad9579b95e29481f55}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 33 of file Identity\+Function.\+cpp.
+
+\hypertarget{classocra_1_1IdentityFunction_aa468e3e90c544e901ed2d81f6d0eb9f3}{}\label{classocra_1_1IdentityFunction_aa468e3e90c544e901ed2d81f6d0eb9f3} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!is\+Resizable@{is\+Resizable}}
+\index{is\+Resizable@{is\+Resizable}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{is\+Resizable()}{isResizable()}}
+{\footnotesize\ttfamily bool ocra\+::\+Identity\+Function\+::is\+Resizable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Trivial getter 
+
+Definition at line 17 of file Identity\+Function.\+cpp.
+
+\hypertarget{classocra_1_1IdentityFunction_afd77529674b7b6db3db2542aaeedbb16}{}\label{classocra_1_1IdentityFunction_afd77529674b7b6db3db2542aaeedbb16} 
+\index{ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!ocra\+::\+Identity\+Function@{ocra\+::\+Identity\+Function}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Identity\+Function\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Overloads of the \hyperlink{classocra_1_1Function}{Function} methods 
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a69523347749429dae6ae041326e40d43}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 22 of file Identity\+Function.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{IdentityFunction_8h}{Identity\+Function.\+h}\item 
+\hyperlink{IdentityFunction_8cpp}{Identity\+Function.\+cpp}\end{DoxyCompactItemize}

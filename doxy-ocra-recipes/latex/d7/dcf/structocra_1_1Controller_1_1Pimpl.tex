@@ -1,0 +1,158 @@
+\hypertarget{structocra_1_1Controller_1_1Pimpl}{}\section{ocra\+:\+:Controller\+:\+:Pimpl Struct Reference}
+\label{structocra_1_1Controller_1_1Pimpl}\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structocra_1_1Controller_1_1Pimpl_ad59ee786ca8b100a87e797cdfc6c15f5}{Pimpl} (const Model \&m)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const Model \& \hyperlink{structocra_1_1Controller_1_1Pimpl_aadf5eccdc9453d1f277f62b7becf7390}{model}
+\item 
+Vector\+Xd \hyperlink{structocra_1_1Controller_1_1Pimpl_a19486bfe59a11231eeabfd3b2b9abd39}{tau\+\_\+max}
+\item 
+Vector\+Xd \hyperlink{structocra_1_1Controller_1_1Pimpl_a06e7fceb4a0a3c678a4e26fc12946e5c}{tau}
+\item 
+Task\+Map$<$ \hyperlink{classocra_1_1Task}{Task} $>$ \hyperlink{structocra_1_1Controller_1_1Pimpl_a246fa1cc15ad20293ef78b04dc0dbe70}{tasks}
+\item 
+Task\+Map$<$ \hyperlink{classocra_1_1TaskYarpInterface}{Task\+Yarp\+Interface} $>$ \hyperlink{structocra_1_1Controller_1_1Pimpl_a396836991948d8d90cf5852330d2c5c3}{task\+Interfaces}
+\item 
+std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Task}{Task} $>$ $>$ \hyperlink{structocra_1_1Controller_1_1Pimpl_a721a40c7b21e230a7508995ecfa93d60}{active\+Tasks}
+\item 
+std\+::string \hyperlink{structocra_1_1Controller_1_1Pimpl_a1150a44bd413ec025703d53c8eaf4733}{error\+Message}
+\item 
+double \hyperlink{structocra_1_1Controller_1_1Pimpl_a6731e905858ef90305a3c99c605c8069}{max\+Tau}
+\item 
+int \hyperlink{structocra_1_1Controller_1_1Pimpl_a8a4ac972687499a277fa08dced73180c}{error\+Flag}
+\item 
+bool \hyperlink{structocra_1_1Controller_1_1Pimpl_a2764f0bf903a983abae8195ab6639ed5}{handle\+Error}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 79 of file Controller.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structocra_1_1Controller_1_1Pimpl_ad59ee786ca8b100a87e797cdfc6c15f5}{}\label{structocra_1_1Controller_1_1Pimpl_ad59ee786ca8b100a87e797cdfc6c15f5} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!Pimpl@{Pimpl}}
+\index{Pimpl@{Pimpl}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Pimpl()}{Pimpl()}}
+{\footnotesize\ttfamily ocra\+::\+Controller\+::\+Pimpl\+::\+Pimpl (\begin{DoxyParamCaption}\item[{const Model \&}]{m }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 92 of file Controller.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a721a40c7b21e230a7508995ecfa93d60}{}\label{structocra_1_1Controller_1_1Pimpl_a721a40c7b21e230a7508995ecfa93d60} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!active\+Tasks@{active\+Tasks}}
+\index{active\+Tasks@{active\+Tasks}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{active\+Tasks}{activeTasks}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::shared\+\_\+ptr$<$\hyperlink{classocra_1_1Task}{Task}$>$ $>$ ocra\+::\+Controller\+::\+Pimpl\+::active\+Tasks}
+
+
+
+Definition at line 86 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a8a4ac972687499a277fa08dced73180c}{}\label{structocra_1_1Controller_1_1Pimpl_a8a4ac972687499a277fa08dced73180c} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!error\+Flag@{error\+Flag}}
+\index{error\+Flag@{error\+Flag}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{error\+Flag}{errorFlag}}
+{\footnotesize\ttfamily int ocra\+::\+Controller\+::\+Pimpl\+::error\+Flag}
+
+
+
+Definition at line 89 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a1150a44bd413ec025703d53c8eaf4733}{}\label{structocra_1_1Controller_1_1Pimpl_a1150a44bd413ec025703d53c8eaf4733} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!error\+Message@{error\+Message}}
+\index{error\+Message@{error\+Message}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{error\+Message}{errorMessage}}
+{\footnotesize\ttfamily std\+::string ocra\+::\+Controller\+::\+Pimpl\+::error\+Message}
+
+
+
+Definition at line 87 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a2764f0bf903a983abae8195ab6639ed5}{}\label{structocra_1_1Controller_1_1Pimpl_a2764f0bf903a983abae8195ab6639ed5} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!handle\+Error@{handle\+Error}}
+\index{handle\+Error@{handle\+Error}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{handle\+Error}{handleError}}
+{\footnotesize\ttfamily bool ocra\+::\+Controller\+::\+Pimpl\+::handle\+Error}
+
+
+
+Definition at line 90 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a6731e905858ef90305a3c99c605c8069}{}\label{structocra_1_1Controller_1_1Pimpl_a6731e905858ef90305a3c99c605c8069} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!max\+Tau@{max\+Tau}}
+\index{max\+Tau@{max\+Tau}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{max\+Tau}{maxTau}}
+{\footnotesize\ttfamily double ocra\+::\+Controller\+::\+Pimpl\+::max\+Tau}
+
+
+
+Definition at line 88 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_aadf5eccdc9453d1f277f62b7becf7390}{}\label{structocra_1_1Controller_1_1Pimpl_aadf5eccdc9453d1f277f62b7becf7390} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!model@{model}}
+\index{model@{model}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily const Model\& ocra\+::\+Controller\+::\+Pimpl\+::model}
+
+
+
+Definition at line 81 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a396836991948d8d90cf5852330d2c5c3}{}\label{structocra_1_1Controller_1_1Pimpl_a396836991948d8d90cf5852330d2c5c3} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!task\+Interfaces@{task\+Interfaces}}
+\index{task\+Interfaces@{task\+Interfaces}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{task\+Interfaces}{taskInterfaces}}
+{\footnotesize\ttfamily Task\+Map$<$\hyperlink{classocra_1_1TaskYarpInterface}{Task\+Yarp\+Interface}$>$ ocra\+::\+Controller\+::\+Pimpl\+::task\+Interfaces}
+
+
+
+Definition at line 85 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a246fa1cc15ad20293ef78b04dc0dbe70}{}\label{structocra_1_1Controller_1_1Pimpl_a246fa1cc15ad20293ef78b04dc0dbe70} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!tasks@{tasks}}
+\index{tasks@{tasks}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{tasks}{tasks}}
+{\footnotesize\ttfamily Task\+Map$<$\hyperlink{classocra_1_1Task}{Task}$>$ ocra\+::\+Controller\+::\+Pimpl\+::tasks}
+
+
+
+Definition at line 84 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a06e7fceb4a0a3c678a4e26fc12946e5c}{}\label{structocra_1_1Controller_1_1Pimpl_a06e7fceb4a0a3c678a4e26fc12946e5c} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!tau@{tau}}
+\index{tau@{tau}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{tau}{tau}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Controller\+::\+Pimpl\+::tau}
+
+
+
+Definition at line 83 of file Controller.\+cpp.
+
+\hypertarget{structocra_1_1Controller_1_1Pimpl_a19486bfe59a11231eeabfd3b2b9abd39}{}\label{structocra_1_1Controller_1_1Pimpl_a19486bfe59a11231eeabfd3b2b9abd39} 
+\index{ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}!tau\+\_\+max@{tau\+\_\+max}}
+\index{tau\+\_\+max@{tau\+\_\+max}!ocra\+::\+Controller\+::\+Pimpl@{ocra\+::\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{tau\+\_\+max}{tau\_max}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Controller\+::\+Pimpl\+::tau\+\_\+max}
+
+
+
+Definition at line 82 of file Controller.\+cpp.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Controller_8cpp}{Controller.\+cpp}\end{DoxyCompactItemize}

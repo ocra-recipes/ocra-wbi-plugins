@@ -1,0 +1,73 @@
+\hypertarget{Constraint_8h}{}\section{Constraint.\+h File Reference}
+\label{Constraint_8h}\index{Constraint.\+h@{Constraint.\+h}}
+
+
+Declaration file of the Constraint class.  
+
+
+{\ttfamily \#include \char`\"{}ocra/optim/\+Variable.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Function\+Interface\+Mapping.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$ocra/util/\+Macros.\+h$>$}\newline
+{\ttfamily \#include $<$boost/static\+\_\+assert.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/type\+\_\+traits/is\+\_\+base\+\_\+of.\+hpp$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Linear\+Function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Bound\+Function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Identity\+Function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Diagonal\+Linear\+Function.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1Constraint}{ocra\+::\+Constraint$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em Constraint class. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1Constraint_3_01Function_01_4}{ocra\+::\+Constraint$<$ Function $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef Constraint$<$ Function $>$ \hyperlink{namespaceocra_af10341108ce661566aad00908668e2b1}{ocra\+::\+Generic\+Constraint}
+\item 
+typedef Constraint$<$ Linear\+Function $>$ \hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{ocra\+::\+Linear\+Constraint}
+\item 
+typedef Constraint$<$ Bound\+Function $>$ \hyperlink{namespaceocra_a6e55fff77635080219964abc301abf18}{ocra\+::\+Bound\+Constraint}
+\item 
+typedef Constraint$<$ Identity\+Function $>$ \hyperlink{namespaceocra_a5fc023ff4ef8f4b0cdf410e088090731}{ocra\+::\+Identity\+Constraint}
+\item 
+typedef Constraint$<$ Diagonal\+Linear\+Function $>$ \hyperlink{namespaceocra_ab310e2c53f5e52ec3aba0a832f7dc79e}{ocra\+::\+Diagonal\+Linear\+Constraint}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939b}{ocra\+::e\+Constraint\+Type} \{ \newline
+\hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939ba267dfa231e99fa27e51c96f7f254edeb}{ocra\+::\+C\+S\+T\+R\+\_\+\+E\+Q\+U\+A\+L\+\_\+\+Z\+E\+RO} =0, 
+\hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939ba3c53e336c7001d9e91cbab87fed6c617}{ocra\+::\+C\+S\+T\+R\+\_\+\+E\+Q\+U\+A\+L\+\_\+B}, 
+\hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939baaaef445573e3c2d9fef8c9cf8c2beedc}{ocra\+::\+C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+\+Z\+E\+RO}, 
+\hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939ba243df44f270fea35b7fc08565adf5e64}{ocra\+::\+C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+U}, 
+\newline
+\hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939ba72ba216f8bf5c8482b450645f3c3985e}{ocra\+::\+C\+S\+T\+R\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+Z\+E\+RO}, 
+\hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939ba9e056f131217f1d13cde9b6a1b41f5de}{ocra\+::\+C\+S\+T\+R\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+L}, 
+\hyperlink{namespaceocra_aedff92662043a7f15dc263363db7939bacde9128c1d54f28ad292f5e61a30d8d1}{ocra\+::\+C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+\+A\+N\+D\+\_\+\+G\+R\+E\+A\+T\+ER}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Declaration file of the Constraint class. 
+
+Copyright (C) 2009 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+T\+S\+I/\+S\+R\+CI Copyright (C) 2010 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+I\+A\+S\+I/\+L\+SI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+09/04/24
+\end{DoxyDate}
+File history\+:
+\begin{DoxyItemize}
+\item 10/06/10 Escande Adrien\+: mapping of Function Interface is deferred to function\+Interface\+Mapping, adding lower and upper bounds to inequality constraints. 
+\end{DoxyItemize}

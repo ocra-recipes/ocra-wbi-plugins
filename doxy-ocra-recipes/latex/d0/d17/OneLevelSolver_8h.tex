@@ -1,0 +1,54 @@
+\hypertarget{OneLevelSolver_8h}{}\section{One\+Level\+Solver.\+h File Reference}
+\label{OneLevelSolver_8h}\index{One\+Level\+Solver.\+h@{One\+Level\+Solver.\+h}}
+
+
+Define the internal solver class that can be used in the w\+Ocra controller.  
+
+
+{\ttfamily \#include \char`\"{}ocra/optim/\+Solver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Objective.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Quadratic\+Function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Squared\+Linear\+Function.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Merged\+Variable.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Obj\+Q\+L\+D.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Control\+Enum.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Model.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$ocra/util/\+Errors\+Helper.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Quad\+Prog++.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$Eigen/\+S\+VD$>$}\newline
+{\ttfamily \#include $<$qp\+O\+A\+S\+E\+S.\+hpp$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver}
+\begin{DoxyCompactList}\small\item\em A generic abstract class the solvers that can be used in the w\+Ocra \hyperlink{classocra_1_1Controller}{Controller}. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1OneLevelSolverWithQuadProg}{ocra\+::\+One\+Level\+Solver\+With\+Quad\+Prog}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classocra_1_1Solver}{Solver} class that only consider one level of importance for all tasks using Quadprog++. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1OneLevelSolverWithQPOASES}{ocra\+::\+One\+Level\+Solver\+With\+Q\+P\+O\+A\+S\+ES}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classocra_1_1Solver}{Solver} class that only consider one level of importance for all tasks using Q\+P\+O\+A\+S\+ES. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1OneLevelSolverWithQLD}{ocra\+::\+One\+Level\+Solver\+With\+Q\+LD}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classocra_1_1Solver}{Solver} class that only consider one level of importance for all tasks using Q\+LD. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef Eigen\+::\+Map$<$ Eigen\+::\+Matrix\+Xd $>$ \hyperlink{group__solver_ga2890a4739c18700eeea0645d1e41b5f7}{ocra\+::\+Matrix\+Map}
+\item 
+typedef Eigen\+::\+Map$<$ Eigen\+::\+Vector\+Xd $>$ \hyperlink{group__solver_ga48f83fdb8879c800a49682c6f9c3f2e5}{ocra\+::\+Vector\+Map}
+\item 
+typedef Eigen\+::\+Matrix$<$ double, Eigen\+::\+Dynamic, Eigen\+::\+Dynamic, Eigen\+::\+Row\+Major $>$ \hyperlink{group__solver_ga70eb87299c2fc1db3c4aac05df67d889}{ocra\+::\+Matrix\+Xd\+Rm}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Define the internal solver class that can be used in the w\+Ocra controller. 
+
+\begin{DoxyAuthor}{Author}
+Joseph Salini
+\end{DoxyAuthor}
+Here, only an abstract class is defined. 

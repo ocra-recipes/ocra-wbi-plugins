@@ -1,0 +1,354 @@
+\hypertarget{classocra_1_1QLDSolver}{}\section{ocra\+:\+:Q\+L\+D\+Solver Class Reference}
+\label{classocra_1_1QLDSolver}\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+
+
+Q\+L\+D\+Solver class.  
+
+
+
+
+{\ttfamily \#include $<$Q\+L\+D\+Solver.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Q\+L\+D\+Solver\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.623188cm]{d2/dab/classocra_1_1QLDSolver}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef Map$<$ Matrix\+Xd $>$ \hyperlink{classocra_1_1QLDSolver_aebfc53b837336b9942a8ed2e6ca6c0e2}{Matrix\+Map}
+\item 
+typedef Map$<$ Vector\+Xd $>$ \hyperlink{classocra_1_1QLDSolver_a0f7e278b557ca2b7fad6d059ee87a707}{Vector\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1QLDSolver_a0071bb356541ccce1b5c5d3672baf72f}{Q\+L\+D\+Solver} ()
+\item 
+void \hyperlink{classocra_1_1QLDSolver_ad14fc2be094603279ccf271e48e5dbe7}{set\+Tolerance} (double epsilon)
+\item 
+double \hyperlink{classocra_1_1QLDSolver_a491581b625f562d7c5bd8b939a9bafe9}{get\+Tolerance} (void) const
+\item 
+const std\+::string \& \hyperlink{classocra_1_1QLDSolver_a387f7b02e2cac27c91a0e36c2b473722}{get\+More\+Info} () const
+\item 
+Matrix\+Xd \hyperlink{classocra_1_1QLDSolver_a1c710dd84d8e2ff4f87e3e20a9b656ee}{getP} () const
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QLDSolver_ae824b54386917fbd98c2fa4a3242e06a}{getq} () const
+\item 
+Matrix\+Xd \hyperlink{classocra_1_1QLDSolver_a267add4e76edafa27e41574e14a5b17f}{getA} () const
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QLDSolver_af206f7c0caa5a02c505d613bf3888eea}{getb} () const
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QLDSolver_abefe0e7142a6d9d5094d8ae6816cce91}{getbp} () const
+\item 
+Matrix\+Xd \hyperlink{classocra_1_1QLDSolver_a92a18dc5df3511bcc9fc9ff5f45f621b}{getC} () const
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QLDSolver_ad3434ad289da51ffe440b7959972ca89}{getd} () const
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QLDSolver_aa79266a95a76ec3e3c7bd6d92af1cbcb}{getl} () const
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QLDSolver_a643f978628ee45f88940ddbd7822aedd}{getu} () const
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QLDSolver_ab0ad9b36f9a063b0fb59d48e447a1449}{getxl} () const
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QLDSolver_a59bf1fba85f791bc1c30521373fcb999}{getxu} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1QLDSolver_ac590e2b4c851042177e8e4b84f946ced}{do\+Prepare} ()
+\item 
+void \hyperlink{classocra_1_1QLDSolver_acf5bca219fc8a5be246589f76097a6e0}{do\+Solve} ()
+\item 
+void \hyperlink{classocra_1_1QLDSolver_a1d6f5101e1cc2b6bc8256ac2d3e0d710}{do\+Conclude} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Q\+L\+D\+Solver class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Wrapping of the QP solver from Q\+LD 
+
+Definition at line 37 of file Q\+L\+D\+Solver.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1QLDSolver_aebfc53b837336b9942a8ed2e6ca6c0e2}{}\label{classocra_1_1QLDSolver_aebfc53b837336b9942a8ed2e6ca6c0e2} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!Matrix\+Map@{Matrix\+Map}}
+\index{Matrix\+Map@{Matrix\+Map}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{Matrix\+Map}{MatrixMap}}
+{\footnotesize\ttfamily typedef Map$<$Matrix\+Xd$>$ \hyperlink{classocra_1_1QLDSolver_aebfc53b837336b9942a8ed2e6ca6c0e2}{ocra\+::\+Q\+L\+D\+Solver\+::\+Matrix\+Map}}
+
+
+
+Definition at line 41 of file Q\+L\+D\+Solver.\+h.
+
+\hypertarget{classocra_1_1QLDSolver_a0f7e278b557ca2b7fad6d059ee87a707}{}\label{classocra_1_1QLDSolver_a0f7e278b557ca2b7fad6d059ee87a707} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!Vector\+Map@{Vector\+Map}}
+\index{Vector\+Map@{Vector\+Map}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{Vector\+Map}{VectorMap}}
+{\footnotesize\ttfamily typedef Map$<$Vector\+Xd$>$ \hyperlink{classocra_1_1QLDSolver_a0f7e278b557ca2b7fad6d059ee87a707}{ocra\+::\+Q\+L\+D\+Solver\+::\+Vector\+Map}}
+
+
+
+Definition at line 42 of file Q\+L\+D\+Solver.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1QLDSolver_a0071bb356541ccce1b5c5d3672baf72f}{}\label{classocra_1_1QLDSolver_a0071bb356541ccce1b5c5d3672baf72f} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!Q\+L\+D\+Solver@{Q\+L\+D\+Solver}}
+\index{Q\+L\+D\+Solver@{Q\+L\+D\+Solver}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{Q\+L\+D\+Solver()}{QLDSolver()}}
+{\footnotesize\ttfamily ocra\+::\+Q\+L\+D\+Solver\+::\+Q\+L\+D\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file Q\+L\+D\+Solver.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1QLDSolver_a1d6f5101e1cc2b6bc8256ac2d3e0d710}{}\label{classocra_1_1QLDSolver_a1d6f5101e1cc2b6bc8256ac2d3e0d710} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!do\+Conclude@{do\+Conclude}}
+\index{do\+Conclude@{do\+Conclude}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{do\+Conclude()}{doConclude()}}
+{\footnotesize\ttfamily void ocra\+::\+Q\+L\+D\+Solver\+::do\+Conclude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_ac9d2d41d544b57a75e0d03db073d646e}{ocra\+::\+Solver}.
+
+
+
+Definition at line 138 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_ac590e2b4c851042177e8e4b84f946ced}{}\label{classocra_1_1QLDSolver_ac590e2b4c851042177e8e4b84f946ced} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!do\+Prepare@{do\+Prepare}}
+\index{do\+Prepare@{do\+Prepare}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{do\+Prepare()}{doPrepare()}}
+{\footnotesize\ttfamily void ocra\+::\+Q\+L\+D\+Solver\+::do\+Prepare (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_a9ab90e87025e3da7239141c48d28ab4a}{ocra\+::\+Solver}.
+
+
+
+Definition at line 105 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_acf5bca219fc8a5be246589f76097a6e0}{}\label{classocra_1_1QLDSolver_acf5bca219fc8a5be246589f76097a6e0} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!do\+Solve@{do\+Solve}}
+\index{do\+Solve@{do\+Solve}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{do\+Solve()}{doSolve()}}
+{\footnotesize\ttfamily void ocra\+::\+Q\+L\+D\+Solver\+::do\+Solve (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_ace2d7cfe741611de6dc87a0de7e7f3a9}{ocra\+::\+Solver}.
+
+
+
+Definition at line 131 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_a267add4e76edafa27e41574e14a5b17f}{}\label{classocra_1_1QLDSolver_a267add4e76edafa27e41574e14a5b17f} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getA@{getA}}
+\index{getA@{getA}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{get\+A()}{getA()}}
+{\footnotesize\ttfamily Matrix\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getA (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_aa3904e85d74c7c88c3605a082741b8cd}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 59 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_af206f7c0caa5a02c505d613bf3888eea}{}\label{classocra_1_1QLDSolver_af206f7c0caa5a02c505d613bf3888eea} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getb@{getb}}
+\index{getb@{getb}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{getb()}{getb()}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getb (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_ac051c6a779ce6a6e6e6657cfd3e1f65f}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 64 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_abefe0e7142a6d9d5094d8ae6816cce91}{}\label{classocra_1_1QLDSolver_abefe0e7142a6d9d5094d8ae6816cce91} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getbp@{getbp}}
+\index{getbp@{getbp}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{getbp()}{getbp()}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getbp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_af5cc64ada014e8caf3d2c994eaa1c48a}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 69 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_a92a18dc5df3511bcc9fc9ff5f45f621b}{}\label{classocra_1_1QLDSolver_a92a18dc5df3511bcc9fc9ff5f45f621b} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getC@{getC}}
+\index{getC@{getC}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{get\+C()}{getC()}}
+{\footnotesize\ttfamily Matrix\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getC (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_a0babcde3ffe8770131b5f842da01c49c}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 74 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_ad3434ad289da51ffe440b7959972ca89}{}\label{classocra_1_1QLDSolver_ad3434ad289da51ffe440b7959972ca89} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getd@{getd}}
+\index{getd@{getd}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{getd()}{getd()}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getd (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_a7f15d5d3c28feac3204542c885d68586}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 79 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_aa79266a95a76ec3e3c7bd6d92af1cbcb}{}\label{classocra_1_1QLDSolver_aa79266a95a76ec3e3c7bd6d92af1cbcb} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getl@{getl}}
+\index{getl@{getl}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{getl()}{getl()}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getl (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_a13e3a471615ca667daadf490dedc18eb}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 84 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_a387f7b02e2cac27c91a0e36c2b473722}{}\label{classocra_1_1QLDSolver_a387f7b02e2cac27c91a0e36c2b473722} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!get\+More\+Info@{get\+More\+Info}}
+\index{get\+More\+Info@{get\+More\+Info}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{get\+More\+Info()}{getMoreInfo()}}
+{\footnotesize\ttfamily const std\+::string \& ocra\+::\+Q\+L\+D\+Solver\+::get\+More\+Info (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Solver_a3ebcf70ad5466cd31f27811ad6ccdfff}{ocra\+::\+Solver}.
+
+
+
+Definition at line 43 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_a1c710dd84d8e2ff4f87e3e20a9b656ee}{}\label{classocra_1_1QLDSolver_a1c710dd84d8e2ff4f87e3e20a9b656ee} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getP@{getP}}
+\index{getP@{getP}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{get\+P()}{getP()}}
+{\footnotesize\ttfamily Matrix\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getP (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_a4dcc2768227c21262571d19c0d494935}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 49 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_ae824b54386917fbd98c2fa4a3242e06a}{}\label{classocra_1_1QLDSolver_ae824b54386917fbd98c2fa4a3242e06a} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getq@{getq}}
+\index{getq@{getq}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{getq()}{getq()}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getq (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_a2a907a3fc7c60a7bf9e6a3403c544dcc}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 54 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_a491581b625f562d7c5bd8b939a9bafe9}{}\label{classocra_1_1QLDSolver_a491581b625f562d7c5bd8b939a9bafe9} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!get\+Tolerance@{get\+Tolerance}}
+\index{get\+Tolerance@{get\+Tolerance}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{get\+Tolerance()}{getTolerance()}}
+{\footnotesize\ttfamily double ocra\+::\+Q\+L\+D\+Solver\+::get\+Tolerance (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 37 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_a643f978628ee45f88940ddbd7822aedd}{}\label{classocra_1_1QLDSolver_a643f978628ee45f88940ddbd7822aedd} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getu@{getu}}
+\index{getu@{getu}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{getu()}{getu()}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getu (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_a6d5040842f155042064a33939aa60385}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 89 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_ab0ad9b36f9a063b0fb59d48e447a1449}{}\label{classocra_1_1QLDSolver_ab0ad9b36f9a063b0fb59d48e447a1449} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getxl@{getxl}}
+\index{getxl@{getxl}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{getxl()}{getxl()}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getxl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_a9c8270a0e1a921641884586ff448392b}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 94 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_a59bf1fba85f791bc1c30521373fcb999}{}\label{classocra_1_1QLDSolver_a59bf1fba85f791bc1c30521373fcb999} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!getxu@{getxu}}
+\index{getxu@{getxu}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{getxu()}{getxu()}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Q\+L\+D\+Solver\+::getxu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1QuadraticSolver_a58cb3039938bc2a6c9c0e1042425a98b}{ocra\+::\+Quadratic\+Solver}.
+
+
+
+Definition at line 99 of file Q\+L\+D\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1QLDSolver_ad14fc2be094603279ccf271e48e5dbe7}{}\label{classocra_1_1QLDSolver_ad14fc2be094603279ccf271e48e5dbe7} 
+\index{ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}!set\+Tolerance@{set\+Tolerance}}
+\index{set\+Tolerance@{set\+Tolerance}!ocra\+::\+Q\+L\+D\+Solver@{ocra\+::\+Q\+L\+D\+Solver}}
+\subsubsection{\texorpdfstring{set\+Tolerance()}{setTolerance()}}
+{\footnotesize\ttfamily void ocra\+::\+Q\+L\+D\+Solver\+::set\+Tolerance (\begin{DoxyParamCaption}\item[{double}]{epsilon }\end{DoxyParamCaption})}
+
+
+
+Definition at line 31 of file Q\+L\+D\+Solver.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{QLDSolver_8h}{Q\+L\+D\+Solver.\+h}\item 
+\hyperlink{QLDSolver_8cpp}{Q\+L\+D\+Solver.\+cpp}\end{DoxyCompactItemize}

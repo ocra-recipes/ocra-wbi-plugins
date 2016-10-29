@@ -1,0 +1,244 @@
+\hypertarget{IFunction_8h}{}\section{I\+Function.\+h File Reference}
+\label{IFunction_8h}\index{I\+Function.\+h@{I\+Function.\+h}}
+
+
+Declaration file of the I\+Function interface.  
+
+
+{\ttfamily \#include $<$ocra/util/\+Math\+Types.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/ocra\+\_\+assert.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1return__type__traits}{ocra\+::return\+\_\+type\+\_\+traits$<$ T $>$}
+\begin{DoxyCompactList}\small\item\em type and function definitions for the return types. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function$<$ Property $>$}
+\begin{DoxyCompactList}\small\item\em Computation ability of a ocra function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{IFunction_8h_a92a41ead07b3d649ea977f25a6772c18}{D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS}(type,  sub\+Type\+Return,  pre\+Access,  access)
+\item 
+\#define \hyperlink{IFunction_8h_af5ebdc59cb4c5e41a0e585e2895185f1}{D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS}(template\+Arg,  prop\+Name,  return\+Type,  virtual\+Function\+Name,  ability\+Id)
+\item 
+\#define \hyperlink{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}(begin,  pre,  end)
+\item 
+\#define \hyperlink{IFunction_8h_aef9041116ecd534c44e67ad949e960be}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA}~,
+\item 
+\#define \hyperlink{IFunction_8h_aca09f1423c1cb5883fe25601ba4c46f3}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+A\+N\+CE}(inheritance\+Access\+Right)~\hyperlink{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}(inheritance\+Access\+Right, \hyperlink{IFunction_8h_aef9041116ecd534c44e67ad949e960be}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA} inheritance\+Access\+Right, )
+\item 
+\#define \hyperlink{IFunction_8h_a905f41e6909ef71dab58dc54381d8d17}{O\+C\+R\+A\+\_\+\+A\+P\+P\+L\+Y\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE}(method\+And\+Args)~\hyperlink{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}(, ,  \+::method\+And\+Args;)
+\item 
+\#define \hyperlink{IFunction_8h_af13d07623fa2125104cf6b056bd006e4}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE}(usage\+Set)~\hyperlink{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}(, \hyperlink{IFunction_8h_aef9041116ecd534c44e67ad949e960be}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA}, (usage\+Set))
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568}{ocra\+::e\+Function\+Ability} \{ \newline
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568acfb47b20329993093d2022b017239bd8}{ocra\+::\+F\+U\+N\+\_\+\+V\+A\+L\+UE} = 0, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568a59fbb6697bc43c94e6e2842d89305b9c}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+X}, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568aad093a42d990b60ad0e74b89ab1697b1}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+T}, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568a11155229b7dd433fdf99a70d80415591}{ocra\+::\+F\+U\+N\+\_\+\+D\+OT}, 
+\newline
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568afa9a6f174edaa6ff5736da6a2e542693}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+\+X\+\_\+\+D\+OT}, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568ad93cbdd745d07fcaa7f8b9f7909464a2}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+\+XX}, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568ad17fc6e996168c43ed995a3db244e9d5}{ocra\+::\+F\+U\+N\+\_\+\+D\+D\+OT}, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568ac6983b39fc5bff05d8cfbfe22077628e}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+\+TT}, 
+\newline
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568a4b04a150f971ab6861dfc45470c66945}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+\+TX}, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568a66c63268a3ae1379cf55c6d7d14353de}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+\+XT}, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568a8636d1996b80fd5d53e2d2621dbf9ba6}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+\+T\+\_\+\+D\+OT}, 
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568a3ba52241c6443b7205f52eb7c7e3e04c}{ocra\+::\+P\+A\+R\+T\+I\+A\+L\+\_\+\+X\+\_\+\+D\+O\+T\+\_\+\+X\+\_\+\+D\+OT}, 
+\newline
+\hyperlink{namespaceocra_a40ddbec106a6034cd2047bba9945b568a30c41e6f401f8d92afda78d9bd2bd5f6}{ocra\+::\+P\+R\+O\+P\+\_\+\+N\+U\+M\+B\+ER}
+ \}\begin{DoxyCompactList}\small\item\em Enumeration of the computation abilities of a ocra function. \end{DoxyCompactList}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceocra_a1f55d05eac986f62fad9b7451d42159c}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS} (Vector\+Xd, double,, operator\mbox{[}$\,$\mbox{]})
+\item 
+\hyperlink{namespaceocra_a9122e70f2163c0c2400ac64524e21e34}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS} (Matrix\+Xd, Matrix\+Xd\+Row,, row)
+\item 
+\hyperlink{namespaceocra_ae9616c1ac4732b558ee47b1191d9a4dd}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS} (std\+::vector$<$ Matrix\+Xd $\ast$$>$, const Matrix\+Xd \&, $\ast$, operator\mbox{[}$\,$\mbox{]})
+\item 
+\hyperlink{namespaceocra_a05e593130f943cba65d89cf9cbb1c890}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (e\+Function\+Ability Property,, int, update\+Property, -\/1)
+\item 
+\hyperlink{namespaceocra_a824e1cafb06db3d3a54da47469c8e234}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ F\+U\+N\+\_\+\+V\+A\+L\+UE $>$, Vector\+Xd, update\+Value, F\+U\+N\+\_\+\+V\+A\+L\+UE)
+\item 
+\hyperlink{namespaceocra_af847bdc711cc6063b38424bb15f93af1}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+X $>$, Matrix\+Xd, update\+Jacobian, P\+A\+R\+T\+I\+A\+L\+\_\+X)
+\item 
+\hyperlink{namespaceocra_a941058188be37876ac5416cc29f31e8b}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+T $>$, Vector\+Xd, update\+PartialT, P\+A\+R\+T\+I\+A\+L\+\_\+T)
+\item 
+\hyperlink{namespaceocra_adceb125af80fd7dba02d9b96886ae95b}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ F\+U\+N\+\_\+\+D\+OT $>$, Vector\+Xd, update\+Fdot, F\+U\+N\+\_\+\+D\+OT)
+\item 
+\hyperlink{namespaceocra_a2cf1b357a75ff3e26c1107b704b858b4}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+\+X\+\_\+\+D\+OT $>$, Matrix\+Xd, update\+Jdot, P\+A\+R\+T\+I\+A\+L\+\_\+\+X\+\_\+\+D\+OT)
+\item 
+\hyperlink{namespaceocra_a154e862e04a5a585771fbade331ff01e}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+\+XX $>$, std\+::vector$<$ Matrix\+Xd $\ast$$>$, update\+Hessian, P\+A\+R\+T\+I\+A\+L\+\_\+\+XX)
+\item 
+\hyperlink{namespaceocra_a988768361450a5b18c6b2ffa33d4f106}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ F\+U\+N\+\_\+\+D\+D\+OT $>$, Vector\+Xd, update\+Fddot, F\+U\+N\+\_\+\+D\+D\+OT)
+\item 
+\hyperlink{namespaceocra_af019406ee65dbf790826d69afe7096ab}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+\+TT $>$, Vector\+Xd, update\+Partial\+TT, P\+A\+R\+T\+I\+A\+L\+\_\+\+TT)
+\item 
+\hyperlink{namespaceocra_a80ed493e4bf4dcb03e9f101c72fcbacb}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+\+TX $>$, Matrix\+Xd, update\+Partial\+TX, P\+A\+R\+T\+I\+A\+L\+\_\+\+TX)
+\item 
+\hyperlink{namespaceocra_a67f685d0a7fa29090f113f978c747179}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+\+XT $>$, Matrix\+Xd, update\+Partial\+XT, P\+A\+R\+T\+I\+A\+L\+\_\+\+XT)
+\item 
+\hyperlink{namespaceocra_a14d77547fce68b12d71d570cc4e6740b}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+\+T\+\_\+\+D\+OT $>$, Vector\+Xd, update\+Partial\+Tdot, P\+A\+R\+T\+I\+A\+L\+\_\+\+T\+\_\+\+D\+OT)
+\item 
+\hyperlink{namespaceocra_a4710be16a5cdd3678d4f26f155ce6774}{ocra\+::\+D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS} (,$<$ P\+A\+R\+T\+I\+A\+L\+\_\+\+X\+\_\+\+D\+O\+T\+\_\+\+X\+\_\+\+D\+OT $>$, Vector\+Xd, update\+Jdot\+Xdot, P\+A\+R\+T\+I\+A\+L\+\_\+\+X\+\_\+\+D\+O\+T\+\_\+\+X\+\_\+\+D\+OT)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Declaration file of the I\+Function interface. 
+
+Copyright (C) 2010 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+I\+A\+S\+I/\+L\+SI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+
+Evrard Paul 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+10.\+05.\+31
+\end{DoxyDate}
+Given a (mathematical) function {\itshape f} depending on a set of time-\/dependant variable {\itshape x} and possibly explicitly of the time t, the coding mechanism to obtain the value at the point $ \left(x(t),t\right) $ of this function or one of its (partial) derivative is always the same, despite the fact that the output spaces can be different. For example, if $ f: R^n \times R \rightarrow R^m $, $ f(x,t) $ is a m-\/vector and $ \frac{\partial^2 f}{\partial t \partial x}(x,t) $ is mxn matrix, yet obtaining this value eventually boils down on a programmer viewpoint to calling a method of a class. The I\+Function interface aims at taking advantage of this similarity to factorize code.
+
+On an programmer viewpoint, the object corresponding to a mathematical function can only compute its value at $ \left(x(t),t\right) $ or the value of a derivative if the corresponding method has been implemented. We call {\itshape ability} the capacity of a (c++ object) function to compute such a value. Each possible ability produces a corresponding I\+Function.
+
+This file defines several coding mechanims (traits and macros) to make it easy to add and implement new abilities. If you wish to add an ability you need to\+: (a) add an identifier in the enumeration e\+Function\+Ability, (b) add a D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS call, with the desired return type for your ability and the name of the function that will compute its value, (c) add a line in the macro O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST. It is V\+E\+RY I\+M\+P\+O\+R\+T\+A\+NT to add this line at the end of the macros. Failing to do so would mess up with the initialization list of the derived classes in a silent way since default parameters are used. In step (b) you might want to use a type for which a sub\+\_\+type\+\_\+traits was not defined yet, in which case you need to add a D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS call with the proper arguments. Every point where the programmer may want/need to add an entry is flagged by \mbox{[}A\+D\+D-\/\+IN\mbox{]} in the documentation preceeding the point.
+
+Copyright (C) 2010 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+I\+A\+S\+I/\+L\+SI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+10.\+05.\+31 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{IFunction_8h_af5ebdc59cb4c5e41a0e585e2895185f1}{}\label{IFunction_8h_af5ebdc59cb4c5e41a0e585e2895185f1} 
+\index{I\+Function.\+h@{I\+Function.\+h}!D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS@{D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS}}
+\index{D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS@{D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS}!I\+Function.\+h@{I\+Function.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS}{DECLARE\_FUNCTION\_TRAITS}}
+{\footnotesize\ttfamily \#define D\+E\+C\+L\+A\+R\+E\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+T\+R\+A\+I\+TS(\begin{DoxyParamCaption}\item[{}]{template\+Arg,  }\item[{}]{prop\+Name,  }\item[{}]{return\+Type,  }\item[{}]{virtual\+Function\+Name,  }\item[{}]{ability\+Id }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keyword}{template}<templateArg> \textcolor{keyword}{struct }ocra\_function\_traits propName \(\backslash\)
+  \{ \(\backslash\)
+    typedef returnType type\_t; \(\backslash\)
+    typedef return\_type\_traits<returnType>::sub\_type\_t sub\_type\_t; \(\backslash\)
+    virtual \textcolor{keywordtype}{void} virtualFunctionName() const \(\backslash\)
+    \{ \(\backslash\)
+      std::stringstream s; \(\backslash\)
+      s << \textcolor{stringliteral}{"[Function::"} << #virtualFunctionName << \textcolor{stringliteral}{"] is not implemented. Did you forget to declare its
+       overload as a protected const method ?"}; \(\backslash\)
+      std::cout << s.str()<<std::endl; \(\backslash\)
+      throw std::runtime\_error(s.str()); \(\backslash\)
+    \} \(\backslash\) \(\backslash\)
+    template<class FunctionType> \textcolor{keyword}{static} \textcolor{keywordtype}{void} update(\textcolor{keyword}{const} FunctionType& \textcolor{keyword}{function}) \{ \textcolor{keyword}{function}.
+      virtualFunctionName(); \} \(\backslash\)
+    static \textcolor{keywordtype}{bool} extractUsage(\textcolor{keyword}{const} std::vector<bool>& usageSet) \{\textcolor{keywordflow}{return} usageSet[abilityId];\}\(\backslash\)
+  \};
+\end{DoxyCode}
+
+
+Definition at line 178 of file I\+Function.\+h.
+
+\hypertarget{IFunction_8h_a92a41ead07b3d649ea977f25a6772c18}{}\label{IFunction_8h_a92a41ead07b3d649ea977f25a6772c18} 
+\index{I\+Function.\+h@{I\+Function.\+h}!D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS@{D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS}}
+\index{D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS@{D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS}!I\+Function.\+h@{I\+Function.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS}{DECLARE\_SUBTYPE\_TRAITS}}
+{\footnotesize\ttfamily \#define D\+E\+C\+L\+A\+R\+E\+\_\+\+S\+U\+B\+T\+Y\+P\+E\+\_\+\+T\+R\+A\+I\+TS(\begin{DoxyParamCaption}\item[{}]{type,  }\item[{}]{sub\+Type\+Return,  }\item[{}]{pre\+Access,  }\item[{}]{access }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keyword}{template}<> \textcolor{keyword}{struct }return\_type\_traits<type > \(\backslash\)
+  \{ \(\backslash\)
+    typedef subTypeReturn sub\_type\_t; \(\backslash\)
+    static subTypeReturn getSub(\textcolor{keyword}{const} type& v, \textcolor{keywordtype}{int} index) \{\textcolor{keywordflow}{return} preAccess(v.access(index));\} \(\backslash\)
+    static \textcolor{keywordtype}{void} resize(type& v, \textcolor{keywordtype}{int} m, \textcolor{keywordtype}{int} n=0);\(\backslash\)
+  \};
+\end{DoxyCode}
+
+
+Definition at line 111 of file I\+Function.\+h.
+
+\hypertarget{IFunction_8h_a905f41e6909ef71dab58dc54381d8d17}{}\label{IFunction_8h_a905f41e6909ef71dab58dc54381d8d17} 
+\index{I\+Function.\+h@{I\+Function.\+h}!O\+C\+R\+A\+\_\+\+A\+P\+P\+L\+Y\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE@{O\+C\+R\+A\+\_\+\+A\+P\+P\+L\+Y\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE}}
+\index{O\+C\+R\+A\+\_\+\+A\+P\+P\+L\+Y\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE@{O\+C\+R\+A\+\_\+\+A\+P\+P\+L\+Y\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE}!I\+Function.\+h@{I\+Function.\+h}}
+\subsubsection{\texorpdfstring{O\+C\+R\+A\+\_\+\+A\+P\+P\+L\+Y\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE}{OCRA\_APPLY\_FUNCTION\_ON\_ALL\_INTERFACE}}
+{\footnotesize\ttfamily \#define O\+C\+R\+A\+\_\+\+A\+P\+P\+L\+Y\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+O\+N\+\_\+\+A\+L\+L\+\_\+\+I\+N\+T\+E\+R\+F\+A\+CE(\begin{DoxyParamCaption}\item[{}]{method\+And\+Args }\end{DoxyParamCaption})~\hyperlink{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}(, ,  \+::method\+And\+Args;)}
+
+
+
+Definition at line 412 of file I\+Function.\+h.
+
+\hypertarget{IFunction_8h_aef9041116ecd534c44e67ad949e960be}{}\label{IFunction_8h_aef9041116ecd534c44e67ad949e960be} 
+\index{I\+Function.\+h@{I\+Function.\+h}!O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA@{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA}}
+\index{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA@{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA}!I\+Function.\+h@{I\+Function.\+h}}
+\subsubsection{\texorpdfstring{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA}{OCRA\_FUNCTION\_INTERFACE\_COMA}}
+{\footnotesize\ttfamily \#define O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA~,}
+
+
+
+Definition at line 396 of file I\+Function.\+h.
+
+\hypertarget{IFunction_8h_aca09f1423c1cb5883fe25601ba4c46f3}{}\label{IFunction_8h_aca09f1423c1cb5883fe25601ba4c46f3} 
+\index{I\+Function.\+h@{I\+Function.\+h}!O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+A\+N\+CE@{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+A\+N\+CE}}
+\index{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+A\+N\+CE@{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+A\+N\+CE}!I\+Function.\+h@{I\+Function.\+h}}
+\subsubsection{\texorpdfstring{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+A\+N\+CE}{OCRA\_FUNCTION\_INTERFACE\_INHERITANCE}}
+{\footnotesize\ttfamily \#define O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+A\+N\+CE(\begin{DoxyParamCaption}\item[{}]{inheritance\+Access\+Right }\end{DoxyParamCaption})~\hyperlink{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}(inheritance\+Access\+Right, \hyperlink{IFunction_8h_aef9041116ecd534c44e67ad949e960be}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA} inheritance\+Access\+Right, )}
+
+
+
+Definition at line 403 of file I\+Function.\+h.
+
+\hypertarget{IFunction_8h_af13d07623fa2125104cf6b056bd006e4}{}\label{IFunction_8h_af13d07623fa2125104cf6b056bd006e4} 
+\index{I\+Function.\+h@{I\+Function.\+h}!O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE@{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE}}
+\index{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE@{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE}!I\+Function.\+h@{I\+Function.\+h}}
+\subsubsection{\texorpdfstring{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE}{OCRA\_FUNCTION\_INTERFACE\_INITIALIZE}}
+{\footnotesize\ttfamily \#define O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+I\+N\+I\+T\+I\+A\+L\+I\+ZE(\begin{DoxyParamCaption}\item[{}]{usage\+Set }\end{DoxyParamCaption})~\hyperlink{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}(, \hyperlink{IFunction_8h_aef9041116ecd534c44e67ad949e960be}{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+C\+O\+MA}, (usage\+Set))}
+
+
+
+Definition at line 418 of file I\+Function.\+h.
+
+\hypertarget{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75}{}\label{IFunction_8h_aa352545b7bfaa9b3c13163d681c46e75} 
+\index{I\+Function.\+h@{I\+Function.\+h}!O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST@{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}}
+\index{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST@{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}!I\+Function.\+h@{I\+Function.\+h}}
+\subsubsection{\texorpdfstring{O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST}{OCRA\_FUNCTION\_INTERFACE\_LIST}}
+{\footnotesize\ttfamily \#define O\+C\+R\+A\+\_\+\+F\+U\+N\+C\+T\+I\+O\+N\+\_\+\+I\+N\+T\+E\+R\+F\+A\+C\+E\+\_\+\+L\+I\+ST(\begin{DoxyParamCaption}\item[{}]{begin,  }\item[{}]{pre,  }\item[{}]{end }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+begin IFunction<FUN\_VALUE> end \(\backslash\)
+  pre IFunction<PARTIAL\_X> end \(\backslash\)
+  pre IFunction<PARTIAL\_T> end \(\backslash\)
+  pre IFunction<FUN\_DOT> end \(\backslash\)
+  pre IFunction<PARTIAL\_X\_DOT> end \(\backslash\)
+  pre IFunction<PARTIAL\_XX> end \(\backslash\)
+  pre IFunction<FUN\_DDOT> end \(\backslash\)
+  pre IFunction<PARTIAL\_TT> end \(\backslash\)
+  pre IFunction<PARTIAL\_TX> end \(\backslash\)
+  pre IFunction<PARTIAL\_XT> end \(\backslash\)
+  pre IFunction<PARTIAL\_T\_DOT> end \(\backslash\)
+  pre IFunction<PARTIAL\_X\_DOT\_X\_DOT> end \(\backslash\)
+  \textcolor{comment}{/*pre IFunction<[NEW\_PROP]> end*/}
+\end{DoxyCode}
+
+
+Definition at line 380 of file I\+Function.\+h.
+

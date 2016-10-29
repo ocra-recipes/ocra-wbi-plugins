@@ -1,0 +1,463 @@
+\hypertarget{classocra_1_1Component}{}\section{ocra\+:\+:Component$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$ Class Template Reference}
+\label{classocra_1_1Component}\index{ocra\+::\+Component$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$@{ocra\+::\+Component$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$}}
+
+
+Base class for the \hyperlink{classocra_1_1Component}{Component} class of the \hyperlink{classocra_1_1Composite}{Composite} pattern.  
+
+
+
+
+{\ttfamily \#include $<$Composite.\+h$>$}
+
+\subsection*{Public Types}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+typedef Component\+Derived \hyperlink{classocra_1_1Component_aecb250aaac3aad8d82ba30303b10cf2a}{component\+\_\+t}
+\begin{DoxyCompactList}\small\item\em Inherited typedefs. \end{DoxyCompactList}\item 
+typedef Composite\+Derived \hyperlink{classocra_1_1Component_a2111c5ff33bd22310754dfd54c9e2a34}{parent\+\_\+t}
+\item 
+typedef \hyperlink{classocra_1_1Parenthood}{Parenthood}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$ \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t}
+\item 
+typedef std\+::vector$<$ \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t} $\ast$ $>$\+::\hyperlink{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{const\+\_\+iterator} \hyperlink{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{const\+\_\+iterator}
+\item 
+typedef std\+::vector$<$ \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t} $\ast$ $>$\+::\hyperlink{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{iterator} \hyperlink{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{iterator}
+\end{DoxyCompactItemize}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{classocra_1_1Component_a77448d773b20fda6d8349d20691a8840}{is\+Child\+Of} (const Composite\+Derived \&node)
+\item 
+void \hyperlink{classocra_1_1Component_a9bc74f9a471df60ee9b1d49e7f55e04f}{print\+Tree} (std\+::ostream \&os)
+\item 
+virtual int \hyperlink{classocra_1_1Component_a8a0e052f36c60889562e921751b02a37}{is\+Ancestor\+Of} (const Component\+Derived \&node) const =0
+\begin{DoxyCompactList}\small\item\em Returns the number of levels that separate the component from a potential child. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classocra_1_1Component_a3687a02c1524694fc616893264ca8199}{print\+Sub\+Tree} (int depth, std\+::ostream \&os) const =0
+\begin{DoxyCompactList}\small\item\em Overload in Component\+Derived and Composite\+Derived to simply call print\+Tree\+\_\+impl(). \end{DoxyCompactList}\item 
+virtual void \hyperlink{classocra_1_1Component_a61bb6d9557a6ba3d13f9bc083422d1a7}{print\+Node} (int depth, std\+::ostream \&os) const =0
+\begin{DoxyCompactList}\small\item\em Overload in Component\+Derived and Composite\+Derived to print information about the tree node. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+size\+\_\+t \hyperlink{classocra_1_1Component_abc5066cb5523dd4ee8782ab7f75a26d5}{get\+Num\+Parenthoods} () const
+\begin{DoxyCompactList}\small\item\em Basic access to the parents. \end{DoxyCompactList}\item 
+const \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t} \& \hyperlink{classocra_1_1Component_a368948e115852fa524f9a8da257aed1f}{get\+Parenthood} (size\+\_\+t i) const
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{const\+\_\+iterator} \hyperlink{classocra_1_1Component_ad140927464e2afefd563ee52751bb09f}{parents\+\_\+begin} () const
+\begin{DoxyCompactList}\small\item\em Iterator range on the set of parents. \end{DoxyCompactList}\item 
+\hyperlink{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{iterator} \hyperlink{classocra_1_1Component_aaca1c77fdf2c7d090f43a3eefb671eae}{parents\+\_\+begin} ()
+\item 
+\hyperlink{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{const\+\_\+iterator} \hyperlink{classocra_1_1Component_a3d7c4568dc83d08b014ae7b8d0119e70}{parents\+\_\+end} () const
+\item 
+\hyperlink{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{iterator} \hyperlink{classocra_1_1Component_a15dc70cd778a884fd6aa27771189d091}{parents\+\_\+end} ()
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classocra_1_1Component_a6ed1720bbd5d8f3ef0b10aed73c36f6e}{is\+Descendant\+Of} (const Composite\+Derived \&node) const
+\begin{DoxyCompactList}\small\item\em Returns the number of levels that separates the component from a potential parent. \end{DoxyCompactList}\item 
+int \hyperlink{classocra_1_1Component_a27fb70e09c4e981077d42ca196301cd3}{is\+Descendant\+Of} (const Component\+Derived \&node) const
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1Component_aa59ac72499ba7d314d9602b081d0b475}{on\+Attached\+Parent} (const \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t} \&parent)
+\begin{DoxyCompactList}\small\item\em Default implementation of the callbacks, to overload in class Component\+Derived. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classocra_1_1Component_a0dd26028434be8efbebccb088ddbec65}{on\+Detached\+Parent} (const \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t} \&parent)
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Component_a4c76a9060703e7f524c73f6b328bb3e1}{Component} ()
+\item 
+\hyperlink{classocra_1_1Component_a616d0b940599b102fa630107ec169e58}{$\sim$\+Component} ()
+\end{DoxyCompactItemize}
+
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1Component_ad71e675afae5fce6263d2d784cd3907a}{Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$\newline
+class ocra\+::\+Component$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$}
+
+Base class for the \hyperlink{classocra_1_1Component}{Component} class of the \hyperlink{classocra_1_1Composite}{Composite} pattern. 
+
+\hyperlink{classocra_1_1Composite}{Composite} objects are built upon a tree of objects, whose nodes implement the type \hyperlink{classocra_1_1Component}{Component}. \hyperlink{classocra_1_1Component}{Component} is specialized in\+:
+\begin{DoxyItemize}
+\item \hyperlink{classocra_1_1Composite}{Composite}\+: \hyperlink{classocra_1_1Composite}{Composite} nodes have children
+\item \hyperlink{classocra_1_1Leaf}{Leaf}.
+\end{DoxyItemize}
+
+See the wikipedia article about the \hyperlink{classocra_1_1Composite}{Composite} design pattern for more information.
+
+This class can be used as a base class to implement a \hyperlink{classocra_1_1Composite}{Composite} pattern. To use it, you have to take the following steps\+:
+\begin{DoxyEnumerate}
+\item Create an interface or a base class for your component. This interface will be used to manipulate your objects without knowing whether they are one-\/piece objects or composite objects.
+\item Derive two classes from it\+: one to implement the composite components, and the other one to implement the leaves (one-\/piece components).
+\item Assuming the aformentionned classes are named My\+Component, My\+Composite and My\+Leaf, make them derive from respectively\+: Component$<$\+My\+Component, My\+Composite$>$, Composite$<$\+My\+Component, My\+Composite$>$, and Leaf$<$\+My\+Leaf$>$. An additional template parameter can be used for My\+Component and My\+Composite to specify additional information about the bonds between a \hyperlink{classocra_1_1Composite}{Composite} object and its children (see class \hyperlink{classocra_1_1Parenthood}{ocra\+::\+Parenthood}).
+\item Implement is\+Ancestor\+Of and other abstract methods in My\+Composite and My\+Leaf (see the doc of is\+Ancestor\+Of or the example below); The methods to implement in your children classes are declared together in this class in a dedicated section so that you can easily spot them.
+\item Implement your stuff.
+\item Instantiate your objects and attach them to each other.
+\end{DoxyEnumerate}
+
+The following example illustrates the simpliest form of these steps. In your code, you will of course use classes instead of structs if necessary...  \#include \char`\"{}\+Composite.\+h\char`\"{}
+
+struct Group\+Of\+Shapes;
+
+struct Shape \+: public ocra\+::\+Component$<$\+Shape, Group\+Of\+Shapes$>$ \{ virtual void resize() = 0; \};
+
+struct Single\+Shape \+: public Shape, public ocra\+::\+Leaf$<$\+Single\+Shape$>$ \{ void resize() \{\} int is\+Ancestor\+Of(const Shape\& shape) const \{ return 0; \} \};
+
+struct Group\+Of\+Shapes \+: public Shape, public ocra\+::\+Composite$<$\+Shape, Group\+Of\+Shapes$>$ \{ void resize() \{\} int is\+Ancestor\+Of(const Shape\& shape) const \{ return is\+Ancestor\+Of\+\_\+impl(shape); \} \};
+
+int \hyperlink{main_8cpp_a3c04138a5bfe5d72780bb7e82a18e627}{main()} \{ Single\+Shape leaf1; Single\+Shape leaf2; Group\+Of\+Shapes node; node.\+attach(leaf1); node.\+attach(leaf2); node.\+detach(leaf1); \} 
+
+In this implementation, a node can be part of several trees and can therefore have several parents. However, cycles are forbidden.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Component\+Derived} & is the abstract type used to manipulate both nodes and leaves without knowledge of whether they are composite or not. \\
+\hline
+{\em Composite\+Derived} & is the type of the composite objects, i.\+e. objects that are composed of several subobjects. \\
+\hline
+{\em Parenthood\+Info} & is an additional type to associate additional information with a parenthood relationship. It must be default constructible with a default constructor (it can be the one defined by the compiler).\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyPrecond}{Precondition}
+Composite\+Derived is a publicly derived class of Component\+Derived. 
+
+Parenthood\+Info is default constructible with a no-\/throw default constructor. 
+
+Component\+Derived publicly derives Component$<$\+Component\+Derived, Composite\+Derived, Parenthood\+Info$>$. 
+
+Composite\+Derived publicly derives Composite$<$\+Component\+Derived, Composite\+Derived, Parenthood\+Info$>$.
+\end{DoxyPrecond}
+The preconditions on the template parameters will be enforced at compile-\/time by the \hyperlink{classocra_1_1Parenthood}{Parenthood} class. If a B\+O\+O\+S\+T\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT is fired when compiling your composite classes, please have a look at the name of the parameter of the failing assertion\+: it will give you a hint about how to correct your code. 
+
+Definition at line 37 of file Composite.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1Component_aecb250aaac3aad8d82ba30303b10cf2a}{}\label{classocra_1_1Component_aecb250aaac3aad8d82ba30303b10cf2a} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!component\+\_\+t@{component\+\_\+t}}
+\index{component\+\_\+t@{component\+\_\+t}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{component\+\_\+t}{component\_t}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+typedef Component\+Derived \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::\hyperlink{classocra_1_1Component_aecb250aaac3aad8d82ba30303b10cf2a}{component\+\_\+t}}
+
+
+
+Inherited typedefs. 
+
+
+
+Definition at line 456 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{}\label{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!const\+\_\+iterator@{const\+\_\+iterator}}
+\index{const\+\_\+iterator@{const\+\_\+iterator}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{const\+\_\+iterator}{const\_iterator}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+typedef std\+::vector$<$\hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t}$\ast$$>$\+::\hyperlink{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{const\+\_\+iterator} \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::\hyperlink{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{const\+\_\+iterator}}
+
+
+
+Definition at line 459 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{}\label{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!iterator@{iterator}}
+\index{iterator@{iterator}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{iterator}{iterator}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+typedef std\+::vector$<$\hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t}$\ast$$>$\+::\hyperlink{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{iterator} \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::\hyperlink{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{iterator}}
+
+
+
+Definition at line 460 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a2111c5ff33bd22310754dfd54c9e2a34}{}\label{classocra_1_1Component_a2111c5ff33bd22310754dfd54c9e2a34} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!parent\+\_\+t@{parent\+\_\+t}}
+\index{parent\+\_\+t@{parent\+\_\+t}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{parent\+\_\+t}{parent\_t}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+typedef Composite\+Derived \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::\hyperlink{classocra_1_1Component_a2111c5ff33bd22310754dfd54c9e2a34}{parent\+\_\+t}}
+
+
+
+Definition at line 457 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{}\label{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!parenthood\+\_\+t@{parenthood\+\_\+t}}
+\index{parenthood\+\_\+t@{parenthood\+\_\+t}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{parenthood\+\_\+t}{parenthood\_t}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+typedef \hyperlink{classocra_1_1Parenthood}{Parenthood}$<$Component\+Derived, Composite\+Derived, Parenthood\+Info$>$ \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::\hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t}}
+
+
+
+Definition at line 458 of file Composite.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1Component_a4c76a9060703e7f524c73f6b328bb3e1}{}\label{classocra_1_1Component_a4c76a9060703e7f524c73f6b328bb3e1} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!Component@{Component}}
+\index{Component@{Component}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{Component()}{Component()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+\hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::\hyperlink{classocra_1_1Component}{Component} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 548 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a616d0b940599b102fa630107ec169e58}{}\label{classocra_1_1Component_a616d0b940599b102fa630107ec169e58} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!````~Component@{$\sim$\+Component}}
+\index{````~Component@{$\sim$\+Component}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{$\sim$\+Component()}{~Component()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+\hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::$\sim$\hyperlink{classocra_1_1Component}{Component} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 551 of file Composite.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1Component_abc5066cb5523dd4ee8782ab7f75a26d5}{}\label{classocra_1_1Component_abc5066cb5523dd4ee8782ab7f75a26d5} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!get\+Num\+Parenthoods@{get\+Num\+Parenthoods}}
+\index{get\+Num\+Parenthoods@{get\+Num\+Parenthoods}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{get\+Num\+Parenthoods()}{getNumParenthoods()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+size\+\_\+t \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::get\+Num\+Parenthoods (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Basic access to the parents. 
+
+
+
+Definition at line 466 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a368948e115852fa524f9a8da257aed1f}{}\label{classocra_1_1Component_a368948e115852fa524f9a8da257aed1f} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!get\+Parenthood@{get\+Parenthood}}
+\index{get\+Parenthood@{get\+Parenthood}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{get\+Parenthood()}{getParenthood()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+const \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t}\& \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::get\+Parenthood (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 467 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a8a0e052f36c60889562e921751b02a37}{}\label{classocra_1_1Component_a8a0e052f36c60889562e921751b02a37} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!is\+Ancestor\+Of@{is\+Ancestor\+Of}}
+\index{is\+Ancestor\+Of@{is\+Ancestor\+Of}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{is\+Ancestor\+Of()}{isAncestorOf()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+virtual int \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::is\+Ancestor\+Of (\begin{DoxyParamCaption}\item[{const Component\+Derived \&}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns the number of levels that separate the component from a potential child. 
+
+
+
+Implemented in \hyperlink{classocra_1_1CompositeVariable_a6601ac71bdd683d06a7a6bfe4fa7252c}{ocra\+::\+Composite\+Variable}, and \hyperlink{classocra_1_1BaseVariable_a66d07236f4d060273f3f46632dc851ac}{ocra\+::\+Base\+Variable}.
+
+\hypertarget{classocra_1_1Component_a77448d773b20fda6d8349d20691a8840}{}\label{classocra_1_1Component_a77448d773b20fda6d8349d20691a8840} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!is\+Child\+Of@{is\+Child\+Of}}
+\index{is\+Child\+Of@{is\+Child\+Of}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{is\+Child\+Of()}{isChildOf()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+bool \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::is\+Child\+Of (\begin{DoxyParamCaption}\item[{const Composite\+Derived \&}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 489 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a6ed1720bbd5d8f3ef0b10aed73c36f6e}{}\label{classocra_1_1Component_a6ed1720bbd5d8f3ef0b10aed73c36f6e} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!is\+Descendant\+Of@{is\+Descendant\+Of}}
+\index{is\+Descendant\+Of@{is\+Descendant\+Of}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{is\+Descendant\+Of()}{isDescendantOf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+int \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::is\+Descendant\+Of (\begin{DoxyParamCaption}\item[{const Composite\+Derived \&}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Returns the number of levels that separates the component from a potential parent. 
+
+If the object is not a descendant of node, returns 0. If it is a child of node, returns 1. If it is a grand-\/child, returns 2, and so on... 
+
+Definition at line 485 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a27fb70e09c4e981077d42ca196301cd3}{}\label{classocra_1_1Component_a27fb70e09c4e981077d42ca196301cd3} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!is\+Descendant\+Of@{is\+Descendant\+Of}}
+\index{is\+Descendant\+Of@{is\+Descendant\+Of}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{is\+Descendant\+Of()}{isDescendantOf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+int \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::is\+Descendant\+Of (\begin{DoxyParamCaption}\item[{const Component\+Derived \&}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 486 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_aa59ac72499ba7d314d9602b081d0b475}{}\label{classocra_1_1Component_aa59ac72499ba7d314d9602b081d0b475} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!on\+Attached\+Parent@{on\+Attached\+Parent}}
+\index{on\+Attached\+Parent@{on\+Attached\+Parent}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{on\+Attached\+Parent()}{onAttachedParent()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+virtual void \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::on\+Attached\+Parent (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t} \&}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Default implementation of the callbacks, to overload in class Component\+Derived. 
+
+These callbacks are called once a parent and a child have been attached/detached. When the callback is called, the parenthood has already been registered/unregistered by the child and parent (this is guaranteed by the ocra\+::attach/ detach function). 
+
+Definition at line 538 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a0dd26028434be8efbebccb088ddbec65}{}\label{classocra_1_1Component_a0dd26028434be8efbebccb088ddbec65} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!on\+Detached\+Parent@{on\+Detached\+Parent}}
+\index{on\+Detached\+Parent@{on\+Detached\+Parent}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{on\+Detached\+Parent()}{onDetachedParent()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+virtual void \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::on\+Detached\+Parent (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Component_a70fb7cda78934a9f017c7e46c1407953}{parenthood\+\_\+t} \&}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 539 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_ad140927464e2afefd563ee52751bb09f}{}\label{classocra_1_1Component_ad140927464e2afefd563ee52751bb09f} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!parents\+\_\+begin@{parents\+\_\+begin}}
+\index{parents\+\_\+begin@{parents\+\_\+begin}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{parents\+\_\+begin()}{parents\_begin()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+\hyperlink{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{const\+\_\+iterator} \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parents\+\_\+begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Iterator range on the set of parents. 
+
+
+
+Definition at line 472 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_aaca1c77fdf2c7d090f43a3eefb671eae}{}\label{classocra_1_1Component_aaca1c77fdf2c7d090f43a3eefb671eae} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!parents\+\_\+begin@{parents\+\_\+begin}}
+\index{parents\+\_\+begin@{parents\+\_\+begin}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{parents\+\_\+begin()}{parents\_begin()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+\hyperlink{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{iterator} \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parents\+\_\+begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 473 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a3d7c4568dc83d08b014ae7b8d0119e70}{}\label{classocra_1_1Component_a3d7c4568dc83d08b014ae7b8d0119e70} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!parents\+\_\+end@{parents\+\_\+end}}
+\index{parents\+\_\+end@{parents\+\_\+end}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{parents\+\_\+end()}{parents\_end()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+\hyperlink{classocra_1_1Component_a6271631f04d2911e4369d1288074eebb}{const\+\_\+iterator} \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parents\+\_\+end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 475 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a15dc70cd778a884fd6aa27771189d091}{}\label{classocra_1_1Component_a15dc70cd778a884fd6aa27771189d091} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!parents\+\_\+end@{parents\+\_\+end}}
+\index{parents\+\_\+end@{parents\+\_\+end}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{parents\+\_\+end()}{parents\_end()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+\hyperlink{classocra_1_1Component_a9b76b63c3248ec96dfdaca00d712c1c9}{iterator} \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parents\+\_\+end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 476 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Component_a61bb6d9557a6ba3d13f9bc083422d1a7}{}\label{classocra_1_1Component_a61bb6d9557a6ba3d13f9bc083422d1a7} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!print\+Node@{print\+Node}}
+\index{print\+Node@{print\+Node}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{print\+Node()}{printNode()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+virtual void \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::print\+Node (\begin{DoxyParamCaption}\item[{int}]{depth,  }\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Overload in Component\+Derived and Composite\+Derived to print information about the tree node. 
+
+The method must not attempt to print the tree; it must only print the current node and ignore parent and children. Printing the tree is the role of print\+Tree (a surprise, to be sure!). 
+\begin{DoxyParams}{Parameters}
+{\em depth} & is the current depth of the node. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classocra_1_1Variable_a0c983344cab7d6ca593cc21e47780b19}{ocra\+::\+Variable}.
+
+\hypertarget{classocra_1_1Component_a3687a02c1524694fc616893264ca8199}{}\label{classocra_1_1Component_a3687a02c1524694fc616893264ca8199} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!print\+Sub\+Tree@{print\+Sub\+Tree}}
+\index{print\+Sub\+Tree@{print\+Sub\+Tree}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{print\+Sub\+Tree()}{printSubTree()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+virtual void \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::print\+Sub\+Tree (\begin{DoxyParamCaption}\item[{int}]{depth,  }\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Overload in Component\+Derived and Composite\+Derived to simply call print\+Tree\+\_\+impl(). 
+
+You can also choose to reimplement the while function rather than calling the proposed print\+Tree\+\_\+impl method. 
+\begin{DoxyParams}{Parameters}
+{\em depth} & is the current depth of the node. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classocra_1_1CompositeVariable_ac2015499d8f01ee39ef7bfbe33363a10}{ocra\+::\+Composite\+Variable}, and \hyperlink{classocra_1_1BaseVariable_a4058b1accad9ff7b3d8995bdf9285fbd}{ocra\+::\+Base\+Variable}.
+
+\hypertarget{classocra_1_1Component_a9bc74f9a471df60ee9b1d49e7f55e04f}{}\label{classocra_1_1Component_a9bc74f9a471df60ee9b1d49e7f55e04f} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!print\+Tree@{print\+Tree}}
+\index{print\+Tree@{print\+Tree}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{print\+Tree()}{printTree()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+void \hyperlink{classocra_1_1Component}{ocra\+::\+Component}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::print\+Tree (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 497 of file Composite.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classocra_1_1Component_ad71e675afae5fce6263d2d784cd3907a}{}\label{classocra_1_1Component_ad71e675afae5fce6263d2d784cd3907a} 
+\index{ocra\+::\+Component@{ocra\+::\+Component}!Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$@{Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$}}
+\index{Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$@{Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$}!ocra\+::\+Component@{ocra\+::\+Component}}
+\subsubsection{\texorpdfstring{Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$}{Parenthood< ComponentDerived, CompositeDerived, ParenthoodInfo >}}
+{\footnotesize\ttfamily template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$ \\
+friend class \hyperlink{classocra_1_1Parenthood}{Parenthood}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 604 of file Composite.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Composite_8h}{Composite.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,352 @@
+\hypertarget{classocra_1_1TaskBuilderOptions}{}\section{ocra\+:\+:Task\+Builder\+Options Class Reference}
+\label{classocra_1_1TaskBuilderOptions}\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+
+
+{\ttfamily \#include $<$Task\+Builder\+Options.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1TaskBuilderOptions_a99045de3fc12a569cb9a2bf6b60bbc34}{Task\+Builder\+Options} ()
+\item 
+\hyperlink{classocra_1_1TaskBuilderOptions_a25342a6bc49b3d63c9e512e73ff1721c}{$\sim$\+Task\+Builder\+Options} ()
+\item 
+void \hyperlink{classocra_1_1TaskBuilderOptions_abc99093a68bc991fa711aa6a7e55506a}{put\+Into\+Bottle} (yarp\+::os\+::\+Bottle \&bottle)
+\item 
+bool \hyperlink{classocra_1_1TaskBuilderOptions_a60271152310747f327d76d1f6557df4c}{extract\+From\+Bottle} (yarp\+::os\+::\+Bottle \&bottle, int \&size\+Of\+Options)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{classocra_1_1TaskBuilderOptions_ab4d73eb287244b10f00c49f8641e0938}{task\+Name}
+\item 
+std\+::string \hyperlink{classocra_1_1TaskBuilderOptions_ab0549ba26e607e200af4c596bccac8f8}{task\+Type}
+\item 
+std\+::string \hyperlink{classocra_1_1TaskBuilderOptions_a49d0ad006ee4ef0a314d3eed9c995c06}{segment}
+\item 
+double \hyperlink{classocra_1_1TaskBuilderOptions_ad2f50a4fc0ac5e7c48048cb6a123cce6}{kp}
+\item 
+double \hyperlink{classocra_1_1TaskBuilderOptions_aad265cbbd4016246362cfd6fc375b479}{kd}
+\item 
+double \hyperlink{classocra_1_1TaskBuilderOptions_a0c60b260526aa7bf2fdb3712cc7f612d}{weight}
+\item 
+double \hyperlink{classocra_1_1TaskBuilderOptions_a7ddb83d62a8e4121dbc3fb2a1ee9691d}{mu}
+\item 
+double \hyperlink{classocra_1_1TaskBuilderOptions_acecc869663607553145b3322e3828547}{margin}
+\item 
+bool \hyperlink{classocra_1_1TaskBuilderOptions_a6f0d1b177c931644f4d66f04b901d565}{uses\+Yarp}
+\item 
+bool \hyperlink{classocra_1_1TaskBuilderOptions_a5a5d3c5952de35efb29c60c843edafb6}{use\+Weight\+Vector\+Constructor}
+\item 
+\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} \hyperlink{classocra_1_1TaskBuilderOptions_ad29bb1310906e4618c8132dd3cea771c}{axes}
+\item 
+int \hyperlink{classocra_1_1TaskBuilderOptions_ad32edcc41af7b2aab2d3b66c7f866d75}{hierarchy\+Level}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1TaskBuilderOptions_a55e98de13c8eaf3f2ace1778034d1466}{desired}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1TaskBuilderOptions_ade41a041d05ccafcf6c5de4bcedd13e1}{index\+Desired}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1TaskBuilderOptions_a1e2cceed21f5b42fbfba16f02ee87bc7}{name\+Desired}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1TaskBuilderOptions_ae86b78dda6e73227f5aeb0447f60158a}{weight\+Vector}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1TaskBuilderOptions_a04ebfb8955859ffc40087d3e7b53e0d2}{index\+Weight\+Vector}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1TaskBuilderOptions_a82a7eaa6cb0887e59c99cc4f97d2c818}{name\+Weight\+Vector}
+\item 
+Eigen\+::\+Vector\+Xi \hyperlink{classocra_1_1TaskBuilderOptions_ad5c32b5777c20dc348b80959574d4a37}{joint\+Indexes}
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classocra_1_1TaskBuilderOptions_ab72b4855028ef6965107294b16818ad2}{joint\+Names}
+\item 
+Eigen\+::\+Displacementd \hyperlink{classocra_1_1TaskBuilderOptions_a6c632afc050c25f7bb5631fbe7741c93}{offset}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+std\+::ostream \& \hyperlink{classocra_1_1TaskBuilderOptions_a414b60ce008b85fc9ec6fac4e9f6f8d7}{operator$<$$<$} (std\+::ostream \&out, const \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} \&tm\+Opts)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file Task\+Builder\+Options.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1TaskBuilderOptions_a99045de3fc12a569cb9a2bf6b60bbc34}{}\label{classocra_1_1TaskBuilderOptions_a99045de3fc12a569cb9a2bf6b60bbc34} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!Task\+Builder\+Options@{Task\+Builder\+Options}}
+\index{Task\+Builder\+Options@{Task\+Builder\+Options}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{Task\+Builder\+Options()}{TaskBuilderOptions()}}
+{\footnotesize\ttfamily Task\+Builder\+Options\+::\+Task\+Builder\+Options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 5 of file Task\+Builder\+Options.\+cpp.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a25342a6bc49b3d63c9e512e73ff1721c}{}\label{classocra_1_1TaskBuilderOptions_a25342a6bc49b3d63c9e512e73ff1721c} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!````~Task\+Builder\+Options@{$\sim$\+Task\+Builder\+Options}}
+\index{````~Task\+Builder\+Options@{$\sim$\+Task\+Builder\+Options}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{$\sim$\+Task\+Builder\+Options()}{~TaskBuilderOptions()}}
+{\footnotesize\ttfamily Task\+Builder\+Options\+::$\sim$\+Task\+Builder\+Options (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file Task\+Builder\+Options.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1TaskBuilderOptions_a60271152310747f327d76d1f6557df4c}{}\label{classocra_1_1TaskBuilderOptions_a60271152310747f327d76d1f6557df4c} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!extract\+From\+Bottle@{extract\+From\+Bottle}}
+\index{extract\+From\+Bottle@{extract\+From\+Bottle}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{extract\+From\+Bottle()}{extractFromBottle()}}
+{\footnotesize\ttfamily bool Task\+Builder\+Options\+::extract\+From\+Bottle (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle \&}]{bottle,  }\item[{int \&}]{size\+Of\+Options }\end{DoxyParamCaption})}
+
+
+
+Definition at line 14 of file Task\+Builder\+Options.\+cpp.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_abc99093a68bc991fa711aa6a7e55506a}{}\label{classocra_1_1TaskBuilderOptions_abc99093a68bc991fa711aa6a7e55506a} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!put\+Into\+Bottle@{put\+Into\+Bottle}}
+\index{put\+Into\+Bottle@{put\+Into\+Bottle}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{put\+Into\+Bottle()}{putIntoBottle()}}
+{\footnotesize\ttfamily void Task\+Builder\+Options\+::put\+Into\+Bottle (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})}
+
+
+
+Definition at line 60 of file Task\+Builder\+Options.\+cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classocra_1_1TaskBuilderOptions_a414b60ce008b85fc9ec6fac4e9f6f8d7}{}\label{classocra_1_1TaskBuilderOptions_a414b60ce008b85fc9ec6fac4e9f6f8d7} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{const \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} \&}]{tm\+Opts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 49 of file Task\+Builder\+Options.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1TaskBuilderOptions_ad29bb1310906e4618c8132dd3cea771c}{}\label{classocra_1_1TaskBuilderOptions_ad29bb1310906e4618c8132dd3cea771c} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!axes@{axes}}
+\index{axes@{axes}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{axes}{axes}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} ocra\+::\+Task\+Builder\+Options\+::axes}
+
+
+
+Definition at line 36 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a55e98de13c8eaf3f2ace1778034d1466}{}\label{classocra_1_1TaskBuilderOptions_a55e98de13c8eaf3f2ace1778034d1466} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!desired@{desired}}
+\index{desired@{desired}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{desired}{desired}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Task\+Builder\+Options\+::desired}
+
+
+
+Definition at line 38 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_ad32edcc41af7b2aab2d3b66c7f866d75}{}\label{classocra_1_1TaskBuilderOptions_ad32edcc41af7b2aab2d3b66c7f866d75} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!hierarchy\+Level@{hierarchy\+Level}}
+\index{hierarchy\+Level@{hierarchy\+Level}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{hierarchy\+Level}{hierarchyLevel}}
+{\footnotesize\ttfamily int ocra\+::\+Task\+Builder\+Options\+::hierarchy\+Level}
+
+
+
+Definition at line 37 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_ade41a041d05ccafcf6c5de4bcedd13e1}{}\label{classocra_1_1TaskBuilderOptions_ade41a041d05ccafcf6c5de4bcedd13e1} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!index\+Desired@{index\+Desired}}
+\index{index\+Desired@{index\+Desired}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{index\+Desired}{indexDesired}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Task\+Builder\+Options\+::index\+Desired}
+
+
+
+Definition at line 39 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a04ebfb8955859ffc40087d3e7b53e0d2}{}\label{classocra_1_1TaskBuilderOptions_a04ebfb8955859ffc40087d3e7b53e0d2} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!index\+Weight\+Vector@{index\+Weight\+Vector}}
+\index{index\+Weight\+Vector@{index\+Weight\+Vector}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{index\+Weight\+Vector}{indexWeightVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Task\+Builder\+Options\+::index\+Weight\+Vector}
+
+
+
+Definition at line 42 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_ad5c32b5777c20dc348b80959574d4a37}{}\label{classocra_1_1TaskBuilderOptions_ad5c32b5777c20dc348b80959574d4a37} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!joint\+Indexes@{joint\+Indexes}}
+\index{joint\+Indexes@{joint\+Indexes}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{joint\+Indexes}{jointIndexes}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xi ocra\+::\+Task\+Builder\+Options\+::joint\+Indexes}
+
+
+
+Definition at line 44 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_ab72b4855028ef6965107294b16818ad2}{}\label{classocra_1_1TaskBuilderOptions_ab72b4855028ef6965107294b16818ad2} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!joint\+Names@{joint\+Names}}
+\index{joint\+Names@{joint\+Names}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{joint\+Names}{jointNames}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ ocra\+::\+Task\+Builder\+Options\+::joint\+Names}
+
+
+
+Definition at line 45 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_aad265cbbd4016246362cfd6fc375b479}{}\label{classocra_1_1TaskBuilderOptions_aad265cbbd4016246362cfd6fc375b479} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!kd@{kd}}
+\index{kd@{kd}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{kd}{kd}}
+{\footnotesize\ttfamily double ocra\+::\+Task\+Builder\+Options\+::kd}
+
+
+
+Definition at line 34 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_ad2f50a4fc0ac5e7c48048cb6a123cce6}{}\label{classocra_1_1TaskBuilderOptions_ad2f50a4fc0ac5e7c48048cb6a123cce6} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!kp@{kp}}
+\index{kp@{kp}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{kp}{kp}}
+{\footnotesize\ttfamily double ocra\+::\+Task\+Builder\+Options\+::kp}
+
+
+
+Definition at line 34 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_acecc869663607553145b3322e3828547}{}\label{classocra_1_1TaskBuilderOptions_acecc869663607553145b3322e3828547} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!margin@{margin}}
+\index{margin@{margin}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{margin}{margin}}
+{\footnotesize\ttfamily double ocra\+::\+Task\+Builder\+Options\+::margin}
+
+
+
+Definition at line 34 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a7ddb83d62a8e4121dbc3fb2a1ee9691d}{}\label{classocra_1_1TaskBuilderOptions_a7ddb83d62a8e4121dbc3fb2a1ee9691d} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!mu@{mu}}
+\index{mu@{mu}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{mu}{mu}}
+{\footnotesize\ttfamily double ocra\+::\+Task\+Builder\+Options\+::mu}
+
+
+
+Definition at line 34 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a1e2cceed21f5b42fbfba16f02ee87bc7}{}\label{classocra_1_1TaskBuilderOptions_a1e2cceed21f5b42fbfba16f02ee87bc7} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!name\+Desired@{name\+Desired}}
+\index{name\+Desired@{name\+Desired}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{name\+Desired}{nameDesired}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Task\+Builder\+Options\+::name\+Desired}
+
+
+
+Definition at line 40 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a82a7eaa6cb0887e59c99cc4f97d2c818}{}\label{classocra_1_1TaskBuilderOptions_a82a7eaa6cb0887e59c99cc4f97d2c818} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!name\+Weight\+Vector@{name\+Weight\+Vector}}
+\index{name\+Weight\+Vector@{name\+Weight\+Vector}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{name\+Weight\+Vector}{nameWeightVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Task\+Builder\+Options\+::name\+Weight\+Vector}
+
+
+
+Definition at line 43 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a6c632afc050c25f7bb5631fbe7741c93}{}\label{classocra_1_1TaskBuilderOptions_a6c632afc050c25f7bb5631fbe7741c93} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!offset@{offset}}
+\index{offset@{offset}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{offset}{offset}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::\+Task\+Builder\+Options\+::offset}
+
+
+
+Definition at line 46 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a49d0ad006ee4ef0a314d3eed9c995c06}{}\label{classocra_1_1TaskBuilderOptions_a49d0ad006ee4ef0a314d3eed9c995c06} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!segment@{segment}}
+\index{segment@{segment}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{segment}{segment}}
+{\footnotesize\ttfamily std\+::string ocra\+::\+Task\+Builder\+Options\+::segment}
+
+
+
+Definition at line 33 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_ab4d73eb287244b10f00c49f8641e0938}{}\label{classocra_1_1TaskBuilderOptions_ab4d73eb287244b10f00c49f8641e0938} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!task\+Name@{task\+Name}}
+\index{task\+Name@{task\+Name}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{task\+Name}{taskName}}
+{\footnotesize\ttfamily std\+::string ocra\+::\+Task\+Builder\+Options\+::task\+Name}
+
+
+
+Definition at line 33 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_ab0549ba26e607e200af4c596bccac8f8}{}\label{classocra_1_1TaskBuilderOptions_ab0549ba26e607e200af4c596bccac8f8} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!task\+Type@{task\+Type}}
+\index{task\+Type@{task\+Type}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{task\+Type}{taskType}}
+{\footnotesize\ttfamily std\+::string ocra\+::\+Task\+Builder\+Options\+::task\+Type}
+
+
+
+Definition at line 33 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a6f0d1b177c931644f4d66f04b901d565}{}\label{classocra_1_1TaskBuilderOptions_a6f0d1b177c931644f4d66f04b901d565} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!uses\+Yarp@{uses\+Yarp}}
+\index{uses\+Yarp@{uses\+Yarp}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{uses\+Yarp}{usesYarp}}
+{\footnotesize\ttfamily bool ocra\+::\+Task\+Builder\+Options\+::uses\+Yarp}
+
+
+
+Definition at line 35 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a5a5d3c5952de35efb29c60c843edafb6}{}\label{classocra_1_1TaskBuilderOptions_a5a5d3c5952de35efb29c60c843edafb6} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!use\+Weight\+Vector\+Constructor@{use\+Weight\+Vector\+Constructor}}
+\index{use\+Weight\+Vector\+Constructor@{use\+Weight\+Vector\+Constructor}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{use\+Weight\+Vector\+Constructor}{useWeightVectorConstructor}}
+{\footnotesize\ttfamily bool ocra\+::\+Task\+Builder\+Options\+::use\+Weight\+Vector\+Constructor}
+
+
+
+Definition at line 35 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_a0c60b260526aa7bf2fdb3712cc7f612d}{}\label{classocra_1_1TaskBuilderOptions_a0c60b260526aa7bf2fdb3712cc7f612d} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!weight@{weight}}
+\index{weight@{weight}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{weight}{weight}}
+{\footnotesize\ttfamily double ocra\+::\+Task\+Builder\+Options\+::weight}
+
+
+
+Definition at line 34 of file Task\+Builder\+Options.\+h.
+
+\hypertarget{classocra_1_1TaskBuilderOptions_ae86b78dda6e73227f5aeb0447f60158a}{}\label{classocra_1_1TaskBuilderOptions_ae86b78dda6e73227f5aeb0447f60158a} 
+\index{ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}!weight\+Vector@{weight\+Vector}}
+\index{weight\+Vector@{weight\+Vector}!ocra\+::\+Task\+Builder\+Options@{ocra\+::\+Task\+Builder\+Options}}
+\subsubsection{\texorpdfstring{weight\+Vector}{weightVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Task\+Builder\+Options\+::weight\+Vector}
+
+
+
+Definition at line 41 of file Task\+Builder\+Options.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TaskBuilderOptions_8h}{Task\+Builder\+Options.\+h}\item 
+\hyperlink{TaskBuilderOptions_8cpp}{Task\+Builder\+Options.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,147 @@
+\hypertarget{classgocra_1_1gOcraContactTaskManager}{}\section{gocra\+:\+:g\+Ocra\+Contact\+Task\+Manager Class Reference}
+\label{classgocra_1_1gOcraContactTaskManager}\index{gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}}
+
+
+Task Manager for a contact task.  
+
+
+
+
+{\ttfamily \#include $<$g\+Ocra\+Contact\+Task\+Manager.\+h$>$}
+
+Inheritance diagram for gocra\+:\+:g\+Ocra\+Contact\+Task\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d7/d0b/classgocra_1_1gOcraContactTaskManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgocra_1_1gOcraContactTaskManager_aa35eda0ee0b427b7da1aca284f6da5a8}{g\+Ocra\+Contact\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, const std\+::string \&segment\+Name, Eigen\+::\+Displacementd H\+\_\+segment\+\_\+frame, double mu, double margin)
+\item 
+\hyperlink{classgocra_1_1gOcraContactTaskManager_a196591b3cc42be1aafcaa134c9f21200}{$\sim$g\+Ocra\+Contact\+Task\+Manager} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraContactTaskManager_a51eef1bcdf87285b5b731356c6b46727}{activate} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraContactTaskManager_adf02de85b4a661c70cd7e2031c1b7500}{deactivate} ()
+\item 
+Vector\+Xd \hyperlink{classgocra_1_1gOcraContactTaskManager_a50ef70ceb95ced6818a5990fa6615d6a}{get\+Task\+Error} ()
+\item 
+double \hyperlink{classgocra_1_1gOcraContactTaskManager_af7865eaf5c86bca10e8911a23cceaf2a}{get\+Task\+Error\+Norm} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Task Manager for a contact task. 
+
+
+
+Definition at line 18 of file g\+Ocra\+Contact\+Task\+Manager.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgocra_1_1gOcraContactTaskManager_aa35eda0ee0b427b7da1aca284f6da5a8}{}\label{classgocra_1_1gOcraContactTaskManager_aa35eda0ee0b427b7da1aca284f6da5a8} 
+\index{gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}!g\+Ocra\+Contact\+Task\+Manager@{g\+Ocra\+Contact\+Task\+Manager}}
+\index{g\+Ocra\+Contact\+Task\+Manager@{g\+Ocra\+Contact\+Task\+Manager}!gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Contact\+Task\+Manager()}{gOcraContactTaskManager()}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Contact\+Task\+Manager\+::g\+Ocra\+Contact\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{const std\+::string \&}]{\+\_\+segment\+Name,  }\item[{Eigen\+::\+Displacementd}]{\+\_\+\+H\+\_\+segment\+\_\+frame,  }\item[{double}]{\+\_\+mu,  }\item[{double}]{\+\_\+margin }\end{DoxyParamCaption})}
+
+Base constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em \+\_\+model} & ocra model to setup the task \\
+\hline
+{\em \+\_\+task\+Name} & Name of the tasks (prefix for the set of tasks) \\
+\hline
+{\em \+\_\+segment\+Name} & Name of segment that the contacts are attached to \\
+\hline
+{\em \+\_\+\+H\+\_\+segment\+\_\+frame} & Contact point local to the segment \\
+\hline
+{\em \+\_\+mu} & Coefficient of friction \\
+\hline
+{\em \+\_\+margin} & Margin inside the friction cone \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 16 of file g\+Ocra\+Contact\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraContactTaskManager_a196591b3cc42be1aafcaa134c9f21200}{}\label{classgocra_1_1gOcraContactTaskManager_a196591b3cc42be1aafcaa134c9f21200} 
+\index{gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}!````~g\+Ocra\+Contact\+Task\+Manager@{$\sim$g\+Ocra\+Contact\+Task\+Manager}}
+\index{````~g\+Ocra\+Contact\+Task\+Manager@{$\sim$g\+Ocra\+Contact\+Task\+Manager}!gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$g\+Ocra\+Contact\+Task\+Manager()}{~gOcraContactTaskManager()}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Contact\+Task\+Manager\+::$\sim$g\+Ocra\+Contact\+Task\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgocra_1_1gOcraContactTaskManager_a51eef1bcdf87285b5b731356c6b46727}{}\label{classgocra_1_1gOcraContactTaskManager_a51eef1bcdf87285b5b731356c6b46727} 
+\index{gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}!activate@{activate}}
+\index{activate@{activate}!gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}}
+\subsubsection{\texorpdfstring{activate()}{activate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Contact\+Task\+Manager\+::activate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Activate function
+
+Activates the constraint 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a50cf1c408749d6e9dcfaf50bcab77dee}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 33 of file g\+Ocra\+Contact\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraContactTaskManager_adf02de85b4a661c70cd7e2031c1b7500}{}\label{classgocra_1_1gOcraContactTaskManager_adf02de85b4a661c70cd7e2031c1b7500} 
+\index{gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}}
+\subsubsection{\texorpdfstring{deactivate()}{deactivate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Contact\+Task\+Manager\+::deactivate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Deactivate function
+
+Deactivates the constraint 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a7cf9111e69aee47a39fe0f2976a20d6c}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 42 of file g\+Ocra\+Contact\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraContactTaskManager_a50ef70ceb95ced6818a5990fa6615d6a}{}\label{classgocra_1_1gOcraContactTaskManager_a50ef70ceb95ced6818a5990fa6615d6a} 
+\index{gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}!get\+Task\+Error@{get\+Task\+Error}}
+\index{get\+Task\+Error@{get\+Task\+Error}!gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Task\+Error()}{getTaskError()}}
+{\footnotesize\ttfamily Vector\+Xd gocra\+::g\+Ocra\+Contact\+Task\+Manager\+::get\+Task\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the error vector of the task
+
+If the derived child class does not have a meaningful error, it should override this function to throw an error 
+
+Reimplemented from \hyperlink{classgocra_1_1gOcraTaskManagerBase_a5c40a14b3a1d5a6519da422310d28f97}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 48 of file g\+Ocra\+Contact\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraContactTaskManager_af7865eaf5c86bca10e8911a23cceaf2a}{}\label{classgocra_1_1gOcraContactTaskManager_af7865eaf5c86bca10e8911a23cceaf2a} 
+\index{gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}!get\+Task\+Error\+Norm@{get\+Task\+Error\+Norm}}
+\index{get\+Task\+Error\+Norm@{get\+Task\+Error\+Norm}!gocra\+::g\+Ocra\+Contact\+Task\+Manager@{gocra\+::g\+Ocra\+Contact\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Task\+Error\+Norm()}{getTaskErrorNorm()}}
+{\footnotesize\ttfamily double gocra\+::g\+Ocra\+Contact\+Task\+Manager\+::get\+Task\+Error\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 54 of file g\+Ocra\+Contact\+Task\+Manager.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{gOcraContactTaskManager_8h}{g\+Ocra\+Contact\+Task\+Manager.\+h}\item 
+\hyperlink{gOcraContactTaskManager_8cpp}{g\+Ocra\+Contact\+Task\+Manager.\+cpp}\end{DoxyCompactItemize}

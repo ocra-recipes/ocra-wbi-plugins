@@ -1,0 +1,187 @@
+\hypertarget{classocra_1_1ConstraintSet}{}\section{ocra\+:\+:Constraint\+Set$<$ T $>$ Class Template Reference}
+\label{classocra_1_1ConstraintSet}\index{ocra\+::\+Constraint\+Set$<$ T $>$@{ocra\+::\+Constraint\+Set$<$ T $>$}}
+
+
+Constraint\+Set class.  
+
+
+
+
+{\ttfamily \#include $<$Constraint\+Set.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ConstraintSet_ae571e7cc71dd7a2cfd3e8eeac028f65c}{Constraint\+Set} ()
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Constraint}{Constraint}$<$ T $>$ $\ast$ \hyperlink{classocra_1_1ConstraintSet_a5b7d67d57cc92ade65d84fe36d94bbe0}{get\+Ith\+Equality\+Constraint} (size\+\_\+t i)
+\item 
+\hyperlink{classocra_1_1Constraint}{Constraint}$<$ T $>$ $\ast$ \hyperlink{classocra_1_1ConstraintSet_af0de2bdd6267da2c53e7c9b3045dfb74}{get\+Ith\+Inequality\+Constraint} (size\+\_\+t i)
+\item 
+\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \& \hyperlink{classocra_1_1ConstraintSet_a56204ca335c5e235629cfbc8d68397ac}{add} (\hyperlink{classocra_1_1Constraint}{Constraint}$<$ T $>$ $\ast$constraint)
+\item 
+\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \& \hyperlink{classocra_1_1ConstraintSet_a4e0ff725278438f2f595ebc0a5de4389}{add} (\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \&constraint\+Set)
+\item 
+\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \& \hyperlink{classocra_1_1ConstraintSet_a6f0c43b34ff1ea60911a10186c66f294}{remove} (\hyperlink{classocra_1_1Constraint}{Constraint}$<$ T $>$ $\ast$constraint)
+\item 
+\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \& \hyperlink{classocra_1_1ConstraintSet_a78f8d0f6f919734bb915bf6f63f5f058}{remove} (\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \&constraint\+Set)
+\item 
+size\+\_\+t \hyperlink{classocra_1_1ConstraintSet_a95a113a808dfbf7a407c1ce000403941}{get\+Number\+Of\+Equality\+Constraints} () const
+\item 
+size\+\_\+t \hyperlink{classocra_1_1ConstraintSet_ae8c7be6697c295e051550e225f6fe85b}{get\+Number\+Of\+Inequality\+Constraints} () const
+\item 
+size\+\_\+t \hyperlink{classocra_1_1ConstraintSet_adc4069c30e8a497d88e930d68fc1ac57}{get\+Equality\+Dimension} () const
+\item 
+size\+\_\+t \hyperlink{classocra_1_1ConstraintSet_a3d0134190b555f7176a719424c0401eb}{get\+Inequality\+Dimension} () const
+\end{DoxyCompactItemize}
+
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class ocra\+::\+Constraint\+Set$<$ T $>$}
+
+Constraint\+Set class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+A set of constraint. This class is meant to be derived. \hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set} mimics the hierarchy of \hyperlink{classocra_1_1Function}{Function}, in the same way \hyperlink{classocra_1_1Constraint}{Constraint} does. 
+
+Definition at line 44 of file Constraint\+Set.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ConstraintSet_ae571e7cc71dd7a2cfd3e8eeac028f65c}{}\label{classocra_1_1ConstraintSet_ae571e7cc71dd7a2cfd3e8eeac028f65c} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!Constraint\+Set@{Constraint\+Set}}
+\index{Constraint\+Set@{Constraint\+Set}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{Constraint\+Set()}{ConstraintSet()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 114 of file Constraint\+Set.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ConstraintSet_a56204ca335c5e235629cfbc8d68397ac}{}\label{classocra_1_1ConstraintSet_a56204ca335c5e235629cfbc8d68397ac} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!add@{add}}
+\index{add@{add}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \& \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Constraint}{Constraint}$<$ T $>$ $\ast$}]{constraint }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 153 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_a4e0ff725278438f2f595ebc0a5de4389}{}\label{classocra_1_1ConstraintSet_a4e0ff725278438f2f595ebc0a5de4389} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!add@{add}}
+\index{add@{add}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{add()}{add()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \& \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::add (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \&}]{constraint\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 177 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_adc4069c30e8a497d88e930d68fc1ac57}{}\label{classocra_1_1ConstraintSet_adc4069c30e8a497d88e930d68fc1ac57} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!get\+Equality\+Dimension@{get\+Equality\+Dimension}}
+\index{get\+Equality\+Dimension@{get\+Equality\+Dimension}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{get\+Equality\+Dimension()}{getEqualityDimension()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+size\+\_\+t \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::get\+Equality\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 269 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_a3d0134190b555f7176a719424c0401eb}{}\label{classocra_1_1ConstraintSet_a3d0134190b555f7176a719424c0401eb} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!get\+Inequality\+Dimension@{get\+Inequality\+Dimension}}
+\index{get\+Inequality\+Dimension@{get\+Inequality\+Dimension}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{get\+Inequality\+Dimension()}{getInequalityDimension()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+size\+\_\+t \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::get\+Inequality\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 282 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_a5b7d67d57cc92ade65d84fe36d94bbe0}{}\label{classocra_1_1ConstraintSet_a5b7d67d57cc92ade65d84fe36d94bbe0} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!get\+Ith\+Equality\+Constraint@{get\+Ith\+Equality\+Constraint}}
+\index{get\+Ith\+Equality\+Constraint@{get\+Ith\+Equality\+Constraint}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{get\+Ith\+Equality\+Constraint()}{getIthEqualityConstraint()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1Constraint}{Constraint}$<$ T $>$ $\ast$ \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::get\+Ith\+Equality\+Constraint (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Does what it says. 
+
+Definition at line 127 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_af0de2bdd6267da2c53e7c9b3045dfb74}{}\label{classocra_1_1ConstraintSet_af0de2bdd6267da2c53e7c9b3045dfb74} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!get\+Ith\+Inequality\+Constraint@{get\+Ith\+Inequality\+Constraint}}
+\index{get\+Ith\+Inequality\+Constraint@{get\+Ith\+Inequality\+Constraint}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{get\+Ith\+Inequality\+Constraint()}{getIthInequalityConstraint()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1Constraint}{Constraint}$<$ T $>$ $\ast$ \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::get\+Ith\+Inequality\+Constraint (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 140 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_a95a113a808dfbf7a407c1ce000403941}{}\label{classocra_1_1ConstraintSet_a95a113a808dfbf7a407c1ce000403941} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!get\+Number\+Of\+Equality\+Constraints@{get\+Number\+Of\+Equality\+Constraints}}
+\index{get\+Number\+Of\+Equality\+Constraints@{get\+Number\+Of\+Equality\+Constraints}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{get\+Number\+Of\+Equality\+Constraints()}{getNumberOfEqualityConstraints()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+size\+\_\+t \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::get\+Number\+Of\+Equality\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 243 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_ae8c7be6697c295e051550e225f6fe85b}{}\label{classocra_1_1ConstraintSet_ae8c7be6697c295e051550e225f6fe85b} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!get\+Number\+Of\+Inequality\+Constraints@{get\+Number\+Of\+Inequality\+Constraints}}
+\index{get\+Number\+Of\+Inequality\+Constraints@{get\+Number\+Of\+Inequality\+Constraints}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{get\+Number\+Of\+Inequality\+Constraints()}{getNumberOfInequalityConstraints()}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+size\+\_\+t \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::get\+Number\+Of\+Inequality\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 256 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_a6f0c43b34ff1ea60911a10186c66f294}{}\label{classocra_1_1ConstraintSet_a6f0c43b34ff1ea60911a10186c66f294} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!remove@{remove}}
+\index{remove@{remove}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{remove()}{remove()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \& \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Constraint}{Constraint}$<$ T $>$ $\ast$}]{constraint }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 195 of file Constraint\+Set.\+h.
+
+\hypertarget{classocra_1_1ConstraintSet_a78f8d0f6f919734bb915bf6f63f5f058}{}\label{classocra_1_1ConstraintSet_a78f8d0f6f919734bb915bf6f63f5f058} 
+\index{ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}!remove@{remove}}
+\index{remove@{remove}!ocra\+::\+Constraint\+Set@{ocra\+::\+Constraint\+Set}}
+\subsubsection{\texorpdfstring{remove()}{remove()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \& \hyperlink{classocra_1_1ConstraintSet}{ocra\+::\+Constraint\+Set}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1ConstraintSet}{Constraint\+Set}$<$ T $>$ \&}]{constraint\+Set }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 226 of file Constraint\+Set.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ConstraintSet_8h}{Constraint\+Set.\+h}\end{DoxyCompactItemize}

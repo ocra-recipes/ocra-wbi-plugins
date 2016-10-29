@@ -1,0 +1,234 @@
+\hypertarget{classocra_1_1SquaredLinearFunction}{}\section{ocra\+:\+:Squared\+Linear\+Function Class Reference}
+\label{classocra_1_1SquaredLinearFunction}\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+
+
+Squared\+Linear\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Squared\+Linear\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Squared\+Linear\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{df/dfc/classocra_1_1SquaredLinearFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1QuadraticFunction}{Quadratic\+Function} \hyperlink{classocra_1_1SquaredLinearFunction_a7f1e0d7cfae65a8111bf6615f8c24f19}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1SquaredLinearFunction_ae0a8957e1371ef2681494298cd19c040}{Squared\+Linear\+Function} (\hyperlink{classocra_1_1LinearFunction}{Linear\+Function} $\ast$f)
+\item 
+\hyperlink{classocra_1_1SquaredLinearFunction_adc5c823cc6559151ef1081e8ff62624a}{$\sim$\+Squared\+Linear\+Function} ()
+\item 
+void \hyperlink{classocra_1_1SquaredLinearFunction_a4c8e5adac8c2d7af02880d4ac5011f83}{change\+Weight} (const Vector\+Xd \&weight)
+\item 
+\hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \& \hyperlink{classocra_1_1SquaredLinearFunction_aff22d70c8edf05b5b488ffe6ce426e87}{get\+Function} ()
+\item 
+const \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \& \hyperlink{classocra_1_1SquaredLinearFunction_a3ab1215a6687d72cc56727ccb35ccb3a}{get\+Function} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1SquaredLinearFunction_a194606ccd86f17dbc73a6c3bdf2455c9}{update\+Hessian} () const
+\item 
+void \hyperlink{classocra_1_1SquaredLinearFunction_a6fec3532febfdea70c28457ea826111e}{updateq} () const
+\item 
+void \hyperlink{classocra_1_1SquaredLinearFunction_ab74b479275839850f1c98ac2fa3137bd}{updater} () const
+\item 
+void \hyperlink{classocra_1_1SquaredLinearFunction_a95faea59867ec734fbdb46d936067d77}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+void \hyperlink{classocra_1_1SquaredLinearFunction_a9e6a87607548f1f1eac56eecfc1b05b5}{on\+Resize} (int)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1LinearFunction}{Linear\+Function} $\ast$ \hyperlink{classocra_1_1SquaredLinearFunction_a9848211537e6dc386ab237e6a1e233dc}{\+\_\+f}
+\item 
+Vector\+Xd \hyperlink{classocra_1_1SquaredLinearFunction_ad21985a66257244ce79648a507ad5220}{\+\_\+weight}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Squared\+Linear\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Quadratic function of the form \& 1/2 $|$f(x)$|$$^\wedge$2 \& with f(x) = Ax+b If A and b are constant, better use \hyperlink{classocra_1_1QuadraticFunction}{Quadratic\+Function} directly.
+
+//\+T\+O\+DO \mbox{[}todo\mbox{]} \+: optimize computations 
+
+Definition at line 38 of file Squared\+Linear\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1SquaredLinearFunction_a7f1e0d7cfae65a8111bf6615f8c24f19}{}\label{classocra_1_1SquaredLinearFunction_a7f1e0d7cfae65a8111bf6615f8c24f19} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1QuadraticFunction}{Quadratic\+Function} \hyperlink{classocra_1_1SquaredLinearFunction_a7f1e0d7cfae65a8111bf6615f8c24f19}{ocra\+::\+Squared\+Linear\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 42 of file Squared\+Linear\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1SquaredLinearFunction_ae0a8957e1371ef2681494298cd19c040}{}\label{classocra_1_1SquaredLinearFunction_ae0a8957e1371ef2681494298cd19c040} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!Squared\+Linear\+Function@{Squared\+Linear\+Function}}
+\index{Squared\+Linear\+Function@{Squared\+Linear\+Function}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{Squared\+Linear\+Function()}{SquaredLinearFunction()}}
+{\footnotesize\ttfamily ocra\+::\+Squared\+Linear\+Function\+::\+Squared\+Linear\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1LinearFunction}{Linear\+Function} $\ast$}]{f }\end{DoxyParamCaption})}
+
+
+
+Definition at line 5 of file Squared\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_adc5c823cc6559151ef1081e8ff62624a}{}\label{classocra_1_1SquaredLinearFunction_adc5c823cc6559151ef1081e8ff62624a} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!````~Squared\+Linear\+Function@{$\sim$\+Squared\+Linear\+Function}}
+\index{````~Squared\+Linear\+Function@{$\sim$\+Squared\+Linear\+Function}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Squared\+Linear\+Function()}{~SquaredLinearFunction()}}
+{\footnotesize\ttfamily ocra\+::\+Squared\+Linear\+Function\+::$\sim$\+Squared\+Linear\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 21 of file Squared\+Linear\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1SquaredLinearFunction_a4c8e5adac8c2d7af02880d4ac5011f83}{}\label{classocra_1_1SquaredLinearFunction_a4c8e5adac8c2d7af02880d4ac5011f83} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!change\+Weight@{change\+Weight}}
+\index{change\+Weight@{change\+Weight}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{change\+Weight()}{changeWeight()}}
+{\footnotesize\ttfamily void ocra\+::\+Squared\+Linear\+Function\+::change\+Weight (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{weight }\end{DoxyParamCaption})}
+
+
+
+Definition at line 30 of file Squared\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_a95faea59867ec734fbdb46d936067d77}{}\label{classocra_1_1SquaredLinearFunction_a95faea59867ec734fbdb46d936067d77} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Squared\+Linear\+Function\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1QuadraticFunction_ab3d5478fd8ded343453e0489c595e580}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 80 of file Squared\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_aff22d70c8edf05b5b488ffe6ce426e87}{}\label{classocra_1_1SquaredLinearFunction_aff22d70c8edf05b5b488ffe6ce426e87} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!get\+Function@{get\+Function}}
+\index{get\+Function@{get\+Function}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{get\+Function()}{getFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \& ocra\+::\+Squared\+Linear\+Function\+::get\+Function (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 49 of file Squared\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_a3ab1215a6687d72cc56727ccb35ccb3a}{}\label{classocra_1_1SquaredLinearFunction_a3ab1215a6687d72cc56727ccb35ccb3a} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!get\+Function@{get\+Function}}
+\index{get\+Function@{get\+Function}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{get\+Function()}{getFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \& ocra\+::\+Squared\+Linear\+Function\+::get\+Function (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 55 of file Squared\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_a9e6a87607548f1f1eac56eecfc1b05b5}{}\label{classocra_1_1SquaredLinearFunction_a9e6a87607548f1f1eac56eecfc1b05b5} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!on\+Resize@{on\+Resize}}
+\index{on\+Resize@{on\+Resize}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{on\+Resize()}{onResize()}}
+{\footnotesize\ttfamily void ocra\+::\+Squared\+Linear\+Function\+::on\+Resize (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 86 of file Squared\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_a194606ccd86f17dbc73a6c3bdf2455c9}{}\label{classocra_1_1SquaredLinearFunction_a194606ccd86f17dbc73a6c3bdf2455c9} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!update\+Hessian@{update\+Hessian}}
+\index{update\+Hessian@{update\+Hessian}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{update\+Hessian()}{updateHessian()}}
+{\footnotesize\ttfamily void ocra\+::\+Squared\+Linear\+Function\+::update\+Hessian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_a342ea525685ddc2c414a49e7480a7a4c}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 61 of file Squared\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_a6fec3532febfdea70c28457ea826111e}{}\label{classocra_1_1SquaredLinearFunction_a6fec3532febfdea70c28457ea826111e} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!updateq@{updateq}}
+\index{updateq@{updateq}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{updateq()}{updateq()}}
+{\footnotesize\ttfamily void ocra\+::\+Squared\+Linear\+Function\+::updateq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_ae68e94211c94e8c32da2220132baf248}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 67 of file Squared\+Linear\+Function.\+cpp.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_ab74b479275839850f1c98ac2fa3137bd}{}\label{classocra_1_1SquaredLinearFunction_ab74b479275839850f1c98ac2fa3137bd} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!updater@{updater}}
+\index{updater@{updater}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{updater()}{updater()}}
+{\footnotesize\ttfamily void ocra\+::\+Squared\+Linear\+Function\+::updater (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_aeaa560b1771f4024755753236fd69779}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 74 of file Squared\+Linear\+Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1SquaredLinearFunction_a9848211537e6dc386ab237e6a1e233dc}{}\label{classocra_1_1SquaredLinearFunction_a9848211537e6dc386ab237e6a1e233dc} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!\+\_\+f@{\+\_\+f}}
+\index{\+\_\+f@{\+\_\+f}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+f}{\_f}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearFunction}{Linear\+Function}$\ast$ ocra\+::\+Squared\+Linear\+Function\+::\+\_\+f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 72 of file Squared\+Linear\+Function.\+h.
+
+\hypertarget{classocra_1_1SquaredLinearFunction_ad21985a66257244ce79648a507ad5220}{}\label{classocra_1_1SquaredLinearFunction_ad21985a66257244ce79648a507ad5220} 
+\index{ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}!\+\_\+weight@{\+\_\+weight}}
+\index{\+\_\+weight@{\+\_\+weight}!ocra\+::\+Squared\+Linear\+Function@{ocra\+::\+Squared\+Linear\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+weight}{\_weight}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Squared\+Linear\+Function\+::\+\_\+weight\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 73 of file Squared\+Linear\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{SquaredLinearFunction_8h}{Squared\+Linear\+Function.\+h}\item 
+\hyperlink{SquaredLinearFunction_8cpp}{Squared\+Linear\+Function.\+cpp}\end{DoxyCompactItemize}

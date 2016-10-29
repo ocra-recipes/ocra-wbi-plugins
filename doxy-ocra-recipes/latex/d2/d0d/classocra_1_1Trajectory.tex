@@ -1,0 +1,668 @@
+\hypertarget{classocra_1_1Trajectory}{}\section{ocra\+:\+:Trajectory Class Reference}
+\label{classocra_1_1Trajectory}\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+
+
+{\ttfamily \#include $<$Trajectory.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Trajectory\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.041860cm]{d2/d0d/classocra_1_1Trajectory}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Trajectory_a0188adbc4ad9608302303dc4615ebecb}{Trajectory} ()
+\item 
+void \hyperlink{classocra_1_1Trajectory_a12e4348201fbdc32d34ce1627d6da1fd}{set\+Max\+Velocity} (double new\+Max\+Vel)
+\item 
+void \hyperlink{classocra_1_1Trajectory_accba854a05f9b17859c0a7f2e0820958}{set\+Max\+Velocity} (const Eigen\+::\+Vector\+Xd \&new\+Max\+Vel)
+\item 
+double \hyperlink{classocra_1_1Trajectory_a2c7cba3382416e42cbf7a931b8c9e0ef}{get\+Max\+Velocity} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1Trajectory_a8cdf985ffe59a3d00f7967035f79376d}{get\+Max\+Velocity\+Vector} ()
+\item 
+void \hyperlink{classocra_1_1Trajectory_a617400d2591ef575f20ca2b431151ace}{set\+Max\+Acceleration} (double new\+Max\+Acc)
+\item 
+void \hyperlink{classocra_1_1Trajectory_a0fa531fd1f33f142a7d1b3324a478cb9}{set\+Max\+Acceleration} (const Eigen\+::\+Vector\+Xd \&new\+Max\+Acc)
+\item 
+double \hyperlink{classocra_1_1Trajectory_ab86e41d3a59f9e9f9b06bf43928f7552}{get\+Max\+Acceleration} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1Trajectory_aaa40e685df5caf6f4d81d08b47d82301}{get\+Max\+Acceleration\+Vector} ()
+\item 
+void \hyperlink{classocra_1_1Trajectory_af8ae6008824f92f5de31edf0944f4fbd}{set\+Waypoints} (const std\+::vector$<$ double $>$ \&starting\+Double\+Vec, const std\+::vector$<$ double $>$ \&ending\+Double\+Vec, const int waypoint\+Selector=0, bool \hyperlink{classocra_1_1Trajectory_a4f230978860de9473f83df3b8ae31ad9}{ends\+With\+Quaternion}=false)
+\item 
+void \hyperlink{classocra_1_1Trajectory_a941a5f6357d5ee707d703357eb525d6e}{set\+Waypoints} (const Eigen\+::\+Vector\+Xd \&starting\+Vector, const Eigen\+::\+Vector\+Xd \&ending\+Vector, bool \hyperlink{classocra_1_1Trajectory_a4f230978860de9473f83df3b8ae31ad9}{ends\+With\+Quaternion}=false)
+\item 
+void \hyperlink{classocra_1_1Trajectory_a8d9de492efb89ff6a05f66c2498fd5e6}{set\+Waypoints} (Eigen\+::\+Displacementd \&starting\+Displacement, Eigen\+::\+Displacementd \&ending\+Displacement, bool \hyperlink{classocra_1_1Trajectory_a4f230978860de9473f83df3b8ae31ad9}{ends\+With\+Quaternion}=true)
+\item 
+void \hyperlink{classocra_1_1Trajectory_ad787da3056374594ce65df54795deae8}{set\+Waypoints} (Eigen\+::\+Rotation3d \&starting\+Orientation, Eigen\+::\+Rotation3d \&ending\+Orientation, bool \hyperlink{classocra_1_1Trajectory_a4f230978860de9473f83df3b8ae31ad9}{ends\+With\+Quaternion}=true)
+\item 
+void \hyperlink{classocra_1_1Trajectory_a24754dba11643737f02be0bd7c16023e}{set\+Waypoints} (const std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \&\+\_\+waypoints, bool \+\_\+ends\+With\+Quaternion=false)
+\item 
+void \hyperlink{classocra_1_1Trajectory_adde90667693b2648420917e80a39d1e6}{set\+Waypoints} (Eigen\+::\+Matrix\+Xd \&\hyperlink{classocra_1_1Trajectory_ab0514f8c3c8d4827b19dc863ff800b43}{waypoints}, bool \hyperlink{classocra_1_1Trajectory_a4f230978860de9473f83df3b8ae31ad9}{ends\+With\+Quaternion}=false)
+\item 
+virtual \hyperlink{classocra_1_1Trajectory_aede5bc277bdb4aff286b68c1d7a5d9be}{$\sim$\+Trajectory} ()
+\item 
+void \hyperlink{classocra_1_1Trajectory_a4e0a8295e1b8eb74cd13f130e5ab1475}{set\+Duration} ()
+\item 
+void \hyperlink{classocra_1_1Trajectory_abc96649d0b4431608ceb524f9db3b73b}{set\+Duration} (double time)
+\item 
+bool \hyperlink{classocra_1_1Trajectory_a1d6839b9239d113f6992e84a9cc711d6}{is\+Finished} ()
+\item 
+virtual Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1Trajectory_a2102a829e6dad497f7c773c346d499b7}{get\+Desired\+Values} (double time)
+\item 
+virtual void \hyperlink{classocra_1_1Trajectory_aab6869cf5bc4a7c44eac36a0e49255b9}{get\+Desired\+Values} (double time, Eigen\+::\+Matrix\+Xd \&desired\+Values, Eigen\+::\+Vector\+Xd \&variance)
+\item 
+void \hyperlink{classocra_1_1Trajectory_a195921776ed3d3b403dcb8728ee8d02a}{get\+Desired\+Values} (double time, std\+::vector$<$ double $>$ \&double\+Vec)
+\item 
+void \hyperlink{classocra_1_1Trajectory_a5e9026bd9eb9a50f820fd561d7783c59}{get\+Desired\+Values} (double time, Eigen\+::\+Displacementd \&disp)
+\item 
+void \hyperlink{classocra_1_1Trajectory_a05e7abae6b5dead3d5382bef15d0c803}{get\+Desired\+Values} (double time, Eigen\+::\+Rotation3d \&orient)
+\item 
+void \hyperlink{classocra_1_1Trajectory_af81c6d351f25f49ae02028d0ee9b34bd}{get\+Desired\+Values} (double time, Eigen\+::\+Displacementd \&pos, Eigen\+::\+Twistd \&vel, Eigen\+::\+Twistd \&acc)
+\item 
+virtual double \hyperlink{classocra_1_1Trajectory_ad65e4ce63f33d79d7880742035a64d6c}{get\+Duration} ()
+\item 
+Eigen\+::\+Rotation3d \hyperlink{classocra_1_1Trajectory_ad431ef279bae49c96ee628a1d529e0e1}{quaternion\+Slerp} (double tau, Eigen\+::\+Rotation3d \&q\+Start, Eigen\+::\+Rotation3d \&q\+End)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1Trajectory_ae430040a9159317971ce66f4bd3a162a}{displacement\+To\+Eigen\+Vector} (Eigen\+::\+Displacementd \&disp)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1Trajectory_a8067d74e524a9cef9d5247adc966ed66}{quaternion\+To\+Eigen\+Vector} (Eigen\+::\+Rotation3d \&quat)
+\item 
+bool \hyperlink{classocra_1_1Trajectory_a64c08a544337e1a1a50f2bbdd73f2005}{eigen\+Vector\+To\+Std\+Vector} (const Eigen\+::\+Vector\+Xd \&disp\+Vec, std\+::vector$<$ double $>$ \&double\+Vec)
+\item 
+bool \hyperlink{classocra_1_1Trajectory_a2a659e10b5701c8cd50a53ab00e69023}{eigen\+Matrix\+To\+Std\+Vector} (const Eigen\+::\+Matrix\+Xd \&disp\+Mat, std\+::vector$<$ double $>$ \&double\+Vec)
+\item 
+bool \hyperlink{classocra_1_1Trajectory_ac8f9c3fdb888707304a817866f13c244}{eigen\+Vector\+To\+Displacement} (const Eigen\+::\+Vector\+Xd \&disp\+Vec, Eigen\+::\+Displacementd \&disp)
+\item 
+bool \hyperlink{classocra_1_1Trajectory_a943c143409f5f8c49ec4878e5d7b838b}{eigen\+Vector\+To\+Quaternion} (const Eigen\+::\+Vector\+Xd \&quat\+Vec, Eigen\+::\+Rotation3d \&quat)
+\item 
+bool \hyperlink{classocra_1_1Trajectory_a74c6fb6857f2f7fe24dcb666acff8571}{eigen\+Vector\+To\+Twist} (const Eigen\+::\+Vector\+Xd \&twist\+Vec, Eigen\+::\+Twistd \&twist)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1Trajectory_aa49b123abf79be71f131c138ff2a88b2}{initialize\+Trajectory} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classocra_1_1Trajectory_ad79f3742bec59a80c3d641ccdc08012d}{maximum\+Velocity}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1Trajectory_a206795c8d7e3bcb38b893d69fe0fa336}{maximum\+Velocity\+Vector}
+\item 
+double \hyperlink{classocra_1_1Trajectory_a9dbb0a7d6ecaeaf98b915193a8c853d7}{maximum\+Acceleration}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1Trajectory_a86d9d30e890716e117ab2d3b4b328f3d}{maximum\+Acceleration\+Vector}
+\item 
+std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \hyperlink{classocra_1_1Trajectory_a37630b26ba23826298167f37534ff6f3}{waypoint\+List}
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1Trajectory_ab0514f8c3c8d4827b19dc863ff800b43}{waypoints}
+\item 
+int \hyperlink{classocra_1_1Trajectory_a6c5df48ec92b0a64dc39091bc0c17199}{n\+DoF}
+\item 
+int \hyperlink{classocra_1_1Trajectory_a233933b988029ac1a6ae24b58e59bf3e}{n\+Waypoints}
+\item 
+bool \hyperlink{classocra_1_1Trajectory_a4f230978860de9473f83df3b8ae31ad9}{ends\+With\+Quaternion}
+\item 
+bool \hyperlink{classocra_1_1Trajectory_af07103499262cbe56eba69a713e4f3b3}{start\+Trigger}
+\item 
+int \hyperlink{classocra_1_1Trajectory_a2eb6b279dca80ba684969374ddea0d8c}{current\+Waypoint\+Index}
+\item 
+int \hyperlink{classocra_1_1Trajectory_a6ea59dbc9549f00f95a05581dea36415}{non\+Rotation\+Dof}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1Trajectory_ad00d173bd78dc9ff365736e751fa3ef8}{point\+To\+Point\+Duration\+Vector}
+\item 
+double \hyperlink{classocra_1_1Trajectory_a7601711560c35d3096ed541708cce691}{point\+To\+Point\+Duration}
+\item 
+bool \hyperlink{classocra_1_1Trajectory_ae3367f25d52a9b411a86f75a7b7d06ca}{trajectory\+Finished}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 30 of file Trajectory.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1Trajectory_a0188adbc4ad9608302303dc4615ebecb}{}\label{classocra_1_1Trajectory_a0188adbc4ad9608302303dc4615ebecb} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!Trajectory@{Trajectory}}
+\index{Trajectory@{Trajectory}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{Trajectory()}{Trajectory()}}
+{\footnotesize\ttfamily ocra\+::\+Trajectory\+::\+Trajectory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The \hyperlink{classocra_1_1Trajectory}{Trajectory} class. Constructor function. 
+
+Definition at line 18 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_aede5bc277bdb4aff286b68c1d7a5d9be}{}\label{classocra_1_1Trajectory_aede5bc277bdb4aff286b68c1d7a5d9be} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!````~Trajectory@{$\sim$\+Trajectory}}
+\index{````~Trajectory@{$\sim$\+Trajectory}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{$\sim$\+Trajectory()}{~Trajectory()}}
+{\footnotesize\ttfamily ocra\+::\+Trajectory\+::$\sim$\+Trajectory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 23 of file Trajectory.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1Trajectory_ae430040a9159317971ce66f4bd3a162a}{}\label{classocra_1_1Trajectory_ae430040a9159317971ce66f4bd3a162a} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!displacement\+To\+Eigen\+Vector@{displacement\+To\+Eigen\+Vector}}
+\index{displacement\+To\+Eigen\+Vector@{displacement\+To\+Eigen\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{displacement\+To\+Eigen\+Vector()}{displacementToEigenVector()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Trajectory\+::displacement\+To\+Eigen\+Vector (\begin{DoxyParamCaption}\item[{Eigen\+::\+Displacementd \&}]{\+\_\+disp }\end{DoxyParamCaption})}
+
+Useful auxiliary functions Convert from a Displacement (double) to and Eigen Vector (double) Stored as \mbox{[}x, y, z, qw, qx, qy, qz\mbox{]}$^\wedge$T
+
+Definition at line 304 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a2a659e10b5701c8cd50a53ab00e69023}{}\label{classocra_1_1Trajectory_a2a659e10b5701c8cd50a53ab00e69023} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!eigen\+Matrix\+To\+Std\+Vector@{eigen\+Matrix\+To\+Std\+Vector}}
+\index{eigen\+Matrix\+To\+Std\+Vector@{eigen\+Matrix\+To\+Std\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{eigen\+Matrix\+To\+Std\+Vector()}{eigenMatrixToStdVector()}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::eigen\+Matrix\+To\+Std\+Vector (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{disp\+Mat,  }\item[{std\+::vector$<$ double $>$ \&}]{double\+Vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line 354 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_ac8f9c3fdb888707304a817866f13c244}{}\label{classocra_1_1Trajectory_ac8f9c3fdb888707304a817866f13c244} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!eigen\+Vector\+To\+Displacement@{eigen\+Vector\+To\+Displacement}}
+\index{eigen\+Vector\+To\+Displacement@{eigen\+Vector\+To\+Displacement}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{eigen\+Vector\+To\+Displacement()}{eigenVectorToDisplacement()}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::eigen\+Vector\+To\+Displacement (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{disp\+Vec,  }\item[{Eigen\+::\+Displacementd \&}]{disp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 370 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a943c143409f5f8c49ec4878e5d7b838b}{}\label{classocra_1_1Trajectory_a943c143409f5f8c49ec4878e5d7b838b} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!eigen\+Vector\+To\+Quaternion@{eigen\+Vector\+To\+Quaternion}}
+\index{eigen\+Vector\+To\+Quaternion@{eigen\+Vector\+To\+Quaternion}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{eigen\+Vector\+To\+Quaternion()}{eigenVectorToQuaternion()}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::eigen\+Vector\+To\+Quaternion (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{quat\+Vec,  }\item[{Eigen\+::\+Rotation3d \&}]{quat }\end{DoxyParamCaption})}
+
+
+
+Definition at line 403 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a64c08a544337e1a1a50f2bbdd73f2005}{}\label{classocra_1_1Trajectory_a64c08a544337e1a1a50f2bbdd73f2005} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!eigen\+Vector\+To\+Std\+Vector@{eigen\+Vector\+To\+Std\+Vector}}
+\index{eigen\+Vector\+To\+Std\+Vector@{eigen\+Vector\+To\+Std\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{eigen\+Vector\+To\+Std\+Vector()}{eigenVectorToStdVector()}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::eigen\+Vector\+To\+Std\+Vector (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{disp\+Vec,  }\item[{std\+::vector$<$ double $>$ \&}]{double\+Vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line 342 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a74c6fb6857f2f7fe24dcb666acff8571}{}\label{classocra_1_1Trajectory_a74c6fb6857f2f7fe24dcb666acff8571} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!eigen\+Vector\+To\+Twist@{eigen\+Vector\+To\+Twist}}
+\index{eigen\+Vector\+To\+Twist@{eigen\+Vector\+To\+Twist}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{eigen\+Vector\+To\+Twist()}{eigenVectorToTwist()}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::eigen\+Vector\+To\+Twist (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{twist\+Vec,  }\item[{Eigen\+::\+Twistd \&}]{twist }\end{DoxyParamCaption})}
+
+
+
+Definition at line 419 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a2102a829e6dad497f7c773c346d499b7}{}\label{classocra_1_1Trajectory_a2102a829e6dad497f7c773c346d499b7} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily virtual Eigen\+::\+Matrix\+Xd ocra\+::\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1GaussianProcessTrajectory_a629f8e01ed88d4aa69e0a2ed9a442bda}{ocra\+::\+Gaussian\+Process\+Trajectory}, \hyperlink{classocra_1_1ExperimentalTrajectory_a9b9ed4d7b7a96c9a2b33624b5fc1ecf6}{ocra\+::\+Experimental\+Trajectory}, \hyperlink{classocra_1_1TimeOptimalTrajectory_a42ca0b579494ac0c3c4c842896e592f9}{ocra\+::\+Time\+Optimal\+Trajectory}, \hyperlink{classocra_1_1LinearInterpolationTrajectory_a342ca41e9c55e46cc40f884b9f7a6412}{ocra\+::\+Linear\+Interpolation\+Trajectory}, and \hyperlink{classocra_1_1MinimumJerkTrajectory_aec9a296591707254657082d550bdb21f}{ocra\+::\+Minimum\+Jerk\+Trajectory}.
+
+
+
+Definition at line 69 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_aab6869cf5bc4a7c44eac36a0e49255b9}{}\label{classocra_1_1Trajectory_aab6869cf5bc4a7c44eac36a0e49255b9} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{desired\+Values,  }\item[{Eigen\+::\+Vector\+Xd \&}]{variance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1GaussianProcessTrajectory_a5ae11f8f2525d4b92236b1df20b1a9d7}{ocra\+::\+Gaussian\+Process\+Trajectory}, and \hyperlink{classocra_1_1ExperimentalTrajectory_a8d0b41849d2e99a13dd2ef1ae0b0eb46}{ocra\+::\+Experimental\+Trajectory}.
+
+
+
+Definition at line 72 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a195921776ed3d3b403dcb8728ee8d02a}{}\label{classocra_1_1Trajectory_a195921776ed3d3b403dcb8728ee8d02a} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{std\+::vector$<$ double $>$ \&}]{double\+Vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line 188 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a5e9026bd9eb9a50f820fd561d7783c59}{}\label{classocra_1_1Trajectory_a5e9026bd9eb9a50f820fd561d7783c59} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{Eigen\+::\+Displacementd \&}]{disp }\end{DoxyParamCaption})}
+
+
+
+Definition at line 197 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a05e7abae6b5dead3d5382bef15d0c803}{}\label{classocra_1_1Trajectory_a05e7abae6b5dead3d5382bef15d0c803} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{Eigen\+::\+Rotation3d \&}]{orient }\end{DoxyParamCaption})}
+
+
+
+Definition at line 204 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_af81c6d351f25f49ae02028d0ee9b34bd}{}\label{classocra_1_1Trajectory_af81c6d351f25f49ae02028d0ee9b34bd} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{Eigen\+::\+Displacementd \&}]{pos,  }\item[{Eigen\+::\+Twistd \&}]{vel,  }\item[{Eigen\+::\+Twistd \&}]{acc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 211 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_ad65e4ce63f33d79d7880742035a64d6c}{}\label{classocra_1_1Trajectory_ad65e4ce63f33d79d7880742035a64d6c} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Duration@{get\+Duration}}
+\index{get\+Duration@{get\+Duration}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Duration()}{getDuration()}}
+{\footnotesize\ttfamily virtual double ocra\+::\+Trajectory\+::get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1GaussianProcessTrajectory_a03444da89e14a8b77f76800c96d3bab2}{ocra\+::\+Gaussian\+Process\+Trajectory}, and \hyperlink{classocra_1_1TimeOptimalTrajectory_a561d2d6ad9c40c88783265a91193a0ab}{ocra\+::\+Time\+Optimal\+Trajectory}.
+
+
+
+Definition at line 84 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_ab86e41d3a59f9e9f9b06bf43928f7552}{}\label{classocra_1_1Trajectory_ab86e41d3a59f9e9f9b06bf43928f7552} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Max\+Acceleration@{get\+Max\+Acceleration}}
+\index{get\+Max\+Acceleration@{get\+Max\+Acceleration}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Max\+Acceleration()}{getMaxAcceleration()}}
+{\footnotesize\ttfamily double ocra\+::\+Trajectory\+::get\+Max\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 178 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_aaa40e685df5caf6f4d81d08b47d82301}{}\label{classocra_1_1Trajectory_aaa40e685df5caf6f4d81d08b47d82301} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Max\+Acceleration\+Vector@{get\+Max\+Acceleration\+Vector}}
+\index{get\+Max\+Acceleration\+Vector@{get\+Max\+Acceleration\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Max\+Acceleration\+Vector()}{getMaxAccelerationVector()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Trajectory\+::get\+Max\+Acceleration\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 183 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a2c7cba3382416e42cbf7a931b8c9e0ef}{}\label{classocra_1_1Trajectory_a2c7cba3382416e42cbf7a931b8c9e0ef} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Max\+Velocity@{get\+Max\+Velocity}}
+\index{get\+Max\+Velocity@{get\+Max\+Velocity}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Max\+Velocity()}{getMaxVelocity()}}
+{\footnotesize\ttfamily double ocra\+::\+Trajectory\+::get\+Max\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 158 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a8cdf985ffe59a3d00f7967035f79376d}{}\label{classocra_1_1Trajectory_a8cdf985ffe59a3d00f7967035f79376d} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!get\+Max\+Velocity\+Vector@{get\+Max\+Velocity\+Vector}}
+\index{get\+Max\+Velocity\+Vector@{get\+Max\+Velocity\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Max\+Velocity\+Vector()}{getMaxVelocityVector()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Trajectory\+::get\+Max\+Velocity\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 163 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_aa49b123abf79be71f131c138ff2a88b2}{}\label{classocra_1_1Trajectory_aa49b123abf79be71f131c138ff2a88b2} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!initialize\+Trajectory@{initialize\+Trajectory}}
+\index{initialize\+Trajectory@{initialize\+Trajectory}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{initialize\+Trajectory()}{initializeTrajectory()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Trajectory\+::initialize\+Trajectory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1GaussianProcessTrajectory_aee26ead179583530615422b05c5e2081}{ocra\+::\+Gaussian\+Process\+Trajectory}, \hyperlink{classocra_1_1ExperimentalTrajectory_a4e214517be9848835a63641578e3269d}{ocra\+::\+Experimental\+Trajectory}, and \hyperlink{classocra_1_1TimeOptimalTrajectory_a1ddd759810abea6db2462dca3aae585c}{ocra\+::\+Time\+Optimal\+Trajectory}.
+
+
+
+Definition at line 102 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a1d6839b9239d113f6992e84a9cc711d6}{}\label{classocra_1_1Trajectory_a1d6839b9239d113f6992e84a9cc711d6} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!is\+Finished@{is\+Finished}}
+\index{is\+Finished@{is\+Finished}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{is\+Finished()}{isFinished()}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::is\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 65 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_ad431ef279bae49c96ee628a1d529e0e1}{}\label{classocra_1_1Trajectory_ad431ef279bae49c96ee628a1d529e0e1} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!quaternion\+Slerp@{quaternion\+Slerp}}
+\index{quaternion\+Slerp@{quaternion\+Slerp}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{quaternion\+Slerp()}{quaternionSlerp()}}
+{\footnotesize\ttfamily Eigen\+::\+Rotation3d ocra\+::\+Trajectory\+::quaternion\+Slerp (\begin{DoxyParamCaption}\item[{double}]{tau,  }\item[{Eigen\+::\+Rotation3d \&}]{q\+Start,  }\item[{Eigen\+::\+Rotation3d \&}]{q\+End }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+tau} & Interpolation variable, 0 $<$= tau $<$= 1. Should be something like time/duration. \\
+\hline
+{\em \+\_\+q\+Start} & Starting quaternion \\
+\hline
+{\em \+\_\+q\+End} & Ending quaternion\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 225 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a8067d74e524a9cef9d5247adc966ed66}{}\label{classocra_1_1Trajectory_a8067d74e524a9cef9d5247adc966ed66} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!quaternion\+To\+Eigen\+Vector@{quaternion\+To\+Eigen\+Vector}}
+\index{quaternion\+To\+Eigen\+Vector@{quaternion\+To\+Eigen\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{quaternion\+To\+Eigen\+Vector()}{quaternionToEigenVector()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Trajectory\+::quaternion\+To\+Eigen\+Vector (\begin{DoxyParamCaption}\item[{Eigen\+::\+Rotation3d \&}]{quat }\end{DoxyParamCaption})}
+
+Convert from a Quaternion (double) to and Eigen Vector (double) Stored as \mbox{[}qw, qx, qy, qz\mbox{]}$^\wedge$T
+
+Definition at line 325 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a4e0a8295e1b8eb74cd13f130e5ab1475}{}\label{classocra_1_1Trajectory_a4e0a8295e1b8eb74cd13f130e5ab1475} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Duration@{set\+Duration}}
+\index{set\+Duration@{set\+Duration}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Duration()}{setDuration()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 268 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_abc96649d0b4431608ceb524f9db3b73b}{}\label{classocra_1_1Trajectory_abc96649d0b4431608ceb524f9db3b73b} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Duration@{set\+Duration}}
+\index{set\+Duration@{set\+Duration}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Duration()}{setDuration()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Duration (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})}
+
+
+
+Definition at line 285 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a617400d2591ef575f20ca2b431151ace}{}\label{classocra_1_1Trajectory_a617400d2591ef575f20ca2b431151ace} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Max\+Acceleration@{set\+Max\+Acceleration}}
+\index{set\+Max\+Acceleration@{set\+Max\+Acceleration}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Max\+Acceleration()}{setMaxAcceleration()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Max\+Acceleration (\begin{DoxyParamCaption}\item[{double}]{new\+Max\+Acc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 168 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a0fa531fd1f33f142a7d1b3324a478cb9}{}\label{classocra_1_1Trajectory_a0fa531fd1f33f142a7d1b3324a478cb9} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Max\+Acceleration@{set\+Max\+Acceleration}}
+\index{set\+Max\+Acceleration@{set\+Max\+Acceleration}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Max\+Acceleration()}{setMaxAcceleration()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Max\+Acceleration (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{new\+Max\+Acc }\end{DoxyParamCaption})}
+
+
+
+Definition at line 173 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a12e4348201fbdc32d34ce1627d6da1fd}{}\label{classocra_1_1Trajectory_a12e4348201fbdc32d34ce1627d6da1fd} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Max\+Velocity@{set\+Max\+Velocity}}
+\index{set\+Max\+Velocity@{set\+Max\+Velocity}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Max\+Velocity()}{setMaxVelocity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Max\+Velocity (\begin{DoxyParamCaption}\item[{double}]{new\+Max\+Vel }\end{DoxyParamCaption})}
+
+
+
+Definition at line 148 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_accba854a05f9b17859c0a7f2e0820958}{}\label{classocra_1_1Trajectory_accba854a05f9b17859c0a7f2e0820958} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Max\+Velocity@{set\+Max\+Velocity}}
+\index{set\+Max\+Velocity@{set\+Max\+Velocity}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Max\+Velocity()}{setMaxVelocity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Max\+Velocity (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{new\+Max\+Vel }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_af8ae6008824f92f5de31edf0944f4fbd}{}\label{classocra_1_1Trajectory_af8ae6008824f92f5de31edf0944f4fbd} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Waypoints@{set\+Waypoints}}
+\index{set\+Waypoints@{set\+Waypoints}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Waypoints()}{setWaypoints()}\hspace{0.1cm}{\footnotesize\ttfamily [1/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Waypoints (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ double $>$ \&}]{starting\+Double\+Vec,  }\item[{const std\+::vector$<$ double $>$ \&}]{ending\+Double\+Vec,  }\item[{const int}]{waypoint\+Selector = {\ttfamily 0},  }\item[{bool}]{ends\+With\+Quaternion = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 28 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a941a5f6357d5ee707d703357eb525d6e}{}\label{classocra_1_1Trajectory_a941a5f6357d5ee707d703357eb525d6e} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Waypoints@{set\+Waypoints}}
+\index{set\+Waypoints@{set\+Waypoints}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Waypoints()}{setWaypoints()}\hspace{0.1cm}{\footnotesize\ttfamily [2/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Waypoints (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{starting\+Vector,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{ending\+Vector,  }\item[{bool}]{ends\+With\+Quaternion = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 56 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a8d9de492efb89ff6a05f66c2498fd5e6}{}\label{classocra_1_1Trajectory_a8d9de492efb89ff6a05f66c2498fd5e6} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Waypoints@{set\+Waypoints}}
+\index{set\+Waypoints@{set\+Waypoints}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Waypoints()}{setWaypoints()}\hspace{0.1cm}{\footnotesize\ttfamily [3/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Waypoints (\begin{DoxyParamCaption}\item[{Eigen\+::\+Displacementd \&}]{starting\+Displacement,  }\item[{Eigen\+::\+Displacementd \&}]{ending\+Displacement,  }\item[{bool}]{ends\+With\+Quaternion = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 74 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_ad787da3056374594ce65df54795deae8}{}\label{classocra_1_1Trajectory_ad787da3056374594ce65df54795deae8} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Waypoints@{set\+Waypoints}}
+\index{set\+Waypoints@{set\+Waypoints}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Waypoints()}{setWaypoints()}\hspace{0.1cm}{\footnotesize\ttfamily [4/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Waypoints (\begin{DoxyParamCaption}\item[{Eigen\+::\+Rotation3d \&}]{starting\+Orientation,  }\item[{Eigen\+::\+Rotation3d \&}]{ending\+Orientation,  }\item[{bool}]{ends\+With\+Quaternion = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 91 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_a24754dba11643737f02be0bd7c16023e}{}\label{classocra_1_1Trajectory_a24754dba11643737f02be0bd7c16023e} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Waypoints@{set\+Waypoints}}
+\index{set\+Waypoints@{set\+Waypoints}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Waypoints()}{setWaypoints()}\hspace{0.1cm}{\footnotesize\ttfamily [5/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Waypoints (\begin{DoxyParamCaption}\item[{const std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{\+\_\+waypoints,  }\item[{bool}]{\+\_\+ends\+With\+Quaternion = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Initialization function
+
+Definition at line 109 of file Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1Trajectory_adde90667693b2648420917e80a39d1e6}{}\label{classocra_1_1Trajectory_adde90667693b2648420917e80a39d1e6} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!set\+Waypoints@{set\+Waypoints}}
+\index{set\+Waypoints@{set\+Waypoints}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Waypoints()}{setWaypoints()}\hspace{0.1cm}{\footnotesize\ttfamily [6/6]}}
+{\footnotesize\ttfamily void ocra\+::\+Trajectory\+::set\+Waypoints (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{waypoints,  }\item[{bool}]{ends\+With\+Quaternion = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Initialization function
+
+Definition at line 127 of file Trajectory.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1Trajectory_a2eb6b279dca80ba684969374ddea0d8c}{}\label{classocra_1_1Trajectory_a2eb6b279dca80ba684969374ddea0d8c} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!current\+Waypoint\+Index@{current\+Waypoint\+Index}}
+\index{current\+Waypoint\+Index@{current\+Waypoint\+Index}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{current\+Waypoint\+Index}{currentWaypointIndex}}
+{\footnotesize\ttfamily int ocra\+::\+Trajectory\+::current\+Waypoint\+Index\hspace{0.3cm}{\ttfamily [protected]}}
+
+used for keeping track of waypoints during execution 
+
+Definition at line 116 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a4f230978860de9473f83df3b8ae31ad9}{}\label{classocra_1_1Trajectory_a4f230978860de9473f83df3b8ae31ad9} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!ends\+With\+Quaternion@{ends\+With\+Quaternion}}
+\index{ends\+With\+Quaternion@{ends\+With\+Quaternion}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{ends\+With\+Quaternion}{endsWithQuaternion}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::ends\+With\+Quaternion\hspace{0.3cm}{\ttfamily [protected]}}
+
+weather or not there is a quaternion component of the trajectory -\/ this is needed for interpolation considerations 
+
+Definition at line 114 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a9dbb0a7d6ecaeaf98b915193a8c853d7}{}\label{classocra_1_1Trajectory_a9dbb0a7d6ecaeaf98b915193a8c853d7} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!maximum\+Acceleration@{maximum\+Acceleration}}
+\index{maximum\+Acceleration@{maximum\+Acceleration}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{maximum\+Acceleration}{maximumAcceleration}}
+{\footnotesize\ttfamily double ocra\+::\+Trajectory\+::maximum\+Acceleration\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 106 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a86d9d30e890716e117ab2d3b4b328f3d}{}\label{classocra_1_1Trajectory_a86d9d30e890716e117ab2d3b4b328f3d} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!maximum\+Acceleration\+Vector@{maximum\+Acceleration\+Vector}}
+\index{maximum\+Acceleration\+Vector@{maximum\+Acceleration\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{maximum\+Acceleration\+Vector}{maximumAccelerationVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Trajectory\+::maximum\+Acceleration\+Vector\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 107 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_ad79f3742bec59a80c3d641ccdc08012d}{}\label{classocra_1_1Trajectory_ad79f3742bec59a80c3d641ccdc08012d} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!maximum\+Velocity@{maximum\+Velocity}}
+\index{maximum\+Velocity@{maximum\+Velocity}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{maximum\+Velocity}{maximumVelocity}}
+{\footnotesize\ttfamily double ocra\+::\+Trajectory\+::maximum\+Velocity\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 102 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a206795c8d7e3bcb38b893d69fe0fa336}{}\label{classocra_1_1Trajectory_a206795c8d7e3bcb38b893d69fe0fa336} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!maximum\+Velocity\+Vector@{maximum\+Velocity\+Vector}}
+\index{maximum\+Velocity\+Vector@{maximum\+Velocity\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{maximum\+Velocity\+Vector}{maximumVelocityVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Trajectory\+::maximum\+Velocity\+Vector\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 105 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a6c5df48ec92b0a64dc39091bc0c17199}{}\label{classocra_1_1Trajectory_a6c5df48ec92b0a64dc39091bc0c17199} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!n\+DoF@{n\+DoF}}
+\index{n\+DoF@{n\+DoF}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{n\+DoF}{nDoF}}
+{\footnotesize\ttfamily int ocra\+::\+Trajectory\+::n\+DoF\hspace{0.3cm}{\ttfamily [protected]}}
+
+the number of Degrees of Freedom (DoF) of the trajectory 
+
+Definition at line 112 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a6ea59dbc9549f00f95a05581dea36415}{}\label{classocra_1_1Trajectory_a6ea59dbc9549f00f95a05581dea36415} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!non\+Rotation\+Dof@{non\+Rotation\+Dof}}
+\index{non\+Rotation\+Dof@{non\+Rotation\+Dof}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{non\+Rotation\+Dof}{nonRotationDof}}
+{\footnotesize\ttfamily int ocra\+::\+Trajectory\+::non\+Rotation\+Dof\hspace{0.3cm}{\ttfamily [protected]}}
+
+the number of DoF which are not part of the quaternion 
+
+Definition at line 117 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a233933b988029ac1a6ae24b58e59bf3e}{}\label{classocra_1_1Trajectory_a233933b988029ac1a6ae24b58e59bf3e} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!n\+Waypoints@{n\+Waypoints}}
+\index{n\+Waypoints@{n\+Waypoints}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{n\+Waypoints}{nWaypoints}}
+{\footnotesize\ttfamily int ocra\+::\+Trajectory\+::n\+Waypoints\hspace{0.3cm}{\ttfamily [protected]}}
+
+the total number of waypoints 
+
+Definition at line 113 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a7601711560c35d3096ed541708cce691}{}\label{classocra_1_1Trajectory_a7601711560c35d3096ed541708cce691} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!point\+To\+Point\+Duration@{point\+To\+Point\+Duration}}
+\index{point\+To\+Point\+Duration@{point\+To\+Point\+Duration}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{point\+To\+Point\+Duration}{pointToPointDuration}}
+{\footnotesize\ttfamily double ocra\+::\+Trajectory\+::point\+To\+Point\+Duration\hspace{0.3cm}{\ttfamily [protected]}}
+
+the total duration between the current two waypoints 
+
+Definition at line 121 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_ad00d173bd78dc9ff365736e751fa3ef8}{}\label{classocra_1_1Trajectory_ad00d173bd78dc9ff365736e751fa3ef8} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!point\+To\+Point\+Duration\+Vector@{point\+To\+Point\+Duration\+Vector}}
+\index{point\+To\+Point\+Duration\+Vector@{point\+To\+Point\+Duration\+Vector}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{point\+To\+Point\+Duration\+Vector}{pointToPointDurationVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Trajectory\+::point\+To\+Point\+Duration\+Vector\hspace{0.3cm}{\ttfamily [protected]}}
+
+the estimated durations between points 
+
+Definition at line 120 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_af07103499262cbe56eba69a713e4f3b3}{}\label{classocra_1_1Trajectory_af07103499262cbe56eba69a713e4f3b3} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!start\+Trigger@{start\+Trigger}}
+\index{start\+Trigger@{start\+Trigger}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{start\+Trigger}{startTrigger}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::start\+Trigger\hspace{0.3cm}{\ttfamily [protected]}}
+
+used for zeroing the trajectory time 
+
+Definition at line 115 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_ae3367f25d52a9b411a86f75a7b7d06ca}{}\label{classocra_1_1Trajectory_ae3367f25d52a9b411a86f75a7b7d06ca} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!trajectory\+Finished@{trajectory\+Finished}}
+\index{trajectory\+Finished@{trajectory\+Finished}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{trajectory\+Finished}{trajectoryFinished}}
+{\footnotesize\ttfamily bool ocra\+::\+Trajectory\+::trajectory\+Finished\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 123 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_a37630b26ba23826298167f37534ff6f3}{}\label{classocra_1_1Trajectory_a37630b26ba23826298167f37534ff6f3} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!waypoint\+List@{waypoint\+List}}
+\index{waypoint\+List@{waypoint\+List}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{waypoint\+List}{waypointList}}
+{\footnotesize\ttfamily std\+::list$<$Eigen\+::\+Vector\+Xd$>$ ocra\+::\+Trajectory\+::waypoint\+List\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 110 of file Trajectory.\+h.
+
+\hypertarget{classocra_1_1Trajectory_ab0514f8c3c8d4827b19dc863ff800b43}{}\label{classocra_1_1Trajectory_ab0514f8c3c8d4827b19dc863ff800b43} 
+\index{ocra\+::\+Trajectory@{ocra\+::\+Trajectory}!waypoints@{waypoints}}
+\index{waypoints@{waypoints}!ocra\+::\+Trajectory@{ocra\+::\+Trajectory}}
+\subsubsection{\texorpdfstring{waypoints}{waypoints}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Trajectory\+::waypoints\hspace{0.3cm}{\ttfamily [protected]}}
+
+the trajectory waypoints 
+
+Definition at line 111 of file Trajectory.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Trajectory_8h}{Trajectory.\+h}\item 
+\hyperlink{Trajectory_8cpp}{Trajectory.\+cpp}\end{DoxyCompactItemize}

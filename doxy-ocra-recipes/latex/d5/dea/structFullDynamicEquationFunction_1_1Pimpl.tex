@@ -1,0 +1,149 @@
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl}{}\section{ocra\+:\+:Full\+Dynamic\+Equation\+Function\+:\+:Pimpl Struct Reference}
+\label{structFullDynamicEquationFunction_1_1Pimpl}\index{ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structFullDynamicEquationFunction_1_1Pimpl_acc3b35606d52aa163f27d80f49cb3aaf}{Pimpl} (const Model \&model)
+\item 
+void \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_a4d1df4cadec603942aeb750212a2d258}{update\+Reduce\+Problem\+Data} (const Eigen\+::\+Matrix\+Xd \&\+\_\+jacobian, const Eigen\+::\+Vector\+Xd \&\+\_\+b)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const Model \& \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_a180b0f0401cc9ff23b24d974823215d9}{\+\_\+model}
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_a952d62f65cebf67e50d0d6a091f937c4}{\+\_\+tau}
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_ab19caa3b14b35bba6a5dc5ea490cb7b4}{\+\_\+fc}
+\item 
+\hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_a795bb07591fdf52c4b60cccfb6b3e811}{\+\_\+chi}
+\item 
+bool \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_a2712281ce355bde0730d888d8e92b2f8}{\+\_\+reduced\+Problem\+Data\+Are\+Up\+To\+Date}
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_a66a532ac843e6bb0255918262e48a947}{\+\_\+\+Inertia\+Matrix\+Inverse\+JchiT}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_a5b5154c8b3e5725507192b9055e2b298}{\+\_\+\+Inertia\+Matrix\+Inverse\+Lin\+Non\+Lin\+Grav}
+\item 
+bool \hyperlink{structFullDynamicEquationFunction_1_1Pimpl_a7a8eb59e31eca20e45bd63f2975ff27b}{\+\_\+use\+Grav}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_acc3b35606d52aa163f27d80f49cb3aaf}{}\label{structFullDynamicEquationFunction_1_1Pimpl_acc3b35606d52aa163f27d80f49cb3aaf} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!Pimpl@{Pimpl}}
+\index{Pimpl@{Pimpl}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Pimpl()}{Pimpl()}}
+{\footnotesize\ttfamily ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+Pimpl (\begin{DoxyParamCaption}\item[{const Model \&}]{model }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 31 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_a4d1df4cadec603942aeb750212a2d258}{}\label{structFullDynamicEquationFunction_1_1Pimpl_a4d1df4cadec603942aeb750212a2d258} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!update\+Reduce\+Problem\+Data@{update\+Reduce\+Problem\+Data}}
+\index{update\+Reduce\+Problem\+Data@{update\+Reduce\+Problem\+Data}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{update\+Reduce\+Problem\+Data()}{updateReduceProblemData()}}
+{\footnotesize\ttfamily void ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::update\+Reduce\+Problem\+Data (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+jacobian,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 44 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_a795bb07591fdf52c4b60cccfb6b3e811}{}\label{structFullDynamicEquationFunction_1_1Pimpl_a795bb07591fdf52c4b60cccfb6b3e811} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!\+\_\+chi@{\+\_\+chi}}
+\index{\+\_\+chi@{\+\_\+chi}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{\+\_\+chi}{\_chi}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1CompositeVariable}{Composite\+Variable} ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+\_\+chi}
+
+
+
+Definition at line 23 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_ab19caa3b14b35bba6a5dc5ea490cb7b4}{}\label{structFullDynamicEquationFunction_1_1Pimpl_ab19caa3b14b35bba6a5dc5ea490cb7b4} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!\+\_\+fc@{\+\_\+fc}}
+\index{\+\_\+fc@{\+\_\+fc}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{\+\_\+fc}{\_fc}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable}\& ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+\_\+fc}
+
+
+
+Definition at line 20 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_a66a532ac843e6bb0255918262e48a947}{}\label{structFullDynamicEquationFunction_1_1Pimpl_a66a532ac843e6bb0255918262e48a947} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!\+\_\+\+Inertia\+Matrix\+Inverse\+JchiT@{\+\_\+\+Inertia\+Matrix\+Inverse\+JchiT}}
+\index{\+\_\+\+Inertia\+Matrix\+Inverse\+JchiT@{\+\_\+\+Inertia\+Matrix\+Inverse\+JchiT}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{\+\_\+\+Inertia\+Matrix\+Inverse\+JchiT}{\_InertiaMatrixInverseJchiT}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+\_\+\+Inertia\+Matrix\+Inverse\+JchiT}
+
+
+
+Definition at line 26 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_a5b5154c8b3e5725507192b9055e2b298}{}\label{structFullDynamicEquationFunction_1_1Pimpl_a5b5154c8b3e5725507192b9055e2b298} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!\+\_\+\+Inertia\+Matrix\+Inverse\+Lin\+Non\+Lin\+Grav@{\+\_\+\+Inertia\+Matrix\+Inverse\+Lin\+Non\+Lin\+Grav}}
+\index{\+\_\+\+Inertia\+Matrix\+Inverse\+Lin\+Non\+Lin\+Grav@{\+\_\+\+Inertia\+Matrix\+Inverse\+Lin\+Non\+Lin\+Grav}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{\+\_\+\+Inertia\+Matrix\+Inverse\+Lin\+Non\+Lin\+Grav}{\_InertiaMatrixInverseLinNonLinGrav}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+\_\+\+Inertia\+Matrix\+Inverse\+Lin\+Non\+Lin\+Grav}
+
+
+
+Definition at line 27 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_a180b0f0401cc9ff23b24d974823215d9}{}\label{structFullDynamicEquationFunction_1_1Pimpl_a180b0f0401cc9ff23b24d974823215d9} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!\+\_\+model@{\+\_\+model}}
+\index{\+\_\+model@{\+\_\+model}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{\+\_\+model}{\_model}}
+{\footnotesize\ttfamily const Model\& ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+\_\+model}
+
+
+
+Definition at line 18 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_a2712281ce355bde0730d888d8e92b2f8}{}\label{structFullDynamicEquationFunction_1_1Pimpl_a2712281ce355bde0730d888d8e92b2f8} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!\+\_\+reduced\+Problem\+Data\+Are\+Up\+To\+Date@{\+\_\+reduced\+Problem\+Data\+Are\+Up\+To\+Date}}
+\index{\+\_\+reduced\+Problem\+Data\+Are\+Up\+To\+Date@{\+\_\+reduced\+Problem\+Data\+Are\+Up\+To\+Date}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{\+\_\+reduced\+Problem\+Data\+Are\+Up\+To\+Date}{\_reducedProblemDataAreUpToDate}}
+{\footnotesize\ttfamily bool ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+\_\+reduced\+Problem\+Data\+Are\+Up\+To\+Date}
+
+
+
+Definition at line 24 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_a952d62f65cebf67e50d0d6a091f937c4}{}\label{structFullDynamicEquationFunction_1_1Pimpl_a952d62f65cebf67e50d0d6a091f937c4} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!\+\_\+tau@{\+\_\+tau}}
+\index{\+\_\+tau@{\+\_\+tau}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{\+\_\+tau}{\_tau}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable}\& ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+\_\+tau}
+
+
+
+Definition at line 19 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{structFullDynamicEquationFunction_1_1Pimpl_a7a8eb59e31eca20e45bd63f2975ff27b}{}\label{structFullDynamicEquationFunction_1_1Pimpl_a7a8eb59e31eca20e45bd63f2975ff27b} 
+\index{Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}!\+\_\+use\+Grav@{\+\_\+use\+Grav}}
+\index{\+\_\+use\+Grav@{\+\_\+use\+Grav}!Full\+Dynamic\+Equation\+Function\+::\+Pimpl@{Full\+Dynamic\+Equation\+Function\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{\+\_\+use\+Grav}{\_useGrav}}
+{\footnotesize\ttfamily bool ocra\+::\+Full\+Dynamic\+Equation\+Function\+::\+Pimpl\+::\+\_\+use\+Grav}
+
+
+
+Definition at line 28 of file Full\+Dynamic\+Equation\+Function.\+cpp.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{FullDynamicEquationFunction_8cpp}{Full\+Dynamic\+Equation\+Function.\+cpp}\end{DoxyCompactItemize}

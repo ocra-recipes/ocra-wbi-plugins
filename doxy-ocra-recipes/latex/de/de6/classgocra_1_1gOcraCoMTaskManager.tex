@@ -1,0 +1,276 @@
+\hypertarget{classgocra_1_1gOcraCoMTaskManager}{}\section{gocra\+:\+:g\+Ocra\+Co\+M\+Task\+Manager Class Reference}
+\label{classgocra_1_1gOcraCoMTaskManager}\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+
+
+Task Manager for the Center of Mass (CoM) task with the g\+Ocra Controller.  
+
+
+
+
+{\ttfamily \#include $<$g\+Ocra\+Co\+M\+Task\+Manager.\+h$>$}
+
+Inheritance diagram for gocra\+:\+:g\+Ocra\+Co\+M\+Task\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{de/de6/classgocra_1_1gOcraCoMTaskManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgocra_1_1gOcraCoMTaskManager_a7e9edb0004e6c63e689fcc3f260bdf96}{g\+Ocra\+Co\+M\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{ocra\+::\+E\+Cartesian\+Dof} axes, double stiffness, double damping)
+\item 
+\hyperlink{classgocra_1_1gOcraCoMTaskManager_a13a282eaeb3edb57adee2b5973f9ad71}{g\+Ocra\+Co\+M\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{ocra\+::\+E\+Cartesian\+Dof} axes, double stiffness, double damping, Eigen\+::\+Vector3d pos\+Des)
+\item 
+\hyperlink{classgocra_1_1gOcraCoMTaskManager_a4088d516f4de3db74ccef3bb4560f3fa}{g\+Ocra\+Co\+M\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{ocra\+::\+E\+Cartesian\+Dof} axes, double stiffness, double damping, Eigen\+::\+Vector3d pos\+Des, Eigen\+::\+Vector3d vel\+Des, Eigen\+::\+Vector3d acc\+Des)
+\item 
+\hyperlink{classgocra_1_1gOcraCoMTaskManager_ae1de7bee1de0ccd0b904baccdd4ca9c0}{$\sim$g\+Ocra\+Co\+M\+Task\+Manager} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraCoMTaskManager_a413a7722455a89c99c4efd11e8226104}{set\+State} (const Eigen\+::\+Vector3d \&position)
+\item 
+void \hyperlink{classgocra_1_1gOcraCoMTaskManager_a652fe54cce0b1e88aba3ed0b07da1bc4}{set\+State} (const Eigen\+::\+Vector3d \&position, const Eigen\+::\+Vector3d \&velocity, const Eigen\+::\+Vector3d \&acceleration)
+\item 
+void \hyperlink{classgocra_1_1gOcraCoMTaskManager_a0a2649bf8ce377a8af44e13a3571f670}{activate} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraCoMTaskManager_aec4b5fefd71eabb7ec71d0801a5bbf5f}{deactivate} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraCoMTaskManager_a27aec28ef1c0f7cc3e49e431c87ffe70}{set\+Stiffness} (double stiffness)
+\item 
+double \hyperlink{classgocra_1_1gOcraCoMTaskManager_afc838311dae748d89ef76749192b2153}{get\+Stiffness} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraCoMTaskManager_afe1e6ca547d469d3b504fccad7a9567d}{set\+Damping} (double damping)
+\item 
+double \hyperlink{classgocra_1_1gOcraCoMTaskManager_a9df173026478a08d1afa64f32fab2c01}{get\+Damping} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classgocra_1_1gOcraCoMTaskManager_a48cd88dc2fa3db834d3d4a17d39a8c30}{get\+Task\+Error} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Task Manager for the Center of Mass (CoM) task with the g\+Ocra Controller. 
+
+
+
+Definition at line 17 of file g\+Ocra\+Co\+M\+Task\+Manager.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a7e9edb0004e6c63e689fcc3f260bdf96}{}\label{classgocra_1_1gOcraCoMTaskManager_a7e9edb0004e6c63e689fcc3f260bdf96} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!g\+Ocra\+Co\+M\+Task\+Manager@{g\+Ocra\+Co\+M\+Task\+Manager}}
+\index{g\+Ocra\+Co\+M\+Task\+Manager@{g\+Ocra\+Co\+M\+Task\+Manager}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Co\+M\+Task\+Manager()}{gOcraCoMTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::g\+Ocra\+Co\+M\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{ocra\+::\+E\+Cartesian\+Dof}}]{\+\_\+axes,  }\item[{double}]{\+\_\+stiffness,  }\item[{double}]{\+\_\+damping }\end{DoxyParamCaption})}
+
+Base constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em \+\_\+model} & ocra model to setup the task \\
+\hline
+{\em \+\_\+task\+Name} & Name of the task \\
+\hline
+{\em \+\_\+stiffness} & Stiffness constant for task \\
+\hline
+{\em \+\_\+damping} & Damping constant for task \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 14 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a13a282eaeb3edb57adee2b5973f9ad71}{}\label{classgocra_1_1gOcraCoMTaskManager_a13a282eaeb3edb57adee2b5973f9ad71} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!g\+Ocra\+Co\+M\+Task\+Manager@{g\+Ocra\+Co\+M\+Task\+Manager}}
+\index{g\+Ocra\+Co\+M\+Task\+Manager@{g\+Ocra\+Co\+M\+Task\+Manager}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Co\+M\+Task\+Manager()}{gOcraCoMTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::g\+Ocra\+Co\+M\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{ocra\+::\+E\+Cartesian\+Dof}}]{\+\_\+axes,  }\item[{double}]{\+\_\+stiffness,  }\item[{double}]{\+\_\+damping,  }\item[{Eigen\+::\+Vector3d}]{\+\_\+pos\+Des }\end{DoxyParamCaption})}
+
+Constructor with initial desired position (in 3D cartesian space)
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em \+\_\+model} & ocra model to setup the task \\
+\hline
+{\em \+\_\+task\+Name} & Name of the task \\
+\hline
+{\em \+\_\+stiffness} & Stiffness constant for task \\
+\hline
+{\em \+\_\+damping} & Damping constant for task \\
+\hline
+{\em \+\_\+pos\+Des} & Vector for desired position \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 29 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a4088d516f4de3db74ccef3bb4560f3fa}{}\label{classgocra_1_1gOcraCoMTaskManager_a4088d516f4de3db74ccef3bb4560f3fa} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!g\+Ocra\+Co\+M\+Task\+Manager@{g\+Ocra\+Co\+M\+Task\+Manager}}
+\index{g\+Ocra\+Co\+M\+Task\+Manager@{g\+Ocra\+Co\+M\+Task\+Manager}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Co\+M\+Task\+Manager()}{gOcraCoMTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::g\+Ocra\+Co\+M\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{ctrl,  }\item[{const ocra\+::\+Model \&}]{model,  }\item[{const std\+::string \&}]{task\+Name,  }\item[{\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{ocra\+::\+E\+Cartesian\+Dof}}]{axes,  }\item[{double}]{stiffness,  }\item[{double}]{damping,  }\item[{Eigen\+::\+Vector3d}]{pos\+Des,  }\item[{Eigen\+::\+Vector3d}]{vel\+Des,  }\item[{Eigen\+::\+Vector3d}]{acc\+Des }\end{DoxyParamCaption})}
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_ae1de7bee1de0ccd0b904baccdd4ca9c0}{}\label{classgocra_1_1gOcraCoMTaskManager_ae1de7bee1de0ccd0b904baccdd4ca9c0} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!````~g\+Ocra\+Co\+M\+Task\+Manager@{$\sim$g\+Ocra\+Co\+M\+Task\+Manager}}
+\index{````~g\+Ocra\+Co\+M\+Task\+Manager@{$\sim$g\+Ocra\+Co\+M\+Task\+Manager}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$g\+Ocra\+Co\+M\+Task\+Manager()}{~gOcraCoMTaskManager()}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::$\sim$g\+Ocra\+Co\+M\+Task\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a0a2649bf8ce377a8af44e13a3571f670}{}\label{classgocra_1_1gOcraCoMTaskManager_a0a2649bf8ce377a8af44e13a3571f670} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!activate@{activate}}
+\index{activate@{activate}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{activate()}{activate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::activate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Activates the task 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a50cf1c408749d6e9dcfaf50bcab77dee}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 140 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_aec4b5fefd71eabb7ec71d0801a5bbf5f}{}\label{classgocra_1_1gOcraCoMTaskManager_aec4b5fefd71eabb7ec71d0801a5bbf5f} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{deactivate()}{deactivate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::deactivate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Deactivates the task 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a7cf9111e69aee47a39fe0f2976a20d6c}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 148 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a9df173026478a08d1afa64f32fab2c01}{}\label{classgocra_1_1gOcraCoMTaskManager_a9df173026478a08d1afa64f32fab2c01} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!get\+Damping@{get\+Damping}}
+\index{get\+Damping@{get\+Damping}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Damping()}{getDamping()}}
+{\footnotesize\ttfamily double gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::get\+Damping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the damping constant for this task
+
+\begin{DoxyReturn}{Returns}
+The damping for this task 
+\end{DoxyReturn}
+
+
+Definition at line 131 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_afc838311dae748d89ef76749192b2153}{}\label{classgocra_1_1gOcraCoMTaskManager_afc838311dae748d89ef76749192b2153} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!get\+Stiffness@{get\+Stiffness}}
+\index{get\+Stiffness@{get\+Stiffness}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Stiffness()}{getStiffness()}}
+{\footnotesize\ttfamily double gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::get\+Stiffness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the stiffness constant for this task
+
+\begin{DoxyReturn}{Returns}
+The stiffness for this task 
+\end{DoxyReturn}
+
+
+Definition at line 112 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a48cd88dc2fa3db834d3d4a17d39a8c30}{}\label{classgocra_1_1gOcraCoMTaskManager_a48cd88dc2fa3db834d3d4a17d39a8c30} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!get\+Task\+Error@{get\+Task\+Error}}
+\index{get\+Task\+Error@{get\+Task\+Error}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{get\+Task\+Error()}{getTaskError()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::get\+Task\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Gets the error for this task (C\+OM position error) 
+
+Reimplemented from \hyperlink{classgocra_1_1gOcraTaskManagerBase_a5c40a14b3a1d5a6519da422310d28f97}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 156 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_afe1e6ca547d469d3b504fccad7a9567d}{}\label{classgocra_1_1gOcraCoMTaskManager_afe1e6ca547d469d3b504fccad7a9567d} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::set\+Damping (\begin{DoxyParamCaption}\item[{double}]{damping }\end{DoxyParamCaption})}
+
+Sets the damping for this task
+
+
+\begin{DoxyParams}{Parameters}
+{\em damping} & Desired damping \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 122 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a413a7722455a89c99c4efd11e8226104}{}\label{classgocra_1_1gOcraCoMTaskManager_a413a7722455a89c99c4efd11e8226104} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!set\+State@{set\+State}}
+\index{set\+State@{set\+State}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+State()}{setState()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::set\+State (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector3d \&}]{position }\end{DoxyParamCaption})}
+
+Sets the position for the task, only the translational position
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Vector for desired position \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 79 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a652fe54cce0b1e88aba3ed0b07da1bc4}{}\label{classgocra_1_1gOcraCoMTaskManager_a652fe54cce0b1e88aba3ed0b07da1bc4} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!set\+State@{set\+State}}
+\index{set\+State@{set\+State}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+State()}{setState()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::set\+State (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector3d \&}]{position,  }\item[{const Eigen\+::\+Vector3d \&}]{velocity,  }\item[{const Eigen\+::\+Vector3d \&}]{acceleration }\end{DoxyParamCaption})}
+
+Sets the position, linear velocity and linear acceleration for the task
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Vector for desired position \\
+\hline
+{\em velocity} & Vector for desired linear velocity \\
+\hline
+{\em acceleration} & Vector for desired linear acceleration \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 90 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraCoMTaskManager_a27aec28ef1c0f7cc3e49e431c87ffe70}{}\label{classgocra_1_1gOcraCoMTaskManager_a27aec28ef1c0f7cc3e49e431c87ffe70} 
+\index{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!gocra\+::g\+Ocra\+Co\+M\+Task\+Manager@{gocra\+::g\+Ocra\+Co\+M\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Co\+M\+Task\+Manager\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{double}]{stiffness }\end{DoxyParamCaption})}
+
+Sets the stiffness for this task
+
+
+\begin{DoxyParams}{Parameters}
+{\em stiffness} & Desired stiffness \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 103 of file g\+Ocra\+Co\+M\+Task\+Manager.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{gOcraCoMTaskManager_8h}{g\+Ocra\+Co\+M\+Task\+Manager.\+h}\item 
+\hyperlink{gOcraCoMTaskManager_8cpp}{g\+Ocra\+Co\+M\+Task\+Manager.\+cpp}\end{DoxyCompactItemize}

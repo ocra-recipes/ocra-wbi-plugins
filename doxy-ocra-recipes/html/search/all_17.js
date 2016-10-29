@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['performances_2eh',['Performances.h',['../d8/d8a/wocra_2include_2wocra_2Performances_8h.html',1,'']]],
+  ['w',['W',['../d4/d5c/structocra_1_1TargetFrame_1_1Pimpl.html#a4ff4bfb5366d48f34539e73fa7b18351',1,'ocra::TargetFrame::Pimpl']]],
+  ['waypointlist',['waypointList',['../d2/d0d/classocra_1_1Trajectory.html#a37630b26ba23826298167f37534ff6f3',1,'ocra::Trajectory']]],
+  ['waypoints',['waypoints',['../d2/d0d/classocra_1_1Trajectory.html#ab0514f8c3c8d4827b19dc863ff800b43',1,'ocra::Trajectory']]],
+  ['weight',['weight',['../d9/d2f/classocra_1_1TaskBuilderOptions.html#a0c60b260526aa7bf2fdb3712cc7f612d',1,'ocra::TaskBuilderOptions::weight()'],['../df/d7f/structocra_1_1Task_1_1Pimpl.html#ab2c51ef740079f8fae0f8e3de1b20d08',1,'ocra::Task::Pimpl::weight()'],['../d7/d99/structgocra_1_1GHCJTTask_1_1Pimpl.html#a5bf2a2e00bd9406bb6a993b616a47d07',1,'gocra::GHCJTTask::Pimpl::weight()']]],
+  ['weightedsquaredistancefunction',['WeightedSquareDistanceFunction',['../d2/d31/classocra_1_1WeightedSquareDistanceFunction.html',1,'ocra']]],
+  ['weightedsquaredistancefunction',['WeightedSquareDistanceFunction',['../d2/d31/classocra_1_1WeightedSquareDistanceFunction.html#a25942322441c7bac8adb24d8f1d27905',1,'ocra::WeightedSquareDistanceFunction::WeightedSquareDistanceFunction(Variable &amp;x, double weight, const VectorBase &amp;reference)'],['../d2/d31/classocra_1_1WeightedSquareDistanceFunction.html#a1aca7da80ddc408d8194d32712418b89',1,'ocra::WeightedSquareDistanceFunction::WeightedSquareDistanceFunction(Variable &amp;x, const VectorBase1 &amp;weight, const VectorBase2 &amp;reference)']]],
+  ['weightedsquaredistancefunction_2ecpp',['WeightedSquareDistanceFunction.cpp',['../d0/d7c/WeightedSquareDistanceFunction_8cpp.html',1,'']]],
+  ['weightedsquaredistancefunction_2eh',['WeightedSquareDistanceFunction.h',['../d8/d6a/WeightedSquareDistanceFunction_8h.html',1,'']]],
+  ['weightvector',['weightVector',['../d9/d2f/classocra_1_1TaskBuilderOptions.html#ae86b78dda6e73227f5aeb0447f60158a',1,'ocra::TaskBuilderOptions']]],
+  ['whichpart',['whichPart',['../d2/d99/classocra_1_1FullState.html#a75ec7c039df8cb8608ebf34f7b779be5',1,'ocra::FullState']]],
+  ['wocra',['wocra',['../de/dc5/namespacewocra.html',1,'']]],
+  ['wocra_5fdebug_5fmode',['WOCRA_DEBUG_MODE',['../d4/dc1/WocraDebug_8h.html#aa27b6eea01155a9789cb294c3c5a7b37',1,'WocraDebug.h']]],
+  ['wocracontroller',['WocraController',['../db/d14/classwocra_1_1WocraController.html',1,'wocra']]],
+  ['wocracontroller',['WocraController',['../db/d14/classwocra_1_1WocraController.html#ae14fda387f6d308aead6ab7a59e82e74',1,'wocra::WocraController']]],
+  ['wocracontroller_2ecpp',['WocraController.cpp',['../d2/def/WocraController_8cpp.html',1,'']]],
+  ['wocracontroller_2eh',['WocraController.h',['../db/dc6/WocraController_8h.html',1,'']]],
+  ['wocradebug_2ecpp',['WocraDebug.cpp',['../dd/db4/WocraDebug_8cpp.html',1,'']]],
+  ['wocradebug_2eh',['WocraDebug.h',['../d4/dc1/WocraDebug_8h.html',1,'']]],
+  ['wocradebugtrace',['WocraDebugTrace',['../d0/d8c/classWocraDebugTrace.html',1,'WocraDebugTrace'],['../d0/d8c/classWocraDebugTrace.html#aedbe03cb1c6845ccadd27858fd6db063',1,'WocraDebugTrace::WocraDebugTrace()']]],
+  ['writeinfile',['writeInFile',['../de/d29/namespaceocra_1_1utils.html#a3f12986cd4d4a40293f6003d9a86a45c',1,'ocra::utils::writeInFile(const MatrixBase&lt; Derived &gt; &amp;m, const std::string &amp;fileName, bool app=false)'],['../de/d29/namespaceocra_1_1utils.html#ac3e209e5a700c28cc6e38d79113017f2',1,'ocra::utils::writeInFile(std::ostream &amp;s, const MatrixBase&lt; Derived &gt; &amp;m, int precision=-1, const std::string &amp;coeffSeparator=&quot; &quot;, const std::string &amp;rowSeparator=&quot;\, const std::string &amp;rowPrefix=&quot;&quot;, const std::string &amp;rowSuffix=&quot;&quot;, const std::string &amp;matPrefix=&quot;&quot;, const std::string &amp;matSuffix=&quot;&quot;)'],['../de/d29/namespaceocra_1_1utils.html#af94bc08a67cf20092611bb37f4528b28',1,'ocra::utils::writeInFile(std::ostream &amp;s, const MatrixBase&lt; Derived &gt; &amp;v, int precision=-1, const std::string &amp;coeffSeparator=&quot; &quot;, const std::string &amp;vectPrefix=&quot;&quot;, const std::string &amp;vectSuffix=&quot;&quot;)']]],
+  ['writeinfileforscilab',['writeInFileForScilab',['../de/d29/namespaceocra_1_1utils.html#a11933c4ad5ae5b9bdce3005941bdd433',1,'ocra::utils']]],
+  ['writeinstream',['writeInStream',['../d4/d43/classwocra_1_1PerformanceRecorder.html#a9b2a77a8d2598dbf76eb578b43b9a17d',1,'wocra::PerformanceRecorder::writeInStream()'],['../de/d36/classgocra_1_1PerformanceRecorder.html#a47f171510d0f7129bf588fe5c2417043',1,'gocra::PerformanceRecorder::writeInStream()']]],
+  ['writeperformanceinstream',['writePerformanceInStream',['../d2/d5e/classocra_1_1OneLevelSolver.html#a76c08041cc49d865ce2d68e6e8ae6a41',1,'ocra::OneLevelSolver::writePerformanceInStream()'],['../db/d14/classwocra_1_1WocraController.html#a9b296a995ba10ef66cc4416f34f4b675',1,'wocra::WocraController::writePerformanceInStream()'],['../d6/dbf/classgocra_1_1GHCJTController.html#a71c44a633f39e843d97fc7f97dddfce4',1,'gocra::GHCJTController::writePerformanceInStream()']]]
+];

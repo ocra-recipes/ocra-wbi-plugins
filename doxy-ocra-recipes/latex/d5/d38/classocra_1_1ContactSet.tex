@@ -1,0 +1,221 @@
+\hypertarget{classocra_1_1ContactSet}{}\section{ocra\+:\+:Contact\+Set Class Reference}
+\label{classocra_1_1ContactSet}\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+
+
+Contact task factory.  
+
+
+
+
+{\ttfamily \#include $<$Contact\+Set.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Contact\+Set\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d5/d38/classocra_1_1ContactSet}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ContactSet_aa1bc409bbd509f1b56ab6de851102435}{Contact\+Set} (const std\+::string \&name, const \hyperlink{classocra_1_1Controller}{Controller} \&factory, Segment\+Frame\+::\+Ptr body, double mu, double margin)
+\item 
+virtual \hyperlink{classocra_1_1ContactSet_ad41eb11994dbd12c9fc55997428e256f}{$\sim$\+Contact\+Set} ()
+\item 
+void \hyperlink{classocra_1_1ContactSet_ac6b33a6ece44daaa338cdf5a761b522a}{add\+Contact\+Frame} (const Eigen\+::\+Displacementd \&frame)
+\item 
+\hyperlink{classocra_1_1ContactConstraintFeature}{Contact\+Constraint\+Feature} \& \hyperlink{classocra_1_1ContactSet_a5b1374104097c642972daabe91b4b963}{get\+Body\+Feature} () const
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Task}{Task} $>$ \hyperlink{classocra_1_1ContactSet_a72517a1bde5c4d5e2f686803c9a1fe5d}{get\+Body\+Task} () const
+\item 
+const std\+::vector$<$ Segment\+Frame\+::\+Ptr $>$ \& \hyperlink{classocra_1_1ContactSet_ab0d2830d5710e02f1807033cbc9ba956}{get\+Points} () const
+\item 
+const std\+::vector$<$ Point\+Contact\+Feature\+::\+Ptr $>$ \& \hyperlink{classocra_1_1ContactSet_a8f5840a62ab7b1e0c6b938bc4b7b102b}{get\+Features} () const
+\item 
+const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Task}{Task} $>$ $>$ \& \hyperlink{classocra_1_1ContactSet_a5f3b18a88fc7fd4f0de7b0bb87e40c77}{get\+Tasks} () const
+\item 
+Segment\+Frame\+::\+Ptr \hyperlink{classocra_1_1ContactSet_ae0b5d92cc7baddf61eaebd45ffe20ba3}{get\+Body\+Frame} () const
+\item 
+double \hyperlink{classocra_1_1ContactSet_a8583db2b548f1fe3467115a1f2347c5f}{get\+Mu} () const
+\item 
+double \hyperlink{classocra_1_1ContactSet_a7f16dde129521e94ceb0fb091f5d840f}{get\+Margin} () const
+\item 
+int \hyperlink{classocra_1_1ContactSet_a0fa75dacb675c0133326ba27a63d4070}{get\+N\+Facets} () const
+\item 
+void \hyperlink{classocra_1_1ContactSet_a54d6c7d8c1266300f8a4f6d1be754630}{set\+Mu} (double mu)
+\item 
+void \hyperlink{classocra_1_1ContactSet_adb5aa2d4b3463d328d4687ca352b4c04}{set\+Margin} (double margin)
+\item 
+void \hyperlink{classocra_1_1ContactSet_a223ef9c14b40a257d026112af1a6b279}{set\+N\+Facets} (int n\+Facets)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Contact task factory. 
+
+Creates a set of contact This object must be used as a factory. It does not manage its memory, so you have to delete the created frames yourself. 
+
+Definition at line 59 of file Contact\+Set.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ContactSet_aa1bc409bbd509f1b56ab6de851102435}{}\label{classocra_1_1ContactSet_aa1bc409bbd509f1b56ab6de851102435} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!Contact\+Set@{Contact\+Set}}
+\index{Contact\+Set@{Contact\+Set}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{Contact\+Set()}{ContactSet()}}
+{\footnotesize\ttfamily ocra\+::\+Contact\+Set\+::\+Contact\+Set (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \hyperlink{classocra_1_1Controller}{Controller} \&}]{factory,  }\item[{Segment\+Frame\+::\+Ptr}]{body,  }\item[{double}]{mu,  }\item[{double}]{margin }\end{DoxyParamCaption})}
+
+
+
+Definition at line 7 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_ad41eb11994dbd12c9fc55997428e256f}{}\label{classocra_1_1ContactSet_ad41eb11994dbd12c9fc55997428e256f} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!````~Contact\+Set@{$\sim$\+Contact\+Set}}
+\index{````~Contact\+Set@{$\sim$\+Contact\+Set}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{$\sim$\+Contact\+Set()}{~ContactSet()}}
+{\footnotesize\ttfamily ocra\+::\+Contact\+Set\+::$\sim$\+Contact\+Set (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 21 of file Contact\+Set.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ContactSet_ac6b33a6ece44daaa338cdf5a761b522a}{}\label{classocra_1_1ContactSet_ac6b33a6ece44daaa338cdf5a761b522a} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!add\+Contact\+Frame@{add\+Contact\+Frame}}
+\index{add\+Contact\+Frame@{add\+Contact\+Frame}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{add\+Contact\+Frame()}{addContactFrame()}}
+{\footnotesize\ttfamily void ocra\+::\+Contact\+Set\+::add\+Contact\+Frame (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Displacementd \&}]{frame }\end{DoxyParamCaption})}
+
+
+
+Definition at line 25 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a5b1374104097c642972daabe91b4b963}{}\label{classocra_1_1ContactSet_a5b1374104097c642972daabe91b4b963} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+Body\+Feature@{get\+Body\+Feature}}
+\index{get\+Body\+Feature@{get\+Body\+Feature}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+Body\+Feature()}{getBodyFeature()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1ContactConstraintFeature}{Contact\+Constraint\+Feature} \& ocra\+::\+Contact\+Set\+::get\+Body\+Feature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 45 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_ae0b5d92cc7baddf61eaebd45ffe20ba3}{}\label{classocra_1_1ContactSet_ae0b5d92cc7baddf61eaebd45ffe20ba3} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+Body\+Frame@{get\+Body\+Frame}}
+\index{get\+Body\+Frame@{get\+Body\+Frame}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+Body\+Frame()}{getBodyFrame()}}
+{\footnotesize\ttfamily Segment\+Frame\+::\+Ptr ocra\+::\+Contact\+Set\+::get\+Body\+Frame (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 40 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a72517a1bde5c4d5e2f686803c9a1fe5d}{}\label{classocra_1_1ContactSet_a72517a1bde5c4d5e2f686803c9a1fe5d} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+Body\+Task@{get\+Body\+Task}}
+\index{get\+Body\+Task@{get\+Body\+Task}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+Body\+Task()}{getBodyTask()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Task}{Task} $>$ ocra\+::\+Contact\+Set\+::get\+Body\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 50 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a8f5840a62ab7b1e0c6b938bc4b7b102b}{}\label{classocra_1_1ContactSet_a8f5840a62ab7b1e0c6b938bc4b7b102b} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+Features@{get\+Features}}
+\index{get\+Features@{get\+Features}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+Features()}{getFeatures()}}
+{\footnotesize\ttfamily const std\+::vector$<$ Point\+Contact\+Feature\+::\+Ptr $>$ \& ocra\+::\+Contact\+Set\+::get\+Features (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 60 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a7f16dde129521e94ceb0fb091f5d840f}{}\label{classocra_1_1ContactSet_a7f16dde129521e94ceb0fb091f5d840f} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+Margin@{get\+Margin}}
+\index{get\+Margin@{get\+Margin}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+Margin()}{getMargin()}}
+{\footnotesize\ttfamily double ocra\+::\+Contact\+Set\+::get\+Margin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 85 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a8583db2b548f1fe3467115a1f2347c5f}{}\label{classocra_1_1ContactSet_a8583db2b548f1fe3467115a1f2347c5f} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+Mu@{get\+Mu}}
+\index{get\+Mu@{get\+Mu}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+Mu()}{getMu()}}
+{\footnotesize\ttfamily double ocra\+::\+Contact\+Set\+::get\+Mu (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 75 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a0fa75dacb675c0133326ba27a63d4070}{}\label{classocra_1_1ContactSet_a0fa75dacb675c0133326ba27a63d4070} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+N\+Facets@{get\+N\+Facets}}
+\index{get\+N\+Facets@{get\+N\+Facets}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+N\+Facets()}{getNFacets()}}
+{\footnotesize\ttfamily int ocra\+::\+Contact\+Set\+::get\+N\+Facets (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 95 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_ab0d2830d5710e02f1807033cbc9ba956}{}\label{classocra_1_1ContactSet_ab0d2830d5710e02f1807033cbc9ba956} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+Points@{get\+Points}}
+\index{get\+Points@{get\+Points}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+Points()}{getPoints()}}
+{\footnotesize\ttfamily const std\+::vector$<$ Segment\+Frame\+::\+Ptr $>$ \& ocra\+::\+Contact\+Set\+::get\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 55 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a5f3b18a88fc7fd4f0de7b0bb87e40c77}{}\label{classocra_1_1ContactSet_a5f3b18a88fc7fd4f0de7b0bb87e40c77} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!get\+Tasks@{get\+Tasks}}
+\index{get\+Tasks@{get\+Tasks}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{get\+Tasks()}{getTasks()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Task}{Task} $>$ $>$ \& ocra\+::\+Contact\+Set\+::get\+Tasks (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 65 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_adb5aa2d4b3463d328d4687ca352b4c04}{}\label{classocra_1_1ContactSet_adb5aa2d4b3463d328d4687ca352b4c04} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!set\+Margin@{set\+Margin}}
+\index{set\+Margin@{set\+Margin}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{set\+Margin()}{setMargin()}}
+{\footnotesize\ttfamily void ocra\+::\+Contact\+Set\+::set\+Margin (\begin{DoxyParamCaption}\item[{double}]{margin }\end{DoxyParamCaption})}
+
+
+
+Definition at line 80 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a54d6c7d8c1266300f8a4f6d1be754630}{}\label{classocra_1_1ContactSet_a54d6c7d8c1266300f8a4f6d1be754630} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!set\+Mu@{set\+Mu}}
+\index{set\+Mu@{set\+Mu}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{set\+Mu()}{setMu()}}
+{\footnotesize\ttfamily void ocra\+::\+Contact\+Set\+::set\+Mu (\begin{DoxyParamCaption}\item[{double}]{mu }\end{DoxyParamCaption})}
+
+
+
+Definition at line 70 of file Contact\+Set.\+cpp.
+
+\hypertarget{classocra_1_1ContactSet_a223ef9c14b40a257d026112af1a6b279}{}\label{classocra_1_1ContactSet_a223ef9c14b40a257d026112af1a6b279} 
+\index{ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}!set\+N\+Facets@{set\+N\+Facets}}
+\index{set\+N\+Facets@{set\+N\+Facets}!ocra\+::\+Contact\+Set@{ocra\+::\+Contact\+Set}}
+\subsubsection{\texorpdfstring{set\+N\+Facets()}{setNFacets()}}
+{\footnotesize\ttfamily void ocra\+::\+Contact\+Set\+::set\+N\+Facets (\begin{DoxyParamCaption}\item[{int}]{n\+Facets }\end{DoxyParamCaption})}
+
+
+
+Definition at line 90 of file Contact\+Set.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ContactSet_8h}{Contact\+Set.\+h}\item 
+\hyperlink{ContactSet_8cpp}{Contact\+Set.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,169 @@
+\hypertarget{classocra_1_1CoMFrame}{}\section{ocra\+:\+:Co\+M\+Frame Class Reference}
+\label{classocra_1_1CoMFrame}\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+
+
+Creates a frame whose center is at the CoM of the model and whose axes are parallel to the axes of the world frame.  
+
+
+
+
+{\ttfamily \#include $<$Control\+Frame.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Co\+M\+Frame\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d9/d52/classocra_1_1CoMFrame}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1CoMFrame_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1CoMFrame_a0b9177034d13b851238da7edfadcdf38}{Co\+M\+Frame} (const std\+::string \&name, const Model \&model)
+\item 
+Eigen\+::\+Displacementd \hyperlink{classocra_1_1CoMFrame_a809c05664b2e2abb489e930e27fbe2d4}{get\+Position} () const
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra_1_1CoMFrame_a02be3e73c64903d67b1e7ada25c468c5}{get\+Velocity} () const
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra_1_1CoMFrame_a9e59ca65720c553da5c75f484544829c}{get\+Acceleration} () const
+\item 
+Eigen\+::\+Wrenchd \hyperlink{classocra_1_1CoMFrame_a8e00462bbe13df6f595b7000d44240c6}{get\+Wrench} () const
+\item 
+Eigen\+::\+Matrix$<$ double, 6, Eigen\+::\+Dynamic $>$ \hyperlink{classocra_1_1CoMFrame_ab24f3400af3e8eb2a12d6597ff8a7a31}{get\+Jacobian} () const
+\item 
+bool \hyperlink{classocra_1_1CoMFrame_aaae3fd05da2f9e301dbe1c54b57fe624}{depends\+On\+Model\+Configuration} () const
+\item 
+const Model \& \hyperlink{classocra_1_1CoMFrame_afc280df9814e7eb2cf62f017f7bbfc2e}{get\+Model} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Creates a frame whose center is at the CoM of the model and whose axes are parallel to the axes of the world frame. 
+
+Definition at line 131 of file Control\+Frame.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1CoMFrame_a0b9177034d13b851238da7edfadcdf38}{}\label{classocra_1_1CoMFrame_a0b9177034d13b851238da7edfadcdf38} 
+\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}!Co\+M\+Frame@{Co\+M\+Frame}}
+\index{Co\+M\+Frame@{Co\+M\+Frame}!ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+\subsubsection{\texorpdfstring{Co\+M\+Frame()}{CoMFrame()}}
+{\footnotesize\ttfamily ocra\+::\+Co\+M\+Frame\+::\+Co\+M\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model }\end{DoxyParamCaption})}
+
+
+
+Definition at line 215 of file Control\+Frame.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1CoMFrame_aaae3fd05da2f9e301dbe1c54b57fe624}{}\label{classocra_1_1CoMFrame_aaae3fd05da2f9e301dbe1c54b57fe624} 
+\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}!depends\+On\+Model\+Configuration@{depends\+On\+Model\+Configuration}}
+\index{depends\+On\+Model\+Configuration@{depends\+On\+Model\+Configuration}!ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+\subsubsection{\texorpdfstring{depends\+On\+Model\+Configuration()}{dependsOnModelConfiguration()}}
+{\footnotesize\ttfamily bool ocra\+::\+Co\+M\+Frame\+::depends\+On\+Model\+Configuration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a65833d1f3f42bc8d452f8b1fb671e142}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 249 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1CoMFrame_a9e59ca65720c553da5c75f484544829c}{}\label{classocra_1_1CoMFrame_a9e59ca65720c553da5c75f484544829c} 
+\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}!get\+Acceleration@{get\+Acceleration}}
+\index{get\+Acceleration@{get\+Acceleration}!ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+\subsubsection{\texorpdfstring{get\+Acceleration()}{getAcceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd ocra\+::\+Co\+M\+Frame\+::get\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a0ceb7cd7c3fe90fa0ef311b96a6f5c88}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 231 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1CoMFrame_ab24f3400af3e8eb2a12d6597ff8a7a31}{}\label{classocra_1_1CoMFrame_ab24f3400af3e8eb2a12d6597ff8a7a31} 
+\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}!get\+Jacobian@{get\+Jacobian}}
+\index{get\+Jacobian@{get\+Jacobian}!ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+\subsubsection{\texorpdfstring{get\+Jacobian()}{getJacobian()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_ac73b015f9f7cb0c252c4d5c4800f559a}{Jacobian6d} ocra\+::\+Co\+M\+Frame\+::get\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a14e0b855979be5dbd360314f25191e77}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 241 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1CoMFrame_afc280df9814e7eb2cf62f017f7bbfc2e}{}\label{classocra_1_1CoMFrame_afc280df9814e7eb2cf62f017f7bbfc2e} 
+\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}!get\+Model@{get\+Model}}
+\index{get\+Model@{get\+Model}!ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+\subsubsection{\texorpdfstring{get\+Model()}{getModel()}}
+{\footnotesize\ttfamily const Model \& ocra\+::\+Co\+M\+Frame\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_ab8a1e5e3d96d7524112b4c88bf0bc5ee}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 254 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1CoMFrame_a809c05664b2e2abb489e930e27fbe2d4}{}\label{classocra_1_1CoMFrame_a809c05664b2e2abb489e930e27fbe2d4} 
+\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}!get\+Position@{get\+Position}}
+\index{get\+Position@{get\+Position}!ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+\subsubsection{\texorpdfstring{get\+Position()}{getPosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::\+Co\+M\+Frame\+::get\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_aaadbbfbcdd5b8e197a0f181ffb2fdcbe}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 221 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1CoMFrame_a02be3e73c64903d67b1e7ada25c468c5}{}\label{classocra_1_1CoMFrame_a02be3e73c64903d67b1e7ada25c468c5} 
+\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}!get\+Velocity@{get\+Velocity}}
+\index{get\+Velocity@{get\+Velocity}!ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+\subsubsection{\texorpdfstring{get\+Velocity()}{getVelocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd ocra\+::\+Co\+M\+Frame\+::get\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a398df839f75886867c86a8e70ac9bf24}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 226 of file Control\+Frame.\+cpp.
+
+\hypertarget{classocra_1_1CoMFrame_a8e00462bbe13df6f595b7000d44240c6}{}\label{classocra_1_1CoMFrame_a8e00462bbe13df6f595b7000d44240c6} 
+\index{ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}!get\+Wrench@{get\+Wrench}}
+\index{get\+Wrench@{get\+Wrench}!ocra\+::\+Co\+M\+Frame@{ocra\+::\+Co\+M\+Frame}}
+\subsubsection{\texorpdfstring{get\+Wrench()}{getWrench()}}
+{\footnotesize\ttfamily Eigen\+::\+Wrenchd ocra\+::\+Co\+M\+Frame\+::get\+Wrench (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1ControlFrame_a069aaf1eab98598fbffee263fcde0c56}{ocra\+::\+Control\+Frame}.
+
+
+
+Definition at line 236 of file Control\+Frame.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ControlFrame_8h}{Control\+Frame.\+h}\item 
+\hyperlink{ControlFrame_8cpp}{Control\+Frame.\+cpp}\end{DoxyCompactItemize}

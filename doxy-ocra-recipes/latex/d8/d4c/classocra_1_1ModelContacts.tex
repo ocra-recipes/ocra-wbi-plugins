@@ -1,0 +1,198 @@
+\hypertarget{classocra_1_1ModelContacts}{}\section{ocra\+:\+:Model\+Contacts Class Reference}
+\label{classocra_1_1ModelContacts}\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+
+
+Model\+Contacts class.  
+
+
+
+
+{\ttfamily \#include $<$Model\+Contacts.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Model\+Contacts\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{d8/d4c/classocra_1_1ModelContacts}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1ModelContacts_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ModelContacts_abf9089d7762205480b46005544883e60}{Model\+Contacts} (Model \&model)
+\item 
+\hyperlink{classocra_1_1ModelContacts_ab8ca6e653ccacdff73ae10e7c0750bbf}{$\sim$\+Model\+Contacts} ()
+\item 
+\hyperlink{classocra_1_1ModelContacts}{Model\+Contacts} \& \hyperlink{classocra_1_1ModelContacts_a209ae06f99698291a84e043fa7b8e32e}{add\+Contact\+Point} (\hyperlink{classocra_1_1Variable}{Variable} \&f, const \hyperlink{classocra_1_1Feature}{Feature} \&contact\+Feature)
+\item 
+\hyperlink{classocra_1_1ModelContacts}{Model\+Contacts} \& \hyperlink{classocra_1_1ModelContacts_a4e2267a563e01c78c9aff1fced5cb83b}{remove\+Contact\+Point} (\hyperlink{classocra_1_1Variable}{Variable} \&f)
+\item 
+void \hyperlink{classocra_1_1ModelContacts_ad633a3df5915ee16b3a55b8169e4006e}{remove\+All\+Contacts} ()
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1ModelContacts_a6668bfd6c112b849536b701cd2d1097c}{get\+Contact\+Forces\+Variable} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1ModelContacts_ac3c23337fdfac47ddf40b7e3332e31fc}{get\+Jct} () const
+\item 
+int \hyperlink{classocra_1_1ModelContacts_ab06a70136062c53c28344ce471f0bd73}{nb\+Contact\+Points} () const
+\item 
+std\+::pair$<$ const \hyperlink{classocra_1_1Variable}{Variable} $\ast$, const \hyperlink{classocra_1_1Feature}{Feature} $\ast$ $>$ \hyperlink{classocra_1_1ModelContacts_a6fde5f06051fafaebd07a1ebb80bd82c}{get\+Contact\+Point} (int index) const
+\item 
+const \hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1ModelContacts_aede709082b66b0c30aa57ac4cd7094ad}{get\+Contact\+Force\+Variable} (int index) const
+\item 
+const \hyperlink{classocra_1_1Feature}{Feature} \& \hyperlink{classocra_1_1ModelContacts_a40f66a2528a3f7c0538172987de7c919}{get\+Contact\+Feature} (int index) const
+\item 
+const Model \& \hyperlink{classocra_1_1ModelContacts_a188e822de7692fba999836b1ffb7f376}{get\+Model} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Model\+Contacts class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Concatenates the contact variables and jacobians for a model. This class is not necessary to handle contacts, but an be useful if a component of your controller handles all contact points as a whole. For instance, \hyperlink{classocra_1_1Task}{Task} objects will generally manipulate forces independently. But if you need to use a \hyperlink{classocra_1_1DynamicEquationFunction}{Dynamic\+Equation\+Function} in your control, then you have to update the \hyperlink{classocra_1_1ModelContacts}{Model\+Contacts} of your Model so that they are included in the dynamic equation of your model.
+
+NB\+: the forces considered here are applied by the manikin on the environment.
+
+T\+O\+DO\+: review update mechanism. 
+
+Definition at line 52 of file Model\+Contacts.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ModelContacts_abf9089d7762205480b46005544883e60}{}\label{classocra_1_1ModelContacts_abf9089d7762205480b46005544883e60} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!Model\+Contacts@{Model\+Contacts}}
+\index{Model\+Contacts@{Model\+Contacts}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{Model\+Contacts()}{ModelContacts()}}
+{\footnotesize\ttfamily ocra\+::\+Model\+Contacts\+::\+Model\+Contacts (\begin{DoxyParamCaption}\item[{Model \&}]{model }\end{DoxyParamCaption})}
+
+
+
+Definition at line 28 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_ab8ca6e653ccacdff73ae10e7c0750bbf}{}\label{classocra_1_1ModelContacts_ab8ca6e653ccacdff73ae10e7c0750bbf} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!````~Model\+Contacts@{$\sim$\+Model\+Contacts}}
+\index{````~Model\+Contacts@{$\sim$\+Model\+Contacts}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{$\sim$\+Model\+Contacts()}{~ModelContacts()}}
+{\footnotesize\ttfamily ocra\+::\+Model\+Contacts\+::$\sim$\+Model\+Contacts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 34 of file Model\+Contacts.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ModelContacts_a209ae06f99698291a84e043fa7b8e32e}{}\label{classocra_1_1ModelContacts_a209ae06f99698291a84e043fa7b8e32e} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!add\+Contact\+Point@{add\+Contact\+Point}}
+\index{add\+Contact\+Point@{add\+Contact\+Point}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{add\+Contact\+Point()}{addContactPoint()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1ModelContacts}{Model\+Contacts} \& ocra\+::\+Model\+Contacts\+::add\+Contact\+Point (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{f,  }\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{contact\+Feature }\end{DoxyParamCaption})}
+
+
+
+Definition at line 39 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_a40f66a2528a3f7c0538172987de7c919}{}\label{classocra_1_1ModelContacts_a40f66a2528a3f7c0538172987de7c919} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!get\+Contact\+Feature@{get\+Contact\+Feature}}
+\index{get\+Contact\+Feature@{get\+Contact\+Feature}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{get\+Contact\+Feature()}{getContactFeature()}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Feature}{Feature} \& ocra\+::\+Model\+Contacts\+::get\+Contact\+Feature (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 121 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_a6668bfd6c112b849536b701cd2d1097c}{}\label{classocra_1_1ModelContacts_a6668bfd6c112b849536b701cd2d1097c} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!get\+Contact\+Forces\+Variable@{get\+Contact\+Forces\+Variable}}
+\index{get\+Contact\+Forces\+Variable@{get\+Contact\+Forces\+Variable}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{get\+Contact\+Forces\+Variable()}{getContactForcesVariable()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable} \& ocra\+::\+Model\+Contacts\+::get\+Contact\+Forces\+Variable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 88 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_aede709082b66b0c30aa57ac4cd7094ad}{}\label{classocra_1_1ModelContacts_aede709082b66b0c30aa57ac4cd7094ad} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!get\+Contact\+Force\+Variable@{get\+Contact\+Force\+Variable}}
+\index{get\+Contact\+Force\+Variable@{get\+Contact\+Force\+Variable}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{get\+Contact\+Force\+Variable()}{getContactForceVariable()}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Variable}{Variable} \& ocra\+::\+Model\+Contacts\+::get\+Contact\+Force\+Variable (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 116 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_a6fde5f06051fafaebd07a1ebb80bd82c}{}\label{classocra_1_1ModelContacts_a6fde5f06051fafaebd07a1ebb80bd82c} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!get\+Contact\+Point@{get\+Contact\+Point}}
+\index{get\+Contact\+Point@{get\+Contact\+Point}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{get\+Contact\+Point()}{getContactPoint()}}
+{\footnotesize\ttfamily std\+::pair$<$ const \hyperlink{classocra_1_1Variable}{Variable} $\ast$, const \hyperlink{classocra_1_1Feature}{Feature} $\ast$ $>$ ocra\+::\+Model\+Contacts\+::get\+Contact\+Point (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 111 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_ac3c23337fdfac47ddf40b7e3332e31fc}{}\label{classocra_1_1ModelContacts_ac3c23337fdfac47ddf40b7e3332e31fc} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!get\+Jct@{get\+Jct}}
+\index{get\+Jct@{get\+Jct}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{get\+Jct()}{getJct()}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Model\+Contacts\+::get\+Jct (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 93 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_a188e822de7692fba999836b1ffb7f376}{}\label{classocra_1_1ModelContacts_a188e822de7692fba999836b1ffb7f376} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!get\+Model@{get\+Model}}
+\index{get\+Model@{get\+Model}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{get\+Model()}{getModel()}}
+{\footnotesize\ttfamily const Model \& ocra\+::\+Model\+Contacts\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 126 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_ab06a70136062c53c28344ce471f0bd73}{}\label{classocra_1_1ModelContacts_ab06a70136062c53c28344ce471f0bd73} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!nb\+Contact\+Points@{nb\+Contact\+Points}}
+\index{nb\+Contact\+Points@{nb\+Contact\+Points}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{nb\+Contact\+Points()}{nbContactPoints()}}
+{\footnotesize\ttfamily int ocra\+::\+Model\+Contacts\+::nb\+Contact\+Points (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 106 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_ad633a3df5915ee16b3a55b8169e4006e}{}\label{classocra_1_1ModelContacts_ad633a3df5915ee16b3a55b8169e4006e} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!remove\+All\+Contacts@{remove\+All\+Contacts}}
+\index{remove\+All\+Contacts@{remove\+All\+Contacts}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{remove\+All\+Contacts()}{removeAllContacts()}}
+{\footnotesize\ttfamily void ocra\+::\+Model\+Contacts\+::remove\+All\+Contacts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 76 of file Model\+Contacts.\+cpp.
+
+\hypertarget{classocra_1_1ModelContacts_a4e2267a563e01c78c9aff1fced5cb83b}{}\label{classocra_1_1ModelContacts_a4e2267a563e01c78c9aff1fced5cb83b} 
+\index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!remove\+Contact\+Point@{remove\+Contact\+Point}}
+\index{remove\+Contact\+Point@{remove\+Contact\+Point}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
+\subsubsection{\texorpdfstring{remove\+Contact\+Point()}{removeContactPoint()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1ModelContacts}{Model\+Contacts} \& ocra\+::\+Model\+Contacts\+::remove\+Contact\+Point (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{f }\end{DoxyParamCaption})}
+
+
+
+Definition at line 60 of file Model\+Contacts.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ModelContacts_8h}{Model\+Contacts.\+h}\item 
+\hyperlink{ModelContacts_8cpp}{Model\+Contacts.\+cpp}\end{DoxyCompactItemize}

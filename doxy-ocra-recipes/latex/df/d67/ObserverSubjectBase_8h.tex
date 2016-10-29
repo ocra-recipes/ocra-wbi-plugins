@@ -1,0 +1,64 @@
+\hypertarget{ObserverSubjectBase_8h}{}\section{Observer\+Subject\+Base.\+h File Reference}
+\label{ObserverSubjectBase_8h}\index{Observer\+Subject\+Base.\+h@{Observer\+Subject\+Base.\+h}}
+
+
+Declaration file of the Observer and Subject base classes.  
+
+
+{\ttfamily \#include $<$functional$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$boost/any.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/type\+\_\+traits/is\+\_\+class.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/type\+\_\+traits/is\+\_\+base\+\_\+of.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/static\+\_\+assert.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/ptr\+\_\+container/ptr\+\_\+vector.\+hpp$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base$<$ E\+V\+T $>$}
+\begin{DoxyCompactList}\small\item\em Base class for Observers with propagation system. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base$<$ E\+V\+T $>$}
+\item 
+class \hyperlink{classocra_1_1Invoker}{ocra\+::\+Invoker$<$ T, E\+V\+T, T\+\_\+is\+Derived\+From\+Observer\+Base $>$}
+\item 
+class \hyperlink{classocra_1_1Invoker_3_01T_00_01EVT_00_01true_01_4}{ocra\+::\+Invoker$<$ T, E\+V\+T, true $>$}
+\item 
+class \hyperlink{classocra_1_1Invoker_3_01T_00_01EVT_00_01false_01_4}{ocra\+::\+Invoker$<$ T, E\+V\+T, false $>$}
+\item 
+class \hyperlink{classocra_1_1Invoker_3_01void_00_01EVT_00_01false_01_4}{ocra\+::\+Invoker$<$ void, E\+V\+T, false $>$}
+\item 
+class \hyperlink{classocra_1_1Invoker_3_01void_00_01EVT_00_01true_01_4}{ocra\+::\+Invoker$<$ void, E\+V\+T, true $>$}
+\item 
+class \hyperlink{classocra_1_1SubjectBase}{ocra\+::\+Subject\+Base$<$ E\+V\+T $>$}
+\item 
+class \hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base$<$ E\+V\+T $>$}
+\begin{DoxyCompactList}\small\item\em Base class for Observers with propagation system. \end{DoxyCompactList}\item 
+struct \hyperlink{structocra_1_1SubjectBaseTraitsBase}{ocra\+::\+Subject\+Base\+Traits\+Base$<$ E\+V\+T $>$}
+\begin{DoxyCompactList}\small\item\em Base class for objects who can raise events,. \end{DoxyCompactList}\item 
+struct \hyperlink{structocra_1_1SubjectBaseTraits}{ocra\+::\+Subject\+Base\+Traits$<$ E\+V\+T, T $>$}
+\item 
+struct \hyperlink{structocra_1_1SubjectBaseTraits_3_01EVT_00_01void_01_4}{ocra\+::\+Subject\+Base\+Traits$<$ E\+V\+T, void $>$}
+\item 
+class \hyperlink{classocra_1_1SubjectBase}{ocra\+::\+Subject\+Base$<$ E\+V\+T $>$}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Declaration file of the Observer and Subject base classes. 
+
+Copyright (C) 2009 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+T\+S\+I/\+S\+R\+CI
+
+\begin{DoxyAuthor}{Author}
+Evrard Paul 
+
+Escande Adrien 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+10/06/14
+\end{DoxyDate}
+File history\+: 

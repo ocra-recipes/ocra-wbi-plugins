@@ -1,0 +1,87 @@
+\hypertarget{structocra_1_1Parenthood_1_1parentIs}{}\section{ocra\+:\+:Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+:\+:parent\+Is Struct Reference}
+\label{structocra_1_1Parenthood_1_1parentIs}\index{ocra\+::\+Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parent\+Is@{ocra\+::\+Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parent\+Is}}
+
+
+Functors to locate a parent or a child.  
+
+
+
+
+{\ttfamily \#include $<$Composite.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{structocra_1_1Parenthood_1_1parentIs_ad780e02e2e27c53bff75fb0ab0ea245e}{operator()} (const \hyperlink{classocra_1_1Parenthood_acdae20cb747190b5dc9dbe42290bde78}{parenthood\+\_\+t} $\ast$p) const
+\item 
+\hyperlink{structocra_1_1Parenthood_1_1parentIs_ada25b4ec30bebc7ca18b9c548e27a94f}{parent\+Is} (const \hyperlink{classocra_1_1Parenthood_a2f95265c57cf96bbc26afee2ac757dd6}{parent\+\_\+t} $\ast$parent)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const \hyperlink{classocra_1_1Parenthood_a2f95265c57cf96bbc26afee2ac757dd6}{parent\+\_\+t} $\ast$ \hyperlink{structocra_1_1Parenthood_1_1parentIs_a1c5033667c6742b8f4ba326918eb1f4d}{parent\+\_\+}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Component\+Derived, class Composite\+Derived, class Parenthood\+Info = No\+Info$>$\newline
+struct ocra\+::\+Parenthood$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parent\+Is}
+
+Functors to locate a parent or a child. 
+
+Example\+:  class My\+Composite \+: public My\+Component, public Composite$<$\+My\+Component, My\+Composite$>$ \{ ... \}; My\+Composite node; ... My\+Component child; attach(node, child);
+
+My\+Component\+::iterator it = std\+::find\+\_\+if(node.\+begin\+\_\+children(), node.\+end\+\_\+children(), My\+Component\+::parenthood\+\_\+t\+::child\+Is(\&child)); now it points to the parenthood objects that binds node and child ocra\+\_\+assert(\&it-\/$>$\hyperlink{classocra_1_1Parenthood_ac7e617fc08d7bed72fc6f90579b5cef7}{get\+Parent()} == \&node); ocra\+\_\+assert(\&it-\/$>$\hyperlink{classocra_1_1Parenthood_a7056661e3f0e6500141d305e6397f7c0}{get\+Child()} == \&child);  \begin{DoxyNote}{Note}
+The input range is must not contain null pointers! 
+\end{DoxyNote}
+
+
+Definition at line 300 of file Composite.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structocra_1_1Parenthood_1_1parentIs_ada25b4ec30bebc7ca18b9c548e27a94f}{}\label{structocra_1_1Parenthood_1_1parentIs_ada25b4ec30bebc7ca18b9c548e27a94f} 
+\index{ocra\+::\+Parenthood\+::parent\+Is@{ocra\+::\+Parenthood\+::parent\+Is}!parent\+Is@{parent\+Is}}
+\index{parent\+Is@{parent\+Is}!ocra\+::\+Parenthood\+::parent\+Is@{ocra\+::\+Parenthood\+::parent\+Is}}
+\subsubsection{\texorpdfstring{parent\+Is()}{parentIs()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived , class Composite\+Derived , class Parenthood\+Info  = No\+Info$>$ \\
+\hyperlink{classocra_1_1Parenthood}{ocra\+::\+Parenthood}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parent\+Is\+::parent\+Is (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Parenthood_a2f95265c57cf96bbc26afee2ac757dd6}{parent\+\_\+t} $\ast$}]{parent }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 303 of file Composite.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structocra_1_1Parenthood_1_1parentIs_ad780e02e2e27c53bff75fb0ab0ea245e}{}\label{structocra_1_1Parenthood_1_1parentIs_ad780e02e2e27c53bff75fb0ab0ea245e} 
+\index{ocra\+::\+Parenthood\+::parent\+Is@{ocra\+::\+Parenthood\+::parent\+Is}!operator()@{operator()}}
+\index{operator()@{operator()}!ocra\+::\+Parenthood\+::parent\+Is@{ocra\+::\+Parenthood\+::parent\+Is}}
+\subsubsection{\texorpdfstring{operator()()}{operator()()}}
+{\footnotesize\ttfamily template$<$class Component\+Derived , class Composite\+Derived , class Parenthood\+Info  = No\+Info$>$ \\
+bool \hyperlink{classocra_1_1Parenthood}{ocra\+::\+Parenthood}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parent\+Is\+::operator() (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Parenthood_acdae20cb747190b5dc9dbe42290bde78}{parenthood\+\_\+t} $\ast$}]{p }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 302 of file Composite.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structocra_1_1Parenthood_1_1parentIs_a1c5033667c6742b8f4ba326918eb1f4d}{}\label{structocra_1_1Parenthood_1_1parentIs_a1c5033667c6742b8f4ba326918eb1f4d} 
+\index{ocra\+::\+Parenthood\+::parent\+Is@{ocra\+::\+Parenthood\+::parent\+Is}!parent\+\_\+@{parent\+\_\+}}
+\index{parent\+\_\+@{parent\+\_\+}!ocra\+::\+Parenthood\+::parent\+Is@{ocra\+::\+Parenthood\+::parent\+Is}}
+\subsubsection{\texorpdfstring{parent\+\_\+}{parent\_}}
+{\footnotesize\ttfamily template$<$class Component\+Derived , class Composite\+Derived , class Parenthood\+Info  = No\+Info$>$ \\
+const \hyperlink{classocra_1_1Parenthood_a2f95265c57cf96bbc26afee2ac757dd6}{parent\+\_\+t}$\ast$ \hyperlink{classocra_1_1Parenthood}{ocra\+::\+Parenthood}$<$ Component\+Derived, Composite\+Derived, Parenthood\+Info $>$\+::parent\+Is\+::parent\+\_\+}
+
+
+
+Definition at line 304 of file Composite.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Composite_8h}{Composite.\+h}\end{DoxyCompactItemize}

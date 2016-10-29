@@ -1,0 +1,165 @@
+\hypertarget{classocra_1_1Buffer}{}\section{ocra\+:\+:Buffer$<$ T $>$ Class Template Reference}
+\label{classocra_1_1Buffer}\index{ocra\+::\+Buffer$<$ T $>$@{ocra\+::\+Buffer$<$ T $>$}}
+
+
+{\ttfamily \#include $<$Buffer.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef T \hyperlink{classocra_1_1Buffer_ad03bef3764c265411b5b7726d94d8786}{value\+\_\+type}
+\item 
+typedef T $\ast$ \hyperlink{classocra_1_1Buffer_a26bf1dc373e2144eddd0dd8be4b37f84}{ptr\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Buffer_a13b091b3f15fbdaadd00d87b89f0acd7}{Buffer} (size\+\_\+t \hyperlink{classocra_1_1Buffer_a181e8573c657bbc9a09a15628be00c4f}{size})
+\item 
+\hyperlink{classocra_1_1Buffer_ac7050b30073f9fbfbf580c1b57a34781}{$\sim$\+Buffer} ()
+\item 
+void \hyperlink{classocra_1_1Buffer_a171d3ec7b50688fd529c8ae3dff7b6d1}{resize} (size\+\_\+t \hyperlink{classocra_1_1Buffer_a181e8573c657bbc9a09a15628be00c4f}{size})
+\item 
+void \hyperlink{classocra_1_1Buffer_a3f6d6353bdb0e6eb2e577121be432f5f}{reset} ()
+\item 
+\hyperlink{classocra_1_1Buffer_a26bf1dc373e2144eddd0dd8be4b37f84}{ptr\+\_\+type} \hyperlink{classocra_1_1Buffer_a693db1946acad229a8e7ab84ac910301}{allocate} (size\+\_\+t n)
+\item 
+size\+\_\+t \hyperlink{classocra_1_1Buffer_a181e8573c657bbc9a09a15628be00c4f}{size} () const
+\item 
+size\+\_\+t \hyperlink{classocra_1_1Buffer_adf28f390748a3f97df43b08fb0574e6a}{free\+Size} () const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class ocra\+::\+Buffer$<$ T $>$}
+
+This class acts as a memory pool for objects of type {\itshape T}. Upon request it returns a pointer to an array of T of size specified by the caller, provided it owns enough memory for that. It allocates contiguous memory blocks and ensures memory release when resizing or dying. Thus, you need not free the memory obtained via this class.
+
+\begin{DoxyWarning}{Warning}
+Don\textquotesingle{}t trust other classes. Don\textquotesingle{}t give them the buffers you obtain here\+: \hyperlink{classocra_1_1Buffer_a171d3ec7b50688fd529c8ae3dff7b6d1}{resize()} invalidates them all. 
+\end{DoxyWarning}
+
+
+Definition at line 18 of file Buffer.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1Buffer_a26bf1dc373e2144eddd0dd8be4b37f84}{}\label{classocra_1_1Buffer_a26bf1dc373e2144eddd0dd8be4b37f84} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!ptr\+\_\+type@{ptr\+\_\+type}}
+\index{ptr\+\_\+type@{ptr\+\_\+type}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{ptr\+\_\+type}{ptr\_type}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+typedef T$\ast$ \hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::\hyperlink{classocra_1_1Buffer_a26bf1dc373e2144eddd0dd8be4b37f84}{ptr\+\_\+type}}
+
+
+
+Definition at line 22 of file Buffer.\+h.
+
+\hypertarget{classocra_1_1Buffer_ad03bef3764c265411b5b7726d94d8786}{}\label{classocra_1_1Buffer_ad03bef3764c265411b5b7726d94d8786} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!value\+\_\+type@{value\+\_\+type}}
+\index{value\+\_\+type@{value\+\_\+type}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{value\+\_\+type}{value\_type}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+typedef T \hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::\hyperlink{classocra_1_1Buffer_ad03bef3764c265411b5b7726d94d8786}{value\+\_\+type}}
+
+
+
+Definition at line 21 of file Buffer.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1Buffer_a13b091b3f15fbdaadd00d87b89f0acd7}{}\label{classocra_1_1Buffer_a13b091b3f15fbdaadd00d87b89f0acd7} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!Buffer@{Buffer}}
+\index{Buffer@{Buffer}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{Buffer()}{Buffer()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::\hyperlink{classocra_1_1Buffer}{Buffer} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Build an instance of \hyperlink{classocra_1_1Buffer}{Buffer} with a memory buffer for {\itshape size} elements of type T 
+
+Definition at line 33 of file Buffer.\+h.
+
+\hypertarget{classocra_1_1Buffer_ac7050b30073f9fbfbf580c1b57a34781}{}\label{classocra_1_1Buffer_ac7050b30073f9fbfbf580c1b57a34781} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!````~Buffer@{$\sim$\+Buffer}}
+\index{````~Buffer@{$\sim$\+Buffer}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{$\sim$\+Buffer()}{~Buffer()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::$\sim$\hyperlink{classocra_1_1Buffer}{Buffer} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 34 of file Buffer.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1Buffer_a693db1946acad229a8e7ab84ac910301}{}\label{classocra_1_1Buffer_a693db1946acad229a8e7ab84ac910301} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!allocate@{allocate}}
+\index{allocate@{allocate}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{allocate()}{allocate()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classocra_1_1Buffer_a26bf1dc373e2144eddd0dd8be4b37f84}{ptr\+\_\+type} \hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::allocate (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the pointer on a free continuous memory block of size {\itshape n} 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em a} & runtime\+\_\+error in case there is not enough memory reserved to fullfill this query. \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 68 of file Buffer.\+h.
+
+\hypertarget{classocra_1_1Buffer_adf28f390748a3f97df43b08fb0574e6a}{}\label{classocra_1_1Buffer_adf28f390748a3f97df43b08fb0574e6a} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!free\+Size@{free\+Size}}
+\index{free\+Size@{free\+Size}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{free\+Size()}{freeSize()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+size\+\_\+t \hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::free\+Size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the size of the reserved memory still free 
+
+Definition at line 84 of file Buffer.\+h.
+
+\hypertarget{classocra_1_1Buffer_a3f6d6353bdb0e6eb2e577121be432f5f}{}\label{classocra_1_1Buffer_a3f6d6353bdb0e6eb2e577121be432f5f} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!reset@{reset}}
+\index{reset@{reset}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::reset (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Tell the instance to give memory from the beginning of the pool again. All previously given buffers should be considered as invalid 
+
+Definition at line 59 of file Buffer.\+h.
+
+\hypertarget{classocra_1_1Buffer_a171d3ec7b50688fd529c8ae3dff7b6d1}{}\label{classocra_1_1Buffer_a171d3ec7b50688fd529c8ae3dff7b6d1} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!resize@{resize}}
+\index{resize@{resize}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+void \hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::resize (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Resize the memory buffer to a size greater or equal to the parameter {\itshape size}. Wether there is really a buffer resizing or not, the previously returned buffer need to be considered as invalid, since calls to allocate subsequent to a resize will return buffers starting from the beginning of the memory pool again. 
+
+Definition at line 40 of file Buffer.\+h.
+
+\hypertarget{classocra_1_1Buffer_a181e8573c657bbc9a09a15628be00c4f}{}\label{classocra_1_1Buffer_a181e8573c657bbc9a09a15628be00c4f} 
+\index{ocra\+::\+Buffer@{ocra\+::\+Buffer}!size@{size}}
+\index{size@{size}!ocra\+::\+Buffer@{ocra\+::\+Buffer}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+size\+\_\+t \hyperlink{classocra_1_1Buffer}{ocra\+::\+Buffer}$<$ T $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Return the size of the reserved memory 
+
+Definition at line 78 of file Buffer.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Buffer_8h}{Buffer.\+h}\end{DoxyCompactItemize}

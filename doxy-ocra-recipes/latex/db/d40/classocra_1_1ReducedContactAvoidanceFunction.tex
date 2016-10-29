@@ -1,0 +1,119 @@
+\hypertarget{classocra_1_1ReducedContactAvoidanceFunction}{}\section{ocra\+:\+:Reduced\+Contact\+Avoidance\+Function Class Reference}
+\label{classocra_1_1ReducedContactAvoidanceFunction}\index{ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}}
+
+
+Create a linear function that represents the contact avoidance function for the reduced formalism.  
+
+
+
+
+{\ttfamily \#include $<$Contact\+Avoidance\+Constraint.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Reduced\+Contact\+Avoidance\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.262480cm]{db/d40/classocra_1_1ReducedContactAvoidanceFunction}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structReducedContactAvoidanceFunction_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1ReducedContactAvoidanceFunction_ae1d0c9b1c213515eabdb15cb7dc82869}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ReducedContactAvoidanceFunction_ae2183d53a13985590ee4f5cf59083803}{Reduced\+Contact\+Avoidance\+Function} (const Model \&model, const \hyperlink{classocra_1_1FullDynamicEquationFunction}{Full\+Dynamic\+Equation\+Function} \&dynamic\+Equation)
+\item 
+\hyperlink{classocra_1_1ReducedContactAvoidanceFunction_a7a1844143947f714f2e0207d9f56834a}{$\sim$\+Reduced\+Contact\+Avoidance\+Function} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1ReducedContactAvoidanceFunction_ac39227a19a650de28f4ae603511bfb73}{updateb} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Create a linear function that represents the contact avoidance function for the reduced formalism. 
+
+See w\+Contact\+Avoidance\+Function for more information. 
+
+Definition at line 145 of file Contact\+Avoidance\+Constraint.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1ReducedContactAvoidanceFunction_ae1d0c9b1c213515eabdb15cb7dc82869}{}\label{classocra_1_1ReducedContactAvoidanceFunction_ae1d0c9b1c213515eabdb15cb7dc82869} 
+\index{ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1ReducedContactAvoidanceFunction_ae1d0c9b1c213515eabdb15cb7dc82869}{ocra\+::\+Reduced\+Contact\+Avoidance\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 148 of file Contact\+Avoidance\+Constraint.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ReducedContactAvoidanceFunction_ae2183d53a13985590ee4f5cf59083803}{}\label{classocra_1_1ReducedContactAvoidanceFunction_ae2183d53a13985590ee4f5cf59083803} 
+\index{ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}!Reduced\+Contact\+Avoidance\+Function@{Reduced\+Contact\+Avoidance\+Function}}
+\index{Reduced\+Contact\+Avoidance\+Function@{Reduced\+Contact\+Avoidance\+Function}!ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{Reduced\+Contact\+Avoidance\+Function()}{ReducedContactAvoidanceFunction()}}
+{\footnotesize\ttfamily Reduced\+Contact\+Avoidance\+Function\+::\+Reduced\+Contact\+Avoidance\+Function (\begin{DoxyParamCaption}\item[{const Model \&}]{model,  }\item[{const \hyperlink{classocra_1_1FullDynamicEquationFunction}{Full\+Dynamic\+Equation\+Function} \&}]{dynamic\+Equation }\end{DoxyParamCaption})}
+
+Initialize a contact avoidance function designed for the reduced formalism.
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The Model on which we will update the dynamic parameters \\
+\hline
+{\em dynamic\+Equation} & The dynamic equation of motion that can compute matrices for the reduced problem \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 267 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ReducedContactAvoidanceFunction_a7a1844143947f714f2e0207d9f56834a}{}\label{classocra_1_1ReducedContactAvoidanceFunction_a7a1844143947f714f2e0207d9f56834a} 
+\index{ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}!````~Reduced\+Contact\+Avoidance\+Function@{$\sim$\+Reduced\+Contact\+Avoidance\+Function}}
+\index{````~Reduced\+Contact\+Avoidance\+Function@{$\sim$\+Reduced\+Contact\+Avoidance\+Function}!ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Reduced\+Contact\+Avoidance\+Function()}{~ReducedContactAvoidanceFunction()}}
+{\footnotesize\ttfamily Reduced\+Contact\+Avoidance\+Function\+::$\sim$\+Reduced\+Contact\+Avoidance\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+Definition at line 281 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ReducedContactAvoidanceFunction_ac39227a19a650de28f4ae603511bfb73}{}\label{classocra_1_1ReducedContactAvoidanceFunction_ac39227a19a650de28f4ae603511bfb73} 
+\index{ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}!updateb@{updateb}}
+\index{updateb@{updateb}!ocra\+::\+Reduced\+Contact\+Avoidance\+Function@{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{updateb()}{updateb()}}
+{\footnotesize\ttfamily void Reduced\+Contact\+Avoidance\+Function\+::updateb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Update the vector $ \b $ for the reduced formalism.
+
+It calls \hyperlink{classocra_1_1ContactAvoidanceFunction_a59994d2c3f364575ecff7fb23b7e10ab}{compute\+Full\+Jacobian(const Eigen\+::\+Matrix\+Xd\&, Eigen\+::\+Matrix\+Xd\&) const}, and \hyperlink{classocra_1_1ContactAvoidanceFunction_a9afd02871f0d26321b526290f565d541}{compute\+Fullb(const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&, Eigen\+::\+Vector\+Xd\&) const}. Then the transformation is done from the full formalism to the reduced one. 
+
+Reimplemented from \hyperlink{classocra_1_1ContactAvoidanceFunction_aed2f145f17ff9fd8dd646018376ea7e9}{ocra\+::\+Contact\+Avoidance\+Function}.
+
+
+
+Definition at line 293 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ContactAvoidanceConstraint_8h}{Contact\+Avoidance\+Constraint.\+h}\item 
+\hyperlink{ContactAvoidanceConstraint_8cpp}{Contact\+Avoidance\+Constraint.\+cpp}\end{DoxyCompactItemize}

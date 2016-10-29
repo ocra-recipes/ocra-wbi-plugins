@@ -1,0 +1,98 @@
+\hypertarget{structocra_1_1SubjectBaseTraits}{}\section{ocra\+:\+:Subject\+Base\+Traits$<$ E\+VT, T $>$ Struct Template Reference}
+\label{structocra_1_1SubjectBaseTraits}\index{ocra\+::\+Subject\+Base\+Traits$<$ E\+V\+T, T $>$@{ocra\+::\+Subject\+Base\+Traits$<$ E\+V\+T, T $>$}}
+
+
+{\ttfamily \#include $<$Observer\+Subject\+Base.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Subject\+Base\+Traits$<$ E\+VT, T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{dc/d3a/structocra_1_1SubjectBaseTraits}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{structocra_1_1SubjectBaseTraitsBase}{Subject\+Base\+Traits\+Base}$<$ E\+VT $>$\+::\hyperlink{structocra_1_1SubjectBaseTraitsBase_a439671662c8f8f3e80e6675f008dec3f}{invoker\+\_\+base\+\_\+type} \hyperlink{structocra_1_1SubjectBaseTraits_a067ad14df588b765cd8941e21348c954}{invoker\+\_\+base\+\_\+type}
+\item 
+typedef void(T\+::$\ast$ \hyperlink{structocra_1_1SubjectBaseTraits_ab8c572ba6805d72ddf4137da6e2f4480}{callback\+\_\+type}) (int)
+\item 
+typedef \hyperlink{classocra_1_1Invoker}{Invoker}$<$ T, E\+VT, boost\+::is\+\_\+base\+\_\+of$<$ \hyperlink{classocra_1_1ObserverBase}{Observer\+Base}$<$ E\+VT $>$, T $>$\+::value $>$ \hyperlink{structocra_1_1SubjectBaseTraits_a7d6f024ca6d59f607025916cbb7a3423}{invoker\+\_\+type}
+\item 
+typedef std\+::pair$<$ T $\ast$, \hyperlink{structocra_1_1SubjectBaseTraits_ab8c572ba6805d72ddf4137da6e2f4480}{callback\+\_\+type} $>$ \hyperlink{structocra_1_1SubjectBaseTraits_a2c4f3af9b3e93bf96232c36df6f43986}{invoker\+\_\+id\+\_\+type}
+\item 
+typedef std\+::mem\+\_\+fun1\+\_\+ref\+\_\+t$<$ bool, \hyperlink{structocra_1_1SubjectBaseTraitsBase_a439671662c8f8f3e80e6675f008dec3f}{invoker\+\_\+base\+\_\+type}, \hyperlink{structocra_1_1SubjectBaseTraits_a2c4f3af9b3e93bf96232c36df6f43986}{invoker\+\_\+id\+\_\+type} $>$ \hyperlink{structocra_1_1SubjectBaseTraits_a791cf85201dfcbdc6213946c36d698ca}{invoker\+\_\+comparator\+\_\+type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$int E\+VT, class T$>$\newline
+struct ocra\+::\+Subject\+Base\+Traits$<$ E\+V\+T, T $>$}
+
+
+
+Definition at line 293 of file Observer\+Subject\+Base.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{structocra_1_1SubjectBaseTraits_ab8c572ba6805d72ddf4137da6e2f4480}{}\label{structocra_1_1SubjectBaseTraits_ab8c572ba6805d72ddf4137da6e2f4480} 
+\index{ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}!callback\+\_\+type@{callback\+\_\+type}}
+\index{callback\+\_\+type@{callback\+\_\+type}!ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}}
+\subsubsection{\texorpdfstring{callback\+\_\+type}{callback\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT, class T$>$ \\
+typedef void(T\+::$\ast$ \hyperlink{structocra_1_1SubjectBaseTraits}{ocra\+::\+Subject\+Base\+Traits}$<$ E\+VT, T $>$\+::callback\+\_\+type) (int)}
+
+
+
+Definition at line 296 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{structocra_1_1SubjectBaseTraits_a067ad14df588b765cd8941e21348c954}{}\label{structocra_1_1SubjectBaseTraits_a067ad14df588b765cd8941e21348c954} 
+\index{ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}!invoker\+\_\+base\+\_\+type@{invoker\+\_\+base\+\_\+type}}
+\index{invoker\+\_\+base\+\_\+type@{invoker\+\_\+base\+\_\+type}!ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}}
+\subsubsection{\texorpdfstring{invoker\+\_\+base\+\_\+type}{invoker\_base\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT, class T$>$ \\
+typedef \hyperlink{structocra_1_1SubjectBaseTraitsBase}{Subject\+Base\+Traits\+Base}$<$E\+VT$>$\+::\hyperlink{structocra_1_1SubjectBaseTraitsBase_a439671662c8f8f3e80e6675f008dec3f}{invoker\+\_\+base\+\_\+type} \hyperlink{structocra_1_1SubjectBaseTraits}{ocra\+::\+Subject\+Base\+Traits}$<$ E\+VT, T $>$\+::\hyperlink{structocra_1_1SubjectBaseTraitsBase_a439671662c8f8f3e80e6675f008dec3f}{invoker\+\_\+base\+\_\+type}}
+
+
+
+Definition at line 295 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{structocra_1_1SubjectBaseTraits_a791cf85201dfcbdc6213946c36d698ca}{}\label{structocra_1_1SubjectBaseTraits_a791cf85201dfcbdc6213946c36d698ca} 
+\index{ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}!invoker\+\_\+comparator\+\_\+type@{invoker\+\_\+comparator\+\_\+type}}
+\index{invoker\+\_\+comparator\+\_\+type@{invoker\+\_\+comparator\+\_\+type}!ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}}
+\subsubsection{\texorpdfstring{invoker\+\_\+comparator\+\_\+type}{invoker\_comparator\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT, class T$>$ \\
+typedef std\+::mem\+\_\+fun1\+\_\+ref\+\_\+t$<$bool, \hyperlink{structocra_1_1SubjectBaseTraitsBase_a439671662c8f8f3e80e6675f008dec3f}{invoker\+\_\+base\+\_\+type}, \hyperlink{structocra_1_1SubjectBaseTraits_a2c4f3af9b3e93bf96232c36df6f43986}{invoker\+\_\+id\+\_\+type}$>$ \hyperlink{structocra_1_1SubjectBaseTraits}{ocra\+::\+Subject\+Base\+Traits}$<$ E\+VT, T $>$\+::\hyperlink{structocra_1_1SubjectBaseTraits_a791cf85201dfcbdc6213946c36d698ca}{invoker\+\_\+comparator\+\_\+type}}
+
+
+
+Definition at line 299 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{structocra_1_1SubjectBaseTraits_a2c4f3af9b3e93bf96232c36df6f43986}{}\label{structocra_1_1SubjectBaseTraits_a2c4f3af9b3e93bf96232c36df6f43986} 
+\index{ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}!invoker\+\_\+id\+\_\+type@{invoker\+\_\+id\+\_\+type}}
+\index{invoker\+\_\+id\+\_\+type@{invoker\+\_\+id\+\_\+type}!ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}}
+\subsubsection{\texorpdfstring{invoker\+\_\+id\+\_\+type}{invoker\_id\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT, class T$>$ \\
+typedef std\+::pair$<$T$\ast$, \hyperlink{structocra_1_1SubjectBaseTraits_ab8c572ba6805d72ddf4137da6e2f4480}{callback\+\_\+type}$>$ \hyperlink{structocra_1_1SubjectBaseTraits}{ocra\+::\+Subject\+Base\+Traits}$<$ E\+VT, T $>$\+::\hyperlink{structocra_1_1SubjectBaseTraits_a2c4f3af9b3e93bf96232c36df6f43986}{invoker\+\_\+id\+\_\+type}}
+
+
+
+Definition at line 298 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{structocra_1_1SubjectBaseTraits_a7d6f024ca6d59f607025916cbb7a3423}{}\label{structocra_1_1SubjectBaseTraits_a7d6f024ca6d59f607025916cbb7a3423} 
+\index{ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}!invoker\+\_\+type@{invoker\+\_\+type}}
+\index{invoker\+\_\+type@{invoker\+\_\+type}!ocra\+::\+Subject\+Base\+Traits@{ocra\+::\+Subject\+Base\+Traits}}
+\subsubsection{\texorpdfstring{invoker\+\_\+type}{invoker\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT, class T$>$ \\
+typedef \hyperlink{classocra_1_1Invoker}{Invoker}$<$T, E\+VT,boost\+::is\+\_\+base\+\_\+of$<$\hyperlink{classocra_1_1ObserverBase}{Observer\+Base}$<$E\+VT$>$, T$>$\+::value$>$ \hyperlink{structocra_1_1SubjectBaseTraits}{ocra\+::\+Subject\+Base\+Traits}$<$ E\+VT, T $>$\+::\hyperlink{structocra_1_1SubjectBaseTraits_a7d6f024ca6d59f607025916cbb7a3423}{invoker\+\_\+type}}
+
+
+
+Definition at line 297 of file Observer\+Subject\+Base.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ObserverSubjectBase_8h}{Observer\+Subject\+Base.\+h}\end{DoxyCompactItemize}

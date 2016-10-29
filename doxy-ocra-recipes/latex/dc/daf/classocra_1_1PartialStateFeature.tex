@@ -1,0 +1,347 @@
+\hypertarget{classocra_1_1PartialStateFeature}{}\section{ocra\+:\+:Partial\+State\+Feature Class Reference}
+\label{classocra_1_1PartialStateFeature}\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+
+
+Used to build tasks in a partial configuration space.  
+
+
+
+
+{\ttfamily \#include $<$Feature.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Partial\+State\+Feature\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{dc/daf/classocra_1_1PartialStateFeature}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1PartialStateFeature_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1PartialStateFeature_a07a8b02519ae7a77580f8e2deefc86dd}{Partial\+State\+Feature} (const std\+::string \&name, Partial\+State\+::\+Ptr state)
+\item 
+int \hyperlink{classocra_1_1PartialStateFeature_a15b65bc093b9578fc60c04490e0dd73d}{get\+Dimension} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_ac22525347f868a352d4fa2cab69a12d6}{get\+Space\+Transform} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a96de4c58baceb9430a1845c4db6ecdfc}{compute\+Effort} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a42af1ac22fc5d9832e134f507a77bfad}{compute\+Acceleration} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_af109d0d3c367db31f45f46fcc7c669c8}{compute\+Error} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a5abaab0eb99ac60f0150c4137960ee14}{compute\+Error\+Dot} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a8b70dbff8a1a06f16621d34b3e8bc5cf}{compute\+Jacobian} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a9554341f9015361e4c7dc544f6415470}{compute\+Projected\+Mass} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_acebec8dd4cadc55641a9286fb3685674}{compute\+Projected\+Mass\+Inverse} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_abc447a46a7bb1b4480af965119d23214}{compute\+Effort} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a7ed5a87165deed25a91f073e348c53a3}{compute\+Acceleration} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a7d412f45a1ae3ce72a82cee84cdddc7e}{compute\+Error} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a946499ed311c24cb0cd9953b51b7d170}{compute\+Error\+Dot} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a134ada6399c8f4bda311844c79cd5467}{compute\+Jacobian} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a984c0fd5400ff69faaab55d81cf8320b}{compute\+Projected\+Mass} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialStateFeature_a1e1a569e8472551e91845e585c30c4ca}{compute\+Projected\+Mass\+Inverse} () const
+\item 
+\hyperlink{classocra_1_1TaskState}{Task\+State} \hyperlink{classocra_1_1PartialStateFeature_abb71a3727198affb3d250e6942fb6eee}{get\+State} () const
+\item 
+void \hyperlink{classocra_1_1PartialStateFeature_a89e830a1d3bea028431c4ae0844a6d95}{set\+State} (const \hyperlink{classocra_1_1TaskState}{Task\+State} \&new\+State)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Used to build tasks in a partial configuration space. 
+
+Can be used e.\+g. for Joint PD control. 
+
+Definition at line 369 of file Feature.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1PartialStateFeature_a07a8b02519ae7a77580f8e2deefc86dd}{}\label{classocra_1_1PartialStateFeature_a07a8b02519ae7a77580f8e2deefc86dd} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!Partial\+State\+Feature@{Partial\+State\+Feature}}
+\index{Partial\+State\+Feature@{Partial\+State\+Feature}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{Partial\+State\+Feature()}{PartialStateFeature()}}
+{\footnotesize\ttfamily ocra\+::\+Partial\+State\+Feature\+::\+Partial\+State\+Feature (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Partial\+State\+::\+Ptr}]{state }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1351 of file Feature.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1PartialStateFeature_a42af1ac22fc5d9832e134f507a77bfad}{}\label{classocra_1_1PartialStateFeature_a42af1ac22fc5d9832e134f507a77bfad} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Acceleration@{compute\+Acceleration}}
+\index{compute\+Acceleration@{compute\+Acceleration}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Acceleration()}{computeAcceleration()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Acceleration (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a4a5973d27459d2dececec8dc73038df8}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1380 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a7ed5a87165deed25a91f073e348c53a3}{}\label{classocra_1_1PartialStateFeature_a7ed5a87165deed25a91f073e348c53a3} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Acceleration@{compute\+Acceleration}}
+\index{compute\+Acceleration@{compute\+Acceleration}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Acceleration()}{computeAcceleration()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aa42b61d4255116caa92042d01ca36b79}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1387 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a96de4c58baceb9430a1845c4db6ecdfc}{}\label{classocra_1_1PartialStateFeature_a96de4c58baceb9430a1845c4db6ecdfc} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Effort@{compute\+Effort}}
+\index{compute\+Effort@{compute\+Effort}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Effort()}{computeEffort()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Effort (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a19626a241666fdae253af1f7b6f2acd7}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1367 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_abc447a46a7bb1b4480af965119d23214}{}\label{classocra_1_1PartialStateFeature_abc447a46a7bb1b4480af965119d23214} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Effort@{compute\+Effort}}
+\index{compute\+Effort@{compute\+Effort}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Effort()}{computeEffort()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Effort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ae43f2ffc54862d6ddc0b02fd39431eb6}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1374 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_af109d0d3c367db31f45f46fcc7c669c8}{}\label{classocra_1_1PartialStateFeature_af109d0d3c367db31f45f46fcc7c669c8} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Error@{compute\+Error}}
+\index{compute\+Error@{compute\+Error}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error()}{computeError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Error (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aaa74d6869f7e574fcc39d443581ddf77}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1393 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a7d412f45a1ae3ce72a82cee84cdddc7e}{}\label{classocra_1_1PartialStateFeature_a7d412f45a1ae3ce72a82cee84cdddc7e} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Error@{compute\+Error}}
+\index{compute\+Error@{compute\+Error}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error()}{computeError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a88f87b496aedc7bf9f13b19bb8f9c7fa}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1400 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a5abaab0eb99ac60f0150c4137960ee14}{}\label{classocra_1_1PartialStateFeature_a5abaab0eb99ac60f0150c4137960ee14} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Error\+Dot@{compute\+Error\+Dot}}
+\index{compute\+Error\+Dot@{compute\+Error\+Dot}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error\+Dot()}{computeErrorDot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Error\+Dot (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac714181e1bb25f878349e299c4ba8c00}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1406 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a946499ed311c24cb0cd9953b51b7d170}{}\label{classocra_1_1PartialStateFeature_a946499ed311c24cb0cd9953b51b7d170} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Error\+Dot@{compute\+Error\+Dot}}
+\index{compute\+Error\+Dot@{compute\+Error\+Dot}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error\+Dot()}{computeErrorDot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Error\+Dot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a01a4870418ba87d5b41d8f917c1255fc}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1413 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a8b70dbff8a1a06f16621d34b3e8bc5cf}{}\label{classocra_1_1PartialStateFeature_a8b70dbff8a1a06f16621d34b3e8bc5cf} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Jacobian@{compute\+Jacobian}}
+\index{compute\+Jacobian@{compute\+Jacobian}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Jacobian()}{computeJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Jacobian (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a4fb8eeeed978a1f727ec43cd1bd18d78}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1419 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a134ada6399c8f4bda311844c79cd5467}{}\label{classocra_1_1PartialStateFeature_a134ada6399c8f4bda311844c79cd5467} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Jacobian@{compute\+Jacobian}}
+\index{compute\+Jacobian@{compute\+Jacobian}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Jacobian()}{computeJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_adbab3b388657555abb805bb971c2491f}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1426 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a9554341f9015361e4c7dc544f6415470}{}\label{classocra_1_1PartialStateFeature_a9554341f9015361e4c7dc544f6415470} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Projected\+Mass@{compute\+Projected\+Mass}}
+\index{compute\+Projected\+Mass@{compute\+Projected\+Mass}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass()}{computeProjectedMass()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Projected\+Mass (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a44e11dd349e92971fefebff354e7214b}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1432 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a984c0fd5400ff69faaab55d81cf8320b}{}\label{classocra_1_1PartialStateFeature_a984c0fd5400ff69faaab55d81cf8320b} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Projected\+Mass@{compute\+Projected\+Mass}}
+\index{compute\+Projected\+Mass@{compute\+Projected\+Mass}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass()}{computeProjectedMass()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Projected\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a99ac023809c0cf34b5d582537934b08c}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1439 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_acebec8dd4cadc55641a9286fb3685674}{}\label{classocra_1_1PartialStateFeature_acebec8dd4cadc55641a9286fb3685674} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}}
+\index{compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass\+Inverse()}{computeProjectedMassInverse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Projected\+Mass\+Inverse (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac529096b3fe8eba1ab88a56d8b042d37}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1445 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a1e1a569e8472551e91845e585c30c4ca}{}\label{classocra_1_1PartialStateFeature_a1e1a569e8472551e91845e585c30c4ca} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}}
+\index{compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass\+Inverse()}{computeProjectedMassInverse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+State\+Feature\+::compute\+Projected\+Mass\+Inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac27bcbdbb8541e3b4e2c77a6d6f2ffc0}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1452 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a15b65bc093b9578fc60c04490e0dd73d}{}\label{classocra_1_1PartialStateFeature_a15b65bc093b9578fc60c04490e0dd73d} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!get\+Dimension@{get\+Dimension}}
+\index{get\+Dimension@{get\+Dimension}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{get\+Dimension()}{getDimension()}}
+{\footnotesize\ttfamily int ocra\+::\+Partial\+State\+Feature\+::get\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aeda4c2a5ffe638c3de30f8b91a11450e}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1362 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_ac22525347f868a352d4fa2cab69a12d6}{}\label{classocra_1_1PartialStateFeature_ac22525347f868a352d4fa2cab69a12d6} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!get\+Space\+Transform@{get\+Space\+Transform}}
+\index{get\+Space\+Transform@{get\+Space\+Transform}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{get\+Space\+Transform()}{getSpaceTransform()}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+State\+Feature\+::get\+Space\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a77eb324fb4da91fd50d0e761d2453ff3}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1357 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_abb71a3727198affb3d250e6942fb6eee}{}\label{classocra_1_1PartialStateFeature_abb71a3727198affb3d250e6942fb6eee} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!get\+State@{get\+State}}
+\index{get\+State@{get\+State}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{get\+State()}{getState()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1TaskState}{Task\+State} ocra\+::\+Partial\+State\+Feature\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a792434ceb793f25874b8fe42ae24c475}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1457 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1PartialStateFeature_a89e830a1d3bea028431c4ae0844a6d95}{}\label{classocra_1_1PartialStateFeature_a89e830a1d3bea028431c4ae0844a6d95} 
+\index{ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}!set\+State@{set\+State}}
+\index{set\+State@{set\+State}!ocra\+::\+Partial\+State\+Feature@{ocra\+::\+Partial\+State\+Feature}}
+\subsubsection{\texorpdfstring{set\+State()}{setState()}}
+{\footnotesize\ttfamily void ocra\+::\+Partial\+State\+Feature\+::set\+State (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1TaskState}{Task\+State} \&}]{new\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ad16d6b176b229280649ab405531e9a30}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1467 of file Feature.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Feature_8h}{Feature.\+h}\item 
+\hyperlink{Feature_8cpp}{Feature.\+cpp}\end{DoxyCompactItemize}

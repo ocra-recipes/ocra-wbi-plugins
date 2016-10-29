@@ -1,0 +1,261 @@
+\hypertarget{classocra_1_1IFunction}{}\section{ocra\+:\+:I\+Function$<$ Property $>$ Class Template Reference}
+\label{classocra_1_1IFunction}\index{ocra\+::\+I\+Function$<$ Property $>$@{ocra\+::\+I\+Function$<$ Property $>$}}
+
+
+Computation ability of a ocra function.  
+
+
+
+
+{\ttfamily \#include $<$I\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:I\+Function$<$ Property $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d1/d71/classocra_1_1IFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+typedef ocra\+\_\+function\+\_\+traits$<$ Property $>$\+::type\+\_\+t \hyperlink{classocra_1_1IFunction_a04d351c2f938d01046328b54fb7e6525}{return\+\_\+type}
+\item 
+typedef ocra\+\_\+function\+\_\+traits$<$ Property $>$\+::sub\+\_\+type\+\_\+t \hyperlink{classocra_1_1IFunction_ac6604adbd04613e1f545fb522cedbe3d}{return\+\_\+sub\+\_\+type}
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1IFunction_a6aa2340376a035f9b80c747b09e701fa}{I\+Function} (const std\+::vector$<$ bool $>$ \&props)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classocra_1_1IFunction}{I\+Function} Constructor. \end{DoxyCompactList}\item 
+\hyperlink{classocra_1_1IFunction_a60204ea5f57d3f369915022c9e431e32}{$\sim$\+I\+Function} ()
+\item 
+void \hyperlink{classocra_1_1IFunction_ae7cc0015416e006ad5682e7980f9c3d8}{invalidate} ()
+\item 
+bool \hyperlink{classocra_1_1IFunction_a22c891e865fd6a72ba1b3241010b4ecf}{is\+Valid} () const
+\item 
+bool \hyperlink{classocra_1_1IFunction_a18703c0b7573f9a1629236c9e10150d9}{can\+Be\+Computed} () const
+\item 
+{\footnotesize template$<$class Function\+Type $>$ }\\const \hyperlink{classocra_1_1IFunction_a04d351c2f938d01046328b54fb7e6525}{return\+\_\+type} \& \hyperlink{classocra_1_1IFunction_a0f7422af163eedba66749b79b9a70787}{get} (Function\+Type \&data) const
+\item 
+{\footnotesize template$<$class Function\+Type $>$ }\\\hyperlink{classocra_1_1IFunction_ac6604adbd04613e1f545fb522cedbe3d}{return\+\_\+sub\+\_\+type} \hyperlink{classocra_1_1IFunction_a53aa631366a527facee4f587ff8f7e09}{get} (Function\+Type \&data, int index) const
+\item 
+void \hyperlink{classocra_1_1IFunction_aab980c69fa11a61cbd49dad56dddca76}{resize\+Data} (int m, int n)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1IFunction_a04d351c2f938d01046328b54fb7e6525}{return\+\_\+type} \hyperlink{classocra_1_1IFunction_a0796c853731943530bc6c772035dca0a}{\+\_\+val}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$e\+Function\+Ability Property$>$\newline
+class ocra\+::\+I\+Function$<$ Property $>$}
+
+Computation ability of a ocra function. 
+
+This class provides a generic way to implement the function ability to compute some mathematical quantity (typical example are its value or some derivatives at a point). This computation is done by the method {\itshape update} which is inherited from ocra\+\_\+function\+\_\+traits and its result is accessed by {\itshape get}. \hyperlink{classocra_1_1IFunction}{I\+Function} provides an update mechanism around the {\itshape update} method to avoid computing several time the same quantity. To do so it uses a memory {\itshape \+\_\+val} whose type ({\itshape return\+\_\+type}) is derived from the value of the template parameter {\itshape Property} to cache the computation result and a boolean to flag the current value as valid or not. This update mechanism requires from the user to overload the virtual function called in {\itshape update}, and to inform of the invalidation of the value. The part where it is decide wether to recompute the value or not and call update if needed is transparent to the user.
+
+{\itshape \hyperlink{classocra_1_1IFunction}{I\+Function}} is only meant to be derived and as such does not offer public constructors.
+
+\begin{DoxyWarning}{Warning}
+\+: the buffer {\itshape \+\_\+val} is accessible from the derived classes. It is the responsibilty of those classes to invalidate the gradient computation (with the {\ttfamily \hyperlink{classocra_1_1IFunction_ae7cc0015416e006ad5682e7980f9c3d8}{invalidate()}} method) and if necessary the computations of others abilities, whenever they change the value of {\itshape \+\_\+val}. 
+\end{DoxyWarning}
+
+
+Definition at line 243 of file I\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1IFunction_ac6604adbd04613e1f545fb522cedbe3d}{}\label{classocra_1_1IFunction_ac6604adbd04613e1f545fb522cedbe3d} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!return\+\_\+sub\+\_\+type@{return\+\_\+sub\+\_\+type}}
+\index{return\+\_\+sub\+\_\+type@{return\+\_\+sub\+\_\+type}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{return\+\_\+sub\+\_\+type}{return\_sub\_type}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+typedef ocra\+\_\+function\+\_\+traits$<$Property$>$\+::sub\+\_\+type\+\_\+t \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::\hyperlink{classocra_1_1IFunction_ac6604adbd04613e1f545fb522cedbe3d}{return\+\_\+sub\+\_\+type}}
+
+
+
+Definition at line 282 of file I\+Function.\+h.
+
+\hypertarget{classocra_1_1IFunction_a04d351c2f938d01046328b54fb7e6525}{}\label{classocra_1_1IFunction_a04d351c2f938d01046328b54fb7e6525} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!return\+\_\+type@{return\+\_\+type}}
+\index{return\+\_\+type@{return\+\_\+type}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{return\+\_\+type}{return\_type}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+typedef ocra\+\_\+function\+\_\+traits$<$Property$>$\+::type\+\_\+t \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::\hyperlink{classocra_1_1IFunction_a04d351c2f938d01046328b54fb7e6525}{return\+\_\+type}}
+
+Definition of the type of the quantity computed in this class and its subtype. The type is derived from the template parameter of the class. /sa ocra\+\_\+function\+\_\+traits, \hyperlink{structocra_1_1return__type__traits}{return\+\_\+type\+\_\+traits} 
+
+Definition at line 281 of file I\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1IFunction_a6aa2340376a035f9b80c747b09e701fa}{}\label{classocra_1_1IFunction_a6aa2340376a035f9b80c747b09e701fa} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!I\+Function@{I\+Function}}
+\index{I\+Function@{I\+Function}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{I\+Function()}{IFunction()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+\hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::\hyperlink{classocra_1_1IFunction}{I\+Function} (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ bool $>$ \&}]{props }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+\hyperlink{classocra_1_1IFunction}{I\+Function} Constructor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em props} & A vector of bool whose element numbered {\itshape Property} indicates wether to use or not this function ability. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 256 of file I\+Function.\+h.
+
+\hypertarget{classocra_1_1IFunction_a60204ea5f57d3f369915022c9e431e32}{}\label{classocra_1_1IFunction_a60204ea5f57d3f369915022c9e431e32} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!````~I\+Function@{$\sim$\+I\+Function}}
+\index{````~I\+Function@{$\sim$\+I\+Function}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+I\+Function()}{~IFunction()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+\hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::$\sim$\hyperlink{classocra_1_1IFunction}{I\+Function} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 263 of file I\+Function.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1IFunction_a18703c0b7573f9a1629236c9e10150d9}{}\label{classocra_1_1IFunction_a18703c0b7573f9a1629236c9e10150d9} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!can\+Be\+Computed@{can\+Be\+Computed}}
+\index{can\+Be\+Computed@{can\+Be\+Computed}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{can\+Be\+Computed()}{canBeComputed()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+bool \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::can\+Be\+Computed (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\begin{DoxyReturn}{Returns}
+{\itshape true} if this function ability is used, {\itshape false} otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 293 of file I\+Function.\+h.
+
+\hypertarget{classocra_1_1IFunction_a0f7422af163eedba66749b79b9a70787}{}\label{classocra_1_1IFunction_a0f7422af163eedba66749b79b9a70787} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!get@{get}}
+\index{get@{get}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+template$<$class Function\+Type $>$ \\
+const \hyperlink{classocra_1_1IFunction_a04d351c2f938d01046328b54fb7e6525}{return\+\_\+type}\& \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::get (\begin{DoxyParamCaption}\item[{Function\+Type \&}]{data }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Get the quantity computed by this function ability. The quantity is recomputed if needed in a transparent way for the user.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & The actual class instance on which to call the update function. It should be {\ttfamily $\ast$this}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the value of the quantity.
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondition}
+\+\_\+used==true. If this is not the case, no physical memory is allocated for the buffer and computation will fail or worse result in a buffer overflow.
+\end{DoxyPrecond}
+\begin{DoxyWarning}{Warning}
+Since there are no exeption throws in case the precondition is violated, a high-\/level usage should make its own check by calling first {\itshape can\+Be\+Computed}. 
+\end{DoxyWarning}
+
+
+Definition at line 322 of file I\+Function.\+h.
+
+\hypertarget{classocra_1_1IFunction_a53aa631366a527facee4f587ff8f7e09}{}\label{classocra_1_1IFunction_a53aa631366a527facee4f587ff8f7e09} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!get@{get}}
+\index{get@{get}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+template$<$class Function\+Type $>$ \\
+\hyperlink{classocra_1_1IFunction_ac6604adbd04613e1f545fb522cedbe3d}{return\+\_\+sub\+\_\+type} \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::get (\begin{DoxyParamCaption}\item[{Function\+Type \&}]{data,  }\item[{int}]{index }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Get a subpart of the quantity.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em data} & The actual class instance on which to call the update function. It should be {\ttfamily $\ast$this}. \\
+\hline
+\mbox{\tt in}  & {\em index} & The index of the subpart we\textquotesingle{}re interested in.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the subvalue of the quantity with index .
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+get(\+Function\+Type\&) 
+\end{DoxySeeAlso}
+
+
+Definition at line 343 of file I\+Function.\+h.
+
+\hypertarget{classocra_1_1IFunction_ae7cc0015416e006ad5682e7980f9c3d8}{}\label{classocra_1_1IFunction_ae7cc0015416e006ad5682e7980f9c3d8} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!invalidate@{invalidate}}
+\index{invalidate@{invalidate}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{invalidate()}{invalidate()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+void \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::invalidate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Flags the cached value {\itshape \+\_\+val} as invalid, indicating to the {\itshape get} methods the need for recomputation. 
+
+Definition at line 287 of file I\+Function.\+h.
+
+\hypertarget{classocra_1_1IFunction_a22c891e865fd6a72ba1b3241010b4ecf}{}\label{classocra_1_1IFunction_a22c891e865fd6a72ba1b3241010b4ecf} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!is\+Valid@{is\+Valid}}
+\index{is\+Valid@{is\+Valid}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{is\+Valid()}{isValid()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+bool \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::is\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Return the validity of the actual value. 
+
+Definition at line 290 of file I\+Function.\+h.
+
+\hypertarget{classocra_1_1IFunction_aab980c69fa11a61cbd49dad56dddca76}{}\label{classocra_1_1IFunction_aab980c69fa11a61cbd49dad56dddca76} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!resize\+Data@{resize\+Data}}
+\index{resize\+Data@{resize\+Data}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{resize\+Data()}{resizeData()}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+void \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::resize\+Data (\begin{DoxyParamCaption}\item[{int}]{m,  }\item[{int}]{n }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Resizes {\ttfamily \+\_\+val} according to the size of the function
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em m} & dimension of the output space of the function \\
+\hline
+\mbox{\tt in}  & {\em n} & dimension of the input space of the function \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 354 of file I\+Function.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1IFunction_a0796c853731943530bc6c772035dca0a}{}\label{classocra_1_1IFunction_a0796c853731943530bc6c772035dca0a} 
+\index{ocra\+::\+I\+Function@{ocra\+::\+I\+Function}!\+\_\+val@{\+\_\+val}}
+\index{\+\_\+val@{\+\_\+val}!ocra\+::\+I\+Function@{ocra\+::\+I\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+val}{\_val}}
+{\footnotesize\ttfamily template$<$e\+Function\+Ability Property$>$ \\
+\hyperlink{classocra_1_1IFunction_a04d351c2f938d01046328b54fb7e6525}{return\+\_\+type} \hyperlink{classocra_1_1IFunction}{ocra\+::\+I\+Function}$<$ Property $>$\+::\+\_\+val\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 363 of file I\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{IFunction_8h}{I\+Function.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,52 @@
+\hypertarget{controlUtils_8h}{}\section{control\+Utils.\+h File Reference}
+\label{controlUtils_8h}\index{control\+Utils.\+h@{control\+Utils.\+h}}
+
+
+Control utility functions.  
+
+
+{\ttfamily \#include $<$ocra/util/\+Math\+Types.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Lgsm$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Model.\+h\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceocra_1_1utils}{ocra\+::utils}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_1_1utils_a2253567d0df64a629bad3bdb7e2bd30b}{ocra\+::utils\+::cartesian\+P\+D\+Coupling} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kp, const Eigen\+::\+Displacementd \&Hdes, const Eigen\+::\+Displacementd \&H, const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kv, const Eigen\+::\+Twistd \&Tdes, const Eigen\+::\+Twistd \&T)
+\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_1_1utils_aef5a7c74e8cfa9b803cd2a18d6401d1d}{ocra\+::utils\+::cartesian\+P\+Coupling} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kp, const Eigen\+::\+Displacementd \&Hdes, const Eigen\+::\+Displacementd \&H)
+\item 
+Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_1_1utils_aea2b40d346ee7532a6cdb9392e7c5767}{ocra\+::utils\+::cartesian\+D\+Coupling} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kv, const Eigen\+::\+Twistd \&Tdes, const Eigen\+::\+Twistd \&T)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{namespaceocra_1_1utils_ad8e0359ef8aba5d4f7de70014e9ab324}{ocra\+::utils\+::adapt\+K\+To\+Inertia} (const Eigen\+::\+Vector\+Xd \&K, const Model \&model, double scale=1.)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a9158ce8ea082d7620fd3204979c75c09}{ocra\+::utils\+::compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1} (const Eigen\+::\+Displacementd \&H\+\_\+1\+\_\+in\+\_\+ref, const Eigen\+::\+Displacementd \&H\+\_\+2\+\_\+in\+\_\+ref)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a54960ab215262788c23ca1eee8786b5a}{ocra\+::utils\+::compute\+Ego\+Frame} (Model \&model, const Eigen\+::\+Vector3d \&fwd\+Direction\+\_\+in\+\_\+phantom)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a8d939e7ed429dffde760d84e41258940}{ocra\+::utils\+::interpolate} (const Eigen\+::\+Displacementd \&Hstart, const Eigen\+::\+Displacementd \&Hend, double t)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a0c4be9b19e14fb7dfb9ae92650267dba}{ocra\+::utils\+::project\+Rotation} (const Eigen\+::\+Displacementd \&H, const Eigen\+::\+Vector3d \&n, double \&theta)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Control utility functions. 
+
+Copyright (C) 2010 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+T\+S\+I/\+S\+R\+CI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+
+Evrard Paul 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2010/10/03
+\end{DoxyDate}
+File history\+: 

@@ -1,0 +1,941 @@
+\hypertarget{classocra_1_1FSQPSolver}{}\section{ocra\+:\+:F\+S\+Q\+P\+Solver Class Reference}
+\label{classocra_1_1FSQPSolver}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+
+
+\hyperlink{classocra_1_1FSQPSolver}{F\+S\+Q\+P\+Solver} class.  
+
+
+
+
+{\ttfamily \#include $<$F\+S\+Q\+P\+Solver.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:F\+S\+Q\+P\+Solver\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.352657cm]{dc/d6e/classocra_1_1FSQPSolver}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462ac}{e\+Fsqp\+Problem\+Type} \{ \hyperlink{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462acacd159960544cc4516017ccc5a9cb7f03}{N\+O\+R\+M\+A\+L\+\_\+\+PB} =0, 
+\hyperlink{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462aca5cf174ae93fdf71512308b3a2d501b87}{I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+PB}
+ \}
+\item 
+enum \hyperlink{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5}{e\+Fsqp\+Algo} \{ \hyperlink{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5aa3acfd90b159b9e093ee3cce0c93aaf8}{AL} =0, 
+\hyperlink{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5a6aa754c3fb42f49994523f0d4ec2e6e9}{NL}
+ \}
+\item 
+enum \hyperlink{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279}{e\+Fsqp\+Evaluation\+Domain\+Policy} \{ \hyperlink{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279ad22600e0f988d5ad7e121f1d7eef6377}{L\+O\+O\+SE} =1, 
+\hyperlink{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279ad1a225aa6f5e79bf61c5489ff6a4e9ce}{S\+T\+R\+I\+CT}
+ \}
+\item 
+enum \hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062d}{e\+Fsqp\+Print\+Option} \{ \hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da456b96ca91ffad1c0267030dc7b90b65}{N\+O\+NE}, 
+\hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da5363ef2245b94458322650e2e07db39d}{F\+I\+N\+AL}, 
+\hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da90dcd611b3be1673872d22e2be941e2b}{E\+A\+CH}, 
+\hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da746f7d0328f714929f4d292e423ca5cf}{F\+U\+LL}
+ \}
+\item 
+typedef Map$<$ Vector\+Xd $>$ \hyperlink{classocra_1_1FSQPSolver_ac6ad3dde7fc6c45be397240743e4cd9b}{Vector\+Map}
+\item 
+typedef Map$<$ Matrix\+Xd $>$ \hyperlink{classocra_1_1FSQPSolver_afe309d10ad5c6be082994d6df67e8be1}{Matrix\+Map}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1FSQPSolver_a8eeae2b05133e4f5e134fc1ee11ccb49}{F\+S\+Q\+P\+Solver} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a17f6a88734d636c6e1af46d15d4b3e96}{set\+\_\+x0} (const Vector\+Xd \&x0, const \hyperlink{classocra_1_1Variable}{Variable} \&ref)
+\item 
+\hyperlink{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462ac}{e\+Fsqp\+Problem\+Type} \hyperlink{classocra_1_1FSQPSolver_ad059d844347c7939b6376e29b8b60cf2}{getA} () const
+\item 
+\hyperlink{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5}{e\+Fsqp\+Algo} \hyperlink{classocra_1_1FSQPSolver_af5f7b99450125e07eba99edaaf1ab372}{getB} () const
+\item 
+\hyperlink{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279}{e\+Fsqp\+Evaluation\+Domain\+Policy} \hyperlink{classocra_1_1FSQPSolver_a0eb5fe693fc9a34039e69945e9fdf484}{getC} () const
+\item 
+int \hyperlink{classocra_1_1FSQPSolver_a2ac151a7e6e43884a470dd9a373fadb9}{get\+Mode} () const
+\item 
+\hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062d}{e\+Fsqp\+Print\+Option} \hyperlink{classocra_1_1FSQPSolver_a1511084f712ea3030b38cb6ce626118d}{get\+Print\+Mode} () const
+\item 
+int \hyperlink{classocra_1_1FSQPSolver_a6ef85f729aa01a38d87da2ed98ee72c2}{get\+Print\+Step} () const
+\item 
+int \hyperlink{classocra_1_1FSQPSolver_a1be56f4f2dba807d78869a5e18e2f467}{get\+Print\+Option} () const
+\item 
+int \hyperlink{classocra_1_1FSQPSolver_a8eddfbb44147ea2ea7ee98479a81a2d1}{get\+Max\+Iter} () const
+\item 
+double \hyperlink{classocra_1_1FSQPSolver_a8ee2a33cb9ec5991ac7fce0802e26c6b}{get\+Infinity} () const
+\item 
+double \hyperlink{classocra_1_1FSQPSolver_a47b2d328e1407acd9c9fabe0c361592c}{set\+Eps} () const
+\item 
+double \hyperlink{classocra_1_1FSQPSolver_a667a47f3565538d614750a07dc6d2ed9}{set\+Eqn\+Viol} () const
+\item 
+double \hyperlink{classocra_1_1FSQPSolver_ac7b6382beb8d6426376322257e2c8393}{set\+U\+Delta} () const
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_ad41514dc166b19fca4812b5521777f0a}{print\+Values\+At\+Solution} ()
+\item 
+std\+::string \hyperlink{classocra_1_1FSQPSolver_a3edc67c5c989d020ac8a77bf08946d14}{to\+String} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a1275a02361629480cc18d44ce46d915c}{obj} (int nparam, int j, double $\ast$x, double $\ast$fj, void $\ast$cd)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_ae989c0c32f87ea5e4e5a85e11683fcff}{constr} (int nparam, int j, double $\ast$x, double $\ast$gj, void $\ast$cd)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_ac88cddc691c4bf9862f9d6f30599a098}{gradob} (int nparam, int j, double $\ast$x, double $\ast$gradfj, void $\ast$cd)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_aea97ea5c3c2480976ad27c190b60077d}{gradcn} (int nparam, int j, double $\ast$x, double $\ast$gradgj, void $\ast$cd)
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a22838ed156e3b4742e2a72ff128b8a4b}{add\+Objective} (\hyperlink{namespaceocra_a37a91885f4fa5c523d22cb15d5673062}{Generic\+Objective} \&\hyperlink{classocra_1_1FSQPSolver_a1275a02361629480cc18d44ce46d915c}{obj})
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a4c49fc6031becd57ed9710ecb7f4d3f8}{remove\+Objective} (\hyperlink{classocra_1_1Function}{Function} \&\hyperlink{classocra_1_1FSQPSolver_a1275a02361629480cc18d44ce46d915c}{obj})
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_aeb5031b31d2b3f9a303f234aa8418754}{remove\+Objective} (\hyperlink{namespaceocra_a37a91885f4fa5c523d22cb15d5673062}{Generic\+Objective} \&\hyperlink{classocra_1_1FSQPSolver_a1275a02361629480cc18d44ce46d915c}{obj})
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a086d7ebf9d84c60347303237e3896266}{add\+Constraint} (\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \&constraint)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_afefe2d2f4e3cbc39c22971adfe475c75}{add\+Constraint} (\hyperlink{namespaceocra_af10341108ce661566aad00908668e2b1}{Generic\+Constraint} \&constraint)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a80df07f05ec30a6a6f38997149806273}{remove\+Constraint} (\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \&constraint)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a80d729cccff0221d1afb8781c89bbc55}{remove\+Constraint} (\hyperlink{namespaceocra_af10341108ce661566aad00908668e2b1}{Generic\+Constraint} \&constraint)
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_abad7c2c61aab4511990533b4ae9a32ad}{add\+Bounds} (\hyperlink{namespaceocra_a6e55fff77635080219964abc301abf18}{Bound\+Constraint} \&constraint)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_ae51e651fc7b6bfb3b805c5d51279bc47}{add\+Bounds} (\hyperlink{namespaceocra_a5fc023ff4ef8f4b0cdf410e088090731}{Identity\+Constraint} \&constraint)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a4dae031d10c7c4be13cd48de8588e69a}{remove\+Bounds} (\hyperlink{namespaceocra_a6e55fff77635080219964abc301abf18}{Bound\+Constraint} \&constraint)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a71f05cbd4b27427250eaa8207f42974f}{remove\+Bounds} (\hyperlink{namespaceocra_a5fc023ff4ef8f4b0cdf410e088090731}{Identity\+Constraint} \&constraint)
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a7ee778eb0dc102d86d119dcb852f0cfd}{clear\+Objectives} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_ad74bdd1aa05a475e0d6b5895541ed55e}{clear\+Constraints} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_af03bfb0f28ff313b79c9d65986a443b1}{clear\+Equality\+Constraints} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a9220b29b0887196a700b38b95d7c67e9}{clear\+Non\+Linear\+Equality\+Constraints} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a41a84fdd4c110d93043da6cf524beb31}{clear\+Linear\+Equality\+Constraints} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a45e3e41dfac944a74e85191078e979b4}{clear\+Inequality\+Constraints} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a873b6761f0cf4efd61ba3bc04cc88897}{clear\+Non\+Linear\+Inequality\+Constraints} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a9658de4e998f7d3a5a65cad0288de4c3}{clear\+Linear\+Inequality\+Constraints} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_abf1583232819707717f59a6d26604d48}{clear\+Bounds} ()
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a573fda5efbfac9ca2d99b10958160a86}{setA} (\hyperlink{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462ac}{e\+Fsqp\+Problem\+Type} type)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_ac3919237e155ce38812e392347abe654}{setB} (\hyperlink{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5}{e\+Fsqp\+Algo} type)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a452ec55df7f57747876dbfe99d8595e1}{setC} (\hyperlink{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279}{e\+Fsqp\+Evaluation\+Domain\+Policy} type)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a543877c4c3022dfa4af88a38a40a08bd}{set\+Mode} (int m)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a02fd3ada48b6e18ab224fca60a05c525}{set\+Print\+Mode} (\hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062d}{e\+Fsqp\+Print\+Option} m)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a8ee31d7850b3984133df21c5a2687825}{set\+Print\+Step} (int N)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a301b6055f9d7a24b94822858786bcbc5}{set\+Print\+Option} (int option)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_ab900ccf49e2e757fe67567a6da577675}{set\+Max\+Iter} (int \hyperlink{classocra_1_1Solver_a63e73904de66df69372ed91c6b9d058b}{n})
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a4fc0a343b2163f6100e2b3abee17ab46}{set\+Infinity} (double infinity)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_aba76d5017ed117ec8314f801eb3dd348}{set\+Eps} (double eps)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a734027ea08acaa0d3b1b1b0b6ee9a12d}{set\+Eqn\+Viol} (double eps)
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_aab6991e031ab120683b646968a5e8c91}{set\+U\+Delta} (double udelta)
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a94faaa47095bc05870c1b834621cf232}{do\+Prepare} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a72c34e448c726e68ce441b634150b115}{do\+Solve} ()
+\item 
+void \hyperlink{classocra_1_1FSQPSolver_a792dc111362746ea36b2789a5442100c}{do\+Conclude} ()
+\item 
+virtual void \hyperlink{classocra_1_1FSQPSolver_a4bee18cc63de9aabefe747e052662351}{on\+Constraint\+Resize} (int timestamp)
+\item 
+virtual void \hyperlink{classocra_1_1FSQPSolver_a87f59b841b1101fd552f7f9de3d3d99d}{on\+Objective\+Resize} (int timestamp)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\hyperlink{classocra_1_1FSQPSolver}{F\+S\+Q\+P\+Solver} class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+This class offers an O\+C\+RA interface for a simple subset of the F\+S\+QP solver possiblities. The problem solved here is\+: min. sum f\+\_\+i s.\+t. g\+\_\+j$<$=0 h\+\_\+k=0 l$<$=x$<$=u where the function f\+\_\+i are real-\/valued functions while the functions g\+\_\+j and h\+\_\+k can have an output space of dimension greater than one. The sets of indices for i, j and k might be empty. In particular, having an objective function is not mandatory. All functions need to be at least C$^\wedge$1 (at least close to the optimum), but they do not need to provide their gradient. In case they don\textquotesingle{}t, the gradient will be evaluate by finite differences. This approximation can however be costly and poor, so it is advised that each function provides its gradient.
+
+Compared to all the possibilities described in fsqp manual, this implementation does not handle\+:
+\begin{DoxyItemize}
+\item minimizing the max of several objectives
+\item related objective or constraints function 
+\end{DoxyItemize}
+
+Definition at line 45 of file F\+S\+Q\+P\+Solver.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1FSQPSolver_afe309d10ad5c6be082994d6df67e8be1}{}\label{classocra_1_1FSQPSolver_afe309d10ad5c6be082994d6df67e8be1} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!Matrix\+Map@{Matrix\+Map}}
+\index{Matrix\+Map@{Matrix\+Map}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{Matrix\+Map}{MatrixMap}}
+{\footnotesize\ttfamily typedef Map$<$Matrix\+Xd$>$ \hyperlink{classocra_1_1FSQPSolver_afe309d10ad5c6be082994d6df67e8be1}{ocra\+::\+F\+S\+Q\+P\+Solver\+::\+Matrix\+Map}}
+
+
+
+Definition at line 50 of file F\+S\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1FSQPSolver_ac6ad3dde7fc6c45be397240743e4cd9b}{}\label{classocra_1_1FSQPSolver_ac6ad3dde7fc6c45be397240743e4cd9b} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!Vector\+Map@{Vector\+Map}}
+\index{Vector\+Map@{Vector\+Map}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{Vector\+Map}{VectorMap}}
+{\footnotesize\ttfamily typedef Map$<$Vector\+Xd$>$ \hyperlink{classocra_1_1FSQPSolver_ac6ad3dde7fc6c45be397240743e4cd9b}{ocra\+::\+F\+S\+Q\+P\+Solver\+::\+Vector\+Map}}
+
+
+
+Definition at line 49 of file F\+S\+Q\+P\+Solver.\+h.
+
+
+
+\subsection{Member Enumeration Documentation}
+\hypertarget{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5}{}\label{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!e\+Fsqp\+Algo@{e\+Fsqp\+Algo}}
+\index{e\+Fsqp\+Algo@{e\+Fsqp\+Algo}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{e\+Fsqp\+Algo}{eFsqpAlgo}}
+{\footnotesize\ttfamily enum \hyperlink{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5}{ocra\+::\+F\+S\+Q\+P\+Solver\+::e\+Fsqp\+Algo}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AL@{AL}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!AL@{AL}}}\hypertarget{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5aa3acfd90b159b9e093ee3cce0c93aaf8}{}\label{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5aa3acfd90b159b9e093ee3cce0c93aaf8} 
+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NL@{NL}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!NL@{NL}}}\hypertarget{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5a6aa754c3fb42f49994523f0d4ec2e6e9}{}\label{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5a6aa754c3fb42f49994523f0d4ec2e6e9} 
+NL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 59 of file F\+S\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279}{}\label{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!e\+Fsqp\+Evaluation\+Domain\+Policy@{e\+Fsqp\+Evaluation\+Domain\+Policy}}
+\index{e\+Fsqp\+Evaluation\+Domain\+Policy@{e\+Fsqp\+Evaluation\+Domain\+Policy}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{e\+Fsqp\+Evaluation\+Domain\+Policy}{eFsqpEvaluationDomainPolicy}}
+{\footnotesize\ttfamily enum \hyperlink{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279}{ocra\+::\+F\+S\+Q\+P\+Solver\+::e\+Fsqp\+Evaluation\+Domain\+Policy}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+O\+O\+SE@{L\+O\+O\+SE}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!L\+O\+O\+SE@{L\+O\+O\+SE}}}\hypertarget{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279ad22600e0f988d5ad7e121f1d7eef6377}{}\label{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279ad22600e0f988d5ad7e121f1d7eef6377} 
+L\+O\+O\+SE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+T\+R\+I\+CT@{S\+T\+R\+I\+CT}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!S\+T\+R\+I\+CT@{S\+T\+R\+I\+CT}}}\hypertarget{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279ad1a225aa6f5e79bf61c5489ff6a4e9ce}{}\label{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279ad1a225aa6f5e79bf61c5489ff6a4e9ce} 
+S\+T\+R\+I\+CT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 65 of file F\+S\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062d}{}\label{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062d} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!e\+Fsqp\+Print\+Option@{e\+Fsqp\+Print\+Option}}
+\index{e\+Fsqp\+Print\+Option@{e\+Fsqp\+Print\+Option}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{e\+Fsqp\+Print\+Option}{eFsqpPrintOption}}
+{\footnotesize\ttfamily enum \hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062d}{ocra\+::\+F\+S\+Q\+P\+Solver\+::e\+Fsqp\+Print\+Option}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N\+O\+NE@{N\+O\+NE}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!N\+O\+NE@{N\+O\+NE}}}\hypertarget{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da456b96ca91ffad1c0267030dc7b90b65}{}\label{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da456b96ca91ffad1c0267030dc7b90b65} 
+N\+O\+NE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\+I\+N\+AL@{F\+I\+N\+AL}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!F\+I\+N\+AL@{F\+I\+N\+AL}}}\hypertarget{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da5363ef2245b94458322650e2e07db39d}{}\label{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da5363ef2245b94458322650e2e07db39d} 
+F\+I\+N\+AL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{E\+A\+CH@{E\+A\+CH}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!E\+A\+CH@{E\+A\+CH}}}\hypertarget{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da90dcd611b3be1673872d22e2be941e2b}{}\label{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da90dcd611b3be1673872d22e2be941e2b} 
+E\+A\+CH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\+U\+LL@{F\+U\+LL}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!F\+U\+LL@{F\+U\+LL}}}\hypertarget{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da746f7d0328f714929f4d292e423ca5cf}{}\label{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062da746f7d0328f714929f4d292e423ca5cf} 
+F\+U\+LL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 71 of file F\+S\+Q\+P\+Solver.\+h.
+
+\hypertarget{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462ac}{}\label{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462ac} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!e\+Fsqp\+Problem\+Type@{e\+Fsqp\+Problem\+Type}}
+\index{e\+Fsqp\+Problem\+Type@{e\+Fsqp\+Problem\+Type}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{e\+Fsqp\+Problem\+Type}{eFsqpProblemType}}
+{\footnotesize\ttfamily enum \hyperlink{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462ac}{ocra\+::\+F\+S\+Q\+P\+Solver\+::e\+Fsqp\+Problem\+Type}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{N\+O\+R\+M\+A\+L\+\_\+\+PB@{N\+O\+R\+M\+A\+L\+\_\+\+PB}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!N\+O\+R\+M\+A\+L\+\_\+\+PB@{N\+O\+R\+M\+A\+L\+\_\+\+PB}}}\hypertarget{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462acacd159960544cc4516017ccc5a9cb7f03}{}\label{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462acacd159960544cc4516017ccc5a9cb7f03} 
+N\+O\+R\+M\+A\+L\+\_\+\+PB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+PB@{I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+PB}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+PB@{I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+PB}}}\hypertarget{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462aca5cf174ae93fdf71512308b3a2d501b87}{}\label{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462aca5cf174ae93fdf71512308b3a2d501b87} 
+I\+N\+F\+I\+N\+I\+T\+E\+\_\+\+PB&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 53 of file F\+S\+Q\+P\+Solver.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1FSQPSolver_a8eeae2b05133e4f5e134fc1ee11ccb49}{}\label{classocra_1_1FSQPSolver_a8eeae2b05133e4f5e134fc1ee11ccb49} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!F\+S\+Q\+P\+Solver@{F\+S\+Q\+P\+Solver}}
+\index{F\+S\+Q\+P\+Solver@{F\+S\+Q\+P\+Solver}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{F\+S\+Q\+P\+Solver()}{FSQPSolver()}}
+{\footnotesize\ttfamily ocra\+::\+F\+S\+Q\+P\+Solver\+::\+F\+S\+Q\+P\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 5 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1FSQPSolver_abad7c2c61aab4511990533b4ae9a32ad}{}\label{classocra_1_1FSQPSolver_abad7c2c61aab4511990533b4ae9a32ad} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!add\+Bounds@{add\+Bounds}}
+\index{add\+Bounds@{add\+Bounds}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{add\+Bounds()}{addBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::add\+Bounds (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a6e55fff77635080219964abc301abf18}{Bound\+Constraint} \&}]{constraint }\end{DoxyParamCaption})}
+
+Add/remove a bound. Will throw a runtime\+\_\+error for similar reasons as add/remove\+Objective. 
+
+Definition at line 86 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ae51e651fc7b6bfb3b805c5d51279bc47}{}\label{classocra_1_1FSQPSolver_ae51e651fc7b6bfb3b805c5d51279bc47} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!add\+Bounds@{add\+Bounds}}
+\index{add\+Bounds@{add\+Bounds}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{add\+Bounds()}{addBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::add\+Bounds (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a5fc023ff4ef8f4b0cdf410e088090731}{Identity\+Constraint} \&}]{constraint }\end{DoxyParamCaption})}
+
+
+
+Definition at line 91 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a086d7ebf9d84c60347303237e3896266}{}\label{classocra_1_1FSQPSolver_a086d7ebf9d84c60347303237e3896266} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!add\+Constraint@{add\+Constraint}}
+\index{add\+Constraint@{add\+Constraint}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{add\+Constraint()}{addConstraint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::add\+Constraint (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \&}]{constraint }\end{DoxyParamCaption})}
+
+Add/remove a constraint. Will throw a runtime\+\_\+error for similar reasons as add/remove\+Objective. 
+
+Definition at line 61 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_afefe2d2f4e3cbc39c22971adfe475c75}{}\label{classocra_1_1FSQPSolver_afefe2d2f4e3cbc39c22971adfe475c75} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!add\+Constraint@{add\+Constraint}}
+\index{add\+Constraint@{add\+Constraint}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{add\+Constraint()}{addConstraint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::add\+Constraint (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_af10341108ce661566aad00908668e2b1}{Generic\+Constraint} \&}]{constraint }\end{DoxyParamCaption})}
+
+
+
+Definition at line 67 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a22838ed156e3b4742e2a72ff128b8a4b}{}\label{classocra_1_1FSQPSolver_a22838ed156e3b4742e2a72ff128b8a4b} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!add\+Objective@{add\+Objective}}
+\index{add\+Objective@{add\+Objective}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{add\+Objective()}{addObjective()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::add\+Objective (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a37a91885f4fa5c523d22cb15d5673062}{Generic\+Objective} \&}]{obj }\end{DoxyParamCaption})}
+
+Add/remove an objective. Will throw a runtime\+\_\+error in case {\itshape obj} already exist and is added again, or if one tries to remove {\itshape obj} and {\itshape obj} does not appear in the problem. 
+
+Definition at line 29 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_abf1583232819707717f59a6d26604d48}{}\label{classocra_1_1FSQPSolver_abf1583232819707717f59a6d26604d48} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Bounds@{clear\+Bounds}}
+\index{clear\+Bounds@{clear\+Bounds}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Bounds()}{clearBounds()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Bounds (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 163 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ad74bdd1aa05a475e0d6b5895541ed55e}{}\label{classocra_1_1FSQPSolver_ad74bdd1aa05a475e0d6b5895541ed55e} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Constraints@{clear\+Constraints}}
+\index{clear\+Constraints@{clear\+Constraints}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Constraints()}{clearConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 125 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_af03bfb0f28ff313b79c9d65986a443b1}{}\label{classocra_1_1FSQPSolver_af03bfb0f28ff313b79c9d65986a443b1} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Equality\+Constraints@{clear\+Equality\+Constraints}}
+\index{clear\+Equality\+Constraints@{clear\+Equality\+Constraints}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Equality\+Constraints()}{clearEqualityConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Equality\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 131 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a45e3e41dfac944a74e85191078e979b4}{}\label{classocra_1_1FSQPSolver_a45e3e41dfac944a74e85191078e979b4} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Inequality\+Constraints@{clear\+Inequality\+Constraints}}
+\index{clear\+Inequality\+Constraints@{clear\+Inequality\+Constraints}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Inequality\+Constraints()}{clearInequalityConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Inequality\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 147 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a41a84fdd4c110d93043da6cf524beb31}{}\label{classocra_1_1FSQPSolver_a41a84fdd4c110d93043da6cf524beb31} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Linear\+Equality\+Constraints@{clear\+Linear\+Equality\+Constraints}}
+\index{clear\+Linear\+Equality\+Constraints@{clear\+Linear\+Equality\+Constraints}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Linear\+Equality\+Constraints()}{clearLinearEqualityConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Linear\+Equality\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 142 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a9658de4e998f7d3a5a65cad0288de4c3}{}\label{classocra_1_1FSQPSolver_a9658de4e998f7d3a5a65cad0288de4c3} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Linear\+Inequality\+Constraints@{clear\+Linear\+Inequality\+Constraints}}
+\index{clear\+Linear\+Inequality\+Constraints@{clear\+Linear\+Inequality\+Constraints}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Linear\+Inequality\+Constraints()}{clearLinearInequalityConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Linear\+Inequality\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 158 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a9220b29b0887196a700b38b95d7c67e9}{}\label{classocra_1_1FSQPSolver_a9220b29b0887196a700b38b95d7c67e9} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Non\+Linear\+Equality\+Constraints@{clear\+Non\+Linear\+Equality\+Constraints}}
+\index{clear\+Non\+Linear\+Equality\+Constraints@{clear\+Non\+Linear\+Equality\+Constraints}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Non\+Linear\+Equality\+Constraints()}{clearNonLinearEqualityConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Non\+Linear\+Equality\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 137 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a873b6761f0cf4efd61ba3bc04cc88897}{}\label{classocra_1_1FSQPSolver_a873b6761f0cf4efd61ba3bc04cc88897} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Non\+Linear\+Inequality\+Constraints@{clear\+Non\+Linear\+Inequality\+Constraints}}
+\index{clear\+Non\+Linear\+Inequality\+Constraints@{clear\+Non\+Linear\+Inequality\+Constraints}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Non\+Linear\+Inequality\+Constraints()}{clearNonLinearInequalityConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Non\+Linear\+Inequality\+Constraints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 153 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a7ee778eb0dc102d86d119dcb852f0cfd}{}\label{classocra_1_1FSQPSolver_a7ee778eb0dc102d86d119dcb852f0cfd} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!clear\+Objectives@{clear\+Objectives}}
+\index{clear\+Objectives@{clear\+Objectives}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{clear\+Objectives()}{clearObjectives()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::clear\+Objectives (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Clear all the corresponding data of the problem. Equivalent to call remove() one by one for each of them 
+
+Definition at line 120 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ae989c0c32f87ea5e4e5a85e11683fcff}{}\label{classocra_1_1FSQPSolver_ae989c0c32f87ea5e4e5a85e11683fcff} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!constr@{constr}}
+\index{constr@{constr}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{constr()}{constr()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::constr (\begin{DoxyParamCaption}\item[{int}]{nparam,  }\item[{int}]{j,  }\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{gj,  }\item[{void $\ast$}]{cd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1OFSQPProblem_a2049a97008ac6eaa306c3cb05ef7d394}{ocra\+::\+O\+F\+S\+Q\+P\+Problem}.
+
+
+
+Definition at line 341 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a792dc111362746ea36b2789a5442100c}{}\label{classocra_1_1FSQPSolver_a792dc111362746ea36b2789a5442100c} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!do\+Conclude@{do\+Conclude}}
+\index{do\+Conclude@{do\+Conclude}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{do\+Conclude()}{doConclude()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::do\+Conclude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_ac9d2d41d544b57a75e0d03db073d646e}{ocra\+::\+Solver}.
+
+
+
+Definition at line 416 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a94faaa47095bc05870c1b834621cf232}{}\label{classocra_1_1FSQPSolver_a94faaa47095bc05870c1b834621cf232} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!do\+Prepare@{do\+Prepare}}
+\index{do\+Prepare@{do\+Prepare}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{do\+Prepare()}{doPrepare()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::do\+Prepare (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_a9ab90e87025e3da7239141c48d28ab4a}{ocra\+::\+Solver}.
+
+
+
+Definition at line 376 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a72c34e448c726e68ce441b634150b115}{}\label{classocra_1_1FSQPSolver_a72c34e448c726e68ce441b634150b115} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!do\+Solve@{do\+Solve}}
+\index{do\+Solve@{do\+Solve}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{do\+Solve()}{doSolve()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::do\+Solve (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_ace2d7cfe741611de6dc87a0de7e7f3a9}{ocra\+::\+Solver}.
+
+
+
+Definition at line 386 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ad059d844347c7939b6376e29b8b60cf2}{}\label{classocra_1_1FSQPSolver_ad059d844347c7939b6376e29b8b60cf2} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!getA@{getA}}
+\index{getA@{getA}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+A()}{getA()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462ac}{F\+S\+Q\+P\+Solver\+::e\+Fsqp\+Problem\+Type} ocra\+::\+F\+S\+Q\+P\+Solver\+::getA (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 261 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_af5f7b99450125e07eba99edaaf1ab372}{}\label{classocra_1_1FSQPSolver_af5f7b99450125e07eba99edaaf1ab372} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!getB@{getB}}
+\index{getB@{getB}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+B()}{getB()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5}{F\+S\+Q\+P\+Solver\+::e\+Fsqp\+Algo} ocra\+::\+F\+S\+Q\+P\+Solver\+::getB (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 266 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a0eb5fe693fc9a34039e69945e9fdf484}{}\label{classocra_1_1FSQPSolver_a0eb5fe693fc9a34039e69945e9fdf484} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!getC@{getC}}
+\index{getC@{getC}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+C()}{getC()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279}{F\+S\+Q\+P\+Solver\+::e\+Fsqp\+Evaluation\+Domain\+Policy} ocra\+::\+F\+S\+Q\+P\+Solver\+::getC (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 271 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a8ee2a33cb9ec5991ac7fce0802e26c6b}{}\label{classocra_1_1FSQPSolver_a8ee2a33cb9ec5991ac7fce0802e26c6b} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!get\+Infinity@{get\+Infinity}}
+\index{get\+Infinity@{get\+Infinity}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Infinity()}{getInfinity()}}
+{\footnotesize\ttfamily double ocra\+::\+F\+S\+Q\+P\+Solver\+::get\+Infinity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 301 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a8eddfbb44147ea2ea7ee98479a81a2d1}{}\label{classocra_1_1FSQPSolver_a8eddfbb44147ea2ea7ee98479a81a2d1} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!get\+Max\+Iter@{get\+Max\+Iter}}
+\index{get\+Max\+Iter@{get\+Max\+Iter}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Max\+Iter()}{getMaxIter()}}
+{\footnotesize\ttfamily int ocra\+::\+F\+S\+Q\+P\+Solver\+::get\+Max\+Iter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 296 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a2ac151a7e6e43884a470dd9a373fadb9}{}\label{classocra_1_1FSQPSolver_a2ac151a7e6e43884a470dd9a373fadb9} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!get\+Mode@{get\+Mode}}
+\index{get\+Mode@{get\+Mode}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Mode()}{getMode()}}
+{\footnotesize\ttfamily int ocra\+::\+F\+S\+Q\+P\+Solver\+::get\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 276 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a1511084f712ea3030b38cb6ce626118d}{}\label{classocra_1_1FSQPSolver_a1511084f712ea3030b38cb6ce626118d} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!get\+Print\+Mode@{get\+Print\+Mode}}
+\index{get\+Print\+Mode@{get\+Print\+Mode}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Print\+Mode()}{getPrintMode()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062d}{F\+S\+Q\+P\+Solver\+::e\+Fsqp\+Print\+Option} ocra\+::\+F\+S\+Q\+P\+Solver\+::get\+Print\+Mode (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 281 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a1be56f4f2dba807d78869a5e18e2f467}{}\label{classocra_1_1FSQPSolver_a1be56f4f2dba807d78869a5e18e2f467} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!get\+Print\+Option@{get\+Print\+Option}}
+\index{get\+Print\+Option@{get\+Print\+Option}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Print\+Option()}{getPrintOption()}}
+{\footnotesize\ttfamily int ocra\+::\+F\+S\+Q\+P\+Solver\+::get\+Print\+Option (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 291 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a6ef85f729aa01a38d87da2ed98ee72c2}{}\label{classocra_1_1FSQPSolver_a6ef85f729aa01a38d87da2ed98ee72c2} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!get\+Print\+Step@{get\+Print\+Step}}
+\index{get\+Print\+Step@{get\+Print\+Step}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{get\+Print\+Step()}{getPrintStep()}}
+{\footnotesize\ttfamily int ocra\+::\+F\+S\+Q\+P\+Solver\+::get\+Print\+Step (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 286 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_aea97ea5c3c2480976ad27c190b60077d}{}\label{classocra_1_1FSQPSolver_aea97ea5c3c2480976ad27c190b60077d} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!gradcn@{gradcn}}
+\index{gradcn@{gradcn}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{gradcn()}{gradcn()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::gradcn (\begin{DoxyParamCaption}\item[{int}]{nparam,  }\item[{int}]{j,  }\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{gradgj,  }\item[{void $\ast$}]{cd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1OFSQPProblem_ab89eefbaf9b86a89a0ceede0b4b61284}{ocra\+::\+O\+F\+S\+Q\+P\+Problem}.
+
+
+
+Definition at line 362 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ac88cddc691c4bf9862f9d6f30599a098}{}\label{classocra_1_1FSQPSolver_ac88cddc691c4bf9862f9d6f30599a098} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!gradob@{gradob}}
+\index{gradob@{gradob}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{gradob()}{gradob()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::gradob (\begin{DoxyParamCaption}\item[{int}]{nparam,  }\item[{int}]{j,  }\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{gradfj,  }\item[{void $\ast$}]{cd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1OFSQPProblem_a1300d237d9b87df1f71db7129c38458a}{ocra\+::\+O\+F\+S\+Q\+P\+Problem}.
+
+
+
+Definition at line 347 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a1275a02361629480cc18d44ce46d915c}{}\label{classocra_1_1FSQPSolver_a1275a02361629480cc18d44ce46d915c} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!obj@{obj}}
+\index{obj@{obj}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{obj()}{obj()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::obj (\begin{DoxyParamCaption}\item[{int}]{nparam,  }\item[{int}]{j,  }\item[{double $\ast$}]{x,  }\item[{double $\ast$}]{fj,  }\item[{void $\ast$}]{cd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1OFSQPProblem_adca0c224eb1b9f6e0c2d17f07277a899}{ocra\+::\+O\+F\+S\+Q\+P\+Problem}.
+
+
+
+Definition at line 332 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a4bee18cc63de9aabefe747e052662351}{}\label{classocra_1_1FSQPSolver_a4bee18cc63de9aabefe747e052662351} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!on\+Constraint\+Resize@{on\+Constraint\+Resize}}
+\index{on\+Constraint\+Resize@{on\+Constraint\+Resize}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{on\+Constraint\+Resize()}{onConstraintResize()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::on\+Constraint\+Resize (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Solver_ad74c2f36dcee107636675bb6ff16e26a}{ocra\+::\+Solver}.
+
+
+
+Definition at line 422 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a87f59b841b1101fd552f7f9de3d3d99d}{}\label{classocra_1_1FSQPSolver_a87f59b841b1101fd552f7f9de3d3d99d} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!on\+Objective\+Resize@{on\+Objective\+Resize}}
+\index{on\+Objective\+Resize@{on\+Objective\+Resize}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{on\+Objective\+Resize()}{onObjectiveResize()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::on\+Objective\+Resize (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Solver_a7d45f67599edfa5ba8373b115378de5c}{ocra\+::\+Solver}.
+
+
+
+Definition at line 427 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ad41514dc166b19fca4812b5521777f0a}{}\label{classocra_1_1FSQPSolver_ad41514dc166b19fca4812b5521777f0a} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!print\+Values\+At\+Solution@{print\+Values\+At\+Solution}}
+\index{print\+Values\+At\+Solution@{print\+Values\+At\+Solution}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{print\+Values\+At\+Solution()}{printValuesAtSolution()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::print\+Values\+At\+Solution (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Solver_ab1903098e25c16a9f92c36d37967e8fa}{ocra\+::\+Solver}.
+
+
+
+Definition at line 321 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a4dae031d10c7c4be13cd48de8588e69a}{}\label{classocra_1_1FSQPSolver_a4dae031d10c7c4be13cd48de8588e69a} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!remove\+Bounds@{remove\+Bounds}}
+\index{remove\+Bounds@{remove\+Bounds}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{remove\+Bounds()}{removeBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::remove\+Bounds (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a6e55fff77635080219964abc301abf18}{Bound\+Constraint} \&}]{constraint }\end{DoxyParamCaption})}
+
+
+
+Definition at line 103 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a71f05cbd4b27427250eaa8207f42974f}{}\label{classocra_1_1FSQPSolver_a71f05cbd4b27427250eaa8207f42974f} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!remove\+Bounds@{remove\+Bounds}}
+\index{remove\+Bounds@{remove\+Bounds}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{remove\+Bounds()}{removeBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::remove\+Bounds (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a5fc023ff4ef8f4b0cdf410e088090731}{Identity\+Constraint} \&}]{constraint }\end{DoxyParamCaption})}
+
+
+
+Definition at line 108 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a80df07f05ec30a6a6f38997149806273}{}\label{classocra_1_1FSQPSolver_a80df07f05ec30a6a6f38997149806273} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!remove\+Constraint@{remove\+Constraint}}
+\index{remove\+Constraint@{remove\+Constraint}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{remove\+Constraint()}{removeConstraint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::remove\+Constraint (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \&}]{constraint }\end{DoxyParamCaption})}
+
+
+
+Definition at line 73 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a80d729cccff0221d1afb8781c89bbc55}{}\label{classocra_1_1FSQPSolver_a80d729cccff0221d1afb8781c89bbc55} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!remove\+Constraint@{remove\+Constraint}}
+\index{remove\+Constraint@{remove\+Constraint}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{remove\+Constraint()}{removeConstraint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::remove\+Constraint (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_af10341108ce661566aad00908668e2b1}{Generic\+Constraint} \&}]{constraint }\end{DoxyParamCaption})}
+
+
+
+Definition at line 79 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a4c49fc6031becd57ed9710ecb7f4d3f8}{}\label{classocra_1_1FSQPSolver_a4c49fc6031becd57ed9710ecb7f4d3f8} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!remove\+Objective@{remove\+Objective}}
+\index{remove\+Objective@{remove\+Objective}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{remove\+Objective()}{removeObjective()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::remove\+Objective (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} \&}]{obj }\end{DoxyParamCaption})}
+
+
+
+Definition at line 38 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_aeb5031b31d2b3f9a303f234aa8418754}{}\label{classocra_1_1FSQPSolver_aeb5031b31d2b3f9a303f234aa8418754} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!remove\+Objective@{remove\+Objective}}
+\index{remove\+Objective@{remove\+Objective}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{remove\+Objective()}{removeObjective()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::remove\+Objective (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_a37a91885f4fa5c523d22cb15d5673062}{Generic\+Objective} \&}]{obj }\end{DoxyParamCaption})}
+
+
+
+Definition at line 50 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a17f6a88734d636c6e1af46d15d4b3e96}{}\label{classocra_1_1FSQPSolver_a17f6a88734d636c6e1af46d15d4b3e96} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+\_\+x0@{set\+\_\+x0}}
+\index{set\+\_\+x0@{set\+\_\+x0}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+\_\+x0()}{set\_x0()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+\_\+x0 (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{x0,  }\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{ref }\end{DoxyParamCaption})}
+
+Set the initial guess. The order of {\itshape x0} is done w.\+r.\+t. to the order of the \hyperlink{classocra_1_1Variable}{Variable} {\itshape ref} 
+
+Definition at line 169 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a573fda5efbfac9ca2d99b10958160a86}{}\label{classocra_1_1FSQPSolver_a573fda5efbfac9ca2d99b10958160a86} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!setA@{setA}}
+\index{setA@{setA}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+A()}{setA()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::setA (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1FSQPSolver_a1a9c37974603d734acab0d75bc9462ac}{e\+Fsqp\+Problem\+Type}}]{type }\end{DoxyParamCaption})}
+
+Set options 
+
+Definition at line 186 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ac3919237e155ce38812e392347abe654}{}\label{classocra_1_1FSQPSolver_ac3919237e155ce38812e392347abe654} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!setB@{setB}}
+\index{setB@{setB}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+B()}{setB()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::setB (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1FSQPSolver_ad43d4e2dae6954df05123077cea0b7f5}{e\+Fsqp\+Algo}}]{type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 191 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a452ec55df7f57747876dbfe99d8595e1}{}\label{classocra_1_1FSQPSolver_a452ec55df7f57747876dbfe99d8595e1} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!setC@{setC}}
+\index{setC@{setC}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+C()}{setC()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::setC (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1FSQPSolver_a0569ab06022ffef1bd6d97599a5e4279}{e\+Fsqp\+Evaluation\+Domain\+Policy}}]{type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 197 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_aba76d5017ed117ec8314f801eb3dd348}{}\label{classocra_1_1FSQPSolver_aba76d5017ed117ec8314f801eb3dd348} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Eps@{set\+Eps}}
+\index{set\+Eps@{set\+Eps}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Eps()}{setEps()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Eps (\begin{DoxyParamCaption}\item[{double}]{eps }\end{DoxyParamCaption})}
+
+
+
+Definition at line 243 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a47b2d328e1407acd9c9fabe0c361592c}{}\label{classocra_1_1FSQPSolver_a47b2d328e1407acd9c9fabe0c361592c} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Eps@{set\+Eps}}
+\index{set\+Eps@{set\+Eps}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Eps()}{setEps()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Eps (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 306 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a734027ea08acaa0d3b1b1b0b6ee9a12d}{}\label{classocra_1_1FSQPSolver_a734027ea08acaa0d3b1b1b0b6ee9a12d} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Eqn\+Viol@{set\+Eqn\+Viol}}
+\index{set\+Eqn\+Viol@{set\+Eqn\+Viol}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Eqn\+Viol()}{setEqnViol()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Eqn\+Viol (\begin{DoxyParamCaption}\item[{double}]{eps }\end{DoxyParamCaption})}
+
+
+
+Definition at line 249 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a667a47f3565538d614750a07dc6d2ed9}{}\label{classocra_1_1FSQPSolver_a667a47f3565538d614750a07dc6d2ed9} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Eqn\+Viol@{set\+Eqn\+Viol}}
+\index{set\+Eqn\+Viol@{set\+Eqn\+Viol}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Eqn\+Viol()}{setEqnViol()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Eqn\+Viol (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 311 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a4fc0a343b2163f6100e2b3abee17ab46}{}\label{classocra_1_1FSQPSolver_a4fc0a343b2163f6100e2b3abee17ab46} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Infinity@{set\+Infinity}}
+\index{set\+Infinity@{set\+Infinity}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Infinity()}{setInfinity()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Infinity (\begin{DoxyParamCaption}\item[{double}]{infinity }\end{DoxyParamCaption})}
+
+
+
+Definition at line 237 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ab900ccf49e2e757fe67567a6da577675}{}\label{classocra_1_1FSQPSolver_ab900ccf49e2e757fe67567a6da577675} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Max\+Iter@{set\+Max\+Iter}}
+\index{set\+Max\+Iter@{set\+Max\+Iter}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Max\+Iter()}{setMaxIter()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Max\+Iter (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+
+
+Definition at line 231 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a543877c4c3022dfa4af88a38a40a08bd}{}\label{classocra_1_1FSQPSolver_a543877c4c3022dfa4af88a38a40a08bd} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Mode@{set\+Mode}}
+\index{set\+Mode@{set\+Mode}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Mode()}{setMode()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Mode (\begin{DoxyParamCaption}\item[{int}]{m }\end{DoxyParamCaption})}
+
+
+
+Definition at line 203 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a02fd3ada48b6e18ab224fca60a05c525}{}\label{classocra_1_1FSQPSolver_a02fd3ada48b6e18ab224fca60a05c525} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Print\+Mode@{set\+Print\+Mode}}
+\index{set\+Print\+Mode@{set\+Print\+Mode}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Print\+Mode()}{setPrintMode()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Print\+Mode (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1FSQPSolver_a4bb0d1e3b6b82bd9f683c6c7393f062d}{e\+Fsqp\+Print\+Option}}]{m }\end{DoxyParamCaption})}
+
+
+
+Definition at line 209 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a301b6055f9d7a24b94822858786bcbc5}{}\label{classocra_1_1FSQPSolver_a301b6055f9d7a24b94822858786bcbc5} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Print\+Option@{set\+Print\+Option}}
+\index{set\+Print\+Option@{set\+Print\+Option}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Print\+Option()}{setPrintOption()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Print\+Option (\begin{DoxyParamCaption}\item[{int}]{option }\end{DoxyParamCaption})}
+
+
+
+Definition at line 224 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a8ee31d7850b3984133df21c5a2687825}{}\label{classocra_1_1FSQPSolver_a8ee31d7850b3984133df21c5a2687825} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+Print\+Step@{set\+Print\+Step}}
+\index{set\+Print\+Step@{set\+Print\+Step}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+Print\+Step()}{setPrintStep()}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+Print\+Step (\begin{DoxyParamCaption}\item[{int}]{N }\end{DoxyParamCaption})}
+
+
+
+Definition at line 217 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_aab6991e031ab120683b646968a5e8c91}{}\label{classocra_1_1FSQPSolver_aab6991e031ab120683b646968a5e8c91} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+U\+Delta@{set\+U\+Delta}}
+\index{set\+U\+Delta@{set\+U\+Delta}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+U\+Delta()}{setUDelta()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+U\+Delta (\begin{DoxyParamCaption}\item[{double}]{udelta }\end{DoxyParamCaption})}
+
+
+
+Definition at line 255 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_ac7b6382beb8d6426376322257e2c8393}{}\label{classocra_1_1FSQPSolver_ac7b6382beb8d6426376322257e2c8393} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!set\+U\+Delta@{set\+U\+Delta}}
+\index{set\+U\+Delta@{set\+U\+Delta}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{set\+U\+Delta()}{setUDelta()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double ocra\+::\+F\+S\+Q\+P\+Solver\+::set\+U\+Delta (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 316 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+\hypertarget{classocra_1_1FSQPSolver_a3edc67c5c989d020ac8a77bf08946d14}{}\label{classocra_1_1FSQPSolver_a3edc67c5c989d020ac8a77bf08946d14} 
+\index{ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!ocra\+::\+F\+S\+Q\+P\+Solver@{ocra\+::\+F\+S\+Q\+P\+Solver}}
+\subsubsection{\texorpdfstring{to\+String()}{toString()}}
+{\footnotesize\ttfamily std\+::string ocra\+::\+F\+S\+Q\+P\+Solver\+::to\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Returns the state of the solver (e.\+g. matrices) as a string. 
+
+Implements \hyperlink{classocra_1_1Solver_ab3783d1c208500bfb1daa3e1abf34146}{ocra\+::\+Solver}.
+
+
+
+Definition at line 326 of file F\+S\+Q\+P\+Solver.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{FSQPSolver_8h}{F\+S\+Q\+P\+Solver.\+h}\item 
+\hyperlink{FSQPSolver_8cpp}{F\+S\+Q\+P\+Solver.\+cpp}\end{DoxyCompactItemize}

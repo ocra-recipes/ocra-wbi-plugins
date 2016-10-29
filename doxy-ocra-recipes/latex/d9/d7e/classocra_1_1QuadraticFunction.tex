@@ -1,0 +1,457 @@
+\hypertarget{classocra_1_1QuadraticFunction}{}\section{ocra\+:\+:Quadratic\+Function Class Reference}
+\label{classocra_1_1QuadraticFunction}\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+
+
+Quadratic\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Quadratic\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Quadratic\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{d9/d7e/classocra_1_1QuadraticFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classocra_1_1QuadraticFunction_a224eecd300c5a16599ebd6e4eff5d9d7}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Base $>$ }\\\hyperlink{classocra_1_1QuadraticFunction_a9955f993dd22831561b3b67767f72a0d}{Quadratic\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const Matrix\+Base$<$ Derived $>$ \&P, const Vector\+Base \&q, double r)
+\item 
+virtual \hyperlink{classocra_1_1QuadraticFunction_a84bd0afec5679c1620170a97fd1be648}{$\sim$\+Quadratic\+Function} ()
+\item 
+const Matrix\+Xd \& \hyperlink{classocra_1_1QuadraticFunction_aa848353fa3e2a2330acdf3fa5b3f8ee3}{get\+Pi} (int index=0) const
+\item 
+const Vector\+Xd \& \hyperlink{classocra_1_1QuadraticFunction_a5735e7a900aabcf856e9df0c00e0cd06}{getqi} (int index=0) const
+\item 
+double \hyperlink{classocra_1_1QuadraticFunction_a5b3500ab19d92999b51de585b73cbf58}{getri} (int index=0) const
+\item 
+const Vector\+Xd \& \hyperlink{classocra_1_1QuadraticFunction_a5e5e98d00ae2c3249954d6a9a262686f}{getr} () const
+\item 
+void \hyperlink{classocra_1_1QuadraticFunction_ab2a6c4e433226c423f7a3dff95f68998}{change\+Pi} (const Matrix\+Xd \&Pi, int index=0)
+\item 
+void \hyperlink{classocra_1_1QuadraticFunction_a338c4fb88dd0a11cf63ff76ed572c895}{changeqi} (const Vector\+Xd \&qi, int index=0)
+\item 
+void \hyperlink{classocra_1_1QuadraticFunction_a5322e69813282ff9af8a13d00f4cebfc}{changeri} (double ri, int index=0)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1QuadraticFunction_ac5792908a2b7cfdaf612c1e809100a5e}{Quadratic\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, int dimension=1)
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_aad5171c1f1b510fb861121da01a0ea75}{update\+Value} () const
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_ad8fb5839a78b8ffb201e8ec5bb42cd70}{update\+Jacobian} () const
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_a342ea525685ddc2c414a49e7480a7a4c}{update\+Hessian} () const
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_ae68e94211c94e8c32da2220132baf248}{updateq} () const
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_aeaa560b1771f4024755753236fd69779}{updater} () const
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_ab3d5478fd8ded343453e0489c595e580}{do\+Update\+Input\+Size\+End} ()
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_ad9b92a56e1c91c33630a5ba3f118c7b9}{do\+Update\+Dimension\+End} (int old\+Dimension)
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_a30d2c2217918164d24aaeadde5698d03}{do\+Change\+Pi} (const Matrix\+Xd \&Pi, int index)
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_abced87346b20e5ed323b966626487f16}{do\+Changeqi} (const Vector\+Xd \&qi, int index)
+\item 
+virtual void \hyperlink{classocra_1_1QuadraticFunction_aeaeed88d4fef66c5db465f2887320e37}{do\+Changeri} (double ri, int index)
+\item 
+void \hyperlink{classocra_1_1QuadraticFunction_ab98c6562b88ef393f03ea0d1c9863f0e}{invalidateq} (int timestamp)
+\item 
+void \hyperlink{classocra_1_1QuadraticFunction_a3d76d4ae8dc9ffbefcdf7027e72665c4}{invalidater} (int timestamp)
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1QuadraticFunction_ab42b63fecbd39d330f7ec7b13e5c3701}{inhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r} () const
+\item 
+void \hyperlink{classocra_1_1QuadraticFunction_a49b61db0ab95c82d8f42d66f4a4f60a9}{desinhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r} () const
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Vector\+Xd $\ast$ $>$ \hyperlink{classocra_1_1QuadraticFunction_a0019bf700f128841e50dbceaa4c75dd2}{\+\_\+q}
+\item 
+Vector\+Xd \hyperlink{classocra_1_1QuadraticFunction_a56771e89a23a61fcc15cfd4d10c6956c}{\+\_\+r}
+\item 
+bool \hyperlink{classocra_1_1QuadraticFunction_adc8b30315f5cef54f2318c93844a6a66}{\+\_\+q\+Is\+Up\+To\+Date}
+\item 
+bool \hyperlink{classocra_1_1QuadraticFunction_a9862b46e064bccd9e83b10e9ceb4d2f0}{\+\_\+r\+Is\+Up\+To\+Date}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Quadratic\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+A quadratic function with \& f\+\_\+i(x) = 1/2 x$^\wedge$T P\+\_\+i x + q\+\_\+i$^\wedge$T x + r\+\_\+i \& for each dimension of the function, with $ P_i $ a symmetric, non null matrix of size nxn, $ q_i $ a vector of size n and $ r_i $ a real. 
+
+Definition at line 32 of file Quadratic\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1QuadraticFunction_a224eecd300c5a16599ebd6e4eff5d9d7}{}\label{classocra_1_1QuadraticFunction_a224eecd300c5a16599ebd6e4eff5d9d7} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classocra_1_1QuadraticFunction_a224eecd300c5a16599ebd6e4eff5d9d7}{ocra\+::\+Quadratic\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 37 of file Quadratic\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1QuadraticFunction_ac5792908a2b7cfdaf612c1e809100a5e}{}\label{classocra_1_1QuadraticFunction_ac5792908a2b7cfdaf612c1e809100a5e} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!Quadratic\+Function@{Quadratic\+Function}}
+\index{Quadratic\+Function@{Quadratic\+Function}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{Quadratic\+Function()}{QuadraticFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ocra\+::\+Quadratic\+Function\+::\+Quadratic\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{int}]{dimension = {\ttfamily 1} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Light constructor to be used by derived classes. 
+
+Definition at line 5 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_a9955f993dd22831561b3b67767f72a0d}{}\label{classocra_1_1QuadraticFunction_a9955f993dd22831561b3b67767f72a0d} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!Quadratic\+Function@{Quadratic\+Function}}
+\index{Quadratic\+Function@{Quadratic\+Function}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{Quadratic\+Function()}{QuadraticFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived , class Vector\+Base $>$ \\
+ocra\+::\+Quadratic\+Function\+::\+Quadratic\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const Matrix\+Base$<$ Derived $>$ \&}]{P,  }\item[{const Vector\+Base \&}]{q,  }\item[{double}]{r }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor for a unidimensional function 
+
+Definition at line 54 of file Quadratic\+Function.\+h.
+
+\hypertarget{classocra_1_1QuadraticFunction_a84bd0afec5679c1620170a97fd1be648}{}\label{classocra_1_1QuadraticFunction_a84bd0afec5679c1620170a97fd1be648} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!````~Quadratic\+Function@{$\sim$\+Quadratic\+Function}}
+\index{````~Quadratic\+Function@{$\sim$\+Quadratic\+Function}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Quadratic\+Function()}{~QuadraticFunction()}}
+{\footnotesize\ttfamily ocra\+::\+Quadratic\+Function\+::$\sim$\+Quadratic\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 21 of file Quadratic\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1QuadraticFunction_ab2a6c4e433226c423f7a3dff95f68998}{}\label{classocra_1_1QuadraticFunction_ab2a6c4e433226c423f7a3dff95f68998} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!change\+Pi@{change\+Pi}}
+\index{change\+Pi@{change\+Pi}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{change\+Pi()}{changePi()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::change\+Pi (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{Pi,  }\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 27 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_a338c4fb88dd0a11cf63ff76ed572c895}{}\label{classocra_1_1QuadraticFunction_a338c4fb88dd0a11cf63ff76ed572c895} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!changeqi@{changeqi}}
+\index{changeqi@{changeqi}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{changeqi()}{changeqi()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::changeqi (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{qi,  }\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 40 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_a5322e69813282ff9af8a13d00f4cebfc}{}\label{classocra_1_1QuadraticFunction_a5322e69813282ff9af8a13d00f4cebfc} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!changeri@{changeri}}
+\index{changeri@{changeri}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{changeri()}{changeri()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::changeri (\begin{DoxyParamCaption}\item[{double}]{ri,  }\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 51 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_a49b61db0ab95c82d8f42d66f4a4f60a9}{}\label{classocra_1_1QuadraticFunction_a49b61db0ab95c82d8f42d66f4a4f60a9} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!desinhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r@{desinhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r}}
+\index{desinhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r@{desinhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{desinhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r()}{desinhibitPropagationFrom\_q\_or\_r()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::desinhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 160 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_a30d2c2217918164d24aaeadde5698d03}{}\label{classocra_1_1QuadraticFunction_a30d2c2217918164d24aaeadde5698d03} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!do\+Change\+Pi@{do\+Change\+Pi}}
+\index{do\+Change\+Pi@{do\+Change\+Pi}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Pi()}{doChangePi()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::do\+Change\+Pi (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{Pi,  }\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a2364e1c3908842eb252128256015d57b}{ocra\+::\+Weighted\+Square\+Distance\+Function}.
+
+
+
+Definition at line 60 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_abced87346b20e5ed323b966626487f16}{}\label{classocra_1_1QuadraticFunction_abced87346b20e5ed323b966626487f16} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!do\+Changeqi@{do\+Changeqi}}
+\index{do\+Changeqi@{do\+Changeqi}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{do\+Changeqi()}{doChangeqi()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::do\+Changeqi (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{qi,  }\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a0ba9644814cf959e34ffc581a6b1e37a}{ocra\+::\+Weighted\+Square\+Distance\+Function}.
+
+
+
+Definition at line 66 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_aeaeed88d4fef66c5db465f2887320e37}{}\label{classocra_1_1QuadraticFunction_aeaeed88d4fef66c5db465f2887320e37} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!do\+Changeri@{do\+Changeri}}
+\index{do\+Changeri@{do\+Changeri}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{do\+Changeri()}{doChangeri()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::do\+Changeri (\begin{DoxyParamCaption}\item[{double}]{ri,  }\item[{int}]{index }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1WeightedSquareDistanceFunction_afd6f2e03701395eed4db1b72588562ed}{ocra\+::\+Weighted\+Square\+Distance\+Function}.
+
+
+
+Definition at line 71 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_ad9b92a56e1c91c33630a5ba3f118c7b9}{}\label{classocra_1_1QuadraticFunction_ad9b92a56e1c91c33630a5ba3f118c7b9} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!do\+Update\+Dimension\+End@{do\+Update\+Dimension\+End}}
+\index{do\+Update\+Dimension\+End@{do\+Update\+Dimension\+End}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Dimension\+End()}{doUpdateDimensionEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::do\+Update\+Dimension\+End (\begin{DoxyParamCaption}\item[{int}]{old\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d}{ocra\+::\+Function}.
+
+
+
+Definition at line 122 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_ab3d5478fd8ded343453e0489c595e580}{}\label{classocra_1_1QuadraticFunction_ab3d5478fd8ded343453e0489c595e580} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Function_a39f6d91b72eff2d32da7e4a85ee79f7d}{ocra\+::\+Function}.
+
+
+
+Reimplemented in \hyperlink{classocra_1_1WeightedSquareDistanceFunction_ab05ab6021a40ed308b7e0d67b5a55b82}{ocra\+::\+Weighted\+Square\+Distance\+Function}.
+
+
+
+Definition at line 115 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_aa848353fa3e2a2330acdf3fa5b3f8ee3}{}\label{classocra_1_1QuadraticFunction_aa848353fa3e2a2330acdf3fa5b3f8ee3} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!get\+Pi@{get\+Pi}}
+\index{get\+Pi@{get\+Pi}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{get\+Pi()}{getPi()}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Quadratic\+Function\+::get\+Pi (\begin{DoxyParamCaption}\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 126 of file Quadratic\+Function.\+h.
+
+\hypertarget{classocra_1_1QuadraticFunction_a5735e7a900aabcf856e9df0c00e0cd06}{}\label{classocra_1_1QuadraticFunction_a5735e7a900aabcf856e9df0c00e0cd06} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!getqi@{getqi}}
+\index{getqi@{getqi}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{getqi()}{getqi()}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Quadratic\+Function\+::getqi (\begin{DoxyParamCaption}\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 132 of file Quadratic\+Function.\+h.
+
+\hypertarget{classocra_1_1QuadraticFunction_a5e5e98d00ae2c3249954d6a9a262686f}{}\label{classocra_1_1QuadraticFunction_a5e5e98d00ae2c3249954d6a9a262686f} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!getr@{getr}}
+\index{getr@{getr}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{getr()}{getr()}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Quadratic\+Function\+::getr (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 148 of file Quadratic\+Function.\+h.
+
+\hypertarget{classocra_1_1QuadraticFunction_a5b3500ab19d92999b51de585b73cbf58}{}\label{classocra_1_1QuadraticFunction_a5b3500ab19d92999b51de585b73cbf58} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!getri@{getri}}
+\index{getri@{getri}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{getri()}{getri()}}
+{\footnotesize\ttfamily double ocra\+::\+Quadratic\+Function\+::getri (\begin{DoxyParamCaption}\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 143 of file Quadratic\+Function.\+h.
+
+\hypertarget{classocra_1_1QuadraticFunction_ab42b63fecbd39d330f7ec7b13e5c3701}{}\label{classocra_1_1QuadraticFunction_ab42b63fecbd39d330f7ec7b13e5c3701} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!inhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r@{inhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r}}
+\index{inhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r@{inhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{inhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r()}{inhibitPropagationFrom\_q\_or\_r()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::inhibit\+Propagation\+From\+\_\+q\+\_\+or\+\_\+r (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Inhibit/desinhibit the fact that a call to invalidateq or invalidater triggers a E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+V\+A\+L\+UE event, which is done by default. This is meant to prevent multiple propagation of E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+V\+A\+L\+UE in case of complex update dependencies. 
+
+Definition at line 155 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_ab98c6562b88ef393f03ea0d1c9863f0e}{}\label{classocra_1_1QuadraticFunction_ab98c6562b88ef393f03ea0d1c9863f0e} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!invalidateq@{invalidateq}}
+\index{invalidateq@{invalidateq}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{invalidateq()}{invalidateq()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::invalidateq (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 143 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_a3d76d4ae8dc9ffbefcdf7027e72665c4}{}\label{classocra_1_1QuadraticFunction_a3d76d4ae8dc9ffbefcdf7027e72665c4} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!invalidater@{invalidater}}
+\index{invalidater@{invalidater}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{invalidater()}{invalidater()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::invalidater (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 149 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_a342ea525685ddc2c414a49e7480a7a4c}{}\label{classocra_1_1QuadraticFunction_a342ea525685ddc2c414a49e7480a7a4c} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!update\+Hessian@{update\+Hessian}}
+\index{update\+Hessian@{update\+Hessian}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{update\+Hessian()}{updateHessian()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::update\+Hessian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1SquaredLinearFunction_a194606ccd86f17dbc73a6c3bdf2455c9}{ocra\+::\+Squared\+Linear\+Function}, and \hyperlink{classocra_1_1FcQuadraticFunction_aef068bc86027f29c0fbfaa9d53441cd4}{ocra\+::\+Fc\+Quadratic\+Function}.
+
+
+
+Definition at line 100 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_ad8fb5839a78b8ffb201e8ec5bb42cd70}{}\label{classocra_1_1QuadraticFunction_ad8fb5839a78b8ffb201e8ec5bb42cd70} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1WeightedSquareDistanceFunction_adb2aad2190e474c2975a5544f0122585}{ocra\+::\+Weighted\+Square\+Distance\+Function}.
+
+
+
+Definition at line 90 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_ae68e94211c94e8c32da2220132baf248}{}\label{classocra_1_1QuadraticFunction_ae68e94211c94e8c32da2220132baf248} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!updateq@{updateq}}
+\index{updateq@{updateq}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{updateq()}{updateq()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::updateq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1SquaredLinearFunction_a6fec3532febfdea70c28457ea826111e}{ocra\+::\+Squared\+Linear\+Function}, and \hyperlink{classocra_1_1FcQuadraticFunction_ac6bcfaccbe16a821e0f1d7c29744d138}{ocra\+::\+Fc\+Quadratic\+Function}.
+
+
+
+Definition at line 105 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_aeaa560b1771f4024755753236fd69779}{}\label{classocra_1_1QuadraticFunction_aeaa560b1771f4024755753236fd69779} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!updater@{updater}}
+\index{updater@{updater}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{updater()}{updater()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::updater (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1SquaredLinearFunction_ab74b479275839850f1c98ac2fa3137bd}{ocra\+::\+Squared\+Linear\+Function}, and \hyperlink{classocra_1_1FcQuadraticFunction_aab41d4b011590ad42766e66df34305da}{ocra\+::\+Fc\+Quadratic\+Function}.
+
+
+
+Definition at line 110 of file Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1QuadraticFunction_aad5171c1f1b510fb861121da01a0ea75}{}\label{classocra_1_1QuadraticFunction_aad5171c1f1b510fb861121da01a0ea75} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Quadratic\+Function\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented in \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a3edae3085677a5ac54b4d5bcdfcc1901}{ocra\+::\+Weighted\+Square\+Distance\+Function}.
+
+
+
+Definition at line 77 of file Quadratic\+Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1QuadraticFunction_a0019bf700f128841e50dbceaa4c75dd2}{}\label{classocra_1_1QuadraticFunction_a0019bf700f128841e50dbceaa4c75dd2} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!\+\_\+q@{\+\_\+q}}
+\index{\+\_\+q@{\+\_\+q}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+q}{\_q}}
+{\footnotesize\ttfamily std\+::vector$<$Vector\+Xd$\ast$$>$ ocra\+::\+Quadratic\+Function\+::\+\_\+q\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 116 of file Quadratic\+Function.\+h.
+
+\hypertarget{classocra_1_1QuadraticFunction_adc8b30315f5cef54f2318c93844a6a66}{}\label{classocra_1_1QuadraticFunction_adc8b30315f5cef54f2318c93844a6a66} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!\+\_\+q\+Is\+Up\+To\+Date@{\+\_\+q\+Is\+Up\+To\+Date}}
+\index{\+\_\+q\+Is\+Up\+To\+Date@{\+\_\+q\+Is\+Up\+To\+Date}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+q\+Is\+Up\+To\+Date}{\_qIsUpToDate}}
+{\footnotesize\ttfamily bool ocra\+::\+Quadratic\+Function\+::\+\_\+q\+Is\+Up\+To\+Date\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 118 of file Quadratic\+Function.\+h.
+
+\hypertarget{classocra_1_1QuadraticFunction_a56771e89a23a61fcc15cfd4d10c6956c}{}\label{classocra_1_1QuadraticFunction_a56771e89a23a61fcc15cfd4d10c6956c} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!\+\_\+r@{\+\_\+r}}
+\index{\+\_\+r@{\+\_\+r}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+r}{\_r}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Quadratic\+Function\+::\+\_\+r\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 117 of file Quadratic\+Function.\+h.
+
+\hypertarget{classocra_1_1QuadraticFunction_a9862b46e064bccd9e83b10e9ceb4d2f0}{}\label{classocra_1_1QuadraticFunction_a9862b46e064bccd9e83b10e9ceb4d2f0} 
+\index{ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}!\+\_\+r\+Is\+Up\+To\+Date@{\+\_\+r\+Is\+Up\+To\+Date}}
+\index{\+\_\+r\+Is\+Up\+To\+Date@{\+\_\+r\+Is\+Up\+To\+Date}!ocra\+::\+Quadratic\+Function@{ocra\+::\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+r\+Is\+Up\+To\+Date}{\_rIsUpToDate}}
+{\footnotesize\ttfamily bool ocra\+::\+Quadratic\+Function\+::\+\_\+r\+Is\+Up\+To\+Date\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 119 of file Quadratic\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{QuadraticFunction_8h}{Quadratic\+Function.\+h}\item 
+\hyperlink{QuadraticFunction_8cpp}{Quadratic\+Function.\+cpp}\end{DoxyCompactItemize}

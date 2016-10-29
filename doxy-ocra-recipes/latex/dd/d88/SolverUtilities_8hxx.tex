@@ -1,0 +1,72 @@
+\hypertarget{SolverUtilities_8hxx}{}\section{Solver\+Utilities.\+hxx File Reference}
+\label{SolverUtilities_8hxx}\index{Solver\+Utilities.\+hxx@{Solver\+Utilities.\+hxx}}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceocra_1_1utils}{ocra\+::utils}
+\item 
+ \hyperlink{namespaceocra_1_1utils_1_1details}{ocra\+::utils\+::details}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Base $>$ }\\void \hyperlink{namespaceocra_1_1utils_aaf649f13f39cd8d32b0311ac2bfe2b4d}{ocra\+::utils\+::print\+Linear\+Equation} (const Matrix\+Base$<$ Derived $>$ \&A, const Vector\+Base \&b, int space=9, int precision=3)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_adecf442a59dee26f5836a070533bcac4}{ocra\+::utils\+::uncompress\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ae2055de35b65215e1f23b0988fe20705}{ocra\+::utils\+::uncompress\+By\+Col} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a151ee2cecba7ea9527fbdc8be061cd98}{ocra\+::utils\+::uncompress\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aa1f9829f8b85e3b006b691a924b12e3f}{ocra\+::utils\+::uncompress\+By\+Row} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a6336653c4ed344718fdf1c888c668a58}{ocra\+::utils\+::uncompress2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a5189699a011acaa6413bd14c178254c3}{ocra\+::utils\+::uncompress2d} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a4a6965e28f8a5284f406ca2cea54a221}{ocra\+::utils\+::add\+Compressed\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a8b6a78df5f205a61d8b4d29a2a82c864}{ocra\+::utils\+::add\+Compressed\+By\+Col} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a8256ba2ed6ce4d6066c03631e64e27f9}{ocra\+::utils\+::add\+Compressed\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a0ca59cf5c0fd0b8e92a0aa53d85e0aca}{ocra\+::utils\+::add\+Compressed\+By\+Row} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ad4dfd96e7620a1cadabe53db0cdf969d}{ocra\+::utils\+::add\+Compressed2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_af486ff6d7c311e33a0c7d647eb45bcd6}{ocra\+::utils\+::add\+Compressed2d} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ab527c3744d4c3ca93750164c91a9c3dd}{ocra\+::utils\+::min\+Compressed\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aa4b4cd7a5d18ae426d5aa2fb46d20902}{ocra\+::utils\+::min\+Compressed\+By\+Col} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ae8dc2eb14db238a75ea0a8bf499e4902}{ocra\+::utils\+::min\+Compressed\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_af79aa2317a885467a28ba54e7b287ec8}{ocra\+::utils\+::min\+Compressed\+By\+Row} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aef09b232677b6a4a8d6177c04345f1d3}{ocra\+::utils\+::min\+Compressed2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a9b0fce276b5edf71568e40517bf567ac}{ocra\+::utils\+::min\+Compressed2d} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a9de6baf9d21a683ff798695ac099055a}{ocra\+::utils\+::max\+Compressed\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a86da8040ccbcb2a583b7e628dc8265ea}{ocra\+::utils\+::max\+Compressed\+By\+Col} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a6216ad7fe2fb3ce0e894167f8f7d08b8}{ocra\+::utils\+::max\+Compressed\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a0d2b985e493c0d62782921b92d0f92a9}{ocra\+::utils\+::max\+Compressed\+By\+Row} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ac4a24bd4a452b6c09129dcf5b7f620a2}{ocra\+::utils\+::max\+Compressed2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&\+\_\+out, const std\+::vector$<$ int $>$ \&mapping, double scale, bool reverse\+Mapping)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_ab1811bfb0b7d5ab451e9fea88093027e}{ocra\+::utils\+::max\+Compressed2d} (const Variable \&base, const Variable \&rel, const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ const \&out, std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Derived $>$ }\\void \hyperlink{namespaceocra_1_1utils_1_1details_a47a75bc377ce3547c94c54c6d500fffb}{ocra\+::utils\+::details\+::convert\+\_\+} (const Linear\+Constraint \&cstr, e\+Constraint\+Type apparent\+Type, const std\+::vector$<$ int $>$ \&mapping, e\+Convert\+Case convert\+Case, Matrix\+Base$<$ Derived $>$ \&A, Matrix\+Base$<$ Vector\+Derived $>$ const \&\+\_\+b)
+\item 
+{\footnotesize template$<$class Derived\+In , class Vector\+Base\+In1 , class Vector\+Base\+In2 , class Derived\+Out , class Vector\+Base\+Out $>$ }\\void \hyperlink{namespaceocra_1_1utils_1_1details_a127392d7e9e17996ff887583037da190}{ocra\+::utils\+::details\+::convert} (const Matrix\+Base$<$ Derived\+In $>$ \&M, const Vector\+Base\+In1 \&v1, const Vector\+Base\+In2 \&v2, Matrix\+Base$<$ Derived\+Out $>$ \&A, Vector\+Base\+Out \&b, const std\+::vector$<$ int $>$ \&mapping, details\+::e\+Convert\+Case convert\+Case)
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Base1 , class Vector\+Base2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a5d9dfa0a2dc2197c50ba35951f19586e}{ocra\+::utils\+::convert} (const Linear\+Constraint \&cstr, const std\+::vector$<$ int $>$ \&mapping, e\+Constraint\+Output type, Matrix\+Base$<$ Derived $>$ \&A, Vector\+Base1 \&b, Vector\+Base2 \&l, double infinity=0.)
+\item 
+{\footnotesize template$<$class Vector\+Base1 , class Vector\+Base2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aa835270370ca3a7f7b9e2858ef37dae0}{ocra\+::utils\+::intersect\+Bounds} (const Diagonal\+Linear\+Constraint \&bounds, const std\+::vector$<$ int $>$ \&mapping, Vector\+Base1 \&bl, Vector\+Base2 \&bu)
+\end{DoxyCompactItemize}

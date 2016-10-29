@@ -1,0 +1,277 @@
+\hypertarget{classocra_1_1CascadeQP}{}\section{ocra\+:\+:Cascade\+QP Class Reference}
+\label{classocra_1_1CascadeQP}\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+
+
+Cascade\+QP class.  
+
+
+
+
+{\ttfamily \#include $<$Cascade\+Q\+P.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1CascadeQP_a545a3098762becf8a663eb8ab3bd4899}{Cascade\+QP} ()
+\item 
+virtual \hyperlink{classocra_1_1CascadeQP_a843673d4951f7a8e972598d0f361ad8d}{$\sim$\+Cascade\+QP} ()
+\item 
+std\+::size\+\_\+t \hyperlink{classocra_1_1CascadeQP_ab1ac4edfcf8e8c7567fc0a5ca5bd5f86}{add\+Hierarchy\+Level} (ocra\+::\+Hierarchy\+Level\+::\+Ptr h)
+\item 
+std\+::size\+\_\+t \hyperlink{classocra_1_1CascadeQP_a6415299f7159a36a75940e073f64b770}{add\+Hierarchy\+Level} (const std\+::vector$<$ Hierarchy\+Level\+::\+Ptr $>$ \&v)
+\item 
+void \hyperlink{classocra_1_1CascadeQP_a476d6af7b355fd8a3887e9708253cd1a}{clear} (void)
+\item 
+const \hyperlink{structocra_1_1FinalSolution}{Final\+Solution} \& \hyperlink{classocra_1_1CascadeQP_a11e01b608414badd9af6794076eb8b33}{solve\+Cascade\+QP} ()
+\item 
+const \hyperlink{structocra_1_1FinalSolution}{Final\+Solution} \& \hyperlink{classocra_1_1CascadeQP_af59591ea0fdc81da5866fa3b99fd9d67}{get\+Solution} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1CascadeQP_ab897ead27cb45e35281f39d389e8ed87}{get\+Solution\+Of\+Level} (int i) const
+\item 
+Hierarchy\+Level\+::\+Ptr \hyperlink{classocra_1_1CascadeQP_a49b3ce4ed68507905755b63f878c1990}{get\+Hierarchy\+Level} (int i) const
+\item 
+std\+::size\+\_\+t \hyperlink{classocra_1_1CascadeQP_a1f714b8b6024d46a4e9545324a21e702}{get\+Number\+Of\+Hierarchy\+Level} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1CascadeQP_ae4b95cc384e8fc057f94f05379782642}{add\+Hierarchy\+Level\+\_\+barre} (int i)
+\item 
+std\+::size\+\_\+t \hyperlink{classocra_1_1CascadeQP_af18be26b3ac162b19f830306b8703813}{initialize\+Hierarchy\+Level\+\_\+barre} ()
+\item 
+void \hyperlink{classocra_1_1CascadeQP_a7ce909a63e72212c4f3e97ca6c4b92e3}{compute\+Matrix\+PQ} (int i)
+\item 
+void \hyperlink{classocra_1_1CascadeQP_af402ea4556f12c7dfbbd6124d01543bb}{compute\+Equalities\+Constraints} (int i)
+\item 
+void \hyperlink{classocra_1_1CascadeQP_af5cf5a79077abf0b043f0d47c021599b}{compute\+Inequalities\+Constraints} (int i)
+\item 
+void \hyperlink{classocra_1_1CascadeQP_a25feb68d7077bf5a8545313ccfe67edc}{compute\+Hierarchy\+Level\+\_\+barre} (int i)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Solution\+::\+Ptr $>$ \hyperlink{classocra_1_1CascadeQP_ae8883fb4a62f072b2216304955e3e0b2}{all\+Solution}
+\item 
+std\+::vector$<$ Hierarchy\+Level\+::\+Ptr $>$ \hyperlink{classocra_1_1CascadeQP_add8c599dd93d116ae57c4c5d05cc2bc1}{all\+Hierarchy\+Level}
+\item 
+std\+::vector$<$ Hierarchy\+Level\+\_\+barre\+::\+Ptr $>$ \hyperlink{classocra_1_1CascadeQP_a83636f53370030bbb53359dae1e40833}{all\+Hierarchy\+Level\+\_\+barre}
+\item 
+std\+::vector$<$ Matrix\+P\+Q\+::\+Ptr $>$ \hyperlink{classocra_1_1CascadeQP_a9f444092058e2d94da26af59aca9b312}{all\+Matrix\+PQ}
+\item 
+std\+::vector$<$ Equalities\+Constraints\+::\+Ptr $>$ \hyperlink{classocra_1_1CascadeQP_a53b7452856aa410a83316214d3fe66ad}{all\+Equalities\+Constraints}
+\item 
+std\+::vector$<$ Inequalities\+Constraints\+::\+Ptr $>$ \hyperlink{classocra_1_1CascadeQP_a45c98a7eaf861a64c86a789ca524d550}{all\+Inequalities\+Constraints}
+\item 
+std\+::vector$<$ int $>$ \hyperlink{classocra_1_1CascadeQP_a7f6949ea468c0b2536fd97b8e1eb262f}{index\+Constraints\+Violated}
+\item 
+std\+::vector$<$ int $>$ \hyperlink{classocra_1_1CascadeQP_aff033d8c8c8804f1105d461e0ef7ed12}{index\+Constraints\+Not\+Violated}
+\item 
+\hyperlink{structocra_1_1FinalSolution}{Final\+Solution} \hyperlink{classocra_1_1CascadeQP_a0363a53bef69ce85777c3a2ce1c4c251}{f}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Cascade\+QP class. 
+
+Definition at line 31 of file Cascade\+Q\+P.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1CascadeQP_a545a3098762becf8a663eb8ab3bd4899}{}\label{classocra_1_1CascadeQP_a545a3098762becf8a663eb8ab3bd4899} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!Cascade\+QP@{Cascade\+QP}}
+\index{Cascade\+QP@{Cascade\+QP}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{Cascade\+Q\+P()}{CascadeQP()}}
+{\footnotesize\ttfamily ocra\+::\+Cascade\+Q\+P\+::\+Cascade\+QP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1CascadeQP_a843673d4951f7a8e972598d0f361ad8d}{}\label{classocra_1_1CascadeQP_a843673d4951f7a8e972598d0f361ad8d} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!````~Cascade\+QP@{$\sim$\+Cascade\+QP}}
+\index{````~Cascade\+QP@{$\sim$\+Cascade\+QP}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{$\sim$\+Cascade\+Q\+P()}{~CascadeQP()}}
+{\footnotesize\ttfamily virtual ocra\+::\+Cascade\+Q\+P\+::$\sim$\+Cascade\+QP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1CascadeQP_ab1ac4edfcf8e8c7567fc0a5ca5bd5f86}{}\label{classocra_1_1CascadeQP_ab1ac4edfcf8e8c7567fc0a5ca5bd5f86} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!add\+Hierarchy\+Level@{add\+Hierarchy\+Level}}
+\index{add\+Hierarchy\+Level@{add\+Hierarchy\+Level}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{add\+Hierarchy\+Level()}{addHierarchyLevel()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily std\+::size\+\_\+t ocra\+::\+Cascade\+Q\+P\+::add\+Hierarchy\+Level (\begin{DoxyParamCaption}\item[{ocra\+::\+Hierarchy\+Level\+::\+Ptr}]{h }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1CascadeQP_a6415299f7159a36a75940e073f64b770}{}\label{classocra_1_1CascadeQP_a6415299f7159a36a75940e073f64b770} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!add\+Hierarchy\+Level@{add\+Hierarchy\+Level}}
+\index{add\+Hierarchy\+Level@{add\+Hierarchy\+Level}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{add\+Hierarchy\+Level()}{addHierarchyLevel()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily std\+::size\+\_\+t ocra\+::\+Cascade\+Q\+P\+::add\+Hierarchy\+Level (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ Hierarchy\+Level\+::\+Ptr $>$ \&}]{v }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1CascadeQP_ae4b95cc384e8fc057f94f05379782642}{}\label{classocra_1_1CascadeQP_ae4b95cc384e8fc057f94f05379782642} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!add\+Hierarchy\+Level\+\_\+barre@{add\+Hierarchy\+Level\+\_\+barre}}
+\index{add\+Hierarchy\+Level\+\_\+barre@{add\+Hierarchy\+Level\+\_\+barre}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{add\+Hierarchy\+Level\+\_\+barre()}{addHierarchyLevel\_barre()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+::add\+Hierarchy\+Level\+\_\+barre (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{classocra_1_1CascadeQP_a476d6af7b355fd8a3887e9708253cd1a}{}\label{classocra_1_1CascadeQP_a476d6af7b355fd8a3887e9708253cd1a} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!clear@{clear}}
+\index{clear@{clear}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+::clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\hypertarget{classocra_1_1CascadeQP_af402ea4556f12c7dfbbd6124d01543bb}{}\label{classocra_1_1CascadeQP_af402ea4556f12c7dfbbd6124d01543bb} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!compute\+Equalities\+Constraints@{compute\+Equalities\+Constraints}}
+\index{compute\+Equalities\+Constraints@{compute\+Equalities\+Constraints}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{compute\+Equalities\+Constraints()}{computeEqualitiesConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+::compute\+Equalities\+Constraints (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{classocra_1_1CascadeQP_a25feb68d7077bf5a8545313ccfe67edc}{}\label{classocra_1_1CascadeQP_a25feb68d7077bf5a8545313ccfe67edc} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!compute\+Hierarchy\+Level\+\_\+barre@{compute\+Hierarchy\+Level\+\_\+barre}}
+\index{compute\+Hierarchy\+Level\+\_\+barre@{compute\+Hierarchy\+Level\+\_\+barre}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{compute\+Hierarchy\+Level\+\_\+barre()}{computeHierarchyLevel\_barre()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+::compute\+Hierarchy\+Level\+\_\+barre (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{classocra_1_1CascadeQP_af5cf5a79077abf0b043f0d47c021599b}{}\label{classocra_1_1CascadeQP_af5cf5a79077abf0b043f0d47c021599b} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!compute\+Inequalities\+Constraints@{compute\+Inequalities\+Constraints}}
+\index{compute\+Inequalities\+Constraints@{compute\+Inequalities\+Constraints}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{compute\+Inequalities\+Constraints()}{computeInequalitiesConstraints()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+::compute\+Inequalities\+Constraints (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{classocra_1_1CascadeQP_a7ce909a63e72212c4f3e97ca6c4b92e3}{}\label{classocra_1_1CascadeQP_a7ce909a63e72212c4f3e97ca6c4b92e3} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!compute\+Matrix\+PQ@{compute\+Matrix\+PQ}}
+\index{compute\+Matrix\+PQ@{compute\+Matrix\+PQ}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{compute\+Matrix\+P\+Q()}{computeMatrixPQ()}}
+{\footnotesize\ttfamily void ocra\+::\+Cascade\+Q\+P\+::compute\+Matrix\+PQ (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{classocra_1_1CascadeQP_a49b3ce4ed68507905755b63f878c1990}{}\label{classocra_1_1CascadeQP_a49b3ce4ed68507905755b63f878c1990} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!get\+Hierarchy\+Level@{get\+Hierarchy\+Level}}
+\index{get\+Hierarchy\+Level@{get\+Hierarchy\+Level}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{get\+Hierarchy\+Level()}{getHierarchyLevel()}}
+{\footnotesize\ttfamily Hierarchy\+Level\+::\+Ptr ocra\+::\+Cascade\+Q\+P\+::get\+Hierarchy\+Level (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+\hypertarget{classocra_1_1CascadeQP_a1f714b8b6024d46a4e9545324a21e702}{}\label{classocra_1_1CascadeQP_a1f714b8b6024d46a4e9545324a21e702} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!get\+Number\+Of\+Hierarchy\+Level@{get\+Number\+Of\+Hierarchy\+Level}}
+\index{get\+Number\+Of\+Hierarchy\+Level@{get\+Number\+Of\+Hierarchy\+Level}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{get\+Number\+Of\+Hierarchy\+Level()}{getNumberOfHierarchyLevel()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t ocra\+::\+Cascade\+Q\+P\+::get\+Number\+Of\+Hierarchy\+Level (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{classocra_1_1CascadeQP_af59591ea0fdc81da5866fa3b99fd9d67}{}\label{classocra_1_1CascadeQP_af59591ea0fdc81da5866fa3b99fd9d67} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!get\+Solution@{get\+Solution}}
+\index{get\+Solution@{get\+Solution}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{get\+Solution()}{getSolution()}}
+{\footnotesize\ttfamily const \hyperlink{structocra_1_1FinalSolution}{Final\+Solution}\& ocra\+::\+Cascade\+Q\+P\+::get\+Solution (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{classocra_1_1CascadeQP_ab897ead27cb45e35281f39d389e8ed87}{}\label{classocra_1_1CascadeQP_ab897ead27cb45e35281f39d389e8ed87} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!get\+Solution\+Of\+Level@{get\+Solution\+Of\+Level}}
+\index{get\+Solution\+Of\+Level@{get\+Solution\+Of\+Level}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{get\+Solution\+Of\+Level()}{getSolutionOfLevel()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd\& ocra\+::\+Cascade\+Q\+P\+::get\+Solution\+Of\+Level (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+\hypertarget{classocra_1_1CascadeQP_af18be26b3ac162b19f830306b8703813}{}\label{classocra_1_1CascadeQP_af18be26b3ac162b19f830306b8703813} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!initialize\+Hierarchy\+Level\+\_\+barre@{initialize\+Hierarchy\+Level\+\_\+barre}}
+\index{initialize\+Hierarchy\+Level\+\_\+barre@{initialize\+Hierarchy\+Level\+\_\+barre}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{initialize\+Hierarchy\+Level\+\_\+barre()}{initializeHierarchyLevel\_barre()}}
+{\footnotesize\ttfamily std\+::size\+\_\+t ocra\+::\+Cascade\+Q\+P\+::initialize\+Hierarchy\+Level\+\_\+barre (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\hypertarget{classocra_1_1CascadeQP_a11e01b608414badd9af6794076eb8b33}{}\label{classocra_1_1CascadeQP_a11e01b608414badd9af6794076eb8b33} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!solve\+Cascade\+QP@{solve\+Cascade\+QP}}
+\index{solve\+Cascade\+QP@{solve\+Cascade\+QP}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{solve\+Cascade\+Q\+P()}{solveCascadeQP()}}
+{\footnotesize\ttfamily const \hyperlink{structocra_1_1FinalSolution}{Final\+Solution}\& ocra\+::\+Cascade\+Q\+P\+::solve\+Cascade\+QP (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1CascadeQP_a53b7452856aa410a83316214d3fe66ad}{}\label{classocra_1_1CascadeQP_a53b7452856aa410a83316214d3fe66ad} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!all\+Equalities\+Constraints@{all\+Equalities\+Constraints}}
+\index{all\+Equalities\+Constraints@{all\+Equalities\+Constraints}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{all\+Equalities\+Constraints}{allEqualitiesConstraints}}
+{\footnotesize\ttfamily std\+::vector$<$Equalities\+Constraints\+::\+Ptr$>$ ocra\+::\+Cascade\+Q\+P\+::all\+Equalities\+Constraints\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 64 of file Cascade\+Q\+P.\+h.
+
+\hypertarget{classocra_1_1CascadeQP_add8c599dd93d116ae57c4c5d05cc2bc1}{}\label{classocra_1_1CascadeQP_add8c599dd93d116ae57c4c5d05cc2bc1} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!all\+Hierarchy\+Level@{all\+Hierarchy\+Level}}
+\index{all\+Hierarchy\+Level@{all\+Hierarchy\+Level}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{all\+Hierarchy\+Level}{allHierarchyLevel}}
+{\footnotesize\ttfamily std\+::vector$<$Hierarchy\+Level\+::\+Ptr$>$ ocra\+::\+Cascade\+Q\+P\+::all\+Hierarchy\+Level\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 61 of file Cascade\+Q\+P.\+h.
+
+\hypertarget{classocra_1_1CascadeQP_a83636f53370030bbb53359dae1e40833}{}\label{classocra_1_1CascadeQP_a83636f53370030bbb53359dae1e40833} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!all\+Hierarchy\+Level\+\_\+barre@{all\+Hierarchy\+Level\+\_\+barre}}
+\index{all\+Hierarchy\+Level\+\_\+barre@{all\+Hierarchy\+Level\+\_\+barre}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{all\+Hierarchy\+Level\+\_\+barre}{allHierarchyLevel\_barre}}
+{\footnotesize\ttfamily std\+::vector$<$Hierarchy\+Level\+\_\+barre\+::\+Ptr$>$ ocra\+::\+Cascade\+Q\+P\+::all\+Hierarchy\+Level\+\_\+barre\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 62 of file Cascade\+Q\+P.\+h.
+
+\hypertarget{classocra_1_1CascadeQP_a45c98a7eaf861a64c86a789ca524d550}{}\label{classocra_1_1CascadeQP_a45c98a7eaf861a64c86a789ca524d550} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!all\+Inequalities\+Constraints@{all\+Inequalities\+Constraints}}
+\index{all\+Inequalities\+Constraints@{all\+Inequalities\+Constraints}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{all\+Inequalities\+Constraints}{allInequalitiesConstraints}}
+{\footnotesize\ttfamily std\+::vector$<$Inequalities\+Constraints\+::\+Ptr$>$ ocra\+::\+Cascade\+Q\+P\+::all\+Inequalities\+Constraints\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 65 of file Cascade\+Q\+P.\+h.
+
+\hypertarget{classocra_1_1CascadeQP_a9f444092058e2d94da26af59aca9b312}{}\label{classocra_1_1CascadeQP_a9f444092058e2d94da26af59aca9b312} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!all\+Matrix\+PQ@{all\+Matrix\+PQ}}
+\index{all\+Matrix\+PQ@{all\+Matrix\+PQ}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{all\+Matrix\+PQ}{allMatrixPQ}}
+{\footnotesize\ttfamily std\+::vector$<$Matrix\+P\+Q\+::\+Ptr$>$ ocra\+::\+Cascade\+Q\+P\+::all\+Matrix\+PQ\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 63 of file Cascade\+Q\+P.\+h.
+
+\hypertarget{classocra_1_1CascadeQP_ae8883fb4a62f072b2216304955e3e0b2}{}\label{classocra_1_1CascadeQP_ae8883fb4a62f072b2216304955e3e0b2} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!all\+Solution@{all\+Solution}}
+\index{all\+Solution@{all\+Solution}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{all\+Solution}{allSolution}}
+{\footnotesize\ttfamily std\+::vector$<$Solution\+::\+Ptr$>$ ocra\+::\+Cascade\+Q\+P\+::all\+Solution\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 60 of file Cascade\+Q\+P.\+h.
+
+\hypertarget{classocra_1_1CascadeQP_a0363a53bef69ce85777c3a2ce1c4c251}{}\label{classocra_1_1CascadeQP_a0363a53bef69ce85777c3a2ce1c4c251} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!f@{f}}
+\index{f@{f}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{f}{f}}
+{\footnotesize\ttfamily \hyperlink{structocra_1_1FinalSolution}{Final\+Solution} ocra\+::\+Cascade\+Q\+P\+::f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 68 of file Cascade\+Q\+P.\+h.
+
+\hypertarget{classocra_1_1CascadeQP_aff033d8c8c8804f1105d461e0ef7ed12}{}\label{classocra_1_1CascadeQP_aff033d8c8c8804f1105d461e0ef7ed12} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!index\+Constraints\+Not\+Violated@{index\+Constraints\+Not\+Violated}}
+\index{index\+Constraints\+Not\+Violated@{index\+Constraints\+Not\+Violated}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{index\+Constraints\+Not\+Violated}{indexConstraintsNotViolated}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ ocra\+::\+Cascade\+Q\+P\+::index\+Constraints\+Not\+Violated\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 67 of file Cascade\+Q\+P.\+h.
+
+\hypertarget{classocra_1_1CascadeQP_a7f6949ea468c0b2536fd97b8e1eb262f}{}\label{classocra_1_1CascadeQP_a7f6949ea468c0b2536fd97b8e1eb262f} 
+\index{ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}!index\+Constraints\+Violated@{index\+Constraints\+Violated}}
+\index{index\+Constraints\+Violated@{index\+Constraints\+Violated}!ocra\+::\+Cascade\+QP@{ocra\+::\+Cascade\+QP}}
+\subsubsection{\texorpdfstring{index\+Constraints\+Violated}{indexConstraintsViolated}}
+{\footnotesize\ttfamily std\+::vector$<$int$>$ ocra\+::\+Cascade\+Q\+P\+::index\+Constraints\+Violated\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 66 of file Cascade\+Q\+P.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{CascadeQP_8h}{Cascade\+Q\+P.\+h}\end{DoxyCompactItemize}

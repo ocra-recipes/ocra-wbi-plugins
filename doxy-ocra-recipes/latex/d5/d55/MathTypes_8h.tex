@@ -1,0 +1,88 @@
+\hypertarget{MathTypes_8h}{}\section{Math\+Types.\+h File Reference}
+\label{MathTypes_8h}\index{Math\+Types.\+h@{Math\+Types.\+h}}
+
+
+Declaration file of the Optimization\+Variable class.  
+
+
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{MathTypes_8h_a7166f82d6faddb8bb59aa90b6392a25c}{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+O\+R\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+A\+T\+R\+IX}(T\+Y\+PE)
+\item 
+\#define \hyperlink{MathTypes_8h_ae71449b1cc6e6250b91f539153a7a0d3}{M\+\_\+\+PI}~3.\+14159265358979
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef double \hyperlink{namespaceocra_af4478308ca113669e67d72f9a3050469}{ocra\+::real}
+\item 
+typedef Eigen\+::\+Dense\+Base$<$ Matrix\+Xd $>$\+::Const\+Row\+Xpr \hyperlink{namespaceocra_a608bf0522317ed1df3bbfc6a5753bc01}{ocra\+::\+Matrix\+Xd\+Row}
+\item 
+typedef Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_a72fe7d6cf8411efbfc475a3a78209867}{ocra\+::\+Vector6d}
+\item 
+typedef Eigen\+::\+Matrix$<$ double, 6, 6 $>$ \hyperlink{namespaceocra_a4ee053c9fed8722df857e4f8f4d6d334}{ocra\+::\+Matrix6d}
+\item 
+typedef Eigen\+::\+Matrix$<$ double, 3, Eigen\+::\+Dynamic $>$ \hyperlink{namespaceocra_a9d83c179b8710177bed2bbba41a12447}{ocra\+::\+Jacobian3d}
+\item 
+typedef Eigen\+::\+Matrix$<$ double, 6, Eigen\+::\+Dynamic $>$ \hyperlink{namespaceocra_ac73b015f9f7cb0c252c4d5c4800f559a}{ocra\+::\+Jacobian6d}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{namespaceocra_aa770b1747e9ddd05361e291ad6e598e5}{ocra\+::deg2rad} (const double deg)
+\item 
+double \hyperlink{namespaceocra_a967dc05d7d0b50212fb79c109a16ace3}{ocra\+::rad2deg} (const double rad)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Declaration file of the Optimization\+Variable class. 
+
+Copyright (C) 2009 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+T\+S\+I/\+S\+R\+CI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+0.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+09.\+04.\+01 
+\end{DoxyDate}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{MathTypes_8h_ae71449b1cc6e6250b91f539153a7a0d3}{}\label{MathTypes_8h_ae71449b1cc6e6250b91f539153a7a0d3} 
+\index{Math\+Types.\+h@{Math\+Types.\+h}!M\+\_\+\+PI@{M\+\_\+\+PI}}
+\index{M\+\_\+\+PI@{M\+\_\+\+PI}!Math\+Types.\+h@{Math\+Types.\+h}}
+\subsubsection{\texorpdfstring{M\+\_\+\+PI}{M\_PI}}
+{\footnotesize\ttfamily \#define M\+\_\+\+PI~3.\+14159265358979}
+
+
+
+Definition at line 43 of file Math\+Types.\+h.
+
+\hypertarget{MathTypes_8h_a7166f82d6faddb8bb59aa90b6392a25c}{}\label{MathTypes_8h_a7166f82d6faddb8bb59aa90b6392a25c} 
+\index{Math\+Types.\+h@{Math\+Types.\+h}!O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+O\+R\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+A\+T\+R\+IX@{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+O\+R\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+A\+T\+R\+IX}}
+\index{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+O\+R\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+A\+T\+R\+IX@{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+O\+R\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+A\+T\+R\+IX}!Math\+Types.\+h@{Math\+Types.\+h}}
+\subsubsection{\texorpdfstring{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+O\+R\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+A\+T\+R\+IX}{OCRA\_STATIC\_ASSERT\_VECTOR\_OR\_DYNAMIC\_MATRIX}}
+{\footnotesize\ttfamily \#define O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+V\+E\+C\+T\+O\+R\+\_\+\+O\+R\+\_\+\+D\+Y\+N\+A\+M\+I\+C\+\_\+\+M\+A\+T\+R\+IX(\begin{DoxyParamCaption}\item[{}]{T\+Y\+PE }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\hyperlink{ocra__assert_8h_aa9550f35d43492c29c170fc9bd04d623}{OCRA\_STATIC\_ASSERT}(TYPE::IsVectorAtCompileTime || \(\backslash\)
+                   (TYPE::RowsAtCompileTime==Eigen::Dynamic && TYPE::ColsAtCompileTime==Eigen::Dynamic), \(\backslash\)
+                    TYPE\_MUST\_BE\_A\_VECTOR\_OR\_A\_DYNAMIC\_MATRIX)
+\end{DoxyCode}
+
+
+Definition at line 31 of file Math\+Types.\+h.
+

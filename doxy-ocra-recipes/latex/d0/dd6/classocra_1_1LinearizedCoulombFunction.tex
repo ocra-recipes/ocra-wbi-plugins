@@ -1,0 +1,231 @@
+\hypertarget{classocra_1_1LinearizedCoulombFunction}{}\section{ocra\+:\+:Linearized\+Coulomb\+Function Class Reference}
+\label{classocra_1_1LinearizedCoulombFunction}\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+
+
+Linearized\+Coulomb\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Linearized\+Coulomb\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Linearized\+Coulomb\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{d0/dd6/classocra_1_1LinearizedCoulombFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1LinearizedCoulombFunction_a3b8f1d487a59ea860aee65223cc7c6aa}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1LinearizedCoulombFunction_af80b2f4c57d291f389f4e9e4435f3baa}{Linearized\+Coulomb\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&f, double friction\+Coeff, int number\+Of\+Faces=4, double margin=0)
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classocra_1_1LinearizedCoulombFunction_a392b8054e54449a81202ae9682211d32}{get\+Friction\+Coeff} () const
+\item 
+double \hyperlink{classocra_1_1LinearizedCoulombFunction_af709532102470f85296dd631c8d9c6cf}{get\+Margin} () const
+\item 
+void \hyperlink{classocra_1_1LinearizedCoulombFunction_ab01ef6ae4c98929ebc4ef1035fe3df47}{set\+Friction\+Coeff} (double coeff)
+\item 
+void \hyperlink{classocra_1_1LinearizedCoulombFunction_ae220b1da32667c6ba6125af02a170113}{set\+Margin} (double margin)
+\item 
+void \hyperlink{classocra_1_1LinearizedCoulombFunction_a682565ed83043ec13a966bd0db51f123}{set\+Cone\+Orientation} (const Matrix3d \&R)
+\item 
+const Matrix3d \& \hyperlink{classocra_1_1LinearizedCoulombFunction_af503cd2489d6cdc131e5bbd526586954}{get\+Cone\+Orientation} () const
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classocra_1_1LinearizedCoulombFunction_a18cfee3d5d056443d2fe1980b4899fa4}{\+\_\+mu}
+\item 
+double \hyperlink{classocra_1_1LinearizedCoulombFunction_abf137cc7ce5ea91ffa25a95feebddbd1}{\+\_\+margin}
+\item 
+Matrix3d \hyperlink{classocra_1_1LinearizedCoulombFunction_abf999f311e6563224a5ac852f44e7af4}{\+\_\+\+R\+\_\+cone}
+\item 
+Matrix\+Xd \hyperlink{classocra_1_1LinearizedCoulombFunction_aa94e64532f28678c15ff1696f7c25684}{\+\_\+\+J\+\_\+cache}
+\end{DoxyCompactItemize}
+\subsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const double \hyperlink{classocra_1_1LinearizedCoulombFunction_a1778e1ecca6c7d54f846a750f9a06552}{A\+N\+G\+L\+E\+\_\+\+O\+F\+F\+S\+ET} = 0
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Linearized\+Coulomb\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Implementation of $ \left\|f_t\right\| - \mu f_n $ discretized and linearized. The function is thus a linear function Af+b with b normally equal to 0 and A built so that f is in the cone if $ Af+b \le 0 $. b can however be given a constant non-\/zero value to account for a (possibly negative) margin. 
+
+Definition at line 34 of file Linearized\+Coulomb\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1LinearizedCoulombFunction_a3b8f1d487a59ea860aee65223cc7c6aa}{}\label{classocra_1_1LinearizedCoulombFunction_a3b8f1d487a59ea860aee65223cc7c6aa} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1LinearizedCoulombFunction_a3b8f1d487a59ea860aee65223cc7c6aa}{ocra\+::\+Linearized\+Coulomb\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 38 of file Linearized\+Coulomb\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1LinearizedCoulombFunction_af80b2f4c57d291f389f4e9e4435f3baa}{}\label{classocra_1_1LinearizedCoulombFunction_af80b2f4c57d291f389f4e9e4435f3baa} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!Linearized\+Coulomb\+Function@{Linearized\+Coulomb\+Function}}
+\index{Linearized\+Coulomb\+Function@{Linearized\+Coulomb\+Function}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{Linearized\+Coulomb\+Function()}{LinearizedCoulombFunction()}}
+{\footnotesize\ttfamily ocra\+::\+Linearized\+Coulomb\+Function\+::\+Linearized\+Coulomb\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{f,  }\item[{double}]{friction\+Coeff,  }\item[{int}]{number\+Of\+Faces = {\ttfamily 4},  }\item[{double}]{margin = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+Constructor Build a linear function Af+b such as Af+b$<$=0 is a discretized cone with {\itshape number\+Of\+Faces} conservatively representing a Coulomb friction cone with friction coefficient {\itshape friction\+Coeff}. f is supposed to represent a 3-\/dimensionnal force in a local frame whose z-\/axis is the normal vector at the contact point (so that it is the axis of the cone). b should therefore be equal to zero (which is its default value, but could have its components set to another value to account for a (possibly negative) margin.
+
+By default, the first edge of the cone will be in the xz plane. This can however be changed by setting the static parameter A\+N\+G\+L\+E\+\_\+\+O\+F\+F\+S\+ET to a non-\/zero value.
+
+\begin{DoxyPrecond}{Precondition}
+f.\+get\+Size() == 3 
+
+number\+Of\+Faces $>$= 3 
+
+friction\+Coeff $>$ 0 
+\end{DoxyPrecond}
+
+
+Definition at line 11 of file Linearized\+Coulomb\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1LinearizedCoulombFunction_af503cd2489d6cdc131e5bbd526586954}{}\label{classocra_1_1LinearizedCoulombFunction_af503cd2489d6cdc131e5bbd526586954} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!get\+Cone\+Orientation@{get\+Cone\+Orientation}}
+\index{get\+Cone\+Orientation@{get\+Cone\+Orientation}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{get\+Cone\+Orientation()}{getConeOrientation()}}
+{\footnotesize\ttfamily const Matrix3d \& ocra\+::\+Linearized\+Coulomb\+Function\+::get\+Cone\+Orientation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 67 of file Linearized\+Coulomb\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_a392b8054e54449a81202ae9682211d32}{}\label{classocra_1_1LinearizedCoulombFunction_a392b8054e54449a81202ae9682211d32} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!get\+Friction\+Coeff@{get\+Friction\+Coeff}}
+\index{get\+Friction\+Coeff@{get\+Friction\+Coeff}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{get\+Friction\+Coeff()}{getFrictionCoeff()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_af4478308ca113669e67d72f9a3050469}{real} ocra\+::\+Linearized\+Coulomb\+Function\+::get\+Friction\+Coeff (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+getters/setters 
+
+Definition at line 38 of file Linearized\+Coulomb\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_af709532102470f85296dd631c8d9c6cf}{}\label{classocra_1_1LinearizedCoulombFunction_af709532102470f85296dd631c8d9c6cf} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!get\+Margin@{get\+Margin}}
+\index{get\+Margin@{get\+Margin}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{get\+Margin()}{getMargin()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_af4478308ca113669e67d72f9a3050469}{real} ocra\+::\+Linearized\+Coulomb\+Function\+::get\+Margin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 43 of file Linearized\+Coulomb\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_a682565ed83043ec13a966bd0db51f123}{}\label{classocra_1_1LinearizedCoulombFunction_a682565ed83043ec13a966bd0db51f123} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!set\+Cone\+Orientation@{set\+Cone\+Orientation}}
+\index{set\+Cone\+Orientation@{set\+Cone\+Orientation}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{set\+Cone\+Orientation()}{setConeOrientation()}}
+{\footnotesize\ttfamily void ocra\+::\+Linearized\+Coulomb\+Function\+::set\+Cone\+Orientation (\begin{DoxyParamCaption}\item[{const Matrix3d \&}]{R }\end{DoxyParamCaption})}
+
+
+
+Definition at line 61 of file Linearized\+Coulomb\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_ab01ef6ae4c98929ebc4ef1035fe3df47}{}\label{classocra_1_1LinearizedCoulombFunction_ab01ef6ae4c98929ebc4ef1035fe3df47} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!set\+Friction\+Coeff@{set\+Friction\+Coeff}}
+\index{set\+Friction\+Coeff@{set\+Friction\+Coeff}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{set\+Friction\+Coeff()}{setFrictionCoeff()}}
+{\footnotesize\ttfamily void ocra\+::\+Linearized\+Coulomb\+Function\+::set\+Friction\+Coeff (\begin{DoxyParamCaption}\item[{double}]{coeff }\end{DoxyParamCaption})}
+
+
+
+Definition at line 48 of file Linearized\+Coulomb\+Function.\+cpp.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_ae220b1da32667c6ba6125af02a170113}{}\label{classocra_1_1LinearizedCoulombFunction_ae220b1da32667c6ba6125af02a170113} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!set\+Margin@{set\+Margin}}
+\index{set\+Margin@{set\+Margin}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{set\+Margin()}{setMargin()}}
+{\footnotesize\ttfamily void ocra\+::\+Linearized\+Coulomb\+Function\+::set\+Margin (\begin{DoxyParamCaption}\item[{double}]{margin }\end{DoxyParamCaption})}
+
+
+
+Definition at line 55 of file Linearized\+Coulomb\+Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1LinearizedCoulombFunction_aa94e64532f28678c15ff1696f7c25684}{}\label{classocra_1_1LinearizedCoulombFunction_aa94e64532f28678c15ff1696f7c25684} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!\+\_\+\+J\+\_\+cache@{\+\_\+\+J\+\_\+cache}}
+\index{\+\_\+\+J\+\_\+cache@{\+\_\+\+J\+\_\+cache}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+\+J\+\_\+cache}{\_J\_cache}}
+{\footnotesize\ttfamily Matrix\+Xd ocra\+::\+Linearized\+Coulomb\+Function\+::\+\_\+\+J\+\_\+cache\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 91 of file Linearized\+Coulomb\+Function.\+h.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_abf137cc7ce5ea91ffa25a95feebddbd1}{}\label{classocra_1_1LinearizedCoulombFunction_abf137cc7ce5ea91ffa25a95feebddbd1} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!\+\_\+margin@{\+\_\+margin}}
+\index{\+\_\+margin@{\+\_\+margin}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+margin}{\_margin}}
+{\footnotesize\ttfamily double ocra\+::\+Linearized\+Coulomb\+Function\+::\+\_\+margin\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 89 of file Linearized\+Coulomb\+Function.\+h.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_a18cfee3d5d056443d2fe1980b4899fa4}{}\label{classocra_1_1LinearizedCoulombFunction_a18cfee3d5d056443d2fe1980b4899fa4} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!\+\_\+mu@{\+\_\+mu}}
+\index{\+\_\+mu@{\+\_\+mu}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+mu}{\_mu}}
+{\footnotesize\ttfamily double ocra\+::\+Linearized\+Coulomb\+Function\+::\+\_\+mu\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 88 of file Linearized\+Coulomb\+Function.\+h.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_abf999f311e6563224a5ac852f44e7af4}{}\label{classocra_1_1LinearizedCoulombFunction_abf999f311e6563224a5ac852f44e7af4} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!\+\_\+\+R\+\_\+cone@{\+\_\+\+R\+\_\+cone}}
+\index{\+\_\+\+R\+\_\+cone@{\+\_\+\+R\+\_\+cone}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+\+R\+\_\+cone}{\_R\_cone}}
+{\footnotesize\ttfamily Matrix3d ocra\+::\+Linearized\+Coulomb\+Function\+::\+\_\+\+R\+\_\+cone\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 90 of file Linearized\+Coulomb\+Function.\+h.
+
+\hypertarget{classocra_1_1LinearizedCoulombFunction_a1778e1ecca6c7d54f846a750f9a06552}{}\label{classocra_1_1LinearizedCoulombFunction_a1778e1ecca6c7d54f846a750f9a06552} 
+\index{ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}!A\+N\+G\+L\+E\+\_\+\+O\+F\+F\+S\+ET@{A\+N\+G\+L\+E\+\_\+\+O\+F\+F\+S\+ET}}
+\index{A\+N\+G\+L\+E\+\_\+\+O\+F\+F\+S\+ET@{A\+N\+G\+L\+E\+\_\+\+O\+F\+F\+S\+ET}!ocra\+::\+Linearized\+Coulomb\+Function@{ocra\+::\+Linearized\+Coulomb\+Function}}
+\subsubsection{\texorpdfstring{A\+N\+G\+L\+E\+\_\+\+O\+F\+F\+S\+ET}{ANGLE\_OFFSET}}
+{\footnotesize\ttfamily const double ocra\+::\+Linearized\+Coulomb\+Function\+::\+A\+N\+G\+L\+E\+\_\+\+O\+F\+F\+S\+ET = 0\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 95 of file Linearized\+Coulomb\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{LinearizedCoulombFunction_8h}{Linearized\+Coulomb\+Function.\+h}\item 
+\hyperlink{LinearizedCoulombFunction_8cpp}{Linearized\+Coulomb\+Function.\+cpp}\end{DoxyCompactItemize}

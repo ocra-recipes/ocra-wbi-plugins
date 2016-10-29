@@ -1,0 +1,167 @@
+\hypertarget{classocra_1_1PartialModelState}{}\section{ocra\+:\+:Partial\+Model\+State Class Reference}
+\label{classocra_1_1PartialModelState}\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+
+
+A partial state of the model.  
+
+
+
+
+{\ttfamily \#include $<$Partial\+State.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Partial\+Model\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d1/dc1/classocra_1_1PartialModelState}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1PartialModelState_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1PartialModelState_aad632d12d35f5982df12d949f92d4937}{Partial\+Model\+State} (const std\+::string \&name, const Model \&model, const Eigen\+::\+Vector\+Xi \&selected\+Dofs, int which\+Part)
+\item 
+virtual \hyperlink{classocra_1_1PartialModelState_a59cf8faac5922dc7691c540d519fa705}{$\sim$\+Partial\+Model\+State} ()
+\item 
+virtual const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialModelState_a9fe03ab8c3c4afe56ee4b59f96ac4a25}{get\+Inertia\+Matrix} () const
+\item 
+virtual const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1PartialModelState_a664e4f70861eefde844dca6dd09a2213}{get\+Inertia\+Matrix\+Inverse} () const
+\item 
+virtual const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialModelState_ac50f637a2ce55608b4159b7dac2c543d}{q} () const
+\item 
+virtual const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialModelState_a8707827d456a8c406d95c1cd4fc2e0b7}{qdot} () const
+\item 
+virtual const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialModelState_a9be011bf4005c0b964f857a82b2b2b23}{qddot} () const
+\item 
+virtual const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1PartialModelState_a286258284aa61c902106a6b0fcdde9ca}{tau} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A partial state of the model. 
+
+It get information about the partial state from a {\bfseries Model}. 
+
+Definition at line 66 of file Partial\+State.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1PartialModelState_aad632d12d35f5982df12d949f92d4937}{}\label{classocra_1_1PartialModelState_aad632d12d35f5982df12d949f92d4937} 
+\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}!Partial\+Model\+State@{Partial\+Model\+State}}
+\index{Partial\+Model\+State@{Partial\+Model\+State}!ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+\subsubsection{\texorpdfstring{Partial\+Model\+State()}{PartialModelState()}}
+{\footnotesize\ttfamily ocra\+::\+Partial\+Model\+State\+::\+Partial\+Model\+State (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{const Eigen\+::\+Vector\+Xi \&}]{selected\+Dofs,  }\item[{int}]{which\+Part }\end{DoxyParamCaption})}
+
+
+
+Definition at line 118 of file Partial\+State.\+cpp.
+
+\hypertarget{classocra_1_1PartialModelState_a59cf8faac5922dc7691c540d519fa705}{}\label{classocra_1_1PartialModelState_a59cf8faac5922dc7691c540d519fa705} 
+\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}!````~Partial\+Model\+State@{$\sim$\+Partial\+Model\+State}}
+\index{````~Partial\+Model\+State@{$\sim$\+Partial\+Model\+State}!ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+\subsubsection{\texorpdfstring{$\sim$\+Partial\+Model\+State()}{~PartialModelState()}}
+{\footnotesize\ttfamily ocra\+::\+Partial\+Model\+State\+::$\sim$\+Partial\+Model\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 128 of file Partial\+State.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1PartialModelState_a9fe03ab8c3c4afe56ee4b59f96ac4a25}{}\label{classocra_1_1PartialModelState_a9fe03ab8c3c4afe56ee4b59f96ac4a25} 
+\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}!get\+Inertia\+Matrix@{get\+Inertia\+Matrix}}
+\index{get\+Inertia\+Matrix@{get\+Inertia\+Matrix}!ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+\subsubsection{\texorpdfstring{get\+Inertia\+Matrix()}{getInertiaMatrix()}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+Model\+State\+::get\+Inertia\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1PartialState_ad811a25932f0fad439242ebd48841162}{ocra\+::\+Partial\+State}.
+
+
+
+Definition at line 163 of file Partial\+State.\+cpp.
+
+\hypertarget{classocra_1_1PartialModelState_a664e4f70861eefde844dca6dd09a2213}{}\label{classocra_1_1PartialModelState_a664e4f70861eefde844dca6dd09a2213} 
+\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}!get\+Inertia\+Matrix\+Inverse@{get\+Inertia\+Matrix\+Inverse}}
+\index{get\+Inertia\+Matrix\+Inverse@{get\+Inertia\+Matrix\+Inverse}!ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+\subsubsection{\texorpdfstring{get\+Inertia\+Matrix\+Inverse()}{getInertiaMatrixInverse()}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Partial\+Model\+State\+::get\+Inertia\+Matrix\+Inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1PartialState_a83979e39dd3631861c724514e49cb8b4}{ocra\+::\+Partial\+State}.
+
+
+
+Definition at line 182 of file Partial\+State.\+cpp.
+
+\hypertarget{classocra_1_1PartialModelState_ac50f637a2ce55608b4159b7dac2c543d}{}\label{classocra_1_1PartialModelState_ac50f637a2ce55608b4159b7dac2c543d} 
+\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}!q@{q}}
+\index{q@{q}!ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+\subsubsection{\texorpdfstring{q()}{q()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& ocra\+::\+Partial\+Model\+State\+::q (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1PartialState_a28f537d2c569eddb7f7d6dbbea073226}{ocra\+::\+Partial\+State}.
+
+
+
+Definition at line 133 of file Partial\+State.\+cpp.
+
+\hypertarget{classocra_1_1PartialModelState_a9be011bf4005c0b964f857a82b2b2b23}{}\label{classocra_1_1PartialModelState_a9be011bf4005c0b964f857a82b2b2b23} 
+\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}!qddot@{qddot}}
+\index{qddot@{qddot}!ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+\subsubsection{\texorpdfstring{qddot()}{qddot()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& ocra\+::\+Partial\+Model\+State\+::qddot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1PartialState_ad12359c11926c2151dc1459e88b9fedc}{ocra\+::\+Partial\+State}.
+
+
+
+Definition at line 153 of file Partial\+State.\+cpp.
+
+\hypertarget{classocra_1_1PartialModelState_a8707827d456a8c406d95c1cd4fc2e0b7}{}\label{classocra_1_1PartialModelState_a8707827d456a8c406d95c1cd4fc2e0b7} 
+\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}!qdot@{qdot}}
+\index{qdot@{qdot}!ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+\subsubsection{\texorpdfstring{qdot()}{qdot()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& ocra\+::\+Partial\+Model\+State\+::qdot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1PartialState_a5af623db2ae7e68cb4658f226e8ae006}{ocra\+::\+Partial\+State}.
+
+
+
+Definition at line 143 of file Partial\+State.\+cpp.
+
+\hypertarget{classocra_1_1PartialModelState_a286258284aa61c902106a6b0fcdde9ca}{}\label{classocra_1_1PartialModelState_a286258284aa61c902106a6b0fcdde9ca} 
+\index{ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}!tau@{tau}}
+\index{tau@{tau}!ocra\+::\+Partial\+Model\+State@{ocra\+::\+Partial\+Model\+State}}
+\subsubsection{\texorpdfstring{tau()}{tau()}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector\+Xd \& ocra\+::\+Partial\+Model\+State\+::tau (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1PartialState_a875575d215c7fe9278d47ff6f392bb84}{ocra\+::\+Partial\+State}.
+
+
+
+Definition at line 158 of file Partial\+State.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{PartialState_8h}{Partial\+State.\+h}\item 
+\hyperlink{PartialState_8cpp}{Partial\+State.\+cpp}\end{DoxyCompactItemize}

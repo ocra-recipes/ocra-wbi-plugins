@@ -1,0 +1,110 @@
+\hypertarget{Trajectory_8h}{}\section{Trajectory.\+h File Reference}
+\label{Trajectory_8h}\index{Trajectory.\+h@{Trajectory.\+h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Lgsm$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$list$>$}\newline
+{\ttfamily \#include $<$ocra/util/\+Macros.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1Trajectory}{ocra\+::\+Trajectory}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{Trajectory_8h_a9e3ac52353d93ad35f3d98ac757e43bc}{T\+R\+A\+N\+S\+L\+A\+T\+I\+O\+N\+\_\+\+D\+IM}~3
+\item 
+\#define \hyperlink{Trajectory_8h_a111590ca7fd2af49aa6c0b2d3a1156bd}{Q\+U\+A\+T\+E\+R\+N\+I\+O\+N\+\_\+\+D\+IM}~4
+\item 
+\#define \hyperlink{Trajectory_8h_a5b27758155b771d90c6b979a1c1c9085}{P\+O\+S\+\_\+\+I\+N\+D\+EX}~0
+\item 
+\#define \hyperlink{Trajectory_8h_ad20dc827e4f66e02e1e5bbc4c5691ced}{V\+E\+L\+\_\+\+I\+N\+D\+EX}~1
+\item 
+\#define \hyperlink{Trajectory_8h_acb84477ddc0f70370b2c11554f950c09}{A\+C\+C\+\_\+\+I\+N\+D\+EX}~2
+\item 
+\#define \hyperlink{Trajectory_8h_a0de99e9c85bead2fc42c7aad8cd41af9}{T\+R\+A\+J\+\_\+\+D\+IM}~3
+\item 
+\#define \hyperlink{Trajectory_8h_ad16f0a65d88bba9d2a2c414b2b38701e}{T\+A\+U\+\_\+\+M\+AX}~1.\+0l
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{Trajectory_8h_acb84477ddc0f70370b2c11554f950c09}{}\label{Trajectory_8h_acb84477ddc0f70370b2c11554f950c09} 
+\index{Trajectory.\+h@{Trajectory.\+h}!A\+C\+C\+\_\+\+I\+N\+D\+EX@{A\+C\+C\+\_\+\+I\+N\+D\+EX}}
+\index{A\+C\+C\+\_\+\+I\+N\+D\+EX@{A\+C\+C\+\_\+\+I\+N\+D\+EX}!Trajectory.\+h@{Trajectory.\+h}}
+\subsubsection{\texorpdfstring{A\+C\+C\+\_\+\+I\+N\+D\+EX}{ACC\_INDEX}}
+{\footnotesize\ttfamily \#define A\+C\+C\+\_\+\+I\+N\+D\+EX~2}
+
+
+
+Definition at line 21 of file Trajectory.\+h.
+
+\hypertarget{Trajectory_8h_a5b27758155b771d90c6b979a1c1c9085}{}\label{Trajectory_8h_a5b27758155b771d90c6b979a1c1c9085} 
+\index{Trajectory.\+h@{Trajectory.\+h}!P\+O\+S\+\_\+\+I\+N\+D\+EX@{P\+O\+S\+\_\+\+I\+N\+D\+EX}}
+\index{P\+O\+S\+\_\+\+I\+N\+D\+EX@{P\+O\+S\+\_\+\+I\+N\+D\+EX}!Trajectory.\+h@{Trajectory.\+h}}
+\subsubsection{\texorpdfstring{P\+O\+S\+\_\+\+I\+N\+D\+EX}{POS\_INDEX}}
+{\footnotesize\ttfamily \#define P\+O\+S\+\_\+\+I\+N\+D\+EX~0}
+
+
+
+Definition at line 19 of file Trajectory.\+h.
+
+\hypertarget{Trajectory_8h_a111590ca7fd2af49aa6c0b2d3a1156bd}{}\label{Trajectory_8h_a111590ca7fd2af49aa6c0b2d3a1156bd} 
+\index{Trajectory.\+h@{Trajectory.\+h}!Q\+U\+A\+T\+E\+R\+N\+I\+O\+N\+\_\+\+D\+IM@{Q\+U\+A\+T\+E\+R\+N\+I\+O\+N\+\_\+\+D\+IM}}
+\index{Q\+U\+A\+T\+E\+R\+N\+I\+O\+N\+\_\+\+D\+IM@{Q\+U\+A\+T\+E\+R\+N\+I\+O\+N\+\_\+\+D\+IM}!Trajectory.\+h@{Trajectory.\+h}}
+\subsubsection{\texorpdfstring{Q\+U\+A\+T\+E\+R\+N\+I\+O\+N\+\_\+\+D\+IM}{QUATERNION\_DIM}}
+{\footnotesize\ttfamily \#define Q\+U\+A\+T\+E\+R\+N\+I\+O\+N\+\_\+\+D\+IM~4}
+
+
+
+Definition at line 18 of file Trajectory.\+h.
+
+\hypertarget{Trajectory_8h_ad16f0a65d88bba9d2a2c414b2b38701e}{}\label{Trajectory_8h_ad16f0a65d88bba9d2a2c414b2b38701e} 
+\index{Trajectory.\+h@{Trajectory.\+h}!T\+A\+U\+\_\+\+M\+AX@{T\+A\+U\+\_\+\+M\+AX}}
+\index{T\+A\+U\+\_\+\+M\+AX@{T\+A\+U\+\_\+\+M\+AX}!Trajectory.\+h@{Trajectory.\+h}}
+\subsubsection{\texorpdfstring{T\+A\+U\+\_\+\+M\+AX}{TAU\_MAX}}
+{\footnotesize\ttfamily \#define T\+A\+U\+\_\+\+M\+AX~1.\+0l}
+
+
+
+Definition at line 25 of file Trajectory.\+h.
+
+\hypertarget{Trajectory_8h_a0de99e9c85bead2fc42c7aad8cd41af9}{}\label{Trajectory_8h_a0de99e9c85bead2fc42c7aad8cd41af9} 
+\index{Trajectory.\+h@{Trajectory.\+h}!T\+R\+A\+J\+\_\+\+D\+IM@{T\+R\+A\+J\+\_\+\+D\+IM}}
+\index{T\+R\+A\+J\+\_\+\+D\+IM@{T\+R\+A\+J\+\_\+\+D\+IM}!Trajectory.\+h@{Trajectory.\+h}}
+\subsubsection{\texorpdfstring{T\+R\+A\+J\+\_\+\+D\+IM}{TRAJ\_DIM}}
+{\footnotesize\ttfamily \#define T\+R\+A\+J\+\_\+\+D\+IM~3}
+
+
+
+Definition at line 23 of file Trajectory.\+h.
+
+\hypertarget{Trajectory_8h_a9e3ac52353d93ad35f3d98ac757e43bc}{}\label{Trajectory_8h_a9e3ac52353d93ad35f3d98ac757e43bc} 
+\index{Trajectory.\+h@{Trajectory.\+h}!T\+R\+A\+N\+S\+L\+A\+T\+I\+O\+N\+\_\+\+D\+IM@{T\+R\+A\+N\+S\+L\+A\+T\+I\+O\+N\+\_\+\+D\+IM}}
+\index{T\+R\+A\+N\+S\+L\+A\+T\+I\+O\+N\+\_\+\+D\+IM@{T\+R\+A\+N\+S\+L\+A\+T\+I\+O\+N\+\_\+\+D\+IM}!Trajectory.\+h@{Trajectory.\+h}}
+\subsubsection{\texorpdfstring{T\+R\+A\+N\+S\+L\+A\+T\+I\+O\+N\+\_\+\+D\+IM}{TRANSLATION\_DIM}}
+{\footnotesize\ttfamily \#define T\+R\+A\+N\+S\+L\+A\+T\+I\+O\+N\+\_\+\+D\+IM~3}
+
+
+
+Definition at line 17 of file Trajectory.\+h.
+
+\hypertarget{Trajectory_8h_ad20dc827e4f66e02e1e5bbc4c5691ced}{}\label{Trajectory_8h_ad20dc827e4f66e02e1e5bbc4c5691ced} 
+\index{Trajectory.\+h@{Trajectory.\+h}!V\+E\+L\+\_\+\+I\+N\+D\+EX@{V\+E\+L\+\_\+\+I\+N\+D\+EX}}
+\index{V\+E\+L\+\_\+\+I\+N\+D\+EX@{V\+E\+L\+\_\+\+I\+N\+D\+EX}!Trajectory.\+h@{Trajectory.\+h}}
+\subsubsection{\texorpdfstring{V\+E\+L\+\_\+\+I\+N\+D\+EX}{VEL\_INDEX}}
+{\footnotesize\ttfamily \#define V\+E\+L\+\_\+\+I\+N\+D\+EX~1}
+
+
+
+Definition at line 20 of file Trajectory.\+h.
+

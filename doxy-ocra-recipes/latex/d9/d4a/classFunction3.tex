@@ -1,0 +1,193 @@
+\hypertarget{classFunction3}{}\section{Function3 Class Reference}
+\label{classFunction3}\index{Function3@{Function3}}
+Inheritance diagram for Function3\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.901771cm]{d9/d4a/classFunction3}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFunction3_a57fce7c38791ee3c72951a4d0ac510e5}{Function3} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x})
+\item 
+void \hyperlink{classFunction3_a239a319d61236aa9b9375a595bf2beb9}{change\+Initial\+State} (double t0, const Vector3d \&stateX, const Vector3d \&stateY, const Vector3d \&stateZ)
+\item 
+void \hyperlink{classFunction3_ade56597de44f5cdd047aa9aa9e29a129}{set\+Time} (double t)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classFunction3_a61a81957c58f90042f8df6e10974d6ef}{update\+Value} () const
+\item 
+void \hyperlink{classFunction3_a6e94cc5951344e5a44f830d7040100b1}{update\+Jacobian} () const
+\item 
+void \hyperlink{classFunction3_a6592fadecc793ba578475ed791c657e7}{update\+PartialT} () const
+\item 
+void \hyperlink{classFunction3_a416607e3c9ac711bf693b1dbf57e7b8b}{update\+Jdot} () const
+\item 
+void \hyperlink{classFunction3_a9255f1b3b5e85def42c228a6dec43317}{update\+Hessian} () const
+\item 
+void \hyperlink{classFunction3_a0e88a8fab26e4eb4fd30e6dd27c5a1b2}{update\+Partial\+TT} () const
+\item 
+void \hyperlink{classFunction3_a9e969d761e7694eef0c5695cb198f0cd}{update\+Partial\+TX} () const
+\item 
+void \hyperlink{classFunction3_ac363f9786af5a5bf700943b558ecbe92}{update\+Partial\+XT} () const
+\item 
+void \hyperlink{classFunction3_af8933a1d41481c599995d64519a69a33}{update\+Partial\+Tdot} () const
+\item 
+void \hyperlink{classFunction3_a00a1ea6f2a0fdc5df66004e23038fff0}{do\+Update\+Input\+Size\+Begin} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+An example of function with parameters. We consider the function $ f_A:R^3 \rightarrow R $ with $ A = \left(t_0, x_0, \dot{x}_0, \ddot{x}_0, y_0, \dot{y}_0, \ddot{y}_0, z_0, \dot{z}_0, \ddot{z}_0 \right) $ and $ f_A(u_x,u_y,u_z) = \left(\begin{array}{c c c} x_0 & \dot{x}_0 & \ddot{x}_0 \\ y_0 & \dot{y}_0 & \ddot{y}_0 \\ z_0 & \dot{z}_0 & \ddot{z}_0 \end{array}\right) \left(\begin{array}{c} 1 \\ (t-t_0) \\ (t-t_0)^2/2 \end{array}\right) + \frac{(t-t_0)^3}{6} \left(\begin{array}{c} u_x \\ u_y \\ u_z \end{array}\right) $ 
+
+Definition at line 267 of file Test\+Function.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classFunction3_a57fce7c38791ee3c72951a4d0ac510e5}{}\label{classFunction3_a57fce7c38791ee3c72951a4d0ac510e5} 
+\index{Function3@{Function3}!Function3@{Function3}}
+\index{Function3@{Function3}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{Function3()}{Function3()}}
+{\footnotesize\ttfamily Function3\+::\+Function3 (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 273 of file Test\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classFunction3_a239a319d61236aa9b9375a595bf2beb9}{}\label{classFunction3_a239a319d61236aa9b9375a595bf2beb9} 
+\index{Function3@{Function3}!change\+Initial\+State@{change\+Initial\+State}}
+\index{change\+Initial\+State@{change\+Initial\+State}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{change\+Initial\+State()}{changeInitialState()}}
+{\footnotesize\ttfamily void Function3\+::change\+Initial\+State (\begin{DoxyParamCaption}\item[{double}]{t0,  }\item[{const Vector3d \&}]{stateX,  }\item[{const Vector3d \&}]{stateY,  }\item[{const Vector3d \&}]{stateZ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 288 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_a00a1ea6f2a0fdc5df66004e23038fff0}{}\label{classFunction3_a00a1ea6f2a0fdc5df66004e23038fff0} 
+\index{Function3@{Function3}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void Function3\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1Function_a39f6d91b72eff2d32da7e4a85ee79f7d}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 370 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_ade56597de44f5cdd047aa9aa9e29a129}{}\label{classFunction3_ade56597de44f5cdd047aa9aa9e29a129} 
+\index{Function3@{Function3}!set\+Time@{set\+Time}}
+\index{set\+Time@{set\+Time}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{set\+Time()}{setTime()}}
+{\footnotesize\ttfamily void Function3\+::set\+Time (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 297 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_a9255f1b3b5e85def42c228a6dec43317}{}\label{classFunction3_a9255f1b3b5e85def42c228a6dec43317} 
+\index{Function3@{Function3}!update\+Hessian@{update\+Hessian}}
+\index{update\+Hessian@{update\+Hessian}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Hessian()}{updateHessian()}}
+{\footnotesize\ttfamily void Function3\+::update\+Hessian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 338 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_a6e94cc5951344e5a44f830d7040100b1}{}\label{classFunction3_a6e94cc5951344e5a44f830d7040100b1} 
+\index{Function3@{Function3}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void Function3\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 313 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_a416607e3c9ac711bf693b1dbf57e7b8b}{}\label{classFunction3_a416607e3c9ac711bf693b1dbf57e7b8b} 
+\index{Function3@{Function3}!update\+Jdot@{update\+Jdot}}
+\index{update\+Jdot@{update\+Jdot}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Jdot()}{updateJdot()}}
+{\footnotesize\ttfamily void Function3\+::update\+Jdot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 330 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_a6592fadecc793ba578475ed791c657e7}{}\label{classFunction3_a6592fadecc793ba578475ed791c657e7} 
+\index{Function3@{Function3}!update\+PartialT@{update\+PartialT}}
+\index{update\+PartialT@{update\+PartialT}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Partial\+T()}{updatePartialT()}}
+{\footnotesize\ttfamily void Function3\+::update\+PartialT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 321 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_af8933a1d41481c599995d64519a69a33}{}\label{classFunction3_af8933a1d41481c599995d64519a69a33} 
+\index{Function3@{Function3}!update\+Partial\+Tdot@{update\+Partial\+Tdot}}
+\index{update\+Partial\+Tdot@{update\+Partial\+Tdot}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Partial\+Tdot()}{updatePartialTdot()}}
+{\footnotesize\ttfamily void Function3\+::update\+Partial\+Tdot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 361 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_a0e88a8fab26e4eb4fd30e6dd27c5a1b2}{}\label{classFunction3_a0e88a8fab26e4eb4fd30e6dd27c5a1b2} 
+\index{Function3@{Function3}!update\+Partial\+TT@{update\+Partial\+TT}}
+\index{update\+Partial\+TT@{update\+Partial\+TT}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Partial\+T\+T()}{updatePartialTT()}}
+{\footnotesize\ttfamily void Function3\+::update\+Partial\+TT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 343 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_a9e969d761e7694eef0c5695cb198f0cd}{}\label{classFunction3_a9e969d761e7694eef0c5695cb198f0cd} 
+\index{Function3@{Function3}!update\+Partial\+TX@{update\+Partial\+TX}}
+\index{update\+Partial\+TX@{update\+Partial\+TX}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Partial\+T\+X()}{updatePartialTX()}}
+{\footnotesize\ttfamily void Function3\+::update\+Partial\+TX (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 351 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_ac363f9786af5a5bf700943b558ecbe92}{}\label{classFunction3_ac363f9786af5a5bf700943b558ecbe92} 
+\index{Function3@{Function3}!update\+Partial\+XT@{update\+Partial\+XT}}
+\index{update\+Partial\+XT@{update\+Partial\+XT}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Partial\+X\+T()}{updatePartialXT()}}
+{\footnotesize\ttfamily void Function3\+::update\+Partial\+XT (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 356 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction3_a61a81957c58f90042f8df6e10974d6ef}{}\label{classFunction3_a61a81957c58f90042f8df6e10974d6ef} 
+\index{Function3@{Function3}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!Function3@{Function3}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily void Function3\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 303 of file Test\+Function.\+cpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TestFunction_8cpp}{Test\+Function.\+cpp}\end{DoxyCompactItemize}

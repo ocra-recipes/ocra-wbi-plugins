@@ -1,0 +1,140 @@
+\hypertarget{classocra_1_1ObjQLD}{}\section{ocra\+:\+:Obj\+Q\+LD Class Reference}
+\label{classocra_1_1ObjQLD}\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+
+
+Obj\+Q\+LD class.  
+
+
+
+
+{\ttfamily \#include $<$Obj\+Q\+L\+D.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ObjQLD_a947a8380d40c94bdcec2f228df03eac1}{Obj\+Q\+LD} ()
+\item 
+int \hyperlink{classocra_1_1ObjQLD_a9d2b34b957b7c3868aefde7ef7017573}{solve} (Map$<$ Matrix\+Xd $>$ \&C, const Map$<$ Vector\+Xd $>$ \&d, const Map$<$ Matrix\+Xd $>$ \&A, const Map$<$ Vector\+Xd $>$ \&b, int me, Map$<$ Vector\+Xd $>$ \&x, const Map$<$ Vector\+Xd $>$ \&xl, const Map$<$ Vector\+Xd $>$ \&xu, bool factorizedC=false)
+\item 
+const Vector\+Xd \& \hyperlink{classocra_1_1ObjQLD_ad462944e0ed165514f301a1b739e3314}{get\+Lagrange\+Multipliers} (void) const
+\item 
+double \hyperlink{classocra_1_1ObjQLD_a4ca6b476104cb59e6e533fec778fc437}{get\+Size\+Factor} (void) const
+\item 
+void \hyperlink{classocra_1_1ObjQLD_a79e0e04d6db99b053174e9298aa2c45d}{set\+Size\+Factor} (double f)
+\item 
+double \hyperlink{classocra_1_1ObjQLD_afe990f46474b7a298c7180d6839c47dc}{get\+Eps} (void) const
+\item 
+void \hyperlink{classocra_1_1ObjQLD_a6fb05dae8b643ba2dd9e03aac8cde624}{set\+Eps} (double eps)
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1ObjQLD_a35ebfe61821cfb93672b26cc472c939e}{O\+F\+S\+QP}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Obj\+Q\+LD class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+M\+I\+N\+I\+M\+I\+ZE .5$\ast$X\textquotesingle{}$\ast$\+C$\ast$X + D\textquotesingle{}$\ast$X S\+U\+B\+J\+E\+CT TO A(\+J)$\ast$X + B(\+J) = 0 , J=1,...,ME A(\+J)$\ast$X + B(\+J) $>$= 0 , J=M\+E+1,...,M XL $<$= X $<$= XU 
+
+Definition at line 52 of file Obj\+Q\+L\+D.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ObjQLD_a947a8380d40c94bdcec2f228df03eac1}{}\label{classocra_1_1ObjQLD_a947a8380d40c94bdcec2f228df03eac1} 
+\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}!Obj\+Q\+LD@{Obj\+Q\+LD}}
+\index{Obj\+Q\+LD@{Obj\+Q\+LD}!ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+\subsubsection{\texorpdfstring{Obj\+Q\+L\+D()}{ObjQLD()}}
+{\footnotesize\ttfamily ocra\+::\+Obj\+Q\+L\+D\+::\+Obj\+Q\+LD (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 7 of file Obj\+Q\+L\+D.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ObjQLD_afe990f46474b7a298c7180d6839c47dc}{}\label{classocra_1_1ObjQLD_afe990f46474b7a298c7180d6839c47dc} 
+\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}!get\+Eps@{get\+Eps}}
+\index{get\+Eps@{get\+Eps}!ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+\subsubsection{\texorpdfstring{get\+Eps()}{getEps()}}
+{\footnotesize\ttfamily double ocra\+::\+Obj\+Q\+L\+D\+::get\+Eps (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 76 of file Obj\+Q\+L\+D.\+h.
+
+\hypertarget{classocra_1_1ObjQLD_ad462944e0ed165514f301a1b739e3314}{}\label{classocra_1_1ObjQLD_ad462944e0ed165514f301a1b739e3314} 
+\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}!get\+Lagrange\+Multipliers@{get\+Lagrange\+Multipliers}}
+\index{get\+Lagrange\+Multipliers@{get\+Lagrange\+Multipliers}!ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+\subsubsection{\texorpdfstring{get\+Lagrange\+Multipliers()}{getLagrangeMultipliers()}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Obj\+Q\+L\+D\+::get\+Lagrange\+Multipliers (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 54 of file Obj\+Q\+L\+D.\+cpp.
+
+\hypertarget{classocra_1_1ObjQLD_a4ca6b476104cb59e6e533fec778fc437}{}\label{classocra_1_1ObjQLD_a4ca6b476104cb59e6e533fec778fc437} 
+\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}!get\+Size\+Factor@{get\+Size\+Factor}}
+\index{get\+Size\+Factor@{get\+Size\+Factor}!ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+\subsubsection{\texorpdfstring{get\+Size\+Factor()}{getSizeFactor()}}
+{\footnotesize\ttfamily double ocra\+::\+Obj\+Q\+L\+D\+::get\+Size\+Factor (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 60 of file Obj\+Q\+L\+D.\+cpp.
+
+\hypertarget{classocra_1_1ObjQLD_a6fb05dae8b643ba2dd9e03aac8cde624}{}\label{classocra_1_1ObjQLD_a6fb05dae8b643ba2dd9e03aac8cde624} 
+\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}!set\+Eps@{set\+Eps}}
+\index{set\+Eps@{set\+Eps}!ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+\subsubsection{\texorpdfstring{set\+Eps()}{setEps()}}
+{\footnotesize\ttfamily void ocra\+::\+Obj\+Q\+L\+D\+::set\+Eps (\begin{DoxyParamCaption}\item[{double}]{eps }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 77 of file Obj\+Q\+L\+D.\+h.
+
+\hypertarget{classocra_1_1ObjQLD_a79e0e04d6db99b053174e9298aa2c45d}{}\label{classocra_1_1ObjQLD_a79e0e04d6db99b053174e9298aa2c45d} 
+\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}!set\+Size\+Factor@{set\+Size\+Factor}}
+\index{set\+Size\+Factor@{set\+Size\+Factor}!ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+\subsubsection{\texorpdfstring{set\+Size\+Factor()}{setSizeFactor()}}
+{\footnotesize\ttfamily void ocra\+::\+Obj\+Q\+L\+D\+::set\+Size\+Factor (\begin{DoxyParamCaption}\item[{double}]{f }\end{DoxyParamCaption})}
+
+
+
+Definition at line 66 of file Obj\+Q\+L\+D.\+cpp.
+
+\hypertarget{classocra_1_1ObjQLD_a9d2b34b957b7c3868aefde7ef7017573}{}\label{classocra_1_1ObjQLD_a9d2b34b957b7c3868aefde7ef7017573} 
+\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}!solve@{solve}}
+\index{solve@{solve}!ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+\subsubsection{\texorpdfstring{solve()}{solve()}}
+{\footnotesize\ttfamily int ocra\+::\+Obj\+Q\+L\+D\+::solve (\begin{DoxyParamCaption}\item[{Map$<$ Matrix\+Xd $>$ \&}]{C,  }\item[{const Map$<$ Vector\+Xd $>$ \&}]{d,  }\item[{const Map$<$ Matrix\+Xd $>$ \&}]{A,  }\item[{const Map$<$ Vector\+Xd $>$ \&}]{b,  }\item[{int}]{me,  }\item[{Map$<$ Vector\+Xd $>$ \&}]{x,  }\item[{const Map$<$ Vector\+Xd $>$ \&}]{xl,  }\item[{const Map$<$ Vector\+Xd $>$ \&}]{xu,  }\item[{bool}]{factorizedC = {\ttfamily false} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 15 of file Obj\+Q\+L\+D.\+cpp.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classocra_1_1ObjQLD_a35ebfe61821cfb93672b26cc472c939e}{}\label{classocra_1_1ObjQLD_a35ebfe61821cfb93672b26cc472c939e} 
+\index{ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}!O\+F\+S\+QP@{O\+F\+S\+QP}}
+\index{O\+F\+S\+QP@{O\+F\+S\+QP}!ocra\+::\+Obj\+Q\+LD@{ocra\+::\+Obj\+Q\+LD}}
+\subsubsection{\texorpdfstring{O\+F\+S\+QP}{OFSQP}}
+{\footnotesize\ttfamily friend class \hyperlink{classocra_1_1OFSQP}{O\+F\+S\+QP}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 144 of file Obj\+Q\+L\+D.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ObjQLD_8h}{Obj\+Q\+L\+D.\+h}\item 
+\hyperlink{ObjQLD_8cpp}{Obj\+Q\+L\+D.\+cpp}\end{DoxyCompactItemize}

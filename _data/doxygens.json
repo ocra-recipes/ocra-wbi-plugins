@@ -2,7 +2,7 @@
 	{
 		"name": "ocra-recipes",
 		"image": "placeholder.jpg",
-		"url-documentation": "/stepping-demo/",
+		"url-documentation": "/doxy-ocra-recipes/html/index.html",
 		"url-source-code": "https://github.com/ocra-recipes/ocra-recipes",
 		"date": "May 2016"
 	},

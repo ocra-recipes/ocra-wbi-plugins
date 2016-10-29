@@ -1,0 +1,45 @@
+\hypertarget{QuadProg_09_09_8cpp}{}\section{Quad\+Prog++.cpp File Reference}
+\label{QuadProg_09_09_8cpp}\index{Quad\+Prog++.\+cpp@{Quad\+Prog++.\+cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$limits$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$stdexcept$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Quad\+Prog++.\+h\char`\"{}}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceQuadProgPP}{Quad\+Prog\+PP}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{namespaceQuadProgPP_aae5048e1bbd76bcc500c30288d1e3ee0}{Quad\+Prog\+P\+P\+::compute\+\_\+d} (Eigen\+::\+Vector\+Xd \&d, const Eigen\+::\+Matrix\+Xd \&J, const Eigen\+::\+Vector\+Xd \&np)
+\item 
+void \hyperlink{namespaceQuadProgPP_ad1f10b211fb5b81828c9a8bb252ba732}{Quad\+Prog\+P\+P\+::update\+\_\+z} (Eigen\+::\+Vector\+Xd \&z, const Eigen\+::\+Matrix\+Xd \&J, const Eigen\+::\+Vector\+Xd \&d, int iq)
+\item 
+void \hyperlink{namespaceQuadProgPP_a633fa931fb0b0d4cc2ba0dcb00cbf4b7}{Quad\+Prog\+P\+P\+::update\+\_\+r} (const Eigen\+::\+Matrix\+Xd \&R, Eigen\+::\+Vector\+Xd \&r, const Eigen\+::\+Vector\+Xd \&d, int iq)
+\item 
+bool \hyperlink{namespaceQuadProgPP_a4096d7195aed4c795b80e5d923b43dc7}{Quad\+Prog\+P\+P\+::add\+\_\+constraint} (Eigen\+::\+Matrix\+Xd \&R, Eigen\+::\+Matrix\+Xd \&J, Eigen\+::\+Vector\+Xd \&d, int \&iq, double \&rnorm)
+\item 
+void \hyperlink{namespaceQuadProgPP_aaec5402f2870ee1139e84ab41ef8a3e5}{Quad\+Prog\+P\+P\+::delete\+\_\+constraint} (Eigen\+::\+Matrix\+Xd \&R, Eigen\+::\+Matrix\+Xd \&J, Eigen\+::\+Vector\+Xi \&A, Eigen\+::\+Vector\+Xd \&u, int n, int p, int \&iq, int l)
+\item 
+void \hyperlink{namespaceQuadProgPP_a4ef0115d81bd8076cbc5d7d7ca98f0d6}{Quad\+Prog\+P\+P\+::cholesky\+\_\+decomposition} (Eigen\+::\+Matrix\+Xd \&A)
+\item 
+void \hyperlink{namespaceQuadProgPP_a63f00d297d24480490a750330a81e7ca}{Quad\+Prog\+P\+P\+::cholesky\+\_\+solve} (const Eigen\+::\+Matrix\+Xd \&L, Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&b)
+\item 
+void \hyperlink{namespaceQuadProgPP_acabfedbcb7167f67f0bc97d5528589ee}{Quad\+Prog\+P\+P\+::forward\+\_\+elimination} (const Eigen\+::\+Matrix\+Xd \&L, Eigen\+::\+Vector\+Xd \&y, const Eigen\+::\+Vector\+Xd \&b)
+\item 
+void \hyperlink{namespaceQuadProgPP_a2ff18ea1c11c56ab14a9e9db30a35e60}{Quad\+Prog\+P\+P\+::backward\+\_\+elimination} (const Eigen\+::\+Matrix\+Xd \&U, Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y)
+\item 
+double \hyperlink{namespaceQuadProgPP_ad183104d932d3764cc3223e89591c347}{Quad\+Prog\+P\+P\+::scalar\+\_\+product} (const Eigen\+::\+Vector\+Xd \&x, const Eigen\+::\+Vector\+Xd \&y)
+\item 
+double \hyperlink{namespaceQuadProgPP_a02250c1dfa52b656b38147eeb1b3df48}{Quad\+Prog\+P\+P\+::distance} (double a, double b)
+\item 
+void \hyperlink{namespaceQuadProgPP_affeed53f80844aaf2be84ac637cfd212}{Quad\+Prog\+P\+P\+::print\+\_\+matrix} (const char $\ast$name, const Eigen\+::\+Matrix\+Xd \&A, int n=-\/1, int m=-\/1)
+\item 
+{\footnotesize template$<$typename T $>$ }\\void \hyperlink{namespaceQuadProgPP_a5a7e0a2f22b7bf72667010d6cff1dac2}{Quad\+Prog\+P\+P\+::print\+\_\+vector} (const char $\ast$name, const Eigen\+::\+Matrix$<$ T, Eigen\+::\+Dynamic, 1 $>$ \&v, int n=-\/1)
+\item 
+double \hyperlink{namespaceQuadProgPP_a3660acf00652641e6b81b5106a44efbd}{Quad\+Prog\+P\+P\+::solve\+\_\+quadprog} (const Eigen\+::\+Matrix\+Xd \&\+\_\+G, const Eigen\+::\+Vector\+Xd \&g0, const Eigen\+::\+Matrix\+Xd \&\+\_\+\+CE, const Eigen\+::\+Vector\+Xd \&ce0, const Eigen\+::\+Matrix\+Xd \&\+\_\+\+CI, const Eigen\+::\+Vector\+Xd \&ci0, Eigen\+::\+Vector\+Xd \&x)
+\end{DoxyCompactItemize}

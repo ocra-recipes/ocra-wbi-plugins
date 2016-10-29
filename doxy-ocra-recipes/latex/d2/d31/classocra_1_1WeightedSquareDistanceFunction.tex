@@ -1,0 +1,296 @@
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction}{}\section{ocra\+:\+:Weighted\+Square\+Distance\+Function Class Reference}
+\label{classocra_1_1WeightedSquareDistanceFunction}\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+
+
+Weighted\+Square\+Distance\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Weighted\+Square\+Distance\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Weighted\+Square\+Distance\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{d2/d31/classocra_1_1WeightedSquareDistanceFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1QuadraticFunction}{Quadratic\+Function} \hyperlink{classocra_1_1WeightedSquareDistanceFunction_ab8fcee2e8ec81e8790f3d00b1d541d9a}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Vector\+Base $>$ }\\\hyperlink{classocra_1_1WeightedSquareDistanceFunction_a25942322441c7bac8adb24d8f1d27905}{Weighted\+Square\+Distance\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, double weight, const Vector\+Base \&reference)
+\item 
+{\footnotesize template$<$class Vector\+Base1 , class Vector\+Base2 $>$ }\\\hyperlink{classocra_1_1WeightedSquareDistanceFunction_a1aca7da80ddc408d8194d32712418b89}{Weighted\+Square\+Distance\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const Vector\+Base1 \&weight, const Vector\+Base2 \&reference)
+\item 
+void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_aa46e440abf19590ebdc4b72b97c9901d}{change\+Weight} (double weight)
+\item 
+{\footnotesize template$<$class Vector\+Base $>$ }\\void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a8001ac136e0c486571e5523d01e6de38}{change\+Weight} (const Vector\+Base \&weight)
+\item 
+const Vector\+Xd \& \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a830f93e5be8ede8c5cdc18396e89ead3}{get\+Weight} () const
+\item 
+{\footnotesize template$<$class Vector\+Base $>$ }\\void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a6a81acd002eb8f7576b0c9ee99e1bc46}{change\+Reference} (const Vector\+Base \&reference)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a3edae3085677a5ac54b4d5bcdfcc1901}{update\+Value} () const
+\item 
+void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_adb2aad2190e474c2975a5544f0122585}{update\+Jacobian} () const
+\item 
+void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_aff6adfc9daa9242233f58a8c2c16ba7d}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_ab05ab6021a40ed308b7e0d67b5a55b82}{do\+Update\+Input\+Size\+End} ()
+\item 
+void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a2364e1c3908842eb252128256015d57b}{do\+Change\+Pi} (const Matrix\+Xd \&Pi, int index=0)
+\item 
+void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a0ba9644814cf959e34ffc581a6b1e37a}{do\+Changeqi} (const Vector\+Xd \&qi, int index=0)
+\item 
+void \hyperlink{classocra_1_1WeightedSquareDistanceFunction_afd6f2e03701395eed4db1b72588562ed}{do\+Changeri} (double ri, int index=0)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Vector\+Xd \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a0363490acdf9ea0bbfc29e0721a757ed}{\+\_\+weight}
+\item 
+Vector\+Xd \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a29e7d4c1ce99abef4f2196f11f0de9de}{\+\_\+reference}
+\item 
+double \hyperlink{classocra_1_1WeightedSquareDistanceFunction_a825041d63692b04a742c57dde4f80930}{\+\_\+default\+Weight}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Weighted\+Square\+Distance\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Quadratic function of the form \& 1/2 $|$x -\/ x\+\_\+\{ref\} $|$$^\wedge$2\+\_\+W \& where W is a diagonal matrix. 
+
+Definition at line 32 of file Weighted\+Square\+Distance\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_ab8fcee2e8ec81e8790f3d00b1d541d9a}{}\label{classocra_1_1WeightedSquareDistanceFunction_ab8fcee2e8ec81e8790f3d00b1d541d9a} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1QuadraticFunction}{Quadratic\+Function} \hyperlink{classocra_1_1WeightedSquareDistanceFunction_ab8fcee2e8ec81e8790f3d00b1d541d9a}{ocra\+::\+Weighted\+Square\+Distance\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 36 of file Weighted\+Square\+Distance\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a25942322441c7bac8adb24d8f1d27905}{}\label{classocra_1_1WeightedSquareDistanceFunction_a25942322441c7bac8adb24d8f1d27905} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!Weighted\+Square\+Distance\+Function@{Weighted\+Square\+Distance\+Function}}
+\index{Weighted\+Square\+Distance\+Function@{Weighted\+Square\+Distance\+Function}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{Weighted\+Square\+Distance\+Function()}{WeightedSquareDistanceFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Vector\+Base $>$ \\
+ocra\+::\+Weighted\+Square\+Distance\+Function\+::\+Weighted\+Square\+Distance\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{double}]{weight,  }\item[{const Vector\+Base \&}]{reference }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 89 of file Weighted\+Square\+Distance\+Function.\+h.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a1aca7da80ddc408d8194d32712418b89}{}\label{classocra_1_1WeightedSquareDistanceFunction_a1aca7da80ddc408d8194d32712418b89} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!Weighted\+Square\+Distance\+Function@{Weighted\+Square\+Distance\+Function}}
+\index{Weighted\+Square\+Distance\+Function@{Weighted\+Square\+Distance\+Function}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{Weighted\+Square\+Distance\+Function()}{WeightedSquareDistanceFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Vector\+Base1 , class Vector\+Base2 $>$ \\
+ocra\+::\+Weighted\+Square\+Distance\+Function\+::\+Weighted\+Square\+Distance\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const Vector\+Base1 \&}]{weight,  }\item[{const Vector\+Base2 \&}]{reference }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 116 of file Weighted\+Square\+Distance\+Function.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a6a81acd002eb8f7576b0c9ee99e1bc46}{}\label{classocra_1_1WeightedSquareDistanceFunction_a6a81acd002eb8f7576b0c9ee99e1bc46} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!change\+Reference@{change\+Reference}}
+\index{change\+Reference@{change\+Reference}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{change\+Reference()}{changeReference()}}
+{\footnotesize\ttfamily template$<$class Vector\+Base $>$ \\
+void ocra\+::\+Weighted\+Square\+Distance\+Function\+::change\+Reference (\begin{DoxyParamCaption}\item[{const Vector\+Base \&}]{reference }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 163 of file Weighted\+Square\+Distance\+Function.\+h.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_aa46e440abf19590ebdc4b72b97c9901d}{}\label{classocra_1_1WeightedSquareDistanceFunction_aa46e440abf19590ebdc4b72b97c9901d} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!change\+Weight@{change\+Weight}}
+\index{change\+Weight@{change\+Weight}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{change\+Weight()}{changeWeight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Weighted\+Square\+Distance\+Function\+::change\+Weight (\begin{DoxyParamCaption}\item[{double}]{weight }\end{DoxyParamCaption})}
+
+
+
+Definition at line 34 of file Weighted\+Square\+Distance\+Function.\+cpp.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a8001ac136e0c486571e5523d01e6de38}{}\label{classocra_1_1WeightedSquareDistanceFunction_a8001ac136e0c486571e5523d01e6de38} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!change\+Weight@{change\+Weight}}
+\index{change\+Weight@{change\+Weight}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{change\+Weight()}{changeWeight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Vector\+Base $>$ \\
+void ocra\+::\+Weighted\+Square\+Distance\+Function\+::change\+Weight (\begin{DoxyParamCaption}\item[{const Vector\+Base \&}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 147 of file Weighted\+Square\+Distance\+Function.\+h.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a2364e1c3908842eb252128256015d57b}{}\label{classocra_1_1WeightedSquareDistanceFunction_a2364e1c3908842eb252128256015d57b} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!do\+Change\+Pi@{do\+Change\+Pi}}
+\index{do\+Change\+Pi@{do\+Change\+Pi}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Pi()}{doChangePi()}}
+{\footnotesize\ttfamily void ocra\+::\+Weighted\+Square\+Distance\+Function\+::do\+Change\+Pi (\begin{DoxyParamCaption}\item[{const Matrix\+Xd \&}]{Pi,  }\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_a30d2c2217918164d24aaeadde5698d03}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 6 of file Weighted\+Square\+Distance\+Function.\+cpp.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a0ba9644814cf959e34ffc581a6b1e37a}{}\label{classocra_1_1WeightedSquareDistanceFunction_a0ba9644814cf959e34ffc581a6b1e37a} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!do\+Changeqi@{do\+Changeqi}}
+\index{do\+Changeqi@{do\+Changeqi}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{do\+Changeqi()}{doChangeqi()}}
+{\footnotesize\ttfamily void ocra\+::\+Weighted\+Square\+Distance\+Function\+::do\+Changeqi (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{qi,  }\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_abced87346b20e5ed323b966626487f16}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 23 of file Weighted\+Square\+Distance\+Function.\+cpp.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_afd6f2e03701395eed4db1b72588562ed}{}\label{classocra_1_1WeightedSquareDistanceFunction_afd6f2e03701395eed4db1b72588562ed} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!do\+Changeri@{do\+Changeri}}
+\index{do\+Changeri@{do\+Changeri}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{do\+Changeri()}{doChangeri()}}
+{\footnotesize\ttfamily void ocra\+::\+Weighted\+Square\+Distance\+Function\+::do\+Changeri (\begin{DoxyParamCaption}\item[{double}]{ri,  }\item[{int}]{index = {\ttfamily 0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_aeaeed88d4fef66c5db465f2887320e37}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 29 of file Weighted\+Square\+Distance\+Function.\+cpp.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_aff6adfc9daa9242233f58a8c2c16ba7d}{}\label{classocra_1_1WeightedSquareDistanceFunction_aff6adfc9daa9242233f58a8c2c16ba7d} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Weighted\+Square\+Distance\+Function\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1WeightedSquareDistanceFunction_ab05ab6021a40ed308b7e0d67b5a55b82}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 65 of file Weighted\+Square\+Distance\+Function.\+cpp.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_ab05ab6021a40ed308b7e0d67b5a55b82}{}\label{classocra_1_1WeightedSquareDistanceFunction_ab05ab6021a40ed308b7e0d67b5a55b82} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Weighted\+Square\+Distance\+Function\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_ab3d5478fd8ded343453e0489c595e580}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 71 of file Weighted\+Square\+Distance\+Function.\+cpp.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a830f93e5be8ede8c5cdc18396e89ead3}{}\label{classocra_1_1WeightedSquareDistanceFunction_a830f93e5be8ede8c5cdc18396e89ead3} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{get\+Weight()}{getWeight()}}
+{\footnotesize\ttfamily const Vector\+Xd\& ocra\+::\+Weighted\+Square\+Distance\+Function\+::get\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 57 of file Weighted\+Square\+Distance\+Function.\+h.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_adb2aad2190e474c2975a5544f0122585}{}\label{classocra_1_1WeightedSquareDistanceFunction_adb2aad2190e474c2975a5544f0122585} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void ocra\+::\+Weighted\+Square\+Distance\+Function\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_ad8fb5839a78b8ffb201e8ec5bb42cd70}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 59 of file Weighted\+Square\+Distance\+Function.\+cpp.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a3edae3085677a5ac54b4d5bcdfcc1901}{}\label{classocra_1_1WeightedSquareDistanceFunction_a3edae3085677a5ac54b4d5bcdfcc1901} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Weighted\+Square\+Distance\+Function\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_aad5171c1f1b510fb861121da01a0ea75}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 53 of file Weighted\+Square\+Distance\+Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a825041d63692b04a742c57dde4f80930}{}\label{classocra_1_1WeightedSquareDistanceFunction_a825041d63692b04a742c57dde4f80930} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!\+\_\+default\+Weight@{\+\_\+default\+Weight}}
+\index{\+\_\+default\+Weight@{\+\_\+default\+Weight}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+default\+Weight}{\_defaultWeight}}
+{\footnotesize\ttfamily double ocra\+::\+Weighted\+Square\+Distance\+Function\+::\+\_\+default\+Weight\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 84 of file Weighted\+Square\+Distance\+Function.\+h.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a29e7d4c1ce99abef4f2196f11f0de9de}{}\label{classocra_1_1WeightedSquareDistanceFunction_a29e7d4c1ce99abef4f2196f11f0de9de} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!\+\_\+reference@{\+\_\+reference}}
+\index{\+\_\+reference@{\+\_\+reference}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+reference}{\_reference}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Weighted\+Square\+Distance\+Function\+::\+\_\+reference\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 83 of file Weighted\+Square\+Distance\+Function.\+h.
+
+\hypertarget{classocra_1_1WeightedSquareDistanceFunction_a0363490acdf9ea0bbfc29e0721a757ed}{}\label{classocra_1_1WeightedSquareDistanceFunction_a0363490acdf9ea0bbfc29e0721a757ed} 
+\index{ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}!\+\_\+weight@{\+\_\+weight}}
+\index{\+\_\+weight@{\+\_\+weight}!ocra\+::\+Weighted\+Square\+Distance\+Function@{ocra\+::\+Weighted\+Square\+Distance\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+weight}{\_weight}}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::\+Weighted\+Square\+Distance\+Function\+::\+\_\+weight\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 82 of file Weighted\+Square\+Distance\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{WeightedSquareDistanceFunction_8h}{Weighted\+Square\+Distance\+Function.\+h}\item 
+\hyperlink{WeightedSquareDistanceFunction_8cpp}{Weighted\+Square\+Distance\+Function.\+cpp}\end{DoxyCompactItemize}

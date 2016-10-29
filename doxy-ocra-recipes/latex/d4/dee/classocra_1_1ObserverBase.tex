@@ -1,0 +1,163 @@
+\hypertarget{classocra_1_1ObserverBase}{}\section{ocra\+:\+:Observer\+Base$<$ E\+VT $>$ Class Template Reference}
+\label{classocra_1_1ObserverBase}\index{ocra\+::\+Observer\+Base$<$ E\+V\+T $>$@{ocra\+::\+Observer\+Base$<$ E\+V\+T $>$}}
+
+
+Base class for Observers with propagation system.  
+
+
+
+
+{\ttfamily \#include $<$Observer\+Subject\+Base.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1ObserverBase_ab251aaa18329dffb4389cbf417564ad6}{bind} (\hyperlink{classocra_1_1ObserverBase_a4037f8722d9842eae6f6dd5648b9ce7f}{subject\+\_\+type} \&subject)
+\begin{DoxyCompactList}\small\item\em Call this method to automatically propagate observed events to observers connected to the subject given in argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1SubjectBase}{Subject\+Base}$<$ E\+VT $>$ \hyperlink{classocra_1_1ObserverBase_a4037f8722d9842eae6f6dd5648b9ce7f}{subject\+\_\+type}
+\item 
+typedef \hyperlink{classocra_1_1InvokerBase}{Invoker\+Base}$<$ E\+VT $>$ \hyperlink{classocra_1_1ObserverBase_ad31fb33848323db6c887427f7dbf5c42}{invoker\+\_\+type}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1ObserverBase_ace47225f3ec0cf9985a885b0a95588e0}{stop\+Propagation} ()
+\begin{DoxyCompactList}\small\item\em Call this method from your callbacks to avoid propagation to the bound subject (if any). \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ObserverBase_aafa4d4e56d4849a38915b4803d869a8f}{Observer\+Base} ()
+\item 
+\hyperlink{classocra_1_1ObserverBase_ac7da945b97ccdbb8fdcff20ec38541da}{$\sim$\+Observer\+Base} ()
+\end{DoxyCompactItemize}
+
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class , int , bool $>$ }\\class \hyperlink{classocra_1_1ObserverBase_a63f148e01d4fc8e06b665e920abe3794}{Invoker}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$int E\+VT$>$\newline
+class ocra\+::\+Observer\+Base$<$ E\+V\+T $>$}
+
+Base class for Observers with propagation system. 
+
+Use this class as a public base class to observe subjects and propagate the observed events. Classes who derive this class can connect to Subjects so that if these subjects raise an event with a timestamp greater than the last event\textquotesingle{}s timestamp, then the registered callback is called; else nothing happens. Other subjects can be bound to an \hyperlink{classocra_1_1Observer}{Observer} so that the event is automatically propagated to these subjects; in this case, observers who observe these bound subjects will be triggered, except if the method \hyperlink{classocra_1_1ObserverBase_ace47225f3ec0cf9985a885b0a95588e0}{Observer\+Base\+::stop\+Propagation()} is called within the callback.
+
+For observers who derive \hyperlink{classocra_1_1ObserverBase}{Observer\+Base}\+: When a callback is triggered because a subject has raised an event with timestamp t0, any event with timestamp t $<$= t0 will have no effect; the callback will be triggered for events with timestamps t $>$ t0. This is to avoid infinite looping when an observer is connected to a subject and propagates the event through a cycle to this same subject. This also allows calling a callback more than once for the same events when a callback can be triggered for the same event with two different pathes.
+
+\begin{DoxyWarning}{Warning}
+For the time being, ensuring that observers and subjects are alive is left to the client code. No automatic unregistration of a dying observer or subject is performed.
+\end{DoxyWarning}
+Example\+:  Creation of a chain of observers and subjects for an event identified with the integer constant M\+Y\+\_\+\+E\+V\+E\+N\+T\+\_\+\+ID. class My\+Subject \+: public Subject\+Base$<$\+M\+Y\+\_\+\+E\+V\+E\+N\+T\+\_\+\+I\+D$>$ \{ ... \}; class My\+Observer\+Subject \+: public Observer\+Base$<$\+M\+Y\+\_\+\+E\+V\+E\+N\+T\+\_\+\+I\+D$>$, public Subject\+Base$<$\+M\+Y\+\_\+\+E\+V\+E\+N\+T\+\_\+\+I\+D$>$ \{ ... \}; class My\+Observer \+: public Observer\+Base$<$\+M\+Y\+\_\+\+E\+V\+E\+N\+T\+\_\+\+I\+D$>$ \{ ... \}; ... My\+Subject subject; My\+Observer\+Subject obs\+Subject; My\+Observer observer; subject.\+connect(obs\+Subject, \&\+My\+Observer\+Subject\+::the\+Method\+You\+Want); obs\+Subject.\+bind(obs\+Subject); // so that when obs\+Subject receives an event from subject, it can propagate it and be observed. obs\+Subject.\+connect(observer, \&\+My\+Observer\+::any\+Method\+You\+Think\+Is\+Suitable); subject.\+propagate(); // will trigger obs\+Subject.\+the\+Method\+You\+Want(), which propagates to observer.\+any\+Method\+You\+Think\+Is\+Suitable()...  
+
+Definition at line 32 of file Observer\+Subject\+Base.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1ObserverBase_ad31fb33848323db6c887427f7dbf5c42}{}\label{classocra_1_1ObserverBase_ad31fb33848323db6c887427f7dbf5c42} 
+\index{ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}!invoker\+\_\+type@{invoker\+\_\+type}}
+\index{invoker\+\_\+type@{invoker\+\_\+type}!ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}}
+\subsubsection{\texorpdfstring{invoker\+\_\+type}{invoker\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+typedef \hyperlink{classocra_1_1InvokerBase}{Invoker\+Base}$<$E\+VT$>$ \hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base}$<$ E\+VT $>$\+::\hyperlink{classocra_1_1ObserverBase_ad31fb33848323db6c887427f7dbf5c42}{invoker\+\_\+type}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 239 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{classocra_1_1ObserverBase_a4037f8722d9842eae6f6dd5648b9ce7f}{}\label{classocra_1_1ObserverBase_a4037f8722d9842eae6f6dd5648b9ce7f} 
+\index{ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}!subject\+\_\+type@{subject\+\_\+type}}
+\index{subject\+\_\+type@{subject\+\_\+type}!ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}}
+\subsubsection{\texorpdfstring{subject\+\_\+type}{subject\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+typedef \hyperlink{classocra_1_1SubjectBase}{Subject\+Base}$<$E\+VT$>$ \hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base}$<$ E\+VT $>$\+::\hyperlink{classocra_1_1ObserverBase_a4037f8722d9842eae6f6dd5648b9ce7f}{subject\+\_\+type}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 238 of file Observer\+Subject\+Base.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ObserverBase_aafa4d4e56d4849a38915b4803d869a8f}{}\label{classocra_1_1ObserverBase_aafa4d4e56d4849a38915b4803d869a8f} 
+\index{ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}!Observer\+Base@{Observer\+Base}}
+\index{Observer\+Base@{Observer\+Base}!ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}}
+\subsubsection{\texorpdfstring{Observer\+Base()}{ObserverBase()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+\hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base}$<$ E\+VT $>$\+::\hyperlink{classocra_1_1ObserverBase}{Observer\+Base} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 251 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{classocra_1_1ObserverBase_ac7da945b97ccdbb8fdcff20ec38541da}{}\label{classocra_1_1ObserverBase_ac7da945b97ccdbb8fdcff20ec38541da} 
+\index{ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}!````~Observer\+Base@{$\sim$\+Observer\+Base}}
+\index{````~Observer\+Base@{$\sim$\+Observer\+Base}!ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}}
+\subsubsection{\texorpdfstring{$\sim$\+Observer\+Base()}{~ObserverBase()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+\hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base}$<$ E\+VT $>$\+::$\sim$\hyperlink{classocra_1_1ObserverBase}{Observer\+Base} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 252 of file Observer\+Subject\+Base.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ObserverBase_ab251aaa18329dffb4389cbf417564ad6}{}\label{classocra_1_1ObserverBase_ab251aaa18329dffb4389cbf417564ad6} 
+\index{ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}!bind@{bind}}
+\index{bind@{bind}!ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}}
+\subsubsection{\texorpdfstring{bind()}{bind()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+void \hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base}$<$ E\+VT $>$\+::bind (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1ObserverBase_a4037f8722d9842eae6f6dd5648b9ce7f}{subject\+\_\+type} \&}]{subject }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Call this method to automatically propagate observed events to observers connected to the subject given in argument. 
+
+
+
+Definition at line 243 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{classocra_1_1ObserverBase_ace47225f3ec0cf9985a885b0a95588e0}{}\label{classocra_1_1ObserverBase_ace47225f3ec0cf9985a885b0a95588e0} 
+\index{ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}!stop\+Propagation@{stop\+Propagation}}
+\index{stop\+Propagation@{stop\+Propagation}!ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}}
+\subsubsection{\texorpdfstring{stop\+Propagation()}{stopPropagation()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+void \hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base}$<$ E\+VT $>$\+::stop\+Propagation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Call this method from your callbacks to avoid propagation to the bound subject (if any). 
+
+
+
+Definition at line 247 of file Observer\+Subject\+Base.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classocra_1_1ObserverBase_a63f148e01d4fc8e06b665e920abe3794}{}\label{classocra_1_1ObserverBase_a63f148e01d4fc8e06b665e920abe3794} 
+\index{ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}!Invoker@{Invoker}}
+\index{Invoker@{Invoker}!ocra\+::\+Observer\+Base@{ocra\+::\+Observer\+Base}}
+\subsubsection{\texorpdfstring{Invoker}{Invoker}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+template$<$class , int , bool $>$ \\
+friend class \hyperlink{classocra_1_1Invoker}{Invoker}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 274 of file Observer\+Subject\+Base.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ObserverSubjectBase_8h}{Observer\+Subject\+Base.\+h}\end{DoxyCompactItemize}

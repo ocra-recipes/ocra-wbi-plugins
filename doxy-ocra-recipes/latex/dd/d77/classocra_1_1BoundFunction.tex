@@ -1,0 +1,211 @@
+\hypertarget{classocra_1_1BoundFunction}{}\section{ocra\+:\+:Bound\+Function Class Reference}
+\label{classocra_1_1BoundFunction}\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+
+
+Bound\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Bound\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Bound\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.262480cm]{dd/d77/classocra_1_1BoundFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1DiagonalLinearFunction}{Diagonal\+Linear\+Function} \hyperlink{classocra_1_1BoundFunction_acba2ac4d2f6caf04054590615a41ac21}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1BoundFunction_ad9a5cb9442e2129111d189e8063304ad}{change\+Ith\+Bound} (const int i, const double bound)
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1BoundFunction_a7dc079453fdb607b46295246153481fd}{Bound\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const Vector\+Xd \&bound, \hyperlink{namespaceocra_ab3efdc117d9e5bcb0192640f5e7dc79b}{e\+Bound\+Type} type)
+\item 
+\hyperlink{classocra_1_1BoundFunction_afba908c0284f8ce9b2f7f1f8e5338cb5}{Bound\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, const double bound, \hyperlink{namespaceocra_ab3efdc117d9e5bcb0192640f5e7dc79b}{e\+Bound\+Type} type)
+\end{DoxyCompactItemize}
+
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1BoundFunction_a205a73bb12f3255368d125ba0a6b4e58}{change\+Bounds} (const double bound)
+\item 
+void \hyperlink{classocra_1_1BoundFunction_aa69f4a52a46914e6ecbffb525e7d1314}{change\+Bounds} (const Vector\+Xd \&bounds)
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Member Functions}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1BoundFunction_a95e8e97598f5ca779b9c171c56a7342a}{do\+Change\+Diagonal} (const Vector\+Xd \&d)
+\item 
+void \hyperlink{classocra_1_1BoundFunction_ac1a1b78b8b1796543b4c83ae5d8de755}{do\+Change\+Diagonal} (const double diagonal\+Element\+Value, const bool change\+Default=true)
+\item 
+void \hyperlink{classocra_1_1BoundFunction_af02c8fc499fb37596c758861d98cfbf6}{do\+Change\+Default\+Diagonal\+Value} (const double v)
+\item 
+void \hyperlink{classocra_1_1BoundFunction_aa861028f4a37e45b4fc68b7852d7e451}{do\+Change\+Defaultb\+Value} (const double v)
+\end{DoxyCompactItemize}
+
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Bound\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+\hyperlink{classocra_1_1Function}{Function} to describe bound constraints $ x<x^+ $ or $ x>x^- $ so that the constraint can be written Ax+b$<$=0 
+
+Definition at line 45 of file Bound\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1BoundFunction_acba2ac4d2f6caf04054590615a41ac21}{}\label{classocra_1_1BoundFunction_acba2ac4d2f6caf04054590615a41ac21} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1DiagonalLinearFunction}{Diagonal\+Linear\+Function} \hyperlink{classocra_1_1BoundFunction_acba2ac4d2f6caf04054590615a41ac21}{ocra\+::\+Bound\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 50 of file Bound\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1BoundFunction_a7dc079453fdb607b46295246153481fd}{}\label{classocra_1_1BoundFunction_a7dc079453fdb607b46295246153481fd} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!Bound\+Function@{Bound\+Function}}
+\index{Bound\+Function@{Bound\+Function}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{Bound\+Function()}{BoundFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily ocra\+::\+Bound\+Function\+::\+Bound\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const Vector\+Xd \&}]{bound,  }\item[{\hyperlink{namespaceocra_ab3efdc117d9e5bcb0192640f5e7dc79b}{e\+Bound\+Type}}]{type }\end{DoxyParamCaption})}
+
+Constructors
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em x} & The variable on which to build the function. \\
+\hline
+\mbox{\tt in}  & {\em bound} & A vector or a double used to build a constant vector, representing bounds on the variable \\
+\hline
+\mbox{\tt in}  & {\em the} & type of the bound \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 6 of file Bound\+Function.\+cpp.
+
+\hypertarget{classocra_1_1BoundFunction_afba908c0284f8ce9b2f7f1f8e5338cb5}{}\label{classocra_1_1BoundFunction_afba908c0284f8ce9b2f7f1f8e5338cb5} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!Bound\+Function@{Bound\+Function}}
+\index{Bound\+Function@{Bound\+Function}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{Bound\+Function()}{BoundFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily ocra\+::\+Bound\+Function\+::\+Bound\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{const double}]{bound,  }\item[{\hyperlink{namespaceocra_ab3efdc117d9e5bcb0192640f5e7dc79b}{e\+Bound\+Type}}]{type }\end{DoxyParamCaption})}
+
+
+
+Definition at line 18 of file Bound\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1BoundFunction_a205a73bb12f3255368d125ba0a6b4e58}{}\label{classocra_1_1BoundFunction_a205a73bb12f3255368d125ba0a6b4e58} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!change\+Bounds@{change\+Bounds}}
+\index{change\+Bounds@{change\+Bounds}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{change\+Bounds()}{changeBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Bound\+Function\+::change\+Bounds (\begin{DoxyParamCaption}\item[{const double}]{bound }\end{DoxyParamCaption})}
+
+Change all the bounds to the given value(s) 
+
+Definition at line 54 of file Bound\+Function.\+cpp.
+
+\hypertarget{classocra_1_1BoundFunction_aa69f4a52a46914e6ecbffb525e7d1314}{}\label{classocra_1_1BoundFunction_aa69f4a52a46914e6ecbffb525e7d1314} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!change\+Bounds@{change\+Bounds}}
+\index{change\+Bounds@{change\+Bounds}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{change\+Bounds()}{changeBounds()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Bound\+Function\+::change\+Bounds (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{bounds }\end{DoxyParamCaption})}
+
+
+
+Definition at line 63 of file Bound\+Function.\+cpp.
+
+\hypertarget{classocra_1_1BoundFunction_ad9a5cb9442e2129111d189e8063304ad}{}\label{classocra_1_1BoundFunction_ad9a5cb9442e2129111d189e8063304ad} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!change\+Ith\+Bound@{change\+Ith\+Bound}}
+\index{change\+Ith\+Bound@{change\+Ith\+Bound}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{change\+Ith\+Bound()}{changeIthBound()}}
+{\footnotesize\ttfamily void ocra\+::\+Bound\+Function\+::change\+Ith\+Bound (\begin{DoxyParamCaption}\item[{const int}]{i,  }\item[{const double}]{bound }\end{DoxyParamCaption})}
+
+Change the ith bound to the given value 
+
+Definition at line 71 of file Bound\+Function.\+cpp.
+
+\hypertarget{classocra_1_1BoundFunction_aa861028f4a37e45b4fc68b7852d7e451}{}\label{classocra_1_1BoundFunction_aa861028f4a37e45b4fc68b7852d7e451} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!do\+Change\+Defaultb\+Value@{do\+Change\+Defaultb\+Value}}
+\index{do\+Change\+Defaultb\+Value@{do\+Change\+Defaultb\+Value}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Defaultb\+Value()}{doChangeDefaultbValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Bound\+Function\+::do\+Change\+Defaultb\+Value (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a9995af94055dc443c10018869a393635}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 48 of file Bound\+Function.\+cpp.
+
+\hypertarget{classocra_1_1BoundFunction_af02c8fc499fb37596c758861d98cfbf6}{}\label{classocra_1_1BoundFunction_af02c8fc499fb37596c758861d98cfbf6} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!do\+Change\+Default\+Diagonal\+Value@{do\+Change\+Default\+Diagonal\+Value}}
+\index{do\+Change\+Default\+Diagonal\+Value@{do\+Change\+Default\+Diagonal\+Value}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Default\+Diagonal\+Value()}{doChangeDefaultDiagonalValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Bound\+Function\+::do\+Change\+Default\+Diagonal\+Value (\begin{DoxyParamCaption}\item[{const double}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a81120f5a61cc53cc940f4e71b35174ff}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 42 of file Bound\+Function.\+cpp.
+
+\hypertarget{classocra_1_1BoundFunction_a95e8e97598f5ca779b9c171c56a7342a}{}\label{classocra_1_1BoundFunction_a95e8e97598f5ca779b9c171c56a7342a} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!do\+Change\+Diagonal@{do\+Change\+Diagonal}}
+\index{do\+Change\+Diagonal@{do\+Change\+Diagonal}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Diagonal()}{doChangeDiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Bound\+Function\+::do\+Change\+Diagonal (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Overloads of \hyperlink{classocra_1_1DiagonalLinearFunction}{Diagonal\+Linear\+Function} methods. All throw a runtime\+\_\+error\+: diagonal value are fixed for a \hyperlink{classocra_1_1BoundFunction}{Bound\+Function} and default value cannot be changed. 
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a5355515d58348a3eea92f36e35b1c7d5}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 30 of file Bound\+Function.\+cpp.
+
+\hypertarget{classocra_1_1BoundFunction_ac1a1b78b8b1796543b4c83ae5d8de755}{}\label{classocra_1_1BoundFunction_ac1a1b78b8b1796543b4c83ae5d8de755} 
+\index{ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}!do\+Change\+Diagonal@{do\+Change\+Diagonal}}
+\index{do\+Change\+Diagonal@{do\+Change\+Diagonal}!ocra\+::\+Bound\+Function@{ocra\+::\+Bound\+Function}}
+\subsubsection{\texorpdfstring{do\+Change\+Diagonal()}{doChangeDiagonal()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Bound\+Function\+::do\+Change\+Diagonal (\begin{DoxyParamCaption}\item[{const double}]{diagonal\+Element\+Value,  }\item[{const bool}]{change\+Default = {\ttfamily true} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1DiagonalLinearFunction_a0673bfe405d5637182c4749dd2737e95}{ocra\+::\+Diagonal\+Linear\+Function}.
+
+
+
+Definition at line 36 of file Bound\+Function.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{BoundFunction_8h}{Bound\+Function.\+h}\item 
+\hyperlink{BoundFunction_8cpp}{Bound\+Function.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,237 @@
+\hypertarget{classwocra_1_1PerformanceRecorder}{}\section{wocra\+:\+:Performance\+Recorder Class Reference}
+\label{classwocra_1_1PerformanceRecorder}\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+
+
+To get and save time information to collect some data on performances.  
+
+
+
+
+{\ttfamily \#include $<$Performances.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classwocra_1_1PerformanceRecorder_afcefa140d40279c65b10a38ff5c6549b}{Performance\+Recorder} ()
+\item 
+virtual \hyperlink{classwocra_1_1PerformanceRecorder_ae686b34e1d7e0e3a80c7ee0df012e441}{$\sim$\+Performance\+Recorder} ()
+\item 
+double \hyperlink{classwocra_1_1PerformanceRecorder_aca4cee19319252b823be15e1f217825e}{get\+Current\+Time} ()
+\item 
+void \hyperlink{classwocra_1_1PerformanceRecorder_af1e2e645007a910e8d3af72f1d6aeaeb}{initialize\+Time} ()
+\item 
+void \hyperlink{classwocra_1_1PerformanceRecorder_af17f8912dee957329f961eec5fb45e9f}{save\+Relative\+Time} ()
+\item 
+double \hyperlink{classwocra_1_1PerformanceRecorder_a170b49e0d8399c21184e706ce915a446}{get\+Relative\+Time} ()
+\item 
+void \hyperlink{classwocra_1_1PerformanceRecorder_a97a89d1cf9f994da4059cba8cb3b21ee}{save\+Time} (double t)
+\item 
+const std\+::list$<$ double $>$ \& \hyperlink{classwocra_1_1PerformanceRecorder_a7e27ca829190c70a8a3ce782c409a8ce}{get\+Saved\+Time} () const
+\item 
+void \hyperlink{classwocra_1_1PerformanceRecorder_a9b2a77a8d2598dbf76eb578b43b9a17d}{write\+In\+Stream} (const std\+::string \&header\+Name, std\+::ostream \&outstream, bool add\+Comma\+At\+End)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+timeval \hyperlink{classwocra_1_1PerformanceRecorder_ad66f50acd0ca84db58c753406e25da75}{tim}
+\item 
+double \hyperlink{classwocra_1_1PerformanceRecorder_a24a1f84e36d1a53d93fc88f4ec852b18}{\+\_\+init\+Time}
+\item 
+std\+::list$<$ double $>$ \hyperlink{classwocra_1_1PerformanceRecorder_aafecfdfef2e3b0d987cbb394a185e741}{\+\_\+record}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+To get and save time information to collect some data on performances. 
+
+It can be used in two ways. First to save a timeline\+:
+
+
+\begin{DoxyCode}
+\hyperlink{classwocra_1_1PerformanceRecorder_afcefa140d40279c65b10a38ff5c6549b}{PerformanceRecorder}     perfRec;    \textcolor{comment}{// create performance recorder}
+
+...
+
+perfRec.initializeTime();             \textcolor{comment}{// initialize somewhere}
+
+\textcolor{keywordflow}{for} ( ... )
+\{
+    perfRec.saveRelativeTime();       \textcolor{comment}{// save time relatively the the call of initializeTime()}
+
+    ...
+\}
+\end{DoxyCode}
+
+
+Or to save loop performances\+:
+
+
+\begin{DoxyCode}
+\hyperlink{classwocra_1_1PerformanceRecorder_afcefa140d40279c65b10a38ff5c6549b}{PerformanceRecorder}     perfRec;    \textcolor{comment}{// create performance recorder}
+
+...
+
+for ( ... )
+\{
+    perfRec.initializeTime();       \textcolor{comment}{// reset time at the beginning of the loop}
+
+    ...
+
+    perfRec.saveRelativeTime();     \textcolor{comment}{// save time at the end of the loop}
+\}
+\end{DoxyCode}
+ 
+
+Definition at line 65 of file wocra/include/wocra/\+Performances.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classwocra_1_1PerformanceRecorder_afcefa140d40279c65b10a38ff5c6549b}{}\label{classwocra_1_1PerformanceRecorder_afcefa140d40279c65b10a38ff5c6549b} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!Performance\+Recorder@{Performance\+Recorder}}
+\index{Performance\+Recorder@{Performance\+Recorder}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{Performance\+Recorder()}{PerformanceRecorder()}}
+{\footnotesize\ttfamily wocra\+::\+Performance\+Recorder\+::\+Performance\+Recorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a performance recorder. It also initializes the internal initial time. 
+
+Definition at line 72 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_ae686b34e1d7e0e3a80c7ee0df012e441}{}\label{classwocra_1_1PerformanceRecorder_ae686b34e1d7e0e3a80c7ee0df012e441} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!````~Performance\+Recorder@{$\sim$\+Performance\+Recorder}}
+\index{````~Performance\+Recorder@{$\sim$\+Performance\+Recorder}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{$\sim$\+Performance\+Recorder()}{~PerformanceRecorder()}}
+{\footnotesize\ttfamily virtual wocra\+::\+Performance\+Recorder\+::$\sim$\+Performance\+Recorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Destructor 
+
+Definition at line 77 of file wocra/include/wocra/\+Performances.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classwocra_1_1PerformanceRecorder_aca4cee19319252b823be15e1f217825e}{}\label{classwocra_1_1PerformanceRecorder_aca4cee19319252b823be15e1f217825e} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!get\+Current\+Time@{get\+Current\+Time}}
+\index{get\+Current\+Time@{get\+Current\+Time}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{get\+Current\+Time()}{getCurrentTime()}}
+{\footnotesize\ttfamily double wocra\+::\+Performance\+Recorder\+::get\+Current\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the current time.
+
+It calls method \char`\"{}gettimeofday\char`\"{} and returns a value representing the current time of the day in second. 
+
+Definition at line 83 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_a170b49e0d8399c21184e706ce915a446}{}\label{classwocra_1_1PerformanceRecorder_a170b49e0d8399c21184e706ce915a446} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!get\+Relative\+Time@{get\+Relative\+Time}}
+\index{get\+Relative\+Time@{get\+Relative\+Time}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{get\+Relative\+Time()}{getRelativeTime()}}
+{\footnotesize\ttfamily double wocra\+::\+Performance\+Recorder\+::get\+Relative\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+get the relative elapsed time since the time reference, i.\+e. the last call of \hyperlink{classwocra_1_1PerformanceRecorder_af1e2e645007a910e8d3af72f1d6aeaeb}{initialize\+Time()}. 
+
+Definition at line 108 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_a7e27ca829190c70a8a3ce782c409a8ce}{}\label{classwocra_1_1PerformanceRecorder_a7e27ca829190c70a8a3ce782c409a8ce} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!get\+Saved\+Time@{get\+Saved\+Time}}
+\index{get\+Saved\+Time@{get\+Saved\+Time}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{get\+Saved\+Time()}{getSavedTime()}}
+{\footnotesize\ttfamily const std\+::list$<$ double $>$\& wocra\+::\+Performance\+Recorder\+::get\+Saved\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the list where are saved the relative times. 
+
+Definition at line 120 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_af1e2e645007a910e8d3af72f1d6aeaeb}{}\label{classwocra_1_1PerformanceRecorder_af1e2e645007a910e8d3af72f1d6aeaeb} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!initialize\+Time@{initialize\+Time}}
+\index{initialize\+Time@{initialize\+Time}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{initialize\+Time()}{initializeTime()}}
+{\footnotesize\ttfamily void wocra\+::\+Performance\+Recorder\+::initialize\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize internal Zero time.
+
+It calls method \hyperlink{classwocra_1_1PerformanceRecorder_aca4cee19319252b823be15e1f217825e}{get\+Current\+Time()} to get a time reference. 
+
+Definition at line 92 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_af17f8912dee957329f961eec5fb45e9f}{}\label{classwocra_1_1PerformanceRecorder_af17f8912dee957329f961eec5fb45e9f} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!save\+Relative\+Time@{save\+Relative\+Time}}
+\index{save\+Relative\+Time@{save\+Relative\+Time}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{save\+Relative\+Time()}{saveRelativeTime()}}
+{\footnotesize\ttfamily void wocra\+::\+Performance\+Recorder\+::save\+Relative\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Save the relative elapsed time since the time reference, i.\+e. the last call of \hyperlink{classwocra_1_1PerformanceRecorder_af1e2e645007a910e8d3af72f1d6aeaeb}{initialize\+Time()}.
+
+The value is saved in a list available with \hyperlink{classwocra_1_1PerformanceRecorder_a7e27ca829190c70a8a3ce782c409a8ce}{get\+Saved\+Time() const} 
+
+Definition at line 100 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_a97a89d1cf9f994da4059cba8cb3b21ee}{}\label{classwocra_1_1PerformanceRecorder_a97a89d1cf9f994da4059cba8cb3b21ee} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!save\+Time@{save\+Time}}
+\index{save\+Time@{save\+Time}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{save\+Time()}{saveTime()}}
+{\footnotesize\ttfamily void wocra\+::\+Performance\+Recorder\+::save\+Time (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 112 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_a9b2a77a8d2598dbf76eb578b43b9a17d}{}\label{classwocra_1_1PerformanceRecorder_a9b2a77a8d2598dbf76eb578b43b9a17d} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!write\+In\+Stream@{write\+In\+Stream}}
+\index{write\+In\+Stream@{write\+In\+Stream}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{write\+In\+Stream()}{writeInStream()}}
+{\footnotesize\ttfamily void wocra\+::\+Performance\+Recorder\+::write\+In\+Stream (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{header\+Name,  }\item[{std\+::ostream \&}]{outstream,  }\item[{bool}]{add\+Comma\+At\+End }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Save performances information in a output stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em header\+Name} & The name of the performance saved in the \\
+\hline
+{\em outstream} & the output stream where to write the performances information \\
+\hline
+{\em add\+Comma\+At\+End} & If true, add a comma at the end of the stream. If false, it means that this is the end of the json file, nothing will be added after that, no comma is added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 130 of file wocra/include/wocra/\+Performances.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classwocra_1_1PerformanceRecorder_a24a1f84e36d1a53d93fc88f4ec852b18}{}\label{classwocra_1_1PerformanceRecorder_a24a1f84e36d1a53d93fc88f4ec852b18} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!\+\_\+init\+Time@{\+\_\+init\+Time}}
+\index{\+\_\+init\+Time@{\+\_\+init\+Time}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{\+\_\+init\+Time}{\_initTime}}
+{\footnotesize\ttfamily double wocra\+::\+Performance\+Recorder\+::\+\_\+init\+Time\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 149 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_aafecfdfef2e3b0d987cbb394a185e741}{}\label{classwocra_1_1PerformanceRecorder_aafecfdfef2e3b0d987cbb394a185e741} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!\+\_\+record@{\+\_\+record}}
+\index{\+\_\+record@{\+\_\+record}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{\+\_\+record}{\_record}}
+{\footnotesize\ttfamily std\+::list$<$ double $>$ wocra\+::\+Performance\+Recorder\+::\+\_\+record\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 151 of file wocra/include/wocra/\+Performances.\+h.
+
+\hypertarget{classwocra_1_1PerformanceRecorder_ad66f50acd0ca84db58c753406e25da75}{}\label{classwocra_1_1PerformanceRecorder_ad66f50acd0ca84db58c753406e25da75} 
+\index{wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}!tim@{tim}}
+\index{tim@{tim}!wocra\+::\+Performance\+Recorder@{wocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{tim}{tim}}
+{\footnotesize\ttfamily timeval wocra\+::\+Performance\+Recorder\+::tim\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 147 of file wocra/include/wocra/\+Performances.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{wocra_2include_2wocra_2Performances_8h}{wocra/include/wocra/\+Performances.\+h}\end{DoxyCompactItemize}

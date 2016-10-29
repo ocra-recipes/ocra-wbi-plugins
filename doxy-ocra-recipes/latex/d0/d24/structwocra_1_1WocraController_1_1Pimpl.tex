@@ -1,0 +1,194 @@
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl}{}\section{wocra\+:\+:Wocra\+Controller\+:\+:Pimpl Struct Reference}
+\label{structwocra_1_1WocraController_1_1Pimpl}\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structwocra_1_1WocraController_1_1Pimpl_ae9e38baadd765c1005354808ea768800}{Pimpl} (std\+::shared\+\_\+ptr$<$ Model $>$ m, std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver} $>$ s, bool use\+Reduced\+Problem)
+\item 
+\hyperlink{structwocra_1_1WocraController_1_1Pimpl_a9e7ca6582122e345e4d51d30ed481450}{$\sim$\+Pimpl} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ Model $>$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a4fe5b4fd5e927bbf9c83bf10ffafc98f}{inner\+Model}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver} $>$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a761307f74ee3b130993d589372164b98}{inner\+Solver}
+\item 
+bool \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a809b85a6059fda8abddf709a92224443}{reduced\+Problem}
+\item 
+\hyperlink{classocra_1_1EqualZeroConstraintPtr}{ocra\+::\+Equal\+Zero\+Constraint\+Ptr}$<$ \hyperlink{classocra_1_1FullDynamicEquationFunction}{ocra\+::\+Full\+Dynamic\+Equation\+Function} $>$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a1109652d5d4a11542cc5130713977b73}{dynamic\+Equation}
+\item 
+\hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function} $\ast$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_aac1952b2ca7547f82d807089baa98f10}{min\+Ddq\+Function}
+\item 
+\hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function} $\ast$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a49e2adcc51cd75b3a17ebf31cf497d31}{min\+Tau\+Function}
+\item 
+\hyperlink{classocra_1_1FcQuadraticFunction}{ocra\+::\+Fc\+Quadratic\+Function} $\ast$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_af1d4d6700f771ae7c2bf129b7cb1fd06}{min\+Fc\+Function}
+\item 
+\hyperlink{classocra_1_1ObjectivePtr}{Objective\+Ptr}$<$ \hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function} $>$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a7fc80a10628bf0361a7c44d5bb659742}{min\+Ddq\+Objective}
+\item 
+\hyperlink{classocra_1_1ObjectivePtr}{Objective\+Ptr}$<$ \hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function} $>$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a02fbd15274314a18d7518ad0bb721358}{min\+Tau\+Objective}
+\item 
+\hyperlink{classocra_1_1ObjectivePtr}{Objective\+Ptr}$<$ \hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function} $>$ \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a204f0258bde95ab0f29d1d1937cd80d2}{min\+Fc\+Objective}
+\item 
+\hyperlink{classwocra_1_1PerformanceRecorder}{Performance\+Recorder} \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a91e262e3ecf52354aefa49e76b9e0eb9}{update\+Tasks\+Recorder}
+\item 
+\hyperlink{classwocra_1_1PerformanceRecorder}{Performance\+Recorder} \hyperlink{structwocra_1_1WocraController_1_1Pimpl_a446e043430909aacb7955ff847c3a311}{solve\+Problem\+Recorder}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 21 of file Wocra\+Controller.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_ae9e38baadd765c1005354808ea768800}{}\label{structwocra_1_1WocraController_1_1Pimpl_ae9e38baadd765c1005354808ea768800} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!Pimpl@{Pimpl}}
+\index{Pimpl@{Pimpl}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Pimpl()}{Pimpl()}}
+{\footnotesize\ttfamily wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::\+Pimpl (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ Model $>$}]{m,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver} $>$}]{s,  }\item[{bool}]{use\+Reduced\+Problem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 47 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a9e7ca6582122e345e4d51d30ed481450}{}\label{structwocra_1_1WocraController_1_1Pimpl_a9e7ca6582122e345e4d51d30ed481450} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!````~Pimpl@{$\sim$\+Pimpl}}
+\index{````~Pimpl@{$\sim$\+Pimpl}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{$\sim$\+Pimpl()}{~Pimpl()}}
+{\footnotesize\ttfamily wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::$\sim$\+Pimpl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 69 of file Wocra\+Controller.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a1109652d5d4a11542cc5130713977b73}{}\label{structwocra_1_1WocraController_1_1Pimpl_a1109652d5d4a11542cc5130713977b73} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!dynamic\+Equation@{dynamic\+Equation}}
+\index{dynamic\+Equation@{dynamic\+Equation}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{dynamic\+Equation}{dynamicEquation}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1EqualZeroConstraintPtr}{ocra\+::\+Equal\+Zero\+Constraint\+Ptr}$<$ \hyperlink{classocra_1_1FullDynamicEquationFunction}{ocra\+::\+Full\+Dynamic\+Equation\+Function} $>$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::dynamic\+Equation}
+
+
+
+Definition at line 29 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a4fe5b4fd5e927bbf9c83bf10ffafc98f}{}\label{structwocra_1_1WocraController_1_1Pimpl_a4fe5b4fd5e927bbf9c83bf10ffafc98f} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!inner\+Model@{inner\+Model}}
+\index{inner\+Model@{inner\+Model}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{inner\+Model}{innerModel}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$Model$>$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::inner\+Model}
+
+
+
+Definition at line 23 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a761307f74ee3b130993d589372164b98}{}\label{structwocra_1_1WocraController_1_1Pimpl_a761307f74ee3b130993d589372164b98} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!inner\+Solver@{inner\+Solver}}
+\index{inner\+Solver@{inner\+Solver}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{inner\+Solver}{innerSolver}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver}$>$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::inner\+Solver}
+
+
+
+Definition at line 24 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_aac1952b2ca7547f82d807089baa98f10}{}\label{structwocra_1_1WocraController_1_1Pimpl_aac1952b2ca7547f82d807089baa98f10} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!min\+Ddq\+Function@{min\+Ddq\+Function}}
+\index{min\+Ddq\+Function@{min\+Ddq\+Function}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{min\+Ddq\+Function}{minDdqFunction}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function}$\ast$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::min\+Ddq\+Function}
+
+
+
+Definition at line 32 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a7fc80a10628bf0361a7c44d5bb659742}{}\label{structwocra_1_1WocraController_1_1Pimpl_a7fc80a10628bf0361a7c44d5bb659742} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!min\+Ddq\+Objective@{min\+Ddq\+Objective}}
+\index{min\+Ddq\+Objective@{min\+Ddq\+Objective}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{min\+Ddq\+Objective}{minDdqObjective}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1ObjectivePtr}{Objective\+Ptr}$<$\hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function}$>$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::min\+Ddq\+Objective}
+
+
+
+Definition at line 36 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_af1d4d6700f771ae7c2bf129b7cb1fd06}{}\label{structwocra_1_1WocraController_1_1Pimpl_af1d4d6700f771ae7c2bf129b7cb1fd06} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!min\+Fc\+Function@{min\+Fc\+Function}}
+\index{min\+Fc\+Function@{min\+Fc\+Function}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{min\+Fc\+Function}{minFcFunction}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1FcQuadraticFunction}{ocra\+::\+Fc\+Quadratic\+Function}$\ast$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::min\+Fc\+Function}
+
+
+
+Definition at line 34 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a204f0258bde95ab0f29d1d1937cd80d2}{}\label{structwocra_1_1WocraController_1_1Pimpl_a204f0258bde95ab0f29d1d1937cd80d2} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!min\+Fc\+Objective@{min\+Fc\+Objective}}
+\index{min\+Fc\+Objective@{min\+Fc\+Objective}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{min\+Fc\+Objective}{minFcObjective}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1ObjectivePtr}{Objective\+Ptr}$<$\hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function}$>$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::min\+Fc\+Objective}
+
+
+
+Definition at line 38 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a49e2adcc51cd75b3a17ebf31cf497d31}{}\label{structwocra_1_1WocraController_1_1Pimpl_a49e2adcc51cd75b3a17ebf31cf497d31} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!min\+Tau\+Function@{min\+Tau\+Function}}
+\index{min\+Tau\+Function@{min\+Tau\+Function}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{min\+Tau\+Function}{minTauFunction}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function}$\ast$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::min\+Tau\+Function}
+
+
+
+Definition at line 33 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a02fbd15274314a18d7518ad0bb721358}{}\label{structwocra_1_1WocraController_1_1Pimpl_a02fbd15274314a18d7518ad0bb721358} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!min\+Tau\+Objective@{min\+Tau\+Objective}}
+\index{min\+Tau\+Objective@{min\+Tau\+Objective}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{min\+Tau\+Objective}{minTauObjective}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1ObjectivePtr}{Objective\+Ptr}$<$\hyperlink{classocra_1_1QuadraticFunction}{ocra\+::\+Quadratic\+Function}$>$ wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::min\+Tau\+Objective}
+
+
+
+Definition at line 37 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a809b85a6059fda8abddf709a92224443}{}\label{structwocra_1_1WocraController_1_1Pimpl_a809b85a6059fda8abddf709a92224443} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!reduced\+Problem@{reduced\+Problem}}
+\index{reduced\+Problem@{reduced\+Problem}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{reduced\+Problem}{reducedProblem}}
+{\footnotesize\ttfamily bool wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::reduced\+Problem}
+
+
+
+Definition at line 25 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a446e043430909aacb7955ff847c3a311}{}\label{structwocra_1_1WocraController_1_1Pimpl_a446e043430909aacb7955ff847c3a311} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!solve\+Problem\+Recorder@{solve\+Problem\+Recorder}}
+\index{solve\+Problem\+Recorder@{solve\+Problem\+Recorder}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{solve\+Problem\+Recorder}{solveProblemRecorder}}
+{\footnotesize\ttfamily \hyperlink{classwocra_1_1PerformanceRecorder}{Performance\+Recorder} wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::solve\+Problem\+Recorder}
+
+
+
+Definition at line 44 of file Wocra\+Controller.\+cpp.
+
+\hypertarget{structwocra_1_1WocraController_1_1Pimpl_a91e262e3ecf52354aefa49e76b9e0eb9}{}\label{structwocra_1_1WocraController_1_1Pimpl_a91e262e3ecf52354aefa49e76b9e0eb9} 
+\index{wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}!update\+Tasks\+Recorder@{update\+Tasks\+Recorder}}
+\index{update\+Tasks\+Recorder@{update\+Tasks\+Recorder}!wocra\+::\+Wocra\+Controller\+::\+Pimpl@{wocra\+::\+Wocra\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{update\+Tasks\+Recorder}{updateTasksRecorder}}
+{\footnotesize\ttfamily \hyperlink{classwocra_1_1PerformanceRecorder}{Performance\+Recorder} wocra\+::\+Wocra\+Controller\+::\+Pimpl\+::update\+Tasks\+Recorder}
+
+
+
+Definition at line 42 of file Wocra\+Controller.\+cpp.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{WocraController_8cpp}{Wocra\+Controller.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,208 @@
+\hypertarget{classocra_1_1DynamicEquationFunction}{}\section{ocra\+:\+:Dynamic\+Equation\+Function Class Reference}
+\label{classocra_1_1DynamicEquationFunction}\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+
+
+Dynamic\+Equation\+Function class.  
+
+
+
+
+{\ttfamily \#include $<$Dynamic\+Equation\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Dynamic\+Equation\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{d9/da6/classocra_1_1DynamicEquationFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1DynamicEquationFunction_a2c8c76bfd66285d63895ec34219175b4}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1DynamicEquationFunction_ab6a38098b1aac7db298e0f3a93955624}{Dynamic\+Equation\+Function} (const Model \&model)
+\item 
+\hyperlink{classocra_1_1DynamicEquationFunction_a84c82f21c1564aaca6b5aa703ecae73e}{$\sim$\+Dynamic\+Equation\+Function} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1DynamicEquationFunction_a81d71c87d0f52b3d321614c6219022ad}{update\+Jacobian} () const
+\item 
+void \hyperlink{classocra_1_1DynamicEquationFunction_ae1fe835a481f5f0bde6c8b0fa8ea09b2}{updateb} () const
+\item 
+void \hyperlink{classocra_1_1DynamicEquationFunction_a6fc52fcd947fa303e55729dbb286b92c}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+void \hyperlink{classocra_1_1DynamicEquationFunction_a8d20f6ed1e3983d1fddf648729eba955}{do\+Update\+Input\+Size\+End} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const Model \& \hyperlink{classocra_1_1DynamicEquationFunction_ad0c5d639974a97aa3ed3f0bbe0f8189d}{\+\_\+model}
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1DynamicEquationFunction_a8a6dfb64fcca3c42a9e7ad637706a6cc}{\+\_\+q\+\_\+ddot}
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1DynamicEquationFunction_a60ba636a9028046969c5491ec7ed2f9e}{\+\_\+tau}
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1DynamicEquationFunction_a70499af5c86e68836acb7251b37ab668}{\+\_\+f}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Dynamic\+Equation\+Function class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+M Tdot + N T + G -\/ L tau + Jt f, where f is the force applied by the model on the environment. The variable is the concatenation of Tdot, tau and f. 
+
+Definition at line 38 of file Dynamic\+Equation\+Function.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1DynamicEquationFunction_a2c8c76bfd66285d63895ec34219175b4}{}\label{classocra_1_1DynamicEquationFunction_a2c8c76bfd66285d63895ec34219175b4} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1DynamicEquationFunction_a2c8c76bfd66285d63895ec34219175b4}{ocra\+::\+Dynamic\+Equation\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 42 of file Dynamic\+Equation\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1DynamicEquationFunction_ab6a38098b1aac7db298e0f3a93955624}{}\label{classocra_1_1DynamicEquationFunction_ab6a38098b1aac7db298e0f3a93955624} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!Dynamic\+Equation\+Function@{Dynamic\+Equation\+Function}}
+\index{Dynamic\+Equation\+Function@{Dynamic\+Equation\+Function}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{Dynamic\+Equation\+Function()}{DynamicEquationFunction()}}
+{\footnotesize\ttfamily ocra\+::\+Dynamic\+Equation\+Function\+::\+Dynamic\+Equation\+Function (\begin{DoxyParamCaption}\item[{const Model \&}]{model }\end{DoxyParamCaption})}
+
+
+
+Definition at line 8 of file Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DynamicEquationFunction_a84c82f21c1564aaca6b5aa703ecae73e}{}\label{classocra_1_1DynamicEquationFunction_a84c82f21c1564aaca6b5aa703ecae73e} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!````~Dynamic\+Equation\+Function@{$\sim$\+Dynamic\+Equation\+Function}}
+\index{````~Dynamic\+Equation\+Function@{$\sim$\+Dynamic\+Equation\+Function}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Dynamic\+Equation\+Function()}{~DynamicEquationFunction()}}
+{\footnotesize\ttfamily ocra\+::\+Dynamic\+Equation\+Function\+::$\sim$\+Dynamic\+Equation\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 22 of file Dynamic\+Equation\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1DynamicEquationFunction_a6fc52fcd947fa303e55729dbb286b92c}{}\label{classocra_1_1DynamicEquationFunction_a6fc52fcd947fa303e55729dbb286b92c} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Dynamic\+Equation\+Function\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1DynamicEquationFunction_a8d20f6ed1e3983d1fddf648729eba955}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 61 of file Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DynamicEquationFunction_a8d20f6ed1e3983d1fddf648729eba955}{}\label{classocra_1_1DynamicEquationFunction_a8d20f6ed1e3983d1fddf648729eba955} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Dynamic\+Equation\+Function\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+This methods ensures \+\_\+b has the good size at the end of a resize, yet it will not be called in \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} itself because the class does not overload \hyperlink{classocra_1_1DynamicEquationFunction_a6fc52fcd947fa303e55729dbb286b92c}{do\+Update\+Input\+Size\+Begin()} which throws an runtime\+\_\+error by default. 
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_ac6bdf62ad6634397778d5f4223ed6d82}{ocra\+::\+Linear\+Function}.
+
+
+
+Definition at line 66 of file Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DynamicEquationFunction_ae1fe835a481f5f0bde6c8b0fa8ea09b2}{}\label{classocra_1_1DynamicEquationFunction_ae1fe835a481f5f0bde6c8b0fa8ea09b2} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!updateb@{updateb}}
+\index{updateb@{updateb}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{updateb()}{updateb()}}
+{\footnotesize\ttfamily void ocra\+::\+Dynamic\+Equation\+Function\+::updateb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Update the value of b. Does nothing in \hyperlink{classocra_1_1LinearFunction}{Linear\+Function}. It is provided so that derived class may overload it. 
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a546454cd8d0909f99433ffc0e700c9e3}{ocra\+::\+Linear\+Function}.
+
+
+
+Definition at line 40 of file Dynamic\+Equation\+Function.\+cpp.
+
+\hypertarget{classocra_1_1DynamicEquationFunction_a81d71c87d0f52b3d321614c6219022ad}{}\label{classocra_1_1DynamicEquationFunction_a81d71c87d0f52b3d321614c6219022ad} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void ocra\+::\+Dynamic\+Equation\+Function\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a30926f977c0124a0b0f65b854ab39636}{ocra\+::\+Linear\+Function}.
+
+
+
+Definition at line 45 of file Dynamic\+Equation\+Function.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1DynamicEquationFunction_a70499af5c86e68836acb7251b37ab668}{}\label{classocra_1_1DynamicEquationFunction_a70499af5c86e68836acb7251b37ab668} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!\+\_\+f@{\+\_\+f}}
+\index{\+\_\+f@{\+\_\+f}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+f}{\_f}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable}\& ocra\+::\+Dynamic\+Equation\+Function\+::\+\_\+f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 67 of file Dynamic\+Equation\+Function.\+h.
+
+\hypertarget{classocra_1_1DynamicEquationFunction_ad0c5d639974a97aa3ed3f0bbe0f8189d}{}\label{classocra_1_1DynamicEquationFunction_ad0c5d639974a97aa3ed3f0bbe0f8189d} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!\+\_\+model@{\+\_\+model}}
+\index{\+\_\+model@{\+\_\+model}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+model}{\_model}}
+{\footnotesize\ttfamily const Model\& ocra\+::\+Dynamic\+Equation\+Function\+::\+\_\+model\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 64 of file Dynamic\+Equation\+Function.\+h.
+
+\hypertarget{classocra_1_1DynamicEquationFunction_a8a6dfb64fcca3c42a9e7ad637706a6cc}{}\label{classocra_1_1DynamicEquationFunction_a8a6dfb64fcca3c42a9e7ad637706a6cc} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!\+\_\+q\+\_\+ddot@{\+\_\+q\+\_\+ddot}}
+\index{\+\_\+q\+\_\+ddot@{\+\_\+q\+\_\+ddot}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+q\+\_\+ddot}{\_q\_ddot}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable}\& ocra\+::\+Dynamic\+Equation\+Function\+::\+\_\+q\+\_\+ddot\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 65 of file Dynamic\+Equation\+Function.\+h.
+
+\hypertarget{classocra_1_1DynamicEquationFunction_a60ba636a9028046969c5491ec7ed2f9e}{}\label{classocra_1_1DynamicEquationFunction_a60ba636a9028046969c5491ec7ed2f9e} 
+\index{ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}!\+\_\+tau@{\+\_\+tau}}
+\index{\+\_\+tau@{\+\_\+tau}!ocra\+::\+Dynamic\+Equation\+Function@{ocra\+::\+Dynamic\+Equation\+Function}}
+\subsubsection{\texorpdfstring{\+\_\+tau}{\_tau}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable}\& ocra\+::\+Dynamic\+Equation\+Function\+::\+\_\+tau\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 66 of file Dynamic\+Equation\+Function.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{DynamicEquationFunction_8h}{Dynamic\+Equation\+Function.\+h}\item 
+\hyperlink{DynamicEquationFunction_8cpp}{Dynamic\+Equation\+Function.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,237 @@
+\hypertarget{classgocra_1_1PerformanceRecorder}{}\section{gocra\+:\+:Performance\+Recorder Class Reference}
+\label{classgocra_1_1PerformanceRecorder}\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+
+
+To get and save time information to collect some data on performances.  
+
+
+
+
+{\ttfamily \#include $<$Performances.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgocra_1_1PerformanceRecorder_a65ac4c19828090b5c20b15d17cec3cd6}{Performance\+Recorder} ()
+\item 
+virtual \hyperlink{classgocra_1_1PerformanceRecorder_afc202dd11f2fc8fdacec3022e01946c2}{$\sim$\+Performance\+Recorder} ()
+\item 
+double \hyperlink{classgocra_1_1PerformanceRecorder_a96c4be3089ddcddeb69c2335108da0bf}{get\+Current\+Time} ()
+\item 
+void \hyperlink{classgocra_1_1PerformanceRecorder_ac0a5ac7aa54b9abc0a4c25cd291dbee9}{initialize\+Time} ()
+\item 
+void \hyperlink{classgocra_1_1PerformanceRecorder_a7cfcd7b0e29626e2e2a14ad4ef3bf553}{save\+Relative\+Time} ()
+\item 
+double \hyperlink{classgocra_1_1PerformanceRecorder_aed74024b507ec92e6ef6a3821f70f047}{get\+Relative\+Time} ()
+\item 
+void \hyperlink{classgocra_1_1PerformanceRecorder_aeb8e111c5e7a65ed384d39569ab1bbef}{save\+Time} (double t)
+\item 
+const std\+::list$<$ double $>$ \& \hyperlink{classgocra_1_1PerformanceRecorder_a455aa6ce738511632d968b16632f8994}{get\+Saved\+Time} () const
+\item 
+void \hyperlink{classgocra_1_1PerformanceRecorder_a47f171510d0f7129bf588fe5c2417043}{write\+In\+Stream} (const std\+::string \&header\+Name, std\+::ostream \&outstream, bool add\+Comma\+At\+End)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+timeval \hyperlink{classgocra_1_1PerformanceRecorder_ab953e4252c10603dc8c25634f471db5a}{tim}
+\item 
+double \hyperlink{classgocra_1_1PerformanceRecorder_a45440c78a3cd0f651d5b18f0b4a268c7}{\+\_\+init\+Time}
+\item 
+std\+::list$<$ double $>$ \hyperlink{classgocra_1_1PerformanceRecorder_ad68f215e892c377e5dda90f883d00714}{\+\_\+record}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+To get and save time information to collect some data on performances. 
+
+It can be used in two ways. First to save a timeline\+:
+
+
+\begin{DoxyCode}
+\hyperlink{classgocra_1_1PerformanceRecorder_a65ac4c19828090b5c20b15d17cec3cd6}{PerformanceRecorder}     perfRec;    \textcolor{comment}{// create performance recorder}
+
+...
+
+perfRec.initializeTime();             \textcolor{comment}{// initialize somewhere}
+
+\textcolor{keywordflow}{for} ( ... )
+\{
+    perfRec.saveRelativeTime();       \textcolor{comment}{// save time relatively the the call of initializeTime()}
+
+    ...
+\}
+\end{DoxyCode}
+
+
+Or to save loop performances\+:
+
+
+\begin{DoxyCode}
+\hyperlink{classgocra_1_1PerformanceRecorder_a65ac4c19828090b5c20b15d17cec3cd6}{PerformanceRecorder}     perfRec;    \textcolor{comment}{// create performance recorder}
+
+...
+
+for ( ... )
+\{
+    perfRec.initializeTime();       \textcolor{comment}{// reset time at the beginning of the loop}
+
+    ...
+
+    perfRec.saveRelativeTime();     \textcolor{comment}{// save time at the end of the loop}
+\}
+\end{DoxyCode}
+ 
+
+Definition at line 65 of file gocra/include/gocra/\+Performances.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgocra_1_1PerformanceRecorder_a65ac4c19828090b5c20b15d17cec3cd6}{}\label{classgocra_1_1PerformanceRecorder_a65ac4c19828090b5c20b15d17cec3cd6} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!Performance\+Recorder@{Performance\+Recorder}}
+\index{Performance\+Recorder@{Performance\+Recorder}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{Performance\+Recorder()}{PerformanceRecorder()}}
+{\footnotesize\ttfamily gocra\+::\+Performance\+Recorder\+::\+Performance\+Recorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Create a performance recorder. It also initializes the internal initial time. 
+
+Definition at line 72 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_afc202dd11f2fc8fdacec3022e01946c2}{}\label{classgocra_1_1PerformanceRecorder_afc202dd11f2fc8fdacec3022e01946c2} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!````~Performance\+Recorder@{$\sim$\+Performance\+Recorder}}
+\index{````~Performance\+Recorder@{$\sim$\+Performance\+Recorder}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{$\sim$\+Performance\+Recorder()}{~PerformanceRecorder()}}
+{\footnotesize\ttfamily virtual gocra\+::\+Performance\+Recorder\+::$\sim$\+Performance\+Recorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Destructor 
+
+Definition at line 77 of file gocra/include/gocra/\+Performances.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgocra_1_1PerformanceRecorder_a96c4be3089ddcddeb69c2335108da0bf}{}\label{classgocra_1_1PerformanceRecorder_a96c4be3089ddcddeb69c2335108da0bf} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!get\+Current\+Time@{get\+Current\+Time}}
+\index{get\+Current\+Time@{get\+Current\+Time}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{get\+Current\+Time()}{getCurrentTime()}}
+{\footnotesize\ttfamily double gocra\+::\+Performance\+Recorder\+::get\+Current\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the current time.
+
+It calls method \char`\"{}gettimeofday\char`\"{} and returns a value representing the current time of the day in second. 
+
+Definition at line 83 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_aed74024b507ec92e6ef6a3821f70f047}{}\label{classgocra_1_1PerformanceRecorder_aed74024b507ec92e6ef6a3821f70f047} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!get\+Relative\+Time@{get\+Relative\+Time}}
+\index{get\+Relative\+Time@{get\+Relative\+Time}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{get\+Relative\+Time()}{getRelativeTime()}}
+{\footnotesize\ttfamily double gocra\+::\+Performance\+Recorder\+::get\+Relative\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+get the relative elapsed time since the time reference, i.\+e. the last call of \hyperlink{classgocra_1_1PerformanceRecorder_ac0a5ac7aa54b9abc0a4c25cd291dbee9}{initialize\+Time()}. 
+
+Definition at line 108 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_a455aa6ce738511632d968b16632f8994}{}\label{classgocra_1_1PerformanceRecorder_a455aa6ce738511632d968b16632f8994} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!get\+Saved\+Time@{get\+Saved\+Time}}
+\index{get\+Saved\+Time@{get\+Saved\+Time}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{get\+Saved\+Time()}{getSavedTime()}}
+{\footnotesize\ttfamily const std\+::list$<$ double $>$\& gocra\+::\+Performance\+Recorder\+::get\+Saved\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Get the list where are saved the relative times. 
+
+Definition at line 120 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_ac0a5ac7aa54b9abc0a4c25cd291dbee9}{}\label{classgocra_1_1PerformanceRecorder_ac0a5ac7aa54b9abc0a4c25cd291dbee9} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!initialize\+Time@{initialize\+Time}}
+\index{initialize\+Time@{initialize\+Time}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{initialize\+Time()}{initializeTime()}}
+{\footnotesize\ttfamily void gocra\+::\+Performance\+Recorder\+::initialize\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Initialize internal Zero time.
+
+It calls method \hyperlink{classgocra_1_1PerformanceRecorder_a96c4be3089ddcddeb69c2335108da0bf}{get\+Current\+Time()} to get a time reference. 
+
+Definition at line 92 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_a7cfcd7b0e29626e2e2a14ad4ef3bf553}{}\label{classgocra_1_1PerformanceRecorder_a7cfcd7b0e29626e2e2a14ad4ef3bf553} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!save\+Relative\+Time@{save\+Relative\+Time}}
+\index{save\+Relative\+Time@{save\+Relative\+Time}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{save\+Relative\+Time()}{saveRelativeTime()}}
+{\footnotesize\ttfamily void gocra\+::\+Performance\+Recorder\+::save\+Relative\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Save the relative elapsed time since the time reference, i.\+e. the last call of \hyperlink{classgocra_1_1PerformanceRecorder_ac0a5ac7aa54b9abc0a4c25cd291dbee9}{initialize\+Time()}.
+
+The value is saved in a list available with \hyperlink{classgocra_1_1PerformanceRecorder_a455aa6ce738511632d968b16632f8994}{get\+Saved\+Time() const} 
+
+Definition at line 100 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_aeb8e111c5e7a65ed384d39569ab1bbef}{}\label{classgocra_1_1PerformanceRecorder_aeb8e111c5e7a65ed384d39569ab1bbef} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!save\+Time@{save\+Time}}
+\index{save\+Time@{save\+Time}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{save\+Time()}{saveTime()}}
+{\footnotesize\ttfamily void gocra\+::\+Performance\+Recorder\+::save\+Time (\begin{DoxyParamCaption}\item[{double}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 112 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_a47f171510d0f7129bf588fe5c2417043}{}\label{classgocra_1_1PerformanceRecorder_a47f171510d0f7129bf588fe5c2417043} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!write\+In\+Stream@{write\+In\+Stream}}
+\index{write\+In\+Stream@{write\+In\+Stream}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{write\+In\+Stream()}{writeInStream()}}
+{\footnotesize\ttfamily void gocra\+::\+Performance\+Recorder\+::write\+In\+Stream (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{header\+Name,  }\item[{std\+::ostream \&}]{outstream,  }\item[{bool}]{add\+Comma\+At\+End }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Save performances information in a output stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em header\+Name} & The name of the performance saved in the \\
+\hline
+{\em outstream} & the output stream where to write the performances information \\
+\hline
+{\em add\+Comma\+At\+End} & If true, add a comma at the end of the stream. If false, it means that this is the end of the json file, nothing will be added after that, no comma is added. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 130 of file gocra/include/gocra/\+Performances.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classgocra_1_1PerformanceRecorder_a45440c78a3cd0f651d5b18f0b4a268c7}{}\label{classgocra_1_1PerformanceRecorder_a45440c78a3cd0f651d5b18f0b4a268c7} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!\+\_\+init\+Time@{\+\_\+init\+Time}}
+\index{\+\_\+init\+Time@{\+\_\+init\+Time}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{\+\_\+init\+Time}{\_initTime}}
+{\footnotesize\ttfamily double gocra\+::\+Performance\+Recorder\+::\+\_\+init\+Time\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 149 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_ad68f215e892c377e5dda90f883d00714}{}\label{classgocra_1_1PerformanceRecorder_ad68f215e892c377e5dda90f883d00714} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!\+\_\+record@{\+\_\+record}}
+\index{\+\_\+record@{\+\_\+record}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{\+\_\+record}{\_record}}
+{\footnotesize\ttfamily std\+::list$<$ double $>$ gocra\+::\+Performance\+Recorder\+::\+\_\+record\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 151 of file gocra/include/gocra/\+Performances.\+h.
+
+\hypertarget{classgocra_1_1PerformanceRecorder_ab953e4252c10603dc8c25634f471db5a}{}\label{classgocra_1_1PerformanceRecorder_ab953e4252c10603dc8c25634f471db5a} 
+\index{gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}!tim@{tim}}
+\index{tim@{tim}!gocra\+::\+Performance\+Recorder@{gocra\+::\+Performance\+Recorder}}
+\subsubsection{\texorpdfstring{tim}{tim}}
+{\footnotesize\ttfamily timeval gocra\+::\+Performance\+Recorder\+::tim\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 147 of file gocra/include/gocra/\+Performances.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{gocra_2include_2gocra_2Performances_8h}{gocra/include/gocra/\+Performances.\+h}\end{DoxyCompactItemize}

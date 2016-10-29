@@ -1,0 +1,123 @@
+\hypertarget{classocra_1_1FcQuadraticFunction}{}\section{ocra\+:\+:Fc\+Quadratic\+Function Class Reference}
+\label{classocra_1_1FcQuadraticFunction}\index{ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}}
+
+
+{\ttfamily \#include $<$Fc\+Quadratic\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Fc\+Quadratic\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{d3/d16/classocra_1_1FcQuadraticFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1FcQuadraticFunction_a85ee0d84a43b16353b1d44740cc3769b}{Fc\+Quadratic\+Function} (\hyperlink{classocra_1_1Variable}{ocra\+::\+Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x})
+\item 
+virtual \hyperlink{classocra_1_1FcQuadraticFunction_a1eef85d7638d6bfc0c2bb3bc9dab8d63}{$\sim$\+Fc\+Quadratic\+Function} ()
+\item 
+void \hyperlink{classocra_1_1FcQuadraticFunction_a1e350f138eb82cfe3e8cf049942e626c}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+void \hyperlink{classocra_1_1FcQuadraticFunction_aef068bc86027f29c0fbfaa9d53441cd4}{update\+Hessian} () const
+\item 
+void \hyperlink{classocra_1_1FcQuadraticFunction_ac6bcfaccbe16a821e0f1d7c29744d138}{updateq} () const
+\item 
+void \hyperlink{classocra_1_1FcQuadraticFunction_aab41d4b011590ad42766e66df34305da}{updater} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 16 of file Fc\+Quadratic\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1FcQuadraticFunction_a85ee0d84a43b16353b1d44740cc3769b}{}\label{classocra_1_1FcQuadraticFunction_a85ee0d84a43b16353b1d44740cc3769b} 
+\index{ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}!Fc\+Quadratic\+Function@{Fc\+Quadratic\+Function}}
+\index{Fc\+Quadratic\+Function@{Fc\+Quadratic\+Function}!ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{Fc\+Quadratic\+Function()}{FcQuadraticFunction()}}
+{\footnotesize\ttfamily Fc\+Quadratic\+Function\+::\+Fc\+Quadratic\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{ocra\+::\+Variable} \&}]{x }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file Fc\+Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1FcQuadraticFunction_a1eef85d7638d6bfc0c2bb3bc9dab8d63}{}\label{classocra_1_1FcQuadraticFunction_a1eef85d7638d6bfc0c2bb3bc9dab8d63} 
+\index{ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}!````~Fc\+Quadratic\+Function@{$\sim$\+Fc\+Quadratic\+Function}}
+\index{````~Fc\+Quadratic\+Function@{$\sim$\+Fc\+Quadratic\+Function}!ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Fc\+Quadratic\+Function()}{~FcQuadraticFunction()}}
+{\footnotesize\ttfamily Fc\+Quadratic\+Function\+::$\sim$\+Fc\+Quadratic\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 15 of file Fc\+Quadratic\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1FcQuadraticFunction_a1e350f138eb82cfe3e8cf049942e626c}{}\label{classocra_1_1FcQuadraticFunction_a1e350f138eb82cfe3e8cf049942e626c} 
+\index{ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void Fc\+Quadratic\+Function\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1QuadraticFunction_ab3d5478fd8ded343453e0489c595e580}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 20 of file Fc\+Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1FcQuadraticFunction_aef068bc86027f29c0fbfaa9d53441cd4}{}\label{classocra_1_1FcQuadraticFunction_aef068bc86027f29c0fbfaa9d53441cd4} 
+\index{ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}!update\+Hessian@{update\+Hessian}}
+\index{update\+Hessian@{update\+Hessian}!ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{update\+Hessian()}{updateHessian()}}
+{\footnotesize\ttfamily void Fc\+Quadratic\+Function\+::update\+Hessian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_a342ea525685ddc2c414a49e7480a7a4c}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 25 of file Fc\+Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1FcQuadraticFunction_ac6bcfaccbe16a821e0f1d7c29744d138}{}\label{classocra_1_1FcQuadraticFunction_ac6bcfaccbe16a821e0f1d7c29744d138} 
+\index{ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}!updateq@{updateq}}
+\index{updateq@{updateq}!ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{updateq()}{updateq()}}
+{\footnotesize\ttfamily void Fc\+Quadratic\+Function\+::updateq (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_ae68e94211c94e8c32da2220132baf248}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 30 of file Fc\+Quadratic\+Function.\+cpp.
+
+\hypertarget{classocra_1_1FcQuadraticFunction_aab41d4b011590ad42766e66df34305da}{}\label{classocra_1_1FcQuadraticFunction_aab41d4b011590ad42766e66df34305da} 
+\index{ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}!updater@{updater}}
+\index{updater@{updater}!ocra\+::\+Fc\+Quadratic\+Function@{ocra\+::\+Fc\+Quadratic\+Function}}
+\subsubsection{\texorpdfstring{updater()}{updater()}}
+{\footnotesize\ttfamily void Fc\+Quadratic\+Function\+::updater (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1QuadraticFunction_aeaa560b1771f4024755753236fd69779}{ocra\+::\+Quadratic\+Function}.
+
+
+
+Definition at line 35 of file Fc\+Quadratic\+Function.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{FcQuadraticFunction_8h}{Fc\+Quadratic\+Function.\+h}\item 
+\hyperlink{FcQuadraticFunction_8cpp}{Fc\+Quadratic\+Function.\+cpp}\end{DoxyCompactItemize}

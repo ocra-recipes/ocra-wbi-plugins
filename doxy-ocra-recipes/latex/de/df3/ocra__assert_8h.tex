@@ -1,0 +1,59 @@
+\hypertarget{ocra__assert_8h}{}\section{ocra\+\_\+assert.\+h File Reference}
+\label{ocra__assert_8h}\index{ocra\+\_\+assert.\+h@{ocra\+\_\+assert.\+h}}
+{\ttfamily \#include $<$cstdio$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1ocra__static__assert}{ocra\+::ocra\+\_\+static\+\_\+assert$<$ condition $>$}
+\item 
+struct \hyperlink{structocra_1_1ocra__static__assert_3_01true_01_4}{ocra\+::ocra\+\_\+static\+\_\+assert$<$ true $>$}
+\item 
+struct \hyperlink{structocra__assertion__fired}{ocra\+\_\+assertion\+\_\+fired}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{ocra__assert_8h_aa9550f35d43492c29c170fc9bd04d623}{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT}(C\+O\+N\+D\+I\+T\+I\+ON,  M\+SG)~if (\hyperlink{structocra_1_1ocra__static__assert}{ocra\+::ocra\+\_\+static\+\_\+assert}$<$C\+O\+N\+D\+I\+T\+I\+ON ? true \+: false$>$\+::M\+SG) \{\}
+\item 
+\#define \hyperlink{ocra__assert_8h_a08970cc86b5264a222857ced45233223}{O\+C\+R\+A\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+A\+C\+T\+I\+VE}
+\item 
+\#define \hyperlink{ocra__assert_8h_ae6edfe1eac25bf294aafe9a3690acde4}{ocra\+\_\+assert}(ocra\+\_\+expression)~if(!(ocra\+\_\+expression)) \{ fprintf(stderr, \#ocra\+\_\+expression\char`\"{}\textbackslash{}n\char`\"{}); fflush(stderr); throw \hyperlink{structocra__assertion__fired}{ocra\+\_\+assertion\+\_\+fired}(); \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{ocra__assert_8h_ae6edfe1eac25bf294aafe9a3690acde4}{}\label{ocra__assert_8h_ae6edfe1eac25bf294aafe9a3690acde4} 
+\index{ocra\+\_\+assert.\+h@{ocra\+\_\+assert.\+h}!ocra\+\_\+assert@{ocra\+\_\+assert}}
+\index{ocra\+\_\+assert@{ocra\+\_\+assert}!ocra\+\_\+assert.\+h@{ocra\+\_\+assert.\+h}}
+\subsubsection{\texorpdfstring{ocra\+\_\+assert}{ocra\_assert}}
+{\footnotesize\ttfamily \#define ocra\+\_\+assert(\begin{DoxyParamCaption}\item[{}]{ocra\+\_\+expression }\end{DoxyParamCaption})~if(!(ocra\+\_\+expression)) \{ fprintf(stderr, \#ocra\+\_\+expression\char`\"{}\textbackslash{}n\char`\"{}); fflush(stderr); throw \hyperlink{structocra__assertion__fired}{ocra\+\_\+assertion\+\_\+fired}(); \}}
+
+
+
+Definition at line 45 of file ocra\+\_\+assert.\+h.
+
+\hypertarget{ocra__assert_8h_a08970cc86b5264a222857ced45233223}{}\label{ocra__assert_8h_a08970cc86b5264a222857ced45233223} 
+\index{ocra\+\_\+assert.\+h@{ocra\+\_\+assert.\+h}!O\+C\+R\+A\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+A\+C\+T\+I\+VE@{O\+C\+R\+A\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+A\+C\+T\+I\+VE}}
+\index{O\+C\+R\+A\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+A\+C\+T\+I\+VE@{O\+C\+R\+A\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+A\+C\+T\+I\+VE}!ocra\+\_\+assert.\+h@{ocra\+\_\+assert.\+h}}
+\subsubsection{\texorpdfstring{O\+C\+R\+A\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+A\+C\+T\+I\+VE}{OCRA\_ASSERT\_ACTIVE}}
+{\footnotesize\ttfamily \#define O\+C\+R\+A\+\_\+\+A\+S\+S\+E\+R\+T\+\_\+\+A\+C\+T\+I\+VE}
+
+
+
+Definition at line 38 of file ocra\+\_\+assert.\+h.
+
+\hypertarget{ocra__assert_8h_aa9550f35d43492c29c170fc9bd04d623}{}\label{ocra__assert_8h_aa9550f35d43492c29c170fc9bd04d623} 
+\index{ocra\+\_\+assert.\+h@{ocra\+\_\+assert.\+h}!O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT@{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT}}
+\index{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT@{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT}!ocra\+\_\+assert.\+h@{ocra\+\_\+assert.\+h}}
+\subsubsection{\texorpdfstring{O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT}{OCRA\_STATIC\_ASSERT}}
+{\footnotesize\ttfamily \#define O\+C\+R\+A\+\_\+\+S\+T\+A\+T\+I\+C\+\_\+\+A\+S\+S\+E\+RT(\begin{DoxyParamCaption}\item[{}]{C\+O\+N\+D\+I\+T\+I\+ON,  }\item[{}]{M\+SG }\end{DoxyParamCaption})~if (\hyperlink{structocra_1_1ocra__static__assert}{ocra\+::ocra\+\_\+static\+\_\+assert}$<$C\+O\+N\+D\+I\+T\+I\+ON ? true \+: false$>$\+::M\+SG) \{\}}
+
+
+
+Definition at line 26 of file ocra\+\_\+assert.\+h.
+

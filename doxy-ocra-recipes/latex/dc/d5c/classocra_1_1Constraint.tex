@@ -1,0 +1,176 @@
+\hypertarget{classocra_1_1Constraint}{}\section{ocra\+:\+:Constraint$<$ T $>$ Class Template Reference}
+\label{classocra_1_1Constraint}\index{ocra\+::\+Constraint$<$ T $>$@{ocra\+::\+Constraint$<$ T $>$}}
+
+
+Constraint class.  
+
+
+
+
+{\ttfamily \#include $<$Constraint.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Constraint$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{dc/d5c/classocra_1_1Constraint}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Constraint_a73cc6c5b8e5c29ae3c1d8ed997c9e6e5}{Constraint} (T $\ast$function, bool equality, const Vector\+Xd \&v=Vector\+Xd())
+\item 
+\hyperlink{classocra_1_1Constraint_aca55ef9a5ea48fa91d846c53f4e30ad1}{Constraint} (T $\ast$function, const Vector\+Xd \&l=Vector\+Xd(), const Vector\+Xd \&u=Vector\+Xd())
+\item 
+\hyperlink{classocra_1_1Constraint_a4a0f49dbc4042347872429298f689091}{operator const T \&} ()
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+virtual T \& \hyperlink{classocra_1_1Constraint_a6083fd05133e7aefae68fc84641149c1}{get\+Function} (void)
+\item 
+virtual const T \& \hyperlink{classocra_1_1Constraint_a2bda1f6319de9c803571a232d790f497}{get\+Function} (void) const
+\end{DoxyCompactItemize}
+
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class ocra\+::\+Constraint$<$ T $>$}
+
+Constraint class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Given a function $ f $ over $ x \in R^n $ and possibly over the time $ t $, we can write a constraint whose most generic expression is $ l \le f(x,t) \le u $, with $ l $ and $ u $ two vectors of size $ m $ having their value in $ \left(R\cup\left\{-\infty,+\infty\right\}\right)^m $ and verifying $ l \le u $. This class is a C++ translation of this mathematical writing, but distinguishes some specific cases, for the ease of use, that are enumerated by e\+Constraint\+Type \+:
+\begin{DoxyItemize}
+\item $ l = u = b $, the constraint is treated as an equality to b (which can be 0)\+: C\+S\+T\+R\+\_\+\+E\+Q\+U\+A\+L\+\_\+\+Z\+E\+RO and C\+S\+T\+R\+\_\+\+E\+Q\+U\+A\+L\+\_\+B,
+\item $ l = -\infty $ (resp. $ u = +\infty $), in which case the lower (resp. upper) bound is ignored. The remaining bound can be 0\+: C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+\+Z\+E\+RO, C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+U, C\+S\+T\+R\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+Z\+E\+RO and C\+S\+T\+R\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+L,
+\item the general case\+: C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+\+A\+N\+D\+\_\+\+G\+R\+E\+A\+T\+ER.
+\end{DoxyItemize}
+
+The \hyperlink{classocra_1_1Constraint}{Constraint} class is templated by the type of the function on which the constraint is built. Provided the class definition of this function provides the good typedef function\+Type\+\_\+t, the hierarchy of the \hyperlink{classocra_1_1Function}{Function} classes is mimicked by \hyperlink{classocra_1_1Constraint}{Constraint}\+: if B is a class deriving of A and B\+::function\+Type\+\_\+t is A, then \hyperlink{classocra_1_1Constraint}{Constraint}{\bfseries  will automatically derived from \hyperlink{classocra_1_1Constraint}{Constraint}. As a concrete example, if \hyperlink{classocra_1_1DiagonalLinearFunction}{Diagonal\+Linear\+Function} derives from \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} that derives from \hyperlink{classocra_1_1Function}{Function}, then Constraint$<$\+Diagonal\+Linear\+Function$>$ will derive from Constraint$<$\+Linear\+Function$>$ that will itself derive from \hyperlink{classocra_1_1Constraint_3_01Function_01_4}{Constraint$<$\+Function$>$}. Thus a Constraint$<$\+Diagonal\+Linear\+Function$>$ is also a Constraint$<$\+Linear\+Function$>$ for example.}
+
+{\bfseries A \hyperlink{classocra_1_1Constraint}{Constraint} class inherits from \hyperlink{structocra_1_1FunctionInterfaceMapping}{Function\+Interface\+Mapping} of the interface of \hyperlink{classocra_1_1Function}{Function}, an instance of \hyperlink{classocra_1_1Constraint}{Constraint} can be treated as a \hyperlink{classocra_1_1Function}{Function}, to directly call methods of function on it. Constraint$<$\+T$>$ is however not deriving from \hyperlink{classocra_1_1Function}{Function}.}
+
+{\bfseries \begin{DoxySeeAlso}{See also}
+\hyperlink{structocra_1_1FunctionInterfaceMapping}{Function\+Interface\+Mapping} 
+\end{DoxySeeAlso}
+}
+
+Definition at line 100 of file Constraint.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1Constraint_a73cc6c5b8e5c29ae3c1d8ed997c9e6e5}{}\label{classocra_1_1Constraint_a73cc6c5b8e5c29ae3c1d8ed997c9e6e5} 
+\index{ocra\+::\+Constraint@{ocra\+::\+Constraint}!Constraint@{Constraint}}
+\index{Constraint@{Constraint}!ocra\+::\+Constraint@{ocra\+::\+Constraint}}
+\subsubsection{\texorpdfstring{Constraint()}{Constraint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1Constraint}{ocra\+::\+Constraint}$<$ T $>$\+::\hyperlink{classocra_1_1Constraint}{Constraint} (\begin{DoxyParamCaption}\item[{T $\ast$}]{function,  }\item[{bool}]{equality,  }\item[{const Vector\+Xd \&}]{v = {\ttfamily VectorXd()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hyperlink{classocra_1_1Constraint}{Constraint} constructor to build simple equality/inequality constraints
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em function} & A pointer to the function on which the constraint is imposed. \\
+\hline
+\mbox{\tt in}  & {\em equality} & True if the constraint is an equality, false if it is an inequality. \\
+\hline
+\mbox{\tt in}  & {\em v} & An optional vector to shift the constraint\\
+\hline
+\end{DoxyParams}
+The following cases arise\+:
+\begin{DoxyItemize}
+\item Constraint(f, true)\+: the constraint describes $ f(x,t) = 0 $ (type C\+S\+T\+R\+\_\+\+E\+Q\+U\+A\+L\+\_\+\+Z\+E\+RO)
+\item Constraint(f, false)\+: the constraint describes $ f(x,t) \le 0 $ (type C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+\+Z\+E\+RO)
+\item Constraint(f, true, b)\+: the constraint describes $ f(x,t) = b $ (type C\+S\+T\+R\+\_\+\+E\+Q\+U\+A\+L\+\_\+B)
+\item Constraint(f, false, u)\+: the constraint describes $ f(x,t) \le u $ (type C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+U)
+\end{DoxyItemize}
+
+\begin{DoxyPrecond}{Precondition}
+If v is given (and non null), v.\+size() must be equal to function-\/$>$get\+Dimension() 
+\end{DoxyPrecond}
+
+
+Definition at line 576 of file Constraint.\+h.
+
+\hypertarget{classocra_1_1Constraint_aca55ef9a5ea48fa91d846c53f4e30ad1}{}\label{classocra_1_1Constraint_aca55ef9a5ea48fa91d846c53f4e30ad1} 
+\index{ocra\+::\+Constraint@{ocra\+::\+Constraint}!Constraint@{Constraint}}
+\index{Constraint@{Constraint}!ocra\+::\+Constraint@{ocra\+::\+Constraint}}
+\subsubsection{\texorpdfstring{Constraint()}{Constraint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T $>$ \\
+\hyperlink{classocra_1_1Constraint}{ocra\+::\+Constraint}$<$ T $>$\+::\hyperlink{classocra_1_1Constraint}{Constraint} (\begin{DoxyParamCaption}\item[{T $\ast$}]{function,  }\item[{const Vector\+Xd \&}]{l = {\ttfamily VectorXd()},  }\item[{const Vector\+Xd \&}]{u = {\ttfamily VectorXd()} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hyperlink{classocra_1_1Constraint}{Constraint} constructor to build inequality constraints with possibly lower and upper bounds
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em function} & A pointer to the function on which the constraint is imposed. \\
+\hline
+\mbox{\tt in}  & {\em l} & Lower bound vector. \\
+\hline
+\mbox{\tt in}  & {\em u} & Lower bound vector.\\
+\hline
+\end{DoxyParams}
+The following cases arise\+:
+\begin{DoxyItemize}
+\item Constraint(f)\+: the constraint describes $ f(x,t) \ge 0 $ (type C\+S\+T\+R\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+\+Z\+E\+RO)
+\item Constraint(f, l)\+: the constraint describes $ f(x,t) \ge l $ (type C\+S\+T\+R\+\_\+\+G\+R\+E\+A\+T\+E\+R\+\_\+L)
+\item Constraint(f, l, u)\+: the constraint describes $ l \le f(x,t) \le u $ (type C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+\+A\+N\+D\+\_\+\+G\+R\+E\+A\+T\+ER)
+\item Constraint(f, l, u) with l==Vector\+Xd()\+: the constraint describes $ f(x,t) \le u $ (type C\+S\+T\+R\+\_\+\+L\+O\+W\+E\+R\+\_\+U)
+\item Constraint(f, l, u) with l==u\+: the constraint describes $ f(x,t) = u $ (type C\+S\+T\+R\+\_\+\+E\+Q\+U\+A\+L\+\_\+B)
+\end{DoxyItemize}
+
+\begin{DoxyPrecond}{Precondition}
+l$<$=u 
+
+If l or u is given (and non null), their size must be equal to function-\/$>$get\+Dimension() 
+\end{DoxyPrecond}
+
+
+Definition at line 585 of file Constraint.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1Constraint_a6083fd05133e7aefae68fc84641149c1}{}\label{classocra_1_1Constraint_a6083fd05133e7aefae68fc84641149c1} 
+\index{ocra\+::\+Constraint@{ocra\+::\+Constraint}!get\+Function@{get\+Function}}
+\index{get\+Function@{get\+Function}!ocra\+::\+Constraint@{ocra\+::\+Constraint}}
+\subsubsection{\texorpdfstring{get\+Function()}{getFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+virtual T\& \hyperlink{classocra_1_1Constraint}{ocra\+::\+Constraint}$<$ T $>$\+::get\+Function (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+getter on the function on which the constraint is built 
+
+Definition at line 156 of file Constraint.\+h.
+
+\hypertarget{classocra_1_1Constraint_a2bda1f6319de9c803571a232d790f497}{}\label{classocra_1_1Constraint_a2bda1f6319de9c803571a232d790f497} 
+\index{ocra\+::\+Constraint@{ocra\+::\+Constraint}!get\+Function@{get\+Function}}
+\index{get\+Function@{get\+Function}!ocra\+::\+Constraint@{ocra\+::\+Constraint}}
+\subsubsection{\texorpdfstring{get\+Function()}{getFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+virtual const T\& \hyperlink{classocra_1_1Constraint}{ocra\+::\+Constraint}$<$ T $>$\+::get\+Function (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 157 of file Constraint.\+h.
+
+\hypertarget{classocra_1_1Constraint_a4a0f49dbc4042347872429298f689091}{}\label{classocra_1_1Constraint_a4a0f49dbc4042347872429298f689091} 
+\index{ocra\+::\+Constraint@{ocra\+::\+Constraint}!operator const T \&@{operator const T \&}}
+\index{operator const T \&@{operator const T \&}!ocra\+::\+Constraint@{ocra\+::\+Constraint}}
+\subsubsection{\texorpdfstring{operator const T \&()}{operator const T \&()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classocra_1_1Constraint}{ocra\+::\+Constraint}$<$ T $>$\+::operator const T \& (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Conversion operator 
+
+Definition at line 152 of file Constraint.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Constraint_8h}{Constraint.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,129 @@
+\hypertarget{classocra_1_1ControlConstraint}{}\section{ocra\+:\+:Control\+Constraint Class Reference}
+\label{classocra_1_1ControlConstraint}\index{ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}}
+
+
+{\ttfamily \#include $<$Control\+Constraint.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Control\+Constraint\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d7/d85/classocra_1_1ControlConstraint}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ControlConstraint_a3d911f350d6a51009b670dcf061ab93e}{Control\+Constraint} ()
+\item 
+virtual \hyperlink{classocra_1_1ControlConstraint_a49f1eb50f143ef0e438d3af43db9eb31}{$\sim$\+Control\+Constraint} ()
+\item 
+\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint} \& \hyperlink{classocra_1_1ControlConstraint_a41b7568bc59441ca8d115e7ccf613658}{get\+Constraint} ()
+\item 
+virtual void \hyperlink{classocra_1_1ControlConstraint_a04dabdc1c469146e7b3240dfe0a5172c}{connect\+To\+Controller} (const \hyperlink{classocra_1_1FullDynamicEquationFunction}{Full\+Dynamic\+Equation\+Function} \&dynamic\+Equation, bool use\+Reduced\+Problem)=0
+\item 
+virtual void \hyperlink{classocra_1_1ControlConstraint_adbd15b36773c775a06a0b7bde46ec799}{disconnect\+From\+Controller} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+boost\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Constraint}{Constraint}$<$ \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} $>$ $>$ \hyperlink{classocra_1_1ControlConstraint_a47cebded91be870b03e1dddc7b0c215b}{\+\_\+constraint}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1ControlConstraint_ac3456fd331a58b288082abca310c7a99}{Controller}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 26 of file Control\+Constraint.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ControlConstraint_a3d911f350d6a51009b670dcf061ab93e}{}\label{classocra_1_1ControlConstraint_a3d911f350d6a51009b670dcf061ab93e} 
+\index{ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}!Control\+Constraint@{Control\+Constraint}}
+\index{Control\+Constraint@{Control\+Constraint}!ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}}
+\subsubsection{\texorpdfstring{Control\+Constraint()}{ControlConstraint()}}
+{\footnotesize\ttfamily ocra\+::\+Control\+Constraint\+::\+Control\+Constraint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 29 of file Control\+Constraint.\+h.
+
+\hypertarget{classocra_1_1ControlConstraint_a49f1eb50f143ef0e438d3af43db9eb31}{}\label{classocra_1_1ControlConstraint_a49f1eb50f143ef0e438d3af43db9eb31} 
+\index{ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}!````~Control\+Constraint@{$\sim$\+Control\+Constraint}}
+\index{````~Control\+Constraint@{$\sim$\+Control\+Constraint}!ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}}
+\subsubsection{\texorpdfstring{$\sim$\+Control\+Constraint()}{~ControlConstraint()}}
+{\footnotesize\ttfamily virtual ocra\+::\+Control\+Constraint\+::$\sim$\+Control\+Constraint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 32 of file Control\+Constraint.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ControlConstraint_a04dabdc1c469146e7b3240dfe0a5172c}{}\label{classocra_1_1ControlConstraint_a04dabdc1c469146e7b3240dfe0a5172c} 
+\index{ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}!connect\+To\+Controller@{connect\+To\+Controller}}
+\index{connect\+To\+Controller@{connect\+To\+Controller}!ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}}
+\subsubsection{\texorpdfstring{connect\+To\+Controller()}{connectToController()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Control\+Constraint\+::connect\+To\+Controller (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1FullDynamicEquationFunction}{Full\+Dynamic\+Equation\+Function} \&}]{dynamic\+Equation,  }\item[{bool}]{use\+Reduced\+Problem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1JointLimitConstraint_a71cfd04e493f270e44b79fb5a46c1601}{ocra\+::\+Joint\+Limit\+Constraint}, and \hyperlink{classocra_1_1ContactAvoidanceConstraint_a9beada2720203ab46265f271309a2ab5}{ocra\+::\+Contact\+Avoidance\+Constraint}.
+
+\hypertarget{classocra_1_1ControlConstraint_adbd15b36773c775a06a0b7bde46ec799}{}\label{classocra_1_1ControlConstraint_adbd15b36773c775a06a0b7bde46ec799} 
+\index{ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}!disconnect\+From\+Controller@{disconnect\+From\+Controller}}
+\index{disconnect\+From\+Controller@{disconnect\+From\+Controller}!ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}}
+\subsubsection{\texorpdfstring{disconnect\+From\+Controller()}{disconnectFromController()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Control\+Constraint\+::disconnect\+From\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1JointLimitConstraint_a5f91d3b746f76f17f71a03b68de1f8ee}{ocra\+::\+Joint\+Limit\+Constraint}, and \hyperlink{classocra_1_1ContactAvoidanceConstraint_a884358568ff7f5510d26ff96915a4d8c}{ocra\+::\+Contact\+Avoidance\+Constraint}.
+
+\hypertarget{classocra_1_1ControlConstraint_a41b7568bc59441ca8d115e7ccf613658}{}\label{classocra_1_1ControlConstraint_a41b7568bc59441ca8d115e7ccf613658} 
+\index{ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}!get\+Constraint@{get\+Constraint}}
+\index{get\+Constraint@{get\+Constraint}!ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}}
+\subsubsection{\texorpdfstring{get\+Constraint()}{getConstraint()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{Linear\+Constraint}\& ocra\+::\+Control\+Constraint\+::get\+Constraint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 34 of file Control\+Constraint.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{classocra_1_1ControlConstraint_ac3456fd331a58b288082abca310c7a99}{}\label{classocra_1_1ControlConstraint_ac3456fd331a58b288082abca310c7a99} 
+\index{ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}!Controller@{Controller}}
+\index{Controller@{Controller}!ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}}
+\subsubsection{\texorpdfstring{Controller}{Controller}}
+{\footnotesize\ttfamily friend class \hyperlink{classocra_1_1Controller}{Controller}\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+Definition at line 39 of file Control\+Constraint.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1ControlConstraint_a47cebded91be870b03e1dddc7b0c215b}{}\label{classocra_1_1ControlConstraint_a47cebded91be870b03e1dddc7b0c215b} 
+\index{ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}!\+\_\+constraint@{\+\_\+constraint}}
+\index{\+\_\+constraint@{\+\_\+constraint}!ocra\+::\+Control\+Constraint@{ocra\+::\+Control\+Constraint}}
+\subsubsection{\texorpdfstring{\+\_\+constraint}{\_constraint}}
+{\footnotesize\ttfamily boost\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Constraint}{Constraint}$<$\hyperlink{classocra_1_1LinearFunction}{Linear\+Function}$>$ $>$ ocra\+::\+Control\+Constraint\+::\+\_\+constraint\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 44 of file Control\+Constraint.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ControlConstraint_8h}{Control\+Constraint.\+h}\end{DoxyCompactItemize}

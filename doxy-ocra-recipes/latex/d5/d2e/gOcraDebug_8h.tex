@@ -1,0 +1,80 @@
+\hypertarget{gOcraDebug_8h}{}\section{g\+Ocra\+Debug.\+h File Reference}
+\label{gOcraDebug_8h}\index{g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}}
+
+
+Debug trace.  
+
+
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classIsirDebugTrace}{Isir\+Debug\+Trace}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gOcraDebug_8h_ae9ab1240818f1e9315e5aabd974be8a0}{g\+Ocra\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}~0
+\item 
+\#define \hyperlink{gOcraDebug_8h_a78ed5feef21064d9b7b412a42113db8f}{isir\+T\+O\+T\+A\+L\+D\+E\+B\+UG}(level)~if( 1 ) ; else std\+::cout
+\item 
+\#define \hyperlink{gOcraDebug_8h_a8cea4a0954a63f5f712be96f843e8d91}{isir\+D\+E\+B\+UG}(level)~if( 1 ) ; else std\+::cout
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classIsirDebugTrace}{Isir\+Debug\+Trace} \hyperlink{gOcraDebug_8h_a2f1fa17bbfbe418c5c0ffeeec4f70124}{isir\+D\+E\+B\+U\+G\+F\+L\+OW}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Debug trace. 
+
+\begin{DoxyAuthor}{Author}
+Sovannara Hak, Joseph Salini
+\end{DoxyAuthor}
+Inspired by François Bleibel, Olivier Stasse define g\+Ocra\+\_\+\+D\+E\+B\+UG to activate tracing define trace level g\+Ocra\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+O\+DE use \hyperlink{gOcraDebug_8h_a8cea4a0954a63f5f712be96f843e8d91}{isir\+D\+E\+B\+U\+G(level)} or \hyperlink{gOcraDebug_8h_a78ed5feef21064d9b7b412a42113db8f}{isir\+T\+O\+T\+A\+L\+D\+E\+B\+U\+G(level)} like ostream 
+
+\subsection{Macro Definition Documentation}
+\hypertarget{gOcraDebug_8h_ae9ab1240818f1e9315e5aabd974be8a0}{}\label{gOcraDebug_8h_ae9ab1240818f1e9315e5aabd974be8a0} 
+\index{g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}!g\+Ocra\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+O\+DE@{g\+Ocra\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}}
+\index{g\+Ocra\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+O\+DE@{g\+Ocra\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}!g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}}
+\subsubsection{\texorpdfstring{g\+Ocra\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+O\+DE}{gOcra\_DEBUG\_MODE}}
+{\footnotesize\ttfamily \#define g\+Ocra\+\_\+\+D\+E\+B\+U\+G\+\_\+\+M\+O\+DE~0}
+
+
+
+Definition at line 17 of file g\+Ocra\+Debug.\+h.
+
+\hypertarget{gOcraDebug_8h_a8cea4a0954a63f5f712be96f843e8d91}{}\label{gOcraDebug_8h_a8cea4a0954a63f5f712be96f843e8d91} 
+\index{g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}!isir\+D\+E\+B\+UG@{isir\+D\+E\+B\+UG}}
+\index{isir\+D\+E\+B\+UG@{isir\+D\+E\+B\+UG}!g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}}
+\subsubsection{\texorpdfstring{isir\+D\+E\+B\+UG}{isirDEBUG}}
+{\footnotesize\ttfamily \#define isir\+D\+E\+B\+UG(\begin{DoxyParamCaption}\item[{}]{level }\end{DoxyParamCaption})~if( 1 ) ; else std\+::cout}
+
+
+
+Definition at line 54 of file g\+Ocra\+Debug.\+h.
+
+\hypertarget{gOcraDebug_8h_a78ed5feef21064d9b7b412a42113db8f}{}\label{gOcraDebug_8h_a78ed5feef21064d9b7b412a42113db8f} 
+\index{g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}!isir\+T\+O\+T\+A\+L\+D\+E\+B\+UG@{isir\+T\+O\+T\+A\+L\+D\+E\+B\+UG}}
+\index{isir\+T\+O\+T\+A\+L\+D\+E\+B\+UG@{isir\+T\+O\+T\+A\+L\+D\+E\+B\+UG}!g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}}
+\subsubsection{\texorpdfstring{isir\+T\+O\+T\+A\+L\+D\+E\+B\+UG}{isirTOTALDEBUG}}
+{\footnotesize\ttfamily \#define isir\+T\+O\+T\+A\+L\+D\+E\+B\+UG(\begin{DoxyParamCaption}\item[{}]{level }\end{DoxyParamCaption})~if( 1 ) ; else std\+::cout}
+
+
+
+Definition at line 53 of file g\+Ocra\+Debug.\+h.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{gOcraDebug_8h_a2f1fa17bbfbe418c5c0ffeeec4f70124}{}\label{gOcraDebug_8h_a2f1fa17bbfbe418c5c0ffeeec4f70124} 
+\index{g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}!isir\+D\+E\+B\+U\+G\+F\+L\+OW@{isir\+D\+E\+B\+U\+G\+F\+L\+OW}}
+\index{isir\+D\+E\+B\+U\+G\+F\+L\+OW@{isir\+D\+E\+B\+U\+G\+F\+L\+OW}!g\+Ocra\+Debug.\+h@{g\+Ocra\+Debug.\+h}}
+\subsubsection{\texorpdfstring{isir\+D\+E\+B\+U\+G\+F\+L\+OW}{isirDEBUGFLOW}}
+{\footnotesize\ttfamily \hyperlink{classIsirDebugTrace}{Isir\+Debug\+Trace} isir\+D\+E\+B\+U\+G\+F\+L\+OW}
+

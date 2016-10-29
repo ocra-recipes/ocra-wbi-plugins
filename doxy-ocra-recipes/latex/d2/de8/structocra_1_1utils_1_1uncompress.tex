@@ -1,0 +1,83 @@
+\hypertarget{structocra_1_1utils_1_1uncompress}{}\section{ocra\+:\+:utils\+:\+:uncompress$<$ Functor, Apply\+Mapping\+To\+Out $>$ Struct Template Reference}
+\label{structocra_1_1utils_1_1uncompress}\index{ocra\+::utils\+::uncompress$<$ Functor, Apply\+Mapping\+To\+Out $>$@{ocra\+::utils\+::uncompress$<$ Functor, Apply\+Mapping\+To\+Out $>$}}
+
+
+{\ttfamily \#include $<$uncompress.\+h$>$}
+
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename Arg\+Type $>$ }\\static Arg\+Type \hyperlink{structocra_1_1utils_1_1uncompress_ad248d8421851c3ec4f9a47263b8b3185}{selector} (Arg\+Type i, Arg\+Type j)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\static void \hyperlink{structocra_1_1utils_1_1uncompress_af01bd3d80ed6b71b4733602efacf568f}{uncompress\+By\+Col} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ \&out, const std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\static void \hyperlink{structocra_1_1utils_1_1uncompress_a5f188f2a0d0abeea1f219c4848b7b84b}{uncompress\+By\+Row} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ \&out, const std\+::vector$<$ int $>$ \&mapping, double scale)
+\item 
+{\footnotesize template$<$class Derived1 , class Derived2 $>$ }\\static void \hyperlink{structocra_1_1utils_1_1uncompress_a2c95e21b384c1b0a4c471c45a03fc1a2}{uncompress2d} (const Matrix\+Base$<$ Derived1 $>$ \&in, Matrix\+Base$<$ Derived2 $>$ \&out, const std\+::vector$<$ int $>$ \&mapping\+Row, const std\+::vector$<$ int $>$ \&mapping\+Col, double scale)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$template$<$ class T, class U $>$ class Functor, bool Apply\+Mapping\+To\+Out = true$>$\newline
+struct ocra\+::utils\+::uncompress$<$ Functor, Apply\+Mapping\+To\+Out $>$}
+
+
+
+Definition at line 105 of file uncompress.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structocra_1_1utils_1_1uncompress_ad248d8421851c3ec4f9a47263b8b3185}{}\label{structocra_1_1utils_1_1uncompress_ad248d8421851c3ec4f9a47263b8b3185} 
+\index{ocra\+::utils\+::uncompress@{ocra\+::utils\+::uncompress}!selector@{selector}}
+\index{selector@{selector}!ocra\+::utils\+::uncompress@{ocra\+::utils\+::uncompress}}
+\subsubsection{\texorpdfstring{selector()}{selector()}}
+{\footnotesize\ttfamily template$<$template$<$ class T, class U $>$ class Functor, bool Apply\+Mapping\+To\+Out = true$>$ \\
+template$<$typename Arg\+Type $>$ \\
+static Arg\+Type \hyperlink{structocra_1_1utils_1_1uncompress}{ocra\+::utils\+::uncompress}$<$ Functor, Apply\+Mapping\+To\+Out $>$\+::selector (\begin{DoxyParamCaption}\item[{Arg\+Type}]{i,  }\item[{Arg\+Type}]{j }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 108 of file uncompress.\+h.
+
+\hypertarget{structocra_1_1utils_1_1uncompress_a2c95e21b384c1b0a4c471c45a03fc1a2}{}\label{structocra_1_1utils_1_1uncompress_a2c95e21b384c1b0a4c471c45a03fc1a2} 
+\index{ocra\+::utils\+::uncompress@{ocra\+::utils\+::uncompress}!uncompress2d@{uncompress2d}}
+\index{uncompress2d@{uncompress2d}!ocra\+::utils\+::uncompress@{ocra\+::utils\+::uncompress}}
+\subsubsection{\texorpdfstring{uncompress2d()}{uncompress2d()}}
+{\footnotesize\ttfamily template$<$template$<$ class T, class U $>$ class Functor, bool Apply\+Mapping\+To\+Out = true$>$ \\
+template$<$class Derived1 , class Derived2 $>$ \\
+static void \hyperlink{structocra_1_1utils_1_1uncompress}{ocra\+::utils\+::uncompress}$<$ Functor, Apply\+Mapping\+To\+Out $>$\+::uncompress2d (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ \&}]{out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping\+Row,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping\+Col,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 168 of file uncompress.\+h.
+
+\hypertarget{structocra_1_1utils_1_1uncompress_af01bd3d80ed6b71b4733602efacf568f}{}\label{structocra_1_1utils_1_1uncompress_af01bd3d80ed6b71b4733602efacf568f} 
+\index{ocra\+::utils\+::uncompress@{ocra\+::utils\+::uncompress}!uncompress\+By\+Col@{uncompress\+By\+Col}}
+\index{uncompress\+By\+Col@{uncompress\+By\+Col}!ocra\+::utils\+::uncompress@{ocra\+::utils\+::uncompress}}
+\subsubsection{\texorpdfstring{uncompress\+By\+Col()}{uncompressByCol()}}
+{\footnotesize\ttfamily template$<$template$<$ class T, class U $>$ class Functor, bool Apply\+Mapping\+To\+Out = true$>$ \\
+template$<$class Derived1 , class Derived2 $>$ \\
+static void \hyperlink{structocra_1_1utils_1_1uncompress}{ocra\+::utils\+::uncompress}$<$ Functor, Apply\+Mapping\+To\+Out $>$\+::uncompress\+By\+Col (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ \&}]{out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 111 of file uncompress.\+h.
+
+\hypertarget{structocra_1_1utils_1_1uncompress_a5f188f2a0d0abeea1f219c4848b7b84b}{}\label{structocra_1_1utils_1_1uncompress_a5f188f2a0d0abeea1f219c4848b7b84b} 
+\index{ocra\+::utils\+::uncompress@{ocra\+::utils\+::uncompress}!uncompress\+By\+Row@{uncompress\+By\+Row}}
+\index{uncompress\+By\+Row@{uncompress\+By\+Row}!ocra\+::utils\+::uncompress@{ocra\+::utils\+::uncompress}}
+\subsubsection{\texorpdfstring{uncompress\+By\+Row()}{uncompressByRow()}}
+{\footnotesize\ttfamily template$<$template$<$ class T, class U $>$ class Functor, bool Apply\+Mapping\+To\+Out = true$>$ \\
+template$<$class Derived1 , class Derived2 $>$ \\
+static void \hyperlink{structocra_1_1utils_1_1uncompress}{ocra\+::utils\+::uncompress}$<$ Functor, Apply\+Mapping\+To\+Out $>$\+::uncompress\+By\+Row (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived1 $>$ \&}]{in,  }\item[{Matrix\+Base$<$ Derived2 $>$ \&}]{out,  }\item[{const std\+::vector$<$ int $>$ \&}]{mapping,  }\item[{double}]{scale }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+
+
+Definition at line 140 of file uncompress.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{uncompress_8h}{uncompress.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,247 @@
+\hypertarget{classocra_1_1BaseVariable}{}\section{ocra\+:\+:Base\+Variable Class Reference}
+\label{classocra_1_1BaseVariable}\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+
+
+Implements a basic variable.  
+
+
+
+
+{\ttfamily \#include $<$Variable.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Base\+Variable\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.100629cm]{d5/d40/classocra_1_1BaseVariable}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1BaseVariable_ae86fd20357d1b333c73d22b7a9a010f6}{Base\+Variable} (const std\+::string \&name, size\+\_\+t size)
+\begin{DoxyCompactList}\small\item\em Builds a leaf variable, i.\+e. a variable that is not composed of other variables. \end{DoxyCompactList}\item 
+bool \hyperlink{classocra_1_1BaseVariable_a454556cfc20026911bc687bc481ec95b}{is\+Base\+Variable} () const
+\item 
+void \hyperlink{classocra_1_1BaseVariable_a5d473eeb113e4751c27cf6af7af62919}{resize} (size\+\_\+t new\+Size)
+\item 
+\hyperlink{classocra_1_1BaseVariable}{Base\+Variable} \& \hyperlink{classocra_1_1BaseVariable_a79a86d7415d8b460ad9f526f685961dc}{get\+Time\+Derivative} ()
+\begin{DoxyCompactList}\small\item\em Get the time derivative/primitive of the variable. \end{DoxyCompactList}\item 
+\hyperlink{classocra_1_1BaseVariable}{Base\+Variable} \& \hyperlink{classocra_1_1BaseVariable_aa985b0703fc0a2edcd66a7c4c4ee05e4}{get\+Time\+Primitive} ()
+\item 
+int \hyperlink{classocra_1_1BaseVariable_a66d07236f4d060273f3f46632dc851ac}{is\+Ancestor\+Of} (const \hyperlink{classocra_1_1Variable}{Variable} \&var) const
+\begin{DoxyCompactList}\small\item\em Returns the number of levels that separate the component from a potential child. \end{DoxyCompactList}\item 
+void \hyperlink{classocra_1_1BaseVariable_a4058b1accad9ff7b3d8995bdf9285fbd}{print\+Sub\+Tree} (int depth, std\+::ostream \&os) const
+\begin{DoxyCompactList}\small\item\em Overload in Component\+Derived and Composite\+Derived to simply call \hyperlink{classocra_1_1Leaf_aaf46f5b8cd9d9667b8080898b1d9138a}{print\+Tree\+\_\+impl()}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1BaseVariable_a4f53b244e0efba4ca19f558113d29a9c}{do\+\_\+set\+Value} (const Vector\+Xd \&value)
+\begin{DoxyCompactList}\small\item\em This method will attempt to assign a given value to the memory map. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classocra_1_1BaseVariable_abf5dc1c3eaa689663cc09e06b8f5b3a1}{do\+\_\+get\+Number\+Of\+Children} () const
+\begin{DoxyCompactList}\small\item\em Always return 0. \end{DoxyCompactList}\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} $\ast$ \hyperlink{classocra_1_1BaseVariable_a064b6501c110661e9fa12a0250d4de6b}{do\+\_\+create\+Time\+Derivative} (const std\+::string \&name)
+\item 
+\hyperlink{classocra_1_1Variable}{Variable} $\ast$ \hyperlink{classocra_1_1BaseVariable_ab010bd127ba34ff57168bf69182a78d5}{do\+\_\+create\+Time\+Primitive} (const std\+::string \&name)
+\end{DoxyCompactItemize}
+
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Implements a basic variable. 
+
+Definition at line 304 of file Variable.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1BaseVariable_ae86fd20357d1b333c73d22b7a9a010f6}{}\label{classocra_1_1BaseVariable_ae86fd20357d1b333c73d22b7a9a010f6} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!Base\+Variable@{Base\+Variable}}
+\index{Base\+Variable@{Base\+Variable}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{Base\+Variable()}{BaseVariable()}}
+{\footnotesize\ttfamily ocra\+::\+Base\+Variable\+::\+Base\+Variable (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{size\+\_\+t}]{size }\end{DoxyParamCaption})}
+
+
+
+Builds a leaf variable, i.\+e. a variable that is not composed of other variables. 
+
+
+
+Definition at line 331 of file Variable.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1BaseVariable_a064b6501c110661e9fa12a0250d4de6b}{}\label{classocra_1_1BaseVariable_a064b6501c110661e9fa12a0250d4de6b} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!do\+\_\+create\+Time\+Derivative@{do\+\_\+create\+Time\+Derivative}}
+\index{do\+\_\+create\+Time\+Derivative@{do\+\_\+create\+Time\+Derivative}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{do\+\_\+create\+Time\+Derivative()}{do\_createTimeDerivative()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable} $\ast$ ocra\+::\+Base\+Variable\+::do\+\_\+create\+Time\+Derivative (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\begin{DoxySeeAlso}{See also}
+class \hyperlink{classocra_1_1Variable}{ocra\+::\+Variable} 
+\end{DoxySeeAlso}
+
+
+Implements \hyperlink{classocra_1_1Variable_aaed3c9bb3258cc1120ae8f93722a12bb}{ocra\+::\+Variable}.
+
+
+
+Definition at line 390 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_ab010bd127ba34ff57168bf69182a78d5}{}\label{classocra_1_1BaseVariable_ab010bd127ba34ff57168bf69182a78d5} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!do\+\_\+create\+Time\+Primitive@{do\+\_\+create\+Time\+Primitive}}
+\index{do\+\_\+create\+Time\+Primitive@{do\+\_\+create\+Time\+Primitive}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{do\+\_\+create\+Time\+Primitive()}{do\_createTimePrimitive()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Variable}{Variable} $\ast$ ocra\+::\+Base\+Variable\+::do\+\_\+create\+Time\+Primitive (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Variable_ae37610cbde7630dcda3dd6e09e251057}{ocra\+::\+Variable}.
+
+
+
+Definition at line 395 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_abf5dc1c3eaa689663cc09e06b8f5b3a1}{}\label{classocra_1_1BaseVariable_abf5dc1c3eaa689663cc09e06b8f5b3a1} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!do\+\_\+get\+Number\+Of\+Children@{do\+\_\+get\+Number\+Of\+Children}}
+\index{do\+\_\+get\+Number\+Of\+Children@{do\+\_\+get\+Number\+Of\+Children}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{do\+\_\+get\+Number\+Of\+Children()}{do\_getNumberOfChildren()}}
+{\footnotesize\ttfamily size\+\_\+t ocra\+::\+Base\+Variable\+::do\+\_\+get\+Number\+Of\+Children (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Always return 0. 
+
+
+
+Implements \hyperlink{classocra_1_1Variable_a65de5b31613b74d83baab58f0eb43b35}{ocra\+::\+Variable}.
+
+
+
+Definition at line 400 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_a4f53b244e0efba4ca19f558113d29a9c}{}\label{classocra_1_1BaseVariable_a4f53b244e0efba4ca19f558113d29a9c} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!do\+\_\+set\+Value@{do\+\_\+set\+Value}}
+\index{do\+\_\+set\+Value@{do\+\_\+set\+Value}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{do\+\_\+set\+Value()}{do\_setValue()}}
+{\footnotesize\ttfamily void ocra\+::\+Base\+Variable\+::do\+\_\+set\+Value (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+This method will attempt to assign a given value to the memory map. 
+
+
+
+Implements \hyperlink{classocra_1_1Variable_a73ff767d0a620f1803573b33f93c69f8}{ocra\+::\+Variable}.
+
+
+
+Definition at line 361 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_a79a86d7415d8b460ad9f526f685961dc}{}\label{classocra_1_1BaseVariable_a79a86d7415d8b460ad9f526f685961dc} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!get\+Time\+Derivative@{get\+Time\+Derivative}}
+\index{get\+Time\+Derivative@{get\+Time\+Derivative}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{get\+Time\+Derivative()}{getTimeDerivative()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1BaseVariable}{Base\+Variable} \& ocra\+::\+Base\+Variable\+::get\+Time\+Derivative (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Get the time derivative/primitive of the variable. 
+
+If the derivative/primitive doesn\textquotesingle{}t exist, it will be created automatically at the first call to this method. 
+
+Reimplemented from \hyperlink{classocra_1_1Variable_a06ee384364d5c6bd1ea4bc4b38d6268c}{ocra\+::\+Variable}.
+
+
+
+Definition at line 370 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_aa985b0703fc0a2edcd66a7c4c4ee05e4}{}\label{classocra_1_1BaseVariable_aa985b0703fc0a2edcd66a7c4c4ee05e4} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!get\+Time\+Primitive@{get\+Time\+Primitive}}
+\index{get\+Time\+Primitive@{get\+Time\+Primitive}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{get\+Time\+Primitive()}{getTimePrimitive()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1BaseVariable}{Base\+Variable} \& ocra\+::\+Base\+Variable\+::get\+Time\+Primitive (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Variable_aca32d63e60dc79de340b2f122dad0dc5}{ocra\+::\+Variable}.
+
+
+
+Definition at line 375 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_a66d07236f4d060273f3f46632dc851ac}{}\label{classocra_1_1BaseVariable_a66d07236f4d060273f3f46632dc851ac} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!is\+Ancestor\+Of@{is\+Ancestor\+Of}}
+\index{is\+Ancestor\+Of@{is\+Ancestor\+Of}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{is\+Ancestor\+Of()}{isAncestorOf()}}
+{\footnotesize\ttfamily int ocra\+::\+Base\+Variable\+::is\+Ancestor\+Of (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Variable}{Variable} \&}]{node }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Returns the number of levels that separate the component from a potential child. 
+
+
+
+Implements \hyperlink{classocra_1_1Component_a8a0e052f36c60889562e921751b02a37}{ocra\+::\+Component$<$ Variable, Composite\+Variable, Variable\+Parenthood $>$}.
+
+
+
+Definition at line 380 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_a454556cfc20026911bc687bc481ec95b}{}\label{classocra_1_1BaseVariable_a454556cfc20026911bc687bc481ec95b} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!is\+Base\+Variable@{is\+Base\+Variable}}
+\index{is\+Base\+Variable@{is\+Base\+Variable}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{is\+Base\+Variable()}{isBaseVariable()}}
+{\footnotesize\ttfamily bool ocra\+::\+Base\+Variable\+::is\+Base\+Variable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Return true if this variable is a base variable, false otherwise. 
+
+Reimplemented from \hyperlink{classocra_1_1Variable_a34c1b66c4dcf6b14181523a516a26951}{ocra\+::\+Variable}.
+
+
+
+Definition at line 339 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_a4058b1accad9ff7b3d8995bdf9285fbd}{}\label{classocra_1_1BaseVariable_a4058b1accad9ff7b3d8995bdf9285fbd} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!print\+Sub\+Tree@{print\+Sub\+Tree}}
+\index{print\+Sub\+Tree@{print\+Sub\+Tree}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{print\+Sub\+Tree()}{printSubTree()}}
+{\footnotesize\ttfamily void ocra\+::\+Base\+Variable\+::print\+Sub\+Tree (\begin{DoxyParamCaption}\item[{int}]{depth,  }\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Overload in Component\+Derived and Composite\+Derived to simply call \hyperlink{classocra_1_1Leaf_aaf46f5b8cd9d9667b8080898b1d9138a}{print\+Tree\+\_\+impl()}. 
+
+You can also choose to reimplement the while function rather than calling the proposed print\+Tree\+\_\+impl method. 
+\begin{DoxyParams}{Parameters}
+{\em depth} & is the current depth of the node. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classocra_1_1Component_a3687a02c1524694fc616893264ca8199}{ocra\+::\+Component$<$ Variable, Composite\+Variable, Variable\+Parenthood $>$}.
+
+
+
+Definition at line 385 of file Variable.\+cpp.
+
+\hypertarget{classocra_1_1BaseVariable_a5d473eeb113e4751c27cf6af7af62919}{}\label{classocra_1_1BaseVariable_a5d473eeb113e4751c27cf6af7af62919} 
+\index{ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}!resize@{resize}}
+\index{resize@{resize}!ocra\+::\+Base\+Variable@{ocra\+::\+Base\+Variable}}
+\subsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily void ocra\+::\+Base\+Variable\+::resize (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{new\+Size }\end{DoxyParamCaption})}
+
+
+
+Definition at line 344 of file Variable.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Variable_8h}{Variable.\+h}\item 
+\hyperlink{Variable_8cpp}{Variable.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,58 @@
+\hypertarget{Feature_8h}{}\section{Feature.\+h File Reference}
+\label{Feature_8h}\index{Feature.\+h@{Feature.\+h}}
+
+
+A class hierarchy to compute task errors based on control frames.  
+
+
+{\ttfamily \#include \char`\"{}ocra/control/\+Control\+Enum.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Named\+Instance.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Control\+Frame.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Model.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Full\+State.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Partial\+State.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Task\+State.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$ocra/util/\+Macros.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Lgsm$>$}\newline
+{\ttfamily \#include $<$boost/shared\+\_\+ptr.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/noncopyable.\+hpp$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1Feature}{ocra\+::\+Feature}
+\begin{DoxyCompactList}\small\item\em \hyperlink{classocra_1_1Feature}{Feature} interface, used by tasks to compute errors and jacobians. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1PositionFeature}{ocra\+::\+Position\+Feature}
+\begin{DoxyCompactList}\small\item\em Used to build positioning tasks. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1PointContactFeature}{ocra\+::\+Point\+Contact\+Feature}
+\begin{DoxyCompactList}\small\item\em Used to build point contact tasks. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1OrientationFeature}{ocra\+::\+Orientation\+Feature}
+\begin{DoxyCompactList}\small\item\em Used to build orientation tasks. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1DisplacementFeature}{ocra\+::\+Displacement\+Feature}
+\begin{DoxyCompactList}\small\item\em Used to build position/orientation tasks. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1ContactConstraintFeature}{ocra\+::\+Contact\+Constraint\+Feature}
+\begin{DoxyCompactList}\small\item\em Used to build contact constraint tasks (null acceleration). \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1FullStateFeature}{ocra\+::\+Full\+State\+Feature}
+\begin{DoxyCompactList}\small\item\em Used to build tasks in the manikin configuration space. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1PartialStateFeature}{ocra\+::\+Partial\+State\+Feature}
+\begin{DoxyCompactList}\small\item\em Used to build tasks in a partial configuration space. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A class hierarchy to compute task errors based on control frames. 
+
+Copyright (C) 2010 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+T\+S\+I/\+S\+R\+CI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+
+Evrard Paul 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2010/10/03
+\end{DoxyDate}
+File history\+: 

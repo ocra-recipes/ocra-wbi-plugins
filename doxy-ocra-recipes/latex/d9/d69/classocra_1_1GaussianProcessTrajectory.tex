@@ -1,0 +1,375 @@
+\hypertarget{classocra_1_1GaussianProcessTrajectory}{}\section{ocra\+:\+:Gaussian\+Process\+Trajectory Class Reference}
+\label{classocra_1_1GaussianProcessTrajectory}\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+
+
+{\ttfamily \#include $<$Gaussian\+Process\+Trajectory.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Gaussian\+Process\+Trajectory\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d9/d69/classocra_1_1GaussianProcessTrajectory}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_a629f8e01ed88d4aa69e0a2ed9a442bda}{get\+Desired\+Values} (double time)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_ac90c0664984dabfb530aa0437ec0a740}{get\+Variance} (double time)
+\item 
+void \hyperlink{classocra_1_1GaussianProcessTrajectory_a5ae11f8f2525d4b92236b1df20b1a9d7}{get\+Desired\+Values} (double time, Eigen\+::\+Matrix\+Xd \&desired\+Values, Eigen\+::\+Vector\+Xd \&variance)
+\item 
+void \hyperlink{classocra_1_1GaussianProcessTrajectory_af5b02e851e386e189b64038b429d37c6}{add\+Waypoint} (const Eigen\+::\+Vector\+Xd new\+Waypoint, const double waypoint\+Time)
+\item 
+void \hyperlink{classocra_1_1GaussianProcessTrajectory_ae6f9369c9494f40790e08c572c3e2bba}{add\+Waypoint} (const Eigen\+::\+Vector\+Xd new\+Waypoint, const double waypoint\+Time, const Eigen\+::\+Vector\+Xi \&dof\+To\+Opt, const bool use\+For\+Mean=true, const bool use\+For\+Var=true, const bool use\+For\+Opt=true)
+\item 
+void \hyperlink{classocra_1_1GaussianProcessTrajectory_a56de119b85b7646942cb85f434be7e43}{remove\+Waypoint} (int index)
+\item 
+bool \hyperlink{classocra_1_1GaussianProcessTrajectory_abdafe69c3db6d514bbe8ae5f560cf466}{set\+Mean\+Waypoints} (\hyperlink{namespaceocra_afaf4559cfedb560f8d1fe9bf6a21678f}{bool\+Vector} \&b\+Mean\+Vec)
+\item 
+bool \hyperlink{classocra_1_1GaussianProcessTrajectory_ae41d4aadfdc7cf0da1cb5e141fdaad96}{set\+Variance\+Waypoints} (\hyperlink{namespaceocra_afaf4559cfedb560f8d1fe9bf6a21678f}{bool\+Vector} \&b\+Var\+Vec)
+\item 
+bool \hyperlink{classocra_1_1GaussianProcessTrajectory_a422e7c21958eded0e101ea9a0198e2f6}{set\+Optimization\+Waypoints} (\hyperlink{namespaceocra_afaf4559cfedb560f8d1fe9bf6a21678f}{bool\+Vector} \&b\+Opt\+Vec)
+\item 
+bool \hyperlink{classocra_1_1GaussianProcessTrajectory_ade78792c6b17174f77c0e0c60d4d4755}{set\+Dof\+To\+Optimize} (std\+::vector$<$ Eigen\+::\+Vector\+Xi $>$ \&dof\+To\+Opt\+Vec)
+\item 
+void \hyperlink{classocra_1_1GaussianProcessTrajectory_a9bc3e80de07b90f2fc13bd8442fb7d02}{print\+Waypoint\+Data} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_af345fbbe285d7758c7a4bab7d83b0f02}{get\+Waypoint\+Data} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_a3fcbdcde2ce99b1bbf1835b2d90e7627}{get\+Mean\+G\+P\+Data} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_ae48f9f25299cf749a973e4b4341ec909}{get\+Var\+G\+P\+Data} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_af2815cd9e07b8470a5850474dd19e708}{get\+Bopt\+Variables} (const int extra\+Points\+To\+Add=0, std\+::vector$<$ Eigen\+::\+Vector\+Xi $>$ dof\+To\+Opt\+Vec=std\+::vector$<$ Eigen\+::\+Vector\+Xi $>$())
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_ae5e2bdca5a250cbce6af8e38898a61c8}{get\+Bopt\+Covariance\+Matrix} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_a4678cb03e8523c8c5d489c91623a6ce4}{get\+Bopt\+Search\+Space\+Min\+Bound} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_a82a83fb9fd6351253f5d317747edf12c}{get\+Bopt\+Search\+Space\+Max\+Bound} ()
+\item 
+bool \hyperlink{classocra_1_1GaussianProcessTrajectory_a96001abecd8f8bb1303acc1a327a485e}{set\+Bopt\+Variables} (const Eigen\+::\+Vector\+Xd \&new\+Opt\+Variables)
+\item 
+void \hyperlink{classocra_1_1GaussianProcessTrajectory_ad7fc4b5e2163353090d6d34bd5040961}{save\+Trajectory\+To\+File} (const std\+::string dir\+Path=\char`\"{}./\char`\"{})
+\item 
+void \hyperlink{classocra_1_1GaussianProcessTrajectory_a386f928a68ec125b184d6a4f9801ab1e}{save\+Waypoint\+Data\+To\+File} (const std\+::string dir\+Path=\char`\"{}./\char`\"{})
+\item 
+double \hyperlink{classocra_1_1GaussianProcessTrajectory_af5d0a9c6d68d74e60ffa0a6290f4cd6a}{get\+Max\+Variance} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1GaussianProcessTrajectory_a87864b7a3a7fd6b0384b28ad7d58a3c2}{get\+Max\+Covariance\+Vector} ()
+\item 
+double \hyperlink{classocra_1_1GaussianProcessTrajectory_a7292af0c33589a01c7152f2316362c15}{get\+Variance\+Length\+Parameter} ()
+\item 
+double \hyperlink{classocra_1_1GaussianProcessTrajectory_af8cc8748b3d59d41a9af05549cb02228}{get\+Mean\+Time} ()
+\item 
+double \hyperlink{classocra_1_1GaussianProcessTrajectory_a03444da89e14a8b77f76800c96d3bab2}{get\+Duration} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1GaussianProcessTrajectory_aee26ead179583530615422b05c5e2081}{initialize\+Trajectory} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 18 of file Gaussian\+Process\+Trajectory.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1GaussianProcessTrajectory_af5b02e851e386e189b64038b429d37c6}{}\label{classocra_1_1GaussianProcessTrajectory_af5b02e851e386e189b64038b429d37c6} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!add\+Waypoint@{add\+Waypoint}}
+\index{add\+Waypoint@{add\+Waypoint}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{add\+Waypoint()}{addWaypoint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Gaussian\+Process\+Trajectory\+::add\+Waypoint (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd}]{new\+Waypoint,  }\item[{const double}]{waypoint\+Time }\end{DoxyParamCaption})}
+
+
+
+Definition at line 422 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_ae6f9369c9494f40790e08c572c3e2bba}{}\label{classocra_1_1GaussianProcessTrajectory_ae6f9369c9494f40790e08c572c3e2bba} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!add\+Waypoint@{add\+Waypoint}}
+\index{add\+Waypoint@{add\+Waypoint}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{add\+Waypoint()}{addWaypoint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Gaussian\+Process\+Trajectory\+::add\+Waypoint (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd}]{new\+Waypoint,  }\item[{const double}]{waypoint\+Time,  }\item[{const Eigen\+::\+Vector\+Xi \&}]{dof\+To\+Opt,  }\item[{const bool}]{use\+For\+Mean = {\ttfamily true},  }\item[{const bool}]{use\+For\+Var = {\ttfamily true},  }\item[{const bool}]{use\+For\+Opt = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 427 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_ae5e2bdca5a250cbce6af8e38898a61c8}{}\label{classocra_1_1GaussianProcessTrajectory_ae5e2bdca5a250cbce6af8e38898a61c8} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Bopt\+Covariance\+Matrix@{get\+Bopt\+Covariance\+Matrix}}
+\index{get\+Bopt\+Covariance\+Matrix@{get\+Bopt\+Covariance\+Matrix}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Bopt\+Covariance\+Matrix()}{getBoptCovarianceMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Bopt\+Covariance\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 489 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a82a83fb9fd6351253f5d317747edf12c}{}\label{classocra_1_1GaussianProcessTrajectory_a82a83fb9fd6351253f5d317747edf12c} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Bopt\+Search\+Space\+Max\+Bound@{get\+Bopt\+Search\+Space\+Max\+Bound}}
+\index{get\+Bopt\+Search\+Space\+Max\+Bound@{get\+Bopt\+Search\+Space\+Max\+Bound}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Bopt\+Search\+Space\+Max\+Bound()}{getBoptSearchSpaceMaxBound()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Bopt\+Search\+Space\+Max\+Bound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 582 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a4678cb03e8523c8c5d489c91623a6ce4}{}\label{classocra_1_1GaussianProcessTrajectory_a4678cb03e8523c8c5d489c91623a6ce4} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Bopt\+Search\+Space\+Min\+Bound@{get\+Bopt\+Search\+Space\+Min\+Bound}}
+\index{get\+Bopt\+Search\+Space\+Min\+Bound@{get\+Bopt\+Search\+Space\+Min\+Bound}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Bopt\+Search\+Space\+Min\+Bound()}{getBoptSearchSpaceMinBound()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Bopt\+Search\+Space\+Min\+Bound (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 534 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_af2815cd9e07b8470a5850474dd19e708}{}\label{classocra_1_1GaussianProcessTrajectory_af2815cd9e07b8470a5850474dd19e708} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Bopt\+Variables@{get\+Bopt\+Variables}}
+\index{get\+Bopt\+Variables@{get\+Bopt\+Variables}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Bopt\+Variables()}{getBoptVariables()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Bopt\+Variables (\begin{DoxyParamCaption}\item[{const int}]{extra\+Points\+To\+Add = {\ttfamily 0},  }\item[{std\+::vector$<$ Eigen\+::\+Vector\+Xi $>$}]{dof\+To\+Opt\+Vec = {\ttfamily std\+:\+:vector$<$Eigen\+:\+:VectorXi$>$()} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 632 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a629f8e01ed88d4aa69e0a2ed9a442bda}{}\label{classocra_1_1GaussianProcessTrajectory_a629f8e01ed88d4aa69e0a2ed9a442bda} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+For details on the analytical point to point min-\/jerk formulation see\+: \href{http://www.jneurosci.org/content/5/7/1688.full.pdf}{\tt http\+://www.\+jneurosci.\+org/content/5/7/1688.\+full.\+pdf} \href{http://shadmehrlab.org/book/minimum_jerk/minimumjerk.htm}{\tt http\+://shadmehrlab.\+org/book/minimum\+\_\+jerk/minimumjerk.\+htm}
+
+Reimplemented from \hyperlink{classocra_1_1Trajectory_a2102a829e6dad497f7c773c346d499b7}{ocra\+::\+Trajectory}.
+
+
+
+Definition at line 300 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a5ae11f8f2525d4b92236b1df20b1a9d7}{}\label{classocra_1_1GaussianProcessTrajectory_a5ae11f8f2525d4b92236b1df20b1a9d7} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Desired\+Values@{get\+Desired\+Values}}
+\index{get\+Desired\+Values@{get\+Desired\+Values}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Desired\+Values()}{getDesiredValues()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Desired\+Values (\begin{DoxyParamCaption}\item[{double}]{time,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{desired\+Values,  }\item[{Eigen\+::\+Vector\+Xd \&}]{variance }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Trajectory_aab6869cf5bc4a7c44eac36a0e49255b9}{ocra\+::\+Trajectory}.
+
+
+
+Definition at line 385 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a03444da89e14a8b77f76800c96d3bab2}{}\label{classocra_1_1GaussianProcessTrajectory_a03444da89e14a8b77f76800c96d3bab2} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Duration@{get\+Duration}}
+\index{get\+Duration@{get\+Duration}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Duration()}{getDuration()}}
+{\footnotesize\ttfamily double ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Trajectory_ad65e4ce63f33d79d7880742035a64d6c}{ocra\+::\+Trajectory}.
+
+
+
+Definition at line 62 of file Gaussian\+Process\+Trajectory.\+h.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a87864b7a3a7fd6b0384b28ad7d58a3c2}{}\label{classocra_1_1GaussianProcessTrajectory_a87864b7a3a7fd6b0384b28ad7d58a3c2} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Max\+Covariance\+Vector@{get\+Max\+Covariance\+Vector}}
+\index{get\+Max\+Covariance\+Vector@{get\+Max\+Covariance\+Vector}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Max\+Covariance\+Vector()}{getMaxCovarianceVector()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Max\+Covariance\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 59 of file Gaussian\+Process\+Trajectory.\+h.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_af5d0a9c6d68d74e60ffa0a6290f4cd6a}{}\label{classocra_1_1GaussianProcessTrajectory_af5d0a9c6d68d74e60ffa0a6290f4cd6a} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Max\+Variance@{get\+Max\+Variance}}
+\index{get\+Max\+Variance@{get\+Max\+Variance}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Max\+Variance()}{getMaxVariance()}}
+{\footnotesize\ttfamily double ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Max\+Variance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 58 of file Gaussian\+Process\+Trajectory.\+h.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a3fcbdcde2ce99b1bbf1835b2d90e7627}{}\label{classocra_1_1GaussianProcessTrajectory_a3fcbdcde2ce99b1bbf1835b2d90e7627} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Mean\+G\+P\+Data@{get\+Mean\+G\+P\+Data}}
+\index{get\+Mean\+G\+P\+Data@{get\+Mean\+G\+P\+Data}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Mean\+G\+P\+Data()}{getMeanGPData()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Mean\+G\+P\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 402 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_af8cc8748b3d59d41a9af05549cb02228}{}\label{classocra_1_1GaussianProcessTrajectory_af8cc8748b3d59d41a9af05549cb02228} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Mean\+Time@{get\+Mean\+Time}}
+\index{get\+Mean\+Time@{get\+Mean\+Time}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Mean\+Time()}{getMeanTime()}}
+{\footnotesize\ttfamily double ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Mean\+Time (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 61 of file Gaussian\+Process\+Trajectory.\+h.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_ae48f9f25299cf749a973e4b4341ec909}{}\label{classocra_1_1GaussianProcessTrajectory_ae48f9f25299cf749a973e4b4341ec909} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Var\+G\+P\+Data@{get\+Var\+G\+P\+Data}}
+\index{get\+Var\+G\+P\+Data@{get\+Var\+G\+P\+Data}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Var\+G\+P\+Data()}{getVarGPData()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Var\+G\+P\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 412 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_ac90c0664984dabfb530aa0437ec0a740}{}\label{classocra_1_1GaussianProcessTrajectory_ac90c0664984dabfb530aa0437ec0a740} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Variance@{get\+Variance}}
+\index{get\+Variance@{get\+Variance}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Variance()}{getVariance()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Variance (\begin{DoxyParamCaption}\item[{double}]{time }\end{DoxyParamCaption})}
+
+
+
+Definition at line 358 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a7292af0c33589a01c7152f2316362c15}{}\label{classocra_1_1GaussianProcessTrajectory_a7292af0c33589a01c7152f2316362c15} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Variance\+Length\+Parameter@{get\+Variance\+Length\+Parameter}}
+\index{get\+Variance\+Length\+Parameter@{get\+Variance\+Length\+Parameter}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Variance\+Length\+Parameter()}{getVarianceLengthParameter()}}
+{\footnotesize\ttfamily double ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Variance\+Length\+Parameter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 60 of file Gaussian\+Process\+Trajectory.\+h.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_af345fbbe285d7758c7a4bab7d83b0f02}{}\label{classocra_1_1GaussianProcessTrajectory_af345fbbe285d7758c7a4bab7d83b0f02} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!get\+Waypoint\+Data@{get\+Waypoint\+Data}}
+\index{get\+Waypoint\+Data@{get\+Waypoint\+Data}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{get\+Waypoint\+Data()}{getWaypointData()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Gaussian\+Process\+Trajectory\+::get\+Waypoint\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 392 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_aee26ead179583530615422b05c5e2081}{}\label{classocra_1_1GaussianProcessTrajectory_aee26ead179583530615422b05c5e2081} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!initialize\+Trajectory@{initialize\+Trajectory}}
+\index{initialize\+Trajectory@{initialize\+Trajectory}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{initialize\+Trajectory()}{initializeTrajectory()}}
+{\footnotesize\ttfamily void ocra\+::\+Gaussian\+Process\+Trajectory\+::initialize\+Trajectory (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Trajectory_aa49b123abf79be71f131c138ff2a88b2}{ocra\+::\+Trajectory}.
+
+
+
+Definition at line 18 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a9bc3e80de07b90f2fc13bd8442fb7d02}{}\label{classocra_1_1GaussianProcessTrajectory_a9bc3e80de07b90f2fc13bd8442fb7d02} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!print\+Waypoint\+Data@{print\+Waypoint\+Data}}
+\index{print\+Waypoint\+Data@{print\+Waypoint\+Data}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{print\+Waypoint\+Data()}{printWaypointData()}}
+{\footnotesize\ttfamily void ocra\+::\+Gaussian\+Process\+Trajectory\+::print\+Waypoint\+Data (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 51 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a56de119b85b7646942cb85f434be7e43}{}\label{classocra_1_1GaussianProcessTrajectory_a56de119b85b7646942cb85f434be7e43} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!remove\+Waypoint@{remove\+Waypoint}}
+\index{remove\+Waypoint@{remove\+Waypoint}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{remove\+Waypoint()}{removeWaypoint()}}
+{\footnotesize\ttfamily void ocra\+::\+Gaussian\+Process\+Trajectory\+::remove\+Waypoint (\begin{DoxyParamCaption}\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Definition at line 464 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_ad7fc4b5e2163353090d6d34bd5040961}{}\label{classocra_1_1GaussianProcessTrajectory_ad7fc4b5e2163353090d6d34bd5040961} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!save\+Trajectory\+To\+File@{save\+Trajectory\+To\+File}}
+\index{save\+Trajectory\+To\+File@{save\+Trajectory\+To\+File}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{save\+Trajectory\+To\+File()}{saveTrajectoryToFile()}}
+{\footnotesize\ttfamily void ocra\+::\+Gaussian\+Process\+Trajectory\+::save\+Trajectory\+To\+File (\begin{DoxyParamCaption}\item[{const std\+::string}]{dir\+Path = {\ttfamily \char`\"{}./\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 815 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a386f928a68ec125b184d6a4f9801ab1e}{}\label{classocra_1_1GaussianProcessTrajectory_a386f928a68ec125b184d6a4f9801ab1e} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!save\+Waypoint\+Data\+To\+File@{save\+Waypoint\+Data\+To\+File}}
+\index{save\+Waypoint\+Data\+To\+File@{save\+Waypoint\+Data\+To\+File}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{save\+Waypoint\+Data\+To\+File()}{saveWaypointDataToFile()}}
+{\footnotesize\ttfamily void ocra\+::\+Gaussian\+Process\+Trajectory\+::save\+Waypoint\+Data\+To\+File (\begin{DoxyParamCaption}\item[{const std\+::string}]{dir\+Path = {\ttfamily \char`\"{}./\char`\"{}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 841 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a96001abecd8f8bb1303acc1a327a485e}{}\label{classocra_1_1GaussianProcessTrajectory_a96001abecd8f8bb1303acc1a327a485e} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!set\+Bopt\+Variables@{set\+Bopt\+Variables}}
+\index{set\+Bopt\+Variables@{set\+Bopt\+Variables}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Bopt\+Variables()}{setBoptVariables()}}
+{\footnotesize\ttfamily bool ocra\+::\+Gaussian\+Process\+Trajectory\+::set\+Bopt\+Variables (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{new\+Opt\+Variables }\end{DoxyParamCaption})}
+
+
+
+Definition at line 703 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_ade78792c6b17174f77c0e0c60d4d4755}{}\label{classocra_1_1GaussianProcessTrajectory_ade78792c6b17174f77c0e0c60d4d4755} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!set\+Dof\+To\+Optimize@{set\+Dof\+To\+Optimize}}
+\index{set\+Dof\+To\+Optimize@{set\+Dof\+To\+Optimize}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Dof\+To\+Optimize()}{setDofToOptimize()}}
+{\footnotesize\ttfamily bool ocra\+::\+Gaussian\+Process\+Trajectory\+::set\+Dof\+To\+Optimize (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Eigen\+::\+Vector\+Xi $>$ \&}]{dof\+To\+Opt\+Vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line 161 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_abdafe69c3db6d514bbe8ae5f560cf466}{}\label{classocra_1_1GaussianProcessTrajectory_abdafe69c3db6d514bbe8ae5f560cf466} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!set\+Mean\+Waypoints@{set\+Mean\+Waypoints}}
+\index{set\+Mean\+Waypoints@{set\+Mean\+Waypoints}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Mean\+Waypoints()}{setMeanWaypoints()}}
+{\footnotesize\ttfamily bool ocra\+::\+Gaussian\+Process\+Trajectory\+::set\+Mean\+Waypoints (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_afaf4559cfedb560f8d1fe9bf6a21678f}{bool\+Vector} \&}]{b\+Mean\+Vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line 87 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_a422e7c21958eded0e101ea9a0198e2f6}{}\label{classocra_1_1GaussianProcessTrajectory_a422e7c21958eded0e101ea9a0198e2f6} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!set\+Optimization\+Waypoints@{set\+Optimization\+Waypoints}}
+\index{set\+Optimization\+Waypoints@{set\+Optimization\+Waypoints}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Optimization\+Waypoints()}{setOptimizationWaypoints()}}
+{\footnotesize\ttfamily bool ocra\+::\+Gaussian\+Process\+Trajectory\+::set\+Optimization\+Waypoints (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_afaf4559cfedb560f8d1fe9bf6a21678f}{bool\+Vector} \&}]{b\+Opt\+Vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line 140 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+\hypertarget{classocra_1_1GaussianProcessTrajectory_ae41d4aadfdc7cf0da1cb5e141fdaad96}{}\label{classocra_1_1GaussianProcessTrajectory_ae41d4aadfdc7cf0da1cb5e141fdaad96} 
+\index{ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}!set\+Variance\+Waypoints@{set\+Variance\+Waypoints}}
+\index{set\+Variance\+Waypoints@{set\+Variance\+Waypoints}!ocra\+::\+Gaussian\+Process\+Trajectory@{ocra\+::\+Gaussian\+Process\+Trajectory}}
+\subsubsection{\texorpdfstring{set\+Variance\+Waypoints()}{setVarianceWaypoints()}}
+{\footnotesize\ttfamily bool ocra\+::\+Gaussian\+Process\+Trajectory\+::set\+Variance\+Waypoints (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_afaf4559cfedb560f8d1fe9bf6a21678f}{bool\+Vector} \&}]{b\+Var\+Vec }\end{DoxyParamCaption})}
+
+
+
+Definition at line 113 of file Gaussian\+Process\+Trajectory.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{GaussianProcessTrajectory_8h}{Gaussian\+Process\+Trajectory.\+h}\item 
+\hyperlink{GaussianProcessTrajectory_8cpp}{Gaussian\+Process\+Trajectory.\+cpp}\end{DoxyCompactItemize}

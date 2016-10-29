@@ -1,0 +1,541 @@
+\hypertarget{classgocra_1_1GHCJTController}{}\section{gocra\+:\+:G\+H\+C\+J\+T\+Controller Class Reference}
+\label{classgocra_1_1GHCJTController}\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+
+
+g\+Ocra Controller based on L\+QP solver for the ocra framework.  
+
+
+
+
+{\ttfamily \#include $<$G\+H\+C\+J\+T\+Controller.\+h$>$}
+
+Inheritance diagram for gocra\+:\+:G\+H\+C\+J\+T\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d6/dbf/classgocra_1_1GHCJTController}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgocra_1_1GHCJTController_a0a9898a818ddf6e52da7d63616bd73f6}{G\+H\+C\+J\+T\+Controller} (const std\+::string \&ctrl\+Name, Model \&inner\+Model, \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \&inner\+Solver, bool use\+Grav)
+\item 
+virtual \hyperlink{classgocra_1_1GHCJTController_ab20678c55e42d6f844b11e044f258e4b}{$\sim$\+G\+H\+C\+J\+T\+Controller} ()
+\item 
+Model \& \hyperlink{classgocra_1_1GHCJTController_ac687ebab107bcd79828564b0adad2e10}{get\+Model} ()
+\item 
+\hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \& \hyperlink{classgocra_1_1GHCJTController_a25b8ce2edaa3fccc38dfa81900353856}{get\+Solver} ()
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_a755394cc7a6c038f517583faa47e7f62}{take\+Into\+Account\+Gravity} (bool use\+Grav)
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_a71c44a633f39e843d97fc7f97dddfce4}{write\+Performance\+In\+Stream} (std\+::ostream \&my\+Ostream, bool add\+Comma\+At\+End) const
+\item 
+std\+::string \hyperlink{classgocra_1_1GHCJTController_add50119553cb0f5de3f5639523968939}{get\+Performances} () const
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_a04da6a1642a2f6e79c2a6cf375ff703c}{add\+Constraint} (\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{ocra\+::\+Linear\+Constraint} \&constraint) const
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_a1ca094d27af8fe35e4196647eb5aeb4e}{remove\+Constraint} (\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{ocra\+::\+Linear\+Constraint} \&constraint) const
+\item 
+\hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} \& \hyperlink{classgocra_1_1GHCJTController_a609068ec5ce8fe8afc2f8931aa116c0a}{create\+G\+H\+C\+J\+T\+Task} (const std\+::string \&name, Feature\+::\+Ptr feature, Feature\+::\+Ptr feature\+Des) const
+\item 
+\hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} \& \hyperlink{classgocra_1_1GHCJTController_a07f86a1549a1c14050b25a81c7cec210}{create\+G\+H\+C\+J\+T\+Task} (const std\+::string \&name, Feature\+::\+Ptr feature) const
+\item 
+\hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} \& \hyperlink{classgocra_1_1GHCJTController_aefa4677e1ee240157074bfc166d030c1}{create\+G\+H\+C\+J\+T\+Contact\+Task} (const std\+::string \&name, Point\+Contact\+Feature\+::\+Ptr feature, double mu, double margin) const
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_aaee75cf0731450ec268d0dbcfb3504c3}{set\+Active\+Task\+Vector} ()
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_ad15bf75052d51753ba0454e040dac8dc}{do\+Update\+Augmented\+Jacobian} ()
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_a5d54c1726d3b72f04f0a1e9cffd91bde}{do\+Update\+Projector} ()
+\item 
+std\+::vector$<$ \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} $\ast$$>$ \& \hyperlink{classgocra_1_1GHCJTController_a159c5708a2da97b1b8669a6dc586f8bf}{get\+Active\+Task} ()
+\item 
+int \hyperlink{classgocra_1_1GHCJTController_a9c72545e3995937ae9448428ccce210b}{get\+Nb\+Active\+Task} () const
+\item 
+int \hyperlink{classgocra_1_1GHCJTController_a7089de05269c8d2ded61640d3ae485b1}{get\+Total\+Active\+Task\+Dimensions} () const
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_a259208518d68271b441369d1538fe362}{init\+Priority\+Matrix} ()
+\item 
+std\+::pair$<$ Eigen\+::\+Vector\+Xd, Eigen\+::\+Matrix\+Xd $>$ \hyperlink{classgocra_1_1GHCJTController_a5ef80e1ba5c3b2d14352fe06ba7b20e4}{sort\+Rows} (const Eigen\+::\+Matrix\+Xd \&C, const Eigen\+::\+Matrix\+Xd \&J)
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_ab06ee2982ac337cdad4d11fe2a570e94}{compute\+Projector} (const Eigen\+::\+Matrix\+Xd \&C, const Eigen\+::\+Matrix\+Xd \&J, Eigen\+::\+Matrix\+Xd \&projector)
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_a7c544e46be7f415675f68f3c4fe6be93}{compute\+Taski\+Projector} (const Eigen\+::\+Matrix\+Xd \&J, Eigen\+::\+Matrix\+Xd \&projector)
+\item 
+void \hyperlink{classgocra_1_1GHCJTController_a517d7603b3506a09ec7c5ed9b22bd7a9}{set\+Task\+Projectors} (Eigen\+::\+Matrix\+Xd \&param)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classgocra_1_1GHCJTController_a0f2412763e005e9e18b9129e460411bd}{do\+Compute\+Output} (Eigen\+::\+Vector\+Xd \&tau)
+\item 
+virtual void \hyperlink{classgocra_1_1GHCJTController_a9d25d23ba6abca6870e9a435ab3d2993}{do\+Add\+Task} (\hyperlink{classocra_1_1Task}{Task} \&task)
+\item 
+virtual void \hyperlink{classgocra_1_1GHCJTController_a28367b3b895eaa223581131258ef5d2d}{do\+Add\+Contact\+Set} (const \hyperlink{classocra_1_1ContactSet}{Contact\+Set} \&contacts)
+\item 
+virtual \hyperlink{classocra_1_1Task}{Task} $\ast$ \hyperlink{classgocra_1_1GHCJTController_a989588cb4fa067230026394434c7a901}{do\+Create\+Task} (const std\+::string \&name, Feature\+::\+Ptr feature, Feature\+::\+Ptr feature\+Des) const
+\item 
+virtual \hyperlink{classocra_1_1Task}{Task} $\ast$ \hyperlink{classgocra_1_1GHCJTController_af7c9e356c0991eff488e110fa4ecea5b}{do\+Create\+Task} (const std\+::string \&name, Feature\+::\+Ptr feature) const
+\item 
+virtual \hyperlink{classocra_1_1Task}{Task} $\ast$ \hyperlink{classgocra_1_1GHCJTController_a2bee2520ee73a43496cf155eb1c77548}{do\+Create\+Contact\+Task} (const std\+::string \&name, Point\+Contact\+Feature\+::\+Ptr feature, double mu, double margin) const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+g\+Ocra Controller based on L\+QP solver for the ocra framework. 
+
+
+
+Definition at line 40 of file G\+H\+C\+J\+T\+Controller.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgocra_1_1GHCJTController_a0a9898a818ddf6e52da7d63616bd73f6}{}\label{classgocra_1_1GHCJTController_a0a9898a818ddf6e52da7d63616bd73f6} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!G\+H\+C\+J\+T\+Controller@{G\+H\+C\+J\+T\+Controller}}
+\index{G\+H\+C\+J\+T\+Controller@{G\+H\+C\+J\+T\+Controller}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{G\+H\+C\+J\+T\+Controller()}{GHCJTController()}}
+{\footnotesize\ttfamily gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+G\+H\+C\+J\+T\+Controller (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ctrl\+Name,  }\item[{Model \&}]{inner\+Model,  }\item[{\hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \&}]{inner\+Solver,  }\item[{bool}]{use\+Grav }\end{DoxyParamCaption})}
+
+Initialize G\+H\+C\+JT controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctrl\+Name} & The name of the controller \\
+\hline
+{\em inner\+Model} & The internal model of the robot one wants to control \\
+\hline
+{\em inner\+Solver} & The internal solver one wants to use to make the quadratic optimization \\
+\hline
+{\em use\+Grav} & Whether to activate gravity compensation or not \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 85 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_ab20678c55e42d6f844b11e044f258e4b}{}\label{classgocra_1_1GHCJTController_ab20678c55e42d6f844b11e044f258e4b} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!````~G\+H\+C\+J\+T\+Controller@{$\sim$\+G\+H\+C\+J\+T\+Controller}}
+\index{````~G\+H\+C\+J\+T\+Controller@{$\sim$\+G\+H\+C\+J\+T\+Controller}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{$\sim$\+G\+H\+C\+J\+T\+Controller()}{~GHCJTController()}}
+{\footnotesize\ttfamily gocra\+::\+G\+H\+C\+J\+T\+Controller\+::$\sim$\+G\+H\+C\+J\+T\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor 
+
+Definition at line 95 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgocra_1_1GHCJTController_a04da6a1642a2f6e79c2a6cf375ff703c}{}\label{classgocra_1_1GHCJTController_a04da6a1642a2f6e79c2a6cf375ff703c} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!add\+Constraint@{add\+Constraint}}
+\index{add\+Constraint@{add\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{add\+Constraint()}{addConstraint()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::add\+Constraint (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{ocra\+::\+Linear\+Constraint} \&}]{constraint }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 134 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_ab06ee2982ac337cdad4d11fe2a570e94}{}\label{classgocra_1_1GHCJTController_ab06ee2982ac337cdad4d11fe2a570e94} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!compute\+Projector@{compute\+Projector}}
+\index{compute\+Projector@{compute\+Projector}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{compute\+Projector()}{computeProjector()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::compute\+Projector (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{C,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{J,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{projector }\end{DoxyParamCaption})}
+
+
+
+Definition at line 494 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a7c544e46be7f415675f68f3c4fe6be93}{}\label{classgocra_1_1GHCJTController_a7c544e46be7f415675f68f3c4fe6be93} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!compute\+Taski\+Projector@{compute\+Taski\+Projector}}
+\index{compute\+Taski\+Projector@{compute\+Taski\+Projector}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{compute\+Taski\+Projector()}{computeTaskiProjector()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::compute\+Taski\+Projector (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{J,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{projector }\end{DoxyParamCaption})}
+
+
+
+Definition at line 532 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_aefa4677e1ee240157074bfc166d030c1}{}\label{classgocra_1_1GHCJTController_aefa4677e1ee240157074bfc166d030c1} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!create\+G\+H\+C\+J\+T\+Contact\+Task@{create\+G\+H\+C\+J\+T\+Contact\+Task}}
+\index{create\+G\+H\+C\+J\+T\+Contact\+Task@{create\+G\+H\+C\+J\+T\+Contact\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{create\+G\+H\+C\+J\+T\+Contact\+Task()}{createGHCJTContactTask()}}
+{\footnotesize\ttfamily \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} \& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::create\+G\+H\+C\+J\+T\+Contact\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Point\+Contact\+Feature\+::\+Ptr}]{feature,  }\item[{double}]{mu,  }\item[{double}]{margin }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 200 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a609068ec5ce8fe8afc2f8931aa116c0a}{}\label{classgocra_1_1GHCJTController_a609068ec5ce8fe8afc2f8931aa116c0a} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!create\+G\+H\+C\+J\+T\+Task@{create\+G\+H\+C\+J\+T\+Task}}
+\index{create\+G\+H\+C\+J\+T\+Task@{create\+G\+H\+C\+J\+T\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{create\+G\+H\+C\+J\+T\+Task()}{createGHCJTTask()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} \& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::create\+G\+H\+C\+J\+T\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Feature\+::\+Ptr}]{feature,  }\item[{Feature\+::\+Ptr}]{feature\+Des }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 188 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a07f86a1549a1c14050b25a81c7cec210}{}\label{classgocra_1_1GHCJTController_a07f86a1549a1c14050b25a81c7cec210} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!create\+G\+H\+C\+J\+T\+Task@{create\+G\+H\+C\+J\+T\+Task}}
+\index{create\+G\+H\+C\+J\+T\+Task@{create\+G\+H\+C\+J\+T\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{create\+G\+H\+C\+J\+T\+Task()}{createGHCJTTask()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} \& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::create\+G\+H\+C\+J\+T\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Feature\+::\+Ptr}]{feature }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 194 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a28367b3b895eaa223581131258ef5d2d}{}\label{classgocra_1_1GHCJTController_a28367b3b895eaa223581131258ef5d2d} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!do\+Add\+Contact\+Set@{do\+Add\+Contact\+Set}}
+\index{do\+Add\+Contact\+Set@{do\+Add\+Contact\+Set}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{do\+Add\+Contact\+Set()}{doAddContactSet()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::do\+Add\+Contact\+Set (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1ContactSet}{Contact\+Set} \&}]{contacts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Internal implementation inside the add\+Contact\+Set method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em contacts} & The contact set to add in the controller \\
+\hline
+\end{DoxyParams}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000004}{Todo}]this method has not been implemented!!! \end{DoxyRefDesc}
+
+
+Implements \hyperlink{classocra_1_1Controller_acb11edc1ceaa89423c1e58f9cb38a9f7}{ocra\+::\+Controller}.
+
+
+
+Definition at line 180 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a9d25d23ba6abca6870e9a435ab3d2993}{}\label{classgocra_1_1GHCJTController_a9d25d23ba6abca6870e9a435ab3d2993} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!do\+Add\+Task@{do\+Add\+Task}}
+\index{do\+Add\+Task@{do\+Add\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{do\+Add\+Task()}{doAddTask()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::do\+Add\+Task (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Task}{Task} \&}]{task }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Internal implementation inside the add\+Task method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task} & The task to add in the controller \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 163 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a0f2412763e005e9e18b9129e460411bd}{}\label{classgocra_1_1GHCJTController_a0f2412763e005e9e18b9129e460411bd} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!do\+Compute\+Output@{do\+Compute\+Output}}
+\index{do\+Compute\+Output@{do\+Compute\+Output}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{do\+Compute\+Output()}{doComputeOutput()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::do\+Compute\+Output (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd \&}]{tau }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Compute the output of the controller.
+
+
+\begin{DoxyParams}{Parameters}
+{\em tau} & The joint torques, which is the output of our problem\\
+\hline
+\end{DoxyParams}
+Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem $ \force_c $. The torque $ \tau $ is computed using $ \force_c $, and it is finally applied to the robot. 
+
+Implements \hyperlink{classocra_1_1Controller_a8ca85413067d948459afa5981b3dda32}{ocra\+::\+Controller}.
+
+
+
+Definition at line 272 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a2bee2520ee73a43496cf155eb1c77548}{}\label{classgocra_1_1GHCJTController_a2bee2520ee73a43496cf155eb1c77548} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!do\+Create\+Contact\+Task@{do\+Create\+Contact\+Task}}
+\index{do\+Create\+Contact\+Task@{do\+Create\+Contact\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{do\+Create\+Contact\+Task()}{doCreateContactTask()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Task}{Task} $\ast$ gocra\+::\+G\+H\+C\+J\+T\+Controller\+::do\+Create\+Contact\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Point\+Contact\+Feature\+::\+Ptr}]{feature,  }\item[{double}]{mu,  }\item[{double}]{margin }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Internal implementation inside the create\+Contact\+Task method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The task name, a unique identifier \\
+\hline
+{\em feature} & The contact point feature of the robot one wants to control \\
+\hline
+{\em mu} & The friction cone coefficient $ \mu $ such as $ \Vert \force_t \Vert < \mu \force_n $ \\
+\hline
+{\em margin} & The margin inside the friction cone \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The pointer to the new created contact task
+\end{DoxyReturn}
+This method is called by the higher level methods \#create\+G\+H\+C\+J\+T\+Contact\+Task(const std\+::string\&, Point\+Contact\+Feature\+::\+Ptr, , double, double, int, double) const and is the concrete implementation required by the xde Controller class. 
+
+Implements \hyperlink{classocra_1_1Controller_a823933d261a12aac49f8a0ef56823ea4}{ocra\+::\+Controller}.
+
+
+
+Definition at line 254 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a989588cb4fa067230026394434c7a901}{}\label{classgocra_1_1GHCJTController_a989588cb4fa067230026394434c7a901} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!do\+Create\+Task@{do\+Create\+Task}}
+\index{do\+Create\+Task@{do\+Create\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{do\+Create\+Task()}{doCreateTask()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Task}{Task} $\ast$ gocra\+::\+G\+H\+C\+J\+T\+Controller\+::do\+Create\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Feature\+::\+Ptr}]{feature,  }\item[{Feature\+::\+Ptr}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Internal implementation inside the create\+Task method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The task name, a unique identifier \\
+\hline
+{\em feature} & The part of the robot one wants to control (full state, frame, CoM,...) \\
+\hline
+{\em feature\+Des} & The desired state one wants to reach, depends on the {\itshape feature} argument \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The pointer to the new created task
+\end{DoxyReturn}
+This method is called by the higher level methods \#create\+G\+H\+C\+J\+T\+Task(const std\+::string\&, const Feature\&, const Feature\&, int, double) const and \#create\+G\+H\+C\+J\+T\+Task(const std\+::string\&, const Feature\&, int, double) const and is the concrete implementation required by the xde Controller class. 
+
+Implements \hyperlink{classocra_1_1Controller_a05f6d757e4125a71bf766df7f069ac43}{ocra\+::\+Controller}.
+
+
+
+Definition at line 220 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_af7c9e356c0991eff488e110fa4ecea5b}{}\label{classgocra_1_1GHCJTController_af7c9e356c0991eff488e110fa4ecea5b} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!do\+Create\+Task@{do\+Create\+Task}}
+\index{do\+Create\+Task@{do\+Create\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{do\+Create\+Task()}{doCreateTask()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Task}{Task} $\ast$ gocra\+::\+G\+H\+C\+J\+T\+Controller\+::do\+Create\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Feature\+::\+Ptr}]{feature }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Internal implementation inside the create\+Task method.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The task name, a unique identifier \\
+\hline
+{\em feature} & The part of the robot one wants to control (full state, frame, CoM,...) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The pointer to the new created task
+\end{DoxyReturn}
+This method is called by the higher level methods \#create\+G\+H\+C\+J\+T\+Task(const std\+::string\&, const Feature\&, const Feature\&, int, double) const and \#create\+G\+H\+C\+J\+T\+Task(const std\+::string\&, const Feature\&, int, double) const and is the concrete implementation required by the xde Controller class. 
+
+Implements \hyperlink{classocra_1_1Controller_a358a31c0b6b6bdcc0e6da5c49eb9fde5}{ocra\+::\+Controller}.
+
+
+
+Definition at line 236 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_ad15bf75052d51753ba0454e040dac8dc}{}\label{classgocra_1_1GHCJTController_ad15bf75052d51753ba0454e040dac8dc} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!do\+Update\+Augmented\+Jacobian@{do\+Update\+Augmented\+Jacobian}}
+\index{do\+Update\+Augmented\+Jacobian@{do\+Update\+Augmented\+Jacobian}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{do\+Update\+Augmented\+Jacobian()}{doUpdateAugmentedJacobian()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::do\+Update\+Augmented\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 405 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a5d54c1726d3b72f04f0a1e9cffd91bde}{}\label{classgocra_1_1GHCJTController_a5d54c1726d3b72f04f0a1e9cffd91bde} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!do\+Update\+Projector@{do\+Update\+Projector}}
+\index{do\+Update\+Projector@{do\+Update\+Projector}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{do\+Update\+Projector()}{doUpdateProjector()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::do\+Update\+Projector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 422 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a159c5708a2da97b1b8669a6dc586f8bf}{}\label{classgocra_1_1GHCJTController_a159c5708a2da97b1b8669a6dc586f8bf} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!get\+Active\+Task@{get\+Active\+Task}}
+\index{get\+Active\+Task@{get\+Active\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{get\+Active\+Task()}{getActiveTask()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} $\ast$$>$ \& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Active\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 437 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_ac687ebab107bcd79828564b0adad2e10}{}\label{classgocra_1_1GHCJTController_ac687ebab107bcd79828564b0adad2e10} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!get\+Model@{get\+Model}}
+\index{get\+Model@{get\+Model}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{get\+Model()}{getModel()}}
+{\footnotesize\ttfamily Model \& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the inner model used to construct this controller instance 
+\end{DoxyReturn}
+
+
+Definition at line 113 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a9c72545e3995937ae9448428ccce210b}{}\label{classgocra_1_1GHCJTController_a9c72545e3995937ae9448428ccce210b} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!get\+Nb\+Active\+Task@{get\+Nb\+Active\+Task}}
+\index{get\+Nb\+Active\+Task@{get\+Nb\+Active\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{get\+Nb\+Active\+Task()}{getNbActiveTask()}}
+{\footnotesize\ttfamily int gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Nb\+Active\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 442 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_add50119553cb0f5de3f5639523968939}{}\label{classgocra_1_1GHCJTController_add50119553cb0f5de3f5639523968939} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!get\+Performances@{get\+Performances}}
+\index{get\+Performances@{get\+Performances}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{get\+Performances()}{getPerformances()}}
+{\footnotesize\ttfamily std\+::string gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Performances (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get information about performances through a string.
+
+Information are saved in a J\+S\+ON way (\href{http://www.json.org/}{\tt http\+://www.\+json.\+org/}). It returns a of dictionnary on the form\+:
+
+
+\begin{DoxyCode}
+\{
+   \textcolor{stringliteral}{"performance\_info\_1"}: [0.01, 0.02, 0.01, ... , 0.03, 0.01],
+   ...
+   \textcolor{stringliteral}{"performance\_info\_n"}: [0.01, 0.02, 0.01, ... , 0.03, 0.01]
+\}
+\end{DoxyCode}
+
+
+where performance\+\_\+info are\+:
+
+
+\begin{DoxyItemize}
+\item controller\+\_\+update\+\_\+tasks
+\item controller\+\_\+solve\+\_\+problem
+\item solver\+\_\+prepare
+\item solver\+\_\+solve
+\end{DoxyItemize}
+
+See gocra\+::\+G\+H\+C\+J\+T\+Controller\+::write\+Performance\+In\+Stream(std\+::ostream\&, bool) and gocra\+::ocra\+::\+One\+Level\+Solver\+::write\+Performance\+In\+Stream(std\+::ostream\&, bool). 
+
+Definition at line 371 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a25b8ce2edaa3fccc38dfa81900353856}{}\label{classgocra_1_1GHCJTController_a25b8ce2edaa3fccc38dfa81900353856} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!get\+Solver@{get\+Solver}}
+\index{get\+Solver@{get\+Solver}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{get\+Solver()}{getSolver()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Solver (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the inner solver used to construct this controller instance 
+\end{DoxyReturn}
+
+
+Definition at line 121 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a7089de05269c8d2ded61640d3ae485b1}{}\label{classgocra_1_1GHCJTController_a7089de05269c8d2ded61640d3ae485b1} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!get\+Total\+Active\+Task\+Dimensions@{get\+Total\+Active\+Task\+Dimensions}}
+\index{get\+Total\+Active\+Task\+Dimensions@{get\+Total\+Active\+Task\+Dimensions}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{get\+Total\+Active\+Task\+Dimensions()}{getTotalActiveTaskDimensions()}}
+{\footnotesize\ttfamily int gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Total\+Active\+Task\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 447 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a259208518d68271b441369d1538fe362}{}\label{classgocra_1_1GHCJTController_a259208518d68271b441369d1538fe362} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!init\+Priority\+Matrix@{init\+Priority\+Matrix}}
+\index{init\+Priority\+Matrix@{init\+Priority\+Matrix}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{init\+Priority\+Matrix()}{initPriorityMatrix()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::init\+Priority\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 452 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a1ca094d27af8fe35e4196647eb5aeb4e}{}\label{classgocra_1_1GHCJTController_a1ca094d27af8fe35e4196647eb5aeb4e} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!remove\+Constraint@{remove\+Constraint}}
+\index{remove\+Constraint@{remove\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{remove\+Constraint()}{removeConstraint()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::remove\+Constraint (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_ae8b87cf4099be3efc3b410019ad2046e}{ocra\+::\+Linear\+Constraint} \&}]{constraint }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 140 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_aaee75cf0731450ec268d0dbcfb3504c3}{}\label{classgocra_1_1GHCJTController_aaee75cf0731450ec268d0dbcfb3504c3} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!set\+Active\+Task\+Vector@{set\+Active\+Task\+Vector}}
+\index{set\+Active\+Task\+Vector@{set\+Active\+Task\+Vector}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{set\+Active\+Task\+Vector()}{setActiveTaskVector()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::set\+Active\+Task\+Vector (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 381 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a517d7603b3506a09ec7c5ed9b22bd7a9}{}\label{classgocra_1_1GHCJTController_a517d7603b3506a09ec7c5ed9b22bd7a9} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!set\+Task\+Projectors@{set\+Task\+Projectors}}
+\index{set\+Task\+Projectors@{set\+Task\+Projectors}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{set\+Task\+Projectors()}{setTaskProjectors()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::set\+Task\+Projectors (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd \&}]{param }\end{DoxyParamCaption})}
+
+
+
+Definition at line 544 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a5ef80e1ba5c3b2d14352fe06ba7b20e4}{}\label{classgocra_1_1GHCJTController_a5ef80e1ba5c3b2d14352fe06ba7b20e4} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!sort\+Rows@{sort\+Rows}}
+\index{sort\+Rows@{sort\+Rows}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{sort\+Rows()}{sortRows()}}
+{\footnotesize\ttfamily std\+::pair$<$ Vector\+Xd, Matrix\+Xd $>$ gocra\+::\+G\+H\+C\+J\+T\+Controller\+::sort\+Rows (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{C,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{J }\end{DoxyParamCaption})}
+
+
+
+Definition at line 467 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a755394cc7a6c038f517583faa47e7f62}{}\label{classgocra_1_1GHCJTController_a755394cc7a6c038f517583faa47e7f62} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!take\+Into\+Account\+Gravity@{take\+Into\+Account\+Gravity}}
+\index{take\+Into\+Account\+Gravity@{take\+Into\+Account\+Gravity}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{take\+Into\+Account\+Gravity()}{takeIntoAccountGravity()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::take\+Into\+Account\+Gravity (\begin{DoxyParamCaption}\item[{bool}]{use\+Grav }\end{DoxyParamCaption})}
+
+
+
+Definition at line 127 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{classgocra_1_1GHCJTController_a71c44a633f39e843d97fc7f97dddfce4}{}\label{classgocra_1_1GHCJTController_a71c44a633f39e843d97fc7f97dddfce4} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!write\+Performance\+In\+Stream@{write\+Performance\+In\+Stream}}
+\index{write\+Performance\+In\+Stream@{write\+Performance\+In\+Stream}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
+\subsubsection{\texorpdfstring{write\+Performance\+In\+Stream()}{writePerformanceInStream()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Controller\+::write\+Performance\+In\+Stream (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{outstream,  }\item[{bool}]{add\+Comma\+At\+End }\end{DoxyParamCaption}) const}
+
+Write information about controller performances in a string stream.
+
+
+\begin{DoxyParams}{Parameters}
+{\em outstream} & the output stream where to write the performances information \\
+\hline
+{\em add\+Comma\+At\+End} & If true, add a comma at the end of the stream. If false, it means that this is the end of the json file, nothing will be added after that, no comma is added.\\
+\hline
+\end{DoxyParams}
+See \hyperlink{classgocra_1_1GHCJTController_add50119553cb0f5de3f5639523968939}{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Performances()} to know more. Here it saves\+:
+
+
+\begin{DoxyItemize}
+\item controller\+\_\+update\+\_\+tasks
+\item controller\+\_\+solve\+\_\+problem 
+\end{DoxyItemize}
+
+Definition at line 341 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{GHCJTController_8h}{G\+H\+C\+J\+T\+Controller.\+h}\item 
+\hyperlink{GHCJTController_8cpp}{G\+H\+C\+J\+T\+Controller.\+cpp}\end{DoxyCompactItemize}

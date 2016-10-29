@@ -1,0 +1,208 @@
+\hypertarget{classocra_1_1TaskBuilder}{}\section{ocra\+:\+:Task\+Builder Class Reference}
+\label{classocra_1_1TaskBuilder}\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+
+
+{\ttfamily \#include $<$Task\+Builder.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Task\+Builder\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.812183cm]{d6/d6a/classocra_1_1TaskBuilder}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1TaskBuilder_a47da2d3a4f793620895f5eda79ea80f6}{Task\+Builder} (const \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} \&task\+Options, Model\+::\+Ptr model\+Ptr)
+\item 
+virtual \hyperlink{classocra_1_1TaskBuilder_ac4a6e94f7e39db652819ebbd99e2a334}{$\sim$\+Task\+Builder} ()
+\item 
+void \hyperlink{classocra_1_1TaskBuilder_a84109a9bca0da0b2f7220b183e7d032d}{build\+Task} ()
+\item 
+Task\+::\+Ptr \hyperlink{classocra_1_1TaskBuilder_a31a863f23c736bcfa9f1f4c5e24d4859}{get\+Task} ()
+\item 
+void \hyperlink{classocra_1_1TaskBuilder_a646ca4a01affbb2aa82cfdde32e8be66}{set\+Task\+Parameters} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1TaskBuilder_a1a979fc495be6dc30483aa8fd0ff2650}{set\+Task\+Type} ()=0
+\item 
+virtual void \hyperlink{classocra_1_1TaskBuilder_a7b44bfa101566ea4400e2d9bfdb9ff32}{set\+Task\+State} ()=0
+\item 
+virtual Feature\+::\+Ptr \hyperlink{classocra_1_1TaskBuilder_a58c0dc416a9607a344a080248ee26ac2}{build\+Feature} ()=0
+\item 
+virtual Feature\+::\+Ptr \hyperlink{classocra_1_1TaskBuilder_a7a2c8bcc5d95160d0e48806a2648f1a5}{build\+Feature\+Desired} ()=0
+\item 
+virtual void \hyperlink{classocra_1_1TaskBuilder_a9e7588983e3adf7f706d122a75e84d05}{set\+Task\+As\+Objective\+Or\+Constraint} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Task\+::\+Ptr \hyperlink{classocra_1_1TaskBuilder_ad3f099d23545d5d55d55ac2cf3d93b4d}{task}
+\item 
+Model\+::\+Ptr \hyperlink{classocra_1_1TaskBuilder_af612ab3b2881a7d472efabb650b23caf}{model}
+\item 
+\hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} \hyperlink{classocra_1_1TaskBuilder_a93ad03ab72579612f7ec5fe57b5df145}{options}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 15 of file Task\+Builder.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1TaskBuilder_a47da2d3a4f793620895f5eda79ea80f6}{}\label{classocra_1_1TaskBuilder_a47da2d3a4f793620895f5eda79ea80f6} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!Task\+Builder@{Task\+Builder}}
+\index{Task\+Builder@{Task\+Builder}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{Task\+Builder()}{TaskBuilder()}}
+{\footnotesize\ttfamily Task\+Builder\+::\+Task\+Builder (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} \&}]{task\+Options,  }\item[{Model\+::\+Ptr}]{model\+Ptr }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file Task\+Builder.\+cpp.
+
+\hypertarget{classocra_1_1TaskBuilder_ac4a6e94f7e39db652819ebbd99e2a334}{}\label{classocra_1_1TaskBuilder_ac4a6e94f7e39db652819ebbd99e2a334} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!````~Task\+Builder@{$\sim$\+Task\+Builder}}
+\index{````~Task\+Builder@{$\sim$\+Task\+Builder}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{$\sim$\+Task\+Builder()}{~TaskBuilder()}}
+{\footnotesize\ttfamily Task\+Builder\+::$\sim$\+Task\+Builder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 13 of file Task\+Builder.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1TaskBuilder_a58c0dc416a9607a344a080248ee26ac2}{}\label{classocra_1_1TaskBuilder_a58c0dc416a9607a344a080248ee26ac2} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!build\+Feature@{build\+Feature}}
+\index{build\+Feature@{build\+Feature}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{build\+Feature()}{buildFeature()}}
+{\footnotesize\ttfamily virtual Feature\+::\+Ptr ocra\+::\+Task\+Builder\+::build\+Feature (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1PoseTaskBuilder_a9a5cd51010fb610f00eea794e1f8f701}{ocra\+::\+Pose\+Task\+Builder}, \hyperlink{classocra_1_1CartesianTaskBuilder_a58c8e4a299db03180c058eefcd711052}{ocra\+::\+Cartesian\+Task\+Builder}, \hyperlink{classocra_1_1ComTaskBuilder_aa4e0d21159da91788a1d2806ddca84da}{ocra\+::\+Com\+Task\+Builder}, \hyperlink{classocra_1_1FullPostureTaskBuilder_a7651ca4fd2ef7c8096a399b128981122}{ocra\+::\+Full\+Posture\+Task\+Builder}, \hyperlink{classocra_1_1OrientationTaskBuilder_a38d5badfcdbcdbc745f305e38af8b737}{ocra\+::\+Orientation\+Task\+Builder}, \hyperlink{classocra_1_1PartialPostureTaskBuilder_ab4a80855ccc820bbeabf4eed87487784}{ocra\+::\+Partial\+Posture\+Task\+Builder}, and \hyperlink{classocra_1_1PointContactTaskBuilder_a220c35d105a88cd0e2407779ab1556f2}{ocra\+::\+Point\+Contact\+Task\+Builder}.
+
+\hypertarget{classocra_1_1TaskBuilder_a7a2c8bcc5d95160d0e48806a2648f1a5}{}\label{classocra_1_1TaskBuilder_a7a2c8bcc5d95160d0e48806a2648f1a5} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!build\+Feature\+Desired@{build\+Feature\+Desired}}
+\index{build\+Feature\+Desired@{build\+Feature\+Desired}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{build\+Feature\+Desired()}{buildFeatureDesired()}}
+{\footnotesize\ttfamily virtual Feature\+::\+Ptr ocra\+::\+Task\+Builder\+::build\+Feature\+Desired (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1PoseTaskBuilder_a66fa4cdba48138741e19e642684a7006}{ocra\+::\+Pose\+Task\+Builder}, \hyperlink{classocra_1_1CartesianTaskBuilder_a308b204435c4063991d8101c0a8c512c}{ocra\+::\+Cartesian\+Task\+Builder}, \hyperlink{classocra_1_1ComTaskBuilder_abdd4c74539a37ff4c719c0ac78812bf4}{ocra\+::\+Com\+Task\+Builder}, \hyperlink{classocra_1_1FullPostureTaskBuilder_ac9ea83ee3f872995c6dc214e91fc28a0}{ocra\+::\+Full\+Posture\+Task\+Builder}, \hyperlink{classocra_1_1OrientationTaskBuilder_af5f11bdd9c43cb52e29054c6b293d533}{ocra\+::\+Orientation\+Task\+Builder}, \hyperlink{classocra_1_1PartialPostureTaskBuilder_a1a853459b32e838d04205459c608f5b2}{ocra\+::\+Partial\+Posture\+Task\+Builder}, and \hyperlink{classocra_1_1PointContactTaskBuilder_a253f8fffbd548b63badee23e2c42eb95}{ocra\+::\+Point\+Contact\+Task\+Builder}.
+
+\hypertarget{classocra_1_1TaskBuilder_a84109a9bca0da0b2f7220b183e7d032d}{}\label{classocra_1_1TaskBuilder_a84109a9bca0da0b2f7220b183e7d032d} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!build\+Task@{build\+Task}}
+\index{build\+Task@{build\+Task}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{build\+Task()}{buildTask()}}
+{\footnotesize\ttfamily void Task\+Builder\+::build\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Defines a feature and a desired feature of type \hyperlink{classocra_1_1Feature}{ocra\+::\+Feature} and consequently instantiates the corresponding task. The way a feature is built depends on the implementation (e.\+g. \hyperlink{classocra_1_1FullPostureTaskBuilder_a7651ca4fd2ef7c8096a399b128981122}{Full\+Posture\+Task\+Builder\+::build\+Feature}) written for each task-\/specific \hyperlink{classocra_1_1TaskBuilder}{Task\+Builder}. 
+
+Definition at line 18 of file Task\+Builder.\+cpp.
+
+\hypertarget{classocra_1_1TaskBuilder_a31a863f23c736bcfa9f1f4c5e24d4859}{}\label{classocra_1_1TaskBuilder_a31a863f23c736bcfa9f1f4c5e24d4859} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!get\+Task@{get\+Task}}
+\index{get\+Task@{get\+Task}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{get\+Task()}{getTask()}}
+{\footnotesize\ttfamily Task\+::\+Ptr Task\+Builder\+::get\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Returns a pointer to the task associated to the \hyperlink{classocra_1_1TaskBuilder}{Task\+Builder}.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the task contained in the \hyperlink{classocra_1_1TaskBuilder}{Task\+Builder} object. 
+\end{DoxyReturn}
+
+
+Definition at line 34 of file Task\+Builder.\+cpp.
+
+\hypertarget{classocra_1_1TaskBuilder_a9e7588983e3adf7f706d122a75e84d05}{}\label{classocra_1_1TaskBuilder_a9e7588983e3adf7f706d122a75e84d05} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!set\+Task\+As\+Objective\+Or\+Constraint@{set\+Task\+As\+Objective\+Or\+Constraint}}
+\index{set\+Task\+As\+Objective\+Or\+Constraint@{set\+Task\+As\+Objective\+Or\+Constraint}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{set\+Task\+As\+Objective\+Or\+Constraint()}{setTaskAsObjectiveOrConstraint()}}
+{\footnotesize\ttfamily void Task\+Builder\+::set\+Task\+As\+Objective\+Or\+Constraint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+This function is overloaded for cases where the task should be treated as a constraint and not as an objective. If not overloaded the base class implementation will be called and set the task to an objective. 
+
+Reimplemented in \hyperlink{classocra_1_1PointContactTaskBuilder_a729f50dc73c00accb86a9480cb3054fd}{ocra\+::\+Point\+Contact\+Task\+Builder}.
+
+
+
+Definition at line 52 of file Task\+Builder.\+cpp.
+
+\hypertarget{classocra_1_1TaskBuilder_a646ca4a01affbb2aa82cfdde32e8be66}{}\label{classocra_1_1TaskBuilder_a646ca4a01affbb2aa82cfdde32e8be66} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!set\+Task\+Parameters@{set\+Task\+Parameters}}
+\index{set\+Task\+Parameters@{set\+Task\+Parameters}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{set\+Task\+Parameters()}{setTaskParameters()}}
+{\footnotesize\ttfamily void Task\+Builder\+::set\+Task\+Parameters (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+First sets a specific task as objective or constraint, its task level, weight, stiffness, damping and the task state (which is specific to the type of task. This information comes naturally from the task builder options passed during the construction of a \hyperlink{classocra_1_1TaskBuilder}{Task\+Builder}. 
+
+Definition at line 39 of file Task\+Builder.\+cpp.
+
+\hypertarget{classocra_1_1TaskBuilder_a7b44bfa101566ea4400e2d9bfdb9ff32}{}\label{classocra_1_1TaskBuilder_a7b44bfa101566ea4400e2d9bfdb9ff32} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!set\+Task\+State@{set\+Task\+State}}
+\index{set\+Task\+State@{set\+Task\+State}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{set\+Task\+State()}{setTaskState()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Task\+Builder\+::set\+Task\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1PoseTaskBuilder_a3bc6c07a3ee7656a1f3051500baddbd8}{ocra\+::\+Pose\+Task\+Builder}, \hyperlink{classocra_1_1CartesianTaskBuilder_a9e3175e5792c5ed9a7e3febbe458d21c}{ocra\+::\+Cartesian\+Task\+Builder}, \hyperlink{classocra_1_1ComTaskBuilder_ab514d4644f7dfeec3ae84a5b0b8bbc34}{ocra\+::\+Com\+Task\+Builder}, \hyperlink{classocra_1_1FullPostureTaskBuilder_a0f3852057b316baa402806fb320d257b}{ocra\+::\+Full\+Posture\+Task\+Builder}, \hyperlink{classocra_1_1OrientationTaskBuilder_ab30b211f4aa00ed4c78daae36aca6c42}{ocra\+::\+Orientation\+Task\+Builder}, \hyperlink{classocra_1_1PartialPostureTaskBuilder_a70b416b1666a772940d96338a317af0a}{ocra\+::\+Partial\+Posture\+Task\+Builder}, and \hyperlink{classocra_1_1PointContactTaskBuilder_a073506c0c849ad4ebd40aebef37f280d}{ocra\+::\+Point\+Contact\+Task\+Builder}.
+
+\hypertarget{classocra_1_1TaskBuilder_a1a979fc495be6dc30483aa8fd0ff2650}{}\label{classocra_1_1TaskBuilder_a1a979fc495be6dc30483aa8fd0ff2650} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!set\+Task\+Type@{set\+Task\+Type}}
+\index{set\+Task\+Type@{set\+Task\+Type}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{set\+Task\+Type()}{setTaskType()}}
+{\footnotesize\ttfamily virtual void ocra\+::\+Task\+Builder\+::set\+Task\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1PoseTaskBuilder_aafc5b611352f7cbebecaa51cf534c68c}{ocra\+::\+Pose\+Task\+Builder}, \hyperlink{classocra_1_1CartesianTaskBuilder_a679842b95d6f7296a466636fd21bbbb8}{ocra\+::\+Cartesian\+Task\+Builder}, \hyperlink{classocra_1_1ComTaskBuilder_af9cfac995156297324ccbee1900f891c}{ocra\+::\+Com\+Task\+Builder}, \hyperlink{classocra_1_1FullPostureTaskBuilder_a5bae08175fd730b46004ddfccc9a1d8b}{ocra\+::\+Full\+Posture\+Task\+Builder}, \hyperlink{classocra_1_1OrientationTaskBuilder_a491f3d3db66afb5b5e3230983b4b15c9}{ocra\+::\+Orientation\+Task\+Builder}, \hyperlink{classocra_1_1PartialPostureTaskBuilder_acf2b5f880dc19e43356552b348d8a010}{ocra\+::\+Partial\+Posture\+Task\+Builder}, and \hyperlink{classocra_1_1PointContactTaskBuilder_a88d7c619f00708c1b3472ee7dc373f96}{ocra\+::\+Point\+Contact\+Task\+Builder}.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1TaskBuilder_af612ab3b2881a7d472efabb650b23caf}{}\label{classocra_1_1TaskBuilder_af612ab3b2881a7d472efabb650b23caf} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!model@{model}}
+\index{model@{model}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily Model\+::\+Ptr ocra\+::\+Task\+Builder\+::model\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 20 of file Task\+Builder.\+h.
+
+\hypertarget{classocra_1_1TaskBuilder_a93ad03ab72579612f7ec5fe57b5df145}{}\label{classocra_1_1TaskBuilder_a93ad03ab72579612f7ec5fe57b5df145} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!options@{options}}
+\index{options@{options}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{options}{options}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1TaskBuilderOptions}{Task\+Builder\+Options} ocra\+::\+Task\+Builder\+::options\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 21 of file Task\+Builder.\+h.
+
+\hypertarget{classocra_1_1TaskBuilder_ad3f099d23545d5d55d55ac2cf3d93b4d}{}\label{classocra_1_1TaskBuilder_ad3f099d23545d5d55d55ac2cf3d93b4d} 
+\index{ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}!task@{task}}
+\index{task@{task}!ocra\+::\+Task\+Builder@{ocra\+::\+Task\+Builder}}
+\subsubsection{\texorpdfstring{task}{task}}
+{\footnotesize\ttfamily Task\+::\+Ptr ocra\+::\+Task\+Builder\+::task\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 19 of file Task\+Builder.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TaskBuilder_8h}{Task\+Builder.\+h}\item 
+\hyperlink{TaskBuilder_8cpp}{Task\+Builder.\+cpp}\end{DoxyCompactItemize}

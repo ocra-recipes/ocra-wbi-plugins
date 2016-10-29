@@ -1,0 +1,39 @@
+\hypertarget{WocraController_8h}{}\section{Wocra\+Controller.\+h File Reference}
+\label{WocraController_8h}\index{Wocra\+Controller.\+h@{Wocra\+Controller.\+h}}
+
+
+Define the L\+Q\+P-\/based controller developped during my PhD thesis with ocra framework.  
+
+
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$memory$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Controller.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Model.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+One\+Level\+Solver.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Task.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Control\+Constraint.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Joint\+Limit\+Constraint.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Torque\+Limit\+Constraint.\+h\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classwocra_1_1WocraController}{wocra\+::\+Wocra\+Controller}
+\begin{DoxyCompactList}\small\item\em Wocra Controller based on L\+QP solver for the ocra framework. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespacewocra}{wocra}
+\begin{DoxyCompactList}\small\item\em Contains all the abstract \& concrete classes for robotic control with optimization, based on the ocra framework. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Define the L\+Q\+P-\/based controller developped during my PhD thesis with ocra framework. 
+
+\begin{DoxyAuthor}{Author}
+Joseph Salini
+\end{DoxyAuthor}
+The L\+Q\+P-\/base controller is explained in my thesis available here\+: \href{http://hal.archives-ouvertes.fr/tel-00710013/}{\tt http\+://hal.\+archives-\/ouvertes.\+fr/tel-\/00710013/} .
+
+Based on a dynamic model of the robot, we have to define tasks and constraints to properly control the system. 

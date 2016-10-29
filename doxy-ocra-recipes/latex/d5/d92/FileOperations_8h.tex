@@ -1,0 +1,44 @@
+\hypertarget{FileOperations_8h}{}\section{File\+Operations.\+h File Reference}
+\label{FileOperations_8h}\index{File\+Operations.\+h@{File\+Operations.\+h}}
+
+
+Some File\+Operations function for debbuging purpose.  
+
+
+{\ttfamily \#include $<$ocra/util/\+Math\+Types.\+h$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceocra_1_1utils}{ocra\+::utils}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Derived $>$ }\\void \hyperlink{namespaceocra_1_1utils_a3f12986cd4d4a40293f6003d9a86a45c}{ocra\+::utils\+::write\+In\+File} (const Matrix\+Base$<$ Derived $>$ \&m, const std\+::string \&file\+Name, bool app=false)
+\item 
+{\footnotesize template$<$class Derived $>$ }\\std\+::ostream \& \hyperlink{namespaceocra_1_1utils_ac3e209e5a700c28cc6e38d79113017f2}{ocra\+::utils\+::write\+In\+File} (std\+::ostream \&s, const Matrix\+Base$<$ Derived $>$ \&m, int precision=-\/1, const std\+::string \&coeff\+Separator=\char`\"{} \char`\"{}, const std\+::string \&row\+Separator=\char`\"{}\textbackslash{}, const std\+::string \&row\+Prefix=\char`\"{}\char`\"{}, const std\+::string \&row\+Suffix=\char`\"{}\char`\"{}, const std\+::string \&mat\+Prefix=\char`\"{}\char`\"{}, const std\+::string \&mat\+Suffix=\char`\"{}\char`\"{})
+\item 
+{\footnotesize template$<$class Derived $>$ }\\std\+::ostream \& \hyperlink{namespaceocra_1_1utils_af94bc08a67cf20092611bb37f4528b28}{ocra\+::utils\+::write\+In\+File} (std\+::ostream \&s, const Matrix\+Base$<$ Derived $>$ \&v, int precision=-\/1, const std\+::string \&coeff\+Separator=\char`\"{} \char`\"{}, const std\+::string \&vect\+Prefix=\char`\"{}\char`\"{}, const std\+::string \&vect\+Suffix=\char`\"{}\char`\"{})
+\item 
+{\footnotesize template$<$class Derived $>$ }\\std\+::ostream \& \hyperlink{namespaceocra_1_1utils_a11933c4ad5ae5b9bdce3005941bdd433}{ocra\+::utils\+::write\+In\+File\+For\+Scilab} (std\+::ostream \&s, const Matrix\+Base$<$ Derived $>$ \&m, int precision=-\/1)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Some File\+Operations function for debbuging purpose. 
+
+Copyright (C) 2009 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+T\+S\+I/\+S\+R\+CI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+
+Brisset Julien 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+09.\+07.\+17 
+\end{DoxyDate}

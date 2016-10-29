@@ -1,0 +1,256 @@
+\hypertarget{classocra_1_1SecondOrderLinearTask}{}\section{ocra\+:\+:Second\+Order\+Linear\+Task Class Reference}
+\label{classocra_1_1SecondOrderLinearTask}\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+
+
+Second\+Order\+Linear\+Task class.  
+
+
+
+
+{\ttfamily \#include $<$Second\+Order\+Linear\+Task.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Second\+Order\+Linear\+Task\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{dd/dda/classocra_1_1SecondOrderLinearTask}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1SecondOrderLinearTask_aa4843b0b2ad21ecba7decb2be86c6214}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1SecondOrderLinearTask_ac54c18fe5d5ba11cfc728361a8ab86eb}{Second\+Order\+Linear\+Task} (\hyperlink{classocra_1_1Function}{Function} \&f, \hyperlink{classocra_1_1Function}{Function} \&L)
+\item 
+\hyperlink{classocra_1_1SecondOrderLinearTask_a9d27ffc898ce40ba091c59fd3e4bea6e}{$\sim$\+Second\+Order\+Linear\+Task} ()
+\item 
+\hyperlink{classocra_1_1Function}{Function} \& \hyperlink{classocra_1_1SecondOrderLinearTask_a626defc13e1da5ae7b340b9e8591c840}{getL} ()
+\item 
+const \hyperlink{classocra_1_1Function}{Function} \& \hyperlink{classocra_1_1SecondOrderLinearTask_ac0b4bce5cc4bb7648c7585750c3bebbb}{getL} () const
+\item 
+\hyperlink{classocra_1_1Function}{Function} \& \hyperlink{classocra_1_1SecondOrderLinearTask_ac370b605ace05a35f3a5f68a49439c2d}{getf} ()
+\item 
+const \hyperlink{classocra_1_1Function}{Function} \& \hyperlink{classocra_1_1SecondOrderLinearTask_a3493f2c47a42df1be0de33a4b7f473ac}{getf} () const
+\item 
+void \hyperlink{classocra_1_1SecondOrderLinearTask_ad49dff8c7451d4753126328d3a47e4ba}{saturate} (double acceleration\+Max)
+\item 
+void \hyperlink{classocra_1_1SecondOrderLinearTask_a8e155a518199e0ae1b8eca4915d46420}{dont\+Saturate} ()
+\item 
+double \hyperlink{classocra_1_1SecondOrderLinearTask_ab36774d979e6930e5bb56bb9fe913667}{get\+Saturation\+Value} (void) const
+\item 
+bool \hyperlink{classocra_1_1SecondOrderLinearTask_a4f688efc6873334cfac467edd4fe4481}{is\+Saturated} () const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classocra_1_1SecondOrderLinearTask}{Second\+Order\+Linear\+Task} $\ast$ \hyperlink{classocra_1_1SecondOrderLinearTask_a9d9b45129ef6c513cf67bc55c33aae05}{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, double weight0, double weight1)
+\item 
+static \hyperlink{classocra_1_1SecondOrderLinearTask}{Second\+Order\+Linear\+Task} $\ast$ \hyperlink{classocra_1_1SecondOrderLinearTask_a3320983d1930ac8b049116b186d17dd1}{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, const Vector\+Xd \&weight0, const Vector\+Xd \&weight1)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1SecondOrderLinearTask_a55c45007880f6ba1936bc9b4601dc58e}{\+\_\+f}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1SecondOrderLinearTask_a386a6daf02add8b19a69e1aa411c63af}{\+\_\+L}
+\item 
+bool \hyperlink{classocra_1_1SecondOrderLinearTask_a0d433a32e0892bdf98d3b15325b6917e}{\+\_\+saturate}
+\item 
+double \hyperlink{classocra_1_1SecondOrderLinearTask_aec8499eb3b78b46a1170d43f427a53a9}{\+\_\+acceleration\+Max}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Second\+Order\+Linear\+Task class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+f" = a\+\_\+des where a\+\_\+des = L(f,f\textquotesingle{}). L must then be a function over a composite variable whose two components\textquotesingle{} size is dim(f) 
+
+Definition at line 33 of file Second\+Order\+Linear\+Task.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1SecondOrderLinearTask_aa4843b0b2ad21ecba7decb2be86c6214}{}\label{classocra_1_1SecondOrderLinearTask_aa4843b0b2ad21ecba7decb2be86c6214} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1SecondOrderLinearTask_aa4843b0b2ad21ecba7decb2be86c6214}{ocra\+::\+Second\+Order\+Linear\+Task\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 37 of file Second\+Order\+Linear\+Task.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1SecondOrderLinearTask_ac54c18fe5d5ba11cfc728361a8ab86eb}{}\label{classocra_1_1SecondOrderLinearTask_ac54c18fe5d5ba11cfc728361a8ab86eb} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!Second\+Order\+Linear\+Task@{Second\+Order\+Linear\+Task}}
+\index{Second\+Order\+Linear\+Task@{Second\+Order\+Linear\+Task}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{Second\+Order\+Linear\+Task()}{SecondOrderLinearTask()}}
+{\footnotesize\ttfamily ocra\+::\+Second\+Order\+Linear\+Task\+::\+Second\+Order\+Linear\+Task (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} \&}]{f,  }\item[{\hyperlink{classocra_1_1Function}{Function} \&}]{L }\end{DoxyParamCaption})}
+
+
+
+Definition at line 8 of file Second\+Order\+Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a9d27ffc898ce40ba091c59fd3e4bea6e}{}\label{classocra_1_1SecondOrderLinearTask_a9d27ffc898ce40ba091c59fd3e4bea6e} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!````~Second\+Order\+Linear\+Task@{$\sim$\+Second\+Order\+Linear\+Task}}
+\index{````~Second\+Order\+Linear\+Task@{$\sim$\+Second\+Order\+Linear\+Task}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{$\sim$\+Second\+Order\+Linear\+Task()}{~SecondOrderLinearTask()}}
+{\footnotesize\ttfamily ocra\+::\+Second\+Order\+Linear\+Task\+::$\sim$\+Second\+Order\+Linear\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 33 of file Second\+Order\+Linear\+Task.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1SecondOrderLinearTask_a9d9b45129ef6c513cf67bc55c33aae05}{}\label{classocra_1_1SecondOrderLinearTask_a9d9b45129ef6c513cf67bc55c33aae05} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law@{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law}}
+\index{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law@{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law()}{createSecondOrderLinearTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1SecondOrderLinearTask}{Second\+Order\+Linear\+Task} $\ast$ ocra\+::\+Second\+Order\+Linear\+Task\+::create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{double}]{weight0,  }\item[{double}]{weight1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 70 of file Second\+Order\+Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a3320983d1930ac8b049116b186d17dd1}{}\label{classocra_1_1SecondOrderLinearTask_a3320983d1930ac8b049116b186d17dd1} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law@{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law}}
+\index{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law@{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law()}{createSecondOrderLinearTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1SecondOrderLinearTask}{Second\+Order\+Linear\+Task} $\ast$ ocra\+::\+Second\+Order\+Linear\+Task\+::create\+Second\+Order\+Linear\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{const Vector\+Xd \&}]{weight0,  }\item[{const Vector\+Xd \&}]{weight1 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 80 of file Second\+Order\+Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a8e155a518199e0ae1b8eca4915d46420}{}\label{classocra_1_1SecondOrderLinearTask_a8e155a518199e0ae1b8eca4915d46420} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!dont\+Saturate@{dont\+Saturate}}
+\index{dont\+Saturate@{dont\+Saturate}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{dont\+Saturate()}{dontSaturate()}}
+{\footnotesize\ttfamily void ocra\+::\+Second\+Order\+Linear\+Task\+::dont\+Saturate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 56 of file Second\+Order\+Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_ac370b605ace05a35f3a5f68a49439c2d}{}\label{classocra_1_1SecondOrderLinearTask_ac370b605ace05a35f3a5f68a49439c2d} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!getf@{getf}}
+\index{getf@{getf}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{getf()}{getf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Function}{Function} \& ocra\+::\+Second\+Order\+Linear\+Task\+::getf (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 95 of file Second\+Order\+Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a3493f2c47a42df1be0de33a4b7f473ac}{}\label{classocra_1_1SecondOrderLinearTask_a3493f2c47a42df1be0de33a4b7f473ac} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!getf@{getf}}
+\index{getf@{getf}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{getf()}{getf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Function}{Function}\& ocra\+::\+Second\+Order\+Linear\+Task\+::getf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a626defc13e1da5ae7b340b9e8591c840}{}\label{classocra_1_1SecondOrderLinearTask_a626defc13e1da5ae7b340b9e8591c840} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!getL@{getL}}
+\index{getL@{getL}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{get\+L()}{getL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function} \& ocra\+::\+Second\+Order\+Linear\+Task\+::getL (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 93 of file Second\+Order\+Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_ac0b4bce5cc4bb7648c7585750c3bebbb}{}\label{classocra_1_1SecondOrderLinearTask_ac0b4bce5cc4bb7648c7585750c3bebbb} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!getL@{getL}}
+\index{getL@{getL}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{get\+L()}{getL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Function}{Function}\& ocra\+::\+Second\+Order\+Linear\+Task\+::getL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_ab36774d979e6930e5bb56bb9fe913667}{}\label{classocra_1_1SecondOrderLinearTask_ab36774d979e6930e5bb56bb9fe913667} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!get\+Saturation\+Value@{get\+Saturation\+Value}}
+\index{get\+Saturation\+Value@{get\+Saturation\+Value}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{get\+Saturation\+Value()}{getSaturationValue()}}
+{\footnotesize\ttfamily double ocra\+::\+Second\+Order\+Linear\+Task\+::get\+Saturation\+Value (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 57 of file Second\+Order\+Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a4f688efc6873334cfac467edd4fe4481}{}\label{classocra_1_1SecondOrderLinearTask_a4f688efc6873334cfac467edd4fe4481} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!is\+Saturated@{is\+Saturated}}
+\index{is\+Saturated@{is\+Saturated}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{is\+Saturated()}{isSaturated()}}
+{\footnotesize\ttfamily bool ocra\+::\+Second\+Order\+Linear\+Task\+::is\+Saturated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 58 of file Second\+Order\+Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_ad49dff8c7451d4753126328d3a47e4ba}{}\label{classocra_1_1SecondOrderLinearTask_ad49dff8c7451d4753126328d3a47e4ba} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!saturate@{saturate}}
+\index{saturate@{saturate}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{saturate()}{saturate()}}
+{\footnotesize\ttfamily void ocra\+::\+Second\+Order\+Linear\+Task\+::saturate (\begin{DoxyParamCaption}\item[{double}]{acceleration\+Max }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 55 of file Second\+Order\+Linear\+Task.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1SecondOrderLinearTask_aec8499eb3b78b46a1170d43f427a53a9}{}\label{classocra_1_1SecondOrderLinearTask_aec8499eb3b78b46a1170d43f427a53a9} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!\+\_\+acceleration\+Max@{\+\_\+acceleration\+Max}}
+\index{\+\_\+acceleration\+Max@{\+\_\+acceleration\+Max}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{\+\_\+acceleration\+Max}{\_accelerationMax}}
+{\footnotesize\ttfamily double ocra\+::\+Second\+Order\+Linear\+Task\+::\+\_\+acceleration\+Max\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 87 of file Second\+Order\+Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a55c45007880f6ba1936bc9b4601dc58e}{}\label{classocra_1_1SecondOrderLinearTask_a55c45007880f6ba1936bc9b4601dc58e} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!\+\_\+f@{\+\_\+f}}
+\index{\+\_\+f@{\+\_\+f}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{\+\_\+f}{\_f}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function}$\ast$ ocra\+::\+Second\+Order\+Linear\+Task\+::\+\_\+f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 84 of file Second\+Order\+Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a386a6daf02add8b19a69e1aa411c63af}{}\label{classocra_1_1SecondOrderLinearTask_a386a6daf02add8b19a69e1aa411c63af} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!\+\_\+L@{\+\_\+L}}
+\index{\+\_\+L@{\+\_\+L}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{\+\_\+L}{\_L}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function}$\ast$ ocra\+::\+Second\+Order\+Linear\+Task\+::\+\_\+L\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 85 of file Second\+Order\+Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1SecondOrderLinearTask_a0d433a32e0892bdf98d3b15325b6917e}{}\label{classocra_1_1SecondOrderLinearTask_a0d433a32e0892bdf98d3b15325b6917e} 
+\index{ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}!\+\_\+saturate@{\+\_\+saturate}}
+\index{\+\_\+saturate@{\+\_\+saturate}!ocra\+::\+Second\+Order\+Linear\+Task@{ocra\+::\+Second\+Order\+Linear\+Task}}
+\subsubsection{\texorpdfstring{\+\_\+saturate}{\_saturate}}
+{\footnotesize\ttfamily bool ocra\+::\+Second\+Order\+Linear\+Task\+::\+\_\+saturate\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 86 of file Second\+Order\+Linear\+Task.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{SecondOrderLinearTask_8h}{Second\+Order\+Linear\+Task.\+h}\item 
+\hyperlink{SecondOrderLinearTask_8cpp}{Second\+Order\+Linear\+Task.\+cpp}\end{DoxyCompactItemize}

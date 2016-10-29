@@ -1,0 +1,117 @@
+\hypertarget{classFunction1}{}\section{Function1 Class Reference}
+\label{classFunction1}\index{Function1@{Function1}}
+Inheritance diagram for Function1\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=0.901771cm]{d1/d44/classFunction1}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classFunction1_a3248b79eedbe37ed0e285db564a530fe}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classFunction1_a6b618d85fab472effe2624a8384c1674}{Function1} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x})
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classFunction1_a95bc8ed2b08882cda37512e8f13fcba1}{update\+Value} () const
+\item 
+void \hyperlink{classFunction1_aff45595ff1b5fb4108e5313b31d3d774}{update\+Jacobian} () const
+\item 
+void \hyperlink{classFunction1_a1d88a2ebb5ad3cb35f7d40ab002b71f0}{update\+Hessian} () const
+\item 
+void \hyperlink{classFunction1_aec0bc51f050a1bd32cece26e524e5c97}{do\+Update\+Input\+Size\+Begin} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+The first example is a simple function $ R^3 \rightarrow R $, $ f(x,y,z) = 3x^2y+2\frac{\sqrt{z}}{x}$
+
+We gives an implementation that computes the value, jacbian and hessian of the function. 
+
+Definition at line 12 of file Test\+Function.\+cpp.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classFunction1_a3248b79eedbe37ed0e285db564a530fe}{}\label{classFunction1_a3248b79eedbe37ed0e285db564a530fe} 
+\index{Function1@{Function1}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!Function1@{Function1}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1Function}{Function} \hyperlink{classFunction1_a3248b79eedbe37ed0e285db564a530fe}{Function1\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 15 of file Test\+Function.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classFunction1_a6b618d85fab472effe2624a8384c1674}{}\label{classFunction1_a6b618d85fab472effe2624a8384c1674} 
+\index{Function1@{Function1}!Function1@{Function1}}
+\index{Function1@{Function1}!Function1@{Function1}}
+\subsubsection{\texorpdfstring{Function1()}{Function1()}}
+{\footnotesize\ttfamily Function1\+::\+Function1 (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 17 of file Test\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classFunction1_aec0bc51f050a1bd32cece26e524e5c97}{}\label{classFunction1_aec0bc51f050a1bd32cece26e524e5c97} 
+\index{Function1@{Function1}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!Function1@{Function1}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void Function1\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+as a precondition to resize, we check that the size of the variable didn\textquotesingle{}t change 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 60 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction1_a1d88a2ebb5ad3cb35f7d40ab002b71f0}{}\label{classFunction1_a1d88a2ebb5ad3cb35f7d40ab002b71f0} 
+\index{Function1@{Function1}!update\+Hessian@{update\+Hessian}}
+\index{update\+Hessian@{update\+Hessian}!Function1@{Function1}}
+\subsubsection{\texorpdfstring{update\+Hessian()}{updateHessian()}}
+{\footnotesize\ttfamily void Function1\+::update\+Hessian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Compute the Hessian\+: $ H(x,y,z) = \left(\begin{array}{lcr} 6y + 4\frac{\sqrt{z}}{x^3} & 6x & -\frac{1}{x^2 \sqrt{z}} \\ 6x & 0 & 0 \\ -\frac{1}{x^2 \sqrt{z}} & 0 & -\frac{1}{2xz \sqrt{z}} \end{array}\right) $ 
+
+Definition at line 48 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction1_aff45595ff1b5fb4108e5313b31d3d774}{}\label{classFunction1_aff45595ff1b5fb4108e5313b31d3d774} 
+\index{Function1@{Function1}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!Function1@{Function1}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void Function1\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Compute the jacobian\+: $J(x,y,z) = \begin{array}{lcr} 6xy - 2 \frac{\sqrt{z}}{x^2} & 3x^2 & \frac{1}{x \sqrt{z}} \end{array} $ 
+
+Definition at line 34 of file Test\+Function.\+cpp.
+
+\hypertarget{classFunction1_a95bc8ed2b08882cda37512e8f13fcba1}{}\label{classFunction1_a95bc8ed2b08882cda37512e8f13fcba1} 
+\index{Function1@{Function1}!update\+Value@{update\+Value}}
+\index{update\+Value@{update\+Value}!Function1@{Function1}}
+\subsubsection{\texorpdfstring{update\+Value()}{updateValue()}}
+{\footnotesize\ttfamily void Function1\+::update\+Value (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Compute the value of the function\+: $ f(x,y,z) = 3x^2y+2\frac{z}{x}$ 
+
+Definition at line 28 of file Test\+Function.\+cpp.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TestFunction_8cpp}{Test\+Function.\+cpp}\end{DoxyCompactItemize}

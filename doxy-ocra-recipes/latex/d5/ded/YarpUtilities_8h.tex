@@ -1,0 +1,47 @@
+\hypertarget{YarpUtilities_8h}{}\section{Yarp\+Utilities.\+h File Reference}
+\label{YarpUtilities_8h}\index{Yarp\+Utilities.\+h@{Yarp\+Utilities.\+h}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Lgsm$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Bottle.\+h$>$}\newline
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceocra_1_1util}{ocra\+::util}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ double $>$ \hyperlink{namespaceocra_1_1util_ae43554408032d294cf5486321de608ad}{ocra\+::util\+::pour\+Bottle\+Into\+Std\+Vector} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{namespaceocra_1_1util_a3fd47a8322cedd8f4e6417af69c1b350}{ocra\+::util\+::pour\+Bottle\+Into\+Eigen\+Vector} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Vector\+Xi \hyperlink{namespaceocra_1_1util_a2bdcb149a446d1048692192e2ce82e9d}{ocra\+::util\+::pour\+Bottle\+Into\+Eigen\+Vector\+Xi} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1util_a39b8fa7b650ca10472587a7cf02ef5bf}{ocra\+::util\+::pour\+Bottle\+Into\+Displacementd} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Twistd \hyperlink{namespaceocra_1_1util_af97e92d4d6f71f03338183e6f5ea1188}{ocra\+::util\+::pour\+Bottle\+Into\+Twistd} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Wrenchd \hyperlink{namespaceocra_1_1util_a68e8e18301fe4f4167e8dee988df2d3c}{ocra\+::util\+::pour\+Bottle\+Into\+Wrenchd} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{namespaceocra_1_1util_ac8a4000b730a87cee5e5806134090be4}{ocra\+::util\+::pour\+Bottle\+Into\+Eigen\+Matrix} (yarp\+::os\+::\+Bottle bottle, int \&indexes\+To\+Skip)
+\item 
+void \hyperlink{namespaceocra_1_1util_abe236d2f67284737d18ea3f5913aacab}{ocra\+::util\+::pour\+Std\+Vector\+Into\+Bottle} (const std\+::vector$<$ double $>$ \&vec, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_a6010148e34dccf066481599d26c575c9}{ocra\+::util\+::pour\+Eigen\+Vector\+Into\+Bottle} (const Eigen\+::\+Vector\+Xd \&vec, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_a8dd17e44dac9cc815cfc9f009afc8633}{ocra\+::util\+::pour\+Eigen\+Vector\+Xi\+Into\+Bottle} (const Eigen\+::\+Vector\+Xi \&vec, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_ac6e4695aa2be35591a1dc78eaf557c60}{ocra\+::util\+::pour\+Eigen\+Matrix\+Into\+Bottle} (const Eigen\+::\+Matrix\+Xd \&mat, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_aa823d67f5ccb816d579756460867720f}{ocra\+::util\+::pour\+Displacementd\+Into\+Bottle} (const Eigen\+::\+Displacementd \&disp, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_abfc4d8245c114e3ac49b4cbffe90851c}{ocra\+::util\+::pour\+Twistd\+Into\+Bottle} (const Eigen\+::\+Twistd \&twist, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+void \hyperlink{namespaceocra_1_1util_a139674d4658e91e350b4d8704f38ab42}{ocra\+::util\+::pour\+Wrenchd\+Into\+Bottle} (const Eigen\+::\+Wrenchd \&wrench, yarp\+::os\+::\+Bottle \&bottle)
+\item 
+yarp\+::os\+::\+Bottle \hyperlink{namespaceocra_1_1util_a1cf3abfc2f03c824eb23f3881acfc7de}{ocra\+::util\+::trim\+Bottle} (const yarp\+::os\+::\+Bottle \&bottle, int start\+Index, int end\+Index=-\/1)
+\end{DoxyCompactItemize}

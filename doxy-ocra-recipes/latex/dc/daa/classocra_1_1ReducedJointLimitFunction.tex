@@ -1,0 +1,137 @@
+\hypertarget{classocra_1_1ReducedJointLimitFunction}{}\section{ocra\+:\+:Reduced\+Joint\+Limit\+Function Class Reference}
+\label{classocra_1_1ReducedJointLimitFunction}\index{ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}}
+
+
+Create a linear function that represents the joint limit function for the reduced formalism.  
+
+
+
+
+{\ttfamily \#include $<$Joint\+Limit\+Constraint.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Reduced\+Joint\+Limit\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.262480cm]{dc/daa/classocra_1_1ReducedJointLimitFunction}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structReducedJointLimitFunction_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1ReducedJointLimitFunction_a899e4871502f5e5509349b1f8eb5dfa8}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ReducedJointLimitFunction_afe65f4b9229680de647bb06fd7ae5b44}{Reduced\+Joint\+Limit\+Function} (const Model \&model, const \hyperlink{classocra_1_1FullDynamicEquationFunction}{Full\+Dynamic\+Equation\+Function} \&dynamic\+Equation)
+\item 
+\hyperlink{classocra_1_1ReducedJointLimitFunction_a96e9196a18c5eb5e92672b45a7491c65}{$\sim$\+Reduced\+Joint\+Limit\+Function} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra_1_1ReducedJointLimitFunction_a3b2b65be504eda131ad8d00304304fd3}{update\+Jacobian} () const
+\item 
+virtual void \hyperlink{classocra_1_1ReducedJointLimitFunction_aaf30e3ac7c3053707a04a147b545126c}{updateb} () const
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Create a linear function that represents the joint limit function for the reduced formalism. 
+
+See w\+Joint\+Limit\+Function ofr more information. 
+
+Definition at line 144 of file Joint\+Limit\+Constraint.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1ReducedJointLimitFunction_a899e4871502f5e5509349b1f8eb5dfa8}{}\label{classocra_1_1ReducedJointLimitFunction_a899e4871502f5e5509349b1f8eb5dfa8} 
+\index{ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1ReducedJointLimitFunction_a899e4871502f5e5509349b1f8eb5dfa8}{ocra\+::\+Reduced\+Joint\+Limit\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 147 of file Joint\+Limit\+Constraint.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ReducedJointLimitFunction_afe65f4b9229680de647bb06fd7ae5b44}{}\label{classocra_1_1ReducedJointLimitFunction_afe65f4b9229680de647bb06fd7ae5b44} 
+\index{ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}!Reduced\+Joint\+Limit\+Function@{Reduced\+Joint\+Limit\+Function}}
+\index{Reduced\+Joint\+Limit\+Function@{Reduced\+Joint\+Limit\+Function}!ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{Reduced\+Joint\+Limit\+Function()}{ReducedJointLimitFunction()}}
+{\footnotesize\ttfamily Reduced\+Joint\+Limit\+Function\+::\+Reduced\+Joint\+Limit\+Function (\begin{DoxyParamCaption}\item[{const Model \&}]{model,  }\item[{const \hyperlink{classocra_1_1FullDynamicEquationFunction}{Full\+Dynamic\+Equation\+Function} \&}]{dynamic\+Equation }\end{DoxyParamCaption})}
+
+Initialize a joint limits function designed for the reduced formalism.
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The Model on which we will update the dynamic parameters \\
+\hline
+{\em dynamic\+Equation} & The dynamic equation of motion that can compute matrices for the reduced problem\\
+\hline
+\end{DoxyParams}
+It is connected with the model and invalidates all when E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+V\+A\+L\+UE is raised. Furthermore, it computes the Jacobian matrix $ \A $ for the full formalism which is constant. It will be transformed to fit the reduced formalism. 
+
+Definition at line 372 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ReducedJointLimitFunction_a96e9196a18c5eb5e92672b45a7491c65}{}\label{classocra_1_1ReducedJointLimitFunction_a96e9196a18c5eb5e92672b45a7491c65} 
+\index{ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}!````~Reduced\+Joint\+Limit\+Function@{$\sim$\+Reduced\+Joint\+Limit\+Function}}
+\index{````~Reduced\+Joint\+Limit\+Function@{$\sim$\+Reduced\+Joint\+Limit\+Function}!ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Reduced\+Joint\+Limit\+Function()}{~ReducedJointLimitFunction()}}
+{\footnotesize\ttfamily Reduced\+Joint\+Limit\+Function\+::$\sim$\+Reduced\+Joint\+Limit\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor
+
+It is disconnected from the model. 
+
+Definition at line 389 of file Joint\+Limit\+Constraint.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ReducedJointLimitFunction_aaf30e3ac7c3053707a04a147b545126c}{}\label{classocra_1_1ReducedJointLimitFunction_aaf30e3ac7c3053707a04a147b545126c} 
+\index{ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}!updateb@{updateb}}
+\index{updateb@{updateb}!ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{updateb()}{updateb()}}
+{\footnotesize\ttfamily void Reduced\+Joint\+Limit\+Function\+::updateb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Update the vector $ \b $ for the reduced formalism.
+
+It calls \hyperlink{classocra_1_1JointLimitFunction_a254ef5b5095410a802976c95f04fe0a4}{compute\+Fullb(const Eigen\+::\+Vector\+Xd\&, const Eigen\+::\+Vector\+Xd\&, Eigen\+::\+Vector\+Xd\&) const}. Then the transformation is done from the full formalism to the reduced one. 
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a546454cd8d0909f99433ffc0e700c9e3}{ocra\+::\+Linear\+Function}.
+
+
+
+Definition at line 409 of file Joint\+Limit\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ReducedJointLimitFunction_a3b2b65be504eda131ad8d00304304fd3}{}\label{classocra_1_1ReducedJointLimitFunction_a3b2b65be504eda131ad8d00304304fd3} 
+\index{ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!ocra\+::\+Reduced\+Joint\+Limit\+Function@{ocra\+::\+Reduced\+Joint\+Limit\+Function}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void Reduced\+Joint\+Limit\+Function\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a30926f977c0124a0b0f65b854ab39636}{ocra\+::\+Linear\+Function}.
+
+
+
+Definition at line 397 of file Joint\+Limit\+Constraint.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{JointLimitConstraint_8h}{Joint\+Limit\+Constraint.\+h}\item 
+\hyperlink{JointLimitConstraint_8cpp}{Joint\+Limit\+Constraint.\+cpp}\end{DoxyCompactItemize}

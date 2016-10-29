@@ -1,0 +1,413 @@
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl}{}\section{gocra\+:\+:G\+H\+C\+J\+T\+Task\+:\+:Pimpl Struct Reference}
+\label{structgocra_1_1GHCJTTask_1_1Pimpl}\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ad413aad5c0e13b459b10d16dc91c8579}{Pimpl} (const std\+::string \&\hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a62bf1c09164be6cf8a48360bd6e53d64}{name}, const Model \&m, const \hyperlink{classocra_1_1Feature}{Feature} \&s)
+\item 
+\hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a40a8c393004df9cb06d2cacf7a60b55f}{$\sim$\+Pimpl} ()
+\item 
+void \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_aeedb4e2ac7e5dc4b68655b124ee8ed58}{connect\+Functionn\+With\+Objective\+And\+Constraint} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const std\+::string \& \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a62bf1c09164be6cf8a48360bd6e53d64}{name}
+\item 
+const Model \& \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a7f03506d78950aa1a986d2ba44142f28}{inner\+Model}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a3fefbc36e9c5e9b8c4fc8f85fb19da53}{is\+Free\+Floating}
+\item 
+\hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} $\ast$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ac9f3b5650e8663982f631c354a25e3b9}{solver}
+\item 
+\hyperlink{classocra_1_1SumOfLinearFunctions}{Sum\+Of\+Linear\+Functions} $\ast$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ab0953e75c824e2aa63477976b94a1806}{se\+Constraint}
+\item 
+boost\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} $>$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ab1b71cfa2f203377834f529d2c0e98c3}{task\+S\+E\+Constraint\+Function}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a0beb46ac94216a28202956bf87fc1d2d}{use\+G\+S\+HC}
+\item 
+\hyperlink{classocra_1_1BaseVariable}{ocra\+::\+Base\+Variable} \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a98ad4a4d2e7bbba67daa244e45f75345}{fc\+Var}
+\item 
+double \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a5bf2a2e00bd9406bb6a993b616a47d07}{weight}
+\item 
+Matrix\+Xd \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a71d5221274d0ee84040992042d609cec}{alpha}
+\item 
+Matrix\+Xd \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ab17e7af214e9801bfb03e4d9ed6dad29}{projector}
+\item 
+Matrix\+Xd \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a0ae67b26b52f69987d41bc3232636ccb}{taski\+Projector}
+\item 
+const \hyperlink{classocra_1_1Feature}{Feature} \& \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_aa7c75169490e6b35ff7bdb1baf696c5d}{feature}
+\item 
+int \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a20542f3c613a7f9c0771c2b5ac0b38eb}{index\+Begin}
+\item 
+int \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ada601a59aeedcd018df465a5e2e79e03}{index\+End}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ad07475df136dd26fc89634fa6dd9a9b7}{task\+Has\+Been\+Initialized}
+\item 
+boost\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1LinearizedCoulombFunction}{Linearized\+Coulomb\+Function} $>$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a777d7f0a74a42508154b153dbc0a3b44}{friction\+Function}
+\item 
+\hyperlink{classocra_1_1LessThanZeroConstraintPtr}{Less\+Than\+Zero\+Constraint\+Ptr}$<$ \hyperlink{classocra_1_1LinearizedCoulombFunction}{Linearized\+Coulomb\+Function} $>$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a51c9a1862cf46b8ac75a525924d990bb}{friction\+Constraint}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a2cb3237a503679f5dcc201c05b00f248}{contact\+Force\+Constraint\+Has\+Been\+Saved\+In\+Solver}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_acd52e769176ed61ce95a322b1adc8c10}{contact\+Point\+Has\+Been\+Saved\+In\+Model}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ad92c2fff381cdb00f6afb41671e923c5}{friction\+Constraint\+Is\+Registered\+In\+Constraint}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_ac3772fc7a816ef1ba5ac40b79908d225}{is\+Registered\+As\+Objective}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_aace8728a2e9a0271ea89aea0355c036b}{is\+Registered\+As\+Constraint}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a900c0b0bf150ba085a300ff543054a36}{is\+Point\+Contact\+Task}
+\item 
+\hyperlink{classocra_1_1LinearFunction}{Linear\+Function} $\ast$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a1faaaea4991fa4a0bec914732c189fd3}{inner\+Objective\+Function}
+\item 
+\hyperlink{classocra_1_1Objective}{Objective}$<$ \hyperlink{classocra_1_1SquaredLinearFunction}{Squared\+Linear\+Function} $>$ $\ast$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a43d0c542d4107893610d8d07cce2fdd0}{inner\+Task\+As\+Objective}
+\item 
+\hyperlink{classocra_1_1EqualZeroConstraintPtr}{Equal\+Zero\+Constraint\+Ptr}$<$ \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} $>$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_aca6261d2f483c550e6e71c4d31b7c0c1}{inner\+Task\+As\+Constraint}
+\item 
+\hyperlink{classocra_1_1LinearFunction}{Linear\+Function} $\ast$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a74195cf444c7ab8673985cf9cd7de28d}{regulation\+Objective\+Function}
+\item 
+\hyperlink{classocra_1_1Objective}{Objective}$<$ \hyperlink{classocra_1_1SquaredLinearFunction}{Squared\+Linear\+Function} $>$ $\ast$ \hyperlink{structgocra_1_1GHCJTTask_1_1Pimpl_a59fe897e1cfa0a5b28a52f0d1be7d13d}{regulation\+Objective}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 26 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ad413aad5c0e13b459b10d16dc91c8579}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ad413aad5c0e13b459b10d16dc91c8579} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!Pimpl@{Pimpl}}
+\index{Pimpl@{Pimpl}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Pimpl()}{Pimpl()}}
+{\footnotesize\ttfamily gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::\+Pimpl (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{m,  }\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 67 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a40a8c393004df9cb06d2cacf7a60b55f}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a40a8c393004df9cb06d2cacf7a60b55f} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!````~Pimpl@{$\sim$\+Pimpl}}
+\index{````~Pimpl@{$\sim$\+Pimpl}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{$\sim$\+Pimpl()}{~Pimpl()}}
+{\footnotesize\ttfamily gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::$\sim$\+Pimpl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 112 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_aeedb4e2ac7e5dc4b68655b124ee8ed58}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_aeedb4e2ac7e5dc4b68655b124ee8ed58} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!connect\+Functionn\+With\+Objective\+And\+Constraint@{connect\+Functionn\+With\+Objective\+And\+Constraint}}
+\index{connect\+Functionn\+With\+Objective\+And\+Constraint@{connect\+Functionn\+With\+Objective\+And\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{connect\+Functionn\+With\+Objective\+And\+Constraint()}{connectFunctionnWithObjectiveAndConstraint()}}
+{\footnotesize\ttfamily void gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::connect\+Functionn\+With\+Objective\+And\+Constraint (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 128 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a71d5221274d0ee84040992042d609cec}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a71d5221274d0ee84040992042d609cec} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!alpha@{alpha}}
+\index{alpha@{alpha}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{alpha}{alpha}}
+{\footnotesize\ttfamily Matrix\+Xd gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::alpha}
+
+
+
+Definition at line 39 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a2cb3237a503679f5dcc201c05b00f248}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a2cb3237a503679f5dcc201c05b00f248} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!contact\+Force\+Constraint\+Has\+Been\+Saved\+In\+Solver@{contact\+Force\+Constraint\+Has\+Been\+Saved\+In\+Solver}}
+\index{contact\+Force\+Constraint\+Has\+Been\+Saved\+In\+Solver@{contact\+Force\+Constraint\+Has\+Been\+Saved\+In\+Solver}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{contact\+Force\+Constraint\+Has\+Been\+Saved\+In\+Solver}{contactForceConstraintHasBeenSavedInSolver}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::contact\+Force\+Constraint\+Has\+Been\+Saved\+In\+Solver}
+
+
+
+Definition at line 50 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_acd52e769176ed61ce95a322b1adc8c10}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_acd52e769176ed61ce95a322b1adc8c10} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!contact\+Point\+Has\+Been\+Saved\+In\+Model@{contact\+Point\+Has\+Been\+Saved\+In\+Model}}
+\index{contact\+Point\+Has\+Been\+Saved\+In\+Model@{contact\+Point\+Has\+Been\+Saved\+In\+Model}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{contact\+Point\+Has\+Been\+Saved\+In\+Model}{contactPointHasBeenSavedInModel}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::contact\+Point\+Has\+Been\+Saved\+In\+Model}
+
+
+
+Definition at line 51 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a98ad4a4d2e7bbba67daa244e45f75345}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a98ad4a4d2e7bbba67daa244e45f75345} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!fc\+Var@{fc\+Var}}
+\index{fc\+Var@{fc\+Var}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{fc\+Var}{fcVar}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1BaseVariable}{ocra\+::\+Base\+Variable} gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::fc\+Var}
+
+
+
+Definition at line 35 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_aa7c75169490e6b35ff7bdb1baf696c5d}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_aa7c75169490e6b35ff7bdb1baf696c5d} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!feature@{feature}}
+\index{feature@{feature}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{feature}{feature}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Feature}{Feature}\& gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::feature}
+
+
+
+Definition at line 42 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a51c9a1862cf46b8ac75a525924d990bb}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a51c9a1862cf46b8ac75a525924d990bb} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!friction\+Constraint@{friction\+Constraint}}
+\index{friction\+Constraint@{friction\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{friction\+Constraint}{frictionConstraint}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LessThanZeroConstraintPtr}{Less\+Than\+Zero\+Constraint\+Ptr}$<$\hyperlink{classocra_1_1LinearizedCoulombFunction}{Linearized\+Coulomb\+Function}$>$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::friction\+Constraint}
+
+
+
+Definition at line 48 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ad92c2fff381cdb00f6afb41671e923c5}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ad92c2fff381cdb00f6afb41671e923c5} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!friction\+Constraint\+Is\+Registered\+In\+Constraint@{friction\+Constraint\+Is\+Registered\+In\+Constraint}}
+\index{friction\+Constraint\+Is\+Registered\+In\+Constraint@{friction\+Constraint\+Is\+Registered\+In\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{friction\+Constraint\+Is\+Registered\+In\+Constraint}{frictionConstraintIsRegisteredInConstraint}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::friction\+Constraint\+Is\+Registered\+In\+Constraint}
+
+
+
+Definition at line 52 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a777d7f0a74a42508154b153dbc0a3b44}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a777d7f0a74a42508154b153dbc0a3b44} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!friction\+Function@{friction\+Function}}
+\index{friction\+Function@{friction\+Function}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{friction\+Function}{frictionFunction}}
+{\footnotesize\ttfamily boost\+::shared\+\_\+ptr$<$\hyperlink{classocra_1_1LinearizedCoulombFunction}{Linearized\+Coulomb\+Function}$>$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::friction\+Function}
+
+
+
+Definition at line 47 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a20542f3c613a7f9c0771c2b5ac0b38eb}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a20542f3c613a7f9c0771c2b5ac0b38eb} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!index\+Begin@{index\+Begin}}
+\index{index\+Begin@{index\+Begin}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{index\+Begin}{indexBegin}}
+{\footnotesize\ttfamily int gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::index\+Begin}
+
+
+
+Definition at line 43 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ada601a59aeedcd018df465a5e2e79e03}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ada601a59aeedcd018df465a5e2e79e03} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!index\+End@{index\+End}}
+\index{index\+End@{index\+End}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{index\+End}{indexEnd}}
+{\footnotesize\ttfamily int gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::index\+End}
+
+
+
+Definition at line 44 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a7f03506d78950aa1a986d2ba44142f28}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a7f03506d78950aa1a986d2ba44142f28} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!inner\+Model@{inner\+Model}}
+\index{inner\+Model@{inner\+Model}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{inner\+Model}{innerModel}}
+{\footnotesize\ttfamily const Model\& gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::inner\+Model}
+
+
+
+Definition at line 29 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a1faaaea4991fa4a0bec914732c189fd3}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a1faaaea4991fa4a0bec914732c189fd3} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!inner\+Objective\+Function@{inner\+Objective\+Function}}
+\index{inner\+Objective\+Function@{inner\+Objective\+Function}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{inner\+Objective\+Function}{innerObjectiveFunction}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearFunction}{Linear\+Function}$\ast$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::inner\+Objective\+Function}
+
+
+
+Definition at line 60 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_aca6261d2f483c550e6e71c4d31b7c0c1}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_aca6261d2f483c550e6e71c4d31b7c0c1} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!inner\+Task\+As\+Constraint@{inner\+Task\+As\+Constraint}}
+\index{inner\+Task\+As\+Constraint@{inner\+Task\+As\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{inner\+Task\+As\+Constraint}{innerTaskAsConstraint}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1EqualZeroConstraintPtr}{Equal\+Zero\+Constraint\+Ptr}$<$\hyperlink{classocra_1_1LinearFunction}{Linear\+Function}$>$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::inner\+Task\+As\+Constraint}
+
+
+
+Definition at line 62 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a43d0c542d4107893610d8d07cce2fdd0}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a43d0c542d4107893610d8d07cce2fdd0} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!inner\+Task\+As\+Objective@{inner\+Task\+As\+Objective}}
+\index{inner\+Task\+As\+Objective@{inner\+Task\+As\+Objective}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{inner\+Task\+As\+Objective}{innerTaskAsObjective}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Objective}{Objective}$<$\hyperlink{classocra_1_1SquaredLinearFunction}{Squared\+Linear\+Function}$>$$\ast$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::inner\+Task\+As\+Objective}
+
+
+
+Definition at line 61 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a3fefbc36e9c5e9b8c4fc8f85fb19da53}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a3fefbc36e9c5e9b8c4fc8f85fb19da53} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!is\+Free\+Floating@{is\+Free\+Floating}}
+\index{is\+Free\+Floating@{is\+Free\+Floating}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{is\+Free\+Floating}{isFreeFloating}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::is\+Free\+Floating}
+
+
+
+Definition at line 30 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a900c0b0bf150ba085a300ff543054a36}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a900c0b0bf150ba085a300ff543054a36} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!is\+Point\+Contact\+Task@{is\+Point\+Contact\+Task}}
+\index{is\+Point\+Contact\+Task@{is\+Point\+Contact\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{is\+Point\+Contact\+Task}{isPointContactTask}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::is\+Point\+Contact\+Task}
+
+
+
+Definition at line 57 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_aace8728a2e9a0271ea89aea0355c036b}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_aace8728a2e9a0271ea89aea0355c036b} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!is\+Registered\+As\+Constraint@{is\+Registered\+As\+Constraint}}
+\index{is\+Registered\+As\+Constraint@{is\+Registered\+As\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{is\+Registered\+As\+Constraint}{isRegisteredAsConstraint}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::is\+Registered\+As\+Constraint}
+
+
+
+Definition at line 56 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ac3772fc7a816ef1ba5ac40b79908d225}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ac3772fc7a816ef1ba5ac40b79908d225} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!is\+Registered\+As\+Objective@{is\+Registered\+As\+Objective}}
+\index{is\+Registered\+As\+Objective@{is\+Registered\+As\+Objective}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{is\+Registered\+As\+Objective}{isRegisteredAsObjective}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::is\+Registered\+As\+Objective}
+
+
+
+Definition at line 55 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a62bf1c09164be6cf8a48360bd6e53d64}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a62bf1c09164be6cf8a48360bd6e53d64} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!name@{name}}
+\index{name@{name}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily const std\+::string\& gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::name}
+
+
+
+Definition at line 28 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ab17e7af214e9801bfb03e4d9ed6dad29}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ab17e7af214e9801bfb03e4d9ed6dad29} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!projector@{projector}}
+\index{projector@{projector}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{projector}{projector}}
+{\footnotesize\ttfamily Matrix\+Xd gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::projector}
+
+
+
+Definition at line 40 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a59fe897e1cfa0a5b28a52f0d1be7d13d}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a59fe897e1cfa0a5b28a52f0d1be7d13d} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!regulation\+Objective@{regulation\+Objective}}
+\index{regulation\+Objective@{regulation\+Objective}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{regulation\+Objective}{regulationObjective}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Objective}{Objective}$<$\hyperlink{classocra_1_1SquaredLinearFunction}{Squared\+Linear\+Function}$>$$\ast$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::regulation\+Objective}
+
+
+
+Definition at line 65 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a74195cf444c7ab8673985cf9cd7de28d}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a74195cf444c7ab8673985cf9cd7de28d} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!regulation\+Objective\+Function@{regulation\+Objective\+Function}}
+\index{regulation\+Objective\+Function@{regulation\+Objective\+Function}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{regulation\+Objective\+Function}{regulationObjectiveFunction}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearFunction}{Linear\+Function}$\ast$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::regulation\+Objective\+Function}
+
+
+
+Definition at line 64 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ab0953e75c824e2aa63477976b94a1806}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ab0953e75c824e2aa63477976b94a1806} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!se\+Constraint@{se\+Constraint}}
+\index{se\+Constraint@{se\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{se\+Constraint}{seConstraint}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1SumOfLinearFunctions}{Sum\+Of\+Linear\+Functions}$\ast$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::se\+Constraint}
+
+
+
+Definition at line 32 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ac9f3b5650e8663982f631c354a25e3b9}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ac9f3b5650e8663982f631c354a25e3b9} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!solver@{solver}}
+\index{solver@{solver}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{solver}{solver}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver}$\ast$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::solver}
+
+
+
+Definition at line 31 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ad07475df136dd26fc89634fa6dd9a9b7}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ad07475df136dd26fc89634fa6dd9a9b7} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!task\+Has\+Been\+Initialized@{task\+Has\+Been\+Initialized}}
+\index{task\+Has\+Been\+Initialized@{task\+Has\+Been\+Initialized}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{task\+Has\+Been\+Initialized}{taskHasBeenInitialized}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::task\+Has\+Been\+Initialized}
+
+
+
+Definition at line 46 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a0ae67b26b52f69987d41bc3232636ccb}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a0ae67b26b52f69987d41bc3232636ccb} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!taski\+Projector@{taski\+Projector}}
+\index{taski\+Projector@{taski\+Projector}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{taski\+Projector}{taskiProjector}}
+{\footnotesize\ttfamily Matrix\+Xd gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::taski\+Projector}
+
+
+
+Definition at line 41 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_ab1b71cfa2f203377834f529d2c0e98c3}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_ab1b71cfa2f203377834f529d2c0e98c3} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!task\+S\+E\+Constraint\+Function@{task\+S\+E\+Constraint\+Function}}
+\index{task\+S\+E\+Constraint\+Function@{task\+S\+E\+Constraint\+Function}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{task\+S\+E\+Constraint\+Function}{taskSEConstraintFunction}}
+{\footnotesize\ttfamily boost\+::shared\+\_\+ptr$<$\hyperlink{classocra_1_1LinearFunction}{Linear\+Function}$>$ gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::task\+S\+E\+Constraint\+Function}
+
+
+
+Definition at line 33 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a0beb46ac94216a28202956bf87fc1d2d}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a0beb46ac94216a28202956bf87fc1d2d} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!use\+G\+S\+HC@{use\+G\+S\+HC}}
+\index{use\+G\+S\+HC@{use\+G\+S\+HC}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{use\+G\+S\+HC}{useGSHC}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::use\+G\+S\+HC}
+
+
+
+Definition at line 34 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTTask_1_1Pimpl_a5bf2a2e00bd9406bb6a993b616a47d07}{}\label{structgocra_1_1GHCJTTask_1_1Pimpl_a5bf2a2e00bd9406bb6a993b616a47d07} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}!weight@{weight}}
+\index{weight@{weight}!gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{weight}{weight}}
+{\footnotesize\ttfamily double gocra\+::\+G\+H\+C\+J\+T\+Task\+::\+Pimpl\+::weight}
+
+
+
+Definition at line 38 of file G\+H\+C\+J\+T\+Task.\+cpp.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{GHCJTTask_8cpp}{G\+H\+C\+J\+T\+Task.\+cpp}\end{DoxyCompactItemize}

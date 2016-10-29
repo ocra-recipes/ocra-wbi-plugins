@@ -1,0 +1,429 @@
+\hypertarget{classocra_1_1ContactAvoidanceFunction}{}\section{ocra\+:\+:Contact\+Avoidance\+Function Class Reference}
+\label{classocra_1_1ContactAvoidanceFunction}\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+
+
+Create a linear function that represents the joint limit function.  
+
+
+
+
+{\ttfamily \#include $<$Contact\+Avoidance\+Constraint.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Contact\+Avoidance\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.262480cm]{d4/d45/classocra_1_1ContactAvoidanceFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1ContactAvoidanceFunction_a15d14e0a9e8810d1a6990d5ab7e179ab}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ContactAvoidanceFunction_a7db869c24ac20e1aff021f95ccf7dcd8}{Contact\+Avoidance\+Function} (const Model \&m, \hyperlink{classocra_1_1Variable}{Variable} \&var)
+\item 
+\hyperlink{classocra_1_1ContactAvoidanceFunction_a5309c1fd586ed0292ee5eebfafacef9b}{$\sim$\+Contact\+Avoidance\+Function} ()
+\item 
+double \hyperlink{classocra_1_1ContactAvoidanceFunction_aca5221cb617b3603e022040768974a20}{get\+Horizon\+Of\+Prediction} () const
+\item 
+void \hyperlink{classocra_1_1ContactAvoidanceFunction_abb04a99b523d82819d2b11bf9a7ea7f9}{set\+Horizon\+Of\+Prediction} (double new\+Hpos)
+\item 
+double \hyperlink{classocra_1_1ContactAvoidanceFunction_a666af8d0a23e115b2f139b048fe6b933}{get\+Margin} () const
+\item 
+void \hyperlink{classocra_1_1ContactAvoidanceFunction_a4ae90405d1464527310ce1d93df2e862}{set\+Margin} (double new\+Margin)
+\item 
+void \hyperlink{classocra_1_1ContactAvoidanceFunction_aee28a7fe69481db190d2e26b603659ea}{update\+Contact\+Information} (const Eigen\+::\+Matrix\+Xd \&\+\_\+\+J\+Obst, const Eigen\+::\+Vector\+Xd \&\+\_\+d\+Jdq\+Ost, const Eigen\+::\+Vector\+Xd \&\+\_\+dist\+Obst, const Eigen\+::\+Vector\+Xd \&\+\_\+vel\+Obst)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1ContactAvoidanceFunction_aca72dc43ecd3d95bb917139ac6ae19c1}{update\+Jacobian} () const
+\item 
+void \hyperlink{classocra_1_1ContactAvoidanceFunction_aed2f145f17ff9fd8dd646018376ea7e9}{updateb} () const
+\item 
+virtual void \hyperlink{classocra_1_1ContactAvoidanceFunction_a4f33ca5589b08a96207be800b9f4bd57}{do\+Update\+Dimension\+Begin} (int new\+Dimension)
+\item 
+virtual void \hyperlink{classocra_1_1ContactAvoidanceFunction_ad81a7b03b0fb7e8b2a037bccf5faea84}{do\+Update\+Dimension\+End} (int old\+Dimension)
+\item 
+void \hyperlink{classocra_1_1ContactAvoidanceFunction_a59994d2c3f364575ecff7fb23b7e10ab}{compute\+Full\+Jacobian} (const Eigen\+::\+Matrix\+Xd \&\+\_\+\+J\+Obst, Eigen\+::\+Matrix\+Xd \&full\+Jacobian) const
+\item 
+void \hyperlink{classocra_1_1ContactAvoidanceFunction_a9afd02871f0d26321b526290f565d541}{compute\+Fullb} (const Eigen\+::\+Vector\+Xd \&\+\_\+d\+Jdq\+Obst, const Eigen\+::\+Vector\+Xd \&\+\_\+dist\+Obst, const Eigen\+::\+Vector\+Xd \&\+\_\+vel\+Obst, Eigen\+::\+Vector\+Xd \&fullb) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classocra_1_1ContactAvoidanceFunction_a49e94dae2d7708e66cf11e737b1a4d6d}{hpos}
+\item 
+double \hyperlink{classocra_1_1ContactAvoidanceFunction_a5a4c2e4dae17aef6c4cf6fa1b3be093e}{margin}
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra_1_1ContactAvoidanceFunction_a233c509632182b45540a30b818254713}{J\+Obst}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1ContactAvoidanceFunction_a59c655299c8db310d3e06a47729f0780}{d\+Jdq\+Obst}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1ContactAvoidanceFunction_aa3d1b5f23d42c0936b1fa09ad7988732}{dist\+Obst}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra_1_1ContactAvoidanceFunction_a19eb96ace3a217e5ea1c80dec97eeeb2}{vel\+Obst}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Create a linear function that represents the joint limit function. 
+
+The contact avoidance constraint is written at first as\+: $ \vec{0} < \vec{d}_{oa} $ where $ \vec{d}_{oa} $ is the contatenation of the minimal distances between the couples of shapes that should not collide.
+
+
+
+To relate this constraint with the dynamic variables, we constrain the estimated future distances to remain positive, as explained in w\+Joint\+Limit\+Function .
+
+In this case, the constraint is expressed as follows\+:
+
+\begin{align*} \vec{d}_{oa} - \vec{m} &> \vec{d}_{oa}(h) \quad \text{at instant h} \\ \vec{d}_{oa} - \vec{m} &> \dot{\vec{d}}_{oa} h + \ddot{\vec{d}}_{oa} \frac{h^2}{2} \\ \vec{d}_{oa} - \vec{m} &> \dot{\vec{d}}_{oa} h + \left( \J_{oa} \ddq + \dJ_{oa} \dq \right) \frac{h^2}{2} \end{align*}
+
+where $ \vec{m} $ is a margin vector. So it becomes\+:
+
+\begin{align*} \A \x + \b &> \vec{0} & &\Leftrightarrow & \begin{bmatrix} - \J_{oa} \end{bmatrix} \ddq + \begin{bmatrix} - \dJ_{oa} \dq + 2 \left( \vec{d}_{oa} - \vec{m} - \dot{\vec{d}}_{oa} h \right) / h^2 \end{bmatrix} & > \vec{0} \end{align*}
+
+There is some similarity with the w\+Joint\+Limit\+Function because we constrain an estimated future state. The same issues arise (it only constrain the final point, no middle points), so it is interesting to look at the inflexion point. In the same manner, the time of inflexion for a constant acceleration such as the inflexion point is on 0 is computed as follows\+:
+
+\begin{align*} t_{max} &= 2*(\vec{d}_{oa} - \vec{m}) / \dot{\vec{d}}_{oa} & & \text{(element-wise operations)} \end{align*}
+
+For each dof (each line $ i $ ), we test where is the time of inflexion. If $ 0 < t_{max}[i] < h$, then the inflexion point is in the horizon of time, we should consider to constrain the motion of this contact avoidance\+:
+
+\begin{align*} \ddot{\vec{d}}_{max}[i] &= \frac{ \dot{\vec{d}}_{oa}[i]^2 }{ 2( \vec{d}_{oa}[i] - \vec{m}[i] ) } & & \Rightarrow & \begin{bmatrix} - \J_{oa} \end{bmatrix} [i] \ddq + \ddot{\vec{d}}_{max}[i] > 0 \end{align*}
+
+When all these constraints have been defined, we select the tightest ones for each dof. 
+
+Definition at line 67 of file Contact\+Avoidance\+Constraint.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a15d14e0a9e8810d1a6990d5ab7e179ab}{}\label{classocra_1_1ContactAvoidanceFunction_a15d14e0a9e8810d1a6990d5ab7e179ab} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1ContactAvoidanceFunction_a15d14e0a9e8810d1a6990d5ab7e179ab}{ocra\+::\+Contact\+Avoidance\+Function\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 70 of file Contact\+Avoidance\+Constraint.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a7db869c24ac20e1aff021f95ccf7dcd8}{}\label{classocra_1_1ContactAvoidanceFunction_a7db869c24ac20e1aff021f95ccf7dcd8} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!Contact\+Avoidance\+Function@{Contact\+Avoidance\+Function}}
+\index{Contact\+Avoidance\+Function@{Contact\+Avoidance\+Function}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{Contact\+Avoidance\+Function()}{ContactAvoidanceFunction()}}
+{\footnotesize\ttfamily Contact\+Avoidance\+Function\+::\+Contact\+Avoidance\+Function (\begin{DoxyParamCaption}\item[{const Model \&}]{model,  }\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{var }\end{DoxyParamCaption})}
+
+Initialize the contact avoidance constraint function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The Model on which we will get the dynamic parameters \\
+\hline
+{\em var} & The problem variable that will be used to write this constraint\\
+\hline
+\end{DoxyParams}
+This class is a generic class to compute matrices for the contact avoidance function, but {\bfseries it should not be used}. You would rather choose one of the following derivative classes, depending on the choosen formalism, either full $ \x = [ \ddq \; \torque \; \force_c ] $ or reduced $ \x = [ \torque \; \force_c ] $\+: \begin{DoxyVerb} - wFullContactAvoidanceFunction
+ - wReducedContactAvoidanceFunction\end{DoxyVerb}
+ 
+
+Definition at line 30 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a5309c1fd586ed0292ee5eebfafacef9b}{}\label{classocra_1_1ContactAvoidanceFunction_a5309c1fd586ed0292ee5eebfafacef9b} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!````~Contact\+Avoidance\+Function@{$\sim$\+Contact\+Avoidance\+Function}}
+\index{````~Contact\+Avoidance\+Function@{$\sim$\+Contact\+Avoidance\+Function}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{$\sim$\+Contact\+Avoidance\+Function()}{~ContactAvoidanceFunction()}}
+{\footnotesize\ttfamily Contact\+Avoidance\+Function\+::$\sim$\+Contact\+Avoidance\+Function (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor 
+
+Definition at line 46 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a9afd02871f0d26321b526290f565d541}{}\label{classocra_1_1ContactAvoidanceFunction_a9afd02871f0d26321b526290f565d541} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!compute\+Fullb@{compute\+Fullb}}
+\index{compute\+Fullb@{compute\+Fullb}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{compute\+Fullb()}{computeFullb()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::compute\+Fullb (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+d\+Jdq\+Obst,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+dist\+Obst,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+vel\+Obst,  }\item[{Eigen\+::\+Vector\+Xd \&}]{fullb }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Compute the vector $ \b $ of the linear function for the collision avoidance constraint expressed in the full formalism.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+d\+Jdq\+Obst} & The derivative of the Jacobian of obstacle avoidance multiplied by generalized velocity $ = \dJ_{Obst} \dq $ \\
+\hline
+{\em \+\_\+dist\+Obst} & The relative distance of obstacle avoidance \\
+\hline
+{\em \+\_\+vel\+Obst} & The relative velocity of obstacle avoidance \\
+\hline
+{\em fullb} & The vector instance where to write the collision avoidance data in the full formalism \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 121 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a59994d2c3f364575ecff7fb23b7e10ab}{}\label{classocra_1_1ContactAvoidanceFunction_a59994d2c3f364575ecff7fb23b7e10ab} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!compute\+Full\+Jacobian@{compute\+Full\+Jacobian}}
+\index{compute\+Full\+Jacobian@{compute\+Full\+Jacobian}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{compute\+Full\+Jacobian()}{computeFullJacobian()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::compute\+Full\+Jacobian (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+\+J\+Obst,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{full\+Jacobian }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Compute the Jacobian matrix $ \A $ of the linear function for the collision avoidance constraint expressed in the full formalism.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+J\+Obst} & The Jacobian of obstacle avoidance \\
+\hline
+{\em full\+Jacobian} & The matrix instance where to write the collision avoidance data in the full formalism \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 109 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a4f33ca5589b08a96207be800b9f4bd57}{}\label{classocra_1_1ContactAvoidanceFunction_a4f33ca5589b08a96207be800b9f4bd57} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!do\+Update\+Dimension\+Begin@{do\+Update\+Dimension\+Begin}}
+\index{do\+Update\+Dimension\+Begin@{do\+Update\+Dimension\+Begin}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Dimension\+Begin()}{doUpdateDimensionBegin()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::do\+Update\+Dimension\+Begin (\begin{DoxyParamCaption}\item[{int}]{new\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Do when linear function dimension changes, before.
+
+By overloading this function, it allows linear function modification when function size changes. It does nothing actually. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_afdf98e9f43fde97a5256af88a50cbb39}{ocra\+::\+Function}.
+
+
+
+Definition at line 167 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_ad81a7b03b0fb7e8b2a037bccf5faea84}{}\label{classocra_1_1ContactAvoidanceFunction_ad81a7b03b0fb7e8b2a037bccf5faea84} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!do\+Update\+Dimension\+End@{do\+Update\+Dimension\+End}}
+\index{do\+Update\+Dimension\+End@{do\+Update\+Dimension\+End}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Dimension\+End()}{doUpdateDimensionEnd()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::do\+Update\+Dimension\+End (\begin{DoxyParamCaption}\item[{int}]{old\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Do when linear function dimension changes, after.
+
+By overloading this function, it allows linear function modification when function size changes. It does nothing actually. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d}{ocra\+::\+Function}.
+
+
+
+Definition at line 177 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_aca5221cb617b3603e022040768974a20}{}\label{classocra_1_1ContactAvoidanceFunction_aca5221cb617b3603e022040768974a20} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!get\+Horizon\+Of\+Prediction@{get\+Horizon\+Of\+Prediction}}
+\index{get\+Horizon\+Of\+Prediction@{get\+Horizon\+Of\+Prediction}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{get\+Horizon\+Of\+Prediction()}{getHorizonOfPrediction()}}
+{\footnotesize\ttfamily double Contact\+Avoidance\+Function\+::get\+Horizon\+Of\+Prediction (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the time horizon of prediction $ h $ for the contact avoidance function.
+
+\begin{DoxyReturn}{Returns}
+The time horizon (s) 
+\end{DoxyReturn}
+
+
+Definition at line 55 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a666af8d0a23e115b2f139b048fe6b933}{}\label{classocra_1_1ContactAvoidanceFunction_a666af8d0a23e115b2f139b048fe6b933} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!get\+Margin@{get\+Margin}}
+\index{get\+Margin@{get\+Margin}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{get\+Margin()}{getMargin()}}
+{\footnotesize\ttfamily double Contact\+Avoidance\+Function\+::get\+Margin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Get the obstacle avoidance margin $ \vec{m} $.
+
+\begin{DoxyReturn}{Returns}
+The margin vector 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_abb04a99b523d82819d2b11bf9a7ea7f9}{}\label{classocra_1_1ContactAvoidanceFunction_abb04a99b523d82819d2b11bf9a7ea7f9} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!set\+Horizon\+Of\+Prediction@{set\+Horizon\+Of\+Prediction}}
+\index{set\+Horizon\+Of\+Prediction@{set\+Horizon\+Of\+Prediction}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{set\+Horizon\+Of\+Prediction()}{setHorizonOfPrediction()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::set\+Horizon\+Of\+Prediction (\begin{DoxyParamCaption}\item[{double}]{new\+Hpos }\end{DoxyParamCaption})}
+
+Set the time horizon of prediction $ h $ for the contact avoidance function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Hpos} & The new time horizon (s) \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 64 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a4ae90405d1464527310ce1d93df2e862}{}\label{classocra_1_1ContactAvoidanceFunction_a4ae90405d1464527310ce1d93df2e862} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!set\+Margin@{set\+Margin}}
+\index{set\+Margin@{set\+Margin}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{set\+Margin()}{setMargin()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::set\+Margin (\begin{DoxyParamCaption}\item[{double}]{new\+Margin }\end{DoxyParamCaption})}
+
+Set the obstacle avoidance margin $ \vec{m} $.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Margin} & The margin vector \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 82 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_aed2f145f17ff9fd8dd646018376ea7e9}{}\label{classocra_1_1ContactAvoidanceFunction_aed2f145f17ff9fd8dd646018376ea7e9} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!updateb@{updateb}}
+\index{updateb@{updateb}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{updateb()}{updateb()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::updateb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+update the vector $ \b $.
+
+Does nothing.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]It should be conform to the ocra framework, the computation of the vector should be here. \end{DoxyRefDesc}
+
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a546454cd8d0909f99433ffc0e700c9e3}{ocra\+::\+Linear\+Function}.
+
+
+
+Reimplemented in \hyperlink{classocra_1_1ReducedContactAvoidanceFunction_ac39227a19a650de28f4ae603511bfb73}{ocra\+::\+Reduced\+Contact\+Avoidance\+Function}, and \hyperlink{classocra_1_1FullContactAvoidanceFunction_ae24690ecd464eefd43936907e33c4cb9}{ocra\+::\+Full\+Contact\+Avoidance\+Function}.
+
+
+
+Definition at line 157 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_aee28a7fe69481db190d2e26b603659ea}{}\label{classocra_1_1ContactAvoidanceFunction_aee28a7fe69481db190d2e26b603659ea} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!update\+Contact\+Information@{update\+Contact\+Information}}
+\index{update\+Contact\+Information@{update\+Contact\+Information}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{update\+Contact\+Information()}{updateContactInformation()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::update\+Contact\+Information (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+\+J\+Obst,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+d\+Jdq\+Obst,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+dist\+Obst,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{\+\_\+vel\+Obst }\end{DoxyParamCaption})}
+
+Update contact information to compute obstacle avoidance function.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+\+J\+Obst} & The Jacobian of obstacle avoidance \\
+\hline
+{\em \+\_\+d\+Jdq\+Obst} & The derivative of the Jacobian of obstacle avoidance multiplied by generalized velocity $ = \dJ_{Obst} \dq $ \\
+\hline
+{\em \+\_\+dist\+Obst} & The relative distance of obstacle avoidance \\
+\hline
+{\em \+\_\+vel\+Obst} & The relative velocity of obstacle avoidance \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 94 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_aca72dc43ecd3d95bb917139ac6ae19c1}{}\label{classocra_1_1ContactAvoidanceFunction_aca72dc43ecd3d95bb917139ac6ae19c1} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void Contact\+Avoidance\+Function\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+update the Jacobian matrix $ \A $.
+
+Does nothing.
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000001}{Todo}]It should be conform to the ocra framework, the computation of the jacobian should be here. \end{DoxyRefDesc}
+
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a30926f977c0124a0b0f65b854ab39636}{ocra\+::\+Linear\+Function}.
+
+
+
+Reimplemented in \hyperlink{classocra_1_1FullContactAvoidanceFunction_a91b21004faed7ffa6a51e975abc93797}{ocra\+::\+Full\+Contact\+Avoidance\+Function}.
+
+
+
+Definition at line 146 of file Contact\+Avoidance\+Constraint.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1ContactAvoidanceFunction_aa3d1b5f23d42c0936b1fa09ad7988732}{}\label{classocra_1_1ContactAvoidanceFunction_aa3d1b5f23d42c0936b1fa09ad7988732} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!dist\+Obst@{dist\+Obst}}
+\index{dist\+Obst@{dist\+Obst}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{dist\+Obst}{distObst}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Contact\+Avoidance\+Function\+::dist\+Obst\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 107 of file Contact\+Avoidance\+Constraint.\+h.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a59c655299c8db310d3e06a47729f0780}{}\label{classocra_1_1ContactAvoidanceFunction_a59c655299c8db310d3e06a47729f0780} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!d\+Jdq\+Obst@{d\+Jdq\+Obst}}
+\index{d\+Jdq\+Obst@{d\+Jdq\+Obst}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{d\+Jdq\+Obst}{dJdqObst}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Contact\+Avoidance\+Function\+::d\+Jdq\+Obst\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 106 of file Contact\+Avoidance\+Constraint.\+h.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a49e94dae2d7708e66cf11e737b1a4d6d}{}\label{classocra_1_1ContactAvoidanceFunction_a49e94dae2d7708e66cf11e737b1a4d6d} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!hpos@{hpos}}
+\index{hpos@{hpos}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{hpos}{hpos}}
+{\footnotesize\ttfamily double ocra\+::\+Contact\+Avoidance\+Function\+::hpos\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 102 of file Contact\+Avoidance\+Constraint.\+h.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a233c509632182b45540a30b818254713}{}\label{classocra_1_1ContactAvoidanceFunction_a233c509632182b45540a30b818254713} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!J\+Obst@{J\+Obst}}
+\index{J\+Obst@{J\+Obst}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{J\+Obst}{JObst}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+::\+Contact\+Avoidance\+Function\+::\+J\+Obst\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 105 of file Contact\+Avoidance\+Constraint.\+h.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a5a4c2e4dae17aef6c4cf6fa1b3be093e}{}\label{classocra_1_1ContactAvoidanceFunction_a5a4c2e4dae17aef6c4cf6fa1b3be093e} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!margin@{margin}}
+\index{margin@{margin}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{margin}{margin}}
+{\footnotesize\ttfamily double ocra\+::\+Contact\+Avoidance\+Function\+::margin\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 103 of file Contact\+Avoidance\+Constraint.\+h.
+
+\hypertarget{classocra_1_1ContactAvoidanceFunction_a19eb96ace3a217e5ea1c80dec97eeeb2}{}\label{classocra_1_1ContactAvoidanceFunction_a19eb96ace3a217e5ea1c80dec97eeeb2} 
+\index{ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}!vel\+Obst@{vel\+Obst}}
+\index{vel\+Obst@{vel\+Obst}!ocra\+::\+Contact\+Avoidance\+Function@{ocra\+::\+Contact\+Avoidance\+Function}}
+\subsubsection{\texorpdfstring{vel\+Obst}{velObst}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::\+Contact\+Avoidance\+Function\+::vel\+Obst\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 108 of file Contact\+Avoidance\+Constraint.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ContactAvoidanceConstraint_8h}{Contact\+Avoidance\+Constraint.\+h}\item 
+\hyperlink{ContactAvoidanceConstraint_8cpp}{Contact\+Avoidance\+Constraint.\+cpp}\end{DoxyCompactItemize}

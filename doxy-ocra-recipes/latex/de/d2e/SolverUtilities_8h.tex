@@ -1,0 +1,157 @@
+\hypertarget{SolverUtilities_8h}{}\section{Solver\+Utilities.\+h File Reference}
+\label{SolverUtilities_8h}\index{Solver\+Utilities.\+h@{Solver\+Utilities.\+h}}
+{\ttfamily \#include $<$ocra/util/\+Math\+Types.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Variable.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Constraint.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/uncompress.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Eigen/\+Eigen$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include \char`\"{}Solver\+Utilities.\+hxx\char`\"{}}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1OptimizationResult}{ocra\+::\+Optimization\+Result}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\item 
+ \hyperlink{namespaceocra_1_1utils}{ocra\+::utils}
+\item 
+ \hyperlink{namespaceocra_1_1utils_1_1details}{ocra\+::utils\+::details}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{SolverUtilities_8h_a6520bcefcd2338bee676868b5e5aff1b}{D\+E\+C\+L\+A\+R\+E\+\_\+\+U\+N\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON}(function\+Name)
+\end{DoxyCompactItemize}
+
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294b}{ocra\+::e\+Return\+Info} \{ \newline
+\hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294ba6f454cdffb1de3687ef88c58b589b3f6}{ocra\+::\+R\+E\+T\+U\+R\+N\+\_\+\+S\+U\+C\+C\+E\+SS} = 0, 
+\hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294bac4551471e9999a6188cc9956eded36ca}{ocra\+::\+R\+E\+T\+U\+R\+N\+\_\+\+I\+N\+C\+O\+N\+S\+I\+S\+T\+E\+N\+T\+\_\+\+P\+R\+O\+B\+L\+EM}, 
+\hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294ba550a18591f136d331fb9aea56a9c6e44}{ocra\+::\+R\+E\+T\+U\+R\+N\+\_\+\+I\+N\+F\+E\+A\+S\+I\+B\+L\+E\+\_\+\+P\+R\+O\+B\+L\+EM}, 
+\hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294ba83f31480bfdb12ce0c8068849f8465cc}{ocra\+::\+R\+E\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+I\+T\+E\+R\+\_\+\+R\+E\+A\+C\+H\+ED}, 
+\newline
+\hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294ba2ad934267c33a06b2b0ab939d6573657}{ocra\+::\+R\+E\+T\+U\+R\+N\+\_\+\+M\+A\+X\+\_\+\+T\+I\+M\+E\+\_\+\+R\+E\+A\+C\+H\+ED}, 
+\hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294bae948ae7318b9583ce4fe36c9c53a8b35}{ocra\+::\+R\+E\+T\+U\+R\+N\+\_\+\+M\+E\+M\+O\+R\+Y\+\_\+\+E\+R\+R\+OR}, 
+\hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294bac58b844581bd308fbf6c4766c216af7d}{ocra\+::\+R\+E\+T\+U\+R\+N\+\_\+\+N\+U\+M\+E\+R\+I\+C\+A\+L\+\_\+\+E\+R\+R\+OR}, 
+\hyperlink{namespaceocra_aa1d873ac30cb0a0f79ba978745de294ba839fc54ee2fcde2a0a62f60c18bccd89}{ocra\+::\+R\+E\+T\+U\+R\+N\+\_\+\+E\+R\+R\+OR}
+ \}
+\item 
+enum \hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051}{ocra\+::e\+Constraint\+Output} \{ \newline
+\hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051af75636505b6b15f0a8b5f36c5f6f1fbc}{ocra\+::\+C\+S\+T\+R\+\_\+\+P\+L\+U\+S\+\_\+\+E\+Q\+U\+AL} =0, 
+\hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051a5b7f5e56f488e37b1eaae770e42df674}{ocra\+::\+C\+S\+T\+R\+\_\+\+M\+I\+N\+U\+S\+\_\+\+E\+Q\+U\+AL}, 
+\hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051ad2fecab8cb40010fe9ad1134fbe60af5}{ocra\+::\+C\+S\+T\+R\+\_\+\+P\+L\+U\+S\+\_\+\+L\+O\+W\+ER}, 
+\hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051a861f7b93ab8192b80eecfed319729593}{ocra\+::\+C\+S\+T\+R\+\_\+\+M\+I\+N\+U\+S\+\_\+\+L\+O\+W\+ER}, 
+\newline
+\hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051a0f5ead1190980c358456d9ae00153fb5}{ocra\+::\+C\+S\+T\+R\+\_\+\+P\+L\+U\+S\+\_\+\+G\+R\+E\+A\+T\+ER}, 
+\hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051af030625753b8ae9dbbf90fbabc93ab99}{ocra\+::\+C\+S\+T\+R\+\_\+\+M\+I\+N\+U\+S\+\_\+\+G\+R\+E\+A\+T\+ER}, 
+\hyperlink{namespaceocra_abc43c1cc74267805f1cc799c4ac27051a00de6af1d6e5abf183beb82894470ede}{ocra\+::\+C\+S\+T\+R\+\_\+\+D\+O\+U\+B\+L\+E\+\_\+\+B\+O\+U\+N\+DS}
+ \}
+\item 
+enum \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399}{ocra\+::utils\+::details\+::e\+Convert\+Case} \{ \newline
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a03eb35928d61fd2a957cf41c6c4578ca}{ocra\+::utils\+::details\+::\+P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B} =0, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b}{ocra\+::utils\+::details\+::\+P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a5c4183c0fd47b8c64276843dda690de7}{ocra\+::utils\+::details\+::\+P\+L\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff}{ocra\+::utils\+::details\+::\+P\+L\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV}, 
+\newline
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399aa51f84eadd7c02e17fcae444cd646c79}{ocra\+::utils\+::details\+::\+M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+B}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399afb7decc69a9b25a7b762f2084e9d52f0}{ocra\+::utils\+::details\+::\+M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+B}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a6de905f897737b898a7c188c7d9c85b8}{ocra\+::utils\+::details\+::\+M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+P\+L\+U\+S\+\_\+\+BV}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399a10d452d5d1cdb90b7216e1e49ad73b8e}{ocra\+::utils\+::details\+::\+M\+I\+N\+U\+S\+\_\+\+A\+\_\+\+M\+I\+N\+U\+S\+\_\+\+BV}, 
+\newline
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399ac32fdefb96f856fd13bfad381529309e}{ocra\+::utils\+::details\+::\+S\+P\+E\+C\+I\+A\+L\+\_\+\+C\+A\+SE}, 
+\hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91c399acaa13d6c21f24f969be8e5e53329d178}{ocra\+::utils\+::details\+::\+I\+M\+P\+O\+S\+S\+I\+B\+L\+E\+\_\+\+C\+A\+SE}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Base $>$ }\\void \hyperlink{namespaceocra_1_1utils_aaf649f13f39cd8d32b0311ac2bfe2b4d}{ocra\+::utils\+::print\+Linear\+Equation} (const Matrix\+Base$<$ Derived $>$ \&A, const Vector\+Base \&b, int space=9, int precision=3)
+\item 
+void \hyperlink{namespaceocra_1_1utils_aa928598a03da10c32b029f77c571788a}{ocra\+::utils\+::print\+Solution} (const Vector\+Xd \&result, const Variable \&var, int space=9, int precision=3)
+\item 
+{\footnotesize template$<$class Derived , class Vector\+Base1 , class Vector\+Base2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_a5d9dfa0a2dc2197c50ba35951f19586e}{ocra\+::utils\+::convert} (const Linear\+Constraint \&cstr, const std\+::vector$<$ int $>$ \&mapping, e\+Constraint\+Output type, Matrix\+Base$<$ Derived $>$ \&A, Vector\+Base1 \&b, Vector\+Base2 \&l, double infinity=0.)
+\item 
+{\footnotesize template$<$class Vector\+Base1 , class Vector\+Base2 $>$ }\\void \hyperlink{namespaceocra_1_1utils_aa835270370ca3a7f7b9e2858ef37dae0}{ocra\+::utils\+::intersect\+Bounds} (const Diagonal\+Linear\+Constraint \&bounds, const std\+::vector$<$ int $>$ \&mapping, Vector\+Base1 \&bl, Vector\+Base2 \&bu)
+\item 
+void \hyperlink{namespaceocra_a3dca8b5c0944fb95ccafa4b41d169d70}{ocra\+::test\+Utilities} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const details\+::e\+Convert\+Case \hyperlink{namespaceocra_1_1utils_a4775079ee4f9f6c7620af882e8092c62}{ocra\+::utils\+::conversion\+\_\+cases} \mbox{[}7\mbox{]}\mbox{[}7\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{SolverUtilities_8h_a6520bcefcd2338bee676868b5e5aff1b}{}\label{SolverUtilities_8h_a6520bcefcd2338bee676868b5e5aff1b} 
+\index{Solver\+Utilities.\+h@{Solver\+Utilities.\+h}!D\+E\+C\+L\+A\+R\+E\+\_\+\+U\+N\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON@{D\+E\+C\+L\+A\+R\+E\+\_\+\+U\+N\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON}}
+\index{D\+E\+C\+L\+A\+R\+E\+\_\+\+U\+N\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON@{D\+E\+C\+L\+A\+R\+E\+\_\+\+U\+N\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON}!Solver\+Utilities.\+h@{Solver\+Utilities.\+h}}
+\subsubsection{\texorpdfstring{D\+E\+C\+L\+A\+R\+E\+\_\+\+U\+N\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON}{DECLARE\_UNCOMPRESSED\_FUNCTION}}
+{\footnotesize\ttfamily \#define D\+E\+C\+L\+A\+R\+E\+\_\+\+U\+N\+C\+O\+M\+P\+R\+E\+S\+S\+E\+D\+\_\+\+F\+U\+N\+C\+T\+I\+ON(\begin{DoxyParamCaption}\item[{}]{function\+Name }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keyword}{template}<\textcolor{keyword}{class} Derived1, \textcolor{keyword}{class} Derived2> \(\backslash\)
+    void functionName(\textcolor{keyword}{const} MatrixBase<Derived1>& in, MatrixBase<Derived2> \textcolor{keyword}{const}& \_out, \(\backslash\)
+                      \textcolor{keyword}{const} std::vector<int>& mapping, \textcolor{keywordtype}{double} scale=1., \textcolor{keywordtype}{bool} reverseMapping=\textcolor{keyword}{false}); \(\backslash\)
+    template<class Derived1, class Derived2>  \(\backslash\)
+    void functionName(\textcolor{keyword}{const} Variable& base, \textcolor{keyword}{const} Variable& rel, \(\backslash\)
+                      \textcolor{keyword}{const} MatrixBase<Derived1>& in, MatrixBase<Derived2> \textcolor{keyword}{const}& \_out, \(\backslash\)
+                      std::vector<int>& mapping, \textcolor{keywordtype}{double} scale=1.); \(\backslash\)
+    template<typename Scalar, class Derived1, class Derived2> \(\backslash\)
+    \textcolor{comment}{/* specialization for when in is of the form a*M */} \(\backslash\)
+    inline \textcolor{keywordtype}{void} functionName(\textcolor{keyword}{const} CwiseUnaryOp<internal::scalar\_multiple\_op<Scalar>, Derived1>& in, 
+      MatrixBase<Derived2> \textcolor{keyword}{const}& \_out, \(\backslash\)
+                      \textcolor{keyword}{const} std::vector<int>& mapping, \textcolor{keywordtype}{double} scale=1., \textcolor{keywordtype}{bool} reverseMapping=\textcolor{keyword}{false}) \(\backslash\)
+    \{ functionName(in.nestedExpression(), \_out, mapping, scale*in.functor().m\_other, reverseMapping); \} \(\backslash\)
+    template<typename Scalar, class Derived1, class Derived2>  \(\backslash\)
+    void functionName(\textcolor{keyword}{const} Variable& base, \textcolor{keyword}{const} Variable& rel, \(\backslash\)
+                      \textcolor{keyword}{const} CwiseUnaryOp<internal::scalar\_multiple\_op<Scalar>, Derived1>& in, 
+      MatrixBase<Derived2> \textcolor{keyword}{const}& \_out, \(\backslash\)
+                      std::vector<int>& mapping, \textcolor{keywordtype}{double} scale=1.) \(\backslash\)
+    \{ \(\backslash\)
+      MatrixBase<Derived2>& out = \textcolor{keyword}{const\_cast<}MatrixBase<Derived2> & \textcolor{keyword}{>}(\_out);\(\backslash\)
+      functionName(base, rel, in.nestedExpression(), out, mapping, scale*in.functor().m\_other); \(\backslash\)
+    \}
+\end{DoxyCode}
+The following functions are aliases on usages of the methods of uncompress$<$\+Functor$>$ (Uncompress.\+h), defined for userfriendliness\+:
+\begin{DoxyItemize}
+\item uncompress\+By\+Col
+\item uncompress\+By\+Row
+\item uncompress2d
+\item add\+Compressed\+By\+Col
+\item add\+Compressed\+By\+Row
+\item add\+Compressed2d
+\item min\+Compressed\+By\+Col
+\item min\+Compressed\+By\+Row
+\item min\+Compressed2d
+\item max\+Compressed\+By\+Col
+\item max\+Compressed\+By\+Row
+\item max\+Compressed2d each of them having two overloads void function\+Name(const Matrix\+Base$<$\+Derived1$>$\& in, Matrix\+Base$<$\+Derived2$>$\& out, const std\+::vector$<$int$>$\& mapping, double scale=1., bool reverse\+Mapping);
+\end{DoxyItemize}
+
+void function\+Name(const Variable\& base, const Variable\& rel, const Matrix\+Base$<$\+Derived1$>$\& in, Matrix\+Base$<$\+Derived2$>$\& out, std\+::vector$<$int$>$\& mapping, double scale=1.)
+
+Given two matrices {\itshape in} and {\itshape out}, and a vector of indices {\itshape mapping}, these functions will perform an operation between\+:
+\begin{DoxyItemize}
+\item in.\+col(i) and out.\+col(mapping\mbox{[}i\mbox{]}) for functions postfixed by {\itshape By\+Row},
+\item in.\+row(j) and out.\+row(mapping\mbox{[}j\mbox{]}) for functions postfixed by {\itshape By\+Col},
+\item in(i,j) and out(mapping\mbox{[}i\mbox{]}, mapping\mbox{[}j\mbox{]}) for functions postfixed by {\itshape 2d}, for i in \mbox{[}0,in.\+cols()\mbox{[} or/and j in \mbox{[}0,in.\+rows()\mbox{[}. If {\itshape reverse\+Mapping} is set to {\ttfamily true}, the indices k and mapping\mbox{[}k\mbox{]} are swaped\+: for example, for functions postfixed by {\itshape By\+Row}, the operation will happen between in.\+col(mapping\mbox{[}i\mbox{]}) and out.\+col(i) The operation between these two elements {\itshape e1} and {\itshape e2} is e2 = e1 for {\itshape uncompress} functions, e2 += e1 for {\itshape add\+Compressed} functions, e2 = min(e1,e2) for {\itshape min\+Compressed} functions, e2 = max(e1,e2) for {\itshape max\+Compressed} functions.
+\end{DoxyItemize}
+
+Each function has two overloads\+:
+\begin{DoxyItemize}
+\item const (Matrix\+Base\&, Matrix\+Base\&, const vector$<$int$>$\&, double, bool reverse\+Mapping) for which the mapping is given by the user.
+\item const (const Variable\&, const\+Variable\& Matrix\+Base\&, Matrix\+Base\&, vector$<$int$>$\&, double) for which the mapping is computed from the variables (base.\+get\+Relative\+Mapping\+Of(rel, mapping)) and returned to the user. 
+\end{DoxyItemize}
+
+Definition at line 138 of file Solver\+Utilities.\+h.
+

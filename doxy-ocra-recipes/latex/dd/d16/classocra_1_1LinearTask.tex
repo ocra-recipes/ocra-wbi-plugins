@@ -1,0 +1,335 @@
+\hypertarget{classocra_1_1LinearTask}{}\section{ocra\+:\+:Linear\+Task Class Reference}
+\label{classocra_1_1LinearTask}\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+
+
+Linear\+Task class.  
+
+
+
+
+{\ttfamily \#include $<$Linear\+Task.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Linear\+Task\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{dd/d16/classocra_1_1LinearTask}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1LinearTask_a72e12356b5513585a17c44d00d819289}{function\+Type\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1LinearTask_a6bbf60a2fde8bd52c79d3d26613f06a0}{Linear\+Task} (\hyperlink{classocra_1_1Function}{Function} \&f, \hyperlink{classocra_1_1Function}{Function} \&L)
+\item 
+\hyperlink{classocra_1_1LinearTask_ad443b3044cc66e3e68ea3f5062e37453}{$\sim$\+Linear\+Task} ()
+\item 
+\hyperlink{classocra_1_1Function}{Function} \& \hyperlink{classocra_1_1LinearTask_a84dc8ca9c882d3e1b864e78784814303}{getL} ()
+\item 
+const \hyperlink{classocra_1_1Function}{Function} \& \hyperlink{classocra_1_1LinearTask_acfca060d834f7141863d5f3d254d6c66}{getL} () const
+\item 
+\hyperlink{classocra_1_1Function}{Function} \& \hyperlink{classocra_1_1LinearTask_a64b0390b8b65bcd5a533c0b6774615ec}{getf} ()
+\item 
+const \hyperlink{classocra_1_1Function}{Function} \& \hyperlink{classocra_1_1LinearTask_a19be592ae8046225f171a54c01d40583}{getf} () const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ \hyperlink{classocra_1_1LinearTask_a566facd954e4cdedb6d28cf6acd81a0f}{create\+Equality\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, double weight)
+\item 
+static \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ \hyperlink{classocra_1_1LinearTask_a0e046c85faf7845383754ff76eb98577}{create\+Equality\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, const Vector\+Xd \&weight)
+\item 
+static \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ \hyperlink{classocra_1_1LinearTask_a27f3ec57a7987a304f6fa3459bbb1471}{create\+Inequality\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, double weight, double fi)
+\item 
+static \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ \hyperlink{classocra_1_1LinearTask_acdc8fcd9fb536eadb6713a6ed7104b0d}{create\+Inequality\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, const Vector\+Xd \&weight, \hyperlink{namespaceocra_af4478308ca113669e67d72f9a3050469}{real} fi)
+\item 
+static \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ \hyperlink{classocra_1_1LinearTask_a22fa8cb968410219ffe92a90f4d4cd0f}{create\+Inequality\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, \hyperlink{namespaceocra_af4478308ca113669e67d72f9a3050469}{real} weight, const Vector\+Xd \&fi)
+\item 
+static \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ \hyperlink{classocra_1_1LinearTask_afe1724e6fe71b6d2e1dd7fe1cae882be}{create\+Inequality\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, const Vector\+Xd \&weight, const Vector\+Xd \&fi)
+\item 
+static \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ \hyperlink{classocra_1_1LinearTask_af62a910012dbcd7583ac0e9536899836}{create\+Inequality\+Task\+With\+Linear\+Law} (\hyperlink{classocra_1_1Function}{Function} $\ast$f, const Vector\+Xd \&weight\+Divided\+By\+Fi)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra_1_1LinearTask_a9d2845b746d3af713458b9246b011328}{update\+Jacobian} () const
+\item 
+void \hyperlink{classocra_1_1LinearTask_a83fc0c9f16a8338d3e66db91fef2a319}{updateb} () const
+\item 
+void \hyperlink{classocra_1_1LinearTask_a9db869913d96b6917b2d40211761c019}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+void \hyperlink{classocra_1_1LinearTask_a31c1140426b2f327e6a126fd917b04cd}{do\+Update\+Dimension\+Begin} (int new\+Dimension)
+\item 
+void \hyperlink{classocra_1_1LinearTask_aab97e5a858909e724ae8426f141c319b}{do\+Update\+Dimension\+End} (int old\+Dimension)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1LinearTask_ab79a5c0caf93e7ecbc214ad40a8d2701}{\+\_\+f}
+\item 
+\hyperlink{classocra_1_1Function}{Function} $\ast$ \hyperlink{classocra_1_1LinearTask_a9ce434a1d6641d486c20476b8f8a366d}{\+\_\+L}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Linear\+Task class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Derives a derivable error function $ f $ on $ x $ into a linear function on $ x $, $ \frac{\partial f}{\partial x} \dot{x} + L(f(x)) $ with $ L $ a function. Classical function $ L $ is $ L(y) = \Lambda y $ with $ \Lambda $ a diagonal matrix of gains. 
+
+Definition at line 37 of file Linear\+Task.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1LinearTask_a72e12356b5513585a17c44d00d819289}{}\label{classocra_1_1LinearTask_a72e12356b5513585a17c44d00d819289} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!function\+Type\+\_\+t@{function\+Type\+\_\+t}}
+\index{function\+Type\+\_\+t@{function\+Type\+\_\+t}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{function\+Type\+\_\+t}{functionType\_t}}
+{\footnotesize\ttfamily typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{classocra_1_1LinearTask_a72e12356b5513585a17c44d00d819289}{ocra\+::\+Linear\+Task\+::function\+Type\+\_\+t}}
+
+
+
+Definition at line 41 of file Linear\+Task.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1LinearTask_a6bbf60a2fde8bd52c79d3d26613f06a0}{}\label{classocra_1_1LinearTask_a6bbf60a2fde8bd52c79d3d26613f06a0} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!Linear\+Task@{Linear\+Task}}
+\index{Linear\+Task@{Linear\+Task}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{Linear\+Task()}{LinearTask()}}
+{\footnotesize\ttfamily ocra\+::\+Linear\+Task\+::\+Linear\+Task (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} \&}]{f,  }\item[{\hyperlink{classocra_1_1Function}{Function} \&}]{L }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_ad443b3044cc66e3e68ea3f5062e37453}{}\label{classocra_1_1LinearTask_ad443b3044cc66e3e68ea3f5062e37453} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!````~Linear\+Task@{$\sim$\+Linear\+Task}}
+\index{````~Linear\+Task@{$\sim$\+Linear\+Task}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{$\sim$\+Linear\+Task()}{~LinearTask()}}
+{\footnotesize\ttfamily ocra\+::\+Linear\+Task\+::$\sim$\+Linear\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 31 of file Linear\+Task.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1LinearTask_a566facd954e4cdedb6d28cf6acd81a0f}{}\label{classocra_1_1LinearTask_a566facd954e4cdedb6d28cf6acd81a0f} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!create\+Equality\+Task\+With\+Linear\+Law@{create\+Equality\+Task\+With\+Linear\+Law}}
+\index{create\+Equality\+Task\+With\+Linear\+Law@{create\+Equality\+Task\+With\+Linear\+Law}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Equality\+Task\+With\+Linear\+Law()}{createEqualityTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ ocra\+::\+Linear\+Task\+::create\+Equality\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{double}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 49 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_a0e046c85faf7845383754ff76eb98577}{}\label{classocra_1_1LinearTask_a0e046c85faf7845383754ff76eb98577} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!create\+Equality\+Task\+With\+Linear\+Law@{create\+Equality\+Task\+With\+Linear\+Law}}
+\index{create\+Equality\+Task\+With\+Linear\+Law@{create\+Equality\+Task\+With\+Linear\+Law}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Equality\+Task\+With\+Linear\+Law()}{createEqualityTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ ocra\+::\+Linear\+Task\+::create\+Equality\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{const Vector\+Xd \&}]{weight }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 57 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_a27f3ec57a7987a304f6fa3459bbb1471}{}\label{classocra_1_1LinearTask_a27f3ec57a7987a304f6fa3459bbb1471} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}}
+\index{create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Inequality\+Task\+With\+Linear\+Law()}{createInequalityTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ ocra\+::\+Linear\+Task\+::create\+Inequality\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{double}]{weight,  }\item[{double}]{fi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 66 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_acdc8fcd9fb536eadb6713a6ed7104b0d}{}\label{classocra_1_1LinearTask_acdc8fcd9fb536eadb6713a6ed7104b0d} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}}
+\index{create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Inequality\+Task\+With\+Linear\+Law()}{createInequalityTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ ocra\+::\+Linear\+Task\+::create\+Inequality\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{const Vector\+Xd \&}]{weight,  }\item[{\hyperlink{namespaceocra_af4478308ca113669e67d72f9a3050469}{real}}]{fi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 96 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_a22fa8cb968410219ffe92a90f4d4cd0f}{}\label{classocra_1_1LinearTask_a22fa8cb968410219ffe92a90f4d4cd0f} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}}
+\index{create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Inequality\+Task\+With\+Linear\+Law()}{createInequalityTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ ocra\+::\+Linear\+Task\+::create\+Inequality\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{\hyperlink{namespaceocra_af4478308ca113669e67d72f9a3050469}{real}}]{weight,  }\item[{const Vector\+Xd \&}]{fi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 85 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_afe1724e6fe71b6d2e1dd7fe1cae882be}{}\label{classocra_1_1LinearTask_afe1724e6fe71b6d2e1dd7fe1cae882be} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}}
+\index{create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Inequality\+Task\+With\+Linear\+Law()}{createInequalityTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ ocra\+::\+Linear\+Task\+::create\+Inequality\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{const Vector\+Xd \&}]{weight,  }\item[{const Vector\+Xd \&}]{fi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 108 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_af62a910012dbcd7583ac0e9536899836}{}\label{classocra_1_1LinearTask_af62a910012dbcd7583ac0e9536899836} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}}
+\index{create\+Inequality\+Task\+With\+Linear\+Law@{create\+Inequality\+Task\+With\+Linear\+Law}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{create\+Inequality\+Task\+With\+Linear\+Law()}{createInequalityTaskWithLinearLaw()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1LinearTask}{Linear\+Task} $\ast$ ocra\+::\+Linear\+Task\+::create\+Inequality\+Task\+With\+Linear\+Law (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Function}{Function} $\ast$}]{f,  }\item[{const Vector\+Xd \&}]{weight\+Divided\+By\+Fi }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 120 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_a31c1140426b2f327e6a126fd917b04cd}{}\label{classocra_1_1LinearTask_a31c1140426b2f327e6a126fd917b04cd} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!do\+Update\+Dimension\+Begin@{do\+Update\+Dimension\+Begin}}
+\index{do\+Update\+Dimension\+Begin@{do\+Update\+Dimension\+Begin}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{do\+Update\+Dimension\+Begin()}{doUpdateDimensionBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Task\+::do\+Update\+Dimension\+Begin (\begin{DoxyParamCaption}\item[{int}]{new\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the dimension of the function has changed. Default implementation of do\+Update\+Dimension\+End does nothing, do\+Update\+Dimension\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1LinearTask_aab97e5a858909e724ae8426f141c319b}{do\+Update\+Dimension\+End()}} must comply with the post condition of {\ttfamily update\+Dimension()}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_afdf98e9f43fde97a5256af88a50cbb39}{ocra\+::\+Function}.
+
+
+
+Definition at line 142 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_aab97e5a858909e724ae8426f141c319b}{}\label{classocra_1_1LinearTask_aab97e5a858909e724ae8426f141c319b} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!do\+Update\+Dimension\+End@{do\+Update\+Dimension\+End}}
+\index{do\+Update\+Dimension\+End@{do\+Update\+Dimension\+End}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{do\+Update\+Dimension\+End()}{doUpdateDimensionEnd()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Task\+::do\+Update\+Dimension\+End (\begin{DoxyParamCaption}\item[{int}]{old\+Dimension }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1Function_a17aa280f0e6eff4a7569edc373a5147d}{ocra\+::\+Function}.
+
+
+
+Definition at line 147 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_a9db869913d96b6917b2d40211761c019}{}\label{classocra_1_1LinearTask_a9db869913d96b6917b2d40211761c019} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Task\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1LinearFunction_ac6bdf62ad6634397778d5f4223ed6d82}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 137 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_a64b0390b8b65bcd5a533c0b6774615ec}{}\label{classocra_1_1LinearTask_a64b0390b8b65bcd5a533c0b6774615ec} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!getf@{getf}}
+\index{getf@{getf}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{getf()}{getf()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function} \& ocra\+::\+Linear\+Task\+::getf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 109 of file Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1LinearTask_a19be592ae8046225f171a54c01d40583}{}\label{classocra_1_1LinearTask_a19be592ae8046225f171a54c01d40583} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!getf@{getf}}
+\index{getf@{getf}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{getf()}{getf()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Function}{Function} \& ocra\+::\+Linear\+Task\+::getf (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 104 of file Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1LinearTask_a84dc8ca9c882d3e1b864e78784814303}{}\label{classocra_1_1LinearTask_a84dc8ca9c882d3e1b864e78784814303} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!getL@{getL}}
+\index{getL@{getL}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{get\+L()}{getL()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function} \& ocra\+::\+Linear\+Task\+::getL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 94 of file Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1LinearTask_acfca060d834f7141863d5f3d254d6c66}{}\label{classocra_1_1LinearTask_acfca060d834f7141863d5f3d254d6c66} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!getL@{getL}}
+\index{getL@{getL}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{get\+L()}{getL()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Function}{Function} \& ocra\+::\+Linear\+Task\+::getL (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 99 of file Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1LinearTask_a83fc0c9f16a8338d3e66db91fef2a319}{}\label{classocra_1_1LinearTask_a83fc0c9f16a8338d3e66db91fef2a319} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!updateb@{updateb}}
+\index{updateb@{updateb}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{updateb()}{updateb()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Task\+::updateb (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Update the value of b. Does nothing in \hyperlink{classocra_1_1LinearFunction}{Linear\+Function}. It is provided so that derived class may overload it. 
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a546454cd8d0909f99433ffc0e700c9e3}{ocra\+::\+Linear\+Function}.
+
+
+
+Definition at line 39 of file Linear\+Task.\+cpp.
+
+\hypertarget{classocra_1_1LinearTask_a9d2845b746d3af713458b9246b011328}{}\label{classocra_1_1LinearTask_a9d2845b746d3af713458b9246b011328} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!update\+Jacobian@{update\+Jacobian}}
+\index{update\+Jacobian@{update\+Jacobian}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{update\+Jacobian()}{updateJacobian()}}
+{\footnotesize\ttfamily void ocra\+::\+Linear\+Task\+::update\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_a30926f977c0124a0b0f65b854ab39636}{ocra\+::\+Linear\+Function}.
+
+
+
+Definition at line 131 of file Linear\+Task.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra_1_1LinearTask_ab79a5c0caf93e7ecbc214ad40a8d2701}{}\label{classocra_1_1LinearTask_ab79a5c0caf93e7ecbc214ad40a8d2701} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!\+\_\+f@{\+\_\+f}}
+\index{\+\_\+f@{\+\_\+f}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{\+\_\+f}{\_f}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function}$\ast$ ocra\+::\+Linear\+Task\+::\+\_\+f\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 89 of file Linear\+Task.\+h.
+
+\hypertarget{classocra_1_1LinearTask_a9ce434a1d6641d486c20476b8f8a366d}{}\label{classocra_1_1LinearTask_a9ce434a1d6641d486c20476b8f8a366d} 
+\index{ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}!\+\_\+L@{\+\_\+L}}
+\index{\+\_\+L@{\+\_\+L}!ocra\+::\+Linear\+Task@{ocra\+::\+Linear\+Task}}
+\subsubsection{\texorpdfstring{\+\_\+L}{\_L}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Function}{Function}$\ast$ ocra\+::\+Linear\+Task\+::\+\_\+L\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 90 of file Linear\+Task.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{LinearTask_8h}{Linear\+Task.\+h}\item 
+\hyperlink{LinearTask_8cpp}{Linear\+Task.\+cpp}\end{DoxyCompactItemize}

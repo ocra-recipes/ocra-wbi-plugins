@@ -1,0 +1,110 @@
+\hypertarget{classocra_1_1Leaf}{}\section{ocra\+:\+:Leaf$<$ Leaf\+Derived $>$ Class Template Reference}
+\label{classocra_1_1Leaf}\index{ocra\+::\+Leaf$<$ Leaf\+Derived $>$@{ocra\+::\+Leaf$<$ Leaf\+Derived $>$}}
+
+
+Base class for the \hyperlink{classocra_1_1Leaf}{Leaf} class of the \hyperlink{classocra_1_1Composite}{Composite} pattern.  
+
+
+
+
+{\ttfamily \#include $<$Composite.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef Leaf\+Derived \hyperlink{classocra_1_1Leaf_ab2cc1a54ddf2da28942fa60c8da165f1}{leaf\+\_\+t}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Leaf_a8c1c832842c03c2a0c24c2129ddbdc8a}{Leaf} ()
+\item 
+\hyperlink{classocra_1_1Leaf_a192f19a657e776a381da384279417f01}{$\sim$\+Leaf} ()
+\item 
+void \hyperlink{classocra_1_1Leaf_aaf46f5b8cd9d9667b8080898b1d9138a}{print\+Tree\+\_\+impl} (int depth, std\+::ostream \&os) const
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Leaf\+Derived$>$\newline
+class ocra\+::\+Leaf$<$ Leaf\+Derived $>$}
+
+Base class for the \hyperlink{classocra_1_1Leaf}{Leaf} class of the \hyperlink{classocra_1_1Composite}{Composite} pattern. 
+
+See the wikipedia article about the \hyperlink{classocra_1_1Composite}{Composite} design pattern for more information. \begin{DoxySeeAlso}{See also}
+class \hyperlink{classocra_1_1Component}{ocra\+::\+Component} 
+
+class \hyperlink{classocra_1_1Composite}{ocra\+::\+Composite}
+\end{DoxySeeAlso}
+This class does nothing except allowing discrimination between leaves and other kind of nodes.
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Leaf\+Derived} & is the type of the leaves.\\
+\hline
+\end{DoxyTemplParams}
+\begin{DoxyPrecond}{Precondition}
+Leaf\+Derived publicly derives Leaf$<$\+Leaf\+Derived$>$ 
+\end{DoxyPrecond}
+
+
+Definition at line 774 of file Composite.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1Leaf_ab2cc1a54ddf2da28942fa60c8da165f1}{}\label{classocra_1_1Leaf_ab2cc1a54ddf2da28942fa60c8da165f1} 
+\index{ocra\+::\+Leaf@{ocra\+::\+Leaf}!leaf\+\_\+t@{leaf\+\_\+t}}
+\index{leaf\+\_\+t@{leaf\+\_\+t}!ocra\+::\+Leaf@{ocra\+::\+Leaf}}
+\subsubsection{\texorpdfstring{leaf\+\_\+t}{leaf\_t}}
+{\footnotesize\ttfamily template$<$class Leaf\+Derived$>$ \\
+typedef Leaf\+Derived \hyperlink{classocra_1_1Leaf}{ocra\+::\+Leaf}$<$ Leaf\+Derived $>$\+::\hyperlink{classocra_1_1Leaf_ab2cc1a54ddf2da28942fa60c8da165f1}{leaf\+\_\+t}}
+
+
+
+Definition at line 777 of file Composite.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1Leaf_a8c1c832842c03c2a0c24c2129ddbdc8a}{}\label{classocra_1_1Leaf_a8c1c832842c03c2a0c24c2129ddbdc8a} 
+\index{ocra\+::\+Leaf@{ocra\+::\+Leaf}!Leaf@{Leaf}}
+\index{Leaf@{Leaf}!ocra\+::\+Leaf@{ocra\+::\+Leaf}}
+\subsubsection{\texorpdfstring{Leaf()}{Leaf()}}
+{\footnotesize\ttfamily template$<$class Leaf\+Derived$>$ \\
+\hyperlink{classocra_1_1Leaf}{ocra\+::\+Leaf}$<$ Leaf\+Derived $>$\+::\hyperlink{classocra_1_1Leaf}{Leaf} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 780 of file Composite.\+h.
+
+\hypertarget{classocra_1_1Leaf_a192f19a657e776a381da384279417f01}{}\label{classocra_1_1Leaf_a192f19a657e776a381da384279417f01} 
+\index{ocra\+::\+Leaf@{ocra\+::\+Leaf}!````~Leaf@{$\sim$\+Leaf}}
+\index{````~Leaf@{$\sim$\+Leaf}!ocra\+::\+Leaf@{ocra\+::\+Leaf}}
+\subsubsection{\texorpdfstring{$\sim$\+Leaf()}{~Leaf()}}
+{\footnotesize\ttfamily template$<$class Leaf\+Derived$>$ \\
+\hyperlink{classocra_1_1Leaf}{ocra\+::\+Leaf}$<$ Leaf\+Derived $>$\+::$\sim$\hyperlink{classocra_1_1Leaf}{Leaf} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 795 of file Composite.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1Leaf_aaf46f5b8cd9d9667b8080898b1d9138a}{}\label{classocra_1_1Leaf_aaf46f5b8cd9d9667b8080898b1d9138a} 
+\index{ocra\+::\+Leaf@{ocra\+::\+Leaf}!print\+Tree\+\_\+impl@{print\+Tree\+\_\+impl}}
+\index{print\+Tree\+\_\+impl@{print\+Tree\+\_\+impl}!ocra\+::\+Leaf@{ocra\+::\+Leaf}}
+\subsubsection{\texorpdfstring{print\+Tree\+\_\+impl()}{printTree\_impl()}}
+{\footnotesize\ttfamily template$<$class Leaf\+Derived$>$ \\
+void \hyperlink{classocra_1_1Leaf}{ocra\+::\+Leaf}$<$ Leaf\+Derived $>$\+::print\+Tree\+\_\+impl (\begin{DoxyParamCaption}\item[{int}]{depth,  }\item[{std\+::ostream \&}]{os }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 797 of file Composite.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Composite_8h}{Composite.\+h}\end{DoxyCompactItemize}

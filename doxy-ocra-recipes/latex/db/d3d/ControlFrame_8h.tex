@@ -1,0 +1,45 @@
+\hypertarget{ControlFrame_8h}{}\section{Control\+Frame.\+h File Reference}
+\label{ControlFrame_8h}\index{Control\+Frame.\+h@{Control\+Frame.\+h}}
+
+
+Classes that represent frames.  
+
+
+{\ttfamily \#include \char`\"{}ocra/optim/\+Named\+Instance.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$ocra/util/\+Math\+Types.\+h$>$}\newline
+{\ttfamily \#include $<$ocra/util/\+Macros.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Eigen/\+Lgsm\char`\"{}}\newline
+{\ttfamily \#include $<$boost/shared\+\_\+ptr.\+hpp$>$}\newline
+{\ttfamily \#include $<$boost/noncopyable.\+hpp$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1ControlFrame}{ocra\+::\+Control\+Frame}
+\begin{DoxyCompactList}\small\item\em Generic representation of a frame\+: gives access to its position, velocity, jacobian... \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1TargetFrame}{ocra\+::\+Target\+Frame}
+\begin{DoxyCompactList}\small\item\em Represents a \textquotesingle{}target\textquotesingle{}, i.\+e. something that does not depend on a model but must match with another frame. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1SegmentFrame}{ocra\+::\+Segment\+Frame}
+\begin{DoxyCompactList}\small\item\em A frame attached to a segment of a model. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1CoMFrame}{ocra\+::\+Co\+M\+Frame}
+\begin{DoxyCompactList}\small\item\em Creates a frame whose center is at the CoM of the model and whose axes are parallel to the axes of the world frame. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Classes that represent frames. 
+
+Copyright (C) 2010 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+T\+S\+I/\+S\+R\+CI
+
+\begin{DoxyAuthor}{Author}
+Evrard Paul 
+
+Escande Adrien 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+2010/10/03
+\end{DoxyDate}
+File history\+: 

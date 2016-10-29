@@ -1,0 +1,51 @@
+\hypertarget{Variable_8h}{}\section{Variable.\+h File Reference}
+\label{Variable_8h}\index{Variable.\+h@{Variable.\+h}}
+
+
+Declaration file of the Variable class.  
+
+
+{\ttfamily \#include \char`\"{}ocra/optim/\+Observer\+Subject.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}ocra/optim/\+Composite.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Eigen/\+Eigen$>$}\newline
+{\ttfamily \#include $<$boost/noncopyable.\+hpp$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra_1_1VariableHasRestrictedClassDerivation}{ocra\+::\+Variable\+Has\+Restricted\+Class\+Derivation}
+\item 
+struct \hyperlink{structocra_1_1VariableParenthood}{ocra\+::\+Variable\+Parenthood}
+\begin{DoxyCompactList}\small\item\em This class stores information about a composite-\/component relationship. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1Variable}{ocra\+::\+Variable}
+\begin{DoxyCompactList}\small\item\em This class represents a variable in a mathematical sense. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1BaseVariable}{ocra\+::\+Base\+Variable}
+\begin{DoxyCompactList}\small\item\em Implements a basic variable. \end{DoxyCompactList}\item 
+class \hyperlink{classocra_1_1CompositeVariable}{ocra\+::\+Composite\+Variable}
+\begin{DoxyCompactList}\small\item\em A concatenation of base variables and other composite variables. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra}{ocra}
+\begin{DoxyCompactList}\small\item\em Optimization-\/based Robot \hyperlink{classocra_1_1Controller}{Controller} namespace. a library of classes to write and solve optimization problems dedicated to the control of multi-\/body systems. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Declaration file of the Variable class. 
+
+Copyright (C) 2009 C\+E\+A/\+D\+R\+T/\+L\+I\+S\+T/\+D\+T\+S\+I/\+S\+R\+CI
+
+\begin{DoxyAuthor}{Author}
+Escande Adrien 
+
+Brisset Julien 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+09/04/14
+\end{DoxyDate}
+File history\+:
+\begin{DoxyItemize}
+\item 2010/05/26\+: Evrard Paul -\/ Documentation updated and code reviewed.
+\item 2010/06/09\+: Evrard Paul -\/ New implementation based on \hyperlink{classocra_1_1Composite}{ocra\+::\+Composite}, minor interface changes. 
+\end{DoxyItemize}

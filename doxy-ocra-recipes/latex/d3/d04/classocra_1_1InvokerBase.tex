@@ -1,0 +1,184 @@
+\hypertarget{classocra_1_1InvokerBase}{}\section{ocra\+:\+:Invoker\+Base$<$ E\+VT $>$ Class Template Reference}
+\label{classocra_1_1InvokerBase}\index{ocra\+::\+Invoker\+Base$<$ E\+V\+T $>$@{ocra\+::\+Invoker\+Base$<$ E\+V\+T $>$}}
+
+
+{\ttfamily \#include $<$Observer\+Subject\+Base.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Invoker\+Base$<$ E\+VT $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.769352cm]{d3/d04/classocra_1_1InvokerBase}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual \hyperlink{classocra_1_1InvokerBase_aa02504b95fda47269f5c42c4c7650a13}{$\sim$\+Invoker\+Base} ()
+\item 
+virtual void \hyperlink{classocra_1_1InvokerBase_ae4d7537a1b2c0aa9b5188c5da8423289}{trigger} (int timestamp)=0
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \hyperlink{classocra_1_1InvokerBase_a1ba940e9b5c9559fd7904dda940d2501}{is\+Observer\+Equal\+To} (std\+::pair$<$ T $\ast$, void(T\+::$\ast$)(int)$>$ observer)
+\item 
+{\footnotesize template$<$class T $>$ }\\bool \hyperlink{classocra_1_1InvokerBase_a4876ec9f3321e19fda7eb7f40befdf8e}{is\+Callback\+Equal\+To} (void(T\+::$\ast$callback)(int))
+\item 
+bool \hyperlink{classocra_1_1InvokerBase_a89f5d1ce29dcec8811e41e1e5992350d}{is\+Callback\+Equal\+To} (void($\ast$callback)(int))
+\end{DoxyCompactItemize}
+
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{classocra_1_1ObserverBase}{Observer\+Base}$<$ E\+VT $>$ \hyperlink{classocra_1_1InvokerBase_a186d1d95173d5875d4cdf113312d3b12}{observer\+\_\+base\+\_\+type}
+\item 
+typedef void(observer\+\_\+base\+\_\+type\+::$\ast$ \hyperlink{classocra_1_1InvokerBase_ab20a012fb61b3ffde70547b1f696f3bc}{member\+\_\+callback\+\_\+type}) (int)
+\item 
+typedef void($\ast$ \hyperlink{classocra_1_1InvokerBase_a19d9d2e44df4df24b203e918ead8d01e}{free\+\_\+callback\+\_\+type}) (int)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual boost\+::any \hyperlink{classocra_1_1InvokerBase_aab9488dbb26120ccfa7c77be11c01ba9}{get\+Callback} ()=0
+\item 
+virtual void $\ast$ \hyperlink{classocra_1_1InvokerBase_a90d81926209cb3119933412f742bc245}{get\+Object} ()=0
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$int E\+VT$>$\newline
+class ocra\+::\+Invoker\+Base$<$ E\+V\+T $>$}
+
+
+
+Definition at line 46 of file Observer\+Subject\+Base.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{classocra_1_1InvokerBase_a19d9d2e44df4df24b203e918ead8d01e}{}\label{classocra_1_1InvokerBase_a19d9d2e44df4df24b203e918ead8d01e} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!free\+\_\+callback\+\_\+type@{free\+\_\+callback\+\_\+type}}
+\index{free\+\_\+callback\+\_\+type@{free\+\_\+callback\+\_\+type}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{free\+\_\+callback\+\_\+type}{free\_callback\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+typedef void($\ast$ \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::free\+\_\+callback\+\_\+type) (int)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 51 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{classocra_1_1InvokerBase_ab20a012fb61b3ffde70547b1f696f3bc}{}\label{classocra_1_1InvokerBase_ab20a012fb61b3ffde70547b1f696f3bc} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!member\+\_\+callback\+\_\+type@{member\+\_\+callback\+\_\+type}}
+\index{member\+\_\+callback\+\_\+type@{member\+\_\+callback\+\_\+type}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{member\+\_\+callback\+\_\+type}{member\_callback\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+typedef void(observer\+\_\+base\+\_\+type\+::$\ast$ \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::member\+\_\+callback\+\_\+type) (int)\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 50 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{classocra_1_1InvokerBase_a186d1d95173d5875d4cdf113312d3b12}{}\label{classocra_1_1InvokerBase_a186d1d95173d5875d4cdf113312d3b12} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!observer\+\_\+base\+\_\+type@{observer\+\_\+base\+\_\+type}}
+\index{observer\+\_\+base\+\_\+type@{observer\+\_\+base\+\_\+type}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{observer\+\_\+base\+\_\+type}{observer\_base\_type}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+typedef \hyperlink{classocra_1_1ObserverBase}{Observer\+Base}$<$E\+VT$>$ \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::\hyperlink{classocra_1_1InvokerBase_a186d1d95173d5875d4cdf113312d3b12}{observer\+\_\+base\+\_\+type}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 49 of file Observer\+Subject\+Base.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1InvokerBase_aa02504b95fda47269f5c42c4c7650a13}{}\label{classocra_1_1InvokerBase_aa02504b95fda47269f5c42c4c7650a13} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!````~Invoker\+Base@{$\sim$\+Invoker\+Base}}
+\index{````~Invoker\+Base@{$\sim$\+Invoker\+Base}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{$\sim$\+Invoker\+Base()}{~InvokerBase()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+virtual \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::$\sim$\hyperlink{classocra_1_1InvokerBase}{Invoker\+Base} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 54 of file Observer\+Subject\+Base.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1InvokerBase_aab9488dbb26120ccfa7c77be11c01ba9}{}\label{classocra_1_1InvokerBase_aab9488dbb26120ccfa7c77be11c01ba9} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!get\+Callback@{get\+Callback}}
+\index{get\+Callback@{get\+Callback}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{get\+Callback()}{getCallback()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+virtual boost\+::any \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::get\+Callback (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1Invoker_3_01void_00_01EVT_00_01false_01_4_a28f6e1841ccdb09d1bfefbb529d51f79}{ocra\+::\+Invoker$<$ void, E\+V\+T, false $>$}, \hyperlink{classocra_1_1Invoker_3_01T_00_01EVT_00_01false_01_4_a459bd95f3eae2d06b9167fd98c1c7e22}{ocra\+::\+Invoker$<$ T, E\+V\+T, false $>$}, and \hyperlink{classocra_1_1Invoker_3_01T_00_01EVT_00_01true_01_4_a902cb0e1084dc60929920a56631c8586}{ocra\+::\+Invoker$<$ T, E\+V\+T, true $>$}.
+
+\hypertarget{classocra_1_1InvokerBase_a90d81926209cb3119933412f742bc245}{}\label{classocra_1_1InvokerBase_a90d81926209cb3119933412f742bc245} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!get\+Object@{get\+Object}}
+\index{get\+Object@{get\+Object}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{get\+Object()}{getObject()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+virtual void$\ast$ \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::get\+Object (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \hyperlink{classocra_1_1Invoker_3_01void_00_01EVT_00_01false_01_4_a2d32f4dcaca9ae526b89e28cf2a3fc70}{ocra\+::\+Invoker$<$ void, E\+V\+T, false $>$}, \hyperlink{classocra_1_1Invoker_3_01T_00_01EVT_00_01false_01_4_ad77a4342ddfd1b1e1387065276c54246}{ocra\+::\+Invoker$<$ T, E\+V\+T, false $>$}, and \hyperlink{classocra_1_1Invoker_3_01T_00_01EVT_00_01true_01_4_ab187a80065f38c9a650e0a5b35185153}{ocra\+::\+Invoker$<$ T, E\+V\+T, true $>$}.
+
+\hypertarget{classocra_1_1InvokerBase_a4876ec9f3321e19fda7eb7f40befdf8e}{}\label{classocra_1_1InvokerBase_a4876ec9f3321e19fda7eb7f40befdf8e} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!is\+Callback\+Equal\+To@{is\+Callback\+Equal\+To}}
+\index{is\+Callback\+Equal\+To@{is\+Callback\+Equal\+To}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{is\+Callback\+Equal\+To()}{isCallbackEqualTo()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+template$<$class T $>$ \\
+bool \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::is\+Callback\+Equal\+To (\begin{DoxyParamCaption}\item[{void(T\+::$\ast$)(int)}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 65 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{classocra_1_1InvokerBase_a89f5d1ce29dcec8811e41e1e5992350d}{}\label{classocra_1_1InvokerBase_a89f5d1ce29dcec8811e41e1e5992350d} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!is\+Callback\+Equal\+To@{is\+Callback\+Equal\+To}}
+\index{is\+Callback\+Equal\+To@{is\+Callback\+Equal\+To}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{is\+Callback\+Equal\+To()}{isCallbackEqualTo()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+bool \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::is\+Callback\+Equal\+To (\begin{DoxyParamCaption}\item[{void($\ast$)(int)}]{callback }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 78 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{classocra_1_1InvokerBase_a1ba940e9b5c9559fd7904dda940d2501}{}\label{classocra_1_1InvokerBase_a1ba940e9b5c9559fd7904dda940d2501} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!is\+Observer\+Equal\+To@{is\+Observer\+Equal\+To}}
+\index{is\+Observer\+Equal\+To@{is\+Observer\+Equal\+To}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{is\+Observer\+Equal\+To()}{isObserverEqualTo()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+template$<$class T $>$ \\
+bool \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::is\+Observer\+Equal\+To (\begin{DoxyParamCaption}\item[{std\+::pair$<$ T $\ast$, void(T\+::$\ast$)(int)$>$}]{observer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 59 of file Observer\+Subject\+Base.\+h.
+
+\hypertarget{classocra_1_1InvokerBase_ae4d7537a1b2c0aa9b5188c5da8423289}{}\label{classocra_1_1InvokerBase_ae4d7537a1b2c0aa9b5188c5da8423289} 
+\index{ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}!trigger@{trigger}}
+\index{trigger@{trigger}!ocra\+::\+Invoker\+Base@{ocra\+::\+Invoker\+Base}}
+\subsubsection{\texorpdfstring{trigger()}{trigger()}}
+{\footnotesize\ttfamily template$<$int E\+VT$>$ \\
+virtual void \hyperlink{classocra_1_1InvokerBase}{ocra\+::\+Invoker\+Base}$<$ E\+VT $>$\+::trigger (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+If the wrapped callback is a method of a derived class of \hyperlink{classocra_1_1ObserverBase}{Observer\+Base}, forwards the call to \hyperlink{classocra_1_1ObserverBase}{Observer\+Base} so that the propagation mechanism is properly invoked. Else simply invokes the callback. \begin{DoxySeeAlso}{See also}
+\hyperlink{classocra_1_1ObserverBase}{ocra\+::\+Observer\+Base}. 
+\end{DoxySeeAlso}
+
+
+Implemented in \hyperlink{classocra_1_1Invoker_3_01void_00_01EVT_00_01false_01_4_a483d45eb6e668e5c97b9861840f4d6ea}{ocra\+::\+Invoker$<$ void, E\+V\+T, false $>$}, \hyperlink{classocra_1_1Invoker_3_01T_00_01EVT_00_01false_01_4_a740261f9f9c3278c9668d192eae56c2a}{ocra\+::\+Invoker$<$ T, E\+V\+T, false $>$}, and \hyperlink{classocra_1_1Invoker_3_01T_00_01EVT_00_01true_01_4_a9b6283c07e6477a21c4b82b17940d832}{ocra\+::\+Invoker$<$ T, E\+V\+T, true $>$}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ObserverSubjectBase_8h}{Observer\+Subject\+Base.\+h}\end{DoxyCompactItemize}

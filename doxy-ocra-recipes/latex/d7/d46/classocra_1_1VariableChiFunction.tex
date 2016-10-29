@@ -1,0 +1,79 @@
+\hypertarget{classocra_1_1VariableChiFunction}{}\section{ocra\+:\+:Variable\+Chi\+Function Class Reference}
+\label{classocra_1_1VariableChiFunction}\index{ocra\+::\+Variable\+Chi\+Function@{ocra\+::\+Variable\+Chi\+Function}}
+
+
+{\ttfamily \#include $<$Variable\+Chi\+Function.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Variable\+Chi\+Function\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=1.082126cm]{d7/d46/classocra_1_1VariableChiFunction}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1VariableChiFunction_ac83eecf18f118396efdb5513923eeba6}{Variable\+Chi\+Function} (\hyperlink{classocra_1_1Variable}{Variable} \&\hyperlink{classocra_1_1Function_a28825886d1f149c87b112ec2ec1dd486}{x}, int dimension)
+\item 
+void \hyperlink{classocra_1_1VariableChiFunction_ad58b8fbb68e8cb27aab585f40875918f}{do\+Update\+Input\+Size\+Begin} ()
+\item 
+void \hyperlink{classocra_1_1VariableChiFunction_adbc1bb06d86e8ef65e8cdeb55db15353}{do\+Update\+Input\+Size\+End} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 10 of file Variable\+Chi\+Function.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1VariableChiFunction_ac83eecf18f118396efdb5513923eeba6}{}\label{classocra_1_1VariableChiFunction_ac83eecf18f118396efdb5513923eeba6} 
+\index{ocra\+::\+Variable\+Chi\+Function@{ocra\+::\+Variable\+Chi\+Function}!Variable\+Chi\+Function@{Variable\+Chi\+Function}}
+\index{Variable\+Chi\+Function@{Variable\+Chi\+Function}!ocra\+::\+Variable\+Chi\+Function@{ocra\+::\+Variable\+Chi\+Function}}
+\subsubsection{\texorpdfstring{Variable\+Chi\+Function()}{VariableChiFunction()}}
+{\footnotesize\ttfamily Variable\+Chi\+Function\+::\+Variable\+Chi\+Function (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Variable}{Variable} \&}]{x,  }\item[{int}]{dimension }\end{DoxyParamCaption})}
+
+
+
+Definition at line 5 of file Variable\+Chi\+Function.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1VariableChiFunction_ad58b8fbb68e8cb27aab585f40875918f}{}\label{classocra_1_1VariableChiFunction_ad58b8fbb68e8cb27aab585f40875918f} 
+\index{ocra\+::\+Variable\+Chi\+Function@{ocra\+::\+Variable\+Chi\+Function}!do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}}
+\index{do\+Update\+Input\+Size\+Begin@{do\+Update\+Input\+Size\+Begin}!ocra\+::\+Variable\+Chi\+Function@{ocra\+::\+Variable\+Chi\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+Begin()}{doUpdateInputSizeBegin()}}
+{\footnotesize\ttfamily void Variable\+Chi\+Function\+::do\+Update\+Input\+Size\+Begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Methods for pre and post update in case the variable size has changed. Default implementation of do\+Update\+Input\+Size\+End does nothing, do\+Update\+Input\+Size\+Begin throws an exception. These methods might throw exceptions when overloaded. Furthermore, {\ttfamily \hyperlink{classocra_1_1VariableChiFunction_adbc1bb06d86e8ef65e8cdeb55db15353}{do\+Update\+Input\+Size\+End()}} must comply with the post condition of {\ttfamily \hyperlink{classocra_1_1Function_a3a5b9e6ae296339acc87ab2cbf97ef98}{update\+Input\+Size()}}, i.\+e. let the values of each ability invalidated. 
+
+Reimplemented from \hyperlink{classocra_1_1Function_a3f728f3758e6448aa59932853db5ddcc}{ocra\+::\+Function}.
+
+
+
+Definition at line 14 of file Variable\+Chi\+Function.\+cpp.
+
+\hypertarget{classocra_1_1VariableChiFunction_adbc1bb06d86e8ef65e8cdeb55db15353}{}\label{classocra_1_1VariableChiFunction_adbc1bb06d86e8ef65e8cdeb55db15353} 
+\index{ocra\+::\+Variable\+Chi\+Function@{ocra\+::\+Variable\+Chi\+Function}!do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}}
+\index{do\+Update\+Input\+Size\+End@{do\+Update\+Input\+Size\+End}!ocra\+::\+Variable\+Chi\+Function@{ocra\+::\+Variable\+Chi\+Function}}
+\subsubsection{\texorpdfstring{do\+Update\+Input\+Size\+End()}{doUpdateInputSizeEnd()}}
+{\footnotesize\ttfamily void Variable\+Chi\+Function\+::do\+Update\+Input\+Size\+End (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+This methods ensures \+\_\+b has the good size at the end of a resize, yet it will not be called in \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} itself because the class does not overload \hyperlink{classocra_1_1VariableChiFunction_ad58b8fbb68e8cb27aab585f40875918f}{do\+Update\+Input\+Size\+Begin()} which throws an runtime\+\_\+error by default. 
+
+Reimplemented from \hyperlink{classocra_1_1LinearFunction_ac6bdf62ad6634397778d5f4223ed6d82}{ocra\+::\+Linear\+Function}.
+
+
+
+Definition at line 19 of file Variable\+Chi\+Function.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{VariableChiFunction_8h}{Variable\+Chi\+Function.\+h}\item 
+\hyperlink{VariableChiFunction_8cpp}{Variable\+Chi\+Function.\+cpp}\end{DoxyCompactItemize}

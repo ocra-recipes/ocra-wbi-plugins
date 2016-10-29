@@ -1,0 +1,56 @@
+\hypertarget{_2Users_2jorhabibeljaik_2Code_2codyco-superbuild_2libraries_2ocra-recipes_2ocra_2include_2ocra_27dfe52ed2d2fe1904154f5be9150e8b1}{}\section{/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/libraries/ocra-\/recipes/ocra/include/ocra/optim/\+Merged\+Variable.\+h}
+Maintains a Composite\+Variable by merging sub-\/variables.\+A Merged\+Variable stores a composite variables allows to attach and detach variables from it by merging them. It also stores the mappings of these variables with respect to the parent variable. A subvariable is actually added only once to the merged variable, however, you have to call \textquotesingle{}remove\textquotesingle{} as many times as you have called \textquotesingle{}insert\textquotesingle{} to actually detach it.
+
+Base\+Variable b(\char`\"{}b\char`\"{}); Merged\+Variable m(\char`\"{}m\char`\"{}); m.\+insert(\&b); // attaches b to m m.\+insert(\&b); // nothing is done from the point of view of the client code m.\+remove(\&b); // nothing is done from the point of view of the client code m.\+remove(\&b); // detaches b from m
+
+
+\begin{DoxyCodeInclude}
+\textcolor{preprocessor}{#ifndef \_OCRA\_MERGED\_VARIABLE\_H\_}
+\textcolor{preprocessor}{#define \_OCRA\_MERGED\_VARIABLE\_H\_}
+
+\textcolor{preprocessor}{#include "\hyperlink{Variable_8h}{ocra/optim/Variable.h}"}
+
+\textcolor{preprocessor}{#include <string>}
+\textcolor{preprocessor}{#include <map>}
+
+\textcolor{keyword}{namespace }\hyperlink{namespaceocra}{ocra}
+\{
+  \textcolor{keyword}{class }VariableMapping;
+\}
+
+\textcolor{keyword}{namespace }\hyperlink{namespaceocra}{ocra}
+\{
+  \textcolor{keyword}{class }MergedVariable
+    : \textcolor{keyword}{public} ObserverSubject
+  \{
+  \textcolor{keyword}{public}:
+    \hyperlink{classocra_1_1MergedVariable_ac6dcd7217ac6a6097ae95f5fe2afc513}{MergedVariable}(\textcolor{keyword}{const} std::string& name);
+    \hyperlink{classocra_1_1MergedVariable_aa126050631c068dba3e1d12f31dea9ec}{~MergedVariable}();
+
+    \textcolor{keywordtype}{void} \hyperlink{classocra_1_1MergedVariable_aa91f4ed9514c3dd4bf1ae4e25cf1e118}{insert}(Variable* var);
+    \textcolor{keywordtype}{void} \textcolor{keyword}{remove}(Variable* var);
+    VariableMapping* \hyperlink{classocra_1_1MergedVariable_a54dea5dde63addca4de73ea8fdb6073b}{find}(Variable* var) \textcolor{keyword}{const};
+
+    CompositeVariable& \hyperlink{classocra_1_1MergedVariable_afa4986407c3fbaebe268fd248b2c4bcf}{getVariable}();
+    \textcolor{keywordtype}{void} \hyperlink{classocra_1_1MergedVariable_a2c53faf60a0aa267457aa6688b7341aa}{setValue}(\textcolor{keyword}{const} VectorXd& val) \textcolor{keyword}{const};
+    \textcolor{keywordtype}{void} \hyperlink{classocra_1_1MergedVariable_a5edb99e2c6596addb6b5a1c991f79699}{recomputeVariable}() \textcolor{keyword}{const};
+    \textcolor{keywordtype}{bool} \hyperlink{classocra_1_1MergedVariable_a1da61e970d1c32c9ad94da57914d5aeb}{isVariableUpToDate}() \textcolor{keyword}{const};
+
+  \textcolor{keyword}{private}:
+    \textcolor{keywordtype}{void} invalidateVariable();
+    \textcolor{keywordtype}{void} invalidateVariable(\textcolor{keywordtype}{int} timestamp);
+
+  \textcolor{keyword}{private}:
+    \textcolor{keyword}{typedef} std::map<Variable*, std::pair<int, VariableMapping*> > map\_t;
+
+    map\_t \_varToMapping;
+    \textcolor{keyword}{mutable} CompositeVariable \_base;
+    \textcolor{keyword}{mutable} \textcolor{keywordtype}{bool} \_isVariableUpToDate;
+  \};
+\}
+
+\textcolor{preprocessor}{#endif}
+
+\textcolor{comment}{// cmake:sourcegroup=Variable}
+\end{DoxyCodeInclude}
+ 

@@ -1,0 +1,347 @@
+\hypertarget{classocra_1_1DisplacementFeature}{}\section{ocra\+:\+:Displacement\+Feature Class Reference}
+\label{classocra_1_1DisplacementFeature}\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+
+
+Used to build position/orientation tasks.  
+
+
+
+
+{\ttfamily \#include $<$Feature.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Displacement\+Feature\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{dd/dda/classocra_1_1DisplacementFeature}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1DisplacementFeature_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1DisplacementFeature_a9c48bb5ac5d4a856df9c2d879bc4b072}{Displacement\+Feature} (const std\+::string \&name, Control\+Frame\+::\+Ptr frame, \hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof} axes)
+\item 
+int \hyperlink{classocra_1_1DisplacementFeature_a5d6548c921c2ce61374d3f76114b7881}{get\+Dimension} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_ad27f4aa83abea99ef893de6043b0bf68}{get\+Space\+Transform} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a328fae77ec8a9942881e42226250a11b}{compute\+Effort} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a622cd1b7305b26fbbb2f78784fd0ebf0}{compute\+Acceleration} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a61d1caacf56e60bb3f33d2c91d5b89f2}{compute\+Error} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_afd5e272957274c46a6331c2a3d3324df}{compute\+Error\+Dot} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a87b3ef89ea6711a3f953f94e5cdf7e4d}{compute\+Jacobian} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a3c72ecae0cb33a812c66b0770baf09bf}{compute\+Projected\+Mass} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a4b2e46d41b46c9af72f21f6dcdeec5f5}{compute\+Projected\+Mass\+Inverse} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_aee1c2f5af98c28e8d6ab3dbeb5c3c297}{compute\+Effort} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a1f2fa6644359c3897ac8d3e4e06c5f81}{compute\+Acceleration} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_ac0520f1a870558227ba6d5339a243414}{compute\+Error} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a684821d2a83945c63661eacdf4bcd262}{compute\+Error\+Dot} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a87e2abee5d1072e142dcab99193699da}{compute\+Jacobian} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a31902186d804823eea5ba0177ed85ced}{compute\+Projected\+Mass} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1DisplacementFeature_a3639d72ab7b85ac4b9533ed6498c0c03}{compute\+Projected\+Mass\+Inverse} () const
+\item 
+\hyperlink{classocra_1_1TaskState}{Task\+State} \hyperlink{classocra_1_1DisplacementFeature_a3940d5c27ee1845c65f4be6ad3a27e50}{get\+State} () const
+\item 
+void \hyperlink{classocra_1_1DisplacementFeature_a7a99c7e57d512ec2d6094fc10388e033}{set\+State} (const \hyperlink{classocra_1_1TaskState}{Task\+State} \&new\+State)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Used to build position/orientation tasks. 
+
+These features combine position and orientation features, to control both the position and orientation of a control frame. See the documentation of \hyperlink{classocra_1_1PositionFeature}{Position\+Feature} and \hyperlink{classocra_1_1OrientationFeature}{Orientation\+Feature}. 
+
+Definition at line 235 of file Feature.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1DisplacementFeature_a9c48bb5ac5d4a856df9c2d879bc4b072}{}\label{classocra_1_1DisplacementFeature_a9c48bb5ac5d4a856df9c2d879bc4b072} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!Displacement\+Feature@{Displacement\+Feature}}
+\index{Displacement\+Feature@{Displacement\+Feature}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{Displacement\+Feature()}{DisplacementFeature()}}
+{\footnotesize\ttfamily ocra\+::\+Displacement\+Feature\+::\+Displacement\+Feature (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Control\+Frame\+::\+Ptr}]{frame,  }\item[{\hyperlink{namespaceocra_a436781c7059a0f76027df1c652126260}{E\+Cartesian\+Dof}}]{axes }\end{DoxyParamCaption})}
+
+
+
+Definition at line 722 of file Feature.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1DisplacementFeature_a622cd1b7305b26fbbb2f78784fd0ebf0}{}\label{classocra_1_1DisplacementFeature_a622cd1b7305b26fbbb2f78784fd0ebf0} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Acceleration@{compute\+Acceleration}}
+\index{compute\+Acceleration@{compute\+Acceleration}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Acceleration()}{computeAcceleration()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Acceleration (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a4a5973d27459d2dececec8dc73038df8}{ocra\+::\+Feature}.
+
+
+
+Definition at line 775 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a1f2fa6644359c3897ac8d3e4e06c5f81}{}\label{classocra_1_1DisplacementFeature_a1f2fa6644359c3897ac8d3e4e06c5f81} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Acceleration@{compute\+Acceleration}}
+\index{compute\+Acceleration@{compute\+Acceleration}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Acceleration()}{computeAcceleration()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aa42b61d4255116caa92042d01ca36b79}{ocra\+::\+Feature}.
+
+
+
+Definition at line 801 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a328fae77ec8a9942881e42226250a11b}{}\label{classocra_1_1DisplacementFeature_a328fae77ec8a9942881e42226250a11b} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Effort@{compute\+Effort}}
+\index{compute\+Effort@{compute\+Effort}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Effort()}{computeEffort()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Effort (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a19626a241666fdae253af1f7b6f2acd7}{ocra\+::\+Feature}.
+
+
+
+Definition at line 743 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_aee1c2f5af98c28e8d6ab3dbeb5c3c297}{}\label{classocra_1_1DisplacementFeature_aee1c2f5af98c28e8d6ab3dbeb5c3c297} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Effort@{compute\+Effort}}
+\index{compute\+Effort@{compute\+Effort}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Effort()}{computeEffort()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Effort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ae43f2ffc54862d6ddc0b02fd39431eb6}{ocra\+::\+Feature}.
+
+
+
+Definition at line 761 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a61d1caacf56e60bb3f33d2c91d5b89f2}{}\label{classocra_1_1DisplacementFeature_a61d1caacf56e60bb3f33d2c91d5b89f2} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Error@{compute\+Error}}
+\index{compute\+Error@{compute\+Error}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error()}{computeError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Error (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aaa74d6869f7e574fcc39d443581ddf77}{ocra\+::\+Feature}.
+
+
+
+Definition at line 816 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_ac0520f1a870558227ba6d5339a243414}{}\label{classocra_1_1DisplacementFeature_ac0520f1a870558227ba6d5339a243414} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Error@{compute\+Error}}
+\index{compute\+Error@{compute\+Error}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error()}{computeError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a88f87b496aedc7bf9f13b19bb8f9c7fa}{ocra\+::\+Feature}.
+
+
+
+Definition at line 836 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_afd5e272957274c46a6331c2a3d3324df}{}\label{classocra_1_1DisplacementFeature_afd5e272957274c46a6331c2a3d3324df} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Error\+Dot@{compute\+Error\+Dot}}
+\index{compute\+Error\+Dot@{compute\+Error\+Dot}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error\+Dot()}{computeErrorDot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Error\+Dot (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac714181e1bb25f878349e299c4ba8c00}{ocra\+::\+Feature}.
+
+
+
+Definition at line 851 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a684821d2a83945c63661eacdf4bcd262}{}\label{classocra_1_1DisplacementFeature_a684821d2a83945c63661eacdf4bcd262} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Error\+Dot@{compute\+Error\+Dot}}
+\index{compute\+Error\+Dot@{compute\+Error\+Dot}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error\+Dot()}{computeErrorDot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Error\+Dot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a01a4870418ba87d5b41d8f917c1255fc}{ocra\+::\+Feature}.
+
+
+
+Definition at line 873 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a87b3ef89ea6711a3f953f94e5cdf7e4d}{}\label{classocra_1_1DisplacementFeature_a87b3ef89ea6711a3f953f94e5cdf7e4d} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Jacobian@{compute\+Jacobian}}
+\index{compute\+Jacobian@{compute\+Jacobian}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Jacobian()}{computeJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Jacobian (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a4fb8eeeed978a1f727ec43cd1bd18d78}{ocra\+::\+Feature}.
+
+
+
+Definition at line 890 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a87e2abee5d1072e142dcab99193699da}{}\label{classocra_1_1DisplacementFeature_a87e2abee5d1072e142dcab99193699da} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Jacobian@{compute\+Jacobian}}
+\index{compute\+Jacobian@{compute\+Jacobian}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Jacobian()}{computeJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_adbab3b388657555abb805bb971c2491f}{ocra\+::\+Feature}.
+
+
+
+Definition at line 911 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a3c72ecae0cb33a812c66b0770baf09bf}{}\label{classocra_1_1DisplacementFeature_a3c72ecae0cb33a812c66b0770baf09bf} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Projected\+Mass@{compute\+Projected\+Mass}}
+\index{compute\+Projected\+Mass@{compute\+Projected\+Mass}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass()}{computeProjectedMass()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Projected\+Mass (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a44e11dd349e92971fefebff354e7214b}{ocra\+::\+Feature}.
+
+
+
+Definition at line 927 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a31902186d804823eea5ba0177ed85ced}{}\label{classocra_1_1DisplacementFeature_a31902186d804823eea5ba0177ed85ced} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Projected\+Mass@{compute\+Projected\+Mass}}
+\index{compute\+Projected\+Mass@{compute\+Projected\+Mass}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass()}{computeProjectedMass()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Projected\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a99ac023809c0cf34b5d582537934b08c}{ocra\+::\+Feature}.
+
+
+
+Definition at line 937 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a4b2e46d41b46c9af72f21f6dcdeec5f5}{}\label{classocra_1_1DisplacementFeature_a4b2e46d41b46c9af72f21f6dcdeec5f5} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}}
+\index{compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass\+Inverse()}{computeProjectedMassInverse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Projected\+Mass\+Inverse (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac529096b3fe8eba1ab88a56d8b042d37}{ocra\+::\+Feature}.
+
+
+
+Definition at line 947 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a3639d72ab7b85ac4b9533ed6498c0c03}{}\label{classocra_1_1DisplacementFeature_a3639d72ab7b85ac4b9533ed6498c0c03} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}}
+\index{compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass\+Inverse()}{computeProjectedMassInverse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Displacement\+Feature\+::compute\+Projected\+Mass\+Inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac27bcbdbb8541e3b4e2c77a6d6f2ffc0}{ocra\+::\+Feature}.
+
+
+
+Definition at line 959 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a5d6548c921c2ce61374d3f76114b7881}{}\label{classocra_1_1DisplacementFeature_a5d6548c921c2ce61374d3f76114b7881} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!get\+Dimension@{get\+Dimension}}
+\index{get\+Dimension@{get\+Dimension}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{get\+Dimension()}{getDimension()}}
+{\footnotesize\ttfamily int ocra\+::\+Displacement\+Feature\+::get\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aeda4c2a5ffe638c3de30f8b91a11450e}{ocra\+::\+Feature}.
+
+
+
+Definition at line 738 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_ad27f4aa83abea99ef893de6043b0bf68}{}\label{classocra_1_1DisplacementFeature_ad27f4aa83abea99ef893de6043b0bf68} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!get\+Space\+Transform@{get\+Space\+Transform}}
+\index{get\+Space\+Transform@{get\+Space\+Transform}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{get\+Space\+Transform()}{getSpaceTransform()}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Displacement\+Feature\+::get\+Space\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a77eb324fb4da91fd50d0e761d2453ff3}{ocra\+::\+Feature}.
+
+
+
+Definition at line 728 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a3940d5c27ee1845c65f4be6ad3a27e50}{}\label{classocra_1_1DisplacementFeature_a3940d5c27ee1845c65f4be6ad3a27e50} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!get\+State@{get\+State}}
+\index{get\+State@{get\+State}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{get\+State()}{getState()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1TaskState}{Task\+State} ocra\+::\+Displacement\+Feature\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a792434ceb793f25874b8fe42ae24c475}{ocra\+::\+Feature}.
+
+
+
+Definition at line 970 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1DisplacementFeature_a7a99c7e57d512ec2d6094fc10388e033}{}\label{classocra_1_1DisplacementFeature_a7a99c7e57d512ec2d6094fc10388e033} 
+\index{ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}!set\+State@{set\+State}}
+\index{set\+State@{set\+State}!ocra\+::\+Displacement\+Feature@{ocra\+::\+Displacement\+Feature}}
+\subsubsection{\texorpdfstring{set\+State()}{setState()}}
+{\footnotesize\ttfamily void ocra\+::\+Displacement\+Feature\+::set\+State (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1TaskState}{Task\+State} \&}]{new\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ad16d6b176b229280649ab405531e9a30}{ocra\+::\+Feature}.
+
+
+
+Definition at line 981 of file Feature.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Feature_8h}{Feature.\+h}\item 
+\hyperlink{Feature_8cpp}{Feature.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,347 @@
+\hypertarget{classocra_1_1ContactConstraintFeature}{}\section{ocra\+:\+:Contact\+Constraint\+Feature Class Reference}
+\label{classocra_1_1ContactConstraintFeature}\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+
+
+Used to build contact constraint tasks (null acceleration).  
+
+
+
+
+{\ttfamily \#include $<$Feature.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Contact\+Constraint\+Feature\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d3/dd9/classocra_1_1ContactConstraintFeature}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structocra_1_1ContactConstraintFeature_1_1Pimpl}{Pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1ContactConstraintFeature_a2e4c6265bd194309b5e2304260d53bec}{Contact\+Constraint\+Feature} (const std\+::string \&name, Control\+Frame\+::\+Ptr frame)
+\item 
+int \hyperlink{classocra_1_1ContactConstraintFeature_ac498096b8df524b054f35b05d027f0f0}{get\+Dimension} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_ac7f34721e72544d13e7030182b55f429}{get\+Space\+Transform} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_ab545e20b58d45b47a0e2f2a0a64f9c48}{compute\+Effort} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_a81aeb9d50b198c49d0868ba8321bcfd7}{compute\+Acceleration} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_a2d5b3c766e22c541e416ca52d14e78df}{compute\+Error} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_a0be2debba15230d160957c15eb5afa97}{compute\+Error\+Dot} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_a7b0fc26f03104eb02a7ba565b99a41d7}{compute\+Jacobian} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_ac4dec3a5defe2c50e6084d49a1838883}{compute\+Projected\+Mass} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_a9bdfabb746abff207ff9cc3e9c968c81}{compute\+Projected\+Mass\+Inverse} (const \hyperlink{classocra_1_1Feature}{Feature} \&feature\+Des) const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_a84b467c5da2810bef8a76525e617ad2d}{compute\+Effort} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_a8537fa220270cf526014f0c4f5e6ea75}{compute\+Acceleration} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_ae846fba34c59502db6cf0a0dac0e6be3}{compute\+Error} () const
+\item 
+const Eigen\+::\+Vector\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_afbe828f952c7583b690e394efd05423f}{compute\+Error\+Dot} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_aa3c6131d9c4c815e9e9ec5ab50407b21}{compute\+Jacobian} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_ab926340d6c6d00b1358ae99432e15398}{compute\+Projected\+Mass} () const
+\item 
+const Eigen\+::\+Matrix\+Xd \& \hyperlink{classocra_1_1ContactConstraintFeature_a78ba3452b7ad08dae7a266b0334aaa5d}{compute\+Projected\+Mass\+Inverse} () const
+\item 
+\hyperlink{classocra_1_1TaskState}{Task\+State} \hyperlink{classocra_1_1ContactConstraintFeature_a4a156de21fba41f54c2927232173d334}{get\+State} () const
+\item 
+void \hyperlink{classocra_1_1ContactConstraintFeature_a1bbc7ca568a64aed7704118b8eeaf6d1}{set\+State} (const \hyperlink{classocra_1_1TaskState}{Task\+State} \&new\+State)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Used to build contact constraint tasks (null acceleration). 
+
+These features is similar to a displacement feature, except all quantities are expressed in the controlled frame (space transform is identity). Desired features are irrelevant and compute\+X\+X\+X(const Feature\&) will throw. 
+
+Definition at line 279 of file Feature.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1ContactConstraintFeature_a2e4c6265bd194309b5e2304260d53bec}{}\label{classocra_1_1ContactConstraintFeature_a2e4c6265bd194309b5e2304260d53bec} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!Contact\+Constraint\+Feature@{Contact\+Constraint\+Feature}}
+\index{Contact\+Constraint\+Feature@{Contact\+Constraint\+Feature}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{Contact\+Constraint\+Feature()}{ContactConstraintFeature()}}
+{\footnotesize\ttfamily ocra\+::\+Contact\+Constraint\+Feature\+::\+Contact\+Constraint\+Feature (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Control\+Frame\+::\+Ptr}]{frame }\end{DoxyParamCaption})}
+
+
+
+Definition at line 1028 of file Feature.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1ContactConstraintFeature_a81aeb9d50b198c49d0868ba8321bcfd7}{}\label{classocra_1_1ContactConstraintFeature_a81aeb9d50b198c49d0868ba8321bcfd7} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Acceleration@{compute\+Acceleration}}
+\index{compute\+Acceleration@{compute\+Acceleration}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Acceleration()}{computeAcceleration()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Acceleration (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a4a5973d27459d2dececec8dc73038df8}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1057 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a8537fa220270cf526014f0c4f5e6ea75}{}\label{classocra_1_1ContactConstraintFeature_a8537fa220270cf526014f0c4f5e6ea75} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Acceleration@{compute\+Acceleration}}
+\index{compute\+Acceleration@{compute\+Acceleration}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Acceleration()}{computeAcceleration()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aa42b61d4255116caa92042d01ca36b79}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1062 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_ab545e20b58d45b47a0e2f2a0a64f9c48}{}\label{classocra_1_1ContactConstraintFeature_ab545e20b58d45b47a0e2f2a0a64f9c48} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Effort@{compute\+Effort}}
+\index{compute\+Effort@{compute\+Effort}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Effort()}{computeEffort()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Effort (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a19626a241666fdae253af1f7b6f2acd7}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1044 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a84b467c5da2810bef8a76525e617ad2d}{}\label{classocra_1_1ContactConstraintFeature_a84b467c5da2810bef8a76525e617ad2d} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Effort@{compute\+Effort}}
+\index{compute\+Effort@{compute\+Effort}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Effort()}{computeEffort()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Effort (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ae43f2ffc54862d6ddc0b02fd39431eb6}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1049 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a2d5b3c766e22c541e416ca52d14e78df}{}\label{classocra_1_1ContactConstraintFeature_a2d5b3c766e22c541e416ca52d14e78df} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Error@{compute\+Error}}
+\index{compute\+Error@{compute\+Error}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error()}{computeError()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Error (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aaa74d6869f7e574fcc39d443581ddf77}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1069 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_ae846fba34c59502db6cf0a0dac0e6be3}{}\label{classocra_1_1ContactConstraintFeature_ae846fba34c59502db6cf0a0dac0e6be3} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Error@{compute\+Error}}
+\index{compute\+Error@{compute\+Error}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error()}{computeError()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a88f87b496aedc7bf9f13b19bb8f9c7fa}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1074 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a0be2debba15230d160957c15eb5afa97}{}\label{classocra_1_1ContactConstraintFeature_a0be2debba15230d160957c15eb5afa97} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Error\+Dot@{compute\+Error\+Dot}}
+\index{compute\+Error\+Dot@{compute\+Error\+Dot}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error\+Dot()}{computeErrorDot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Error\+Dot (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac714181e1bb25f878349e299c4ba8c00}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1084 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_afbe828f952c7583b690e394efd05423f}{}\label{classocra_1_1ContactConstraintFeature_afbe828f952c7583b690e394efd05423f} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Error\+Dot@{compute\+Error\+Dot}}
+\index{compute\+Error\+Dot@{compute\+Error\+Dot}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Error\+Dot()}{computeErrorDot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Vector\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Error\+Dot (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a01a4870418ba87d5b41d8f917c1255fc}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1089 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a7b0fc26f03104eb02a7ba565b99a41d7}{}\label{classocra_1_1ContactConstraintFeature_a7b0fc26f03104eb02a7ba565b99a41d7} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Jacobian@{compute\+Jacobian}}
+\index{compute\+Jacobian@{compute\+Jacobian}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Jacobian()}{computeJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Jacobian (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a4fb8eeeed978a1f727ec43cd1bd18d78}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1097 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_aa3c6131d9c4c815e9e9ec5ab50407b21}{}\label{classocra_1_1ContactConstraintFeature_aa3c6131d9c4c815e9e9ec5ab50407b21} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Jacobian@{compute\+Jacobian}}
+\index{compute\+Jacobian@{compute\+Jacobian}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Jacobian()}{computeJacobian()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Jacobian (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_adbab3b388657555abb805bb971c2491f}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1102 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_ac4dec3a5defe2c50e6084d49a1838883}{}\label{classocra_1_1ContactConstraintFeature_ac4dec3a5defe2c50e6084d49a1838883} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Projected\+Mass@{compute\+Projected\+Mass}}
+\index{compute\+Projected\+Mass@{compute\+Projected\+Mass}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass()}{computeProjectedMass()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Projected\+Mass (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a44e11dd349e92971fefebff354e7214b}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1108 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_ab926340d6c6d00b1358ae99432e15398}{}\label{classocra_1_1ContactConstraintFeature_ab926340d6c6d00b1358ae99432e15398} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Projected\+Mass@{compute\+Projected\+Mass}}
+\index{compute\+Projected\+Mass@{compute\+Projected\+Mass}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass()}{computeProjectedMass()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Projected\+Mass (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a99ac023809c0cf34b5d582537934b08c}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1113 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a9bdfabb746abff207ff9cc3e9c968c81}{}\label{classocra_1_1ContactConstraintFeature_a9bdfabb746abff207ff9cc3e9c968c81} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}}
+\index{compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass\+Inverse()}{computeProjectedMassInverse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Projected\+Mass\+Inverse (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Feature}{Feature} \&}]{feature\+Des }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac529096b3fe8eba1ab88a56d8b042d37}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1123 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a78ba3452b7ad08dae7a266b0334aaa5d}{}\label{classocra_1_1ContactConstraintFeature_a78ba3452b7ad08dae7a266b0334aaa5d} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}}
+\index{compute\+Projected\+Mass\+Inverse@{compute\+Projected\+Mass\+Inverse}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{compute\+Projected\+Mass\+Inverse()}{computeProjectedMassInverse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::compute\+Projected\+Mass\+Inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ac27bcbdbb8541e3b4e2c77a6d6f2ffc0}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1128 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_ac498096b8df524b054f35b05d027f0f0}{}\label{classocra_1_1ContactConstraintFeature_ac498096b8df524b054f35b05d027f0f0} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!get\+Dimension@{get\+Dimension}}
+\index{get\+Dimension@{get\+Dimension}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{get\+Dimension()}{getDimension()}}
+{\footnotesize\ttfamily int ocra\+::\+Contact\+Constraint\+Feature\+::get\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_aeda4c2a5ffe638c3de30f8b91a11450e}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1039 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_ac7f34721e72544d13e7030182b55f429}{}\label{classocra_1_1ContactConstraintFeature_ac7f34721e72544d13e7030182b55f429} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!get\+Space\+Transform@{get\+Space\+Transform}}
+\index{get\+Space\+Transform@{get\+Space\+Transform}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{get\+Space\+Transform()}{getSpaceTransform()}}
+{\footnotesize\ttfamily const Matrix\+Xd \& ocra\+::\+Contact\+Constraint\+Feature\+::get\+Space\+Transform (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a77eb324fb4da91fd50d0e761d2453ff3}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1034 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a4a156de21fba41f54c2927232173d334}{}\label{classocra_1_1ContactConstraintFeature_a4a156de21fba41f54c2927232173d334} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!get\+State@{get\+State}}
+\index{get\+State@{get\+State}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{get\+State()}{getState()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1TaskState}{Task\+State} ocra\+::\+Contact\+Constraint\+Feature\+::get\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_a792434ceb793f25874b8fe42ae24c475}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1139 of file Feature.\+cpp.
+
+\hypertarget{classocra_1_1ContactConstraintFeature_a1bbc7ca568a64aed7704118b8eeaf6d1}{}\label{classocra_1_1ContactConstraintFeature_a1bbc7ca568a64aed7704118b8eeaf6d1} 
+\index{ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}!set\+State@{set\+State}}
+\index{set\+State@{set\+State}!ocra\+::\+Contact\+Constraint\+Feature@{ocra\+::\+Contact\+Constraint\+Feature}}
+\subsubsection{\texorpdfstring{set\+State()}{setState()}}
+{\footnotesize\ttfamily void ocra\+::\+Contact\+Constraint\+Feature\+::set\+State (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1TaskState}{Task\+State} \&}]{new\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Feature_ad16d6b176b229280649ab405531e9a30}{ocra\+::\+Feature}.
+
+
+
+Definition at line 1150 of file Feature.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Feature_8h}{Feature.\+h}\item 
+\hyperlink{Feature_8cpp}{Feature.\+cpp}\end{DoxyCompactItemize}

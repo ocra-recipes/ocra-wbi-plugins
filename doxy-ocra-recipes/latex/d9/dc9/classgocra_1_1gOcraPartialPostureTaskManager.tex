@@ -1,0 +1,170 @@
+\hypertarget{classgocra_1_1gOcraPartialPostureTaskManager}{}\section{gocra\+:\+:g\+Ocra\+Partial\+Posture\+Task\+Manager Class Reference}
+\label{classgocra_1_1gOcraPartialPostureTaskManager}\index{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+
+
+Task Manager for partal joint posture task.  
+
+
+
+
+{\ttfamily \#include $<$g\+Ocra\+Partial\+Posture\+Task\+Manager.\+h$>$}
+
+Inheritance diagram for gocra\+:\+:g\+Ocra\+Partial\+Posture\+Task\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d9/dc9/classgocra_1_1gOcraPartialPostureTaskManager}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classgocra_1_1gOcraPartialPostureTaskManager_afd597f38d4ee2dfb05606959bf90757f}{g\+Ocra\+Partial\+Posture\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, int full\+State\+Type, Eigen\+::\+Vector\+Xi \&dof\+Indices, double stiffness, double damping)
+\item 
+\hyperlink{classgocra_1_1gOcraPartialPostureTaskManager_a2dd620f693ca7ad7492e298a6a081b7d}{g\+Ocra\+Partial\+Posture\+Task\+Manager} (\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_a52d76d9b54d92f3d31faeaafda99e4c7}{ctrl}, const ocra\+::\+Model \&\hyperlink{classgocra_1_1gOcraTaskManagerBase_adc439e7170f7120611fc6d009d06404e}{model}, const std\+::string \&task\+Name, int full\+State\+Type, Eigen\+::\+Vector\+Xi \&dof\+Indices, double stiffness, double damping, Eigen\+::\+Vector\+Xd \&init\+\_\+q)
+\item 
+\hyperlink{classgocra_1_1gOcraPartialPostureTaskManager_af34bf754f071b3212c850c3b11b3a6b2}{$\sim$g\+Ocra\+Partial\+Posture\+Task\+Manager} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraPartialPostureTaskManager_ac2fc6522b441a12831abd768ee8b591e}{set\+Posture} (Eigen\+::\+Vector\+Xd \&q)
+\item 
+void \hyperlink{classgocra_1_1gOcraPartialPostureTaskManager_a98a6312d1705dbc7ae682bf7fb98a28c}{set\+Posture} (Eigen\+::\+Vector\+Xd \&q, Eigen\+::\+Vector\+Xd \&qdot, Eigen\+::\+Vector\+Xd \&qddot)
+\item 
+void \hyperlink{classgocra_1_1gOcraPartialPostureTaskManager_ad33a136127d9cdb480748954dc0fd038}{activate} ()
+\item 
+void \hyperlink{classgocra_1_1gOcraPartialPostureTaskManager_a393b7f72db340b4d2bed172fd3f3ae1d}{deactivate} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Task Manager for partal joint posture task. 
+
+
+
+Definition at line 18 of file g\+Ocra\+Partial\+Posture\+Task\+Manager.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classgocra_1_1gOcraPartialPostureTaskManager_afd597f38d4ee2dfb05606959bf90757f}{}\label{classgocra_1_1gOcraPartialPostureTaskManager_afd597f38d4ee2dfb05606959bf90757f} 
+\index{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}!g\+Ocra\+Partial\+Posture\+Task\+Manager@{g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\index{g\+Ocra\+Partial\+Posture\+Task\+Manager@{g\+Ocra\+Partial\+Posture\+Task\+Manager}!gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Partial\+Posture\+Task\+Manager()}{gOcraPartialPostureTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager\+::g\+Ocra\+Partial\+Posture\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{int}]{\+\_\+full\+State\+Type,  }\item[{Eigen\+::\+Vector\+Xi \&}]{\+\_\+dof\+Indices,  }\item[{double}]{\+\_\+stiffness,  }\item[{double}]{\+\_\+damping }\end{DoxyParamCaption})}
+
+Base constructor
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em model} & ocra model to setup the task \\
+\hline
+{\em task\+Name} & Name of the task \\
+\hline
+{\em full\+State\+Type} & \hyperlink{classocra_1_1FullState}{ocra\+::\+Full\+State} enum specifying between (\hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519af5d38d391c1a3c23006d51e6db4adea8}{ocra\+::\+Full\+State\+::\+F\+U\+L\+L\+\_\+\+S\+T\+A\+TE}, \hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519a2b23349d3727ddf8b0d10a6c06dfcc31}{ocra\+::\+Full\+State\+::\+F\+R\+E\+E\+\_\+\+F\+L\+Y\+ER}, \hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519a6c76abe0ec381b256a1e2429308126a5}{ocra\+::\+Full\+State\+::\+I\+N\+T\+E\+R\+N\+AL}) \\
+\hline
+{\em dof\+Indices} & Vector of indices for the D\+O\+Fs to control \\
+\hline
+{\em stiffness} & Stiffness constant for task \\
+\hline
+{\em damping} & Damping constant for task \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 16 of file g\+Ocra\+Partial\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraPartialPostureTaskManager_a2dd620f693ca7ad7492e298a6a081b7d}{}\label{classgocra_1_1gOcraPartialPostureTaskManager_a2dd620f693ca7ad7492e298a6a081b7d} 
+\index{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}!g\+Ocra\+Partial\+Posture\+Task\+Manager@{g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\index{g\+Ocra\+Partial\+Posture\+Task\+Manager@{g\+Ocra\+Partial\+Posture\+Task\+Manager}!gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{g\+Ocra\+Partial\+Posture\+Task\+Manager()}{gOcraPartialPostureTaskManager()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager\+::g\+Ocra\+Partial\+Posture\+Task\+Manager (\begin{DoxyParamCaption}\item[{\hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} \&}]{\+\_\+ctrl,  }\item[{const ocra\+::\+Model \&}]{\+\_\+model,  }\item[{const std\+::string \&}]{\+\_\+task\+Name,  }\item[{int}]{\+\_\+full\+State\+Type,  }\item[{Eigen\+::\+Vector\+Xi \&}]{\+\_\+dof\+Indices,  }\item[{double}]{\+\_\+stiffness,  }\item[{double}]{\+\_\+damping,  }\item[{Eigen\+::\+Vector\+Xd \&}]{\+\_\+init\+\_\+q }\end{DoxyParamCaption})}
+
+Constructor with desired initial position
+
+
+\begin{DoxyParams}{Parameters}
+{\em ctrl} & \hyperlink{classgocra_1_1GHCJTController}{G\+H\+C\+J\+T\+Controller} to connect to \\
+\hline
+{\em model} & ocra model to setup the task \\
+\hline
+{\em task\+Name} & Name of the task \\
+\hline
+{\em full\+State\+Type} & \hyperlink{classocra_1_1FullState}{ocra\+::\+Full\+State} enum specifying between (\hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519af5d38d391c1a3c23006d51e6db4adea8}{ocra\+::\+Full\+State\+::\+F\+U\+L\+L\+\_\+\+S\+T\+A\+TE}, \hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519a2b23349d3727ddf8b0d10a6c06dfcc31}{ocra\+::\+Full\+State\+::\+F\+R\+E\+E\+\_\+\+F\+L\+Y\+ER}, \hyperlink{classocra_1_1FullState_a8623fb06b8930505d950f7651e75b519a6c76abe0ec381b256a1e2429308126a5}{ocra\+::\+Full\+State\+::\+I\+N\+T\+E\+R\+N\+AL}) \\
+\hline
+{\em dof\+Indices} & Vector of indices for the D\+O\+Fs to control \\
+\hline
+{\em stiffness} & Stiffness constant for task \\
+\hline
+{\em damping} & Damping constant for task \\
+\hline
+{\em init\+\_\+q} & Initial posture \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 33 of file g\+Ocra\+Partial\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraPartialPostureTaskManager_af34bf754f071b3212c850c3b11b3a6b2}{}\label{classgocra_1_1gOcraPartialPostureTaskManager_af34bf754f071b3212c850c3b11b3a6b2} 
+\index{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}!````~g\+Ocra\+Partial\+Posture\+Task\+Manager@{$\sim$g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\index{````~g\+Ocra\+Partial\+Posture\+Task\+Manager@{$\sim$g\+Ocra\+Partial\+Posture\+Task\+Manager}!gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$g\+Ocra\+Partial\+Posture\+Task\+Manager()}{~gOcraPartialPostureTaskManager()}}
+{\footnotesize\ttfamily gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager\+::$\sim$g\+Ocra\+Partial\+Posture\+Task\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classgocra_1_1gOcraPartialPostureTaskManager_ad33a136127d9cdb480748954dc0fd038}{}\label{classgocra_1_1gOcraPartialPostureTaskManager_ad33a136127d9cdb480748954dc0fd038} 
+\index{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}!activate@{activate}}
+\index{activate@{activate}!gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{activate()}{activate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager\+::activate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Activate function 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a50cf1c408749d6e9dcfaf50bcab77dee}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 105 of file g\+Ocra\+Partial\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraPartialPostureTaskManager_a393b7f72db340b4d2bed172fd3f3ae1d}{}\label{classgocra_1_1gOcraPartialPostureTaskManager_a393b7f72db340b4d2bed172fd3f3ae1d} 
+\index{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{deactivate()}{deactivate()}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager\+::deactivate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Deactivate function 
+
+Implements \hyperlink{classgocra_1_1gOcraTaskManagerBase_a7cf9111e69aee47a39fe0f2976a20d6c}{gocra\+::g\+Ocra\+Task\+Manager\+Base}.
+
+
+
+Definition at line 113 of file g\+Ocra\+Partial\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraPartialPostureTaskManager_ac2fc6522b441a12831abd768ee8b591e}{}\label{classgocra_1_1gOcraPartialPostureTaskManager_ac2fc6522b441a12831abd768ee8b591e} 
+\index{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}!set\+Posture@{set\+Posture}}
+\index{set\+Posture@{set\+Posture}!gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Posture()}{setPosture()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager\+::set\+Posture (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd \&}]{q }\end{DoxyParamCaption})}
+
+Sets the partial joint space posture for the task 
+
+Definition at line 65 of file g\+Ocra\+Partial\+Posture\+Task\+Manager.\+cpp.
+
+\hypertarget{classgocra_1_1gOcraPartialPostureTaskManager_a98a6312d1705dbc7ae682bf7fb98a28c}{}\label{classgocra_1_1gOcraPartialPostureTaskManager_a98a6312d1705dbc7ae682bf7fb98a28c} 
+\index{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}!set\+Posture@{set\+Posture}}
+\index{set\+Posture@{set\+Posture}!gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager@{gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager}}
+\subsubsection{\texorpdfstring{set\+Posture()}{setPosture()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void gocra\+::g\+Ocra\+Partial\+Posture\+Task\+Manager\+::set\+Posture (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd \&}]{q,  }\item[{Eigen\+::\+Vector\+Xd \&}]{qdot,  }\item[{Eigen\+::\+Vector\+Xd \&}]{qddot }\end{DoxyParamCaption})}
+
+Sets the partial joint space posture, velocity and acceleration for the task 
+
+Definition at line 80 of file g\+Ocra\+Partial\+Posture\+Task\+Manager.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{gOcraPartialPostureTaskManager_8h}{g\+Ocra\+Partial\+Posture\+Task\+Manager.\+h}\item 
+\hyperlink{gOcraPartialPostureTaskManager_8cpp}{g\+Ocra\+Partial\+Posture\+Task\+Manager.\+cpp}\end{DoxyCompactItemize}

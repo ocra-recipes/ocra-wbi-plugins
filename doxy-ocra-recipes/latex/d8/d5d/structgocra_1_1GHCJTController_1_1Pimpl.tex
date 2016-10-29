@@ -1,0 +1,194 @@
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl}{}\section{gocra\+:\+:G\+H\+C\+J\+T\+Controller\+:\+:Pimpl Struct Reference}
+\label{structgocra_1_1GHCJTController_1_1Pimpl}\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_ad9ff86db7b59559d42a4d87eee73c761}{Pimpl} (const std\+::string \&name, Model \&m, \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \&s, bool \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a0a9b1d16fc029929004e00dbf358063a}{use\+Grav})
+\item 
+\hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a0df04a7ffd9f5bc6346fc786d1c30ef1}{$\sim$\+Pimpl} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Model \& \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a43eb79ddf7ef332d76d850711fc57e8e}{inner\+Model}
+\item 
+\hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \& \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_af06224d9d2a704cb042b5b01d3bf18ab}{inner\+Solver}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a04bbff0e011a7c0b2bff47c08ed32993}{is\+Free\+Floating}
+\item 
+bool \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a0a9b1d16fc029929004e00dbf358063a}{use\+Grav}
+\item 
+\hyperlink{classocra_1_1EqualZeroConstraintPtr}{Equal\+Zero\+Constraint\+Ptr}$<$ \hyperlink{classocra_1_1SumOfLinearFunctions}{Sum\+Of\+Linear\+Functions} $>$ \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_abbc7f37d47e968b025652ade01739ab8}{se\+Constraint}
+\item 
+std\+::vector$<$ \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} $\ast$$>$ \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_ae336064c9007227c37ec24f455b4cc39}{created\+Task}
+\item 
+std\+::vector$<$ \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task} $\ast$$>$ \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a2322f7612c4ee994869b897d6546da97}{active\+Task}
+\item 
+int \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_acc8e0872a4a56af752e5556f8b5c83d5}{nb\+Active\+Task}
+\item 
+int \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a9814826f2b30accde751b9f343b3590b}{total\+Active\+Task\+Dim}
+\item 
+Matrix\+Xd \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a9ebc2b951dfa979568dfe12a36124424}{augmented\+Jacobian}
+\item 
+\hyperlink{classgocra_1_1PerformanceRecorder}{Performance\+Recorder} \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a7305b9fe096cfd38ba50af0797484a6a}{update\+Tasks\+Recorder}
+\item 
+\hyperlink{classgocra_1_1PerformanceRecorder}{Performance\+Recorder} \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl_a949ca96a7b5a333e0594c6e6eda106a1}{solve\+Problem\+Recorder}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 33 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_ad9ff86db7b59559d42a4d87eee73c761}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_ad9ff86db7b59559d42a4d87eee73c761} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!Pimpl@{Pimpl}}
+\index{Pimpl@{Pimpl}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{Pimpl()}{Pimpl()}}
+{\footnotesize\ttfamily gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::\+Pimpl (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{Model \&}]{m,  }\item[{\hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \&}]{s,  }\item[{bool}]{use\+Grav }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 53 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a0df04a7ffd9f5bc6346fc786d1c30ef1}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a0df04a7ffd9f5bc6346fc786d1c30ef1} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!````~Pimpl@{$\sim$\+Pimpl}}
+\index{````~Pimpl@{$\sim$\+Pimpl}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{$\sim$\+Pimpl()}{~Pimpl()}}
+{\footnotesize\ttfamily gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::$\sim$\+Pimpl (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 70 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a2322f7612c4ee994869b897d6546da97}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a2322f7612c4ee994869b897d6546da97} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!active\+Task@{active\+Task}}
+\index{active\+Task@{active\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{active\+Task}{activeTask}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task}$\ast$ $>$ gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::active\+Task}
+
+
+
+Definition at line 44 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a9ebc2b951dfa979568dfe12a36124424}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a9ebc2b951dfa979568dfe12a36124424} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!augmented\+Jacobian@{augmented\+Jacobian}}
+\index{augmented\+Jacobian@{augmented\+Jacobian}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{augmented\+Jacobian}{augmentedJacobian}}
+{\footnotesize\ttfamily Matrix\+Xd gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::augmented\+Jacobian}
+
+
+
+Definition at line 47 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_ae336064c9007227c37ec24f455b4cc39}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_ae336064c9007227c37ec24f455b4cc39} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!created\+Task@{created\+Task}}
+\index{created\+Task@{created\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{created\+Task}{createdTask}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{classgocra_1_1GHCJTTask}{G\+H\+C\+J\+T\+Task}$\ast$ $>$ gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::created\+Task}
+
+
+
+Definition at line 43 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a43eb79ddf7ef332d76d850711fc57e8e}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a43eb79ddf7ef332d76d850711fc57e8e} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!inner\+Model@{inner\+Model}}
+\index{inner\+Model@{inner\+Model}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{inner\+Model}{innerModel}}
+{\footnotesize\ttfamily Model\& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::inner\+Model}
+
+
+
+Definition at line 35 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_af06224d9d2a704cb042b5b01d3bf18ab}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_af06224d9d2a704cb042b5b01d3bf18ab} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!inner\+Solver@{inner\+Solver}}
+\index{inner\+Solver@{inner\+Solver}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{inner\+Solver}{innerSolver}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver}\& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::inner\+Solver}
+
+
+
+Definition at line 36 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a04bbff0e011a7c0b2bff47c08ed32993}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a04bbff0e011a7c0b2bff47c08ed32993} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!is\+Free\+Floating@{is\+Free\+Floating}}
+\index{is\+Free\+Floating@{is\+Free\+Floating}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{is\+Free\+Floating}{isFreeFloating}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::is\+Free\+Floating}
+
+
+
+Definition at line 37 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_acc8e0872a4a56af752e5556f8b5c83d5}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_acc8e0872a4a56af752e5556f8b5c83d5} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!nb\+Active\+Task@{nb\+Active\+Task}}
+\index{nb\+Active\+Task@{nb\+Active\+Task}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{nb\+Active\+Task}{nbActiveTask}}
+{\footnotesize\ttfamily int gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::nb\+Active\+Task}
+
+
+
+Definition at line 45 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_abbc7f37d47e968b025652ade01739ab8}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_abbc7f37d47e968b025652ade01739ab8} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!se\+Constraint@{se\+Constraint}}
+\index{se\+Constraint@{se\+Constraint}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{se\+Constraint}{seConstraint}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1EqualZeroConstraintPtr}{Equal\+Zero\+Constraint\+Ptr}$<$\hyperlink{classocra_1_1SumOfLinearFunctions}{Sum\+Of\+Linear\+Functions}$>$ gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::se\+Constraint}
+
+
+
+Definition at line 41 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a949ca96a7b5a333e0594c6e6eda106a1}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a949ca96a7b5a333e0594c6e6eda106a1} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!solve\+Problem\+Recorder@{solve\+Problem\+Recorder}}
+\index{solve\+Problem\+Recorder@{solve\+Problem\+Recorder}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{solve\+Problem\+Recorder}{solveProblemRecorder}}
+{\footnotesize\ttfamily \hyperlink{classgocra_1_1PerformanceRecorder}{Performance\+Recorder} gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::solve\+Problem\+Recorder}
+
+
+
+Definition at line 51 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a9814826f2b30accde751b9f343b3590b}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a9814826f2b30accde751b9f343b3590b} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!total\+Active\+Task\+Dim@{total\+Active\+Task\+Dim}}
+\index{total\+Active\+Task\+Dim@{total\+Active\+Task\+Dim}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{total\+Active\+Task\+Dim}{totalActiveTaskDim}}
+{\footnotesize\ttfamily int gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::total\+Active\+Task\+Dim}
+
+
+
+Definition at line 46 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a7305b9fe096cfd38ba50af0797484a6a}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a7305b9fe096cfd38ba50af0797484a6a} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!update\+Tasks\+Recorder@{update\+Tasks\+Recorder}}
+\index{update\+Tasks\+Recorder@{update\+Tasks\+Recorder}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{update\+Tasks\+Recorder}{updateTasksRecorder}}
+{\footnotesize\ttfamily \hyperlink{classgocra_1_1PerformanceRecorder}{Performance\+Recorder} gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::update\+Tasks\+Recorder}
+
+
+
+Definition at line 50 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+\hypertarget{structgocra_1_1GHCJTController_1_1Pimpl_a0a9b1d16fc029929004e00dbf358063a}{}\label{structgocra_1_1GHCJTController_1_1Pimpl_a0a9b1d16fc029929004e00dbf358063a} 
+\index{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}!use\+Grav@{use\+Grav}}
+\index{use\+Grav@{use\+Grav}!gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl@{gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl}}
+\subsubsection{\texorpdfstring{use\+Grav}{useGrav}}
+{\footnotesize\ttfamily bool gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+Pimpl\+::use\+Grav}
+
+
+
+Definition at line 38 of file G\+H\+C\+J\+T\+Controller.\+cpp.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{GHCJTController_8cpp}{G\+H\+C\+J\+T\+Controller.\+cpp}\end{DoxyCompactItemize}

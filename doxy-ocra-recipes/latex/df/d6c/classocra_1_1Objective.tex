@@ -1,0 +1,109 @@
+\hypertarget{classocra_1_1Objective}{}\section{ocra\+:\+:Objective$<$ T $>$ Class Template Reference}
+\label{classocra_1_1Objective}\index{ocra\+::\+Objective$<$ T $>$@{ocra\+::\+Objective$<$ T $>$}}
+
+
+Objective class.  
+
+
+
+
+{\ttfamily \#include $<$Objective.\+h$>$}
+
+Inheritance diagram for ocra\+:\+:Objective$<$ T $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{df/d6c/classocra_1_1Objective}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra_1_1Objective_a8ece61f7359bcc67cc5a10fde1ddd11d}{Objective} (T $\ast$function, double weight=1.)
+\item 
+\hyperlink{classocra_1_1Objective_adde3288cc5ad20394a3558c9b8092b71}{operator const T \&} ()
+\end{DoxyCompactItemize}
+{\bf }\par
+\begin{DoxyCompactItemize}
+\item 
+virtual T \& \hyperlink{classocra_1_1Objective_acefbb478e0d9ae080ead812eea70e22e}{get\+Function} (void)
+\item 
+virtual const T \& \hyperlink{classocra_1_1Objective_a724137e4282c67586ce8b51a5b57845e}{get\+Function} (void) const
+\end{DoxyCompactItemize}
+
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class T$>$\newline
+class ocra\+::\+Objective$<$ T $>$}
+
+Objective class. 
+
+\begin{DoxyWarning}{Warning}
+None
+\end{DoxyWarning}
+Given a function $ f $ over $ x \in R^n $ and possibly over the time $ t $, we can write an objective whose most generic expression is $ \alpha f(x,t) $, where $ alpha $ could be a square matrix of size the output dimension of $ f $, but we will only consider that $ alpha $ can be a real (which generally amounts to the same since most objectives have a dimension of 1).
+
+The \hyperlink{classocra_1_1Objective}{Objective} class is built in a very similar way as the \hyperlink{classocra_1_1Constraint}{Constraint} class, with the same mechanism to replicate the \hyperlink{classocra_1_1Function}{Function} hierarchy and the derivation from \hyperlink{structocra_1_1FunctionInterfaceMapping}{Function\+Interface\+Mapping} to retrieve part of the interface of the \hyperlink{classocra_1_1Function}{Function} class given as template parameter. Please refer to \hyperlink{classocra_1_1Constraint}{Constraint} documentation for more details.
+
+\begin{DoxySeeAlso}{See also}
+\hyperlink{classocra_1_1Constraint}{Constraint} 
+\end{DoxySeeAlso}
+
+
+Definition at line 44 of file Objective.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra_1_1Objective_a8ece61f7359bcc67cc5a10fde1ddd11d}{}\label{classocra_1_1Objective_a8ece61f7359bcc67cc5a10fde1ddd11d} 
+\index{ocra\+::\+Objective@{ocra\+::\+Objective}!Objective@{Objective}}
+\index{Objective@{Objective}!ocra\+::\+Objective@{ocra\+::\+Objective}}
+\subsubsection{\texorpdfstring{Objective()}{Objective()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classocra_1_1Objective}{ocra\+::\+Objective}$<$ T $>$\+::\hyperlink{classocra_1_1Objective}{Objective} (\begin{DoxyParamCaption}\item[{T $\ast$}]{function,  }\item[{double}]{weight = {\ttfamily 1.} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 114 of file Objective.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra_1_1Objective_acefbb478e0d9ae080ead812eea70e22e}{}\label{classocra_1_1Objective_acefbb478e0d9ae080ead812eea70e22e} 
+\index{ocra\+::\+Objective@{ocra\+::\+Objective}!get\+Function@{get\+Function}}
+\index{get\+Function@{get\+Function}!ocra\+::\+Objective@{ocra\+::\+Objective}}
+\subsubsection{\texorpdfstring{get\+Function()}{getFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+virtual T\& \hyperlink{classocra_1_1Objective}{ocra\+::\+Objective}$<$ T $>$\+::get\+Function (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+getter on the function on which the constraint is built 
+
+Definition at line 64 of file Objective.\+h.
+
+\hypertarget{classocra_1_1Objective_a724137e4282c67586ce8b51a5b57845e}{}\label{classocra_1_1Objective_a724137e4282c67586ce8b51a5b57845e} 
+\index{ocra\+::\+Objective@{ocra\+::\+Objective}!get\+Function@{get\+Function}}
+\index{get\+Function@{get\+Function}!ocra\+::\+Objective@{ocra\+::\+Objective}}
+\subsubsection{\texorpdfstring{get\+Function()}{getFunction()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+virtual const T\& \hyperlink{classocra_1_1Objective}{ocra\+::\+Objective}$<$ T $>$\+::get\+Function (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 65 of file Objective.\+h.
+
+\hypertarget{classocra_1_1Objective_adde3288cc5ad20394a3558c9b8092b71}{}\label{classocra_1_1Objective_adde3288cc5ad20394a3558c9b8092b71} 
+\index{ocra\+::\+Objective@{ocra\+::\+Objective}!operator const T \&@{operator const T \&}}
+\index{operator const T \&@{operator const T \&}!ocra\+::\+Objective@{ocra\+::\+Objective}}
+\subsubsection{\texorpdfstring{operator const T \&()}{operator const T \&()}}
+{\footnotesize\ttfamily template$<$class T$>$ \\
+\hyperlink{classocra_1_1Objective}{ocra\+::\+Objective}$<$ T $>$\+::operator const T \& (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Conversion operator 
+
+Definition at line 60 of file Objective.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{Objective_8h}{Objective.\+h}\end{DoxyCompactItemize}
