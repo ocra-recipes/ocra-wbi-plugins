@@ -1,0 +1,47 @@
+Controller implementations and plugins for communicating between the whole body controller libraries developed at I\+S\+IR, \href{https://github.com/ocra-recipes/ocra-recipes}{\tt {\ttfamily ocra-\/recipes}}, and the i\+Cub Whole Body Interface, \href{https://github.com/robotology/wholebodyinterface}{\tt {\ttfamily W\+BI}}, libraries.
+
+\subsection*{Code Structure}
+
+Here\textquotesingle{}s how everything is laid out...
+
+\subsubsection*{\href{https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/ocra-icub}{\tt ocra-\/icub}}
+
+Interface libraries between W\+BI and ocra. The interface consists primarily of an inherited \href{https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/ocra-icub/src/ocraWbiModel.cpp}{\tt {\ttfamily Model}} class who\textquotesingle{}s virtual functions are implemented using W\+BI\textquotesingle{}s functions. A \href{https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/ocra-icub/src/Utilities.cpp}{\tt {\ttfamily Utilities}} class is also available for converting between various dynamic representations.
+
+\subsubsection*{\href{https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/ocra-icub-server}{\tt ocra-\/icub-\/server}}
+
+This is an implementation of the ocra-\/server interface which gets the robot specific model info, calls the {\ttfamily compute\+Torque()} function and then sends it to the robot. The rest of the code is designed around yarp {\ttfamily R\+F\+Module} and {\ttfamily Rate\+Thread}, to parse command line args, and talk to the W\+BI. At the core of this code is the implementation of \href{https://github.com/ocra-recipes/ocra-recipes/tree/master/ocra-recipes/src/ContControllerServer.cpp}{\tt {\ttfamily ocra\+\_\+recipes\+::\+Controller\+Server}} class. The rest of the code is icub specific.
+
+\subsubsection*{\href{https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/ocra-icub-clients}{\tt ocra-\/icub-\/clients}}
+
+\subsubsection*{\href{https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/cmake}{\tt cmake}}
+
+This folder provides various cmake modules which allow cmake to find various packages and build packages from these projects.
+
+\subsection*{Installation}
+
+Everything here should be built with \href{https://github.com/robotology/codyco-superbuild}{\tt {\ttfamily codyco-\/superbuild}} to make sure you have all of the required libs.
+
+\subsection*{Usage}
+
+See the video tutorials... Work in progress.
+
+\subsection*{Authors}
+
+\subsubsection*{current developers}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/rlober}{\tt Ryan Lober}
+\item \href{https://github.com/ahoarau}{\tt Antoine Hoarau}
+\item \href{https://github.com/jeljaik}{\tt Jorhabib Eljaik}
+\item \href{https://github.com/traversaro}{\tt Silvio Traversaro}
+\end{DoxyItemize}
+
+\subsubsection*{past developers}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/darwinlau}{\tt Darwin Lau}
+\item \href{https://github.com/mingxing-liu}{\tt Mingxing Liu} 
+\end{DoxyItemize}

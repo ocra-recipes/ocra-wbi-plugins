@@ -1,0 +1,103 @@
+\hypertarget{OcraWbiModel_8cpp}{}\section{/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub/src/\+Ocra\+Wbi\+Model.cpp File Reference}
+\label{OcraWbiModel_8cpp}\index{/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub/src/\+Ocra\+Wbi\+Model.\+cpp@{/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub/src/\+Ocra\+Wbi\+Model.\+cpp}}
+
+
+Implementation of ocra\+::\+Model using whole\+Body\+Interface.  
+
+
+{\ttfamily \#include $<$ocra-\/icub/\+Ocra\+Wbi\+Model.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structOcraWbiModel_1_1OcraWbiModel__pimpl}{ocra\+\_\+icub\+::\+Ocra\+Wbi\+Model\+::\+Ocra\+Wbi\+Model\+\_\+pimpl}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{OcraWbiModel_8cpp_a7f4e728fa0fd89911a2c60c42c0d4560}{A\+L\+L\+\_\+\+J\+O\+I\+N\+TS}~-\/1
+\item 
+\#define \hyperlink{OcraWbiModel_8cpp_a29de1200631802e23f75bbd14adcc082}{F\+R\+E\+E\+\_\+\+R\+O\+O\+T\+\_\+\+D\+OF}~6
+\item 
+\#define \hyperlink{OcraWbiModel_8cpp_a72cb22de2538ae949cc73fa3d7c33bdc}{C\+O\+M\+\_\+\+P\+O\+S\+\_\+\+D\+IM}~3
+\item 
+\#define \hyperlink{OcraWbiModel_8cpp_ab4a87cb824ceff256c6b8bce7701af58}{T\+R\+A\+N\+S\+\_\+\+R\+O\+T\+\_\+\+D\+IM}~6
+\item 
+\#define \hyperlink{OcraWbiModel_8cpp_afbb98f526272c46369f405eee4e9d9aa}{G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT}~-\/9.\+81
+\end{DoxyCompactItemize}
+\subsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef Eigen\+::\+Displacementd\+::\+Adjoint\+Matrix \hyperlink{OcraWbiModel_8cpp_a2ee3f7feea423a8bc6b8fbcea1d4e217}{Adjoint\+Matrix}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const double \hyperlink{OcraWbiModel_8cpp_a3cdc4ec85b339c11e5b34ce069bf7077}{g\+\_\+vector} \mbox{[}3\mbox{]} = \{0, 0, \hyperlink{OcraWbiModel_8cpp_afbb98f526272c46369f405eee4e9d9aa}{G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT}\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation of ocra\+::\+Model using whole\+Body\+Interface. 
+
+\begin{DoxyAuthor}{Author}
+\href{http://www.ryanlober.com}{\tt Ryan Lober} 
+
+\href{http://ahoarau.github.io}{\tt Antoine Hoarau} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+Feb 2016 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU General Public License. 
+\end{DoxyCopyright}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{OcraWbiModel_8cpp_a7f4e728fa0fd89911a2c60c42c0d4560}{}\label{OcraWbiModel_8cpp_a7f4e728fa0fd89911a2c60c42c0d4560} 
+\index{Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}!A\+L\+L\+\_\+\+J\+O\+I\+N\+TS@{A\+L\+L\+\_\+\+J\+O\+I\+N\+TS}}
+\index{A\+L\+L\+\_\+\+J\+O\+I\+N\+TS@{A\+L\+L\+\_\+\+J\+O\+I\+N\+TS}!Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}}
+\subsubsection{\texorpdfstring{A\+L\+L\+\_\+\+J\+O\+I\+N\+TS}{ALL\_JOINTS}}
+{\footnotesize\ttfamily \#define A\+L\+L\+\_\+\+J\+O\+I\+N\+TS~-\/1}
+
+\hypertarget{OcraWbiModel_8cpp_a72cb22de2538ae949cc73fa3d7c33bdc}{}\label{OcraWbiModel_8cpp_a72cb22de2538ae949cc73fa3d7c33bdc} 
+\index{Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}!C\+O\+M\+\_\+\+P\+O\+S\+\_\+\+D\+IM@{C\+O\+M\+\_\+\+P\+O\+S\+\_\+\+D\+IM}}
+\index{C\+O\+M\+\_\+\+P\+O\+S\+\_\+\+D\+IM@{C\+O\+M\+\_\+\+P\+O\+S\+\_\+\+D\+IM}!Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}}
+\subsubsection{\texorpdfstring{C\+O\+M\+\_\+\+P\+O\+S\+\_\+\+D\+IM}{COM\_POS\_DIM}}
+{\footnotesize\ttfamily \#define C\+O\+M\+\_\+\+P\+O\+S\+\_\+\+D\+IM~3}
+
+\hypertarget{OcraWbiModel_8cpp_a29de1200631802e23f75bbd14adcc082}{}\label{OcraWbiModel_8cpp_a29de1200631802e23f75bbd14adcc082} 
+\index{Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}!F\+R\+E\+E\+\_\+\+R\+O\+O\+T\+\_\+\+D\+OF@{F\+R\+E\+E\+\_\+\+R\+O\+O\+T\+\_\+\+D\+OF}}
+\index{F\+R\+E\+E\+\_\+\+R\+O\+O\+T\+\_\+\+D\+OF@{F\+R\+E\+E\+\_\+\+R\+O\+O\+T\+\_\+\+D\+OF}!Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}}
+\subsubsection{\texorpdfstring{F\+R\+E\+E\+\_\+\+R\+O\+O\+T\+\_\+\+D\+OF}{FREE\_ROOT\_DOF}}
+{\footnotesize\ttfamily \#define F\+R\+E\+E\+\_\+\+R\+O\+O\+T\+\_\+\+D\+OF~6}
+
+\hypertarget{OcraWbiModel_8cpp_afbb98f526272c46369f405eee4e9d9aa}{}\label{OcraWbiModel_8cpp_afbb98f526272c46369f405eee4e9d9aa} 
+\index{Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}!G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT@{G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT}}
+\index{G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT@{G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT}!Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}}
+\subsubsection{\texorpdfstring{G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT}{GRAVITY\_CONSTANT}}
+{\footnotesize\ttfamily \#define G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT~-\/9.\+81}
+
+\hypertarget{OcraWbiModel_8cpp_ab4a87cb824ceff256c6b8bce7701af58}{}\label{OcraWbiModel_8cpp_ab4a87cb824ceff256c6b8bce7701af58} 
+\index{Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}!T\+R\+A\+N\+S\+\_\+\+R\+O\+T\+\_\+\+D\+IM@{T\+R\+A\+N\+S\+\_\+\+R\+O\+T\+\_\+\+D\+IM}}
+\index{T\+R\+A\+N\+S\+\_\+\+R\+O\+T\+\_\+\+D\+IM@{T\+R\+A\+N\+S\+\_\+\+R\+O\+T\+\_\+\+D\+IM}!Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}}
+\subsubsection{\texorpdfstring{T\+R\+A\+N\+S\+\_\+\+R\+O\+T\+\_\+\+D\+IM}{TRANS\_ROT\_DIM}}
+{\footnotesize\ttfamily \#define T\+R\+A\+N\+S\+\_\+\+R\+O\+T\+\_\+\+D\+IM~6}
+
+
+
+\subsection{Typedef Documentation}
+\hypertarget{OcraWbiModel_8cpp_a2ee3f7feea423a8bc6b8fbcea1d4e217}{}\label{OcraWbiModel_8cpp_a2ee3f7feea423a8bc6b8fbcea1d4e217} 
+\index{Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}!Adjoint\+Matrix@{Adjoint\+Matrix}}
+\index{Adjoint\+Matrix@{Adjoint\+Matrix}!Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}}
+\subsubsection{\texorpdfstring{Adjoint\+Matrix}{AdjointMatrix}}
+{\footnotesize\ttfamily typedef Eigen\+::\+Displacementd\+::\+Adjoint\+Matrix \hyperlink{OcraWbiModel_8cpp_a2ee3f7feea423a8bc6b8fbcea1d4e217}{Adjoint\+Matrix}}
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{OcraWbiModel_8cpp_a3cdc4ec85b339c11e5b34ce069bf7077}{}\label{OcraWbiModel_8cpp_a3cdc4ec85b339c11e5b34ce069bf7077} 
+\index{Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}!g\+\_\+vector@{g\+\_\+vector}}
+\index{g\+\_\+vector@{g\+\_\+vector}!Ocra\+Wbi\+Model.\+cpp@{Ocra\+Wbi\+Model.\+cpp}}
+\subsubsection{\texorpdfstring{g\+\_\+vector}{g\_vector}}
+{\footnotesize\ttfamily const double g\+\_\+vector\mbox{[}3\mbox{]} = \{0, 0, \hyperlink{OcraWbiModel_8cpp_afbb98f526272c46369f405eee4e9d9aa}{G\+R\+A\+V\+I\+T\+Y\+\_\+\+C\+O\+N\+S\+T\+A\+NT}\}}
+

@@ -1,0 +1,16 @@
+[
+	{
+		"name": "ocra-recipes",
+		"image": "placeholder.jpg",
+		"url-documentation": "/stepping-demo/",
+		"url-source-code": "https://github.com/ocra-recipes/ocra-recipes",
+		"date": "May 2016"
+	},
+	{
+		"name": "ocra-wbi-plugins",
+		"image": "placeholder.png",
+		"url-documentation": "/doxy-ocra-wbi-plugins/html/index.html",
+		"url-source-code": "https://github.com/ocra-recipes/ocra-wbi-plugins",
+		"date": "May 2016"
+	}
+]

@@ -23,8 +23,9 @@ urls:
     - text: Authors
       url: '/authors/'
       icon: fa-graduation-cap
-    - text: Github
-      url: https://github.com/ocra-recipes/ocra-wbi-plugins
+    - text: Source
+      url: /doxygen/
+      layout: doxygen
       icon: fa-github
     # - text: XML Feed
     #   url: /feed.xml
