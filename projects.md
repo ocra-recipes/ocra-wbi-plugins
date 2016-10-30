@@ -4,4 +4,4 @@ title: Projects
 permalink: /projects/
 ---
 
-This is the content replaced by _layouts/project.html
+Projects financing this research and(or) using OCRA.
