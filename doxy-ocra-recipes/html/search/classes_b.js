@@ -8,5 +8,6 @@ var searchData=
   ['minimumjerktrajectory',['MinimumJerkTrajectory',['../d5/df0/classocra_1_1MinimumJerkTrajectory.html',1,'ocra']]],
   ['model3t',['Model3T',['../d3/d33/classModel3T.html',1,'']]],
   ['modelcontacts',['ModelContacts',['../d8/d4c/classocra_1_1ModelContacts.html',1,'ocra']]],
+  ['modulecallback',['moduleCallback',['../d4/d05/classocra__recipes_1_1ClientManager_1_1moduleCallback.html',1,'ocra_recipes::ClientManager']]],
   ['myfunction',['MyFunction',['../db/d8c/classMyFunction.html',1,'']]]
 ];

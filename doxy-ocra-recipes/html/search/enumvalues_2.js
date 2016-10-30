@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['change_5ffixed_5flink_5fleft',['CHANGE_FIXED_LINK_LEFT',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da283ba63ffd2e66ae2fdd48134556e626',1,'ocra_recipes']]],
+  ['change_5ffixed_5flink_5fright',['CHANGE_FIXED_LINK_RIGHT',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da9ff36f5ac759601008228530d7615586',1,'ocra_recipes']]],
   ['close_5fcontrol_5fports',['CLOSE_CONTROL_PORTS',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216ddade9cd90476b62974254b4f257e99f89d',1,'ocra']]],
   ['cmlqpsolver_5fgauss_5fseidel',['CMLQPSOLVER_GAUSS_SEIDEL',['../d4/d02/classocra_1_1CmlQuadraticSolver.html#a6d54dc2e4dac085099b002c88cb6d3dfa53afe853cc16e5023a4618d57cb082f1',1,'ocra::CmlQuadraticSolver']]],
   ['cmlqpsolver_5flemke',['CMLQPSOLVER_LEMKE',['../d4/d02/classocra_1_1CmlQuadraticSolver.html#a6d54dc2e4dac085099b002c88cb6d3dfac7ab4857986d549d2c7ac2f4e7d834cc',1,'ocra::CmlQuadraticSolver']]],
@@ -13,6 +15,9 @@ var searchData=
   ['continuity_5fc4',['CONTINUITY_C4',['../dc/d14/namespaceocra.html#ae5102ad1959d0c0dbf2eaa5610bbf728ab249a95d357bbfc162b6d3587a931658',1,'ocra']]],
   ['continuity_5fcinf',['CONTINUITY_CINF',['../dc/d14/namespaceocra.html#ae5102ad1959d0c0dbf2eaa5610bbf728a5b127ec3354ae315fbb184c46626935e',1,'ocra']]],
   ['continuity_5funknown',['CONTINUITY_UNKNOWN',['../dc/d14/namespaceocra.html#ae5102ad1959d0c0dbf2eaa5610bbf728ad66557aadcf8856f9f135ff26db1a862',1,'ocra']]],
+  ['controller_5fpaused',['CONTROLLER_PAUSED',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da89715de500e2434d5e5191b3ba9f74f4',1,'ocra_recipes']]],
+  ['controller_5frunning',['CONTROLLER_RUNNING',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da1ac2fc6a66f0094ce3c2ef1d9d840b3f',1,'ocra_recipes']]],
+  ['controller_5fstopped',['CONTROLLER_STOPPED',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07dadb7526c31cbb5f228bae6d56219eded1',1,'ocra_recipes']]],
   ['convexity_5fconcave',['CONVEXITY_CONCAVE',['../dc/d14/namespaceocra.html#ae6e8dca6121e9618486a449754876119a40ce55a6be9d45e5989afb904c540aca',1,'ocra']]],
   ['convexity_5fconvex',['CONVEXITY_CONVEX',['../dc/d14/namespaceocra.html#ae6e8dca6121e9618486a449754876119ad83c4106dc27c7a327602694babf3cbc',1,'ocra']]],
   ['convexity_5fconvex_5fand_5fconcave',['CONVEXITY_CONVEX_AND_CONCAVE',['../dc/d14/namespaceocra.html#ae6e8dca6121e9618486a449754876119aca6b09ce1bc4d2ffe4443c0e0a16039b',1,'ocra']]],
@@ -38,5 +43,6 @@ var searchData=
   ['cstr_5fminus_5flower',['CSTR_MINUS_LOWER',['../dc/d14/namespaceocra.html#abc43c1cc74267805f1cc799c4ac27051a861f7b93ab8192b80eecfed319729593',1,'ocra']]],
   ['cstr_5fplus_5fequal',['CSTR_PLUS_EQUAL',['../dc/d14/namespaceocra.html#abc43c1cc74267805f1cc799c4ac27051af75636505b6b15f0a8b5f36c5f6f1fbc',1,'ocra']]],
   ['cstr_5fplus_5fgreater',['CSTR_PLUS_GREATER',['../dc/d14/namespaceocra.html#abc43c1cc74267805f1cc799c4ac27051a0f5ead1190980c358456d9ae00153fb5',1,'ocra']]],
-  ['cstr_5fplus_5flower',['CSTR_PLUS_LOWER',['../dc/d14/namespaceocra.html#abc43c1cc74267805f1cc799c4ac27051ad2fecab8cb40010fe9ad1134fbe60af5',1,'ocra']]]
+  ['cstr_5fplus_5flower',['CSTR_PLUS_LOWER',['../dc/d14/namespaceocra.html#abc43c1cc74267805f1cc799c4ac27051ad2fecab8cb40010fe9ad1134fbe60af5',1,'ocra']]],
+  ['cycle',['CYCLE',['../d5/d53/namespaceocra__recipes.html#afcf7ca623a6c39b246aa4bda629c7309a0b946779781a3241dfaa365dcde084ca',1,'ocra_recipes']]]
 ];

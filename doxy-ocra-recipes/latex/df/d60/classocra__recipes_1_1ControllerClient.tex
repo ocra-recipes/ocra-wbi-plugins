@@ -1,0 +1,319 @@
+\hypertarget{classocra__recipes_1_1ControllerClient}{}\section{ocra\+\_\+recipes\+:\+:Controller\+Client Class Reference}
+\label{classocra__recipes_1_1ControllerClient}\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+
+
+{\ttfamily \#include $<$Controller\+Client.\+h$>$}
+
+Inheritance diagram for ocra\+\_\+recipes\+:\+:Controller\+Client\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{df/d60/classocra__recipes_1_1ControllerClient}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1ControllerClient_acbddf372a61ee0cd20aa417527a56606}{Controller\+Client} ()
+\item 
+\hyperlink{classocra__recipes_1_1ControllerClient_acece74d9360b3f5508d26479f49fc3c2}{Controller\+Client} (ocra\+::\+Model\+::\+Ptr derived\+Model\+Ptr, const int loop\+Period=D\+E\+F\+A\+U\+L\+T\+\_\+\+L\+O\+O\+P\+\_\+\+P\+E\+R\+I\+OD)
+\item 
+virtual \hyperlink{classocra__recipes_1_1ControllerClient_a75faf6691be6c622deba404514c7ed70}{$\sim$\+Controller\+Client} ()
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ControllerClient_aceef962c9a3cd42dc9defcaa356d6275}{thread\+Init} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControllerClient_ac42b7aad0b833f173475ed2a552ec159}{thread\+Release} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControllerClient_a4a17a6233a5d824ee58115003b332c18}{run} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControllerClient_a6bb943c2525cdc0fe82c83380c4f8900}{print\+Help} ()
+\item 
+int \hyperlink{classocra__recipes_1_1ControllerClient_a7ac35bd9a5eeeeb287d28e4d04c45766}{get\+Expected\+Period} ()
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ControllerClient_a51b18252578788100852a711d9d8f93a}{configure} (yarp\+::os\+::\+Resource\+Finder \&rf)
+\item 
+void \hyperlink{classocra__recipes_1_1ControllerClient_a4e86ce713e96089dd2b53aec1d8ff3e3}{add\+Tasks} (const std\+::string \&path\+To\+Xml\+File, bool overwrite)
+\item 
+void \hyperlink{classocra__recipes_1_1ControllerClient_a1f08768f37915c62b88e29d8db1ba27c}{add\+Task} (\hyperlink{classocra_1_1TaskBuilderOptions}{ocra\+::\+Task\+Builder\+Options} \&tm\+Opts, bool overwrite)
+\item 
+bool \hyperlink{classocra__recipes_1_1ControllerClient_aea41250cfe35937fc49f7261b0f356a3}{check\+If\+Task\+Exists} (\hyperlink{classocra_1_1TaskBuilderOptions}{ocra\+::\+Task\+Builder\+Options} \&tm\+Opts)
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classocra__recipes_1_1ControllerClient_a53b0b53fc4c46f195c9f6dd2d1a6506c}{get\+Task\+Types} ()
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classocra__recipes_1_1ControllerClient_a96ece5fcbcdffcd43c93905ffce5f54a}{get\+Task\+Names} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ControllerClient_a6666247713cb0e1db55b51b9a5ae49a1}{remove\+Task} (const std\+::string \&task\+Name)
+\item 
+bool \hyperlink{classocra__recipes_1_1ControllerClient_a7e72d409c511f201201292e8c123e771}{remove\+Tasks} (const std\+::vector$<$ std\+::string $>$ \&task\+Name\+Vector)
+\item 
+bool \hyperlink{classocra__recipes_1_1ControllerClient_a8c83005b1be831bc230d5a441f88980d}{has\+Been\+Released} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ControllerClient_ac4619242e809fa326f25f073d18feb50}{change\+Fixed\+Link} (std\+::string new\+Fixed\+Link, int is\+In\+Left\+Support, int is\+In\+Right\+Support)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ControllerClient_a8ac06cc5d7d6b0e078e1cb377a998c25}{initialize} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControllerClient_a181c868d0165b06b9b10a9e40127bc69}{release} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControllerClient_ac6d28be8e314dd2a034cfcb512e29ee3}{loop} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Client\+Communications\+::\+Ptr \hyperlink{classocra__recipes_1_1ControllerClient_aced7fa4d435e58cc2832abdbad1e4cbd}{client\+Coms}
+\item 
+ocra\+::\+Model\+::\+Ptr \hyperlink{classocra__recipes_1_1ControllerClient_a7eab32e91df97360c4de86f968a943e6}{model}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 24 of file Controller\+Client.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1ControllerClient_acbddf372a61ee0cd20aa417527a56606}{}\label{classocra__recipes_1_1ControllerClient_acbddf372a61ee0cd20aa417527a56606} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!Controller\+Client@{Controller\+Client}}
+\index{Controller\+Client@{Controller\+Client}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{Controller\+Client()}{ControllerClient()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Controller\+Client\+::\+Controller\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 7 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_acece74d9360b3f5508d26479f49fc3c2}{}\label{classocra__recipes_1_1ControllerClient_acece74d9360b3f5508d26479f49fc3c2} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!Controller\+Client@{Controller\+Client}}
+\index{Controller\+Client@{Controller\+Client}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{Controller\+Client()}{ControllerClient()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Controller\+Client\+::\+Controller\+Client (\begin{DoxyParamCaption}\item[{ocra\+::\+Model\+::\+Ptr}]{derived\+Model\+Ptr,  }\item[{const int}]{loop\+Period = {\ttfamily DEFAULT\+\_\+LOOP\+\_\+PERIOD} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 15 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a75faf6691be6c622deba404514c7ed70}{}\label{classocra__recipes_1_1ControllerClient_a75faf6691be6c622deba404514c7ed70} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!````~Controller\+Client@{$\sim$\+Controller\+Client}}
+\index{````~Controller\+Client@{$\sim$\+Controller\+Client}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{$\sim$\+Controller\+Client()}{~ControllerClient()}}
+{\footnotesize\ttfamily Controller\+Client\+::$\sim$\+Controller\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 38 of file Controller\+Client.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1ControllerClient_a1f08768f37915c62b88e29d8db1ba27c}{}\label{classocra__recipes_1_1ControllerClient_a1f08768f37915c62b88e29d8db1ba27c} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!add\+Task@{add\+Task}}
+\index{add\+Task@{add\+Task}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{add\+Task()}{addTask()}}
+{\footnotesize\ttfamily void ocra\+\_\+recipes\+::\+Controller\+Client\+::add\+Task (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1TaskBuilderOptions}{ocra\+::\+Task\+Builder\+Options} \&}]{tm\+Opts,  }\item[{bool}]{overwrite }\end{DoxyParamCaption})}
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a4e86ce713e96089dd2b53aec1d8ff3e3}{}\label{classocra__recipes_1_1ControllerClient_a4e86ce713e96089dd2b53aec1d8ff3e3} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!add\+Tasks@{add\+Tasks}}
+\index{add\+Tasks@{add\+Tasks}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{add\+Tasks()}{addTasks()}}
+{\footnotesize\ttfamily void Controller\+Client\+::add\+Tasks (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path\+To\+Xml\+File,  }\item[{bool}]{overwrite }\end{DoxyParamCaption})}
+
+
+
+Definition at line 78 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_ac4619242e809fa326f25f073d18feb50}{}\label{classocra__recipes_1_1ControllerClient_ac4619242e809fa326f25f073d18feb50} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!change\+Fixed\+Link@{change\+Fixed\+Link}}
+\index{change\+Fixed\+Link@{change\+Fixed\+Link}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{change\+Fixed\+Link()}{changeFixedLink()}}
+{\footnotesize\ttfamily bool Controller\+Client\+::change\+Fixed\+Link (\begin{DoxyParamCaption}\item[{std\+::string}]{new\+Fixed\+Link,  }\item[{int}]{is\+In\+Left\+Support,  }\item[{int}]{is\+In\+Right\+Support }\end{DoxyParamCaption})}
+
+
+
+Definition at line 138 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_aea41250cfe35937fc49f7261b0f356a3}{}\label{classocra__recipes_1_1ControllerClient_aea41250cfe35937fc49f7261b0f356a3} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!check\+If\+Task\+Exists@{check\+If\+Task\+Exists}}
+\index{check\+If\+Task\+Exists@{check\+If\+Task\+Exists}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{check\+If\+Task\+Exists()}{checkIfTaskExists()}}
+{\footnotesize\ttfamily bool Controller\+Client\+::check\+If\+Task\+Exists (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1TaskBuilderOptions}{ocra\+::\+Task\+Builder\+Options} \&}]{tm\+Opts }\end{DoxyParamCaption})}
+
+
+
+Definition at line 108 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a51b18252578788100852a711d9d8f93a}{}\label{classocra__recipes_1_1ControllerClient_a51b18252578788100852a711d9d8f93a} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!configure@{configure}}
+\index{configure@{configure}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{configure()}{configure()}}
+{\footnotesize\ttfamily virtual bool ocra\+\_\+recipes\+::\+Controller\+Client\+::configure (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Resource\+Finder \&}]{rf }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Configures the module by parsing the RF contents. 
+\begin{DoxyParams}{Parameters}
+{\em rf} & A resource finder instance which is initialized from the command line args.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True or false if the configuration was successful. 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file Controller\+Client.\+h.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a7ac35bd9a5eeeeb287d28e4d04c45766}{}\label{classocra__recipes_1_1ControllerClient_a7ac35bd9a5eeeeb287d28e4d04c45766} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!get\+Expected\+Period@{get\+Expected\+Period}}
+\index{get\+Expected\+Period@{get\+Expected\+Period}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{get\+Expected\+Period()}{getExpectedPeriod()}}
+{\footnotesize\ttfamily int ocra\+\_\+recipes\+::\+Controller\+Client\+::get\+Expected\+Period (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 40 of file Controller\+Client.\+h.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a96ece5fcbcdffcd43c93905ffce5f54a}{}\label{classocra__recipes_1_1ControllerClient_a96ece5fcbcdffcd43c93905ffce5f54a} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!get\+Task\+Names@{get\+Task\+Names}}
+\index{get\+Task\+Names@{get\+Task\+Names}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{get\+Task\+Names()}{getTaskNames()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Controller\+Client\+::get\+Task\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 133 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a53b0b53fc4c46f195c9f6dd2d1a6506c}{}\label{classocra__recipes_1_1ControllerClient_a53b0b53fc4c46f195c9f6dd2d1a6506c} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!get\+Task\+Types@{get\+Task\+Types}}
+\index{get\+Task\+Types@{get\+Task\+Types}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{get\+Task\+Types()}{getTaskTypes()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Controller\+Client\+::get\+Task\+Types (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 128 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a8c83005b1be831bc230d5a441f88980d}{}\label{classocra__recipes_1_1ControllerClient_a8c83005b1be831bc230d5a441f88980d} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!has\+Been\+Released@{has\+Been\+Released}}
+\index{has\+Been\+Released@{has\+Been\+Released}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{has\+Been\+Released()}{hasBeenReleased()}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Controller\+Client\+::has\+Been\+Released (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 59 of file Controller\+Client.\+h.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a8ac06cc5d7d6b0e078e1cb377a998c25}{}\label{classocra__recipes_1_1ControllerClient_a8ac06cc5d7d6b0e078e1cb377a998c25} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!initialize@{initialize}}
+\index{initialize@{initialize}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily virtual bool ocra\+\_\+recipes\+::\+Controller\+Client\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 64 of file Controller\+Client.\+h.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_ac6d28be8e314dd2a034cfcb512e29ee3}{}\label{classocra__recipes_1_1ControllerClient_ac6d28be8e314dd2a034cfcb512e29ee3} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!loop@{loop}}
+\index{loop@{loop}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily virtual void ocra\+\_\+recipes\+::\+Controller\+Client\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a6bb943c2525cdc0fe82c83380c4f8900}{}\label{classocra__recipes_1_1ControllerClient_a6bb943c2525cdc0fe82c83380c4f8900} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!print\+Help@{print\+Help}}
+\index{print\+Help@{print\+Help}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{print\+Help()}{printHelp()}}
+{\footnotesize\ttfamily virtual void ocra\+\_\+recipes\+::\+Controller\+Client\+::print\+Help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 38 of file Controller\+Client.\+h.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a181c868d0165b06b9b10a9e40127bc69}{}\label{classocra__recipes_1_1ControllerClient_a181c868d0165b06b9b10a9e40127bc69} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!release@{release}}
+\index{release@{release}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{release()}{release()}}
+{\footnotesize\ttfamily virtual void ocra\+\_\+recipes\+::\+Controller\+Client\+::release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 65 of file Controller\+Client.\+h.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a6666247713cb0e1db55b51b9a5ae49a1}{}\label{classocra__recipes_1_1ControllerClient_a6666247713cb0e1db55b51b9a5ae49a1} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!remove\+Task@{remove\+Task}}
+\index{remove\+Task@{remove\+Task}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{remove\+Task()}{removeTask()}}
+{\footnotesize\ttfamily bool Controller\+Client\+::remove\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{task\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 63 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a7e72d409c511f201201292e8c123e771}{}\label{classocra__recipes_1_1ControllerClient_a7e72d409c511f201201292e8c123e771} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!remove\+Tasks@{remove\+Tasks}}
+\index{remove\+Tasks@{remove\+Tasks}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{remove\+Tasks()}{removeTasks()}}
+{\footnotesize\ttfamily bool Controller\+Client\+::remove\+Tasks (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{task\+Name\+Vector }\end{DoxyParamCaption})}
+
+
+
+Definition at line 72 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a4a17a6233a5d824ee58115003b332c18}{}\label{classocra__recipes_1_1ControllerClient_a4a17a6233a5d824ee58115003b332c18} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!run@{run}}
+\index{run@{run}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Controller\+Client\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 52 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_aceef962c9a3cd42dc9defcaa356d6275}{}\label{classocra__recipes_1_1ControllerClient_aceef962c9a3cd42dc9defcaa356d6275} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!thread\+Init@{thread\+Init}}
+\index{thread\+Init@{thread\+Init}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{thread\+Init()}{threadInit()}}
+{\footnotesize\ttfamily bool Controller\+Client\+::thread\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 43 of file Controller\+Client.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_ac42b7aad0b833f173475ed2a552ec159}{}\label{classocra__recipes_1_1ControllerClient_ac42b7aad0b833f173475ed2a552ec159} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!thread\+Release@{thread\+Release}}
+\index{thread\+Release@{thread\+Release}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{thread\+Release()}{threadRelease()}}
+{\footnotesize\ttfamily void Controller\+Client\+::thread\+Release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 57 of file Controller\+Client.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra__recipes_1_1ControllerClient_aced7fa4d435e58cc2832abdbad1e4cbd}{}\label{classocra__recipes_1_1ControllerClient_aced7fa4d435e58cc2832abdbad1e4cbd} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!client\+Coms@{client\+Coms}}
+\index{client\+Coms@{client\+Coms}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{client\+Coms}{clientComs}}
+{\footnotesize\ttfamily Client\+Communications\+::\+Ptr ocra\+\_\+recipes\+::\+Controller\+Client\+::client\+Coms\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 68 of file Controller\+Client.\+h.
+
+\hypertarget{classocra__recipes_1_1ControllerClient_a7eab32e91df97360c4de86f968a943e6}{}\label{classocra__recipes_1_1ControllerClient_a7eab32e91df97360c4de86f968a943e6} 
+\index{ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}!model@{model}}
+\index{model@{model}!ocra\+\_\+recipes\+::\+Controller\+Client@{ocra\+\_\+recipes\+::\+Controller\+Client}}
+\subsubsection{\texorpdfstring{model}{model}}
+{\footnotesize\ttfamily ocra\+::\+Model\+::\+Ptr ocra\+\_\+recipes\+::\+Controller\+Client\+::model\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 69 of file Controller\+Client.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ControllerClient_8h}{Controller\+Client.\+h}\item 
+\hyperlink{ControllerClient_8cpp}{Controller\+Client.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,684 @@
+\hypertarget{classocra__recipes_1_1TaskConnection}{}\section{ocra\+\_\+recipes\+:\+:Task\+Connection Class Reference}
+\label{classocra__recipes_1_1TaskConnection}\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+
+
+{\ttfamily \#include $<$Task\+Connection.\+h$>$}
+
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra__recipes_1_1TaskConnection_1_1inputCallback}{input\+Callback}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1TaskConnection_a57b78d2652778a07949377622e86e5d7}{Task\+Connection} ()
+\item 
+\hyperlink{classocra__recipes_1_1TaskConnection_a8a7b431e1c53e50428e3c369892d266e}{Task\+Connection} (const std\+::string \&destination\+Task\+Name)
+\item 
+virtual \hyperlink{classocra__recipes_1_1TaskConnection_aa2a733dfaa80f32fa95f45c2d98f6106}{$\sim$\+Task\+Connection} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_a416154f1cd736647003442d905b9862e}{reconnect} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1TaskConnection_a64c0f6623daace3ac9030ec620ed98a2}{activate} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1TaskConnection_a8488250380b7fd9598f3246ec6111d6a}{deactivate} ()
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1TaskConnection_a9898d85644f690d4b0e5d5a2c8338d63}{get\+Port\+Name} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1TaskConnection_a07179a0e687fd28d091eeebb1157fac0}{is\+Activated} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1TaskConnection_ab968ad0f0a818f240eed58f1780f8586}{get\+Task\+Error} ()
+\item 
+double \hyperlink{classocra__recipes_1_1TaskConnection_a2639764e4b7fe55aa29dce82a2268b3a}{get\+Task\+Error\+Norm} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_a4db37203b270702fda22a81ef15b1a77}{set\+Stiffness} (double K)
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_afcd68e61fdaadfe705b62194f07f7a3a}{set\+Stiffness} (const Eigen\+::\+Vector\+Xd \&K)
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_adc34c0f28b0833548d72346823e58489}{set\+Stiffness} (const Eigen\+::\+Matrix\+Xd \&K)
+\item 
+double \hyperlink{classocra__recipes_1_1TaskConnection_a88bda0e9df65e379e1b7f5b89929fdde}{get\+Stiffness} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra__recipes_1_1TaskConnection_abbcaa5c1769afc4e4074486fe4fb319a}{get\+Stiffness\+Matrix} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_a4f9c4b7b99c41c817b5c9448464b84bc}{set\+Damping} (double B)
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_ae831590f6b0139cfaff4e54286dc4438}{set\+Damping} (const Eigen\+::\+Vector\+Xd \&B)
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_a143aba34caf53044de8adb6ac94f4e29}{set\+Damping} (const Eigen\+::\+Matrix\+Xd \&B)
+\item 
+double \hyperlink{classocra__recipes_1_1TaskConnection_a7d659e4a155f8a0942bb71d193b95385}{get\+Damping} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra__recipes_1_1TaskConnection_a4176118231f2c5e17e4f749999c9456e}{get\+Damping\+Matrix} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_ad833849636700c3174f305d10fcc00bf}{set\+Weight} (double weight)
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_ad03415eb9f2107be39cb44399fb0afd7}{set\+Weight} (Eigen\+::\+Vector\+Xd \&weights)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1TaskConnection_a44930029ade716c0ebbe04fba658cf7e}{get\+Weight} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1TaskConnection_ab7feddafb3948aaf67bf00b227591694}{open\+Control\+Ports} ()
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1TaskConnection_ad33b58e0bf6e0f7051b0187435b014f9}{get\+Task\+Name} ()
+\item 
+\hyperlink{classocra_1_1Task_a8ddf2840d178ca273e886c9ca95248fe}{ocra\+::\+Task\+::\+M\+E\+T\+A\+\_\+\+T\+A\+S\+K\+\_\+\+T\+Y\+PE} \hyperlink{classocra__recipes_1_1TaskConnection_ac5a29440c295728f97b5a5f6df69924f}{get\+Task\+Type} ()
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1TaskConnection_aab1504531e1371df092a8c589b100e1c}{get\+Task\+Type\+As\+String} ()
+\item 
+int \hyperlink{classocra__recipes_1_1TaskConnection_a14a0075a94a7df0f912b7dbd8f56d8e2}{get\+Task\+Dimension} ()
+\item 
+\hyperlink{classocra_1_1TaskState}{ocra\+::\+Task\+State} \hyperlink{classocra__recipes_1_1TaskConnection_ae85f5279d0fe6b8c63ee9736f6308583}{get\+Task\+State} ()
+\item 
+\hyperlink{classocra_1_1TaskState}{ocra\+::\+Task\+State} \hyperlink{classocra__recipes_1_1TaskConnection_a655f96a4c535179184edf67a961776e7}{get\+Desired\+Task\+State} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_a3a843b685459c6db2ec4b99159d57e6a}{set\+Desired\+Task\+State} (const \hyperlink{classocra_1_1TaskState}{ocra\+::\+Task\+State} \&new\+Desired\+Task\+State)
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_a4619e5f6107d88bc50165c812e219004}{set\+Desired\+Task\+State\+Direct} (const \hyperlink{classocra_1_1TaskState}{ocra\+::\+Task\+State} \&new\+Desired\+Task\+State)
+\item 
+bool \hyperlink{classocra__recipes_1_1TaskConnection_abc322bd749033fad00193ca63701a1f5}{close\+Control\+Ports} ()
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1TaskConnection_add06cf3474cdf145340850854c67ccd1}{get\+Task\+Output\+Port\+Name} ()
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1TaskConnection_ac6368ebb5b32d5319cec98fcf09d38fd}{get\+Task\+Input\+Port\+Name} ()
+\item 
+Eigen\+::\+Displacementd \hyperlink{classocra__recipes_1_1TaskConnection_a4595bb517cd965bc9f08f609e3e15e78}{get\+Task\+Frame\+Displacement} ()
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra__recipes_1_1TaskConnection_a3ae346f85c5b8655698630b3f3474886}{get\+Task\+Frame\+Velocity} ()
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra__recipes_1_1TaskConnection_a83e90c36f53ffda20f73b242c5de285b}{get\+Task\+Frame\+Acceleration} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra__recipes_1_1TaskConnection_a263fc00649e98cfa61393f63cfe9f84a}{get\+Task\+Frame\+Position} ()
+\item 
+Eigen\+::\+Rotation3d \hyperlink{classocra__recipes_1_1TaskConnection_a4163584c89cc8680131bd473b9359ffb}{get\+Task\+Frame\+Orientation} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra__recipes_1_1TaskConnection_ab0948b1336f171e607ca79ca03a466c5}{get\+Task\+Frame\+Linear\+Velocity} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra__recipes_1_1TaskConnection_a57f6e6e29aa2d09bff7c9aa7e7a322f7}{get\+Task\+Frame\+Angular\+Velocity} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra__recipes_1_1TaskConnection_a4c489ec411ea7cb026213ac53111431d}{get\+Task\+Frame\+Linear\+Acceleration} ()
+\item 
+Eigen\+::\+Vector3d \hyperlink{classocra__recipes_1_1TaskConnection_abae3e5305e8de9be7ccf34fdbb4d6e1a}{get\+Task\+Frame\+Angular\+Acceleration} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TaskConnection_ae4450b3d9912471527716d7fe11e279e}{query\+Task} (\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dd}{ocra\+::\+T\+A\+S\+K\+\_\+\+M\+E\+S\+S\+A\+GE} tag, yarp\+::os\+::\+Bottle \&bottle)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 26 of file Task\+Connection.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1TaskConnection_a57b78d2652778a07949377622e86e5d7}{}\label{classocra__recipes_1_1TaskConnection_a57b78d2652778a07949377622e86e5d7} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!Task\+Connection@{Task\+Connection}}
+\index{Task\+Connection@{Task\+Connection}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{Task\+Connection()}{TaskConnection()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Task\+Connection\+::\+Task\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a8a7b431e1c53e50428e3c369892d266e}{}\label{classocra__recipes_1_1TaskConnection_a8a7b431e1c53e50428e3c369892d266e} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!Task\+Connection@{Task\+Connection}}
+\index{Task\+Connection@{Task\+Connection}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{Task\+Connection()}{TaskConnection()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Task\+Connection\+::\+Task\+Connection (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{destination\+Task\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 11 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_aa2a733dfaa80f32fa95f45c2d98f6106}{}\label{classocra__recipes_1_1TaskConnection_aa2a733dfaa80f32fa95f45c2d98f6106} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!````~Task\+Connection@{$\sim$\+Task\+Connection}}
+\index{````~Task\+Connection@{$\sim$\+Task\+Connection}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{$\sim$\+Task\+Connection()}{~TaskConnection()}}
+{\footnotesize\ttfamily Task\+Connection\+::$\sim$\+Task\+Connection (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 38 of file Task\+Connection.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1TaskConnection_a64c0f6623daace3ac9030ec620ed98a2}{}\label{classocra__recipes_1_1TaskConnection_a64c0f6623daace3ac9030ec620ed98a2} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!activate@{activate}}
+\index{activate@{activate}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{activate()}{activate()}}
+{\footnotesize\ttfamily bool Task\+Connection\+::activate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Activates the underlying task(s) \begin{DoxyNote}{Note}
+{\ttfamily \hyperlink{classocra__recipes_1_1TaskConnection_a8488250380b7fd9598f3246ec6111d6a}{deactivate()}} must be called before this function to work properly.
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the operation. 
+\end{DoxyReturn}
+
+
+Definition at line 50 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_abc322bd749033fad00193ca63701a1f5}{}\label{classocra__recipes_1_1TaskConnection_abc322bd749033fad00193ca63701a1f5} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!close\+Control\+Ports@{close\+Control\+Ports}}
+\index{close\+Control\+Ports@{close\+Control\+Ports}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{close\+Control\+Ports()}{closeControlPorts()}}
+{\footnotesize\ttfamily bool Task\+Connection\+::close\+Control\+Ports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 423 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a8488250380b7fd9598f3246ec6111d6a}{}\label{classocra__recipes_1_1TaskConnection_a8488250380b7fd9598f3246ec6111d6a} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!deactivate@{deactivate}}
+\index{deactivate@{deactivate}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{deactivate()}{deactivate()}}
+{\footnotesize\ttfamily bool Task\+Connection\+::deactivate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Deactivates the underlying task(s). This is where we call get\+Task\+Mode() to see if the task in an objective or a constraint.
+
+\begin{DoxyReturn}{Returns}
+A boolean indicating the success of the operation. 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a7d659e4a155f8a0942bb71d193b95385}{}\label{classocra__recipes_1_1TaskConnection_a7d659e4a155f8a0942bb71d193b95385} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Damping@{get\+Damping}}
+\index{get\+Damping@{get\+Damping}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Damping()}{getDamping()}}
+{\footnotesize\ttfamily double Task\+Connection\+::get\+Damping (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current damping, or damping (Kd) gain, of the task.
+
+\begin{DoxyReturn}{Returns}
+The first diagonal entry of the damping matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 196 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a4176118231f2c5e17e4f749999c9456e}{}\label{classocra__recipes_1_1TaskConnection_a4176118231f2c5e17e4f749999c9456e} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Damping\+Matrix@{get\+Damping\+Matrix}}
+\index{get\+Damping\+Matrix@{get\+Damping\+Matrix}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Damping\+Matrix()}{getDampingMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Task\+Connection\+::get\+Damping\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current damping, or damping (Kd) gain, of the task.
+
+\begin{DoxyReturn}{Returns}
+The damping matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 201 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a655f96a4c535179184edf67a961776e7}{}\label{classocra__recipes_1_1TaskConnection_a655f96a4c535179184edf67a961776e7} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Desired\+Task\+State@{get\+Desired\+Task\+State}}
+\index{get\+Desired\+Task\+State@{get\+Desired\+Task\+State}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Desired\+Task\+State()}{getDesiredTaskState()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1TaskState}{ocra\+::\+Task\+State} Task\+Connection\+::get\+Desired\+Task\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 288 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a9898d85644f690d4b0e5d5a2c8338d63}{}\label{classocra__recipes_1_1TaskConnection_a9898d85644f690d4b0e5d5a2c8338d63} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Port\+Name@{get\+Port\+Name}}
+\index{get\+Port\+Name@{get\+Port\+Name}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Port\+Name()}{getPortName()}}
+{\footnotesize\ttfamily std\+::string Task\+Connection\+::get\+Port\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the name of the task manager\textquotesingle{}s R\+PC server port.
+
+\begin{DoxyReturn}{Returns}
+The port\textquotesingle{}s full name as a string. 
+\end{DoxyReturn}
+
+
+Definition at line 74 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a88bda0e9df65e379e1b7f5b89929fdde}{}\label{classocra__recipes_1_1TaskConnection_a88bda0e9df65e379e1b7f5b89929fdde} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Stiffness@{get\+Stiffness}}
+\index{get\+Stiffness@{get\+Stiffness}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Stiffness()}{getStiffness()}}
+{\footnotesize\ttfamily double Task\+Connection\+::get\+Stiffness (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current stiffness, or proportional (Kp) gain, of the task.
+
+\begin{DoxyReturn}{Returns}
+The first diagonal entry of the stiffness matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 145 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_abbcaa5c1769afc4e4074486fe4fb319a}{}\label{classocra__recipes_1_1TaskConnection_abbcaa5c1769afc4e4074486fe4fb319a} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Stiffness\+Matrix@{get\+Stiffness\+Matrix}}
+\index{get\+Stiffness\+Matrix@{get\+Stiffness\+Matrix}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Stiffness\+Matrix()}{getStiffnessMatrix()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Task\+Connection\+::get\+Stiffness\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current stiffness, or proportional (Kp) gain, of the task.
+
+\begin{DoxyReturn}{Returns}
+The stiffness matrix. 
+\end{DoxyReturn}
+
+
+Definition at line 150 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a14a0075a94a7df0f912b7dbd8f56d8e2}{}\label{classocra__recipes_1_1TaskConnection_a14a0075a94a7df0f912b7dbd8f56d8e2} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Dimension@{get\+Task\+Dimension}}
+\index{get\+Task\+Dimension@{get\+Task\+Dimension}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Dimension()}{getTaskDimension()}}
+{\footnotesize\ttfamily int Task\+Connection\+::get\+Task\+Dimension (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 249 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ab968ad0f0a818f240eed58f1780f8586}{}\label{classocra__recipes_1_1TaskConnection_ab968ad0f0a818f240eed58f1780f8586} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Error@{get\+Task\+Error}}
+\index{get\+Task\+Error@{get\+Task\+Error}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Error()}{getTaskError()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Task\+Connection\+::get\+Task\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current error vector of the task.  Only valid for task managers with 1 task, not sets of tasks.
+
+\begin{DoxyReturn}{Returns}
+A vector of errors in each DoF of the task. 
+\end{DoxyReturn}
+
+
+Definition at line 94 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a2639764e4b7fe55aa29dce82a2268b3a}{}\label{classocra__recipes_1_1TaskConnection_a2639764e4b7fe55aa29dce82a2268b3a} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Error\+Norm@{get\+Task\+Error\+Norm}}
+\index{get\+Task\+Error\+Norm@{get\+Task\+Error\+Norm}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Error\+Norm()}{getTaskErrorNorm()}}
+{\footnotesize\ttfamily double Task\+Connection\+::get\+Task\+Error\+Norm (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the current error vector norm of the task.  Only valid for task managers with 1 task, not sets of tasks.
+
+\begin{DoxyReturn}{Returns}
+The norm of the task error vector. 
+\end{DoxyReturn}
+
+
+Definition at line 107 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a83e90c36f53ffda20f73b242c5de285b}{}\label{classocra__recipes_1_1TaskConnection_a83e90c36f53ffda20f73b242c5de285b} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Acceleration@{get\+Task\+Frame\+Acceleration}}
+\index{get\+Task\+Frame\+Acceleration@{get\+Task\+Frame\+Acceleration}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Acceleration()}{getTaskFrameAcceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd Task\+Connection\+::get\+Task\+Frame\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 328 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_abae3e5305e8de9be7ccf34fdbb4d6e1a}{}\label{classocra__recipes_1_1TaskConnection_abae3e5305e8de9be7ccf34fdbb4d6e1a} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Angular\+Acceleration@{get\+Task\+Frame\+Angular\+Acceleration}}
+\index{get\+Task\+Frame\+Angular\+Acceleration@{get\+Task\+Frame\+Angular\+Acceleration}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Angular\+Acceleration()}{getTaskFrameAngularAcceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Connection\+::get\+Task\+Frame\+Angular\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 358 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a57f6e6e29aa2d09bff7c9aa7e7a322f7}{}\label{classocra__recipes_1_1TaskConnection_a57f6e6e29aa2d09bff7c9aa7e7a322f7} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Angular\+Velocity@{get\+Task\+Frame\+Angular\+Velocity}}
+\index{get\+Task\+Frame\+Angular\+Velocity@{get\+Task\+Frame\+Angular\+Velocity}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Angular\+Velocity()}{getTaskFrameAngularVelocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Connection\+::get\+Task\+Frame\+Angular\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 348 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a4595bb517cd965bc9f08f609e3e15e78}{}\label{classocra__recipes_1_1TaskConnection_a4595bb517cd965bc9f08f609e3e15e78} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Displacement@{get\+Task\+Frame\+Displacement}}
+\index{get\+Task\+Frame\+Displacement@{get\+Task\+Frame\+Displacement}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Displacement()}{getTaskFrameDisplacement()}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd Task\+Connection\+::get\+Task\+Frame\+Displacement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 318 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a4c489ec411ea7cb026213ac53111431d}{}\label{classocra__recipes_1_1TaskConnection_a4c489ec411ea7cb026213ac53111431d} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Linear\+Acceleration@{get\+Task\+Frame\+Linear\+Acceleration}}
+\index{get\+Task\+Frame\+Linear\+Acceleration@{get\+Task\+Frame\+Linear\+Acceleration}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Linear\+Acceleration()}{getTaskFrameLinearAcceleration()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Connection\+::get\+Task\+Frame\+Linear\+Acceleration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 353 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ab0948b1336f171e607ca79ca03a466c5}{}\label{classocra__recipes_1_1TaskConnection_ab0948b1336f171e607ca79ca03a466c5} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Linear\+Velocity@{get\+Task\+Frame\+Linear\+Velocity}}
+\index{get\+Task\+Frame\+Linear\+Velocity@{get\+Task\+Frame\+Linear\+Velocity}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Linear\+Velocity()}{getTaskFrameLinearVelocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Connection\+::get\+Task\+Frame\+Linear\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 343 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a4163584c89cc8680131bd473b9359ffb}{}\label{classocra__recipes_1_1TaskConnection_a4163584c89cc8680131bd473b9359ffb} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Orientation@{get\+Task\+Frame\+Orientation}}
+\index{get\+Task\+Frame\+Orientation@{get\+Task\+Frame\+Orientation}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Orientation()}{getTaskFrameOrientation()}}
+{\footnotesize\ttfamily Eigen\+::\+Rotation3d Task\+Connection\+::get\+Task\+Frame\+Orientation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 338 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a263fc00649e98cfa61393f63cfe9f84a}{}\label{classocra__recipes_1_1TaskConnection_a263fc00649e98cfa61393f63cfe9f84a} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Position@{get\+Task\+Frame\+Position}}
+\index{get\+Task\+Frame\+Position@{get\+Task\+Frame\+Position}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Position()}{getTaskFramePosition()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Task\+Connection\+::get\+Task\+Frame\+Position (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 333 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a3ae346f85c5b8655698630b3f3474886}{}\label{classocra__recipes_1_1TaskConnection_a3ae346f85c5b8655698630b3f3474886} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Frame\+Velocity@{get\+Task\+Frame\+Velocity}}
+\index{get\+Task\+Frame\+Velocity@{get\+Task\+Frame\+Velocity}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Frame\+Velocity()}{getTaskFrameVelocity()}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd Task\+Connection\+::get\+Task\+Frame\+Velocity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 323 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ac6368ebb5b32d5319cec98fcf09d38fd}{}\label{classocra__recipes_1_1TaskConnection_ac6368ebb5b32d5319cec98fcf09d38fd} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Input\+Port\+Name@{get\+Task\+Input\+Port\+Name}}
+\index{get\+Task\+Input\+Port\+Name@{get\+Task\+Input\+Port\+Name}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Input\+Port\+Name()}{getTaskInputPortName()}}
+{\footnotesize\ttfamily std\+::string Task\+Connection\+::get\+Task\+Input\+Port\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 414 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ad33b58e0bf6e0f7051b0187435b014f9}{}\label{classocra__recipes_1_1TaskConnection_ad33b58e0bf6e0f7051b0187435b014f9} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Name@{get\+Task\+Name}}
+\index{get\+Task\+Name@{get\+Task\+Name}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Name()}{getTaskName()}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Task\+Connection\+::get\+Task\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The name of the task we are connected to.
+
+\begin{DoxyReturn}{Returns}
+The name of the task we are connected to. 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file Task\+Connection.\+h.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_add06cf3474cdf145340850854c67ccd1}{}\label{classocra__recipes_1_1TaskConnection_add06cf3474cdf145340850854c67ccd1} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Output\+Port\+Name@{get\+Task\+Output\+Port\+Name}}
+\index{get\+Task\+Output\+Port\+Name@{get\+Task\+Output\+Port\+Name}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Output\+Port\+Name()}{getTaskOutputPortName()}}
+{\footnotesize\ttfamily std\+::string Task\+Connection\+::get\+Task\+Output\+Port\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 406 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ae85f5279d0fe6b8c63ee9736f6308583}{}\label{classocra__recipes_1_1TaskConnection_ae85f5279d0fe6b8c63ee9736f6308583} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+State@{get\+Task\+State}}
+\index{get\+Task\+State@{get\+Task\+State}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+State()}{getTaskState()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1TaskState}{ocra\+::\+Task\+State} Task\+Connection\+::get\+Task\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 273 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ac5a29440c295728f97b5a5f6df69924f}{}\label{classocra__recipes_1_1TaskConnection_ac5a29440c295728f97b5a5f6df69924f} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Type@{get\+Task\+Type}}
+\index{get\+Task\+Type@{get\+Task\+Type}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Type()}{getTaskType()}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Task_a8ddf2840d178ca273e886c9ca95248fe}{ocra\+::\+Task\+::\+M\+E\+T\+A\+\_\+\+T\+A\+S\+K\+\_\+\+T\+Y\+PE} Task\+Connection\+::get\+Task\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+The type of the task we are connected to.
+
+\begin{DoxyReturn}{Returns}
+The type of the task we are connected to. 
+\end{DoxyReturn}
+
+
+Definition at line 257 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_aab1504531e1371df092a8c589b100e1c}{}\label{classocra__recipes_1_1TaskConnection_aab1504531e1371df092a8c589b100e1c} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Task\+Type\+As\+String@{get\+Task\+Type\+As\+String}}
+\index{get\+Task\+Type\+As\+String@{get\+Task\+Type\+As\+String}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Task\+Type\+As\+String()}{getTaskTypeAsString()}}
+{\footnotesize\ttfamily std\+::string Task\+Connection\+::get\+Task\+Type\+As\+String (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 265 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a44930029ade716c0ebbe04fba658cf7e}{}\label{classocra__recipes_1_1TaskConnection_a44930029ade716c0ebbe04fba658cf7e} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!get\+Weight@{get\+Weight}}
+\index{get\+Weight@{get\+Weight}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{get\+Weight()}{getWeight()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Task\+Connection\+::get\+Weight (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Gets the weights associated with the task. Often a task will have a single weight but it is still represented as a vector to be applied to each DoF of the task.
+
+\begin{DoxyReturn}{Returns}
+The vector of task weights. 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a07179a0e687fd28d091eeebb1157fac0}{}\label{classocra__recipes_1_1TaskConnection_a07179a0e687fd28d091eeebb1157fac0} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!is\+Activated@{is\+Activated}}
+\index{is\+Activated@{is\+Activated}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{is\+Activated()}{isActivated()}}
+{\footnotesize\ttfamily bool Task\+Connection\+::is\+Activated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Check if the task is active as either an objective or a constraint.
+
+\begin{DoxyReturn}{Returns}
+A boolean indicating the task(s) activity. 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ab7feddafb3948aaf67bf00b227591694}{}\label{classocra__recipes_1_1TaskConnection_ab7feddafb3948aaf67bf00b227591694} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!open\+Control\+Ports@{open\+Control\+Ports}}
+\index{open\+Control\+Ports@{open\+Control\+Ports}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{open\+Control\+Ports()}{openControlPorts()}}
+{\footnotesize\ttfamily bool Task\+Connection\+::open\+Control\+Ports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Opens the high speed task control ports.
+
+\begin{DoxyReturn}{Returns}
+True if the ports open successfully and are connected. 
+\end{DoxyReturn}
+
+
+Definition at line 363 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ae4450b3d9912471527716d7fe11e279e}{}\label{classocra__recipes_1_1TaskConnection_ae4450b3d9912471527716d7fe11e279e} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!query\+Task@{query\+Task}}
+\index{query\+Task@{query\+Task}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{query\+Task()}{queryTask()}}
+{\footnotesize\ttfamily void Task\+Connection\+::query\+Task (\begin{DoxyParamCaption}\item[{\hyperlink{namespaceocra_ae51761f3980546f5ee4cbc6ebe4216dd}{ocra\+::\+T\+A\+S\+K\+\_\+\+M\+E\+S\+S\+A\+GE}}]{tag,  }\item[{yarp\+::os\+::\+Bottle \&}]{bottle }\end{DoxyParamCaption})}
+
+
+
+Definition at line 443 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a416154f1cd736647003442d905b9862e}{}\label{classocra__recipes_1_1TaskConnection_a416154f1cd736647003442d905b9862e} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!reconnect@{reconnect}}
+\index{reconnect@{reconnect}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{reconnect()}{reconnect()}}
+{\footnotesize\ttfamily void Task\+Connection\+::reconnect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a4f9c4b7b99c41c817b5c9448464b84bc}{}\label{classocra__recipes_1_1TaskConnection_a4f9c4b7b99c41c817b5c9448464b84bc} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Damping (\begin{DoxyParamCaption}\item[{double}]{B }\end{DoxyParamCaption})}
+
+Sets the damping, or damping (Kd) gain, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The damping gain to set. Fills a diagonal matrix. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 163 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ae831590f6b0139cfaff4e54286dc4438}{}\label{classocra__recipes_1_1TaskConnection_ae831590f6b0139cfaff4e54286dc4438} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Damping (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{B }\end{DoxyParamCaption})}
+
+Sets the damping, or damping (Kd) gains, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The damping gains to set for each DoF. Creates a diagonal matrix from K. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 174 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a143aba34caf53044de8adb6ac94f4e29}{}\label{classocra__recipes_1_1TaskConnection_a143aba34caf53044de8adb6ac94f4e29} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Damping@{set\+Damping}}
+\index{set\+Damping@{set\+Damping}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Damping()}{setDamping()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Damping (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{B }\end{DoxyParamCaption})}
+
+Sets the damping, or damping (Kd) gains, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The damping gains to set for the task. Off diagonal components will create damping correlations between the task DoF. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 185 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a3a843b685459c6db2ec4b99159d57e6a}{}\label{classocra__recipes_1_1TaskConnection_a3a843b685459c6db2ec4b99159d57e6a} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Desired\+Task\+State@{set\+Desired\+Task\+State}}
+\index{set\+Desired\+Task\+State@{set\+Desired\+Task\+State}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Desired\+Task\+State()}{setDesiredTaskState()}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Desired\+Task\+State (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1TaskState}{ocra\+::\+Task\+State} \&}]{new\+Desired\+Task\+State }\end{DoxyParamCaption})}
+
+
+
+Definition at line 299 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a4619e5f6107d88bc50165c812e219004}{}\label{classocra__recipes_1_1TaskConnection_a4619e5f6107d88bc50165c812e219004} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Desired\+Task\+State\+Direct@{set\+Desired\+Task\+State\+Direct}}
+\index{set\+Desired\+Task\+State\+Direct@{set\+Desired\+Task\+State\+Direct}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Desired\+Task\+State\+Direct()}{setDesiredTaskStateDirect()}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Desired\+Task\+State\+Direct (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1TaskState}{ocra\+::\+Task\+State} \&}]{new\+Desired\+Task\+State }\end{DoxyParamCaption})}
+
+
+
+Definition at line 307 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_a4db37203b270702fda22a81ef15b1a77}{}\label{classocra__recipes_1_1TaskConnection_a4db37203b270702fda22a81ef15b1a77} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{double}]{K }\end{DoxyParamCaption})}
+
+Sets the stiffness, or proportional (Kp) gain, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The proportional gain to set. Fills a diagonal matrix. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 112 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_afcd68e61fdaadfe705b62194f07f7a3a}{}\label{classocra__recipes_1_1TaskConnection_afcd68e61fdaadfe705b62194f07f7a3a} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{K }\end{DoxyParamCaption})}
+
+Sets the stiffness, or proportional (Kp) gains, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The proportional gains to set for each DoF. Creates a diagonal matrix from K. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 123 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_adc34c0f28b0833548d72346823e58489}{}\label{classocra__recipes_1_1TaskConnection_adc34c0f28b0833548d72346823e58489} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Stiffness@{set\+Stiffness}}
+\index{set\+Stiffness@{set\+Stiffness}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Stiffness()}{setStiffness()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Stiffness (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{K }\end{DoxyParamCaption})}
+
+Sets the stiffness, or proportional (Kp) gains, of the task. 
+\begin{DoxyParams}{Parameters}
+{\em K} & The proportional gains to set for the task. Off diagonal components will create stiffness correlations between the task DoF. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 134 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ad833849636700c3174f305d10fcc00bf}{}\label{classocra__recipes_1_1TaskConnection_ad833849636700c3174f305d10fcc00bf} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Weight@{set\+Weight}}
+\index{set\+Weight@{set\+Weight}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Weight()}{setWeight()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Weight (\begin{DoxyParamCaption}\item[{double}]{weight }\end{DoxyParamCaption})}
+
+Sets the weight for all DoF of a task. 
+\begin{DoxyParams}{Parameters}
+{\em weight} & The weight to apply to all task DoF. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 214 of file Task\+Connection.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TaskConnection_ad03415eb9f2107be39cb44399fb0afd7}{}\label{classocra__recipes_1_1TaskConnection_ad03415eb9f2107be39cb44399fb0afd7} 
+\index{ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}!set\+Weight@{set\+Weight}}
+\index{set\+Weight@{set\+Weight}!ocra\+\_\+recipes\+::\+Task\+Connection@{ocra\+\_\+recipes\+::\+Task\+Connection}}
+\subsubsection{\texorpdfstring{set\+Weight()}{setWeight()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Task\+Connection\+::set\+Weight (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd \&}]{weights }\end{DoxyParamCaption})}
+
+Sets the weights for each DoF of a task. 
+\begin{DoxyParams}{Parameters}
+{\em weights} & A vector of weights to apply to each task DoF individually. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 225 of file Task\+Connection.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TaskConnection_8h}{Task\+Connection.\+h}\item 
+\hyperlink{TaskConnection_8cpp}{Task\+Connection.\+cpp}\end{DoxyCompactItemize}

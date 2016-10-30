@@ -1,0 +1,766 @@
+\hypertarget{classocra__recipes_1_1TrajectoryThread}{}\section{ocra\+\_\+recipes\+:\+:Trajectory\+Thread Class Reference}
+\label{classocra__recipes_1_1TrajectoryThread}\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+
+
+{\ttfamily \#include $<$Trajectory\+Thread.\+h$>$}
+
+Inheritance diagram for ocra\+\_\+recipes\+:\+:Trajectory\+Thread\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d0/d2a/classocra__recipes_1_1TrajectoryThread}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1TrajectoryThread_af85d199a74007110a7654a06f9d3b172}{Trajectory\+Thread} (int period, const std\+::string \&task\+Port\+Name, const \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}=\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{M\+I\+N\+\_\+\+J\+E\+RK}, const \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY} \+\_\+termination\+Strategy=\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD})
+\item 
+\hyperlink{classocra__recipes_1_1TrajectoryThread_af4c3060ff7bf481ea13b5c81247681d4}{Trajectory\+Thread} (int period, const std\+::string \&task\+Port\+Name, const Eigen\+::\+Matrix\+Xd \&waypoints, const \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}=\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{M\+I\+N\+\_\+\+J\+E\+RK}, const \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY} \+\_\+termination\+Strategy=\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD})
+\item 
+\hyperlink{classocra__recipes_1_1TrajectoryThread_aabfcba1b3d2423f2217828331ee0eb40}{Trajectory\+Thread} (int period, const std\+::string \&task\+Port\+Name, const std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \&waypoints, const \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}=\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{M\+I\+N\+\_\+\+J\+E\+RK}, const \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY} \+\_\+termination\+Strategy=\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD})
+\item 
+\hyperlink{classocra__recipes_1_1TrajectoryThread_a7a54232683c5a3e3ef43f9b270b21c50}{$\sim$\+Trajectory\+Thread} ()
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1TrajectoryThread_addd1165be15bc793294ad48486896377}{thread\+Init} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1TrajectoryThread_a73f7ed04cf26697ca533b355930df23b}{thread\+Release} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1TrajectoryThread_a835a13515f49bfa8ff047dbbaa6deb14}{run} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_a5ca19050f1f7f7e396c558b98c9ee8d7}{pause} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_ae5883c5bbd43285b1c548083219f709f}{unpause} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_af09fa5d00ba024d18fd85870f878c1dd}{set\+Max\+Velocity} (double max\+Vel)
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a8cff41b23344e18cd795354ba893b3e2}{set\+Displacement} (double disp\+Double)
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_ab068cd5ad8d3b000c0af32311c113141}{set\+Displacement} (const Eigen\+::\+Vector\+Xd \&displacement\+Vector)
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a6e6d4ad6f800c2782b821d0048506708}{set\+Trajectory\+Waypoints} (const Eigen\+::\+Matrix\+Xd \&\hyperlink{classocra__recipes_1_1TrajectoryThread_a54a762b3cdd7330322b39f288deda6a9}{user\+Waypoints}, bool contains\+Starting\+Waypoint=false)
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_adc430918f3d6bba31dd364f02134a0f1}{set\+Trajectory\+Waypoints} (const std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \&waypoint\+List, bool contains\+Starting\+Waypoint=false)
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_ab401be5b4261576175d690b6e4a61177}{set\+Termination\+Strategy} (const \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY} new\+Term\+Strat)
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_a78eb7665f07bbdbd79bbc4553fb9d0e3}{set\+Goal\+Error\+Threshold} (const double new\+Error\+Thresh)
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_a230269a0ce3617e924a72b021adb6892}{set\+Use\+Variance\+Modulation} (bool new\+Var\+Mod)
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_acd000c1ffee3b03d2756b04dba583285}{goal\+Attained} ()
+\item 
+double \hyperlink{classocra__recipes_1_1TrajectoryThread_ade0f6fb6c7c139dc2f09398f1464200b}{get\+Duration} ()
+\item 
+std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \hyperlink{classocra__recipes_1_1TrajectoryThread_a78ac745efb132b69d7129f1e9212ad87}{get\+Waypoint\+List} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_ae6830df6ce18f3a6f5656fe345b05731}{get\+Waypoints} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_a55a2e93d3706b500338c70d4e1c406ba}{init} ()
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_a80547ba585263055ad226a386ef18313}{variance\+To\+Weights} (Eigen\+::\+Vector\+Xd \&\hyperlink{classocra__recipes_1_1TrajectoryThread_a86a09c83fbbf2b7a22469a3476204b24}{desired\+Variance}, const double beta=1.\+0)
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_aa7dfe52d95ee048e1e5fbf6ed7a820bd}{flip\+Waypoints} ()
+\item 
+void \hyperlink{classocra__recipes_1_1TrajectoryThread_a82672124920b0707e3b530d8826ce240}{cycle\+Waypoints} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classocra__recipes_1_1TaskConnection}{Task\+Connection} $>$ \hyperlink{classocra__recipes_1_1TrajectoryThread_a3637e00b27ab63ecc48f813013626cba}{task}
+\item 
+int \hyperlink{classocra__recipes_1_1TrajectoryThread_a32ee7b3f9364768200a460283f7be5ef}{weight\+Dimension}
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a35b51009ac64e577770b0e728846c4c4}{waypoints\+Have\+Been\+Set}
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a3835f5a143e350d53786d4469fce09f1}{returning\+Home}
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_a54a762b3cdd7330322b39f288deda6a9}{user\+Waypoints}
+\item 
+std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \hyperlink{classocra__recipes_1_1TrajectoryThread_ab0d6ab656c8e4c7abd3bae0343b51562}{user\+Waypoint\+List}
+\item 
+\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE} \hyperlink{classocra__recipes_1_1TrajectoryThread_a1ed2999782ff98b02b5d99ac66766cd7}{traj\+Type}
+\item 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY} \hyperlink{classocra__recipes_1_1TrajectoryThread_a3bbd0bd08a9ad023c025722486b1c118}{termination\+Strategy}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Trajectory}{ocra\+::\+Trajectory} $>$ \hyperlink{classocra__recipes_1_1TrajectoryThread_a87ec388c22716d82bca31dbf89a21cb3}{trajectory}
+\item 
+double \hyperlink{classocra__recipes_1_1TrajectoryThread_a16c8d8bfbbfb45b1a3fa9b08781123aa}{maximum\+Variance}
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a963041d784e1078db6a3095a0438a129}{use\+Variance\+Modulation}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_a86a09c83fbbf2b7a22469a3476204b24}{desired\+Variance}
+\item 
+Eigen\+::\+Array\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_a63dbf38d082f3ebcebaee867dba2a8ee}{variance\+Thresh}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_a28661ee4345695282b2a45baf33bd2af}{start\+State\+Vector}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_abb9ba9fef74e7336a325ad1183f4e090}{goal\+State\+Vector}
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_a857686d75878a7ae4edf12e37fddb10c}{all\+Waypoints}
+\item 
+std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \hyperlink{classocra__recipes_1_1TrajectoryThread_a21821862b17ba40b639c35125611f9d4}{all\+Waypoint\+List}
+\item 
+double \hyperlink{classocra__recipes_1_1TrajectoryThread_a69ca8ea525dd7529fbeae6d8bb9529b3}{error\+Threshold}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1TrajectoryThread_a2f90808ce72fd5a3a5d0b5d576860564}{desired\+State}
+\item 
+yarp\+::os\+::\+Bottle \hyperlink{classocra__recipes_1_1TrajectoryThread_aae66d09e0f64c124428cebcdb53bdf33}{des\+State\+Bottle}
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a4dbc25516ce41a0bc82c49e004a1b933}{print\+Waiting\+Notice\+Once}
+\item 
+double \hyperlink{classocra__recipes_1_1TrajectoryThread_a98ffdc4593f0608e8355654b54191c21}{deactivation\+Delay}
+\item 
+double \hyperlink{classocra__recipes_1_1TrajectoryThread_ab4de56a2b92a1887e4d046d7fa70d721}{deactivation\+Timeout}
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a5bdb397e0f051c99e563074946e01a82}{deactivation\+Latch}
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a7f185a5b52a00b7e5bce78e5ffb77d97}{is\+Task\+Currently\+Active}
+\item 
+bool \hyperlink{classocra__recipes_1_1TrajectoryThread_a08dc8a4a78b61d6b3d1e38e82b809493}{is\+Paused}
+\item 
+double \hyperlink{classocra__recipes_1_1TrajectoryThread_a3aa38677a7e98b6a6deec0b29a903844}{time\+Elapsed\+During\+Pause}
+\item 
+double \hyperlink{classocra__recipes_1_1TrajectoryThread_a9436d523ebb66dfa9bbc8ed458306e46}{pause\+Time}
+\item 
+\hyperlink{classocra_1_1Task_a8ddf2840d178ca273e886c9ca95248fe}{ocra\+::\+Task\+::\+M\+E\+T\+A\+\_\+\+T\+A\+S\+K\+\_\+\+T\+Y\+PE} \hyperlink{classocra__recipes_1_1TrajectoryThread_a97b08a2471b425e49525b51c9e8eabb4}{task\+Type}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 68 of file Trajectory\+Thread.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1TrajectoryThread_af85d199a74007110a7654a06f9d3b172}{}\label{classocra__recipes_1_1TrajectoryThread_af85d199a74007110a7654a06f9d3b172} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!Trajectory\+Thread@{Trajectory\+Thread}}
+\index{Trajectory\+Thread@{Trajectory\+Thread}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{Trajectory\+Thread()}{TrajectoryThread()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Trajectory\+Thread\+::\+Trajectory\+Thread (\begin{DoxyParamCaption}\item[{int}]{period,  }\item[{const std\+::string \&}]{task\+Port\+Name,  }\item[{const \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}}]{trajectory\+Type = {\ttfamily \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{M\+I\+N\+\_\+\+J\+E\+RK}},  }\item[{const \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY}}]{\+\_\+termination\+Strategy = {\ttfamily \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 45 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_af4c3060ff7bf481ea13b5c81247681d4}{}\label{classocra__recipes_1_1TrajectoryThread_af4c3060ff7bf481ea13b5c81247681d4} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!Trajectory\+Thread@{Trajectory\+Thread}}
+\index{Trajectory\+Thread@{Trajectory\+Thread}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{Trajectory\+Thread()}{TrajectoryThread()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Trajectory\+Thread\+::\+Trajectory\+Thread (\begin{DoxyParamCaption}\item[{int}]{period,  }\item[{const std\+::string \&}]{task\+Port\+Name,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{waypoints,  }\item[{const \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}}]{trajectory\+Type = {\ttfamily \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{M\+I\+N\+\_\+\+J\+E\+RK}},  }\item[{const \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY}}]{\+\_\+termination\+Strategy = {\ttfamily \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 59 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_aabfcba1b3d2423f2217828331ee0eb40}{}\label{classocra__recipes_1_1TrajectoryThread_aabfcba1b3d2423f2217828331ee0eb40} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!Trajectory\+Thread@{Trajectory\+Thread}}
+\index{Trajectory\+Thread@{Trajectory\+Thread}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{Trajectory\+Thread()}{TrajectoryThread()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Trajectory\+Thread\+::\+Trajectory\+Thread (\begin{DoxyParamCaption}\item[{int}]{period,  }\item[{const std\+::string \&}]{task\+Port\+Name,  }\item[{const std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{waypoints,  }\item[{const \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}}]{trajectory\+Type = {\ttfamily \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{M\+I\+N\+\_\+\+J\+E\+RK}},  }\item[{const \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY}}]{\+\_\+termination\+Strategy = {\ttfamily \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD}} }\end{DoxyParamCaption})}
+
+
+
+Definition at line 75 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a7a54232683c5a3e3ef43f9b270b21c50}{}\label{classocra__recipes_1_1TrajectoryThread_a7a54232683c5a3e3ef43f9b270b21c50} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!````~Trajectory\+Thread@{$\sim$\+Trajectory\+Thread}}
+\index{````~Trajectory\+Thread@{$\sim$\+Trajectory\+Thread}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{$\sim$\+Trajectory\+Thread()}{~TrajectoryThread()}}
+{\footnotesize\ttfamily Trajectory\+Thread\+::$\sim$\+Trajectory\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 40 of file Trajectory\+Thread.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a82672124920b0707e3b530d8826ce240}{}\label{classocra__recipes_1_1TrajectoryThread_a82672124920b0707e3b530d8826ce240} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!cycle\+Waypoints@{cycle\+Waypoints}}
+\index{cycle\+Waypoints@{cycle\+Waypoints}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{cycle\+Waypoints()}{cycleWaypoints()}}
+{\footnotesize\ttfamily void Trajectory\+Thread\+::cycle\+Waypoints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 393 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_aa7dfe52d95ee048e1e5fbf6ed7a820bd}{}\label{classocra__recipes_1_1TrajectoryThread_aa7dfe52d95ee048e1e5fbf6ed7a820bd} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!flip\+Waypoints@{flip\+Waypoints}}
+\index{flip\+Waypoints@{flip\+Waypoints}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{flip\+Waypoints()}{flipWaypoints()}}
+{\footnotesize\ttfamily void Trajectory\+Thread\+::flip\+Waypoints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 369 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_ade0f6fb6c7c139dc2f09398f1464200b}{}\label{classocra__recipes_1_1TrajectoryThread_ade0f6fb6c7c139dc2f09398f1464200b} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!get\+Duration@{get\+Duration}}
+\index{get\+Duration@{get\+Duration}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{get\+Duration()}{getDuration()}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::get\+Duration (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 183 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a78ac745efb132b69d7129f1e9212ad87}{}\label{classocra__recipes_1_1TrajectoryThread_a78ac745efb132b69d7129f1e9212ad87} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!get\+Waypoint\+List@{get\+Waypoint\+List}}
+\index{get\+Waypoint\+List@{get\+Waypoint\+List}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{get\+Waypoint\+List()}{getWaypointList()}}
+{\footnotesize\ttfamily std\+::list$<$Eigen\+::\+Vector\+Xd$>$ ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::get\+Waypoint\+List (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 184 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_ae6830df6ce18f3a6f5656fe345b05731}{}\label{classocra__recipes_1_1TrajectoryThread_ae6830df6ce18f3a6f5656fe345b05731} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!get\+Waypoints@{get\+Waypoints}}
+\index{get\+Waypoints@{get\+Waypoints}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{get\+Waypoints()}{getWaypoints()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::get\+Waypoints (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 185 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_acd000c1ffee3b03d2756b04dba583285}{}\label{classocra__recipes_1_1TrajectoryThread_acd000c1ffee3b03d2756b04dba583285} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!goal\+Attained@{goal\+Attained}}
+\index{goal\+Attained@{goal\+Attained}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{goal\+Attained()}{goalAttained()}}
+{\footnotesize\ttfamily bool Trajectory\+Thread\+::goal\+Attained (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Computes the norm of the difference between the goal state vector and its current state.
+
+\begin{DoxyReturn}{Returns}
+True if the difference is less than the error threshold. 
+\end{DoxyReturn}
+
+
+Definition at line 364 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a55a2e93d3706b500338c70d4e1c406ba}{}\label{classocra__recipes_1_1TrajectoryThread_a55a2e93d3706b500338c70d4e1c406ba} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!init@{init}}
+\index{init@{init}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily void Trajectory\+Thread\+::init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 91 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a5ca19050f1f7f7e396c558b98c9ee8d7}{}\label{classocra__recipes_1_1TrajectoryThread_a5ca19050f1f7f7e396c558b98c9ee8d7} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!pause@{pause}}
+\index{pause@{pause}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{pause()}{pause()}}
+{\footnotesize\ttfamily void Trajectory\+Thread\+::pause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets is\+Paused to true of this class and registers the pausing time. 
+
+Definition at line 341 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a835a13515f49bfa8ff047dbbaa6deb14}{}\label{classocra__recipes_1_1TrajectoryThread_a835a13515f49bfa8ff047dbbaa6deb14} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!run@{run}}
+\index{run@{run}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Trajectory\+Thread\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+If the control ports are open (for the specific task associated to the trajectory) this method will mainly write to a port the new desired task state. It also handles the trajectory termination strategy. When the goal is reached, there will be 6 possible termination strategies\+: B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH, C\+Y\+C\+LE, S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD, S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE, W\+A\+IT, W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE. B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH\+: will invert the trajectory waypoints once all of them have been met. C\+Y\+C\+LE\+: The trajectory will cycle over. S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD\+: The thread will stop once the trajectory is finished. S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE\+: The task is first deactivated and then thread is stopped. If the task cannot be deactivated, the thread will wait 1 second before trying once more. W\+A\+IT\+: The thread will wait for new commands to arrive. W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE\+: It will first deactivate the task and then wait for new commands. If the task cannot be deactivated, the thread will wait 1 second before trying once more. 
+
+Definition at line 164 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a8cff41b23344e18cd795354ba893b3e2}{}\label{classocra__recipes_1_1TrajectoryThread_a8cff41b23344e18cd795354ba893b3e2} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!set\+Displacement@{set\+Displacement}}
+\index{set\+Displacement@{set\+Displacement}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{set\+Displacement()}{setDisplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Trajectory\+Thread\+::set\+Displacement (\begin{DoxyParamCaption}\item[{double}]{disp\+Double }\end{DoxyParamCaption})}
+
+Sets a displacement vector with the same constant value for each element and consistent with the weight dimension.
+
+
+\begin{DoxyParams}{Parameters}
+{\em disp\+Double} & Constant displacement value.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True when the new trajectory waypoints have been set, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 481 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_ab068cd5ad8d3b000c0af32311c113141}{}\label{classocra__recipes_1_1TrajectoryThread_ab068cd5ad8d3b000c0af32311c113141} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!set\+Displacement@{set\+Displacement}}
+\index{set\+Displacement@{set\+Displacement}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{set\+Displacement()}{setDisplacement()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Trajectory\+Thread\+::set\+Displacement (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{displacement\+Vector }\end{DoxyParamCaption})}
+
+Adds a displacement offset to the waypoints.
+
+
+\begin{DoxyParams}{Parameters}
+{\em displacement\+Vector} & Vector of displacement with the same number of rows as the weight dimension.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true when the new trajectory waypoints have been set, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 486 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a78eb7665f07bbdbd79bbc4553fb9d0e3}{}\label{classocra__recipes_1_1TrajectoryThread_a78eb7665f07bbdbd79bbc4553fb9d0e3} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!set\+Goal\+Error\+Threshold@{set\+Goal\+Error\+Threshold}}
+\index{set\+Goal\+Error\+Threshold@{set\+Goal\+Error\+Threshold}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{set\+Goal\+Error\+Threshold()}{setGoalErrorThreshold()}}
+{\footnotesize\ttfamily void ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::set\+Goal\+Error\+Threshold (\begin{DoxyParamCaption}\item[{const double}]{new\+Error\+Thresh }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Stablishes the admissible error for the trajectory at hand. In particular sets the variable error\+Threshold of this class.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Error\+Thresh} & Error threshold. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 167 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_af09fa5d00ba024d18fd85870f878c1dd}{}\label{classocra__recipes_1_1TrajectoryThread_af09fa5d00ba024d18fd85870f878c1dd} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!set\+Max\+Velocity@{set\+Max\+Velocity}}
+\index{set\+Max\+Velocity@{set\+Max\+Velocity}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{set\+Max\+Velocity()}{setMaxVelocity()}}
+{\footnotesize\ttfamily void ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::set\+Max\+Velocity (\begin{DoxyParamCaption}\item[{double}]{max\+Vel }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 115 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_ab401be5b4261576175d690b6e4a61177}{}\label{classocra__recipes_1_1TrajectoryThread_ab401be5b4261576175d690b6e4a61177} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!set\+Termination\+Strategy@{set\+Termination\+Strategy}}
+\index{set\+Termination\+Strategy@{set\+Termination\+Strategy}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{set\+Termination\+Strategy()}{setTerminationStrategy()}}
+{\footnotesize\ttfamily void ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::set\+Termination\+Strategy (\begin{DoxyParamCaption}\item[{const \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY}}]{new\+Term\+Strat }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Tells the thread what to do when the trajectory has been fulfilled. In particular sets the variable termimation\+Strategy of this class.
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Term\+Strat} & Options are\+: B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH, S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD, W\+A\+IT, S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+VE, W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+VE, C\+Y\+C\+LE \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 160 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a6e6d4ad6f800c2782b821d0048506708}{}\label{classocra__recipes_1_1TrajectoryThread_a6e6d4ad6f800c2782b821d0048506708} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!set\+Trajectory\+Waypoints@{set\+Trajectory\+Waypoints}}
+\index{set\+Trajectory\+Waypoints@{set\+Trajectory\+Waypoints}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{set\+Trajectory\+Waypoints()}{setTrajectoryWaypoints()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Trajectory\+Thread\+::set\+Trajectory\+Waypoints (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{user\+Waypoints,  }\item[{bool}]{contains\+Starting\+Waypoint = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Sets the trajectory waypoints and if the initial waypoint is not included, it adds it by checking the current state of the task at hand. E.\+g., if it\textquotesingle{}s a C\+OM trajectory it will check the current 3D position of this point and add it at the beginning of the waypoints matrix.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em user\+Waypoints} & Column-\/wise trajectory waypoints. \\
+\hline
+\mbox{\tt out}  & {\em contains\+Starting\+Waypoint} & True when the starting waypoint is included in the matrix. When false, this method will add it to the waypoints by checking the current state of the task.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True when the waypoints matrix is consistent with the task dimension and the full waypoints matrix is set. False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 410 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_adc430918f3d6bba31dd364f02134a0f1}{}\label{classocra__recipes_1_1TrajectoryThread_adc430918f3d6bba31dd364f02134a0f1} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!set\+Trajectory\+Waypoints@{set\+Trajectory\+Waypoints}}
+\index{set\+Trajectory\+Waypoints@{set\+Trajectory\+Waypoints}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{set\+Trajectory\+Waypoints()}{setTrajectoryWaypoints()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Trajectory\+Thread\+::set\+Trajectory\+Waypoints (\begin{DoxyParamCaption}\item[{const std\+::list$<$ Eigen\+::\+Vector\+Xd $>$ \&}]{waypoint\+List,  }\item[{bool}]{contains\+Starting\+Waypoint = {\ttfamily false} }\end{DoxyParamCaption})}
+
+Sets the trajectory waypoints and if the initial waypoint is not included, it adds it by checking the current state of the task at hand. E.\+g., if it\textquotesingle{}s a C\+OM trajectory it will check the current 3D position of this point and add it at the beginning of the waypoints matrix.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em waypoint\+List} & List of trajectory waypoints. \\
+\hline
+\mbox{\tt out}  & {\em contains\+Starting\+Waypoint} & True when the starting waypoint is included in the matrix. When false, this method will add it to the waypoints by checking the current state of the task.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True when the waypoints matrix is consistent with the task dimension and the full waypoints matrix is set. False otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 452 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a230269a0ce3617e924a72b021adb6892}{}\label{classocra__recipes_1_1TrajectoryThread_a230269a0ce3617e924a72b021adb6892} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!set\+Use\+Variance\+Modulation@{set\+Use\+Variance\+Modulation}}
+\index{set\+Use\+Variance\+Modulation@{set\+Use\+Variance\+Modulation}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{set\+Use\+Variance\+Modulation()}{setUseVarianceModulation()}}
+{\footnotesize\ttfamily void ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::set\+Use\+Variance\+Modulation (\begin{DoxyParamCaption}\item[{bool}]{new\+Var\+Mod }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Assigns a user-\/given variance to the weights of the task when created the trajectory. Used only when trajectory\+Type is G\+A\+U\+S\+S\+I\+A\+N\+\_\+\+P\+R\+O\+C\+E\+SS
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Var\+Mod} & New weight variance modulation. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 174 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_addd1165be15bc793294ad48486896377}{}\label{classocra__recipes_1_1TrajectoryThread_addd1165be15bc793294ad48486896377} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!thread\+Init@{thread\+Init}}
+\index{thread\+Init@{thread\+Init}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{thread\+Init()}{threadInit()}}
+{\footnotesize\ttfamily bool Trajectory\+Thread\+::thread\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+If the \hyperlink{classocra__recipes_1_1TrajectoryThread}{Trajectory\+Thread} object has been instantiated with defined waypoints (i.\+e. if waypoints\+Have\+Been\+Set is true) the waypoints will be set. Note that if an std\+::list of waypoints is passed to the constructor of this class, the trajectory type must be T\+I\+M\+E\+\_\+\+O\+P\+T\+I\+M\+AL.
+
+\begin{DoxyReturn}{Returns}
+True when initial waypoints have been set. 
+\end{DoxyReturn}
+
+
+Definition at line 138 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a73f7ed04cf26697ca533b355930df23b}{}\label{classocra__recipes_1_1TrajectoryThread_a73f7ed04cf26697ca533b355930df23b} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!thread\+Release@{thread\+Release}}
+\index{thread\+Release@{thread\+Release}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{thread\+Release()}{threadRelease()}}
+{\footnotesize\ttfamily void Trajectory\+Thread\+::thread\+Release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Closes the control ports opened by the task associated to this trajectory. 
+
+Definition at line 158 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_ae5883c5bbd43285b1c548083219f709f}{}\label{classocra__recipes_1_1TrajectoryThread_ae5883c5bbd43285b1c548083219f709f} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!unpause@{unpause}}
+\index{unpause@{unpause}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{unpause()}{unpause()}}
+{\footnotesize\ttfamily void Trajectory\+Thread\+::unpause (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Sets is\+Paused to false and stores the elapsed time during the pause. 
+
+Definition at line 347 of file Trajectory\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a80547ba585263055ad226a386ef18313}{}\label{classocra__recipes_1_1TrajectoryThread_a80547ba585263055ad226a386ef18313} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!variance\+To\+Weights@{variance\+To\+Weights}}
+\index{variance\+To\+Weights@{variance\+To\+Weights}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{variance\+To\+Weights()}{varianceToWeights()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Trajectory\+Thread\+::variance\+To\+Weights (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd \&}]{desired\+Variance,  }\item[{const double}]{beta = {\ttfamily 1.0} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 356 of file Trajectory\+Thread.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a21821862b17ba40b639c35125611f9d4}{}\label{classocra__recipes_1_1TrajectoryThread_a21821862b17ba40b639c35125611f9d4} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!all\+Waypoint\+List@{all\+Waypoint\+List}}
+\index{all\+Waypoint\+List@{all\+Waypoint\+List}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{all\+Waypoint\+List}{allWaypointList}}
+{\footnotesize\ttfamily std\+::list$<$Eigen\+::\+Vector\+Xd$>$ ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::all\+Waypoint\+List\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 231 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a857686d75878a7ae4edf12e37fddb10c}{}\label{classocra__recipes_1_1TrajectoryThread_a857686d75878a7ae4edf12e37fddb10c} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!all\+Waypoints@{all\+Waypoints}}
+\index{all\+Waypoints@{all\+Waypoints}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{all\+Waypoints}{allWaypoints}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::all\+Waypoints\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 230 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a98ffdc4593f0608e8355654b54191c21}{}\label{classocra__recipes_1_1TrajectoryThread_a98ffdc4593f0608e8355654b54191c21} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!deactivation\+Delay@{deactivation\+Delay}}
+\index{deactivation\+Delay@{deactivation\+Delay}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{deactivation\+Delay}{deactivationDelay}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::deactivation\+Delay\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 239 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a5bdb397e0f051c99e563074946e01a82}{}\label{classocra__recipes_1_1TrajectoryThread_a5bdb397e0f051c99e563074946e01a82} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!deactivation\+Latch@{deactivation\+Latch}}
+\index{deactivation\+Latch@{deactivation\+Latch}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{deactivation\+Latch}{deactivationLatch}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::deactivation\+Latch\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 241 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_ab4de56a2b92a1887e4d046d7fa70d721}{}\label{classocra__recipes_1_1TrajectoryThread_ab4de56a2b92a1887e4d046d7fa70d721} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!deactivation\+Timeout@{deactivation\+Timeout}}
+\index{deactivation\+Timeout@{deactivation\+Timeout}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{deactivation\+Timeout}{deactivationTimeout}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::deactivation\+Timeout\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 240 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a2f90808ce72fd5a3a5d0b5d576860564}{}\label{classocra__recipes_1_1TrajectoryThread_a2f90808ce72fd5a3a5d0b5d576860564} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!desired\+State@{desired\+State}}
+\index{desired\+State@{desired\+State}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{desired\+State}{desiredState}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::desired\+State\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 234 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a86a09c83fbbf2b7a22469a3476204b24}{}\label{classocra__recipes_1_1TrajectoryThread_a86a09c83fbbf2b7a22469a3476204b24} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!desired\+Variance@{desired\+Variance}}
+\index{desired\+Variance@{desired\+Variance}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{desired\+Variance}{desiredVariance}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::desired\+Variance\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 225 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_aae66d09e0f64c124428cebcdb53bdf33}{}\label{classocra__recipes_1_1TrajectoryThread_aae66d09e0f64c124428cebcdb53bdf33} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!des\+State\+Bottle@{des\+State\+Bottle}}
+\index{des\+State\+Bottle@{des\+State\+Bottle}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{des\+State\+Bottle}{desStateBottle}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Bottle ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::des\+State\+Bottle\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 235 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a69ca8ea525dd7529fbeae6d8bb9529b3}{}\label{classocra__recipes_1_1TrajectoryThread_a69ca8ea525dd7529fbeae6d8bb9529b3} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!error\+Threshold@{error\+Threshold}}
+\index{error\+Threshold@{error\+Threshold}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{error\+Threshold}{errorThreshold}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::error\+Threshold\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 232 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_abb9ba9fef74e7336a325ad1183f4e090}{}\label{classocra__recipes_1_1TrajectoryThread_abb9ba9fef74e7336a325ad1183f4e090} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!goal\+State\+Vector@{goal\+State\+Vector}}
+\index{goal\+State\+Vector@{goal\+State\+Vector}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{goal\+State\+Vector}{goalStateVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::goal\+State\+Vector\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 229 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a08dc8a4a78b61d6b3d1e38e82b809493}{}\label{classocra__recipes_1_1TrajectoryThread_a08dc8a4a78b61d6b3d1e38e82b809493} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!is\+Paused@{is\+Paused}}
+\index{is\+Paused@{is\+Paused}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{is\+Paused}{isPaused}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::is\+Paused\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 244 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a7f185a5b52a00b7e5bce78e5ffb77d97}{}\label{classocra__recipes_1_1TrajectoryThread_a7f185a5b52a00b7e5bce78e5ffb77d97} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!is\+Task\+Currently\+Active@{is\+Task\+Currently\+Active}}
+\index{is\+Task\+Currently\+Active@{is\+Task\+Currently\+Active}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{is\+Task\+Currently\+Active}{isTaskCurrentlyActive}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::is\+Task\+Currently\+Active\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 243 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a16c8d8bfbbfb45b1a3fa9b08781123aa}{}\label{classocra__recipes_1_1TrajectoryThread_a16c8d8bfbbfb45b1a3fa9b08781123aa} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!maximum\+Variance@{maximum\+Variance}}
+\index{maximum\+Variance@{maximum\+Variance}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{maximum\+Variance}{maximumVariance}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::maximum\+Variance\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 223 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a9436d523ebb66dfa9bbc8ed458306e46}{}\label{classocra__recipes_1_1TrajectoryThread_a9436d523ebb66dfa9bbc8ed458306e46} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!pause\+Time@{pause\+Time}}
+\index{pause\+Time@{pause\+Time}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{pause\+Time}{pauseTime}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::pause\+Time\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 247 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a4dbc25516ce41a0bc82c49e004a1b933}{}\label{classocra__recipes_1_1TrajectoryThread_a4dbc25516ce41a0bc82c49e004a1b933} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!print\+Waiting\+Notice\+Once@{print\+Waiting\+Notice\+Once}}
+\index{print\+Waiting\+Notice\+Once@{print\+Waiting\+Notice\+Once}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{print\+Waiting\+Notice\+Once}{printWaitingNoticeOnce}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::print\+Waiting\+Notice\+Once\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 237 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a3835f5a143e350d53786d4469fce09f1}{}\label{classocra__recipes_1_1TrajectoryThread_a3835f5a143e350d53786d4469fce09f1} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!returning\+Home@{returning\+Home}}
+\index{returning\+Home@{returning\+Home}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{returning\+Home}{returningHome}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::returning\+Home\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 212 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a28661ee4345695282b2a45baf33bd2af}{}\label{classocra__recipes_1_1TrajectoryThread_a28661ee4345695282b2a45baf33bd2af} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!start\+State\+Vector@{start\+State\+Vector}}
+\index{start\+State\+Vector@{start\+State\+Vector}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{start\+State\+Vector}{startStateVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::start\+State\+Vector\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 228 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a3637e00b27ab63ecc48f813013626cba}{}\label{classocra__recipes_1_1TrajectoryThread_a3637e00b27ab63ecc48f813013626cba} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!task@{task}}
+\index{task@{task}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{task}{task}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classocra__recipes_1_1TaskConnection}{Task\+Connection}$>$ ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::task\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 201 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a97b08a2471b425e49525b51c9e8eabb4}{}\label{classocra__recipes_1_1TrajectoryThread_a97b08a2471b425e49525b51c9e8eabb4} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!task\+Type@{task\+Type}}
+\index{task\+Type@{task\+Type}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{task\+Type}{taskType}}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Task_a8ddf2840d178ca273e886c9ca95248fe}{ocra\+::\+Task\+::\+M\+E\+T\+A\+\_\+\+T\+A\+S\+K\+\_\+\+T\+Y\+PE} ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::task\+Type\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 249 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a3bbd0bd08a9ad023c025722486b1c118}{}\label{classocra__recipes_1_1TrajectoryThread_a3bbd0bd08a9ad023c025722486b1c118} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!termination\+Strategy@{termination\+Strategy}}
+\index{termination\+Strategy@{termination\+Strategy}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{termination\+Strategy}{terminationStrategy}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY} ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::termination\+Strategy\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 218 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a3aa38677a7e98b6a6deec0b29a903844}{}\label{classocra__recipes_1_1TrajectoryThread_a3aa38677a7e98b6a6deec0b29a903844} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!time\+Elapsed\+During\+Pause@{time\+Elapsed\+During\+Pause}}
+\index{time\+Elapsed\+During\+Pause@{time\+Elapsed\+During\+Pause}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{time\+Elapsed\+During\+Pause}{timeElapsedDuringPause}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::time\+Elapsed\+During\+Pause\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 246 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a87ec388c22716d82bca31dbf89a21cb3}{}\label{classocra__recipes_1_1TrajectoryThread_a87ec388c22716d82bca31dbf89a21cb3} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!trajectory@{trajectory}}
+\index{trajectory@{trajectory}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{trajectory}{trajectory}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classocra_1_1Trajectory}{ocra\+::\+Trajectory}$>$ ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::trajectory\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 220 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a1ed2999782ff98b02b5d99ac66766cd7}{}\label{classocra__recipes_1_1TrajectoryThread_a1ed2999782ff98b02b5d99ac66766cd7} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!traj\+Type@{traj\+Type}}
+\index{traj\+Type@{traj\+Type}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{traj\+Type}{trajType}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE} ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::traj\+Type\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 217 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_ab0d6ab656c8e4c7abd3bae0343b51562}{}\label{classocra__recipes_1_1TrajectoryThread_ab0d6ab656c8e4c7abd3bae0343b51562} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!user\+Waypoint\+List@{user\+Waypoint\+List}}
+\index{user\+Waypoint\+List@{user\+Waypoint\+List}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{user\+Waypoint\+List}{userWaypointList}}
+{\footnotesize\ttfamily std\+::list$<$Eigen\+::\+Vector\+Xd$>$ ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::user\+Waypoint\+List\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 215 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a54a762b3cdd7330322b39f288deda6a9}{}\label{classocra__recipes_1_1TrajectoryThread_a54a762b3cdd7330322b39f288deda6a9} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!user\+Waypoints@{user\+Waypoints}}
+\index{user\+Waypoints@{user\+Waypoints}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{user\+Waypoints}{userWaypoints}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::user\+Waypoints\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 214 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a963041d784e1078db6a3095a0438a129}{}\label{classocra__recipes_1_1TrajectoryThread_a963041d784e1078db6a3095a0438a129} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!use\+Variance\+Modulation@{use\+Variance\+Modulation}}
+\index{use\+Variance\+Modulation@{use\+Variance\+Modulation}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{use\+Variance\+Modulation}{useVarianceModulation}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::use\+Variance\+Modulation\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 224 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a63dbf38d082f3ebcebaee867dba2a8ee}{}\label{classocra__recipes_1_1TrajectoryThread_a63dbf38d082f3ebcebaee867dba2a8ee} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!variance\+Thresh@{variance\+Thresh}}
+\index{variance\+Thresh@{variance\+Thresh}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{variance\+Thresh}{varianceThresh}}
+{\footnotesize\ttfamily Eigen\+::\+Array\+Xd ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::variance\+Thresh\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 226 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a35b51009ac64e577770b0e728846c4c4}{}\label{classocra__recipes_1_1TrajectoryThread_a35b51009ac64e577770b0e728846c4c4} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!waypoints\+Have\+Been\+Set@{waypoints\+Have\+Been\+Set}}
+\index{waypoints\+Have\+Been\+Set@{waypoints\+Have\+Been\+Set}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{waypoints\+Have\+Been\+Set}{waypointsHaveBeenSet}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::waypoints\+Have\+Been\+Set\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 206 of file Trajectory\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1TrajectoryThread_a32ee7b3f9364768200a460283f7be5ef}{}\label{classocra__recipes_1_1TrajectoryThread_a32ee7b3f9364768200a460283f7be5ef} 
+\index{ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}!weight\+Dimension@{weight\+Dimension}}
+\index{weight\+Dimension@{weight\+Dimension}!ocra\+\_\+recipes\+::\+Trajectory\+Thread@{ocra\+\_\+recipes\+::\+Trajectory\+Thread}}
+\subsubsection{\texorpdfstring{weight\+Dimension}{weightDimension}}
+{\footnotesize\ttfamily int ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::weight\+Dimension\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 202 of file Trajectory\+Thread.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{TrajectoryThread_8h}{Trajectory\+Thread.\+h}\item 
+\hyperlink{TrajectoryThread_8cpp}{Trajectory\+Thread.\+cpp}\end{DoxyCompactItemize}

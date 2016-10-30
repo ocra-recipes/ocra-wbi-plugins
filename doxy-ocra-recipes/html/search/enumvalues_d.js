@@ -11,6 +11,7 @@ var searchData=
   ['partial_5fx_5fdot_5fx_5fdot',['PARTIAL_X_DOT_X_DOT',['../dc/d14/namespaceocra.html#a40ddbec106a6034cd2047bba9945b568a3ba52241c6443b7205f52eb7c7e3e04c',1,'ocra']]],
   ['partial_5fxt',['PARTIAL_XT',['../dc/d14/namespaceocra.html#a40ddbec106a6034cd2047bba9945b568a66c63268a3ae1379cf55c6d7d14353de',1,'ocra']]],
   ['partial_5fxx',['PARTIAL_XX',['../dc/d14/namespaceocra.html#a40ddbec106a6034cd2047bba9945b568ad93cbdd745d07fcaa7f8b9f7909464a2',1,'ocra']]],
+  ['pause_5fcontroller',['PAUSE_CONTROLLER',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da92878ac88aaa232d0b30cf4227eb15ac',1,'ocra_recipes']]],
   ['plus_5fa_5fminus_5fb',['PLUS_A_MINUS_B',['../d1/d0d/namespaceocra_1_1utils_1_1details.html#a617d399055aa54cfdf2d3199ca91c399a4d0375804693ed7a4e1ff4e40b1d067b',1,'ocra::utils::details']]],
   ['plus_5fa_5fminus_5fbv',['PLUS_A_MINUS_BV',['../d1/d0d/namespaceocra_1_1utils_1_1details.html#a617d399055aa54cfdf2d3199ca91c399a78c37c659e4056c97d766ab9621e01ff',1,'ocra::utils::details']]],
   ['plus_5fa_5fplus_5fb',['PLUS_A_PLUS_B',['../d1/d0d/namespaceocra_1_1utils_1_1details.html#a617d399055aa54cfdf2d3199ca91c399a03eb35928d61fd2a957cf41c6c4578ca',1,'ocra::utils::details']]],

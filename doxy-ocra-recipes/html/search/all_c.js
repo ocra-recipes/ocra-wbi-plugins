@@ -1,6 +1,7 @@
 var searchData=
 [
   ['l',['l',['../da/d26/structModel3T_1_1Pimpl.html#a7fcae8ba57e320a9066aa9b640f414cb',1,'Model3T::Pimpl']]],
+  ['launchclient',['launchClient',['../dd/d05/classocra__recipes_1_1ClientManager.html#a443fb4edc4bac1c1e24e32f26a730519',1,'ocra_recipes::ClientManager']]],
   ['lb',['lb',['../d0/d12/classocra_1_1OneLevelSolverWithQPOASES.html#a82eaebae8f92464066e9b5348b1737f9',1,'ocra::OneLevelSolverWithQPOASES']]],
   ['lba',['lbA',['../d0/d12/classocra_1_1OneLevelSolverWithQPOASES.html#a268dd33567d130672824404fdf98882a',1,'ocra::OneLevelSolverWithQPOASES']]],
   ['leaf',['Leaf',['../db/d90/classocra_1_1Leaf.html',1,'ocra']]],
@@ -13,6 +14,7 @@ var searchData=
   ['lessthanzeroconstraintptr_3c_20linearizedcoulombfunction_20_3e',['LessThanZeroConstraintPtr&lt; LinearizedCoulombFunction &gt;',['../de/d84/classocra_1_1LessThanZeroConstraintPtr.html',1,'ocra']]],
   ['lessthanzeroconstraintptr_3c_20ocra_3a_3alinearizedcoulombfunction_20_3e',['LessThanZeroConstraintPtr&lt; ocra::LinearizedCoulombFunction &gt;',['../de/d84/classocra_1_1LessThanZeroConstraintPtr.html',1,'ocra']]],
   ['levelsolver',['levelSolver',['../d6/d35/classocra_1_1CascadeQPSolver.html#a119ac44ca89426cddf6484577962726d',1,'ocra::CascadeQPSolver']]],
+  ['lin_5finterp',['LIN_INTERP',['../d5/d53/namespaceocra__recipes.html#a729e1c8304e390d16219eda5f9756152a2879875d826e43011096daa086653776',1,'ocra_recipes']]],
   ['linearconstraint',['LinearConstraint',['../dc/d14/namespaceocra.html#ae8b87cf4099be3efc3b410019ad2046e',1,'ocra']]],
   ['linearfunction',['LinearFunction',['../de/d3a/classocra_1_1LinearFunction.html',1,'ocra']]],
   ['linearfunction',['LinearFunction',['../de/d3a/classocra_1_1LinearFunction.html#af44da8931811a95725d1d25c697aa5d2',1,'ocra::LinearFunction::LinearFunction(Variable &amp;x, int dimension)'],['../de/d3a/classocra_1_1LinearFunction.html#afb4fddc341c3c726f346acc962bead78',1,'ocra::LinearFunction::LinearFunction(Variable &amp;x, const MatrixBase&lt; Derived &gt; &amp;A, const VectorBase &amp;b)']]],
@@ -26,8 +28,8 @@ var searchData=
   ['linearity_5flinear_5ffractional',['LINEARITY_LINEAR_FRACTIONAL',['../dc/d14/namespaceocra.html#a87b525b5508b0f6e9d931f14c7c226aba9dc9e5c984ca79975e84195c66c76a71',1,'ocra']]],
   ['linearity_5fquadratic',['LINEARITY_QUADRATIC',['../dc/d14/namespaceocra.html#a87b525b5508b0f6e9d931f14c7c226aba37e8479960b9dec1230d0ce02255538f',1,'ocra']]],
   ['linearity_5fundefined',['LINEARITY_UNDEFINED',['../dc/d14/namespaceocra.html#a87b525b5508b0f6e9d931f14c7c226abadd86a2dd3240e6df49a6e422b5abe075',1,'ocra']]],
-  ['linearizedcoulombfunction',['LinearizedCoulombFunction',['../d0/dd6/classocra_1_1LinearizedCoulombFunction.html',1,'ocra']]],
   ['linearizedcoulombfunction',['LinearizedCoulombFunction',['../d0/dd6/classocra_1_1LinearizedCoulombFunction.html#af80b2f4c57d291f389f4e9e4435f3baa',1,'ocra::LinearizedCoulombFunction']]],
+  ['linearizedcoulombfunction',['LinearizedCoulombFunction',['../d0/dd6/classocra_1_1LinearizedCoulombFunction.html',1,'ocra']]],
   ['linearizedcoulombfunction_2ecpp',['LinearizedCoulombFunction.cpp',['../d7/d2d/LinearizedCoulombFunction_8cpp.html',1,'']]],
   ['linearizedcoulombfunction_2eh',['LinearizedCoulombFunction.h',['../d9/d0f/LinearizedCoulombFunction_8h.html',1,'']]],
   ['linearobjective',['LinearObjective',['../dc/d14/namespaceocra.html#a1dc9b2b863ed7542eb48b66c2fe5793a',1,'ocra']]],
@@ -35,8 +37,10 @@ var searchData=
   ['lineartask',['LinearTask',['../dd/d16/classocra_1_1LinearTask.html',1,'ocra']]],
   ['lineartask_2ecpp',['LinearTask.cpp',['../db/d6f/LinearTask_8cpp.html',1,'']]],
   ['lineartask_2eh',['LinearTask.h',['../dc/df4/LinearTask_8h.html',1,'']]],
+  ['loadrobotmodel',['loadRobotModel',['../d1/dde/classocra__recipes_1_1ControllerServer.html#a50715d81293d3ec5f0d6a60710008510',1,'ocra_recipes::ControllerServer']]],
   ['local',['local',['../d3/d7a/structocra_1_1fsqpDetails_1_1Log.html#a17e784308319e498ceaf11b4b809df52',1,'ocra::fsqpDetails::Log']]],
   ['log',['Log',['../d3/d7a/structocra_1_1fsqpDetails_1_1Log.html',1,'ocra::fsqpDetails']]],
+  ['loop',['loop',['../df/d60/classocra__recipes_1_1ControllerClient.html#ac6d28be8e314dd2a034cfcb512e29ee3',1,'ocra_recipes::ControllerClient']]],
   ['loose',['LOOSE',['../dc/d6e/classocra_1_1FSQPSolver.html#a0569ab06022ffef1bd6d97599a5e4279ad22600e0f988d5ad7e121f1d7eef6377',1,'ocra::FSQPSolver']]],
   ['lowerlimits',['lowerLimits',['../da/d26/structModel3T_1_1Pimpl.html#a635ed979bb210444627f06eb65db8f29',1,'Model3T::Pimpl']]]
 ];

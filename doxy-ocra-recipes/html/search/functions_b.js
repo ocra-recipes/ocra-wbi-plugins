@@ -11,5 +11,6 @@ var searchData=
   ['mincompressedbyrow',['minCompressedByRow',['../de/d29/namespaceocra_1_1utils.html#ae8dc2eb14db238a75ea0a8bf499e4902',1,'ocra::utils::minCompressedByRow(const MatrixBase&lt; Derived1 &gt; &amp;in, MatrixBase&lt; Derived2 &gt; const &amp;_out, const std::vector&lt; int &gt; &amp;mapping, double scale, bool reverseMapping)'],['../de/d29/namespaceocra_1_1utils.html#af79aa2317a885467a28ba54e7b287ec8',1,'ocra::utils::minCompressedByRow(const Variable &amp;base, const Variable &amp;rel, const MatrixBase&lt; Derived1 &gt; &amp;in, MatrixBase&lt; Derived2 &gt; const &amp;out, std::vector&lt; int &gt; &amp;mapping, double scale)']]],
   ['model3t',['Model3T',['../d3/d33/classModel3T.html#afbcee4d1130a7020034027aafd9eecf6',1,'Model3T']]],
   ['modelcontacts',['ModelContacts',['../d8/d4c/classocra_1_1ModelContacts.html#abf9089d7762205480b46005544883e60',1,'ocra::ModelContacts']]],
+  ['modulecallback',['moduleCallback',['../d4/d05/classocra__recipes_1_1ClientManager_1_1moduleCallback.html#a9c5241da8148f501d1947053fe06ebdb',1,'ocra_recipes::ClientManager::moduleCallback']]],
   ['myfunction',['MyFunction',['../db/d8c/classMyFunction.html#addcad41fa4e120bf9decb70b4b22f935',1,'MyFunction']]]
 ];

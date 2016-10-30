@@ -2,6 +2,7 @@ var searchData=
 [
   ['secondorderlineartask',['SecondOrderLinearTask',['../dd/dda/classocra_1_1SecondOrderLinearTask.html',1,'ocra']]],
   ['segmentframe',['SegmentFrame',['../d1/d45/classocra_1_1SegmentFrame.html',1,'ocra']]],
+  ['servercommunications',['ServerCommunications',['../d9/d94/classocra__recipes_1_1ServerCommunications.html',1,'ocra_recipes']]],
   ['solution',['Solution',['../d7/dd2/structocra_1_1Solution.html',1,'ocra']]],
   ['solver',['Solver',['../d6/dd3/classocra_1_1Solver.html',1,'ocra']]],
   ['specialized_5fmax',['specialized_max',['../d1/d31/structocra_1_1utils_1_1specialized__max.html',1,'ocra::utils']]],
@@ -10,6 +11,7 @@ var searchData=
   ['specialized_5fmin_3c_20double_2c_20double_20_3e',['specialized_min&lt; double, double &gt;',['../dd/da1/structocra_1_1utils_1_1specialized__min_3_01double_00_01double_01_4.html',1,'ocra::utils']]],
   ['squaredlinearfunction',['SquaredLinearFunction',['../df/dfc/classocra_1_1SquaredLinearFunction.html',1,'ocra']]],
   ['standardobjectivesandconstraints',['StandardObjectivesAndConstraints',['../d5/daf/structocra_1_1CascadeQPSolver_1_1StandardObjectivesAndConstraints.html',1,'ocra::CascadeQPSolver']]],
+  ['statelistener',['StateListener',['../d2/dde/classocra__recipes_1_1StateListener.html',1,'ocra_recipes']]],
   ['stateupdatethread',['StateUpdateThread',['../d7/dd6/classocra_1_1TaskYarpInterface_1_1StateUpdateThread.html',1,'ocra::TaskYarpInterface']]],
   ['subject',['Subject',['../dc/d77/classocra_1_1Subject.html',1,'ocra']]],
   ['subjectbase',['SubjectBase',['../dc/d29/classocra_1_1SubjectBase.html',1,'ocra']]],

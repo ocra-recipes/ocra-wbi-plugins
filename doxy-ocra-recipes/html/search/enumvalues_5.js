@@ -1,5 +1,7 @@
 var searchData=
 [
+  ['failure',['FAILURE',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da00ae038d836c2649767b834c0f405204',1,'ocra_recipes']]],
+  ['feet_5fcontact_5fstate',['FEET_CONTACT_STATE',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da3cb95fac9d37061336f2ad68b959734e',1,'ocra_recipes']]],
   ['final',['FINAL',['../dc/d6e/classocra_1_1FSQPSolver.html#a4bb0d1e3b6b82bd9f683c6c7393f062da5363ef2245b94458322650e2e07db39d',1,'ocra::FSQPSolver']]],
   ['force',['FORCE',['../d9/d84/classocra_1_1Task.html#a8ddf2840d178ca273e886c9ca95248fea85dc4c536889b089c8813273f0392937',1,'ocra::Task']]],
   ['forcetask',['FORCETASK',['../d9/d84/classocra_1_1Task.html#ad9d224cf787aa61c098f282efb78254aa92186ba939669e5d6b5572f92940ad53',1,'ocra::Task']]],

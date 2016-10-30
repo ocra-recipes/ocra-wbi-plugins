@@ -44,6 +44,7 @@ var searchData=
   ['errorflag',['errorFlag',['../d7/dcf/structocra_1_1Controller_1_1Pimpl.html#a8a4ac972687499a277fa08dced73180c',1,'ocra::Controller::Pimpl::errorFlag()'],['../d8/d92/classocra_1_1Controller.html#abeaf3673abe2da79493638dcc49fcf6e',1,'ocra::Controller::ErrorFlag()']]],
   ['errormessage',['errorMessage',['../d7/dcf/structocra_1_1Controller_1_1Pimpl.html#a1150a44bd413ec025703d53c8eaf4733',1,'ocra::Controller::Pimpl']]],
   ['errorshelper_2eh',['ErrorsHelper.h',['../d8/d9f/ErrorsHelper_8h.html',1,'']]],
+  ['errorthreshold',['errorThreshold',['../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a69ca8ea525dd7529fbeae6d8bb9529b3',1,'ocra_recipes::TrajectoryThread']]],
   ['evt_5fchange_5fdependencies',['EVT_CHANGE_DEPENDENCIES',['../dc/d14/namespaceocra.html#a8187c7d0d2534546e0d40cec907fd2afa80aa9b8c08be776fa6311d36fa4abae6',1,'ocra']]],
   ['evt_5fchange_5fvalue',['EVT_CHANGE_VALUE',['../dc/d14/namespaceocra.html#a8187c7d0d2534546e0d40cec907fd2afa0fa5a444737c2da3218185c3773c82ee',1,'ocra']]],
   ['evt_5fcstr_5fchange_5fbounds_5fnumber',['EVT_CSTR_CHANGE_BOUNDS_NUMBER',['../dc/d14/namespaceocra.html#a8187c7d0d2534546e0d40cec907fd2afa418e9564ea4db522807913b59f5656bb',1,'ocra']]],

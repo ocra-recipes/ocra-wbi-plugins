@@ -1,10 +1,21 @@
 var searchData=
 [
-  ['task_5fas_5fconstraint',['TASK_AS_CONSTRAINT',['../dc/d14/namespaceocra.html#a2ed783528071ed7ee7a57d923637595facc8c343cec041cea691138acda51cfc7',1,'ocra']]],
-  ['task_5fas_5fobjective',['TASK_AS_OBJECTIVE',['../dc/d14/namespaceocra.html#a2ed783528071ed7ee7a57d923637595fa086654d2e2cafe228fdcc540c5fb253f',1,'ocra']]],
-  ['task_5fis_5factivated',['TASK_IS_ACTIVATED',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda3ba7725b7888609ce1e4f7299a2dcaba',1,'ocra']]],
-  ['task_5fis_5fdeactivated',['TASK_IS_DEACTIVATED',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda7ce6ebcd9220ff9a426b42612603b81d',1,'ocra']]],
-  ['task_5fnot_5fdefined',['TASK_NOT_DEFINED',['../dc/d14/namespaceocra.html#a2ed783528071ed7ee7a57d923637595fa316a03f6aa426232839267753d019c5e',1,'ocra']]],
-  ['torquetask',['TORQUETASK',['../d9/d84/classocra_1_1Task.html#ad9d224cf787aa61c098f282efb78254aa72ea71e458f663be3a824880621aa5ae',1,'ocra::Task']]],
-  ['type_5fmust_5fbe_5fa_5fvector_5for_5fa_5fdynamic_5fmatrix',['TYPE_MUST_BE_A_VECTOR_OR_A_DYNAMIC_MATRIX',['../d6/d07/structocra_1_1ocra__static__assert_3_01true_01_4.html#a657a92b86d7c5d6a5b57db940b4dfb2da6c7e0005ce412fea00fe630cfeef49cc',1,'ocra::ocra_static_assert&lt; true &gt;']]]
+  ['set_5fdamping',['SET_DAMPING',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda76582ebc912d3b8d98758ef0eb76bf30',1,'ocra']]],
+  ['set_5fdamping_5fmatrix',['SET_DAMPING_MATRIX',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda229579f3aa8b1213306ccf2b2f005340',1,'ocra']]],
+  ['set_5fdamping_5fvector',['SET_DAMPING_VECTOR',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda32c861983cd730bb41d564836522ff3c',1,'ocra']]],
+  ['set_5fdesired_5ftask_5fposition',['SET_DESIRED_TASK_POSITION',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda310b7be3d55cc24f06af0d553b8de283',1,'ocra']]],
+  ['set_5fdesired_5ftask_5fstate',['SET_DESIRED_TASK_STATE',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216ddaf0205a9edc1392e6b517916df0bbb91f',1,'ocra']]],
+  ['set_5fstiffness',['SET_STIFFNESS',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216ddaee9b8fe73285b0e5643e49cce653869e',1,'ocra']]],
+  ['set_5fstiffness_5fmatrix',['SET_STIFFNESS_MATRIX',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda3c3e311379abb914f9063195fbbff2f6',1,'ocra']]],
+  ['set_5fstiffness_5fvector',['SET_STIFFNESS_VECTOR',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda86cf3f003113905c1cfd2fec661d9c44',1,'ocra']]],
+  ['set_5fweight',['SET_WEIGHT',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda2a727ba5ad0bf20ab9329b7b6c01f1b3',1,'ocra']]],
+  ['set_5fweight_5fvector',['SET_WEIGHT_VECTOR',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda32bb8a18cc2343ab5f12ecb437be9e91',1,'ocra']]],
+  ['special_5fcase',['SPECIAL_CASE',['../d1/d0d/namespaceocra_1_1utils_1_1details.html#a617d399055aa54cfdf2d3199ca91c399ac32fdefb96f856fd13bfad381529309e',1,'ocra::utils::details']]],
+  ['start_5fcontroller',['START_CONTROLLER',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da7034f8fa152249ea5789d971ee1d92cc',1,'ocra_recipes']]],
+  ['static_5feq_5floss',['STATIC_EQ_LOSS',['../d8/d92/classocra_1_1Controller.html#abeaf3673abe2da79493638dcc49fcf6ea2c4995e7abb68ab3a51e2052609d0f46',1,'ocra::Controller']]],
+  ['stop_5fcontroller',['STOP_CONTROLLER',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07daadcba7fed291f072b2f24f13f2fa8602',1,'ocra_recipes']]],
+  ['stop_5fthread',['STOP_THREAD',['../d5/d53/namespaceocra__recipes.html#afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528',1,'ocra_recipes']]],
+  ['stop_5fthread_5fdeactivate',['STOP_THREAD_DEACTIVATE',['../d5/d53/namespaceocra__recipes.html#afcf7ca623a6c39b246aa4bda629c7309a15282f27b6f0d750f44ca845d6094726',1,'ocra_recipes']]],
+  ['strict',['STRICT',['../dc/d6e/classocra_1_1FSQPSolver.html#a0569ab06022ffef1bd6d97599a5e4279ad1a225aa6f5e79bf61c5489ff6a4e9ce',1,'ocra::FSQPSolver']]],
+  ['success',['SUCCESS',['../d8/d92/classocra_1_1Controller.html#abeaf3673abe2da79493638dcc49fcf6eaf0c456fccd7111235e41d752e78d4e3d',1,'ocra::Controller::SUCCESS()'],['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da23968fe831abcda2a77abe88038cfff7',1,'ocra_recipes::SUCCESS()']]]
 ];

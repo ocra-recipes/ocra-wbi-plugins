@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['x',['X',['../dc/d14/namespaceocra.html#a436781c7059a0f76027df1c652126260a53f3cfeeb322946db40cd86dfebfb237',1,'ocra']]],
-  ['xy',['XY',['../dc/d14/namespaceocra.html#a436781c7059a0f76027df1c652126260a04d12417315a0a1b02d6abb07b9ba4ea',1,'ocra']]],
-  ['xyz',['XYZ',['../dc/d14/namespaceocra.html#a436781c7059a0f76027df1c652126260ac391bb1035f39278511d424f00f5e3f6',1,'ocra']]],
-  ['xz',['XZ',['../dc/d14/namespaceocra.html#a436781c7059a0f76027df1c652126260a76215fbf855151f481cfad29d6c62438',1,'ocra']]]
+  ['unknown',['UNKNOWN',['../d9/d84/classocra_1_1Task.html#a8ddf2840d178ca273e886c9ca95248feae417cbab1867ba03811f23c39d1f3ed9',1,'ocra::Task']]],
+  ['unknowntask',['UNKNOWNTASK',['../d9/d84/classocra_1_1Task.html#ad9d224cf787aa61c098f282efb78254aaa1409d776d97139332dd4995bdbd4833',1,'ocra::Task']]]
 ];

@@ -75,8 +75,12 @@ $(function() {
 <li>t0_variance
 : <a class="el" href="d5/d74/classocra_1_1ExperimentalTrajectory.html#a90502f229cbccfd19bd884d7b87f734d">ocra::ExperimentalTrajectory</a>
 </li>
+<li>T_root
+: <a class="el" href="d5/dd0/classocra__recipes_1_1RobotState.html#ae71e2d5ff8976c859921e06a4f35bf25">ocra_recipes::RobotState</a>
+</li>
 <li>task
 : <a class="el" href="d6/d6a/classocra_1_1TaskBuilder.html#ad3f099d23545d5d55d55ac2cf3d93b4d">ocra::TaskBuilder</a>
+, <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a3637e00b27ab63ecc48f813013626cba">ocra_recipes::TrajectoryThread</a>
 </li>
 <li>TASK_MESSAGES_AS_STRINGS
 : <a class="el" href="de/dbb/classocra_1_1TaskMessageHandler.html#a9afe80001080bc12286069365ab918ee">ocra::TaskMessageHandler</a>
@@ -97,6 +101,9 @@ $(function() {
 <li>taskName
 : <a class="el" href="d9/d2f/classocra_1_1TaskBuilderOptions.html#ab4d73eb287244b10f00c49f8641e0938">ocra::TaskBuilderOptions</a>
 </li>
+<li>taskRpcServerName
+: <a class="el" href="d5/d2f/classocra__recipes_1_1ControlThread.html#abbc082e54db816a3298c3e5ae5d3f9ef">ocra_recipes::ControlThread</a>
+</li>
 <li>tasks
 : <a class="el" href="d7/dcf/structocra_1_1Controller_1_1Pimpl.html#a246fa1cc15ad20293ef78b04dc0dbe70">ocra::Controller::Pimpl</a>
 </li>
@@ -105,6 +112,7 @@ $(function() {
 </li>
 <li>taskType
 : <a class="el" href="d9/d2f/classocra_1_1TaskBuilderOptions.html#ab0549ba26e607e200af4c596bccac8f8">ocra::TaskBuilderOptions</a>
+, <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a97b08a2471b425e49525b51c9e8eabb4">ocra_recipes::TrajectoryThread</a>
 </li>
 <li>tau
 : <a class="el" href="d7/dcf/structocra_1_1Controller_1_1Pimpl.html#a06e7fceb4a0a3c678a4e26fc12946e5c">ocra::Controller::Pimpl</a>
@@ -112,13 +120,29 @@ $(function() {
 , <a class="el" href="d0/d87/structocra_1_1FullTargetState_1_1Pimpl.html#aae33a52895f1ead1be869d88b3e6ff9f">ocra::FullTargetState::Pimpl</a>
 , <a class="el" href="d9/db5/structocra_1_1PartialModelState_1_1Pimpl.html#a74798b71925f4049758733f78a6cd571">ocra::PartialModelState::Pimpl</a>
 , <a class="el" href="d9/d4c/structocra_1_1PartialTargetState_1_1Pimpl.html#a68194144a3fdbdb73744178332101ed0">ocra::PartialTargetState::Pimpl</a>
+, <a class="el" href="d1/dde/classocra__recipes_1_1ControllerServer.html#a07e10b62b84a999c14843662a378ec0f">ocra_recipes::ControllerServer</a>
 </li>
 <li>tau_max
 : <a class="el" href="d7/dcf/structocra_1_1Controller_1_1Pimpl.html#a19486bfe59a11231eeabfd3b2b9abd39">ocra::Controller::Pimpl</a>
 </li>
+<li>terminationStrategy
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a3bbd0bd08a9ad023c025722486b1c118">ocra_recipes::TrajectoryThread</a>
+</li>
+<li>threadId
+: <a class="el" href="d5/d2f/classocra__recipes_1_1ControlThread.html#abbcc309053e54da8531c77bac2dd1656">ocra_recipes::ControlThread</a>
+</li>
+<li>threadRpcClient
+: <a class="el" href="d5/d2f/classocra__recipes_1_1ControlThread.html#a7c63f87c66ca64787e6f798a7db28e20">ocra_recipes::ControlThread</a>
+</li>
+<li>threadRpcClientName
+: <a class="el" href="d5/d2f/classocra__recipes_1_1ControlThread.html#af9d8abd531163281ac938eeb0ba51979">ocra_recipes::ControlThread</a>
+</li>
 <li>tim
 : <a class="el" href="de/d36/classgocra_1_1PerformanceRecorder.html#ab953e4252c10603dc8c25634f471db5a">gocra::PerformanceRecorder</a>
 , <a class="el" href="d4/d43/classwocra_1_1PerformanceRecorder.html#ad66f50acd0ca84db58c753406e25da75">wocra::PerformanceRecorder</a>
+</li>
+<li>timeElapsedDuringPause
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a3aa38677a7e98b6a6deec0b29a903844">ocra_recipes::TrajectoryThread</a>
 </li>
 <li>timeStep
 : <a class="el" href="dc/d2e/classocra_1_1TimeOptimalTrajectory.html#aacee4e110122959c3f47c07a9b7796bf">ocra::TimeOptimalTrajectory</a>
@@ -132,17 +156,26 @@ $(function() {
 <li>totalActiveTaskDim
 : <a class="el" href="d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#a9814826f2b30accde751b9f343b3590b">gocra::GHCJTController::Pimpl</a>
 </li>
+<li>trajectory
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a87ec388c22716d82bca31dbf89a21cb3">ocra_recipes::TrajectoryThread</a>
+</li>
 <li>trajectoryFinished
 : <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#ae3367f25d52a9b411a86f75a7b7d06ca">ocra::Trajectory</a>
 </li>
+<li>trajType
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a1ed2999782ff98b02b5d99ac66766cd7">ocra_recipes::TrajectoryThread</a>
+</li>
 <li>Troot
 : <a class="el" href="da/d26/structModel3T_1_1Pimpl.html#a5b282557f05769af0f2e60709d348a43">Model3T::Pimpl</a>
+</li>
+<li>type
+: <a class="el" href="d7/d59/classocra__recipes_1_1TaskParameters.html#a8c62a820309b362ba4ce8c515a66aff4">ocra_recipes::TaskParameters</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 30 2016 01:46:35 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 30 2016 02:17:30 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

@@ -1,0 +1,66 @@
+\hypertarget{TrajectoryThread_8h}{}\section{Trajectory\+Thread.\+h File Reference}
+\label{TrajectoryThread_8h}\index{Trajectory\+Thread.\+h@{Trajectory\+Thread.\+h}}
+
+
+A thread for launching trajectory generators.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}ocra/control/\+Trajectory/\+Trajectories.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$yarp/os/\+Time.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Rate\+Thread.\+h$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Dense$>$}\newline
+{\ttfamily \#include $<$Eigen/\+Lgsm$>$}\newline
+{\ttfamily \#include $<$ocra-\/recipes/\+Task\+Connection.\+h$>$}\newline
+{\ttfamily \#include $<$ocra/util/\+Macros.\+h$>$}\newline
+{\ttfamily \#include $<$ocra/util/\+Eigen\+Utilities.\+h$>$}\newline
+{\ttfamily \#include $<$ocra/control/\+Task\+State.\+h$>$}\newline
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra__recipes_1_1TrajectoryThread}{ocra\+\_\+recipes\+::\+Trajectory\+Thread}
+\end{DoxyCompactItemize}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+ \hyperlink{namespaceocra__recipes}{ocra\+\_\+recipes}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{ocra\+\_\+recipes\+::\+T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE} \{ \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{ocra\+\_\+recipes\+::\+M\+I\+N\+\_\+\+J\+E\+RK}, 
+\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152a2879875d826e43011096daa086653776}{ocra\+\_\+recipes\+::\+L\+I\+N\+\_\+\+I\+N\+T\+E\+RP}, 
+\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152afa795ec3e664c6ba7108ce36c45fb350}{ocra\+\_\+recipes\+::\+G\+A\+U\+S\+S\+I\+A\+N\+\_\+\+P\+R\+O\+C\+E\+SS}, 
+\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152a1e1d06fce68382460f502ade76fdf4a4}{ocra\+\_\+recipes\+::\+T\+I\+M\+E\+\_\+\+O\+P\+T\+I\+M\+AL}
+ \}
+\item 
+enum \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{ocra\+\_\+recipes\+::\+T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY} \{ \newline
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309ac411461a6cfca45e9779a03a9916888e}{ocra\+\_\+recipes\+::\+B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a468959a03833fa918bffd1c79b8ab2d6}{ocra\+\_\+recipes\+::\+R\+E\+V\+E\+R\+SE}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309aad0af957c445b2993cea58c80fa519ff}{ocra\+\_\+recipes\+::\+R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+OP}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a39851fd1d704bc5bfaf8cdde6193e675}{ocra\+\_\+recipes\+::\+R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+O\+P\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}, 
+\newline
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{ocra\+\_\+recipes\+::\+S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a9c763ece154b02a26f9f049cf8dc3c6a}{ocra\+\_\+recipes\+::\+W\+A\+IT}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a15282f27b6f0d750f44ca845d6094726}{ocra\+\_\+recipes\+::\+S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309ad1984f646b9229dbc9322fedb30274e0}{ocra\+\_\+recipes\+::\+W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}, 
+\newline
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0b946779781a3241dfaa365dcde084ca}{ocra\+\_\+recipes\+::\+C\+Y\+C\+LE}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A thread for launching trajectory generators. 
+
+\begin{DoxyAuthor}{Author}
+\href{http://www.ryanlober.com}{\tt Ryan Lober} 
+
+\href{http://ahoarau.github.io}{\tt Antoine Hoarau} 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+Feb 2016 
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+G\+NU General Public License. 
+\end{DoxyCopyright}

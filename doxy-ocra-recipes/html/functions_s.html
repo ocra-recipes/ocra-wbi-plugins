@@ -139,6 +139,15 @@ $(function() {
 <li>selector()
 : <a class="el" href="d2/de8/structocra_1_1utils_1_1uncompress.html#ad248d8421851c3ec4f9a47263b8b3185">ocra::utils::uncompress&lt; Functor, ApplyMappingToOut &gt;</a>
 </li>
+<li>sendGetStateMessage()
+: <a class="el" href="d5/d2f/classocra__recipes_1_1ControlThread.html#a53191169bc860dc92314fe65bab83c97">ocra_recipes::ControlThread</a>
+</li>
+<li>ServerCommunications()
+: <a class="el" href="d9/d94/classocra__recipes_1_1ServerCommunications.html#aa2a8a9d66c8ade82af5f27d550423370">ocra_recipes::ServerCommunications</a>
+</li>
+<li>serverComs
+: <a class="el" href="d1/dde/classocra__recipes_1_1ControllerServer.html#af01dc7be410bfebebefedc5f4bb27d1b">ocra_recipes::ControllerServer</a>
+</li>
 <li>set()
 : <a class="el" href="d5/d01/classocra_1_1EqualZeroConstraintPtr.html#a3157efd4dbc5db4141fa688fd8032b78">ocra::EqualZeroConstraintPtr&lt; T &gt;</a>
 , <a class="el" href="d2/dc2/classocra_1_1GreaterThanZeroConstraintPtr.html#a3c6c6625ab65691ed326a0a17b0d9e27">ocra::GreaterThanZeroConstraintPtr&lt; T &gt;</a>
@@ -215,8 +224,9 @@ $(function() {
 , <a class="el" href="de/d88/classgocra_1_1gOcraSegCartesianTaskManager.html#a96d208274095c39ddcdb0861290168ab">gocra::gOcraSegCartesianTaskManager</a>
 , <a class="el" href="db/d04/classgocra_1_1gOcraSegOrientationTaskManager.html#acca4be597440e5da0e3ded3d78116c18">gocra::gOcraSegOrientationTaskManager</a>
 , <a class="el" href="d7/d78/classgocra_1_1gOcraSegPoseTaskManager.html#af1c9cd4b30f956ef607c19a7756c71f9">gocra::gOcraSegPoseTaskManager</a>
-, <a class="el" href="d9/d84/classocra_1_1Task.html#ab5fd8e11eea7dbccb7169282c9be4b0a">ocra::Task</a>
+, <a class="el" href="d9/d84/classocra_1_1Task.html#a51509c15751c0fc8c40bf4b2328d7b21">ocra::Task</a>
 , <a class="el" href="d8/d26/classocra_1_1TaskYarpInterface.html#af8523d8d22368ee189c840dc96df66c4">ocra::TaskYarpInterface</a>
+, <a class="el" href="d9/d30/classocra__recipes_1_1TaskConnection.html#a4f9c4b7b99c41c817b5c9448464b84bc">ocra_recipes::TaskConnection</a>
 </li>
 <li>setDesiredMass()
 : <a class="el" href="d9/d84/classocra_1_1Task.html#a31055e4bfc91407ef5ed6f0d200afe77">ocra::Task</a>
@@ -227,10 +237,15 @@ $(function() {
 <li>setDesiredTaskState()
 : <a class="el" href="d9/d84/classocra_1_1Task.html#ac14252b35faa2ed8eed4cc5db629ce94">ocra::Task</a>
 , <a class="el" href="d8/d26/classocra_1_1TaskYarpInterface.html#a9b26a53ccbb968ffe2652e8a22386651">ocra::TaskYarpInterface</a>
+, <a class="el" href="d9/d30/classocra__recipes_1_1TaskConnection.html#a3a843b685459c6db2ec4b99159d57e6a">ocra_recipes::TaskConnection</a>
 </li>
 <li>setDesiredTaskStateDirect()
 : <a class="el" href="d9/d84/classocra_1_1Task.html#a44ccc493a8a4931e11c3fcfcd30d991c">ocra::Task</a>
 , <a class="el" href="d8/d26/classocra_1_1TaskYarpInterface.html#a23efa660fd247e4ac34ff67899291ae8">ocra::TaskYarpInterface</a>
+, <a class="el" href="d9/d30/classocra__recipes_1_1TaskConnection.html#a4619e5f6107d88bc50165c812e219004">ocra_recipes::TaskConnection</a>
+</li>
+<li>setDisplacement()
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a8cff41b23344e18cd795354ba893b3e2">ocra_recipes::TrajectoryThread</a>
 </li>
 <li>setDofToOptimize()
 : <a class="el" href="d9/d69/classocra_1_1GaussianProcessTrajectory.html#ade78792c6b17174f77c0e0c60d4d4755">ocra::GaussianProcessTrajectory</a>
@@ -270,6 +285,9 @@ $(function() {
 </li>
 <li>setFSQPstruct()
 : <a class="el" href="d5/d0c/classocra_1_1OFSQPProblem.html#ae57b5fa2934e2ae619e748079335d3b7">ocra::OFSQPProblem</a>
+</li>
+<li>setGoalErrorThreshold()
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a78eb7665f07bbdbd79bbc4553fb9d0e3">ocra_recipes::TrajectoryThread</a>
 </li>
 <li>setHierarchyLevel()
 : <a class="el" href="d9/d84/classocra_1_1Task.html#a07617befcfa5bf8f0711d47965ed8337">ocra::Task</a>
@@ -327,7 +345,7 @@ $(function() {
 , <a class="el" href="d9/d84/classocra_1_1Task.html#a62b7814143aa571cc668fef9bdea6815">ocra::Task</a>
 </li>
 <li>setMaxAcceleration()
-: <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#a0fa531fd1f33f142a7d1b3324a478cb9">ocra::Trajectory</a>
+: <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#a617400d2591ef575f20ca2b431151ace">ocra::Trajectory</a>
 </li>
 <li>setMaxIter()
 : <a class="el" href="dc/d6e/classocra_1_1FSQPSolver.html#ab900ccf49e2e757fe67567a6da577675">ocra::FSQPSolver</a>
@@ -344,6 +362,7 @@ $(function() {
 </li>
 <li>setMaxVelocity()
 : <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#a12e4348201fbdc32d34ce1627d6da1fd">ocra::Trajectory</a>
+, <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#af09fa5d00ba024d18fd85870f878c1dd">ocra_recipes::TrajectoryThread</a>
 </li>
 <li>setMeanWaypoints()
 : <a class="el" href="d9/d69/classocra_1_1GaussianProcessTrajectory.html#abdafe69c3db6d514bbe8ae5f560cf466">ocra::GaussianProcessTrajectory</a>
@@ -381,7 +400,7 @@ $(function() {
 </li>
 <li>setPosture()
 : <a class="el" href="d5/db1/classgocra_1_1gOcraFullPostureTaskManager.html#a80bcb1334e7a9bb8604c8b091e32933d">gocra::gOcraFullPostureTaskManager</a>
-, <a class="el" href="d9/dc9/classgocra_1_1gOcraPartialPostureTaskManager.html#a98a6312d1705dbc7ae682bf7fb98a28c">gocra::gOcraPartialPostureTaskManager</a>
+, <a class="el" href="d9/dc9/classgocra_1_1gOcraPartialPostureTaskManager.html#ac2fc6522b441a12831abd768ee8b591e">gocra::gOcraPartialPostureTaskManager</a>
 </li>
 <li>setPrintMode()
 : <a class="el" href="dc/d6e/classocra_1_1FSQPSolver.html#a02fd3ada48b6e18ab224fca60a05c525">ocra::FSQPSolver</a>
@@ -413,7 +432,7 @@ $(function() {
 <li>setState()
 : <a class="el" href="de/de6/classgocra_1_1gOcraCoMTaskManager.html#a413a7722455a89c99c4efd11e8226104">gocra::gOcraCoMTaskManager</a>
 , <a class="el" href="de/d88/classgocra_1_1gOcraSegCartesianTaskManager.html#ab10bcbbedc2c7a0fb1d97067e33bd2d7">gocra::gOcraSegCartesianTaskManager</a>
-, <a class="el" href="d7/d78/classgocra_1_1gOcraSegPoseTaskManager.html#a555cdc369d151ba153bcd681461cde24">gocra::gOcraSegPoseTaskManager</a>
+, <a class="el" href="d7/d78/classgocra_1_1gOcraSegPoseTaskManager.html#a1e1f6ca0ab0e5d174e4810f8123664c3">gocra::gOcraSegPoseTaskManager</a>
 , <a class="el" href="d3/dd9/classocra_1_1ContactConstraintFeature.html#a1bbc7ca568a64aed7704118b8eeaf6d1">ocra::ContactConstraintFeature</a>
 , <a class="el" href="dd/dda/classocra_1_1DisplacementFeature.html#a7a99c7e57d512ec2d6094fc10388e033">ocra::DisplacementFeature</a>
 , <a class="el" href="d6/d87/classocra_1_1Feature.html#ad16d6b176b229280649ab405531e9a30">ocra::Feature</a>
@@ -429,8 +448,9 @@ $(function() {
 , <a class="el" href="de/d88/classgocra_1_1gOcraSegCartesianTaskManager.html#ac5f2b4e56649e16d87955c21ae2fd46f">gocra::gOcraSegCartesianTaskManager</a>
 , <a class="el" href="db/d04/classgocra_1_1gOcraSegOrientationTaskManager.html#abca07f3d06e8731757a9946b5255a20c">gocra::gOcraSegOrientationTaskManager</a>
 , <a class="el" href="d7/d78/classgocra_1_1gOcraSegPoseTaskManager.html#aee63dd2df0da89a98c844245abd87297">gocra::gOcraSegPoseTaskManager</a>
-, <a class="el" href="d9/d84/classocra_1_1Task.html#ad4718bcc82babf0a8213740f35fce89c">ocra::Task</a>
-, <a class="el" href="d8/d26/classocra_1_1TaskYarpInterface.html#ac95555408e5b6b834066cf9e88572b1e">ocra::TaskYarpInterface</a>
+, <a class="el" href="d9/d84/classocra_1_1Task.html#a9b132099233731049473a54fc53a29ac">ocra::Task</a>
+, <a class="el" href="d8/d26/classocra_1_1TaskYarpInterface.html#aa97913caf4381af86b5f84d404fac832">ocra::TaskYarpInterface</a>
+, <a class="el" href="d9/d30/classocra__recipes_1_1TaskConnection.html#afcd68e61fdaadfe705b62194f07f7a3a">ocra_recipes::TaskConnection</a>
 </li>
 <li>setTaskAsObjectiveOrConstraint()
 : <a class="el" href="d5/d85/classocra_1_1PointContactTaskBuilder.html#a729f50dc73c00accb86a9480cb3054fd">ocra::PointContactTaskBuilder</a>
@@ -469,6 +489,12 @@ $(function() {
 , <a class="el" href="d9/d84/classocra_1_1Task.html#a8292d37db712589e90d628d9b1e3e1ea">ocra::Task</a>
 , <a class="el" href="d6/d6a/classocra_1_1TaskBuilder.html#a1a979fc495be6dc30483aa8fd0ff2650">ocra::TaskBuilder</a>
 </li>
+<li>setTerminationStrategy()
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#ab401be5b4261576175d690b6e4a61177">ocra_recipes::TrajectoryThread</a>
+</li>
+<li>setThreadType()
+: <a class="el" href="d5/d2f/classocra__recipes_1_1ControlThread.html#a62d882d2bad8a2468cbc080cad101a1f">ocra_recipes::ControlThread</a>
+</li>
 <li>setTime()
 : <a class="el" href="d9/d4a/classFunction3.html#ade56597de44f5cdd047aa9aa9e29a129">Function3</a>
 </li>
@@ -483,6 +509,9 @@ $(function() {
 : <a class="el" href="d2/da4/classocra_1_1TorqueLimitConstraint.html#aae5d3c15e07731fb19f2f55b45852554">ocra::TorqueLimitConstraint</a>
 , <a class="el" href="dd/d3d/classocra_1_1TorqueLimitFunction.html#a038250b745913584724401ea719177a5">ocra::TorqueLimitFunction</a>
 </li>
+<li>setTrajectoryWaypoints()
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a6e6d4ad6f800c2782b821d0048506708">ocra_recipes::TrajectoryThread</a>
+</li>
 <li>setU()
 : <a class="el" href="de/d3b/classocra_1_1Constraint_3_01Function_01_4.html#a80c1536eb85f6913a8d80a36456aa90a">ocra::Constraint&lt; Function &gt;</a>
 </li>
@@ -491,6 +520,9 @@ $(function() {
 </li>
 <li>setUseOdometry()
 : <a class="el" href="d8/d92/classocra_1_1Controller.html#a3f6a080793612b0b66e1ce7a26897646">ocra::Controller</a>
+</li>
+<li>setUseVarianceModulation()
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a230269a0ce3617e924a72b021adb6892">ocra_recipes::TrajectoryThread</a>
 </li>
 <li>setValue()
 : <a class="el" href="dd/d9c/classocra_1_1MergedVariable.html#a2c53faf60a0aa267457aa6688b7341aa">ocra::MergedVariable</a>
@@ -513,12 +545,13 @@ $(function() {
 : <a class="el" href="de/d3b/classocra_1_1Constraint_3_01Function_01_4.html#ac87f7fc6513adba1044b8f53f3fd2f5d">ocra::Constraint&lt; Function &gt;</a>
 </li>
 <li>setWaypoints()
-: <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#a941a5f6357d5ee707d703357eb525d6e">ocra::Trajectory</a>
+: <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#adde90667693b2648420917e80a39d1e6">ocra::Trajectory</a>
 </li>
 <li>setWeight()
 : <a class="el" href="dc/dae/classocra_1_1Objective_3_01Function_01_4.html#a41fa85e1e535bb935f20312e7b398a26">ocra::Objective&lt; Function &gt;</a>
-, <a class="el" href="d9/d84/classocra_1_1Task.html#a857ee8b756c78d5a90cdc78ae6eb855e">ocra::Task</a>
-, <a class="el" href="d8/d26/classocra_1_1TaskYarpInterface.html#aa66137afb92c94c1c261c067444b2f2d">ocra::TaskYarpInterface</a>
+, <a class="el" href="d9/d84/classocra_1_1Task.html#a81589c3855f9f39526d9d4ceda6fe95e">ocra::Task</a>
+, <a class="el" href="d8/d26/classocra_1_1TaskYarpInterface.html#a06929d4d2480cd39dbcf0ef9f04fd849">ocra::TaskYarpInterface</a>
+, <a class="el" href="d9/d30/classocra__recipes_1_1TaskConnection.html#ad833849636700c3174f305d10fcc00bf">ocra_recipes::TaskConnection</a>
 </li>
 <li>setWrench()
 : <a class="el" href="da/dbb/classocra_1_1TargetFrame.html#a3d8e094de52e69b626322b6cce57d23e">ocra::TargetFrame</a>
@@ -561,6 +594,9 @@ $(function() {
 <li>solverInitialized
 : <a class="el" href="d6/d35/classocra_1_1CascadeQPSolver.html#a9d45b623d0012aae018b8eb8d4a66646">ocra::CascadeQPSolver</a>
 </li>
+<li>solverType
+: <a class="el" href="d1/dde/classocra__recipes_1_1ControllerServer.html#a7c7d1eda2c96085709f0c3a28fd998a4">ocra_recipes::ControllerServer</a>
+</li>
 <li>sortRows()
 : <a class="el" href="d6/dbf/classgocra_1_1GHCJTController.html#a5ef80e1ba5c3b2d14352fe06ba7b20e4">gocra::GHCJTController</a>
 </li>
@@ -588,12 +624,27 @@ $(function() {
 <li>startIndexInParentMap
 : <a class="el" href="df/d9b/structocra_1_1VariableParenthood.html#a94549ed54ec259fda2c6ba07de66937a">ocra::VariableParenthood</a>
 </li>
+<li>startStateVector
+: <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a28661ee4345695282b2a45baf33bd2af">ocra_recipes::TrajectoryThread</a>
+</li>
 <li>startTrigger
 : <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#af07103499262cbe56eba69a713e4f3b3">ocra::Trajectory</a>
 </li>
 <li>state
 : <a class="el" href="dc/d4e/structocra_1_1FullStateFeature_1_1Pimpl.html#a4561279776ecf9adda446067000e3536">ocra::FullStateFeature::Pimpl</a>
 , <a class="el" href="df/d9f/structocra_1_1PartialStateFeature_1_1Pimpl.html#a780cc4ecc5de8f231684ffdd394aa31a">ocra::PartialStateFeature::Pimpl</a>
+</li>
+<li>stateDimension
+: <a class="el" href="d5/d2f/classocra__recipes_1_1ControlThread.html#a1ab9aaa641766b8bf29812925701a52f">ocra_recipes::ControlThread</a>
+</li>
+<li>StateListener()
+: <a class="el" href="d2/dde/classocra__recipes_1_1StateListener.html#ab2d5128398eeb9990f34a633e9a4e181">ocra_recipes::StateListener</a>
+</li>
+<li>statesBottle
+: <a class="el" href="d1/dde/classocra__recipes_1_1ControllerServer.html#a587f8ef2bc028bf845b1713955def5a1">ocra_recipes::ControllerServer</a>
+</li>
+<li>statesPort
+: <a class="el" href="d1/dde/classocra__recipes_1_1ControllerServer.html#a1d314027131262206280be3e728bf59f">ocra_recipes::ControllerServer</a>
 </li>
 <li>StateUpdateThread()
 : <a class="el" href="d7/dd6/classocra_1_1TaskYarpInterface_1_1StateUpdateThread.html#acd0edcec12037183ec9b7aab8dafbd99">ocra::TaskYarpInterface::StateUpdateThread</a>
@@ -639,7 +690,7 @@ $(function() {
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Oct 30 2016 01:46:34 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Oct 30 2016 02:17:30 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

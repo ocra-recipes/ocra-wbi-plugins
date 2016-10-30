@@ -1,19 +1,27 @@
 var searchData=
 [
+  ['gaussian_5fprocess',['GAUSSIAN_PROCESS',['../d5/d53/namespaceocra__recipes.html#a729e1c8304e390d16219eda5f9756152afa795ec3e664c6ba7108ce36c45fb350',1,'ocra_recipes']]],
   ['get_5factivity_5fstatus',['GET_ACTIVITY_STATUS',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda0f00b76df38826c9315e8e76d07c1d06',1,'ocra']]],
   ['get_5fcontrol_5fport_5fnames',['GET_CONTROL_PORT_NAMES',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda7e6ab88132707eae37efe46660849c18',1,'ocra']]],
+  ['get_5fcontroller_5fstatus',['GET_CONTROLLER_STATUS',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da6fd78cb691327fe4967dd1f3e9f8f4be',1,'ocra_recipes']]],
   ['get_5fcurrent_5fstate',['GET_CURRENT_STATE',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda304b89c536487e57cd489114def30332',1,'ocra']]],
   ['get_5fdamping',['GET_DAMPING',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda0263f815a5b0e4c4af90766674cc93fc',1,'ocra']]],
   ['get_5fdesired_5ftask_5fposition',['GET_DESIRED_TASK_POSITION',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216ddaef157060128ea0f266cf656ce2d24e5b',1,'ocra']]],
   ['get_5fdesired_5ftask_5fstate',['GET_DESIRED_TASK_STATE',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda5016d12db9cc693eb76128d4aedb3654',1,'ocra']]],
   ['get_5fdimension',['GET_DIMENSION',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda5ec63de49e94267ab2433aaa624fc0d8',1,'ocra']]],
+  ['get_5fis_5ffloating_5fbase',['GET_IS_FLOATING_BASE',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da150800dfe1a8258804ab5a85b8790fee',1,'ocra_recipes']]],
   ['get_5fname',['GET_NAME',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda930c7052a4310e9461b31e260043ddec',1,'ocra']]],
+  ['get_5frobot_5fname',['GET_ROBOT_NAME',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07dadf6e6966068944c9083d40c4c929ab98',1,'ocra_recipes']]],
   ['get_5fstiffness',['GET_STIFFNESS',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda00870302f6d9fef375ccca58d693245b',1,'ocra']]],
   ['get_5ftask_5ferror',['GET_TASK_ERROR',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda51bc9c82fdbe1afb6fd9c17d6dbd57de',1,'ocra']]],
-  ['get_5ftask_5fport_5fname',['GET_TASK_PORT_NAME',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216ddae156ba094082c07802eed5b0f9597ce8',1,'ocra']]],
+  ['get_5ftask_5flist',['GET_TASK_LIST',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07da46d6f78612c006964e08e9af253ade87',1,'ocra_recipes']]],
+  ['get_5ftask_5fport_5flist',['GET_TASK_PORT_LIST',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07daa6b41ce186d21b4593c06becced2e213',1,'ocra_recipes']]],
+  ['get_5ftask_5fport_5fname',['GET_TASK_PORT_NAME',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216ddae156ba094082c07802eed5b0f9597ce8',1,'ocra::GET_TASK_PORT_NAME()'],['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07dacf9d25d6d53d40182f563929ec3b6901',1,'ocra_recipes::GET_TASK_PORT_NAME()']]],
   ['get_5ftask_5fposition',['GET_TASK_POSITION',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216ddae92c2b3356e04d12fc40073d0451343c',1,'ocra']]],
   ['get_5ftask_5fstate',['GET_TASK_STATE',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda31be446bada225e1bdc48becc15d2659',1,'ocra']]],
   ['get_5ftype',['GET_TYPE',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216ddab832b31e328bb810d39cc5b96a6f66d4',1,'ocra']]],
   ['get_5ftype_5fas_5fstring',['GET_TYPE_AS_STRING',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda8ef928c50ace260497fcee69055fb1c0',1,'ocra']]],
-  ['get_5fweights',['GET_WEIGHTS',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda2ec5e5ead8615e9578ce0c425242b2a8',1,'ocra']]]
+  ['get_5fwbi_5fconfig_5ffile_5fpath',['GET_WBI_CONFIG_FILE_PATH',['../d5/d53/namespaceocra__recipes.html#ae6246916f1927f7a201cc153ad76b07dac7e9258d84498472e5e12f11b72a4542',1,'ocra_recipes']]],
+  ['get_5fweights',['GET_WEIGHTS',['../dc/d14/namespaceocra.html#ae51761f3980546f5ee4cbc6ebe4216dda2ec5e5ead8615e9578ce0c425242b2a8',1,'ocra']]],
+  ['gocra_5fcontroller',['GOCRA_CONTROLLER',['../d5/d53/namespaceocra__recipes.html#ae561cff4ea9a191b8b1ebb4e69a1a4baa6014cceb8330febb4cd442856c460495',1,'ocra_recipes']]]
 ];

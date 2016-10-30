@@ -1,0 +1,328 @@
+\hypertarget{namespaceocra__recipes}{}\section{ocra\+\_\+recipes Namespace Reference}
+\label{namespaceocra__recipes}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra__recipes_1_1ClientCommunications}{Client\+Communications}
+\item 
+class \hyperlink{classocra__recipes_1_1ClientManager}{Client\+Manager}
+\begin{DoxyCompactList}\small\item\em The controller module which launches the controller thread. \end{DoxyCompactList}\item 
+class \hyperlink{classocra__recipes_1_1ControllerClient}{Controller\+Client}
+\item 
+class \hyperlink{classocra__recipes_1_1ControllerServer}{Controller\+Server}
+\item 
+class \hyperlink{classocra__recipes_1_1ControlThread}{Control\+Thread}
+\item 
+class \hyperlink{classocra__recipes_1_1RobotState}{Robot\+State}
+\begin{DoxyCompactList}\small\item\em A portable class for sending robot state information over yarp. \end{DoxyCompactList}\item 
+class \hyperlink{classocra__recipes_1_1ServerCommunications}{Server\+Communications}
+\item 
+class \hyperlink{classocra__recipes_1_1StateListener}{State\+Listener}
+\begin{DoxyCompactList}\small\item\em A callback for a port listing to robot states. \end{DoxyCompactList}\item 
+class \hyperlink{classocra__recipes_1_1TaskConnection}{Task\+Connection}
+\item 
+class \hyperlink{classocra__recipes_1_1TaskParameters}{Task\+Parameters}
+\item 
+class \hyperlink{classocra__recipes_1_1TrajectoryThread}{Trajectory\+Thread}
+\end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4ba}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+T\+Y\+PE} \{ \hyperlink{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa9d39f7dcabab69f1d03e54a8254291fb}{W\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER} = 1, 
+\hyperlink{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa9612af31c188270166cbdb21adab42fc}{H\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}, 
+\hyperlink{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa6014cceb8330febb4cd442856c460495}{G\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}
+ \}
+\item 
+enum \hyperlink{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3}{S\+O\+L\+V\+E\+R\+\_\+\+T\+Y\+PE} \{ \hyperlink{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3a90d3b2bdfedd1f0be4ffc79a5b3dcdb5}{Q\+U\+A\+D\+P\+R\+OG} = 1, 
+\hyperlink{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3a0790c9318f7541d21504bddf3143cbe1}{Q\+P\+O\+A\+S\+ES}
+ \}
+\item 
+enum \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE} \{ \newline
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da00ae038d836c2649767b834c0f405204}{F\+A\+I\+L\+U\+RE} = 0, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da23968fe831abcda2a77abe88038cfff7}{S\+U\+C\+C\+E\+SS}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da5cf6e524371db2109fb38c9cc9f4fc8d}{W\+A\+R\+N\+I\+NG}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da6fd78cb691327fe4967dd1f3e9f8f4be}{G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+T\+US}, 
+\newline
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dac7e9258d84498472e5e12f11b72a4542}{G\+E\+T\+\_\+\+W\+B\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dadf6e6966068944c9083d40c4c929ab98}{G\+E\+T\+\_\+\+R\+O\+B\+O\+T\+\_\+\+N\+A\+ME}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da150800dfe1a8258804ab5a85b8790fee}{G\+E\+T\+\_\+\+I\+S\+\_\+\+F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+B\+A\+SE}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da7034f8fa152249ea5789d971ee1d92cc}{S\+T\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}, 
+\newline
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daadcba7fed291f072b2f24f13f2fa8602}{S\+T\+O\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da92878ac88aaa232d0b30cf4227eb15ac}{P\+A\+U\+S\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da9ff36f5ac759601008228530d7615586}{C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+R\+I\+G\+HT}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da283ba63ffd2e66ae2fdd48134556e626}{C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+L\+E\+FT}, 
+\newline
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da3cb95fac9d37061336f2ad68b959734e}{F\+E\+E\+T\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+S\+T\+A\+TE}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da1ac2fc6a66f0094ce3c2ef1d9d840b3f}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+R\+U\+N\+N\+I\+NG}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dadb7526c31cbb5f228bae6d56219eded1}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+O\+P\+P\+ED}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da89715de500e2434d5e5191b3ba9f74f4}{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+U\+S\+ED}, 
+\newline
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daf7d019817eb1c8bc312918f900e4b994}{A\+D\+D\+\_\+\+T\+A\+S\+KS}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da544eec0ce1480a7555c859a6840cfe10}{A\+D\+D\+\_\+\+T\+A\+S\+K\+S\+\_\+\+F\+R\+O\+M\+\_\+\+F\+I\+LE}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da070487a88f3baca53e14344e52d213fb}{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+SK}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacb673907ae75312cbc427f1a97c48989}{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+KS}, 
+\newline
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacba9981612f0910b8a982133430da96d}{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+RT}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da46d6f78612c006964e08e9af253ade87}{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+L\+I\+ST}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daa6b41ce186d21b4593c06becced2e213}{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+L\+I\+ST}, 
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacf9d25d6d53d40182f563929ec3b6901}{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+N\+A\+ME}, 
+\newline
+\hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daa4dfc76ea7f679e1569be5a980d30eac}{H\+E\+LP}
+ \}
+\item 
+enum \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE} \{ \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{M\+I\+N\+\_\+\+J\+E\+RK}, 
+\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152a2879875d826e43011096daa086653776}{L\+I\+N\+\_\+\+I\+N\+T\+E\+RP}, 
+\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152afa795ec3e664c6ba7108ce36c45fb350}{G\+A\+U\+S\+S\+I\+A\+N\+\_\+\+P\+R\+O\+C\+E\+SS}, 
+\hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152a1e1d06fce68382460f502ade76fdf4a4}{T\+I\+M\+E\+\_\+\+O\+P\+T\+I\+M\+AL}
+ \}
+\item 
+enum \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY} \{ \newline
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309ac411461a6cfca45e9779a03a9916888e}{B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a468959a03833fa918bffd1c79b8ab2d6}{R\+E\+V\+E\+R\+SE}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309aad0af957c445b2993cea58c80fa519ff}{R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+OP}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a39851fd1d704bc5bfaf8cdde6193e675}{R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+O\+P\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}, 
+\newline
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a9c763ece154b02a26f9f049cf8dc3c6a}{W\+A\+IT}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a15282f27b6f0d750f44ca845d6094726}{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}, 
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309ad1984f646b9229dbc9322fedb30274e0}{W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}, 
+\newline
+\hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0b946779781a3241dfaa365dcde084ca}{C\+Y\+C\+LE}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4ba}{}\label{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4ba} 
+\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+T\+Y\+PE@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+T\+Y\+PE}}
+\index{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+T\+Y\+PE@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+T\+Y\+PE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}
+\subsubsection{\texorpdfstring{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+T\+Y\+PE}{CONTROLLER\_TYPE}}
+{\footnotesize\ttfamily enum \hyperlink{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4ba}{ocra\+\_\+recipes\+::\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+T\+Y\+PE}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{W\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!W\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{W\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\hypertarget{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa9d39f7dcabab69f1d03e54a8254291fb}{}\label{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa9d39f7dcabab69f1d03e54a8254291fb} 
+W\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{H\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{H\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!H\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{H\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\hypertarget{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa9612af31c188270166cbdb21adab42fc}{}\label{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa9612af31c188270166cbdb21adab42fc} 
+H\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{G\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{G\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\hypertarget{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa6014cceb8330febb4cd442856c460495}{}\label{namespaceocra__recipes_ae561cff4ea9a191b8b1ebb4e69a1a4baa6014cceb8330febb4cd442856c460495} 
+G\+O\+C\+R\+A\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 31 of file Controller\+Server.\+h.
+
+\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d} 
+\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE@{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE}}
+\index{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE@{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}
+\subsubsection{\texorpdfstring{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE}{SERVER\_COMMUNICATIONS\_MESSAGE}}
+{\footnotesize\ttfamily enum \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{ocra\+\_\+recipes\+::\+S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\+A\+I\+L\+U\+RE@{F\+A\+I\+L\+U\+RE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!F\+A\+I\+L\+U\+RE@{F\+A\+I\+L\+U\+RE}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da00ae038d836c2649767b834c0f405204}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da00ae038d836c2649767b834c0f405204} 
+F\+A\+I\+L\+U\+RE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+U\+C\+C\+E\+SS@{S\+U\+C\+C\+E\+SS}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!S\+U\+C\+C\+E\+SS@{S\+U\+C\+C\+E\+SS}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da23968fe831abcda2a77abe88038cfff7}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da23968fe831abcda2a77abe88038cfff7} 
+S\+U\+C\+C\+E\+SS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+A\+R\+N\+I\+NG@{W\+A\+R\+N\+I\+NG}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!W\+A\+R\+N\+I\+NG@{W\+A\+R\+N\+I\+NG}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da5cf6e524371db2109fb38c9cc9f4fc8d}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da5cf6e524371db2109fb38c9cc9f4fc8d} 
+W\+A\+R\+N\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+T\+US@{G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+T\+US}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+T\+US@{G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+T\+US}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da6fd78cb691327fe4967dd1f3e9f8f4be}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da6fd78cb691327fe4967dd1f3e9f8f4be} 
+G\+E\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+A\+T\+US&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+E\+T\+\_\+\+W\+B\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH@{G\+E\+T\+\_\+\+W\+B\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+E\+T\+\_\+\+W\+B\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH@{G\+E\+T\+\_\+\+W\+B\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dac7e9258d84498472e5e12f11b72a4542}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dac7e9258d84498472e5e12f11b72a4542} 
+G\+E\+T\+\_\+\+W\+B\+I\+\_\+\+C\+O\+N\+F\+I\+G\+\_\+\+F\+I\+L\+E\+\_\+\+P\+A\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+E\+T\+\_\+\+R\+O\+B\+O\+T\+\_\+\+N\+A\+ME@{G\+E\+T\+\_\+\+R\+O\+B\+O\+T\+\_\+\+N\+A\+ME}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+E\+T\+\_\+\+R\+O\+B\+O\+T\+\_\+\+N\+A\+ME@{G\+E\+T\+\_\+\+R\+O\+B\+O\+T\+\_\+\+N\+A\+ME}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dadf6e6966068944c9083d40c4c929ab98}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dadf6e6966068944c9083d40c4c929ab98} 
+G\+E\+T\+\_\+\+R\+O\+B\+O\+T\+\_\+\+N\+A\+ME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+E\+T\+\_\+\+I\+S\+\_\+\+F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+B\+A\+SE@{G\+E\+T\+\_\+\+I\+S\+\_\+\+F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+B\+A\+SE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+E\+T\+\_\+\+I\+S\+\_\+\+F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+B\+A\+SE@{G\+E\+T\+\_\+\+I\+S\+\_\+\+F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+B\+A\+SE}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da150800dfe1a8258804ab5a85b8790fee}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da150800dfe1a8258804ab5a85b8790fee} 
+G\+E\+T\+\_\+\+I\+S\+\_\+\+F\+L\+O\+A\+T\+I\+N\+G\+\_\+\+B\+A\+SE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+T\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{S\+T\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!S\+T\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{S\+T\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da7034f8fa152249ea5789d971ee1d92cc}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da7034f8fa152249ea5789d971ee1d92cc} 
+S\+T\+A\+R\+T\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+T\+O\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{S\+T\+O\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!S\+T\+O\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{S\+T\+O\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daadcba7fed291f072b2f24f13f2fa8602}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daadcba7fed291f072b2f24f13f2fa8602} 
+S\+T\+O\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{P\+A\+U\+S\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{P\+A\+U\+S\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!P\+A\+U\+S\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER@{P\+A\+U\+S\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da92878ac88aaa232d0b30cf4227eb15ac}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da92878ac88aaa232d0b30cf4227eb15ac} 
+P\+A\+U\+S\+E\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+ER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+R\+I\+G\+HT@{C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+R\+I\+G\+HT}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+R\+I\+G\+HT@{C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+R\+I\+G\+HT}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da9ff36f5ac759601008228530d7615586}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da9ff36f5ac759601008228530d7615586} 
+C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+R\+I\+G\+HT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+L\+E\+FT@{C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+L\+E\+FT}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+L\+E\+FT@{C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+L\+E\+FT}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da283ba63ffd2e66ae2fdd48134556e626}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da283ba63ffd2e66ae2fdd48134556e626} 
+C\+H\+A\+N\+G\+E\+\_\+\+F\+I\+X\+E\+D\+\_\+\+L\+I\+N\+K\+\_\+\+L\+E\+FT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{F\+E\+E\+T\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+S\+T\+A\+TE@{F\+E\+E\+T\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+S\+T\+A\+TE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!F\+E\+E\+T\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+S\+T\+A\+TE@{F\+E\+E\+T\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+S\+T\+A\+TE}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da3cb95fac9d37061336f2ad68b959734e}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da3cb95fac9d37061336f2ad68b959734e} 
+F\+E\+E\+T\+\_\+\+C\+O\+N\+T\+A\+C\+T\+\_\+\+S\+T\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+R\+U\+N\+N\+I\+NG@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+R\+U\+N\+N\+I\+NG}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+R\+U\+N\+N\+I\+NG@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+R\+U\+N\+N\+I\+NG}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da1ac2fc6a66f0094ce3c2ef1d9d840b3f}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da1ac2fc6a66f0094ce3c2ef1d9d840b3f} 
+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+R\+U\+N\+N\+I\+NG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+O\+P\+P\+ED@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+O\+P\+P\+ED}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+O\+P\+P\+ED@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+O\+P\+P\+ED}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dadb7526c31cbb5f228bae6d56219eded1}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dadb7526c31cbb5f228bae6d56219eded1} 
+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+S\+T\+O\+P\+P\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+U\+S\+ED@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+U\+S\+ED}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+U\+S\+ED@{C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+U\+S\+ED}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da89715de500e2434d5e5191b3ba9f74f4}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da89715de500e2434d5e5191b3ba9f74f4} 
+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+U\+S\+ED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+D\+D\+\_\+\+T\+A\+S\+KS@{A\+D\+D\+\_\+\+T\+A\+S\+KS}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!A\+D\+D\+\_\+\+T\+A\+S\+KS@{A\+D\+D\+\_\+\+T\+A\+S\+KS}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daf7d019817eb1c8bc312918f900e4b994}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daf7d019817eb1c8bc312918f900e4b994} 
+A\+D\+D\+\_\+\+T\+A\+S\+KS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{A\+D\+D\+\_\+\+T\+A\+S\+K\+S\+\_\+\+F\+R\+O\+M\+\_\+\+F\+I\+LE@{A\+D\+D\+\_\+\+T\+A\+S\+K\+S\+\_\+\+F\+R\+O\+M\+\_\+\+F\+I\+LE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!A\+D\+D\+\_\+\+T\+A\+S\+K\+S\+\_\+\+F\+R\+O\+M\+\_\+\+F\+I\+LE@{A\+D\+D\+\_\+\+T\+A\+S\+K\+S\+\_\+\+F\+R\+O\+M\+\_\+\+F\+I\+LE}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da544eec0ce1480a7555c859a6840cfe10}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da544eec0ce1480a7555c859a6840cfe10} 
+A\+D\+D\+\_\+\+T\+A\+S\+K\+S\+\_\+\+F\+R\+O\+M\+\_\+\+F\+I\+LE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+SK@{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+SK}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+SK@{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+SK}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da070487a88f3baca53e14344e52d213fb}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da070487a88f3baca53e14344e52d213fb} 
+R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+SK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+KS@{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+KS}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+KS@{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+KS}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacb673907ae75312cbc427f1a97c48989}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacb673907ae75312cbc427f1a97c48989} 
+R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+KS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+RT@{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+RT}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+RT@{R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+RT}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacba9981612f0910b8a982133430da96d}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacba9981612f0910b8a982133430da96d} 
+R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+RT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+L\+I\+ST@{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+L\+I\+ST}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+L\+I\+ST@{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+L\+I\+ST}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da46d6f78612c006964e08e9af253ade87}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07da46d6f78612c006964e08e9af253ade87} 
+G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+L\+I\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+L\+I\+ST@{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+L\+I\+ST}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+L\+I\+ST@{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+L\+I\+ST}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daa6b41ce186d21b4593c06becced2e213}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daa6b41ce186d21b4593c06becced2e213} 
+G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+L\+I\+ST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+N\+A\+ME@{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+N\+A\+ME}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+N\+A\+ME@{G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+N\+A\+ME}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacf9d25d6d53d40182f563929ec3b6901}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07dacf9d25d6d53d40182f563929ec3b6901} 
+G\+E\+T\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+R\+T\+\_\+\+N\+A\+ME&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{H\+E\+LP@{H\+E\+LP}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!H\+E\+LP@{H\+E\+LP}}}\hypertarget{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daa4dfc76ea7f679e1569be5a980d30eac}{}\label{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07daa4dfc76ea7f679e1569be5a980d30eac} 
+H\+E\+LP&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 9 of file Message\+Vocabulary.\+h.
+
+\hypertarget{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3}{}\label{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3} 
+\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!S\+O\+L\+V\+E\+R\+\_\+\+T\+Y\+PE@{S\+O\+L\+V\+E\+R\+\_\+\+T\+Y\+PE}}
+\index{S\+O\+L\+V\+E\+R\+\_\+\+T\+Y\+PE@{S\+O\+L\+V\+E\+R\+\_\+\+T\+Y\+PE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}
+\subsubsection{\texorpdfstring{S\+O\+L\+V\+E\+R\+\_\+\+T\+Y\+PE}{SOLVER\_TYPE}}
+{\footnotesize\ttfamily enum \hyperlink{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3}{ocra\+\_\+recipes\+::\+S\+O\+L\+V\+E\+R\+\_\+\+T\+Y\+PE}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Q\+U\+A\+D\+P\+R\+OG@{Q\+U\+A\+D\+P\+R\+OG}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!Q\+U\+A\+D\+P\+R\+OG@{Q\+U\+A\+D\+P\+R\+OG}}}\hypertarget{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3a90d3b2bdfedd1f0be4ffc79a5b3dcdb5}{}\label{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3a90d3b2bdfedd1f0be4ffc79a5b3dcdb5} 
+Q\+U\+A\+D\+P\+R\+OG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Q\+P\+O\+A\+S\+ES@{Q\+P\+O\+A\+S\+ES}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!Q\+P\+O\+A\+S\+ES@{Q\+P\+O\+A\+S\+ES}}}\hypertarget{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3a0790c9318f7541d21504bddf3143cbe1}{}\label{namespaceocra__recipes_afb3bb4de56c2b9472c80d746eb13fed3a0790c9318f7541d21504bddf3143cbe1} 
+Q\+P\+O\+A\+S\+ES&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 38 of file Controller\+Server.\+h.
+
+\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309} 
+\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY@{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY}}
+\index{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY@{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}
+\subsubsection{\texorpdfstring{T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY}{TERMINATION\_STRATEGY}}
+{\footnotesize\ttfamily enum \hyperlink{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309}{ocra\+\_\+recipes\+::\+T\+E\+R\+M\+I\+N\+A\+T\+I\+O\+N\+\_\+\+S\+T\+R\+A\+T\+E\+GY}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH@{B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH@{B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309ac411461a6cfca45e9779a03a9916888e}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309ac411461a6cfca45e9779a03a9916888e} 
+B\+A\+C\+K\+\_\+\+A\+N\+D\+\_\+\+F\+O\+R\+TH&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+V\+E\+R\+SE@{R\+E\+V\+E\+R\+SE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!R\+E\+V\+E\+R\+SE@{R\+E\+V\+E\+R\+SE}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a468959a03833fa918bffd1c79b8ab2d6}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a468959a03833fa918bffd1c79b8ab2d6} 
+R\+E\+V\+E\+R\+SE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+OP@{R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+OP}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+OP@{R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+OP}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309aad0af957c445b2993cea58c80fa519ff}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309aad0af957c445b2993cea58c80fa519ff} 
+R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+OP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+O\+P\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE@{R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+O\+P\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+O\+P\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE@{R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+O\+P\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a39851fd1d704bc5bfaf8cdde6193e675}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a39851fd1d704bc5bfaf8cdde6193e675} 
+R\+E\+V\+E\+R\+S\+E\+\_\+\+S\+T\+O\+P\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD@{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD@{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0dc02a3e20f98a401113c91d7e6d4528} 
+S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+AD&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+A\+IT@{W\+A\+IT}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!W\+A\+IT@{W\+A\+IT}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a9c763ece154b02a26f9f049cf8dc3c6a}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a9c763ece154b02a26f9f049cf8dc3c6a} 
+W\+A\+IT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE@{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE@{S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a15282f27b6f0d750f44ca845d6094726}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a15282f27b6f0d750f44ca845d6094726} 
+S\+T\+O\+P\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE@{W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE@{W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309ad1984f646b9229dbc9322fedb30274e0}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309ad1984f646b9229dbc9322fedb30274e0} 
+W\+A\+I\+T\+\_\+\+D\+E\+A\+C\+T\+I\+V\+A\+TE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+Y\+C\+LE@{C\+Y\+C\+LE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!C\+Y\+C\+LE@{C\+Y\+C\+LE}}}\hypertarget{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0b946779781a3241dfaa365dcde084ca}{}\label{namespaceocra__recipes_afcf7ca623a6c39b246aa4bda629c7309a0b946779781a3241dfaa365dcde084ca} 
+C\+Y\+C\+LE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 55 of file Trajectory\+Thread.\+h.
+
+\hypertarget{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{}\label{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152} 
+\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE@{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}}
+\index{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE@{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}
+\subsubsection{\texorpdfstring{T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}{TRAJECTORY\_TYPE}}
+{\footnotesize\ttfamily enum \hyperlink{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152}{ocra\+\_\+recipes\+::\+T\+R\+A\+J\+E\+C\+T\+O\+R\+Y\+\_\+\+T\+Y\+PE}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{M\+I\+N\+\_\+\+J\+E\+RK@{M\+I\+N\+\_\+\+J\+E\+RK}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!M\+I\+N\+\_\+\+J\+E\+RK@{M\+I\+N\+\_\+\+J\+E\+RK}}}\hypertarget{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7}{}\label{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152ad90eb95c7a6e37072c38d0f83980bff7} 
+M\+I\+N\+\_\+\+J\+E\+RK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{L\+I\+N\+\_\+\+I\+N\+T\+E\+RP@{L\+I\+N\+\_\+\+I\+N\+T\+E\+RP}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!L\+I\+N\+\_\+\+I\+N\+T\+E\+RP@{L\+I\+N\+\_\+\+I\+N\+T\+E\+RP}}}\hypertarget{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152a2879875d826e43011096daa086653776}{}\label{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152a2879875d826e43011096daa086653776} 
+L\+I\+N\+\_\+\+I\+N\+T\+E\+RP&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{G\+A\+U\+S\+S\+I\+A\+N\+\_\+\+P\+R\+O\+C\+E\+SS@{G\+A\+U\+S\+S\+I\+A\+N\+\_\+\+P\+R\+O\+C\+E\+SS}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!G\+A\+U\+S\+S\+I\+A\+N\+\_\+\+P\+R\+O\+C\+E\+SS@{G\+A\+U\+S\+S\+I\+A\+N\+\_\+\+P\+R\+O\+C\+E\+SS}}}\hypertarget{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152afa795ec3e664c6ba7108ce36c45fb350}{}\label{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152afa795ec3e664c6ba7108ce36c45fb350} 
+G\+A\+U\+S\+S\+I\+A\+N\+\_\+\+P\+R\+O\+C\+E\+SS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{T\+I\+M\+E\+\_\+\+O\+P\+T\+I\+M\+AL@{T\+I\+M\+E\+\_\+\+O\+P\+T\+I\+M\+AL}!ocra\+\_\+recipes@{ocra\+\_\+recipes}}\index{ocra\+\_\+recipes@{ocra\+\_\+recipes}!T\+I\+M\+E\+\_\+\+O\+P\+T\+I\+M\+AL@{T\+I\+M\+E\+\_\+\+O\+P\+T\+I\+M\+AL}}}\hypertarget{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152a1e1d06fce68382460f502ade76fdf4a4}{}\label{namespaceocra__recipes_a729e1c8304e390d16219eda5f9756152a1e1d06fce68382460f502ade76fdf4a4} 
+T\+I\+M\+E\+\_\+\+O\+P\+T\+I\+M\+AL&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line 47 of file Trajectory\+Thread.\+h.
+

@@ -12,6 +12,11 @@ var searchData=
   ['usegrav',['useGrav',['../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#a0a9b1d16fc029929004e00dbf358063a',1,'gocra::GHCJTController::Pimpl']]],
   ['usegshc',['useGSHC',['../d7/d99/structgocra_1_1GHCJTTask_1_1Pimpl.html#a0beb46ac94216a28202956bf87fc1d2d',1,'gocra::GHCJTTask::Pimpl']]],
   ['usereducedproblem',['useReducedProblem',['../d6/d35/classocra_1_1CascadeQPSolver.html#a8703a516e8ce6adb088867d8b39dfa4d',1,'ocra::CascadeQPSolver::useReducedProblem()'],['../df/d7f/structocra_1_1Task_1_1Pimpl.html#a3212017ae655edc8559498c773f0285f',1,'ocra::Task::Pimpl::useReducedProblem()']]],
+  ['userwaypointlist',['userWaypointList',['../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#ab0d6ab656c8e4c7abd3bae0343b51562',1,'ocra_recipes::TrajectoryThread']]],
+  ['userwaypoints',['userWaypoints',['../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a54a762b3cdd7330322b39f288deda6a9',1,'ocra_recipes::TrajectoryThread']]],
   ['usesyarp',['usesYarp',['../d9/d2f/classocra_1_1TaskBuilderOptions.html#a6f0d1b177c931644f4d66f04b901d565',1,'ocra::TaskBuilderOptions']]],
-  ['useweightvectorconstructor',['useWeightVectorConstructor',['../d9/d2f/classocra_1_1TaskBuilderOptions.html#a5a5d3c5952de35efb29c60c843edafb6',1,'ocra::TaskBuilderOptions']]]
+  ['usevariancemodulation',['useVarianceModulation',['../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a963041d784e1078db6a3095a0438a129',1,'ocra_recipes::TrajectoryThread']]],
+  ['useweightvectorconstructor',['useWeightVectorConstructor',['../d9/d2f/classocra_1_1TaskBuilderOptions.html#a5a5d3c5952de35efb29c60c843edafb6',1,'ocra::TaskBuilderOptions']]],
+  ['usingcoms',['usingComs',['../d1/dde/classocra__recipes_1_1ControllerServer.html#a7f7559e938ca0e3cfff4833d86ef5b54',1,'ocra_recipes::ControllerServer']]],
+  ['usingodometry',['usingOdometry',['../d1/dde/classocra__recipes_1_1ControllerServer.html#afd126a8b289e29213468fe9e9a800dd2',1,'ocra_recipes::ControllerServer']]]
 ];

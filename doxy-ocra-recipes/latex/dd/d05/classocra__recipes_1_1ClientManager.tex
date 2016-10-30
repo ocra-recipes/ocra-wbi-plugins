@@ -1,0 +1,195 @@
+\hypertarget{classocra__recipes_1_1ClientManager}{}\section{ocra\+\_\+recipes\+:\+:Client\+Manager Class Reference}
+\label{classocra__recipes_1_1ClientManager}\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+
+
+The controller module which launches the controller thread.  
+
+
+
+
+{\ttfamily \#include $<$Client\+Manager.\+h$>$}
+
+Inheritance diagram for ocra\+\_\+recipes\+:\+:Client\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{dd/d05/classocra__recipes_1_1ClientManager}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra__recipes_1_1ClientManager_1_1moduleCallback}{module\+Callback}
+\begin{DoxyCompactList}\small\item\em A callback function which binds the rpc server port opened in the contoller server module to the controller thread\textquotesingle{}s parsing function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1ClientManager_ad5e77797451b303bf063ca6c1ebf8307}{Client\+Manager} (std\+::shared\+\_\+ptr$<$ \hyperlink{classocra__recipes_1_1ControllerClient}{Controller\+Client} $>$ custom\+Client)
+\item 
+\hyperlink{classocra__recipes_1_1ClientManager_af605d4fa9dab04b9874bf307277cd8a3}{$\sim$\+Client\+Manager} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ClientManager_a341d7c03d2c2b645f9b815f02baf323e}{configure} (yarp\+::os\+::\+Resource\+Finder \&rf)
+\item 
+int \hyperlink{classocra__recipes_1_1ClientManager_a443fb4edc4bac1c1e24e32f26a730519}{launch\+Client} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ClientManager_a3724b1ba55a2a0e81774aa674f567e34}{interrupt\+Module} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ClientManager_ace715a5dc663e956edc24d976cc7ad09}{close} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ClientManager_a2fb40c4d2440367c4f66ad5815e6b1f8}{update\+Module} ()
+\item 
+void \hyperlink{classocra__recipes_1_1ClientManager_aa935699ac8fe135a066ce69f7ebc6d0d}{print\+Help} ()
+\item 
+virtual std\+::string \hyperlink{classocra__recipes_1_1ClientManager_a3fd7aa39812c9ffdb32b732c4f854862}{get\+Manager\+Name} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ClientManager_ab81a0bc48b6ac66b97988ef836df3cd6}{custom\+Callback\+Parser} (yarp\+::os\+::\+Bottle \&message, yarp\+::os\+::\+Bottle \&reply)
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ClientManager_a51e6fd902ad96b27c2c976305f7306fd}{custom\+Update\+Module} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The controller module which launches the controller thread. 
+
+Basically all this does is parse the command line arguments and look for the various config and task set files. It then instantiates a W\+BI instance (yarp\+W\+BI specifically) and a Icub\+Controller\+Client instance. It launches these threads and then basically just waits till it gets a kill (ctrl+c) command to close them down. Does a little keeping track of time as well. 
+
+Definition at line 48 of file Client\+Manager.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1ClientManager_ad5e77797451b303bf063ca6c1ebf8307}{}\label{classocra__recipes_1_1ClientManager_ad5e77797451b303bf063ca6c1ebf8307} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!Client\+Manager@{Client\+Manager}}
+\index{Client\+Manager@{Client\+Manager}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{Client\+Manager()}{ClientManager()}}
+{\footnotesize\ttfamily Client\+Manager\+::\+Client\+Manager (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classocra__recipes_1_1ControllerClient}{Controller\+Client} $>$}]{custom\+Client }\end{DoxyParamCaption})}
+
+Constructor which essentially does nothing. 
+
+Definition at line 33 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_af605d4fa9dab04b9874bf307277cd8a3}{}\label{classocra__recipes_1_1ClientManager_af605d4fa9dab04b9874bf307277cd8a3} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!````~Client\+Manager@{$\sim$\+Client\+Manager}}
+\index{````~Client\+Manager@{$\sim$\+Client\+Manager}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{$\sim$\+Client\+Manager()}{~ClientManager()}}
+{\footnotesize\ttfamily Client\+Manager\+::$\sim$\+Client\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Destructor which essentially does nothing. 
+
+Definition at line 42 of file Client\+Manager.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1ClientManager_ace715a5dc663e956edc24d976cc7ad09}{}\label{classocra__recipes_1_1ClientManager_ace715a5dc663e956edc24d976cc7ad09} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!close@{close}}
+\index{close@{close}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily bool Client\+Manager\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Closes the module. First shuts down the threads. 
+
+Definition at line 71 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_a341d7c03d2c2b645f9b815f02baf323e}{}\label{classocra__recipes_1_1ClientManager_a341d7c03d2c2b645f9b815f02baf323e} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!configure@{configure}}
+\index{configure@{configure}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{configure()}{configure()}}
+{\footnotesize\ttfamily bool Client\+Manager\+::configure (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Resource\+Finder \&}]{rf }\end{DoxyParamCaption})}
+
+Configures the module by parsing the RF contents. Passes to client when done. 
+\begin{DoxyParams}{Parameters}
+{\em rf} & A resource finder instance which is initialized from the command line args.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True or false if the configuration was successful. 
+\end{DoxyReturn}
+
+
+Definition at line 52 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_ab81a0bc48b6ac66b97988ef836df3cd6}{}\label{classocra__recipes_1_1ClientManager_ab81a0bc48b6ac66b97988ef836df3cd6} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!custom\+Callback\+Parser@{custom\+Callback\+Parser}}
+\index{custom\+Callback\+Parser@{custom\+Callback\+Parser}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{custom\+Callback\+Parser()}{customCallbackParser()}}
+{\footnotesize\ttfamily void Client\+Manager\+::custom\+Callback\+Parser (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle \&}]{message,  }\item[{yarp\+::os\+::\+Bottle \&}]{reply }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 123 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_a51e6fd902ad96b27c2c976305f7306fd}{}\label{classocra__recipes_1_1ClientManager_a51e6fd902ad96b27c2c976305f7306fd} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!custom\+Update\+Module@{custom\+Update\+Module}}
+\index{custom\+Update\+Module@{custom\+Update\+Module}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{custom\+Update\+Module()}{customUpdateModule()}}
+{\footnotesize\ttfamily bool Client\+Manager\+::custom\+Update\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 127 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_a3fd7aa39812c9ffdb32b732c4f854862}{}\label{classocra__recipes_1_1ClientManager_a3fd7aa39812c9ffdb32b732c4f854862} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!get\+Manager\+Name@{get\+Manager\+Name}}
+\index{get\+Manager\+Name@{get\+Manager\+Name}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{get\+Manager\+Name()}{getManagerName()}}
+{\footnotesize\ttfamily std\+::string Client\+Manager\+::get\+Manager\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Gets the name of the module. Override this function to set a different name. \begin{DoxyReturn}{Returns}
+A string with the module name. 
+\end{DoxyReturn}
+
+
+Definition at line 47 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_a3724b1ba55a2a0e81774aa674f567e34}{}\label{classocra__recipes_1_1ClientManager_a3724b1ba55a2a0e81774aa674f567e34} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!interrupt\+Module@{interrupt\+Module}}
+\index{interrupt\+Module@{interrupt\+Module}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{interrupt\+Module()}{interruptModule()}}
+{\footnotesize\ttfamily bool Client\+Manager\+::interrupt\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Interrupts the module execution and stops the control and wbi threads. 
+
+Definition at line 63 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_a443fb4edc4bac1c1e24e32f26a730519}{}\label{classocra__recipes_1_1ClientManager_a443fb4edc4bac1c1e24e32f26a730519} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!launch\+Client@{launch\+Client}}
+\index{launch\+Client@{launch\+Client}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{launch\+Client()}{launchClient()}}
+{\footnotesize\ttfamily int Client\+Manager\+::launch\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Simply calls client-\/$>$start() then run\+Module() 
+
+Definition at line 57 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_aa935699ac8fe135a066ce69f7ebc6d0d}{}\label{classocra__recipes_1_1ClientManager_aa935699ac8fe135a066ce69f7ebc6d0d} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!print\+Help@{print\+Help}}
+\index{print\+Help@{print\+Help}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{print\+Help()}{printHelp()}}
+{\footnotesize\ttfamily void Client\+Manager\+::print\+Help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prints all the command line args one could use. 
+
+Definition at line 109 of file Client\+Manager.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientManager_a2fb40c4d2440367c4f66ad5815e6b1f8}{}\label{classocra__recipes_1_1ClientManager_a2fb40c4d2440367c4f66ad5815e6b1f8} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}!update\+Module@{update\+Module}}
+\index{update\+Module@{update\+Module}!ocra\+\_\+recipes\+::\+Client\+Manager@{ocra\+\_\+recipes\+::\+Client\+Manager}}
+\subsubsection{\texorpdfstring{update\+Module()}{updateModule()}}
+{\footnotesize\ttfamily bool Client\+Manager\+::update\+Module (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Updates the \hyperlink{classocra__recipes_1_1ClientManager}{Client\+Manager}. Basically just clocks the thread run() method. \begin{DoxyReturn}{Returns}
+Whether or not the clocking functions worked. 
+\end{DoxyReturn}
+
+
+Definition at line 89 of file Client\+Manager.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ClientManager_8h}{Client\+Manager.\+h}\item 
+\hyperlink{ClientManager_8cpp}{Client\+Manager.\+cpp}\end{DoxyCompactItemize}

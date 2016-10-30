@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wocra',['wocra',['../de/dc5/namespacewocra.html',1,'']]]
+  ['quadprogpp',['QuadProgPP',['../d5/dac/namespaceQuadProgPP.html',1,'']]]
 ];

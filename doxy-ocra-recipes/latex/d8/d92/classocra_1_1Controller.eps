@@ -5,7 +5,7 @@
 %%For: 
 %Magnification: 1.00
 %%Orientation: Portrait
-%%BoundingBox: 0 0 500 192.307692
+%%BoundingBox: 0 0 500 128.205128
 %%Pages: 0
 %%BeginSetup
 %%EndSetup
@@ -19,13 +19,13 @@
 /marginwidth 10 def
 /distx 20 def
 /disty 40 def
-/boundaspect 2.600000 def  % aspect ratio of the BoundingBox (width/height)
+/boundaspect 3.900000 def  % aspect ratio of the BoundingBox (width/height)
 /boundx 500 def
 /boundy boundx boundaspect div def
 /xspacing 0 def
 /yspacing 0 def
 /rows 3 def
-/cols 2 def
+/cols 3 def
 /scalefactor 0 def
 /boxfont /Times-Roman findfont fontheight scalefont def
 
@@ -177,6 +177,7 @@ boxfont setfont
 (ocra::NamedInstance) cw
 (noncopyable) cw
 (gocra::GHCJTController) cw
+(hocra::HocraController) cw
 (wocra::WocraController) cw
 /boxwidth boxwidth marginwidth 2 mul add def
 /xspacing boxwidth distx add def
@@ -189,27 +190,30 @@ boundx scalefactor div boundy scalefactor div scale
 
 % ----- classes -----
 
- (ocra::Controller) 0.500000 1.000000 box
- (ocra::NamedInstance) 0.000000 2.000000 box
- (noncopyable) 1.000000 2.000000 box
+ (ocra::Controller) 1.000000 1.000000 box
+ (ocra::NamedInstance) 0.500000 2.000000 box
+ (noncopyable) 1.500000 2.000000 box
  (gocra::GHCJTController) 0.000000 0.000000 box
- (wocra::WocraController) 1.000000 0.000000 box
+ (hocra::HocraController) 1.000000 0.000000 box
+ (wocra::WocraController) 2.000000 0.000000 box
 
 % ----- relations -----
 
 solid
-0 0.500000 1.000000 out
+0 1.000000 1.000000 out
 solid
-0.000000 1.000000 2.000000 conn
+0.500000 1.500000 2.000000 conn
 solid
-1 0.000000 2.000000 in
+1 0.500000 2.000000 in
 dotted
-1 1.000000 2.000000 in
+1 1.500000 2.000000 in
 solid
-1 0.500000 0.250000 out
+1 1.000000 0.250000 out
 solid
-0.000000 1.000000 1.000000 conn
+0.000000 2.000000 1.000000 conn
 solid
 0 0.000000 0.750000 in
 solid
 0 1.000000 0.750000 in
+solid
+0 2.000000 0.750000 in

@@ -1,0 +1,546 @@
+\hypertarget{classocra__recipes_1_1ControlThread}{}\section{ocra\+\_\+recipes\+:\+:Control\+Thread Class Reference}
+\label{classocra__recipes_1_1ControlThread}\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+
+
+{\ttfamily \#include $<$Control\+Thread.\+h$>$}
+
+Inheritance diagram for ocra\+\_\+recipes\+:\+:Control\+Thread\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d5/d2f/classocra__recipes_1_1ControlThread}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra__recipes_1_1ControlThread_1_1inputCallback}{input\+Callback}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1ControlThread_a9cbd7d52df2dc070365a14d8c0c800f3}{Control\+Thread} (int period, const std\+::string \&task\+Rpc\+Port\+Name)
+\item 
+\hyperlink{classocra__recipes_1_1ControlThread_ae1dbbb5ec386b01a88e10ad37f3675bd}{$\sim$\+Control\+Thread} ()
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ControlThread_ad4a51369f70181e22a3ee4980a5abd13}{thread\+Init} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControlThread_a62c6401278b62bd291722d7652ace6af}{thread\+Release} ()
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControlThread_aa86fb4137489b8bd8bd2ac32b737b58f}{run} ()
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ControlThread_a4b2471a82ae344ea4c9e96943604cb94}{ct\+\_\+thread\+Init} ()=0
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControlThread_ade246d31ff5f81978e3920b7fb1b6abb}{ct\+\_\+thread\+Release} ()=0
+\item 
+virtual void \hyperlink{classocra__recipes_1_1ControlThread_a2890887a72bdae6d16af762455eb3d3f}{ct\+\_\+run} ()=0
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ControlThread_ac7552b020cf2009d5ceff8c67e0a2037}{get\+Thread\+Type} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_a994fe44acbacf847cdf5a692c59f347a}{deactivate\+Task} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_a68b22022240de911c5131b642a9eff1a}{activate\+Task} ()
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ControlThread_a7d60403bfe70275c84d556985faac038}{get\+Output\+Port\+Name} ()
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ControlThread_a1082fa50dfacb28ffc37f8daf6417649}{get\+Input\+Port\+Name} ()
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classocra__recipes_1_1ControlThread_abbcc309053e54da8531c77bac2dd1656}{thread\+Id}
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classocra__recipes_1_1ControlThread_af77b19fbb04fcf73374045928d3fef12}{C\+O\+N\+T\+R\+O\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT} = 0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classocra__recipes_1_1ControlThread_a62d882d2bad8a2468cbc080cad101a1f}{set\+Thread\+Type} (const std\+::string \&\+\_\+thread\+Type=\char`\"{}Control\+Thread\char`\"{})
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_af7612ae9f2da601a24df863f4ff6e2a5}{open\+Control\+Ports} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_a12bc9c3976f83aaf281f31d225740bd2}{connect\+Control\+Ports} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_a1e13b4ab213e0f72b65aa17095d001fb}{parse\+Input} (yarp\+::os\+::\+Bottle $\ast$input)
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1ControlThread_abcb1ddc1f244b60899c028bb16b4cc07}{get\+Current\+State} ()
+\item 
+void \hyperlink{classocra__recipes_1_1ControlThread_a53191169bc860dc92314fe65bab83c97}{send\+Get\+State\+Message} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_aa7f0d827de6315ad83948620efc1630e}{get\+Task\+Dimensions} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_a487dd1d0b2c718ef7d8a78e638c6cefd}{get\+Task\+Parameters} (\hyperlink{classocra__recipes_1_1TaskParameters}{Task\+Parameters} \&TP)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ControlThread_aa8c8f3c06e3e2f22a0d46814f067ec79}{control\+Thread\+Type}
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ControlThread_a4979cfd87cd758473a2ec367f47be17f}{input\+Port\+Name}
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ControlThread_a150b524cf8af131ac4d7a497777a2d87}{output\+Port\+Name}
+\item 
+yarp\+::os\+::\+Port \hyperlink{classocra__recipes_1_1ControlThread_a3c6a392da512677af0b6c20f5ed357c1}{input\+Port}
+\item 
+yarp\+::os\+::\+Port \hyperlink{classocra__recipes_1_1ControlThread_acf573eaf6f1d78918b95cabfb110bbaa}{output\+Port}
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ControlThread_abbc082e54db816a3298c3e5ae5d3f9ef}{task\+Rpc\+Server\+Name}
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ControlThread_af9d8abd531163281ac938eeb0ba51979}{thread\+Rpc\+Client\+Name}
+\item 
+yarp\+::os\+::\+Rpc\+Client \hyperlink{classocra__recipes_1_1ControlThread_a7c63f87c66ca64787e6f798a7db28e20}{thread\+Rpc\+Client}
+\item 
+yarp\+::os\+::\+Network \hyperlink{classocra__recipes_1_1ControlThread_ab256274135229afc7017b088424b5b3b}{yarp}
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_ae459f7c503830d9ae1c0015d8613ea87}{is\+First\+Input\+Bottle}
+\item 
+\hyperlink{classocra__recipes_1_1ControlThread_1_1inputCallback}{input\+Callback} $\ast$ \hyperlink{classocra__recipes_1_1ControlThread_af8da6d1e1079de5d0b53dc6bbad75055}{inp\+Callback}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1ControlThread_afa7f90785f2768cc74b5043044d09912}{current\+State\+Vector}
+\item 
+bool \hyperlink{classocra__recipes_1_1ControlThread_aaef2c765c3900ebc72125f7a8fd4240e}{waiting\+For\+First\+State\+Message}
+\item 
+double \hyperlink{classocra__recipes_1_1ControlThread_affbc4af946e3c2eabd2ce1cf30376bf2}{control\+Thread\+Period}
+\item 
+\hyperlink{classocra__recipes_1_1TaskParameters}{Task\+Parameters} \hyperlink{classocra__recipes_1_1ControlThread_a352038d00d429ce8e1ef5defb88005cd}{original\+Task\+Params}
+\item 
+\hyperlink{classocra__recipes_1_1TaskParameters}{Task\+Parameters} \hyperlink{classocra__recipes_1_1ControlThread_ad2f5b157570bbcb6298d667cc264fc26}{current\+Task\+Params}
+\item 
+int \hyperlink{classocra__recipes_1_1ControlThread_a7499733b7dd28f8ff0168e206c5b325b}{weight\+Dimension}
+\item 
+int \hyperlink{classocra__recipes_1_1ControlThread_a1ab9aaa641766b8bf29812925701a52f}{state\+Dimension}
+\item 
+double \hyperlink{classocra__recipes_1_1ControlThread_a31d18ca1b7ac0c1dfd4a285bfd1fb7f7}{close\+Port\+Timeout}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 77 of file Control\+Thread.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1ControlThread_a9cbd7d52df2dc070365a14d8c0c800f3}{}\label{classocra__recipes_1_1ControlThread_a9cbd7d52df2dc070365a14d8c0c800f3} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!Control\+Thread@{Control\+Thread}}
+\index{Control\+Thread@{Control\+Thread}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{Control\+Thread()}{ControlThread()}}
+{\footnotesize\ttfamily Control\+Thread\+::\+Control\+Thread (\begin{DoxyParamCaption}\item[{int}]{period,  }\item[{const std\+::string \&}]{task\+Rpc\+Port\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 35 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_ae1dbbb5ec386b01a88e10ad37f3675bd}{}\label{classocra__recipes_1_1ControlThread_ae1dbbb5ec386b01a88e10ad37f3675bd} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!````~Control\+Thread@{$\sim$\+Control\+Thread}}
+\index{````~Control\+Thread@{$\sim$\+Control\+Thread}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{$\sim$\+Control\+Thread()}{~ControlThread()}}
+{\footnotesize\ttfamily Control\+Thread\+::$\sim$\+Control\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 46 of file Control\+Thread.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1ControlThread_a68b22022240de911c5131b642a9eff1a}{}\label{classocra__recipes_1_1ControlThread_a68b22022240de911c5131b642a9eff1a} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!activate\+Task@{activate\+Task}}
+\index{activate\+Task@{activate\+Task}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{activate\+Task()}{activateTask()}}
+{\footnotesize\ttfamily bool Control\+Thread\+::activate\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 242 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a12bc9c3976f83aaf281f31d225740bd2}{}\label{classocra__recipes_1_1ControlThread_a12bc9c3976f83aaf281f31d225740bd2} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!connect\+Control\+Ports@{connect\+Control\+Ports}}
+\index{connect\+Control\+Ports@{connect\+Control\+Ports}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{connect\+Control\+Ports()}{connectControlPorts()}}
+{\footnotesize\ttfamily bool Control\+Thread\+::connect\+Control\+Ports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 141 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a2890887a72bdae6d16af762455eb3d3f}{}\label{classocra__recipes_1_1ControlThread_a2890887a72bdae6d16af762455eb3d3f} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!ct\+\_\+run@{ct\+\_\+run}}
+\index{ct\+\_\+run@{ct\+\_\+run}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{ct\+\_\+run()}{ct\_run()}}
+{\footnotesize\ttfamily virtual void ocra\+\_\+recipes\+::\+Control\+Thread\+::ct\+\_\+run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\hypertarget{classocra__recipes_1_1ControlThread_a4b2471a82ae344ea4c9e96943604cb94}{}\label{classocra__recipes_1_1ControlThread_a4b2471a82ae344ea4c9e96943604cb94} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!ct\+\_\+thread\+Init@{ct\+\_\+thread\+Init}}
+\index{ct\+\_\+thread\+Init@{ct\+\_\+thread\+Init}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{ct\+\_\+thread\+Init()}{ct\_threadInit()}}
+{\footnotesize\ttfamily virtual bool ocra\+\_\+recipes\+::\+Control\+Thread\+::ct\+\_\+thread\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\hypertarget{classocra__recipes_1_1ControlThread_ade246d31ff5f81978e3920b7fb1b6abb}{}\label{classocra__recipes_1_1ControlThread_ade246d31ff5f81978e3920b7fb1b6abb} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!ct\+\_\+thread\+Release@{ct\+\_\+thread\+Release}}
+\index{ct\+\_\+thread\+Release@{ct\+\_\+thread\+Release}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{ct\+\_\+thread\+Release()}{ct\_threadRelease()}}
+{\footnotesize\ttfamily virtual void ocra\+\_\+recipes\+::\+Control\+Thread\+::ct\+\_\+thread\+Release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+\hypertarget{classocra__recipes_1_1ControlThread_a994fe44acbacf847cdf5a692c59f347a}{}\label{classocra__recipes_1_1ControlThread_a994fe44acbacf847cdf5a692c59f347a} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!deactivate\+Task@{deactivate\+Task}}
+\index{deactivate\+Task@{deactivate\+Task}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{deactivate\+Task()}{deactivateTask()}}
+{\footnotesize\ttfamily bool Control\+Thread\+::deactivate\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 229 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_abcb1ddc1f244b60899c028bb16b4cc07}{}\label{classocra__recipes_1_1ControlThread_abcb1ddc1f244b60899c028bb16b4cc07} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!get\+Current\+State@{get\+Current\+State}}
+\index{get\+Current\+State@{get\+Current\+State}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{get\+Current\+State()}{getCurrentState()}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Control\+Thread\+::get\+Current\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 217 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a1082fa50dfacb28ffc37f8daf6417649}{}\label{classocra__recipes_1_1ControlThread_a1082fa50dfacb28ffc37f8daf6417649} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!get\+Input\+Port\+Name@{get\+Input\+Port\+Name}}
+\index{get\+Input\+Port\+Name@{get\+Input\+Port\+Name}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{get\+Input\+Port\+Name()}{getInputPortName()}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Control\+Thread\+::get\+Input\+Port\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 105 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a7d60403bfe70275c84d556985faac038}{}\label{classocra__recipes_1_1ControlThread_a7d60403bfe70275c84d556985faac038} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!get\+Output\+Port\+Name@{get\+Output\+Port\+Name}}
+\index{get\+Output\+Port\+Name@{get\+Output\+Port\+Name}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{get\+Output\+Port\+Name()}{getOutputPortName()}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Control\+Thread\+::get\+Output\+Port\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 104 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_aa7f0d827de6315ad83948620efc1630e}{}\label{classocra__recipes_1_1ControlThread_aa7f0d827de6315ad83948620efc1630e} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!get\+Task\+Dimensions@{get\+Task\+Dimensions}}
+\index{get\+Task\+Dimensions@{get\+Task\+Dimensions}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{get\+Task\+Dimensions()}{getTaskDimensions()}}
+{\footnotesize\ttfamily bool Control\+Thread\+::get\+Task\+Dimensions (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 255 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a487dd1d0b2c718ef7d8a78e638c6cefd}{}\label{classocra__recipes_1_1ControlThread_a487dd1d0b2c718ef7d8a78e638c6cefd} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!get\+Task\+Parameters@{get\+Task\+Parameters}}
+\index{get\+Task\+Parameters@{get\+Task\+Parameters}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{get\+Task\+Parameters()}{getTaskParameters()}}
+{\footnotesize\ttfamily bool Control\+Thread\+::get\+Task\+Parameters (\begin{DoxyParamCaption}\item[{\hyperlink{classocra__recipes_1_1TaskParameters}{Task\+Parameters} \&}]{TP }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 280 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_ac7552b020cf2009d5ceff8c67e0a2037}{}\label{classocra__recipes_1_1ControlThread_ac7552b020cf2009d5ceff8c67e0a2037} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!get\+Thread\+Type@{get\+Thread\+Type}}
+\index{get\+Thread\+Type@{get\+Thread\+Type}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{get\+Thread\+Type()}{getThreadType()}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Control\+Thread\+::get\+Thread\+Type (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 100 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_af7612ae9f2da601a24df863f4ff6e2a5}{}\label{classocra__recipes_1_1ControlThread_af7612ae9f2da601a24df863f4ff6e2a5} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!open\+Control\+Ports@{open\+Control\+Ports}}
+\index{open\+Control\+Ports@{open\+Control\+Ports}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{open\+Control\+Ports()}{openControlPorts()}}
+{\footnotesize\ttfamily bool Control\+Thread\+::open\+Control\+Ports (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 105 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a1e13b4ab213e0f72b65aa17095d001fb}{}\label{classocra__recipes_1_1ControlThread_a1e13b4ab213e0f72b65aa17095d001fb} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!parse\+Input@{parse\+Input}}
+\index{parse\+Input@{parse\+Input}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{parse\+Input()}{parseInput()}}
+{\footnotesize\ttfamily bool Control\+Thread\+::parse\+Input (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle $\ast$}]{input }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 180 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_aa86fb4137489b8bd8bd2ac32b737b58f}{}\label{classocra__recipes_1_1ControlThread_aa86fb4137489b8bd8bd2ac32b737b58f} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!run@{run}}
+\index{run@{run}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void Control\+Thread\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 97 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a53191169bc860dc92314fe65bab83c97}{}\label{classocra__recipes_1_1ControlThread_a53191169bc860dc92314fe65bab83c97} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!send\+Get\+State\+Message@{send\+Get\+State\+Message}}
+\index{send\+Get\+State\+Message@{send\+Get\+State\+Message}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{send\+Get\+State\+Message()}{sendGetStateMessage()}}
+{\footnotesize\ttfamily void Control\+Thread\+::send\+Get\+State\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 222 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a62d882d2bad8a2468cbc080cad101a1f}{}\label{classocra__recipes_1_1ControlThread_a62d882d2bad8a2468cbc080cad101a1f} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!set\+Thread\+Type@{set\+Thread\+Type}}
+\index{set\+Thread\+Type@{set\+Thread\+Type}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{set\+Thread\+Type()}{setThreadType()}}
+{\footnotesize\ttfamily void ocra\+\_\+recipes\+::\+Control\+Thread\+::set\+Thread\+Type (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+thread\+Type = {\ttfamily \char`\"{}ControlThread\char`\"{}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+
+
+Definition at line 122 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_ad4a51369f70181e22a3ee4980a5abd13}{}\label{classocra__recipes_1_1ControlThread_ad4a51369f70181e22a3ee4980a5abd13} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!thread\+Init@{thread\+Init}}
+\index{thread\+Init@{thread\+Init}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{thread\+Init()}{threadInit()}}
+{\footnotesize\ttfamily bool Control\+Thread\+::thread\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 52 of file Control\+Thread.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a62c6401278b62bd291722d7652ace6af}{}\label{classocra__recipes_1_1ControlThread_a62c6401278b62bd291722d7652ace6af} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!thread\+Release@{thread\+Release}}
+\index{thread\+Release@{thread\+Release}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{thread\+Release()}{threadRelease()}}
+{\footnotesize\ttfamily void Control\+Thread\+::thread\+Release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 69 of file Control\+Thread.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra__recipes_1_1ControlThread_a31d18ca1b7ac0c1dfd4a285bfd1fb7f7}{}\label{classocra__recipes_1_1ControlThread_a31d18ca1b7ac0c1dfd4a285bfd1fb7f7} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!close\+Port\+Timeout@{close\+Port\+Timeout}}
+\index{close\+Port\+Timeout@{close\+Port\+Timeout}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{close\+Port\+Timeout}{closePortTimeout}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Control\+Thread\+::close\+Port\+Timeout\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 161 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_af77b19fbb04fcf73374045928d3fef12}{}\label{classocra__recipes_1_1ControlThread_af77b19fbb04fcf73374045928d3fef12} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!C\+O\+N\+T\+R\+O\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT@{C\+O\+N\+T\+R\+O\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT}}
+\index{C\+O\+N\+T\+R\+O\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT@{C\+O\+N\+T\+R\+O\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{C\+O\+N\+T\+R\+O\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT}{CONTROL\_THREAD\_COUNT}}
+{\footnotesize\ttfamily int Control\+Thread\+::\+C\+O\+N\+T\+R\+O\+L\+\_\+\+T\+H\+R\+E\+A\+D\+\_\+\+C\+O\+U\+NT = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line 87 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_affbc4af946e3c2eabd2ce1cf30376bf2}{}\label{classocra__recipes_1_1ControlThread_affbc4af946e3c2eabd2ce1cf30376bf2} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!control\+Thread\+Period@{control\+Thread\+Period}}
+\index{control\+Thread\+Period@{control\+Thread\+Period}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{control\+Thread\+Period}{controlThreadPeriod}}
+{\footnotesize\ttfamily double ocra\+\_\+recipes\+::\+Control\+Thread\+::control\+Thread\+Period\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 149 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_aa8c8f3c06e3e2f22a0d46814f067ec79}{}\label{classocra__recipes_1_1ControlThread_aa8c8f3c06e3e2f22a0d46814f067ec79} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!control\+Thread\+Type@{control\+Thread\+Type}}
+\index{control\+Thread\+Type@{control\+Thread\+Type}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{control\+Thread\+Type}{controlThreadType}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Control\+Thread\+::control\+Thread\+Type\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 124 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_afa7f90785f2768cc74b5043044d09912}{}\label{classocra__recipes_1_1ControlThread_afa7f90785f2768cc74b5043044d09912} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!current\+State\+Vector@{current\+State\+Vector}}
+\index{current\+State\+Vector@{current\+State\+Vector}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{current\+State\+Vector}{currentStateVector}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+\_\+recipes\+::\+Control\+Thread\+::current\+State\+Vector\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 142 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_ad2f5b157570bbcb6298d667cc264fc26}{}\label{classocra__recipes_1_1ControlThread_ad2f5b157570bbcb6298d667cc264fc26} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!current\+Task\+Params@{current\+Task\+Params}}
+\index{current\+Task\+Params@{current\+Task\+Params}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{current\+Task\+Params}{currentTaskParams}}
+{\footnotesize\ttfamily \hyperlink{classocra__recipes_1_1TaskParameters}{Task\+Parameters} ocra\+\_\+recipes\+::\+Control\+Thread\+::current\+Task\+Params\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 152 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_af8da6d1e1079de5d0b53dc6bbad75055}{}\label{classocra__recipes_1_1ControlThread_af8da6d1e1079de5d0b53dc6bbad75055} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!inp\+Callback@{inp\+Callback}}
+\index{inp\+Callback@{inp\+Callback}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{inp\+Callback}{inpCallback}}
+{\footnotesize\ttfamily \hyperlink{classocra__recipes_1_1ControlThread_1_1inputCallback}{input\+Callback}$\ast$ ocra\+\_\+recipes\+::\+Control\+Thread\+::inp\+Callback\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 141 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a3c6a392da512677af0b6c20f5ed357c1}{}\label{classocra__recipes_1_1ControlThread_a3c6a392da512677af0b6c20f5ed357c1} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!input\+Port@{input\+Port}}
+\index{input\+Port@{input\+Port}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{input\+Port}{inputPort}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Port ocra\+\_\+recipes\+::\+Control\+Thread\+::input\+Port\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 128 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a4979cfd87cd758473a2ec367f47be17f}{}\label{classocra__recipes_1_1ControlThread_a4979cfd87cd758473a2ec367f47be17f} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!input\+Port\+Name@{input\+Port\+Name}}
+\index{input\+Port\+Name@{input\+Port\+Name}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{input\+Port\+Name}{inputPortName}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Control\+Thread\+::input\+Port\+Name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 127 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_ae459f7c503830d9ae1c0015d8613ea87}{}\label{classocra__recipes_1_1ControlThread_ae459f7c503830d9ae1c0015d8613ea87} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!is\+First\+Input\+Bottle@{is\+First\+Input\+Bottle}}
+\index{is\+First\+Input\+Bottle@{is\+First\+Input\+Bottle}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{is\+First\+Input\+Bottle}{isFirstInputBottle}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Control\+Thread\+::is\+First\+Input\+Bottle\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 140 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a352038d00d429ce8e1ef5defb88005cd}{}\label{classocra__recipes_1_1ControlThread_a352038d00d429ce8e1ef5defb88005cd} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!original\+Task\+Params@{original\+Task\+Params}}
+\index{original\+Task\+Params@{original\+Task\+Params}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{original\+Task\+Params}{originalTaskParams}}
+{\footnotesize\ttfamily \hyperlink{classocra__recipes_1_1TaskParameters}{Task\+Parameters} ocra\+\_\+recipes\+::\+Control\+Thread\+::original\+Task\+Params\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 151 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_acf573eaf6f1d78918b95cabfb110bbaa}{}\label{classocra__recipes_1_1ControlThread_acf573eaf6f1d78918b95cabfb110bbaa} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!output\+Port@{output\+Port}}
+\index{output\+Port@{output\+Port}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{output\+Port}{outputPort}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Port ocra\+\_\+recipes\+::\+Control\+Thread\+::output\+Port\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 128 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a150b524cf8af131ac4d7a497777a2d87}{}\label{classocra__recipes_1_1ControlThread_a150b524cf8af131ac4d7a497777a2d87} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!output\+Port\+Name@{output\+Port\+Name}}
+\index{output\+Port\+Name@{output\+Port\+Name}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{output\+Port\+Name}{outputPortName}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Control\+Thread\+::output\+Port\+Name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 127 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a1ab9aaa641766b8bf29812925701a52f}{}\label{classocra__recipes_1_1ControlThread_a1ab9aaa641766b8bf29812925701a52f} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!state\+Dimension@{state\+Dimension}}
+\index{state\+Dimension@{state\+Dimension}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{state\+Dimension}{stateDimension}}
+{\footnotesize\ttfamily int ocra\+\_\+recipes\+::\+Control\+Thread\+::state\+Dimension\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 155 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_abbc082e54db816a3298c3e5ae5d3f9ef}{}\label{classocra__recipes_1_1ControlThread_abbc082e54db816a3298c3e5ae5d3f9ef} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!task\+Rpc\+Server\+Name@{task\+Rpc\+Server\+Name}}
+\index{task\+Rpc\+Server\+Name@{task\+Rpc\+Server\+Name}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{task\+Rpc\+Server\+Name}{taskRpcServerName}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Control\+Thread\+::task\+Rpc\+Server\+Name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 131 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_abbcc309053e54da8531c77bac2dd1656}{}\label{classocra__recipes_1_1ControlThread_abbcc309053e54da8531c77bac2dd1656} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!thread\+Id@{thread\+Id}}
+\index{thread\+Id@{thread\+Id}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{thread\+Id}{threadId}}
+{\footnotesize\ttfamily int ocra\+\_\+recipes\+::\+Control\+Thread\+::thread\+Id}
+
+
+
+Definition at line 86 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a7c63f87c66ca64787e6f798a7db28e20}{}\label{classocra__recipes_1_1ControlThread_a7c63f87c66ca64787e6f798a7db28e20} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!thread\+Rpc\+Client@{thread\+Rpc\+Client}}
+\index{thread\+Rpc\+Client@{thread\+Rpc\+Client}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{thread\+Rpc\+Client}{threadRpcClient}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Rpc\+Client ocra\+\_\+recipes\+::\+Control\+Thread\+::thread\+Rpc\+Client\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 132 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_af9d8abd531163281ac938eeb0ba51979}{}\label{classocra__recipes_1_1ControlThread_af9d8abd531163281ac938eeb0ba51979} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!thread\+Rpc\+Client\+Name@{thread\+Rpc\+Client\+Name}}
+\index{thread\+Rpc\+Client\+Name@{thread\+Rpc\+Client\+Name}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{thread\+Rpc\+Client\+Name}{threadRpcClientName}}
+{\footnotesize\ttfamily std\+::string ocra\+\_\+recipes\+::\+Control\+Thread\+::thread\+Rpc\+Client\+Name\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 131 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_aaef2c765c3900ebc72125f7a8fd4240e}{}\label{classocra__recipes_1_1ControlThread_aaef2c765c3900ebc72125f7a8fd4240e} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!waiting\+For\+First\+State\+Message@{waiting\+For\+First\+State\+Message}}
+\index{waiting\+For\+First\+State\+Message@{waiting\+For\+First\+State\+Message}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{waiting\+For\+First\+State\+Message}{waitingForFirstStateMessage}}
+{\footnotesize\ttfamily bool ocra\+\_\+recipes\+::\+Control\+Thread\+::waiting\+For\+First\+State\+Message\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 146 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_a7499733b7dd28f8ff0168e206c5b325b}{}\label{classocra__recipes_1_1ControlThread_a7499733b7dd28f8ff0168e206c5b325b} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!weight\+Dimension@{weight\+Dimension}}
+\index{weight\+Dimension@{weight\+Dimension}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{weight\+Dimension}{weightDimension}}
+{\footnotesize\ttfamily int ocra\+\_\+recipes\+::\+Control\+Thread\+::weight\+Dimension\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 154 of file Control\+Thread.\+h.
+
+\hypertarget{classocra__recipes_1_1ControlThread_ab256274135229afc7017b088424b5b3b}{}\label{classocra__recipes_1_1ControlThread_ab256274135229afc7017b088424b5b3b} 
+\index{ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}!yarp@{yarp}}
+\index{yarp@{yarp}!ocra\+\_\+recipes\+::\+Control\+Thread@{ocra\+\_\+recipes\+::\+Control\+Thread}}
+\subsubsection{\texorpdfstring{yarp}{yarp}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Network ocra\+\_\+recipes\+::\+Control\+Thread\+::yarp\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 135 of file Control\+Thread.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ControlThread_8h}{Control\+Thread.\+h}\item 
+\hyperlink{ControlThread_8cpp}{Control\+Thread.\+cpp}\end{DoxyCompactItemize}

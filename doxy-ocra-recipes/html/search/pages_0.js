@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['todo_20list',['Todo List',['../dd/da0/todo.html',1,'']]]
+  ['master_20_3a_20_5b_21_5bbuild_20status_5d_28https_3a_2f_2ftravis_2dci_2eorg_2focra_2drecipes_2focra_2drecipes_2esvg_29_5d_28https_3a_2f_2ftravis_2dci_2eorg_2focra_2drecipes_2focra_2drecipes_29_20_20devel_20_3a_20_5b_21_5bbuild_20status_5d_28https_3a_2f_2ftravis_2dci_2eorg_2focra_2drecipes_2focra_2drecipes_2esvg_3fbranch_3ddev_29_5d_28https_3a_2f_2ftravis_2dci_2eorg_2focra_2drecipes_2focra_2drecipes_29',['Master : [![Build Status](https://travis-ci.org/ocra-recipes/ocra-recipes.svg)](https://travis-ci.org/ocra-recipes/ocra-recipes)  Devel : [![Build Status](https://travis-ci.org/ocra-recipes/ocra-recipes.svg?branch=dev)](https://travis-ci.org/ocra-recipes/ocra-recipes)',['../d6/dfb/md__Users_jorhabibeljaik_Code_codyco-superbuild_libraries_ocra-recipes_README.html',1,'']]]
 ];

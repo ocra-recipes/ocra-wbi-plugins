@@ -4,6 +4,8 @@ var searchData=
   ['cascadeqp',['CascadeQP',['../d1/de8/classocra_1_1CascadeQP.html',1,'ocra']]],
   ['cascadeqpsolver',['CascadeQPSolver',['../d6/d35/classocra_1_1CascadeQPSolver.html',1,'ocra']]],
   ['childis',['childIs',['../d0/d77/structocra_1_1Parenthood_1_1childIs.html',1,'ocra::Parenthood']]],
+  ['clientcommunications',['ClientCommunications',['../df/dca/classocra__recipes_1_1ClientCommunications.html',1,'ocra_recipes']]],
+  ['clientmanager',['ClientManager',['../dd/d05/classocra__recipes_1_1ClientManager.html',1,'ocra_recipes']]],
   ['cmlquadraticsolver',['CmlQuadraticSolver',['../d4/d02/classocra_1_1CmlQuadraticSolver.html',1,'ocra']]],
   ['comframe',['CoMFrame',['../d9/d52/classocra_1_1CoMFrame.html',1,'ocra']]],
   ['component',['Component',['../d0/d29/classocra_1_1Component.html',1,'ocra']]],
@@ -23,6 +25,10 @@ var searchData=
   ['controlconstraint',['ControlConstraint',['../d7/d85/classocra_1_1ControlConstraint.html',1,'ocra']]],
   ['controlframe',['ControlFrame',['../db/d33/classocra_1_1ControlFrame.html',1,'ocra']]],
   ['controlinputcallback',['ControlInputCallback',['../de/d1c/classocra_1_1TaskYarpInterface_1_1ControlInputCallback.html',1,'ocra::TaskYarpInterface']]],
+  ['controlinputcallback',['ControlInputCallback',['../d6/df1/classControlInputCallback.html',1,'']]],
   ['controller',['Controller',['../d8/d92/classocra_1_1Controller.html',1,'ocra']]],
+  ['controllerclient',['ControllerClient',['../df/d60/classocra__recipes_1_1ControllerClient.html',1,'ocra_recipes']]],
+  ['controllerserver',['ControllerServer',['../d1/dde/classocra__recipes_1_1ControllerServer.html',1,'ocra_recipes']]],
+  ['controlthread',['ControlThread',['../d5/d2f/classocra__recipes_1_1ControlThread.html',1,'ocra_recipes']]],
   ['coupledinputoutputsize',['CoupledInputOutputSize',['../d5/dc0/classocra_1_1CoupledInputOutputSize.html',1,'ocra']]]
 ];

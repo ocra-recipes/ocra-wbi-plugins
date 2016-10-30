@@ -1,0 +1,155 @@
+\hypertarget{classocra__recipes_1_1RobotState}{}\section{ocra\+\_\+recipes\+:\+:Robot\+State Class Reference}
+\label{classocra__recipes_1_1RobotState}\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+
+
+A portable class for sending robot state information over yarp.  
+
+
+
+
+{\ttfamily \#include $<$Robot\+State.\+h$>$}
+
+Inheritance diagram for ocra\+\_\+recipes\+:\+:Robot\+State\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d5/dd0/classocra__recipes_1_1RobotState}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1RobotState_ad10e75019e308bb0be22aa545eab0c44}{Robot\+State} ()
+\item 
+\hyperlink{classocra__recipes_1_1RobotState_ae6462774d46dadc364bc936f61bde768}{Robot\+State} (const int number\+Of\+DoF)
+\item 
+virtual \hyperlink{classocra__recipes_1_1RobotState_a86cf2dc3aef7d924f89d5b3e5467ea8a}{$\sim$\+Robot\+State} ()
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1RobotState_aa99fa493c3fe185f2018059f35e56164}{write} (yarp\+::os\+::\+Connection\+Writer \&connection)
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1RobotState_a98e0e09ec0829542fab9037f6c8f6301}{read} (yarp\+::os\+::\+Connection\+Reader \&connection)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1RobotState_aa442f30f43e33d4c5f5d007640d8aaa0}{q}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classocra__recipes_1_1RobotState_ac45331562cde3f3f67a9f40d71e47c6a}{qd}
+\item 
+Eigen\+::\+Displacementd \hyperlink{classocra__recipes_1_1RobotState_a296aaf0b3131a7d2c2a82b3b8a4cc583}{H\+\_\+root}
+\item 
+Eigen\+::\+Twistd \hyperlink{classocra__recipes_1_1RobotState_ae71e2d5ff8976c859921e06a4f35bf25}{T\+\_\+root}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A portable class for sending robot state information over yarp. 
+
+blah. 
+
+Definition at line 26 of file Robot\+State.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1RobotState_ad10e75019e308bb0be22aa545eab0c44}{}\label{classocra__recipes_1_1RobotState_ad10e75019e308bb0be22aa545eab0c44} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!Robot\+State@{Robot\+State}}
+\index{Robot\+State@{Robot\+State}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{Robot\+State()}{RobotState()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Robot\+State\+::\+Robot\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file Robot\+State.\+cpp.
+
+\hypertarget{classocra__recipes_1_1RobotState_ae6462774d46dadc364bc936f61bde768}{}\label{classocra__recipes_1_1RobotState_ae6462774d46dadc364bc936f61bde768} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!Robot\+State@{Robot\+State}}
+\index{Robot\+State@{Robot\+State}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{Robot\+State()}{RobotState()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Robot\+State\+::\+Robot\+State (\begin{DoxyParamCaption}\item[{const int}]{number\+Of\+DoF }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file Robot\+State.\+cpp.
+
+\hypertarget{classocra__recipes_1_1RobotState_a86cf2dc3aef7d924f89d5b3e5467ea8a}{}\label{classocra__recipes_1_1RobotState_a86cf2dc3aef7d924f89d5b3e5467ea8a} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!````~Robot\+State@{$\sim$\+Robot\+State}}
+\index{````~Robot\+State@{$\sim$\+Robot\+State}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{$\sim$\+Robot\+State()}{~RobotState()}}
+{\footnotesize\ttfamily Robot\+State\+::$\sim$\+Robot\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 17 of file Robot\+State.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1RobotState_a98e0e09ec0829542fab9037f6c8f6301}{}\label{classocra__recipes_1_1RobotState_a98e0e09ec0829542fab9037f6c8f6301} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!read@{read}}
+\index{read@{read}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily bool Robot\+State\+::read (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Connection\+Reader \&}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 87 of file Robot\+State.\+cpp.
+
+\hypertarget{classocra__recipes_1_1RobotState_aa99fa493c3fe185f2018059f35e56164}{}\label{classocra__recipes_1_1RobotState_aa99fa493c3fe185f2018059f35e56164} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!write@{write}}
+\index{write@{write}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily bool Robot\+State\+::write (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Connection\+Writer \&}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 50 of file Robot\+State.\+cpp.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classocra__recipes_1_1RobotState_a296aaf0b3131a7d2c2a82b3b8a4cc583}{}\label{classocra__recipes_1_1RobotState_a296aaf0b3131a7d2c2a82b3b8a4cc583} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!H\+\_\+root@{H\+\_\+root}}
+\index{H\+\_\+root@{H\+\_\+root}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{H\+\_\+root}{H\_root}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+\_\+recipes\+::\+Robot\+State\+::\+H\+\_\+root}
+
+
+
+Definition at line 43 of file Robot\+State.\+h.
+
+\hypertarget{classocra__recipes_1_1RobotState_aa442f30f43e33d4c5f5d007640d8aaa0}{}\label{classocra__recipes_1_1RobotState_aa442f30f43e33d4c5f5d007640d8aaa0} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!q@{q}}
+\index{q@{q}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{q}{q}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+\_\+recipes\+::\+Robot\+State\+::q}
+
+
+
+Definition at line 41 of file Robot\+State.\+h.
+
+\hypertarget{classocra__recipes_1_1RobotState_ac45331562cde3f3f67a9f40d71e47c6a}{}\label{classocra__recipes_1_1RobotState_ac45331562cde3f3f67a9f40d71e47c6a} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!qd@{qd}}
+\index{qd@{qd}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{qd}{qd}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+\_\+recipes\+::\+Robot\+State\+::qd}
+
+
+
+Definition at line 42 of file Robot\+State.\+h.
+
+\hypertarget{classocra__recipes_1_1RobotState_ae71e2d5ff8976c859921e06a4f35bf25}{}\label{classocra__recipes_1_1RobotState_ae71e2d5ff8976c859921e06a4f35bf25} 
+\index{ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}!T\+\_\+root@{T\+\_\+root}}
+\index{T\+\_\+root@{T\+\_\+root}!ocra\+\_\+recipes\+::\+Robot\+State@{ocra\+\_\+recipes\+::\+Robot\+State}}
+\subsubsection{\texorpdfstring{T\+\_\+root}{T\_root}}
+{\footnotesize\ttfamily Eigen\+::\+Twistd ocra\+\_\+recipes\+::\+Robot\+State\+::\+T\+\_\+root}
+
+
+
+Definition at line 44 of file Robot\+State.\+h.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{RobotState_8h}{Robot\+State.\+h}\item 
+\hyperlink{RobotState_8cpp}{Robot\+State.\+cpp}\end{DoxyCompactItemize}

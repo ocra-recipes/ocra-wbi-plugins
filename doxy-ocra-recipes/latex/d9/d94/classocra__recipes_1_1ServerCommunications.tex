@@ -1,0 +1,118 @@
+\hypertarget{classocra__recipes_1_1ServerCommunications}{}\section{ocra\+\_\+recipes\+:\+:Server\+Communications Class Reference}
+\label{classocra__recipes_1_1ServerCommunications}\index{ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}}
+
+
+{\ttfamily \#include $<$Server\+Communications.\+h$>$}
+
+Inheritance diagram for ocra\+\_\+recipes\+:\+:Server\+Communications\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d9/d94/classocra__recipes_1_1ServerCommunications}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1ServerCommunications_aa2a8a9d66c8ade82af5f27d550423370}{Server\+Communications} ()
+\item 
+\hyperlink{classocra__recipes_1_1ServerCommunications_acfb66941fd506637d019a620628a6c42}{Server\+Communications} (ocra\+::\+Controller\+::\+Ptr ctrl, ocra\+::\+Model\+::\+Ptr mdl)
+\item 
+virtual \hyperlink{classocra__recipes_1_1ServerCommunications_a1a24bf1fe5d2776e0cc9d3910ae226b9}{$\sim$\+Server\+Communications} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ServerCommunications_afef1a369ff040f5c774cd5d9533a817f}{open} ()
+\item 
+void \hyperlink{classocra__recipes_1_1ServerCommunications_a412d7330d0fcb83a51a105d4a261e5db}{close} ()
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ServerCommunications_a3a3430656af5150bb28b2012c3cd7004}{read} (yarp\+::os\+::\+Connection\+Reader \&connection)
+\item 
+void \hyperlink{classocra__recipes_1_1ServerCommunications_a66c219902af82f3edb98652c31093c45}{parse\+Message} (yarp\+::os\+::\+Bottle \&input, yarp\+::os\+::\+Bottle \&reply)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 33 of file Server\+Communications.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1ServerCommunications_aa2a8a9d66c8ade82af5f27d550423370}{}\label{classocra__recipes_1_1ServerCommunications_aa2a8a9d66c8ade82af5f27d550423370} 
+\index{ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}!Server\+Communications@{Server\+Communications}}
+\index{Server\+Communications@{Server\+Communications}!ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}}
+\subsubsection{\texorpdfstring{Server\+Communications()}{ServerCommunications()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Server\+Communications\+::\+Server\+Communications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 6 of file Server\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ServerCommunications_acfb66941fd506637d019a620628a6c42}{}\label{classocra__recipes_1_1ServerCommunications_acfb66941fd506637d019a620628a6c42} 
+\index{ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}!Server\+Communications@{Server\+Communications}}
+\index{Server\+Communications@{Server\+Communications}!ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}}
+\subsubsection{\texorpdfstring{Server\+Communications()}{ServerCommunications()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Server\+Communications\+::\+Server\+Communications (\begin{DoxyParamCaption}\item[{ocra\+::\+Controller\+::\+Ptr}]{ctrl,  }\item[{ocra\+::\+Model\+::\+Ptr}]{mdl }\end{DoxyParamCaption})}
+
+
+
+Definition at line 10 of file Server\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ServerCommunications_a1a24bf1fe5d2776e0cc9d3910ae226b9}{}\label{classocra__recipes_1_1ServerCommunications_a1a24bf1fe5d2776e0cc9d3910ae226b9} 
+\index{ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}!````~Server\+Communications@{$\sim$\+Server\+Communications}}
+\index{````~Server\+Communications@{$\sim$\+Server\+Communications}!ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}}
+\subsubsection{\texorpdfstring{$\sim$\+Server\+Communications()}{~ServerCommunications()}}
+{\footnotesize\ttfamily Server\+Communications\+::$\sim$\+Server\+Communications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 18 of file Server\+Communications.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1ServerCommunications_a412d7330d0fcb83a51a105d4a261e5db}{}\label{classocra__recipes_1_1ServerCommunications_a412d7330d0fcb83a51a105d4a261e5db} 
+\index{ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}!close@{close}}
+\index{close@{close}!ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}}
+\subsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void Server\+Communications\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 31 of file Server\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ServerCommunications_afef1a369ff040f5c774cd5d9533a817f}{}\label{classocra__recipes_1_1ServerCommunications_afef1a369ff040f5c774cd5d9533a817f} 
+\index{ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}!open@{open}}
+\index{open@{open}!ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}}
+\subsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily bool Server\+Communications\+::open (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 23 of file Server\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ServerCommunications_a66c219902af82f3edb98652c31093c45}{}\label{classocra__recipes_1_1ServerCommunications_a66c219902af82f3edb98652c31093c45} 
+\index{ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}!parse\+Message@{parse\+Message}}
+\index{parse\+Message@{parse\+Message}!ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}}
+\subsubsection{\texorpdfstring{parse\+Message()}{parseMessage()}}
+{\footnotesize\ttfamily void Server\+Communications\+::parse\+Message (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle \&}]{input,  }\item[{yarp\+::os\+::\+Bottle \&}]{reply }\end{DoxyParamCaption})}
+
+
+
+Definition at line 55 of file Server\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ServerCommunications_a3a3430656af5150bb28b2012c3cd7004}{}\label{classocra__recipes_1_1ServerCommunications_a3a3430656af5150bb28b2012c3cd7004} 
+\index{ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}!read@{read}}
+\index{read@{read}!ocra\+\_\+recipes\+::\+Server\+Communications@{ocra\+\_\+recipes\+::\+Server\+Communications}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily bool Server\+Communications\+::read (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Connection\+Reader \&}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 37 of file Server\+Communications.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ServerCommunications_8h}{Server\+Communications.\+h}\item 
+\hyperlink{ServerCommunications_8cpp}{Server\+Communications.\+cpp}\end{DoxyCompactItemize}

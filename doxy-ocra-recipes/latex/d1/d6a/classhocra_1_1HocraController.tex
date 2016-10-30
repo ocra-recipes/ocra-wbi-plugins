@@ -1,0 +1,134 @@
+\hypertarget{classhocra_1_1HocraController}{}\section{hocra\+:\+:Hocra\+Controller Class Reference}
+\label{classhocra_1_1HocraController}\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+
+
+Hocra Controller based on L\+QP solver for the ocra framework.  
+
+
+
+
+{\ttfamily \#include $<$Hocra\+Controller.\+h$>$}
+
+Inheritance diagram for hocra\+:\+:Hocra\+Controller\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{d1/d6a/classhocra_1_1HocraController}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classhocra_1_1HocraController_a8f54b0542d7024b2c8c5e47d93c36523}{Hocra\+Controller} (const std\+::string \&ctrl\+Name, Model\+::\+Ptr inner\+Model, One\+Level\+Solver\+::\+Ptr inner\+Solver, bool use\+Reduced\+Problem)
+\item 
+virtual void \hyperlink{classhocra_1_1HocraController_a6292f35dbfe7f2292f018c51d492ace2}{do\+Add\+Contact\+Set} (const \hyperlink{classocra_1_1ContactSet}{Contact\+Set} \&contacts)
+\item 
+virtual void \hyperlink{classhocra_1_1HocraController_a441fa7669cab7fb1c43c8544ea4b7e5f}{do\+Add\+Task} (Task\+::\+Ptr task)
+\item 
+virtual void \hyperlink{classhocra_1_1HocraController_a6308767c1f7c9110f030ea44e05e9862}{do\+Compute\+Output} (Vector\+Xd \&tau)
+\item 
+Task\+::\+Ptr \hyperlink{classhocra_1_1HocraController_af300fdf6fb442e4313a472a127fdebef}{do\+Create\+Contact\+Task} (const std\+::string \&name, ocra\+::\+Point\+Contact\+Feature\+::\+Ptr feature, double mu, double margin) const
+\item 
+Task\+::\+Ptr \hyperlink{classhocra_1_1HocraController_a3e308f54d5b535a67a51d60454ea35b0}{do\+Create\+Task} (const std\+::string \&name, ocra\+::\+Feature\+::\+Ptr feature) const
+\item 
+Task\+::\+Ptr \hyperlink{classhocra_1_1HocraController_a939752a2863f29c7d8be81aed6bac673}{do\+Create\+Task} (const std\+::string \&name, ocra\+::\+Feature\+::\+Ptr feature, ocra\+::\+Feature\+::\+Ptr feature\+Des) const
+\item 
+virtual \hyperlink{classhocra_1_1HocraController_aa87972322a67e8c7d3326e023aae44d0}{$\sim$\+Hocra\+Controller} ()
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Hocra Controller based on L\+QP solver for the ocra framework. 
+
+
+
+Definition at line 35 of file Hocra\+Controller.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classhocra_1_1HocraController_a8f54b0542d7024b2c8c5e47d93c36523}{}\label{classhocra_1_1HocraController_a8f54b0542d7024b2c8c5e47d93c36523} 
+\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}!Hocra\+Controller@{Hocra\+Controller}}
+\index{Hocra\+Controller@{Hocra\+Controller}!hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+\subsubsection{\texorpdfstring{Hocra\+Controller()}{HocraController()}}
+{\footnotesize\ttfamily hocra\+::\+Hocra\+Controller\+::\+Hocra\+Controller (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ctrl\+Name,  }\item[{Model\+::\+Ptr}]{inner\+Model,  }\item[{One\+Level\+Solver\+::\+Ptr}]{inner\+Solver,  }\item[{bool}]{use\+Reduced\+Problem }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file Hocra\+Controller.\+cpp.
+
+\hypertarget{classhocra_1_1HocraController_aa87972322a67e8c7d3326e023aae44d0}{}\label{classhocra_1_1HocraController_aa87972322a67e8c7d3326e023aae44d0} 
+\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}!````~Hocra\+Controller@{$\sim$\+Hocra\+Controller}}
+\index{````~Hocra\+Controller@{$\sim$\+Hocra\+Controller}!hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+\subsubsection{\texorpdfstring{$\sim$\+Hocra\+Controller()}{~HocraController()}}
+{\footnotesize\ttfamily virtual hocra\+::\+Hocra\+Controller\+::$\sim$\+Hocra\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Definition at line 48 of file Hocra\+Controller.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classhocra_1_1HocraController_a6292f35dbfe7f2292f018c51d492ace2}{}\label{classhocra_1_1HocraController_a6292f35dbfe7f2292f018c51d492ace2} 
+\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}!do\+Add\+Contact\+Set@{do\+Add\+Contact\+Set}}
+\index{do\+Add\+Contact\+Set@{do\+Add\+Contact\+Set}!hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+\subsubsection{\texorpdfstring{do\+Add\+Contact\+Set()}{doAddContactSet()}}
+{\footnotesize\ttfamily void hocra\+::\+Hocra\+Controller\+::do\+Add\+Contact\+Set (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1ContactSet}{Contact\+Set} \&}]{contacts }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Implements \hyperlink{classocra_1_1Controller_acb11edc1ceaa89423c1e58f9cb38a9f7}{ocra\+::\+Controller}.
+
+
+
+Definition at line 20 of file Hocra\+Controller.\+cpp.
+
+\hypertarget{classhocra_1_1HocraController_a441fa7669cab7fb1c43c8544ea4b7e5f}{}\label{classhocra_1_1HocraController_a441fa7669cab7fb1c43c8544ea4b7e5f} 
+\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}!do\+Add\+Task@{do\+Add\+Task}}
+\index{do\+Add\+Task@{do\+Add\+Task}!hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+\subsubsection{\texorpdfstring{do\+Add\+Task()}{doAddTask()}}
+{\footnotesize\ttfamily void hocra\+::\+Hocra\+Controller\+::do\+Add\+Task (\begin{DoxyParamCaption}\item[{Task\+::\+Ptr}]{task }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 24 of file Hocra\+Controller.\+cpp.
+
+\hypertarget{classhocra_1_1HocraController_a6308767c1f7c9110f030ea44e05e9862}{}\label{classhocra_1_1HocraController_a6308767c1f7c9110f030ea44e05e9862} 
+\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}!do\+Compute\+Output@{do\+Compute\+Output}}
+\index{do\+Compute\+Output@{do\+Compute\+Output}!hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+\subsubsection{\texorpdfstring{do\+Compute\+Output()}{doComputeOutput()}}
+{\footnotesize\ttfamily void hocra\+::\+Hocra\+Controller\+::do\+Compute\+Output (\begin{DoxyParamCaption}\item[{Vector\+Xd \&}]{tau }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 30 of file Hocra\+Controller.\+cpp.
+
+\hypertarget{classhocra_1_1HocraController_af300fdf6fb442e4313a472a127fdebef}{}\label{classhocra_1_1HocraController_af300fdf6fb442e4313a472a127fdebef} 
+\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}!do\+Create\+Contact\+Task@{do\+Create\+Contact\+Task}}
+\index{do\+Create\+Contact\+Task@{do\+Create\+Contact\+Task}!hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+\subsubsection{\texorpdfstring{do\+Create\+Contact\+Task()}{doCreateContactTask()}}
+{\footnotesize\ttfamily Task\+::\+Ptr hocra\+::\+Hocra\+Controller\+::do\+Create\+Contact\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{ocra\+::\+Point\+Contact\+Feature\+::\+Ptr}]{feature,  }\item[{double}]{mu,  }\item[{double}]{margin }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 48 of file Hocra\+Controller.\+cpp.
+
+\hypertarget{classhocra_1_1HocraController_a3e308f54d5b535a67a51d60454ea35b0}{}\label{classhocra_1_1HocraController_a3e308f54d5b535a67a51d60454ea35b0} 
+\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}!do\+Create\+Task@{do\+Create\+Task}}
+\index{do\+Create\+Task@{do\+Create\+Task}!hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+\subsubsection{\texorpdfstring{do\+Create\+Task()}{doCreateTask()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Task\+::\+Ptr hocra\+::\+Hocra\+Controller\+::do\+Create\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{ocra\+::\+Feature\+::\+Ptr}]{feature }\end{DoxyParamCaption}) const}
+
+\hypertarget{classhocra_1_1HocraController_a939752a2863f29c7d8be81aed6bac673}{}\label{classhocra_1_1HocraController_a939752a2863f29c7d8be81aed6bac673} 
+\index{hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}!do\+Create\+Task@{do\+Create\+Task}}
+\index{do\+Create\+Task@{do\+Create\+Task}!hocra\+::\+Hocra\+Controller@{hocra\+::\+Hocra\+Controller}}
+\subsubsection{\texorpdfstring{do\+Create\+Task()}{doCreateTask()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Task\+::\+Ptr hocra\+::\+Hocra\+Controller\+::do\+Create\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{ocra\+::\+Feature\+::\+Ptr}]{feature,  }\item[{ocra\+::\+Feature\+::\+Ptr}]{feature\+Des }\end{DoxyParamCaption}) const}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{HocraController_8h}{Hocra\+Controller.\+h}\item 
+\hyperlink{HocraController_8cpp}{Hocra\+Controller.\+cpp}\end{DoxyCompactItemize}

@@ -1,0 +1,303 @@
+\hypertarget{classocra__recipes_1_1ClientCommunications}{}\section{ocra\+\_\+recipes\+:\+:Client\+Communications Class Reference}
+\label{classocra__recipes_1_1ClientCommunications}\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+
+
+{\ttfamily \#include $<$Client\+Communications.\+h$>$}
+
+Inheritance diagram for ocra\+\_\+recipes\+:\+:Client\+Communications\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{df/dca/classocra__recipes_1_1ClientCommunications}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classocra__recipes_1_1ClientCommunications_1_1InputCallback}{Input\+Callback}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1ClientCommunications_a459f2b8ffc37223b303ac0596cccdfd4}{Client\+Communications} ()
+\item 
+virtual \hyperlink{classocra__recipes_1_1ClientCommunications_a20df5cf496f895e9235ad38730962360}{$\sim$\+Client\+Communications} ()
+\item 
+bool \hyperlink{classocra__recipes_1_1ClientCommunications_a5ef6606831f855ae97815f4a34e1e1a1}{open} (double timeout=20.\+0, bool connect\+To\+Tasks=true)
+\item 
+bool \hyperlink{classocra__recipes_1_1ClientCommunications_a1ac6b0ebabc5fabdb2bf006ddc48c606}{close} ()
+\item 
+void \hyperlink{classocra__recipes_1_1ClientCommunications_ac96c7e76603600459e94b8fa1a0b213e}{close} (const std\+::string \&task\+Name)
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ClientCommunications_afbca8bd430e14a0b9a8254a29b78d202}{read} (yarp\+::os\+::\+Connection\+Reader \&connection)
+\item 
+void \hyperlink{classocra__recipes_1_1ClientCommunications_a452774799b5d8448a8ffd3ab5d24aa22}{parse\+Message} (yarp\+::os\+::\+Bottle \&input)
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classocra__recipes_1_1ClientCommunications_a0a7b2eeaa35d925e63ba4568be1e4919}{get\+Task\+Types} ()
+\item 
+yarp\+::os\+::\+Bottle \hyperlink{classocra__recipes_1_1ClientCommunications_a555bf79c855b3c08402a5ba4d6f9410c}{query\+Controller} (yarp\+::os\+::\+Bottle \&request\+Bottle)
+\item 
+yarp\+::os\+::\+Bottle \hyperlink{classocra__recipes_1_1ClientCommunications_acd90f49ce7b275b83a73a75b9b355109}{query\+Controller} (const \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE} request)
+\item 
+yarp\+::os\+::\+Bottle \hyperlink{classocra__recipes_1_1ClientCommunications_a12e293ab0cd846cf44f20a1fc61f82dc}{query\+Controller} (const std\+::vector$<$ \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE} $>$ request\+Vector)
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classocra__recipes_1_1ClientCommunications_abff3747f063489056f41c99edb7e1e3b}{get\+Task\+Port\+Names} ()
+\item 
+std\+::string \hyperlink{classocra__recipes_1_1ClientCommunications_ab915047503c4cbddbd26c2036f8340ed}{get\+Task\+Port\+Name} (const std\+::string \&task\+Name)
+\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{classocra__recipes_1_1ClientCommunications_a821a74e8c4b20e1d3da18e1cf6b7e31d}{get\+Task\+Names} ()
+\item 
+std\+::shared\+\_\+ptr$<$ yarp\+::os\+::\+Rpc\+Client $>$ \hyperlink{classocra__recipes_1_1ClientCommunications_ad94eda2ba62336ea95b83622d0837543}{get\+Task\+Client} (const std\+::string \&task\+Name)
+\item 
+bool \hyperlink{classocra__recipes_1_1ClientCommunications_ae1d3d48e76010741a8d6f3622191156c}{parse\+Input} (yarp\+::os\+::\+Bottle \&input)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+Definition at line 30 of file Client\+Communications.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1ClientCommunications_a459f2b8ffc37223b303ac0596cccdfd4}{}\label{classocra__recipes_1_1ClientCommunications_a459f2b8ffc37223b303ac0596cccdfd4} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!Client\+Communications@{Client\+Communications}}
+\index{Client\+Communications@{Client\+Communications}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{Client\+Communications()}{ClientCommunications()}}
+{\footnotesize\ttfamily Client\+Communications\+::\+Client\+Communications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 9 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_a20df5cf496f895e9235ad38730962360}{}\label{classocra__recipes_1_1ClientCommunications_a20df5cf496f895e9235ad38730962360} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!````~Client\+Communications@{$\sim$\+Client\+Communications}}
+\index{````~Client\+Communications@{$\sim$\+Client\+Communications}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{$\sim$\+Client\+Communications()}{~ClientCommunications()}}
+{\footnotesize\ttfamily Client\+Communications\+::$\sim$\+Client\+Communications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Definition at line 23 of file Client\+Communications.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1ClientCommunications_a1ac6b0ebabc5fabdb2bf006ddc48c606}{}\label{classocra__recipes_1_1ClientCommunications_a1ac6b0ebabc5fabdb2bf006ddc48c606} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!close@{close}}
+\index{close@{close}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{close()}{close()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Client\+Communications\+::close (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Closes the R\+PC and input ports opened by this client.
+
+\begin{DoxyReturn}{Returns}
+True after all ports are closed. 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_ac96c7e76603600459e94b8fa1a0b213e}{}\label{classocra__recipes_1_1ClientCommunications_ac96c7e76603600459e94b8fa1a0b213e} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!close@{close}}
+\index{close@{close}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{close()}{close()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Client\+Communications\+::close (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{task\+Name }\end{DoxyParamCaption})}
+
+Closes the task-\/specific R\+PC ports and deletes this task from the list of current clients.
+
+
+\begin{DoxyParams}{Parameters}
+{\em task\+Name} & Name of the task. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 82 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_ad94eda2ba62336ea95b83622d0837543}{}\label{classocra__recipes_1_1ClientCommunications_ad94eda2ba62336ea95b83622d0837543} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!get\+Task\+Client@{get\+Task\+Client}}
+\index{get\+Task\+Client@{get\+Task\+Client}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{get\+Task\+Client()}{getTaskClient()}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ yarp\+::os\+::\+Rpc\+Client $>$ Client\+Communications\+::get\+Task\+Client (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{task\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 178 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_a821a74e8c4b20e1d3da18e1cf6b7e31d}{}\label{classocra__recipes_1_1ClientCommunications_a821a74e8c4b20e1d3da18e1cf6b7e31d} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!get\+Task\+Names@{get\+Task\+Names}}
+\index{get\+Task\+Names@{get\+Task\+Names}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{get\+Task\+Names()}{getTaskNames()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Client\+Communications\+::get\+Task\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 165 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_ab915047503c4cbddbd26c2036f8340ed}{}\label{classocra__recipes_1_1ClientCommunications_ab915047503c4cbddbd26c2036f8340ed} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!get\+Task\+Port\+Name@{get\+Task\+Port\+Name}}
+\index{get\+Task\+Port\+Name@{get\+Task\+Port\+Name}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{get\+Task\+Port\+Name()}{getTaskPortName()}}
+{\footnotesize\ttfamily std\+::string Client\+Communications\+::get\+Task\+Port\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{task\+Name }\end{DoxyParamCaption})}
+
+
+
+Definition at line 151 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_abff3747f063489056f41c99edb7e1e3b}{}\label{classocra__recipes_1_1ClientCommunications_abff3747f063489056f41c99edb7e1e3b} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!get\+Task\+Port\+Names@{get\+Task\+Port\+Names}}
+\index{get\+Task\+Port\+Names@{get\+Task\+Port\+Names}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{get\+Task\+Port\+Names()}{getTaskPortNames()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Client\+Communications\+::get\+Task\+Port\+Names (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Definition at line 138 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_a0a7b2eeaa35d925e63ba4568be1e4919}{}\label{classocra__recipes_1_1ClientCommunications_a0a7b2eeaa35d925e63ba4568be1e4919} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!get\+Task\+Types@{get\+Task\+Types}}
+\index{get\+Task\+Types@{get\+Task\+Types}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{get\+Task\+Types()}{getTaskTypes()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Client\+Communications\+::get\+Task\+Types (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Queries the server for the task types as strings.
+
+\begin{DoxyReturn}{Returns}
+A vector of strings containint the task types sent by the server. 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_a5ef6606831f855ae97815f4a34e1e1a1}{}\label{classocra__recipes_1_1ClientCommunications_a5ef6606831f855ae97815f4a34e1e1a1} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!open@{open}}
+\index{open@{open}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily bool Client\+Communications\+::open (\begin{DoxyParamCaption}\item[{double}]{timeout = {\ttfamily 20.0},  }\item[{bool}]{connect\+To\+Tasks = {\ttfamily true} }\end{DoxyParamCaption})}
+
+Opens an R\+PC port for the client with the format /\+Controller\+Client/$<$client-\/number$>$/rpc\+:o and an input one with the format /\+Controller\+Client/$<$client-\/number$>$/\+:i 
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em connect\+To\+Tasks} & True to automatically connect to task R\+PC ports. True by default. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True when the conection to tasks is successful. 
+\end{DoxyReturn}
+
+
+Definition at line 29 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_ae1d3d48e76010741a8d6f3622191156c}{}\label{classocra__recipes_1_1ClientCommunications_ae1d3d48e76010741a8d6f3622191156c} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!parse\+Input@{parse\+Input}}
+\index{parse\+Input@{parse\+Input}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{parse\+Input()}{parseInput()}}
+{\footnotesize\ttfamily bool Client\+Communications\+::parse\+Input (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle \&}]{input }\end{DoxyParamCaption})}
+
+
+
+Definition at line 285 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_a452774799b5d8448a8ffd3ab5d24aa22}{}\label{classocra__recipes_1_1ClientCommunications_a452774799b5d8448a8ffd3ab5d24aa22} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!parse\+Message@{parse\+Message}}
+\index{parse\+Message@{parse\+Message}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{parse\+Message()}{parseMessage()}}
+{\footnotesize\ttfamily void Client\+Communications\+::parse\+Message (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle \&}]{input }\end{DoxyParamCaption})}
+
+The method that does the real parsing. The expected messages from the server are\+: R\+E\+M\+O\+V\+E\+\_\+\+T\+A\+S\+K\+\_\+\+P\+O\+RT or H\+E\+LP.
+
+
+\begin{DoxyParams}{Parameters}
+{\em input} & A bottle containing the message sent by the server. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 237 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_a555bf79c855b3c08402a5ba4d6f9410c}{}\label{classocra__recipes_1_1ClientCommunications_a555bf79c855b3c08402a5ba4d6f9410c} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!query\+Controller@{query\+Controller}}
+\index{query\+Controller@{query\+Controller}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{query\+Controller()}{queryController()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Bottle Client\+Communications\+::query\+Controller (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle \&}]{request\+Bottle }\end{DoxyParamCaption})}
+
+Takes a bottled query from the client and sends it to the server via R\+PC.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request\+Bottle} & Bottled query to be sent to the server.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A bottled reply from the server. 
+\end{DoxyReturn}
+
+
+Definition at line 189 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_acd90f49ce7b275b83a73a75b9b355109}{}\label{classocra__recipes_1_1ClientCommunications_acd90f49ce7b275b83a73a75b9b355109} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!query\+Controller@{query\+Controller}}
+\index{query\+Controller@{query\+Controller}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{query\+Controller()}{queryController()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Bottle Client\+Communications\+::query\+Controller (\begin{DoxyParamCaption}\item[{const \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE}}]{request }\end{DoxyParamCaption})}
+
+Sends a request to the server among one of the predefined messages in \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{ocra\+\_\+recipes\+::\+S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & These could be General indicators, controller requests, controller status indicators or task requests. See \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{ocra\+\_\+recipes\+::\+S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE} for more options.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The reply of the server. 
+\end{DoxyReturn}
+
+
+Definition at line 196 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_a12e293ab0cd846cf44f20a1fc61f82dc}{}\label{classocra__recipes_1_1ClientCommunications_a12e293ab0cd846cf44f20a1fc61f82dc} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!query\+Controller@{query\+Controller}}
+\index{query\+Controller@{query\+Controller}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{query\+Controller()}{queryController()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Bottle Client\+Communications\+::query\+Controller (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE} $>$}]{request\+Vector }\end{DoxyParamCaption})}
+
+Allows to send a series of messages from \hyperlink{namespaceocra__recipes_ae6246916f1927f7a201cc153ad76b07d}{ocra\+\_\+recipes\+::\+S\+E\+R\+V\+E\+R\+\_\+\+C\+O\+M\+M\+U\+N\+I\+C\+A\+T\+I\+O\+N\+S\+\_\+\+M\+E\+S\+S\+A\+GE}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request\+Vector} & Vector of communication messages to be sent to the server.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Bottled server reply. 
+\end{DoxyReturn}
+
+
+Definition at line 204 of file Client\+Communications.\+cpp.
+
+\hypertarget{classocra__recipes_1_1ClientCommunications_afbca8bd430e14a0b9a8254a29b78d202}{}\label{classocra__recipes_1_1ClientCommunications_afbca8bd430e14a0b9a8254a29b78d202} 
+\index{ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}!read@{read}}
+\index{read@{read}!ocra\+\_\+recipes\+::\+Client\+Communications@{ocra\+\_\+recipes\+::\+Client\+Communications}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily bool Client\+Communications\+::read (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Connection\+Reader \&}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Reads and parses (\hyperlink{classocra__recipes_1_1ClientCommunications_a452774799b5d8448a8ffd3ab5d24aa22}{parse\+Message()}) a message sent by the server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection} & Source of the message.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the message is parsed succesfully, false otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 91 of file Client\+Communications.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ClientCommunications_8h}{Client\+Communications.\+h}\item 
+\hyperlink{ClientCommunications_8cpp}{Client\+Communications.\+cpp}\end{DoxyCompactItemize}

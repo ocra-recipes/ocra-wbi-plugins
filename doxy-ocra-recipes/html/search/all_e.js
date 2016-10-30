@@ -1,7 +1,7 @@
 var searchData=
 [
   ['n',['n',['../d2/d44/structocra_1_1EqualitiesConstraints.html#a03425f2d5d16dbb6a0c7da036a2fee77',1,'ocra::EqualitiesConstraints::n()'],['../da/d26/structModel3T_1_1Pimpl.html#a964360277690839fc358bb663a2cd949',1,'Model3T::Pimpl::n()'],['../d6/dd3/classocra_1_1Solver.html#a63e73904de66df69372ed91c6b9d058b',1,'ocra::Solver::n()']]],
-  ['name',['name',['../d5/d16/classgocra_1_1gOcraTaskManagerBase.html#adfda0d31ecfa9afea1380f076a472f37',1,'gocra::gOcraTaskManagerBase::name()'],['../d7/d99/structgocra_1_1GHCJTTask_1_1Pimpl.html#a62bf1c09164be6cf8a48360bd6e53d64',1,'gocra::GHCJTTask::Pimpl::name()']]],
+  ['name',['name',['../d5/d16/classgocra_1_1gOcraTaskManagerBase.html#adfda0d31ecfa9afea1380f076a472f37',1,'gocra::gOcraTaskManagerBase::name()'],['../d7/d99/structgocra_1_1GHCJTTask_1_1Pimpl.html#a62bf1c09164be6cf8a48360bd6e53d64',1,'gocra::GHCJTTask::Pimpl::name()'],['../d7/d59/classocra__recipes_1_1TaskParameters.html#a8d9b23fed4d4207bed2b48625acb8910',1,'ocra_recipes::TaskParameters::name()']]],
   ['namedesired',['nameDesired',['../d9/d2f/classocra_1_1TaskBuilderOptions.html#a1e2cceed21f5b42fbfba16f02ee87bc7',1,'ocra::TaskBuilderOptions']]],
   ['namedinstance',['NamedInstance',['../db/de3/classocra_1_1NamedInstance.html',1,'ocra']]],
   ['namedinstance',['NamedInstance',['../db/de3/classocra_1_1NamedInstance.html#a561d3cf2c7b1120ff3160c55ec89afbb',1,'ocra::NamedInstance']]],

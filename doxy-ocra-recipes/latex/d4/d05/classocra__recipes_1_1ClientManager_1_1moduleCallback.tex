@@ -1,0 +1,76 @@
+\hypertarget{classocra__recipes_1_1ClientManager_1_1moduleCallback}{}\section{ocra\+\_\+recipes\+:\+:Client\+Manager\+:\+:module\+Callback Class Reference}
+\label{classocra__recipes_1_1ClientManager_1_1moduleCallback}\index{ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback@{ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback}}
+
+
+A callback function which binds the rpc server port opened in the contoller server module to the controller thread\textquotesingle{}s parsing function.  
+
+
+
+
+{\ttfamily \#include $<$Client\+Manager.\+h$>$}
+
+Inheritance diagram for ocra\+\_\+recipes\+:\+:Client\+Manager\+:\+:module\+Callback\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d4/d05/classocra__recipes_1_1ClientManager_1_1moduleCallback}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classocra__recipes_1_1ClientManager_1_1moduleCallback_a9c5241da8148f501d1947053fe06ebdb}{module\+Callback} (\hyperlink{classocra__recipes_1_1ClientManager}{Client\+Manager} \&new\+Module\+Ref)
+\item 
+virtual bool \hyperlink{classocra__recipes_1_1ClientManager_1_1moduleCallback_a728d0037e1552bf3ca6152d6b638f30c}{read} (yarp\+::os\+::\+Connection\+Reader \&connection)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A callback function which binds the rpc server port opened in the contoller server module to the controller thread\textquotesingle{}s parsing function. 
+
+Definition at line 98 of file Client\+Manager.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classocra__recipes_1_1ClientManager_1_1moduleCallback_a9c5241da8148f501d1947053fe06ebdb}{}\label{classocra__recipes_1_1ClientManager_1_1moduleCallback_a9c5241da8148f501d1947053fe06ebdb} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback@{ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback}!module\+Callback@{module\+Callback}}
+\index{module\+Callback@{module\+Callback}!ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback@{ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback}}
+\subsubsection{\texorpdfstring{module\+Callback()}{moduleCallback()}}
+{\footnotesize\ttfamily Client\+Manager\+::module\+Callback\+::module\+Callback (\begin{DoxyParamCaption}\item[{\hyperlink{classocra__recipes_1_1ClientManager}{Client\+Manager} \&}]{new\+Module\+Ref }\end{DoxyParamCaption})}
+
+Constructor 
+\begin{DoxyParams}{Parameters}
+{\em new\+Module\+Ref} & A shared pointer to the control thread. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 137 of file Client\+Manager.\+cpp.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classocra__recipes_1_1ClientManager_1_1moduleCallback_a728d0037e1552bf3ca6152d6b638f30c}{}\label{classocra__recipes_1_1ClientManager_1_1moduleCallback_a728d0037e1552bf3ca6152d6b638f30c} 
+\index{ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback@{ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback}!read@{read}}
+\index{read@{read}!ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback@{ocra\+\_\+recipes\+::\+Client\+Manager\+::module\+Callback}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily bool Client\+Manager\+::module\+Callback\+::read (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Connection\+Reader \&}]{connection }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+read 
+\begin{DoxyParams}{Parameters}
+{\em connection} & Reads a port connection.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean which tells whether or not a message was read. 
+\end{DoxyReturn}
+
+
+Definition at line 143 of file Client\+Manager.\+cpp.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{ClientManager_8h}{Client\+Manager.\+h}\item 
+\hyperlink{ClientManager_8cpp}{Client\+Manager.\+cpp}\end{DoxyCompactItemize}

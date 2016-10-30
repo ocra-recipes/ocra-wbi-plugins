@@ -1,19 +1,4 @@
 var searchData=
 [
-  ['eboundtype',['eBoundType',['../dc/d14/namespaceocra.html#ab3efdc117d9e5bcb0192640f5e7dc79b',1,'ocra']]],
-  ['ecartesiandof',['ECartesianDof',['../dc/d14/namespaceocra.html#a436781c7059a0f76027df1c652126260',1,'ocra']]],
-  ['ecmlqpsolvertype',['eCmlQPSolverType',['../d4/d02/classocra_1_1CmlQuadraticSolver.html#a6d54dc2e4dac085099b002c88cb6d3df',1,'ocra::CmlQuadraticSolver']]],
-  ['econstraintoutput',['eConstraintOutput',['../dc/d14/namespaceocra.html#abc43c1cc74267805f1cc799c4ac27051',1,'ocra']]],
-  ['econstrainttype',['eConstraintType',['../dc/d14/namespaceocra.html#aedff92662043a7f15dc263363db7939b',1,'ocra']]],
-  ['econvertcase',['eConvertCase',['../d1/d0d/namespaceocra_1_1utils_1_1details.html#a617d399055aa54cfdf2d3199ca91c399',1,'ocra::utils::details']]],
-  ['efsqpalgo',['eFsqpAlgo',['../dc/d6e/classocra_1_1FSQPSolver.html#ad43d4e2dae6954df05123077cea0b7f5',1,'ocra::FSQPSolver']]],
-  ['efsqpevaluationdomainpolicy',['eFsqpEvaluationDomainPolicy',['../dc/d6e/classocra_1_1FSQPSolver.html#a0569ab06022ffef1bd6d97599a5e4279',1,'ocra::FSQPSolver']]],
-  ['efsqpprintoption',['eFsqpPrintOption',['../dc/d6e/classocra_1_1FSQPSolver.html#a4bb0d1e3b6b82bd9f683c6c7393f062d',1,'ocra::FSQPSolver']]],
-  ['efsqpproblemtype',['eFsqpProblemType',['../dc/d6e/classocra_1_1FSQPSolver.html#a1a9c37974603d734acab0d75bc9462ac',1,'ocra::FSQPSolver']]],
-  ['efunctionability',['eFunctionAbility',['../dc/d14/namespaceocra.html#a40ddbec106a6034cd2047bba9945b568',1,'ocra']]],
-  ['efunctioncontinuity',['eFunctionContinuity',['../dc/d14/namespaceocra.html#ae5102ad1959d0c0dbf2eaa5610bbf728',1,'ocra']]],
-  ['efunctionconvexity',['eFunctionConvexity',['../dc/d14/namespaceocra.html#ae6e8dca6121e9618486a449754876119',1,'ocra']]],
-  ['efunctionlinearity',['eFunctionLinearity',['../dc/d14/namespaceocra.html#a87b525b5508b0f6e9d931f14c7c226ab',1,'ocra']]],
-  ['ereturninfo',['eReturnInfo',['../dc/d14/namespaceocra.html#aa1d873ac30cb0a0f79ba978745de294b',1,'ocra']]],
-  ['errorflag',['ErrorFlag',['../d8/d92/classocra_1_1Controller.html#abeaf3673abe2da79493638dcc49fcf6e',1,'ocra::Controller']]]
+  ['controller_5ftype',['CONTROLLER_TYPE',['../d5/d53/namespaceocra__recipes.html#ae561cff4ea9a191b8b1ebb4e69a1a4ba',1,'ocra_recipes']]]
 ];
