@@ -4,13 +4,13 @@
 		"image": "logo200.png",
 		"url-documentation": "/doxy-ocra-recipes/html/index.html",
 		"url-source-code": "https://github.com/ocra-recipes/ocra-recipes",
-		"date": "May 2016"
+		"date": "Oct 2016"
 	},
 	{
 		"name": "ocra-wbi-plugins source",
 		"image": "icub-gazebo.png",
 		"url-documentation": "/doxy-ocra-wbi-plugins/html/index.html",
 		"url-source-code": "https://github.com/ocra-recipes/ocra-wbi-plugins",
-		"date": "May 2016"
+		"date": "Oct 2016"
 	}
 ]
