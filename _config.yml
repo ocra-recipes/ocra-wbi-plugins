@@ -11,9 +11,10 @@ urls:
       url: /
       icon: fa-home
       layout: post
-    - text: About
-      url: /about/
-      icon: fa-comments
+    - text: Source
+      url: /doxygen/
+      layout: doxygen
+      icon: fa-github
     - text: Clients
       url: /clients/
       icon: fa-users
@@ -23,10 +24,9 @@ urls:
     - text: Authors
       url: '/authors/'
       icon: fa-graduation-cap
-    - text: Source
-      url: /doxygen/
-      layout: doxygen
-      icon: fa-github
+    - text: About
+      url: /about/
+      icon: fa-comments
     # - text: XML Feed
     #   url: /feed.xml
     #   icon: fa-feed

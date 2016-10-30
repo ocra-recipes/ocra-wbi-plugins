@@ -1,6 +1,6 @@
 ---
 layout: doxygen
-title: Doxygen
+title: Source Code & Documentation
 permalink: /doxygen/
 ---
 
