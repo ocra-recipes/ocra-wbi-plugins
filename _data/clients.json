@@ -3,6 +3,7 @@
 		"name": "example-client",
 		"image": "placeholder.jpg",
 		"url": "/example-client/",
+		"url-source-code": "https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/ocra-icub-clients/example-client",
 		"date": "May 2016",
 		"Author": "Ryan Lober",
 		"tags": ["Basic"]
@@ -11,6 +12,7 @@
 		"name": "stepping-demo",
 		"image": "placeholder.jpg",
 		"url": "/stepping-demo/",
+		"url-source-code": "https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/ocra-icub-clients/stepping-demo",
 		"date": "May 2016",
 		"Author": "Ryan Lober",
 		"tags": ["Difficult","Walking","iCub","Demo"]
@@ -19,6 +21,7 @@
 		"name": "task-operations-demo",
 		"image": "placeholder.jpg",
 		"url": "/task-operations-demo/",
+		"url-source-code": "https://github.com/ocra-recipes/ocra-wbi-plugins/tree/master/ocra-icub-clients/task-operations-demo",
 		"date": "May 2016",
 		"Author": "Ryan Lober",
 		"tags": ["Difficult","Demo","iCub"]
