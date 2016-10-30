@@ -45,7 +45,7 @@ $text_size: 13px;
     .project-img {
         height: 200px;
         display: block;
-        @include bg( cover );
+        @include bg( contain );
     }
 
     span.tags {
@@ -100,4 +100,3 @@ $text_size: 13px;
         .active { background: #ccc; }
     }
 }
-
