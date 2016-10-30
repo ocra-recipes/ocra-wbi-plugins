@@ -15,7 +15,7 @@ layout: default
     			<!-- <a href="{{site.url}}/static/projects/{{i.image}}" class="thickbox"> -->
     			<div class="project-img bordered" style="background-image: url('{{site.url}}/static/projects/{{ i.image }}');"></div>
                 </a>
-                {% if i.url-source-code %} <a href="{{ i.url-source-code }}"> {% endif %}
+                {% if i.url-source-code %} <a href="{{ i.url-source-code }}" target="_blank"> {% endif %}
     			<h3 class="project-headlines">{{ i.name }}</h3>
     			{% if i.url-source-code %} </a> {% endif %}
     			<div class="project-content">
@@ -30,7 +30,7 @@ layout: default
     			</div>
     			<div class="project-footer">
     				{% if i.url-documentation %}
-            <a href="{{site.baseurl}}{{ i.url-documentation }}" class="btn btn-info btn-raised btn-sm project-link">
+            <a href="{{site.baseurl}}{{ i.url-documentation }}" target="_blank" class="btn btn-info btn-raised btn-sm project-link">
                   <span class="fa fa-book"></span> Documentation</a>
     				{% endif %}
     				<span class="project-timeline">{{ i.date }}</span>

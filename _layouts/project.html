@@ -12,10 +12,10 @@ layout: default
     <div class="project-item col-md-4 col-sm-6 col-xs-12" data-tags='{{ i.tags | jsonify | downcase }}'>
     	<div class="well project-outer">
     		<div class="project-inner">
-          <a href="{{site.url}}/static/projects/{{i.image}}" class="thickbox">
+          <a href="{{site.url}}/static/projects/{{i.image}}" target="_blank" class="thickbox">
           <div class="project-img bordered" style="background-image: url('{{site.url}}/static/projects/{{ i.image }}');"></div>
                 </a>
-                {% if i.url %} <a href="{{ i.url }}"> {% endif %}
+                {% if i.url %} <a href="{{ i.url }}" target="_blank"> {% endif %}
     			<h3 class="project-headlines">{{ i.name }}</h3>
     			{% if i.url %} </a> {% endif %}
     			<div class="project-content">
