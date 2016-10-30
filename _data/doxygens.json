@@ -1,7 +1,7 @@
 [
 	{
 		"name": "ocra-recipes source",
-		"image": "logo200.jpg",
+		"image": "logo200.png",
 		"url-documentation": "/doxy-ocra-recipes/html/index.html",
 		"url-source-code": "https://github.com/ocra-recipes/ocra-recipes",
 		"date": "May 2016"
