@@ -1,0 +1,182 @@
+Master \+: \href{https://travis-ci.org/ocra-recipes/ocra-recipes}{\tt } Devel \+: \href{https://travis-ci.org/ocra-recipes/ocra-recipes}{\tt }
+
+\href{#Installation}{\tt Installation instructions}
+
+\subsection*{Code Structure}
+
+Give a description...
+
+
+\begin{DoxyItemize}
+\item ocra
+\item wocra
+\item gocra
+\item hocra (coming soon)
+\item solvers
+\begin{DoxyItemize}
+\item quadprog
+\item qpoases
+\end{DoxyItemize}
+\end{DoxyItemize}
+
+\subsubsection*{ocra}
+
+(O.\+C.\+R.\+A.) Optimization-\/based Control for Robotics Applications
+
+\subsubsection*{wocra}
+
+(W.\+O.\+C.\+R.\+A.) Weighted Optimization-\/based Control for Robotics Applications
+
+\subsubsection*{hocra}
+
+(H.\+O.\+C.\+R.\+A.) Hierarchical Optimization-\/based Control for Robotics Applications
+
+\subsubsection*{solvers}
+
+Ultimately our goal is to implement the most recent convex solvers so we can mix and match control problem formulations with different solver algorithms. Right now we have only implemented a slightly modified version of Quad\+Prog.
+
+\paragraph*{quadprog}
+
+This library is a QP (Quadratic Program) based on the Quad\+Prog++ project (\href{http://quadprog.sourceforge.net/}{\tt http\+://quadprog.\+sourceforge.\+net/}) which has been slightly modified. In this version, vector and matrix classes are replaced by Eigen classes, in order to use the same definitions as the ocra libraries.
+
+\paragraph*{qpoases}
+
+Exploits the open-\/source C++ library qp\+O\+A\+S\+ES, which is an implementation of the recently proposed online active set strategy, which was inspired by important observations from the field of parametric quadratic programming (QP). It has several theoretical features that make it particularly suited for model predictive control (M\+PC) applications but also as a QP solver. \href{https://projects.coin-or.org/qpOASES}{\tt (ref)}
+
+\subsection*{Dependencies}
+
+
+\begin{DoxyItemize}
+\item Boost ({\ttfamily filesystem})
+\item Eigen 3.\+2.\+0 ({\itshape note\+:} We have issues with later versions of eigen so please do not use the current build -\/ install via apt-\/get.)
+\item \href{https://github.com/ocra-recipes/eigen_lgsm}{\tt Eigen\+Lgsm}
+\item Tiny\+X\+ML
+\item Y\+A\+RP
+\end{DoxyItemize}
+
+{\bfseries Boost, Eigen 3.\+2.\+0 \& Tiny\+X\+ML} 
+\begin{DoxyCode}
+sudo apt-get install libboost-dev libtinyxml-dev libeigen3-dev
+\end{DoxyCode}
+ \href{https://github.com/ocra-recipes/eigen_lgsm}{\tt {\bfseries Eigen\+Lgsm}} 
+\begin{DoxyCode}
+git clone https://github.com/ocra-recipes/eigen\_lgsm.git
+cd eigen\_lgsm
+mkdir build
+cd build
+cmake ..
+sudo make install
+\end{DoxyCode}
+
+
+\href{http://www.yarp.it}{\tt {\bfseries Y\+A\+RP}}
+
+Please follow the instructions here\+: \href{http://www.yarp.it/install_yarp_linux.html}{\tt http\+://www.\+yarp.\+it/install\+\_\+yarp\+\_\+linux.\+html}
+
+\subsection*{Installation}
+
+{\bfseries W\+A\+R\+N\+I\+NG} {\itshape This is an experimental set of libs and there are no guarantees that they will not do damage to your computer. We take no responsibility for what happens if you install them. That being said, if you follow these instructions you should be fine.}
+
+Okay that\textquotesingle{}s out of the way... phew!
+
+{\bfseries Install to /usr/local} 
+\begin{DoxyCode}
+git clone https://github.com/ocra-recipes/ocra-recipes.git
+cd ocra-recipes
+mkdir build
+cd build
+cmake ..
+sudo make install
+\end{DoxyCode}
+
+
+{\bfseries Install to custom location (example\+: /home/user/\+Install)} 
+\begin{DoxyCode}
+git clone https://github.com/ocra-recipes/ocra-recipes.git
+cd ocra-recipes
+mkdir build
+cd build
+cmake -DCMAKE\_INSTALL\_PREFIX=home/user/Install ..
+make install
+\end{DoxyCode}
+ {\itshape Note\+:} If you do the install this way then you must update your environment variables in your {\ttfamily .bashrc} file.
+
+{\bfseries In {\ttfamily .bashrc}} 
+\begin{DoxyCode}
+# ocra-recipes install
+export OCRA\_INSTALL=/home/user/Install
+export LD\_LIBRARY\_PATH=$\{LD\_LIBRARY\_PATH\}:$\{OCRA\_INSTALL\}/lib
+export LIBRARY\_PATH=$\{LIBRARY\_PATH\}:$\{OCRA\_INSTALL\}/lib
+export PATH=$\{PATH\}:$\{OCRA\_INSTALL\}/bin
+\end{DoxyCode}
+
+
+\subsubsection*{Tested OS\textquotesingle{}s}
+
+
+\begin{DoxyItemize}
+\item \mbox{[}x\mbox{]} Ubuntu 12.\+04
+\item \mbox{[}x\mbox{]} Ubuntu 14.\+04
+\item \mbox{[}x\mbox{]} Debian 7
+\item \mbox{[}x\mbox{]} OS X
+\end{DoxyItemize}
+
+In theory any linux distro should work if the dependencies are met and don\textquotesingle{}t conflict with any system libs/headers. If you manage to build, install and use O\+C\+RA in any other platform please let us know and we can add it to the list with any helpful notes you provide along with it.
+
+\subsubsection*{Enjoying your O\+C\+RA...}
+
+Well now that you have {\ttfamily ocra-\/core} up and running, you probably want to try it out n\textquotesingle{}est pas? Well mosey on over to the \href{https://github.com/ocra-recipes/ocra-wbi-plugins}{\tt ocra-\/wbi-\/plugins} repo and follow the instructions.
+
+Want to contribute? Maybe build a plugin or two? Read the \href{#Contributing}{\tt Contributing section} for details on how to interface with O\+C\+RA and use it for world domination.
+
+\subsubsection*{Notes about OS X}
+
+\+:warning\+: As a recent feature we added rpath support, therefore, by default the flag {\ttfamily O\+C\+R\+A\+\_\+\+I\+C\+U\+B\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+R\+P\+A\+TH} is {\ttfamily O\+FF}. Change it by configuring {\ttfamily ocra-\/wbi-\/plugins} as\+: {\ttfamily cmake -\/\+D\+O\+C\+R\+A\+\_\+\+I\+C\+U\+B\+\_\+\+E\+N\+A\+B\+L\+E\+\_\+\+P\+A\+TH=ON ./}. Once we\textquotesingle{}re sure this \textquotesingle{}\textquotesingle{}always\textquotesingle{}\textquotesingle{} works it will be {\ttfamily ON} by default. Therefore, if you encounter error messages such as\+:
+
+
+\begin{DoxyCode}
+dyld library not loaded @rpath/libYarpMath.dylib
+\end{DoxyCode}
+
+
+Most likely this variable is still {\ttfamily O\+FF}.
+
+\+:warning\+: When using X\+Code to debug your code, make sure you change your L\+L\+VM C++ Language settings manually to C++11, by heading to the {\ttfamily Build Settings} of your project, searching for {\ttfamily C++ Language Dialect} and changing it to {\ttfamily C++11 \mbox{[}-\/std=c++11\mbox{]}}
+
+\subsubsection*{Contributing}
+
+Give a description...
+
+\subsubsection*{Generating the documentation}
+
+To build the documentation for {\ttfamily orca-\/recipes} you will need \href{http://www.stack.nl/~dimitri/doxygen/index.html}{\tt {\ttfamily doxygen}}. To install {\ttfamily doxygen} on linux run {\ttfamily sudo apt-\/get install doxygen}.
+
+In your {\ttfamily build/} directory (if you have already run {\ttfamily cmake ..} simply run\+: 
+\begin{DoxyCode}
+make doc
+\end{DoxyCode}
+ $\ast$$\ast$ If you run this right now you must ignore the latex errors due to the missing {\ttfamily .sty} files by just holding down {\ttfamily enter} until they are past. $\ast$$\ast$
+
+H\+T\+ML and La\+TeX files will be generated in the {\ttfamily build/docs/} directory. Open the file, {\ttfamily index.\+html}.
+
+\subsubsection*{Authors}
+
+\paragraph*{current developers}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/rlober}{\tt Ryan Lober}
+\item \href{https://github.com/ahoarau}{\tt Antoine Hoarau}
+\item \href{https://github.com/jeljaik}{\tt Jorhabib Eljaik}
+\item \href{https://github.com/traversaro}{\tt Silvio Traversaro}
+\end{DoxyItemize}
+
+\paragraph*{past developers}
+
+
+\begin{DoxyItemize}
+\item \href{https://github.com/darwinlau}{\tt Darwin Lau}
+\item \href{https://github.com/mingxing-liu}{\tt Mingxing Liu}
+\item \href{https://github.com/salini}{\tt Joseph Salini}
+\item \href{https://github.com/sovannara-hak}{\tt Hak Sovannara} 
+\end{DoxyItemize}
