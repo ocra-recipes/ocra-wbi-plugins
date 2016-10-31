@@ -639,7 +639,7 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Pay attention in setting up the vectors <img class="formulaInl" alt="$\vec{ce}_0$" src="../../form_143.png"/> and <img class="formulaInl" alt="$\vec{ci}_0$" src="../../form_147.png"/>. If the constraints of your problem are specified in the form <img class="formulaInl" alt="$A^T x = b$" src="../../form_148.png"/> and <img class="formulaInl" alt="$C^T x \geq d$" src="../../form_149.png"/>, then you should set <img class="formulaInl" alt="$\vec{ce}_0 = -b$" src="../../form_150.png"/> and <img class="formulaInl" alt="$\vec{ci}_0 = -d$" src="../../form_151.png"/>. Also the matrix <img class="formulaInl" alt="$G$" src="../../form_138.png"/> is modified within the function since it is used to compute the <img class="formulaInl" alt="$G = L^T L$" src="../../form_152.png"/> cholesky factorization for further computations inside the function. If you need the original matrix <img class="formulaInl" alt="$G$" src="../../form_138.png"/> you should make a copy of it and pass the copy to the function.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Pay attention in setting up the vectors <img class="formulaInl" alt="$\vec{ce}_0$" src="../../form_143.png"/> and <img class="formulaInl" alt="$\vec{ci}_0$" src="../../form_147.png"/>. If the constraints of your problem are specified in the form <img class="formulaInl" alt="$A^T x = b$" src="../../form_148.png"/> and <img class="formulaInl" alt="$C^T x \geq d$" src="../../form_149.png"/>, then you should set <img class="formulaInl" alt="$\vec{ce}_0 = -b$" src="../../form_150.png"/> and <img class="formulaInl" alt="$\vec{ci}_0 = -d$" src="../../form_151.png"/>. Also the matrix <img class="formulaInl" alt="$G$" src="../../form_138.png"/> is modified within the function since it is used to compute the <img class="formulaInl" alt="$G = L^T L$" src="../../form_152.png"/> cholesky factorization for further computations inside the function. If you need the original matrix <img class="formulaInl" alt="$G$" src="../../form_138.png"/> you should make a copy of it and pass the copy to the function. <a class="el" href="../../d0/de3/citelist.html#CITEREF_goldfarb1983numerically">[1]</a></dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>cost of the solution written in the x vector or std::numeric_limits::infinity() if the problem is infeasible. In the latter case the value of the <img class="formulaInl" alt="$ x $" src="../../form_61.png"/> vector is not correct.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Luca Di Gaspero, DIEGM - University of Udine, Italy. </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU Lesser General Public License. </dd>
@@ -755,7 +755,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 31 2016 17:30:55 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 31 2016 18:12:43 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
