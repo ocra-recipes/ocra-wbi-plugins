@@ -133,3 +133,21 @@
 \form#132:$ x = [ \ddq \; \tau \; \force_c ] $
 \form#133:$ x = [ \tau \; \force_c ] $
 \form#134:$ \tau $
+\form#135:\begin{align*} \argmin{\x} &: \; \frac{1}{2} \x\tp G \x + \vec{g}_0\tp \x \\ & CE\tp \x + \vec{ce}_0 = \vec{0} \\ & CI\tp \x + \vec{ci}_0 \geq \vec{0} \end{align*}
+\form#136:$n$
+\form#137:$m$
+\form#138:$G$
+\form#139:$n \times n$
+\form#140:$\vec{g}_0$
+\form#141:$CE$
+\form#142:$n \times p$
+\form#143:$\vec{ce}_0$
+\form#144:$p$
+\form#145:$CI$
+\form#146:$n \times m$
+\form#147:$\vec{ci}_0$
+\form#148:$A^T x = b$
+\form#149:$C^T x \geq d$
+\form#150:$\vec{ce}_0 = -b$
+\form#151:$\vec{ci}_0 = -d$
+\form#152:$G = L^T L$
