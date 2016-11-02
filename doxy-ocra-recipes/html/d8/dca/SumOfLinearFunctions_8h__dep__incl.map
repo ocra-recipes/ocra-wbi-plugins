@@ -1,0 +1,11 @@
+<map id="SumOfLinearFunctions.h" name="SumOfLinearFunctions.h">
+<area shape="rect" id="node2" href="$d1/de1/CascadeQPSolver_8h.html" title="Declaration file of the CascadeQPSolver class. " alt="" coords="94,79,235,104"/>
+<area shape="rect" id="node8" href="$d8/d27/SumOfLinearFunctions_8cpp.html" title="SumOfLinearFunctions.cpp" alt="" coords="260,79,443,104"/>
+<area shape="rect" id="node9" href="$d0/d71/GHCJTController_8cpp.html" title="Implement the quasi&#45;static Generalized Hierarchical Control based on Jacobian Transpose (GHCJT)..." alt="" coords="466,79,614,104"/>
+<area shape="rect" id="node10" href="$d2/d79/GHCJTTask_8cpp.html" title="Implement task class for GHCJT controller. It inherits from the task class defined in the ocra framew..." alt="" coords="639,79,757,104"/>
+<area shape="rect" id="node3" href="$d9/dd8/CascadeQPSolver_8cpp.html" title="CascadeQPSolver.cpp" alt="" coords="5,152,161,177"/>
+<area shape="rect" id="node4" href="$d7/d34/HocraController_8h.html" title="HocraController.h" alt="" coords="185,152,310,177"/>
+<area shape="rect" id="node5" href="$d9/d62/HocraController_8cpp.html" title="HocraController.cpp" alt="" coords="99,225,238,251"/>
+<area shape="rect" id="node6" href="$da/d7c/ControllerServer_8h.html" title="ControllerServer.h" alt="" coords="261,225,390,251"/>
+<area shape="rect" id="node7" href="$d5/dd2/ControllerServer_8cpp.html" title="ControllerServer.cpp" alt="" coords="254,299,397,324"/>
+</map>

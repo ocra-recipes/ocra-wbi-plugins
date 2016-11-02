@@ -1,0 +1,9 @@
+<map id="ocra::TaskBuilder" name="ocra::TaskBuilder">
+<area shape="rect" id="node2" href="$d5/d81/classocra_1_1CartesianTaskBuilder.html" title="ocra::CartesianTaskBuilder" alt="" coords="187,5,367,31"/>
+<area shape="rect" id="node3" href="$d1/d14/classocra_1_1ComTaskBuilder.html" title="ocra::ComTaskBuilder" alt="" coords="201,55,353,80"/>
+<area shape="rect" id="node4" href="$d7/d9e/classocra_1_1FullPostureTaskBuilder.html" title="ocra::FullPostureTaskBuilder" alt="" coords="181,104,372,129"/>
+<area shape="rect" id="node5" href="$da/d8d/classocra_1_1OrientationTaskBuilder.html" title="ocra::OrientationTaskBuilder" alt="" coords="182,153,371,179"/>
+<area shape="rect" id="node6" href="$db/d7e/classocra_1_1PartialPostureTaskBuilder.html" title="ocra::PartialPostureTask\lBuilder" alt="" coords="194,203,360,241"/>
+<area shape="rect" id="node7" href="$d5/d85/classocra_1_1PointContactTaskBuilder.html" title="ocra::PointContactTaskBuilder" alt="" coords="177,265,377,291"/>
+<area shape="rect" id="node8" href="$dc/d35/classocra_1_1PoseTaskBuilder.html" title="ocra::PoseTaskBuilder" alt="" coords="200,315,354,340"/>
+</map>

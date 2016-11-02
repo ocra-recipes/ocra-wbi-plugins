@@ -1,0 +1,4 @@
+<map id="ocra::SegmentFrame" name="ocra::SegmentFrame">
+<area shape="rect" id="node2" href="$db/d33/classocra_1_1ControlFrame.html" title="Generic representation of a frame: gives access to its position, velocity, jacobian... " alt="" coords="85,79,221,104"/>
+<area shape="rect" id="node3" href="$db/de3/classocra_1_1NamedInstance.html" title="ocra::NamedInstance" alt="" coords="5,5,153,31"/>
+</map>

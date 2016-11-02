@@ -1,0 +1,5 @@
+<map id="ocra::Subject" name="ocra::Subject">
+<area shape="rect" id="node2" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_RESIZE \&gt;" alt="" coords="56,5,194,44"/>
+<area shape="rect" id="node3" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_DEPENDENCIES \&gt;" alt="" coords="5,68,245,107"/>
+<area shape="rect" id="node4" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_VALUE \&gt;" alt="" coords="37,131,214,169"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="ocra::VariableHasRestrictedClassDerivation" name="ocra::VariableHasRestrictedClassDerivation">
+<area shape="rect" id="node2" href="$d2/dac/classocra_1_1Variable.html" title="This class represents a variable in a mathematical sense. " alt="" coords="107,92,210,117"/>
+<area shape="rect" id="node3" href="$d5/d40/classocra_1_1BaseVariable.html" title="Implements a basic variable. " alt="" coords="5,165,138,191"/>
+<area shape="rect" id="node4" href="$d2/d7c/classocra_1_1CompositeVariable.html" title="A concatenation of base variables and other composite variables. " alt="" coords="162,165,328,191"/>
+</map>

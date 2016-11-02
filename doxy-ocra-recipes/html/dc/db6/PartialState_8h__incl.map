@@ -1,0 +1,13 @@
+<map id="PartialState.h" name="PartialState.h">
+<area shape="rect" id="node2" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="360,152,551,177"/>
+<area shape="rect" id="node4" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="874,79,1016,104"/>
+<area shape="rect" id="node32" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="1552,152,1679,177"/>
+<area shape="rect" id="node5" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="188,152,336,177"/>
+<area shape="rect" id="node8" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="1021,225,1218,251"/>
+<area shape="rect" id="node19" href="$d7/d90/Variable_8h.html" title="Declaration file of the Variable class. " alt="" coords="626,152,773,177"/>
+<area shape="rect" id="node29" href="$d9/d5d/ModelContacts_8h.html" title="Declaration file of the ModelContacts class. " alt="" coords="847,152,1042,177"/>
+<area shape="rect" id="node9" href="$df/d67/ObserverSubjectBase_8h.html" title="Declaration file of the Observer and Subject base classes. " alt="" coords="1208,299,1394,337"/>
+<area shape="rect" id="node17" href="$db/ddf/ocra__events_8h.html" title="ocra/optim/ocra_events.h" alt="" coords="1469,305,1640,331"/>
+<area shape="rect" id="node20" href="$d1/de6/Composite_8h.html" title="Utility classes and functions to implement the Composite design pattern. " alt="" coords="646,225,809,251"/>
+<area shape="rect" id="node21" href="$de/df3/ocra__assert_8h.html" title="ocra/optim/ocra_assert.h" alt="" coords="87,305,256,331"/>
+</map>

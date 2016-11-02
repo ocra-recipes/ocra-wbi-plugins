@@ -1,0 +1,11 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d5/d16/classgocra_1_1gOcraTaskManagerBase.html" title="Task Manager for the Center of Mass (CoM) task with the gOcra Controllers. " alt="" coords="5,205,214,231"/>
+<area shape="rect" id="node2" href="$de/de6/classgocra_1_1gOcraCoMTaskManager.html" title="Task Manager for the Center of Mass (CoM) task with the gOcra Controller. " alt="" coords="275,5,482,31"/>
+<area shape="rect" id="node3" href="$d2/d71/classgocra_1_1gOcraContactSetTaskManager.html" title="Task Manager for a set of contact tasks. " alt="" coords="283,55,474,93"/>
+<area shape="rect" id="node4" href="$d7/d0b/classgocra_1_1gOcraContactTaskManager.html" title="Task Manager for a contact task. " alt="" coords="266,117,491,143"/>
+<area shape="rect" id="node5" href="$d5/db1/classgocra_1_1gOcraFullPostureTaskManager.html" title="gOcra Task Manager for the joint space posture " alt="" coords="282,167,475,205"/>
+<area shape="rect" id="node6" href="$d9/dc9/classgocra_1_1gOcraPartialPostureTaskManager.html" title="Task Manager for partal joint posture task. " alt="" coords="287,229,470,268"/>
+<area shape="rect" id="node7" href="$de/d88/classgocra_1_1gOcraSegCartesianTaskManager.html" title="Task Manager for the cartesian position of a specified segment. " alt="" coords="289,292,468,331"/>
+<area shape="rect" id="node8" href="$db/d04/classgocra_1_1gOcraSegOrientationTaskManager.html" title="Task Manager for the Center of Mass (CoM) task with the gOcra Controller. " alt="" coords="285,355,472,393"/>
+<area shape="rect" id="node9" href="$d7/d78/classgocra_1_1gOcraSegPoseTaskManager.html" title="Task Manager for a segment&#39;s pose. " alt="" coords="262,417,495,443"/>
+</map>

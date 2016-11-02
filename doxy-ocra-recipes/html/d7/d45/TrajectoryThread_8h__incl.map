@@ -1,0 +1,28 @@
+<map id="TrajectoryThread.h" name="TrajectoryThread.h">
+<area shape="rect" id="node3" href="$df/d9c/Trajectories_8h.html" title="ocra/control/Trajectory\l/Trajectories.h" alt="" coords="474,152,627,191"/>
+<area shape="rect" id="node11" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="3826,419,3953,444"/>
+<area shape="rect" id="node17" href="$de/d5d/TaskConnection_8h.html" title="ocra&#45;recipes/TaskConnection.h" alt="" coords="1688,79,1893,104"/>
+<area shape="rect" id="node32" href="$d0/d8a/TaskState_8h.html" title="ocra/control/TaskState.h" alt="" coords="2266,332,2430,357"/>
+<area shape="rect" id="node50" href="$df/dfd/EigenUtilities_8h.html" title="ocra/util/EigenUtilities.h" alt="" coords="1564,419,1724,444"/>
+<area shape="rect" id="node4" href="$d7/db7/Trajectory_8h.html" title="ocra/control/Trajectory\l/Trajectory.h" alt="" coords="739,325,893,364"/>
+<area shape="rect" id="node13" href="$da/d35/MinimumJerkTrajectory_8h.html" title="ocra/control/Trajectory\l/MinimumJerkTrajectory.h" alt="" coords="525,239,699,277"/>
+<area shape="rect" id="node14" href="$d2/d29/LinearInterpolationTrajectory_8h.html" title="ocra/control/Trajectory\l/LinearInterpolationTrajectory.h" alt="" coords="246,239,450,277"/>
+<area shape="rect" id="node18" href="$da/d33/TaskYarpInterfaceVocab_8h.html" title="ocra/control/TaskYarpInterface\lVocab.h" alt="" coords="1339,412,1541,451"/>
+<area shape="rect" id="node24" href="$df/d4f/Task_8h.html" title="ocra/control/Task.h" alt="" coords="3272,159,3405,184"/>
+<area shape="rect" id="node33" href="$d5/ded/YarpUtilities_8h.html" title="ocra/util/YarpUtilities.h" alt="" coords="1062,419,1215,444"/>
+<area shape="rect" id="node47" href="$d0/ddc/ClientCommunications_8h.html" title="ocra&#45;recipes/ClientCommunications.h" alt="" coords="1357,159,1600,184"/>
+<area shape="rect" id="node25" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="4297,419,4489,444"/>
+<area shape="rect" id="node27" href="$da/dbb/StringUtilities_8h.html" title="ocra/util/StringUtilities.h" alt="" coords="1748,419,1908,444"/>
+<area shape="rect" id="node28" href="$d8/d9f/ErrorsHelper_8h.html" title="ocra/util/ErrorsHelper.h" alt="" coords="2084,332,2242,357"/>
+<area shape="rect" id="node29" href="$dc/d2f/Feature_8h.html" title="A class hierarchy to compute task errors based on control frames. " alt="" coords="4277,245,4429,271"/>
+<area shape="rect" id="node30" href="$db/d3d/ControlFrame_8h.html" title="Classes that represent frames. " alt="" coords="4250,332,4438,357"/>
+<area shape="rect" id="node31" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="3984,332,4126,357"/>
+<area shape="rect" id="node34" href="$d3/ded/FunctionHelpers_8h.html" title="ocra/optim/FunctionHelpers.h" alt="" coords="2588,332,2783,357"/>
+<area shape="rect" id="node35" href="$d1/d0e/SquaredLinearFunction_8h.html" title="Declaration file of the SquaredLinearFunction class. " alt="" coords="2937,325,3111,364"/>
+<area shape="rect" id="node36" href="$d8/d6a/WeightedSquareDistanceFunction_8h.html" title="Declaration file of the WeightedSquareDistanceFunction class. " alt="" coords="3136,239,3323,277"/>
+<area shape="rect" id="node37" href="$d0/d17/OneLevelSolver_8h.html" title="Define the internal solver class that can be used in the wOcra controller. " alt="" coords="3573,245,3766,271"/>
+<area shape="rect" id="node38" href="$d6/d2b/ControlConstraint_8h.html" title="Define base class that can be used as constraints in wOcra controller. " alt="" coords="3891,245,4101,271"/>
+<area shape="rect" id="node39" href="$d9/d0f/LinearizedCoulombFunction_8h.html" title="Declaration file of the LinearizedCoulombFunction class. " alt="" coords="3347,239,3549,277"/>
+<area shape="rect" id="node40" href="$dc/df4/VariableChiFunction_8h.html" title="ocra/optim/VariableChiFunction.h" alt="" coords="2598,245,2815,271"/>
+<area shape="rect" id="node41" href="$da/d74/FcQuadraticFunction_8h.html" title="ocra/optim/FcQuadraticFunction.h" alt="" coords="2840,245,3062,271"/>
+</map>

@@ -1,0 +1,26 @@
+<map id="GHCJTTask.h" name="GHCJTTask.h">
+<area shape="rect" id="node2" href="$d9/de9/GHCJTController_8h.html" title="Define the Generalized Hierarchical Controller based on Jacobian transpose (GHCJT) in quasi&#45;static ca..." alt="" coords="939,79,1073,104"/>
+<area shape="rect" id="node7" href="$de/dda/gOcraCoMTaskManager_8h.html" title="gOcraCoMTaskManager.h" alt="" coords="294,225,470,251"/>
+<area shape="rect" id="node9" href="$d0/d8c/gOcraContactSetTaskManager_8h.html" title="gOcraContactSetTaskManager.h" alt="" coords="494,225,708,251"/>
+<area shape="rect" id="node11" href="$dc/db6/gOcraContactTaskManager_8h.html" title="gOcraContactTaskManager.h" alt="" coords="732,225,926,251"/>
+<area shape="rect" id="node13" href="$d0/dd7/gOcraFullPostureTaskManager_8h.html" title="gOcraFullPostureTaskManager.h" alt="" coords="55,225,270,251"/>
+<area shape="rect" id="node15" href="$dd/dc3/gOcraPartialPostureTaskManager_8h.html" title="gOcraPartialPostureTaskManager.h" alt="" coords="1444,225,1676,251"/>
+<area shape="rect" id="node17" href="$d8/de2/gOcraSegCartesianTaskManager_8h.html" title="gOcraSegCartesianTaskManager.h" alt="" coords="1700,225,1929,251"/>
+<area shape="rect" id="node19" href="$d7/d74/gOcraSegOrientationTaskManager_8h.html" title="gOcraSegOrientationTaskManager.h" alt="" coords="1953,225,2190,251"/>
+<area shape="rect" id="node21" href="$d2/db2/gOcraSegPoseTaskManager_8h.html" title="gOcraSegPoseTaskManager.h" alt="" coords="1217,225,1419,251"/>
+<area shape="rect" id="node24" href="$d0/d71/GHCJTController_8cpp.html" title="Implement the quasi&#45;static Generalized Hierarchical Control based on Jacobian Transpose (GHCJT)..." alt="" coords="1323,152,1471,177"/>
+<area shape="rect" id="node25" href="$d2/d79/GHCJTTask_8cpp.html" title="Implement task class for GHCJT controller. It inherits from the task class defined in the ocra framew..." alt="" coords="1698,79,1816,104"/>
+<area shape="rect" id="node3" href="$df/d0a/main_8cpp.html" title="main.cpp" alt="" coords="615,152,691,177"/>
+<area shape="rect" id="node4" href="$db/d31/gOcraTaskManagerBase_8h.html" title="gOcraTaskManagerBase.h" alt="" coords="917,152,1096,177"/>
+<area shape="rect" id="node6" href="$de/d9f/gOcraTaskManagerCollectionBase_8cpp.html" title="gOcraTaskManagerCollection\lBase.cpp" alt="" coords="446,385,642,424"/>
+<area shape="rect" id="node5" href="$d4/d79/gOcraTaskManagerCollectionBase_8h.html" title="gOcraTaskManagerCollection\lBase.h" alt="" coords="990,299,1186,337"/>
+<area shape="rect" id="node23" href="$d6/d1f/gOcraTaskManagerBase_8cpp.html" title="gOcraTaskManagerBase.cpp" alt="" coords="950,225,1143,251"/>
+<area shape="rect" id="node8" href="$d4/d34/gOcraCoMTaskManager_8cpp.html" title="gOcraCoMTaskManager.cpp" alt="" coords="290,305,480,331"/>
+<area shape="rect" id="node10" href="$d9/d71/gOcraContactSetTaskManager_8cpp.html" title="gOcraContactSetTaskManager.cpp" alt="" coords="504,305,732,331"/>
+<area shape="rect" id="node12" href="$da/d9a/gOcraContactTaskManager_8cpp.html" title="gOcraContactTaskManager.cpp" alt="" coords="757,305,965,331"/>
+<area shape="rect" id="node14" href="$d3/df6/gOcraFullPostureTaskManager_8cpp.html" title="gOcraFullPostureTaskManager.cpp" alt="" coords="37,305,267,331"/>
+<area shape="rect" id="node16" href="$dd/dcc/gOcraPartialPostureTaskManager_8cpp.html" title="gOcraPartialPostureTaskManager.cpp" alt="" coords="1450,305,1696,331"/>
+<area shape="rect" id="node18" href="$dd/d9e/gOcraSegCartesianTaskManager_8cpp.html" title="gOcraSegCartesianTaskManager.cpp" alt="" coords="1720,305,1963,331"/>
+<area shape="rect" id="node20" href="$d8/dfe/gOcraSegOrientationTaskManager_8cpp.html" title="gOcraSegOrientationTaskManager.cpp" alt="" coords="1986,305,2237,331"/>
+<area shape="rect" id="node22" href="$de/d48/gOcraSegPoseTaskManager_8cpp.html" title="gOcraSegPoseTaskManager.cpp" alt="" coords="1210,305,1427,331"/>
+</map>

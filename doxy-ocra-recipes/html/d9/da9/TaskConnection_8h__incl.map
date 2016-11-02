@@ -1,0 +1,29 @@
+<map id="TaskConnection.h" name="TaskConnection.h">
+<area shape="rect" id="node4" href="$da/d33/TaskYarpInterfaceVocab_8h.html" title="ocra/control/TaskYarpInterface\lVocab.h" alt="" coords="2214,325,2415,364"/>
+<area shape="rect" id="node12" href="$df/d4f/Task_8h.html" title="ocra/control/Task.h" alt="" coords="1311,79,1444,104"/>
+<area shape="rect" id="node15" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="2617,412,2743,437"/>
+<area shape="rect" id="node30" href="$d5/ded/YarpUtilities_8h.html" title="ocra/util/YarpUtilities.h" alt="" coords="1988,332,2140,357"/>
+<area shape="rect" id="node44" href="$d0/ddc/ClientCommunications_8h.html" title="ocra&#45;recipes/ClientCommunications.h" alt="" coords="3380,245,3623,271"/>
+<area shape="rect" id="node50" href="$df/dfd/EigenUtilities_8h.html" title="ocra/util/EigenUtilities.h" alt="" coords="583,332,743,357"/>
+<area shape="rect" id="node13" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="399,412,591,437"/>
+<area shape="rect" id="node17" href="$da/dbb/StringUtilities_8h.html" title="ocra/util/StringUtilities.h" alt="" coords="766,332,927,357"/>
+<area shape="rect" id="node18" href="$d8/d9f/ErrorsHelper_8h.html" title="ocra/util/ErrorsHelper.h" alt="" coords="2072,245,2230,271"/>
+<area shape="rect" id="node19" href="$dc/d2f/Feature_8h.html" title="A class hierarchy to compute task errors based on control frames. " alt="" coords="1613,159,1765,184"/>
+<area shape="rect" id="node21" href="$db/d3d/ControlFrame_8h.html" title="Classes that represent frames. " alt="" coords="1810,245,1998,271"/>
+<area shape="rect" id="node25" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="1001,332,1143,357"/>
+<area shape="rect" id="node29" href="$d0/d8a/TaskState_8h.html" title="ocra/control/TaskState.h" alt="" coords="2254,245,2418,271"/>
+<area shape="rect" id="node31" href="$d3/ded/FunctionHelpers_8h.html" title="ocra/optim/FunctionHelpers.h" alt="" coords="648,245,843,271"/>
+<area shape="rect" id="node32" href="$d1/d0e/SquaredLinearFunction_8h.html" title="Declaration file of the SquaredLinearFunction class. " alt="" coords="449,239,623,277"/>
+<area shape="rect" id="node33" href="$d8/d6a/WeightedSquareDistanceFunction_8h.html" title="Declaration file of the WeightedSquareDistanceFunction class. " alt="" coords="1891,152,2077,191"/>
+<area shape="rect" id="node34" href="$d0/d17/OneLevelSolver_8h.html" title="Define the internal solver class that can be used in the wOcra controller. " alt="" coords="1170,159,1363,184"/>
+<area shape="rect" id="node35" href="$d6/d2b/ControlConstraint_8h.html" title="Define base class that can be used as constraints in wOcra controller. " alt="" coords="297,159,506,184"/>
+<area shape="rect" id="node36" href="$d9/d0f/LinearizedCoulombFunction_8h.html" title="Declaration file of the LinearizedCoulombFunction class. " alt="" coords="1387,152,1589,191"/>
+<area shape="rect" id="node37" href="$dc/df4/VariableChiFunction_8h.html" title="ocra/optim/VariableChiFunction.h" alt="" coords="633,159,850,184"/>
+<area shape="rect" id="node38" href="$da/d74/FcQuadraticFunction_8h.html" title="ocra/optim/FcQuadraticFunction.h" alt="" coords="874,159,1096,184"/>
+<area shape="rect" id="node20" href="$df/d60/ControlEnum_8h.html" title="Some enumerations for the control. " alt="" coords="1019,245,1202,271"/>
+<area shape="rect" id="node27" href="$da/dfc/FullState_8h.html" title="ocra/control/FullState.h" alt="" coords="1578,245,1737,271"/>
+<area shape="rect" id="node28" href="$d9/daf/PartialState_8h.html" title="Define partial state classes that can be used to control some joints of the robot. " alt="" coords="1379,245,1554,271"/>
+<area shape="rect" id="node22" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="1226,412,1374,437"/>
+<area shape="rect" id="node26" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="973,412,1171,437"/>
+<area shape="rect" id="node49" href="$d2/de1/MessageVocabulary_8h.html" title="ocra&#45;recipes/MessageVocabulary.h" alt="" coords="3159,332,3388,357"/>
+</map>

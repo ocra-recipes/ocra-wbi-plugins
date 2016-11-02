@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$d2/d0d/classocra_1_1Trajectory.html" title="ocra::Trajectory" alt="" coords="5,111,119,136"/>
+<area shape="rect" id="node2" href="$d5/d74/classocra_1_1ExperimentalTrajectory.html" title="ocra::ExperimentalTrajectory" alt="" coords="180,5,371,31"/>
+<area shape="rect" id="node3" href="$d9/d69/classocra_1_1GaussianProcessTrajectory.html" title="ocra::GaussianProcessTrajectory" alt="" coords="167,55,385,80"/>
+<area shape="rect" id="node4" href="$d9/dfa/classocra_1_1LinearInterpolationTrajectory.html" title="ocra::LinearInterpolation\lTrajectory" alt="" coords="193,104,358,143"/>
+<area shape="rect" id="node5" href="$d5/df0/classocra_1_1MinimumJerkTrajectory.html" title="ocra::MinimumJerkTrajectory" alt="" coords="179,167,372,192"/>
+<area shape="rect" id="node6" href="$dc/d2e/classocra_1_1TimeOptimalTrajectory.html" title="ocra::TimeOptimalTrajectory" alt="" coords="182,216,370,241"/>
+</map>

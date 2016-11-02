@@ -1,0 +1,6 @@
+<map id="gocra::gOcraPartialPostureTaskManager" name="gocra::gOcraPartialPostureTaskManager">
+<area shape="rect" id="node2" href="$d5/d16/classgocra_1_1gOcraTaskManagerBase.html" title="Task Manager for the Center of Mass (CoM) task with the gOcra Controllers. " alt="" coords="48,241,257,267"/>
+<area shape="rect" id="node3" href="$d6/dbf/classgocra_1_1GHCJTController.html" title="gOcra Controller based on LQP solver for the ocra framework. " alt="" coords="71,155,235,180"/>
+<area shape="rect" id="node4" href="$d8/d92/classocra_1_1Controller.html" title="Interface for controllers. " alt="" coords="96,80,209,105"/>
+<area shape="rect" id="node5" href="$db/de3/classocra_1_1NamedInstance.html" title="ocra::NamedInstance" alt="" coords="5,5,153,31"/>
+</map>

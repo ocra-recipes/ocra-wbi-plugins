@@ -1,0 +1,22 @@
+<map id="ocra::Solver" name="ocra::Solver">
+<area shape="rect" id="node12" href="$d6/d35/classocra_1_1CascadeQPSolver.html" title="CascadeQPSolver class. " alt="" coords="801,96,965,121"/>
+<area shape="rect" id="node13" href="$dc/d6e/classocra_1_1FSQPSolver.html" title="FSQPSolver class. " alt="" coords="818,145,947,171"/>
+<area shape="rect" id="node14" href="$d2/d07/classocra_1_1NewtonSolver.html" title="NewtonSolver class. " alt="" coords="814,195,952,220"/>
+<area shape="rect" id="node15" href="$d2/d5e/classocra_1_1OneLevelSolver.html" title="A generic abstract class the solvers that can be used in the wOcra Controller. " alt="" coords="808,244,958,269"/>
+<area shape="rect" id="node19" href="$d7/dab/classocra_1_1QuadraticSolver.html" title="QuadraticSolver class. " alt="" coords="808,331,958,356"/>
+<area shape="rect" id="node2" href="$d3/d16/classocra_1_1ObserverSubject.html" title="ocra::ObserverSubject" alt="" coords="458,169,612,195"/>
+<area shape="rect" id="node3" href="$d2/d45/classocra_1_1Observer.html" title="ocra::Observer" alt="" coords="301,107,410,132"/>
+<area shape="rect" id="node4" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_RESIZE \&gt;" alt="" coords="59,5,199,44"/>
+<area shape="rect" id="node5" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_CHANGE_DEPENDENCIES \&gt;" alt="" coords="5,68,253,107"/>
+<area shape="rect" id="node6" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_CHANGE_VALUE \&gt;" alt="" coords="37,131,221,169"/>
+<area shape="rect" id="node7" href="$dc/d77/classocra_1_1Subject.html" title="ocra::Subject" alt="" coords="306,232,405,257"/>
+<area shape="rect" id="node8" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_RESIZE \&gt;" alt="" coords="60,193,198,232"/>
+<area shape="rect" id="node9" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_DEPENDENCIES \&gt;" alt="" coords="9,256,249,295"/>
+<area shape="rect" id="node10" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_VALUE \&gt;" alt="" coords="40,319,218,357"/>
+<area shape="rect" id="node11" href="$db/de3/classocra_1_1NamedInstance.html" title="ocra::NamedInstance" alt="" coords="461,219,609,244"/>
+<area shape="rect" id="node16" href="$df/d1b/classocra_1_1OneLevelSolverWithQLD.html" title="Solver class that only consider one level of importance for all tasks using QLD. " alt="" coords="1013,156,1217,181"/>
+<area shape="rect" id="node17" href="$d0/d12/classocra_1_1OneLevelSolverWithQPOASES.html" title="Solver class that only consider one level of importance for all tasks using QPOASES. " alt="" coords="1027,205,1203,244"/>
+<area shape="rect" id="node18" href="$d9/d45/classocra_1_1OneLevelSolverWithQuadProg.html" title="Solver class that only consider one level of importance for all tasks using Quadprog++. " alt="" coords="1027,268,1203,307"/>
+<area shape="rect" id="node20" href="$d4/d02/classocra_1_1CmlQuadraticSolver.html" title="CmlQuadraticSolver class. " alt="" coords="1028,331,1202,356"/>
+<area shape="rect" id="node21" href="$d2/dab/classocra_1_1QLDSolver.html" title="QLDSolver class. " alt="" coords="1055,380,1175,405"/>
+</map>

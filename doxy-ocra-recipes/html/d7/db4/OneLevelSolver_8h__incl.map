@@ -1,0 +1,32 @@
+<map id="OneLevelSolver.h" name="OneLevelSolver.h">
+<area shape="rect" id="node2" href="$db/dc5/Solver_8h.html" title="Declaration file of the Solver class. " alt="" coords="756,79,892,104"/>
+<area shape="rect" id="node17" href="$d4/d54/MergedVariable_8h.html" title="ocra/optim/MergedVariable.h" alt="" coords="150,152,341,177"/>
+<area shape="rect" id="node34" href="$d1/d76/Objective_8h.html" title="Declaration file of the Objective class. " alt="" coords="1016,299,1170,324"/>
+<area shape="rect" id="node35" href="$d1/d0e/SquaredLinearFunction_8h.html" title="Declaration file of the SquaredLinearFunction class. " alt="" coords="1817,372,1991,411"/>
+<area shape="rect" id="node36" href="$d4/d83/QuadraticFunction_8h.html" title="Declaration file of the QuadraticFunction class. " alt="" coords="1800,459,2008,484"/>
+<area shape="rect" id="node38" href="$d8/d9f/ErrorsHelper_8h.html" title="ocra/util/ErrorsHelper.h" alt="" coords="2677,152,2835,177"/>
+<area shape="rect" id="node40" href="$db/d1f/ObjQLD_8h.html" title="Declaration file of the ObjQLD class. This class should be merged with ocra::ObjQLD. It has been created to have a cml&#45;free solver. " alt="" coords="43,379,189,404"/>
+<area shape="rect" id="node41" href="$df/d60/ControlEnum_8h.html" title="Some enumerations for the control. " alt="" coords="2627,532,2810,557"/>
+<area shape="rect" id="node43" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="1850,532,1992,557"/>
+<area shape="rect" id="node48" href="$d8/d25/QuadProg_09_09_8h.html" title="ocra/optim/QuadProg++.h" alt="" coords="2859,459,3034,484"/>
+<area shape="rect" id="node3" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="2493,679,2641,704"/>
+<area shape="rect" id="node6" href="$d7/d90/Variable_8h.html" title="Declaration file of the Variable class. " alt="" coords="643,605,789,631"/>
+<area shape="rect" id="node19" href="$de/d2e/SolverUtilities_8h.html" title="ocra/optim/SolverUtilities.h" alt="" coords="557,152,736,177"/>
+<area shape="rect" id="node20" href="$d3/dcf/Constraint_8h.html" title="Declaration file of the Constraint class. " alt="" coords="1206,225,1365,251"/>
+<area shape="rect" id="node24" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="915,605,1107,631"/>
+<area shape="rect" id="node7" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="960,679,1158,704"/>
+<area shape="rect" id="node10" href="$d1/de6/Composite_8h.html" title="Utility classes and functions to implement the Composite design pattern. " alt="" coords="646,679,808,704"/>
+<area shape="rect" id="node11" href="$de/df3/ocra__assert_8h.html" title="ocra/optim/ocra_assert.h" alt="" coords="1711,759,1879,784"/>
+<area shape="rect" id="node31" href="$da/dc1/uncompress_8h.html" title="ocra/optim/uncompress.h" alt="" coords="314,299,486,324"/>
+<area shape="rect" id="node33" href="$dd/d88/SolverUtilities_8hxx.html" title="SolverUtilities.hxx" alt="" coords="610,225,737,251"/>
+<area shape="rect" id="node21" href="$df/df5/Function_8h.html" title="Declaration file of the Function class. " alt="" coords="1107,532,1256,557"/>
+<area shape="rect" id="node25" href="$df/d55/FunctionInterfaceMapping_8h.html" title="Declaration file of the FunctionInterfaceMapping struct. " alt="" coords="965,372,1155,411"/>
+<area shape="rect" id="node26" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="1282,605,1409,631"/>
+<area shape="rect" id="node27" href="$dc/d8a/LinearFunction_8h.html" title="Declaration file of the LinearFunction class. " alt="" coords="1331,459,1517,484"/>
+<area shape="rect" id="node28" href="$de/d69/BoundFunction_8h.html" title="Declaration file of the BoundFunction class. " alt="" coords="1246,299,1434,324"/>
+<area shape="rect" id="node29" href="$dc/d6f/DiagonalLinearFunction_8h.html" title="Declaration file of the DiagonalLinearFunction class. " alt="" coords="1482,372,1659,411"/>
+<area shape="rect" id="node30" href="$de/d7a/IdentityFunction_8h.html" title="Declaration file of the IdentityFunction class. " alt="" coords="1509,299,1702,324"/>
+<area shape="rect" id="node22" href="$de/d94/IFunction_8h.html" title="Declaration file of the IFunction interface. " alt="" coords="1718,605,1871,631"/>
+<area shape="rect" id="node42" href="$da/dbb/StringUtilities_8h.html" title="ocra/util/StringUtilities.h" alt="" coords="1533,605,1694,631"/>
+<area shape="rect" id="node44" href="$d9/d5d/ModelContacts_8h.html" title="Declaration file of the ModelContacts class. " alt="" coords="1945,605,2140,631"/>
+</map>

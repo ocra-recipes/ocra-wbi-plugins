@@ -1,0 +1,28 @@
+<map id="ControllerClient.h" name="ControllerClient.h">
+<area shape="rect" id="node2" href="$d0/ddc/ClientCommunications_8h.html" title="ocra&#45;recipes/ClientCommunications.h" alt="" coords="1059,345,1301,371"/>
+<area shape="rect" id="node21" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="1017,512,1143,537"/>
+<area shape="rect" id="node22" href="$de/d5d/TaskConnection_8h.html" title="ocra&#45;recipes/TaskConnection.h" alt="" coords="1726,259,1930,284"/>
+<area shape="rect" id="node26" href="$d8/d9f/ErrorsHelper_8h.html" title="ocra/util/ErrorsHelper.h" alt="" coords="2382,432,2540,457"/>
+<area shape="rect" id="node27" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="3845,432,3987,457"/>
+<area shape="rect" id="node36" href="$d1/d7b/TaskConstructionManager_8h.html" title="ocra/control/TaskBuilders\l/TaskConstructionManager.h" alt="" coords="3520,79,3710,117"/>
+<area shape="rect" id="node48" href="$d2/d42/RobotState_8h.html" title="ocra&#45;recipes/RobotState.h" alt="" coords="2252,345,2428,371"/>
+<area shape="rect" id="node17" href="$da/d33/TaskYarpInterfaceVocab_8h.html" title="ocra/control/TaskYarpInterface\lVocab.h" alt="" coords="2766,425,2967,464"/>
+<area shape="rect" id="node20" href="$d2/de1/MessageVocabulary_8h.html" title="ocra&#45;recipes/MessageVocabulary.h" alt="" coords="1268,432,1497,457"/>
+<area shape="rect" id="node23" href="$df/d4f/Task_8h.html" title="ocra/control/Task.h" alt="" coords="3277,345,3411,371"/>
+<area shape="rect" id="node34" href="$df/dfd/EigenUtilities_8h.html" title="ocra/util/EigenUtilities.h" alt="" coords="3459,345,3619,371"/>
+<area shape="rect" id="node35" href="$d5/ded/YarpUtilities_8h.html" title="ocra/util/YarpUtilities.h" alt="" coords="2992,432,3144,457"/>
+<area shape="rect" id="node24" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="3504,512,3696,537"/>
+<area shape="rect" id="node25" href="$da/dbb/StringUtilities_8h.html" title="ocra/util/StringUtilities.h" alt="" coords="3720,512,3880,537"/>
+<area shape="rect" id="node28" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="4567,512,4715,537"/>
+<area shape="rect" id="node30" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="4261,585,4459,611"/>
+<area shape="rect" id="node31" href="$d7/d90/Variable_8h.html" title="Declaration file of the Variable class. " alt="" coords="4397,512,4544,537"/>
+<area shape="rect" id="node32" href="$d9/d5d/ModelContacts_8h.html" title="Declaration file of the ModelContacts class. " alt="" coords="4128,512,4323,537"/>
+<area shape="rect" id="node40" href="$de/d4a/Controller_8h.html" title="Controller interface. " alt="" coords="3703,259,3865,284"/>
+<area shape="rect" id="node41" href="$d5/da8/XmlUtilities_8h.html" title="ocra/util/XmlUtilities.h" alt="" coords="4163,172,4312,197"/>
+<area shape="rect" id="node42" href="$d2/d1d/TaskBuilderOptions_8h.html" title="ocra/control/TaskBuilders\l/TaskBuilderOptions.h" alt="" coords="2982,339,3152,377"/>
+<area shape="rect" id="node43" href="$d3/dc1/TaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/TaskBuilder.h" alt="" coords="3168,252,3338,291"/>
+<area shape="rect" id="node44" href="$da/db2/CartesianTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/CartesianTaskBuilder.h" alt="" coords="3079,165,3249,204"/>
+<area shape="rect" id="node45" href="$d4/d7b/PoseTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/PoseTaskBuilder.h" alt="" coords="3468,165,3638,204"/>
+<area shape="rect" id="node46" href="$d1/df8/OrientationTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/OrientationTaskBuilder.h" alt="" coords="3274,165,3444,204"/>
+<area shape="rect" id="node47" href="$de/d08/ComTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/ComTaskBuilder.h" alt="" coords="2834,165,3004,204"/>
+</map>

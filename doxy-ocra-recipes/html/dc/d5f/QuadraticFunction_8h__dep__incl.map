@@ -1,0 +1,51 @@
+<map id="QuadraticFunction.h" name="QuadraticFunction.h">
+<area shape="rect" id="node2" href="$d1/de1/CascadeQPSolver_8h.html" title="Declaration file of the CascadeQPSolver class. " alt="" coords="928,445,1069,471"/>
+<area shape="rect" id="node7" href="$d1/d76/Objective_8h.html" title="Declaration file of the Objective class. " alt="" coords="1111,152,1199,177"/>
+<area shape="rect" id="node10" href="$d0/d71/GHCJTController_8cpp.html" title="Implement the quasi&#45;static Generalized Hierarchical Control based on Jacobian Transpose (GHCJT)..." alt="" coords="1609,665,1757,691"/>
+<area shape="rect" id="node16" href="$d0/d17/OneLevelSolver_8h.html" title="Define the internal solver class that can be used in the wOcra controller. " alt="" coords="1193,299,1319,324"/>
+<area shape="rect" id="node20" href="$d2/def/WocraController_8cpp.html" title="Implement the LQP&#45;based controller developped during my PhD thesis with ocra framework. " alt="" coords="290,665,432,691"/>
+<area shape="rect" id="node37" href="$d1/d80/QuadraticSolver_8h.html" title="Declaration file of the QuadraticSolver class. " alt="" coords="308,299,436,324"/>
+<area shape="rect" id="node45" href="$d6/db9/FSQPConstraintManager_8cpp.html" title="FSQPConstraintManager.cpp" alt="" coords="2078,299,2274,324"/>
+<area shape="rect" id="node46" href="$d1/d0e/SquaredLinearFunction_8h.html" title="Declaration file of the SquaredLinearFunction class. " alt="" coords="1613,79,1784,104"/>
+<area shape="rect" id="node48" href="$d8/d6a/WeightedSquareDistanceFunction_8h.html" title="Declaration file of the WeightedSquareDistanceFunction class. " alt="" coords="2399,299,2633,324"/>
+<area shape="rect" id="node50" href="$dc/d24/QuadraticFunction_8cpp.html" title="QuadraticFunction.cpp" alt="" coords="2474,79,2630,104"/>
+<area shape="rect" id="node3" href="$d9/dd8/CascadeQPSolver_8cpp.html" title="CascadeQPSolver.cpp" alt="" coords="914,519,1070,544"/>
+<area shape="rect" id="node4" href="$d7/d34/HocraController_8h.html" title="HocraController.h" alt="" coords="1225,592,1351,617"/>
+<area shape="rect" id="node5" href="$d9/d62/HocraController_8cpp.html" title="HocraController.cpp" alt="" coords="1276,665,1415,691"/>
+<area shape="rect" id="node6" href="$da/d7c/ControllerServer_8h.html" title="ControllerServer.h" alt="" coords="1001,739,1130,764"/>
+<area shape="rect" id="node8" href="$d2/d16/ContactSet_8h.html" title="Factory classes and functions to build sets of contact frames. " alt="" coords="1948,592,2047,617"/>
+<area shape="rect" id="node11" href="$db/dc5/Solver_8h.html" title="Declaration file of the Solver class. " alt="" coords="596,225,665,251"/>
+<area shape="rect" id="node42" href="$d3/ded/FunctionHelpers_8h.html" title="FunctionHelpers.h" alt="" coords="1467,225,1597,251"/>
+<area shape="rect" id="node9" href="$d7/dce/ContactSet_8cpp.html" title="ContactSet.cpp" alt="" coords="1941,665,2054,691"/>
+<area shape="rect" id="node12" href="$dc/d89/FSQPSolver_8h.html" title="Declaration file of the FSQPSolver class. " alt="" coords="459,299,565,324"/>
+<area shape="rect" id="node14" href="$d1/d88/NewtonSolver_8h.html" title="Declaration file of the NewtonSolver class. " alt="" coords="43,372,157,397"/>
+<area shape="rect" id="node41" href="$d4/d01/Solver_8cpp.html" title="Solver.cpp" alt="" coords="589,299,672,324"/>
+<area shape="rect" id="node13" href="$d4/d2f/FSQPSolver_8cpp.html" title="FSQPSolver.cpp" alt="" coords="744,372,864,397"/>
+<area shape="rect" id="node15" href="$d2/dcc/NewtonSolver_8cpp.html" title="NewtonSolver.cpp" alt="" coords="378,445,507,471"/>
+<area shape="rect" id="node17" href="$df/d4f/Task_8h.html" title="Task.h" alt="" coords="1669,372,1729,397"/>
+<area shape="rect" id="node19" href="$db/dc6/WocraController_8h.html" title="Define the LQP&#45;based controller developped during my PhD thesis with ocra framework. " alt="" coords="900,592,1028,617"/>
+<area shape="rect" id="node21" href="$d2/d6c/ServerCommunications_8h.html" title="ServerCommunications.h" alt="" coords="980,665,1151,691"/>
+<area shape="rect" id="node22" href="$d9/de9/GHCJTController_8h.html" title="Define the Generalized Hierarchical Controller based on Jacobian transpose (GHCJT) in quasi&#45;static ca..." alt="" coords="2480,592,2614,617"/>
+<area shape="rect" id="node33" href="$d5/d9e/GHCJTTask_8h.html" title="Define task class for GHCJT controller. It inherits from the task class defined in the ocra framework..." alt="" coords="2340,445,2444,471"/>
+<area shape="rect" id="node36" href="$d6/d44/OneLevelSolver_8cpp.html" title="OneLevelSolver.cpp" alt="" coords="1344,372,1485,397"/>
+<area shape="rect" id="node18" href="$de/d4a/Controller_8h.html" title="Controller interface. " alt="" coords="1246,519,1335,544"/>
+<area shape="rect" id="node30" href="$d3/dc1/TaskBuilder_8h.html" title="TaskBuilder.h" alt="" coords="1910,445,2010,471"/>
+<area shape="rect" id="node31" href="$d9/d76/TaskYarpInterface_8h.html" title="TaskYarpInterface.h" alt="" coords="1195,445,1333,471"/>
+<area shape="rect" id="node32" href="$d3/d71/Task_8cpp.html" title="Task.cpp" alt="" coords="1662,445,1736,471"/>
+<area shape="rect" id="node35" href="$de/d5d/TaskConnection_8h.html" title="TaskConnection.h" alt="" coords="1759,445,1886,471"/>
+<area shape="rect" id="node23" href="$df/d0a/main_8cpp.html" title="main.cpp" alt="" coords="2530,665,2606,691"/>
+<area shape="rect" id="node24" href="$db/d31/gOcraTaskManagerBase_8h.html" title="gOcraTaskManagerBase.h" alt="" coords="2629,665,2808,691"/>
+<area shape="rect" id="node25" href="$de/dda/gOcraCoMTaskManager_8h.html" title="gOcraCoMTaskManager.h" alt="" coords="2633,739,2809,764"/>
+<area shape="rect" id="node26" href="$d0/d8c/gOcraContactSetTaskManager_8h.html" title="gOcraContactSetTaskManager.h" alt="" coords="2833,739,3047,764"/>
+<area shape="rect" id="node27" href="$dc/db6/gOcraContactTaskManager_8h.html" title="gOcraContactTaskManager.h" alt="" coords="3071,739,3265,764"/>
+<area shape="rect" id="node28" href="$d0/dd7/gOcraFullPostureTaskManager_8h.html" title="gOcraFullPostureTaskManager.h" alt="" coords="2138,739,2353,764"/>
+<area shape="rect" id="node29" href="$dd/dc3/gOcraPartialPostureTaskManager_8h.html" title="gOcraPartialPostureTaskManager.h" alt="" coords="2377,739,2609,764"/>
+<area shape="rect" id="node34" href="$d2/d79/GHCJTTask_8cpp.html" title="Implement task class for GHCJT controller. It inherits from the task class defined in the ocra framew..." alt="" coords="2135,519,2254,544"/>
+<area shape="rect" id="node38" href="$d2/d2f/CmlQuadraticSolver_8h.html" title="Declaration file of the CmlQuadraticSolver class. " alt="" coords="467,372,618,397"/>
+<area shape="rect" id="node39" href="$da/d52/QLDSolver_8h.html" title="Declaration file of the QLDSolver class. " alt="" coords="181,372,278,397"/>
+<area shape="rect" id="node40" href="$d5/d6a/QuadraticSolver_8cpp.html" title="QuadraticSolver.cpp" alt="" coords="301,372,443,397"/>
+<area shape="rect" id="node43" href="$da/d74/FcQuadraticFunction_8h.html" title="FcQuadraticFunction.h" alt="" coords="1621,299,1777,324"/>
+<area shape="rect" id="node44" href="$dc/df4/VariableChiFunction_8h.html" title="VariableChiFunction.h" alt="" coords="1852,299,2004,324"/>
+<area shape="rect" id="node47" href="$d1/d7a/SquaredLinearFunction_8cpp.html" title="SquaredLinearFunction.cpp" alt="" coords="2114,152,2299,177"/>
+<area shape="rect" id="node49" href="$d0/d7c/WeightedSquareDistanceFunction_8cpp.html" title="WeightedSquareDistanceFunction.cpp" alt="" coords="2398,372,2647,397"/>
+</map>

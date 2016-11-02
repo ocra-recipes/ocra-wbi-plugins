@@ -1,0 +1,33 @@
+<map id="gOcraSegPoseTaskManager.h" name="gOcraSegPoseTaskManager.h">
+<area shape="rect" id="node2" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="910,479,1053,504"/>
+<area shape="rect" id="node29" href="$db/d31/gOcraTaskManagerBase_8h.html" title="gocra/Tasks/gOcraTaskManager\lBase.h" alt="" coords="326,79,538,117"/>
+<area shape="rect" id="node30" href="$d9/de9/GHCJTController_8h.html" title="Define the Generalized Hierarchical Controller based on Jacobian transpose (GHCJT) in quasi&#45;static ca..." alt="" coords="491,165,662,191"/>
+<area shape="rect" id="node50" href="$d5/d9e/GHCJTTask_8h.html" title="Define task class for GHCJT controller. It inherits from the task class defined in the ocra framework..." alt="" coords="2391,239,2570,264"/>
+<area shape="rect" id="node3" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="999,559,1148,584"/>
+<area shape="rect" id="node6" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="5,719,203,744"/>
+<area shape="rect" id="node13" href="$d7/d90/Variable_8h.html" title="Declaration file of the Variable class. " alt="" coords="1123,639,1269,664"/>
+<area shape="rect" id="node20" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="1492,559,1684,584"/>
+<area shape="rect" id="node21" href="$d9/d5d/ModelContacts_8h.html" title="Declaration file of the ModelContacts class. " alt="" coords="1172,559,1367,584"/>
+<area shape="rect" id="node24" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="2714,799,2841,824"/>
+<area shape="rect" id="node7" href="$df/d67/ObserverSubjectBase_8h.html" title="Declaration file of the Observer and Subject base classes. " alt="" coords="326,792,512,831"/>
+<area shape="rect" id="node11" href="$db/ddf/ocra__events_8h.html" title="ocra/optim/ocra_events.h" alt="" coords="80,799,251,824"/>
+<area shape="rect" id="node14" href="$d1/de6/Composite_8h.html" title="Utility classes and functions to implement the Composite design pattern. " alt="" coords="1152,719,1315,744"/>
+<area shape="rect" id="node31" href="$de/d4a/Controller_8h.html" title="Controller interface. " alt="" coords="1033,239,1196,264"/>
+<area shape="rect" id="node46" href="$d0/d17/OneLevelSolver_8h.html" title="Define the internal solver class that can be used in the wOcra controller. " alt="" coords="2331,392,2523,417"/>
+<area shape="rect" id="node32" href="$df/d4f/Task_8h.html" title="ocra/control/Task.h" alt="" coords="2072,312,2205,337"/>
+<area shape="rect" id="node35" href="$dc/d2f/Feature_8h.html" title="A class hierarchy to compute task errors based on control frames. " alt="" coords="2104,392,2256,417"/>
+<area shape="rect" id="node33" href="$da/dbb/StringUtilities_8h.html" title="ocra/util/StringUtilities.h" alt="" coords="344,559,505,584"/>
+<area shape="rect" id="node34" href="$d8/d9f/ErrorsHelper_8h.html" title="ocra/util/ErrorsHelper.h" alt="" coords="1484,479,1642,504"/>
+<area shape="rect" id="node36" href="$db/d3d/ControlFrame_8h.html" title="Classes that represent frames. " alt="" coords="2139,479,2326,504"/>
+<area shape="rect" id="node37" href="$d0/d8a/TaskState_8h.html" title="ocra/control/TaskState.h" alt="" coords="2401,479,2565,504"/>
+<area shape="rect" id="node38" href="$d3/ded/FunctionHelpers_8h.html" title="ocra/optim/FunctionHelpers.h" alt="" coords="1918,479,2114,504"/>
+<area shape="rect" id="node40" href="$d1/d0e/SquaredLinearFunction_8h.html" title="Declaration file of the SquaredLinearFunction class. " alt="" coords="2997,632,3172,671"/>
+<area shape="rect" id="node45" href="$d8/d6a/WeightedSquareDistanceFunction_8h.html" title="Declaration file of the WeightedSquareDistanceFunction class. " alt="" coords="3323,385,3509,424"/>
+<area shape="rect" id="node47" href="$d6/d2b/ControlConstraint_8h.html" title="Define base class that can be used as constraints in wOcra controller. " alt="" coords="1330,392,1540,417"/>
+<area shape="rect" id="node48" href="$d9/d0f/LinearizedCoulombFunction_8h.html" title="Declaration file of the LinearizedCoulombFunction class. " alt="" coords="2894,472,3096,511"/>
+<area shape="rect" id="node49" href="$dc/df4/VariableChiFunction_8h.html" title="ocra/optim/VariableChiFunction.h" alt="" coords="2547,392,2765,417"/>
+<area shape="rect" id="node39" href="$d1/d76/Objective_8h.html" title="Declaration file of the Objective class. " alt="" coords="2666,559,2820,584"/>
+<area shape="rect" id="node44" href="$d3/dcf/Constraint_8h.html" title="Declaration file of the Constraint class. " alt="" coords="1861,559,2020,584"/>
+<area shape="rect" id="node41" href="$dc/d8a/LinearFunction_8h.html" title="Declaration file of the LinearFunction class. " alt="" coords="2684,719,2871,744"/>
+<area shape="rect" id="node42" href="$d4/d83/QuadraticFunction_8h.html" title="Declaration file of the QuadraticFunction class. " alt="" coords="3053,719,3260,744"/>
+</map>

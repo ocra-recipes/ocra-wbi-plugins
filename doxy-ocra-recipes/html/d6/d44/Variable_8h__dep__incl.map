@@ -1,0 +1,51 @@
+<map id="Variable.h" name="Variable.h">
+<area shape="rect" id="node2" href="$d6/d2b/ControlConstraint_8h.html" title="Define base class that can be used as constraints in wOcra controller. " alt="" coords="3225,372,3362,397"/>
+<area shape="rect" id="node24" href="$d1/dff/FullDynamicEquationFunction_8h.html" title="Define base class that can be used as constraints in wOcra controller. " alt="" coords="3038,299,3248,324"/>
+<area shape="rect" id="node26" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="1615,225,1684,251"/>
+<area shape="rect" id="node29" href="$d7/dc0/ModelContacts_8cpp.html" title="ModelContacts.cpp" alt="" coords="1940,445,2076,471"/>
+<area shape="rect" id="node34" href="$d6/db8/DynamicEquationFunction_8cpp.html" title="DynamicEquationFunction.cpp" alt="" coords="3271,299,3473,324"/>
+<area shape="rect" id="node39" href="$d3/dcf/Constraint_8h.html" title="Declaration file of the Constraint class. " alt="" coords="3011,152,3104,177"/>
+<area shape="rect" id="node40" href="$db/dc5/Solver_8h.html" title="Declaration file of the Solver class. " alt="" coords="2708,299,2778,324"/>
+<area shape="rect" id="node41" href="$de/d2e/SolverUtilities_8h.html" title="SolverUtilities.h" alt="" coords="2857,225,2970,251"/>
+<area shape="rect" id="node42" href="$df/df5/Function_8h.html" title="Declaration file of the Function class. " alt="" coords="3093,79,3177,104"/>
+<area shape="rect" id="node43" href="$d1/d76/Objective_8h.html" title="Declaration file of the Objective class. " alt="" coords="2495,225,2583,251"/>
+<area shape="rect" id="node44" href="$dc/dd4/Function_8cpp.html" title="Function.cpp" alt="" coords="3129,152,3226,177"/>
+<area shape="rect" id="node45" href="$d4/d54/MergedVariable_8h.html" title="MergedVariable.h" alt="" coords="2657,225,2783,251"/>
+<area shape="rect" id="node46" href="$dd/d93/FunctionUtilities_8cpp.html" title="FunctionUtilities.cpp" alt="" coords="3403,79,3544,104"/>
+<area shape="rect" id="node47" href="$de/d29/LinearFunction_8cpp.html" title="LinearFunction.cpp" alt="" coords="3567,79,3702,104"/>
+<area shape="rect" id="node48" href="$db/d5a/Variable_8cpp.html" title="Variable.cpp" alt="" coords="3726,79,3821,104"/>
+<area shape="rect" id="node49" href="$d4/d29/VariableMapping_8cpp.html" title="VariableMapping.cpp" alt="" coords="3845,79,3990,104"/>
+<area shape="rect" id="node50" href="$d0/d7c/WeightedSquareDistanceFunction_8cpp.html" title="WeightedSquareDistanceFunction.cpp" alt="" coords="4014,79,4263,104"/>
+<area shape="rect" id="node3" href="$d8/d00/ContactAvoidanceConstraint_8h.html" title="Define contact avoidance constraint for wOcra controller. " alt="" coords="3193,445,3394,471"/>
+<area shape="rect" id="node4" href="$d3/d61/JointLimitConstraint_8h.html" title="Define joint limit constraint for wOcra controller. " alt="" coords="3080,519,3230,544"/>
+<area shape="rect" id="node5" href="$db/dc6/WocraController_8h.html" title="Define the LQP&#45;based controller developped during my PhD thesis with ocra framework. " alt="" coords="2610,592,2737,617"/>
+<area shape="rect" id="node6" href="$df/d4f/Task_8h.html" title="Task.h" alt="" coords="2302,445,2362,471"/>
+<area shape="rect" id="node23" href="$d1/de1/CascadeQPSolver_8h.html" title="Declaration file of the CascadeQPSolver class. " alt="" coords="2711,519,2852,544"/>
+<area shape="rect" id="node7" href="$d2/d16/ContactSet_8h.html" title="Factory classes and functions to build sets of contact frames. " alt="" coords="2216,592,2315,617"/>
+<area shape="rect" id="node9" href="$de/d4a/Controller_8h.html" title="Controller interface. " alt="" coords="2138,519,2228,544"/>
+<area shape="rect" id="node22" href="$d3/dc1/TaskBuilder_8h.html" title="TaskBuilder.h" alt="" coords="2014,519,2114,544"/>
+<area shape="rect" id="node8" href="$d0/d71/GHCJTController_8cpp.html" title="Implement the quasi&#45;static Generalized Hierarchical Control based on Jacobian Transpose (GHCJT)..." alt="" coords="1738,665,1886,691"/>
+<area shape="rect" id="node10" href="$d1/d7b/TaskConstructionManager_8h.html" title="TaskConstructionManager.h" alt="" coords="1971,592,2157,617"/>
+<area shape="rect" id="node11" href="$d9/de9/GHCJTController_8h.html" title="Define the Generalized Hierarchical Controller based on Jacobian transpose (GHCJT) in quasi&#45;static ca..." alt="" coords="1174,592,1308,617"/>
+<area shape="rect" id="node12" href="$db/d31/gOcraTaskManagerBase_8h.html" title="gOcraTaskManagerBase.h" alt="" coords="927,665,1106,691"/>
+<area shape="rect" id="node14" href="$de/dda/gOcraCoMTaskManager_8h.html" title="gOcraCoMTaskManager.h" alt="" coords="1105,739,1282,764"/>
+<area shape="rect" id="node15" href="$d0/d8c/gOcraContactSetTaskManager_8h.html" title="gOcraContactSetTaskManager.h" alt="" coords="1305,739,1519,764"/>
+<area shape="rect" id="node16" href="$dc/db6/gOcraContactTaskManager_8h.html" title="gOcraContactTaskManager.h" alt="" coords="1543,739,1737,764"/>
+<area shape="rect" id="node17" href="$d0/dd7/gOcraFullPostureTaskManager_8h.html" title="gOcraFullPostureTaskManager.h" alt="" coords="74,739,289,764"/>
+<area shape="rect" id="node18" href="$dd/dc3/gOcraPartialPostureTaskManager_8h.html" title="gOcraPartialPostureTaskManager.h" alt="" coords="1762,739,1993,764"/>
+<area shape="rect" id="node19" href="$d8/de2/gOcraSegCartesianTaskManager_8h.html" title="gOcraSegCartesianTaskManager.h" alt="" coords="314,739,543,764"/>
+<area shape="rect" id="node20" href="$d7/d74/gOcraSegOrientationTaskManager_8h.html" title="gOcraSegOrientationTaskManager.h" alt="" coords="567,739,804,764"/>
+<area shape="rect" id="node21" href="$d2/db2/gOcraSegPoseTaskManager_8h.html" title="gOcraSegPoseTaskManager.h" alt="" coords="879,739,1081,764"/>
+<area shape="rect" id="node13" href="$d4/d79/gOcraTaskManagerCollectionBase_8h.html" title="gOcraTaskManagerCollection\lBase.h" alt="" coords="813,812,1009,851"/>
+<area shape="rect" id="node25" href="$df/db7/FullDynamicEquationFunction_8cpp.html" title="Implement base class that can be used as constraints in wOcra controller. " alt="" coords="2978,372,3201,397"/>
+<area shape="rect" id="node27" href="$d6/d65/controlUtils_8h.html" title="Control utility functions. " alt="" coords="2028,299,2127,324"/>
+<area shape="rect" id="node28" href="$dc/d2f/Feature_8h.html" title="A class hierarchy to compute task errors based on control frames. " alt="" coords="1762,372,1841,397"/>
+<area shape="rect" id="node30" href="$d9/daf/PartialState_8h.html" title="Define partial state classes that can be used to control some joints of the robot. " alt="" coords="1788,299,1889,324"/>
+<area shape="rect" id="node31" href="$d1/dfa/TorqueLimitConstraint_8h.html" title="Define torque limit constraint for wOcra controller. " alt="" coords="2852,299,3015,324"/>
+<area shape="rect" id="node32" href="$d0/d17/OneLevelSolver_8h.html" title="Define the internal solver class that can be used in the wOcra controller. " alt="" coords="2510,372,2637,397"/>
+<area shape="rect" id="node33" href="$dc/d03/ControlFrame_8cpp.html" title="ControlFrame.cpp" alt="" coords="44,299,172,324"/>
+<area shape="rect" id="node35" href="$d8/d0c/FullState_8cpp.html" title="FullState.cpp" alt="" coords="196,299,295,324"/>
+<area shape="rect" id="node36" href="$dd/d2e/Model_8cpp.html" title="Model.cpp" alt="" coords="319,299,402,324"/>
+<area shape="rect" id="node37" href="$d0/de5/Model3T_8h.html" title="Model3T.h" alt="" coords="425,299,508,324"/>
+<area shape="rect" id="node38" href="$d2/d79/GHCJTTask_8cpp.html" title="Implement task class for GHCJT controller. It inherits from the task class defined in the ocra framew..." alt="" coords="532,299,650,324"/>
+</map>

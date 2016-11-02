@@ -1,0 +1,50 @@
+<map id="ocra::Subject" name="ocra::Subject">
+<area shape="rect" id="node5" href="$d3/d16/classocra_1_1ObserverSubject.html" title="ocra::ObserverSubject" alt="" coords="440,788,594,813"/>
+<area shape="rect" id="node2" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_RESIZE \&gt;" alt="" coords="56,719,194,757"/>
+<area shape="rect" id="node3" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_DEPENDENCIES \&gt;" alt="" coords="5,781,245,820"/>
+<area shape="rect" id="node4" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_VALUE \&gt;" alt="" coords="37,844,214,883"/>
+<area shape="rect" id="node6" href="$d2/d99/classocra_1_1Function.html" title="Function class. " alt="" coords="663,409,769,435"/>
+<area shape="rect" id="node34" href="$dd/d9c/classocra_1_1MergedVariable.html" title="ocra::MergedVariable" alt="" coords="642,739,790,764"/>
+<area shape="rect" id="node35" href="$d8/d4c/classocra_1_1ModelContacts.html" title="ModelContacts class. " alt="" coords="644,788,788,813"/>
+<area shape="rect" id="node36" href="$d6/dd3/classocra_1_1Solver.html" title="Solver class. " alt="" coords="670,837,762,863"/>
+<area shape="rect" id="node47" href="$d2/dac/classocra_1_1Variable.html" title="This class represents a variable in a mathematical sense. " alt="" coords="665,1005,767,1031"/>
+<area shape="rect" id="node7" href="$d1/d44/classFunction1.html" title="Function1" alt="" coords="885,137,964,163"/>
+<area shape="rect" id="node8" href="$d6/d7e/classFunction2.html" title="Function2" alt="" coords="885,187,964,212"/>
+<area shape="rect" id="node9" href="$d9/d4a/classFunction3.html" title="Function3" alt="" coords="885,236,964,261"/>
+<area shape="rect" id="node10" href="$db/d8c/classMyFunction.html" title="MyFunction" alt="" coords="879,285,970,311"/>
+<area shape="rect" id="node11" href="$db/da4/classocra_1_1DotProductFunction.html" title="DotProductFunction class. " alt="" coords="838,335,1011,360"/>
+<area shape="rect" id="node12" href="$de/d3a/classocra_1_1LinearFunction.html" title="LinearFunction class. " alt="" coords="853,384,996,409"/>
+<area shape="rect" id="node26" href="$dd/d93/classocra_1_1Pb114G10.html" title="ocra::Pb114G10" alt="" coords="866,433,983,459"/>
+<area shape="rect" id="node27" href="$da/d6c/classocra_1_1Pb114G11.html" title="ocra::Pb114G11" alt="" coords="866,483,983,508"/>
+<area shape="rect" id="node28" href="$d9/df1/classocra_1_1Pb114G5.html" title="ocra::Pb114G5" alt="" coords="869,532,979,557"/>
+<area shape="rect" id="node29" href="$d9/d7e/classocra_1_1QuadraticFunction.html" title="QuadraticFunction class. " alt="" coords="843,631,1006,656"/>
+<area shape="rect" id="node33" href="$df/d5a/classocra_1_1SubtractionFunction.html" title="SubtractionFunction class. " alt="" coords="838,680,1011,705"/>
+<area shape="rect" id="node13" href="$d4/d45/classocra_1_1ContactAvoidanceFunction.html" title="Create a linear function that represents the joint limit function. " alt="" coords="1063,12,1276,37"/>
+<area shape="rect" id="node15" href="$d3/d89/classocra_1_1DiagonalLinearFunction.html" title="DiagonalLinearFunction class. " alt="" coords="1072,61,1267,87"/>
+<area shape="rect" id="node16" href="$d4/d5c/classocra_1_1DoubleDiagonalLinearFunction.html" title="DoubleDiagonalLinearFunction class. " alt="" coords="1076,111,1263,149"/>
+<area shape="rect" id="node17" href="$d9/da6/classocra_1_1DynamicEquationFunction.html" title="DynamicEquationFunction class. " alt="" coords="1064,173,1275,199"/>
+<area shape="rect" id="node18" href="$de/ddd/classocra_1_1FullDynamicEquationFunction.html" title="Create a linear function that represents the dynamic equation of motion. " alt="" coords="1079,223,1260,261"/>
+<area shape="rect" id="node19" href="$df/de0/classocra_1_1JointLimitFunction.html" title="Create a linear function that represents the joint limit function. " alt="" coords="1088,285,1251,311"/>
+<area shape="rect" id="node20" href="$d0/dd6/classocra_1_1LinearizedCoulombFunction.html" title="LinearizedCoulombFunction class. " alt="" coords="1059,335,1280,360"/>
+<area shape="rect" id="node21" href="$dd/d16/classocra_1_1LinearTask.html" title="LinearTask class. " alt="" coords="1110,384,1229,409"/>
+<area shape="rect" id="node22" href="$dd/dda/classocra_1_1SecondOrderLinearTask.html" title="SecondOrderLinearTask class. " alt="" coords="1070,433,1269,459"/>
+<area shape="rect" id="node23" href="$d0/d8f/classocra_1_1SumOfLinearFunctions.html" title="ocra::SumOfLinearFunctions" alt="" coords="1074,483,1265,508"/>
+<area shape="rect" id="node24" href="$dd/d3d/classocra_1_1TorqueLimitFunction.html" title="Create a linear function that represents the torque limit function. " alt="" coords="1082,532,1257,557"/>
+<area shape="rect" id="node25" href="$d7/d46/classocra_1_1VariableChiFunction.html" title="ocra::VariableChiFunction" alt="" coords="1083,581,1256,607"/>
+<area shape="rect" id="node14" href="$da/d90/classocra_1_1FullContactAvoidanceFunction.html" title="Create a linear function that represents the contact avoidance function for the full formalism..." alt="" coords="1328,5,1512,44"/>
+<area shape="rect" id="node30" href="$d3/d16/classocra_1_1FcQuadraticFunction.html" title="ocra::FcQuadraticFunction" alt="" coords="1080,631,1259,656"/>
+<area shape="rect" id="node31" href="$df/dfc/classocra_1_1SquaredLinearFunction.html" title="SquaredLinearFunction class. " alt="" coords="1073,680,1266,705"/>
+<area shape="rect" id="node32" href="$d2/d31/classocra_1_1WeightedSquareDistanceFunction.html" title="WeightedSquareDistanceFunction class. " alt="" coords="1067,729,1272,768"/>
+<area shape="rect" id="node37" href="$d6/d35/classocra_1_1CascadeQPSolver.html" title="CascadeQPSolver class. " alt="" coords="842,739,1007,764"/>
+<area shape="rect" id="node38" href="$dc/d6e/classocra_1_1FSQPSolver.html" title="FSQPSolver class. " alt="" coords="860,788,989,813"/>
+<area shape="rect" id="node39" href="$d2/d07/classocra_1_1NewtonSolver.html" title="NewtonSolver class. " alt="" coords="856,837,993,863"/>
+<area shape="rect" id="node40" href="$d2/d5e/classocra_1_1OneLevelSolver.html" title="A generic abstract class the solvers that can be used in the wOcra Controller. " alt="" coords="850,887,999,912"/>
+<area shape="rect" id="node44" href="$d7/dab/classocra_1_1QuadraticSolver.html" title="QuadraticSolver class. " alt="" coords="849,956,1000,981"/>
+<area shape="rect" id="node41" href="$df/d1b/classocra_1_1OneLevelSolverWithQLD.html" title="Solver class that only consider one level of importance for all tasks using QLD. " alt="" coords="1068,792,1271,817"/>
+<area shape="rect" id="node42" href="$d0/d12/classocra_1_1OneLevelSolverWithQPOASES.html" title="Solver class that only consider one level of importance for all tasks using QPOASES. " alt="" coords="1081,841,1258,880"/>
+<area shape="rect" id="node43" href="$d9/d45/classocra_1_1OneLevelSolverWithQuadProg.html" title="Solver class that only consider one level of importance for all tasks using Quadprog++. " alt="" coords="1081,904,1258,943"/>
+<area shape="rect" id="node45" href="$d4/d02/classocra_1_1CmlQuadraticSolver.html" title="CmlQuadraticSolver class. " alt="" coords="1082,967,1256,992"/>
+<area shape="rect" id="node46" href="$d2/dab/classocra_1_1QLDSolver.html" title="QLDSolver class. " alt="" coords="1110,1016,1229,1041"/>
+<area shape="rect" id="node48" href="$d5/d40/classocra_1_1BaseVariable.html" title="Implements a basic variable. " alt="" coords="858,1005,991,1031"/>
+<area shape="rect" id="node49" href="$d2/d7c/classocra_1_1CompositeVariable.html" title="A concatenation of base variables and other composite variables. " alt="" coords="841,1055,1008,1080"/>
+</map>

@@ -1,0 +1,25 @@
+<map id="TorqueLimitConstraint.cpp" name="TorqueLimitConstraint.cpp">
+<area shape="rect" id="node2" href="$d1/dfa/TorqueLimitConstraint_8h.html" title="Define torque limit constraint for wOcra controller. " alt="" coords="665,79,829,117"/>
+<area shape="rect" id="node3" href="$dc/d8a/LinearFunction_8h.html" title="Declaration file of the LinearFunction class. " alt="" coords="365,399,551,424"/>
+<area shape="rect" id="node38" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="1334,472,1476,497"/>
+<area shape="rect" id="node44" href="$d3/dcf/Constraint_8h.html" title="Declaration file of the Constraint class. " alt="" coords="668,165,827,191"/>
+<area shape="rect" id="node4" href="$df/df5/Function_8h.html" title="Declaration file of the Function class. " alt="" coords="655,472,805,497"/>
+<area shape="rect" id="node36" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="5,552,132,577"/>
+<area shape="rect" id="node5" href="$de/d94/IFunction_8h.html" title="Declaration file of the IFunction interface. " alt="" coords="531,632,684,657"/>
+<area shape="rect" id="node14" href="$d9/d54/IFunctionProperties_8h.html" title="ocra/optim/IFunctionProperties.h" alt="" coords="384,552,598,577"/>
+<area shape="rect" id="node16" href="$db/d47/AbilitySet_8h.html" title="ocra/optim/AbilitySet.h" alt="" coords="156,552,310,577"/>
+<area shape="rect" id="node17" href="$d1/d87/CoupledInputOutputSize_8h.html" title="ocra/optim/CoupledInputOutput\lSize.h" alt="" coords="623,545,829,584"/>
+<area shape="rect" id="node18" href="$d7/d90/Variable_8h.html" title="Declaration file of the Variable class. " alt="" coords="853,552,999,577"/>
+<area shape="rect" id="node19" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="1800,632,1998,657"/>
+<area shape="rect" id="node35" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="1074,552,1266,577"/>
+<area shape="rect" id="node6" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="689,712,837,737"/>
+<area shape="rect" id="node9" href="$de/df3/ocra__assert_8h.html" title="ocra/optim/ocra_assert.h" alt="" coords="497,712,665,737"/>
+<area shape="rect" id="node30" href="$d1/de6/Composite_8h.html" title="Utility classes and functions to implement the Composite design pattern. " alt="" coords="1442,632,1604,657"/>
+<area shape="rect" id="node20" href="$df/d67/ObserverSubjectBase_8h.html" title="Declaration file of the Observer and Subject base classes. " alt="" coords="2051,705,2238,744"/>
+<area shape="rect" id="node28" href="$db/ddf/ocra__events_8h.html" title="ocra/optim/ocra_events.h" alt="" coords="2262,712,2433,737"/>
+<area shape="rect" id="node39" href="$d9/d5d/ModelContacts_8h.html" title="Declaration file of the ModelContacts class. " alt="" coords="1901,552,2095,577"/>
+<area shape="rect" id="node45" href="$df/d55/FunctionInterfaceMapping_8h.html" title="Declaration file of the FunctionInterfaceMapping struct. " alt="" coords="648,312,838,351"/>
+<area shape="rect" id="node46" href="$de/d69/BoundFunction_8h.html" title="Declaration file of the BoundFunction class. " alt="" coords="496,239,684,264"/>
+<area shape="rect" id="node47" href="$dc/d6f/DiagonalLinearFunction_8h.html" title="Declaration file of the DiagonalLinearFunction class. " alt="" coords="369,312,546,351"/>
+<area shape="rect" id="node48" href="$de/d7a/IdentityFunction_8h.html" title="Declaration file of the IdentityFunction class. " alt="" coords="228,239,421,264"/>
+</map>

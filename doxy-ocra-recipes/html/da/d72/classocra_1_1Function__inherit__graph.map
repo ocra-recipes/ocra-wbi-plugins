@@ -1,0 +1,47 @@
+<map id="ocra::Function" name="ocra::Function">
+<area shape="rect" id="node16" href="$d1/d44/classFunction1.html" title="Function1" alt="" coords="925,183,1005,208"/>
+<area shape="rect" id="node17" href="$d6/d7e/classFunction2.html" title="Function2" alt="" coords="925,232,1005,257"/>
+<area shape="rect" id="node18" href="$d9/d4a/classFunction3.html" title="Function3" alt="" coords="925,281,1005,307"/>
+<area shape="rect" id="node19" href="$db/d8c/classMyFunction.html" title="MyFunction" alt="" coords="920,331,1010,356"/>
+<area shape="rect" id="node20" href="$db/da4/classocra_1_1DotProductFunction.html" title="DotProductFunction class. " alt="" coords="879,380,1051,405"/>
+<area shape="rect" id="node21" href="$de/d3a/classocra_1_1LinearFunction.html" title="LinearFunction class. " alt="" coords="894,429,1036,455"/>
+<area shape="rect" id="node40" href="$dd/d93/classocra_1_1Pb114G10.html" title="ocra::Pb114G10" alt="" coords="906,479,1024,504"/>
+<area shape="rect" id="node41" href="$da/d6c/classocra_1_1Pb114G11.html" title="ocra::Pb114G11" alt="" coords="907,528,1023,553"/>
+<area shape="rect" id="node42" href="$d9/df1/classocra_1_1Pb114G5.html" title="ocra::Pb114G5" alt="" coords="910,577,1020,603"/>
+<area shape="rect" id="node43" href="$d9/d7e/classocra_1_1QuadraticFunction.html" title="QuadraticFunction class. " alt="" coords="883,700,1047,725"/>
+<area shape="rect" id="node47" href="$df/d5a/classocra_1_1SubtractionFunction.html" title="SubtractionFunction class. " alt="" coords="878,749,1052,775"/>
+<area shape="rect" id="node2" href="$d3/d16/classocra_1_1ObserverSubject.html" title="ocra::ObserverSubject" alt="" coords="490,296,644,321"/>
+<area shape="rect" id="node3" href="$d2/d45/classocra_1_1Observer.html" title="ocra::Observer" alt="" coords="301,233,410,259"/>
+<area shape="rect" id="node4" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_RESIZE \&gt;" alt="" coords="59,132,199,171"/>
+<area shape="rect" id="node5" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_CHANGE_DEPENDENCIES \&gt;" alt="" coords="5,195,253,233"/>
+<area shape="rect" id="node6" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_CHANGE_VALUE \&gt;" alt="" coords="37,257,221,296"/>
+<area shape="rect" id="node7" href="$dc/d77/classocra_1_1Subject.html" title="ocra::Subject" alt="" coords="306,359,405,384"/>
+<area shape="rect" id="node8" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_RESIZE \&gt;" alt="" coords="60,320,198,359"/>
+<area shape="rect" id="node9" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_DEPENDENCIES \&gt;" alt="" coords="9,383,249,421"/>
+<area shape="rect" id="node10" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_VALUE \&gt;" alt="" coords="40,445,218,484"/>
+<area shape="rect" id="node11" href="$dd/d68/classocra_1_1IFunctionProperties.html" title="ocra::IFunctionProperties" alt="" coords="482,345,653,371"/>
+<area shape="rect" id="node13" href="$db/de3/classocra_1_1NamedInstance.html" title="ocra::NamedInstance" alt="" coords="493,457,641,483"/>
+<area shape="rect" id="node14" href="$d8/d24/classocra_1_1AbilitySet.html" title="ocra::AbilitySet" alt="" coords="512,507,623,532"/>
+<area shape="rect" id="node15" href="$d5/dc0/classocra_1_1CoupledInputOutputSize.html" title="ocra::CoupledInputOutputSize" alt="" coords="467,556,667,581"/>
+<area shape="rect" id="node22" href="$d4/d45/classocra_1_1ContactAvoidanceFunction.html" title="Create a linear function that represents the joint limit function. " alt="" coords="1103,75,1317,100"/>
+<area shape="rect" id="node25" href="$d3/d89/classocra_1_1DiagonalLinearFunction.html" title="DiagonalLinearFunction class. " alt="" coords="1112,131,1308,156"/>
+<area shape="rect" id="node28" href="$d4/d5c/classocra_1_1DoubleDiagonalLinearFunction.html" title="DoubleDiagonalLinearFunction class. " alt="" coords="1117,180,1303,219"/>
+<area shape="rect" id="node29" href="$d9/da6/classocra_1_1DynamicEquationFunction.html" title="DynamicEquationFunction class. " alt="" coords="1105,243,1315,268"/>
+<area shape="rect" id="node30" href="$de/ddd/classocra_1_1FullDynamicEquationFunction.html" title="Create a linear function that represents the dynamic equation of motion. " alt="" coords="1120,292,1300,331"/>
+<area shape="rect" id="node31" href="$df/de0/classocra_1_1JointLimitFunction.html" title="Create a linear function that represents the joint limit function. " alt="" coords="1129,355,1291,380"/>
+<area shape="rect" id="node34" href="$d0/dd6/classocra_1_1LinearizedCoulombFunction.html" title="LinearizedCoulombFunction class. " alt="" coords="1100,404,1320,429"/>
+<area shape="rect" id="node35" href="$dd/d16/classocra_1_1LinearTask.html" title="LinearTask class. " alt="" coords="1150,453,1270,479"/>
+<area shape="rect" id="node36" href="$dd/dda/classocra_1_1SecondOrderLinearTask.html" title="SecondOrderLinearTask class. " alt="" coords="1111,503,1309,528"/>
+<area shape="rect" id="node37" href="$d0/d8f/classocra_1_1SumOfLinearFunctions.html" title="ocra::SumOfLinearFunctions" alt="" coords="1114,552,1306,577"/>
+<area shape="rect" id="node38" href="$dd/d3d/classocra_1_1TorqueLimitFunction.html" title="Create a linear function that represents the torque limit function. " alt="" coords="1123,601,1297,627"/>
+<area shape="rect" id="node39" href="$d7/d46/classocra_1_1VariableChiFunction.html" title="ocra::VariableChiFunction" alt="" coords="1123,651,1297,676"/>
+<area shape="rect" id="node23" href="$da/d90/classocra_1_1FullContactAvoidanceFunction.html" title="Create a linear function that represents the contact avoidance function for the full formalism..." alt="" coords="1384,5,1568,44"/>
+<area shape="rect" id="node24" href="$db/d40/classocra_1_1ReducedContactAvoidanceFunction.html" title="Create a linear function that represents the contact avoidance function for the reduced formalism..." alt="" coords="1368,68,1584,107"/>
+<area shape="rect" id="node26" href="$dd/d77/classocra_1_1BoundFunction.html" title="BoundFunction class. " alt="" coords="1404,131,1549,156"/>
+<area shape="rect" id="node27" href="$d4/d58/classocra_1_1IdentityFunction.html" title="IdentityFunction class. " alt="" coords="1402,180,1551,205"/>
+<area shape="rect" id="node32" href="$df/d42/classocra_1_1FullJointLimitFunction.html" title="Create a linear function that represents the joint limit function for the full formalism. " alt="" coords="1385,329,1568,355"/>
+<area shape="rect" id="node33" href="$dc/daa/classocra_1_1ReducedJointLimitFunction.html" title="Create a linear function that represents the joint limit function for the reduced formalism..." alt="" coords="1369,379,1584,404"/>
+<area shape="rect" id="node44" href="$d3/d16/classocra_1_1FcQuadraticFunction.html" title="ocra::FcQuadraticFunction" alt="" coords="1121,700,1299,725"/>
+<area shape="rect" id="node45" href="$df/dfc/classocra_1_1SquaredLinearFunction.html" title="SquaredLinearFunction class. " alt="" coords="1113,749,1307,775"/>
+<area shape="rect" id="node46" href="$d2/d31/classocra_1_1WeightedSquareDistanceFunction.html" title="WeightedSquareDistanceFunction class. " alt="" coords="1107,799,1313,837"/>
+</map>

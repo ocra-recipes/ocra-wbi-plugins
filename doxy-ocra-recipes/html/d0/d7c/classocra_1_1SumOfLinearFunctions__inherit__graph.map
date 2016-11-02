@@ -1,0 +1,17 @@
+<map id="ocra::SumOfLinearFunctions" name="ocra::SumOfLinearFunctions">
+<area shape="rect" id="node2" href="$de/d3a/classocra_1_1LinearFunction.html" title="LinearFunction class. " alt="" coords="878,303,1021,328"/>
+<area shape="rect" id="node3" href="$d2/d99/classocra_1_1Function.html" title="Function class. " alt="" coords="725,303,830,328"/>
+<area shape="rect" id="node4" href="$d3/d16/classocra_1_1ObserverSubject.html" title="ocra::ObserverSubject" alt="" coords="490,169,644,195"/>
+<area shape="rect" id="node5" href="$d2/d45/classocra_1_1Observer.html" title="ocra::Observer" alt="" coords="301,107,410,132"/>
+<area shape="rect" id="node6" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_RESIZE \&gt;" alt="" coords="59,5,199,44"/>
+<area shape="rect" id="node7" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_CHANGE_DEPENDENCIES \&gt;" alt="" coords="5,68,253,107"/>
+<area shape="rect" id="node8" href="$d4/dee/classocra_1_1ObserverBase.html" title="ocra::ObserverBase\l\&lt; EVT_CHANGE_VALUE \&gt;" alt="" coords="37,131,221,169"/>
+<area shape="rect" id="node9" href="$dc/d77/classocra_1_1Subject.html" title="ocra::Subject" alt="" coords="306,232,405,257"/>
+<area shape="rect" id="node10" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_RESIZE \&gt;" alt="" coords="60,193,198,232"/>
+<area shape="rect" id="node11" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_DEPENDENCIES \&gt;" alt="" coords="9,256,249,295"/>
+<area shape="rect" id="node12" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CHANGE_VALUE \&gt;" alt="" coords="40,319,218,357"/>
+<area shape="rect" id="node13" href="$dd/d68/classocra_1_1IFunctionProperties.html" title="ocra::IFunctionProperties" alt="" coords="482,219,653,244"/>
+<area shape="rect" id="node15" href="$db/de3/classocra_1_1NamedInstance.html" title="ocra::NamedInstance" alt="" coords="493,331,641,356"/>
+<area shape="rect" id="node16" href="$d8/d24/classocra_1_1AbilitySet.html" title="ocra::AbilitySet" alt="" coords="512,380,623,405"/>
+<area shape="rect" id="node17" href="$d5/dc0/classocra_1_1CoupledInputOutputSize.html" title="ocra::CoupledInputOutputSize" alt="" coords="467,429,667,455"/>
+</map>

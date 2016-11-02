@@ -1,0 +1,51 @@
+<map id="Task.h" name="Task.h">
+<area shape="rect" id="node2" href="$d2/d16/ContactSet_8h.html" title="Factory classes and functions to build sets of contact frames. " alt="" coords="2028,226,2127,251"/>
+<area shape="rect" id="node5" href="$de/d4a/Controller_8h.html" title="Controller interface. " alt="" coords="1751,153,1841,178"/>
+<area shape="rect" id="node14" href="$db/dc6/WocraController_8h.html" title="Define the LQP&#45;based controller developped during my PhD thesis with ocra framework. " alt="" coords="1503,226,1631,251"/>
+<area shape="rect" id="node28" href="$d7/d34/HocraController_8h.html" title="HocraController.h" alt="" coords="1833,226,1959,251"/>
+<area shape="rect" id="node30" href="$d3/dc1/TaskBuilder_8h.html" title="TaskBuilder.h" alt="" coords="660,79,761,105"/>
+<area shape="rect" id="node41" href="$d9/d76/TaskYarpInterface_8h.html" title="TaskYarpInterface.h" alt="" coords="1652,79,1791,105"/>
+<area shape="rect" id="node43" href="$d1/de1/CascadeQPSolver_8h.html" title="Declaration file of the CascadeQPSolver class. " alt="" coords="2137,79,2279,105"/>
+<area shape="rect" id="node45" href="$d3/d71/Task_8cpp.html" title="Task.cpp" alt="" coords="2303,79,2377,105"/>
+<area shape="rect" id="node46" href="$d5/d9e/GHCJTTask_8h.html" title="Define task class for GHCJT controller. It inherits from the task class defined in the ocra framework..." alt="" coords="2937,153,3042,178"/>
+<area shape="rect" id="node48" href="$de/d5d/TaskConnection_8h.html" title="TaskConnection.h" alt="" coords="1918,79,2045,105"/>
+<area shape="rect" id="node3" href="$d7/dce/ContactSet_8cpp.html" title="ContactSet.cpp" alt="" coords="2018,306,2131,331"/>
+<area shape="rect" id="node4" href="$d0/d71/GHCJTController_8cpp.html" title="Implement the quasi&#45;static Generalized Hierarchical Control based on Jacobian Transpose (GHCJT)..." alt="" coords="2358,306,2506,331"/>
+<area shape="rect" id="node6" href="$d1/d7b/TaskConstructionManager_8h.html" title="TaskConstructionManager.h" alt="" coords="896,226,1083,251"/>
+<area shape="rect" id="node9" href="$da/d7c/ControllerServer_8h.html" title="ControllerServer.h" alt="" coords="1650,386,1779,411"/>
+<area shape="rect" id="node11" href="$d2/d6c/ServerCommunications_8h.html" title="ServerCommunications.h" alt="" coords="1341,306,1512,331"/>
+<area shape="rect" id="node13" href="$dd/da6/Controller_8cpp.html" title="Controller.cpp" alt="" coords="1655,226,1758,251"/>
+<area shape="rect" id="node16" href="$d9/de9/GHCJTController_8h.html" title="Define the Generalized Hierarchical Controller based on Jacobian transpose (GHCJT) in quasi&#45;static ca..." alt="" coords="2848,226,2982,251"/>
+<area shape="rect" id="node7" href="$dd/d25/TaskConstructionManager_8cpp.html" title="TaskConstructionManager.cpp" alt="" coords="889,306,1090,331"/>
+<area shape="rect" id="node8" href="$db/d9a/ControllerClient_8h.html" title="ControllerClient.h" alt="" coords="1189,306,1313,331"/>
+<area shape="rect" id="node10" href="$d5/dd2/ControllerServer_8cpp.html" title="ControllerServer.cpp" alt="" coords="1643,459,1786,485"/>
+<area shape="rect" id="node12" href="$dc/dac/ServerCommunications_8cpp.html" title="ServerCommunications.cpp" alt="" coords="1334,386,1519,411"/>
+<area shape="rect" id="node15" href="$d2/def/WocraController_8cpp.html" title="Implement the LQP&#45;based controller developped during my PhD thesis with ocra framework. " alt="" coords="1536,306,1678,331"/>
+<area shape="rect" id="node17" href="$df/d0a/main_8cpp.html" title="main.cpp" alt="" coords="2530,306,2606,331"/>
+<area shape="rect" id="node18" href="$db/d31/gOcraTaskManagerBase_8h.html" title="gOcraTaskManagerBase.h" alt="" coords="3002,306,3182,331"/>
+<area shape="rect" id="node19" href="$de/dda/gOcraCoMTaskManager_8h.html" title="gOcraCoMTaskManager.h" alt="" coords="3319,386,3495,411"/>
+<area shape="rect" id="node20" href="$d0/d8c/gOcraContactSetTaskManager_8h.html" title="gOcraContactSetTaskManager.h" alt="" coords="3518,386,3732,411"/>
+<area shape="rect" id="node21" href="$dc/db6/gOcraContactTaskManager_8h.html" title="gOcraContactTaskManager.h" alt="" coords="3756,386,3950,411"/>
+<area shape="rect" id="node22" href="$d0/dd7/gOcraFullPostureTaskManager_8h.html" title="gOcraFullPostureTaskManager.h" alt="" coords="2823,386,3038,411"/>
+<area shape="rect" id="node23" href="$dd/dc3/gOcraPartialPostureTaskManager_8h.html" title="gOcraPartialPostureTaskManager.h" alt="" coords="3063,386,3295,411"/>
+<area shape="rect" id="node24" href="$d8/de2/gOcraSegCartesianTaskManager_8h.html" title="gOcraSegCartesianTaskManager.h" alt="" coords="2308,386,2537,411"/>
+<area shape="rect" id="node25" href="$d7/d74/gOcraSegOrientationTaskManager_8h.html" title="gOcraSegOrientationTaskManager.h" alt="" coords="2562,386,2799,411"/>
+<area shape="rect" id="node26" href="$d2/db2/gOcraSegPoseTaskManager_8h.html" title="gOcraSegPoseTaskManager.h" alt="" coords="2082,386,2284,411"/>
+<area shape="rect" id="node27" href="$de/d9f/gOcraTaskManagerCollectionBase_8cpp.html" title="gOcraTaskManagerCollection\lBase.cpp" alt="" coords="2681,299,2877,338"/>
+<area shape="rect" id="node29" href="$d9/d62/HocraController_8cpp.html" title="HocraController.cpp" alt="" coords="1856,306,1995,331"/>
+<area shape="rect" id="node31" href="$da/db2/CartesianTaskBuilder_8h.html" title="CartesianTaskBuilder.h" alt="" coords="144,153,302,178"/>
+<area shape="rect" id="node33" href="$de/d08/ComTaskBuilder_8h.html" title="ComTaskBuilder.h" alt="" coords="325,153,454,178"/>
+<area shape="rect" id="node35" href="$dc/d87/FullPostureTaskBuilder_8h.html" title="FullPostureTaskBuilder.h" alt="" coords="528,153,696,178"/>
+<area shape="rect" id="node36" href="$d1/df8/OrientationTaskBuilder_8h.html" title="OrientationTaskBuilder.h" alt="" coords="1076,153,1242,178"/>
+<area shape="rect" id="node37" href="$d5/d81/PartialPostureTaskBuilder_8h.html" title="PartialPostureTaskBuilder.h" alt="" coords="1265,153,1450,178"/>
+<area shape="rect" id="node38" href="$d2/d1a/PointContactTaskBuilder_8h.html" title="PointContactTaskBuilder.h" alt="" coords="720,153,897,178"/>
+<area shape="rect" id="node39" href="$d4/d7b/PoseTaskBuilder_8h.html" title="PoseTaskBuilder.h" alt="" coords="921,153,1052,178"/>
+<area shape="rect" id="node40" href="$da/d3a/TaskBuilder_8cpp.html" title="TaskBuilder.cpp" alt="" coords="5,153,120,178"/>
+<area shape="rect" id="node32" href="$d5/d46/CartesianTaskBuilder_8cpp.html" title="CartesianTaskBuilder.cpp" alt="" coords="130,226,302,251"/>
+<area shape="rect" id="node34" href="$d4/d18/ComTaskBuilder_8cpp.html" title="ComTaskBuilder.cpp" alt="" coords="326,226,469,251"/>
+<area shape="rect" id="node42" href="$d9/de2/TaskYarpInterface_8cpp.html" title="TaskYarpInterface.cpp" alt="" coords="1524,153,1677,178"/>
+<area shape="rect" id="node44" href="$d9/dd8/CascadeQPSolver_8cpp.html" title="CascadeQPSolver.cpp" alt="" coords="2238,153,2394,178"/>
+<area shape="rect" id="node47" href="$d2/d79/GHCJTTask_8cpp.html" title="Implement task class for GHCJT controller. It inherits from the task class defined in the ocra framew..." alt="" coords="3006,226,3125,251"/>
+<area shape="rect" id="node49" href="$da/d00/TrajectoryThread_8h.html" title="A thread for launching trajectory generators. " alt="" coords="1916,153,2049,178"/>
+<area shape="rect" id="node50" href="$d1/d60/TaskConnection_8cpp.html" title="TaskConnection.cpp" alt="" coords="2073,153,2215,178"/>
+</map>

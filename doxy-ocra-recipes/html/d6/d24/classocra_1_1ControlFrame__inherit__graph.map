@@ -1,0 +1,6 @@
+<map id="ocra::ControlFrame" name="ocra::ControlFrame">
+<area shape="rect" id="node4" href="$d9/d52/classocra_1_1CoMFrame.html" title="Creates a frame whose center is at the CoM of the model and whose axes are parallel to the axes of th..." alt="" coords="5,152,127,177"/>
+<area shape="rect" id="node5" href="$d1/d45/classocra_1_1SegmentFrame.html" title="A frame attached to a segment of a model. " alt="" coords="150,152,297,177"/>
+<area shape="rect" id="node6" href="$da/dbb/classocra_1_1TargetFrame.html" title="Represents a &#39;target&#39;, i.e. something that does not depend on a model but must match with another fra..." alt="" coords="321,152,451,177"/>
+<area shape="rect" id="node2" href="$db/de3/classocra_1_1NamedInstance.html" title="ocra::NamedInstance" alt="" coords="76,5,224,31"/>
+</map>

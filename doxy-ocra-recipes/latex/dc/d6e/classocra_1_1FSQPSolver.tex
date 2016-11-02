@@ -9,10 +9,22 @@
 
 {\ttfamily \#include $<$F\+S\+Q\+P\+Solver.\+h$>$}
 
-Inheritance diagram for ocra\+:\+:F\+S\+Q\+P\+Solver\+:\begin{figure}[H]
+
+
+Inheritance diagram for ocra\+:\+:F\+S\+Q\+P\+Solver\+:\nopagebreak
+\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=1.352657cm]{dc/d6e/classocra_1_1FSQPSolver}
+\includegraphics[width=350pt]{d6/d20/classocra_1_1FSQPSolver__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for ocra\+:\+:F\+S\+Q\+P\+Solver\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/df0/classocra_1_1FSQPSolver__coll__graph}
 \end{center}
 \end{figure}
 \subsection*{Public Types}
@@ -663,6 +675,13 @@ Definition at line 332 of file F\+S\+Q\+P\+Solver.\+cpp.
 \subsubsection{\texorpdfstring{on\+Constraint\+Resize()}{onConstraintResize()}}
 {\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::on\+Constraint\+Resize (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
+Callback method to be invoked when the function of a constraint indicates an E\+V\+T\+\_\+\+R\+E\+S\+I\+ZE, or the constraint itself triggers an E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+B\+O\+U\+N\+D\+S\+\_\+\+N\+U\+M\+B\+ER event.
+
+
+\begin{DoxyParams}{Parameters}
+{\em timestamp} & Time stamp. \\
+\hline
+\end{DoxyParams}
 
 
 Reimplemented from \hyperlink{classocra_1_1Solver_ad74c2f36dcee107636675bb6ff16e26a}{ocra\+::\+Solver}.
@@ -677,6 +696,13 @@ Definition at line 422 of file F\+S\+Q\+P\+Solver.\+cpp.
 \subsubsection{\texorpdfstring{on\+Objective\+Resize()}{onObjectiveResize()}}
 {\footnotesize\ttfamily void ocra\+::\+F\+S\+Q\+P\+Solver\+::on\+Objective\+Resize (\begin{DoxyParamCaption}\item[{int}]{timestamp }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
+Callback method to be invoked when the function of an objective triggers a E\+V\+T\+\_\+\+R\+E\+S\+I\+ZE event
+
+
+\begin{DoxyParams}{Parameters}
+{\em timestamp} & Time stamp. \\
+\hline
+\end{DoxyParams}
 
 
 Reimplemented from \hyperlink{classocra_1_1Solver_a7d45f67599edfa5ba8373b115378de5c}{ocra\+::\+Solver}.

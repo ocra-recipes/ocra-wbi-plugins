@@ -1,0 +1,15 @@
+<map id="PartialState.cpp" name="PartialState.cpp">
+<area shape="rect" id="node2" href="$d9/daf/PartialState_8h.html" title="Define partial state classes that can be used to control some joints of the robot. " alt="" coords="219,79,394,104"/>
+<area shape="rect" id="node38" href="$da/dfc/FullState_8h.html" title="ocra/control/FullState.h" alt="" coords="61,152,219,177"/>
+<area shape="rect" id="node3" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="377,225,569,251"/>
+<area shape="rect" id="node5" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="930,152,1072,177"/>
+<area shape="rect" id="node33" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="227,225,354,251"/>
+<area shape="rect" id="node6" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="1151,225,1299,251"/>
+<area shape="rect" id="node9" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="1209,299,1407,324"/>
+<area shape="rect" id="node20" href="$d7/d90/Variable_8h.html" title="Declaration file of the Variable class. " alt="" coords="1375,225,1521,251"/>
+<area shape="rect" id="node30" href="$d9/d5d/ModelContacts_8h.html" title="Declaration file of the ModelContacts class. " alt="" coords="593,225,788,251"/>
+<area shape="rect" id="node10" href="$df/d67/ObserverSubjectBase_8h.html" title="Declaration file of the Observer and Subject base classes. " alt="" coords="839,372,1025,411"/>
+<area shape="rect" id="node18" href="$db/ddf/ocra__events_8h.html" title="ocra/optim/ocra_events.h" alt="" coords="1100,379,1271,404"/>
+<area shape="rect" id="node21" href="$d1/de6/Composite_8h.html" title="Utility classes and functions to implement the Composite design pattern. " alt="" coords="1662,299,1824,324"/>
+<area shape="rect" id="node22" href="$de/df3/ocra__assert_8h.html" title="ocra/optim/ocra_assert.h" alt="" coords="2040,379,2208,404"/>
+</map>

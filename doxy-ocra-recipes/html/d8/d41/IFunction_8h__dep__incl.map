@@ -1,0 +1,51 @@
+<map id="IFunction.h" name="IFunction.h">
+<area shape="rect" id="node2" href="$db/d47/AbilitySet_8h.html" title="AbilitySet.h" alt="" coords="1816,79,1904,104"/>
+<area shape="rect" id="node3" href="$df/df5/Function_8h.html" title="Declaration file of the Function class. " alt="" coords="1777,152,1860,177"/>
+<area shape="rect" id="node4" href="$d3/dcf/Constraint_8h.html" title="Declaration file of the Constraint class. " alt="" coords="1385,372,1478,397"/>
+<area shape="rect" id="node26" href="$df/dfd/DotProductFunction_8h.html" title="Declaration file of the DotProductFunction class. " alt="" coords="1947,225,2098,251"/>
+<area shape="rect" id="node27" href="$df/d55/FunctionInterfaceMapping_8h.html" title="Declaration file of the FunctionInterfaceMapping struct. " alt="" coords="952,299,1138,324"/>
+<area shape="rect" id="node28" href="$d1/d76/Objective_8h.html" title="Declaration file of the Objective class. " alt="" coords="825,445,913,471"/>
+<area shape="rect" id="node29" href="$d1/d68/FunctionUtilities_8h.html" title="Declaration file of the FunctionProperties class. " alt="" coords="2923,299,3050,324"/>
+<area shape="rect" id="node33" href="$dc/d8a/LinearFunction_8h.html" title="Declaration file of the LinearFunction class. " alt="" coords="1620,225,1740,251"/>
+<area shape="rect" id="node43" href="$d4/d83/QuadraticFunction_8h.html" title="Declaration file of the QuadraticFunction class. " alt="" coords="445,299,587,324"/>
+<area shape="rect" id="node47" href="$d5/db9/RowFunction_8h.html" title="Declaration file of the RowFunction class. " alt="" coords="2122,225,2232,251"/>
+<area shape="rect" id="node48" href="$d4/dc9/SubtractionFunction_8h.html" title="Declaration file of the SubtractionFunction class. " alt="" coords="2256,225,2407,251"/>
+<area shape="rect" id="node49" href="$d0/d12/TestFunction_8h.html" title="A set of tutorial/test for the Function class. " alt="" coords="1764,225,1873,251"/>
+<area shape="rect" id="node50" href="$dc/dd4/Function_8cpp.html" title="Function.cpp" alt="" coords="2431,225,2529,251"/>
+<area shape="rect" id="node5" href="$d2/d16/ContactSet_8h.html" title="Factory classes and functions to build sets of contact frames. " alt="" coords="245,739,344,764"/>
+<area shape="rect" id="node8" href="$d6/d2b/ControlConstraint_8h.html" title="Define base class that can be used as constraints in wOcra controller. " alt="" coords="2113,519,2249,544"/>
+<area shape="rect" id="node12" href="$d1/de1/CascadeQPSolver_8h.html" title="Declaration file of the CascadeQPSolver class. " alt="" coords="1514,739,1656,764"/>
+<area shape="rect" id="node13" href="$d1/dff/FullDynamicEquationFunction_8h.html" title="Define base class that can be used as constraints in wOcra controller. " alt="" coords="2086,445,2295,471"/>
+<area shape="rect" id="node14" href="$d1/dfa/TorqueLimitConstraint_8h.html" title="Define torque limit constraint for wOcra controller. " alt="" coords="1848,445,2010,471"/>
+<area shape="rect" id="node15" href="$df/d89/ConstraintSet_8h.html" title="Declaration file of the ConstraintSet class. " alt="" coords="1241,445,1354,471"/>
+<area shape="rect" id="node16" href="$d8/d08/FSQPConstraintManager_8h.html" title="Declaration file of the FSQPConstraintManager class. " alt="" coords="1062,519,1244,544"/>
+<area shape="rect" id="node18" href="$db/dc5/Solver_8h.html" title="Declaration file of the Solver class. " alt="" coords="1369,519,1439,544"/>
+<area shape="rect" id="node20" href="$d1/d80/QuadraticSolver_8h.html" title="Declaration file of the QuadraticSolver class. " alt="" coords="1442,592,1569,617"/>
+<area shape="rect" id="node21" href="$d3/ded/FunctionHelpers_8h.html" title="FunctionHelpers.h" alt="" coords="807,519,937,544"/>
+<area shape="rect" id="node23" href="$de/d2e/SolverUtilities_8h.html" title="SolverUtilities.h" alt="" coords="1559,445,1672,471"/>
+<area shape="rect" id="node24" href="$db/d66/Constraint_8cpp.html" title="Constraint.cpp" alt="" coords="1378,445,1485,471"/>
+<area shape="rect" id="node25" href="$dc/dff/TestFunction_8cpp.html" title="TestFunction.cpp" alt="" coords="2319,445,2441,471"/>
+<area shape="rect" id="node6" href="$d7/dce/ContactSet_8cpp.html" title="ContactSet.cpp" alt="" coords="238,812,351,837"/>
+<area shape="rect" id="node7" href="$d0/d71/GHCJTController_8cpp.html" title="Implement the quasi&#45;static Generalized Hierarchical Control based on Jacobian Transpose (GHCJT)..." alt="" coords="386,812,534,837"/>
+<area shape="rect" id="node9" href="$d8/d00/ContactAvoidanceConstraint_8h.html" title="Define contact avoidance constraint for wOcra controller. " alt="" coords="2081,592,2282,617"/>
+<area shape="rect" id="node10" href="$d3/d61/JointLimitConstraint_8h.html" title="Define joint limit constraint for wOcra controller. " alt="" coords="1906,592,2056,617"/>
+<area shape="rect" id="node11" href="$df/d4f/Task_8h.html" title="Task.h" alt="" coords="547,665,607,691"/>
+<area shape="rect" id="node17" href="$d6/db9/FSQPConstraintManager_8cpp.html" title="FSQPConstraintManager.cpp" alt="" coords="1078,592,1274,617"/>
+<area shape="rect" id="node19" href="$d0/d17/OneLevelSolver_8h.html" title="Define the internal solver class that can be used in the wOcra controller. " alt="" coords="403,592,530,617"/>
+<area shape="rect" id="node22" href="$d2/d79/GHCJTTask_8cpp.html" title="Implement task class for GHCJT controller. It inherits from the task class defined in the ocra framew..." alt="" coords="931,665,1050,691"/>
+<area shape="rect" id="node30" href="$dd/d93/FunctionUtilities_8cpp.html" title="FunctionUtilities.cpp" alt="" coords="2920,372,3061,397"/>
+<area shape="rect" id="node31" href="$db/d6f/LinearTask_8cpp.html" title="LinearTask.cpp" alt="" coords="2896,445,3007,471"/>
+<area shape="rect" id="node32" href="$db/d64/SecondOrderLinearTask_8cpp.html" title="SecondOrderLinearTask.cpp" alt="" coords="2434,372,2624,397"/>
+<area shape="rect" id="node34" href="$d6/dbb/DynamicEquationFunction_8h.html" title="Declaration file of the DynamicEquationFunction class. " alt="" coords="1520,299,1709,324"/>
+<area shape="rect" id="node35" href="$dc/d6f/DiagonalLinearFunction_8h.html" title="Declaration file of the DiagonalLinearFunction class. " alt="" coords="1784,299,1957,324"/>
+<area shape="rect" id="node36" href="$dc/df4/LinearTask_8h.html" title="Declaration file of the LinearTask class. " alt="" coords="2749,372,2846,397"/>
+<area shape="rect" id="node37" href="$d9/d62/DoubleDiagonalLinearFunction_8h.html" title="Declaration file of the DoubleDiagonalLinearFunction class. " alt="" coords="2443,299,2658,324"/>
+<area shape="rect" id="node38" href="$d9/d0f/LinearizedCoulombFunction_8h.html" title="Declaration file of the LinearizedCoulombFunction class. " alt="" coords="705,592,903,617"/>
+<area shape="rect" id="node39" href="$d0/d6a/SecondOrderLinearTask_8h.html" title="Declaration file of the SecondOrderLinearTask class. " alt="" coords="2242,299,2419,324"/>
+<area shape="rect" id="node40" href="$d1/d0e/SquaredLinearFunction_8h.html" title="Declaration file of the SquaredLinearFunction class. " alt="" coords="553,372,724,397"/>
+<area shape="rect" id="node41" href="$db/dd9/SumOfLinearFunctions_8h.html" title="SumOfLinearFunctions.h" alt="" coords="2427,592,2596,617"/>
+<area shape="rect" id="node42" href="$de/d29/LinearFunction_8cpp.html" title="LinearFunction.cpp" alt="" coords="2032,299,2167,324"/>
+<area shape="rect" id="node44" href="$d8/d6a/WeightedSquareDistanceFunction_8h.html" title="Declaration file of the WeightedSquareDistanceFunction class. " alt="" coords="145,592,380,617"/>
+<area shape="rect" id="node45" href="$dc/d24/QuadraticFunction_8cpp.html" title="QuadraticFunction.cpp" alt="" coords="43,372,199,397"/>
+<area shape="rect" id="node46" href="$d2/def/WocraController_8cpp.html" title="Implement the LQP&#45;based controller developped during my PhD thesis with ocra framework. " alt="" coords="224,372,365,397"/>
+</map>

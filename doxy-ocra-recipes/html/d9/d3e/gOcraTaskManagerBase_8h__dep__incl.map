@@ -1,0 +1,21 @@
+<map id="gOcraTaskManagerBase.h" name="gOcraTaskManagerBase.h">
+<area shape="rect" id="node2" href="$d4/d79/gOcraTaskManagerCollectionBase_8h.html" title="gOcraTaskManagerCollection\lBase.h" alt="" coords="958,152,1155,191"/>
+<area shape="rect" id="node4" href="$de/dda/gOcraCoMTaskManager_8h.html" title="gOcraCoMTaskManager.h" alt="" coords="147,79,323,104"/>
+<area shape="rect" id="node6" href="$d0/d8c/gOcraContactSetTaskManager_8h.html" title="gOcraContactSetTaskManager.h" alt="" coords="347,79,561,104"/>
+<area shape="rect" id="node8" href="$dc/db6/gOcraContactTaskManager_8h.html" title="gOcraContactTaskManager.h" alt="" coords="585,79,779,104"/>
+<area shape="rect" id="node10" href="$d0/dd7/gOcraFullPostureTaskManager_8h.html" title="gOcraFullPostureTaskManager.h" alt="" coords="803,79,1019,104"/>
+<area shape="rect" id="node12" href="$dd/dc3/gOcraPartialPostureTaskManager_8h.html" title="gOcraPartialPostureTaskManager.h" alt="" coords="1094,79,1326,104"/>
+<area shape="rect" id="node14" href="$d8/de2/gOcraSegCartesianTaskManager_8h.html" title="gOcraSegCartesianTaskManager.h" alt="" coords="1350,79,1579,104"/>
+<area shape="rect" id="node16" href="$d7/d74/gOcraSegOrientationTaskManager_8h.html" title="gOcraSegOrientationTaskManager.h" alt="" coords="1603,79,1840,104"/>
+<area shape="rect" id="node18" href="$d2/db2/gOcraSegPoseTaskManager_8h.html" title="gOcraSegPoseTaskManager.h" alt="" coords="1865,79,2067,104"/>
+<area shape="rect" id="node20" href="$d6/d1f/gOcraTaskManagerBase_8cpp.html" title="gOcraTaskManagerBase.cpp" alt="" coords="2091,79,2284,104"/>
+<area shape="rect" id="node3" href="$de/d9f/gOcraTaskManagerCollectionBase_8cpp.html" title="gOcraTaskManagerCollection\lBase.cpp" alt="" coords="958,239,1155,277"/>
+<area shape="rect" id="node5" href="$d4/d34/gOcraCoMTaskManager_8cpp.html" title="gOcraCoMTaskManager.cpp" alt="" coords="5,159,196,184"/>
+<area shape="rect" id="node7" href="$d9/d71/gOcraContactSetTaskManager_8cpp.html" title="gOcraContactSetTaskManager.cpp" alt="" coords="220,159,448,184"/>
+<area shape="rect" id="node9" href="$da/d9a/gOcraContactTaskManager_8cpp.html" title="gOcraContactTaskManager.cpp" alt="" coords="472,159,681,184"/>
+<area shape="rect" id="node11" href="$d3/df6/gOcraFullPostureTaskManager_8cpp.html" title="gOcraFullPostureTaskManager.cpp" alt="" coords="704,159,934,184"/>
+<area shape="rect" id="node13" href="$dd/dcc/gOcraPartialPostureTaskManager_8cpp.html" title="gOcraPartialPostureTaskManager.cpp" alt="" coords="1179,159,1425,184"/>
+<area shape="rect" id="node15" href="$dd/d9e/gOcraSegCartesianTaskManager_8cpp.html" title="gOcraSegCartesianTaskManager.cpp" alt="" coords="1448,159,1691,184"/>
+<area shape="rect" id="node17" href="$d8/dfe/gOcraSegOrientationTaskManager_8cpp.html" title="gOcraSegOrientationTaskManager.cpp" alt="" coords="1715,159,1966,184"/>
+<area shape="rect" id="node19" href="$de/d48/gOcraSegPoseTaskManager_8cpp.html" title="gOcraSegPoseTaskManager.cpp" alt="" coords="1990,159,2206,184"/>
+</map>

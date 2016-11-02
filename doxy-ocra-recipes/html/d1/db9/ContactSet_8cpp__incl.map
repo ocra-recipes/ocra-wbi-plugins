@@ -1,0 +1,37 @@
+<map id="ContactSet.cpp" name="ContactSet.cpp">
+<area shape="rect" id="node2" href="$d2/d16/ContactSet_8h.html" title="Factory classes and functions to build sets of contact frames. " alt="" coords="926,79,1098,104"/>
+<area shape="rect" id="node3" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="3707,865,3899,891"/>
+<area shape="rect" id="node9" href="$d3/dcf/Constraint_8h.html" title="Declaration file of the Constraint class. " alt="" coords="1284,472,1444,497"/>
+<area shape="rect" id="node22" href="$d9/d0f/LinearizedCoulombFunction_8h.html" title="Declaration file of the LinearizedCoulombFunction class. " alt="" coords="911,312,1113,351"/>
+<area shape="rect" id="node23" href="$d8/d6a/WeightedSquareDistanceFunction_8h.html" title="Declaration file of the WeightedSquareDistanceFunction class. " alt="" coords="649,312,836,351"/>
+<area shape="rect" id="node25" href="$d1/d76/Objective_8h.html" title="Declaration file of the Objective class. " alt="" coords="600,472,754,497"/>
+<area shape="rect" id="node28" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="2505,472,2647,497"/>
+<area shape="rect" id="node34" href="$db/d3d/ControlFrame_8h.html" title="Classes that represent frames. " alt="" coords="3730,472,3918,497"/>
+<area shape="rect" id="node35" href="$df/d60/ControlEnum_8h.html" title="Some enumerations for the control. " alt="" coords="1951,472,2134,497"/>
+<area shape="rect" id="node37" href="$dc/d2f/Feature_8h.html" title="A class hierarchy to compute task errors based on control frames. " alt="" coords="3535,319,3687,344"/>
+<area shape="rect" id="node41" href="$df/d4f/Task_8h.html" title="ocra/control/Task.h" alt="" coords="1775,232,1908,257"/>
+<area shape="rect" id="node49" href="$de/d4a/Controller_8h.html" title="Controller interface. " alt="" coords="3477,152,3640,177"/>
+<area shape="rect" id="node10" href="$d7/d90/Variable_8h.html" title="Declaration file of the Variable class. " alt="" coords="1941,865,2088,891"/>
+<area shape="rect" id="node15" href="$df/df5/Function_8h.html" title="Declaration file of the Function class. " alt="" coords="1385,792,1535,817"/>
+<area shape="rect" id="node16" href="$df/d55/FunctionInterfaceMapping_8h.html" title="Declaration file of the FunctionInterfaceMapping struct. " alt="" coords="850,545,1040,584"/>
+<area shape="rect" id="node17" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="2493,792,2619,817"/>
+<area shape="rect" id="node18" href="$dc/d8a/LinearFunction_8h.html" title="Declaration file of the LinearFunction class. " alt="" coords="1179,719,1365,744"/>
+<area shape="rect" id="node19" href="$de/d69/BoundFunction_8h.html" title="Declaration file of the BoundFunction class. " alt="" coords="1217,552,1405,577"/>
+<area shape="rect" id="node20" href="$dc/d6f/DiagonalLinearFunction_8h.html" title="Declaration file of the DiagonalLinearFunction class. " alt="" coords="1320,632,1496,671"/>
+<area shape="rect" id="node21" href="$de/d7a/IdentityFunction_8h.html" title="Declaration file of the IdentityFunction class. " alt="" coords="1480,552,1672,577"/>
+<area shape="rect" id="node11" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="1898,939,2096,964"/>
+<area shape="rect" id="node24" href="$d4/d83/QuadraticFunction_8h.html" title="Declaration file of the QuadraticFunction class. " alt="" coords="608,639,816,664"/>
+<area shape="rect" id="node26" href="$d1/d0e/SquaredLinearFunction_8h.html" title="Declaration file of the SquaredLinearFunction class. " alt="" coords="297,545,471,584"/>
+<area shape="rect" id="node29" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="3046,552,3194,577"/>
+<area shape="rect" id="node30" href="$d9/d5d/ModelContacts_8h.html" title="Declaration file of the ModelContacts class. " alt="" coords="2827,552,3021,577"/>
+<area shape="rect" id="node36" href="$da/dbb/StringUtilities_8h.html" title="ocra/util/StringUtilities.h" alt="" coords="2024,719,2184,744"/>
+<area shape="rect" id="node38" href="$da/dfc/FullState_8h.html" title="ocra/control/FullState.h" alt="" coords="4093,552,4251,577"/>
+<area shape="rect" id="node39" href="$d9/daf/PartialState_8h.html" title="Define partial state classes that can be used to control some joints of the robot. " alt="" coords="3491,399,3666,424"/>
+<area shape="rect" id="node40" href="$d0/d8a/TaskState_8h.html" title="ocra/control/TaskState.h" alt="" coords="3200,472,3365,497"/>
+<area shape="rect" id="node42" href="$d8/d9f/ErrorsHelper_8h.html" title="ocra/util/ErrorsHelper.h" alt="" coords="1668,472,1826,497"/>
+<area shape="rect" id="node43" href="$d3/ded/FunctionHelpers_8h.html" title="ocra/optim/FunctionHelpers.h" alt="" coords="1266,399,1462,424"/>
+<area shape="rect" id="node45" href="$d0/d17/OneLevelSolver_8h.html" title="Define the internal solver class that can be used in the wOcra controller. " alt="" coords="1504,399,1696,424"/>
+<area shape="rect" id="node46" href="$d6/d2b/ControlConstraint_8h.html" title="Define base class that can be used as constraints in wOcra controller. " alt="" coords="1787,399,1997,424"/>
+<area shape="rect" id="node47" href="$dc/df4/VariableChiFunction_8h.html" title="ocra/optim/VariableChiFunction.h" alt="" coords="1239,319,1457,344"/>
+<area shape="rect" id="node48" href="$da/d74/FcQuadraticFunction_8h.html" title="ocra/optim/FcQuadraticFunction.h" alt="" coords="1481,319,1703,344"/>
+</map>

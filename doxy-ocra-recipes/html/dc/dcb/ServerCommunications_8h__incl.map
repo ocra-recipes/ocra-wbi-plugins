@@ -1,0 +1,29 @@
+<map id="ServerCommunications.h" name="ServerCommunications.h">
+<area shape="rect" id="node4" href="$df/d0a/Macros_8h.html" title="ocra/util/Macros.h" alt="" coords="1315,572,1442,597"/>
+<area shape="rect" id="node5" href="$de/d4a/Controller_8h.html" title="Controller interface. " alt="" coords="1317,172,1480,197"/>
+<area shape="rect" id="node17" href="$d8/d9f/ErrorsHelper_8h.html" title="ocra/util/ErrorsHelper.h" alt="" coords="981,499,1139,524"/>
+<area shape="rect" id="node19" href="$d3/d5a/Model_8h.html" title="Declaration file of the Model class. " alt="" coords="2105,499,2247,524"/>
+<area shape="rect" id="node27" href="$d0/d17/OneLevelSolver_8h.html" title="Define the internal solver class that can be used in the wOcra controller. " alt="" coords="1946,425,2139,451"/>
+<area shape="rect" id="node34" href="$d1/d7b/TaskConstructionManager_8h.html" title="ocra/control/TaskBuilders\l/TaskConstructionManager.h" alt="" coords="3209,79,3399,117"/>
+<area shape="rect" id="node49" href="$db/dc6/WocraController_8h.html" title="Define the LQP&#45;based controller developped during my PhD thesis with ocra framework. " alt="" coords="1674,85,1841,111"/>
+<area shape="rect" id="node50" href="$d2/de1/MessageVocabulary_8h.html" title="ocra&#45;recipes/MessageVocabulary.h" alt="" coords="94,85,322,111"/>
+<area shape="rect" id="node6" href="$df/d97/NamedInstance_8h.html" title="ocra/optim/NamedInstance.h" alt="" coords="1567,572,1759,597"/>
+<area shape="rect" id="node14" href="$df/d4f/Task_8h.html" title="ocra/control/Task.h" alt="" coords="1512,345,1645,371"/>
+<area shape="rect" id="node18" href="$dc/d2f/Feature_8h.html" title="A class hierarchy to compute task errors based on control frames. " alt="" coords="1467,425,1619,451"/>
+<area shape="rect" id="node28" href="$d9/d76/TaskYarpInterface_8h.html" title="ocra/control/TaskYarpInterface.h" alt="" coords="1073,259,1285,284"/>
+<area shape="rect" id="node15" href="$da/dbb/StringUtilities_8h.html" title="ocra/util/StringUtilities.h" alt="" coords="3408,572,3568,597"/>
+<area shape="rect" id="node20" href="$d5/d55/MathTypes_8h.html" title="Declaration file of the OptimizationVariable class. " alt="" coords="3593,572,3741,597"/>
+<area shape="rect" id="node22" href="$d8/ddc/ObserverSubject_8h.html" title="Declaration file of the Observer, Subject and ObserverSubject classes. " alt="" coords="1966,645,2164,671"/>
+<area shape="rect" id="node23" href="$d7/d90/Variable_8h.html" title="Declaration file of the Variable class. " alt="" coords="2103,572,2249,597"/>
+<area shape="rect" id="node24" href="$d9/d5d/ModelContacts_8h.html" title="Declaration file of the ModelContacts class. " alt="" coords="1783,572,1977,597"/>
+<area shape="rect" id="node38" href="$df/dfd/EigenUtilities_8h.html" title="ocra/util/EigenUtilities.h" alt="" coords="3816,499,3976,524"/>
+<area shape="rect" id="node39" href="$d5/da8/XmlUtilities_8h.html" title="ocra/util/XmlUtilities.h" alt="" coords="3963,172,4112,197"/>
+<area shape="rect" id="node40" href="$d2/d1d/TaskBuilderOptions_8h.html" title="ocra/control/TaskBuilders\l/TaskBuilderOptions.h" alt="" coords="3718,339,3888,377"/>
+<area shape="rect" id="node42" href="$d3/dc1/TaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/TaskBuilder.h" alt="" coords="2560,252,2730,291"/>
+<area shape="rect" id="node43" href="$da/db2/CartesianTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/CartesianTaskBuilder.h" alt="" coords="2315,165,2485,204"/>
+<area shape="rect" id="node44" href="$d4/d7b/PoseTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/PoseTaskBuilder.h" alt="" coords="3667,165,3837,204"/>
+<area shape="rect" id="node45" href="$d1/df8/OrientationTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/OrientationTaskBuilder.h" alt="" coords="2560,165,2730,204"/>
+<area shape="rect" id="node46" href="$de/d08/ComTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/ComTaskBuilder.h" alt="" coords="2755,165,2925,204"/>
+<area shape="rect" id="node47" href="$dc/d87/FullPostureTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/FullPostureTaskBuilder.h" alt="" coords="2949,165,3121,204"/>
+<area shape="rect" id="node48" href="$d5/d81/PartialPostureTaskBuilder_8h.html" title="ocra/control/TaskBuilders\l/PartialPostureTaskBuilder.h" alt="" coords="3145,165,3333,204"/>
+</map>

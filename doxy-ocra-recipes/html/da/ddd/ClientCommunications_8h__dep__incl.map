@@ -1,0 +1,11 @@
+<map id="ClientCommunications.h" name="ClientCommunications.h">
+<area shape="rect" id="node2" href="$db/d9a/ControllerClient_8h.html" title="ControllerClient.h" alt="" coords="161,152,286,177"/>
+<area shape="rect" id="node6" href="$de/d5d/TaskConnection_8h.html" title="TaskConnection.h" alt="" coords="300,79,427,104"/>
+<area shape="rect" id="node10" href="$d3/d45/ClientCommunications_8cpp.html" title="ClientCommunications.cpp" alt="" coords="451,79,631,104"/>
+<area shape="rect" id="node3" href="$d8/d80/ClientManager_8h.html" title="Module class for the controller Client. " alt="" coords="12,225,131,251"/>
+<area shape="rect" id="node5" href="$d2/d77/ControllerClient_8cpp.html" title="ControllerClient.cpp" alt="" coords="154,225,293,251"/>
+<area shape="rect" id="node4" href="$d9/d36/ClientManager_8cpp.html" title="ClientManager.cpp" alt="" coords="5,299,138,324"/>
+<area shape="rect" id="node7" href="$da/d00/TrajectoryThread_8h.html" title="A thread for launching trajectory generators. " alt="" coords="310,152,444,177"/>
+<area shape="rect" id="node9" href="$d1/d60/TaskConnection_8cpp.html" title="TaskConnection.cpp" alt="" coords="468,152,609,177"/>
+<area shape="rect" id="node8" href="$d6/db4/TrajectoryThread_8cpp.html" title="A thread for launching trajectory generators. " alt="" coords="316,225,464,251"/>
+</map>

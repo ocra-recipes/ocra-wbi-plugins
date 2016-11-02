@@ -151,6 +151,63 @@ Definition at line 734 of file Quad\+Prog++.\+cpp.
 \subsubsection{\texorpdfstring{solve\+\_\+quadprog()}{solve\_quadprog()}}
 {\footnotesize\ttfamily double Quad\+Prog\+P\+P\+::solve\+\_\+quadprog (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+G,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{g0,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+\+CE,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{ce0,  }\item[{const Eigen\+::\+Matrix\+Xd \&}]{\+\_\+\+CI,  }\item[{const Eigen\+::\+Vector\+Xd \&}]{ci0,  }\item[{Eigen\+::\+Vector\+Xd \&}]{x }\end{DoxyParamCaption})}
 
+The quadprog\+\_\+solve() function implements the algorithm of Goldfarb and Idnani for the solution of a (convex) Quadratic Programming problem by means of an active-\/set dual method.
+
+The quadratic problem with $n$ variables and $m$ constraints is\+:
+
+\begin{align*} \argmin{\x} &: \; \frac{1}{2} \x\tp G \x + \vec{g}_0\tp \x \\ & CE\tp \x + \vec{ce}_0 = \vec{0} \\ & CI\tp \x + \vec{ci}_0 \geq \vec{0} \end{align*}
+
+The matrix and vectors dimensions are as follows\+:
+
+$G$\+: $n \times n$
+
+$\vec{g}_0$\+: $n$
+
+$CE$\+: $n \times p$
+
+$\vec{ce}_0$\+: $p$
+
+$CI$\+: $n \times m$
+
+$\vec{ci}_0$\+: $m$
+
+$x$\+: $n$
+
+The function will return the cost of the solution written in the $x$ vector or std\+::numeric\+\_\+limits\+::infinity() if the problem is infeasible. In the latter case the value of the $x$ vector is not correct.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+G} & n x n Symmetric positive definite matrix. \\
+\hline
+{\em g0} & Vector of size n, where n is the number of variables. \\
+\hline
+{\em \+\_\+\+CE} & Matrix of size n x p, where p is the number of equalities. \\
+\hline
+{\em ce0} & Vector of size p. \\
+\hline
+{\em \+\_\+\+CI} & Matrix of size n x m, where m is the number of inequalities. \\
+\hline
+{\em ci0} & Vector of size m. \\
+\hline
+{\em x} & Problem variables of size n. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Pay attention in setting up the vectors $\vec{ce}_0$ and $\vec{ci}_0$. If the constraints of your problem are specified in the form $A^T x = b$ and $C^T x \geq d$, then you should set $\vec{ce}_0 = -b$ and $\vec{ci}_0 = -d$. Also the matrix $G$ is modified within the function since it is used to compute the $G = L^T L$ cholesky factorization for further computations inside the function. If you need the original matrix $G$ you should make a copy of it and pass the copy to the function. \cite{goldfarb1983numerically}
+\end{DoxyNote}
+\begin{DoxyReturn}{Returns}
+cost of the solution written in the x vector or std\+::numeric\+\_\+limits\+::infinity() if the problem is infeasible. In the latter case the value of the $ x $ vector is not correct.
+\end{DoxyReturn}
+\begin{DoxyAuthor}{Author}
+Luca Di Gaspero, D\+I\+E\+GM -\/ University of Udine, Italy. 
+\end{DoxyAuthor}
+\begin{DoxyCopyright}{Copyright}
+G\+NU Lesser General Public License. 
+
+2007-\/2009 Luca Di Gaspero. 
+
+2007-\/2009 Luca Di Gaspero. 
+\end{DoxyCopyright}
 
 
 Definition at line 75 of file Quad\+Prog++.\+cpp.

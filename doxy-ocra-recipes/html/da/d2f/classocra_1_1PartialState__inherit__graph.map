@@ -1,0 +1,5 @@
+<map id="ocra::PartialState" name="ocra::PartialState">
+<area shape="rect" id="node3" href="$d1/dc1/classocra_1_1PartialModelState.html" title="A partial state of the model. " alt="" coords="5,152,165,177"/>
+<area shape="rect" id="node4" href="$d1/def/classocra_1_1PartialTargetState.html" title="A target for a model partial state. " alt="" coords="189,152,350,177"/>
+<area shape="rect" id="node2" href="$db/de3/classocra_1_1NamedInstance.html" title="ocra::NamedInstance" alt="" coords="103,5,251,31"/>
+</map>
