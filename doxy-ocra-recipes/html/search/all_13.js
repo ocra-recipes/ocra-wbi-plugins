@@ -165,7 +165,7 @@ var searchData=
   ['solvecascadeqp',['solveCascadeQP',['../d1/de8/classocra_1_1CascadeQP.html#a11e01b608414badd9af6794076eb8b33',1,'ocra::CascadeQP']]],
   ['solveproblemrecorder',['solveProblemRecorder',['../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html#a446e043430909aacb7955ff847c3a311',1,'wocra::WocraController::Pimpl::solveProblemRecorder()'],['../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#a949ca96a7b5a333e0594c6e6eda106a1',1,'gocra::GHCJTController::Pimpl::solveProblemRecorder()']]],
   ['solver',['Solver',['../d6/dd3/classocra_1_1Solver.html',1,'ocra']]],
-  ['solver',['Solver',['../d6/dd3/classocra_1_1Solver.html#aabd0d52a66f754de1c8f3958ba7faaca',1,'ocra::Solver::Solver()'],['../df/d7f/structocra_1_1Task_1_1Pimpl.html#af1e09ed90ae5dee85e7fb5bd9d959df7',1,'ocra::Task::Pimpl::solver()'],['../d7/d99/structgocra_1_1GHCJTTask_1_1Pimpl.html#ac9f3b5650e8663982f631c354a25e3b9',1,'gocra::GHCJTTask::Pimpl::solver()'],['../df/da0/group__solver.html',1,'(Global Namespace)']]],
+  ['solver',['solver',['../df/d7f/structocra_1_1Task_1_1Pimpl.html#af1e09ed90ae5dee85e7fb5bd9d959df7',1,'ocra::Task::Pimpl::solver()'],['../d7/d99/structgocra_1_1GHCJTTask_1_1Pimpl.html#ac9f3b5650e8663982f631c354a25e3b9',1,'gocra::GHCJTTask::Pimpl::solver()'],['../d6/dd3/classocra_1_1Solver.html#aabd0d52a66f754de1c8f3958ba7faaca',1,'ocra::Solver::Solver()'],['../df/da0/group__solver.html',1,'(Global Namespace)']]],
   ['solver_2ecpp',['Solver.cpp',['../d4/d01/Solver_8cpp.html',1,'']]],
   ['solver_2eh',['Solver.h',['../db/dc5/Solver_8h.html',1,'']]],
   ['solver_5ftype',['SOLVER_TYPE',['../d5/d53/namespaceocra__recipes.html#afb3bb4de56c2b9472c80d746eb13fed3',1,'ocra_recipes']]],
