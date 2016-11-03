@@ -164,3 +164,8 @@
 \form#163:$ \ddq, \torque, \force_c $
 \form#164:$\X_i^*$
 \form#165:\begin{align*} \underset{\X}{\text{min}} &\; \frac{1}{2} \left( \sum_{i=1}^{n} (\omega_i^2 T_i (\q, \dq, \X)) + \omega_0^2 T_0(\q, \dq, \X) \right) \\ s.t.: &\; G \X \leq \h \\ &\; \A \X = \b \end{align*}
+\form#166:$ \vec{a}^{des} = - \left( \vec{a}_{ref} + K_p (\vec{p}^{des} - \vec{p}) + K_d (\vec{v}^{des} - \vec{v}) \right) $
+\form#167:\begin{align*} \underset{\x}{\text{min}} &\; \frac{1}{2} \left( \x\tp P \x + \q\tp\x + r \right) \\ s.t. &:\; \G\x \leq h \\ &\; A\x = \b \end{align*}
+\form#168:$ \left[ \ddq \tp \; f_c \tp \; \tau \tp \right] \tp $
+\form#169:$ \X = [\ddq\tp \av] $
+\form#170:$ \av $
