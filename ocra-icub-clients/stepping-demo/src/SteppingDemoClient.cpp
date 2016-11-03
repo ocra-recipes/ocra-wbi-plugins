@@ -38,7 +38,7 @@ bool SteppingDemoClient::initialize()
     com_TrajThread->setMaxVelocity(0.01);
     com_TrajThread->setGoalErrorThreshold(0.01);
 
-    currentPhase = MOVE_TO_LEFT_SUPPORT;
+    currentPhase = MOVE_TO_RIGHT_SUPPORT;
     isMovingCoM = false;
     
     if (!com_TrajThread->start()) return false;
@@ -468,6 +468,10 @@ bool SteppingDemoClient::liftFoot(FOOT_CONTACTS foot, bool isLeftFootInContact, 
             if (!footTrajectoryStarted) {
                 std::cout << "Setting right foot trajectory." << std::endl;
                 rightFoot_TrajThread->setGoalErrorThreshold(0.01);
+                // Switch fixedLink if odometry is active on the server-side
+                // before the foot trajectory is set and the contact is deactivated
+                this->changeFixedLink("l_sole", isLeftFootInContact, isRightFootInContact);
+                OCRA_INFO("FIXED LINK WAS SWITCHED TO THE LEFT FOOT");
                 rightFoot_TrajThread->setTrajectoryWaypoints(rightFootTarget);
                 yarp::os::Time::delay(delayTime);
                 deactivateFootContacts(RIGHT_FOOT);
