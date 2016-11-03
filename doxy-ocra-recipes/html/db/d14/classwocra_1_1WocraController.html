@@ -273,7 +273,7 @@ Additional Inherited Members</h2></td></tr>
 <p>But the story does not end here. In particular, Wocra will use a weighting strategy which associates each task with a coefficient that sets its importance with respect to the others (a task with a higher weights gets a higher priority). The first point is to set these coefficients as real values. As a consequence, priorities are not strict and all tasks are achieved according to the trade-off defined by the weights. Given a set of <img class="formulaInl" alt="$ n $" src="../../form_159.png"/> tasks and their related weights <img class="formulaInl" alt="$ (T_i(\q, \dq, \X), \omega_i) \; i \in [1...n] $" src="../../form_160.png"/> one solves their weighted sum subject to the concatenation of the constraints. The task <img class="formulaInl" alt="$ T_0 $" src="../../form_112.png"/> is dedicated to the minimization of the whole optimization variable. This is required when the control problem has many solutions, in order to ensure the uniqueness and more specifically to provide a solution that minimizes the input torque vector <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/>. <img class="formulaInl" alt="$ T_0 $" src="../../form_112.png"/> has a very small weight with respect to the others <img class="formulaInl" alt="$ 0 &lt; \omega_0 &lt;&lt; 1 $" src="../../form_161.png"/> to limit the induced error. This program is solved only one time per call.</p>
 <p>The algorithm consists then in finding <img class="formulaInl" alt="$\X_i^*$" src="../../form_164.png"/>, the solution of the problem:</p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\begin{align*} \min{\X} &amp; \frac{1}{2} \; \left( \sum_{i=1}^{n} (\omega_i^2 T_i (\q, \dq, \X)) + \omega_0^2 T_0(\q, \dq, \X) \right) \\ s.t.: &amp; G \X \leq \h \\ &amp; \A \X = \b \end{align*}" src="../../form_162.png"/>
+<img class="formulaDsp" alt="\begin{align*} \underset{\X}{\text{min}} &amp;\; \frac{1}{2} \left( \sum_{i=1}^{n} (\omega_i^2 T_i (\q, \dq, \X)) + \omega_0^2 T_0(\q, \dq, \X) \right) \\ s.t.: &amp;\; G \X \leq \h \\ &amp;\; \A \X = \b \end{align*}" src="../../form_165.png"/>
 </p>
 <p><a class="el" href="../../d0/de3/citelist.html#CITEREF_salini2012Thesis">[2]</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>Put proper link to the Tasks class and document it well based on Salini's thesis. </dd></dl>
@@ -977,7 +977,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 18:14:34 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 3 2016 18:23:44 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
