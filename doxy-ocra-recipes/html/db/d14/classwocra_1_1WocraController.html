@@ -99,6 +99,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae14fda387f6d308aead6ab7a59e82e74"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d14/classwocra_1_1WocraController.html#ae14fda387f6d308aead6ab7a59e82e74">WocraController</a> (const std::string &amp;ctrlName, std::shared_ptr&lt; Model &gt; innerModel, std::shared_ptr&lt; <a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">OneLevelSolver</a> &gt; innerSolver, bool useReducedProblem)</td></tr>
 <tr class="separator:ae14fda387f6d308aead6ab7a59e82e74"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4051d9aab485cfa444ed90da795f2bb2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d14/classwocra_1_1WocraController.html#a4051d9aab485cfa444ed90da795f2bb2">~WocraController</a> ()</td></tr>
+<tr class="memdesc:a4051d9aab485cfa444ed90da795f2bb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor of Wocra controller.  <a href="#a4051d9aab485cfa444ed90da795f2bb2">More...</a><br /></td></tr>
 <tr class="separator:a4051d9aab485cfa444ed90da795f2bb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adc7f78b5f888c76a3296cfd5882caad1"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; Model &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/d14/classwocra_1_1WocraController.html#adc7f78b5f888c76a3296cfd5882caad1">getModel</a> ()</td></tr>
 <tr class="separator:adc7f78b5f888c76a3296cfd5882caad1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -244,8 +245,40 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Wocra Controller based on LQP solver for the ocra framework. </p>
+<p>This controller is a generic optimization-based whole-body dynamic one, which can deal with tasks transitions. The multi-task management and their sequencing is done with a weighting strategy. A mechanical system presents different control issues regarding its limitations and physical constraints which are passed to the optimization problem as equality and inequality constraints. The controller will correct the error between actual and desired states by, for example, minimizing an error resulting from the quadratic norm of their difference. This error will be minimized through a Linear Quadratic Program (LQP), which is composed by a quadratic cost function with linear constraints.</p>
+<p>The following are types of internal and external physical constraints of the system, describing a robot and its interaction with the environment:</p>
+<ul>
+<li>Equations of motion (with interactions).</li>
+<li>Actuation limits.<ul>
+<li>Torque limits.</li>
+<li>Acceleration limits.</li>
+<li>Velocity limits.</li>
+<li>Joint limits.</li>
+</ul>
+</li>
+<li>Obstacle avoidance.</li>
+<li>Interaction with the environment:<ul>
+<li>Bilateral closure.</li>
+<li>Unilateral frictional contact.</li>
+</ul>
+</li>
+</ul>
+<p>All the previous constraints are linear except for the unilateral frictional contacts, which represent the constraint of the contact forces lying in the Coulomb friction cone and is nonlinear, but at least quadratic. To deal with these kinds of constraints the WOCRA controller will rely on the LQP formulation, since it is simpler and more suitable for the real-time dynamic control of humanoid robots.</p>
+<p>Wocra will address the low-level control of the robot through the concept of tasks, i.e. the control of one or more DoF of the system towards objectives which are generally the minimization of tracking errors. Tasks are composed of two main elements, the subset of the controlled DoF and their desired goals (For more details on tasks, see ()). An example of a task function is the norm of an error.</p>
+<p>Different tasks can be mixed in wocra to achieve a desired high-level motion. These tasks will be subject to the aforementioned equality and inequality constraints, which motivate the use of an LQP, which solves the following problem:</p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\begin{align*} \argmin{\x} &amp;: \; \frac{1}{2} \x\tp G \x + \vec{g}_0\tp \x \\ &amp; CE \x + \vec{ce}_0 = \vec{0} \\ &amp; CI \x + \vec{ci}_0 \geq \vec{0} \end{align*}" src="../../form_81.png"/>
+</p>
+<p>Where <img class="formulaInl" alt="$ x $" src="../../form_61.png"/> is the vector optimize, <img class="formulaInl" alt="$ P $" src="../../form_153.png"/>, <img class="formulaInl" alt="$ q $" src="../../form_154.png"/> and <img class="formulaInl" alt="$ r $" src="../../form_114.png"/> represent the quadratic cost function, <img class="formulaInl" alt="$ G $" src="../../form_155.png"/>, <img class="formulaInl" alt="$ h $" src="../../form_89.png"/> define the inequality constraints and <img class="formulaInl" alt="$ A $" src="../../form_156.png"/>, <img class="formulaInl" alt="$ b $" src="../../form_157.png"/> define the equality constraints, which are the concatenation of the different constraints previously mentioned. The controller, thus builds these matrices according to the task and the constraints acting on the robot and, when the solution is found, extracts the input torque vector <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/> to actuate the system. <img class="formulaInl" alt="$ x $" src="../../form_61.png"/> can be replaced by <img class="formulaInl" alt="$ \left[ \ddq \tp \; x \tp \right] \tp $" src="../../form_158.png"/>.</p>
+<p>But the story does not end here. In particular, Wocra will use a weighting strategy which associates each task with a coefficient that sets its importance with respect to the others (a task with a higher weights gets a higher priority). The first point is to set these coefficients as real values. As a consequence, priorities are not strict and all tasks are achieved according to the trade-off defined by the weights. Given a set of <img class="formulaInl" alt="$ n $" src="../../form_159.png"/> tasks and their related weights <img class="formulaInl" alt="$ (T_i(\q, \dq, \X), \omega_i) \; i \in [1...n] $" src="../../form_160.png"/> one solves their weighted sum subject to the concatenation of the constraints. The task <img class="formulaInl" alt="$ T_0 $" src="../../form_112.png"/> is dedicated to the minimization of the whole optimization variable. This is required when the control problem has many solutions, in order to ensure the uniqueness and more specifically to provide a solution that minimizes the input torque vector <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/>. <img class="formulaInl" alt="$ T_0 $" src="../../form_112.png"/> has a very small weight with respect to the others <img class="formulaInl" alt="$ 0 &lt; \omega_0 &lt;&lt; 1 $" src="../../form_161.png"/> to limit the induced error. This program is solved only one time per call.</p>
+<p>The algorithm consists then in finding ^*, the solution of the problem:</p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\begin{align*} \min{\X} &amp; \frac{1}{2} \; \left( \sum_{i=1}^{n} (\omega_i^2 T_i (\q, \dq, \X)) + \omega_0^2 T_0(\q, \dq, \X) \right) \\ s.t.: &amp; G \X \leq \h \\ &amp; \A \X = \b \end{align*}" src="../../form_162.png"/>
+</p>
+<p>For more detailed information see <b>[salini2012Thesis]</b>} Section 2.</p>
+<dl class="section note"><dt>Note</dt><dd>Put proper link to the Tasks class and document it well based on Salini's thesis. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../db/dc6/WocraController_8h_source.html#l00068">68</a> of file <a class="el" href="../../db/dc6/WocraController_8h_source.html">WocraController.h</a>.</p>
+<p>Definition at line <a class="el" href="../../db/dc6/WocraController_8h_source.html#l00101">101</a> of file <a class="el" href="../../db/dc6/WocraController_8h_source.html">WocraController.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ae14fda387f6d308aead6ab7a59e82e74"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae14fda387f6d308aead6ab7a59e82e74">&sect;&nbsp;</a></span>WocraController()</h2>
@@ -284,7 +317,9 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initialize Wocra controller. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Initializes Wocra controller.</p>
+<p>During the instantiation of this class a <a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html">WocraController::Pimpl</a> object is created. This object, in turn, will specify the constraints (robot dynamics) and objectives ( <img class="formulaInl" alt="$ \ddq, \torque, \force_c $" src="../../form_163.png"/>) for the solver, as well as its relative minimization weights and will take into account gravity.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ctrlName</td><td>The name of the controller </td></tr>
     <tr><td class="paramname">innerModel</td><td>The internal model of the robot one wants to control </td></tr>
@@ -294,7 +329,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00088">88</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00080">80</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -320,10 +355,11 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Destructor of Wocra controller.</p>
+
+<p>Destructor of Wocra controller. </p>
 <p>It disconnects all the tasks connected to the controller, then it disconnects the inner objectives that minimize the problem variables, and finally it disconnects the dynamic equation constraint (if needed). </p>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00133">133</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00116">116</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -343,9 +379,15 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>add a Linear constraint that is equivalent for the full &amp; reduced problems. </p>
+<p>Adds a Linear constraint that is equivalent for the full &amp; reduced problems.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Linear</td><td>constraint. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00241">241</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00181">181</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -364,10 +406,15 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>add a Linear constraint that has different expressions, depending on the problem type.</p>
-<p>In this case, the constraint needs to be connected to the controller to get the matrices for the problem reduction. See wocra::ControlConstraint for more info. </p>
+<p>Adds a Linear constraint that has different expressions, depending on the problem type. In this case, the constraint needs to be connected to the controller to get the matrices for the problem reduction. See wocra::ControlConstraint for more info.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">constraint</td><td>Constraint. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00259">259</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00191">191</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -397,15 +444,15 @@ Additional Inherited Members</h2></td></tr>
 <p>Internal implementation inside the addContactSet method.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">contacts</td><td>The contact set to add in the controller</td></tr>
+    <tr><td class="paramname">contacts</td><td>The contact set to add in the controller. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000003">Todo:</a></b></dt><dd>this method has not been implemented!!!</dd></dl>
+<dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000003">Todo:</a></b></dt><dd>this method has not been implemented!!! </dd></dl>
 
 <p>Implements <a class="el" href="../../d8/d92/classocra_1_1Controller.html#acb11edc1ceaa89423c1e58f9cb38a9f7">ocra::Controller</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00306">306</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00214">214</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -435,14 +482,14 @@ Additional Inherited Members</h2></td></tr>
 <p>Internal implementation inside the addTask method.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">task</td><td>The task to add in the controller </td></tr>
+    <tr><td class="paramname">task</td><td>The task to add in the controller. </td></tr>
   </table>
   </dd>
 </dl>
 
 <p>Implements <a class="el" href="../../d8/d92/classocra_1_1Controller.html#ab3477822a9363553c99eefa58ff803eb">ocra::Controller</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00283">283</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00203">203</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -469,19 +516,18 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Compute the output of the controller.</p>
+<p>Computes the output of the controller.</p>
+<p>Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem, either <img class="formulaInl" alt="$ x = [ \ddq \; \tau \; \force_c ] $" src="../../form_132.png"/> or <img class="formulaInl" alt="$ x = [ \tau \; \force_c ] $" src="../../form_133.png"/>. The torque variable <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/> is finally applied to the robot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">tau</td><td>The torque variable, which is the output of our problem</td></tr>
+    <tr><td class="paramname">tau</td><td>The torque variable, which is the output of our problem. </td></tr>
   </table>
   </dd>
 </dl>
-<p>Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem,</p>
-<p>either <img class="formulaInl" alt="$ x = [ \ddq \; \tau \; \force_c ] $" src="../../form_132.png"/> or <img class="formulaInl" alt="$ x = [ \tau \; \force_c ] $" src="../../form_133.png"/>. The torque variable <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/> is finally applied to the robot. </p>
 
 <p>Implements <a class="el" href="../../d8/d92/classocra_1_1Controller.html#a8ca85413067d948459afa5981b3dda32">ocra::Controller</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00422">422</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00278">278</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -541,11 +587,11 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The pointer to the new created contact task</dd></dl>
-<p>This method is called by the higher level methods #createWocraContactTask(const std::string&amp;, PointContactFeature::Ptr, , double, double) const and is the concrete implementation required by the <a class="el" href="../../d8/d92/classocra_1_1Controller.html" title="Interface for controllers. ">ocra::Controller</a> class. </p>
+<p>This method is called by the higher level methods createWocraContactTask(const std::string&amp;, PointContactFeature::Ptr, , double, double) const and is the concrete implementation required by the <a class="el" href="../../d8/d92/classocra_1_1Controller.html" title="Interface for controllers. ">ocra::Controller</a> class. </p>
 
 <p>Implements <a class="el" href="../../d8/d92/classocra_1_1Controller.html#a823933d261a12aac49f8a0ef56823ea4">ocra::Controller</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00393">393</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00266">266</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -588,12 +634,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Create an WocraTask.</p>
-<dl class="section return"><dt>Returns</dt><dd>an WocraTask instance that is a dynamic_cast of the task returned by <a class="el" href="../../d8/d92/classocra_1_1Controller.html#ae57beb4834bb1ed3a2ed292df5e8aedf" title="Generic task creation. ">ocra::Controller::createTask(const std::string&amp; name, Feature::Ptr feature, Feature::Ptr featureDes) const </a>Create an WocraTask.</dd>
-<dd>
-an WocraTask instance that is a dynamic_cast of the task returned by <a class="el" href="../../d8/d92/classocra_1_1Controller.html#ae3546bd282b1bec068d416e06660722f">ocra::Controller::createTask(const std::string&amp; name, Feature::Ptr feature) const </a>Create an WocraContactTask.</dd>
-<dd>
-an WocraTask instance that is a dynamic_cast of the task returned by <a class="el" href="../../d8/d92/classocra_1_1Controller.html#af1d9bb73b939a5377a3dba072ce4c08a" title="Creates a contact task. ">ocra::Controller::createContactTask(const std::string&amp; name, PointContactFeature::Ptr feature, double mu, double margin) const </a>Internal implementation inside the createTask method.</dd></dl>
+<p>Internal implementation inside the createTask method.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td>The task name, a unique identifier </td></tr>
@@ -603,11 +644,17 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The pointer to the new created task</dd></dl>
-<p>This method is called by the higher level methods #createWocraTask(const std::string&amp;, const Feature&amp;, const Feature&amp;) const and is the concrete implementation required by the ocra Controller class. </p>
+<p>This method is called by the higher level methods createWocraTask(const std::string&amp;, const Feature&amp;, const Feature&amp;) const and is the concrete implementation required by the ocra Controller class.</p>
+<p>Create an WocraTask.</p>
+<dl class="section return"><dt>Returns</dt><dd>an WocraTask instance that is a dynamic_cast of the task returned by <a class="el" href="../../d8/d92/classocra_1_1Controller.html#ae57beb4834bb1ed3a2ed292df5e8aedf" title="Generic task creation. ">ocra::Controller::createTask(const std::string&amp; name, Feature::Ptr feature, Feature::Ptr featureDes) const </a>Create an WocraTask.</dd>
+<dd>
+an WocraTask instance that is a dynamic_cast of the task returned by <a class="el" href="../../d8/d92/classocra_1_1Controller.html#ae3546bd282b1bec068d416e06660722f">ocra::Controller::createTask(const std::string&amp; name, Feature::Ptr feature) const </a>Create an WocraContactTask.</dd>
+<dd>
+an WocraTask instance that is a dynamic_cast of the task returned by <a class="el" href="../../d8/d92/classocra_1_1Controller.html#af1d9bb73b939a5377a3dba072ce4c08a" title="Creates a contact task. ">ocra::Controller::createContactTask(const std::string&amp; name, PointContactFeature::Ptr feature, double mu, double margin) const</a> </dd></dl>
 
 <p>Implements <a class="el" href="../../d8/d92/classocra_1_1Controller.html#a05f6d757e4125a71bf766df7f069ac43">ocra::Controller</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00362">362</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00256">256</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -657,7 +704,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
 
 <p>Implements <a class="el" href="../../d8/d92/classocra_1_1Controller.html#a358a31c0b6b6bdcc0e6da5c49eb9fde5">ocra::Controller</a>.</p>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00376">376</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00261">261</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -675,10 +722,10 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<p>return the inner model</p>
-<dl class="section return"><dt>Returns</dt><dd>the inner model used to construct this controller instance </dd></dl>
+<p>Returns the inner model.</p>
+<dl class="section return"><dt>Returns</dt><dd>inner model used to construct this controller instance </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00171">171</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00145">145</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -707,7 +754,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
 </ul>
 <p>See <a class="el" href="../../db/d14/classwocra_1_1WocraController.html#a9b296a995ba10ef66cc4416f34f4b675">wocra::WocraController::writePerformanceInStream(std::ostream&amp;, bool) const </a>and wocra::OneLevelSolver::writePerformanceInStream(std::ostream&amp;, bool). </p>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00513">513</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00321">321</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -725,10 +772,10 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<p>return the inner solver</p>
-<dl class="section return"><dt>Returns</dt><dd>the inner solver used to construct this controller instance </dd></dl>
+<p>Returns the inner solver.</p>
+<dl class="section return"><dt>Returns</dt><dd>Inner solver used to construct this controller instance. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00185">185</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -748,7 +795,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd><code>true</code> if variable of reduced problem ( <img class="formulaInl" alt="$ [ \torque \; \force_c ] $" src="../../form_128.png"/>) is considered, or <code>false</code> if it uses the variable of the full one ( <img class="formulaInl" alt="$ [ \ddq \; \torque \; \force_c ] $" src="../../form_129.png"/>). </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00201">201</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00161">161</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -767,9 +814,15 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<p>remove a Linear constraint that is equivalent for the full &amp; reduced problems. </p>
+<p>Removes a Linear constraint that is equivalent for the full &amp; reduced problems.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Linear</td><td>Constraint to remove. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00249">249</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00186">186</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -788,10 +841,15 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<p>add a Linear constraint that has different expressions, depending on the problem type.</p>
-<p>In this case, the constraint needs to be disconnected from the controller. See wocra::ControlConstraint for more info. </p>
+<p>Removes a Linear constraint that has different expressions, depending on the problem type. In this case, the constraint needs to be disconnected from the controller.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">constraint</td><td>Constraint. </td></tr>
+  </table>
+  </dd>
+</dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00270">270</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00197">197</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -826,17 +884,17 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set weights for the objectives that minimize the norm of the problem variables: <img class="formulaInl" alt="$ [ \ddq \; \torque \; \force_c ] $" src="../../form_129.png"/></p>
+<p>Sets weights for the objectives that minimize the norm of the problem variables: <img class="formulaInl" alt="$ [ \ddq \; \torque \; \force_c ] $" src="../../form_129.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">w_ddq</td><td>weight for the minimization of <img class="formulaInl" alt="$ \ddq $" src="../../form_13.png"/> </td></tr>
-    <tr><td class="paramname">w_tau</td><td>weight for the minimization of <img class="formulaInl" alt="$ \torque $" src="../../form_99.png"/> </td></tr>
-    <tr><td class="paramname">w_fc</td><td>weight for the minimization of <img class="formulaInl" alt="$ \force_c $" src="../../form_100.png"/> </td></tr>
+    <tr><td class="paramname">w_ddq</td><td>weight for the minimization of <img class="formulaInl" alt="$ \ddq $" src="../../form_13.png"/>. </td></tr>
+    <tr><td class="paramname">w_tau</td><td>weight for the minimization of <img class="formulaInl" alt="$ \torque $" src="../../form_99.png"/>. </td></tr>
+    <tr><td class="paramname">w_fc</td><td>weight for the minimization of <img class="formulaInl" alt="$ \force_c $" src="../../form_100.png"/>. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00219">219</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00169">169</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -855,15 +913,15 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Whether to take into account gavity in the dynamic equation of motion</p>
+<p>Whether to take into account gavity in the dynamic equation of motion.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">useGrav</td><td><code>true</code> if gravity is enable, <code>false</code> otherwise </td></tr>
+    <tr><td class="paramname">useGrav</td><td><code>true</code> if gravity is enable, <code>false</code> otherwise. </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00231">231</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00176">176</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -877,7 +935,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
           <td class="memname">void wocra::WocraController::writePerformanceInStream </td>
           <td>(</td>
           <td class="paramtype">std::ostream &amp;&#160;</td>
-          <td class="paramname"><em>outstream</em>, </td>
+          <td class="paramname"><em>myOstream</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -892,10 +950,10 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Write information about controller performances in a string stream.</p>
+<p>Writes information about controller performances in a string stream.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">outstream</td><td>the output stream where to write the performances information</td></tr>
+    <tr><td class="paramname">outstream</td><td>the output stream where to write the performances information </td></tr>
     <tr><td class="paramname">addCommaAtEnd</td><td>If true, add a comma at the end of the stream. If false, it means that this is the end of the json file, nothing will be added after that.</td></tr>
   </table>
   </dd>
@@ -908,7 +966,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
 <li>solver_solve </li>
 </ul>
 
-<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00477">477</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00309">309</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
 </div>
 </div>
@@ -919,7 +977,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 00:30:07 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Nov 3 2016 17:37:15 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
