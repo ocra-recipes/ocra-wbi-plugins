@@ -162,3 +162,4 @@
 \form#161:$ 0 < \omega_0 << 1 $
 \form#162:\begin{align*} \min{\X} & \frac{1}{2} \; \left( \sum_{i=1}^{n} (\omega_i^2 T_i (\q, \dq, \X)) + \omega_0^2 T_0(\q, \dq, \X) \right) \\ s.t.: & G \X \leq \h \\ & \A \X = \b \end{align*}
 \form#163:$ \ddq, \torque, \force_c $
+\form#164:$\X_i^*$

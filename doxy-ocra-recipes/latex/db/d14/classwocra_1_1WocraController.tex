@@ -116,7 +116,7 @@ Where $ x $ is the vector optimize, $ P $, $ q $ and $ r $ represent the quadrat
 
 But the story does not end here. In particular, Wocra will use a weighting strategy which associates each task with a coefficient that sets its importance with respect to the others (a task with a higher weights gets a higher priority). The first point is to set these coefficients as real values. As a consequence, priorities are not strict and all tasks are achieved according to the trade-\/off defined by the weights. Given a set of $ n $ tasks and their related weights $ (T_i(\q, \dq, \X), \omega_i) \; i \in [1...n] $ one solves their weighted sum subject to the concatenation of the constraints. The task $ T_0 $ is dedicated to the minimization of the whole optimization variable. This is required when the control problem has many solutions, in order to ensure the uniqueness and more specifically to provide a solution that minimizes the input torque vector $ \tau $. $ T_0 $ has a very small weight with respect to the others $ 0 < \omega_0 << 1 $ to limit the induced error. This program is solved only one time per call.
 
-The algorithm consists then in finding $^\wedge$$\ast$, the solution of the problem\+:
+The algorithm consists then in finding $\X_i^*$, the solution of the problem\+:
 
 \begin{align*} \min{\X} & \frac{1}{2} \; \left( \sum_{i=1}^{n} (\omega_i^2 T_i (\q, \dq, \X)) + \omega_0^2 T_0(\q, \dq, \X) \right) \\ s.t.: & G \X \leq \h \\ & \A \X = \b \end{align*}
 
