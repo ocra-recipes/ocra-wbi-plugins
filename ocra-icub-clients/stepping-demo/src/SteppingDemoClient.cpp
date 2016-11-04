@@ -94,8 +94,8 @@ void SteppingDemoClient::loop()
 //             leftFootTarget = leftFootHome + Eigen::Vector3d(0.0, 0.0, 0.0);
             rightFootTarget = rightFootHome + Eigen::Vector3d(0.05, 0.01, 0.05);
 
-//             leftFootHome += Eigen::Vector3d(0.0, 0.0, 0.0);
-//             rightFootHome += Eigen::Vector3d(0.0, 0.0, 0.0);
+            leftFootHome += Eigen::Vector3d(0.0, 0.0, -0.0001);
+            rightFootHome += Eigen::Vector3d(0.0, 0.0, -0.0001);
 
             OCRA_INFO(" leftFootHome: " << leftFootHome.transpose());
             OCRA_INFO(" rightFootHome: " << rightFootHome.transpose());
