@@ -18,7 +18,8 @@ enum CONTROL_PHASE
 {
     MOVE_TO_LEFT_SUPPORT,
     MOVE_TO_RIGHT_SUPPORT,
-    MOVE_TO_DOUBLE_SUPPORT
+    MOVE_TO_DOUBLE_SUPPORT,
+    STEP_FORWARD
 };
 
 enum FOOT_CONTACTS
@@ -27,12 +28,26 @@ enum FOOT_CONTACTS
     RIGHT_FOOT
 };
 
+enum MOTION_TYPE
+{
+    LEFT_TO_RIGHT,
+    STATIC_WALKING
+};
+
+struct WalkingParams {
+    double stepLength;
+    bool firstStepDone;
+    double stepHeight;
+};
+
 
 class SteppingDemoClient : public ocra_recipes::ControllerClient
 {
 DEFINE_CLASS_POINTER_TYPEDEFS(SteppingDemoClient)
 
 public:
+    MOTION_TYPE motionType;
+
     SteppingDemoClient (std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod);
     virtual ~SteppingDemoClient ();
 
@@ -59,6 +74,10 @@ protected:
     virtual void loop();
 
 private:
+    
+    void staticWalkingLoop();
+    void leftToRightLoop();
+    
     ocra_recipes::TaskConnection::Ptr LeftFootContact_BackLeft;
     ocra_recipes::TaskConnection::Ptr LeftFootContact_FrontLeft;
     ocra_recipes::TaskConnection::Ptr LeftFootContact_BackRight;
@@ -146,16 +165,7 @@ private:
      *  @return True when the pause duration is over. False otherwise.
      */
     bool pauseFinished();
-
-    /**
-     *  Sets the right or left foot waypoint to rightFootTarget or leftFootTarget accordingly (where the foot will be lifted). These values are harcoded in the loop() method and updated only during the very first iteration when the variable getInitialValues is set to true.
-     *
-     *  @param foot LEFT_FOOT or RIGHT_FOOT
-     *
-     *  @return True after the foot contact is deactivated.
-     */
-    bool liftFoot(FOOT_CONTACTS foot);
-    
+   
      /**
      *  Sets the right or left foot waypoint to rightFootTarget or leftFootTarget accordingly (where the foot will be lifted). 
      *  These values are harcoded in the loop() method and updated only during the very first iteration when the 
@@ -177,6 +187,8 @@ private:
      *  @return True only after the foot has established contact again and the trajectory is over. False while the foot is still moving back down looking for contact or simply, the goal hasn't been attained.
      */
     bool setDownFoot(FOOT_CONTACTS foot);
+    void stateMachineWithPauseInDoubleSupport();
+    void stateMachineWithoutPauseInDoubleSupport();
 
     double pauseTriggerTime;
     
@@ -202,7 +214,8 @@ private:
     Eigen::Vector3d comHome;
     Eigen::Vector3d leftFootTarget;
     Eigen::Vector3d rightFootTarget;
-
+    Eigen::Vector3d nextStep;
+    
     Eigen::Vector3d newCoMGoalPosition;
 
 
@@ -213,5 +226,7 @@ private:
     CONTROL_PHASE nextPhase;
     bool isMovingCoM;
 
+    WalkingParams walkingParams;
+    
 };
 #endif // STEPPING_DEMO_CLIENT_H

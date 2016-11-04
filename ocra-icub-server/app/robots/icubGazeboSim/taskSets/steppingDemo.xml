@@ -36,7 +36,7 @@
 </task> -->
 <task name="TorsoOrientationTask" type="Orientation">
     <segment>torso</segment>
-    <params kp="20.0" kd="2" weight="0.5" axes="XYZ"/>
+    <params kp="20.0" kd="2" weight="0.2" axes="XYZ"/>
 </task>
 <task name="LeftFootCartesian" type="Cartesian">
     <segment>l_sole</segment>

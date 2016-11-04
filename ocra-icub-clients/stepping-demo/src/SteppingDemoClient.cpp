@@ -38,6 +38,7 @@ bool SteppingDemoClient::initialize()
     com_TrajThread->setMaxVelocity(0.01);
     com_TrajThread->setGoalErrorThreshold(0.01);
 
+    motionType = STATIC_WALKING;
     currentPhase = MOVE_TO_RIGHT_SUPPORT;
     isMovingCoM = false;
     
@@ -65,6 +66,14 @@ bool SteppingDemoClient::initialize()
 
     footTrajectoryStarted = false;
 
+    
+    if (motionType == STATIC_WALKING) {
+        walkingParams.stepLength = 0.035;
+        nextStep << walkingParams.stepLength,0,0;
+        walkingParams.firstStepDone = true;
+        walkingParams.stepHeight = 0.02;
+    }
+    
     return true;
 }
 
@@ -77,13 +86,198 @@ void SteppingDemoClient::release()
 
 void SteppingDemoClient::loop()
 {
-
     currentTime = yarp::os::Time::now();
     // Wait for 2 seconds then start moving. Has something to do with the model states not being correctly updated during the init phase.
-    if( (currentTime - startTime) > 2.0 )
+    
+    if (motionType == LEFT_TO_RIGHT) {
+        leftToRightLoop();
+    } else if (motionType == STATIC_WALKING) {
+        staticWalkingLoop();
+    }
+}
+
+void SteppingDemoClient::staticWalkingLoop(){
+        if( (currentTime - startTime) > 2.0 )
     {
 
-        // set intial constants
+        // set initial constants
+        if(getInitialValues)
+        {
+            leftFootHome = getLeftFootPosition();
+            rightFootHome = getRightFootPosition();
+            comHome = getCoMPosition();
+
+            leftFootTarget  =  leftFootHome + Eigen::Vector3d(0.0, 0.0, walkingParams.stepHeight);
+            rightFootTarget = rightFootHome + Eigen::Vector3d(0.0, 0.0, walkingParams.stepHeight);
+
+            leftFootHome += Eigen::Vector3d(0.0, 0.0, -0.0001);
+            rightFootHome += Eigen::Vector3d(0.0, 0.0, -0.0001);
+
+            OCRA_INFO(" leftFootHome: "    << leftFootHome.transpose());
+            OCRA_INFO(" rightFootHome: "   << rightFootHome.transpose());
+            OCRA_INFO(" comHome: "         << comHome.transpose());
+            OCRA_INFO(" leftFootTarget: "  << leftFootTarget.transpose());
+            OCRA_INFO(" rightFootTarget: " << rightFootTarget.transpose());
+
+            getInitialValues = false;
+        }
+        
+//         stateMachineWithPauseInDoubleSupport();
+        stateMachineWithoutPauseInDoubleSupport();
+        
+    }
+
+}
+
+void SteppingDemoClient::stateMachineWithoutPauseInDoubleSupport()
+{
+        if(isBalanced() && pauseFinished())
+        {
+            switch (currentPhase)
+            {
+                case MOVE_TO_LEFT_SUPPORT:
+                {
+                    if(!isMovingCoM) {
+                        std::cout << "Moving CoM over left foot." << std::endl;
+                        positionCoMOver(LEFT_FOOT_XY);
+                        isMovingCoM = true;
+                        pauseFor(5.0);
+                    }
+                    else if (liftFoot(RIGHT_FOOT, true, false)){
+                        pauseFor(5.0);
+                        currentPhase = STEP_FORWARD;
+                        isMovingCoM = false;
+                    }
+
+                }break;
+
+                case MOVE_TO_RIGHT_SUPPORT:
+                {
+                    if(!isMovingCoM) {
+                        std::cout << "Moving CoM over right foot." << std::endl;
+                        positionCoMOver(RIGHT_FOOT_XY);
+                        isMovingCoM = true;
+                        pauseFor(5.0);
+                    }
+                    else if (liftFoot(LEFT_FOOT, false, true)){
+                        pauseFor(5.0);
+                        currentPhase = STEP_FORWARD;
+                        isMovingCoM = false;
+                    }
+                }break;
+                
+                case STEP_FORWARD:
+                {
+                    if(isInLeftSupportMode && !isInRightSupportMode) {
+                        if (setDownFoot(RIGHT_FOOT)) {
+                            isInLeftSupportMode = false;
+                            nextPhase = MOVE_TO_RIGHT_SUPPORT;
+                            pauseFor(5.0);
+                        }
+                    }
+                    else if(isInRightSupportMode && !isInLeftSupportMode) {
+                        if (setDownFoot(LEFT_FOOT)) {
+                            isInRightSupportMode = false;
+                            nextPhase = MOVE_TO_LEFT_SUPPORT;
+                            pauseFor(5.0);
+                        }
+                    } else if (!isMovingCoM)
+                    {
+                        pauseFor(5.0);
+                        isInLeftSupportMode = true;
+                        isInRightSupportMode = true;
+                        currentPhase = nextPhase;
+                        isMovingCoM = false;
+                    }
+                     
+                }break;
+            }
+        }
+
+}
+
+
+void SteppingDemoClient::stateMachineWithPauseInDoubleSupport()
+{
+        if(isBalanced() && pauseFinished())
+        {
+            switch (currentPhase)
+            {
+                case MOVE_TO_LEFT_SUPPORT:
+                {
+                    if(!isMovingCoM) {
+                        std::cout << "Moving CoM over left foot." << std::endl;
+                        positionCoMOver(LEFT_FOOT_XY);
+                        isMovingCoM = true;
+                        pauseFor(5.0);
+                    }
+                    else if (liftFoot(RIGHT_FOOT, true, false)){
+                        pauseFor(5.0);
+                        currentPhase = MOVE_TO_DOUBLE_SUPPORT;
+                        isMovingCoM = false;
+                    }
+
+                }break;
+
+                case MOVE_TO_RIGHT_SUPPORT:
+                {
+                    if(!isMovingCoM) {
+                        std::cout << "Moving CoM over right foot." << std::endl;
+                        positionCoMOver(RIGHT_FOOT_XY);
+                        isMovingCoM = true;
+                        pauseFor(5.0);
+                    }
+                    else if (liftFoot(LEFT_FOOT, false, true)){
+                        pauseFor(5.0);
+                        currentPhase = MOVE_TO_DOUBLE_SUPPORT;
+                        isMovingCoM = false;
+                    }
+                }break;
+
+                case MOVE_TO_DOUBLE_SUPPORT:
+                {
+                    if(isInLeftSupportMode && !isInRightSupportMode) {
+                        if (setDownFoot(RIGHT_FOOT)) {
+                            isInLeftSupportMode = false;
+                            nextPhase = MOVE_TO_RIGHT_SUPPORT;
+                            pauseFor(5.0);
+                        }
+                    }
+                    else if(isInRightSupportMode && !isInLeftSupportMode) {
+                        if (setDownFoot(LEFT_FOOT)) {
+                            isInRightSupportMode = false;
+                            nextPhase = MOVE_TO_LEFT_SUPPORT;
+                            pauseFor(5.0);
+                        }
+                    }
+                    else
+                    {
+                        if(!isMovingCoM) {
+                            std::cout << "Moving CoM over between feet." << std::endl;
+                            positionCoMOver(CENTERED_BETWEEN_FEET_XY);
+                            isMovingCoM = true;
+                            pauseFor(5.0);
+                        }
+                        else
+                        {
+                            pauseFor(5.0);
+                            isInLeftSupportMode = true;
+                            isInRightSupportMode = true;
+                            currentPhase = nextPhase;
+                            isMovingCoM = false;
+                        }
+                    }
+                }break;
+            }
+        }
+}
+
+
+void SteppingDemoClient::leftToRightLoop(){
+        if( (currentTime - startTime) > 2.0 )
+    {
+
+        // set initial constants
         if(getInitialValues)
         {
             leftFootHome = getLeftFootPosition();
@@ -91,16 +285,15 @@ void SteppingDemoClient::loop()
             comHome = getCoMPosition();
 
             leftFootTarget = leftFootHome + Eigen::Vector3d(0.05, -0.01, 0.05);
-//             leftFootTarget = leftFootHome + Eigen::Vector3d(0.0, 0.0, 0.0);
             rightFootTarget = rightFootHome + Eigen::Vector3d(0.05, 0.01, 0.05);
 
             leftFootHome += Eigen::Vector3d(0.0, 0.0, -0.0001);
             rightFootHome += Eigen::Vector3d(0.0, 0.0, -0.0001);
 
-            OCRA_INFO(" leftFootHome: " << leftFootHome.transpose());
-            OCRA_INFO(" rightFootHome: " << rightFootHome.transpose());
-            OCRA_INFO(" comHome: " << comHome.transpose());
-            OCRA_INFO(" leftFootTarget: " << leftFootTarget.transpose());
+            OCRA_INFO(" leftFootHome: "    << leftFootHome.transpose());
+            OCRA_INFO(" rightFootHome: "   << rightFootHome.transpose());
+            OCRA_INFO(" comHome: "         << comHome.transpose());
+            OCRA_INFO(" leftFootTarget: "  << leftFootTarget.transpose());
             OCRA_INFO(" rightFootTarget: " << rightFootTarget.transpose());
 
             getInitialValues = false;
@@ -184,7 +377,9 @@ void SteppingDemoClient::loop()
             }
         }
     }
+
 }
+
 
 Eigen::Vector3d SteppingDemoClient::getLeftFootPosition()
 {
@@ -375,64 +570,7 @@ bool SteppingDemoClient::pauseFinished()
     }
     else{return true;}
 }
-
-bool SteppingDemoClient::liftFoot(FOOT_CONTACTS foot)
-{
-    double delayTime = 0.2;
-    switch (foot) {
-        case LEFT_FOOT:
-        {
-            if (!footTrajectoryStarted) {
-                std::cout << "Setting left foot trajectory." << std::endl;
-                leftFoot_TrajThread->setGoalErrorThreshold(0.01);
-                 // Switch fixedLink if odometry is active on the server-side
-                 // before the foot trajectory is set and the contact is deactivated
-                if ( !this->changeFixedLink("r_sole", isInLeftSupportMode, isInRightSupportMode) ) {
-                    OCRA_ERROR("Fixed link could not be changed to r_sole");
-                    return false;
-                }
-                    OCRA_INFO("FIXED LINK WAS SWITCHED TO THE RIGHT FOOT");
-                leftFoot_TrajThread->setTrajectoryWaypoints(leftFootTarget);
-                yarp::os::Time::delay(delayTime);
-                deactivateFootContacts(LEFT_FOOT);
-                footTrajectoryStarted = true;
-                return false;
-            } else {
-                if(leftFoot_TrajThread->goalAttained()) {
-                    footTrajectoryStarted = false;
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }break;
-
-        case RIGHT_FOOT:
-        {
-            if (!footTrajectoryStarted) {
-                OCRA_INFO("Setting right foot trajectory.");
-                rightFoot_TrajThread->setGoalErrorThreshold(0.01);
-                rightFoot_TrajThread->setTrajectoryWaypoints(rightFootTarget);
-                yarp::os::Time::delay(delayTime);
-                deactivateFootContacts(RIGHT_FOOT);
-                footTrajectoryStarted = true;
-                return false;
-            } else {
-                if(rightFoot_TrajThread->goalAttained()) {
-                    footTrajectoryStarted = false;
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        }break;
-
-        default:
-        break;
-    }
-
-}
-
+        
 bool SteppingDemoClient::liftFoot(FOOT_CONTACTS foot, bool isLeftFootInContact, bool isRightFootInContact)
 {
     this->isInLeftSupportMode = isLeftFootInContact;
@@ -447,7 +585,9 @@ bool SteppingDemoClient::liftFoot(FOOT_CONTACTS foot, bool isLeftFootInContact, 
                  // Switch fixedLink if odometry is active on the server-side
                  // before the foot trajectory is set and the contact is deactivated
                 this->changeFixedLink("r_sole", isLeftFootInContact, isRightFootInContact);
-                OCRA_INFO("FIXED LINK WAS SWITCHED TO THE RIGHT FOOT");
+                if (motionType == STATIC_WALKING) {
+                    leftFootTarget += 0.5*nextStep;
+                }
                 leftFoot_TrajThread->setTrajectoryWaypoints(leftFootTarget);
                 yarp::os::Time::delay(delayTime);
                 deactivateFootContacts(LEFT_FOOT);
@@ -472,6 +612,9 @@ bool SteppingDemoClient::liftFoot(FOOT_CONTACTS foot, bool isLeftFootInContact, 
                 // before the foot trajectory is set and the contact is deactivated
                 this->changeFixedLink("l_sole", isLeftFootInContact, isRightFootInContact);
                 OCRA_INFO("FIXED LINK WAS SWITCHED TO THE LEFT FOOT");
+                if (motionType == STATIC_WALKING) {
+                    rightFootTarget += nextStep;
+                }                
                 rightFoot_TrajThread->setTrajectoryWaypoints(rightFootTarget);
                 yarp::os::Time::delay(delayTime);
                 deactivateFootContacts(RIGHT_FOOT);
@@ -502,6 +645,14 @@ bool SteppingDemoClient::setDownFoot(FOOT_CONTACTS foot)
             if (!footTrajectoryStarted) {
                 OCRA_INFO("Setting left foot trajectory.");
                 leftFoot_TrajThread->setGoalErrorThreshold(0.008);
+                if ( motionType == STATIC_WALKING ) {
+                    if (walkingParams.firstStepDone) {
+                        leftFootHome += nextStep;
+                        walkingParams.firstStepDone = false;
+                    } else {
+                        leftFootHome += 2*nextStep;
+                    }
+                }
                 leftFoot_TrajThread->setTrajectoryWaypoints(leftFootHome);
                 footTrajectoryStarted = true;
                 return false;
@@ -520,6 +671,9 @@ bool SteppingDemoClient::setDownFoot(FOOT_CONTACTS foot)
             if (!footTrajectoryStarted) {
                 OCRA_INFO("Setting right foot trajectory.");
                 rightFoot_TrajThread->setGoalErrorThreshold(0.008);
+                if ( motionType == STATIC_WALKING ) {
+                    rightFootHome += 2*nextStep;
+                }                
                 rightFoot_TrajThread->setTrajectoryWaypoints(rightFootHome);
                 footTrajectoryStarted = true;
                 return false;
