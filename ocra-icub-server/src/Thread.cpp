@@ -160,6 +160,7 @@ bool Thread::threadInit()
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
     
+    yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
     if(ctrlOptions.runInDebugMode) {
         debugJointIndex = 0;
