@@ -5,7 +5,7 @@
 <!-- Note:
         Not providing a desired value for joint tasks will default to the current joint position.
  -->
-<task name="fullPosture" type="FullPosture">
+<task name="FullPosture" type="FullPosture">
    <params kp="5.0" kd="4.5" weight="0.01" />
    <joints>
        <joint name="l_hip_pitch"    weight="0.0004"/>
@@ -26,17 +26,8 @@
    </joints>
 </task>
 
-<!-- 
-<task name="LeftHandCartesian" type="Cartesian">
-    <segment>l_hand</segment>
-    <params kp="40.0" kd="12.6" weight="1.0" axes="XYZ" />
-    <offset  x="0.05" y="0.0" z="0.0" />
-    <desired  x="-0.2" y="-0.2" z="0.2" />
-</task>
 
-
-<task name="RightHandCartesian" type="Cartesian">
+<task name="RightHandOrientation" type="Orientation">
     <segment>r_hand</segment>
-    <params kp="40.0" kd="12.6" weight="1.0" axes="XYZ" />
-    <offset  x="0.05" y="0.0" z="0.0" />
-</task> -->
+    <params kp="40.0" weight="1.0" />
+</task>

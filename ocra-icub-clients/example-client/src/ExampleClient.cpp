@@ -25,7 +25,7 @@ bool ExampleClient::initialize()
 
     ocra_recipes::TERMINATION_STRATEGY termStrategy = ocra_recipes::BACK_AND_FORTH;
 
-    leftHandTrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(10, "leftHandCartesian", waypoints, trajType, termStrategy);
+    leftHandTrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(10, "LeftHandCartesian", waypoints, trajType, termStrategy);
 
     // leftHandTrajThread->setDisplacement(0.2);
     leftHandTrajThread->setGoalErrorThreshold(0.03);

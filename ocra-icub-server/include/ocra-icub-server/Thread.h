@@ -33,10 +33,17 @@
 #include <ocra-icub-server/IcubControllerServer.h>
 
 #include <ocra-icub/Utilities.h>
+#include <ocra/util/ErrorsHelper.h>
 
 #include <yarp/os/Bottle.h>
 #include <yarp/os/RpcServer.h>
 #include <yarp/os/ConnectionReader.h>
+#include <yarp/os/Time.h>
+
+#include <sstream>
+#include <string>
+
+#include <iDynTree/Estimation/SimpleLeggedOdometry.h>
 
 
 class OcraControllerOptions
@@ -59,8 +66,10 @@ public: // Variables
     std::string             startupTaskSetPath; /*!< a string with the absolute path to an xml file with a set of tasks. */
     std::string             startupSequence; /*!< a string with the name of a sequence to run **(will be removed)**. */
     std::string             wbiConfigFilePath; /*!< The absolute path to the configuration file used to initialize the yarpWBI. */
-    bool                    runInDebugMode; /*!< a boolean which runs the controller in a debugging mode which allows one to check the contorller ouput joint by joint. */
+    std::string             urdfModelPath; /*!< Absolute path to the urdf model. Used for the odometry. */
+    bool                    runInDebugMode; /*!< a boolean which runs the controller in a debugging mode which allows one to check the controller ouput joint by joint. */
     bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
+    bool                    useOdometry; /*!< a boolean which tells the controller to start the odometry, meaning that the world reference frame remains attached to the ground*/
     yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
     ocra_recipes::CONTROLLER_TYPE    controllerType; /*!< The type of OCRA controller to use. */
     ocra_recipes::SOLVER_TYPE    solver; /*!< The type of OCRA controller to use. */
@@ -115,11 +124,41 @@ public:
         Thread& thread; /*!< A shared pointer to the control thread. */
     };
 
+public:
+    /*! \class DebugRpcServerCallback
+     *  \brief A callback function which binds the rpc server port opened in the contoller server module to the controller thread's parsing function.
+     */
+    class DebugRpcServerCallback : public yarp::os::PortReader
+    {
+    CLASS_POINTER_TYPEDEFS(DebugRpcServerCallback)
+
+    public:
+
+        /*! Constructor
+         *  \param ctThreadPtr A shared pointer to the control thread.
+         */
+        DebugRpcServerCallback(Thread& threadRef);
+
+        /*! read
+         *  \param connection Reads a port connection.
+         *
+         *  \return A boolean which tells whether or not a message was read.
+         */
+        virtual bool read(yarp::os::ConnectionReader& connection);
+
+    private:
+
+        Thread& thread; /*!< A shared pointer to the control thread. */
+    };
+
 private:
     void parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
+    void parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
+    void writeDebugData();
 
 
 private:
+    ocra::Model::Ptr model;
     std::shared_ptr<IcubControllerServer> ctrlServer;
     static const int ALL_JOINTS = -1; /*!< Maximum possible actuator torques */
 
@@ -140,6 +179,17 @@ private:
     ControllerRpcServerCallback::shared_ptr rpcServerCallback; /*!< Rpc server port callback function. */
     yarp::os::RpcServer rpcServerPort; /*!< Rpc server port. */
 
+    // Debugging related
+    int debugJointIndex;
+    yarp::os::RpcServer debugRpcPort;
+    yarp::os::Port debugRefOutPort;
+    yarp::os::Port debugRealOutPort;
+    DebugRpcServerCallback::shared_ptr debugRpcCallback; /*!< Rpc server port callback function. */
+
+    Eigen::VectorXd measuredTorques;
+    bool debuggingAllJoints;
+    
+    iDynTree::SimpleLeggedOdometry odometry; /*!< Odometry object */
 };
 
 

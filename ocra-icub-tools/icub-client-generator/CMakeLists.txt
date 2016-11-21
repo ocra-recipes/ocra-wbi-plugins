@@ -15,14 +15,18 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-file(GLOB conf ${CMAKE_CURRENT_SOURCE_DIR}/conf/*.ini)
+project(icub-client-generator CXX)
 
-yarp_install( FILES ${conf}
-              DESTINATION ${CODYCO_ROBOTS_INSTALL_DIR})
+file(GLOB folder_source src/*.cpp)
 
-file(GLOB scripts ${CMAKE_CURRENT_SOURCE_DIR}/scripts/*.xml)
+source_group("Source Files" FILES ${folder_source})
 
-yarp_install( FILES ${scripts}
-DESTINATION ${CODYCO_ROBOTS_INSTALL_DIR}/..)
+find_package(Boost COMPONENTS system filesystem REQUIRED)
 
-add_subdirectory(robots)
+include_directories(${Boost_INCLUDE_DIRS})
+
+add_executable(${PROJECT_NAME} ${folder_source})
+
+target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
+
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)

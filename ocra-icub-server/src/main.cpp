@@ -45,7 +45,6 @@ int main (int argc, char * argv[])
     rf.setDefaultConfigFile("ocra-icub-server.ini"); //default config file name.
     rf.setDefaultContext(DEFAULT_YARP_CONTEXT); //when no parameters are given to the module this is the default context
     rf.configure(argc,argv);
-
     if (rf.check("verbose")) {
       rf.setVerbose(true);
     }else{
