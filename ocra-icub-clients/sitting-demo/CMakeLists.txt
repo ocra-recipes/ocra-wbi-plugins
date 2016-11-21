@@ -1,6 +1,6 @@
-# This file is part of sitting-demo.
-# Copyright (C) [your institution here]
-# author(s): [your name here]
+# This file is part of ocra-icub.
+# Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
+# author(s): Ryan Lober
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,61 +15,29 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-# Make sure we are working with at least CMake 2.8.12
-cmake_minimum_required(VERSION 2.8.12)
+SET(PROJECTNAME sitting-demo)
+PROJECT(${PROJECTNAME} CXX)
 
-# Initiate the project
-PROJECT(sitting-demo CXX)
+FILE(GLOB folder_source ./src/*.cpp)
+FILE(GLOB folder_header ./include/${PROJECTNAME}/*.h)
 
-# Make sure you have a C++11 compatible compiler
-include(CheckCXXCompilerFlag)
-CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
-if(COMPILER_SUPPORTS_CXX11)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
-else()
-    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
- endif()
+SOURCE_GROUP("Source Files" FILES ${folder_source})
+SOURCE_GROUP("Header Files" FILES ${folder_header})
 
- # Build as Release (Change Release to Debug for better debugging symbols)
-set(CMAKE_BUILD_TYPE Release)
-
-# Set the project version.
-set(${PROJECT_NAME}_MAJOR_VERSION 1)
-set(${PROJECT_NAME}_MINOR_VERSION 0)
-set(${PROJECT_NAME}_PATCH_VERSION 0)
-set(${PROJECT_NAME}_VERSION ${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}.${${PROJECT_NAME}_PATCH_VERSION})
-
-# Add some helpful CMake functions
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
-
-# Find OcraIcub
-find_package(OcraIcub REQUIRED)
-IF(${OcraIcub_FOUND})
-    message("-- Found OcraIcub version ${OcraIcub_VERSION}")
-ENDIF()
-
-# Get all of the source and header files.
-file(GLOB folder_source src/*.cpp)
-file(GLOB folder_header include/${PROJECT_NAME}/*.h)
-source_group("Source Files" FILES ${folder_source})
-source_group("Header Files" FILES ${folder_header})
-
-# Tell the compiler where to look for all other headers
-include_directories(
+INCLUDE_DIRECTORIES(
 ${PROJECT_SOURCE_DIR}/include
+${YARP_INCLUDE_DIRS}
 ${OcraIcub_INCLUDE_DIRS}
+${OcraRecipes_INCLUDE_DIRS}
 )
 
-# Add the client executable (binary)
-add_executable(${PROJECT_NAME} ${folder_source} ${folder_header})
+ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
-# Link to the appropriate libs
-target_link_libraries(
-${PROJECT_NAME}
-${OcraIcub_LIBRARIES}
-)
+LIST(APPEND link_libs   ${YARP_LIBRARIES}
+                        ${OcraRecipes_LIBRARIES}
+                        ocra-icub
+                        )
 
-# Install to the bin/ directory if installed.
-install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+TARGET_LINK_LIBRARIES(${PROJECTNAME} ${link_libs})
 
-# Add an uninstallation target so you can just run - make uninstall - to remove the binary.
+INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
