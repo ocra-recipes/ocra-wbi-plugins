@@ -29,6 +29,11 @@ Collaboration diagram for Stepping\+Demo\+Client\+:\nopagebreak
 \item 
 virtual \hyperlink{classSteppingDemoClient_a573eed904c7262c5cdbaf6e254d72559}{$\sim$\+Stepping\+Demo\+Client} ()
 \end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{SteppingDemoClient_8h_abd6d177d63e98aa1b4ed4b8329e2a379}{M\+O\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} \hyperlink{classSteppingDemoClient_aa880debbcbed0298ae1769dd8a3f721b}{motion\+Type}
+\end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -40,6 +45,10 @@ virtual void \hyperlink{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb
 \end{DoxyCompactItemize}
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classSteppingDemoClient_a0f6b689c5f032351484b03e71a3530e1}{static\+Walking\+Loop} ()
+\item 
+void \hyperlink{classSteppingDemoClient_a94b990ae53b1b40ef8f9469b427d171c}{left\+To\+Right\+Loop} ()
 \item 
 Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_af6a814243828f5136476aa5e99ea0079}{get\+Left\+Foot\+Position} ()
 \item 
@@ -61,11 +70,13 @@ void \hyperlink{classSteppingDemoClient_a6b5d8bf0ce08c8b9f66ac2c1bbd5bcd7}{pause
 \item 
 bool \hyperlink{classSteppingDemoClient_afe78b799d8b8c63cff7d1e8765b7e1fa}{pause\+Finished} ()
 \item 
-bool \hyperlink{classSteppingDemoClient_a927c8615104a5fd5968ea4ece2c22926}{lift\+Foot} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot)
-\item 
 bool \hyperlink{classSteppingDemoClient_ae406e5c8f755f234272b63de4d6a774f}{lift\+Foot} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot, bool is\+Left\+Foot\+In\+Contact, bool is\+Right\+Foot\+In\+Contact)
 \item 
 bool \hyperlink{classSteppingDemoClient_a930123dad5658ea8a3bb5f23cb4cb369}{set\+Down\+Foot} (\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS} foot)
+\item 
+void \hyperlink{classSteppingDemoClient_a346a8fd10641897532a26f598db7799d}{state\+Machine\+With\+Pause\+In\+Double\+Support} ()
+\item 
+void \hyperlink{classSteppingDemoClient_a256284578a6b9818a8f726451d2fb2c4}{state\+Machine\+Without\+Pause\+In\+Double\+Support} ()
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -116,6 +127,8 @@ Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_a2360933e2902d1b1a374787b
 \item 
 Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_abfe6635a0ad50fa4baa6fa10b8c56d9e}{right\+Foot\+Target}
 \item 
+Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_af9e0358390f12ed0135275b20bf1f6f5}{next\+Step}
+\item 
 Eigen\+::\+Vector3d \hyperlink{classSteppingDemoClient_ab4a77111abbf3630280a64d17ac59eef}{new\+Co\+M\+Goal\+Position}
 \item 
 double \hyperlink{classSteppingDemoClient_af7b6e48319ef9d35fb975edc3bb2a137}{start\+Time}
@@ -127,6 +140,8 @@ bool \hyperlink{classSteppingDemoClient_aedd8bb5bca60afbdd2b8de3b5d1829d7}{get\+
 \hyperlink{SteppingDemoClient_8h_af2a8507bf21c3ce9b0e67a23381251c6}{C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+H\+A\+SE} \hyperlink{classSteppingDemoClient_ab5a3b82049a9786162a60d0ae94f96d9}{next\+Phase}
 \item 
 bool \hyperlink{classSteppingDemoClient_ad7e3950d053af7c1aca33b3e7c3b20c5}{is\+Moving\+CoM}
+\item 
+\hyperlink{structWalkingParams}{Walking\+Params} \hyperlink{classSteppingDemoClient_a113c2d838e3db1d18f4843a8828e30d4}{walking\+Params}
 \end{DoxyCompactItemize}
 
 
@@ -249,26 +264,16 @@ If the foot height is less than or equal to foot\+Contact\+Release\+Threshold, t
 \begin{DoxyReturn}{Returns}
 True if the activation of the contact happens successfully. False if the foot\textquotesingle{}s elevation is not under the foot\+Contact\+Release\+Threshold. 
 \end{DoxyReturn}
-\hypertarget{classSteppingDemoClient_a927c8615104a5fd5968ea4ece2c22926}{}\label{classSteppingDemoClient_a927c8615104a5fd5968ea4ece2c22926} 
-\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!lift\+Foot@{lift\+Foot}}
-\index{lift\+Foot@{lift\+Foot}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
-\subsubsection{\texorpdfstring{lift\+Foot()}{liftFoot()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::lift\+Foot (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS}}]{foot }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+\hypertarget{classSteppingDemoClient_a94b990ae53b1b40ef8f9469b427d171c}{}\label{classSteppingDemoClient_a94b990ae53b1b40ef8f9469b427d171c} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!left\+To\+Right\+Loop@{left\+To\+Right\+Loop}}
+\index{left\+To\+Right\+Loop@{left\+To\+Right\+Loop}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{left\+To\+Right\+Loop()}{leftToRightLoop()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::left\+To\+Right\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
-Sets the right or left foot waypoint to right\+Foot\+Target or left\+Foot\+Target accordingly (where the foot will be lifted). These values are harcoded in the \hyperlink{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb5}{loop()} method and updated only during the very first iteration when the variable get\+Initial\+Values is set to true.
-
-
-\begin{DoxyParams}{Parameters}
-{\em foot} & L\+E\+F\+T\+\_\+\+F\+O\+OT or R\+I\+G\+H\+T\+\_\+\+F\+O\+OT\\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-True after the foot contact is deactivated. 
-\end{DoxyReturn}
 \hypertarget{classSteppingDemoClient_ae406e5c8f755f234272b63de4d6a774f}{}\label{classSteppingDemoClient_ae406e5c8f755f234272b63de4d6a774f} 
 \index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!lift\+Foot@{lift\+Foot}}
 \index{lift\+Foot@{lift\+Foot}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
-\subsubsection{\texorpdfstring{lift\+Foot()}{liftFoot()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\subsubsection{\texorpdfstring{lift\+Foot()}{liftFoot()}}
 {\footnotesize\ttfamily bool Stepping\+Demo\+Client\+::lift\+Foot (\begin{DoxyParamCaption}\item[{\hyperlink{SteppingDemoClient_8h_ab0673d7f17cdd57b8fa124abb330287f}{F\+O\+O\+T\+\_\+\+C\+O\+N\+T\+A\+C\+TS}}]{foot,  }\item[{bool}]{is\+Left\+Foot\+In\+Contact,  }\item[{bool}]{is\+Right\+Foot\+In\+Contact }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 Sets the right or left foot waypoint to right\+Foot\+Target or left\+Foot\+Target accordingly (where the foot will be lifted). These values are harcoded in the \hyperlink{classSteppingDemoClient_a37dba4764b5849cf33c395cd0d4b0eb5}{loop()} method and updated only during the very first iteration when the variable get\+Initial\+Values is set to true.
@@ -350,6 +355,24 @@ Sets the right or left foot waypoint to right\+Foot\+Home or left\+Foot\+Home ac
 \begin{DoxyReturn}{Returns}
 True only after the foot has established contact again and the trajectory is over. False while the foot is still moving back down looking for contact or simply, the goal hasn\textquotesingle{}t been attained. 
 \end{DoxyReturn}
+\hypertarget{classSteppingDemoClient_a256284578a6b9818a8f726451d2fb2c4}{}\label{classSteppingDemoClient_a256284578a6b9818a8f726451d2fb2c4} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!state\+Machine\+Without\+Pause\+In\+Double\+Support@{state\+Machine\+Without\+Pause\+In\+Double\+Support}}
+\index{state\+Machine\+Without\+Pause\+In\+Double\+Support@{state\+Machine\+Without\+Pause\+In\+Double\+Support}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{state\+Machine\+Without\+Pause\+In\+Double\+Support()}{stateMachineWithoutPauseInDoubleSupport()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::state\+Machine\+Without\+Pause\+In\+Double\+Support (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a346a8fd10641897532a26f598db7799d}{}\label{classSteppingDemoClient_a346a8fd10641897532a26f598db7799d} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!state\+Machine\+With\+Pause\+In\+Double\+Support@{state\+Machine\+With\+Pause\+In\+Double\+Support}}
+\index{state\+Machine\+With\+Pause\+In\+Double\+Support@{state\+Machine\+With\+Pause\+In\+Double\+Support}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{state\+Machine\+With\+Pause\+In\+Double\+Support()}{stateMachineWithPauseInDoubleSupport()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::state\+Machine\+With\+Pause\+In\+Double\+Support (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a0f6b689c5f032351484b03e71a3530e1}{}\label{classSteppingDemoClient_a0f6b689c5f032351484b03e71a3530e1} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!static\+Walking\+Loop@{static\+Walking\+Loop}}
+\index{static\+Walking\+Loop@{static\+Walking\+Loop}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{static\+Walking\+Loop()}{staticWalkingLoop()}}
+{\footnotesize\ttfamily void Stepping\+Demo\+Client\+::static\+Walking\+Loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
 
 
 \subsection{Member Data Documentation}
@@ -455,6 +478,12 @@ True only after the foot has established contact again and the trajectory is ove
 \subsubsection{\texorpdfstring{left\+Foot\+Target}{leftFootTarget}}
 {\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::left\+Foot\+Target\hspace{0.3cm}{\ttfamily [private]}}
 
+\hypertarget{classSteppingDemoClient_aa880debbcbed0298ae1769dd8a3f721b}{}\label{classSteppingDemoClient_aa880debbcbed0298ae1769dd8a3f721b} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!motion\+Type@{motion\+Type}}
+\index{motion\+Type@{motion\+Type}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{motion\+Type}{motionType}}
+{\footnotesize\ttfamily \hyperlink{SteppingDemoClient_8h_abd6d177d63e98aa1b4ed4b8329e2a379}{M\+O\+T\+I\+O\+N\+\_\+\+T\+Y\+PE} Stepping\+Demo\+Client\+::motion\+Type}
+
 \hypertarget{classSteppingDemoClient_ab4a77111abbf3630280a64d17ac59eef}{}\label{classSteppingDemoClient_ab4a77111abbf3630280a64d17ac59eef} 
 \index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!new\+Co\+M\+Goal\+Position@{new\+Co\+M\+Goal\+Position}}
 \index{new\+Co\+M\+Goal\+Position@{new\+Co\+M\+Goal\+Position}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
@@ -466,6 +495,12 @@ True only after the foot has established contact again and the trajectory is ove
 \index{next\+Phase@{next\+Phase}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
 \subsubsection{\texorpdfstring{next\+Phase}{nextPhase}}
 {\footnotesize\ttfamily \hyperlink{SteppingDemoClient_8h_af2a8507bf21c3ce9b0e67a23381251c6}{C\+O\+N\+T\+R\+O\+L\+\_\+\+P\+H\+A\+SE} Stepping\+Demo\+Client\+::next\+Phase\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_af9e0358390f12ed0135275b20bf1f6f5}{}\label{classSteppingDemoClient_af9e0358390f12ed0135275b20bf1f6f5} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!next\+Step@{next\+Step}}
+\index{next\+Step@{next\+Step}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{next\+Step}{nextStep}}
+{\footnotesize\ttfamily Eigen\+::\+Vector3d Stepping\+Demo\+Client\+::next\+Step\hspace{0.3cm}{\ttfamily [private]}}
 
 \hypertarget{classSteppingDemoClient_a92b810b2d2c50e359da18e5d91163340}{}\label{classSteppingDemoClient_a92b810b2d2c50e359da18e5d91163340} 
 \index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!pause\+Duration@{pause\+Duration}}
@@ -526,6 +561,12 @@ True only after the foot has established contact again and the trajectory is ove
 \index{start\+Time@{start\+Time}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
 \subsubsection{\texorpdfstring{start\+Time}{startTime}}
 {\footnotesize\ttfamily double Stepping\+Demo\+Client\+::start\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classSteppingDemoClient_a113c2d838e3db1d18f4843a8828e30d4}{}\label{classSteppingDemoClient_a113c2d838e3db1d18f4843a8828e30d4} 
+\index{Stepping\+Demo\+Client@{Stepping\+Demo\+Client}!walking\+Params@{walking\+Params}}
+\index{walking\+Params@{walking\+Params}!Stepping\+Demo\+Client@{Stepping\+Demo\+Client}}
+\subsubsection{\texorpdfstring{walking\+Params}{walkingParams}}
+{\footnotesize\ttfamily \hyperlink{structWalkingParams}{Walking\+Params} Stepping\+Demo\+Client\+::walking\+Params\hspace{0.3cm}{\ttfamily [private]}}
 
 
 

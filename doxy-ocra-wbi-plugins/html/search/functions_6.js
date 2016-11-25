@@ -1,6 +1,10 @@
 var searchData=
 [
-  ['liftfoot',['liftFoot',['../classSteppingDemoClient.html#a927c8615104a5fd5968ea4ece2c22926',1,'SteppingDemoClient::liftFoot(FOOT_CONTACTS foot)'],['../classSteppingDemoClient.html#ae406e5c8f755f234272b63de4d6a774f',1,'SteppingDemoClient::liftFoot(FOOT_CONTACTS foot, bool isLeftFootInContact, bool isRightFootInContact)']]],
-  ['loadrobotmodel',['loadRobotModel',['../classIcubControllerServer.html#a025d8e257a69ef3d2c5a10b3cbfe2350',1,'IcubControllerServer']]],
-  ['loop',['loop',['../classExampleClient.html#afb58f3425aafe2d4c38195cb3c667dbc',1,'ExampleClient::loop()'],['../classSteppingDemoClient.html#a37dba4764b5849cf33c395cd0d4b0eb5',1,'SteppingDemoClient::loop()'],['../classTaskOpsClient.html#a7e7dfab7af0404f0b008da2844ab573e',1,'TaskOpsClient::loop()']]]
+  ['icubcontrollerserver',['IcubControllerServer',['../classIcubControllerServer.html#a6b0a6021e3c82e72ac97ad30d3f0c082',1,'IcubControllerServer']]],
+  ['initialize',['initialize',['../classExampleClient.html#ad504d1d87997fc95bfeca6aa925a4fa6',1,'ExampleClient::initialize()'],['../classSittingDemoClient.html#aff04405d690f2ae8abbd05ea4b55b64d',1,'SittingDemoClient::initialize()'],['../classSteppingDemoClient.html#a08dce195eece162eed175ac9487667c2',1,'SteppingDemoClient::initialize()'],['../classTaskOpsClient.html#a6f5e4c20c1d5f5df28dcc58e3cb4adb0',1,'TaskOpsClient::initialize()'],['../classWalkingClient.html#aba6a03fe29a4e947bc6bc0c09a713b2a',1,'WalkingClient::initialize()'],['../classZmpPreviewController.html#ac28287e01187bff2cea5a68292d936bd',1,'ZmpPreviewController::initialize()']]],
+  ['initializematrices',['initializeMatrices',['../classZmpPreviewController.html#a65905572c73752a3ff46c0435c9794a0',1,'ZmpPreviewController']]],
+  ['initializeodometry',['initializeOdometry',['../classIcubControllerServer.html#a810f139a27e06458549ccbb3fde12359',1,'IcubControllerServer']]],
+  ['interruptmodule',['interruptModule',['../classModule.html#ad53295be6c51e834eec92009c2d7bbf3',1,'Module']]],
+  ['isbalanced',['isBalanced',['../classSteppingDemoClient.html#ad8fbc186267a47a73bb77e78199f2b8c',1,'SteppingDemoClient']]],
+  ['isfootincontact',['isFootInContact',['../classSteppingDemoClient.html#aeeaa9fac47e3e5a141647b07fa2feaa3',1,'SteppingDemoClient']]]
 ];

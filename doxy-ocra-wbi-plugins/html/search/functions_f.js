@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['velocityerror',['velocityError',['../classIcubControllerServer.html#aaedff28c5d9ac9a7cdbc24c9e0cbc5b3',1,'IcubControllerServer']]]
+  ['updatemodule',['updateModule',['../classModule.html#a1b1c4963512941537cef766217329a8a',1,'Module']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ocra_5ficub_5fmessage',['OCRA_ICUB_MESSAGE',['../namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83f',1,'ocra_icub']]]
+  ['motion_5ftype',['MOTION_TYPE',['../SteppingDemoClient_8h.html#abd6d177d63e98aa1b4ed4b8329e2a379',1,'SteppingDemoClient.h']]]
 ];

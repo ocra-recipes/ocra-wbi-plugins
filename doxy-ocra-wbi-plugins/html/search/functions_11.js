@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['_7eexampleclient',['~ExampleClient',['../classExampleClient.html#abdca7dbe5fdab81d7d661a677e5ccd14',1,'ExampleClient']]],
-  ['_7eicubcontrollerserver',['~IcubControllerServer',['../classIcubControllerServer.html#a7582d4bbf9851ee9b58913ea2a89e5fd',1,'IcubControllerServer']]],
-  ['_7emodelinitializer',['~ModelInitializer',['../classocra__icub_1_1ModelInitializer.html#af72e47a78f20f34f77be2b9e6921ca19',1,'ocra_icub::ModelInitializer']]],
-  ['_7emodule',['~Module',['../classModule.html#a7c9d9c096786d127590fdd8aa2b7d681',1,'Module']]],
-  ['_7eocracontrolleroptions',['~OcraControllerOptions',['../classOcraControllerOptions.html#a22f514e92ccf91cc362c48a6c340ac19',1,'OcraControllerOptions']]],
-  ['_7eocrawbimodel',['~OcraWbiModel',['../classocra__icub_1_1OcraWbiModel.html#ade110b2e003ccd49d2baa4f56a954e4b',1,'ocra_icub::OcraWbiModel']]],
-  ['_7esteppingdemoclient',['~SteppingDemoClient',['../classSteppingDemoClient.html#a573eed904c7262c5cdbaf6e254d72559',1,'SteppingDemoClient']]],
-  ['_7etaskopsclient',['~TaskOpsClient',['../classTaskOpsClient.html#a80a5c71dd04ab7a07d4ffb8116244cdd',1,'TaskOpsClient']]],
-  ['_7ethread',['~Thread',['../classThread.html#a37d9edd3a1a776cbc27dedff949c9726',1,'Thread']]]
+  ['walkingclient',['WalkingClient',['../classWalkingClient.html#a6c9002a44a54814c4b482739824e39aa',1,'WalkingClient']]],
+  ['wbiframetoeigendispd',['wbiFrameToEigenDispd',['../classocra__icub_1_1OcraWbiConversions.html#a403627efa183c8ddbbccabf0dcd5bcaf',1,'ocra_icub::OcraWbiConversions']]],
+  ['wbitoocrabodyvector',['wbiToOcraBodyVector',['../classocra__icub_1_1OcraWbiConversions.html#ae8839dfdc97e2239f4ed8a257d32fb21',1,'ocra_icub::OcraWbiConversions']]],
+  ['wbitoocracomjacobian',['wbiToOcraCoMJacobian',['../classocra__icub_1_1OcraWbiConversions.html#a86458de950caa3bde3aa1d1aff448be1',1,'ocra_icub::OcraWbiConversions']]],
+  ['wbitoocramassmatrix',['wbiToOcraMassMatrix',['../classocra__icub_1_1OcraWbiConversions.html#abaa2b7a9069b60cfb36cb21e89b98177',1,'ocra_icub::OcraWbiConversions']]],
+  ['wbitoocrasegjacobian',['wbiToOcraSegJacobian',['../classocra__icub_1_1OcraWbiConversions.html#a25a64172ebb14db9ddf301880a433964',1,'ocra_icub::OcraWbiConversions']]],
+  ['wbitoocratwistvector',['wbiToOcraTwistVector',['../classocra__icub_1_1OcraWbiConversions.html#a37c2aea3bf156928cb90a16655c24cc9',1,'ocra_icub::OcraWbiConversions']]],
+  ['writedebugdata',['writeDebugData',['../classThread.html#a9af0e98aa9b1de2f5c7bfa2f6e5001a2',1,'Thread']]]
 ];

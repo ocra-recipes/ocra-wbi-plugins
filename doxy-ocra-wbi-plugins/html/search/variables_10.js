@@ -22,5 +22,7 @@ var searchData=
   ['startupsequence',['startupSequence',['../classOcraControllerOptions.html#ab01efbd786ad8bc5beb6de02dbcd0936',1,'OcraControllerOptions']]],
   ['startuptasksetpath',['startupTaskSetPath',['../classOcraControllerOptions.html#af91566ecff3f7ed02571369c7af061ce',1,'OcraControllerOptions']]],
   ['stddev',['stdDev',['../classModule.html#af66a2dab82208cb2ea25da22fcaaa4a3',1,'Module']]],
-  ['stddevused',['stdDevUsed',['../classModule.html#a57060f2788b6dc9906e66432e775e5ac',1,'Module']]]
+  ['stddevused',['stdDevUsed',['../classModule.html#a57060f2788b6dc9906e66432e775e5ac',1,'Module']]],
+  ['stepheight',['stepHeight',['../structWalkingParams.html#abfc5b4af75225435731b30bcd882a0ae',1,'WalkingParams']]],
+  ['steplength',['stepLength',['../structWalkingParams.html#ad719bbe7ba3ed5ad027d0c42522693d7',1,'WalkingParams']]]
 ];

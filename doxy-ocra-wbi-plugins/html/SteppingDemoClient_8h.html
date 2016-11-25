@@ -90,6 +90,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structWalkingParams.html">WalkingParams</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSteppingDemoClient.html">SteppingDemoClient</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -102,13 +104,18 @@ Enumerations</h2></td></tr>
 <tr class="separator:ac0c3848a609566394821d9826e0fdd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2a8507bf21c3ce9b0e67a23381251c6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SteppingDemoClient_8h.html#af2a8507bf21c3ce9b0e67a23381251c6">CONTROL_PHASE</a> { <a class="el" href="SteppingDemoClient_8h.html#af2a8507bf21c3ce9b0e67a23381251c6afe7fc4a2f5d6778bbb96f412be37d63c">MOVE_TO_LEFT_SUPPORT</a>, 
 <a class="el" href="SteppingDemoClient_8h.html#af2a8507bf21c3ce9b0e67a23381251c6a3b4335037acf972dd5d60348ca20d394">MOVE_TO_RIGHT_SUPPORT</a>, 
-<a class="el" href="SteppingDemoClient_8h.html#af2a8507bf21c3ce9b0e67a23381251c6a362d8557e44bcc19f6b4d9096bb54401">MOVE_TO_DOUBLE_SUPPORT</a>
+<a class="el" href="SteppingDemoClient_8h.html#af2a8507bf21c3ce9b0e67a23381251c6a362d8557e44bcc19f6b4d9096bb54401">MOVE_TO_DOUBLE_SUPPORT</a>, 
+<a class="el" href="SteppingDemoClient_8h.html#af2a8507bf21c3ce9b0e67a23381251c6a4ff6c6ae9503ea4bca745c7d7819523e">STEP_FORWARD</a>
  }</td></tr>
 <tr class="separator:af2a8507bf21c3ce9b0e67a23381251c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab0673d7f17cdd57b8fa124abb330287f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SteppingDemoClient_8h.html#ab0673d7f17cdd57b8fa124abb330287f">FOOT_CONTACTS</a> { <a class="el" href="SteppingDemoClient_8h.html#ab0673d7f17cdd57b8fa124abb330287fa7760daad9db1ede8c57b06189deca9f3">LEFT_FOOT</a>, 
 <a class="el" href="SteppingDemoClient_8h.html#ab0673d7f17cdd57b8fa124abb330287face119c66af60ac0781b137aa87d7be62">RIGHT_FOOT</a>
  }</td></tr>
 <tr class="separator:ab0673d7f17cdd57b8fa124abb330287f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd6d177d63e98aa1b4ed4b8329e2a379"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="SteppingDemoClient_8h.html#abd6d177d63e98aa1b4ed4b8329e2a379">MOTION_TYPE</a> { <a class="el" href="SteppingDemoClient_8h.html#abd6d177d63e98aa1b4ed4b8329e2a379a55b57dce74f14a62104ae66e62789eb3">LEFT_TO_RIGHT</a>, 
+<a class="el" href="SteppingDemoClient_8h.html#abd6d177d63e98aa1b4ed4b8329e2a379ada7017955bb1db9f0954017358028fa6">STATIC_WALKING</a>
+ }</td></tr>
+<tr class="separator:abd6d177d63e98aa1b4ed4b8329e2a379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="ac0c3848a609566394821d9826e0fdd5b"></a>
@@ -145,6 +152,7 @@ Enumerations</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af2a8507bf21c3ce9b0e67a23381251c6afe7fc4a2f5d6778bbb96f412be37d63c"></a>MOVE_TO_LEFT_SUPPORT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af2a8507bf21c3ce9b0e67a23381251c6a3b4335037acf972dd5d60348ca20d394"></a>MOVE_TO_RIGHT_SUPPORT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af2a8507bf21c3ce9b0e67a23381251c6a362d8557e44bcc19f6b4d9096bb54401"></a>MOVE_TO_DOUBLE_SUPPORT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="af2a8507bf21c3ce9b0e67a23381251c6a4ff6c6ae9503ea4bca745c7d7819523e"></a>STEP_FORWARD&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -167,10 +175,28 @@ Enumerations</h2></td></tr>
 
 </div>
 </div>
+<a id="abd6d177d63e98aa1b4ed4b8329e2a379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd6d177d63e98aa1b4ed4b8329e2a379">&sect;&nbsp;</a></span>MOTION_TYPE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="SteppingDemoClient_8h.html#abd6d177d63e98aa1b4ed4b8329e2a379">MOTION_TYPE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abd6d177d63e98aa1b4ed4b8329e2a379a55b57dce74f14a62104ae66e62789eb3"></a>LEFT_TO_RIGHT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="abd6d177d63e98aa1b4ed4b8329e2a379ada7017955bb1db9f0954017358028fa6"></a>STATIC_WALKING&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 17:58:17 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Nov 25 2016 16:58:32 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

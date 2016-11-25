@@ -1,0 +1,14 @@
+\form#0:\[ \mathcal{U}_{k+N|k} = {\vec{u}_{k|k}, ... , \vec{u}} \]
+\form#1:\begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\ \text{such that}&\\ \mathbf{p} &= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &= \mathbf{h}_k\\ \mathbf{h} &= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}
+\form#2:$\mathbf{p}$
+\form#3:$ \mathbf{r}^r $
+\form#4:$ \mathbf{\dot{h}} $
+\form#5:$ \mathbf{\dot{h}}^r $
+\form#6:$\mathbf{u}$
+\form#7:$h$
+\form#8:$\hat{h}$
+\form#9:$ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) $
+\form#10:$\mathbf{e}_2$
+\form#11:$ [0\;0\;1]^T$
+\form#12:$A_h$
+\form#13:$B_h$

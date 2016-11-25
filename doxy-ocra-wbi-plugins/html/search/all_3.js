@@ -11,7 +11,7 @@ var searchData=
   ['debugrpcservercallback',['DebugRpcServerCallback',['../classThread_1_1DebugRpcServerCallback.html',1,'Thread']]],
   ['debugrpcservercallback',['DebugRpcServerCallback',['../classThread_1_1DebugRpcServerCallback.html#a479142cdf2f840df23b4605a532aaddf',1,'Thread::DebugRpcServerCallback']]],
   ['default_5fthread_5fperiod',['DEFAULT_THREAD_PERIOD',['../classModule.html#af73cdfdae53c52ea8488d0d8c4f9083f',1,'Module']]],
-  ['default_5fyarp_5fcontext',['DEFAULT_YARP_CONTEXT',['../main_8cpp.html#aacf7b13861a4ce37b8dec1979eb6450c',1,'main.cpp']]],
+  ['default_5fyarp_5fcontext',['DEFAULT_YARP_CONTEXT',['../ocra-icub-server_2src_2main_8cpp.html#aacf7b13861a4ce37b8dec1979eb6450c',1,'main.cpp']]],
   ['deg_5fto_5frad',['DEG_TO_RAD',['../namespaceocra__icub.html#ab06477ded34ed5514b911a3511b22e3d',1,'ocra_icub']]],
   ['dim_5frotation',['DIM_ROTATION',['../classocra__icub_1_1OcraWbiConversions.html#a05e66392df58e9dda2d4db590bdd65a0',1,'ocra_icub::OcraWbiConversions']]],
   ['dim_5ftranslation',['DIM_TRANSLATION',['../classocra__icub_1_1OcraWbiConversions.html#a7c628bd1208c5e70be458d4dffda4d06',1,'ocra_icub::OcraWbiConversions']]],

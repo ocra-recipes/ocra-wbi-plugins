@@ -9,5 +9,6 @@ var searchData=
   ['minv',['Minv',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a4d95e99d368b2e61c2945c1eeabff823',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
   ['model',['model',['../classThread.html#a1dcef9aedc1a707e6f04d5fb6e4a0b13',1,'Thread::model()'],['../classocra__icub_1_1ModelInitializer.html#ab7fb1fe2773837be8b3b41b75ef8f9d6',1,'ocra_icub::ModelInitializer::model()']]],
   ['model_5finitializer_5fcount',['MODEL_INITIALIZER_COUNT',['../classocra__icub_1_1ModelInitializer.html#a8ec0a5af61b4a972ea22b71a5d3511eb',1,'ocra_icub::ModelInitializer']]],
-  ['modinitnumber',['modInitNumber',['../classocra__icub_1_1ModelInitializer.html#ab63cc70107cab38cc01a87d7a5465d85',1,'ocra_icub::ModelInitializer']]]
+  ['modinitnumber',['modInitNumber',['../classocra__icub_1_1ModelInitializer.html#ab63cc70107cab38cc01a87d7a5465d85',1,'ocra_icub::ModelInitializer']]],
+  ['motiontype',['motionType',['../classSteppingDemoClient.html#aa880debbcbed0298ae1769dd8a3f721b',1,'SteppingDemoClient']]]
 ];
