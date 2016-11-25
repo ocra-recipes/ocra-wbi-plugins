@@ -12,6 +12,8 @@ WalkingClient::~WalkingClient()
 
 bool WalkingClient::initialize()
 {
+    // Create ZMPPreviewController object
+    
     // add your code here...
     return true;
 }

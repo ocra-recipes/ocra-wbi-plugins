@@ -1,13 +1,14 @@
-/*! ile       main.cpp
- *  rief
+/*
+ *  \file       main.cpp
+ *  \brief      A module that makes iCub walk using based on mixed-integer model predictive control.
  *  \details
- *  uthor     [Your Name](url of your github site)
- *  \date       [date]
+ *  \Author     [Jorhabib Eljaik](http://github.com/jeljaik)
+ *  \date       25 November 2016
  *  \copyright  GNU General Public License.
  */
 /*
  *  This file is part of walking-client.
- *  Copyright (C) [year] [institution]
+ *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
