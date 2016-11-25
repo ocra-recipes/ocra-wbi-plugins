@@ -92,6 +92,7 @@ public:
     virtual const Eigen::Vector3d&                         getSegmentMomentsOfInertia  (int index) const;
     virtual const Eigen::Rotation3d&                       getSegmentInertiaAxes       (int index) const;
     virtual const Eigen::Matrix<double,6,Eigen::Dynamic>&  getSegmentJacobian          (int index) const;
+    virtual const Eigen::Matrix<double,6,Eigen::Dynamic>&  getSegmentJacobian          (int index, wbi::Frame H_world_root) const;
     virtual const Eigen::Matrix<double,6,Eigen::Dynamic>&  getSegmentJdot              (int index) const;
     virtual const Eigen::Matrix<double,6,Eigen::Dynamic>&  getJointJacobian            (int index) const;
     virtual const Eigen::Twistd&                           getSegmentJdotQdot          (int index) const;
@@ -127,6 +128,7 @@ private:
     std::shared_ptr<wbi::wholeBodyInterface> robot; // Access to wholeBodyInterface
     struct OcraWbiModel_pimpl;
     boost::shared_ptr<OcraWbiModel_pimpl> owm_pimpl; // where all internal data are saved
+    yarp::os::Log yLog;
 };
 } /* ocra_icub */
 

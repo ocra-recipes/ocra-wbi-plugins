@@ -1,14 +1,13 @@
-/*! \file       stepping-demo.cpp
- *  \brief
+/*! ile       main.cpp
+ *  rief
  *  \details
- *  \author     [Ryan Lober](http://www.ryanlober.com)
- *  \author     [Antoine Hoarau](http://ahoarau.github.io)
- *  \date       Feb 2016
+ *  uthor     [Your Name](url of your github site)
+ *  \date       [date]
  *  \copyright  GNU General Public License.
  */
 /*
- *  This file is part of ocra-icub.
- *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
+ *  This file is part of sitting-demo.
+ *  Copyright (C) [year] [institution]
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -30,11 +29,11 @@
 #include <yarp/os/LogStream.h>
 #include <yarp/os/Time.h>
 
-#include "stepping-demo/SteppingDemoClient.h"
 #include <ocra-icub/IcubClient.h>
 #include <ocra-recipes/ControllerClient.h>
 #include <ocra-recipes/ClientManager.h>
 
+#include "sitting-demo/SittingDemoClient.h"
 
 int main (int argc, char * argv[])
 {
@@ -48,31 +47,30 @@ int main (int argc, char * argv[])
         return -1;
     }
 
-    std::cout << "Making model initializer" << std::endl;
+    yLog.info() << "Making model initializer";
     ocra_icub::ModelInitializer modelIni = ocra_icub::ModelInitializer();
 
     int loopPeriod = 10;
 
     std::shared_ptr<ocra_recipes::ControllerClient> ctrlClient;
-    std::cout << "Making controller client" << std::endl;
+    yLog.info() << "Making controller client";
 
-    if(modelIni.getModel())
+    if(!modelIni.getModel())
     {
-        std::cout << "Model is not empty." << std::endl;
-    }else
-        std::cout << "Model IS empty!" << std::endl;
+        yLog.fatal() << "Model is not empty.";
+    }
 
-    ctrlClient = std::make_shared<SteppingDemoClient>(modelIni.getModel(), loopPeriod);
+    ctrlClient = std::make_shared<SittingDemoClient>(modelIni.getModel(), loopPeriod);
 
     std::shared_ptr<ocra_recipes::ClientManager> clientManager;
-    std::cout << "Making client manager" << std::endl;
+    yLog.info() << "Making client manager";
     clientManager = std::make_shared<ocra_recipes::ClientManager>(ctrlClient);
 
-    std::cout << "Resource finder stuff" << std::endl;
+    yLog.info() << "Resource finder stuff";
     yarp::os::ResourceFinder rf;
     rf.setVerbose(true);
-    rf.setDefaultConfigFile("stepping-demo.ini"); //default config file name.
-    rf.setDefaultContext("stepping-demo"); //when no parameters are given to the module this is the default context
+    rf.setDefaultConfigFile("sitting-demo.ini"); //default config file name.
+    rf.setDefaultContext("sitting-demo"); //when no parameters are given to the module this is the default context
     rf.configure(argc,argv);
 
     if (rf.check("help"))
@@ -80,12 +78,10 @@ int main (int argc, char * argv[])
         clientManager->printHelp();
         return 0;
     }
-    
-    std::cout << "Configuring" << std::endl;
+
+    yLog.info() << "Configuring";
     clientManager->configure(rf);
 
-    std::cout << "Launching client" << std::endl;
+    yLog.info() << "Launching client";
     return clientManager->launchClient();
-
-    // return clientManager->runModule(rf);
 }

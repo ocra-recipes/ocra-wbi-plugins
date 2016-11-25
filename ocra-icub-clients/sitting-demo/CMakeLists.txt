@@ -1,6 +1,6 @@
 # This file is part of ocra-icub.
 # Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
-# author(s): Ryan Lober, Antoine Hoarau
+# author(s): Ryan Lober
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -15,33 +15,29 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-SET(PROJECTNAME ocra-icub-server)
+SET(PROJECTNAME sitting-demo)
 PROJECT(${PROJECTNAME} CXX)
 
-# For the moment this dependency is introduced only for performing legged-odometry
-find_package(iDynTree REQUIRED)
-
-FILE(GLOB folder_source src/*.cpp)
-FILE(GLOB folder_header include/${PROJECTNAME}/*.h)
+FILE(GLOB folder_source ./src/*.cpp)
+FILE(GLOB folder_header ./include/${PROJECTNAME}/*.h)
 
 SOURCE_GROUP("Source Files" FILES ${folder_source})
 SOURCE_GROUP("Header Files" FILES ${folder_header})
 
 INCLUDE_DIRECTORIES(
 ${PROJECT_SOURCE_DIR}/include
-${OcraRecipes_INCLUDE_DIRS}
+${YARP_INCLUDE_DIRS}
 ${OcraIcub_INCLUDE_DIRS}
+${OcraRecipes_INCLUDE_DIRS}
 )
-
-# For SimpleLeggedOdometry
-INCLUDE_DIRECTORIES(SYSTEM ${iDynTree_INCLUDE_DIRS})
 
 ADD_EXECUTABLE(${PROJECTNAME} ${folder_source} ${folder_header})
 
-TARGET_LINK_LIBRARIES( ${PROJECTNAME} ocra-icub
-                                      ${iDynTree_LIBRARIES}
-)
+LIST(APPEND link_libs   ${YARP_LIBRARIES}
+                        ${OcraRecipes_LIBRARIES}
+                        ocra-icub
+                        )
+
+TARGET_LINK_LIBRARIES(${PROJECTNAME} ${link_libs})
 
 INSTALL(TARGETS ${PROJECTNAME} DESTINATION bin)
-
-add_subdirectory(app)

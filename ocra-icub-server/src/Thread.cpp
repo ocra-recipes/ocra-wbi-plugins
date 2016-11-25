@@ -52,7 +52,7 @@ OcraControllerOptions::~OcraControllerOptions()
 
 std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
 {
-    out << "----------------------\n" << "Controller Options" << "\n----------------------";
+    out << "----------------------\n" << "Controller Options" << "\n----------------------\n";
     out << "threadPeriod: " << opts.threadPeriod << "\n\n";
     out << "serverName: " << opts.serverName << "\n\n";
     out << "robotName: " << opts.robotName << "\n\n";
@@ -61,6 +61,7 @@ std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
     out << "wbiConfigFilePath: " << opts.wbiConfigFilePath << "\n\n";
     out << "runInDebugMode: " << opts.runInDebugMode << "\n\n";
     out << "isFloatingBase: " << opts.isFloatingBase << "\n\n";
+    out << "useOdometry: " << opts.useOdometry << "\n\n";
     // out << "yarpWbiOptions: " << opts.yarpWbiOptions << "\n\n";
     out << "controllerType: " << opts.controllerType << "\n\n";
     out << "solver: " << opts.solver << "\n\n";
@@ -82,27 +83,38 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
 
     yarpWbi = wbi;
     bool usingInterprocessCommunication = true;
-    ctrlServer = std::make_shared<IcubControllerServer>(  yarpWbi,
-                                        ctrlOptions.robotName,
-                                        ctrlOptions.isFloatingBase,
-                                        ctrlOptions.controllerType,
-                                        ctrlOptions.solver,
-                                        usingInterprocessCommunication);
+    ctrlServer = std::make_shared<IcubControllerServer>( yarpWbi,
+                                                         ctrlOptions.robotName,
+                                                         ctrlOptions.isFloatingBase,
+                                                         ctrlOptions.controllerType,
+                                                         ctrlOptions.solver,
+                                                         usingInterprocessCommunication,
+                                                         ctrlOptions.useOdometry
+                                                       );
 
-    ctrlServer->initialize();
+//    ctrlServer->initialize();
+//    if (ctrlOptions.useOdometry)
+//        ctrlServer->updateModel();
+//
+//    model = ctrlServer->getRobotModel();
+//    // Construct rpc server callback and bind to the control thread.
+//    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
+//    // Open the rpc server port.
+//    rpcServerPort.open("/ocra-icub-server/info/rpc:i");
+//    // Bind the callback to the port.
+//    rpcServerPort.setReader(*rpcServerCallback);
 
 
-    // Construct rpc server callback and bind to the control thread.
-    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
-    // Open the rpc server port.
-    rpcServerPort.open("/IcubControllerServer/info/rpc:i");
-    // Bind the callback to the port.
-    rpcServerPort.setReader(*rpcServerCallback);
 }
 
 Thread::~Thread()
 {
     rpcServerPort.close();
+    if(ctrlOptions.runInDebugMode) {
+        debugRpcPort.close();
+        debugRefOutPort.close();
+        debugRealOutPort.close();
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -112,14 +124,90 @@ Thread::~Thread()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 bool Thread::threadInit()
 {
-    ctrlServer->addTaskManagersFromXmlFile(ctrlOptions.startupTaskSetPath);
+    /* ======== This block was originally in the constructor of this thread ======= */
+    // The server will initialize but without calling updateModel() at the end, if useOdometry is true.
+    ctrlServer->initialize();
+    
+    // Odometry initialization. Odometry assumes one foot to be fixed to the ground.
+    if (ctrlOptions.useOdometry && ctrlOptions.isFloatingBase) {
+        yarp::os::Bottle wbiStateOptionsGroup = ctrlOptions.yarpWbiOptions.findGroup("WBI_STATE_OPTIONS");
+        std::string initialFixedFrame = wbiStateOptionsGroup.find("localWorldReferenceFrame").asString();
+        std::cout << "\033[1;31m[DEBUG-ODOMETRY Thread::threadInit]\033[0m ocra-icub-server calls initiliazeOdometry" << std::endl;
+        if (!ctrlServer->initializeOdometry(ctrlOptions.urdfModelPath, initialFixedFrame)) {
+            std::cout << "\033[1;31m[ERROR-ODOMETRY Thread::threadInit]\033[0m Odometry could not be initialized" << std::endl;
+            return false;
+        }
+    } else {
+        if (ctrlOptions.useOdometry && !ctrlOptions.isFloatingBase)
+            std::cout << "\033[1;31m[WARNING-ODOMETRY Thread::threadInit]\033[0m You're trying to activate ODOMETRY but isFloatingBase is false. Launch ocra-icub-server again with --floatingBase" << std::endl;
+    }
+
+    if (ctrlOptions.useOdometry)
+        ctrlServer->updateModel();
+    
+    model = ctrlServer->getRobotModel();
+    // Construct rpc server callback and bind to the control thread.
+    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
+    // Open the rpc server port.
+    rpcServerPort.open("/ocra-icub-server/info/rpc:i");
+    // Bind the callback to the port.
+    rpcServerPort.setReader(*rpcServerCallback);
+    /* ============================================================================= */
+    
+    // TODO: Add a check to make sure the tasks get loaded in and if not - don't change the control mode. return false;
+    ctrlServer->addTasksFromXmlFile(ctrlOptions.startupTaskSetPath);
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
+    
     yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
-
-	return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
+    if(ctrlOptions.runInDebugMode) {
+        debugJointIndex = 0;
+        debuggingAllJoints = false;
+        std::string debugRpcPortName("/ocra-icub-server/debug/rpc:i");
+        std::string debugRefOutPortName("/ocra-icub-server/debug/ref:o");
+        std::string debugRealOutPortName("/ocra-icub-server/debug/real:o");
+
+
+        debugRpcPort.open(debugRpcPortName);
+        debugRpcCallback = std::make_shared<DebugRpcServerCallback>(*this);
+        debugRpcPort.setReader(*debugRpcCallback);
+
+        debugRefOutPort.open(debugRefOutPortName);
+        debugRealOutPort.open(debugRealOutPortName);
+        std::cout << "-----------------------------------------------------------------" << std::endl;
+        std::cout << "\t--> Running in DEBUG mode <--" << std::endl;
+        std::cout << "-----------------------------------------------------------------" << std::endl;
+        std::cout << "-- RPC port open at: " << debugRpcPortName << std::endl;
+        std::cout << "-- Output port open at: " << debugRefOutPortName << std::endl;
+        std::cout << "-- Input port open at: " << debugRealOutPortName << std::endl;
+        std::cout << "-----------------------------------------------------------------" << std::endl;
+        std::string jointName = model->getJointName(debugJointIndex);
+        std::cout << "Debugging joint index: " << debugJointIndex << " ("<< jointName <<")" << std::endl;
+
+
+        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+        yarpWbi->setControlReference(initialPosture.data());
+        return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, debugJointIndex);
+    } else {
+        // yarp::os::Time timer;
+        // timer.delay(5.0);
+        // std::cout << "First timer over" << std::endl;
+        return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+
+        // jorh: This is mostly for when I'm debugging. Read current torques and set references, otherwise the robot will just fall under the action of zero torques being set when the control mode is set.
+        // jorh: read current torques
+//         yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+//         yarpWbi->setControlReference(initialPosture.data());
+
+//         Eigen::VectorXd initialTorques(yarpWbi->getDoFs());
+//         yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_TORQUE, initialTorques.data(), ALL_JOINTS);
+//         std::cout << "Torques for the current configuration are: " << std::endl;
+//         std::cout << initialTorques << std::endl;
+//         // jorh: Setting initial torques
+//         yarpWbi->setControlReference(initialTorques.data());
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -130,9 +218,20 @@ bool Thread::threadInit()
 
 void Thread::run()
 {
-	ctrlServer->computeTorques(torques);
+    ctrlServer->computeTorques(torques);
     torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
-    yarpWbi->setControlReference(torques.data());
+    if (ctrlOptions.runInDebugMode) {
+        measuredTorques = model->getJointTorques();
+        writeDebugData();
+        if (debuggingAllJoints) {
+            yarpWbi->setControlReference(torques.data());
+        } else {
+            double refTau = torques(debugJointIndex);
+            yarpWbi->setControlReference(&refTau, debugJointIndex);
+        }
+    } else {
+        yarpWbi->setControlReference(torques.data());
+    }
 }
 
 void Thread::threadRelease()
@@ -144,7 +243,16 @@ void Thread::threadRelease()
 
 }
 
-
+void Thread::writeDebugData()
+{
+    yarp::os::Bottle refBottle, realBottle;
+    for (int i=0; i<torques.size(); ++i) {
+        refBottle.addDouble(torques(i));
+        realBottle.addDouble(measuredTorques(i));
+    }
+    debugRefOutPort.write(refBottle);
+    debugRealOutPort.write(realBottle);
+}
 
 
 void Thread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
@@ -186,6 +294,79 @@ void Thread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& rep
     }
 }
 
+void Thread::parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
+{
+    int btlSize = input.size();
+    for (int i=0; i<btlSize; ++i)
+    {
+        std::string key = input.get(i).asString();
+        if (key == "setJoint") {
+            std::string jointName;
+            std::string jointString;
+            std::string replyString;
+            int newIndex = input.get(++i).asInt();
+            if (newIndex == -1) {
+                if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, torques.data(), ALL_JOINTS) ) {
+                    debuggingAllJoints = true;
+                    replyString = "Success! Setting all joints to TORQUE control mode.";
+                } else {
+                    replyString = "FAILED! Could not set the control mode of the joints to TORQUE mode.";
+                }
+            } else {
+                jointName = model->getJointName(newIndex);
+                jointString = std::to_string(newIndex);
+                if (newIndex >= 0 && newIndex < initialPosture.rows()) {
+                    if (debuggingAllJoints) {
+                        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+                        yarpWbi->setControlReference(initialPosture.data(), ALL_JOINTS);
+                        debuggingAllJoints = false;
+                    } else {
+                        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, &initialPosture(debugJointIndex), debugJointIndex);
+                        yarpWbi->setControlReference(&initialPosture(debugJointIndex), debugJointIndex);
+                    }
+
+                    if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &torques(newIndex), newIndex) ) {
+                        replyString = "Success! Debugging joint index: " + jointString + " (" + jointName +")";
+                    } else {
+                        replyString = "FAILED! Could not set the control mode of joint " + jointString + " ("+jointName+") to TORQUE mode.";
+                    }
+                    debugJointIndex = newIndex;
+                } else {
+                    replyString = "FAILED! The index " + jointString + " is outside of the valid range, [0-" + std::to_string(initialPosture.rows() - 1)+ "] Use index = -1 for all joints. Type [listJoints] or [help] for details.";
+                }
+            }
+            reply.addVocab(yarp::os::Vocab::encode("many"));
+            reply.addString(replyString);
+            std::cout << replyString << std::endl;
+
+        } else if (key == "listJoints") {
+            std::string replyString("Joint List:\n");
+            reply.addVocab(yarp::os::Vocab::encode("many"));
+            for (int i=0; i<initialPosture.rows(); ++i) {
+                wbi::ID dofID;
+                yarpWbi->getJointList().indexToID(i, dofID);
+                std::string tmp = std::to_string(i) + " : " + dofID.toString();
+                replyString += tmp + "\n";
+                reply.addString(tmp);
+            }
+
+            std::cout << replyString << std::endl;
+
+        } else if (key == "help") {
+            std::string helpString("");
+            helpString += "Valid commands: \n";
+            helpString += "-- setJoint [index]\n";
+            helpString += "-- listJoints\n";
+            helpString += "-- help\n";
+            std::cout << helpString << std::endl;
+            reply.addVocab(yarp::os::Vocab::encode("many"));
+            reply.addString(helpString);
+        } else {
+            reply.addString("Unknown command. Type [help] for usage details.");
+        }
+    }
+}
+
 /**************************************************************************************************
                                     Nested PortReader Class
 **************************************************************************************************/
@@ -204,6 +385,37 @@ bool Thread::ControllerRpcServerCallback::read(yarp::os::ConnectionReader& conne
     }
     else{
         thread.parseIncomingMessage(input, reply);
+        yarp::os::ConnectionWriter* returnToSender = connection.getWriter();
+        if (returnToSender!=NULL) {
+            if (!reply.write(*returnToSender)) {
+                OCRA_ERROR("Could send a reply");
+                return false;
+            }
+        }
+        return true;
+    }
+}
+/**************************************************************************************************
+**************************************************************************************************/
+
+/**************************************************************************************************
+                                    Nested PortReader Class
+**************************************************************************************************/
+Thread::DebugRpcServerCallback::DebugRpcServerCallback(Thread& threadRef)
+: thread(threadRef)
+{
+    //do nothing
+}
+
+bool Thread::DebugRpcServerCallback::read(yarp::os::ConnectionReader& connection)
+{
+    yarp::os::Bottle input, reply;
+
+    if (!input.read(connection)){
+        return false;
+    }
+    else{
+        thread.parseDebugMessage(input, reply);
         yarp::os::ConnectionWriter* returnToSender = connection.getWriter();
         if (returnToSender!=NULL) {
             reply.write(*returnToSender);

@@ -38,7 +38,7 @@ bool ModelInitializer::getConfigurationInfoFromControllerServer()
         return false;
     }
 
-    yarp.connect(portName.c_str(), "/IcubControllerServer/info/rpc:i");
+    yarp.connect(portName.c_str(), "/ocra-icub-server/info/rpc:i");
 
     yarp::os::Bottle message, reply;
     message.addInt(GET_MODEL_CONFIG_INFO);
