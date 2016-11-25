@@ -1,6 +1,6 @@
 # This file is part of walking-client.
-# Copyright (C) [your institution here]
-# author(s): [your name here]
+# Copyright (C) Institut des Systèmes Intelligents et de Robotique (ISIR)
+# author(s): Jorhabib Eljaik Gómez
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -28,8 +28,8 @@ if(COMPILER_SUPPORTS_CXX11)
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
- endif() 
- 
+ endif()
+
  # Build as Release (Change Release to Debug for better debugging symbols)
 set(CMAKE_BUILD_TYPE Release)
 
@@ -57,7 +57,9 @@ source_group("Header Files" FILES ${folder_header})
 # Tell the compiler where to look for all other headers
 include_directories(
 ${PROJECT_SOURCE_DIR}/include
+${YARP_INCLUDE_DIRS}
 ${OcraIcub_INCLUDE_DIRS}
+${OcraRecipes_INCLUDE_DIRS}
 )
 
 # Add the client executable (binary)
@@ -66,11 +68,10 @@ add_executable(${PROJECT_NAME} ${folder_source} ${folder_header})
 # Link to the appropriate libs
 target_link_libraries(
 ${PROJECT_NAME}
+${YARP_LIBRARIES}
+${OcraRecipes_LIBRARIES}
 ${OcraIcub_LIBRARIES}
 )
 
 # Install to the bin/ directory if installed.
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-
-# Add an uninstallation target so you can just run - make uninstall - to remove the binary.
-include(AddUninstallTarget)
