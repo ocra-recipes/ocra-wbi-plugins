@@ -82,7 +82,7 @@ Given a rough Z\+MP trajectory and a corresponding consistent CoM velocity, this
 
 \[ \mathcal{U}_{k+N|k} = (\mathbf{u}_{k|k}, ... , \mathbf{u}) \]
 
-Denoting a horizon of input CoM jerks \{u\}, the following problem\+:
+Denoting a horizon of input CoM jerks $\mathbf{u}$, the following problem\+:
 
 \begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\ \text{such that}&\\ \mathbf{p} &= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &= \mathbf{h}_k\\ \mathbf{h} &= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}
 
@@ -197,7 +197,7 @@ Gravity constant value in m/s$^\wedge$2, $ g $. \hypertarget{classZmpPreviewCont
 \subsubsection{\texorpdfstring{Gp}{Gp}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Gp\hspace{0.3cm}{\ttfamily [private]}}
 
-State matrix $\mathbf{G}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P}$. It is equal to\+: /f\mbox{[} \{H\}\+\_\+p = \mbox{[}\{array\}\{c\} \{C\}\+\_\+p\{A\}\+\_\+h \textbackslash{}  \textbackslash{} \{C\}\+\_\+p\{A\}$^\wedge$\{N\+\_\+c\}\+\_\+h \{array\}\mbox{]} \mbox{]} \hypertarget{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd}{}\label{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd} 
+State matrix $\mathbf{G}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P}$. It is equal to\+: \[ \mathbf{H}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd}{}\label{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Hh@{Hh}}
 \index{Hh@{Hh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Hh}{Hh}}
@@ -209,7 +209,7 @@ State matrix $\mathbf{G}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P
 \subsubsection{\texorpdfstring{Hp}{Hp}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Hp\hspace{0.3cm}{\ttfamily [private]}}
 
-Input matrix $\mathbf{H}_p$ from the preview horizon of Z\+MP outputs \hypertarget{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051}{}\label{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051} 
+Input matrix $\mathbf{H}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P}$. It is equal to\+: \[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_p\mathbf{B}_h & 0 & \cdots & 0 \\ \mathbf{C}_p\mathbf{A}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{B}_h & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_p\mathbf{B}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051}{}\label{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!nb@{nb}}
 \index{nb@{nb}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{nb}{nb}}

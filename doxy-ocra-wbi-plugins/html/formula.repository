@@ -33,3 +33,5 @@
 \form#32:$\mathbf{G}_p$
 \form#33:$\mathbf{P}$
 \form#34:$\mathbf{H}_p$
+\form#35:\[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_p\mathbf{B}_h & 0 & \cdots & 0 \\ \mathbf{C}_p\mathbf{A}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{B}_h & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_p\mathbf{B}_h \end{array}\right] \]
+\form#36:\[ \mathbf{H}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \]

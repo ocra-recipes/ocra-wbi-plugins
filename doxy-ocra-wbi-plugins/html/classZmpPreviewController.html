@@ -140,7 +140,7 @@ Private Attributes</h2></td></tr>
 <p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathcal{U}_{k+N|k} = (\mathbf{u}_{k|k}, ... , \mathbf{u}) \]" src="form_14.png"/>
 </p>
-<p>Denoting a horizon of input CoM jerks {u}, the following problem:</p>
+<p>Denoting a horizon of input CoM jerks <img class="formulaInl" alt="$\mathbf{u}$" src="form_6.png"/>, the following problem:</p>
 <p class="formulaDsp">
 <img class="formulaDsp" alt="\begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} &amp; \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\ \text{such that}&amp;\\ \mathbf{p} &amp;= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &amp;= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &amp;= \mathbf{h}_k\\ \mathbf{h} &amp;= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}" src="form_1.png"/>
 </p>
@@ -492,8 +492,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_p$" src="form_32.png"/> from the preview horizon of ZMP outputs <img class="formulaInl" alt="$\mathbf{P}$" src="form_33.png"/>. It is equal to: /f[ {H}_p = [{array}{c} {C}_p{A}_h \  \ {C}_p{A}^{N_c}_h {array}] ] </p>
-
+<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_p$" src="form_32.png"/> from the preview horizon of ZMP outputs <img class="formulaInl" alt="$\mathbf{P}$" src="form_33.png"/>. It is equal to: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{H}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \]" src="form_36.png"/>
+</p>
+ 
 </div>
 </div>
 <a id="a8caaf8bf8f06e5b0b53d2cd5c131eefd"></a>
@@ -537,8 +539,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Input matrix <img class="formulaInl" alt="$\mathbf{H}_p$" src="form_34.png"/> from the preview horizon of ZMP outputs </p>
-
+<p>Input matrix <img class="formulaInl" alt="$\mathbf{H}_p$" src="form_34.png"/> from the preview horizon of ZMP outputs <img class="formulaInl" alt="$\mathbf{P}$" src="form_33.png"/>. It is equal to: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_p\mathbf{B}_h &amp; 0 &amp; \cdots &amp; 0 \\ \mathbf{C}_p\mathbf{A}_h\mathbf{B}_h &amp; \mathbf{C}_p\mathbf{B}_h &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c-1}_h\mathbf{B}_h &amp; \mathbf{C}_p\mathbf{A}^{N_c-2}_h\mathbf{B}_h &amp; \cdots &amp; \mathbf{C}_p\mathbf{B}_h \end{array}\right] \]" src="form_35.png"/>
+</p>
+ 
 </div>
 </div>
 <a id="a6716ee4c94e6f91e608ee1e29fbc7051"></a>
@@ -709,7 +713,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 26 2016 17:38:46 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 26 2016 17:51:25 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
