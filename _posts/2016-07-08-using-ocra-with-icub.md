@@ -30,17 +30,20 @@ The latest release of the linear algebra library [Eigen](http://eigen.tuxfamily.
 To test OCRA on iCub we need to open a few terminals...
 
 **Terminal 1**
+
 ```
 yarpserver --write
 ```
 
 **Terminal 2**
+
 ```
 cd [path_to_where_you_cloned_icub_gazebo]/icub-gazebo/world
 gazebo icub.world
 ```
 
 **Terminal 3**
+
 ```
 ocra-icub-server --floatingBase --taskSet wholeBodyTaskSet
 ```
@@ -56,6 +59,7 @@ and the robot should not move. Hurray!
 Assuming that your controller-server is still running from the installation test, we can now launch a client to see the robot actually move. 
 
 **Terminal 4**
+
 ```
 example-client
 ```
@@ -109,6 +113,7 @@ Now the bread and butter of the clients are the inherited `iCubClient` classes, 
 So for our first client we simply want the iCub to reach down towards the floor with its right hand. To do so we will need to control the `RightHandCartesian` task which was added by the [`wholeBodyTaskSet.xml`](https://github.com/ocra-recipes/ocra-wbi-plugins/blob/master/ocra-icub-server/app/robots/icubGazeboSim/taskSets/wholeBodyTaskSet.xml), and make a trajectory for it to follow. These two objectives are made easy by [`TaskConnection`](https://github.com/ocra-recipes/ocra-recipes/blob/master/ocra-recipes/include/ocra-recipes/TaskConnection.h) and [`TrajectoryThread`](https://github.com/ocra-recipes/ocra-recipes/blob/master/ocra-recipes/include/ocra-recipes/TrajectoryThread.h).
 
 **HelloWorldClient.h**
+
 ```
 #ifndef HELLOWORLDCLIENT_H
 #define HELLOWORLDCLIENT_H
@@ -143,7 +148,9 @@ private:
 ### Code explained
 ...
 
+
 **HelloWorldClient.cpp**
+
 ```
 #include "hello-world/HelloWorldClient.h"
 HelloWorldClient::HelloWorldClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
