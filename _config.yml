@@ -55,3 +55,18 @@ markdown: kramdown
 gems:
   - jekyll-paginate
   - jekyll-gist
+
+authors:
+  ryan:
+    display_name: Ryan Lober
+    # gravatar: 60fd5218fff6927c0ed376cce01c5460
+    email: info@ryanlober.com
+    web: http://www.ryanlober.com/
+    github: rlober
+  jorh:
+    display_name: Jorhabib Eljaik
+    # gravatar: 76dbcc74021b8039f14c7b583978b56d
+    email: jorhabib.eljaik@iit.it
+    web: https://github.com/jeljaik
+   # twitter: 
+    github: jeljaik
