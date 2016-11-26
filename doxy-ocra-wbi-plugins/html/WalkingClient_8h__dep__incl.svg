@@ -9,8 +9,8 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 168)">
 <title>/Users/jorhabibeljaik/Code/codyco&#45;superbuild/main/ocra&#45;wbi&#45;plugins/ocra&#45;icub&#45;clients/walking&#45;client/include/walking&#45;client/WalkingClient.h</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-168 290.469,-168 290.469,4 -4,4"/>
-<!-- Node35 -->
-<g id="node1" class="node"><title>Node35</title>
+<!-- Node36 -->
+<g id="node1" class="node"><title>Node36</title>
 <polygon fill="#bfbfbf" stroke="black" points="69.8818,-95.5 69.8818,-163.5 209.827,-163.5 209.827,-95.5 69.8818,-95.5"/>
 <text text-anchor="start" x="77.8818" y="-151.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Users/jorhabibeljaik</text>
 <text text-anchor="start" x="77.8818" y="-141.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Code/codyco&#45;superbuild</text>
@@ -19,8 +19,8 @@
 <text text-anchor="start" x="77.8818" y="-111.5" font-family="Helvetica,sans-Serif" font-size="10.00">&#45;client/include/walking&#45;client</text>
 <text text-anchor="middle" x="139.854" y="-101.5" font-family="Helvetica,sans-Serif" font-size="10.00">/WalkingClient.h</text>
 </g>
-<!-- Node36 -->
-<g id="node2" class="node"><title>Node36</title>
+<!-- Node37 -->
+<g id="node2" class="node"><title>Node37</title>
 <g id="a_node2"><a xlink:href="ocra-icub-clients_2walking-client_2src_2main_8cpp.html" target="_top" xlink:title="/Users/jorhabibeljaik\l/Code/codyco&#45;superbuild\l/main/ocra&#45;wbi&#45;plugins\l/ocra&#45;icub&#45;clients/walking\l&#45;client/src/main.cpp">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-58.5 127.709,-58.5 127.709,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-46.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Users/jorhabibeljaik</text>
@@ -31,13 +31,13 @@
 </a>
 </g>
 </g>
-<!-- Node35&#45;&gt;Node36 -->
-<g id="edge1" class="edge"><title>Node35&#45;&gt;Node36</title>
+<!-- Node36&#45;&gt;Node37 -->
+<g id="edge1" class="edge"><title>Node36&#45;&gt;Node37</title>
 <path fill="none" stroke="midnightblue" d="M107.948,-87.3577C100.474,-77.7197 92.6766,-67.6654 85.754,-58.7388"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="105.23,-89.5643 114.124,-95.3217 110.762,-85.2746 105.23,-89.5643"/>
 </g>
-<!-- Node37 -->
-<g id="node3" class="node"><title>Node37</title>
+<!-- Node38 -->
+<g id="node3" class="node"><title>Node38</title>
 <g id="a_node3"><a xlink:href="WalkingClient_8cpp.html" target="_top" xlink:title="/Users/jorhabibeljaik\l/Code/codyco&#45;superbuild\l/main/ocra&#45;wbi&#45;plugins\l/ocra&#45;icub&#45;clients/walking\l&#45;client/src/WalkingClient.cpp">
 <polygon fill="white" stroke="black" points="145.24,-0.5 145.24,-58.5 286.469,-58.5 286.469,-0.5 145.24,-0.5"/>
 <text text-anchor="start" x="153.24" y="-46.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Users/jorhabibeljaik</text>
@@ -48,8 +48,8 @@
 </a>
 </g>
 </g>
-<!-- Node35&#45;&gt;Node37 -->
-<g id="edge2" class="edge"><title>Node35&#45;&gt;Node37</title>
+<!-- Node36&#45;&gt;Node38 -->
+<g id="edge2" class="edge"><title>Node36&#45;&gt;Node38</title>
 <path fill="none" stroke="midnightblue" d="M171.761,-87.3577C179.235,-77.7197 187.032,-67.6654 193.955,-58.7388"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="168.947,-85.2746 165.585,-95.3217 174.479,-89.5643 168.947,-85.2746"/>
 </g>

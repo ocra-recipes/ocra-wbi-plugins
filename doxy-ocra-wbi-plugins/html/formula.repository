@@ -12,3 +12,24 @@
 \form#11:$ [0\;0\;1]^T$
 \form#12:$A_h$
 \form#13:$B_h$
+\form#14:\[ \mathcal{U}_{k+N|k} = (\mathbf{u}_{k|k}, ... , \mathbf{u}) \]
+\form#15:$\mathbf{A}_h$
+\form#16:$\mathbf{B}_h$
+\form#17:$ c_z $
+\form#18:$ g $
+\form#19:$ N_c $
+\form#20:$\eta_u$
+\form#21:$ \eta_w $
+\form#22:$ \eta_b $
+\form#23:$N_u$
+\form#24:$[N_c \times N_c]$
+\form#25:$N_w$
+\form#26:$N_b$
+\form#27:$\hat{\mathbf{h}}$
+\form#28:\[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 & \delta t & \delta t^2/2 \\ 0 & 1 & \delta t \\ 0 & 0 & 1 \end{array} \right] \]
+\form#29:\[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \]
+\form#30:$C_p$
+\form#31:\[ \mathbf{C}_p = \left[\begin{array}{ccc} 1 & 0 & -c_z/g \end{array}\right] \]
+\form#32:$\mathbf{G}_p$
+\form#33:$\mathbf{P}$
+\form#34:$\mathbf{H}_p$

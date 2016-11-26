@@ -28,6 +28,45 @@ bool \hyperlink{classZmpPreviewController_aa763d1c7a769f21eeaaaeb3f09a32aef}{bui
 \item 
 bool \hyperlink{classZmpPreviewController_a321140d8b3d99cf82687c444344c161d}{compute\+Optimal\+Input} ()
 \end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const Eigen\+::\+Vector3d \hyperlink{classZmpPreviewController_a893b789fddc949d0703461963280f504}{cz}
+\item 
+const double \hyperlink{classZmpPreviewController_a344571f012aa58250d7625905681bf1b}{g} = 9.\+8
+\item 
+const double \hyperlink{classZmpPreviewController_abf1a3ec8d1698afab1c20bba32b5a724}{dt}
+\item 
+const double \hyperlink{classZmpPreviewController_a43e471820b285c89e9d1878448a6f364}{Nc}
+\item 
+const double \hyperlink{classZmpPreviewController_ac611f084023404faba1ccfab573cd81d}{nu}
+\item 
+const double \hyperlink{classZmpPreviewController_a783427b817d77469e1f80426bede5310}{nw}
+\item 
+const double \hyperlink{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051}{nb}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_ac3e92145988993ede7ce2060b997c8db}{Nu}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a5e85354a1a7c3f2a8e265dbe7367051c}{Nw}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_abd345d397e99ae01ad4ea80cd9894802}{Nb}
+\item 
+const Eigen\+::\+Matrix3d \hyperlink{classZmpPreviewController_a777600c57020a9851912374cfc12ad5a}{Ah}
+\item 
+const Eigen\+::\+Matrix3d \hyperlink{classZmpPreviewController_a84edf4d475c32ec836732c24eba30ce9}{Bh}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{Cp}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979}{Gp}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a32ab17a3be30490e4a1e874bf3581843}{Hp}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775}{Ch}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a9429cb06fdd2c3ca5036a2fd48303632}{Gh}
+\item 
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd}{Hh}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -41,13 +80,13 @@ Jorhabib Eljaik
 \end{DoxyAuthor}
 Given a rough Z\+MP trajectory and a corresponding consistent CoM velocity, this class computes at a fast rate optimal CoM jerks over a refined preview horizon. The Z\+MP preview control formulation in (reference goes here) is extended to account for a CoM tracking objective in order to minimize the error over a preview horizon to reference CoM velocities. This preview controller solves with
 
-\[ \mathcal{U}_{k+N|k} = {\vec{u}_{k|k}, ... , \vec{u}} \]
+\[ \mathcal{U}_{k+N|k} = (\mathbf{u}_{k|k}, ... , \mathbf{u}) \]
 
 Denoting a horizon of input CoM jerks \{u\}, the following problem\+:
 
 \begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\ \text{such that}&\\ \mathbf{p} &= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &= \mathbf{h}_k\\ \mathbf{h} &= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}
 
-Where $\mathbf{p}$ are horizontal Z\+MP coordinates, $ \mathbf{r}^r $ Z\+MP references (in walking-\/client is the interpolated Z\+MP reference from the walking M\+I\+QP problem) $ \mathbf{\dot{h}} $ the horizontal C\+OM velocity, $ \mathbf{\dot{h}}^r $ C\+OM horizontal velocity reference (in walking-\/client it\textquotesingle{}s the interpolated C\+OM velocity reference from the walking M\+I\+QP problem). $\mathbf{u}$ are the input C\+OM jerks, $h$ the horizonal C\+OM position, $\hat{h}$ the horizontal C\+OM state $ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) $ and $\mathbf{e}_2$ the vertical unit vectory $ [0\;0\;1]^T$. $A_h$ and $B_h$ are integration matrices. 
+Where $\mathbf{p}$ are horizontal Z\+MP coordinates, $ \mathbf{r}^r $ Z\+MP references (in walking-\/client is the interpolated Z\+MP reference from the walking M\+I\+QP problem) $ \mathbf{\dot{h}} $ the horizontal C\+OM velocity, $ \mathbf{\dot{h}}^r $ C\+OM horizontal velocity reference (in walking-\/client it\textquotesingle{}s the interpolated C\+OM velocity reference from the walking M\+I\+QP problem). $\mathbf{u}$ are the input C\+OM jerks, $h$ the horizonal C\+OM position, $\hat{h}$ the horizontal C\+OM state $ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) $ and $\mathbf{e}_2$ the vertical unit vectory $ [0\;0\;1]^T$. $\mathbf{A}_h$ and $\mathbf{B}_h$ are integration matrices. 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classZmpPreviewController_ac8837fd39b0b942afd3dd5759c456b42}{}\label{classZmpPreviewController_ac8837fd39b0b942afd3dd5759c456b42} 
@@ -102,6 +141,117 @@ Where $\mathbf{p}$ are horizontal Z\+MP coordinates, $ \mathbf{r}^r $ Z\+MP refe
 {\footnotesize\ttfamily bool Zmp\+Preview\+Controller\+::initialize\+Matrices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 
+
+\subsection{Member Data Documentation}
+\hypertarget{classZmpPreviewController_a777600c57020a9851912374cfc12ad5a}{}\label{classZmpPreviewController_a777600c57020a9851912374cfc12ad5a} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Ah@{Ah}}
+\index{Ah@{Ah}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Ah}{Ah}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix3d Zmp\+Preview\+Controller\+::\+Ah\hspace{0.3cm}{\ttfamily [private]}}
+
+State matrix $\mathbf{A}_h$ from the linear state process of the C\+OM state $\hat{\mathbf{h}}$. It is a constant matrix equal to\+: \[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 & \delta t & \delta t^2/2 \\ 0 & 1 & \delta t \\ 0 & 0 & 1 \end{array} \right] \] \hypertarget{classZmpPreviewController_a84edf4d475c32ec836732c24eba30ce9}{}\label{classZmpPreviewController_a84edf4d475c32ec836732c24eba30ce9} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Bh@{Bh}}
+\index{Bh@{Bh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Bh}{Bh}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix3d Zmp\+Preview\+Controller\+::\+Bh\hspace{0.3cm}{\ttfamily [private]}}
+
+Input matrix $\mathbf{B}_h$ from the linear state process of the CoM state $\hat{\mathbf{h}}$. It is constant and equal to\+: \[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \] \hypertarget{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775}{}\label{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Ch@{Ch}}
+\index{Ch@{Ch}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Ch}{Ch}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Ch\hspace{0.3cm}{\ttfamily [private]}}
+
+Output matrix of the C\+OM linear process state transition where the C\+OM horizontal velocity is the output. \hypertarget{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{}\label{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Cp@{Cp}}
+\index{Cp@{Cp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Cp}{Cp}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Cp\hspace{0.3cm}{\ttfamily [private]}}
+
+Output matrix $C_p$ from the linear state process relating Z\+MP to the CoM dynamics $\hat{\mathbf{h}}$. It is time-\/invariant and equal to\+: \[ \mathbf{C}_p = \left[\begin{array}{ccc} 1 & 0 & -c_z/g \end{array}\right] \] \hypertarget{classZmpPreviewController_a893b789fddc949d0703461963280f504}{}\label{classZmpPreviewController_a893b789fddc949d0703461963280f504} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!cz@{cz}}
+\index{cz@{cz}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{cz}{cz}}
+{\footnotesize\ttfamily const Eigen\+::\+Vector3d Zmp\+Preview\+Controller\+::cz\hspace{0.3cm}{\ttfamily [private]}}
+
+CoM constant height. It is not hardcoded but corresponds to the vertical coordinate (height) of the CoM at the beginning of execution, i.\+e. $ c_z $. \hypertarget{classZmpPreviewController_abf1a3ec8d1698afab1c20bba32b5a724}{}\label{classZmpPreviewController_abf1a3ec8d1698afab1c20bba32b5a724} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!dt@{dt}}
+\index{dt@{dt}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{dt}{dt}}
+{\footnotesize\ttfamily const double Zmp\+Preview\+Controller\+::dt\hspace{0.3cm}{\ttfamily [private]}}
+
+Rate of the thread where this \hyperlink{classZmpPreviewController}{Zmp\+Preview\+Controller} is executed. \hypertarget{classZmpPreviewController_a344571f012aa58250d7625905681bf1b}{}\label{classZmpPreviewController_a344571f012aa58250d7625905681bf1b} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!g@{g}}
+\index{g@{g}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{g}{g}}
+{\footnotesize\ttfamily const double Zmp\+Preview\+Controller\+::g = 9.\+8\hspace{0.3cm}{\ttfamily [private]}}
+
+Gravity constant value in m/s$^\wedge$2, $ g $. \hypertarget{classZmpPreviewController_a9429cb06fdd2c3ca5036a2fd48303632}{}\label{classZmpPreviewController_a9429cb06fdd2c3ca5036a2fd48303632} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Gh@{Gh}}
+\index{Gh@{Gh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Gh}{Gh}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Gh\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979}{}\label{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Gp@{Gp}}
+\index{Gp@{Gp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Gp}{Gp}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Gp\hspace{0.3cm}{\ttfamily [private]}}
+
+State matrix $\mathbf{G}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P}$. It is equal to\+: /f\mbox{[} \{H\}\+\_\+p = \mbox{[}\{array\}\{c\} \{C\}\+\_\+p\{A\}\+\_\+h \textbackslash{}  \textbackslash{} \{C\}\+\_\+p\{A\}$^\wedge$\{N\+\_\+c\}\+\_\+h \{array\}\mbox{]} \mbox{]} \hypertarget{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd}{}\label{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Hh@{Hh}}
+\index{Hh@{Hh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Hh}{Hh}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Hh\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classZmpPreviewController_a32ab17a3be30490e4a1e874bf3581843}{}\label{classZmpPreviewController_a32ab17a3be30490e4a1e874bf3581843} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Hp@{Hp}}
+\index{Hp@{Hp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Hp}{Hp}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Hp\hspace{0.3cm}{\ttfamily [private]}}
+
+Input matrix $\mathbf{H}_p$ from the preview horizon of Z\+MP outputs \hypertarget{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051}{}\label{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!nb@{nb}}
+\index{nb@{nb}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{nb}{nb}}
+{\footnotesize\ttfamily const double Zmp\+Preview\+Controller\+::nb\hspace{0.3cm}{\ttfamily [private]}}
+
+Weight of the balancing cost function $ \eta_b $ \hypertarget{classZmpPreviewController_abd345d397e99ae01ad4ea80cd9894802}{}\label{classZmpPreviewController_abd345d397e99ae01ad4ea80cd9894802} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Nb@{Nb}}
+\index{Nb@{Nb}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Nb}{Nb}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nb\hspace{0.3cm}{\ttfamily [private]}}
+
+Diagonal matrix $N_b$ of size $[N_c \times N_c]$ weighting the balancing cost function in its matrix form. \hypertarget{classZmpPreviewController_a43e471820b285c89e9d1878448a6f364}{}\label{classZmpPreviewController_a43e471820b285c89e9d1878448a6f364} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Nc@{Nc}}
+\index{Nc@{Nc}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Nc}{Nc}}
+{\footnotesize\ttfamily const double Zmp\+Preview\+Controller\+::\+Nc\hspace{0.3cm}{\ttfamily [private]}}
+
+Size of preview window $ N_c $ \hypertarget{classZmpPreviewController_ac611f084023404faba1ccfab573cd81d}{}\label{classZmpPreviewController_ac611f084023404faba1ccfab573cd81d} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!nu@{nu}}
+\index{nu@{nu}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{nu}{nu}}
+{\footnotesize\ttfamily const double Zmp\+Preview\+Controller\+::nu\hspace{0.3cm}{\ttfamily [private]}}
+
+Weight of the input regularization term in the cost function $\eta_u$ \hypertarget{classZmpPreviewController_ac3e92145988993ede7ce2060b997c8db}{}\label{classZmpPreviewController_ac3e92145988993ede7ce2060b997c8db} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Nu@{Nu}}
+\index{Nu@{Nu}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Nu}{Nu}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nu\hspace{0.3cm}{\ttfamily [private]}}
+
+Diagonal matrix $N_u$ of size $[N_c \times N_c]$ weighting the input regularization term in the matricial expression of the controller\textquotesingle{}s cost function. \hypertarget{classZmpPreviewController_a783427b817d77469e1f80426bede5310}{}\label{classZmpPreviewController_a783427b817d77469e1f80426bede5310} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!nw@{nw}}
+\index{nw@{nw}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{nw}{nw}}
+{\footnotesize\ttfamily const double Zmp\+Preview\+Controller\+::nw\hspace{0.3cm}{\ttfamily [private]}}
+
+Weight of the walking cost function $ \eta_w $ \hypertarget{classZmpPreviewController_a5e85354a1a7c3f2a8e265dbe7367051c}{}\label{classZmpPreviewController_a5e85354a1a7c3f2a8e265dbe7367051c} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Nw@{Nw}}
+\index{Nw@{Nw}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{Nw}{Nw}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nw\hspace{0.3cm}{\ttfamily [private]}}
+
+Diagonal matrix $N_w$ of size $[N_c \times N_c]$ weighting the walking cost function in its matrix form. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

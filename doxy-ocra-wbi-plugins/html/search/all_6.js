@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['g',['g',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#ac9a96e0afe19e395bfadf4a21b6d0f5b',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
+  ['g',['g',['../classZmpPreviewController.html#a344571f012aa58250d7625905681bf1b',1,'ZmpPreviewController::g()'],['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#ac9a96e0afe19e395bfadf4a21b6d0f5b',1,'ocra_icub::OcraWbiModel::OcraWbiModel_pimpl::g()']]],
   ['g_5ffull',['g_full',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a76adc7eb17d82f9234a4f130c2712be5',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
   ['g_5fvector',['g_vector',['../OcraWbiModel_8cpp.html#a3cdc4ec85b339c11e5b34ce069bf7077',1,'OcraWbiModel.cpp']]],
   ['get_5fcontroller_5fserver_5fstatus',['GET_CONTROLLER_SERVER_STATUS',['../namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fa772ab917d1ff28db029af9271208a69a',1,'ocra_icub']]],
@@ -50,5 +50,7 @@ var searchData=
   ['getsegmentposition',['getSegmentPosition',['../classocra__icub_1_1OcraWbiModel.html#acb6a8faee8b9f32fdea179c2103be606',1,'ocra_icub::OcraWbiModel']]],
   ['getsegmentvelocity',['getSegmentVelocity',['../classocra__icub_1_1OcraWbiModel.html#a30e1597e69afd309c648ce7e1036f899',1,'ocra_icub::OcraWbiModel']]],
   ['getuniquewbiname',['getUniqueWbiName',['../classocra__icub_1_1ModelInitializer.html#a086ea4822765ab6daff59fae1db0bd11',1,'ocra_icub::ModelInitializer']]],
+  ['gh',['Gh',['../classZmpPreviewController.html#a9429cb06fdd2c3ca5036a2fd48303632',1,'ZmpPreviewController']]],
+  ['gp',['Gp',['../classZmpPreviewController.html#a53a7d8af5be4a5d5cea99fad2ea48979',1,'ZmpPreviewController']]],
   ['gravity_5fconstant',['GRAVITY_CONSTANT',['../OcraWbiModel_8cpp.html#afbb98f526272c46369f405eee4e9d9aa',1,'OcraWbiModel.cpp']]]
 ];
