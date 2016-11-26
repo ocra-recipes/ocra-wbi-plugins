@@ -3,6 +3,7 @@ layout: post
 title:  "iCub Quickstart Guide"
 date:   2016-11-26 11:00
 categories: icub
+author: ryan
 ---
 
 # Introduction
