@@ -1,0 +1,168 @@
+\hypertarget{class_lie_group}{}\section{Lie\+Group$<$ G $>$ Class Template Reference}
+\label{class_lie_group}\index{Lie\+Group$<$ G $>$@{Lie\+Group$<$ G $>$}}
+
+
+Class describing an element of a Lie Group.  
+
+
+
+
+{\ttfamily \#include $<$Lie\+Group.\+h$>$}
+
+Inheritance diagram for Lie\+Group$<$ G $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_lie_group}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef internal\+::traits$<$ \hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$ $>$\+::\hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients} \hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lie_group_a9c6f35315929138296ec52903f347bff}{Lie\+Group} (const \hyperlink{class_lie_group}{Lie\+Group} \&)
+\item 
+\hyperlink{class_lie_group_ac831365f2877426d28524f26ab771525}{Lie\+Group} ()
+\item 
+\hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients} \& \hyperlink{class_lie_group_ac8a00eee2b7425186ddf51dbf2e62f14}{get} ()
+\item 
+const \hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients} \& \hyperlink{class_lie_group_aa551249eab20e2ba4778fc4753e09fd0}{get} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ G, \hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$ $>$ \hyperlink{class_lie_group_aac708f8905d0a77bbe8c9bae8c6ac525}{Base}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients} \hyperlink{class_lie_group_a8a312c03fa7d4fed55b4c26d4fe3057a}{m\+\_\+coeffs}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class G$>$\newline
+class Lie\+Group$<$ G $>$}
+
+Class describing an element of a Lie Group. 
+
+Definition of Lie\+Group$<$\+G$>$
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em G} & the wrapped class\\
+\hline
+\end{DoxyTemplParams}
+This class must be specialized to add new constructors for a specific group.
+
+\begin{DoxySeeAlso}{See also}
+The methods are defined in \hyperlink{class_lie_group_base}{Lie\+Group\+Base} 
+\end{DoxySeeAlso}
+
+
+Definition at line 117 of file Lie\+Group.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_lie_group_aac708f8905d0a77bbe8c9bae8c6ac525}{}\label{class_lie_group_aac708f8905d0a77bbe8c9bae8c6ac525} 
+\index{Lie\+Group@{Lie\+Group}!Base@{Base}}
+\index{Base@{Base}!Lie\+Group@{Lie\+Group}}
+\subsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$class G $>$ \\
+typedef \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$G, \hyperlink{class_lie_group}{Lie\+Group}$<$G$>$ $>$ \hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$\+::\hyperlink{class_lie_group_aac708f8905d0a77bbe8c9bae8c6ac525}{Base}\hspace{0.3cm}{\ttfamily [protected]}}
+
+Inherited class 
+
+Definition at line 120 of file Lie\+Group.\+h.
+
+\hypertarget{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{}\label{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d} 
+\index{Lie\+Group@{Lie\+Group}!Coefficients@{Coefficients}}
+\index{Coefficients@{Coefficients}!Lie\+Group@{Lie\+Group}}
+\subsubsection{\texorpdfstring{Coefficients}{Coefficients}}
+{\footnotesize\ttfamily template$<$class G $>$ \\
+typedef internal\+::traits$<$\hyperlink{class_lie_group}{Lie\+Group}$<$G$>$ $>$\+::\hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients} \hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$\+::\hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients}}
+
+The stored coefficients 
+
+Definition at line 126 of file Lie\+Group.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_lie_group_a9c6f35315929138296ec52903f347bff}{}\label{class_lie_group_a9c6f35315929138296ec52903f347bff} 
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group@{Lie\+Group}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class G $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor \+: do nothing 
+
+Definition at line 129 of file Lie\+Group.\+h.
+
+\hypertarget{class_lie_group_ac831365f2877426d28524f26ab771525}{}\label{class_lie_group_ac831365f2877426d28524f26ab771525} 
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group@{Lie\+Group}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class G $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructor \+: do nothing 
+
+Definition at line 131 of file Lie\+Group.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_lie_group_ac8a00eee2b7425186ddf51dbf2e62f14}{}\label{class_lie_group_ac8a00eee2b7425186ddf51dbf2e62f14} 
+\index{Lie\+Group@{Lie\+Group}!get@{get}}
+\index{get@{get}!Lie\+Group@{Lie\+Group}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class G $>$ \\
+\hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients}\& \hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The stored coefficients 
+\end{DoxyReturn}
+
+
+Definition at line 134 of file Lie\+Group.\+h.
+
+\hypertarget{class_lie_group_aa551249eab20e2ba4778fc4753e09fd0}{}\label{class_lie_group_aa551249eab20e2ba4778fc4753e09fd0} 
+\index{Lie\+Group@{Lie\+Group}!get@{get}}
+\index{get@{get}!Lie\+Group@{Lie\+Group}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class G $>$ \\
+const \hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients}\& \hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The read-\/only access to the stored coefficients 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file Lie\+Group.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_lie_group_a8a312c03fa7d4fed55b4c26d4fe3057a}{}\label{class_lie_group_a8a312c03fa7d4fed55b4c26d4fe3057a} 
+\index{Lie\+Group@{Lie\+Group}!m\+\_\+coeffs@{m\+\_\+coeffs}}
+\index{m\+\_\+coeffs@{m\+\_\+coeffs}!Lie\+Group@{Lie\+Group}}
+\subsubsection{\texorpdfstring{m\+\_\+coeffs}{m\_coeffs}}
+{\footnotesize\ttfamily template$<$class G $>$ \\
+\hyperlink{class_lie_group_a52de3c5adb933cbfa694b51bef656d5d}{Coefficients} \hyperlink{class_lie_group}{Lie\+Group}$<$ G $>$\+::m\+\_\+coeffs\hspace{0.3cm}{\ttfamily [protected]}}
+
+The wrapped coefficients 
+
+Definition at line 140 of file Lie\+Group.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_lie_group_8h}{Lie\+Group.\+h}\end{DoxyCompactItemize}

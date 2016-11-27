@@ -1,0 +1,245 @@
+\hypertarget{class_twist}{}\section{Twist$<$ \+\_\+\+Scalar $>$ Class Template Reference}
+\label{class_twist}\index{Twist$<$ \+\_\+\+Scalar $>$@{Twist$<$ \+\_\+\+Scalar $>$}}
+
+
+Class describing a \hyperlink{class_twist}{Twist}.  
+
+
+
+
+{\ttfamily \#include $<$Twist.\+h$>$}
+
+Inheritance diagram for Twist$<$ \+\_\+\+Scalar $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.943662cm]{class_twist}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{class_twist_base_a4086aa35326778872a7d0f0bfdfcc0ec}{Base\+::\+Base\+Type} \hyperlink{class_twist_ab1df1af2243738177191f6c23123f3be}{Base\+Type}
+\item 
+typedef internal\+::traits$<$ \hyperlink{class_twist}{Twist} $>$\+::\hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients} \hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_twist_a1591bb5cbaf556a1315950e4b27a50cf}{Twist} ()
+\item 
+\hyperlink{class_twist_a6d27b4287aff94955d46b3f76151f119}{Twist} (const \hyperlink{class_twist}{Twist} \&g)
+\item 
+\hyperlink{class_twist_a4b460b4e069b959f7fd2f0d01fdf4703}{Twist} (const \hyperlink{class_twist_ab1df1af2243738177191f6c23123f3be}{Base\+Type} \&g)
+\item 
+\hyperlink{class_twist_adf2846cc99f0b092b4ab622a00177363}{Twist} (Scalar \hyperlink{class_twist_base_a894919d086a24def57622d7e151a58c2}{rx}, Scalar \hyperlink{class_twist_base_a649f10b163fa68cd901aa3ee412ced7f}{ry}, Scalar \hyperlink{class_twist_base_a25f415854bcf537c8aa1cc244bfdb770}{rz}, Scalar \hyperlink{class_twist_base_a323021f263783da2d5b275552858ab67}{vx}, Scalar \hyperlink{class_twist_base_a2cf70ed359f60d07610e8ab36910f436}{vy}, Scalar \hyperlink{class_twist_base_a217ab4d995e5c40b24a586278301415e}{vz})
+\item 
+{\footnotesize template$<$typename Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_twist_ace92bbcbb4ccc4da3bf3f98c2463aca6}{Twist} (const Matrix\+Base$<$ Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$class Linear\+Velocity\+Derived , class Angular\+Velocity\+Derived $>$ }\\\hyperlink{class_twist_ac948ffd308a2af9bb8fbd68cda5e1331}{Twist} (const \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ Matrix$<$ Scalar, 3, 1 $>$, Angular\+Velocity\+Derived $>$ \&r, const Matrix\+Base$<$ Linear\+Velocity\+Derived $>$ \&v)
+\item 
+\hyperlink{class_twist_a6be65e5ed24f7aa0b2ac0261aa111292}{Twist} (const typename \hyperlink{class_twist_base_ad0bc13debe8afc170da877cebe4dc45f}{Base\+::\+Angular\+Velocity} \&r, const typename \hyperlink{class_twist_base_aeafbc7a3ca37e08812be0af7e680190b}{Base\+::\+Linear\+Velocity} \&v)
+\item 
+\hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients} \& \hyperlink{class_twist_ac1f779976c880605099c319bc9749c2c}{get} ()
+\item 
+const \hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients} \& \hyperlink{class_twist_a92329266374466e60daabe5ca6c2dcbe}{get} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{class_twist_base}{Twist\+Base}$<$ \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$ $>$ \hyperlink{class_twist_a83c55648035a111abdce59e32880a710}{Base}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients} \hyperlink{class_twist_ac4b3ab83b5a42bc592b55dbb94905c4e}{m\+\_\+coeffs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class Twist$<$ \+\_\+\+Scalar $>$}
+
+Class describing a \hyperlink{class_twist}{Twist}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the type of the underlying array\\
+\hline
+\end{DoxyTemplParams}
+This class add some specific constructors
+
+\begin{DoxySeeAlso}{See also}
+The methods are defined in \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base} and \hyperlink{class_twist_base}{Twist\+Base} 
+\end{DoxySeeAlso}
+
+
+Definition at line 141 of file Twist.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_twist_a83c55648035a111abdce59e32880a710}{}\label{class_twist_a83c55648035a111abdce59e32880a710} 
+\index{Twist@{Twist}!Base@{Base}}
+\index{Base@{Base}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+typedef \hyperlink{class_twist_base}{Twist\+Base}$<$\hyperlink{class_twist}{Twist}$<$\+\_\+\+Scalar$>$ $>$ \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist_a83c55648035a111abdce59e32880a710}{Base}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 143 of file Twist.\+h.
+
+\hypertarget{class_twist_ab1df1af2243738177191f6c23123f3be}{}\label{class_twist_ab1df1af2243738177191f6c23123f3be} 
+\index{Twist@{Twist}!Base\+Type@{Base\+Type}}
+\index{Base\+Type@{Base\+Type}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Base\+Type}{BaseType}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+typedef \hyperlink{class_twist_base_a4086aa35326778872a7d0f0bfdfcc0ec}{Base\+::\+Base\+Type} \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist_ab1df1af2243738177191f6c23123f3be}{Base\+Type}}
+
+The inherited class 
+
+Definition at line 151 of file Twist.\+h.
+
+\hypertarget{class_twist_a1bc0976a0f06b366421639350134222b}{}\label{class_twist_a1bc0976a0f06b366421639350134222b} 
+\index{Twist@{Twist}!Coefficients@{Coefficients}}
+\index{Coefficients@{Coefficients}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Coefficients}{Coefficients}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+typedef internal\+::traits$<$\hyperlink{class_twist}{Twist}$>$\+::\hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients} \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients}}
+
+the stored coefficients 
+
+Definition at line 153 of file Twist.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_twist_a1591bb5cbaf556a1315950e4b27a50cf}{}\label{class_twist_a1591bb5cbaf556a1315950e4b27a50cf} 
+\index{Twist@{Twist}!Twist@{Twist}}
+\index{Twist@{Twist}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Twist()}{Twist()}\hspace{0.1cm}{\footnotesize\ttfamily [1/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+\hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist}{Twist} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor 
+
+Definition at line 157 of file Twist.\+h.
+
+\hypertarget{class_twist_a6d27b4287aff94955d46b3f76151f119}{}\label{class_twist_a6d27b4287aff94955d46b3f76151f119} 
+\index{Twist@{Twist}!Twist@{Twist}}
+\index{Twist@{Twist}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Twist()}{Twist()}\hspace{0.1cm}{\footnotesize\ttfamily [2/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+\hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist}{Twist} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$ \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor 
+
+Definition at line 159 of file Twist.\+h.
+
+\hypertarget{class_twist_a4b460b4e069b959f7fd2f0d01fdf4703}{}\label{class_twist_a4b460b4e069b959f7fd2f0d01fdf4703} 
+\index{Twist@{Twist}!Twist@{Twist}}
+\index{Twist@{Twist}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Twist()}{Twist()}\hspace{0.1cm}{\footnotesize\ttfamily [3/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+\hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist}{Twist} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_twist_ab1df1af2243738177191f6c23123f3be}{Base\+Type} \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor 
+
+Definition at line 161 of file Twist.\+h.
+
+\hypertarget{class_twist_adf2846cc99f0b092b4ab622a00177363}{}\label{class_twist_adf2846cc99f0b092b4ab622a00177363} 
+\index{Twist@{Twist}!Twist@{Twist}}
+\index{Twist@{Twist}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Twist()}{Twist()}\hspace{0.1cm}{\footnotesize\ttfamily [4/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+\hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist}{Twist} (\begin{DoxyParamCaption}\item[{Scalar}]{rx,  }\item[{Scalar}]{ry,  }\item[{Scalar}]{rz,  }\item[{Scalar}]{vx,  }\item[{Scalar}]{vy,  }\item[{Scalar}]{vz }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs an element of se(3) from 6 scalar 
+
+Definition at line 163 of file Twist.\+h.
+
+\hypertarget{class_twist_ace92bbcbb4ccc4da3bf3f98c2463aca6}{}\label{class_twist_ace92bbcbb4ccc4da3bf3f98c2463aca6} 
+\index{Twist@{Twist}!Twist@{Twist}}
+\index{Twist@{Twist}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Twist()}{Twist()}\hspace{0.1cm}{\footnotesize\ttfamily [5/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$typename Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist}{Twist} (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor \+: need to build a twist from a C\+Wise\+Binary\+Op or C\+Wise\+Unary\+Op 
+
+Definition at line 173 of file Twist.\+h.
+
+\hypertarget{class_twist_ac948ffd308a2af9bb8fbd68cda5e1331}{}\label{class_twist_ac948ffd308a2af9bb8fbd68cda5e1331} 
+\index{Twist@{Twist}!Twist@{Twist}}
+\index{Twist@{Twist}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Twist()}{Twist()}\hspace{0.1cm}{\footnotesize\ttfamily [6/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+template$<$class Linear\+Velocity\+Derived , class Angular\+Velocity\+Derived $>$ \\
+\hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist}{Twist} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ Matrix$<$ Scalar, 3, 1 $>$, Angular\+Velocity\+Derived $>$ \&}]{r,  }\item[{const Matrix\+Base$<$ Linear\+Velocity\+Derived $>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Assignement operator \+: need to copy a C\+Wise\+Binary\+Op or C\+Wise\+Unary\+Op to a \hyperlink{class_twist}{Twist} Constructs \hyperlink{class_twist}{Twist} from an angular velocity {\ttfamily r} and a linear velocity {\ttfamily v} 
+
+Definition at line 186 of file Twist.\+h.
+
+\hypertarget{class_twist_a6be65e5ed24f7aa0b2ac0261aa111292}{}\label{class_twist_a6be65e5ed24f7aa0b2ac0261aa111292} 
+\index{Twist@{Twist}!Twist@{Twist}}
+\index{Twist@{Twist}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{Twist()}{Twist()}\hspace{0.1cm}{\footnotesize\ttfamily [7/7]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+\hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::\hyperlink{class_twist}{Twist} (\begin{DoxyParamCaption}\item[{const typename \hyperlink{class_twist_base_ad0bc13debe8afc170da877cebe4dc45f}{Base\+::\+Angular\+Velocity} \&}]{r,  }\item[{const typename \hyperlink{class_twist_base_aeafbc7a3ca37e08812be0af7e680190b}{Base\+::\+Linear\+Velocity} \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs \hyperlink{class_twist}{Twist} from an angular velocity {\ttfamily r} and a linear velocity {\ttfamily v} 
+
+Definition at line 191 of file Twist.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_twist_ac1f779976c880605099c319bc9749c2c}{}\label{class_twist_ac1f779976c880605099c319bc9749c2c} 
+\index{Twist@{Twist}!get@{get}}
+\index{get@{get}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+\hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients}\& \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The stored coefficients 
+\end{DoxyReturn}
+
+
+Definition at line 196 of file Twist.\+h.
+
+\hypertarget{class_twist_a92329266374466e60daabe5ca6c2dcbe}{}\label{class_twist_a92329266374466e60daabe5ca6c2dcbe} 
+\index{Twist@{Twist}!get@{get}}
+\index{get@{get}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+const \hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients}\& \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The read-\/only access to the stored coefficients 
+\end{DoxyReturn}
+
+
+Definition at line 198 of file Twist.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_twist_ac4b3ab83b5a42bc592b55dbb94905c4e}{}\label{class_twist_ac4b3ab83b5a42bc592b55dbb94905c4e} 
+\index{Twist@{Twist}!m\+\_\+coeffs@{m\+\_\+coeffs}}
+\index{m\+\_\+coeffs@{m\+\_\+coeffs}!Twist@{Twist}}
+\subsubsection{\texorpdfstring{m\+\_\+coeffs}{m\_coeffs}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar$>$ \\
+\hyperlink{class_twist_a1bc0976a0f06b366421639350134222b}{Coefficients} \hyperlink{class_twist}{Twist}$<$ \+\_\+\+Scalar $>$\+::m\+\_\+coeffs\hspace{0.3cm}{\ttfamily [protected]}}
+
+The wrapped coefficients 
+
+Definition at line 202 of file Twist.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_twist_8h}{Twist.\+h}\end{DoxyCompactItemize}

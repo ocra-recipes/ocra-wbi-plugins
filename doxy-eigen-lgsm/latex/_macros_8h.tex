@@ -1,0 +1,45 @@
+\hypertarget{_macros_8h}{}\section{/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/util/\+Macros.h File Reference}
+\label{_macros_8h}\index{/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/util/\+Macros.\+h@{/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/util/\+Macros.\+h}}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{_macros_8h_a2f910e112360b3c05262104a452f6d88}{L\+I\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+B\+A\+SE}(r,  c)
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{_macros_8h_a2f910e112360b3c05262104a452f6d88}{}\label{_macros_8h_a2f910e112360b3c05262104a452f6d88} 
+\index{Macros.\+h@{Macros.\+h}!L\+I\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+B\+A\+SE@{L\+I\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+B\+A\+SE}}
+\index{L\+I\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+B\+A\+SE@{L\+I\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+B\+A\+SE}!Macros.\+h@{Macros.\+h}}
+\subsubsection{\texorpdfstring{L\+I\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+B\+A\+SE}{LIE\_INHERIT\_MATRIX\_BASE}}
+{\footnotesize\ttfamily \#define L\+I\+E\+\_\+\+I\+N\+H\+E\+R\+I\+T\+\_\+\+M\+A\+T\+R\+I\+X\+\_\+\+B\+A\+SE(\begin{DoxyParamCaption}\item[{}]{r,  }\item[{}]{c }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\textcolor{keyword}{inline} Index rows()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} r;\} \(\backslash\)
+  inline Index cols()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} c;\} \(\backslash\)
+  \(\backslash\)
+  inline Scalar& coeffRef(Index row, Index col) \{ \textcolor{keywordflow}{return} this->\textcolor{keyword}{get}().coeffRef(row, col); \} \(\backslash\)
+  inline \textcolor{keyword}{const} Scalar& coeff(Index row, Index col)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} this->\textcolor{keyword}{get}().coeff(row, col); \} \(\backslash\)
+  inline Scalar& coeffRef(Index index) \{ \textcolor{keywordflow}{return} this->\textcolor{keyword}{get}().coeffRef(index); \} \(\backslash\)
+  inline \textcolor{keyword}{const} Scalar& coeff(Index index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} this->\textcolor{keyword}{get}().coeff(index); \} \(\backslash\)
+  \(\backslash\)
+  template<int LoadMode> \textcolor{keyword}{inline} PacketScalar packet(Index index)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} derived().get().template 
+      packet<LoadMode> (index);\} \(\backslash\)
+  template<int LoadMode> \textcolor{keyword}{inline} PacketScalar packet(Index row, Index col)\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} derived().get().
+      template packet<LoadMode> (row, col);\} \(\backslash\)
+  template<int LoadMode> \textcolor{keyword}{inline} \textcolor{keywordtype}{void} writePacket(Index row, Index col, \textcolor{keyword}{const} PacketScalar& x) \{ derived().
+      get().template writePacket<LoadMode>(row, col, x);\} \(\backslash\)
+  template<int LoadMode> \textcolor{keyword}{inline} \textcolor{keywordtype}{void} writePacket(Index index, \textcolor{keyword}{const} PacketScalar& x) \{ derived().get().
+      template writePacket<LoadMode>(index, x);\} \(\backslash\)
+  \(\backslash\)
+  inline Index innerStride()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} 1; \} \(\backslash\)
+  inline Index outerStride()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} this->innerSize(); \} \(\backslash\)
+  \(\backslash\)
+  EIGEN\_STRONG\_INLINE \textcolor{keyword}{const} Scalar* data()\textcolor{keyword}{ const }\{ \textcolor{keywordflow}{return} \textcolor{keyword}{get}().data(); \} \(\backslash\)
+  EIGEN\_STRONG\_INLINE Scalar* data() \{ \textcolor{keywordflow}{return} \textcolor{keyword}{get}().data(); \} \(\backslash\)
+\end{DoxyCode}
+
+
+Definition at line 13 of file Macros.\+h.
+

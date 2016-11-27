@@ -1,0 +1,526 @@
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1}{}\section{Lie\+Group\+Base$<$ Array$<$ typename internal\+:\+:traits$<$ Derived $>$\+:\+:Scalar, 7, 1 $>$, Derived $>$ Class Template Reference}
+\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1}\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+
+
+Base class for S\+E(3) Lie Group.  
+
+
+
+
+{\ttfamily \#include $<$Lie\+Group\+\_\+\+S\+E3.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}
+\item 
+typedef Array$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}
+\item 
+typedef internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{Coefficients} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{Coefficients}
+\item 
+typedef internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object}
+\item 
+typedef Matrix$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 6 $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0321ba973250771361f7c4b431042308}{Adjoint\+Matrix}
+\item 
+typedef \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ Matrix$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 1 $>$ $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a070c90abe2058ce2ab6a2f5ed271f6a0}{Algebra}
+\item 
+typedef \hyperlink{class_lie_algebra_dual}{Lie\+Algebra\+Dual}$<$ Matrix$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 1 $>$ $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2dd3f6a200785678c87f78f08aa24288}{Algebra\+Dual}
+\item 
+typedef Matrix$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 3, 1 $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3}
+\item 
+typedef \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar} $>$ $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2594349e8f4329af620dff380a457890}{S\+O3\+Element}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a05e8da8cba6d186d3f4e146d282eb020}{inverse} () const
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a25cfdbb6cf3577ed877d4d2f0c25bcd5}{operator$\ast$} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}, Other\+Derived $>$ \&other) const
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a374b22e97d35645a2b38c9f37d926633}{operator$\ast$=} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}, Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a4c0458408f7b6df1bc6ca8a5d0704983}{operator$\ast$} (const Matrix\+Base$<$ Other\+Derived $>$ \&d) const
+\item 
+\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0321ba973250771361f7c4b431042308}{Adjoint\+Matrix} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_afb91190c18be04ae1dc8b9e6e7cee1f2}{adjoint} (void) const
+\item 
+{\footnotesize template$<$class Algebra\+Derived $>$ }\\\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a070c90abe2058ce2ab6a2f5ed271f6a0}{Algebra} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a1f77def19a9ce20b70fb0a41656c5806}{adjoint} (const \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ Matrix$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 1 $>$, Algebra\+Derived $>$ \&) const
+\item 
+{\footnotesize template$<$class Algebra\+Dual\+Derived $>$ }\\\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2dd3f6a200785678c87f78f08aa24288}{Algebra\+Dual} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0f2a51a9c1233e4c7cfcba8127d864cb}{adjoint\+Tr} (const \hyperlink{class_lie_algebra_dual_base}{Lie\+Algebra\+Dual\+Base}$<$ Matrix$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 1 $>$, Algebra\+Dual\+Derived $>$ \&) const
+\item 
+\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a070c90abe2058ce2ab6a2f5ed271f6a0}{Algebra} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a788a15627058958f796bfb0f5226b0ab}{log} (const \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar} precision=1e-\/6) const
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group_base}{Lie\+Group\+Base} \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a8e98c7beac9a53cdc9b456057e01952d}{operator=} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base} \&other)
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a693084dd5df8a0d00793be750608fb36}{operator=} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}, Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\Derived \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a11405917134c914ec2971dae31075886}{operator=} (const Matrix\+Base$<$ Other\+Derived $>$ \&m)
+\item 
+const Derived \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_adc2e7eb1827c5354dfa2c6abcd3f919b}{derived} () const
+\item 
+Derived \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ad790b10c4804ee6a98cd87bdd1c8c61d}{derived} ()
+\item 
+Map$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2594349e8f4329af620dff380a457890}{S\+O3\+Element} $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2517b91d8ec4da8c307fa428d839000b}{get\+S\+O3\+Element} ()
+\item 
+Map$<$ const \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2594349e8f4329af620dff380a457890}{S\+O3\+Element} $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_afb657a659f0ab1ef96925dd9f371ca0b}{get\+S\+O3\+Element} () const
+\item 
+Map$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3} $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_adf7524fce2a277108214eb6fd7002794}{get\+R3\+Element} ()
+\item 
+Map$<$ const \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3} $>$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ac93bafb949281e331f07fa35c16c53b4}{get\+R3\+Element} () const
+\item 
+\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{Coefficients} \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a25deecc8f12c51f78fc0c82973443377}{get} ()
+\item 
+const \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{Coefficients} \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a26b175476c2321427349884b00d4f5ec}{get} () const
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\Derived \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a5360ad58dfa150c0d58aaad6839b6c8b}{operator=} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}, Other\+Derived $>$ \&other)
+\item 
+{\footnotesize template$<$class Matrix\+Derived $>$ }\\Derived \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ae145bf4e96364c9b5be9fb585ea7db09}{operator=} (const Matrix\+Base$<$ Matrix\+Derived $>$ \&xpr)
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aa20c9214eb32d0d7b51d4f1e7ee7e6e2}{operator$\ast$} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Other\+Derived $>$ \&other) const
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a6b584aab5eef636bbf91bbfcaf03af5c}{operator$\ast$} (const Matrix\+Base$<$ Other\+Derived $>$ \&vec) const
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a00b4561ff5794f6a62dbfb125c164990}{Identity} ()
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\std\+::ostream \& \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ac04a80c43e9803f7e73b6dc0fd85d184}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$ \&g)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Derived$>$\newline
+class Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}
+
+Base class for S\+E(3) Lie Group. 
+
+\hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$Array$<$\+Scalar, 7, 1$>$, Derived$>$
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & the derived class holding the coefficients which are of type Array$<$\+Scalar, 7, 1$>$ or Map$<$Array$<$\+Scalar, 7, 1$>$ $>$\\
+\hline
+\end{DoxyTemplParams}
+This class actually implements the methods defined in Lie\+Group\+Base$<$\+G$>$ and add specific accessors. Since Se(3) is the semi direct product of R$^\wedge$3 and S\+O(3) many operations ar eperformed using directly the part form R$^\wedge$3 or S\+O(3) 
+
+Definition at line 37 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0321ba973250771361f7c4b431042308}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0321ba973250771361f7c4b431042308} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Adjoint\+Matrix@{Adjoint\+Matrix}}
+\index{Adjoint\+Matrix@{Adjoint\+Matrix}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Adjoint\+Matrix}{AdjointMatrix}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef Matrix$<$\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 6$>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0321ba973250771361f7c4b431042308}{Adjoint\+Matrix}}
+
+The type of the adjoint Matrix 
+
+Definition at line 51 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a070c90abe2058ce2ab6a2f5ed271f6a0}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a070c90abe2058ce2ab6a2f5ed271f6a0} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Algebra@{Algebra}}
+\index{Algebra@{Algebra}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Algebra}{Algebra}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$Matrix$<$\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 1$>$ $>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a070c90abe2058ce2ab6a2f5ed271f6a0}{Algebra}}
+
+The type of the associated Algebra 
+
+Definition at line 53 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2dd3f6a200785678c87f78f08aa24288}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2dd3f6a200785678c87f78f08aa24288} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Algebra\+Dual@{Algebra\+Dual}}
+\index{Algebra\+Dual@{Algebra\+Dual}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Algebra\+Dual}{AlgebraDual}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef \hyperlink{class_lie_algebra_dual}{Lie\+Algebra\+Dual}$<$Matrix$<$\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 1$>$ $>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2dd3f6a200785678c87f78f08aa24288}{Algebra\+Dual}}
+
+The type of the dual Algebra 
+
+Definition at line 55 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Base\+Type@{Base\+Type}}
+\index{Base\+Type@{Base\+Type}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Base\+Type}{BaseType}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef Array$<$\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1$>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}}
+
+The wrapped class 
+
+Definition at line 44 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Coefficients@{Coefficients}}
+\index{Coefficients@{Coefficients}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Coefficients}{Coefficients}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef internal\+::traits$<$Derived$>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{Coefficients} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{Coefficients}}
+
+The kind of stored coefficients 
+
+Definition at line 46 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Plain\+Object@{Plain\+Object}}
+\index{Plain\+Object@{Plain\+Object}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Plain\+Object}{PlainObject}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef internal\+::traits$<$Derived$>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object}}
+
+The plain object returned, while using Map$<$Lie\+Group$<$ $>$ $>$ 
+
+Definition at line 48 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef internal\+::traits$<$Derived$>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}}
+
+The type of stored coefficients 
+
+Definition at line 42 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2594349e8f4329af620dff380a457890}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2594349e8f4329af620dff380a457890} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!S\+O3\+Element@{S\+O3\+Element}}
+\index{S\+O3\+Element@{S\+O3\+Element}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{S\+O3\+Element}{SO3Element}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef \hyperlink{class_lie_group}{Lie\+Group}$<$Quaternion$<$\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}$>$ $>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2594349e8f4329af620dff380a457890}{S\+O3\+Element}}
+
+The type of an element of S\+O(3) 
+
+Definition at line 60 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Vector3}{Vector3}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+typedef Matrix$<$\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 3, 1$>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3}}
+
+The type of an element of R$^\wedge$3 
+
+Definition at line 58 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_afb91190c18be04ae1dc8b9e6e7cee1f2}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_afb91190c18be04ae1dc8b9e6e7cee1f2} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!adjoint@{adjoint}}
+\index{adjoint@{adjoint}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{adjoint()}{adjoint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0321ba973250771361f7c4b431042308}{Adjoint\+Matrix} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::adjoint (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+The matrix which is the adjoint representation of the element 
+\end{DoxyReturn}
+
+
+Definition at line 236 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a1f77def19a9ce20b70fb0a41656c5806}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a1f77def19a9ce20b70fb0a41656c5806} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!adjoint@{adjoint}}
+\index{adjoint@{adjoint}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{adjoint()}{adjoint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Algebra\+Derived $>$ \\
+\hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a070c90abe2058ce2ab6a2f5ed271f6a0}{Algebra} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::adjoint (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ Matrix$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 1 $>$, Algebra\+Derived $>$ \&}]{a }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The algebra which is the product of the adjoint representation and a element of the associated algebra 
+\end{DoxyReturn}
+
+
+Definition at line 262 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0f2a51a9c1233e4c7cfcba8127d864cb}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a0f2a51a9c1233e4c7cfcba8127d864cb} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!adjoint\+Tr@{adjoint\+Tr}}
+\index{adjoint\+Tr@{adjoint\+Tr}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{adjoint\+Tr()}{adjointTr()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Algebra\+Dual\+Derived $>$ \\
+\hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2dd3f6a200785678c87f78f08aa24288}{Algebra\+Dual} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::adjoint\+Tr (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_algebra_dual_base}{Lie\+Algebra\+Dual\+Base}$<$ Matrix$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 6, 1 $>$, Algebra\+Dual\+Derived $>$ \&}]{ca }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The algebr dual which is the product of the adjoint representation and a element of the associated algebra dual 
+\end{DoxyReturn}
+
+
+Definition at line 279 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_adc2e7eb1827c5354dfa2c6abcd3f919b}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_adc2e7eb1827c5354dfa2c6abcd3f919b} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!derived@{derived}}
+\index{derived@{derived}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+const Derived\& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::derived (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The read-\/only accessor to the derived class 
+
+Definition at line 93 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ad790b10c4804ee6a98cd87bdd1c8c61d}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ad790b10c4804ee6a98cd87bdd1c8c61d} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!derived@{derived}}
+\index{derived@{derived}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+Derived\& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::derived (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The accessor to the derived class 
+
+Definition at line 95 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a25deecc8f12c51f78fc0c82973443377}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a25deecc8f12c51f78fc0c82973443377} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!get@{get}}
+\index{get@{get}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{Coefficients}\& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The stored coefficients by the derived class 
+\end{DoxyReturn}
+
+
+Definition at line 108 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a26b175476c2321427349884b00d4f5ec}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a26b175476c2321427349884b00d4f5ec} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!get@{get}}
+\index{get@{get}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+const \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a51943ca22e0a551b6d1d82e11ee073fe}{Coefficients}\& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The read-\/only access to the stored coefficients by the derived class 
+\end{DoxyReturn}
+
+
+Definition at line 110 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_adf7524fce2a277108214eb6fd7002794}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_adf7524fce2a277108214eb6fd7002794} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!get\+R3\+Element@{get\+R3\+Element}}
+\index{get\+R3\+Element@{get\+R3\+Element}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{get\+R3\+Element()}{getR3Element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+Map$<$\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3}$>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::get\+R3\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The accessor to the R$^\wedge$3 element 
+
+Definition at line 103 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ac93bafb949281e331f07fa35c16c53b4}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ac93bafb949281e331f07fa35c16c53b4} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!get\+R3\+Element@{get\+R3\+Element}}
+\index{get\+R3\+Element@{get\+R3\+Element}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{get\+R3\+Element()}{getR3Element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+Map$<$const \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3}$>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::get\+R3\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The read-\/only accessor to the R$^\wedge$3 element 
+
+Definition at line 105 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2517b91d8ec4da8c307fa428d839000b}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2517b91d8ec4da8c307fa428d839000b} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!get\+S\+O3\+Element@{get\+S\+O3\+Element}}
+\index{get\+S\+O3\+Element@{get\+S\+O3\+Element}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{get\+S\+O3\+Element()}{getSO3Element()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+Map$<$\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2594349e8f4329af620dff380a457890}{S\+O3\+Element}$>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::get\+S\+O3\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The accessor to the S\+O(3) element 
+
+Definition at line 98 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_afb657a659f0ab1ef96925dd9f371ca0b}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_afb657a659f0ab1ef96925dd9f371ca0b} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!get\+S\+O3\+Element@{get\+S\+O3\+Element}}
+\index{get\+S\+O3\+Element@{get\+S\+O3\+Element}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{get\+S\+O3\+Element()}{getSO3Element()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+Map$<$const \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a2594349e8f4329af620dff380a457890}{S\+O3\+Element}$>$ \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::get\+S\+O3\+Element (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The read-\/only accessor to the S\+O(3) element 
+
+Definition at line 100 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a00b4561ff5794f6a62dbfb125c164990}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a00b4561ff5794f6a62dbfb125c164990} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!Identity@{Identity}}
+\index{Identity@{Identity}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{Identity()}{Identity()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::Identity (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\begin{DoxyReturn}{Returns}
+The plain object describing the identity element of the Lie group 
+\end{DoxyReturn}
+
+
+Definition at line 163 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a05e8da8cba6d186d3f4e146d282eb020}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a05e8da8cba6d186d3f4e146d282eb020} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!inverse@{inverse}}
+\index{inverse@{inverse}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{inverse()}{inverse()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::inverse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+a plain object describing the inverse element 
+\end{DoxyReturn}
+
+
+Definition at line 154 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a788a15627058958f796bfb0f5226b0ab}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a788a15627058958f796bfb0f5226b0ab} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!log@{log}}
+\index{log@{log}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{log()}{log()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a070c90abe2058ce2ab6a2f5ed271f6a0}{Algebra} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::log (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}}]{precision = {\ttfamily 1e-\/6} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The element of the associated Algebra through the exponential map 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+the exponential map is given by \hyperlink{class_lie_algebra_base_aafe7d43a29d43aed54dd91b3a3a4c9f7}{Lie\+Algebra\+::exp()} 
+\end{DoxySeeAlso}
+
+
+Definition at line 207 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a25cfdbb6cf3577ed877d4d2f0c25bcd5}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a25cfdbb6cf3577ed877d4d2f0c25bcd5} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}, Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The plain object describing the composition of two Base elements 
+\end{DoxyReturn}
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a4c0458408f7b6df1bc6ca8a5d0704983}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a4c0458408f7b6df1bc6ca8a5d0704983} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Other\+Derived $>$ \&}]{d }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The transformation of {\ttfamily v} through the rigid displacement described by this element 
+\end{DoxyReturn}
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aa20c9214eb32d0d7b51d4f1e7ee7e6e2}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aa20c9214eb32d0d7b51d4f1e7ee7e6e2} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$Array$<$typename internal\+::traits$<$Derived$>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived$>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a950a48c9e027bcd00193aa20a59ee723}{Plain\+Object} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 175 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a6b584aab5eef636bbf91bbfcaf03af5c}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a6b584aab5eef636bbf91bbfcaf03af5c} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator$\ast$()}{operator*()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$Array$<$typename internal\+::traits$<$Derived$>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived$>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_acf35a22e3543ed4824de3c19c965961c}{Vector3} \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator$\ast$ (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Other\+Derived $>$ \&}]{vec }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 199 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a374b22e97d35645a2b38c9f37d926633}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a374b22e97d35645a2b38c9f37d926633} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator$\ast$=@{operator$\ast$=}}
+\index{operator$\ast$=@{operator$\ast$=}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator$\ast$=()}{operator*=()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived \& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator$\ast$= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}, Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+the compose in place 
+\end{DoxyReturn}
+
+
+Definition at line 185 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a8e98c7beac9a53cdc9b456057e01952d}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a8e98c7beac9a53cdc9b456057e01952d} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [1/5]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+\hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$ \& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default assignement operator 
+
+Definition at line 124 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a693084dd5df8a0d00793be750608fb36}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a693084dd5df8a0d00793be750608fb36} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [2/5]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE Derived\& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}, Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})}
+
+Assignement operator between derived type \hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a11405917134c914ec2971dae31075886}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a11405917134c914ec2971dae31075886} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [3/5]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+Derived\& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Other\+Derived $>$ \&}]{m }\end{DoxyParamCaption})}
+
+Assignement operator from a Matrix \hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a5360ad58dfa150c0d58aaad6839b6c8b}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a5360ad58dfa150c0d58aaad6839b6c8b} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [4/5]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+Derived\& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ \hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_aadee14149cfa071338ac1f64e23c283d}{Base\+Type}, Other\+Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 133 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ae145bf4e96364c9b5be9fb585ea7db09}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ae145bf4e96364c9b5be9fb585ea7db09} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator=@{operator=}}
+\index{operator=@{operator=}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}\hspace{0.1cm}{\footnotesize\ttfamily [5/5]}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Matrix\+Derived $>$ \\
+Derived\& \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Matrix\+Derived $>$ \&}]{xpr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 142 of file Lie\+Group\+\_\+\+S\+E3.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ac04a80c43e9803f7e73b6dc0fd85d184}{}\label{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_ac04a80c43e9803f7e73b6dc0fd85d184} 
+\index{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$@{Lie\+Group\+Base$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\+Scalar, 7, 1 $>$, Derived $>$}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+template$<$class Other\+Derived $>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_group_base_3_01_array_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_scalar_0d6d4b5459662fc32c7117aee50362fb1_a831695c575380c9a1df32eff9fc4a8c6}{Scalar}, 7, 1 $>$, Derived $>$ \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Outputs to the given stream \+: order \+: x y z qw qx qy qz (it\textquotesingle{}s different from the storage order) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_lie_group___s_e3_8h}{Lie\+Group\+\_\+\+S\+E3.\+h}\end{DoxyCompactItemize}

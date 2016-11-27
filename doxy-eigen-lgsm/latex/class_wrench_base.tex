@@ -1,0 +1,411 @@
+\hypertarget{class_wrench_base}{}\section{Wrench\+Base$<$ Derived $>$ Class Template Reference}
+\label{class_wrench_base}\index{Wrench\+Base$<$ Derived $>$@{Wrench\+Base$<$ Derived $>$}}
+
+
+Base class describing a \hyperlink{class_wrench}{Wrench}.  
+
+
+
+
+{\ttfamily \#include $<$Wrench.\+h$>$}
+
+Inheritance diagram for Wrench\+Base$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_wrench_base}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{class_lie_algebra_dual_base_3_01_matrix_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_7557dc73cbfcbc32e399b9855a977d47_a9593517bd5d02d1330f7940eb5865eda}{Base\+::\+Base\+Type} \hyperlink{class_wrench_base_a8b98c467c6fb31bd7354dcbef134dca1}{Base\+Type}
+\item 
+typedef internal\+::traits$<$ Derived $>$\+::\hyperlink{class_wrench_base_a1041b592a70fd6bb5b19afbb418dfa69}{Coefficients} \hyperlink{class_wrench_base_a1041b592a70fd6bb5b19afbb418dfa69}{Coefficients}
+\item 
+typedef Matrix$<$ Scalar, 3, 1 $>$ \hyperlink{class_wrench_base_aa589699bbf0d18c023a0a2fe6482b4a7}{Force}
+\item 
+typedef \hyperlink{class_lie_algebra_dual}{Lie\+Algebra\+Dual}$<$ Matrix$<$ Scalar, 3, 1 $>$ $>$ \hyperlink{class_wrench_base_a8fa1b5e32e8418247118cc24be70d68d}{Torque}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Scalar \hyperlink{class_wrench_base_a28eccf6ee6ec9a0e8ad6f0a130c17f0a}{tx} () const
+\item 
+Scalar \hyperlink{class_wrench_base_a7d574941740c725e035df6af20c0af6c}{ty} () const
+\item 
+Scalar \hyperlink{class_wrench_base_accf6a99e5dd656d46a0e848add0c9e85}{tz} () const
+\item 
+Scalar \hyperlink{class_wrench_base_ab4883d6553bab8cbe99737b664cbbd31}{fx} () const
+\item 
+Scalar \hyperlink{class_wrench_base_a9cf08f34e7d12b9fda2cd521fbca527e}{fy} () const
+\item 
+Scalar \hyperlink{class_wrench_base_a045d6010d317ce4ee578bfcf1f0162c7}{fz} () const
+\item 
+Scalar \& \hyperlink{class_wrench_base_a6f0a892dcdd42565538c3a979550a0ef}{tx} ()
+\item 
+Scalar \& \hyperlink{class_wrench_base_a304d93cdcd1b5aa6c40e2ef023ac4dc7}{ty} ()
+\item 
+Scalar \& \hyperlink{class_wrench_base_af48dd83f4f8500515b199e42808232a9}{tz} ()
+\item 
+Scalar \& \hyperlink{class_wrench_base_a3d177354f7fd128d20f8086b7e071116}{fx} ()
+\item 
+Scalar \& \hyperlink{class_wrench_base_a3e763c1e4c335d4f13e45a1a1a05c7f3}{fy} ()
+\item 
+Scalar \& \hyperlink{class_wrench_base_a70511caf28052f4306021576a82690b9}{fz} ()
+\item 
+Map$<$ \hyperlink{class_wrench_base_a8fa1b5e32e8418247118cc24be70d68d}{Torque} $>$ \hyperlink{class_wrench_base_a98a8a8c4e950d4876d4d0ca572e85c6a}{get\+Torque} ()
+\item 
+Map$<$ const \hyperlink{class_wrench_base_a8fa1b5e32e8418247118cc24be70d68d}{Torque} $>$ \hyperlink{class_wrench_base_aeaa544c7a85fdb6e38af179b9dad68ab}{get\+Torque} () const
+\item 
+Map$<$ \hyperlink{class_wrench_base_aa589699bbf0d18c023a0a2fe6482b4a7}{Force} $>$ \hyperlink{class_wrench_base_a3c7a5e30eb3caafa7fc5d41899167f99}{get\+Force} ()
+\item 
+Map$<$ const \hyperlink{class_wrench_base_aa589699bbf0d18c023a0a2fe6482b4a7}{Force} $>$ \hyperlink{class_wrench_base_ad7a67b2a101a6ce7fdd5d526b403c366}{get\+Force} () const
+\item 
+{\footnotesize template$<$class Rotation\+Derived $>$ }\\\hyperlink{class_wrench}{Wrench}$<$ Scalar $>$ \hyperlink{class_wrench_base_a83a6e7bdd6a189a404690657f8ba8b6f}{change\+Frame} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Quaternion$<$ Scalar $>$, Rotation\+Derived $>$ \&) const
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\\hyperlink{class_wrench}{Wrench}$<$ Scalar $>$ \hyperlink{class_wrench_base_a485dd3f045ae5e8f6709efb4c9e9dd2c}{change\+Point} (const Matrix\+Base$<$ Other\+Derived $>$ \&point) const
+\item 
+{\footnotesize template$<$class Rotation\+Derived $>$ }\\\hyperlink{class_wrench}{Wrench}$<$ typename internal\+::traits$<$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$ $>$\+::Scalar $>$ \hyperlink{class_wrench_base_a93689833f79db91100981b4a12a70f3b}{change\+Frame} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Quaternion$<$ Scalar $>$, Rotation\+Derived $>$ \&rot) const
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\\hyperlink{class_wrench}{Wrench}$<$ typename internal\+::traits$<$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$ $>$\+::Scalar $>$ \hyperlink{class_wrench_base_ae0f1aceb90c2cd1e09d83e24462b6ce7}{change\+Point} (const Matrix\+Base$<$ Other\+Derived $>$ \&point) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{class_lie_algebra_dual_base}{Lie\+Algebra\+Dual\+Base}$<$ Matrix$<$ typename internal\+::traits$<$ Derived $>$\+::Scalar, 6, 1 $>$, Derived $>$ \hyperlink{class_wrench_base_a961baad29dfcc45c7c2b847fa8c5c43d}{Base}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Derived$>$\newline
+class Wrench\+Base$<$ Derived $>$}
+
+Base class describing a \hyperlink{class_wrench}{Wrench}. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & the derived class holding the coefficients which are of type Matrix$<$\+Scalar, 6, 1$>$ or Map$<$Matrix$<$\+Scalar, 6, 1$>$ $>$\\
+\hline
+\end{DoxyTemplParams}
+This class abstracts the underlying mathematical definition and add some accessors. A wrench has two part, a torque and a force. It uses an Matrix internally to store its coefficients. 
+
+Definition at line 35 of file Wrench.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_wrench_base_a961baad29dfcc45c7c2b847fa8c5c43d}{}\label{class_wrench_base_a961baad29dfcc45c7c2b847fa8c5c43d} 
+\index{Wrench\+Base@{Wrench\+Base}!Base@{Base}}
+\index{Base@{Base}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef \hyperlink{class_lie_algebra_dual_base}{Lie\+Algebra\+Dual\+Base}$<$Matrix$<$typename internal\+::traits$<$Derived$>$\+::Scalar, 6, 1$>$, Derived$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::\hyperlink{class_wrench_base_a961baad29dfcc45c7c2b847fa8c5c43d}{Base}\hspace{0.3cm}{\ttfamily [protected]}}
+
+The inherited class 
+
+Definition at line 38 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a8b98c467c6fb31bd7354dcbef134dca1}{}\label{class_wrench_base_a8b98c467c6fb31bd7354dcbef134dca1} 
+\index{Wrench\+Base@{Wrench\+Base}!Base\+Type@{Base\+Type}}
+\index{Base\+Type@{Base\+Type}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{Base\+Type}{BaseType}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef \hyperlink{class_lie_algebra_dual_base_3_01_matrix_3_01typename_01internal_1_1traits_3_01_derived_01_4_1_1_7557dc73cbfcbc32e399b9855a977d47_a9593517bd5d02d1330f7940eb5865eda}{Base\+::\+Base\+Type} \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::\hyperlink{class_wrench_base_a8b98c467c6fb31bd7354dcbef134dca1}{Base\+Type}}
+
+The wrapped class 
+
+Definition at line 46 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a1041b592a70fd6bb5b19afbb418dfa69}{}\label{class_wrench_base_a1041b592a70fd6bb5b19afbb418dfa69} 
+\index{Wrench\+Base@{Wrench\+Base}!Coefficients@{Coefficients}}
+\index{Coefficients@{Coefficients}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{Coefficients}{Coefficients}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef internal\+::traits$<$Derived$>$\+::\hyperlink{class_wrench_base_a1041b592a70fd6bb5b19afbb418dfa69}{Coefficients} \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::\hyperlink{class_wrench_base_a1041b592a70fd6bb5b19afbb418dfa69}{Coefficients}}
+
+The kind of stored coefficients 
+
+Definition at line 48 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_aa589699bbf0d18c023a0a2fe6482b4a7}{}\label{class_wrench_base_aa589699bbf0d18c023a0a2fe6482b4a7} 
+\index{Wrench\+Base@{Wrench\+Base}!Force@{Force}}
+\index{Force@{Force}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{Force}{Force}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef Matrix$<$Scalar, 3, 1$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::\hyperlink{class_wrench_base_aa589699bbf0d18c023a0a2fe6482b4a7}{Force}}
+
+The type of the force 
+
+Definition at line 51 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a8fa1b5e32e8418247118cc24be70d68d}{}\label{class_wrench_base_a8fa1b5e32e8418247118cc24be70d68d} 
+\index{Wrench\+Base@{Wrench\+Base}!Torque@{Torque}}
+\index{Torque@{Torque}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{Torque}{Torque}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef \hyperlink{class_lie_algebra_dual}{Lie\+Algebra\+Dual}$<$Matrix$<$Scalar, 3, 1$>$ $>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::\hyperlink{class_wrench_base_a8fa1b5e32e8418247118cc24be70d68d}{Torque}}
+
+The type of the torque 
+
+Definition at line 53 of file Wrench.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_wrench_base_a83a6e7bdd6a189a404690657f8ba8b6f}{}\label{class_wrench_base_a83a6e7bdd6a189a404690657f8ba8b6f} 
+\index{Wrench\+Base@{Wrench\+Base}!change\+Frame@{change\+Frame}}
+\index{change\+Frame@{change\+Frame}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{change\+Frame()}{changeFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+template$<$class Rotation\+Derived $>$ \\
+\hyperlink{class_wrench}{Wrench}$<$Scalar$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::change\+Frame (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Quaternion$<$ Scalar $>$, Rotation\+Derived $>$ \&}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_wrench_base_a93689833f79db91100981b4a12a70f3b}{}\label{class_wrench_base_a93689833f79db91100981b4a12a70f3b} 
+\index{Wrench\+Base@{Wrench\+Base}!change\+Frame@{change\+Frame}}
+\index{change\+Frame@{change\+Frame}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{change\+Frame()}{changeFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+template$<$class Rotation\+Derived $>$ \\
+\hyperlink{class_wrench}{Wrench}$<$typename internal\+::traits$<$\hyperlink{class_wrench_base}{Wrench\+Base}$<$Derived$>$ $>$\+::Scalar$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::change\+Frame (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Quaternion$<$ Scalar $>$, Rotation\+Derived $>$ \&}]{rot }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 99 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a485dd3f045ae5e8f6709efb4c9e9dd2c}{}\label{class_wrench_base_a485dd3f045ae5e8f6709efb4c9e9dd2c} 
+\index{Wrench\+Base@{Wrench\+Base}!change\+Point@{change\+Point}}
+\index{change\+Point@{change\+Point}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{change\+Point()}{changePoint()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+template$<$class Other\+Derived $>$ \\
+\hyperlink{class_wrench}{Wrench}$<$Scalar$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::change\+Point (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Other\+Derived $>$ \&}]{point }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\hypertarget{class_wrench_base_ae0f1aceb90c2cd1e09d83e24462b6ce7}{}\label{class_wrench_base_ae0f1aceb90c2cd1e09d83e24462b6ce7} 
+\index{Wrench\+Base@{Wrench\+Base}!change\+Point@{change\+Point}}
+\index{change\+Point@{change\+Point}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{change\+Point()}{changePoint()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+template$<$class Other\+Derived $>$ \\
+\hyperlink{class_wrench}{Wrench}$<$typename internal\+::traits$<$\hyperlink{class_wrench_base}{Wrench\+Base}$<$Derived$>$ $>$\+::Scalar$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::change\+Point (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Other\+Derived $>$ \&}]{point }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 107 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_ab4883d6553bab8cbe99737b664cbbd31}{}\label{class_wrench_base_ab4883d6553bab8cbe99737b664cbbd31} 
+\index{Wrench\+Base@{Wrench\+Base}!fx@{fx}}
+\index{fx@{fx}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{fx()}{fx()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::fx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily fx} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a3d177354f7fd128d20f8086b7e071116}{}\label{class_wrench_base_a3d177354f7fd128d20f8086b7e071116} 
+\index{Wrench\+Base@{Wrench\+Base}!fx@{fx}}
+\index{fx@{fx}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{fx()}{fx()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar\& \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::fx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily fx} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a9cf08f34e7d12b9fda2cd521fbca527e}{}\label{class_wrench_base_a9cf08f34e7d12b9fda2cd521fbca527e} 
+\index{Wrench\+Base@{Wrench\+Base}!fy@{fy}}
+\index{fy@{fy}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{fy()}{fy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::fy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily fy} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a3e763c1e4c335d4f13e45a1a1a05c7f3}{}\label{class_wrench_base_a3e763c1e4c335d4f13e45a1a1a05c7f3} 
+\index{Wrench\+Base@{Wrench\+Base}!fy@{fy}}
+\index{fy@{fy}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{fy()}{fy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar\& \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::fy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily fy} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 77 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a045d6010d317ce4ee578bfcf1f0162c7}{}\label{class_wrench_base_a045d6010d317ce4ee578bfcf1f0162c7} 
+\index{Wrench\+Base@{Wrench\+Base}!fz@{fz}}
+\index{fz@{fz}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{fz()}{fz()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::fz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily tz} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a70511caf28052f4306021576a82690b9}{}\label{class_wrench_base_a70511caf28052f4306021576a82690b9} 
+\index{Wrench\+Base@{Wrench\+Base}!fz@{fz}}
+\index{fz@{fz}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{fz()}{fz()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar\& \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::fz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily tz} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a3c7a5e30eb3caafa7fc5d41899167f99}{}\label{class_wrench_base_a3c7a5e30eb3caafa7fc5d41899167f99} 
+\index{Wrench\+Base@{Wrench\+Base}!get\+Force@{get\+Force}}
+\index{get\+Force@{get\+Force}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{get\+Force()}{getForce()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Map$<$\hyperlink{class_wrench_base_aa589699bbf0d18c023a0a2fe6482b4a7}{Force}$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::get\+Force (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The accessor to the force 
+
+Definition at line 87 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_ad7a67b2a101a6ce7fdd5d526b403c366}{}\label{class_wrench_base_ad7a67b2a101a6ce7fdd5d526b403c366} 
+\index{Wrench\+Base@{Wrench\+Base}!get\+Force@{get\+Force}}
+\index{get\+Force@{get\+Force}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{get\+Force()}{getForce()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Map$<$const \hyperlink{class_wrench_base_aa589699bbf0d18c023a0a2fe6482b4a7}{Force}$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::get\+Force (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The read-\/only accessor to the force 
+
+Definition at line 89 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a98a8a8c4e950d4876d4d0ca572e85c6a}{}\label{class_wrench_base_a98a8a8c4e950d4876d4d0ca572e85c6a} 
+\index{Wrench\+Base@{Wrench\+Base}!get\+Torque@{get\+Torque}}
+\index{get\+Torque@{get\+Torque}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{get\+Torque()}{getTorque()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Map$<$\hyperlink{class_wrench_base_a8fa1b5e32e8418247118cc24be70d68d}{Torque}$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::get\+Torque (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The accessor to the torque 
+
+Definition at line 83 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_aeaa544c7a85fdb6e38af179b9dad68ab}{}\label{class_wrench_base_aeaa544c7a85fdb6e38af179b9dad68ab} 
+\index{Wrench\+Base@{Wrench\+Base}!get\+Torque@{get\+Torque}}
+\index{get\+Torque@{get\+Torque}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{get\+Torque()}{getTorque()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Map$<$const \hyperlink{class_wrench_base_a8fa1b5e32e8418247118cc24be70d68d}{Torque}$>$ \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::get\+Torque (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The read-\/only accessor to the torque 
+
+Definition at line 85 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a28eccf6ee6ec9a0e8ad6f0a130c17f0a}{}\label{class_wrench_base_a28eccf6ee6ec9a0e8ad6f0a130c17f0a} 
+\index{Wrench\+Base@{Wrench\+Base}!tx@{tx}}
+\index{tx@{tx}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{tx()}{tx()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::tx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily tx} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 56 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a6f0a892dcdd42565538c3a979550a0ef}{}\label{class_wrench_base_a6f0a892dcdd42565538c3a979550a0ef} 
+\index{Wrench\+Base@{Wrench\+Base}!tx@{tx}}
+\index{tx@{tx}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{tx()}{tx()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar\& \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::tx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily tx} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 69 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a7d574941740c725e035df6af20c0af6c}{}\label{class_wrench_base_a7d574941740c725e035df6af20c0af6c} 
+\index{Wrench\+Base@{Wrench\+Base}!ty@{ty}}
+\index{ty@{ty}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{ty()}{ty()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::ty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily ty} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 58 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_a304d93cdcd1b5aa6c40e2ef023ac4dc7}{}\label{class_wrench_base_a304d93cdcd1b5aa6c40e2ef023ac4dc7} 
+\index{Wrench\+Base@{Wrench\+Base}!ty@{ty}}
+\index{ty@{ty}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{ty()}{ty()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar\& \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::ty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily ty} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 71 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_accf6a99e5dd656d46a0e848add0c9e85}{}\label{class_wrench_base_accf6a99e5dd656d46a0e848add0c9e85} 
+\index{Wrench\+Base@{Wrench\+Base}!tz@{tz}}
+\index{tz@{tz}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{tz()}{tz()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::tz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily tz} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file Wrench.\+h.
+
+\hypertarget{class_wrench_base_af48dd83f4f8500515b199e42808232a9}{}\label{class_wrench_base_af48dd83f4f8500515b199e42808232a9} 
+\index{Wrench\+Base@{Wrench\+Base}!tz@{tz}}
+\index{tz@{tz}!Wrench\+Base@{Wrench\+Base}}
+\subsubsection{\texorpdfstring{tz()}{tz()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Scalar\& \hyperlink{class_wrench_base}{Wrench\+Base}$<$ Derived $>$\+::tz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily tz} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 73 of file Wrench.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_wrench_8h}{Wrench.\+h}\end{DoxyCompactItemize}

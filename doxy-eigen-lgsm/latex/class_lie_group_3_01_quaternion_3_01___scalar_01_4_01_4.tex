@@ -1,0 +1,281 @@
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4}{}\section{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$ Class Template Reference}
+\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4}\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+
+
+Class for S\+O(3) Lie Group.  
+
+
+
+
+{\ttfamily \#include $<$Lie\+Group\+\_\+\+S\+O3.\+h$>$}
+
+Inheritance diagram for Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \+\_\+\+Scalar \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}
+\item 
+typedef internal\+::traits$<$ \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} $>$ $>$ $>$\+::\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients} \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a0810d682a2a637aa77877e84695bc884}{Lie\+Group} ()
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a56d1bf6da37ec19a2e2857f5c982410a}{Lie\+Group} (const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ typename \hyperlink{class_lie_group_base_a895bed679f100c71c6dcbfd5532635b0}{Base\+::\+Base\+Type}, Other\+Derived $>$ \&g)
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a7126b500c3e732fd1eba547c03fdf34e}{Lie\+Group} (const \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients} \&g)
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ab91fa6322f5c3573fcff1b27a3c55d6f}{Lie\+Group} (const Angle\+Axis$<$ \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} $>$ \&aa)
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a0b505b5a4a7bc08f699a347b0ead4a4f}{Lie\+Group} (\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} w, const Matrix\+Base$<$ Other\+Derived $>$ \&vec)
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a19ea5d83094ec2d26d6e856d670b952d}{Lie\+Group} (const Matrix\+Base$<$ Derived $>$ \&other)
+\item 
+{\footnotesize template$<$typename Derived $>$ }\\\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ada8f3063710d6ef0737a43f0a6f55af2}{Lie\+Group} (const Matrix$<$ \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}, 4, 1 $>$ \&other)
+\item 
+\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ae14ff68d6699e47d32bedc863725ce40}{Lie\+Group} (\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} w, \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} x, \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} y, \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} z)
+\item 
+\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a6526f663ef495eab03b24a2a97ff6df2}{Lie\+Group} (\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} w, const Matrix$<$ \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}, 3, 1 $>$ \&v)
+\item 
+\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients} \& \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_aec4805ed17f1c1ce893bcfdd8776deb2}{get} ()
+\item 
+const \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients} \& \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a81591117317bb7817883ce137bae5ec3}{get} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Quaternion$<$ \+\_\+\+Scalar $>$, \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$ $>$ \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a08877e48ca8072baeeed20cedb358b8c}{Base}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients} \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a8bf670b6608a4fa3139244167131925f}{m\+\_\+coeffs}
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename \+\_\+\+Scalar$>$\newline
+class Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}
+
+Class for S\+O(3) Lie Group. 
+
+Definition of Lie\+Group$<$\+Quaternion$>$
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em \+\_\+\+Scalar} & the type of the underlying quaternion\\
+\hline
+\end{DoxyTemplParams}
+This class is a specialization of \hyperlink{class_lie_group}{Lie\+Group}. It adds specific constructor for S\+O(3).
+
+\begin{DoxySeeAlso}{See also}
+The methods are defined in \hyperlink{class_lie_group_base}{Lie\+Group\+Base} 
+\end{DoxySeeAlso}
+
+
+Definition at line 230 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a08877e48ca8072baeeed20cedb358b8c}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a08877e48ca8072baeeed20cedb358b8c} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Base@{Base}}
+\index{Base@{Base}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+typedef \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$Quaternion$<$\+\_\+\+Scalar$>$, \hyperlink{class_lie_group}{Lie\+Group}$<$Quaternion$<$\+\_\+\+Scalar$>$ $>$ $>$ \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a08877e48ca8072baeeed20cedb358b8c}{Base}\hspace{0.3cm}{\ttfamily [protected]}}
+
+The inherited class 
+
+Definition at line 235 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Coefficients@{Coefficients}}
+\index{Coefficients@{Coefficients}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Coefficients}{Coefficients}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+typedef internal\+::traits$<$\hyperlink{class_lie_group}{Lie\+Group}$<$Quaternion$<$\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}$>$ $>$ $>$\+::\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients} \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients}}
+
+the stored coefficients 
+
+Definition at line 240 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+typedef \+\_\+\+Scalar \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}}
+
+The coefficients type 
+
+Definition at line 238 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a0810d682a2a637aa77877e84695bc884}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a0810d682a2a637aa77877e84695bc884} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [1/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Default constructor 
+
+Definition at line 245 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a56d1bf6da37ec19a2e2857f5c982410a}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a56d1bf6da37ec19a2e2857f5c982410a} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [2/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$class Other\+Derived $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ typename \hyperlink{class_lie_group_base_a895bed679f100c71c6dcbfd5532635b0}{Base\+::\+Base\+Type}, Other\+Derived $>$ \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor 
+
+Definition at line 247 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a7126b500c3e732fd1eba547c03fdf34e}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a7126b500c3e732fd1eba547c03fdf34e} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [3/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients} \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor Copy constructor 
+
+Definition at line 251 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ab91fa6322f5c3573fcff1b27a3c55d6f}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ab91fa6322f5c3573fcff1b27a3c55d6f} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [4/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{const Angle\+Axis$<$ \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar} $>$ \&}]{aa }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 252 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a0b505b5a4a7bc08f699a347b0ead4a4f}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a0b505b5a4a7bc08f699a347b0ead4a4f} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [5/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$class Other\+Derived $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}}]{w,  }\item[{const Matrix\+Base$<$ Other\+Derived $>$ \&}]{vec }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs a element of S\+O(3) from a scalar {\ttfamily w} and a vector {\ttfamily vec}. The underlying quaternion is initialized with w, vec\mbox{[}0\mbox{]}, vec\mbox{[}1\mbox{]}, vec\mbox{[}2\mbox{]} 
+
+Definition at line 255 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a19ea5d83094ec2d26d6e856d670b952d}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a19ea5d83094ec2d26d6e856d670b952d} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [6/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Derived $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{const Matrix\+Base$<$ Derived $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+Intialize from rotation matrix 
+
+Definition at line 263 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ada8f3063710d6ef0737a43f0a6f55af2}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ada8f3063710d6ef0737a43f0a6f55af2} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [7/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+template$<$typename Derived $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{const Matrix$<$ \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}, 4, 1 $>$ \&}]{other }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+
+
+
+Definition at line 266 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ae14ff68d6699e47d32bedc863725ce40}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_ae14ff68d6699e47d32bedc863725ce40} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [8/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}}]{w,  }\item[{\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}}]{x,  }\item[{\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}}]{y,  }\item[{\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}}]{z }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Constructs and initializes the quaternion $ w+xi+yj+zk $ from its four coefficients {\itshape w}, {\itshape x}, {\itshape y} and {\itshape z}.
+
+\begin{DoxyWarning}{Warning}
+Note the order of the arguments\+: the real {\itshape w} coefficient first, while internally the coefficients are stored in the following order\+: \mbox{[}{\ttfamily x}, {\ttfamily y}, {\ttfamily z}, {\ttfamily w}\mbox{]} 
+\end{DoxyWarning}
+
+
+Definition at line 275 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a6526f663ef495eab03b24a2a97ff6df2}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a6526f663ef495eab03b24a2a97ff6df2} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!Lie\+Group@{Lie\+Group}}
+\index{Lie\+Group@{Lie\+Group}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{Lie\+Group()}{LieGroup()}\hspace{0.1cm}{\footnotesize\ttfamily [9/9]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::\hyperlink{class_lie_group}{Lie\+Group} (\begin{DoxyParamCaption}\item[{\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}}]{w,  }\item[{const Matrix$<$ \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a5c9cc4f61c2a1870f44da7951225dc4e}{Scalar}, 3, 1 $>$ \&}]{v }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 276 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_aec4805ed17f1c1ce893bcfdd8776deb2}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_aec4805ed17f1c1ce893bcfdd8776deb2} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!get@{get}}
+\index{get@{get}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients}\& \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The stored coefficients 
+\end{DoxyReturn}
+
+
+Definition at line 279 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a81591117317bb7817883ce137bae5ec3}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a81591117317bb7817883ce137bae5ec3} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!get@{get}}
+\index{get@{get}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+const \hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients}\& \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The read-\/only access to the stored coefficients 
+\end{DoxyReturn}
+
+
+Definition at line 281 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a8bf670b6608a4fa3139244167131925f}{}\label{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a8bf670b6608a4fa3139244167131925f} 
+\index{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}!m\+\_\+coeffs@{m\+\_\+coeffs}}
+\index{m\+\_\+coeffs@{m\+\_\+coeffs}!Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$@{Lie\+Group$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$}}
+\subsubsection{\texorpdfstring{m\+\_\+coeffs}{m\_coeffs}}
+{\footnotesize\ttfamily template$<$typename \+\_\+\+Scalar $>$ \\
+\hyperlink{class_lie_group_3_01_quaternion_3_01___scalar_01_4_01_4_a80504cfb3bcbf55c7d4c1e377ef9f782}{Coefficients} \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \+\_\+\+Scalar $>$ $>$\+::m\+\_\+coeffs\hspace{0.3cm}{\ttfamily [protected]}}
+
+The wrapped coefficients 
+
+Definition at line 285 of file Lie\+Group\+\_\+\+S\+O3.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_lie_group___s_o3_8h}{Lie\+Group\+\_\+\+S\+O3.\+h}\end{DoxyCompactItemize}

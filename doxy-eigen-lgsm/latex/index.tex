@@ -1,0 +1,35 @@
+\subsubsection*{Installation}
+
+
+\begin{DoxyCode}
+cd eigen\_lgsm
+mkdir build && cd build
+cmake ..
+sudo make install
+\end{DoxyCode}
+ To build the documentation, execute {\ttfamily cmake} with the following flag\+: 
+\begin{DoxyCode}
+cmake .. -DGENERATE\_DOCUMENTATION=ON
+\end{DoxyCode}
+ and run 
+\begin{DoxyCode}
+make doc
+\end{DoxyCode}
+ All documentation is written to {\ttfamily ./doc}. The homepage is at {\ttfamily ./doc/html/index.html}.
+
+\subsubsection*{C\+Make usage}
+
+
+\begin{DoxyCode}
+#find\_package(Eigen REQUIRED)
+find\_package(EigenLgsm REQUIRED)
+
+include\_directories(
+#   $\{Eigen\_INCLUDE\_DIRS\}
+    $\{EigenLgsm\_INCLUDE\_DIRS\}
+)
+\end{DoxyCode}
+
+
+\begin{quote}
+Note\+: You still need Eigen 3 installed in your system !\end{quote}

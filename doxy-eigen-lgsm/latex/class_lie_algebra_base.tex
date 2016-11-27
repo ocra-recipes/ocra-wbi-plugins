@@ -1,0 +1,202 @@
+\hypertarget{class_lie_algebra_base}{}\section{Lie\+Algebra\+Base$<$ A, Derived $>$ Class Template Reference}
+\label{class_lie_algebra_base}\index{Lie\+Algebra\+Base$<$ A, Derived $>$@{Lie\+Algebra\+Base$<$ A, Derived $>$}}
+
+
+{\ttfamily \#include $<$Lie\+Algebra.\+h$>$}
+
+Inheritance diagram for Lie\+Algebra\+Base$<$ A, Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_lie_algebra_base}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef A \hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type}
+\item 
+typedef internal\+::traits$<$ Derived $>$\+::\hyperlink{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{Coefficients} \hyperlink{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{Coefficients}
+\item 
+typedef \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ \hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type} $>$ \hyperlink{class_lie_algebra_base_a360d9c7789cab342ccfc3bff779aba6e}{Plain\+Object}
+\item 
+typedef \hyperlink{class_lie_algebra_dual}{Lie\+Algebra\+Dual}$<$ \hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type} $>$ \hyperlink{class_lie_algebra_base_a295c784d24a14e39763f3ff5c2abd155}{Algebra\+Dual}
+\item 
+typedef Derived\+::\+Lie\+Group \hyperlink{class_lie_algebra_base_aab4a5b7a728102ffe801534c0fc10d79}{Group}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\\hyperlink{class_lie_algebra_base_a360d9c7789cab342ccfc3bff779aba6e}{Plain\+Object} \hyperlink{class_lie_algebra_base_ab7969d13d46f11b7b769b9db48e67267}{bracket} (const \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ \hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type}, Other\+Derived $>$ \&a) const
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\const \hyperlink{class_lie_algebra_base_a360d9c7789cab342ccfc3bff779aba6e}{Plain\+Object} \hyperlink{class_lie_algebra_base_af1a16f8a8e2fdcb5c1529ffa3e7f2af9}{adjoint} (const \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ \hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type}, Other\+Derived $>$ \&a) const
+\item 
+\hyperlink{class_lie_algebra_base_aab4a5b7a728102ffe801534c0fc10d79}{Group} \hyperlink{class_lie_algebra_base_aafe7d43a29d43aed54dd91b3a3a4c9f7}{exp} (Scalar precision=1.e-\/6) const
+\item 
+const Derived \& \hyperlink{class_lie_algebra_base_a2d4fdcb29ba14871036418e90087b16e}{derived} () const
+\item 
+Derived \& \hyperlink{class_lie_algebra_base_aea14b5c74318541991d64eff30d8b1af}{derived} ()
+\item 
+\hyperlink{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{Coefficients} \& \hyperlink{class_lie_algebra_base_ae98f35321a261257a8aeee7d8388df2d}{get} ()
+\item 
+const \hyperlink{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{Coefficients} \& \hyperlink{class_lie_algebra_base_aa54c9478545ff1e222217a3bc19ec5d2}{get} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef Matrix\+Base$<$ Derived $>$ \hyperlink{class_lie_algebra_base_aa2d976fdcf8653f8a5a3f414e725a3e9}{Base}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class A, class Derived$>$\newline
+class Lie\+Algebra\+Base$<$ A, Derived $>$}
+
+
+
+Definition at line 34 of file Lie\+Algebra.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_lie_algebra_base_a295c784d24a14e39763f3ff5c2abd155}{}\label{class_lie_algebra_base_a295c784d24a14e39763f3ff5c2abd155} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!Algebra\+Dual@{Algebra\+Dual}}
+\index{Algebra\+Dual@{Algebra\+Dual}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{Algebra\+Dual}{AlgebraDual}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+typedef \hyperlink{class_lie_algebra_dual}{Lie\+Algebra\+Dual}$<$\hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type}$>$ \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::\hyperlink{class_lie_algebra_base_a295c784d24a14e39763f3ff5c2abd155}{Algebra\+Dual}}
+
+The type of the dual Algebra 
+
+Definition at line 53 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_base_aa2d976fdcf8653f8a5a3f414e725a3e9}{}\label{class_lie_algebra_base_aa2d976fdcf8653f8a5a3f414e725a3e9} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!Base@{Base}}
+\index{Base@{Base}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+typedef Matrix\+Base$<$Derived$>$ \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::\hyperlink{class_lie_algebra_base_aa2d976fdcf8653f8a5a3f414e725a3e9}{Base}\hspace{0.3cm}{\ttfamily [protected]}}
+
+The inherited class 
+
+Definition at line 37 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{}\label{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!Base\+Type@{Base\+Type}}
+\index{Base\+Type@{Base\+Type}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{Base\+Type}{BaseType}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+typedef A \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::\hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type}}
+
+The wrapped class 
+
+Definition at line 47 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{}\label{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!Coefficients@{Coefficients}}
+\index{Coefficients@{Coefficients}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{Coefficients}{Coefficients}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+typedef internal\+::traits$<$Derived$>$\+::\hyperlink{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{Coefficients} \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::\hyperlink{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{Coefficients}}
+
+The kind of stored coefficients 
+
+Definition at line 49 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_base_aab4a5b7a728102ffe801534c0fc10d79}{}\label{class_lie_algebra_base_aab4a5b7a728102ffe801534c0fc10d79} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!Group@{Group}}
+\index{Group@{Group}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{Group}{Group}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+typedef Derived\+::\+Lie\+Group \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::\hyperlink{class_lie_algebra_base_aab4a5b7a728102ffe801534c0fc10d79}{Group}}
+
+The type of the associated Lie Group 
+
+Definition at line 55 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_base_a360d9c7789cab342ccfc3bff779aba6e}{}\label{class_lie_algebra_base_a360d9c7789cab342ccfc3bff779aba6e} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!Plain\+Object@{Plain\+Object}}
+\index{Plain\+Object@{Plain\+Object}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{Plain\+Object}{PlainObject}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+typedef \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$\hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type}$>$ \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::\hyperlink{class_lie_algebra_base_a360d9c7789cab342ccfc3bff779aba6e}{Plain\+Object}}
+
+The plain object returned, while using Map$<$Lie\+Algebra$<$ $>$ $>$ 
+
+Definition at line 51 of file Lie\+Algebra.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_lie_algebra_base_af1a16f8a8e2fdcb5c1529ffa3e7f2af9}{}\label{class_lie_algebra_base_af1a16f8a8e2fdcb5c1529ffa3e7f2af9} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!adjoint@{adjoint}}
+\index{adjoint@{adjoint}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{adjoint()}{adjoint()}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+template$<$class Other\+Derived $>$ \\
+const \hyperlink{class_lie_algebra_base_a360d9c7789cab342ccfc3bff779aba6e}{Plain\+Object} \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::adjoint (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ \hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type}, Other\+Derived $>$ \&}]{a }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Adjoint representation of the Lie Algebra \hypertarget{class_lie_algebra_base_ab7969d13d46f11b7b769b9db48e67267}{}\label{class_lie_algebra_base_ab7969d13d46f11b7b769b9db48e67267} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!bracket@{bracket}}
+\index{bracket@{bracket}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{bracket()}{bracket()}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+template$<$class Other\+Derived $>$ \\
+\hyperlink{class_lie_algebra_base_a360d9c7789cab342ccfc3bff779aba6e}{Plain\+Object} \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::bracket (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ \hyperlink{class_lie_algebra_base_ae7884e2973ffa35f8b209b2831a066a1}{Base\+Type}, Other\+Derived $>$ \&}]{a }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Lie Bracket \hypertarget{class_lie_algebra_base_a2d4fdcb29ba14871036418e90087b16e}{}\label{class_lie_algebra_base_a2d4fdcb29ba14871036418e90087b16e} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!derived@{derived}}
+\index{derived@{derived}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+const Derived\& \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::derived (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The read-\/only accessor to the derived class 
+
+Definition at line 68 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_base_aea14b5c74318541991d64eff30d8b1af}{}\label{class_lie_algebra_base_aea14b5c74318541991d64eff30d8b1af} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!derived@{derived}}
+\index{derived@{derived}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{derived()}{derived()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+Derived\& \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::derived (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The accessor to the derived class 
+
+Definition at line 70 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_base_aafe7d43a29d43aed54dd91b3a3a4c9f7}{}\label{class_lie_algebra_base_aafe7d43a29d43aed54dd91b3a3a4c9f7} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!exp@{exp}}
+\index{exp@{exp}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{exp()}{exp()}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+\hyperlink{class_lie_algebra_base_aab4a5b7a728102ffe801534c0fc10d79}{Group} \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::exp (\begin{DoxyParamCaption}\item[{Scalar}]{precision = {\ttfamily 1.e-\/6} }\end{DoxyParamCaption}) const}
+
+\begin{DoxyReturn}{Returns}
+The element of the associated Lie Group through the exponential map 
+\end{DoxyReturn}
+\hypertarget{class_lie_algebra_base_ae98f35321a261257a8aeee7d8388df2d}{}\label{class_lie_algebra_base_ae98f35321a261257a8aeee7d8388df2d} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!get@{get}}
+\index{get@{get}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+\hyperlink{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{Coefficients}\& \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The stored coefficients 
+\end{DoxyReturn}
+\hypertarget{class_lie_algebra_base_aa54c9478545ff1e222217a3bc19ec5d2}{}\label{class_lie_algebra_base_aa54c9478545ff1e222217a3bc19ec5d2} 
+\index{Lie\+Algebra\+Base@{Lie\+Algebra\+Base}!get@{get}}
+\index{get@{get}!Lie\+Algebra\+Base@{Lie\+Algebra\+Base}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class A, class Derived$>$ \\
+const \hyperlink{class_lie_algebra_base_a8e61a02d3c5f7a0b4bd87a4ccd47dc9a}{Coefficients}\& \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, Derived $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The read-\/only access to the stored coefficients 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_lie_algebra_8h}{Lie\+Algebra.\+h}\end{DoxyCompactItemize}

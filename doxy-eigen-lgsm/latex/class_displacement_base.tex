@@ -1,0 +1,481 @@
+\hypertarget{class_displacement_base}{}\section{Displacement\+Base$<$ Derived $>$ Class Template Reference}
+\label{class_displacement_base}\index{Displacement\+Base$<$ Derived $>$@{Displacement\+Base$<$ Derived $>$}}
+
+
+Base class describing a rigid \hyperlink{class_displacement}{Displacement} or a 3D Frame position.  
+
+
+
+
+{\ttfamily \#include $<$Displacement.\+h$>$}
+
+Inheritance diagram for Displacement\+Base$<$ Derived $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_displacement_base}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef internal\+::traits$<$ Derived $>$\+::\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}
+\item 
+typedef \hyperlink{class_lie_group_base_a895bed679f100c71c6dcbfd5532635b0}{Base\+::\+Base\+Type} \hyperlink{class_displacement_base_ac2d1983c0f84aa8d974283e3a48a2434}{Base\+Type}
+\item 
+typedef \hyperlink{class_lie_group_base_a37b1d64048a2fa65b298801f6028c468}{Base\+::\+Plain\+Object} \hyperlink{class_displacement_base_aaa66ea6d4bdfcd9ca5fbfafbc66e78b9}{Plain\+Object}
+\item 
+typedef Matrix$<$ \hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}, 3, 1 $>$ \hyperlink{class_displacement_base_a0b5e3b97de6478fd98bf6aec9730d4c4}{Vector3}
+\item 
+typedef \hyperlink{class_lie_group}{Lie\+Group}$<$ Quaternion$<$ \hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} $>$ $>$ \hyperlink{class_displacement_base_aca59ea9e7f5fb3b67a489726bced7f4f}{Rotation3D}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Map$<$ \hyperlink{class_displacement_base_aca59ea9e7f5fb3b67a489726bced7f4f}{Rotation3D} $>$ \hyperlink{class_displacement_base_a76ac4502a930ddd52833d2561a13eeb5}{get\+Rotation} ()
+\item 
+const Map$<$ const \hyperlink{class_displacement_base_aca59ea9e7f5fb3b67a489726bced7f4f}{Rotation3D} $>$ \hyperlink{class_displacement_base_ad13124e677c2749a7d71c5cc53c2e6a1}{get\+Rotation} () const
+\item 
+Map$<$ \hyperlink{class_displacement_base_a0b5e3b97de6478fd98bf6aec9730d4c4}{Vector3} $>$ \hyperlink{class_displacement_base_a034ba0c1d519c12ceeac9e72d417efb6}{get\+Translation} ()
+\item 
+const Map$<$ const \hyperlink{class_displacement_base_a0b5e3b97de6478fd98bf6aec9730d4c4}{Vector3} $>$ \hyperlink{class_displacement_base_a1d62cf28e94f43eef14d111c54112913}{get\+Translation} () const
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base_ae2b6ce0d58e72f8d36942204303960c1}{x} () const
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base_ad23b504e3f85c99bd0a293aef8e823bf}{y} () const
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base_ac0d87fc13d3610e764501cd857178a9f}{z} () const
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base_ae37c8d2f1d0a6ca84550ab87dec7069d}{qx} () const
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base_af0016b6fed409308e531b4945d60b99a}{qy} () const
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base_a5fb14d5bda1d8531de6b6b2b05b52d5a}{qz} () const
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base_afc5d0180532098927ad33b2ad9b91ec4}{qw} () const
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \& \hyperlink{class_displacement_base_a1f29ca444e3e267eb8984cde3173d4e5}{x} ()
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \& \hyperlink{class_displacement_base_abe7f6f7ce47a153aec93e1b001bc700f}{y} ()
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \& \hyperlink{class_displacement_base_af542c09c615b88965d96397c546fcf16}{z} ()
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \& \hyperlink{class_displacement_base_a937faf4658311b1b17cd2e3b14ec8b15}{qx} ()
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \& \hyperlink{class_displacement_base_a89d0d16b7b3ea0d99f06278f83f1dc33}{qy} ()
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \& \hyperlink{class_displacement_base_a93797b5c38b58ef40d7c67b4cef86251}{qz} ()
+\item 
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \& \hyperlink{class_displacement_base_a45e45394e32c27e52e10f4a5299ed13c}{qw} ()
+\item 
+void \hyperlink{class_displacement_base_a04542993e46456ee93c5767ad51cd1ba}{set\+Random} ()
+\item 
+{\footnotesize template$<$typename New\+Scalar\+Type $>$ }\\internal\+::cast\+\_\+return\+\_\+type$<$ Derived, \hyperlink{class_displacement}{Displacement}$<$ New\+Scalar\+Type $>$ $>$\+::type \hyperlink{class_displacement_base_a75e8a8cccb491a6b73ef6b2e0dd7f5db}{cast} () const
+\item 
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_displacement_base}{Displacement\+Base} \& \hyperlink{class_displacement_base_a0fa68a3b52d098c1c9ba787e49de6fce}{operator=} (const typename \hyperlink{class_lie_group_base_a37b1d64048a2fa65b298801f6028c468}{Base\+::\+Plain\+Object} \&g)
+\item 
+Matrix$<$ \hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}, 4, 4 $>$ \hyperlink{class_displacement_base_a4e720f3f8dde2e04033ea120a0180ba1}{to\+Homogeneous\+Matrix} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$ Array$<$ \hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}, 7, 1 $>$, Derived $>$ \hyperlink{class_displacement_base_ae1eea29b955c12d84603ab1b81bfe3c4}{Base}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$class Other\+Derived $>$ }\\std\+::ostream \& \hyperlink{class_displacement_base_ae3b817959fb2c6e82221c44ff1f3c9d1}{operator$<$$<$} (std\+::ostream \&os, const \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Other\+Derived $>$ \&d)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class Derived$>$\newline
+class Displacement\+Base$<$ Derived $>$}
+
+Base class describing a rigid \hyperlink{class_displacement}{Displacement} or a 3D Frame position. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em Derived} & the derived class holding the coefficients which are of type Array$<$\+Scalar, 7, 1$>$ or Map$<$Array$<$\+Scalar, 7, 1$>$ $>$\\
+\hline
+\end{DoxyTemplParams}
+This class abstracts the underlying mathematical definition and add some accessors. It uses an Array internally to store its coefficients. 
+
+Definition at line 28 of file Displacement.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_displacement_base_ae1eea29b955c12d84603ab1b81bfe3c4}{}\label{class_displacement_base_ae1eea29b955c12d84603ab1b81bfe3c4} 
+\index{Displacement\+Base@{Displacement\+Base}!Base@{Base}}
+\index{Base@{Base}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef \hyperlink{class_lie_group_base}{Lie\+Group\+Base}$<$Array$<$\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}, 7, 1$>$, Derived$>$ \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::\hyperlink{class_displacement_base_ae1eea29b955c12d84603ab1b81bfe3c4}{Base}\hspace{0.3cm}{\ttfamily [protected]}}
+
+The inherited class 
+
+Definition at line 34 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_ac2d1983c0f84aa8d974283e3a48a2434}{}\label{class_displacement_base_ac2d1983c0f84aa8d974283e3a48a2434} 
+\index{Displacement\+Base@{Displacement\+Base}!Base\+Type@{Base\+Type}}
+\index{Base\+Type@{Base\+Type}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{Base\+Type}{BaseType}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef \hyperlink{class_lie_group_base_a895bed679f100c71c6dcbfd5532635b0}{Base\+::\+Base\+Type} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::\hyperlink{class_displacement_base_ac2d1983c0f84aa8d974283e3a48a2434}{Base\+Type}}
+
+The wrapped class (Array$<$\+Scalar, 7, 1$>$ 
+
+Definition at line 40 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_aaa66ea6d4bdfcd9ca5fbfafbc66e78b9}{}\label{class_displacement_base_aaa66ea6d4bdfcd9ca5fbfafbc66e78b9} 
+\index{Displacement\+Base@{Displacement\+Base}!Plain\+Object@{Plain\+Object}}
+\index{Plain\+Object@{Plain\+Object}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{Plain\+Object}{PlainObject}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef \hyperlink{class_lie_group_base_a37b1d64048a2fa65b298801f6028c468}{Base\+::\+Plain\+Object} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::\hyperlink{class_displacement_base_aaa66ea6d4bdfcd9ca5fbfafbc66e78b9}{Plain\+Object}}
+
+The plain object returned, while using Map$<$\+Displacement $>$ 
+
+Definition at line 42 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_aca59ea9e7f5fb3b67a489726bced7f4f}{}\label{class_displacement_base_aca59ea9e7f5fb3b67a489726bced7f4f} 
+\index{Displacement\+Base@{Displacement\+Base}!Rotation3D@{Rotation3D}}
+\index{Rotation3D@{Rotation3D}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{Rotation3D}{Rotation3D}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef \hyperlink{class_lie_group}{Lie\+Group}$<$Quaternion$<$\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}$>$ $>$ \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::\hyperlink{class_displacement_base_aca59ea9e7f5fb3b67a489726bced7f4f}{Rotation3D}}
+
+The type of the rotation part 
+
+Definition at line 47 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{}\label{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad} 
+\index{Displacement\+Base@{Displacement\+Base}!Scalar@{Scalar}}
+\index{Scalar@{Scalar}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{Scalar}{Scalar}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef internal\+::traits$<$Derived$>$\+::\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}}
+
+The coefficients type 
+
+Definition at line 31 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a0b5e3b97de6478fd98bf6aec9730d4c4}{}\label{class_displacement_base_a0b5e3b97de6478fd98bf6aec9730d4c4} 
+\index{Displacement\+Base@{Displacement\+Base}!Vector3@{Vector3}}
+\index{Vector3@{Vector3}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{Vector3}{Vector3}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+typedef Matrix$<$\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}, 3, 1$>$ \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::\hyperlink{class_displacement_base_a0b5e3b97de6478fd98bf6aec9730d4c4}{Vector3}}
+
+The type of the translation part 
+
+Definition at line 45 of file Displacement.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_displacement_base_a75e8a8cccb491a6b73ef6b2e0dd7f5db}{}\label{class_displacement_base_a75e8a8cccb491a6b73ef6b2e0dd7f5db} 
+\index{Displacement\+Base@{Displacement\+Base}!cast@{cast}}
+\index{cast@{cast}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{cast()}{cast()}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+template$<$typename New\+Scalar\+Type $>$ \\
+internal\+::cast\+\_\+return\+\_\+type$<$Derived, \hyperlink{class_displacement}{Displacement}$<$New\+Scalar\+Type$>$ $>$\+::type \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::cast (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+{\ttfamily $\ast$this} with scalar type casted to {\itshape New\+Scalar\+Type} 
+\end{DoxyReturn}
+Note that if {\itshape New\+Scalar\+Type} is equal to the current scalar type of {\ttfamily $\ast$this} then this function smartly returns a const reference to {\ttfamily $\ast$this}. 
+
+Definition at line 100 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a76ac4502a930ddd52833d2561a13eeb5}{}\label{class_displacement_base_a76ac4502a930ddd52833d2561a13eeb5} 
+\index{Displacement\+Base@{Displacement\+Base}!get\+Rotation@{get\+Rotation}}
+\index{get\+Rotation@{get\+Rotation}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{get\+Rotation()}{getRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Map$<$\hyperlink{class_displacement_base_aca59ea9e7f5fb3b67a489726bced7f4f}{Rotation3D}$>$ \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The accessor to the rotation part 
+
+Definition at line 50 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_ad13124e677c2749a7d71c5cc53c2e6a1}{}\label{class_displacement_base_ad13124e677c2749a7d71c5cc53c2e6a1} 
+\index{Displacement\+Base@{Displacement\+Base}!get\+Rotation@{get\+Rotation}}
+\index{get\+Rotation@{get\+Rotation}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{get\+Rotation()}{getRotation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+const Map$<$const \hyperlink{class_displacement_base_aca59ea9e7f5fb3b67a489726bced7f4f}{Rotation3D}$>$ \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::get\+Rotation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The read-\/only accessor to the rotation part 
+
+Definition at line 52 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a034ba0c1d519c12ceeac9e72d417efb6}{}\label{class_displacement_base_a034ba0c1d519c12ceeac9e72d417efb6} 
+\index{Displacement\+Base@{Displacement\+Base}!get\+Translation@{get\+Translation}}
+\index{get\+Translation@{get\+Translation}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{get\+Translation()}{getTranslation()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+Map$<$\hyperlink{class_displacement_base_a0b5e3b97de6478fd98bf6aec9730d4c4}{Vector3}$>$ \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::get\+Translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The accessor to the translation part 
+
+Definition at line 54 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a1d62cf28e94f43eef14d111c54112913}{}\label{class_displacement_base_a1d62cf28e94f43eef14d111c54112913} 
+\index{Displacement\+Base@{Displacement\+Base}!get\+Translation@{get\+Translation}}
+\index{get\+Translation@{get\+Translation}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{get\+Translation()}{getTranslation()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+const Map$<$const \hyperlink{class_displacement_base_a0b5e3b97de6478fd98bf6aec9730d4c4}{Vector3}$>$ \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::get\+Translation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+The read-\/only accessor to the translation part 
+
+Definition at line 56 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a0fa68a3b52d098c1c9ba787e49de6fce}{}\label{class_displacement_base_a0fa68a3b52d098c1c9ba787e49de6fce} 
+\index{Displacement\+Base@{Displacement\+Base}!operator=@{operator=}}
+\index{operator=@{operator=}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+E\+I\+G\+E\+N\+\_\+\+S\+T\+R\+O\+N\+G\+\_\+\+I\+N\+L\+I\+NE \hyperlink{class_displacement_base}{Displacement\+Base}\& \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::operator= (\begin{DoxyParamCaption}\item[{const typename \hyperlink{class_lie_group_base_a37b1d64048a2fa65b298801f6028c468}{Base\+::\+Plain\+Object} \&}]{g }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 106 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_afc5d0180532098927ad33b2ad9b91ec4}{}\label{class_displacement_base_afc5d0180532098927ad33b2ad9b91ec4} 
+\index{Displacement\+Base@{Displacement\+Base}!qw@{qw}}
+\index{qw@{qw}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{qw()}{qw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::qw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily qw} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 72 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a45e45394e32c27e52e10f4a5299ed13c}{}\label{class_displacement_base_a45e45394e32c27e52e10f4a5299ed13c} 
+\index{Displacement\+Base@{Displacement\+Base}!qw@{qw}}
+\index{qw@{qw}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{qw()}{qw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}\& \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::qw (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily qw} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 87 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_ae37c8d2f1d0a6ca84550ab87dec7069d}{}\label{class_displacement_base_ae37c8d2f1d0a6ca84550ab87dec7069d} 
+\index{Displacement\+Base@{Displacement\+Base}!qx@{qx}}
+\index{qx@{qx}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{qx()}{qx()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::qx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily qx} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 66 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a937faf4658311b1b17cd2e3b14ec8b15}{}\label{class_displacement_base_a937faf4658311b1b17cd2e3b14ec8b15} 
+\index{Displacement\+Base@{Displacement\+Base}!qx@{qx}}
+\index{qx@{qx}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{qx()}{qx()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}\& \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::qx (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily qx} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 81 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_af0016b6fed409308e531b4945d60b99a}{}\label{class_displacement_base_af0016b6fed409308e531b4945d60b99a} 
+\index{Displacement\+Base@{Displacement\+Base}!qy@{qy}}
+\index{qy@{qy}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{qy()}{qy()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::qy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily qy} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 68 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a89d0d16b7b3ea0d99f06278f83f1dc33}{}\label{class_displacement_base_a89d0d16b7b3ea0d99f06278f83f1dc33} 
+\index{Displacement\+Base@{Displacement\+Base}!qy@{qy}}
+\index{qy@{qy}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{qy()}{qy()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}\& \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::qy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily qy} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 83 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a5fb14d5bda1d8531de6b6b2b05b52d5a}{}\label{class_displacement_base_a5fb14d5bda1d8531de6b6b2b05b52d5a} 
+\index{Displacement\+Base@{Displacement\+Base}!qz@{qz}}
+\index{qz@{qz}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{qz()}{qz()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::qz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily qz} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 70 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a93797b5c38b58ef40d7c67b4cef86251}{}\label{class_displacement_base_a93797b5c38b58ef40d7c67b4cef86251} 
+\index{Displacement\+Base@{Displacement\+Base}!qz@{qz}}
+\index{qz@{qz}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{qz()}{qz()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}\& \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::qz (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily qz} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a04542993e46456ee93c5767ad51cd1ba}{}\label{class_displacement_base_a04542993e46456ee93c5767ad51cd1ba} 
+\index{Displacement\+Base@{Displacement\+Base}!set\+Random@{set\+Random}}
+\index{set\+Random@{set\+Random}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{set\+Random()}{setRandom()}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+void \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::set\+Random (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 89 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a4e720f3f8dde2e04033ea120a0180ba1}{}\label{class_displacement_base_a4e720f3f8dde2e04033ea120a0180ba1} 
+\index{Displacement\+Base@{Displacement\+Base}!to\+Homogeneous\+Matrix@{to\+Homogeneous\+Matrix}}
+\index{to\+Homogeneous\+Matrix@{to\+Homogeneous\+Matrix}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{to\+Homogeneous\+Matrix()}{toHomogeneousMatrix()}}
+{\footnotesize\ttfamily template$<$class Derived $>$ \\
+Matrix$<$ typename internal\+::traits$<$ Derived $>$\+::\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}, 4, 4 $>$ \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::to\+Homogeneous\+Matrix (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 119 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_ae2b6ce0d58e72f8d36942204303960c1}{}\label{class_displacement_base_ae2b6ce0d58e72f8d36942204303960c1} 
+\index{Displacement\+Base@{Displacement\+Base}!x@{x}}
+\index{x@{x}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{x()}{x()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily x} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 60 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_a1f29ca444e3e267eb8984cde3173d4e5}{}\label{class_displacement_base_a1f29ca444e3e267eb8984cde3173d4e5} 
+\index{Displacement\+Base@{Displacement\+Base}!x@{x}}
+\index{x@{x}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{x()}{x()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}\& \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::x (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily x} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_ad23b504e3f85c99bd0a293aef8e823bf}{}\label{class_displacement_base_ad23b504e3f85c99bd0a293aef8e823bf} 
+\index{Displacement\+Base@{Displacement\+Base}!y@{y}}
+\index{y@{y}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{y()}{y()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily y} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 62 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_abe7f6f7ce47a153aec93e1b001bc700f}{}\label{class_displacement_base_abe7f6f7ce47a153aec93e1b001bc700f} 
+\index{Displacement\+Base@{Displacement\+Base}!y@{y}}
+\index{y@{y}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{y()}{y()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}\& \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::y (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily y} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 77 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_ac0d87fc13d3610e764501cd857178a9f}{}\label{class_displacement_base_ac0d87fc13d3610e764501cd857178a9f} 
+\index{Displacement\+Base@{Displacement\+Base}!z@{z}}
+\index{z@{z}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{z()}{z()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar} \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::z (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+the {\ttfamily z} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 64 of file Displacement.\+h.
+
+\hypertarget{class_displacement_base_af542c09c615b88965d96397c546fcf16}{}\label{class_displacement_base_af542c09c615b88965d96397c546fcf16} 
+\index{Displacement\+Base@{Displacement\+Base}!z@{z}}
+\index{z@{z}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{z()}{z()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+\hyperlink{class_displacement_base_a978caf313131fd9d221a856a2e4a80ad}{Scalar}\& \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Derived $>$\+::z (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+a reference to the {\ttfamily z} coefficient 
+\end{DoxyReturn}
+
+
+Definition at line 79 of file Displacement.\+h.
+
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_displacement_base_ae3b817959fb2c6e82221c44ff1f3c9d1}{}\label{class_displacement_base_ae3b817959fb2c6e82221c44ff1f3c9d1} 
+\index{Displacement\+Base@{Displacement\+Base}!operator$<$$<$@{operator$<$$<$}}
+\index{operator$<$$<$@{operator$<$$<$}!Displacement\+Base@{Displacement\+Base}}
+\subsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
+{\footnotesize\ttfamily template$<$class Derived$>$ \\
+template$<$class Other\+Derived $>$ \\
+std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{os,  }\item[{const \hyperlink{class_displacement_base}{Displacement\+Base}$<$ Other\+Derived $>$ \&}]{d }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+Outputs to the given stream \+: order \+: w x y z (it\textquotesingle{}s different from the storage order) 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_displacement_8h}{Displacement.\+h}\end{DoxyCompactItemize}

@@ -1,0 +1,148 @@
+\hypertarget{class_lie_algebra}{}\section{Lie\+Algebra$<$ A $>$ Class Template Reference}
+\label{class_lie_algebra}\index{Lie\+Algebra$<$ A $>$@{Lie\+Algebra$<$ A $>$}}
+
+
+Class describing an element of a Lie Algebra.  
+
+
+
+
+{\ttfamily \#include $<$Lie\+Algebra.\+h$>$}
+
+Inheritance diagram for Lie\+Algebra$<$ A $>$\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_lie_algebra}
+\end{center}
+\end{figure}
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef internal\+::traits$<$ \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$ $>$\+::\hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients} \hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lie_algebra_ac04b1456c7a78d070a6672b8f7989197}{Lie\+Algebra} (const \hyperlink{class_lie_algebra}{Lie\+Algebra} \&)
+\item 
+\hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients} \& \hyperlink{class_lie_algebra_a5d64201eddce6b2124890c26a684fc8f}{get} ()
+\item 
+const \hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients} \& \hyperlink{class_lie_algebra_aa90c4e53102c2376bf24af1cb4f0112c}{get} () const
+\end{DoxyCompactItemize}
+\subsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$ A, \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$ $>$ \hyperlink{class_lie_algebra_a28bc019eb9b070751abe554b0de567f4}{Base}
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients} \hyperlink{class_lie_algebra_a00c8e1711af4458171c63741aec83ffc}{m\+\_\+coeffs}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$class A$>$\newline
+class Lie\+Algebra$<$ A $>$}
+
+Class describing an element of a Lie Algebra. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em A} & the wrapped class\\
+\hline
+\end{DoxyTemplParams}
+This class must be specialized to add new constructors for a specific algebra.
+
+\begin{DoxySeeAlso}{See also}
+The methods are defined in \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base} 
+\end{DoxySeeAlso}
+
+
+Definition at line 168 of file Lie\+Algebra.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_lie_algebra_a28bc019eb9b070751abe554b0de567f4}{}\label{class_lie_algebra_a28bc019eb9b070751abe554b0de567f4} 
+\index{Lie\+Algebra@{Lie\+Algebra}!Base@{Base}}
+\index{Base@{Base}!Lie\+Algebra@{Lie\+Algebra}}
+\subsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily template$<$class A $>$ \\
+typedef \hyperlink{class_lie_algebra_base}{Lie\+Algebra\+Base}$<$A, \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$A$>$ $>$ \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$\+::\hyperlink{class_lie_algebra_a28bc019eb9b070751abe554b0de567f4}{Base}\hspace{0.3cm}{\ttfamily [protected]}}
+
+Inherited class 
+
+Definition at line 171 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{}\label{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb} 
+\index{Lie\+Algebra@{Lie\+Algebra}!Coefficients@{Coefficients}}
+\index{Coefficients@{Coefficients}!Lie\+Algebra@{Lie\+Algebra}}
+\subsubsection{\texorpdfstring{Coefficients}{Coefficients}}
+{\footnotesize\ttfamily template$<$class A $>$ \\
+typedef internal\+::traits$<$\hyperlink{class_lie_algebra}{Lie\+Algebra}$<$A$>$ $>$\+::\hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients} \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$\+::\hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients}}
+
+The stored coefficients 
+
+Definition at line 179 of file Lie\+Algebra.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_lie_algebra_ac04b1456c7a78d070a6672b8f7989197}{}\label{class_lie_algebra_ac04b1456c7a78d070a6672b8f7989197} 
+\index{Lie\+Algebra@{Lie\+Algebra}!Lie\+Algebra@{Lie\+Algebra}}
+\index{Lie\+Algebra@{Lie\+Algebra}!Lie\+Algebra@{Lie\+Algebra}}
+\subsubsection{\texorpdfstring{Lie\+Algebra()}{LieAlgebra()}}
+{\footnotesize\ttfamily template$<$class A $>$ \\
+\hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$\+::\hyperlink{class_lie_algebra}{Lie\+Algebra} (\begin{DoxyParamCaption}\item[{const \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$ \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Copy constructor \+: do nothing 
+
+\subsection{Member Function Documentation}
+\hypertarget{class_lie_algebra_a5d64201eddce6b2124890c26a684fc8f}{}\label{class_lie_algebra_a5d64201eddce6b2124890c26a684fc8f} 
+\index{Lie\+Algebra@{Lie\+Algebra}!get@{get}}
+\index{get@{get}!Lie\+Algebra@{Lie\+Algebra}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily template$<$class A $>$ \\
+\hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients}\& \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The stored coefficients 
+\end{DoxyReturn}
+
+
+Definition at line 185 of file Lie\+Algebra.\+h.
+
+\hypertarget{class_lie_algebra_aa90c4e53102c2376bf24af1cb4f0112c}{}\label{class_lie_algebra_aa90c4e53102c2376bf24af1cb4f0112c} 
+\index{Lie\+Algebra@{Lie\+Algebra}!get@{get}}
+\index{get@{get}!Lie\+Algebra@{Lie\+Algebra}}
+\subsubsection{\texorpdfstring{get()}{get()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily template$<$class A $>$ \\
+const \hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients}\& \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$\+::get (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\begin{DoxyReturn}{Returns}
+The read-\/only access to the stored coefficients 
+\end{DoxyReturn}
+
+
+Definition at line 187 of file Lie\+Algebra.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_lie_algebra_a00c8e1711af4458171c63741aec83ffc}{}\label{class_lie_algebra_a00c8e1711af4458171c63741aec83ffc} 
+\index{Lie\+Algebra@{Lie\+Algebra}!m\+\_\+coeffs@{m\+\_\+coeffs}}
+\index{m\+\_\+coeffs@{m\+\_\+coeffs}!Lie\+Algebra@{Lie\+Algebra}}
+\subsubsection{\texorpdfstring{m\+\_\+coeffs}{m\_coeffs}}
+{\footnotesize\ttfamily template$<$class A $>$ \\
+\hyperlink{class_lie_algebra_a366fde92cd31cf93be87fe82952c8ebb}{Coefficients} \hyperlink{class_lie_algebra}{Lie\+Algebra}$<$ A $>$\+::m\+\_\+coeffs\hspace{0.3cm}{\ttfamily [protected]}}
+
+The wrapped coefficients 
+
+Definition at line 191 of file Lie\+Algebra.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_lie_algebra_8h}{Lie\+Algebra.\+h}\end{DoxyCompactItemize}

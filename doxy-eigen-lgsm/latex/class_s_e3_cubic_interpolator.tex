@@ -1,0 +1,198 @@
+\hypertarget{class_s_e3_cubic_interpolator}{}\section{S\+E3\+Cubic\+Interpolator$<$ Scalar $>$ Class Template Reference}
+\label{class_s_e3_cubic_interpolator}\index{S\+E3\+Cubic\+Interpolator$<$ Scalar $>$@{S\+E3\+Cubic\+Interpolator$<$ Scalar $>$}}
+
+
+{\ttfamily \#include $<$S\+E3\+Cubic\+Interpolator.\+h$>$}
+
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+typedef std\+::vector$<$ \hyperlink{class_displacement}{Displacement}$<$ Scalar $>$, aligned\+\_\+allocator$<$ \hyperlink{class_displacement}{Displacement}$<$ Scalar $>$ $>$ $>$ \hyperlink{class_s_e3_cubic_interpolator_ad6c935ddaa217d370411c200321dc089}{Std\+Vector\+Displacement}
+\item 
+typedef std\+::vector$<$ \hyperlink{class_twist}{Twist}$<$ Scalar $>$, aligned\+\_\+allocator$<$ \hyperlink{class_twist}{Twist}$<$ Scalar $>$ $>$ $>$ \hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_s_e3_cubic_interpolator_a17856cd852a2260ea88169617997b02e}{S\+E3\+Cubic\+Interpolator} ()
+\item 
+void \hyperlink{class_s_e3_cubic_interpolator_aa070ccd623a41b2eb12b6513aab14021}{set\+Control\+Point} (const \hyperlink{class_s_e3_cubic_interpolator_ad6c935ddaa217d370411c200321dc089}{Std\+Vector\+Displacement} \&control\+Points, const \hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \&control\+Velocities, const std\+::vector$<$ Scalar $>$ \&\hyperlink{class_s_e3_cubic_interpolator_ad8083c34a619f3cb55f35ccaffeb6154}{t})
+\item 
+void \hyperlink{class_s_e3_cubic_interpolator_aebb1a7f9c3123cd3df8cec6d9dc5a72a}{Interpolate} (\hyperlink{class_displacement}{Displacement}$<$ Scalar $>$ \&pos, \hyperlink{class_twist}{Twist}$<$ Scalar $>$ \&vel, const Scalar time) const
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::vector$<$ Scalar $>$ \hyperlink{class_s_e3_cubic_interpolator_ad8083c34a619f3cb55f35ccaffeb6154}{t}
+\item 
+\hyperlink{class_displacement}{Displacement}$<$ Scalar $>$ \hyperlink{class_s_e3_cubic_interpolator_a57ac720f2b715a74d29472dc9ba4e6f5}{H1}
+\item 
+\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \hyperlink{class_s_e3_cubic_interpolator_ab1e8c4aa3aaef4fee220e7ef50f493c1}{ksi}
+\item 
+\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \hyperlink{class_s_e3_cubic_interpolator_ad54c52fb731ed48fcebab82d2d6c1c57}{bi}
+\item 
+\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \hyperlink{class_s_e3_cubic_interpolator_a45865a05f0ce3a10cfc69b992bee971e}{ci}
+\item 
+\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \hyperlink{class_s_e3_cubic_interpolator_ac2edcd8d93807db3f241d49390a2e3dc}{di}
+\item 
+size\+\_\+t \hyperlink{class_s_e3_cubic_interpolator_a9294008dfdce440c453807ff4f6fee23}{n}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\subsubsection*{template$<$typename Scalar$>$\newline
+class S\+E3\+Cubic\+Interpolator$<$ Scalar $>$}
+
+
+
+Definition at line 22 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+
+
+\subsection{Member Typedef Documentation}
+\hypertarget{class_s_e3_cubic_interpolator_ad6c935ddaa217d370411c200321dc089}{}\label{class_s_e3_cubic_interpolator_ad6c935ddaa217d370411c200321dc089} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!Std\+Vector\+Displacement@{Std\+Vector\+Displacement}}
+\index{Std\+Vector\+Displacement@{Std\+Vector\+Displacement}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{Std\+Vector\+Displacement}{StdVectorDisplacement}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+typedef std\+::vector$<$\hyperlink{class_displacement}{Displacement}$<$Scalar$>$, aligned\+\_\+allocator$<$\hyperlink{class_displacement}{Displacement}$<$Scalar$>$ $>$ $>$ \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::\hyperlink{class_s_e3_cubic_interpolator_ad6c935ddaa217d370411c200321dc089}{Std\+Vector\+Displacement}}
+
+
+
+Definition at line 24 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+\hypertarget{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{}\label{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!Std\+Vector\+Twist@{Std\+Vector\+Twist}}
+\index{Std\+Vector\+Twist@{Std\+Vector\+Twist}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{Std\+Vector\+Twist}{StdVectorTwist}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+typedef std\+::vector$<$\hyperlink{class_twist}{Twist}$<$Scalar$>$, aligned\+\_\+allocator$<$\hyperlink{class_twist}{Twist}$<$Scalar$>$ $>$ $>$ \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist}}
+
+
+
+Definition at line 25 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_s_e3_cubic_interpolator_a17856cd852a2260ea88169617997b02e}{}\label{class_s_e3_cubic_interpolator_a17856cd852a2260ea88169617997b02e} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{S\+E3\+Cubic\+Interpolator()}{SE3CubicInterpolator()}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::\hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Definition at line 27 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_s_e3_cubic_interpolator_aebb1a7f9c3123cd3df8cec6d9dc5a72a}{}\label{class_s_e3_cubic_interpolator_aebb1a7f9c3123cd3df8cec6d9dc5a72a} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!Interpolate@{Interpolate}}
+\index{Interpolate@{Interpolate}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{Interpolate()}{Interpolate()}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+void \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::Interpolate (\begin{DoxyParamCaption}\item[{\hyperlink{class_displacement}{Displacement}$<$ Scalar $>$ \&}]{pos,  }\item[{\hyperlink{class_twist}{Twist}$<$ Scalar $>$ \&}]{vel,  }\item[{const Scalar}]{time }\end{DoxyParamCaption}) const}
+
+
+
+Definition at line 121 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+\hypertarget{class_s_e3_cubic_interpolator_aa070ccd623a41b2eb12b6513aab14021}{}\label{class_s_e3_cubic_interpolator_aa070ccd623a41b2eb12b6513aab14021} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!set\+Control\+Point@{set\+Control\+Point}}
+\index{set\+Control\+Point@{set\+Control\+Point}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{set\+Control\+Point()}{setControlPoint()}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+void \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::set\+Control\+Point (\begin{DoxyParamCaption}\item[{const \hyperlink{class_s_e3_cubic_interpolator_ad6c935ddaa217d370411c200321dc089}{Std\+Vector\+Displacement} \&}]{control\+Points,  }\item[{const \hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \&}]{control\+Velocities,  }\item[{const std\+::vector$<$ Scalar $>$ \&}]{t }\end{DoxyParamCaption})}
+
+
+
+Definition at line 43 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_s_e3_cubic_interpolator_ad54c52fb731ed48fcebab82d2d6c1c57}{}\label{class_s_e3_cubic_interpolator_ad54c52fb731ed48fcebab82d2d6c1c57} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!bi@{bi}}
+\index{bi@{bi}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{bi}{bi}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::bi\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 38 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+\hypertarget{class_s_e3_cubic_interpolator_a45865a05f0ce3a10cfc69b992bee971e}{}\label{class_s_e3_cubic_interpolator_a45865a05f0ce3a10cfc69b992bee971e} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!ci@{ci}}
+\index{ci@{ci}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{ci}{ci}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::ci\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 38 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+\hypertarget{class_s_e3_cubic_interpolator_ac2edcd8d93807db3f241d49390a2e3dc}{}\label{class_s_e3_cubic_interpolator_ac2edcd8d93807db3f241d49390a2e3dc} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!di@{di}}
+\index{di@{di}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{di}{di}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::di\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 38 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+\hypertarget{class_s_e3_cubic_interpolator_a57ac720f2b715a74d29472dc9ba4e6f5}{}\label{class_s_e3_cubic_interpolator_a57ac720f2b715a74d29472dc9ba4e6f5} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!H1@{H1}}
+\index{H1@{H1}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{H1}{H1}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\hyperlink{class_displacement}{Displacement}$<$Scalar$>$ \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::H1\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 36 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+\hypertarget{class_s_e3_cubic_interpolator_ab1e8c4aa3aaef4fee220e7ef50f493c1}{}\label{class_s_e3_cubic_interpolator_ab1e8c4aa3aaef4fee220e7ef50f493c1} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!ksi@{ksi}}
+\index{ksi@{ksi}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{ksi}{ksi}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+\hyperlink{class_s_e3_cubic_interpolator_ae70acde9b57ec38aaf1eaeee50bb35c5}{Std\+Vector\+Twist} \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::ksi\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 37 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+\hypertarget{class_s_e3_cubic_interpolator_a9294008dfdce440c453807ff4f6fee23}{}\label{class_s_e3_cubic_interpolator_a9294008dfdce440c453807ff4f6fee23} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!n@{n}}
+\index{n@{n}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{n}{n}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+size\+\_\+t \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::n\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 39 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+\hypertarget{class_s_e3_cubic_interpolator_ad8083c34a619f3cb55f35ccaffeb6154}{}\label{class_s_e3_cubic_interpolator_ad8083c34a619f3cb55f35ccaffeb6154} 
+\index{S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}!t@{t}}
+\index{t@{t}!S\+E3\+Cubic\+Interpolator@{S\+E3\+Cubic\+Interpolator}}
+\subsubsection{\texorpdfstring{t}{t}}
+{\footnotesize\ttfamily template$<$typename Scalar $>$ \\
+std\+::vector$<$Scalar$>$ \hyperlink{class_s_e3_cubic_interpolator}{S\+E3\+Cubic\+Interpolator}$<$ Scalar $>$\+::t\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line 35 of file S\+E3\+Cubic\+Interpolator.\+h.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/\+Ryan/\+Code/codyco-\/superbuild/libraries/\+Eigen\+Lgsm/unsupported/\+Eigen/src/\+Lgsm/\hyperlink{_s_e3_cubic_interpolator_8h}{S\+E3\+Cubic\+Interpolator.\+h}\end{DoxyCompactItemize}
