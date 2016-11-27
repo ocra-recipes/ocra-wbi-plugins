@@ -12,5 +12,12 @@
 		"url-documentation": "/doxy-ocra-wbi-plugins/html/index.html",
 		"url-source-code": "https://github.com/ocra-recipes/ocra-wbi-plugins",
 		"date": "Oct 2016"
+	},
+	{
+		"name": "eigen-lgsm source",
+		"image": "lgsm.png",
+		"url-documentation": "/doxy-eigen-lgsm/html/index.html",
+		"url-source-code": "https://github.com/ocra-recipes/eigen_lgsm",
+		"date": "Nov 2016"
 	}
 ]
