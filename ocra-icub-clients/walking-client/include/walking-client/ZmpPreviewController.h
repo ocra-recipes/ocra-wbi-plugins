@@ -7,6 +7,8 @@
  *
  *  \author Jorhabib Eljaik
  *
+ *  \cite ibanezThesis2015
+ *
  *  \details Given a rough ZMP trajectory and a corresponding consistent CoM velocity, this class computes at a fast rate optimal CoM jerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoM tracking objective in order to minimize the error over a preview horizon to reference CoM velocities. This preview controller solves with
  
  \f[
@@ -65,33 +67,17 @@ public:
     bool computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::Vector2d hk, Eigen::VectorXd &optimalU);
     
     /**
-     *  Builds Ah. Called during the member list initialization of the constructor of this class.
-     \f[
-     \mathbf{A_h} = \left[ \begin{array}{ccc}
-     1  & \delta t  &  \delta t^2/2 \\
-     0  &     1     &  \delta t     \\
-     0  &     0     &      1
-     \end{array} \right]
-     \f]
+     *  Builds \f$A_h\f$. Called during the member list initialization of the constructor of this class.
      *
      *  @param dt Thread period in which this classed in instantiated.
-     *
      *  @return The constant matrix Ah.
      */
     Eigen::MatrixXd buildAh(const double dt);
     
     /**
-     *  Builds Bh. Called during the member list initialization of the constructor of this class.
-     \f[
-     \mathbf{B_h} = \left[ \begin{array}{c}
-     \delta^3/6 \\
-     \delta t^2/2     \\
-     \delta t
-     \end{array} \right]
-     \f]
+     *  Builds \f$B_h\f$. Called during the member list initialization of the constructor of this class.
      *
      *  @param dt Thread period in which this classed in instantiated.
-     *
      *  @return The constant matrix Bh.
      */
     Eigen::MatrixXd buildBh(const double dt);
@@ -102,7 +88,7 @@ public:
      *  @param cz Constant COM height.
      *  @param g  Constant gravity acceleration (m^2/s)
      *
-     *  @return Cp
+     *  @return \f$C_p\f$
      */
     Eigen::MatrixXd buildCp(const double cz, const double g);
     
@@ -234,9 +220,9 @@ private:
      *  State matrix \f$\mathbf{A}_h\f$ from the linear state process of the COM state \f$\hat{\mathbf{h}}\f$. It is a constant matrix of size \f$6\times6\f$ equal to:
      \f[
      \mathbf{A_h} = \left[ \begin{array}{ccc}
-     1  & \delta t  &  \delta t^2/2 \\
-     0  &     1     &  \delta t     \\
-     0  &     0     &      1
+     \mathbf{I}_2  & \delta t \mathbf{I}_2  &  \frac{\delta t^2}{2} \mathbf{I}_2 \\
+     0  &     \mathbf{I}_2     &  \delta t     \\
+     0  &     0     &      \mathbf{I}_2
      \end{array} \right]
      \f]
      */
@@ -255,9 +241,11 @@ private:
     /**
      *  Output matrix \f$C_p\f$ from the linear state process relating ZMP to the CoM dynamics \f$\hat{\mathbf{h}}\f$. It is time-invariant of size \f$2\times6\f$ and equal to:
      \f[
-     \mathbf{C}_p = \left[\begin{array}{ccc}
-     1  &  0  & -c_z/g
-     \end{array}\right]
+     \mathbf{B_h} = \left[ \begin{array}{c}
+     \frac{\delta^3}{6}\mathbf{I}_2 \\
+     \frac{\delta t^2}{2} \mathbf{I}_2     \\
+     \delta t \mathbf{I}_2
+     \end{array} \right]
      \f]
      */
     const Eigen::MatrixXd Cp;
@@ -288,13 +276,13 @@ private:
      *  Output matrix of the COM linear process state transition where the COM horizontal velocity is the output. It is of size \f$2\times6\f$ and equal to:
      \f[
      \mathbf{C}_h = \left[\begin{array}{ccc}
-     \mathbf{0}  &  \mathbf{1}  &   \mathbf{0} \\
+     \mathbf{0}_2  &  \mathbf{I}_2  &   \mathbf{0}_2 \\
      \end{array}\right]
      \f]
      */
     const Eigen::MatrixXd Ch;
     /**
-     *  State matrix \f$\mathbf{G}_h\f$  of size \f$2N_c \times 6\f$from the preview horizon of COM velocities. It is constant and equal to:
+     *  State matrix \f$\mathbf{G}_h\f$  of size \f$2N_c \times 6\f$ from the preview horizon of COM velocities. It is constant and equal to:
      \f[
      \mathbf{G}_p = \left[\begin{array}{c}
      \mathbf{C}_h\mathbf{A}_h \\
@@ -351,8 +339,8 @@ struct ZmpPreviewParams {
      *  Helper function to transform Pr or Hr into a serialized vector of references.
      *
      *  @param ref vector of Nc references.
-     *
      *  @return Serialized references in one single column vector.
+     *  @note Currently unused.
      */
     Eigen::MatrixXd serializeReference(std::vector<Eigen::Vector2d> ref) {
         Eigen::MatrixXd output;
