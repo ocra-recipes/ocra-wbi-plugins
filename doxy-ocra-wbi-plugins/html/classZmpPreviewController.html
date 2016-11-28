@@ -237,12 +237,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Builds Ah. Called during the member list initialization of the constructor of this class. </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 &amp; \delta t &amp; \delta t^2/2 \\ 0 &amp; 1 &amp; \delta t \\ 0 &amp; 0 &amp; 1 \end{array} \right] \]" src="form_28.png"/>
-</p>
+<p>Builds <img class="formulaInl" alt="$A_h$" src="form_12.png"/>. Called during the member list initialization of the constructor of this class.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dt</td><td><a class="el" href="classThread.html" title="The meat and potatoes of the controller server. ">Thread</a> period in which this classed in instantiated.</td></tr>
+    <tr><td class="paramname">dt</td><td><a class="el" href="classThread.html" title="The meat and potatoes of the controller server. ">Thread</a> period in which this classed in instantiated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -265,12 +263,10 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Builds Bh. Called during the member list initialization of the constructor of this class. </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \]" src="form_29.png"/>
-</p>
+<p>Builds <img class="formulaInl" alt="$B_h$" src="form_13.png"/>. Called during the member list initialization of the constructor of this class.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">dt</td><td><a class="el" href="classThread.html" title="The meat and potatoes of the controller server. ">Thread</a> period in which this classed in instantiated.</td></tr>
+    <tr><td class="paramname">dt</td><td><a class="el" href="classThread.html" title="The meat and potatoes of the controller server. ">Thread</a> period in which this classed in instantiated. </td></tr>
   </table>
   </dd>
 </dl>
@@ -330,7 +326,7 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Cp </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$C_p$" src="form_30.png"/> </dd></dl>
 
 </div>
 </div>
@@ -726,7 +722,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>State matrix <img class="formulaInl" alt="$\mathbf{A}_h$" src="form_15.png"/> from the linear state process of the COM state <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is a constant matrix of size <img class="formulaInl" alt="$6\times6$" src="form_52.png"/> equal to: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 &amp; \delta t &amp; \delta t^2/2 \\ 0 &amp; 1 &amp; \delta t \\ 0 &amp; 0 &amp; 1 \end{array} \right] \]" src="form_28.png"/>
+<img class="formulaDsp" alt="\[ \mathbf{A_h} = \left[ \begin{array}{ccc} \mathbf{I}_2 &amp; \delta t \mathbf{I}_2 &amp; \frac{\delta t^2}{2} \mathbf{I}_2 \\ 0 &amp; \mathbf{I}_2 &amp; \delta t \\ 0 &amp; 0 &amp; \mathbf{I}_2 \end{array} \right] \]" src="form_67.png"/>
 </p>
  
 </div>
@@ -776,7 +772,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Output matrix of the COM linear process state transition where the COM horizontal velocity is the output. It is of size <img class="formulaInl" alt="$2\times6$" src="form_54.png"/> and equal to: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0} &amp; \mathbf{1} &amp; \mathbf{0} \\ \end{array}\right] \]" src="form_42.png"/>
+<img class="formulaDsp" alt="\[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0}_2 &amp; \mathbf{I}_2 &amp; \mathbf{0}_2 \\ \end{array}\right] \]" src="form_69.png"/>
 </p>
  
 </div>
@@ -801,7 +797,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Output matrix <img class="formulaInl" alt="$C_p$" src="form_30.png"/> from the linear state process relating ZMP to the CoM dynamics <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is time-invariant of size <img class="formulaInl" alt="$2\times6$" src="form_54.png"/> and equal to: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \mathbf{C}_p = \left[\begin{array}{ccc} 1 &amp; 0 &amp; -c_z/g \end{array}\right] \]" src="form_31.png"/>
+<img class="formulaDsp" alt="\[ \mathbf{B_h} = \left[ \begin{array}{c} \frac{\delta^3}{6}\mathbf{I}_2 \\ \frac{\delta t^2}{2} \mathbf{I}_2 \\ \delta t \mathbf{I}_2 \end{array} \right] \]" src="form_68.png"/>
 </p>
  
 </div>
@@ -894,7 +890,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_h$" src="form_43.png"/> of size <img class="formulaInl" alt="$2N_c \times 6$" src="form_57.png"/>from the preview horizon of COM velocities. It is constant and equal to: </p><p class="formulaDsp">
+<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_h$" src="form_43.png"/> of size <img class="formulaInl" alt="$2N_c \times 6$" src="form_57.png"/> from the preview horizon of COM velocities. It is constant and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_h\mathbf{A}_h \\ \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c}_h \end{array}\right] \]" src="form_44.png"/>
 </p>
  
@@ -1143,7 +1139,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 28 2016 14:48:56 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 28 2016 15:16:28 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

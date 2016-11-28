@@ -65,3 +65,6 @@
 \form#64:$\eta_w$
 \form#65:$Nc$
 \form#66:$\eta_b$
+\form#67:\[ \mathbf{A_h} = \left[ \begin{array}{ccc} \mathbf{I}_2 & \delta t \mathbf{I}_2 & \frac{\delta t^2}{2} \mathbf{I}_2 \\ 0 & \mathbf{I}_2 & \delta t \\ 0 & 0 & \mathbf{I}_2 \end{array} \right] \]
+\form#68:\[ \mathbf{B_h} = \left[ \begin{array}{c} \frac{\delta^3}{6}\mathbf{I}_2 \\ \frac{\delta t^2}{2} \mathbf{I}_2 \\ \delta t \mathbf{I}_2 \end{array} \right] \]
+\form#69:\[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0}_2 & \mathbf{I}_2 & \mathbf{0}_2 \\ \end{array}\right] \]

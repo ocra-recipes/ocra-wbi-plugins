@@ -134,11 +134,11 @@ struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} for details.
 \subsubsection{\texorpdfstring{build\+Ah()}{buildAh()}}
 {\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Ah (\begin{DoxyParamCaption}\item[{const double}]{dt }\end{DoxyParamCaption})}
 
-Builds Ah. Called during the member list initialization of the constructor of this class. \[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 & \delta t & \delta t^2/2 \\ 0 & 1 & \delta t \\ 0 & 0 & 1 \end{array} \right] \]
+Builds $A_h$. Called during the member list initialization of the constructor of this class.
 
 
 \begin{DoxyParams}{Parameters}
-{\em dt} & \hyperlink{classThread}{Thread} period in which this classed in instantiated.\\
+{\em dt} & \hyperlink{classThread}{Thread} period in which this classed in instantiated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -150,11 +150,11 @@ The constant matrix Ah.
 \subsubsection{\texorpdfstring{build\+Bh()}{buildBh()}}
 {\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Bh (\begin{DoxyParamCaption}\item[{const double}]{dt }\end{DoxyParamCaption})}
 
-Builds Bh. Called during the member list initialization of the constructor of this class. \[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \]
+Builds $B_h$. Called during the member list initialization of the constructor of this class.
 
 
 \begin{DoxyParams}{Parameters}
-{\em dt} & \hyperlink{classThread}{Thread} period in which this classed in instantiated.\\
+{\em dt} & \hyperlink{classThread}{Thread} period in which this classed in instantiated. \\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
@@ -187,7 +187,7 @@ Builds $C_p$
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-Cp 
+$C_p$ 
 \end{DoxyReturn}
 \hypertarget{classZmpPreviewController_ac0e73fabb20f31dbbb85ce61414dbb87}{}\label{classZmpPreviewController_ac0e73fabb20f31dbbb85ce61414dbb87} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Gh@{build\+Gh}}
@@ -362,7 +362,7 @@ True if computation is successful, false otherwise.
 \subsubsection{\texorpdfstring{Ah}{Ah}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Ah\hspace{0.3cm}{\ttfamily [private]}}
 
-State matrix $\mathbf{A}_h$ from the linear state process of the C\+OM state $\hat{\mathbf{h}}$. It is a constant matrix of size $6\times6$ equal to\+: \[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 & \delta t & \delta t^2/2 \\ 0 & 1 & \delta t \\ 0 & 0 & 1 \end{array} \right] \] \hypertarget{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6}{}\label{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6} 
+State matrix $\mathbf{A}_h$ from the linear state process of the C\+OM state $\hat{\mathbf{h}}$. It is a constant matrix of size $6\times6$ equal to\+: \[ \mathbf{A_h} = \left[ \begin{array}{ccc} \mathbf{I}_2 & \delta t \mathbf{I}_2 & \frac{\delta t^2}{2} \mathbf{I}_2 \\ 0 & \mathbf{I}_2 & \delta t \\ 0 & 0 & \mathbf{I}_2 \end{array} \right] \] \hypertarget{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6}{}\label{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Bh@{Bh}}
 \index{Bh@{Bh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Bh}{Bh}}
@@ -374,13 +374,13 @@ Input matrix $\mathbf{B}_h$ from the linear state process of the CoM state $\hat
 \subsubsection{\texorpdfstring{Ch}{Ch}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Ch\hspace{0.3cm}{\ttfamily [private]}}
 
-Output matrix of the C\+OM linear process state transition where the C\+OM horizontal velocity is the output. It is of size $2\times6$ and equal to\+: \[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0} & \mathbf{1} & \mathbf{0} \\ \end{array}\right] \] \hypertarget{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{}\label{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff} 
+Output matrix of the C\+OM linear process state transition where the C\+OM horizontal velocity is the output. It is of size $2\times6$ and equal to\+: \[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0}_2 & \mathbf{I}_2 & \mathbf{0}_2 \\ \end{array}\right] \] \hypertarget{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{}\label{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Cp@{Cp}}
 \index{Cp@{Cp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Cp}{Cp}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Cp\hspace{0.3cm}{\ttfamily [private]}}
 
-Output matrix $C_p$ from the linear state process relating Z\+MP to the CoM dynamics $\hat{\mathbf{h}}$. It is time-\/invariant of size $2\times6$ and equal to\+: \[ \mathbf{C}_p = \left[\begin{array}{ccc} 1 & 0 & -c_z/g \end{array}\right] \] \hypertarget{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def}{}\label{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def} 
+Output matrix $C_p$ from the linear state process relating Z\+MP to the CoM dynamics $\hat{\mathbf{h}}$. It is time-\/invariant of size $2\times6$ and equal to\+: \[ \mathbf{B_h} = \left[ \begin{array}{c} \frac{\delta^3}{6}\mathbf{I}_2 \\ \frac{\delta t^2}{2} \mathbf{I}_2 \\ \delta t \mathbf{I}_2 \end{array} \right] \] \hypertarget{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def}{}\label{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!cz@{cz}}
 \index{cz@{cz}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{cz}{cz}}
@@ -404,7 +404,7 @@ Gravity constant value in m/s$^\wedge$2, $ g $. \hypertarget{classZmpPreviewCont
 \subsubsection{\texorpdfstring{Gh}{Gh}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Gh\hspace{0.3cm}{\ttfamily [private]}}
 
-State matrix $\mathbf{G}_h$ of size $2N_c \times 6$from the preview horizon of C\+OM velocities. It is constant and equal to\+: \[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_h\mathbf{A}_h \\ \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979}{}\label{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979} 
+State matrix $\mathbf{G}_h$ of size $2N_c \times 6$ from the preview horizon of C\+OM velocities. It is constant and equal to\+: \[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_h\mathbf{A}_h \\ \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979}{}\label{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Gp@{Gp}}
 \index{Gp@{Gp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Gp}{Gp}}
