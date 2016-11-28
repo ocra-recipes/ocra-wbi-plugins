@@ -5,7 +5,6 @@ var searchData=
   ['icubcontrollerserver_2ecpp',['IcubControllerServer.cpp',['../IcubControllerServer_8cpp.html',1,'']]],
   ['icubcontrollerserver_2eh',['IcubControllerServer.h',['../IcubControllerServer_8h.html',1,'']]],
   ['initialize',['initialize',['../classExampleClient.html#ad504d1d87997fc95bfeca6aa925a4fa6',1,'ExampleClient::initialize()'],['../classSittingDemoClient.html#aff04405d690f2ae8abbd05ea4b55b64d',1,'SittingDemoClient::initialize()'],['../classSteppingDemoClient.html#a08dce195eece162eed175ac9487667c2',1,'SteppingDemoClient::initialize()'],['../classTaskOpsClient.html#a6f5e4c20c1d5f5df28dcc58e3cb4adb0',1,'TaskOpsClient::initialize()'],['../classWalkingClient.html#aba6a03fe29a4e947bc6bc0c09a713b2a',1,'WalkingClient::initialize()'],['../classZmpPreviewController.html#ac28287e01187bff2cea5a68292d936bd',1,'ZmpPreviewController::initialize()']]],
-  ['initializematrices',['initializeMatrices',['../classZmpPreviewController.html#a65905572c73752a3ff46c0435c9794a0',1,'ZmpPreviewController']]],
   ['initializeodometry',['initializeOdometry',['../classIcubControllerServer.html#a810f139a27e06458549ccbb3fde12359',1,'IcubControllerServer']]],
   ['initialposture',['initialPosture',['../classThread.html#aa59863bb50c8aa88fe5872e75be44cb7',1,'Thread']]],
   ['interruptmodule',['interruptModule',['../classModule.html#ad53295be6c51e834eec92009c2d7bbf3',1,'Module']]],

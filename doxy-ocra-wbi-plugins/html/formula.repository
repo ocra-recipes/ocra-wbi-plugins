@@ -35,3 +35,33 @@
 \form#34:$\mathbf{H}_p$
 \form#35:\[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_p\mathbf{B}_h & 0 & \cdots & 0 \\ \mathbf{C}_p\mathbf{A}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{B}_h & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_p\mathbf{B}_h \end{array}\right] \]
 \form#36:\[ \mathbf{H}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \]
+\form#37:\[ \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right) \]
+\form#38:$\mathbf{P}_r$
+\form#39:$\tilde{\mathbf{H}}_r$
+\form#40:$\mathbf{U}$
+\form#41:\[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \]
+\form#42:\[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0} & \mathbf{1} & \mathbf{0} \\ \end{array}\right] \]
+\form#43:$\mathbf{G}_h$
+\form#44:\[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_h\mathbf{A}_h \\ \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c}_h \end{array}\right] \]
+\form#45:$\mathbf{H}_h$
+\form#46:$\tilde{\mathbf{H}}$
+\form#47:\[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_h\mathbf{B}_h & 0 & \cdots & 0 \\ \mathbf{C}_h\mathbf{A}_h\mathbf{B}_h & \mathbf{C}_h\mathbf{B}_h & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_h\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_h\mathbf{B}_h \end{array}\right] \]
+\form#48:$k$
+\form#49:$\hat{\mathbf{h}}_k$
+\form#50:$\mathbf{U}_{k+N_c|k}$
+\form#51:$[2N_c \times 2N_c]$
+\form#52:$6\times6$
+\form#53:$6\times2$
+\form#54:$2\times6$
+\form#55:$2Nc \times 6$
+\form#56:$2N_c \times 2N_c$
+\form#57:$2N_c \times 6$
+\form#58:$G_p$
+\form#59:$N_c$
+\form#60:$H_p$
+\form#61:$C_h$
+\form#62:$G_h$
+\form#63:$H_h$
+\form#64:$\eta_w$
+\form#65:$Nc$
+\form#66:$\eta_b$

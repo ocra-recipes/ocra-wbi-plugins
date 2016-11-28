@@ -8,7 +8,7 @@ var searchData=
   ['com_5fsupport_5fposition',['COM_SUPPORT_POSITION',['../SteppingDemoClient_8h.html#ac0c3848a609566394821d9826e0fdd5b',1,'SteppingDemoClient.h']]],
   ['com_5ftrajthread',['com_TrajThread',['../classSteppingDemoClient.html#a9f3d1cdc49cc26a10f9b8fb0d0c68cab',1,'SteppingDemoClient']]],
   ['comhome',['comHome',['../classSteppingDemoClient.html#aa018c1f2734d63f962be512461c9e010',1,'SteppingDemoClient']]],
-  ['computeoptimalinput',['computeOptimalInput',['../classZmpPreviewController.html#a321140d8b3d99cf82687c444344c161d',1,'ZmpPreviewController']]],
+  ['computeoptimalinput',['computeOptimalInput',['../classZmpPreviewController.html#a6e60eaa9ec24031a4acd10c9433a7bd0',1,'ZmpPreviewController']]],
   ['configure',['configure',['../classModule.html#a1f18c762538086e1304ea18e00e51abb',1,'Module']]],
   ['configurewbi',['configureWbi',['../classocra__icub_1_1ModelInitializer.html#afa7e888280149483f0ff27ced546801b',1,'ocra_icub::ModelInitializer']]],
   ['constructmodel',['constructModel',['../classocra__icub_1_1ModelInitializer.html#a90747ff9773627f37ca9453491377b2c',1,'ocra_icub::ModelInitializer']]],
@@ -27,5 +27,5 @@ var searchData=
   ['ctrlthread',['ctrlThread',['../classModule.html#a39346aa2e2a00801e07f4c127ff004ba',1,'Module']]],
   ['currentphase',['currentPhase',['../classSteppingDemoClient.html#afe0aa2a02ea8117d644bf5444a03ac62',1,'SteppingDemoClient']]],
   ['currenttime',['currentTime',['../classSteppingDemoClient.html#a1bb7d42cf09778349ae1ecd31d2ac116',1,'SteppingDemoClient']]],
-  ['cz',['cz',['../classZmpPreviewController.html#a893b789fddc949d0703461963280f504',1,'ZmpPreviewController']]]
+  ['cz',['cz',['../classZmpPreviewController.html#a3a317d26cc1bbaf8811491724fdd1def',1,'ZmpPreviewController::cz()'],['../structZmpPreviewParams.html#a19d944dc7a6b40e6e55068a62d33e546',1,'ZmpPreviewParams::cz()']]]
 ];

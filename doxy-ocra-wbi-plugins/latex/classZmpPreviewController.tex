@@ -12,32 +12,46 @@ Implementes an extended Z\+MP preview controller as an unconstrained QP problem.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classZmpPreviewController_ac8837fd39b0b942afd3dd5759c456b42}{Zmp\+Preview\+Controller} ()
+\hyperlink{classZmpPreviewController_af1c464b13886dc0edf2f295fc215b13c}{Zmp\+Preview\+Controller} (const int period, struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} parameters)
 \item 
-\hyperlink{classZmpPreviewController_af702c45f318c7a78310d19cc061886dd}{$\sim$\+Zmp\+Preview\+Controller} ()
+virtual \hyperlink{classZmpPreviewController_af702c45f318c7a78310d19cc061886dd}{$\sim$\+Zmp\+Preview\+Controller} ()
 \item 
 bool \hyperlink{classZmpPreviewController_ac28287e01187bff2cea5a68292d936bd}{initialize} ()
 \item 
-bool \hyperlink{classZmpPreviewController_a65905572c73752a3ff46c0435c9794a0}{initialize\+Matrices} ()
+bool \hyperlink{classZmpPreviewController_a6e60eaa9ec24031a4acd10c9433a7bd0}{compute\+Optimal\+Input} (Eigen\+::\+Vector\+Xd zmp\+Ref, Eigen\+::\+Vector\+Xd com\+Vel\+Ref, Eigen\+::\+Vector2d hk, Eigen\+::\+Vector\+Xd \&optimalU)
 \item 
-bool \hyperlink{classZmpPreviewController_a378a6408072c1d7b962e8e52af30b634}{build\+C\+O\+M\+Integration\+Matrices} ()
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a39ffdba07960f90a6cce247065f12504}{build\+Ah} (const double \hyperlink{classZmpPreviewController_abf1a3ec8d1698afab1c20bba32b5a724}{dt})
 \item 
-bool \hyperlink{classZmpPreviewController_aadf1b7cba1ac0a1e6ec3bc8e0b761d02}{build\+Z\+M\+P\+Preview\+Matrices} ()
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a0114a8bdba920b9a7fb6b35e7b90ddd1}{build\+Bh} (const double \hyperlink{classZmpPreviewController_abf1a3ec8d1698afab1c20bba32b5a724}{dt})
 \item 
-bool \hyperlink{classZmpPreviewController_aa763d1c7a769f21eeaaaeb3f09a32aef}{build\+C\+O\+M\+Vel\+Preview\+Matrices} ()
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a716fdc040e5eaf9f6fe00c652f205d73}{build\+Cp} (const double \hyperlink{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def}{cz}, const double \hyperlink{classZmpPreviewController_a344571f012aa58250d7625905681bf1b}{g})
 \item 
-bool \hyperlink{classZmpPreviewController_a321140d8b3d99cf82687c444344c161d}{compute\+Optimal\+Input} ()
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_af9df60a716648bf74467f7a678c8420b}{build\+Gp} (Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{Cp}, Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a8ee8ec415e25374f4fa687f5a5a6b9df}{Ah}, const int \hyperlink{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{Nc})
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a4c46593f53f695cb1df53a2af180f4a0}{build\+Hp} (Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{Cp}, Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6}{Bh}, Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a8ee8ec415e25374f4fa687f5a5a6b9df}{Ah}, const int \hyperlink{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{Nc})
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a58723464a66fc3a1122c613500bb2052}{build\+Ch} ()
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_ac0e73fabb20f31dbbb85ce61414dbb87}{build\+Gh} (Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775}{Ch}, Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a8ee8ec415e25374f4fa687f5a5a6b9df}{Ah}, const int \hyperlink{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{Nc})
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_ad6e2263a5d1990e0734537ec6c6c0136}{build\+Hh} (Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775}{Ch}, Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6}{Bh}, Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a8ee8ec415e25374f4fa687f5a5a6b9df}{Ah}, const int \hyperlink{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{Nc})
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_ad1322ec975c7d022feb24a40fff62f2e}{build\+Nu} (const double \hyperlink{classZmpPreviewController_ac611f084023404faba1ccfab573cd81d}{nu}, const int \hyperlink{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{Nc})
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a96bed83f8441cfbd6d6fbff54c5b530d}{build\+Nw} (const double \hyperlink{classZmpPreviewController_a783427b817d77469e1f80426bede5310}{nw}, const int \hyperlink{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{Nc})
+\item 
+Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_ab4ab5756eb9faf991a12b405d116292f}{build\+Nb} (const double \hyperlink{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051}{nb}, const int \hyperlink{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{Nc})
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const Eigen\+::\+Vector3d \hyperlink{classZmpPreviewController_a893b789fddc949d0703461963280f504}{cz}
+const double \hyperlink{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def}{cz}
 \item 
 const double \hyperlink{classZmpPreviewController_a344571f012aa58250d7625905681bf1b}{g} = 9.\+8
 \item 
 const double \hyperlink{classZmpPreviewController_abf1a3ec8d1698afab1c20bba32b5a724}{dt}
 \item 
-const double \hyperlink{classZmpPreviewController_a43e471820b285c89e9d1878448a6f364}{Nc}
+const int \hyperlink{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{Nc}
 \item 
 const double \hyperlink{classZmpPreviewController_ac611f084023404faba1ccfab573cd81d}{nu}
 \item 
@@ -51,9 +65,9 @@ const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a5e85354a1a7c3f
 \item 
 const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_abd345d397e99ae01ad4ea80cd9894802}{Nb}
 \item 
-const Eigen\+::\+Matrix3d \hyperlink{classZmpPreviewController_a777600c57020a9851912374cfc12ad5a}{Ah}
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a8ee8ec415e25374f4fa687f5a5a6b9df}{Ah}
 \item 
-const Eigen\+::\+Matrix3d \hyperlink{classZmpPreviewController_a84edf4d475c32ec836732c24eba30ce9}{Bh}
+const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6}{Bh}
 \item 
 const Eigen\+::\+Matrix\+Xd \hyperlink{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{Cp}
 \item 
@@ -89,89 +103,288 @@ Denoting a horizon of input CoM jerks $\mathbf{u}$, the following problem\+:
 Where $\mathbf{p}$ are horizontal Z\+MP coordinates, $ \mathbf{r}^r $ Z\+MP references (in walking-\/client is the interpolated Z\+MP reference from the walking M\+I\+QP problem) $ \mathbf{\dot{h}} $ the horizontal C\+OM velocity, $ \mathbf{\dot{h}}^r $ C\+OM horizontal velocity reference (in walking-\/client it\textquotesingle{}s the interpolated C\+OM velocity reference from the walking M\+I\+QP problem). $\mathbf{u}$ are the input C\+OM jerks, $h$ the horizonal C\+OM position, $\hat{h}$ the horizontal C\+OM state $ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) $ and $\mathbf{e}_2$ the vertical unit vectory $ [0\;0\;1]^T$. $\mathbf{A}_h$ and $\mathbf{B}_h$ are integration matrices. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classZmpPreviewController_ac8837fd39b0b942afd3dd5759c456b42}{}\label{classZmpPreviewController_ac8837fd39b0b942afd3dd5759c456b42} 
+\hypertarget{classZmpPreviewController_af1c464b13886dc0edf2f295fc215b13c}{}\label{classZmpPreviewController_af1c464b13886dc0edf2f295fc215b13c} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Zmp\+Preview\+Controller()}{ZmpPreviewController()}}
-{\footnotesize\ttfamily Zmp\+Preview\+Controller\+::\+Zmp\+Preview\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Zmp\+Preview\+Controller\+::\+Zmp\+Preview\+Controller (\begin{DoxyParamCaption}\item[{const int}]{period,  }\item[{struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params}}]{parameters }\end{DoxyParamCaption})}
 
+Class constructor. Build all the time-\/invariant matrices used to compute the optimal output of the preview controller. 
+\begin{DoxyParams}{Parameters}
+{\em period} & Period (in ms) of the thread in which an object of this class is created. \\
+\hline
+{\em parameters} & An object containing the main parameters. \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} for details. 
+\end{DoxySeeAlso}
 \hypertarget{classZmpPreviewController_af702c45f318c7a78310d19cc061886dd}{}\label{classZmpPreviewController_af702c45f318c7a78310d19cc061886dd} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!````~Zmp\+Preview\+Controller@{$\sim$\+Zmp\+Preview\+Controller}}
 \index{````~Zmp\+Preview\+Controller@{$\sim$\+Zmp\+Preview\+Controller}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{$\sim$\+Zmp\+Preview\+Controller()}{~ZmpPreviewController()}}
-{\footnotesize\ttfamily Zmp\+Preview\+Controller\+::$\sim$\+Zmp\+Preview\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Zmp\+Preview\+Controller\+::$\sim$\+Zmp\+Preview\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classZmpPreviewController_a378a6408072c1d7b962e8e52af30b634}{}\label{classZmpPreviewController_a378a6408072c1d7b962e8e52af30b634} 
-\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+C\+O\+M\+Integration\+Matrices@{build\+C\+O\+M\+Integration\+Matrices}}
-\index{build\+C\+O\+M\+Integration\+Matrices@{build\+C\+O\+M\+Integration\+Matrices}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
-\subsubsection{\texorpdfstring{build\+C\+O\+M\+Integration\+Matrices()}{buildCOMIntegrationMatrices()}}
-{\footnotesize\ttfamily bool Zmp\+Preview\+Controller\+::build\+C\+O\+M\+Integration\+Matrices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+\hypertarget{classZmpPreviewController_a39ffdba07960f90a6cce247065f12504}{}\label{classZmpPreviewController_a39ffdba07960f90a6cce247065f12504} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Ah@{build\+Ah}}
+\index{build\+Ah@{build\+Ah}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Ah()}{buildAh()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Ah (\begin{DoxyParamCaption}\item[{const double}]{dt }\end{DoxyParamCaption})}
 
-\hypertarget{classZmpPreviewController_aa763d1c7a769f21eeaaaeb3f09a32aef}{}\label{classZmpPreviewController_aa763d1c7a769f21eeaaaeb3f09a32aef} 
-\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+C\+O\+M\+Vel\+Preview\+Matrices@{build\+C\+O\+M\+Vel\+Preview\+Matrices}}
-\index{build\+C\+O\+M\+Vel\+Preview\+Matrices@{build\+C\+O\+M\+Vel\+Preview\+Matrices}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
-\subsubsection{\texorpdfstring{build\+C\+O\+M\+Vel\+Preview\+Matrices()}{buildCOMVelPreviewMatrices()}}
-{\footnotesize\ttfamily bool Zmp\+Preview\+Controller\+::build\+C\+O\+M\+Vel\+Preview\+Matrices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+Builds Ah. Called during the member list initialization of the constructor of this class. \[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 & \delta t & \delta t^2/2 \\ 0 & 1 & \delta t \\ 0 & 0 & 1 \end{array} \right] \]
 
-\hypertarget{classZmpPreviewController_aadf1b7cba1ac0a1e6ec3bc8e0b761d02}{}\label{classZmpPreviewController_aadf1b7cba1ac0a1e6ec3bc8e0b761d02} 
-\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Z\+M\+P\+Preview\+Matrices@{build\+Z\+M\+P\+Preview\+Matrices}}
-\index{build\+Z\+M\+P\+Preview\+Matrices@{build\+Z\+M\+P\+Preview\+Matrices}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
-\subsubsection{\texorpdfstring{build\+Z\+M\+P\+Preview\+Matrices()}{buildZMPPreviewMatrices()}}
-{\footnotesize\ttfamily bool Zmp\+Preview\+Controller\+::build\+Z\+M\+P\+Preview\+Matrices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{classZmpPreviewController_a321140d8b3d99cf82687c444344c161d}{}\label{classZmpPreviewController_a321140d8b3d99cf82687c444344c161d} 
+\begin{DoxyParams}{Parameters}
+{\em dt} & \hyperlink{classThread}{Thread} period in which this classed in instantiated.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The constant matrix Ah. 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_a0114a8bdba920b9a7fb6b35e7b90ddd1}{}\label{classZmpPreviewController_a0114a8bdba920b9a7fb6b35e7b90ddd1} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Bh@{build\+Bh}}
+\index{build\+Bh@{build\+Bh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Bh()}{buildBh()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Bh (\begin{DoxyParamCaption}\item[{const double}]{dt }\end{DoxyParamCaption})}
+
+Builds Bh. Called during the member list initialization of the constructor of this class. \[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \]
+
+
+\begin{DoxyParams}{Parameters}
+{\em dt} & \hyperlink{classThread}{Thread} period in which this classed in instantiated.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The constant matrix Bh. 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_a58723464a66fc3a1122c613500bb2052}{}\label{classZmpPreviewController_a58723464a66fc3a1122c613500bb2052} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Ch@{build\+Ch}}
+\index{build\+Ch@{build\+Ch}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Ch()}{buildCh()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Ch (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Builds $C_h$
+
+\begin{DoxyReturn}{Returns}
+$C_h$ 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_a716fdc040e5eaf9f6fe00c652f205d73}{}\label{classZmpPreviewController_a716fdc040e5eaf9f6fe00c652f205d73} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Cp@{build\+Cp}}
+\index{build\+Cp@{build\+Cp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Cp()}{buildCp()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Cp (\begin{DoxyParamCaption}\item[{const double}]{cz,  }\item[{const double}]{g }\end{DoxyParamCaption})}
+
+Builds $C_p$
+
+
+\begin{DoxyParams}{Parameters}
+{\em cz} & Constant C\+OM height. \\
+\hline
+{\em g} & Constant gravity acceleration (m$^\wedge$2/s)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cp 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_ac0e73fabb20f31dbbb85ce61414dbb87}{}\label{classZmpPreviewController_ac0e73fabb20f31dbbb85ce61414dbb87} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Gh@{build\+Gh}}
+\index{build\+Gh@{build\+Gh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Gh()}{buildGh()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Gh (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd}]{Ch,  }\item[{Eigen\+::\+Matrix\+Xd}]{Ah,  }\item[{const int}]{Nc }\end{DoxyParamCaption})}
+
+Builds $G_h$
+
+
+\begin{DoxyParams}{Parameters}
+{\em Ch} & $C_h$ \\
+\hline
+{\em Ah} & $A_h$ \\
+\hline
+{\em Nc} & $N_c$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$G_h$ 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_af9df60a716648bf74467f7a678c8420b}{}\label{classZmpPreviewController_af9df60a716648bf74467f7a678c8420b} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Gp@{build\+Gp}}
+\index{build\+Gp@{build\+Gp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Gp()}{buildGp()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Gp (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd}]{Cp,  }\item[{Eigen\+::\+Matrix\+Xd}]{Ah,  }\item[{const int}]{Nc }\end{DoxyParamCaption})}
+
+Builds $G_p$
+
+
+\begin{DoxyParams}{Parameters}
+{\em Cp} & $C_p$ \\
+\hline
+{\em Ah} & $A_h$ \\
+\hline
+{\em Nc} & $N_c$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$G_p$ 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_ad6e2263a5d1990e0734537ec6c6c0136}{}\label{classZmpPreviewController_ad6e2263a5d1990e0734537ec6c6c0136} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Hh@{build\+Hh}}
+\index{build\+Hh@{build\+Hh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Hh()}{buildHh()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Hh (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd}]{Ch,  }\item[{Eigen\+::\+Matrix\+Xd}]{Bh,  }\item[{Eigen\+::\+Matrix\+Xd}]{Ah,  }\item[{const int}]{Nc }\end{DoxyParamCaption})}
+
+Builds $H_h$
+
+
+\begin{DoxyParams}{Parameters}
+{\em Ch} & $C_h$ \\
+\hline
+{\em Bh} & $B_h$ \\
+\hline
+{\em Ah} & $A_h$ \\
+\hline
+{\em Nc} & $N_c$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$H_h$ 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_a4c46593f53f695cb1df53a2af180f4a0}{}\label{classZmpPreviewController_a4c46593f53f695cb1df53a2af180f4a0} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Hp@{build\+Hp}}
+\index{build\+Hp@{build\+Hp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Hp()}{buildHp()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Hp (\begin{DoxyParamCaption}\item[{Eigen\+::\+Matrix\+Xd}]{Cp,  }\item[{Eigen\+::\+Matrix\+Xd}]{Bh,  }\item[{Eigen\+::\+Matrix\+Xd}]{Ah,  }\item[{const int}]{Nc }\end{DoxyParamCaption})}
+
+Builds $H_p$
+
+
+\begin{DoxyParams}{Parameters}
+{\em Cp} & $C_p$ \\
+\hline
+{\em Bh} & $B_h$ \\
+\hline
+{\em Ah} & $A_h$ \\
+\hline
+{\em Nc} & $N_c$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$H_p$ 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_ab4ab5756eb9faf991a12b405d116292f}{}\label{classZmpPreviewController_ab4ab5756eb9faf991a12b405d116292f} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Nb@{build\+Nb}}
+\index{build\+Nb@{build\+Nb}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Nb()}{buildNb()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Nb (\begin{DoxyParamCaption}\item[{const double}]{nb,  }\item[{const int}]{Nc }\end{DoxyParamCaption})}
+
+Builds $N_b$
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb} & $\eta_b$ \\
+\hline
+{\em Nc} & $N_c$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$N_b$ 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_ad1322ec975c7d022feb24a40fff62f2e}{}\label{classZmpPreviewController_ad1322ec975c7d022feb24a40fff62f2e} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Nu@{build\+Nu}}
+\index{build\+Nu@{build\+Nu}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Nu()}{buildNu()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Nu (\begin{DoxyParamCaption}\item[{const double}]{nu,  }\item[{const int}]{Nc }\end{DoxyParamCaption})}
+
+Builds $N_u$
+
+
+\begin{DoxyParams}{Parameters}
+{\em nu} & $\eta_u$ \\
+\hline
+{\em Nc} & $N_c$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$N_u$ 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_a96bed83f8441cfbd6d6fbff54c5b530d}{}\label{classZmpPreviewController_a96bed83f8441cfbd6d6fbff54c5b530d} 
+\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!build\+Nw@{build\+Nw}}
+\index{build\+Nw@{build\+Nw}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
+\subsubsection{\texorpdfstring{build\+Nw()}{buildNw()}}
+{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::build\+Nw (\begin{DoxyParamCaption}\item[{const double}]{nw,  }\item[{const int}]{Nc }\end{DoxyParamCaption})}
+
+Builds $N_w$
+
+
+\begin{DoxyParams}{Parameters}
+{\em nw} & $\eta_w$ \\
+\hline
+{\em Nc} & $Nc$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$N_w$ 
+\end{DoxyReturn}
+\hypertarget{classZmpPreviewController_a6e60eaa9ec24031a4acd10c9433a7bd0}{}\label{classZmpPreviewController_a6e60eaa9ec24031a4acd10c9433a7bd0} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!compute\+Optimal\+Input@{compute\+Optimal\+Input}}
 \index{compute\+Optimal\+Input@{compute\+Optimal\+Input}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{compute\+Optimal\+Input()}{computeOptimalInput()}}
-{\footnotesize\ttfamily bool Zmp\+Preview\+Controller\+::compute\+Optimal\+Input (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Zmp\+Preview\+Controller\+::compute\+Optimal\+Input (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{zmp\+Ref,  }\item[{Eigen\+::\+Vector\+Xd}]{com\+Vel\+Ref,  }\item[{Eigen\+::\+Vector2d}]{hk,  }\item[{Eigen\+::\+Vector\+Xd \&}]{optimalU }\end{DoxyParamCaption})}
 
+Computes the optimal input, i.\+e.\+: \[ \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right) \] 
+\begin{DoxyParams}{Parameters}
+{\em zmp\+Ref} & $\mathbf{P}_r$ \\
+\hline
+{\em com\+Vel\+Ref} & $\tilde{\mathbf{H}}_r$ \\
+\hline
+{\em hk} & C\+OM state at time $k$, i.\+e. $\hat{\mathbf{h}}_k$ \\
+\hline
+{\em optimalU} & Closed-\/form solution to the unconstrained QP problem, $\mathbf{U}_{k+N_c|k}$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if computation is successful, false otherwise. 
+\end{DoxyReturn}
 \hypertarget{classZmpPreviewController_ac28287e01187bff2cea5a68292d936bd}{}\label{classZmpPreviewController_ac28287e01187bff2cea5a68292d936bd} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!initialize@{initialize}}
 \index{initialize@{initialize}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{initialize()}{initialize()}}
 {\footnotesize\ttfamily bool Zmp\+Preview\+Controller\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
-\hypertarget{classZmpPreviewController_a65905572c73752a3ff46c0435c9794a0}{}\label{classZmpPreviewController_a65905572c73752a3ff46c0435c9794a0} 
-\index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!initialize\+Matrices@{initialize\+Matrices}}
-\index{initialize\+Matrices@{initialize\+Matrices}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
-\subsubsection{\texorpdfstring{initialize\+Matrices()}{initializeMatrices()}}
-{\footnotesize\ttfamily bool Zmp\+Preview\+Controller\+::initialize\+Matrices (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
-
 
 
 \subsection{Member Data Documentation}
-\hypertarget{classZmpPreviewController_a777600c57020a9851912374cfc12ad5a}{}\label{classZmpPreviewController_a777600c57020a9851912374cfc12ad5a} 
+\hypertarget{classZmpPreviewController_a8ee8ec415e25374f4fa687f5a5a6b9df}{}\label{classZmpPreviewController_a8ee8ec415e25374f4fa687f5a5a6b9df} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Ah@{Ah}}
 \index{Ah@{Ah}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Ah}{Ah}}
-{\footnotesize\ttfamily const Eigen\+::\+Matrix3d Zmp\+Preview\+Controller\+::\+Ah\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Ah\hspace{0.3cm}{\ttfamily [private]}}
 
-State matrix $\mathbf{A}_h$ from the linear state process of the C\+OM state $\hat{\mathbf{h}}$. It is a constant matrix equal to\+: \[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 & \delta t & \delta t^2/2 \\ 0 & 1 & \delta t \\ 0 & 0 & 1 \end{array} \right] \] \hypertarget{classZmpPreviewController_a84edf4d475c32ec836732c24eba30ce9}{}\label{classZmpPreviewController_a84edf4d475c32ec836732c24eba30ce9} 
+State matrix $\mathbf{A}_h$ from the linear state process of the C\+OM state $\hat{\mathbf{h}}$. It is a constant matrix of size $6\times6$ equal to\+: \[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 & \delta t & \delta t^2/2 \\ 0 & 1 & \delta t \\ 0 & 0 & 1 \end{array} \right] \] \hypertarget{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6}{}\label{classZmpPreviewController_a98bd07d03d0a6004b345ef4310cf17b6} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Bh@{Bh}}
 \index{Bh@{Bh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Bh}{Bh}}
-{\footnotesize\ttfamily const Eigen\+::\+Matrix3d Zmp\+Preview\+Controller\+::\+Bh\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Bh\hspace{0.3cm}{\ttfamily [private]}}
 
-Input matrix $\mathbf{B}_h$ from the linear state process of the CoM state $\hat{\mathbf{h}}$. It is constant and equal to\+: \[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \] \hypertarget{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775}{}\label{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775} 
+Input matrix $\mathbf{B}_h$ from the linear state process of the CoM state $\hat{\mathbf{h}}$. It is constant of size $6\times2$ and equal to\+: \[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \] \hypertarget{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775}{}\label{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Ch@{Ch}}
 \index{Ch@{Ch}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Ch}{Ch}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Ch\hspace{0.3cm}{\ttfamily [private]}}
 
-Output matrix of the C\+OM linear process state transition where the C\+OM horizontal velocity is the output. \hypertarget{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{}\label{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff} 
+Output matrix of the C\+OM linear process state transition where the C\+OM horizontal velocity is the output. It is of size $2\times6$ and equal to\+: \[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0} & \mathbf{1} & \mathbf{0} \\ \end{array}\right] \] \hypertarget{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff}{}\label{classZmpPreviewController_a1a63870dcc3d51a26c4adc9c97e650ff} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Cp@{Cp}}
 \index{Cp@{Cp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Cp}{Cp}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Cp\hspace{0.3cm}{\ttfamily [private]}}
 
-Output matrix $C_p$ from the linear state process relating Z\+MP to the CoM dynamics $\hat{\mathbf{h}}$. It is time-\/invariant and equal to\+: \[ \mathbf{C}_p = \left[\begin{array}{ccc} 1 & 0 & -c_z/g \end{array}\right] \] \hypertarget{classZmpPreviewController_a893b789fddc949d0703461963280f504}{}\label{classZmpPreviewController_a893b789fddc949d0703461963280f504} 
+Output matrix $C_p$ from the linear state process relating Z\+MP to the CoM dynamics $\hat{\mathbf{h}}$. It is time-\/invariant of size $2\times6$ and equal to\+: \[ \mathbf{C}_p = \left[\begin{array}{ccc} 1 & 0 & -c_z/g \end{array}\right] \] \hypertarget{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def}{}\label{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!cz@{cz}}
 \index{cz@{cz}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{cz}{cz}}
-{\footnotesize\ttfamily const Eigen\+::\+Vector3d Zmp\+Preview\+Controller\+::cz\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily const double Zmp\+Preview\+Controller\+::cz\hspace{0.3cm}{\ttfamily [private]}}
 
 CoM constant height. It is not hardcoded but corresponds to the vertical coordinate (height) of the CoM at the beginning of execution, i.\+e. $ c_z $. \hypertarget{classZmpPreviewController_abf1a3ec8d1698afab1c20bba32b5a724}{}\label{classZmpPreviewController_abf1a3ec8d1698afab1c20bba32b5a724} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!dt@{dt}}
@@ -191,25 +404,25 @@ Gravity constant value in m/s$^\wedge$2, $ g $. \hypertarget{classZmpPreviewCont
 \subsubsection{\texorpdfstring{Gh}{Gh}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Gh\hspace{0.3cm}{\ttfamily [private]}}
 
-\hypertarget{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979}{}\label{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979} 
+State matrix $\mathbf{G}_h$ of size $2N_c \times 6$from the preview horizon of C\+OM velocities. It is constant and equal to\+: \[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_h\mathbf{A}_h \\ \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979}{}\label{classZmpPreviewController_a53a7d8af5be4a5d5cea99fad2ea48979} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Gp@{Gp}}
 \index{Gp@{Gp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Gp}{Gp}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Gp\hspace{0.3cm}{\ttfamily [private]}}
 
-State matrix $\mathbf{G}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P}$. It is equal to\+: \[ \mathbf{H}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd}{}\label{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd} 
+State matrix $\mathbf{G}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P}$. It is of size $2Nc \times 6$ and equal to\+: \[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd}{}\label{classZmpPreviewController_a8caaf8bf8f06e5b0b53d2cd5c131eefd} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Hh@{Hh}}
 \index{Hh@{Hh}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Hh}{Hh}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Hh\hspace{0.3cm}{\ttfamily [private]}}
 
-\hypertarget{classZmpPreviewController_a32ab17a3be30490e4a1e874bf3581843}{}\label{classZmpPreviewController_a32ab17a3be30490e4a1e874bf3581843} 
+Input matrix $\mathbf{H}_h$ from the preview horizon of C\+OM velocities $\tilde{\mathbf{H}}$, of size $2N_c \times 2N_c$ and equal to\+: \[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_h\mathbf{B}_h & 0 & \cdots & 0 \\ \mathbf{C}_h\mathbf{A}_h\mathbf{B}_h & \mathbf{C}_h\mathbf{B}_h & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_h\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_h\mathbf{B}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a32ab17a3be30490e4a1e874bf3581843}{}\label{classZmpPreviewController_a32ab17a3be30490e4a1e874bf3581843} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Hp@{Hp}}
 \index{Hp@{Hp}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Hp}{Hp}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Hp\hspace{0.3cm}{\ttfamily [private]}}
 
-Input matrix $\mathbf{H}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P}$. It is equal to\+: \[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_p\mathbf{B}_h & 0 & \cdots & 0 \\ \mathbf{C}_p\mathbf{A}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{B}_h & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_p\mathbf{B}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051}{}\label{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051} 
+Input matrix $\mathbf{H}_p$ from the preview horizon of Z\+MP outputs $\mathbf{P}$. It is of size $2N_c \times 2N_c$ and equal to\+: \[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_p\mathbf{B}_h & 0 & \cdots & 0 \\ \mathbf{C}_p\mathbf{A}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{B}_h & \cdots & 0 \\ \vdots & \vdots & \ddots & \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_p\mathbf{B}_h \end{array}\right] \] \hypertarget{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051}{}\label{classZmpPreviewController_a6716ee4c94e6f91e608ee1e29fbc7051} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!nb@{nb}}
 \index{nb@{nb}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{nb}{nb}}
@@ -221,11 +434,11 @@ Weight of the balancing cost function $ \eta_b $ \hypertarget{classZmpPreviewCon
 \subsubsection{\texorpdfstring{Nb}{Nb}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nb\hspace{0.3cm}{\ttfamily [private]}}
 
-Diagonal matrix $N_b$ of size $[N_c \times N_c]$ weighting the balancing cost function in its matrix form. \hypertarget{classZmpPreviewController_a43e471820b285c89e9d1878448a6f364}{}\label{classZmpPreviewController_a43e471820b285c89e9d1878448a6f364} 
+Diagonal matrix $N_b$ of size $[2N_c \times 2N_c]$ weighting the balancing cost function in its matrix form. \hypertarget{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{}\label{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Nc@{Nc}}
 \index{Nc@{Nc}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Nc}{Nc}}
-{\footnotesize\ttfamily const double Zmp\+Preview\+Controller\+::\+Nc\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily const int Zmp\+Preview\+Controller\+::\+Nc\hspace{0.3cm}{\ttfamily [private]}}
 
 Size of preview window $ N_c $ \hypertarget{classZmpPreviewController_ac611f084023404faba1ccfab573cd81d}{}\label{classZmpPreviewController_ac611f084023404faba1ccfab573cd81d} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!nu@{nu}}
@@ -239,7 +452,7 @@ Weight of the input regularization term in the cost function $\eta_u$ \hypertarg
 \subsubsection{\texorpdfstring{Nu}{Nu}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nu\hspace{0.3cm}{\ttfamily [private]}}
 
-Diagonal matrix $N_u$ of size $[N_c \times N_c]$ weighting the input regularization term in the matricial expression of the controller\textquotesingle{}s cost function. \hypertarget{classZmpPreviewController_a783427b817d77469e1f80426bede5310}{}\label{classZmpPreviewController_a783427b817d77469e1f80426bede5310} 
+Diagonal matrix $N_u$ of size $[2N_c \times 2N_c]$ weighting the input regularization term in the matricial expression of the controller\textquotesingle{}s cost function. \hypertarget{classZmpPreviewController_a783427b817d77469e1f80426bede5310}{}\label{classZmpPreviewController_a783427b817d77469e1f80426bede5310} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!nw@{nw}}
 \index{nw@{nw}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{nw}{nw}}
@@ -251,7 +464,7 @@ Weight of the walking cost function $ \eta_w $ \hypertarget{classZmpPreviewContr
 \subsubsection{\texorpdfstring{Nw}{Nw}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nw\hspace{0.3cm}{\ttfamily [private]}}
 
-Diagonal matrix $N_w$ of size $[N_c \times N_c]$ weighting the walking cost function in its matrix form. 
+Diagonal matrix $N_w$ of size $[2N_c \times 2N_c]$ weighting the walking cost function in its matrix form. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

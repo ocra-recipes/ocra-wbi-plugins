@@ -1,8 +1,8 @@
 <map id="/Users/jorhabibeljaik/Code/codyco&#45;superbuild/main/ocra&#45;wbi&#45;plugins/ocra&#45;icub&#45;clients/walking&#45;client/include/walking&#45;client/WalkingClient.h" name="/Users/jorhabibeljaik/Code/codyco&#45;superbuild/main/ocra&#45;wbi&#45;plugins/ocra&#45;icub&#45;clients/walking&#45;client/include/walking&#45;client/WalkingClient.h">
-<area shape="rect" id="node2" href="$IcubClient_8h.html" title="ocra&#45;icub/IcubClient.h" alt="" coords="1556,145,1706,171"/>
-<area shape="rect" id="node36" href="$ZmpPreviewController_8h.html" title="walking&#45;client/ZmpPreview\lController.h" alt="" coords="1363,219,1542,257"/>
-<area shape="rect" id="node3" href="$ModelInitializer_8h.html" title="ocra&#45;icub/ModelInitializer.h" alt="" coords="489,225,669,251"/>
-<area shape="rect" id="node4" href="$OcraWbiModel_8h.html" title="Implementation of ocra::Model using wholeBodyInterface. " alt="" coords="924,305,1103,331"/>
-<area shape="rect" id="node9" href="$OcraWbiConversions_8h.html" title="A utility class full of static conversion functions. " alt="" coords="1668,379,1885,404"/>
-<area shape="rect" id="node15" href="$Utilities_8h.html" title="Some useful tools for the ocra&#45;icub lib. " alt="" coords="1513,459,1647,484"/>
+<area shape="rect" id="node2" href="$IcubClient_8h.html" title="ocra&#45;icub/IcubClient.h" alt="" coords="1064,145,1215,171"/>
+<area shape="rect" id="node36" href="$ZmpPreviewController_8h.html" title="walking&#45;client/ZmpPreview\lController.h" alt="" coords="2803,365,2982,404"/>
+<area shape="rect" id="node3" href="$ModelInitializer_8h.html" title="ocra&#45;icub/ModelInitializer.h" alt="" coords="413,219,592,244"/>
+<area shape="rect" id="node4" href="$OcraWbiModel_8h.html" title="Implementation of ocra::Model using wholeBodyInterface. " alt="" coords="1050,292,1229,317"/>
+<area shape="rect" id="node9" href="$OcraWbiConversions_8h.html" title="A utility class full of static conversion functions. " alt="" coords="904,372,1121,397"/>
+<area shape="rect" id="node15" href="$Utilities_8h.html" title="Some useful tools for the ocra&#45;icub lib. " alt="" coords="1562,459,1696,484"/>
 </map>

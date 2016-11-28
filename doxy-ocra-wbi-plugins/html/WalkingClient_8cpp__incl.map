@@ -1,9 +1,9 @@
 <map id="/Users/jorhabibeljaik/Code/codyco&#45;superbuild/main/ocra&#45;wbi&#45;plugins/ocra&#45;icub&#45;clients/walking&#45;client/src/WalkingClient.cpp" name="/Users/jorhabibeljaik/Code/codyco&#45;superbuild/main/ocra&#45;wbi&#45;plugins/ocra&#45;icub&#45;clients/walking&#45;client/src/WalkingClient.cpp">
-<area shape="rect" id="node2" href="$WalkingClient_8h.html" title="walking&#45;client/WalkingClient.h" alt="" coords="1218,132,1415,157"/>
-<area shape="rect" id="node3" href="$IcubClient_8h.html" title="ocra&#45;icub/IcubClient.h" alt="" coords="1556,205,1706,231"/>
-<area shape="rect" id="node37" href="$ZmpPreviewController_8h.html" title="walking&#45;client/ZmpPreview\lController.h" alt="" coords="1363,279,1542,317"/>
-<area shape="rect" id="node4" href="$ModelInitializer_8h.html" title="ocra&#45;icub/ModelInitializer.h" alt="" coords="489,285,669,311"/>
-<area shape="rect" id="node5" href="$OcraWbiModel_8h.html" title="Implementation of ocra::Model using wholeBodyInterface. " alt="" coords="924,365,1103,391"/>
-<area shape="rect" id="node10" href="$OcraWbiConversions_8h.html" title="A utility class full of static conversion functions. " alt="" coords="1668,439,1885,464"/>
-<area shape="rect" id="node16" href="$Utilities_8h.html" title="Some useful tools for the ocra&#45;icub lib. " alt="" coords="1513,519,1647,544"/>
+<area shape="rect" id="node2" href="$WalkingClient_8h.html" title="walking&#45;client/WalkingClient.h" alt="" coords="1441,132,1638,157"/>
+<area shape="rect" id="node3" href="$IcubClient_8h.html" title="ocra&#45;icub/IcubClient.h" alt="" coords="1064,205,1215,231"/>
+<area shape="rect" id="node37" href="$ZmpPreviewController_8h.html" title="walking&#45;client/ZmpPreview\lController.h" alt="" coords="2803,425,2982,464"/>
+<area shape="rect" id="node4" href="$ModelInitializer_8h.html" title="ocra&#45;icub/ModelInitializer.h" alt="" coords="413,279,592,304"/>
+<area shape="rect" id="node5" href="$OcraWbiModel_8h.html" title="Implementation of ocra::Model using wholeBodyInterface. " alt="" coords="1050,352,1229,377"/>
+<area shape="rect" id="node10" href="$OcraWbiConversions_8h.html" title="A utility class full of static conversion functions. " alt="" coords="904,432,1121,457"/>
+<area shape="rect" id="node16" href="$Utilities_8h.html" title="Some useful tools for the ocra&#45;icub lib. " alt="" coords="1562,519,1696,544"/>
 </map>

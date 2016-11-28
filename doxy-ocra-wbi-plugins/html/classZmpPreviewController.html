@@ -76,33 +76,47 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac8837fd39b0b942afd3dd5759c456b42"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#ac8837fd39b0b942afd3dd5759c456b42">ZmpPreviewController</a> ()</td></tr>
-<tr class="separator:ac8837fd39b0b942afd3dd5759c456b42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af702c45f318c7a78310d19cc061886dd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#af702c45f318c7a78310d19cc061886dd">~ZmpPreviewController</a> ()</td></tr>
+<tr class="memitem:af1c464b13886dc0edf2f295fc215b13c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#af1c464b13886dc0edf2f295fc215b13c">ZmpPreviewController</a> (const int period, struct <a class="el" href="structZmpPreviewParams.html">ZmpPreviewParams</a> parameters)</td></tr>
+<tr class="separator:af1c464b13886dc0edf2f295fc215b13c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af702c45f318c7a78310d19cc061886dd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#af702c45f318c7a78310d19cc061886dd">~ZmpPreviewController</a> ()</td></tr>
 <tr class="separator:af702c45f318c7a78310d19cc061886dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac28287e01187bff2cea5a68292d936bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#ac28287e01187bff2cea5a68292d936bd">initialize</a> ()</td></tr>
 <tr class="separator:ac28287e01187bff2cea5a68292d936bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65905572c73752a3ff46c0435c9794a0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a65905572c73752a3ff46c0435c9794a0">initializeMatrices</a> ()</td></tr>
-<tr class="separator:a65905572c73752a3ff46c0435c9794a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a378a6408072c1d7b962e8e52af30b634"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a378a6408072c1d7b962e8e52af30b634">buildCOMIntegrationMatrices</a> ()</td></tr>
-<tr class="separator:a378a6408072c1d7b962e8e52af30b634"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aadf1b7cba1ac0a1e6ec3bc8e0b761d02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#aadf1b7cba1ac0a1e6ec3bc8e0b761d02">buildZMPPreviewMatrices</a> ()</td></tr>
-<tr class="separator:aadf1b7cba1ac0a1e6ec3bc8e0b761d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa763d1c7a769f21eeaaaeb3f09a32aef"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#aa763d1c7a769f21eeaaaeb3f09a32aef">buildCOMVelPreviewMatrices</a> ()</td></tr>
-<tr class="separator:aa763d1c7a769f21eeaaaeb3f09a32aef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a321140d8b3d99cf82687c444344c161d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a321140d8b3d99cf82687c444344c161d">computeOptimalInput</a> ()</td></tr>
-<tr class="separator:a321140d8b3d99cf82687c444344c161d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6e60eaa9ec24031a4acd10c9433a7bd0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a6e60eaa9ec24031a4acd10c9433a7bd0">computeOptimalInput</a> (Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::Vector2d hk, Eigen::VectorXd &amp;optimalU)</td></tr>
+<tr class="separator:a6e60eaa9ec24031a4acd10c9433a7bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39ffdba07960f90a6cce247065f12504"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a39ffdba07960f90a6cce247065f12504">buildAh</a> (const double <a class="el" href="classZmpPreviewController.html#abf1a3ec8d1698afab1c20bba32b5a724">dt</a>)</td></tr>
+<tr class="separator:a39ffdba07960f90a6cce247065f12504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0114a8bdba920b9a7fb6b35e7b90ddd1"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a0114a8bdba920b9a7fb6b35e7b90ddd1">buildBh</a> (const double <a class="el" href="classZmpPreviewController.html#abf1a3ec8d1698afab1c20bba32b5a724">dt</a>)</td></tr>
+<tr class="separator:a0114a8bdba920b9a7fb6b35e7b90ddd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a716fdc040e5eaf9f6fe00c652f205d73"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a716fdc040e5eaf9f6fe00c652f205d73">buildCp</a> (const double <a class="el" href="classZmpPreviewController.html#a3a317d26cc1bbaf8811491724fdd1def">cz</a>, const double <a class="el" href="classZmpPreviewController.html#a344571f012aa58250d7625905681bf1b">g</a>)</td></tr>
+<tr class="separator:a716fdc040e5eaf9f6fe00c652f205d73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9df60a716648bf74467f7a678c8420b"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#af9df60a716648bf74467f7a678c8420b">buildGp</a> (Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a1a63870dcc3d51a26c4adc9c97e650ff">Cp</a>, Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a8ee8ec415e25374f4fa687f5a5a6b9df">Ah</a>, const int <a class="el" href="classZmpPreviewController.html#af0c8b4aa92a6e3e95f80d81a8c91f693">Nc</a>)</td></tr>
+<tr class="separator:af9df60a716648bf74467f7a678c8420b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c46593f53f695cb1df53a2af180f4a0"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a4c46593f53f695cb1df53a2af180f4a0">buildHp</a> (Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a1a63870dcc3d51a26c4adc9c97e650ff">Cp</a>, Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a98bd07d03d0a6004b345ef4310cf17b6">Bh</a>, Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a8ee8ec415e25374f4fa687f5a5a6b9df">Ah</a>, const int <a class="el" href="classZmpPreviewController.html#af0c8b4aa92a6e3e95f80d81a8c91f693">Nc</a>)</td></tr>
+<tr class="separator:a4c46593f53f695cb1df53a2af180f4a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58723464a66fc3a1122c613500bb2052"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a58723464a66fc3a1122c613500bb2052">buildCh</a> ()</td></tr>
+<tr class="separator:a58723464a66fc3a1122c613500bb2052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0e73fabb20f31dbbb85ce61414dbb87"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#ac0e73fabb20f31dbbb85ce61414dbb87">buildGh</a> (Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a2093754713ffb2a7adcd1310c73bf775">Ch</a>, Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a8ee8ec415e25374f4fa687f5a5a6b9df">Ah</a>, const int <a class="el" href="classZmpPreviewController.html#af0c8b4aa92a6e3e95f80d81a8c91f693">Nc</a>)</td></tr>
+<tr class="separator:ac0e73fabb20f31dbbb85ce61414dbb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e2263a5d1990e0734537ec6c6c0136"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#ad6e2263a5d1990e0734537ec6c6c0136">buildHh</a> (Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a2093754713ffb2a7adcd1310c73bf775">Ch</a>, Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a98bd07d03d0a6004b345ef4310cf17b6">Bh</a>, Eigen::MatrixXd <a class="el" href="classZmpPreviewController.html#a8ee8ec415e25374f4fa687f5a5a6b9df">Ah</a>, const int <a class="el" href="classZmpPreviewController.html#af0c8b4aa92a6e3e95f80d81a8c91f693">Nc</a>)</td></tr>
+<tr class="separator:ad6e2263a5d1990e0734537ec6c6c0136"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1322ec975c7d022feb24a40fff62f2e"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#ad1322ec975c7d022feb24a40fff62f2e">buildNu</a> (const double <a class="el" href="classZmpPreviewController.html#ac611f084023404faba1ccfab573cd81d">nu</a>, const int <a class="el" href="classZmpPreviewController.html#af0c8b4aa92a6e3e95f80d81a8c91f693">Nc</a>)</td></tr>
+<tr class="separator:ad1322ec975c7d022feb24a40fff62f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96bed83f8441cfbd6d6fbff54c5b530d"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a96bed83f8441cfbd6d6fbff54c5b530d">buildNw</a> (const double <a class="el" href="classZmpPreviewController.html#a783427b817d77469e1f80426bede5310">nw</a>, const int <a class="el" href="classZmpPreviewController.html#af0c8b4aa92a6e3e95f80d81a8c91f693">Nc</a>)</td></tr>
+<tr class="separator:a96bed83f8441cfbd6d6fbff54c5b530d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4ab5756eb9faf991a12b405d116292f"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#ab4ab5756eb9faf991a12b405d116292f">buildNb</a> (const double <a class="el" href="classZmpPreviewController.html#a6716ee4c94e6f91e608ee1e29fbc7051">nb</a>, const int <a class="el" href="classZmpPreviewController.html#af0c8b4aa92a6e3e95f80d81a8c91f693">Nc</a>)</td></tr>
+<tr class="separator:ab4ab5756eb9faf991a12b405d116292f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a893b789fddc949d0703461963280f504"><td class="memItemLeft" align="right" valign="top">const Eigen::Vector3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a893b789fddc949d0703461963280f504">cz</a></td></tr>
-<tr class="separator:a893b789fddc949d0703461963280f504"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a317d26cc1bbaf8811491724fdd1def"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a3a317d26cc1bbaf8811491724fdd1def">cz</a></td></tr>
+<tr class="separator:a3a317d26cc1bbaf8811491724fdd1def"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a344571f012aa58250d7625905681bf1b"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a344571f012aa58250d7625905681bf1b">g</a> = 9.8</td></tr>
 <tr class="separator:a344571f012aa58250d7625905681bf1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf1a3ec8d1698afab1c20bba32b5a724"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#abf1a3ec8d1698afab1c20bba32b5a724">dt</a></td></tr>
 <tr class="separator:abf1a3ec8d1698afab1c20bba32b5a724"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43e471820b285c89e9d1878448a6f364"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a43e471820b285c89e9d1878448a6f364">Nc</a></td></tr>
-<tr class="separator:a43e471820b285c89e9d1878448a6f364"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0c8b4aa92a6e3e95f80d81a8c91f693"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#af0c8b4aa92a6e3e95f80d81a8c91f693">Nc</a></td></tr>
+<tr class="separator:af0c8b4aa92a6e3e95f80d81a8c91f693"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac611f084023404faba1ccfab573cd81d"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#ac611f084023404faba1ccfab573cd81d">nu</a></td></tr>
 <tr class="separator:ac611f084023404faba1ccfab573cd81d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a783427b817d77469e1f80426bede5310"><td class="memItemLeft" align="right" valign="top">const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a783427b817d77469e1f80426bede5310">nw</a></td></tr>
@@ -115,10 +129,10 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a5e85354a1a7c3f2a8e265dbe7367051c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd345d397e99ae01ad4ea80cd9894802"><td class="memItemLeft" align="right" valign="top">const Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#abd345d397e99ae01ad4ea80cd9894802">Nb</a></td></tr>
 <tr class="separator:abd345d397e99ae01ad4ea80cd9894802"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a777600c57020a9851912374cfc12ad5a"><td class="memItemLeft" align="right" valign="top">const Eigen::Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a777600c57020a9851912374cfc12ad5a">Ah</a></td></tr>
-<tr class="separator:a777600c57020a9851912374cfc12ad5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84edf4d475c32ec836732c24eba30ce9"><td class="memItemLeft" align="right" valign="top">const Eigen::Matrix3d&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a84edf4d475c32ec836732c24eba30ce9">Bh</a></td></tr>
-<tr class="separator:a84edf4d475c32ec836732c24eba30ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ee8ec415e25374f4fa687f5a5a6b9df"><td class="memItemLeft" align="right" valign="top">const Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a8ee8ec415e25374f4fa687f5a5a6b9df">Ah</a></td></tr>
+<tr class="separator:a8ee8ec415e25374f4fa687f5a5a6b9df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98bd07d03d0a6004b345ef4310cf17b6"><td class="memItemLeft" align="right" valign="top">const Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a98bd07d03d0a6004b345ef4310cf17b6">Bh</a></td></tr>
+<tr class="separator:a98bd07d03d0a6004b345ef4310cf17b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a63870dcc3d51a26c4adc9c97e650ff"><td class="memItemLeft" align="right" valign="top">const Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a1a63870dcc3d51a26c4adc9c97e650ff">Cp</a></td></tr>
 <tr class="separator:a1a63870dcc3d51a26c4adc9c97e650ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53a7d8af5be4a5d5cea99fad2ea48979"><td class="memItemLeft" align="right" valign="top">const Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a53a7d8af5be4a5d5cea99fad2ea48979">Gp</a></td></tr>
@@ -146,8 +160,8 @@ Private Attributes</h2></td></tr>
 </p>
 <p>Where <img class="formulaInl" alt="$\mathbf{p}$" src="form_2.png"/> are horizontal ZMP coordinates, <img class="formulaInl" alt="$ \mathbf{r}^r $" src="form_3.png"/> ZMP references (in walking-client is the interpolated ZMP reference from the walking MIQP problem) <img class="formulaInl" alt="$ \mathbf{\dot{h}} $" src="form_4.png"/> the horizontal COM velocity, <img class="formulaInl" alt="$ \mathbf{\dot{h}}^r $" src="form_5.png"/> COM horizontal velocity reference (in walking-client it's the interpolated COM velocity reference from the walking MIQP problem). <img class="formulaInl" alt="$\mathbf{u}$" src="form_6.png"/> are the input COM jerks, <img class="formulaInl" alt="$h$" src="form_7.png"/> the horizonal COM position, <img class="formulaInl" alt="$\hat{h}$" src="form_8.png"/> the horizontal COM state <img class="formulaInl" alt="$ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) $" src="form_9.png"/> and <img class="formulaInl" alt="$\mathbf{e}_2$" src="form_10.png"/> the vertical unit vectory <img class="formulaInl" alt="$ [0\;0\;1]^T$" src="form_11.png"/>. <img class="formulaInl" alt="$\mathbf{A}_h$" src="form_15.png"/> and <img class="formulaInl" alt="$\mathbf{B}_h$" src="form_16.png"/> are integration matrices. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac8837fd39b0b942afd3dd5759c456b42"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8837fd39b0b942afd3dd5759c456b42">&sect;&nbsp;</a></span>ZmpPreviewController()</h2>
+<a id="af1c464b13886dc0edf2f295fc215b13c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1c464b13886dc0edf2f295fc215b13c">&sect;&nbsp;</a></span>ZmpPreviewController()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,11 +169,30 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">ZmpPreviewController::ZmpPreviewController </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>period</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">struct <a class="el" href="structZmpPreviewParams.html">ZmpPreviewParams</a>&#160;</td>
+          <td class="paramname"><em>parameters</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Class constructor. Build all the time-invariant matrices used to compute the optimal output of the preview controller. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">period</td><td>Period (in ms) of the thread in which an object of this class is created. </td></tr>
+    <tr><td class="paramname">parameters</td><td>An object containing the main parameters. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>struct <a class="el" href="structZmpPreviewParams.html">ZmpPreviewParams</a> for details. </dd></dl>
 
 </div>
 </div>
@@ -168,6 +201,9 @@ Private Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">ZmpPreviewController::~ZmpPreviewController </td>
@@ -176,64 +212,431 @@ Private Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a378a6408072c1d7b962e8e52af30b634"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a378a6408072c1d7b962e8e52af30b634">&sect;&nbsp;</a></span>buildCOMIntegrationMatrices()</h2>
+<a id="a39ffdba07960f90a6cce247065f12504"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39ffdba07960f90a6cce247065f12504">&sect;&nbsp;</a></span>buildAh()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ZmpPreviewController::buildCOMIntegrationMatrices </td>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildAh </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>dt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds Ah. Called during the member list initialization of the constructor of this class. </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 &amp; \delta t &amp; \delta t^2/2 \\ 0 &amp; 1 &amp; \delta t \\ 0 &amp; 0 &amp; 1 \end{array} \right] \]" src="form_28.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td><a class="el" href="classThread.html" title="The meat and potatoes of the controller server. ">Thread</a> period in which this classed in instantiated.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The constant matrix Ah. </dd></dl>
+
+</div>
+</div>
+<a id="a0114a8bdba920b9a7fb6b35e7b90ddd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0114a8bdba920b9a7fb6b35e7b90ddd1">&sect;&nbsp;</a></span>buildBh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildBh </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>dt</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds Bh. Called during the member list initialization of the constructor of this class. </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \]" src="form_29.png"/>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dt</td><td><a class="el" href="classThread.html" title="The meat and potatoes of the controller server. ">Thread</a> period in which this classed in instantiated.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The constant matrix Bh. </dd></dl>
+
+</div>
+</div>
+<a id="a58723464a66fc3a1122c613500bb2052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58723464a66fc3a1122c613500bb2052">&sect;&nbsp;</a></span>buildCh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildCh </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$C_h$" src="form_61.png"/></p>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$C_h$" src="form_61.png"/> </dd></dl>
 
 </div>
 </div>
-<a id="aa763d1c7a769f21eeaaaeb3f09a32aef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa763d1c7a769f21eeaaaeb3f09a32aef">&sect;&nbsp;</a></span>buildCOMVelPreviewMatrices()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ZmpPreviewController::buildCOMVelPreviewMatrices </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="aadf1b7cba1ac0a1e6ec3bc8e0b761d02"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aadf1b7cba1ac0a1e6ec3bc8e0b761d02">&sect;&nbsp;</a></span>buildZMPPreviewMatrices()</h2>
+<a id="a716fdc040e5eaf9f6fe00c652f205d73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a716fdc040e5eaf9f6fe00c652f205d73">&sect;&nbsp;</a></span>buildCp()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool ZmpPreviewController::buildZMPPreviewMatrices </td>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildCp </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>cz</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>g</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$C_p$" src="form_30.png"/></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cz</td><td>Constant COM height. </td></tr>
+    <tr><td class="paramname">g</td><td>Constant gravity acceleration (m^2/s)</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Cp </dd></dl>
 
 </div>
 </div>
-<a id="a321140d8b3d99cf82687c444344c161d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a321140d8b3d99cf82687c444344c161d">&sect;&nbsp;</a></span>computeOptimalInput()</h2>
+<a id="ac0e73fabb20f31dbbb85ce61414dbb87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0e73fabb20f31dbbb85ce61414dbb87">&sect;&nbsp;</a></span>buildGh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildGh </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Ch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Ah</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>Nc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$G_h$" src="form_62.png"/></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Ch</td><td><img class="formulaInl" alt="$C_h$" src="form_61.png"/> </td></tr>
+    <tr><td class="paramname">Ah</td><td><img class="formulaInl" alt="$A_h$" src="form_12.png"/> </td></tr>
+    <tr><td class="paramname">Nc</td><td><img class="formulaInl" alt="$N_c$" src="form_59.png"/></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$G_h$" src="form_62.png"/> </dd></dl>
+
+</div>
+</div>
+<a id="af9df60a716648bf74467f7a678c8420b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9df60a716648bf74467f7a678c8420b">&sect;&nbsp;</a></span>buildGp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildGp </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Cp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Ah</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>Nc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$G_p$" src="form_58.png"/></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Cp</td><td><img class="formulaInl" alt="$C_p$" src="form_30.png"/> </td></tr>
+    <tr><td class="paramname">Ah</td><td><img class="formulaInl" alt="$A_h$" src="form_12.png"/> </td></tr>
+    <tr><td class="paramname">Nc</td><td><img class="formulaInl" alt="$N_c$" src="form_59.png"/></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$G_p$" src="form_58.png"/> </dd></dl>
+
+</div>
+</div>
+<a id="ad6e2263a5d1990e0734537ec6c6c0136"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6e2263a5d1990e0734537ec6c6c0136">&sect;&nbsp;</a></span>buildHh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildHh </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Ch</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Bh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Ah</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>Nc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$H_h$" src="form_63.png"/></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Ch</td><td><img class="formulaInl" alt="$C_h$" src="form_61.png"/> </td></tr>
+    <tr><td class="paramname">Bh</td><td><img class="formulaInl" alt="$B_h$" src="form_13.png"/> </td></tr>
+    <tr><td class="paramname">Ah</td><td><img class="formulaInl" alt="$A_h$" src="form_12.png"/> </td></tr>
+    <tr><td class="paramname">Nc</td><td><img class="formulaInl" alt="$N_c$" src="form_59.png"/></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$H_h$" src="form_63.png"/> </dd></dl>
+
+</div>
+</div>
+<a id="a4c46593f53f695cb1df53a2af180f4a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c46593f53f695cb1df53a2af180f4a0">&sect;&nbsp;</a></span>buildHp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildHp </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Cp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Bh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixXd&#160;</td>
+          <td class="paramname"><em>Ah</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>Nc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$H_p$" src="form_60.png"/></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Cp</td><td><img class="formulaInl" alt="$C_p$" src="form_30.png"/> </td></tr>
+    <tr><td class="paramname">Bh</td><td><img class="formulaInl" alt="$B_h$" src="form_13.png"/> </td></tr>
+    <tr><td class="paramname">Ah</td><td><img class="formulaInl" alt="$A_h$" src="form_12.png"/> </td></tr>
+    <tr><td class="paramname">Nc</td><td><img class="formulaInl" alt="$N_c$" src="form_59.png"/></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$H_p$" src="form_60.png"/> </dd></dl>
+
+</div>
+</div>
+<a id="ab4ab5756eb9faf991a12b405d116292f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4ab5756eb9faf991a12b405d116292f">&sect;&nbsp;</a></span>buildNb()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildNb </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>nb</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>Nc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$N_b$" src="form_26.png"/></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nb</td><td><img class="formulaInl" alt="$\eta_b$" src="form_66.png"/> </td></tr>
+    <tr><td class="paramname">Nc</td><td><img class="formulaInl" alt="$N_c$" src="form_59.png"/></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$N_b$" src="form_26.png"/> </dd></dl>
+
+</div>
+</div>
+<a id="ad1322ec975c7d022feb24a40fff62f2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1322ec975c7d022feb24a40fff62f2e">&sect;&nbsp;</a></span>buildNu()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildNu </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>nu</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>Nc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$N_u$" src="form_23.png"/></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nu</td><td><img class="formulaInl" alt="$\eta_u$" src="form_20.png"/> </td></tr>
+    <tr><td class="paramname">Nc</td><td><img class="formulaInl" alt="$N_c$" src="form_59.png"/></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$N_u$" src="form_23.png"/> </dd></dl>
+
+</div>
+</div>
+<a id="a96bed83f8441cfbd6d6fbff54c5b530d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96bed83f8441cfbd6d6fbff54c5b530d">&sect;&nbsp;</a></span>buildNw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::MatrixXd ZmpPreviewController::buildNw </td>
+          <td>(</td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>nw</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>Nc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Builds <img class="formulaInl" alt="$N_w$" src="form_25.png"/></p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">nw</td><td><img class="formulaInl" alt="$\eta_w$" src="form_64.png"/> </td></tr>
+    <tr><td class="paramname">Nc</td><td><img class="formulaInl" alt="$Nc$" src="form_65.png"/></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><img class="formulaInl" alt="$N_w$" src="form_25.png"/> </dd></dl>
+
+</div>
+</div>
+<a id="a6e60eaa9ec24031a4acd10c9433a7bd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6e60eaa9ec24031a4acd10c9433a7bd0">&sect;&nbsp;</a></span>computeOptimalInput()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -241,11 +644,47 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">bool ZmpPreviewController::computeOptimalInput </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">Eigen::VectorXd&#160;</td>
+          <td class="paramname"><em>zmpRef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">Eigen::VectorXd&#160;</td>
+          <td class="paramname"><em>comVelRef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Vector2d&#160;</td>
+          <td class="paramname"><em>hk</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>optimalU</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Computes the optimal input, i.e.: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right) \]" src="form_37.png"/>
+</p>
+ <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">zmpRef</td><td><img class="formulaInl" alt="$\mathbf{P}_r$" src="form_38.png"/> </td></tr>
+    <tr><td class="paramname">comVelRef</td><td><img class="formulaInl" alt="$\tilde{\mathbf{H}}_r$" src="form_39.png"/> </td></tr>
+    <tr><td class="paramname">hk</td><td>COM state at time <img class="formulaInl" alt="$k$" src="form_48.png"/>, i.e. <img class="formulaInl" alt="$\hat{\mathbf{h}}_k$" src="form_49.png"/> </td></tr>
+    <tr><td class="paramname">optimalU</td><td>Closed-form solution to the unconstrained QP problem, <img class="formulaInl" alt="$\mathbf{U}_{k+N_c|k}$" src="form_50.png"/></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if computation is successful, false otherwise. </dd></dl>
 
 </div>
 </div>
@@ -266,26 +705,9 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a65905572c73752a3ff46c0435c9794a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a65905572c73752a3ff46c0435c9794a0">&sect;&nbsp;</a></span>initializeMatrices()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool ZmpPreviewController::initializeMatrices </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a777600c57020a9851912374cfc12ad5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a777600c57020a9851912374cfc12ad5a">&sect;&nbsp;</a></span>Ah</h2>
+<a id="a8ee8ec415e25374f4fa687f5a5a6b9df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ee8ec415e25374f4fa687f5a5a6b9df">&sect;&nbsp;</a></span>Ah</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -294,7 +716,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const Eigen::Matrix3d ZmpPreviewController::Ah</td>
+          <td class="memname">const Eigen::MatrixXd ZmpPreviewController::Ah</td>
         </tr>
       </table>
   </td>
@@ -303,14 +725,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>State matrix <img class="formulaInl" alt="$\mathbf{A}_h$" src="form_15.png"/> from the linear state process of the COM state <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is a constant matrix equal to: </p><p class="formulaDsp">
+<p>State matrix <img class="formulaInl" alt="$\mathbf{A}_h$" src="form_15.png"/> from the linear state process of the COM state <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is a constant matrix of size <img class="formulaInl" alt="$6\times6$" src="form_52.png"/> equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{A_h} = \left[ \begin{array}{ccc} 1 &amp; \delta t &amp; \delta t^2/2 \\ 0 &amp; 1 &amp; \delta t \\ 0 &amp; 0 &amp; 1 \end{array} \right] \]" src="form_28.png"/>
 </p>
  
 </div>
 </div>
-<a id="a84edf4d475c32ec836732c24eba30ce9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a84edf4d475c32ec836732c24eba30ce9">&sect;&nbsp;</a></span>Bh</h2>
+<a id="a98bd07d03d0a6004b345ef4310cf17b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98bd07d03d0a6004b345ef4310cf17b6">&sect;&nbsp;</a></span>Bh</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -319,7 +741,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const Eigen::Matrix3d ZmpPreviewController::Bh</td>
+          <td class="memname">const Eigen::MatrixXd ZmpPreviewController::Bh</td>
         </tr>
       </table>
   </td>
@@ -328,7 +750,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Input matrix <img class="formulaInl" alt="$\mathbf{B}_h$" src="form_16.png"/> from the linear state process of the CoM state <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is constant and equal to: </p><p class="formulaDsp">
+<p>Input matrix <img class="formulaInl" alt="$\mathbf{B}_h$" src="form_16.png"/> from the linear state process of the CoM state <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is constant of size <img class="formulaInl" alt="$6\times2$" src="form_53.png"/> and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \]" src="form_29.png"/>
 </p>
  
@@ -353,8 +775,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Output matrix of the COM linear process state transition where the COM horizontal velocity is the output. </p>
-
+<p>Output matrix of the COM linear process state transition where the COM horizontal velocity is the output. It is of size <img class="formulaInl" alt="$2\times6$" src="form_54.png"/> and equal to: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0} &amp; \mathbf{1} &amp; \mathbf{0} \\ \end{array}\right] \]" src="form_42.png"/>
+</p>
+ 
 </div>
 </div>
 <a id="a1a63870dcc3d51a26c4adc9c97e650ff"></a>
@@ -376,14 +800,14 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Output matrix <img class="formulaInl" alt="$C_p$" src="form_30.png"/> from the linear state process relating ZMP to the CoM dynamics <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is time-invariant and equal to: </p><p class="formulaDsp">
+<p>Output matrix <img class="formulaInl" alt="$C_p$" src="form_30.png"/> from the linear state process relating ZMP to the CoM dynamics <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is time-invariant of size <img class="formulaInl" alt="$2\times6$" src="form_54.png"/> and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{C}_p = \left[\begin{array}{ccc} 1 &amp; 0 &amp; -c_z/g \end{array}\right] \]" src="form_31.png"/>
 </p>
  
 </div>
 </div>
-<a id="a893b789fddc949d0703461963280f504"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a893b789fddc949d0703461963280f504">&sect;&nbsp;</a></span>cz</h2>
+<a id="a3a317d26cc1bbaf8811491724fdd1def"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a317d26cc1bbaf8811491724fdd1def">&sect;&nbsp;</a></span>cz</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -392,7 +816,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const Eigen::Vector3d ZmpPreviewController::cz</td>
+          <td class="memname">const double ZmpPreviewController::cz</td>
         </tr>
       </table>
   </td>
@@ -470,7 +894,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_h$" src="form_43.png"/> of size <img class="formulaInl" alt="$2N_c \times 6$" src="form_57.png"/>from the preview horizon of COM velocities. It is constant and equal to: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_h\mathbf{A}_h \\ \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c}_h \end{array}\right] \]" src="form_44.png"/>
+</p>
+ 
 </div>
 </div>
 <a id="a53a7d8af5be4a5d5cea99fad2ea48979"></a>
@@ -492,8 +919,8 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_p$" src="form_32.png"/> from the preview horizon of ZMP outputs <img class="formulaInl" alt="$\mathbf{P}$" src="form_33.png"/>. It is equal to: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \mathbf{H}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \]" src="form_36.png"/>
+<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_p$" src="form_32.png"/> from the preview horizon of ZMP outputs <img class="formulaInl" alt="$\mathbf{P}$" src="form_33.png"/>. It is of size <img class="formulaInl" alt="$2Nc \times 6$" src="form_55.png"/> and equal to: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_p\mathbf{A}_h \\ \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c}_h \end{array}\right] \]" src="form_41.png"/>
 </p>
  
 </div>
@@ -517,7 +944,10 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
+<p>Input matrix <img class="formulaInl" alt="$\mathbf{H}_h$" src="form_45.png"/> from the preview horizon of COM velocities <img class="formulaInl" alt="$\tilde{\mathbf{H}}$" src="form_46.png"/>, of size <img class="formulaInl" alt="$2N_c \times 2N_c$" src="form_56.png"/> and equal to: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_h\mathbf{B}_h &amp; 0 &amp; \cdots &amp; 0 \\ \mathbf{C}_h\mathbf{A}_h\mathbf{B}_h &amp; \mathbf{C}_h\mathbf{B}_h &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c-1}_h\mathbf{B}_h &amp; \mathbf{C}_h\mathbf{A}^{N_c-2}_h\mathbf{B}_h &amp; \cdots &amp; \mathbf{C}_h\mathbf{B}_h \end{array}\right] \]" src="form_47.png"/>
+</p>
+ 
 </div>
 </div>
 <a id="a32ab17a3be30490e4a1e874bf3581843"></a>
@@ -539,7 +969,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Input matrix <img class="formulaInl" alt="$\mathbf{H}_p$" src="form_34.png"/> from the preview horizon of ZMP outputs <img class="formulaInl" alt="$\mathbf{P}$" src="form_33.png"/>. It is equal to: </p><p class="formulaDsp">
+<p>Input matrix <img class="formulaInl" alt="$\mathbf{H}_p$" src="form_34.png"/> from the preview horizon of ZMP outputs <img class="formulaInl" alt="$\mathbf{P}$" src="form_33.png"/>. It is of size <img class="formulaInl" alt="$2N_c \times 2N_c$" src="form_56.png"/> and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_p\mathbf{B}_h &amp; 0 &amp; \cdots &amp; 0 \\ \mathbf{C}_p\mathbf{A}_h\mathbf{B}_h &amp; \mathbf{C}_p\mathbf{B}_h &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \mathbf{C}_p\mathbf{A}^{N_c-1}_h\mathbf{B}_h &amp; \mathbf{C}_p\mathbf{A}^{N_c-2}_h\mathbf{B}_h &amp; \cdots &amp; \mathbf{C}_p\mathbf{B}_h \end{array}\right] \]" src="form_35.png"/>
 </p>
  
@@ -587,12 +1017,12 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Diagonal matrix <img class="formulaInl" alt="$N_b$" src="form_26.png"/> of size <img class="formulaInl" alt="$[N_c \times N_c]$" src="form_24.png"/> weighting the balancing cost function in its matrix form. </p>
+<p>Diagonal matrix <img class="formulaInl" alt="$N_b$" src="form_26.png"/> of size <img class="formulaInl" alt="$[2N_c \times 2N_c]$" src="form_51.png"/> weighting the balancing cost function in its matrix form. </p>
 
 </div>
 </div>
-<a id="a43e471820b285c89e9d1878448a6f364"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43e471820b285c89e9d1878448a6f364">&sect;&nbsp;</a></span>Nc</h2>
+<a id="af0c8b4aa92a6e3e95f80d81a8c91f693"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0c8b4aa92a6e3e95f80d81a8c91f693">&sect;&nbsp;</a></span>Nc</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -601,7 +1031,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const double ZmpPreviewController::Nc</td>
+          <td class="memname">const int ZmpPreviewController::Nc</td>
         </tr>
       </table>
   </td>
@@ -656,7 +1086,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Diagonal matrix <img class="formulaInl" alt="$N_u$" src="form_23.png"/> of size <img class="formulaInl" alt="$[N_c \times N_c]$" src="form_24.png"/> weighting the input regularization term in the matricial expression of the controller's cost function. </p>
+<p>Diagonal matrix <img class="formulaInl" alt="$N_u$" src="form_23.png"/> of size <img class="formulaInl" alt="$[2N_c \times 2N_c]$" src="form_51.png"/> weighting the input regularization term in the matricial expression of the controller's cost function. </p>
 
 </div>
 </div>
@@ -702,7 +1132,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Diagonal matrix <img class="formulaInl" alt="$N_w$" src="form_25.png"/> of size <img class="formulaInl" alt="$[N_c \times N_c]$" src="form_24.png"/> weighting the walking cost function in its matrix form. </p>
+<p>Diagonal matrix <img class="formulaInl" alt="$N_w$" src="form_25.png"/> of size <img class="formulaInl" alt="$[2N_c \times 2N_c]$" src="form_51.png"/> weighting the walking cost function in its matrix form. </p>
 
 </div>
 </div>
@@ -713,7 +1143,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 26 2016 17:51:25 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 28 2016 14:48:56 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

@@ -5,5 +5,6 @@ var searchData=
   ['p3',['p3',['../classExampleClient.html#ab41df6f34a51e649051adbac6d3077f9',1,'ExampleClient']]],
   ['pauseduration',['pauseDuration',['../classSteppingDemoClient.html#a92b810b2d2c50e359da18e5d91163340',1,'SteppingDemoClient']]],
   ['pausetriggertime',['pauseTriggerTime',['../classSteppingDemoClient.html#a13a5deff16d52936f788bb9b0af6e9c9',1,'SteppingDemoClient']]],
-  ['pos_5fcom',['pos_com',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#acc028d57a70c3b36838f28ea518f65c4',1,'OcraWbiModel::OcraWbiModel_pimpl']]]
+  ['pos_5fcom',['pos_com',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#acc028d57a70c3b36838f28ea518f65c4',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
+  ['pr',['Pr',['../structZmpPreviewParams.html#ae1a666259161913a15bf06832adcbf37',1,'ZmpPreviewParams']]]
 ];
