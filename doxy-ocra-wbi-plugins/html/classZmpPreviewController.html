@@ -151,15 +151,24 @@ Private Attributes</h2></td></tr>
 <dl class="section note"><dt>Note</dt><dd>Put original ZMP preview control reference along with Aurelien's</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Jorhabib Eljaik</dd></dl>
 <p><a class="el" href="citelist.html#CITEREF_ibanezThesis2015">[1]</a></p>
-<p>Given a rough ZMP trajectory and a corresponding consistent CoM velocity, this class computes at a fast rate optimal CoM jerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoM tracking objective in order to minimize the error over a preview horizon to reference CoM velocities. This preview controller solves with</p>
+<dl class="section warning"><dt>Warning</dt><dd>Work in progress! This is still a barebone class in the process to be tested.</dd></dl>
+<p>Given a rough ZMP trajectory and a corresponding consistent CoMvelocity, this class computes at a fast rate optimal CoMjerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoMtracking objective in order to minimize the error over a preview horizon to reference CoMvelocities. This preview controller solves with</p>
 <p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathcal{U}_{k+N|k} = (\mathbf{u}_{k|k}, ... , \mathbf{u}) \]" src="form_14.png"/>
 </p>
-<p>Denoting a horizon of input CoM jerks <img class="formulaInl" alt="$\mathbf{u}$" src="form_6.png"/>, the following problem:</p>
+<p>Denoting a horizon of input CoMjerks <img class="formulaInl" alt="$\mathbf{u}$" src="form_6.png"/>, the following problem:</p>
 <p class="formulaDsp">
 <img class="formulaDsp" alt="\begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} &amp; \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\ \text{such that}&amp;\\ \mathbf{p} &amp;= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &amp;= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &amp;= \mathbf{h}_k\\ \mathbf{h} &amp;= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}" src="form_1.png"/>
 </p>
-<p>Where <img class="formulaInl" alt="$\mathbf{p}$" src="form_2.png"/> are horizontal ZMP coordinates, <img class="formulaInl" alt="$ \mathbf{r}^r $" src="form_3.png"/> ZMP references (in walking-client is the interpolated ZMP reference from the walking MIQP problem) <img class="formulaInl" alt="$ \mathbf{\dot{h}} $" src="form_4.png"/> the horizontal COM velocity, <img class="formulaInl" alt="$ \mathbf{\dot{h}}^r $" src="form_5.png"/> COM horizontal velocity reference (in walking-client it's the interpolated COM velocity reference from the walking MIQP problem). <img class="formulaInl" alt="$\mathbf{u}$" src="form_6.png"/> are the input COM jerks, <img class="formulaInl" alt="$h$" src="form_7.png"/> the horizonal COM position, <img class="formulaInl" alt="$\hat{h}$" src="form_8.png"/> the horizontal COM state <img class="formulaInl" alt="$ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) $" src="form_9.png"/> and <img class="formulaInl" alt="$\mathbf{e}_2$" src="form_10.png"/> the vertical unit vectory <img class="formulaInl" alt="$ [0\;0\;1]^T$" src="form_11.png"/>. <img class="formulaInl" alt="$\mathbf{A}_h$" src="form_15.png"/> and <img class="formulaInl" alt="$\mathbf{B}_h$" src="form_16.png"/> are integration matrices. </p>
+<p>Where <img class="formulaInl" alt="$\mathbf{p}$" src="form_2.png"/> are horizontal ZMP coordinates, <img class="formulaInl" alt="$ \mathbf{r}^r $" src="form_3.png"/> ZMP references (in walking-client is the interpolated ZMP reference from the walking MIQP problem) <img class="formulaInl" alt="$ \mathbf{\dot{h}} $" src="form_4.png"/> the horizontal CoMvelocity, <img class="formulaInl" alt="$ \mathbf{\dot{h}}^r $" src="form_5.png"/> CoMhorizontal velocity reference (in walking-client it's the interpolated CoMvelocity reference from the walking MIQP problem). <img class="formulaInl" alt="$\mathbf{u}$" src="form_6.png"/> are the input CoMjerks, <img class="formulaInl" alt="$\mathbf{c}$" src="form_74.png"/> the three-dimensional CoMposition. <img class="formulaInl" alt="$h$" src="form_7.png"/> the horizonal CoMposition, <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/> the horizontal CoMstate <img class="formulaInl" alt="$ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) $" src="form_9.png"/> and <img class="formulaInl" alt="$\mathbf{e}_2$" src="form_10.png"/> the vertical unit vectory <img class="formulaInl" alt="$ [0\;0\;1]^T$" src="form_11.png"/>. <img class="formulaInl" alt="$\mathbf{A}_h$" src="form_15.png"/> and <img class="formulaInl" alt="$\mathbf{B}_h$" src="form_16.png"/> are integration matrices.</p>
+<p>The previously described problem is an unconstrained QP problem which has a closed-form solution. In order to help us find one, the same minimization problem will be expressed in matrix form as:</p>
+<p class="formulaDsp">
+<img class="formulaDsp" alt="\[ \underset{\mathbf{U}}{\text{min}} \; (\mathbf{P}_r - \mathbf{P})^T \mathbf{N}_b (\mathbf{P}_r - \mathbf{P}) + (\tilde{\mathbf{H}}_r - \mathbf{H})^T\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{H}) + \mathbf{U}^T\mathbf{N}_u \mathbf{U} \]" src="form_75.png"/>
+</p>
+<p>Where: </p><p class="formulaDsp">
+<img class="formulaDsp" alt="\begin{align*} \mathbf{U}^T &amp;= \left[ \mathbf{u}^T_{k+1|k}, \cdots, \mathbf{u}^T_{k+N_c|k} \right]^T \\ \mathbf{P}^T &amp;= \left[ \mathbf{p}^T_{k+1|k}, \cdots, \mathbf{p}^T_{k+N_c|k} \right]^T \\ \mathbf{P}^T_r &amp;= \left[ \mathbf{r}^T_{k+1|k}, \cdots, \mathbf{r}^T_{k+N_c|k} \right]^T \\ \mathbf{\tilde{H}}^T &amp;= \left[ \dot{\mathbf{h}}^T_{k+1|k}, \cdots, \dot{\mathbf{h}}^T_{k+N_c|k} \right]^T \\ \mathbf{\tilde{H}}^T_r &amp;= \left[ \dot{\mathbf{h}^r}^T_{k+1|k}, \cdots, \dot{\mathbf{h}^r}^T_{k+N_c|k} \right]^T \\ \mathbf{N}_b &amp;= \eta_b\left[\begin{array}{ccc} 1 &amp; \cdots &amp; 0 \\ \vdots &amp; \ddots &amp; \vdots\\ 0 &amp; \cdots &amp; 1 \end{array}\right] \end{align*}" src="form_76.png"/>
+</p>
+<p><img class="formulaInl" alt="$\mathbf{N}_w$" src="form_77.png"/> and <img class="formulaInl" alt="$\mathbf{N}_u$" src="form_78.png"/> have a similar structure to <img class="formulaInl" alt="$\mathbf{N}_b$" src="form_79.png"/> </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af1c464b13886dc0edf2f295fc215b13c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af1c464b13886dc0edf2f295fc215b13c">&sect;&nbsp;</a></span>ZmpPreviewController()</h2>
@@ -322,7 +331,7 @@ Private Attributes</h2></td></tr>
 <p>Builds <img class="formulaInl" alt="$C_p$" src="form_30.png"/></p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">cz</td><td>Constant COM height. </td></tr>
+    <tr><td class="paramname">cz</td><td>Constant CoMheight. </td></tr>
     <tr><td class="paramname">g</td><td>Constant gravity acceleration (m^2/s)</td></tr>
   </table>
   </dd>
@@ -676,7 +685,7 @@ Private Attributes</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">zmpRef</td><td><img class="formulaInl" alt="$\mathbf{P}_r$" src="form_38.png"/> </td></tr>
     <tr><td class="paramname">comVelRef</td><td><img class="formulaInl" alt="$\tilde{\mathbf{H}}_r$" src="form_39.png"/> </td></tr>
-    <tr><td class="paramname">hk</td><td>COM state at time <img class="formulaInl" alt="$k$" src="form_48.png"/>, i.e. <img class="formulaInl" alt="$\hat{\mathbf{h}}_k$" src="form_49.png"/> </td></tr>
+    <tr><td class="paramname">hk</td><td>CoMstate at time <img class="formulaInl" alt="$k$" src="form_48.png"/>, i.e. <img class="formulaInl" alt="$\hat{\mathbf{h}}_k$" src="form_49.png"/> </td></tr>
     <tr><td class="paramname">optimalU</td><td>Closed-form solution to the unconstrained QP problem, <img class="formulaInl" alt="$\mathbf{U}_{k+N_c|k}$" src="form_50.png"/></td></tr>
   </table>
   </dd>
@@ -722,7 +731,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>State matrix <img class="formulaInl" alt="$\mathbf{A}_h$" src="form_15.png"/> from the linear state process of the COM state <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is a constant matrix of size <img class="formulaInl" alt="$6\times6$" src="form_52.png"/> equal to: </p><p class="formulaDsp">
+<p>State matrix <img class="formulaInl" alt="$\mathbf{A}_h$" src="form_15.png"/> from the linear state process of the CoMstate <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is a constant matrix of size <img class="formulaInl" alt="$6\times6$" src="form_52.png"/> equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{A_h} = \left[ \begin{array}{ccc} \mathbf{I}_2 &amp; \delta t \mathbf{I}_2 &amp; \frac{\delta t^2}{2} \mathbf{I}_2 \\ 0 &amp; \mathbf{I}_2 &amp; \delta t \\ 0 &amp; 0 &amp; \mathbf{I}_2 \end{array} \right] \]" src="form_67.png"/>
 </p>
  
@@ -747,7 +756,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Input matrix <img class="formulaInl" alt="$\mathbf{B}_h$" src="form_16.png"/> from the linear state process of the CoM state <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is constant of size <img class="formulaInl" alt="$6\times2$" src="form_53.png"/> and equal to: </p><p class="formulaDsp">
+<p>Input matrix <img class="formulaInl" alt="$\mathbf{B}_h$" src="form_16.png"/> from the linear state process of the CoMstate <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is constant of size <img class="formulaInl" alt="$6\times2$" src="form_53.png"/> and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{B_h} = \left[ \begin{array}{c} \frac{\delta^3}{6}\mathbf{I}_2 \\ \frac{\delta t^2}{2} \mathbf{I}_2 \\ \delta t \mathbf{I}_2 \end{array} \right] \]" src="form_68.png"/>
 </p>
  
@@ -772,7 +781,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Output matrix of the COM linear process state transition where the COM horizontal velocity is the output. It is of size <img class="formulaInl" alt="$2\times6$" src="form_54.png"/> and equal to: </p><p class="formulaDsp">
+<p>Output matrix of the CoMlinear process state transition where the CoMhorizontal velocity is the output. It is of size <img class="formulaInl" alt="$2\times6$" src="form_54.png"/> and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{0}_2 &amp; \mathbf{I}_2 &amp; \mathbf{0}_2 \\ \end{array}\right] \]" src="form_69.png"/>
 </p>
  
@@ -797,7 +806,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Output matrix <img class="formulaInl" alt="$C_p$" src="form_30.png"/> from the linear state process relating ZMP to the CoM dynamics <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is time-invariant of size <img class="formulaInl" alt="$2\times6$" src="form_54.png"/> and equal to: </p><p class="formulaDsp">
+<p>Output matrix <img class="formulaInl" alt="$C_p$" src="form_30.png"/> from the linear state process relating ZMP to the CoMdynamics <img class="formulaInl" alt="$\hat{\mathbf{h}}$" src="form_27.png"/>. It is time-invariant of size <img class="formulaInl" alt="$2\times6$" src="form_54.png"/> and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{I}_2 &amp; \mathbf{0}_2 &amp; -\frac{c_z}{g}\mathbf{I}_2 \\ \end{array}\right] \]" src="form_73.png"/>
 </p>
  
@@ -822,7 +831,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>CoM constant height. It is not hardcoded but corresponds to the vertical coordinate (height) of the CoM at the beginning of execution, i.e. <img class="formulaInl" alt="$ c_z $" src="form_17.png"/>. </p>
+<p>CoMconstant height. It is not hardcoded but corresponds to the vertical coordinate (height) of the CoMat the beginning of execution, i.e. <img class="formulaInl" alt="$ c_z $" src="form_17.png"/>. </p>
 
 </div>
 </div>
@@ -891,7 +900,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_h$" src="form_43.png"/> of size <img class="formulaInl" alt="$2N_c \times 6$" src="form_57.png"/> from the preview horizon of COM velocities. It is constant and equal to: </p><p class="formulaDsp">
+<p>State matrix <img class="formulaInl" alt="$\mathbf{G}_h$" src="form_43.png"/> of size <img class="formulaInl" alt="$2N_c \times 6$" src="form_57.png"/> from the preview horizon of CoMvelocities. It is constant and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{G}_p = \left[\begin{array}{c} \mathbf{C}_h\mathbf{A}_h \\ \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c}_h \end{array}\right] \]" src="form_44.png"/>
 </p>
  
@@ -941,7 +950,7 @@ Private Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Input matrix <img class="formulaInl" alt="$\mathbf{H}_h$" src="form_45.png"/> from the preview horizon of COM velocities <img class="formulaInl" alt="$\tilde{\mathbf{H}}$" src="form_46.png"/>, of size <img class="formulaInl" alt="$2N_c \times 2N_c$" src="form_56.png"/> and equal to: </p><p class="formulaDsp">
+<p>Input matrix <img class="formulaInl" alt="$\mathbf{H}_h$" src="form_45.png"/> from the preview horizon of CoMvelocities <img class="formulaInl" alt="$\tilde{\mathbf{H}}$" src="form_46.png"/>, of size <img class="formulaInl" alt="$2N_c \times 2N_c$" src="form_56.png"/> and equal to: </p><p class="formulaDsp">
 <img class="formulaDsp" alt="\[ \mathbf{H}_p = \left[\begin{array}{cccc} \mathbf{C}_h\mathbf{B}_h &amp; 0 &amp; \cdots &amp; 0 \\ \mathbf{C}_h\mathbf{A}_h\mathbf{B}_h &amp; \mathbf{C}_h\mathbf{B}_h &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ \mathbf{C}_h\mathbf{A}^{N_c-1}_h\mathbf{B}_h &amp; \mathbf{C}_h\mathbf{A}^{N_c-2}_h\mathbf{B}_h &amp; \cdots &amp; \mathbf{C}_h\mathbf{B}_h \end{array}\right] \]" src="form_47.png"/>
 </p>
  
@@ -1140,7 +1149,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 28 2016 16:45:40 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Nov 28 2016 17:49:20 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

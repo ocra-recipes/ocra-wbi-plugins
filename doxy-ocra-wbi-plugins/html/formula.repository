@@ -72,3 +72,9 @@
 \form#71:$N_w\ = \eta_w\mathbf{I}_{2N_c}$
 \form#72:$N_b = \eta_b\mathbf{I}_{2N_c}$
 \form#73:\[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{I}_2 & \mathbf{0}_2 & -\frac{c_z}{g}\mathbf{I}_2 \\ \end{array}\right] \]
+\form#74:$\mathbf{c}$
+\form#75:\[ \underset{\mathbf{U}}{\text{min}} \; (\mathbf{P}_r - \mathbf{P})^T \mathbf{N}_b (\mathbf{P}_r - \mathbf{P}) + (\tilde{\mathbf{H}}_r - \mathbf{H})^T\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{H}) + \mathbf{U}^T\mathbf{N}_u \mathbf{U} \]
+\form#76:\begin{align*} \mathbf{U}^T &= \left[ \mathbf{u}^T_{k+1|k}, \cdots, \mathbf{u}^T_{k+N_c|k} \right]^T \\ \mathbf{P}^T &= \left[ \mathbf{p}^T_{k+1|k}, \cdots, \mathbf{p}^T_{k+N_c|k} \right]^T \\ \mathbf{P}^T_r &= \left[ \mathbf{r}^T_{k+1|k}, \cdots, \mathbf{r}^T_{k+N_c|k} \right]^T \\ \mathbf{\tilde{H}}^T &= \left[ \dot{\mathbf{h}}^T_{k+1|k}, \cdots, \dot{\mathbf{h}}^T_{k+N_c|k} \right]^T \\ \mathbf{\tilde{H}}^T_r &= \left[ \dot{\mathbf{h}^r}^T_{k+1|k}, \cdots, \dot{\mathbf{h}^r}^T_{k+N_c|k} \right]^T \\ \mathbf{N}_b &= \eta_b\left[\begin{array}{ccc} 1 & \cdots & 0 \\ \vdots & \ddots & \vdots\\ 0 & \cdots & 1 \end{array}\right] \end{align*}
+\form#77:$\mathbf{N}_w$
+\form#78:$\mathbf{N}_u$
+\form#79:$\mathbf{N}_b$
