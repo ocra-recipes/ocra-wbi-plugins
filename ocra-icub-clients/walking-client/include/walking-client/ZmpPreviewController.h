@@ -9,13 +9,15 @@
  *
  *  \cite ibanezThesis2015
  *
- *  \details Given a rough ZMP trajectory and a corresponding consistent CoM velocity, this class computes at a fast rate optimal CoM jerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoM tracking objective in order to minimize the error over a preview horizon to reference CoM velocities. This preview controller solves with
+ *  \warning Work in progress! This is still a barebone class in the process to be tested.
+ *
+ *  \details Given a rough ZMP trajectory and a corresponding consistent CoMvelocity, this class computes at a fast rate optimal CoMjerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoMtracking objective in order to minimize the error over a preview horizon to reference CoMvelocities. This preview controller solves with
  
  \f[
  \mathcal{U}_{k+N|k} = (\mathbf{u}_{k|k}, ... , \mathbf{u})
  \f]
  
- Denoting a horizon of input CoM jerks \f$\mathbf{u}\f$, the following problem:
+ Denoting a horizon of input CoMjerks \f$\mathbf{u}\f$, the following problem:
  
  \f{align*}
  \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\
@@ -26,7 +28,30 @@
  \mathbf{h} &= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2
  \f}
  
- Where \f$\mathbf{p}\f$ are horizontal ZMP coordinates, \f$ \mathbf{r}^r \f$ ZMP references (in walking-client is the interpolated ZMP reference from the walking MIQP problem) \f$ \mathbf{\dot{h}} \f$ the horizontal COM velocity, \f$ \mathbf{\dot{h}}^r \f$ COM horizontal velocity reference (in walking-client it's the interpolated COM velocity reference from the walking MIQP problem). \f$\mathbf{u}\f$ are the input COM jerks, \f$h\f$ the horizonal COM position, \f$\hat{h}\f$ the horizontal COM state \f$ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) \f$ and \f$\mathbf{e}_2\f$ the vertical unit vectory \f$ [0\;0\;1]^T\f$. \f$\mathbf{A}_h\f$ and \f$\mathbf{B}_h\f$ are integration matrices.
+ Where \f$\mathbf{p}\f$ are horizontal ZMP coordinates, \f$ \mathbf{r}^r \f$ ZMP references (in walking-client is the interpolated ZMP reference from the walking MIQP problem) \f$ \mathbf{\dot{h}} \f$ the horizontal CoMvelocity, \f$ \mathbf{\dot{h}}^r \f$ CoMhorizontal velocity reference (in walking-client it's the interpolated CoMvelocity reference from the walking MIQP problem). \f$\mathbf{u}\f$ are the input CoMjerks, \f$\mathbf{c}\f$ the three-dimensional CoMposition. \f$h\f$ the horizonal CoMposition, \f$\hat{\mathbf{h}}\f$ the horizontal CoMstate \f$ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) \f$ and \f$\mathbf{e}_2\f$ the vertical unit vectory \f$ [0\;0\;1]^T\f$. \f$\mathbf{A}_h\f$ and \f$\mathbf{B}_h\f$ are integration matrices.
+ 
+ The previously described problem is an unconstrained QP problem which has a closed-form solution. In order to help us find one, the same minimization problem will be expressed in matrix form as:
+ 
+ \f[
+ \underset{\mathbf{U}}{\text{min}} \; (\mathbf{P}_r - \mathbf{P})^T \mathbf{N}_b (\mathbf{P}_r - \mathbf{P}) + (\tilde{\mathbf{H}}_r - \mathbf{H})^T\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{H}) + \mathbf{U}^T\mathbf{N}_u \mathbf{U}
+ \f]
+ 
+ Where: 
+ \f{align*}
+ \mathbf{U}^T &= \left[ \mathbf{u}^T_{k+1|k}, \cdots, \mathbf{u}^T_{k+N_c|k} \right]^T \\
+ \mathbf{P}^T &= \left[ \mathbf{p}^T_{k+1|k}, \cdots, \mathbf{p}^T_{k+N_c|k} \right]^T \\
+ \mathbf{P}^T_r &= \left[ \mathbf{r}^T_{k+1|k}, \cdots, \mathbf{r}^T_{k+N_c|k} \right]^T \\
+ \mathbf{\tilde{H}}^T &= \left[ \dot{\mathbf{h}}^T_{k+1|k}, \cdots, \dot{\mathbf{h}}^T_{k+N_c|k} \right]^T \\
+ \mathbf{\tilde{H}}^T_r &= \left[ \dot{\mathbf{h}^r}^T_{k+1|k}, \cdots, \dot{\mathbf{h}^r}^T_{k+N_c|k} \right]^T \\
+ \mathbf{N}_b &= \eta_b\left[\begin{array}{ccc}
+ 1 & \cdots & 0 \\
+ \vdots & \ddots & \vdots\\
+ 0  & \cdots & 1
+ \end{array}\right]
+ \f}
+ 
+ \f$\mathbf{N}_w\f$ and \f$\mathbf{N}_u\f$ have a similar structure to \f$\mathbf{N}_b\f$
+ 
  */
 
 #ifndef _ZMPPREVIEWCONTROLLER_
@@ -59,7 +84,7 @@ public:
          \f]
      *  @param zmpRef    \f$\mathbf{P}_r\f$
      *  @param comVelRef \f$\tilde{\mathbf{H}}_r\f$
-     *  @param hk        COM state at time \f$k\f$, i.e. \f$\hat{\mathbf{h}}_k\f$
+     *  @param hk        CoMstate at time \f$k\f$, i.e. \f$\hat{\mathbf{h}}_k\f$
      *  @param optimalU  Closed-form solution to the unconstrained QP problem, \f$\mathbf{U}_{k+N_c|k}\f$
      *
      *  @return True if computation is successful, false otherwise.
@@ -85,7 +110,7 @@ public:
     /**
      *  Builds \f$C_p\f$
      *
-     *  @param cz Constant COM height.
+     *  @param cz Constant CoMheight.
      *  @param g  Constant gravity acceleration (m^2/s)
      *
      *  @return \f$C_p\f$
@@ -177,7 +202,7 @@ public:
     
 private:
     /**
-     *  CoM constant height. It is not hardcoded but corresponds to the vertical coordinate (height) of the CoM at the beginning of execution, i.e. \f$ c_z \f$.
+     *  CoMconstant height. It is not hardcoded but corresponds to the vertical coordinate (height) of the CoMat the beginning of execution, i.e. \f$ c_z \f$.
      */
     const double cz;
     /**
@@ -217,7 +242,7 @@ private:
      */
     const Eigen::MatrixXd Nb;
     /**
-     *  State matrix \f$\mathbf{A}_h\f$ from the linear state process of the COM state \f$\hat{\mathbf{h}}\f$. It is a constant matrix of size \f$6\times6\f$ equal to:
+     *  State matrix \f$\mathbf{A}_h\f$ from the linear state process of the CoMstate \f$\hat{\mathbf{h}}\f$. It is a constant matrix of size \f$6\times6\f$ equal to:
      \f[
      \mathbf{A_h} = \left[ \begin{array}{ccc}
      \mathbf{I}_2  & \delta t \mathbf{I}_2  &  \frac{\delta t^2}{2} \mathbf{I}_2 \\
@@ -228,7 +253,7 @@ private:
      */
     const Eigen::MatrixXd Ah;
     /**
-     *  Input matrix \f$\mathbf{B}_h\f$ from the linear state process of the CoM state \f$\hat{\mathbf{h}}\f$. It is constant of size \f$6\times2\f$ and equal to:
+     *  Input matrix \f$\mathbf{B}_h\f$ from the linear state process of the CoMstate \f$\hat{\mathbf{h}}\f$. It is constant of size \f$6\times2\f$ and equal to:
      \f[
      \mathbf{B_h} = \left[ \begin{array}{c}
      \frac{\delta^3}{6}\mathbf{I}_2 \\
@@ -239,7 +264,7 @@ private:
      */
     const Eigen::MatrixXd Bh;
     /**
-     *  Output matrix \f$C_p\f$ from the linear state process relating ZMP to the CoM dynamics \f$\hat{\mathbf{h}}\f$. It is time-invariant of size \f$2\times6\f$ and equal to:
+     *  Output matrix \f$C_p\f$ from the linear state process relating ZMP to the CoMdynamics \f$\hat{\mathbf{h}}\f$. It is time-invariant of size \f$2\times6\f$ and equal to:
      \f[
      \mathbf{C}_h = \left[\begin{array}{ccc}
      \mathbf{I}_2  &  \mathbf{0}_2  &   -\frac{c_z}{g}\mathbf{I}_2 \\
@@ -271,7 +296,7 @@ private:
      */
     const Eigen::MatrixXd Hp;
     /**
-     *  Output matrix of the COM linear process state transition where the COM horizontal velocity is the output. It is of size \f$2\times6\f$ and equal to:
+     *  Output matrix of the CoMlinear process state transition where the CoMhorizontal velocity is the output. It is of size \f$2\times6\f$ and equal to:
      \f[
      \mathbf{C}_h = \left[\begin{array}{ccc}
      \mathbf{0}_2  &  \mathbf{I}_2  &   \mathbf{0}_2 \\
@@ -280,7 +305,7 @@ private:
      */
     const Eigen::MatrixXd Ch;
     /**
-     *  State matrix \f$\mathbf{G}_h\f$  of size \f$2N_c \times 6\f$ from the preview horizon of COM velocities. It is constant and equal to:
+     *  State matrix \f$\mathbf{G}_h\f$  of size \f$2N_c \times 6\f$ from the preview horizon of CoMvelocities. It is constant and equal to:
      \f[
      \mathbf{G}_p = \left[\begin{array}{c}
      \mathbf{C}_h\mathbf{A}_h \\
@@ -291,7 +316,7 @@ private:
      */
     const Eigen::MatrixXd Gh;
     /**
-     *  Input matrix \f$\mathbf{H}_h\f$ from the preview horizon of COM velocities \f$\tilde{\mathbf{H}}\f$, of size \f$2N_c \times 2N_c\f$ and equal to:
+     *  Input matrix \f$\mathbf{H}_h\f$ from the preview horizon of CoMvelocities \f$\tilde{\mathbf{H}}\f$, of size \f$2N_c \times 2N_c\f$ and equal to:
      \f[
      \mathbf{H}_p = \left[\begin{array}{cccc}
      \mathbf{C}_h\mathbf{B}_h               &   0                          &  \cdots   &   0 \\
@@ -315,7 +340,7 @@ struct ZmpPreviewParams {
      */
     const double Nc;
     /**
-     *  Robot's COM constant height.
+     *  Robot's CoMconstant height.
      */
     const double cz;
     /**
