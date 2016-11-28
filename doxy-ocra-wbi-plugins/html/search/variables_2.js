@@ -12,5 +12,5 @@ var searchData=
   ['ctrlthread',['ctrlThread',['../classModule.html#a39346aa2e2a00801e07f4c127ff004ba',1,'Module']]],
   ['currentphase',['currentPhase',['../classSteppingDemoClient.html#afe0aa2a02ea8117d644bf5444a03ac62',1,'SteppingDemoClient']]],
   ['currenttime',['currentTime',['../classSteppingDemoClient.html#a1bb7d42cf09778349ae1ecd31d2ac116',1,'SteppingDemoClient']]],
-  ['cz',['cz',['../classZmpPreviewController.html#a3a317d26cc1bbaf8811491724fdd1def',1,'ZmpPreviewController::cz()'],['../structZmpPreviewParams.html#a19d944dc7a6b40e6e55068a62d33e546',1,'ZmpPreviewParams::cz()']]]
+  ['cz',['cz',['../structZmpControllerParams.html#ae0d24b7bdae3eb228b9db827934d0e87',1,'ZmpControllerParams::cz()'],['../classZmpPreviewController.html#a3a317d26cc1bbaf8811491724fdd1def',1,'ZmpPreviewController::cz()'],['../structZmpPreviewParams.html#a19d944dc7a6b40e6e55068a62d33e546',1,'ZmpPreviewParams::cz()']]]
 ];

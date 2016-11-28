@@ -12,9 +12,11 @@ Implementes a Z\+MP controller as a force set point regulator.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classZmpController_a99bbb6b02a6abafa3968d5c7a77e462b}{Zmp\+Controller} (const int period, struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} parameters)
+\hyperlink{classZmpController_a401013c4cc1d215972062b027e11e619}{Zmp\+Controller} (const int period, struct \hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params} parameters)
 \item 
 virtual \hyperlink{classZmpController_af308a70e70cfe9a1e9569606da8b1739}{$\sim$\+Zmp\+Controller} ()
+\item 
+bool \hyperlink{classZmpController_ae6b6978770bbba4f1041f938d9f1308f}{computehd} (Eigen\+::\+Vector2d pd, Eigen\+::\+Vector2d \&dhd)
 \end{DoxyCompactItemize}
 
 
@@ -35,11 +37,11 @@ Work in progress! This is still a barebone class in the process of being tested.
 In \cite{krause2012stabilization}\} a position-\/based Z\+MP controller was implemented by relating the desired Z\+MP $ \mathbf{p}_d $ to a desired force, given the relationship between CoM acceleration and the Z\+MP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the Z\+MP $\mathbf{p} = (p_x, p_y)$ can be computed as\+: \begin{equation} \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p}) \label{eq:simplifiedZMP} \end{equation} Where $\omega = \sqrt{g/c_z}$ as done in \cite{kajita2003biped}. Therefore the desired $\mathbf{p}_d$ can be associated to a desire force on the CoM\+: \[ F_d = m \omega^2 (\mathbf{h} - \mathbf{p}_d) \] Where $m$ is the total mass of the robot and a force set point regulator can be implemented as\+: \[ \dot{\mathbf{h}}_d = k_f(F_d - F) \] Where $k_f > 0$ is a force control gain. Substituting eq\+:simplified\+Z\+MP\} we get\+: \[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \] 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classZmpController_a99bbb6b02a6abafa3968d5c7a77e462b}{}\label{classZmpController_a99bbb6b02a6abafa3968d5c7a77e462b} 
+\hypertarget{classZmpController_a401013c4cc1d215972062b027e11e619}{}\label{classZmpController_a401013c4cc1d215972062b027e11e619} 
 \index{Zmp\+Controller@{Zmp\+Controller}!Zmp\+Controller@{Zmp\+Controller}}
 \index{Zmp\+Controller@{Zmp\+Controller}!Zmp\+Controller@{Zmp\+Controller}}
 \subsubsection{\texorpdfstring{Zmp\+Controller()}{ZmpController()}}
-{\footnotesize\ttfamily Zmp\+Controller\+::\+Zmp\+Controller (\begin{DoxyParamCaption}\item[{const int}]{period,  }\item[{struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params}}]{parameters }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Zmp\+Controller\+::\+Zmp\+Controller (\begin{DoxyParamCaption}\item[{const int}]{period,  }\item[{struct \hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params}}]{parameters }\end{DoxyParamCaption})}
 
 \hypertarget{classZmpController_af308a70e70cfe9a1e9569606da8b1739}{}\label{classZmpController_af308a70e70cfe9a1e9569606da8b1739} 
 \index{Zmp\+Controller@{Zmp\+Controller}!````~Zmp\+Controller@{$\sim$\+Zmp\+Controller}}
@@ -47,6 +49,24 @@ In \cite{krause2012stabilization}\} a position-\/based Z\+MP controller was impl
 \subsubsection{\texorpdfstring{$\sim$\+Zmp\+Controller()}{~ZmpController()}}
 {\footnotesize\ttfamily Zmp\+Controller\+::$\sim$\+Zmp\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
 
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classZmpController_ae6b6978770bbba4f1041f938d9f1308f}{}\label{classZmpController_ae6b6978770bbba4f1041f938d9f1308f} 
+\index{Zmp\+Controller@{Zmp\+Controller}!computehd@{computehd}}
+\index{computehd@{computehd}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{computehd()}{computehd()}}
+{\footnotesize\ttfamily bool Zmp\+Controller\+::computehd (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector2d}]{pd,  }\item[{Eigen\+::\+Vector2d \&}]{dhd }\end{DoxyParamCaption})}
+
+Compute the instantaneous desired horizonal C\+OM velocity for the corresponding desired zmp position.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em pd} & Horizontal desired zmp position \\
+\hline
+\mbox{\tt out}  & {\em dhd} & Horizonal CoM velocity $\dot{\mathbf{h}}_d$ \\
+\hline
+\end{DoxyParams}
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
