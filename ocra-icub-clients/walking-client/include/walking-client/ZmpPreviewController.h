@@ -205,15 +205,15 @@ private:
      */
     const double nb;
     /**
-     *  Diagonal matrix \f$N_u\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the input regularization term in the matricial expression of the controller's cost function.
+     *  Diagonal matrix \f$N_u = \eta_u\mathbf{I}_{2N_c}\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the input regularization term in the matricial expression of the controller's cost function.
      */
     const Eigen::MatrixXd Nu;
     /**
-     *  Diagonal matrix \f$N_w\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the walking cost function in its matrix form.
+     *  Diagonal matrix \f$N_w\ = \eta_w\mathbf{I}_{2N_c}\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the walking cost function in its matrix form.
      */
     const Eigen::MatrixXd Nw;
     /**
-     *  Diagonal matrix \f$N_b\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the balancing cost function in its matrix form.
+     *  Diagonal matrix \f$N_b = \eta_b\mathbf{I}_{2N_c}\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the balancing cost function in its matrix form.
      */
     const Eigen::MatrixXd Nb;
     /**
@@ -231,9 +231,9 @@ private:
      *  Input matrix \f$\mathbf{B}_h\f$ from the linear state process of the CoM state \f$\hat{\mathbf{h}}\f$. It is constant of size \f$6\times2\f$ and equal to:
      \f[
      \mathbf{B_h} = \left[ \begin{array}{c}
-     \delta^3/6 \\
-     \delta t^2/2     \\
-     \delta t
+     \frac{\delta^3}{6}\mathbf{I}_2 \\
+     \frac{\delta t^2}{2} \mathbf{I}_2     \\
+     \delta t \mathbf{I}_2
      \end{array} \right]
      \f]
      */
@@ -241,11 +241,9 @@ private:
     /**
      *  Output matrix \f$C_p\f$ from the linear state process relating ZMP to the CoM dynamics \f$\hat{\mathbf{h}}\f$. It is time-invariant of size \f$2\times6\f$ and equal to:
      \f[
-     \mathbf{B_h} = \left[ \begin{array}{c}
-     \frac{\delta^3}{6}\mathbf{I}_2 \\
-     \frac{\delta t^2}{2} \mathbf{I}_2     \\
-     \delta t \mathbf{I}_2
-     \end{array} \right]
+     \mathbf{C}_h = \left[\begin{array}{ccc}
+     \mathbf{I}_2  &  \mathbf{0}_2  &   -\frac{c_z}{g}\mathbf{I}_2 \\
+     \end{array}\right]
      \f]
      */
     const Eigen::MatrixXd Cp;
