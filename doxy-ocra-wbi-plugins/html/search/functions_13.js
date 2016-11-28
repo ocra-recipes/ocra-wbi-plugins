@@ -11,5 +11,6 @@ var searchData=
   ['_7etaskopsclient',['~TaskOpsClient',['../classTaskOpsClient.html#a80a5c71dd04ab7a07d4ffb8116244cdd',1,'TaskOpsClient']]],
   ['_7ethread',['~Thread',['../classThread.html#a37d9edd3a1a776cbc27dedff949c9726',1,'Thread']]],
   ['_7ewalkingclient',['~WalkingClient',['../classWalkingClient.html#a1dbc0308f844aea6542750104fddf8e2',1,'WalkingClient']]],
+  ['_7ezmpcontroller',['~ZmpController',['../classZmpController.html#af308a70e70cfe9a1e9569606da8b1739',1,'ZmpController']]],
   ['_7ezmppreviewcontroller',['~ZmpPreviewController',['../classZmpPreviewController.html#af702c45f318c7a78310d19cc061886dd',1,'ZmpPreviewController']]]
 ];

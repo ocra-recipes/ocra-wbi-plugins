@@ -95,7 +95,7 @@ Jorhabib Eljaik
 \cite{ibanezThesis2015}
 
 \begin{DoxyWarning}{Warning}
-Work in progress! This is still a barebone class in the process to be tested.
+Work in progress! This is still a barebone class in the process of being tested.
 \end{DoxyWarning}
 Given a rough Z\+MP trajectory and a corresponding consistent Co\+Mvelocity, this class computes at a fast rate optimal Co\+Mjerks over a refined preview horizon. The Z\+MP preview control formulation in (reference goes here) is extended to account for a Co\+Mtracking objective in order to minimize the error over a preview horizon to reference Co\+Mvelocities. This preview controller solves with
 
@@ -113,7 +113,9 @@ The previously described problem is an unconstrained QP problem which has a clos
 
 Where\+: \begin{align*} \mathbf{U}^T &= \left[ \mathbf{u}^T_{k+1|k}, \cdots, \mathbf{u}^T_{k+N_c|k} \right]^T \\ \mathbf{P}^T &= \left[ \mathbf{p}^T_{k+1|k}, \cdots, \mathbf{p}^T_{k+N_c|k} \right]^T \\ \mathbf{P}^T_r &= \left[ \mathbf{r}^T_{k+1|k}, \cdots, \mathbf{r}^T_{k+N_c|k} \right]^T \\ \mathbf{\tilde{H}}^T &= \left[ \dot{\mathbf{h}}^T_{k+1|k}, \cdots, \dot{\mathbf{h}}^T_{k+N_c|k} \right]^T \\ \mathbf{\tilde{H}}^T_r &= \left[ \dot{\mathbf{h}^r}^T_{k+1|k}, \cdots, \dot{\mathbf{h}^r}^T_{k+N_c|k} \right]^T \\ \mathbf{N}_b &= \eta_b\left[\begin{array}{ccc} 1 & \cdots & 0 \\ \vdots & \ddots & \vdots\\ 0 & \cdots & 1 \end{array}\right] \end{align*}
 
-$\mathbf{N}_w$ and $\mathbf{N}_u$ have a similar structure to $\mathbf{N}_b$ 
+$\mathbf{N}_w$ and $\mathbf{N}_u$ have a similar structure to $\mathbf{N}_b$
+
+A closed-\/form solution can thus be found and is equal to\+: \[ \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right) \] 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classZmpPreviewController_af1c464b13886dc0edf2f295fc215b13c}{}\label{classZmpPreviewController_af1c464b13886dc0edf2f295fc215b13c} 

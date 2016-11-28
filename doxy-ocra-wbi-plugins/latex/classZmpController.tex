@@ -1,0 +1,55 @@
+\hypertarget{classZmpController}{}\section{Zmp\+Controller Class Reference}
+\label{classZmpController}\index{Zmp\+Controller@{Zmp\+Controller}}
+
+
+Implementes a Z\+MP controller as a force set point regulator.  
+
+
+
+
+{\ttfamily \#include $<$Zmp\+Controller.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classZmpController_a99bbb6b02a6abafa3968d5c7a77e462b}{Zmp\+Controller} (const int period, struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} parameters)
+\item 
+virtual \hyperlink{classZmpController_af308a70e70cfe9a1e9569606da8b1739}{$\sim$\+Zmp\+Controller} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementes a Z\+MP controller as a force set point regulator. 
+
+\begin{DoxyNote}{Note}
+Put original Z\+MP preview control reference along with Aurelien\textquotesingle{}s
+\end{DoxyNote}
+\begin{DoxyAuthor}{Author}
+Jorhabib Eljaik
+\end{DoxyAuthor}
+\cite{krause2012stabilization}
+
+\begin{DoxyWarning}{Warning}
+Work in progress! This is still a barebone class in the process of being tested.
+\end{DoxyWarning}
+In \cite{krause2012stabilization}\} a position-\/based Z\+MP controller was implemented by relating the desired Z\+MP $ \mathbf{p}_d $ to a desired force, given the relationship between CoM acceleration and the Z\+MP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the Z\+MP $\mathbf{p} = (p_x, p_y)$ can be computed as\+: \begin{equation} \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p}) \label{eq:simplifiedZMP} \end{equation} Where $\omega = \sqrt{g/c_z}$ as done in \cite{kajita2003biped}. Therefore the desired $\mathbf{p}_d$ can be associated to a desire force on the CoM\+: \[ F_d = m \omega^2 (\mathbf{h} - \mathbf{p}_d) \] Where $m$ is the total mass of the robot and a force set point regulator can be implemented as\+: \[ \dot{\mathbf{h}}_d = k_f(F_d - F) \] Where $k_f > 0$ is a force control gain. Substituting eq\+:simplified\+Z\+MP\} we get\+: \[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \] 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classZmpController_a99bbb6b02a6abafa3968d5c7a77e462b}{}\label{classZmpController_a99bbb6b02a6abafa3968d5c7a77e462b} 
+\index{Zmp\+Controller@{Zmp\+Controller}!Zmp\+Controller@{Zmp\+Controller}}
+\index{Zmp\+Controller@{Zmp\+Controller}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{Zmp\+Controller()}{ZmpController()}}
+{\footnotesize\ttfamily Zmp\+Controller\+::\+Zmp\+Controller (\begin{DoxyParamCaption}\item[{const int}]{period,  }\item[{struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params}}]{parameters }\end{DoxyParamCaption})}
+
+\hypertarget{classZmpController_af308a70e70cfe9a1e9569606da8b1739}{}\label{classZmpController_af308a70e70cfe9a1e9569606da8b1739} 
+\index{Zmp\+Controller@{Zmp\+Controller}!````~Zmp\+Controller@{$\sim$\+Zmp\+Controller}}
+\index{````~Zmp\+Controller@{$\sim$\+Zmp\+Controller}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{$\sim$\+Zmp\+Controller()}{~ZmpController()}}
+{\footnotesize\ttfamily Zmp\+Controller\+::$\sim$\+Zmp\+Controller (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub-\/clients/walking-\/client/include/walking-\/client/\hyperlink{ZmpController_8h}{Zmp\+Controller.\+h}\item 
+/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub-\/clients/walking-\/client/src/\hyperlink{ZmpController_8cpp}{Zmp\+Controller.\+cpp}\end{DoxyCompactItemize}
