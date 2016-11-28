@@ -4,7 +4,7 @@
 #include <ocra-icub/IcubClient.h>
 #include <ocra-recipes/TrajectoryThread.h>
 #include <ocra-recipes/ControllerClient.h>
-
+#include "walking-client/ZmpPreviewController.h"
 
 class WalkingClient : public ocra_recipes::ControllerClient
 {
