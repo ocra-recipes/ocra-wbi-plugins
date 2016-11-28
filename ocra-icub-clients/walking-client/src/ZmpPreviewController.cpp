@@ -22,42 +22,40 @@ Gh(buildGh(Ch,Ah,Nc)),
 Hh(buildHh(Ch,Bh,Ah,Nc))
 { }
 
-ZmpPreviewController::~ZmpPreviewController(){
+ZmpPreviewController::~ZmpPreviewController() {
 }
 
-bool ZmpPreviewController::initialize(){
+bool ZmpPreviewController::initialize() {
     return true;
 }
 
-bool ZmpPreviewController::initialize(std::string fileOfReferences){
-    return true;
-}
-
-bool ZmpPreviewController::computeOptimalInput(){
+bool ZmpPreviewController::computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::Vector2d hk, Eigen::VectorXd &optimalU) {
+    Eigen::MatrixXd A = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
+    Eigen::MatrixXd b = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
+    optimalU = A.colPivHouseholderQr().solve(b);
     return true;
 }
 
 // ************ Output preview matrices and COM state space matrices ******************
 
-Eigen::MatrixXd ZmpPreviewController::buildAh(const double dt){
-    Eigen::MatrixXd Ah(3,6);
-    Ah.row(0) << 1, 1, dt, dt, pow(dt,2)/2, pow(dt,2)/2;
-    Ah.row(1) << 0, 0, 1, 1, dt, dt;
-    Ah.row(2) << 0, 0, 0, 0, 1, 1;
+Eigen::MatrixXd ZmpPreviewController::buildAh(const double dt) {
+    Eigen::MatrixXd Ah(6,6);
+    Ah.setIdentity();
+    Ah.block(0,2,2,2) = dt*Eigen::Matrix2d::Identity();
+    Ah.block(0,4,2,2) = (pow(dt,2)/2)*Eigen::Matrix2d::Identity();
+    Ah.block(2,4,2,2) = dt*Eigen::Matrix2d::Identity();
     return Ah;
 }
 
 Eigen::MatrixXd ZmpPreviewController::buildBh(const double dt){
-    Eigen::MatrixXd Bh(1,3);
-    Bh(0) = pow(dt,3)/6;
-    Bh(1) = pow(dt,2)/2;
-    Bh(2) = dt;
+    Eigen::MatrixXd Bh(6,2);
+    Bh << (pow(dt,3)/6)*Eigen::Matrix2d::Identity(), (pow(dt,2)/2)*Eigen::Matrix2d::Identity(), dt*Eigen::Matrix2d::Identity();
     return Bh;
 }
 
 Eigen::MatrixXd ZmpPreviewController::buildCp(const double cz, const double g) {
-    Eigen::MatrixXd Cp(1,6);
-    Cp << 1, 1, 0, 0, -cz/g, -cz/g;
+    Eigen::MatrixXd Cp(2,6);
+    Cp << Eigen::Matrix2d::Identity(), Eigen::Matrix2d::Zero(), (-cz/g)*Eigen::Matrix2d::Identity();
     return Cp;
 }
 
@@ -92,15 +90,15 @@ Eigen::MatrixXd ZmpPreviewController::buildHp(Eigen::MatrixXd Cp, Eigen::MatrixX
 }
 
 Eigen::MatrixXd ZmpPreviewController::buildCh() {
-    Eigen::MatrixXd Ch(1,6);
-    Ch << Eigen::RowVector2d::Constant(0), Eigen::RowVector2d::Constant(1), Eigen::RowVector2d::Constant(0);
+    Eigen::MatrixXd Ch(2,6);
+    Ch << Eigen::Matrix2d::Zero(), Eigen::Matrix2d::Identity(), Eigen::Matrix2d::Zero();
     return Ch;
 }
 
 Eigen::MatrixXd ZmpPreviewController::buildGh(Eigen::MatrixXd Ch, Eigen::MatrixXd Ah, const int Nc) {
     const int ChRows = Ch.rows();
     const int AhCols = Ah.cols();
-    Eigen::MatrixXd Gh(Ch.rows()*Nc, Ah.cols());
+    Eigen::MatrixXd Gh(ChRows*Nc, AhCols);
     Gh.setZero();
     for (unsigned int i=0; i<Nc; i++) {
         Gh.block(i*ChRows, 0, ChRows, AhCols) = Ch*Ah.pow(i+1);
@@ -129,21 +127,21 @@ Eigen::MatrixXd ZmpPreviewController::buildHh(Eigen::MatrixXd Ch, Eigen::MatrixX
 
 Eigen::MatrixXd ZmpPreviewController::buildNu(const double nu, const int Nc) {
     Eigen::MatrixXd Nu;
-    Nu.setIdentity(Nc, Nc);
+    Nu.setIdentity(2*Nc, 2*Nc);
     Nu = nu*Nu;
     return Nu;
 }
 
 Eigen::MatrixXd ZmpPreviewController::buildNw(const double nw, const int Nc) {
     Eigen::MatrixXd Nw;
-    Nw.setIdentity(Nc, Nc);
+    Nw.setIdentity(2*Nc, 2*Nc);
     Nw = nw*Nw;
     return Nw;
 }
 
 Eigen::MatrixXd ZmpPreviewController::buildNb(const double nb, const int Nc) {
     Eigen::MatrixXd Nb;
-    Nb.setIdentity(Nc, Nc);
+    Nb.setIdentity(2*Nc, 2*Nc);
     Nb = nb*Nb;
     return Nb;
 }

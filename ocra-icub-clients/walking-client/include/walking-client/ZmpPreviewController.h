@@ -45,21 +45,24 @@ public:
          @param parameters   An object containing the main parameters. \see struct ZmpPreviewParams for details.
      */
     ZmpPreviewController(const int period, struct ZmpPreviewParams parameters);
-    ~ZmpPreviewController();
+    
+    virtual ~ZmpPreviewController();
     
     bool initialize();
     
     /**
-     When offline references are given (e.g. when assessing the performance of the ZMP preview controller with pre-stablished ZMP and COM velocity references);
-     
-     @param fileOfReferences txt file with zmp and com velocity references.
-     @return True if file is parsed correctly, false otherwise.
+     *  Computes the optimal input, i.e.:
+     *  \f[
+         \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right)
+         \f]
+     *  @param zmpRef    \f$\mathbf{P}_r\f$
+     *  @param comVelRef \f$\tilde{\mathbf{H}}_r\f$
+     *  @param hk        COM state at time \f$k\f$, i.e. \f$\hat{\mathbf{h}}_k\f$
+     *  @param optimalU  Closed-form solution to the unconstrained QP problem, \f$\mathbf{U}_{k+N_c|k}\f$
+     *
+     *  @return True if computation is successful, false otherwise.
      */
-    bool initialize(std::string fileOfReferences);
-    
-    bool parseFile(std::string file, std::vector<Eigen::Vector2d> &Pr, std::vector<Eigen::Vector2d> &Hr);
-    
-    bool computeOptimalInput();
+    bool computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::Vector2d hk, Eigen::VectorXd &optimalU);
     
     /**
      *  Builds Ah. Called during the member list initialization of the constructor of this class.
@@ -93,22 +96,97 @@ public:
      */
     Eigen::MatrixXd buildBh(const double dt);
     
+    /**
+     *  Builds \f$C_p\f$
+     *
+     *  @param cz Constant COM height.
+     *  @param g  Constant gravity acceleration (m^2/s)
+     *
+     *  @return Cp
+     */
     Eigen::MatrixXd buildCp(const double cz, const double g);
     
+    /**
+     *  Builds \f$G_p\f$
+     *
+     *  @param Cp \f$C_p\f$
+     *  @param Ah \f$A_h\f$
+     *  @param Nc \f$N_c\f$
+     *
+     *  @return \f$G_p\f$
+     */
     Eigen::MatrixXd buildGp(Eigen::MatrixXd Cp, Eigen::MatrixXd Ah, const int Nc);
     
+    /**
+     *  Builds \f$H_p\f$
+     *
+     *  @param Cp \f$C_p\f$
+     *  @param Bh \f$B_h\f$
+     *  @param Ah \f$A_h\f$
+     *  @param Nc \f$N_c\f$
+     *
+     *  @return \f$H_p\f$
+     */
     Eigen::MatrixXd buildHp(Eigen::MatrixXd Cp, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc);
     
+    /**
+     *  Builds \f$C_h\f$
+     *
+     *  @return \f$C_h\f$
+     */
     Eigen::MatrixXd buildCh();
     
+    /**
+     *  Builds \f$G_h\f$
+     *
+     *  @param Ch \f$C_h\f$
+     *  @param Ah \f$A_h\f$
+     *  @param Nc \f$N_c\f$
+     *
+     *  @return \f$G_h\f$
+     */
     Eigen::MatrixXd buildGh(Eigen::MatrixXd Ch, Eigen::MatrixXd Ah, const int Nc);
     
+    /**
+     *  Builds \f$H_h\f$
+     *
+     *  @param Ch \f$C_h\f$
+     *  @param Bh \f$B_h\f$
+     *  @param Ah \f$A_h\f$
+     *  @param Nc \f$N_c\f$
+     *
+     *  @return \f$H_h\f$
+     */
     Eigen::MatrixXd buildHh(Eigen::MatrixXd Ch, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc);
     
+    /**
+     *  Builds \f$N_u\f$
+     *
+     *  @param nu \f$\eta_u\f$
+     *  @param Nc \f$N_c\f$
+     *
+     *  @return \f$N_u\f$
+     */
     Eigen::MatrixXd buildNu(const double nu, const int Nc);
-        
+    
+    /**
+     *  Builds \f$N_w\f$
+     *
+     *  @param nw \f$\eta_w\f$
+     *  @param Nc \f$Nc\f$
+     *
+     *  @return \f$N_w\f$
+     */
     Eigen::MatrixXd buildNw(const double nw, const int Nc);
-        
+    
+    /**
+     *  Builds \f$N_b\f$
+     *
+     *  @param nb \f$\eta_b\f$
+     *  @param Nc \f$N_c\f$
+     *
+     *  @return \f$N_b\f$
+     */
     Eigen::MatrixXd buildNb(const double nb, const int Nc);
     
 private:
@@ -141,19 +219,19 @@ private:
      */
     const double nb;
     /**
-     *  Diagonal matrix \f$N_u\f$ of size \f$[N_c \times N_c]\f$ weighting the input regularization term in the matricial expression of the controller's cost function.
+     *  Diagonal matrix \f$N_u\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the input regularization term in the matricial expression of the controller's cost function.
      */
     const Eigen::MatrixXd Nu;
     /**
-     *  Diagonal matrix \f$N_w\f$ of size \f$[N_c \times N_c]\f$ weighting the walking cost function in its matrix form.
+     *  Diagonal matrix \f$N_w\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the walking cost function in its matrix form.
      */
     const Eigen::MatrixXd Nw;
     /**
-     *  Diagonal matrix \f$N_b\f$ of size \f$[N_c \times N_c]\f$ weighting the balancing cost function in its matrix form.
+     *  Diagonal matrix \f$N_b\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the balancing cost function in its matrix form.
      */
     const Eigen::MatrixXd Nb;
     /**
-     *  State matrix \f$\mathbf{A}_h\f$ from the linear state process of the COM state \f$\hat{\mathbf{h}}\f$. It is a constant matrix equal to:
+     *  State matrix \f$\mathbf{A}_h\f$ from the linear state process of the COM state \f$\hat{\mathbf{h}}\f$. It is a constant matrix of size \f$6\times6\f$ equal to:
      \f[
      \mathbf{A_h} = \left[ \begin{array}{ccc}
      1  & \delta t  &  \delta t^2/2 \\
@@ -164,7 +242,7 @@ private:
      */
     const Eigen::MatrixXd Ah;
     /**
-     *  Input matrix \f$\mathbf{B}_h\f$ from the linear state process of the CoM state \f$\hat{\mathbf{h}}\f$. It is constant and equal to:
+     *  Input matrix \f$\mathbf{B}_h\f$ from the linear state process of the CoM state \f$\hat{\mathbf{h}}\f$. It is constant of size \f$6\times2\f$ and equal to:
      \f[
      \mathbf{B_h} = \left[ \begin{array}{c}
      \delta^3/6 \\
@@ -175,7 +253,7 @@ private:
      */
     const Eigen::MatrixXd Bh;
     /**
-     *  Output matrix \f$C_p\f$ from the linear state process relating ZMP to the CoM dynamics \f$\hat{\mathbf{h}}\f$. It is time-invariant and equal to:
+     *  Output matrix \f$C_p\f$ from the linear state process relating ZMP to the CoM dynamics \f$\hat{\mathbf{h}}\f$. It is time-invariant of size \f$2\times6\f$ and equal to:
      \f[
      \mathbf{C}_p = \left[\begin{array}{ccc}
      1  &  0  & -c_z/g
@@ -184,7 +262,7 @@ private:
      */
     const Eigen::MatrixXd Cp;
     /**
-     *  State matrix \f$\mathbf{G}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is equal to:
+     *  State matrix \f$\mathbf{G}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is of size \f$2Nc \times 6\f$ and equal to:
      \f[
      \mathbf{G}_p = \left[\begin{array}{c}
      \mathbf{C}_p\mathbf{A}_h \\
@@ -195,7 +273,7 @@ private:
      */
     const Eigen::MatrixXd Gp;
     /**
-     *  Input matrix \f$\mathbf{H}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is equal to:
+     *  Input matrix \f$\mathbf{H}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is of size \f$2N_c \times 2N_c\f$ and equal to:
      \f[
      \mathbf{H}_p = \left[\begin{array}{cccc}
      \mathbf{C}_p\mathbf{B}_h               &   0                          &  \cdots   &   0 \\
@@ -207,7 +285,7 @@ private:
      */
     const Eigen::MatrixXd Hp;
     /**
-     *  Output matrix of the COM linear process state transition where the COM horizontal velocity is the output. It is:
+     *  Output matrix of the COM linear process state transition where the COM horizontal velocity is the output. It is of size \f$2\times6\f$ and equal to:
      \f[
      \mathbf{C}_h = \left[\begin{array}{ccc}
      \mathbf{0}  &  \mathbf{1}  &   \mathbf{0} \\
@@ -216,7 +294,7 @@ private:
      */
     const Eigen::MatrixXd Ch;
     /**
-     *  State matrix \f$\mathbf{G}_h\f$ from the preview horizon of COM velocities. It is constant and equal to:
+     *  State matrix \f$\mathbf{G}_h\f$  of size \f$2N_c \times 6\f$from the preview horizon of COM velocities. It is constant and equal to:
      \f[
      \mathbf{G}_p = \left[\begin{array}{c}
      \mathbf{C}_h\mathbf{A}_h \\
@@ -227,7 +305,7 @@ private:
      */
     const Eigen::MatrixXd Gh;
     /**
-     *  Input matrix \f$\mathbf{H}_h\f$ from the preview horizon of COM velocities \f$\tilde{\mathbf{H}}\f$ and equal to:
+     *  Input matrix \f$\mathbf{H}_h\f$ from the preview horizon of COM velocities \f$\tilde{\mathbf{H}}\f$, of size \f$2N_c \times 2N_c\f$ and equal to:
      \f[
      \mathbf{H}_p = \left[\begin{array}{cccc}
      \mathbf{C}_h\mathbf{B}_h               &   0                          &  \cdots   &   0 \\
@@ -246,10 +324,25 @@ private:
 
 
 struct ZmpPreviewParams {
+    /**
+     *  Size of preview window.
+     */
     const double Nc;
+    /**
+     *  Robot's COM constant height.
+     */
     const double cz;
+    /**
+     *  Weight of the input regularization term in the cost function \f$\eta_u\f$.
+     */
     const double nu;
+    /**
+     *  Weight of the walking cost function \f$ \eta_w \f$.
+     */
     const double nw;
+    /**
+     *  Weight of the balancing cost function \f$ \eta_b \f$.
+     */
     const double nb;
     std::vector<Eigen::Vector2d> Pr;
     std::vector<Eigen::Vector2d> Hr;
