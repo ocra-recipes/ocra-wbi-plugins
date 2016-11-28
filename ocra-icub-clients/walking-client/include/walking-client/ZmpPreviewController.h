@@ -9,7 +9,7 @@
  *
  *  \cite ibanezThesis2015
  *
- *  \warning Work in progress! This is still a barebone class in the process to be tested.
+ *  \warning Work in progress! This is still a barebone class in the process of being tested.
  *
  *  \details Given a rough ZMP trajectory and a corresponding consistent CoMvelocity, this class computes at a fast rate optimal CoMjerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoMtracking objective in order to minimize the error over a preview horizon to reference CoMvelocities. This preview controller solves with
  
@@ -51,6 +51,12 @@
  \f}
  
  \f$\mathbf{N}_w\f$ and \f$\mathbf{N}_u\f$ have a similar structure to \f$\mathbf{N}_b\f$
+ 
+ A closed-form solution can thus be found and is equal to: 
+ \f[
+ \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right)
+ \f]
+
  
  */
 
