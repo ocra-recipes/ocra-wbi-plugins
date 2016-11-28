@@ -370,7 +370,7 @@ State matrix $\mathbf{A}_h$ from the linear state process of the C\+OM state $\h
 \subsubsection{\texorpdfstring{Bh}{Bh}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Bh\hspace{0.3cm}{\ttfamily [private]}}
 
-Input matrix $\mathbf{B}_h$ from the linear state process of the CoM state $\hat{\mathbf{h}}$. It is constant of size $6\times2$ and equal to\+: \[ \mathbf{B_h} = \left[ \begin{array}{c} \delta^3/6 \\ \delta t^2/2 \\ \delta t \end{array} \right] \] \hypertarget{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775}{}\label{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775} 
+Input matrix $\mathbf{B}_h$ from the linear state process of the CoM state $\hat{\mathbf{h}}$. It is constant of size $6\times2$ and equal to\+: \[ \mathbf{B_h} = \left[ \begin{array}{c} \frac{\delta^3}{6}\mathbf{I}_2 \\ \frac{\delta t^2}{2} \mathbf{I}_2 \\ \delta t \mathbf{I}_2 \end{array} \right] \] \hypertarget{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775}{}\label{classZmpPreviewController_a2093754713ffb2a7adcd1310c73bf775} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Ch@{Ch}}
 \index{Ch@{Ch}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Ch}{Ch}}
@@ -382,7 +382,7 @@ Output matrix of the C\+OM linear process state transition where the C\+OM horiz
 \subsubsection{\texorpdfstring{Cp}{Cp}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Cp\hspace{0.3cm}{\ttfamily [private]}}
 
-Output matrix $C_p$ from the linear state process relating Z\+MP to the CoM dynamics $\hat{\mathbf{h}}$. It is time-\/invariant of size $2\times6$ and equal to\+: \[ \mathbf{B_h} = \left[ \begin{array}{c} \frac{\delta^3}{6}\mathbf{I}_2 \\ \frac{\delta t^2}{2} \mathbf{I}_2 \\ \delta t \mathbf{I}_2 \end{array} \right] \] \hypertarget{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def}{}\label{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def} 
+Output matrix $C_p$ from the linear state process relating Z\+MP to the CoM dynamics $\hat{\mathbf{h}}$. It is time-\/invariant of size $2\times6$ and equal to\+: \[ \mathbf{C}_h = \left[\begin{array}{ccc} \mathbf{I}_2 & \mathbf{0}_2 & -\frac{c_z}{g}\mathbf{I}_2 \\ \end{array}\right] \] \hypertarget{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def}{}\label{classZmpPreviewController_a3a317d26cc1bbaf8811491724fdd1def} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!cz@{cz}}
 \index{cz@{cz}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{cz}{cz}}
@@ -436,7 +436,7 @@ Weight of the balancing cost function $ \eta_b $ \hypertarget{classZmpPreviewCon
 \subsubsection{\texorpdfstring{Nb}{Nb}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nb\hspace{0.3cm}{\ttfamily [private]}}
 
-Diagonal matrix $N_b$ of size $[2N_c \times 2N_c]$ weighting the balancing cost function in its matrix form. \hypertarget{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{}\label{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693} 
+Diagonal matrix $N_b = \eta_b\mathbf{I}_{2N_c}$ of size $[2N_c \times 2N_c]$ weighting the balancing cost function in its matrix form. \hypertarget{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693}{}\label{classZmpPreviewController_af0c8b4aa92a6e3e95f80d81a8c91f693} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Nc@{Nc}}
 \index{Nc@{Nc}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Nc}{Nc}}
@@ -454,7 +454,7 @@ Weight of the input regularization term in the cost function $\eta_u$ \hypertarg
 \subsubsection{\texorpdfstring{Nu}{Nu}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nu\hspace{0.3cm}{\ttfamily [private]}}
 
-Diagonal matrix $N_u$ of size $[2N_c \times 2N_c]$ weighting the input regularization term in the matricial expression of the controller\textquotesingle{}s cost function. \hypertarget{classZmpPreviewController_a783427b817d77469e1f80426bede5310}{}\label{classZmpPreviewController_a783427b817d77469e1f80426bede5310} 
+Diagonal matrix $N_u = \eta_u\mathbf{I}_{2N_c}$ of size $[2N_c \times 2N_c]$ weighting the input regularization term in the matricial expression of the controller\textquotesingle{}s cost function. \hypertarget{classZmpPreviewController_a783427b817d77469e1f80426bede5310}{}\label{classZmpPreviewController_a783427b817d77469e1f80426bede5310} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!nw@{nw}}
 \index{nw@{nw}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{nw}{nw}}
@@ -466,7 +466,7 @@ Weight of the walking cost function $ \eta_w $ \hypertarget{classZmpPreviewContr
 \subsubsection{\texorpdfstring{Nw}{Nw}}
 {\footnotesize\ttfamily const Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Controller\+::\+Nw\hspace{0.3cm}{\ttfamily [private]}}
 
-Diagonal matrix $N_w$ of size $[2N_c \times 2N_c]$ weighting the walking cost function in its matrix form. 
+Diagonal matrix $N_w\ = \eta_w\mathbf{I}_{2N_c}$ of size $[2N_c \times 2N_c]$ weighting the walking cost function in its matrix form. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
