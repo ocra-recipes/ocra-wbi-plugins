@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -273,13 +267,13 @@ Additional Inherited Members</h2></td></tr>
 <p>Wocra will address the low-level control of the robot through the concept of tasks, i.e. the control of one or more DoF of the system towards objectives which are generally the minimization of tracking errors. Tasks are composed of two main elements, the subset of the controlled DoF and their desired goals (For more details on tasks, see ()). An example of a task function is the norm of an error.</p>
 <p>Different tasks can be mixed in wocra to achieve a desired high-level motion. These tasks will be subject to the aforementioned equality and inequality constraints, which motivate the use of an LQP, which solves the following problem:</p>
 <p class="formulaDsp">
-\begin{align*} \underset{\x}{\text{min}} &amp;\; \frac{1}{2} \left( \x\tp P \x + \q\tp\x + r \right) \\ s.t. &amp;:\; \G\x \leq h \\ &amp;\; A\x = \b \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \underset{\x}{\text{min}} &amp;\; \frac{1}{2} \left( \x\tp P \x + \q\tp\x + r \right) \\ s.t. &amp;:\; \G\x \leq h \\ &amp;\; A\x = \b \end{align*}" src="../../form_167.png"/>
 </p>
-<p>Where \( x \) is the vector to optimize, \( P \), \( q \) and \( r \) represent the quadratic cost function, \( G \), \( h \) define the inequality constraints and \( A \), \( b \) define the equality constraints, which are the concatenation of the different constraints previously mentioned. The controller thus builds these matrices according to the tasks and the constraints acting on the robot and, when the solution is found, extracts the input torque vector \( \tau \) to actuate the system. \( x \) can be replaced by \( \left[ \ddq \tp \; f_c \tp \; \tau \tp \right] \tp \) which we also denote by the <b>dynamic variable</b> \( \X = [\ddq\tp \av] \), where \( \av \) is further referred to as the <b>action variable</b>.</p>
-<p>But the story does not end here. In particular, Wocra will use a weighting strategy which associates each task with a coefficient that sets its importance with respect to the others (a task with a higher weights gets a higher priority). The first point is to set these coefficients as real values. As a consequence, priorities are not strict and all tasks are achieved according to the trade-off defined by the weights. Given a set of \( n \) tasks and their related weights \( (T_i(\q, \dq, \X), \omega_i) \; i \in [1...n] \) one solves their weighted sum subject to the concatenation of the constraints. The task \( T_0 \) is dedicated to the minimization of the whole optimization variable. This is required when the control problem has many solutions, in order to ensure the uniqueness and more specifically to provide a solution that minimizes the input torque vector \( \tau \). \( T_0 \) has a very small weight with respect to the others \( 0 &lt; \omega_0 &lt;&lt; 1 \) to limit the induced error. This program is solved only one time per call.</p>
-<p>The algorithm consists then in finding \(\X_i^*\), the solution of the problem:</p>
+<p>Where <img class="formulaInl" alt="$ x $" src="../../form_61.png"/> is the vector to optimize, <img class="formulaInl" alt="$ P $" src="../../form_153.png"/>, <img class="formulaInl" alt="$ q $" src="../../form_154.png"/> and <img class="formulaInl" alt="$ r $" src="../../form_114.png"/> represent the quadratic cost function, <img class="formulaInl" alt="$ G $" src="../../form_155.png"/>, <img class="formulaInl" alt="$ h $" src="../../form_89.png"/> define the inequality constraints and <img class="formulaInl" alt="$ A $" src="../../form_156.png"/>, <img class="formulaInl" alt="$ b $" src="../../form_157.png"/> define the equality constraints, which are the concatenation of the different constraints previously mentioned. The controller thus builds these matrices according to the tasks and the constraints acting on the robot and, when the solution is found, extracts the input torque vector <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/> to actuate the system. <img class="formulaInl" alt="$ x $" src="../../form_61.png"/> can be replaced by <img class="formulaInl" alt="$ \left[ \ddq \tp \; f_c \tp \; \tau \tp \right] \tp $" src="../../form_168.png"/> which we also denote by the <b>dynamic variable</b> <img class="formulaInl" alt="$ \X = [\ddq\tp \av] $" src="../../form_169.png"/>, where <img class="formulaInl" alt="$ \av $" src="../../form_170.png"/> is further referred to as the <b>action variable</b>.</p>
+<p>But the story does not end here. In particular, Wocra will use a weighting strategy which associates each task with a coefficient that sets its importance with respect to the others (a task with a higher weights gets a higher priority). The first point is to set these coefficients as real values. As a consequence, priorities are not strict and all tasks are achieved according to the trade-off defined by the weights. Given a set of <img class="formulaInl" alt="$ n $" src="../../form_159.png"/> tasks and their related weights <img class="formulaInl" alt="$ (T_i(\q, \dq, \X), \omega_i) \; i \in [1...n] $" src="../../form_160.png"/> one solves their weighted sum subject to the concatenation of the constraints. The task <img class="formulaInl" alt="$ T_0 $" src="../../form_112.png"/> is dedicated to the minimization of the whole optimization variable. This is required when the control problem has many solutions, in order to ensure the uniqueness and more specifically to provide a solution that minimizes the input torque vector <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/>. <img class="formulaInl" alt="$ T_0 $" src="../../form_112.png"/> has a very small weight with respect to the others <img class="formulaInl" alt="$ 0 &lt; \omega_0 &lt;&lt; 1 $" src="../../form_161.png"/> to limit the induced error. This program is solved only one time per call.</p>
+<p>The algorithm consists then in finding <img class="formulaInl" alt="$\X_i^*$" src="../../form_164.png"/>, the solution of the problem:</p>
 <p class="formulaDsp">
-\begin{align*} \underset{\X}{\text{min}} &amp;\; \frac{1}{2} \left( \sum_{i=1}^{n} (\omega_i^2 T_i (\q, \dq, \X)) + \omega_0^2 T_0(\q, \dq, \X) \right) \\ s.t.: &amp;\; G \X \leq \h \\ &amp;\; \A \X = \b \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \underset{\X}{\text{min}} &amp;\; \frac{1}{2} \left( \sum_{i=1}^{n} (\omega_i^2 T_i (\q, \dq, \X)) + \omega_0^2 T_0(\q, \dq, \X) \right) \\ s.t.: &amp;\; G \X \leq \h \\ &amp;\; \A \X = \b \end{align*}" src="../../form_165.png"/>
 </p>
 <p><a class="el" href="../../d0/de3/citelist.html#CITEREF_salini2012Thesis">[2]</a>.</p>
 <dl class="section note"><dt>Note</dt><dd>Put proper link to the Tasks class and document it well based on Salini's thesis. </dd></dl>
@@ -324,13 +318,13 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Initializes Wocra controller.</p>
-<p>During the instantiation of this class a <a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html">WocraController::Pimpl</a> object is created. This object, in turn, will specify the constraints (robot dynamics) and objectives ( \( \ddq, \torque, \force_c \)) for the solver, as well as its relative minimization weights and will take into account gravity.</p>
+<p>During the instantiation of this class a <a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html">WocraController::Pimpl</a> object is created. This object, in turn, will specify the constraints (robot dynamics) and objectives ( <img class="formulaInl" alt="$ \ddq, \torque, \force_c $" src="../../form_163.png"/>) for the solver, as well as its relative minimization weights and will take into account gravity.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ctrlName</td><td>The name of the controller </td></tr>
     <tr><td class="paramname">innerModel</td><td>The internal model of the robot one wants to control </td></tr>
     <tr><td class="paramname">innerSolver</td><td>The internal solver one wants to use to make the quadratic optimization </td></tr>
-    <tr><td class="paramname">useReducedProblem</td><td>Tell if the redundant problem is considered (unknown variable is \( [ \ddq, \torque, \force_c ] \)), or is the reduced problem (non-redundant) is considred (unknown variable is \( [ \torque, \force_c ] \)) </td></tr>
+    <tr><td class="paramname">useReducedProblem</td><td>Tell if the redundant problem is considered (unknown variable is <img class="formulaInl" alt="$ [ \ddq, \torque, \force_c ] $" src="../../form_126.png"/>), or is the reduced problem (non-redundant) is considred (unknown variable is <img class="formulaInl" alt="$ [ \torque, \force_c ] $" src="../../form_127.png"/>) </td></tr>
   </table>
   </dd>
 </dl>
@@ -523,7 +517,7 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Computes the output of the controller.</p>
-<p>Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem, either \( x = [ \ddq \; \tau \; \force_c ] \) or \( x = [ \tau \; \force_c ] \). The torque variable \( \tau \) is finally applied to the robot.</p>
+<p>Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem, either <img class="formulaInl" alt="$ x = [ \ddq \; \tau \; \force_c ] $" src="../../form_132.png"/> or <img class="formulaInl" alt="$ x = [ \tau \; \force_c ] $" src="../../form_133.png"/>. The torque variable <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/> is finally applied to the robot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tau</td><td>The torque variable, which is the output of our problem. </td></tr>
@@ -587,7 +581,7 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">name</td><td>The task name, a unique identifier </td></tr>
     <tr><td class="paramname">feature</td><td>The contact point feature of the robot one wants to control </td></tr>
-    <tr><td class="paramname">mu</td><td>The friction cone coefficient \( \mu \) such as \( \Vert \force_t \Vert &lt; \mu \force_n \) </td></tr>
+    <tr><td class="paramname">mu</td><td>The friction cone coefficient <img class="formulaInl" alt="$ \mu $" src="../../form_130.png"/> such as <img class="formulaInl" alt="$ \Vert \force_t \Vert &lt; \mu \force_n $" src="../../form_131.png"/> </td></tr>
     <tr><td class="paramname">margin</td><td>The margin inside the friction cone </td></tr>
   </table>
   </dd>
@@ -799,7 +793,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if variable of reduced problem ( \( [ \torque \; \force_c ] \)) is considered, or <code>false</code> if it uses the variable of the full one ( \( [ \ddq \; \torque \; \force_c ] \)). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if variable of reduced problem ( <img class="formulaInl" alt="$ [ \torque \; \force_c ] $" src="../../form_128.png"/>) is considered, or <code>false</code> if it uses the variable of the full one ( <img class="formulaInl" alt="$ [ \ddq \; \torque \; \force_c ] $" src="../../form_129.png"/>). </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d2/def/WocraController_8cpp_source.html#l00161">161</a> of file <a class="el" href="../../d2/def/WocraController_8cpp_source.html">WocraController.cpp</a>.</p>
 
@@ -890,12 +884,12 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Sets weights for the objectives that minimize the norm of the problem variables: \( [ \ddq \; \torque \; \force_c ] \).</p>
+<p>Sets weights for the objectives that minimize the norm of the problem variables: <img class="formulaInl" alt="$ [ \ddq \; \torque \; \force_c ] $" src="../../form_129.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">w_ddq</td><td>weight for the minimization of \( \ddq \). </td></tr>
-    <tr><td class="paramname">w_tau</td><td>weight for the minimization of \( \torque \). </td></tr>
-    <tr><td class="paramname">w_fc</td><td>weight for the minimization of \( \force_c \). </td></tr>
+    <tr><td class="paramname">w_ddq</td><td>weight for the minimization of <img class="formulaInl" alt="$ \ddq $" src="../../form_13.png"/>. </td></tr>
+    <tr><td class="paramname">w_tau</td><td>weight for the minimization of <img class="formulaInl" alt="$ \torque $" src="../../form_99.png"/>. </td></tr>
+    <tr><td class="paramname">w_fc</td><td>weight for the minimization of <img class="formulaInl" alt="$ \force_c $" src="../../form_100.png"/>. </td></tr>
   </table>
   </dd>
 </dl>
@@ -983,7 +977,7 @@ an WocraTask instance that is a dynamic_cast of the task returned by <a class="e
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:46 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

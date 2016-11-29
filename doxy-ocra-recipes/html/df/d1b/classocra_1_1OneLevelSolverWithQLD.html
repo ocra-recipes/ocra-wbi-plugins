@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -427,10 +421,10 @@ Additional Inherited Members</h2></td></tr>
 <p>It uses a linear quadratic program which is included in the ocra framework.</p>
 <p>QLD solve the following problem:</p>
 <p class="formulaDsp">
-\begin{align*} \argmin{\x} &amp;: \; \frac{1}{2} \x\tp P \x + \vec{q}\tp \x \\ &amp; \A \x + \b \geqq \vec{0} \\ &amp; \x_{min} \leq \x \leq \x_{max} \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \argmin{\x} &amp;: \; \frac{1}{2} \x\tp P \x + \vec{q}\tp \x \\ &amp; \A \x + \b \geqq \vec{0} \\ &amp; \x_{min} \leq \x \leq \x_{max} \end{align*}" src="../../form_82.png"/>
 </p>
 <p>with </p><p class="formulaDsp">
-\begin{align*} \A \x + \b &amp;\geqq \vec{0} &amp; &amp;\Leftrightarrow &amp;\begin{bmatrix} CE \\ CI \end{bmatrix} \x + \begin{bmatrix} \vec{ce}_0 \\ \vec{ci}_0 \end{bmatrix} &amp; \quad \begin{matrix} = \\ \geq \end{matrix} \quad \begin{bmatrix} \vec{0} \\ \vec{0} \end{bmatrix} \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \A \x + \b &amp;\geqq \vec{0} &amp; &amp;\Leftrightarrow &amp;\begin{bmatrix} CE \\ CI \end{bmatrix} \x + \begin{bmatrix} \vec{ce}_0 \\ \vec{ci}_0 \end{bmatrix} &amp; \quad \begin{matrix} = \\ \geq \end{matrix} \quad \begin{bmatrix} \vec{0} \\ \vec{0} \end{bmatrix} \end{align*}" src="../../form_83.png"/>
 </p>
  
 <p>Definition at line <a class="el" href="../../d0/d17/OneLevelSolver_8h_source.html#l00244">244</a> of file <a class="el" href="../../d0/d17/OneLevelSolver_8h_source.html">OneLevelSolver.h</a>.</p>
@@ -901,7 +895,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:26 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:45 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -466,11 +460,11 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Create a linear function that represents the dynamic equation of motion. </p>
 <p>The equation of motion is: </p><p class="formulaDsp">
-\[ \M \ddq + \n + \g = S \torque - \J_c\tp \force_c \]
+<img class="formulaDsp" alt="\[ \M \ddq + \n + \g = S \torque - \J_c\tp \force_c \]" src="../../form_9.png"/>
 </p>
-<p>So given the variable of our problem \( \x = \begin{bmatrix} \ddq\tp &amp; \torque\tp &amp; \force_c\tp\end{bmatrix}\tp \) It returns an equation of the form:</p>
+<p>So given the variable of our problem <img class="formulaInl" alt="$ \x = \begin{bmatrix} \ddq\tp &amp; \torque\tp &amp; \force_c\tp\end{bmatrix}\tp $" src="../../form_10.png"/> It returns an equation of the form:</p>
 <p class="formulaDsp">
-\begin{align*} \A \x + \b &amp;= \vec{0} &amp; &amp;\Leftrightarrow &amp; \begin{bmatrix} \M &amp; -S &amp; \J_c\tp \end{bmatrix} . \begin{bmatrix} \ddq \\ \torque \\ \force_c\end{bmatrix} + [ \n + \g ] = \vec{0} \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \A \x + \b &amp;= \vec{0} &amp; &amp;\Leftrightarrow &amp; \begin{bmatrix} \M &amp; -S &amp; \J_c\tp \end{bmatrix} . \begin{bmatrix} \ddq \\ \torque \\ \force_c\end{bmatrix} + [ \n + \g ] = \vec{0} \end{align*}" src="../../form_11.png"/>
 </p>
  
 <p>Definition at line <a class="el" href="../../d1/dff/FullDynamicEquationFunction_8h_source.html#l00040">40</a> of file <a class="el" href="../../d1/dff/FullDynamicEquationFunction_8h_source.html">FullDynamicEquationFunction.h</a>.</p>
@@ -481,7 +475,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:25 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:45 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

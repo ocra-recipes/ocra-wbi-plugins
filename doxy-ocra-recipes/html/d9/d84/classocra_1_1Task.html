@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -2057,11 +2051,11 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Update linear function of the task for the full formalism.</p>
-<p>It computes a desired acceleration \( \vec{a}^{des} = - \left( \vec{a}_{ref} + K_p (\vec{p}^{des} - \vec{p}) + K_d (\vec{v}^{des} - \vec{v}) \right) \) . Then The linear function is set as follows:</p>
+<p>It computes a desired acceleration <img class="formulaInl" alt="$ \vec{a}^{des} = - \left( \vec{a}_{ref} + K_p (\vec{p}^{des} - \vec{p}) + K_d (\vec{v}^{des} - \vec{v}) \right) $" src="../../form_166.png"/> . Then The linear function is set as follows:</p>
 <ul>
 <li><p class="startli">if it use the reduced problem:</p>
 <p class="formulaDsp">
-\begin{align*} \A &amp;= J_{task} . \left( \M^{-1} \J_{\tav}\tp \right) &amp; \b &amp;= \vec{a}^{des} - \left( J_{task} \M^{-1} ( \g - \n) \right) \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \A &amp;= J_{task} . \left( \M^{-1} \J_{\tav}\tp \right) &amp; \b &amp;= \vec{a}^{des} - \left( J_{task} \M^{-1} ( \g - \n) \right) \end{align*}" src="../../form_108.png"/>
 </p>
 </li>
 </ul>
@@ -2069,7 +2063,7 @@ Protected Member Functions</h2></td></tr>
 <ul>
 <li><p class="startli">else:</p>
 <p class="formulaDsp">
-\begin{align*} \A &amp;= J_{task} &amp; \b &amp;= \vec{a}^{des} \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \A &amp;= J_{task} &amp; \b &amp;= \vec{a}^{des} \end{align*}" src="../../form_109.png"/>
 </p>
  </li>
 </ul>
@@ -2166,7 +2160,7 @@ Protected Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:46 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

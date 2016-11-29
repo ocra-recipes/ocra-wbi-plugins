@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -199,8 +193,8 @@ Functions</h2></td></tr>
 <dd>
 Evrard Paul </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>10.05.31</dd></dl>
-<p>Given a (mathematical) function <em>f</em> depending on a set of time-dependant variable <em>x</em> and possibly explicitly of the time t, the coding mechanism to obtain the value at the point \( \left(x(t),t\right) \) of this function or one of its (partial) derivative is always the same, despite the fact that the output spaces can be different. For example, if \( f: R^n \times R \rightarrow R^m \), \( f(x,t) \) is a m-vector and \( \frac{\partial^2 f}{\partial t \partial x}(x,t) \) is mxn matrix, yet obtaining this value eventually boils down on a programmer viewpoint to calling a method of a class. The IFunction interface aims at taking advantage of this similarity to factorize code.</p>
-<p>On an programmer viewpoint, the object corresponding to a mathematical function can only compute its value at \( \left(x(t),t\right) \) or the value of a derivative if the corresponding method has been implemented. We call <em>ability</em> the capacity of a (c++ object) function to compute such a value. Each possible ability produces a corresponding IFunction.</p>
+<p>Given a (mathematical) function <em>f</em> depending on a set of time-dependant variable <em>x</em> and possibly explicitly of the time t, the coding mechanism to obtain the value at the point <img class="formulaInl" alt="$ \left(x(t),t\right) $" src="../../form_54.png"/> of this function or one of its (partial) derivative is always the same, despite the fact that the output spaces can be different. For example, if <img class="formulaInl" alt="$ f: R^n \times R \rightarrow R^m $" src="../../form_55.png"/>, <img class="formulaInl" alt="$ f(x,t) $" src="../../form_56.png"/> is a m-vector and <img class="formulaInl" alt="$ \frac{\partial^2 f}{\partial t \partial x}(x,t) $" src="../../form_57.png"/> is mxn matrix, yet obtaining this value eventually boils down on a programmer viewpoint to calling a method of a class. The IFunction interface aims at taking advantage of this similarity to factorize code.</p>
+<p>On an programmer viewpoint, the object corresponding to a mathematical function can only compute its value at <img class="formulaInl" alt="$ \left(x(t),t\right) $" src="../../form_54.png"/> or the value of a derivative if the corresponding method has been implemented. We call <em>ability</em> the capacity of a (c++ object) function to compute such a value. Each possible ability produces a corresponding IFunction.</p>
 <p>This file defines several coding mechanims (traits and macros) to make it easy to add and implement new abilities. If you wish to add an ability you need to: (a) add an identifier in the enumeration eFunctionAbility, (b) add a DECLARE_FUNCTION_TRAITS call, with the desired return type for your ability and the name of the function that will compute its value, (c) add a line in the macro OCRA_FUNCTION_INTERFACE_LIST. It is VERY IMPORTANT to add this line at the end of the macros. Failing to do so would mess up with the initialization list of the derived classes in a silent way since default parameters are used. In step (b) you might want to use a type for which a sub_type_traits was not defined yet, in which case you need to add a DECLARE_SUBTYPE_TRAITS call with the proper arguments. Every point where the programmer may want/need to add an entry is flagged by [ADD-IN] in the documentation preceeding the point.</p>
 <p>Copyright (C) 2010 CEA/DRT/LIST/DIASI/LSI</p>
 <dl class="section author"><dt>Author</dt><dd>Escande Adrien </dd></dl>
@@ -413,7 +407,7 @@ Evrard Paul </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:22 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:42 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

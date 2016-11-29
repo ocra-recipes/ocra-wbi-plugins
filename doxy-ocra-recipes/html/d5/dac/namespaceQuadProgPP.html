@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -620,19 +614,19 @@ template&lt;typename T &gt; </div>
       </table>
 </div><div class="memdoc">
 <p>The quadprog_solve() function implements the algorithm of Goldfarb and Idnani for the solution of a (convex) Quadratic Programming problem by means of an active-set dual method.</p>
-<p>The quadratic problem with \(n\) variables and \(m\) constraints is:</p>
+<p>The quadratic problem with <img class="formulaInl" alt="$n$" src="../../form_136.png"/> variables and <img class="formulaInl" alt="$m$" src="../../form_137.png"/> constraints is:</p>
 <p class="formulaDsp">
-\begin{align*} \argmin{\x} &amp;: \; \frac{1}{2} \x\tp G \x + \vec{g}_0\tp \x \\ &amp; CE\tp \x + \vec{ce}_0 = \vec{0} \\ &amp; CI\tp \x + \vec{ci}_0 \geq \vec{0} \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \argmin{\x} &amp;: \; \frac{1}{2} \x\tp G \x + \vec{g}_0\tp \x \\ &amp; CE\tp \x + \vec{ce}_0 = \vec{0} \\ &amp; CI\tp \x + \vec{ci}_0 \geq \vec{0} \end{align*}" src="../../form_135.png"/>
 </p>
 <p>The matrix and vectors dimensions are as follows:</p>
-<p>\(G\): \(n \times n\)</p>
-<p>\(\vec{g}_0\): \(n\)</p>
-<p>\(CE\): \(n \times p\)</p>
-<p>\(\vec{ce}_0\): \(p\)</p>
-<p>\(CI\): \(n \times m\)</p>
-<p>\(\vec{ci}_0\): \(m\)</p>
-<p>\(x\): \(n\)</p>
-<p>The function will return the cost of the solution written in the \(x\) vector or std::numeric_limits::infinity() if the problem is infeasible. In the latter case the value of the \(x\) vector is not correct.</p>
+<p><img class="formulaInl" alt="$G$" src="../../form_138.png"/>: <img class="formulaInl" alt="$n \times n$" src="../../form_139.png"/></p>
+<p><img class="formulaInl" alt="$\vec{g}_0$" src="../../form_140.png"/>: <img class="formulaInl" alt="$n$" src="../../form_136.png"/></p>
+<p><img class="formulaInl" alt="$CE$" src="../../form_141.png"/>: <img class="formulaInl" alt="$n \times p$" src="../../form_142.png"/></p>
+<p><img class="formulaInl" alt="$\vec{ce}_0$" src="../../form_143.png"/>: <img class="formulaInl" alt="$p$" src="../../form_144.png"/></p>
+<p><img class="formulaInl" alt="$CI$" src="../../form_145.png"/>: <img class="formulaInl" alt="$n \times m$" src="../../form_146.png"/></p>
+<p><img class="formulaInl" alt="$\vec{ci}_0$" src="../../form_147.png"/>: <img class="formulaInl" alt="$m$" src="../../form_137.png"/></p>
+<p><img class="formulaInl" alt="$x$" src="../../form_48.png"/>: <img class="formulaInl" alt="$n$" src="../../form_136.png"/></p>
+<p>The function will return the cost of the solution written in the <img class="formulaInl" alt="$x$" src="../../form_48.png"/> vector or std::numeric_limits::infinity() if the problem is infeasible. In the latter case the value of the <img class="formulaInl" alt="$x$" src="../../form_48.png"/> vector is not correct.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_G</td><td>n x n Symmetric positive definite matrix. </td></tr>
@@ -645,8 +639,8 @@ template&lt;typename T &gt; </div>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>Pay attention in setting up the vectors \(\vec{ce}_0\) and \(\vec{ci}_0\). If the constraints of your problem are specified in the form \(A^T x = b\) and \(C^T x \geq d\), then you should set \(\vec{ce}_0 = -b\) and \(\vec{ci}_0 = -d\). Also the matrix \(G\) is modified within the function since it is used to compute the \(G = L^T L\) cholesky factorization for further computations inside the function. If you need the original matrix \(G\) you should make a copy of it and pass the copy to the function. <a class="el" href="../../d0/de3/citelist.html#CITEREF_goldfarb1983numerically">[1]</a></dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>cost of the solution written in the x vector or std::numeric_limits::infinity() if the problem is infeasible. In the latter case the value of the \( x \) vector is not correct.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Pay attention in setting up the vectors <img class="formulaInl" alt="$\vec{ce}_0$" src="../../form_143.png"/> and <img class="formulaInl" alt="$\vec{ci}_0$" src="../../form_147.png"/>. If the constraints of your problem are specified in the form <img class="formulaInl" alt="$A^T x = b$" src="../../form_148.png"/> and <img class="formulaInl" alt="$C^T x \geq d$" src="../../form_149.png"/>, then you should set <img class="formulaInl" alt="$\vec{ce}_0 = -b$" src="../../form_150.png"/> and <img class="formulaInl" alt="$\vec{ci}_0 = -d$" src="../../form_151.png"/>. Also the matrix <img class="formulaInl" alt="$G$" src="../../form_138.png"/> is modified within the function since it is used to compute the <img class="formulaInl" alt="$G = L^T L$" src="../../form_152.png"/> cholesky factorization for further computations inside the function. If you need the original matrix <img class="formulaInl" alt="$G$" src="../../form_138.png"/> you should make a copy of it and pass the copy to the function. <a class="el" href="../../d0/de3/citelist.html#CITEREF_goldfarb1983numerically">[1]</a></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>cost of the solution written in the x vector or std::numeric_limits::infinity() if the problem is infeasible. In the latter case the value of the <img class="formulaInl" alt="$ x $" src="../../form_61.png"/> vector is not correct.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Luca Di Gaspero, DIEGM - University of Udine, Italy. </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>GNU Lesser General Public License. </dd>
 <dd>
@@ -761,7 +755,7 @@ template&lt;typename T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:46 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

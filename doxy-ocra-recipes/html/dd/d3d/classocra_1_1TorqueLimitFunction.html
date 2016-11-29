@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -462,11 +456,11 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Create a linear function that represents the torque limit function. </p>
 <p>The torque limit inequality is: </p><p class="formulaDsp">
-\[ - \torque_{max} &lt; \torque &lt; \torque_{max} \]
+<img class="formulaDsp" alt="\[ - \torque_{max} &lt; \torque &lt; \torque_{max} \]" src="../../form_21.png"/>
 </p>
 <p>It returns an equation of the form:</p>
 <p class="formulaDsp">
-\begin{align*} \A \x + \b &amp;&gt; \vec{0} &amp; &amp;\Leftrightarrow &amp; \begin{bmatrix} - \Id{} \\ \Id{} \end{bmatrix} . \torque + \begin{bmatrix} \torque_{max} \\ \torque_{max} \end{bmatrix} &amp;&gt; \vec{0} \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \A \x + \b &amp;&gt; \vec{0} &amp; &amp;\Leftrightarrow &amp; \begin{bmatrix} - \Id{} \\ \Id{} \end{bmatrix} . \torque + \begin{bmatrix} \torque_{max} \\ \torque_{max} \end{bmatrix} &amp;&gt; \vec{0} \end{align*}" src="../../form_22.png"/>
 </p>
  
 <p>Definition at line <a class="el" href="../../d1/dfa/TorqueLimitConstraint_8h_source.html#l00039">39</a> of file <a class="el" href="../../d1/dfa/TorqueLimitConstraint_8h_source.html">TorqueLimitConstraint.h</a>.</p>
@@ -510,7 +504,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>It initializes the Jacobian of the linear function, \( \A \) which is constant. </p>
+<p>It initializes the Jacobian of the linear function, <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/> which is constant. </p>
 
 <p>Definition at line <a class="el" href="../../d8/d52/TorqueLimitConstraint_8cpp_source.html#l00024">24</a> of file <a class="el" href="../../d8/d52/TorqueLimitConstraint_8cpp_source.html">TorqueLimitConstraint.cpp</a>.</p>
 
@@ -552,7 +546,7 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Get the torque limit.</p>
-<dl class="section return"><dt>Returns</dt><dd>The torque limit \( \torque_{max} \) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The torque limit <img class="formulaInl" alt="$ \torque_{max} $" src="../../form_111.png"/> </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d8/d52/TorqueLimitConstraint_8cpp_source.html#l00097">97</a> of file <a class="el" href="../../d8/d52/TorqueLimitConstraint_8cpp_source.html">TorqueLimitConstraint.cpp</a>.</p>
 
@@ -576,7 +570,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Set the torque limit.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">torqueLimits</td><td>The torque limit \( \torque_{max} \) </td></tr>
+    <tr><td class="paramname">torqueLimits</td><td>The torque limit <img class="formulaInl" alt="$ \torque_{max} $" src="../../form_111.png"/> </td></tr>
   </table>
   </dd>
 </dl>
@@ -607,8 +601,8 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Update the vector ( \( \b \)) in the function.</p>
-<p>It computes \( \b = \begin{bmatrix} \torque_{max} \\ \torque_{max} \end{bmatrix} \) . </p>
+<p>Update the vector ( <img class="formulaInl" alt="$ \b $" src="../../form_92.png"/>) in the function.</p>
+<p>It computes <img class="formulaInl" alt="$ \b = \begin{bmatrix} \torque_{max} \\ \torque_{max} \end{bmatrix} $" src="../../form_110.png"/> . </p>
 
 <p>Reimplemented from <a class="el" href="../../de/d3a/classocra_1_1LinearFunction.html#a546454cd8d0909f99433ffc0e700c9e3">ocra::LinearFunction</a>.</p>
 
@@ -638,7 +632,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Update the Jacobian matrix ( \( \A \)) in the function.</p>
+<p>Update the Jacobian matrix ( <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/>) in the function.</p>
 <p>Nothing to do. </p>
 
 <p>Reimplemented from <a class="el" href="../../de/d3a/classocra_1_1LinearFunction.html#a30926f977c0124a0b0f65b854ab39636">ocra::LinearFunction</a>.</p>
@@ -703,7 +697,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:46 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -653,7 +647,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem \( \force_c \). The torque \( \tau \) is computed using \( \force_c \), and it is finally applied to the robot. </p>
+<p>Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem <img class="formulaInl" alt="$ \force_c $" src="../../form_100.png"/>. The torque <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/> is computed using <img class="formulaInl" alt="$ \force_c $" src="../../form_100.png"/>, and it is finally applied to the robot. </p>
 
 <p>Implements <a class="el" href="../../d8/d92/classocra_1_1Controller.html#a8ca85413067d948459afa5981b3dda32">ocra::Controller</a>.</p>
 
@@ -711,7 +705,7 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">name</td><td>The task name, a unique identifier </td></tr>
     <tr><td class="paramname">feature</td><td>The contact point feature of the robot one wants to control </td></tr>
-    <tr><td class="paramname">mu</td><td>The friction cone coefficient \( \mu \) such as \( \Vert \force_t \Vert &lt; \mu \force_n \) </td></tr>
+    <tr><td class="paramname">mu</td><td>The friction cone coefficient <img class="formulaInl" alt="$ \mu $" src="../../form_130.png"/> such as <img class="formulaInl" alt="$ \Vert \force_t \Vert &lt; \mu \force_n $" src="../../form_131.png"/> </td></tr>
     <tr><td class="paramname">margin</td><td>The margin inside the friction cone </td></tr>
   </table>
   </dd>
@@ -1174,7 +1168,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:24 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:44 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

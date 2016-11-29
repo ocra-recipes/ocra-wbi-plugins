@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -404,7 +398,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="textblock"><p>Function class. </p>
 <dl class="section author"><dt>Author</dt><dd>Escande Adrien </dd></dl>
 <dl class="section warning"><dt>Warning</dt><dd>None</dd></dl>
-<p>Base class for a function \( f_A \) defined as follows: \(x\) is time-dependant n-dimensional variable living in \(R^n\), A is a set of (possibly changing) parameters. \( f_A \) is a function of \(x\) with a possible explicit time dependency. Thus we have \( f_A : R^n \times R \rightarrow R^m \), with \( f_A(x,t) = (f_{1_A}(x,t), \cdots, f_{m_A}(x,t))^T \) The set of parameters is considered to be constant with respect to the time on a mathematical point of view, yet the user can change it anytime. Although \( f \) might be explicitly time-dependant, no interfaces are given at this level to specify the value of variable \( t \). This responsibility is transfered to the derived classes.</p>
+<p>Base class for a function <img class="formulaInl" alt="$ f_A $" src="../../form_47.png"/> defined as follows: <img class="formulaInl" alt="$x$" src="../../form_48.png"/> is time-dependant n-dimensional variable living in <img class="formulaInl" alt="$R^n$" src="../../form_49.png"/>, A is a set of (possibly changing) parameters. <img class="formulaInl" alt="$ f_A $" src="../../form_47.png"/> is a function of <img class="formulaInl" alt="$x$" src="../../form_48.png"/> with a possible explicit time dependency. Thus we have <img class="formulaInl" alt="$ f_A : R^n \times R \rightarrow R^m $" src="../../form_50.png"/>, with <img class="formulaInl" alt="$ f_A(x,t) = (f_{1_A}(x,t), \cdots, f_{m_A}(x,t))^T $" src="../../form_51.png"/> The set of parameters is considered to be constant with respect to the time on a mathematical point of view, yet the user can change it anytime. Although <img class="formulaInl" alt="$ f $" src="../../form_25.png"/> might be explicitly time-dependant, no interfaces are given at this level to specify the value of variable <img class="formulaInl" alt="$ t $" src="../../form_27.png"/>. This responsibility is transfered to the derived classes.</p>
 <p><a class="el" href="../../d2/d99/classocra_1_1Function.html" title="Function class. ">Function</a> inherits from several <a class="el" href="../../d1/d71/classocra_1_1IFunction.html" title="Computation ability of a ocra function. ">IFunction</a>, each of which comes with a virtual method that need to be overloaded if the corresponding ability is <em>used</em>. Below is the list of abilities with the corresponding methods and return types. In case of doubt or out-of-date documentation, please see the use of the macro DECLARE_FUNCTION_TRAITS in <a class="el" href="../../de/d94/IFunction_8h.html" title="Declaration file of the IFunction interface. ">IFunction.h</a>. For the most usual abilities, some shortcuts are implemented to ease both programming and reading.</p>
 <p>Ability return type virtual update method buffer alias getter alias FUN_VALUE VectorXd updateValue _value getValue PARTIAL_X MatrixXd updateJacobian _jacobian getJacobian PARTIAL_T VectorXd updatePartialT FUN_DOT VectorXd updateFdot PARTIAL_X_DOT MatrixXd updateJdot PARTIAL_XX std::vector&lt;MatrixXd*&gt; updateHessian FUN_DDOT VectorXd updateFddot PARTIAL_TT VectorXd updatePartialTT PARTIAL_TX MatrixXd updatePartialTX PARTIAL_XT MatrixXd updatePartialXT PARTIAL_T_DOT VectorXd updatePartialTdot PARTIAL_X_DOT_X_DOT VectorXd updateJdotXdot</p>
 <p>[Please UPDATE if you add abilities]</p>
@@ -801,7 +795,7 @@ template&lt;eFunctionAbility Ability&gt; </div>
 <dl class="section pre"><dt>Precondition</dt><dd><a class="el" href="../../d1/d71/classocra_1_1IFunction.html#a18703c0b7573f9a1629236c9e10150d9">IFunction&lt;Ability&gt;::canBeComputed()</a>==true. If this is not the case, no physical memory is allocated for the corresponding memory buffer and computation will fail or worse result in a buffer overflow.</dd></dl>
 <p>Throws std::runtime_error if the virtual update method has not been overloaded for this ability.</p>
 <p>For performance reasons, no exceptions are thrown when this method is called for an ability which is not used. A high-level usage should make its own check by calling first <code><a class="el" href="../../d1/d71/classocra_1_1IFunction.html#a18703c0b7573f9a1629236c9e10150d9">IFunction&lt;Ability&gt;::canBeComputed</a></code>.</p>
-<p>For example, <a class="el" href="../../d2/d99/classocra_1_1Function.html#a244404069d9ab169fbb23309785693b8">get&lt;PARTIAL_TX&gt;()</a> returns \( \frac{\partial^2 f}{\partial t \partial x}\) computed at the current (x,t).</p>
+<p>For example, <a class="el" href="../../d2/d99/classocra_1_1Function.html#a244404069d9ab169fbb23309785693b8">get&lt;PARTIAL_TX&gt;()</a> returns <img class="formulaInl" alt="$ \frac{\partial^2 f}{\partial t \partial x}$" src="../../form_52.png"/> computed at the current (x,t).</p>
 <p>For some abilities, there exist aliases. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d2/d99/classocra_1_1Function.html#a0b8c9f91088218ca55e73679e8c56e87">getValue()</a>, <a class="el" href="../../d2/d99/classocra_1_1Function.html#a14d855bebcf8a03878c0ff7857b27d37">getJacobian()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="../../df/df5/Function_8h_source.html#l00353">353</a> of file <a class="el" href="../../df/df5/Function_8h_source.html">Function.h</a>.</p>
@@ -846,7 +840,7 @@ template&lt;eFunctionAbility Ability&gt; </div>
   </table>
   </dd>
 </dl>
-<p>For example, get&lt;PARTIAL_X&gt;(i) returns \( \frac{\partial f_i}{\partial x}\) computed at the current (x,t).</p>
+<p>For example, get&lt;PARTIAL_X&gt;(i) returns <img class="formulaInl" alt="$ \frac{\partial f_i}{\partial x}$" src="../../form_53.png"/> computed at the current (x,t).</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="../../d2/d99/classocra_1_1Function.html#a244404069d9ab169fbb23309785693b8">get()</a> </dd></dl>
 
 <p>Definition at line <a class="el" href="../../df/df5/Function_8h_source.html#l00359">359</a> of file <a class="el" href="../../df/df5/Function_8h_source.html">Function.h</a>.</p>
@@ -1406,7 +1400,7 @@ Value partial_X_DOT needs to be computable. </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:25 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:45 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

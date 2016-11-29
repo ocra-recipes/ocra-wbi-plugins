@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -181,8 +175,8 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Initialize the Jacobian matrix ( \( \A \)) in the function.</p>
-<p>It sets \( \A \) to 0 and computes \( S \) that is a constant matrix, So we obtain \( \A = \begin{bmatrix} 0 &amp; -S &amp; 0 \end{bmatrix} \). \( \M \) and \( \J_c \) are updated in <a class="el" href="../../d4/d62/group__constraint.html#ga5b4ea2e9706cd848923c835e2df0eff5">updateJacobian() const </a>. </p>
+<p>Initialize the Jacobian matrix ( <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/>) in the function.</p>
+<p>It sets <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/> to 0 and computes <img class="formulaInl" alt="$ S $" src="../../form_96.png"/> that is a constant matrix, So we obtain <img class="formulaInl" alt="$ \A = \begin{bmatrix} 0 &amp; -S &amp; 0 \end{bmatrix} $" src="../../form_98.png"/>. <img class="formulaInl" alt="$ \M $" src="../../form_94.png"/> and <img class="formulaInl" alt="$ \J_c $" src="../../form_95.png"/> are updated in <a class="el" href="../../d4/d62/group__constraint.html#ga5b4ea2e9706cd848923c835e2df0eff5">updateJacobian() const </a>. </p>
 
 <p>Definition at line <a class="el" href="../../df/db7/FullDynamicEquationFunction_8cpp_source.html#l00123">123</a> of file <a class="el" href="../../df/db7/FullDynamicEquationFunction_8cpp_source.html">FullDynamicEquationFunction.cpp</a>.</p>
 
@@ -378,8 +372,8 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Update the vector ( \( \b \)) in the function.</p>
-<p>It computes \( \b = \n + \g \) . </p>
+<p>Update the vector ( <img class="formulaInl" alt="$ \b $" src="../../form_92.png"/>) in the function.</p>
+<p>It computes <img class="formulaInl" alt="$ \b = \n + \g $" src="../../form_97.png"/> . </p>
 
 <p>Reimplemented from <a class="el" href="../../de/d3a/classocra_1_1LinearFunction.html#a546454cd8d0909f99433ffc0e700c9e3">ocra::LinearFunction</a>.</p>
 
@@ -409,8 +403,8 @@ Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Update the Jacobian matrix ( \( \A \)) in the function.</p>
-<p>Actually, it computes \( \A = \begin{bmatrix} \M &amp; -S &amp; \J_c\tp \end{bmatrix} \) by updating \( \M \) and \( \J_c \). \( S \) is constant and has been initialized in the constructor which calls <a class="el" href="../../d4/d62/group__constraint.html#ga19d9bbe4f78b4c396930388a70b8cd4b">buildA()</a> </p>
+<p>Update the Jacobian matrix ( <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/>) in the function.</p>
+<p>Actually, it computes <img class="formulaInl" alt="$ \A = \begin{bmatrix} \M &amp; -S &amp; \J_c\tp \end{bmatrix} $" src="../../form_93.png"/> by updating <img class="formulaInl" alt="$ \M $" src="../../form_94.png"/> and <img class="formulaInl" alt="$ \J_c $" src="../../form_95.png"/>. <img class="formulaInl" alt="$ S $" src="../../form_96.png"/> is constant and has been initialized in the constructor which calls <a class="el" href="../../d4/d62/group__constraint.html#ga19d9bbe4f78b4c396930388a70b8cd4b">buildA()</a> </p>
 
 <p>Reimplemented from <a class="el" href="../../de/d3a/classocra_1_1LinearFunction.html#a30926f977c0124a0b0f65b854ab39636">ocra::LinearFunction</a>.</p>
 
@@ -441,7 +435,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:24 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:44 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

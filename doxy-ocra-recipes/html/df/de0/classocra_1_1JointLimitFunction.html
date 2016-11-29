@@ -12,12 +12,6 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    extensions: ["tex2jax.js"],
-    jax: ["input/TeX","output/HTML-CSS"],
-});
-</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -487,31 +481,31 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Create a linear function that represents the joint limit function. </p>
-<p>The joint limit function \( \q_{min} &lt; \q &lt; \q{max} \) defined in this controller is composed of a couple of inequalities: </p><pre class="fragment"> - the first one is computed on a horizon h. The system brakes far from the limit, but can pass inside the constraint when close to it (because it only constrains the final point, not the middle ones).
+<p>The joint limit function <img class="formulaInl" alt="$ \q_{min} &lt; \q &lt; \q{max} $" src="../../form_12.png"/> defined in this controller is composed of a couple of inequalities: </p><pre class="fragment"> - the first one is computed on a horizon h. The system brakes far from the limit, but can pass inside the constraint when close to it (because it only constrains the final point, not the middle ones).
  - the second one is computed with the time of inflexion. The system brakes when close to the limits, but some singularities appears when it is on the limits.
 </pre><p>The two computation have their drawbacks, but together they allow limits avoidance properly.</p>
 <div class="image">
 <object type="image/svg+xml" data="../../joint_limit_without_inflexion.svg">joint_limit_without_inflexion.svg</object>
 <div class="caption">
 Joint limit constraint if inflexion point is not taken into account</div></div>
-<p> The first one which constrains the last point over the horizon h can be expressed as follows (depending on \( \ddq \)):</p>
+<p> The first one which constrains the last point over the horizon h can be expressed as follows (depending on <img class="formulaInl" alt="$ \ddq $" src="../../form_13.png"/>):</p>
 <p class="formulaDsp">
-\begin{align*} \q_{min} &lt; \q + \dq h + \ddq \frac{h^2}{2} &lt; \q_{max} \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \q_{min} &lt; \q + \dq h + \ddq \frac{h^2}{2} &lt; \q_{max} \end{align*}" src="../../form_14.png"/>
 </p>
 <p class="formulaDsp">
-\begin{align*} A \x + \b &amp;&gt; \vec{0} &amp; &amp;\Leftrightarrow &amp; \begin{bmatrix} - \Id{} \\ \Id{} \end{bmatrix} \ddq + 2 \begin{bmatrix} \q_{max} - \q + \dq h \\ \q_{min} - \q + \dq h \end{bmatrix} / h^2 &amp;&gt; \vec{0} \end{align*}
+<img class="formulaDsp" alt="\begin{align*} A \x + \b &amp;&gt; \vec{0} &amp; &amp;\Leftrightarrow &amp; \begin{bmatrix} - \Id{} \\ \Id{} \end{bmatrix} \ddq + 2 \begin{bmatrix} \q_{max} - \q + \dq h \\ \q_{min} - \q + \dq h \end{bmatrix} / h^2 &amp;&gt; \vec{0} \end{align*}" src="../../form_15.png"/>
 </p>
 <p>The second one is more "tricky". First it computes the times of inflexion for a constant acceleration such as the inflexion point is on 0:</p>
 <p class="formulaDsp">
-\begin{align*} t_{max} &amp;= - 2 ( \q - \q_{max} ) / \dq &amp; &amp;\text{(element-wise operations)} \\ t_{min} &amp;= - 2 ( \q - \q_{min} ) / \dq \end{align*}
+<img class="formulaDsp" alt="\begin{align*} t_{max} &amp;= - 2 ( \q - \q_{max} ) / \dq &amp; &amp;\text{(element-wise operations)} \\ t_{min} &amp;= - 2 ( \q - \q_{min} ) / \dq \end{align*}" src="../../form_16.png"/>
 </p>
-<p>For each dof (each line \( i \) ), we test where is the time of inflexion. If \( 0 &lt; t_{max}[i] &lt; h\), then the inflexion point is in the horizon of time, we should consider to constrain the motion of this dof:</p>
+<p>For each dof (each line <img class="formulaInl" alt="$ i $" src="../../form_6.png"/> ), we test where is the time of inflexion. If <img class="formulaInl" alt="$ 0 &lt; t_{max}[i] &lt; h$" src="../../form_7.png"/>, then the inflexion point is in the horizon of time, we should consider to constrain the motion of this dof:</p>
 <p class="formulaDsp">
-\begin{align*} \ddq_{max}[i] &amp;= \frac{ \dq[i]^2 }{ 2(\q[i] - \q_{max}[i] ) } &amp; &amp; \Rightarrow &amp; \ddq [i] + \ddq_{max}[i] &gt; 0 \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \ddq_{max}[i] &amp;= \frac{ \dq[i]^2 }{ 2(\q[i] - \q_{max}[i] ) } &amp; &amp; \Rightarrow &amp; \ddq [i] + \ddq_{max}[i] &gt; 0 \end{align*}" src="../../form_17.png"/>
 </p>
-<p>Again, if \( 0 &lt; t_{min}[i] &lt; h \) :</p>
+<p>Again, if <img class="formulaInl" alt="$ 0 &lt; t_{min}[i] &lt; h $" src="../../form_18.png"/> :</p>
 <p class="formulaDsp">
-\begin{align*} \ddq_{min}[i] &amp;= \frac{ \dq[i]^2 }{ 2(\q[i] - \q_{min}[i] ) } &amp; &amp; \Rightarrow &amp; \ddq [i] + \ddq_{min}[i] &gt; 0 \end{align*}
+<img class="formulaDsp" alt="\begin{align*} \ddq_{min}[i] &amp;= \frac{ \dq[i]^2 }{ 2(\q[i] - \q_{min}[i] ) } &amp; &amp; \Rightarrow &amp; \ddq [i] + \ddq_{min}[i] &gt; 0 \end{align*}" src="../../form_19.png"/>
 </p>
 <p>When all these constraints have been defined, we select the tightest ones for each dof.</p>
 <div class="image">
@@ -571,7 +565,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
   </table>
   </dd>
 </dl>
-<p>This class is a generic class to compute matrices for the joint limit function, but <b>it should not be used</b>. You would rather choose one of the following derivative classes, depending on the choosen formalism, either full \( \x = [ \ddq \; \torque \; \force_c ] \) or reduced \( \x = [ \torque \; \force_c ] \): </p><pre class="fragment"> - wFullJointLimitFunction
+<p>This class is a generic class to compute matrices for the joint limit function, but <b>it should not be used</b>. You would rather choose one of the following derivative classes, depending on the choosen formalism, either full <img class="formulaInl" alt="$ \x = [ \ddq \; \torque \; \force_c ] $" src="../../form_87.png"/> or reduced <img class="formulaInl" alt="$ \x = [ \torque \; \force_c ] $" src="../../form_88.png"/>: </p><pre class="fragment"> - wFullJointLimitFunction
  - wReducedJointLimitFunction
 </pre><p>The function is on the form: | O -I | | ddqmax | | O I | ddq + | ddqmin |</p>
 <p>where O (nx6) is defined if the model has a free-floating base (we cannot limit the range of this "joint"), else O is a void matrix (nx0)</p>
@@ -641,7 +635,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Compute the vector \( \b \) for the joint limits constraint.</p>
+<p>Compute the vector <img class="formulaInl" alt="$ \b $" src="../../form_92.png"/> for the joint limits constraint.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">gpos</td><td>The genralized position </td></tr>
@@ -650,8 +644,8 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
   </table>
   </dd>
 </dl>
-<p>This function compute vector \( \b \) for the full formalism. When using the reduced one, this vector is first computed, and then transformed (see sec_transform_formalism) to fit the new variable.</p>
-<p>The computation of \( \b \) is explained in wJointLimitFunction </p>
+<p>This function compute vector <img class="formulaInl" alt="$ \b $" src="../../form_92.png"/> for the full formalism. When using the reduced one, this vector is first computed, and then transformed (see sec_transform_formalism) to fit the new variable.</p>
+<p>The computation of <img class="formulaInl" alt="$ \b $" src="../../form_92.png"/> is explained in wJointLimitFunction </p>
 
 <p>Definition at line <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html#l00205">205</a> of file <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html">JointLimitConstraint.cpp</a>.</p>
 
@@ -705,8 +699,8 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
   </table>
   </dd>
 </dl>
-<p>This function compute matrix \( \A \) for the full formalism. When using the reduced one, this matrix is first computed, and then transformed (see sec_transform_formalism) to fit the new variable.</p>
-<p>The computation of \( \A \) is explained in wJointLimitFunction </p>
+<p>This function compute matrix <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/> for the full formalism. When using the reduced one, this matrix is first computed, and then transformed (see sec_transform_formalism) to fit the new variable.</p>
+<p>The computation of <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/> is explained in wJointLimitFunction </p>
 
 <p>Definition at line <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html#l00185">185</a> of file <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html">JointLimitConstraint.cpp</a>.</p>
 
@@ -726,7 +720,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the time horizon of prediction \( h \) for the joint limit function.</p>
+<p>Get the time horizon of prediction <img class="formulaInl" alt="$ h $" src="../../form_89.png"/> for the joint limit function.</p>
 <dl class="section return"><dt>Returns</dt><dd>The time horizon (s) </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html#l00061">61</a> of file <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html">JointLimitConstraint.cpp</a>.</p>
@@ -748,7 +742,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the joint limit for one dof \( \q_{min}[i] \).</p>
+<p>Get the joint limit for one dof <img class="formulaInl" alt="$ \q_{min}[i] $" src="../../form_105.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The dof index </td></tr>
@@ -775,7 +769,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the joint limit \( \q_{min} \).</p>
+<p>Get the joint limit <img class="formulaInl" alt="$ \q_{min} $" src="../../form_102.png"/>.</p>
 <dl class="section return"><dt>Returns</dt><dd>The lower bound </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html#l00140">140</a> of file <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html">JointLimitConstraint.cpp</a>.</p>
@@ -797,7 +791,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the joint limit for one dof \( \q_{max}[i] \).</p>
+<p>Get the joint limit for one dof <img class="formulaInl" alt="$ \q_{max}[i] $" src="../../form_106.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The dof index </td></tr>
@@ -824,7 +818,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the joint limit \( \q_{max} \).</p>
+<p>Get the joint limit <img class="formulaInl" alt="$ \q_{max} $" src="../../form_103.png"/>.</p>
 <dl class="section return"><dt>Returns</dt><dd>The upper bound </dd></dl>
 
 <p>Definition at line <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html#l00149">149</a> of file <a class="el" href="../../db/d5d/JointLimitConstraint_8cpp_source.html">JointLimitConstraint.cpp</a>.</p>
@@ -846,7 +840,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the time horizon of prediction \( h \) for the joint limit function.</p>
+<p>Set the time horizon of prediction <img class="formulaInl" alt="$ h $" src="../../form_89.png"/> for the joint limit function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newHpos</td><td>The new time horizon (s) </td></tr>
@@ -889,7 +883,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the joint limits for one dof \( \q_{min}[i], \q_{max}[i] \).</p>
+<p>Set the joint limits for one dof <img class="formulaInl" alt="$ \q_{min}[i], \q_{max}[i] $" src="../../form_104.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The dof index whose bounds are modified </td></tr>
@@ -928,7 +922,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the joint limits \( \q_{min}, \q_{max} \).</p>
+<p>Set the joint limits <img class="formulaInl" alt="$ \q_{min}, \q_{max} $" src="../../form_101.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lowerLimits</td><td>The lower bound </td></tr>
@@ -966,7 +960,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the joint limit for one dof \( \q_{min}[i] \).</p>
+<p>Set the joint limit for one dof <img class="formulaInl" alt="$ \q_{min}[i] $" src="../../form_105.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The dof index whose bound is modified </td></tr>
@@ -994,7 +988,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the joint limit \( \q_{min} \).</p>
+<p>Set the joint limit <img class="formulaInl" alt="$ \q_{min} $" src="../../form_102.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newLowerLimits</td><td>The lower bound </td></tr>
@@ -1031,7 +1025,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the joint limit for one dof \( \q_{max}[i] \).</p>
+<p>Set the joint limit for one dof <img class="formulaInl" alt="$ \q_{max}[i] $" src="../../form_106.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">i</td><td>The dof index whose bound is modified </td></tr>
@@ -1059,7 +1053,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the joint limits \( \q_{max} \).</p>
+<p>Set the joint limits <img class="formulaInl" alt="$ \q_{max} $" src="../../form_103.png"/>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newUpperLimits</td><td>The upper bound </td></tr>
@@ -1151,7 +1145,7 @@ Explaination of the inflexion point in the joint limit constraint</div></div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:22:26 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 21:55:45 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
