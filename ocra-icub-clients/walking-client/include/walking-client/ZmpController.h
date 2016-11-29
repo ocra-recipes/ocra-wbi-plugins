@@ -11,12 +11,13 @@
  *
  *  \warning Work in progress! This is still a barebone class in the process of being tested.
  *
- *  \details In \cite{krause2012stabilization} a position-based ZMP controller was implemented by  relating the desired ZMP \f$ \mathbf{p}_d \f$ to a desired force, given the relationship between CoM acceleration and the ZMP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the ZMP \f$\mathbf{p} = (p_x, p_y)\f$ can be computed as:
+ *  \details In \cite krause2012stabilization a position-based ZMP controller was implemented by  relating the desired ZMP \f$ \mathbf{p}_d \f$ to a desired force, given the relationship between CoM acceleration and the ZMP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the ZMP \f$\mathbf{p} = (p_x, p_y)\f$ can be computed as:
+ \anchor simplifiedZMP
  \f{equation}
  \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p})
- \label{eq:simplifiedZMP}
  \f}
- Where \f$\omega = \sqrt{g/c_z}\f$ as done in \cite kajita2003biped. Therefore the desired \f$\mathbf{p}_d\f$ can be associated to a desire force on the CoM:
+
+ Where \f$\omega = \sqrt{g/c_z}\f$ as done in \cite kajita2003biped. Therefore the desired \f$\mathbf{p}_d\f$ can be associated to a desired force on the CoM:
  \f[
  F_d = m \omega^2 (\mathbf{h} - \mathbf{p}_d)
  \f]
@@ -24,7 +25,7 @@
  \f[
  \dot{\mathbf{h}}_d = k_f(F_d - F)
  \f]
- Where \f$k_f > 0\f$ is a force control gain. Substituting \ref{eq:simplifiedZMP} we get:
+ Where \f$k_f > 0\f$ is a force control gain. Substituting \ref simplifiedZMP we get:
  \f[
  \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d)
  \f]
@@ -38,6 +39,12 @@
 #include <Eigen/Dense>
 #include <vector>
 
+struct ZmpControllerParams {
+    const double kf;
+    const double m;
+    const double cz;
+    const double g;
+};
 
 class ZmpController
 {
@@ -48,20 +55,18 @@ public:
     virtual ~ZmpController();
     
     /**
-     *  Compute the instantaneous desired horizonal COM velocity for the corresponding desired zmp position.
+     *  Computes the instantaneous desired horizonal COM velocity for the corresponding desired zmp position.
      *
+     *  @param p  Horizonal measured zmp position
      *  @param pd Horizontal desired zmp position
      *  @param[out] dhd Horizonal CoM velocity \f$\dot{\mathbf{h}}_d\f$
      */
-    bool computehd(Eigen::Vector2d pd, Eigen::Vector2d &dhd);
+    bool computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vector2d &dhd);
+    
+private:
+    ZmpControllerParams params;
 
 };
 
-struct ZmpControllerParams {
-    const double kf;
-    const double m;
-    const double cz;
-    const double g;
-};
 
 #endif
