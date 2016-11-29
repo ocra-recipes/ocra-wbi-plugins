@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -96,11 +102,11 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0a9898a818ddf6e52da7d63616bd73f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dbf/classgocra_1_1GHCJTController.html#a0a9898a818ddf6e52da7d63616bd73f6">GHCJTController</a> (const std::string &amp;ctrlName, Model &amp;innerModel, <a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">ocra::OneLevelSolver</a> &amp;innerSolver, bool useGrav)</td></tr>
+<tr class="memitem:a0a9898a818ddf6e52da7d63616bd73f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dbf/classgocra_1_1GHCJTController.html#a0a9898a818ddf6e52da7d63616bd73f6">GHCJTController</a> (const std::string &amp;ctrlName, <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;innerModel, <a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">ocra::OneLevelSolver</a> &amp;innerSolver, bool useGrav)</td></tr>
 <tr class="separator:a0a9898a818ddf6e52da7d63616bd73f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab20678c55e42d6f844b11e044f258e4b"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dbf/classgocra_1_1GHCJTController.html#ab20678c55e42d6f844b11e044f258e4b">~GHCJTController</a> ()</td></tr>
 <tr class="separator:ab20678c55e42d6f844b11e044f258e4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac687ebab107bcd79828564b0adad2e10"><td class="memItemLeft" align="right" valign="top">Model &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dbf/classgocra_1_1GHCJTController.html#ac687ebab107bcd79828564b0adad2e10">getModel</a> ()</td></tr>
+<tr class="memitem:ac687ebab107bcd79828564b0adad2e10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dbf/classgocra_1_1GHCJTController.html#ac687ebab107bcd79828564b0adad2e10">getModel</a> ()</td></tr>
 <tr class="separator:ac687ebab107bcd79828564b0adad2e10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a25b8ce2edaa3fccc38dfa81900353856"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">ocra::OneLevelSolver</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dbf/classgocra_1_1GHCJTController.html#a25b8ce2edaa3fccc38dfa81900353856">getSolver</a> ()</td></tr>
 <tr class="separator:a25b8ce2edaa3fccc38dfa81900353856"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -235,7 +241,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a2bee2520ee73a43496cf155eb1c77548"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="../../d9/d84/classocra_1_1Task.html">Task</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d6/dbf/classgocra_1_1GHCJTController.html#a2bee2520ee73a43496cf155eb1c77548">doCreateContactTask</a> (const std::string &amp;name, PointContactFeature::Ptr feature, double mu, double margin) const</td></tr>
 <tr class="separator:a2bee2520ee73a43496cf155eb1c77548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classocra_1_1Controller"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classocra_1_1Controller')"><img src="../../closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="../../d8/d92/classocra_1_1Controller.html">ocra::Controller</a></td></tr>
-<tr class="memitem:a9f72394baa089119cf0b60e3c7160283 inherit pro_methods_classocra_1_1Controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d92/classocra_1_1Controller.html#a9f72394baa089119cf0b60e3c7160283">Controller</a> (const std::string &amp;name, Model &amp;model)</td></tr>
+<tr class="memitem:a9f72394baa089119cf0b60e3c7160283 inherit pro_methods_classocra_1_1Controller"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d92/classocra_1_1Controller.html#a9f72394baa089119cf0b60e3c7160283">Controller</a> (const std::string &amp;name, <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;model)</td></tr>
 <tr class="separator:a9f72394baa089119cf0b60e3c7160283 inherit pro_methods_classocra_1_1Controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47992af5b31c540f8bd7a828eb768276 inherit pro_methods_classocra_1_1Controller"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::shared_ptr&lt; <a class="el" href="../../d9/d84/classocra_1_1Task.html">Task</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d92/classocra_1_1Controller.html#a47992af5b31c540f8bd7a828eb768276">getActiveTasks</a> () const</td></tr>
 <tr class="separator:a47992af5b31c540f8bd7a828eb768276 inherit pro_methods_classocra_1_1Controller"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -284,7 +290,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Model &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>innerModel</em>, </td>
         </tr>
         <tr>
@@ -647,7 +653,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem <img class="formulaInl" alt="$ \force_c $" src="../../form_100.png"/>. The torque <img class="formulaInl" alt="$ \tau $" src="../../form_134.png"/> is computed using <img class="formulaInl" alt="$ \force_c $" src="../../form_100.png"/>, and it is finally applied to the robot. </p>
+<p>Here, the controller solves the optimization problem depending on the tasks and constraints, and the result is set in the variable of the problem \( \force_c \). The torque \( \tau \) is computed using \( \force_c \), and it is finally applied to the robot. </p>
 
 <p>Implements <a class="el" href="../../d8/d92/classocra_1_1Controller.html#a8ca85413067d948459afa5981b3dda32">ocra::Controller</a>.</p>
 
@@ -705,7 +711,7 @@ Additional Inherited Members</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">name</td><td>The task name, a unique identifier </td></tr>
     <tr><td class="paramname">feature</td><td>The contact point feature of the robot one wants to control </td></tr>
-    <tr><td class="paramname">mu</td><td>The friction cone coefficient <img class="formulaInl" alt="$ \mu $" src="../../form_130.png"/> such as <img class="formulaInl" alt="$ \Vert \force_t \Vert &lt; \mu \force_n $" src="../../form_131.png"/> </td></tr>
+    <tr><td class="paramname">mu</td><td>The friction cone coefficient \( \mu \) such as \( \Vert \force_t \Vert &lt; \mu \force_n \) </td></tr>
     <tr><td class="paramname">margin</td><td>The margin inside the friction cone </td></tr>
   </table>
   </dd>
@@ -890,7 +896,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Model &amp; gocra::GHCJTController::getModel </td>
+          <td class="memname"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp; gocra::GHCJTController::getModel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -1168,7 +1174,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:33 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:24 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

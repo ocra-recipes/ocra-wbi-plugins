@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -100,7 +106,7 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7db869c24ac20e1aff021f95ccf7dcd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d45/classocra_1_1ContactAvoidanceFunction.html#a7db869c24ac20e1aff021f95ccf7dcd8">ContactAvoidanceFunction</a> (const Model &amp;m, <a class="el" href="../../d2/dac/classocra_1_1Variable.html">Variable</a> &amp;var)</td></tr>
+<tr class="memitem:a7db869c24ac20e1aff021f95ccf7dcd8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d45/classocra_1_1ContactAvoidanceFunction.html#a7db869c24ac20e1aff021f95ccf7dcd8">ContactAvoidanceFunction</a> (const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;m, <a class="el" href="../../d2/dac/classocra_1_1Variable.html">Variable</a> &amp;var)</td></tr>
 <tr class="separator:a7db869c24ac20e1aff021f95ccf7dcd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5309c1fd586ed0292ee5eebfafacef9b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d4/d45/classocra_1_1ContactAvoidanceFunction.html#a5309c1fd586ed0292ee5eebfafacef9b">~ContactAvoidanceFunction</a> ()</td></tr>
 <tr class="separator:a5309c1fd586ed0292ee5eebfafacef9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -473,26 +479,26 @@ Additional Inherited Members</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Create a linear function that represents the joint limit function. </p>
-<p>The contact avoidance constraint is written at first as: <img class="formulaInl" alt="$ \vec{0} &lt; \vec{d}_{oa} $" src="../../form_0.png"/> where <img class="formulaInl" alt="$ \vec{d}_{oa} $" src="../../form_1.png"/> is the contatenation of the minimal distances between the couples of shapes that should not collide.</p>
+<p>The contact avoidance constraint is written at first as: \( \vec{0} &lt; \vec{d}_{oa} \) where \( \vec{d}_{oa} \) is the contatenation of the minimal distances between the couples of shapes that should not collide.</p>
 <div class="image">
 <object type="image/svg+xml" data="../../obstacle_avoidance.svg">obstacle_avoidance.svg</object>
 </div>
 <p>To relate this constraint with the dynamic variables, we constrain the estimated future distances to remain positive, as explained in wJointLimitFunction .</p>
 <p>In this case, the constraint is expressed as follows:</p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\begin{align*} \vec{d}_{oa} - \vec{m} &amp;&gt; \vec{d}_{oa}(h) \quad \text{at instant h} \\ \vec{d}_{oa} - \vec{m} &amp;&gt; \dot{\vec{d}}_{oa} h + \ddot{\vec{d}}_{oa} \frac{h^2}{2} \\ \vec{d}_{oa} - \vec{m} &amp;&gt; \dot{\vec{d}}_{oa} h + \left( \J_{oa} \ddq + \dJ_{oa} \dq \right) \frac{h^2}{2} \end{align*}" src="../../form_2.png"/>
+\begin{align*} \vec{d}_{oa} - \vec{m} &amp;&gt; \vec{d}_{oa}(h) \quad \text{at instant h} \\ \vec{d}_{oa} - \vec{m} &amp;&gt; \dot{\vec{d}}_{oa} h + \ddot{\vec{d}}_{oa} \frac{h^2}{2} \\ \vec{d}_{oa} - \vec{m} &amp;&gt; \dot{\vec{d}}_{oa} h + \left( \J_{oa} \ddq + \dJ_{oa} \dq \right) \frac{h^2}{2} \end{align*}
 </p>
-<p>where <img class="formulaInl" alt="$ \vec{m} $" src="../../form_3.png"/> is a margin vector. So it becomes:</p>
+<p>where \( \vec{m} \) is a margin vector. So it becomes:</p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\begin{align*} \A \x + \b &amp;&gt; \vec{0} &amp; &amp;\Leftrightarrow &amp; \begin{bmatrix} - \J_{oa} \end{bmatrix} \ddq + \begin{bmatrix} - \dJ_{oa} \dq + 2 \left( \vec{d}_{oa} - \vec{m} - \dot{\vec{d}}_{oa} h \right) / h^2 \end{bmatrix} &amp; &gt; \vec{0} \end{align*}" src="../../form_4.png"/>
+\begin{align*} \A \x + \b &amp;&gt; \vec{0} &amp; &amp;\Leftrightarrow &amp; \begin{bmatrix} - \J_{oa} \end{bmatrix} \ddq + \begin{bmatrix} - \dJ_{oa} \dq + 2 \left( \vec{d}_{oa} - \vec{m} - \dot{\vec{d}}_{oa} h \right) / h^2 \end{bmatrix} &amp; &gt; \vec{0} \end{align*}
 </p>
 <p>There is some similarity with the wJointLimitFunction because we constrain an estimated future state. The same issues arise (it only constrain the final point, no middle points), so it is interesting to look at the inflexion point. In the same manner, the time of inflexion for a constant acceleration such as the inflexion point is on 0 is computed as follows:</p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\begin{align*} t_{max} &amp;= 2*(\vec{d}_{oa} - \vec{m}) / \dot{\vec{d}}_{oa} &amp; &amp; \text{(element-wise operations)} \end{align*}" src="../../form_5.png"/>
+\begin{align*} t_{max} &amp;= 2*(\vec{d}_{oa} - \vec{m}) / \dot{\vec{d}}_{oa} &amp; &amp; \text{(element-wise operations)} \end{align*}
 </p>
-<p>For each dof (each line <img class="formulaInl" alt="$ i $" src="../../form_6.png"/> ), we test where is the time of inflexion. If <img class="formulaInl" alt="$ 0 &lt; t_{max}[i] &lt; h$" src="../../form_7.png"/>, then the inflexion point is in the horizon of time, we should consider to constrain the motion of this contact avoidance:</p>
+<p>For each dof (each line \( i \) ), we test where is the time of inflexion. If \( 0 &lt; t_{max}[i] &lt; h\), then the inflexion point is in the horizon of time, we should consider to constrain the motion of this contact avoidance:</p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\begin{align*} \ddot{\vec{d}}_{max}[i] &amp;= \frac{ \dot{\vec{d}}_{oa}[i]^2 }{ 2( \vec{d}_{oa}[i] - \vec{m}[i] ) } &amp; &amp; \Rightarrow &amp; \begin{bmatrix} - \J_{oa} \end{bmatrix} [i] \ddq + \ddot{\vec{d}}_{max}[i] &gt; 0 \end{align*}" src="../../form_8.png"/>
+\begin{align*} \ddot{\vec{d}}_{max}[i] &amp;= \frac{ \dot{\vec{d}}_{oa}[i]^2 }{ 2( \vec{d}_{oa}[i] - \vec{m}[i] ) } &amp; &amp; \Rightarrow &amp; \begin{bmatrix} - \J_{oa} \end{bmatrix} [i] \ddq + \ddot{\vec{d}}_{max}[i] &gt; 0 \end{align*}
 </p>
 <p>When all these constraints have been defined, we select the tightest ones for each dof. </p>
 
@@ -524,7 +530,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">ContactAvoidanceFunction::ContactAvoidanceFunction </td>
           <td>(</td>
-          <td class="paramtype">const Model &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>model</em>, </td>
         </tr>
         <tr>
@@ -543,12 +549,12 @@ Additional Inherited Members</h2></td></tr>
 <p>Initialize the contact avoidance constraint function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">model</td><td>The Model on which we will get the dynamic parameters </td></tr>
+    <tr><td class="paramname">model</td><td>The <a class="el" href="../../d4/d00/classocra_1_1Model.html" title="Model class. ">Model</a> on which we will get the dynamic parameters </td></tr>
     <tr><td class="paramname">var</td><td>The problem variable that will be used to write this constraint</td></tr>
   </table>
   </dd>
 </dl>
-<p>This class is a generic class to compute matrices for the contact avoidance function, but <b>it should not be used</b>. You would rather choose one of the following derivative classes, depending on the choosen formalism, either full <img class="formulaInl" alt="$ \x = [ \ddq \; \torque \; \force_c ] $" src="../../form_87.png"/> or reduced <img class="formulaInl" alt="$ \x = [ \torque \; \force_c ] $" src="../../form_88.png"/>: </p><pre class="fragment"> - wFullContactAvoidanceFunction
+<p>This class is a generic class to compute matrices for the contact avoidance function, but <b>it should not be used</b>. You would rather choose one of the following derivative classes, depending on the choosen formalism, either full \( \x = [ \ddq \; \torque \; \force_c ] \) or reduced \( \x = [ \torque \; \force_c ] \): </p><pre class="fragment"> - wFullContactAvoidanceFunction
  - wReducedContactAvoidanceFunction</pre> 
 <p>Definition at line <a class="el" href="../../d4/d1e/ContactAvoidanceConstraint_8cpp_source.html#l00030">30</a> of file <a class="el" href="../../d4/d1e/ContactAvoidanceConstraint_8cpp_source.html">ContactAvoidanceConstraint.cpp</a>.</p>
 
@@ -620,10 +626,10 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Compute the vector <img class="formulaInl" alt="$ \b $" src="../../form_92.png"/> of the linear function for the collision avoidance constraint expressed in the full formalism.</p>
+<p>Compute the vector \( \b \) of the linear function for the collision avoidance constraint expressed in the full formalism.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_dJdqObst</td><td>The derivative of the Jacobian of obstacle avoidance multiplied by generalized velocity <img class="formulaInl" alt="$ = \dJ_{Obst} \dq $" src="../../form_90.png"/> </td></tr>
+    <tr><td class="paramname">_dJdqObst</td><td>The derivative of the Jacobian of obstacle avoidance multiplied by generalized velocity \( = \dJ_{Obst} \dq \) </td></tr>
     <tr><td class="paramname">_distObst</td><td>The relative distance of obstacle avoidance </td></tr>
     <tr><td class="paramname">_velObst</td><td>The relative velocity of obstacle avoidance </td></tr>
     <tr><td class="paramname">fullb</td><td>The vector instance where to write the collision avoidance data in the full formalism </td></tr>
@@ -668,7 +674,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Compute the Jacobian matrix <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/> of the linear function for the collision avoidance constraint expressed in the full formalism.</p>
+<p>Compute the Jacobian matrix \( \A \) of the linear function for the collision avoidance constraint expressed in the full formalism.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_JObst</td><td>The Jacobian of obstacle avoidance </td></tr>
@@ -759,7 +765,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the time horizon of prediction <img class="formulaInl" alt="$ h $" src="../../form_89.png"/> for the contact avoidance function.</p>
+<p>Get the time horizon of prediction \( h \) for the contact avoidance function.</p>
 <dl class="section return"><dt>Returns</dt><dd>The time horizon (s) </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d1e/ContactAvoidanceConstraint_8cpp_source.html#l00055">55</a> of file <a class="el" href="../../d4/d1e/ContactAvoidanceConstraint_8cpp_source.html">ContactAvoidanceConstraint.cpp</a>.</p>
@@ -780,7 +786,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get the obstacle avoidance margin <img class="formulaInl" alt="$ \vec{m} $" src="../../form_3.png"/>.</p>
+<p>Get the obstacle avoidance margin \( \vec{m} \).</p>
 <dl class="section return"><dt>Returns</dt><dd>The margin vector </dd></dl>
 
 <p>Definition at line <a class="el" href="../../d4/d1e/ContactAvoidanceConstraint_8cpp_source.html#l00073">73</a> of file <a class="el" href="../../d4/d1e/ContactAvoidanceConstraint_8cpp_source.html">ContactAvoidanceConstraint.cpp</a>.</p>
@@ -802,7 +808,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the time horizon of prediction <img class="formulaInl" alt="$ h $" src="../../form_89.png"/> for the contact avoidance function.</p>
+<p>Set the time horizon of prediction \( h \) for the contact avoidance function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newHpos</td><td>The new time horizon (s) </td></tr>
@@ -829,7 +835,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Set the obstacle avoidance margin <img class="formulaInl" alt="$ \vec{m} $" src="../../form_3.png"/>.</p>
+<p>Set the obstacle avoidance margin \( \vec{m} \).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">newMargin</td><td>The margin vector </td></tr>
@@ -863,7 +869,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>update the vector <img class="formulaInl" alt="$ \b $" src="../../form_92.png"/>.</p>
+<p>update the vector \( \b \).</p>
 <p>Does nothing.</p>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000002">Todo:</a></b></dt><dd>It should be conform to the ocra framework, the computation of the vector should be here. </dd></dl>
 
@@ -916,7 +922,7 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">_JObst</td><td>The Jacobian of obstacle avoidance </td></tr>
-    <tr><td class="paramname">_dJdqObst</td><td>The derivative of the Jacobian of obstacle avoidance multiplied by generalized velocity <img class="formulaInl" alt="$ = \dJ_{Obst} \dq $" src="../../form_90.png"/> </td></tr>
+    <tr><td class="paramname">_dJdqObst</td><td>The derivative of the Jacobian of obstacle avoidance multiplied by generalized velocity \( = \dJ_{Obst} \dq \) </td></tr>
     <tr><td class="paramname">_distObst</td><td>The relative distance of obstacle avoidance </td></tr>
     <tr><td class="paramname">_velObst</td><td>The relative velocity of obstacle avoidance </td></tr>
   </table>
@@ -949,7 +955,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>update the Jacobian matrix <img class="formulaInl" alt="$ \A $" src="../../form_91.png"/>.</p>
+<p>update the Jacobian matrix \( \A \).</p>
 <p>Does nothing.</p>
 <dl class="todo"><dt><b><a class="el" href="../../dd/da0/todo.html#_todo000001">Todo:</a></b></dt><dd>It should be conform to the ocra framework, the computation of the jacobian should be here. </dd></dl>
 
@@ -1113,7 +1119,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:34 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:25 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

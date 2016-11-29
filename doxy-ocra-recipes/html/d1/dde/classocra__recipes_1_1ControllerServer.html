@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -95,7 +101,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a925d4de1de73f0ac18e50f0f3c4cd0a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40bc86b6d9a4140441320c88bfc77652"><td class="memItemLeft" align="right" valign="top">const std::shared_ptr&lt; <a class="el" href="../../d8/d92/classocra_1_1Controller.html">ocra::Controller</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dde/classocra__recipes_1_1ControllerServer.html#a40bc86b6d9a4140441320c88bfc77652">getController</a> ()</td></tr>
 <tr class="separator:a40bc86b6d9a4140441320c88bfc77652"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab83e5cc59e33d26cedbea43afae25e1e"><td class="memItemLeft" align="right" valign="top">const std::shared_ptr&lt; ocra::Model &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dde/classocra__recipes_1_1ControllerServer.html#ab83e5cc59e33d26cedbea43afae25e1e">getRobotModel</a> ()</td></tr>
+<tr class="memitem:ab83e5cc59e33d26cedbea43afae25e1e"><td class="memItemLeft" align="right" valign="top">const std::shared_ptr&lt; <a class="el" href="../../d4/d00/classocra_1_1Model.html">ocra::Model</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dde/classocra__recipes_1_1ControllerServer.html#ab83e5cc59e33d26cedbea43afae25e1e">getRobotModel</a> ()</td></tr>
 <tr class="separator:ab83e5cc59e33d26cedbea43afae25e1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad2ca7fafa8c7fff009581df869f65d85"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dde/classocra__recipes_1_1ControllerServer.html#ad2ca7fafa8c7fff009581df869f65d85">addTasksFromXmlFile</a> (const std::string &amp;filePath)</td></tr>
 <tr class="separator:ad2ca7fafa8c7fff009581df869f65d85"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,7 +114,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a50715d81293d3ec5f0d6a60710008510"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; Model &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dde/classocra__recipes_1_1ControllerServer.html#a50715d81293d3ec5f0d6a60710008510">loadRobotModel</a> ()=0</td></tr>
+<tr class="memitem:a50715d81293d3ec5f0d6a60710008510"><td class="memItemLeft" align="right" valign="top">virtual std::shared_ptr&lt; <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dde/classocra__recipes_1_1ControllerServer.html#a50715d81293d3ec5f0d6a60710008510">loadRobotModel</a> ()=0</td></tr>
 <tr class="separator:a50715d81293d3ec5f0d6a60710008510"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93ec150bea9b2a7a03aac1cc048d5484"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d1/dde/classocra__recipes_1_1ControllerServer.html#a93ec150bea9b2a7a03aac1cc048d5484">getRobotState</a> (Eigen::VectorXd &amp;q, Eigen::VectorXd &amp;qd, Eigen::Displacementd &amp;H_root, Eigen::Twistd &amp;T_root)=0</td></tr>
 <tr class="separator:a93ec150bea9b2a7a03aac1cc048d5484"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,7 +152,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00044">44</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00043">43</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a78cc49b2b2a3f9daecc0662051b5644d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a78cc49b2b2a3f9daecc0662051b5644d">&sect;&nbsp;</a></span>ControllerServer()</h2>
@@ -234,7 +240,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00130">130</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
 
 </div>
 </div>
@@ -254,7 +260,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00124">124</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00125">125</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
 
 </div>
 </div>
@@ -273,7 +279,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00098">98</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00099">99</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
 
 </div>
 </div>
@@ -293,7 +299,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00105">105</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00106">106</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
 
 </div>
 </div>
@@ -320,7 +326,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00064">64</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00063">63</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -334,7 +340,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">const std::shared_ptr&lt;ocra::Model&gt; ocra_recipes::ControllerServer::getRobotModel </td>
+          <td class="memname">const std::shared_ptr&lt;<a class="el" href="../../d4/d00/classocra_1_1Model.html">ocra::Model</a>&gt; ocra_recipes::ControllerServer::getRobotModel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -347,7 +353,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00065">65</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00064">64</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -449,7 +455,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual std::shared_ptr&lt;Model&gt; ocra_recipes::ControllerServer::loadRobotModel </td>
+          <td class="memname">virtual std::shared_ptr&lt;<a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a>&gt; ocra_recipes::ControllerServer::loadRobotModel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -479,7 +485,7 @@ Protected Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00111">111</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html#l00112">112</a> of file <a class="el" href="../../d5/dd2/ControllerServer_8cpp_source.html">ControllerServer.cpp</a>.</p>
 
 </div>
 </div>
@@ -504,7 +510,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00081">81</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00080">80</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -528,7 +534,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00093">93</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00092">92</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -552,7 +558,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00103">103</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00102">102</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -576,7 +582,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00082">82</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00081">81</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -600,7 +606,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00080">80</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00079">79</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -624,7 +630,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00102">102</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00101">101</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -648,7 +654,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00087">87</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00086">86</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -672,7 +678,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00084">84</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00083">83</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -696,7 +702,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00094">94</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00093">93</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -720,7 +726,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00098">98</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00097">97</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -744,7 +750,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00099">99</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00098">98</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -768,7 +774,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00086">86</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00085">85</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -792,7 +798,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00095">95</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00094">94</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -816,7 +822,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00096">96</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/ControllerServer_8h_source.html#l00095">95</a> of file <a class="el" href="../../da/d7c/ControllerServer_8h_source.html">ControllerServer.h</a>.</p>
 
 </div>
 </div>
@@ -827,7 +833,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

@@ -11,77 +11,90 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-268 1198.36,-268 1198.36,4 -4,4"/>
 <!-- Node1 -->
 <g id="node1" class="node"><title>Node1</title>
-<polygon fill="#bfbfbf" stroke="black" points="1086.65,-113.5 1086.65,-141.5 1194.36,-141.5 1194.36,-113.5 1086.65,-113.5"/>
-<text text-anchor="start" x="1094.65" y="-129.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::ModelContacts</text>
-<text text-anchor="middle" x="1140.51" y="-119.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Pimpl</text>
+<polygon fill="#bfbfbf" stroke="black" points="1086.65,-75.5 1086.65,-103.5 1194.36,-103.5 1194.36,-75.5 1086.65,-75.5"/>
+<text text-anchor="start" x="1094.65" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::ModelContacts</text>
+<text text-anchor="middle" x="1140.51" y="-81.5" font-family="Helvetica,sans-Serif" font-size="10.00">::Pimpl</text>
 </g>
 <!-- Node2 -->
 <g id="node2" class="node"><title>Node2</title>
 <g id="a_node2"><a xlink:href="../../d2/d7c/classocra_1_1CompositeVariable.html" target="_top" xlink:title="A concatenation of base variables and other composite variables. ">
-<polygon fill="white" stroke="black" points="824.358,-138.5 824.358,-156.5 949.118,-156.5 949.118,-138.5 824.358,-138.5"/>
-<text text-anchor="middle" x="886.738" y="-144.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::CompositeVariable</text>
+<polygon fill="white" stroke="black" points="824.358,-120.5 824.358,-138.5 949.118,-138.5 949.118,-120.5 824.358,-120.5"/>
+<text text-anchor="middle" x="886.738" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::CompositeVariable</text>
 </a>
 </g>
 </g>
 <!-- Node2&#45;&gt;Node1 -->
 <g id="edge1" class="edge"><title>Node2&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M959.415,-141.806C999.927,-138.588 1049.7,-134.634 1086.64,-131.699"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="959.019,-138.326 949.328,-142.607 959.573,-145.304 959.019,-138.326"/>
-<text text-anchor="middle" x="1017.88" y="-143.5" font-family="Helvetica,sans-Serif" font-size="10.00"> contactForcesVariable</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M959.504,-120.066C992.77,-115.467 1032.79,-109.615 1068.65,-103.5 1074.46,-102.509 1080.53,-101.41 1086.56,-100.277"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="958.84,-116.624 949.409,-121.452 959.792,-123.559 958.84,-116.624"/>
+<text text-anchor="middle" x="1017.88" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00"> contactForcesVariable</text>
 </g>
 <!-- Node3 -->
 <g id="node3" class="node"><title>Node3</title>
 <g id="a_node3"><a xlink:href="../../d7/d79/classocra_1_1Composite.html" target="_top" xlink:title="ocra::Composite\&lt; Variable,\l CompositeVariable, VariableParenthood \&gt;">
-<polygon fill="white" stroke="black" points="582.994,-154.5 582.994,-182.5 787.358,-182.5 787.358,-154.5 582.994,-154.5"/>
-<text text-anchor="start" x="590.994" y="-170.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::Composite&lt; Variable,</text>
-<text text-anchor="middle" x="685.176" y="-160.5" font-family="Helvetica,sans-Serif" font-size="10.00"> CompositeVariable, VariableParenthood &gt;</text>
+<polygon fill="white" stroke="black" points="582.994,-115.5 582.994,-143.5 787.358,-143.5 787.358,-115.5 582.994,-115.5"/>
+<text text-anchor="start" x="590.994" y="-131.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::Composite&lt; Variable,</text>
+<text text-anchor="middle" x="685.176" y="-121.5" font-family="Helvetica,sans-Serif" font-size="10.00"> CompositeVariable, VariableParenthood &gt;</text>
 </a>
 </g>
 </g>
 <!-- Node3&#45;&gt;Node2 -->
 <g id="edge2" class="edge"><title>Node3&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M797.392,-156.797C806.55,-155.833 815.578,-154.883 824.161,-153.98"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="796.998,-153.319 787.419,-157.846 797.73,-160.28 796.998,-153.319"/>
+<path fill="none" stroke="midnightblue" d="M797.685,-129.5C806.742,-129.5 815.669,-129.5 824.161,-129.5"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="797.419,-126 787.419,-129.5 797.419,-133 797.419,-126"/>
 </g>
 <!-- Node4 -->
 <g id="node4" class="node"><title>Node4</title>
 <g id="a_node4"><a xlink:href="../../d2/dac/classocra_1_1Variable.html" target="_top" xlink:title="This class represents a variable in a mathematical sense. ">
-<polygon fill="white" stroke="black" points="646.695,-117.5 646.695,-135.5 723.657,-135.5 723.657,-117.5 646.695,-117.5"/>
-<text text-anchor="middle" x="685.176" y="-123.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::Variable</text>
+<polygon fill="white" stroke="black" points="646.695,-162.5 646.695,-180.5 723.657,-180.5 723.657,-162.5 646.695,-162.5"/>
+<text text-anchor="middle" x="685.176" y="-168.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::Variable</text>
 </a>
 </g>
 </g>
 <!-- Node4&#45;&gt;Node2 -->
 <g id="edge3" class="edge"><title>Node4&#45;&gt;Node2</title>
-<path fill="none" stroke="midnightblue" d="M733.706,-131.502C760.758,-134.348 794.949,-137.946 824.052,-141.009"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="734.024,-128.016 723.712,-130.45 733.291,-134.977 734.024,-128.016"/>
+<path fill="none" stroke="midnightblue" d="M733.938,-162.978C750.845,-159.843 769.978,-156.162 787.358,-152.5 807.783,-148.197 830.477,-142.925 848.917,-138.514"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="732.937,-159.604 723.735,-164.854 734.203,-166.488 732.937,-159.604"/>
 </g>
 <!-- Node5 -->
 <g id="node5" class="node"><title>Node5</title>
 <g id="a_node5"><a xlink:href="../../d0/d29/classocra_1_1Component.html" target="_top" xlink:title="ocra::Component\&lt; Variable,\l CompositeVariable, VariableParenthood \&gt;">
-<polygon fill="white" stroke="black" points="341.63,-173.5 341.63,-201.5 545.994,-201.5 545.994,-173.5 341.63,-173.5"/>
-<text text-anchor="start" x="349.63" y="-189.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::Component&lt; Variable,</text>
-<text text-anchor="middle" x="443.812" y="-179.5" font-family="Helvetica,sans-Serif" font-size="10.00"> CompositeVariable, VariableParenthood &gt;</text>
+<polygon fill="white" stroke="black" points="341.63,-138.5 341.63,-166.5 545.994,-166.5 545.994,-138.5 341.63,-138.5"/>
+<text text-anchor="start" x="349.63" y="-154.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::Component&lt; Variable,</text>
+<text text-anchor="middle" x="443.812" y="-144.5" font-family="Helvetica,sans-Serif" font-size="10.00"> CompositeVariable, VariableParenthood &gt;</text>
 </a>
 </g>
 </g>
 <!-- Node5&#45;&gt;Node4 -->
 <g id="edge4" class="edge"><title>Node5&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M523.704,-170.76C531.311,-168.558 538.849,-166.138 545.994,-163.5 563.336,-157.098 565.477,-150.407 582.994,-144.5 603.451,-137.602 627.175,-133.203 646.506,-130.483"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="522.757,-167.391 514.055,-173.434 524.627,-174.137 522.757,-167.391"/>
+<path fill="none" stroke="midnightblue" d="M556.37,-161.355C588.856,-163.934 622.144,-166.576 646.601,-168.517"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="556.57,-157.86 546.324,-160.558 556.016,-164.838 556.57,-157.86"/>
 </g>
 <!-- Node6 -->
 <g id="node6" class="node"><title>Node6</title>
 <g id="a_node6"><a xlink:href="../../d3/d16/classocra_1_1ObserverSubject.html" target="_top" xlink:title="ocra::ObserverSubject">
-<polygon fill="white" stroke="black" points="386.068,-136.5 386.068,-154.5 501.556,-154.5 501.556,-136.5 386.068,-136.5"/>
-<text text-anchor="middle" x="443.812" y="-142.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::ObserverSubject</text>
+<polygon fill="white" stroke="black" points="386.068,-101.5 386.068,-119.5 501.556,-119.5 501.556,-101.5 386.068,-101.5"/>
+<text text-anchor="middle" x="443.812" y="-107.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::ObserverSubject</text>
 </a>
 </g>
 </g>
 <!-- Node6&#45;&gt;Node4 -->
 <g id="edge5" class="edge"><title>Node6&#45;&gt;Node4</title>
-<path fill="none" stroke="midnightblue" d="M512.071,-140.161C555.593,-136.707 610.642,-132.337 646.601,-129.483"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="511.533,-136.693 501.842,-140.973 512.087,-143.671 511.533,-136.693"/>
+<path fill="none" stroke="midnightblue" d="M511.738,-118.505C523.384,-120.992 535.211,-124.246 545.994,-128.5 564.228,-135.693 564.795,-145.22 582.994,-152.5 603.24,-160.599 627.169,-165.293 646.672,-167.989"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="512.068,-115.003 501.581,-116.51 510.719,-121.871 512.068,-115.003"/>
+</g>
+<!-- Node17 -->
+<g id="node17" class="node"><title>Node17</title>
+<g id="a_node17"><a xlink:href="../../d4/d00/classocra_1_1Model.html" target="_top" xlink:title="Model class. ">
+<polygon fill="white" stroke="black" points="651.053,-78.5 651.053,-96.5 719.299,-96.5 719.299,-78.5 651.053,-78.5"/>
+<text text-anchor="middle" x="685.176" y="-84.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::Model</text>
+</a>
+</g>
+</g>
+<!-- Node6&#45;&gt;Node17 -->
+<g id="edge17" class="edge"><title>Node6&#45;&gt;Node17</title>
+<path fill="none" stroke="midnightblue" d="M511.887,-104.055C557.178,-99.703 615.017,-94.1454 650.823,-90.7049"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="511.461,-100.58 501.842,-105.02 512.131,-107.548 511.461,-100.58"/>
 </g>
 <!-- Node7 -->
 <g id="node7" class="node"><title>Node7</title>
@@ -93,8 +106,8 @@
 </g>
 <!-- Node7&#45;&gt;Node6 -->
 <g id="edge6" class="edge"><title>Node7&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M314.841,-168.592C323.76,-166.87 332.965,-165.114 341.63,-163.5 357.679,-160.511 375.182,-157.359 391.049,-154.542"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="314.087,-165.173 304.937,-170.514 315.421,-172.045 314.087,-165.173"/>
+<path fill="none" stroke="midnightblue" d="M283.71,-162.952C298.618,-151.651 320.299,-136.916 341.63,-128.5 355.571,-123 371.258,-119.171 386.043,-116.509"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="281.509,-160.23 275.768,-169.135 285.809,-165.753 281.509,-160.23"/>
 </g>
 <!-- Node8 -->
 <g id="node8" class="node"><title>Node8</title>
@@ -107,8 +120,8 @@
 </g>
 <!-- Node8&#45;&gt;Node7 -->
 <g id="edge7" class="edge"><title>Node8&#45;&gt;Node7</title>
-<path fill="none" stroke="midnightblue" d="M155.373,-236.87C165.614,-233.976 175.989,-230.535 185.497,-226.5 210.164,-216.032 236.055,-198.3 250.667,-187.567"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="154.382,-233.512 145.628,-239.48 156.193,-240.274 154.382,-233.512"/>
+<path fill="none" stroke="midnightblue" d="M155.334,-236.047C165.579,-233.058 175.966,-229.549 185.497,-225.5 209.873,-215.144 235.651,-197.978 250.357,-187.507"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="154.285,-232.705 145.586,-238.754 156.158,-239.45 154.285,-232.705"/>
 </g>
 <!-- Node9 -->
 <g id="node9" class="node"><title>Node9</title>
@@ -148,8 +161,8 @@
 </g>
 <!-- Node11&#45;&gt;Node6 -->
 <g id="edge10" class="edge"><title>Node11&#45;&gt;Node6</title>
-<path fill="none" stroke="midnightblue" d="M285.457,-96.363C300.428,-106.33 321.434,-118.966 341.63,-126.5 355.613,-131.716 371.239,-135.551 385.948,-138.351"/>
-<polygon fill="midnightblue" stroke="midnightblue" points="287.209,-93.3209 276.977,-90.5714 283.261,-99.1014 287.209,-93.3209"/>
+<path fill="none" stroke="midnightblue" d="M311.07,-89.0664C334.43,-92.8669 362.898,-97.4985 387.386,-101.483"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="311.497,-85.5899 301.065,-87.4386 310.373,-92.4991 311.497,-85.5899"/>
 </g>
 <!-- Node12 -->
 <g id="node12" class="node"><title>Node12</title>
@@ -195,38 +208,57 @@
 </g>
 <!-- Node15 -->
 <g id="node15" class="node"><title>Node15</title>
-<polygon fill="white" stroke="#bfbfbf" points="407.455,-99.5 407.455,-117.5 480.169,-117.5 480.169,-99.5 407.455,-99.5"/>
-<text text-anchor="middle" x="443.812" y="-105.5" font-family="Helvetica,sans-Serif" font-size="10.00">noncopyable</text>
+<polygon fill="white" stroke="#bfbfbf" points="407.455,-232.5 407.455,-250.5 480.169,-250.5 480.169,-232.5 407.455,-232.5"/>
+<text text-anchor="middle" x="443.812" y="-238.5" font-family="Helvetica,sans-Serif" font-size="10.00">noncopyable</text>
 </g>
 <!-- Node15&#45;&gt;Node4 -->
 <g id="edge14" class="edge"><title>Node15&#45;&gt;Node4</title>
-<path fill="none" stroke="#8b1a1a" d="M490.514,-111.937C535.749,-115.338 604.183,-120.485 646.427,-123.661"/>
-<polygon fill="#8b1a1a" stroke="#8b1a1a" points="490.623,-108.435 480.389,-111.175 490.098,-115.415 490.623,-108.435"/>
+<path fill="none" stroke="#8b1a1a" d="M490.268,-234.639C507.829,-231.553 527.992,-227.474 545.994,-222.5 588.389,-210.785 636.193,-191.79 663,-180.586"/>
+<polygon fill="#8b1a1a" stroke="#8b1a1a" points="489.536,-231.213 480.264,-236.341 490.71,-238.114 489.536,-231.213"/>
 </g>
 <!-- Node16 -->
 <g id="node16" class="node"><title>Node16</title>
 <g id="a_node16"><a xlink:href="../../dc/d20/classocra_1_1VariableHasRestrictedClassDerivation.html" target="_top" xlink:title="ocra::VariableHasRestricted\lClassDerivation">
-<polygon fill="white" stroke="black" points="373.932,-52.5 373.932,-80.5 513.692,-80.5 513.692,-52.5 373.932,-52.5"/>
-<text text-anchor="start" x="381.932" y="-68.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::VariableHasRestricted</text>
-<text text-anchor="middle" x="443.812" y="-58.5" font-family="Helvetica,sans-Serif" font-size="10.00">ClassDerivation</text>
+<polygon fill="white" stroke="black" points="373.932,-185.5 373.932,-213.5 513.692,-213.5 513.692,-185.5 373.932,-185.5"/>
+<text text-anchor="start" x="381.932" y="-201.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::VariableHasRestricted</text>
+<text text-anchor="middle" x="443.812" y="-191.5" font-family="Helvetica,sans-Serif" font-size="10.00">ClassDerivation</text>
 </a>
 </g>
 </g>
 <!-- Node16&#45;&gt;Node4 -->
 <g id="edge15" class="edge"><title>Node16&#45;&gt;Node4</title>
-<path fill="none" stroke="#8b1a1a" d="M518.072,-82.8055C527.481,-85.0017 536.974,-87.268 545.994,-89.5 582.397,-98.5077 623.932,-109.762 651.879,-117.479"/>
-<polygon fill="#8b1a1a" stroke="#8b1a1a" points="518.852,-79.3937 508.32,-80.5466 517.272,-86.2131 518.852,-79.3937"/>
-</g>
-<!-- Node17 -->
-<g id="node17" class="node"><title>Node17</title>
-<polygon fill="white" stroke="#bfbfbf" points="859.012,-101.5 859.012,-119.5 914.465,-119.5 914.465,-101.5 859.012,-101.5"/>
-<text text-anchor="middle" x="886.738" y="-107.5" font-family="Helvetica,sans-Serif" font-size="10.00">MatrixXd</text>
+<path fill="none" stroke="#8b1a1a" d="M523.779,-190.263C565.084,-185.431 613.735,-179.74 646.535,-175.903"/>
+<polygon fill="#8b1a1a" stroke="#8b1a1a" points="523.251,-186.801 513.725,-191.439 524.064,-193.753 523.251,-186.801"/>
 </g>
 <!-- Node17&#45;&gt;Node1 -->
 <g id="edge16" class="edge"><title>Node17&#45;&gt;Node1</title>
-<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M924.707,-109.191C961.354,-108.344 1019.04,-108.23 1068.65,-113.5 1074.39,-114.109 1080.35,-114.952 1086.27,-115.924"/>
-<polygon fill="#9a32cd" stroke="#9a32cd" points="924.403,-105.697 914.498,-109.458 924.586,-112.695 924.403,-105.697"/>
-<text text-anchor="middle" x="1017.88" y="-115.5" font-family="Helvetica,sans-Serif" font-size="10.00"> Jct</text>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M729.67,-87.6919C813.205,-88.0604 995.82,-88.8661 1086.39,-89.2657"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="729.526,-84.1913 719.511,-87.6471 729.495,-91.1912 729.526,-84.1913"/>
+<text text-anchor="middle" x="886.738" y="-91.5" font-family="Helvetica,sans-Serif" font-size="10.00"> model</text>
+</g>
+<!-- Node18 -->
+<g id="node18" class="node"><title>Node18</title>
+<g id="a_node18"><a xlink:href="../../db/de3/classocra_1_1NamedInstance.html" target="_top" xlink:title="ocra::NamedInstance">
+<polygon fill="white" stroke="black" points="388.288,-64.5 388.288,-82.5 499.336,-82.5 499.336,-64.5 388.288,-64.5"/>
+<text text-anchor="middle" x="443.812" y="-70.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::NamedInstance</text>
+</a>
+</g>
+</g>
+<!-- Node18&#45;&gt;Node17 -->
+<g id="edge18" class="edge"><title>Node18&#45;&gt;Node17</title>
+<path fill="none" stroke="midnightblue" d="M509.53,-77.2852C555.156,-79.9538 614.396,-83.4187 650.826,-85.5494"/>
+<polygon fill="midnightblue" stroke="midnightblue" points="509.614,-73.7843 499.427,-76.6943 509.206,-80.7723 509.614,-73.7843"/>
+</g>
+<!-- Node19 -->
+<g id="node19" class="node"><title>Node19</title>
+<polygon fill="white" stroke="#bfbfbf" points="859.012,-34.5 859.012,-52.5 914.465,-52.5 914.465,-34.5 859.012,-34.5"/>
+<text text-anchor="middle" x="886.738" y="-40.5" font-family="Helvetica,sans-Serif" font-size="10.00">MatrixXd</text>
+</g>
+<!-- Node19&#45;&gt;Node1 -->
+<g id="edge19" class="edge"><title>Node19&#45;&gt;Node1</title>
+<path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M924.972,-45.7824C961.819,-48.5652 1019.65,-54.3473 1068.65,-65.5 1079.92,-68.0654 1091.92,-71.7478 1102.78,-75.4605"/>
+<polygon fill="#9a32cd" stroke="#9a32cd" points="924.928,-42.2703 914.703,-45.0437 924.426,-49.2522 924.928,-42.2703"/>
+<text text-anchor="middle" x="1017.88" y="-67.5" font-family="Helvetica,sans-Serif" font-size="10.00"> Jct</text>
 </g>
 </g>
 </svg>

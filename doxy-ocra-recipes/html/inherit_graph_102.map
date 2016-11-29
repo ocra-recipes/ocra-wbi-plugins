@@ -1,6 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node2" href="$d7/dd6/classocra_1_1TaskYarpInterface_1_1StateUpdateThread.html" title="a short description " alt="" coords="160,5,321,44"/>
-<area shape="rect" id="node3" href="$df/d60/classocra__recipes_1_1ControllerClient.html" title="ocra_recipes::Controller\lClient" alt="" coords="159,68,322,107"/>
-<area shape="rect" id="node4" href="$d5/d2f/classocra__recipes_1_1ControlThread.html" title="ocra_recipes::ControlThread" alt="" coords="145,131,335,156"/>
-<area shape="rect" id="node5" href="$d0/d2a/classocra__recipes_1_1TrajectoryThread.html" title="ocra_recipes::Trajectory\lThread" alt="" coords="158,180,322,219"/>
+<area shape="rect" id="node1" href="$d2/d0d/classocra_1_1Trajectory.html" title="ocra::Trajectory" alt="" coords="5,111,119,136"/>
+<area shape="rect" id="node2" href="$d5/d74/classocra_1_1ExperimentalTrajectory.html" title="ocra::ExperimentalTrajectory" alt="" coords="180,5,371,31"/>
+<area shape="rect" id="node3" href="$d9/d69/classocra_1_1GaussianProcessTrajectory.html" title="ocra::GaussianProcessTrajectory" alt="" coords="167,55,385,80"/>
+<area shape="rect" id="node4" href="$d9/dfa/classocra_1_1LinearInterpolationTrajectory.html" title="ocra::LinearInterpolation\lTrajectory" alt="" coords="193,104,358,143"/>
+<area shape="rect" id="node5" href="$d5/df0/classocra_1_1MinimumJerkTrajectory.html" title="ocra::MinimumJerkTrajectory" alt="" coords="179,167,372,192"/>
+<area shape="rect" id="node6" href="$dc/d2e/classocra_1_1TimeOptimalTrajectory.html" title="ocra::TimeOptimalTrajectory" alt="" coords="182,216,370,241"/>
 </map>

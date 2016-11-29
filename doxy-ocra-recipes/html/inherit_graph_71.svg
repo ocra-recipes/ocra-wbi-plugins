@@ -11,10 +11,10 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-33 126.157,-33 126.157,4 -4,4"/>
 <!-- Node0 -->
 <g id="node1" class="node"><title>Node0</title>
-<g id="a_node1"><a xlink:href="d1/dd2/structocra_1_1ocra__static__assert.html" target="_top" xlink:title="ocra::ocra_static_assert\l\&lt; condition \&gt;">
+<g id="a_node1"><a xlink:href="d6/d07/structocra_1_1ocra__static__assert_3_01true_01_4.html" target="_top" xlink:title="ocra::ocra_static_assert\l\&lt; true \&gt;">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-28.5 122.157,-28.5 122.157,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-16.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::ocra_static_assert</text>
-<text text-anchor="middle" x="61.0786" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; condition &gt;</text>
+<text text-anchor="middle" x="61.0786" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00">&lt; true &gt;</text>
 </a>
 </g>
 </g>

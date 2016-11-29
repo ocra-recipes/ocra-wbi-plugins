@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -360,16 +366,16 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>NewtonSolver class. </p>
 <dl class="section warning"><dt>Warning</dt><dd>None</dd></dl>
-<p>This class implements a Newton Method to optimize a weighted sum of squared functions: <img class="formulaInl" alt="$ \mbox{min.} \dfrac{1}{2} \sum_i{ w_i \left\| f_i \right\|^2_2} $" src="../../form_66.png"/> The functions <img class="formulaInl" alt="$ f_i $" src="../../form_67.png"/> must provide their jacobian. Additionnaly if they can provides their hessian, it will be used for a complete Newton Method, unless the user choosed to use a quasi-Newton approach. If a function can't produce its hessian, or a quasi Newton method is asked, the hessian will be approximated by <img class="formulaInl" alt="$ J_i^t J_i $" src="../../form_68.png"/> with <img class="formulaInl" alt="$ J_i $" src="../../form_69.png"/> the jacobian matrix of <img class="formulaInl" alt="$ f_i $" src="../../form_67.png"/>.</p>
-<p>The solver is taking itself the squared norm of each function, so that the ocra <a class="el" href="../../df/d6c/classocra_1_1Objective.html" title="Objective class. ">Objective</a> instance has to contain <img class="formulaInl" alt="$ f_i $" src="../../form_67.png"/>, not | f_i |^2_2.</p>
-<p>Let us define <img class="formulaInl" alt="$ F(x) = \dfrac{1}{2} \sum_i{ w_i \left\| f_i(x) \right\|^2_2} $" src="../../form_70.png"/>, and <img class="formulaInl" alt="$ H(x)=\frac{\partial^2 F}{\partial x^2}(x)$" src="../../form_71.png"/>. Starting from an initial guess <img class="formulaInl" alt="$ x_0 $" src="../../form_72.png"/>, the algorithm performs iterations <img class="formulaInl" alt="$ x_{n+1} = x_n - \alpha H(x_n)^{-1} \nabla F(x_n) $" src="../../form_73.png"/> until the residual <img class="formulaInl" alt="$ \left\|x_{n+1} - x_n\right\|_2$" src="../../form_74.png"/> is smaller than <img class="formulaInl" alt="$ \epsilon $" src="../../form_75.png"/> or the maximal number of iterations has been reached.</p>
+<p>This class implements a Newton Method to optimize a weighted sum of squared functions: \( \mbox{min.} \dfrac{1}{2} \sum_i{ w_i \left\| f_i \right\|^2_2} \) The functions \( f_i \) must provide their jacobian. Additionnaly if they can provides their hessian, it will be used for a complete Newton Method, unless the user choosed to use a quasi-Newton approach. If a function can't produce its hessian, or a quasi Newton method is asked, the hessian will be approximated by \( J_i^t J_i \) with \( J_i \) the jacobian matrix of \( f_i \).</p>
+<p>The solver is taking itself the squared norm of each function, so that the ocra <a class="el" href="../../df/d6c/classocra_1_1Objective.html" title="Objective class. ">Objective</a> instance has to contain \( f_i \), not | f_i |^2_2.</p>
+<p>Let us define \( F(x) = \dfrac{1}{2} \sum_i{ w_i \left\| f_i(x) \right\|^2_2} \), and \( H(x)=\frac{\partial^2 F}{\partial x^2}(x)\). Starting from an initial guess \( x_0 \), the algorithm performs iterations \( x_{n+1} = x_n - \alpha H(x_n)^{-1} \nabla F(x_n) \) until the residual \( \left\|x_{n+1} - x_n\right\|_2\) is smaller than \( \epsilon \) or the maximal number of iterations has been reached.</p>
 <p>The following parameters and options can be changed by the user:</p><ul>
-<li><img class="formulaInl" alt="$ \alpha $" src="../../form_76.png"/> is by default adaptative, using a heuristic. <img class="formulaInl" alt="$ \alpha $" src="../../form_76.png"/> can be chosen to be constant and equal to 1,</li>
-<li><img class="formulaInl" alt="$ \epsilon $" src="../../form_75.png"/> can be changed,</li>
+<li>\( \alpha \) is by default adaptative, using a heuristic. \( \alpha \) can be chosen to be constant and equal to 1,</li>
+<li>\( \epsilon \) can be changed,</li>
 <li>the maximal number of iterations <em>maxIter</em>,</li>
-<li>the initial guess <img class="formulaInl" alt="$ x_0 $" src="../../form_72.png"/>.</li>
+<li>the initial guess \( x_0 \).</li>
 </ul>
-<p>In case the initial guess has not the good size, or was not initialized, the algorithm starts from <img class="formulaInl" alt="$ x_0=0 $" src="../../form_77.png"/>. In case the solver is called repeatedly and the user does not provide an initial guess, the last <img class="formulaInl" alt="$ x_n $" src="../../form_78.png"/> of the previous run is used (unless the problem changed its size, in which case 0 will be used). </p>
+<p>In case the initial guess has not the good size, or was not initialized, the algorithm starts from \( x_0=0 \). In case the solver is called repeatedly and the user does not provide an initial guess, the last \( x_n \) of the previous run is used (unless the problem changed its size, in which case 0 will be used). </p>
 
 <p>Definition at line <a class="el" href="../../d1/d88/NewtonSolver_8h_source.html#l00051">51</a> of file <a class="el" href="../../d1/d88/NewtonSolver_8h_source.html">NewtonSolver.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -800,7 +806,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:35 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:26 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

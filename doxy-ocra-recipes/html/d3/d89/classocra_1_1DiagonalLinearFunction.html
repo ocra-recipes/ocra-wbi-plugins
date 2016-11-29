@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -491,7 +497,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>DiagonalLinearFunction class. </p>
 <dl class="section warning"><dt>Warning</dt><dd>None</dd></dl>
-<p>Implements a function of the type <img class="formulaInl" alt="$ Dx+b $" src="../../form_44.png"/> with <img class="formulaInl" alt="$ D=diag(d) $" src="../../form_45.png"/> a diagonal matrix whose diagonal is given by the vector <img class="formulaInl" alt="$ d $" src="../../form_46.png"/>. It is possible to specify a default value for the new diagonal elements in case the size of the variable, and thus the dimension of the function, change. Note that the values of the last diagonal elements are lost when the dimension decreases. Thus going from dimension n to dimension n'&lt;n then back to n will set the last n-n' diagonal elements to the default value. </p>
+<p>Implements a function of the type \( Dx+b \) with \( D=diag(d) \) a diagonal matrix whose diagonal is given by the vector \( d \). It is possible to specify a default value for the new diagonal elements in case the size of the variable, and thus the dimension of the function, change. Note that the values of the last diagonal elements are lost when the dimension decreases. Thus going from dimension n to dimension n'&lt;n then back to n will set the last n-n' diagonal elements to the default value. </p>
 
 <p>Definition at line <a class="el" href="../../dc/d6f/DiagonalLinearFunction_8h_source.html#l00040">40</a> of file <a class="el" href="../../dc/d6f/DiagonalLinearFunction_8h_source.html">DiagonalLinearFunction.h</a>.</p>
 </div><h2 class="groupheader">Member Typedef Documentation</h2>
@@ -1407,7 +1413,7 @@ template&lt;class VectorBase &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:34 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:25 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

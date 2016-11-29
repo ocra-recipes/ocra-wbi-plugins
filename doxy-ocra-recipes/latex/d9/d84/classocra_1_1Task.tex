@@ -59,9 +59,9 @@ enum \hyperlink{classocra_1_1Task_ad9d224cf787aa61c098f282efb78254a}{T\+Y\+P\+E\
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classocra_1_1Task_abf071538753cbbc6af21f98644d978cc}{Task} (const std\+::string \&name, std\+::shared\+\_\+ptr$<$ Model $>$ model, Feature\+::\+Ptr feature, Feature\+::\+Ptr feature\+Des)
+\hyperlink{classocra_1_1Task_abf071538753cbbc6af21f98644d978cc}{Task} (const std\+::string \&name, std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$ model, Feature\+::\+Ptr feature, Feature\+::\+Ptr feature\+Des)
 \item 
-\hyperlink{classocra_1_1Task_ace0cba5936451a6423e8f341746adfd3}{Task} (const std\+::string \&name, std\+::shared\+\_\+ptr$<$ Model $>$ model, Feature\+::\+Ptr feature)
+\hyperlink{classocra_1_1Task_ace0cba5936451a6423e8f341746adfd3}{Task} (const std\+::string \&name, std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$ model, Feature\+::\+Ptr feature)
 \item 
 virtual \hyperlink{classocra_1_1Task_a3949d2c52bc43f373b8cc039da304b87}{$\sim$\+Task} ()
 \item 
@@ -331,7 +331,7 @@ Definition at line 59 of file Task.\+h.
 \index{ocra\+::\+Task@{ocra\+::\+Task}!Task@{Task}}
 \index{Task@{Task}!ocra\+::\+Task@{ocra\+::\+Task}}
 \subsubsection{\texorpdfstring{Task()}{Task()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily ocra\+::\+Task\+::\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{std\+::shared\+\_\+ptr$<$ Model $>$}]{model,  }\item[{Feature\+::\+Ptr}]{feature,  }\item[{Feature\+::\+Ptr}]{feature\+Des }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ocra\+::\+Task\+::\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$}]{model,  }\item[{Feature\+::\+Ptr}]{feature,  }\item[{Feature\+::\+Ptr}]{feature\+Des }\end{DoxyParamCaption})}
 
 
 
@@ -341,7 +341,7 @@ Definition at line 171 of file Task.\+cpp.
 \index{ocra\+::\+Task@{ocra\+::\+Task}!Task@{Task}}
 \index{Task@{Task}!ocra\+::\+Task@{ocra\+::\+Task}}
 \subsubsection{\texorpdfstring{Task()}{Task()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily ocra\+::\+Task\+::\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{std\+::shared\+\_\+ptr$<$ Model $>$}]{model,  }\item[{Feature\+::\+Ptr}]{feature }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ocra\+::\+Task\+::\+Task (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$}]{model,  }\item[{Feature\+::\+Ptr}]{feature }\end{DoxyParamCaption})}
 
 
 
@@ -482,7 +482,7 @@ Definition at line 914 of file Task.\+cpp.
 
 Do task activation when it is a contact task.
 
-When this function is called, it adds a contact point in the model of contact contained in the Model instance, and it adds in the solver an inequality constraint that represents the limitation of the contact force that must remain inside the cone of friction. 
+When this function is called, it adds a contact point in the model of contact contained in the \hyperlink{classocra_1_1Model}{Model} instance, and it adds in the solver an inequality constraint that represents the limitation of the contact force that must remain inside the cone of friction. 
 
 Definition at line 855 of file Task.\+cpp.
 

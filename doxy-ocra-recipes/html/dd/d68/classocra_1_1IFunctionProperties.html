@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -121,7 +127,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a2277e7388dcfac99b5722a8155deb793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This class groups the properties a function can have. The usual properties used by an optimization software are described by the use of the enumerations eFunctionContinuity, eFunctionLinearity and eFunctionContinuity. Furthermore two flags are used to indicate wether the function has an explicit time-dependancy and if it is the case if this time dependancy is separable from the variable dependancy: <img class="formulaInl" alt="$ f(x,t) = g(x)+h(t)$" src="../../form_58.png"/> Additionnal properties can be added with the help of strings. </p>
+<div class="textblock"><p>This class groups the properties a function can have. The usual properties used by an optimization software are described by the use of the enumerations eFunctionContinuity, eFunctionLinearity and eFunctionContinuity. Furthermore two flags are used to indicate wether the function has an explicit time-dependancy and if it is the case if this time dependancy is separable from the variable dependancy: \( f(x,t) = g(x)+h(t)\) Additionnal properties can be added with the help of strings. </p>
 
 <p>Definition at line <a class="el" href="../../d9/d54/IFunctionProperties_8h_source.html#l00074">74</a> of file <a class="el" href="../../d9/d54/IFunctionProperties_8h_source.html">IFunctionProperties.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
@@ -567,7 +573,7 @@ Protected Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:35 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:26 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

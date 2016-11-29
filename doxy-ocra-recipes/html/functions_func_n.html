@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -72,8 +78,15 @@ $(function() {
 <li>nbContactPoints()
 : <a class="el" href="d8/d4c/classocra_1_1ModelContacts.html#ab06a70136062c53c28344ce471f0bd73">ocra::ModelContacts</a>
 </li>
+<li>nbDofs()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a804d4f0be4307d635555232f534734e9">ocra::Model</a>
+</li>
+<li>nbInternalDofs()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#af333cdd36691a741a978bb72c004bf07">ocra::Model</a>
+</li>
 <li>nbSegments()
 : <a class="el" href="d3/d33/classModel3T.html#af8ca577236d173d0f7860263fb7872a4">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#acd57284b64bb5c05f4c2dac643476751">ocra::Model</a>
 </li>
 <li>neq()
 : <a class="el" href="d8/dc1/classocra_1_1FSQPConstraintManager.html#a409c77e57544db480b0420acdfc7a1d6">ocra::FSQPConstraintManager</a>
@@ -94,7 +107,7 @@ $(function() {
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:28 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -128,6 +134,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ade0f6fb6c7c139dc2f09398f1464200b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78ac745efb132b69d7129f1e9212ad87"><td class="memItemLeft" align="right" valign="top">std::list&lt; Eigen::VectorXd &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a78ac745efb132b69d7129f1e9212ad87">getWaypointList</a> ()</td></tr>
 <tr class="separator:a78ac745efb132b69d7129f1e9212ad87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1335eaa6c85597cab894673ef9a56f9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#ac1335eaa6c85597cab894673ef9a56f9">returnToHome</a> ()</td></tr>
+<tr class="separator:ac1335eaa6c85597cab894673ef9a56f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6830df6ce18f3a6f5656fe345b05731"><td class="memItemLeft" align="right" valign="top">Eigen::MatrixXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#ae6830df6ce18f3a6f5656fe345b05731">getWaypoints</a> ()</td></tr>
 <tr class="separator:ae6830df6ce18f3a6f5656fe345b05731"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -196,6 +204,8 @@ Protected Attributes</h2></td></tr>
 <tr class="separator:a7f185a5b52a00b7e5bce78e5ffb77d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08dc8a4a78b61d6b3d1e38e82b809493"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a08dc8a4a78b61d6b3d1e38e82b809493">isPaused</a></td></tr>
 <tr class="separator:a08dc8a4a78b61d6b3d1e38e82b809493"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb4b6cffdd2a797c95b54642e13502d2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#adb4b6cffdd2a797c95b54642e13502d2">isUsingTerminationStrategy</a></td></tr>
+<tr class="separator:adb4b6cffdd2a797c95b54642e13502d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3aa38677a7e98b6a6deec0b29a903844"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a3aa38677a7e98b6a6deec0b29a903844">timeElapsedDuringPause</a></td></tr>
 <tr class="separator:a3aa38677a7e98b6a6deec0b29a903844"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9436d523ebb66dfa9bbc8ed458306e46"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a9436d523ebb66dfa9bbc8ed458306e46">pauseTime</a></td></tr>
@@ -205,7 +215,7 @@ Protected Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00068">68</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00069">69</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af85d199a74007110a7654a06f9d3b172"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af85d199a74007110a7654a06f9d3b172">&sect;&nbsp;</a></span>TrajectoryThread() <span class="overload">[1/3]</span></h2>
@@ -388,7 +398,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00393">393</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00403">403</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -415,7 +425,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00369">369</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00379">379</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -442,7 +452,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00183">183</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00184">184</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -469,7 +479,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00184">184</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00185">185</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -496,7 +506,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00185">185</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00188">188</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -517,7 +527,7 @@ Protected Attributes</h2></td></tr>
 <p>Computes the norm of the difference between the goal state vector and its current state.</p>
 <dl class="section return"><dt>Returns</dt><dd>True if the difference is less than the error threshold. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00364">364</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00370">370</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -564,7 +574,26 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Sets isPaused to true of this class and registers the pausing time. </p>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00341">341</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00347">347</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+
+</div>
+</div>
+<a id="ac1335eaa6c85597cab894673ef9a56f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1335eaa6c85597cab894673ef9a56f9">&sect;&nbsp;</a></span>returnToHome()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TrajectoryThread::returnToHome </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00583">583</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -592,7 +621,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>If the control ports are open (for the specific task associated to the trajectory) this method will mainly write to a port the new desired task state. It also handles the trajectory termination strategy. When the goal is reached, there will be 6 possible termination strategies: BACK_AND_FORTH, CYCLE, STOP_THREAD, STOP_THREAD_DEACTIVATE, WAIT, WAIT_DEACTIVATE. BACK_AND_FORTH: will invert the trajectory waypoints once all of them have been met. CYCLE: The trajectory will cycle over. STOP_THREAD: The thread will stop once the trajectory is finished. STOP_THREAD_DEACTIVATE: The task is first deactivated and then thread is stopped. If the task cannot be deactivated, the thread will wait 1 second before trying once more. WAIT: The thread will wait for new commands to arrive. WAIT_DEACTIVATE: It will first deactivate the task and then wait for new commands. If the task cannot be deactivated, the thread will wait 1 second before trying once more. </p>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00164">164</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00170">170</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -620,7 +649,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True when the new trajectory waypoints have been set, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00481">481</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00491">491</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -648,7 +677,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true when the new trajectory waypoints have been set, false otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00486">486</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00496">496</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -683,7 +712,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00167">167</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00168">168</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -711,7 +740,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00115">115</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00116">116</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -746,7 +775,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00160">160</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00161">161</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -785,7 +814,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True when the waypoints matrix is consistent with the task dimension and the full waypoints matrix is set. False otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00410">410</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00420">420</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -824,7 +853,7 @@ Protected Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>True when the waypoints matrix is consistent with the task dimension and the full waypoints matrix is set. False otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00452">452</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00462">462</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -859,7 +888,7 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00174">174</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00175">175</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -888,7 +917,7 @@ Protected Attributes</h2></td></tr>
 <p>If the <a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">TrajectoryThread</a> object has been instantiated with defined waypoints (i.e. if waypointsHaveBeenSet is true) the waypoints will be set. Note that if an std::list of waypoints is passed to the constructor of this class, the trajectory type must be TIME_OPTIMAL.</p>
 <dl class="section return"><dt>Returns</dt><dd>True when initial waypoints have been set. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00138">138</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00144">144</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -916,7 +945,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Closes the control ports opened by the task associated to this trajectory. </p>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00158">158</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00164">164</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -936,7 +965,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Sets isPaused to false and stores the elapsed time during the pause. </p>
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00347">347</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00353">353</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -974,7 +1003,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00356">356</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html#l00362">362</a> of file <a class="el" href="../../d6/db4/TrajectoryThread_8cpp_source.html">TrajectoryThread.cpp</a>.</p>
 
 </div>
 </div>
@@ -999,7 +1028,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00231">231</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00234">234</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1023,7 +1052,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00230">230</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00233">233</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1047,7 +1076,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00239">239</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00242">242</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1071,7 +1100,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00241">241</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00244">244</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1095,7 +1124,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00240">240</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00243">243</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1119,7 +1148,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00234">234</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00237">237</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1143,7 +1172,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00225">225</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00228">228</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1167,7 +1196,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00235">235</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00238">238</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1191,7 +1220,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00232">232</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00235">235</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1215,7 +1244,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00229">229</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00232">232</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1239,7 +1268,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00244">244</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00247">247</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1263,7 +1292,31 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00243">243</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00246">246</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+
+</div>
+</div>
+<a id="adb4b6cffdd2a797c95b54642e13502d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb4b6cffdd2a797c95b54642e13502d2">&sect;&nbsp;</a></span>isUsingTerminationStrategy</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ocra_recipes::TrajectoryThread::isUsingTerminationStrategy</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00248">248</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1287,7 +1340,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00223">223</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00226">226</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1311,7 +1364,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00247">247</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00251">251</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1335,7 +1388,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00237">237</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00240">240</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1359,7 +1412,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00212">212</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00215">215</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1383,7 +1436,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00228">228</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00231">231</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1407,7 +1460,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00201">201</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00204">204</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1431,7 +1484,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00249">249</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00253">253</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1455,7 +1508,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00218">218</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00221">221</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1479,7 +1532,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00246">246</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00250">250</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1503,7 +1556,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00220">220</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00223">223</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1527,7 +1580,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00217">217</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00220">220</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1551,7 +1604,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00215">215</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00218">218</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1575,7 +1628,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00214">214</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00217">217</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1599,7 +1652,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00224">224</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00227">227</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1623,7 +1676,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00226">226</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00229">229</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1647,7 +1700,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00206">206</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00209">209</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1671,7 +1724,7 @@ Protected Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00202">202</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html#l00205">205</a> of file <a class="el" href="../../da/d00/TrajectoryThread_8h_source.html">TrajectoryThread.h</a>.</p>
 
 </div>
 </div>
@@ -1682,7 +1735,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

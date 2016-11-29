@@ -89,3 +89,6 @@
 \form#88:$k_f > 0$
 \form#89:\[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \]
 \form#90:$\dot{\mathbf{h}}_d$
+\form#91:$\ref{eq:simplifiedZMP}$
+\form#92:$\ref eq:simplifiedZMP$
+\form#93:\begin{equation} \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p}) \end{equation}

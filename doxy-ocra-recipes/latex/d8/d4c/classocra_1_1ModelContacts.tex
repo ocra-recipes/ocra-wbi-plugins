@@ -35,7 +35,7 @@ struct \hyperlink{structocra_1_1ModelContacts_1_1Pimpl}{Pimpl}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classocra_1_1ModelContacts_abf9089d7762205480b46005544883e60}{Model\+Contacts} (Model \&model)
+\hyperlink{classocra_1_1ModelContacts_abf9089d7762205480b46005544883e60}{Model\+Contacts} (\hyperlink{classocra_1_1Model}{Model} \&model)
 \item 
 \hyperlink{classocra_1_1ModelContacts_ab8ca6e653ccacdff73ae10e7c0750bbf}{$\sim$\+Model\+Contacts} ()
 \item 
@@ -57,7 +57,7 @@ const \hyperlink{classocra_1_1Variable}{Variable} \& \hyperlink{classocra_1_1Mod
 \item 
 const \hyperlink{classocra_1_1Feature}{Feature} \& \hyperlink{classocra_1_1ModelContacts_a40f66a2528a3f7c0538172987de7c919}{get\+Contact\+Feature} (int index) const
 \item 
-const Model \& \hyperlink{classocra_1_1ModelContacts_a188e822de7692fba999836b1ffb7f376}{get\+Model} () const
+const \hyperlink{classocra_1_1Model}{Model} \& \hyperlink{classocra_1_1ModelContacts_a188e822de7692fba999836b1ffb7f376}{get\+Model} () const
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
@@ -68,7 +68,7 @@ Model\+Contacts class.
 \begin{DoxyWarning}{Warning}
 None
 \end{DoxyWarning}
-Concatenates the contact variables and jacobians for a model. This class is not necessary to handle contacts, but an be useful if a component of your controller handles all contact points as a whole. For instance, \hyperlink{classocra_1_1Task}{Task} objects will generally manipulate forces independently. But if you need to use a \hyperlink{classocra_1_1DynamicEquationFunction}{Dynamic\+Equation\+Function} in your control, then you have to update the \hyperlink{classocra_1_1ModelContacts}{Model\+Contacts} of your Model so that they are included in the dynamic equation of your model.
+Concatenates the contact variables and jacobians for a model. This class is not necessary to handle contacts, but an be useful if a component of your controller handles all contact points as a whole. For instance, \hyperlink{classocra_1_1Task}{Task} objects will generally manipulate forces independently. But if you need to use a \hyperlink{classocra_1_1DynamicEquationFunction}{Dynamic\+Equation\+Function} in your control, then you have to update the \hyperlink{classocra_1_1ModelContacts}{Model\+Contacts} of your \hyperlink{classocra_1_1Model}{Model} so that they are included in the dynamic equation of your model.
 
 NB\+: the forces considered here are applied by the manikin on the environment.
 
@@ -83,7 +83,7 @@ Definition at line 52 of file Model\+Contacts.\+h.
 \index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!Model\+Contacts@{Model\+Contacts}}
 \index{Model\+Contacts@{Model\+Contacts}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
 \subsubsection{\texorpdfstring{Model\+Contacts()}{ModelContacts()}}
-{\footnotesize\ttfamily ocra\+::\+Model\+Contacts\+::\+Model\+Contacts (\begin{DoxyParamCaption}\item[{Model \&}]{model }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ocra\+::\+Model\+Contacts\+::\+Model\+Contacts (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Model}{Model} \&}]{model }\end{DoxyParamCaption})}
 
 
 
@@ -166,7 +166,7 @@ Definition at line 93 of file Model\+Contacts.\+cpp.
 \index{ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}!get\+Model@{get\+Model}}
 \index{get\+Model@{get\+Model}!ocra\+::\+Model\+Contacts@{ocra\+::\+Model\+Contacts}}
 \subsubsection{\texorpdfstring{get\+Model()}{getModel()}}
-{\footnotesize\ttfamily const Model \& ocra\+::\+Model\+Contacts\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Model}{Model} \& ocra\+::\+Model\+Contacts\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
 
 
 

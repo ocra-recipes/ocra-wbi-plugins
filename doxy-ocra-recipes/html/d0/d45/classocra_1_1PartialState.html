@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -96,11 +102,11 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab6f225c821033965da2ccd5924c23915"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d45/classocra_1_1PartialState.html#ab6f225c821033965da2ccd5924c23915">PartialState</a> (const std::string &amp;name, const Model &amp;model, const Eigen::VectorXi &amp;selectedDofs, int whichPart)</td></tr>
+<tr class="memitem:ab6f225c821033965da2ccd5924c23915"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d45/classocra_1_1PartialState.html#ab6f225c821033965da2ccd5924c23915">PartialState</a> (const std::string &amp;name, const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;model, const Eigen::VectorXi &amp;selectedDofs, int whichPart)</td></tr>
 <tr class="separator:ab6f225c821033965da2ccd5924c23915"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6426dc8cd115e310f16f0d244802618f"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d45/classocra_1_1PartialState.html#a6426dc8cd115e310f16f0d244802618f">~PartialState</a> ()=0</td></tr>
 <tr class="separator:a6426dc8cd115e310f16f0d244802618f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2de65bbf0d2bb85a98d444c3f3bf0b06"><td class="memItemLeft" align="right" valign="top">const Model &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d45/classocra_1_1PartialState.html#a2de65bbf0d2bb85a98d444c3f3bf0b06">getModel</a> () const</td></tr>
+<tr class="memitem:a2de65bbf0d2bb85a98d444c3f3bf0b06"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d45/classocra_1_1PartialState.html#a2de65bbf0d2bb85a98d444c3f3bf0b06">getModel</a> () const</td></tr>
 <tr class="separator:a2de65bbf0d2bb85a98d444c3f3bf0b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a220a155999e190427083af329d1f52b0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d45/classocra_1_1PartialState.html#a220a155999e190427083af329d1f52b0">getSize</a> () const</td></tr>
 <tr class="separator:a220a155999e190427083af329d1f52b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -152,7 +158,7 @@ Protected Member Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Model &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>model</em>, </td>
         </tr>
         <tr>
@@ -314,7 +320,7 @@ Protected Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const Model &amp; ocra::PartialState::getModel </td>
+          <td class="memname">const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp; ocra::PartialState::getModel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -460,7 +466,7 @@ Protected Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:36 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:26 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

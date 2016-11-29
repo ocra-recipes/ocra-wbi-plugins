@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -105,7 +111,7 @@ class ocra::Objective&lt; T &gt;</h3>
 
 <p>Objective class. </p>
 <dl class="section warning"><dt>Warning</dt><dd>None</dd></dl>
-<p>Given a function <img class="formulaInl" alt="$ f $" src="../../form_25.png"/> over <img class="formulaInl" alt="$ x \in R^n $" src="../../form_26.png"/> and possibly over the time <img class="formulaInl" alt="$ t $" src="../../form_27.png"/>, we can write an objective whose most generic expression is <img class="formulaInl" alt="$ \alpha f(x,t) $" src="../../form_79.png"/>, where <img class="formulaInl" alt="$ alpha $" src="../../form_80.png"/> could be a square matrix of size the output dimension of <img class="formulaInl" alt="$ f $" src="../../form_25.png"/>, but we will only consider that <img class="formulaInl" alt="$ alpha $" src="../../form_80.png"/> can be a real (which generally amounts to the same since most objectives have a dimension of 1).</p>
+<p>Given a function \( f \) over \( x \in R^n \) and possibly over the time \( t \), we can write an objective whose most generic expression is \( \alpha f(x,t) \), where \( alpha \) could be a square matrix of size the output dimension of \( f \), but we will only consider that \( alpha \) can be a real (which generally amounts to the same since most objectives have a dimension of 1).</p>
 <p>The <a class="el" href="../../df/d6c/classocra_1_1Objective.html" title="Objective class. ">Objective</a> class is built in a very similar way as the <a class="el" href="../../dc/d5c/classocra_1_1Constraint.html" title="Constraint class. ">Constraint</a> class, with the same mechanism to replicate the <a class="el" href="../../d2/d99/classocra_1_1Function.html" title="Function class. ">Function</a> hierarchy and the derivation from <a class="el" href="../../d1/d29/structocra_1_1FunctionInterfaceMapping.html">FunctionInterfaceMapping</a> to retrieve part of the interface of the <a class="el" href="../../d2/d99/classocra_1_1Function.html" title="Function class. ">Function</a> class given as template parameter. Please refer to <a class="el" href="../../dc/d5c/classocra_1_1Constraint.html" title="Constraint class. ">Constraint</a> documentation for more details.</p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="../../dc/d5c/classocra_1_1Constraint.html" title="Constraint class. ">Constraint</a> </dd></dl>
 
@@ -249,7 +255,7 @@ template&lt;class T&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:35 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:26 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

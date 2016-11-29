@@ -43,11 +43,11 @@ Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_1_1utils_aef5a7c7
 \item 
 Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \hyperlink{namespaceocra_1_1utils_aea2b40d346ee7532a6cdb9392e7c5767}{cartesian\+D\+Coupling} (const Eigen\+::\+Matrix$<$ double, 6, 1 $>$ \&kv, const Eigen\+::\+Twistd \&Tdes, const Eigen\+::\+Twistd \&T)
 \item 
-Eigen\+::\+Vector\+Xd \hyperlink{namespaceocra_1_1utils_ad8e0359ef8aba5d4f7de70014e9ab324}{adapt\+K\+To\+Inertia} (const Eigen\+::\+Vector\+Xd \&K, const Model \&model, double scale=1.)
+Eigen\+::\+Vector\+Xd \hyperlink{namespaceocra_1_1utils_ad8e0359ef8aba5d4f7de70014e9ab324}{adapt\+K\+To\+Inertia} (const Eigen\+::\+Vector\+Xd \&K, const \hyperlink{classocra_1_1Model}{Model} \&model, double scale=1.)
 \item 
 Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a9158ce8ea082d7620fd3204979c75c09}{compute\+\_\+\+H\+\_\+2\+\_\+in\+\_\+1} (const Eigen\+::\+Displacementd \&H\+\_\+1\+\_\+in\+\_\+ref, const Eigen\+::\+Displacementd \&H\+\_\+2\+\_\+in\+\_\+ref)
 \item 
-Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a54960ab215262788c23ca1eee8786b5a}{compute\+Ego\+Frame} (Model \&model, const Eigen\+::\+Vector3d \&fwd\+Direction\+\_\+in\+\_\+phantom)
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a54960ab215262788c23ca1eee8786b5a}{compute\+Ego\+Frame} (\hyperlink{classocra_1_1Model}{Model} \&model, const Eigen\+::\+Vector3d \&fwd\+Direction\+\_\+in\+\_\+phantom)
 \item 
 Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a8d939e7ed429dffde760d84e41258940}{interpolate} (const Eigen\+::\+Displacementd \&Hstart, const Eigen\+::\+Displacementd \&Hend, double t)
 \item 
@@ -129,9 +129,9 @@ void \hyperlink{namespaceocra_1_1utils_aa928598a03da10c32b029f77c571788a}{print\
 \item 
 {\footnotesize template$<$class Derived $>$ }\\std\+::ostream \& \hyperlink{namespaceocra_1_1utils_a11933c4ad5ae5b9bdce3005941bdd433}{write\+In\+File\+For\+Scilab} (std\+::ostream \&s, const Matrix\+Base$<$ Derived $>$ \&m, int precision=-\/1)
 \item 
-Vector\+Xd \hyperlink{namespaceocra_1_1utils_acfdf52324cf9c44fbe5225d17d5ff926}{adapt\+K\+To\+Inertia} (const Vector\+Xd \&K, const Model \&model, double scale)
+Vector\+Xd \hyperlink{namespaceocra_1_1utils_acfdf52324cf9c44fbe5225d17d5ff926}{adapt\+K\+To\+Inertia} (const Vector\+Xd \&K, const \hyperlink{classocra_1_1Model}{Model} \&model, double scale)
 \item 
-Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_aaad3b464589711bcc5fecec8c8b9af76}{compute\+Ego\+Frame} (Model \&model, const Vector3d \&fwd\+Direction\+\_\+in\+\_\+phantom)
+Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_aaad3b464589711bcc5fecec8c8b9af76}{compute\+Ego\+Frame} (\hyperlink{classocra_1_1Model}{Model} \&model, const Vector3d \&fwd\+Direction\+\_\+in\+\_\+phantom)
 \item 
 Eigen\+::\+Displacementd \hyperlink{namespaceocra_1_1utils_a07cf93b22e02458b2c184ddd5787a6b2}{project\+Rotation} (const Eigen\+::\+Displacementd \&H, const Vector3d \&n, double \&theta)
 \end{DoxyCompactItemize}
@@ -147,7 +147,7 @@ const \hyperlink{namespaceocra_1_1utils_1_1details_a617d399055aa54cfdf2d3199ca91
 \index{ocra\+::utils@{ocra\+::utils}!adapt\+K\+To\+Inertia@{adapt\+K\+To\+Inertia}}
 \index{adapt\+K\+To\+Inertia@{adapt\+K\+To\+Inertia}!ocra\+::utils@{ocra\+::utils}}
 \subsubsection{\texorpdfstring{adapt\+K\+To\+Inertia()}{adaptKToInertia()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Vector\+Xd ocra\+::utils\+::adapt\+K\+To\+Inertia (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{K,  }\item[{const Model \&}]{model,  }\item[{double}]{scale }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Vector\+Xd ocra\+::utils\+::adapt\+K\+To\+Inertia (\begin{DoxyParamCaption}\item[{const Vector\+Xd \&}]{K,  }\item[{const \hyperlink{classocra_1_1Model}{Model} \&}]{model,  }\item[{double}]{scale }\end{DoxyParamCaption})}
 
 
 
@@ -157,7 +157,7 @@ Definition at line 29 of file control\+Utils.\+cpp.
 \index{ocra\+::utils@{ocra\+::utils}!adapt\+K\+To\+Inertia@{adapt\+K\+To\+Inertia}}
 \index{adapt\+K\+To\+Inertia@{adapt\+K\+To\+Inertia}!ocra\+::utils@{ocra\+::utils}}
 \subsubsection{\texorpdfstring{adapt\+K\+To\+Inertia()}{adaptKToInertia()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::utils\+::adapt\+K\+To\+Inertia (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{K,  }\item[{const Model \&}]{model,  }\item[{double}]{scale = {\ttfamily 1.} }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd ocra\+::utils\+::adapt\+K\+To\+Inertia (\begin{DoxyParamCaption}\item[{const Eigen\+::\+Vector\+Xd \&}]{K,  }\item[{const \hyperlink{classocra_1_1Model}{Model} \&}]{model,  }\item[{double}]{scale = {\ttfamily 1.} }\end{DoxyParamCaption})}
 
 Multiply a vector of gains by the diagonal of an inertia matrix and a scale. \begin{DoxyReturn}{Returns}
 v, where v(i) = K(i) $\ast$ model.\+get\+Inertia\+Matrix()(i, i) $\ast$ scale. 
@@ -319,7 +319,7 @@ Definition at line 45 of file Control\+Enum.\+h.
 \index{ocra\+::utils@{ocra\+::utils}!compute\+Ego\+Frame@{compute\+Ego\+Frame}}
 \index{compute\+Ego\+Frame@{compute\+Ego\+Frame}!ocra\+::utils@{ocra\+::utils}}
 \subsubsection{\texorpdfstring{compute\+Ego\+Frame()}{computeEgoFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::compute\+Ego\+Frame (\begin{DoxyParamCaption}\item[{Model \&}]{model,  }\item[{const Vector3d \&}]{fwd\+Direction\+\_\+in\+\_\+phantom }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::compute\+Ego\+Frame (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Model}{Model} \&}]{model,  }\item[{const Vector3d \&}]{fwd\+Direction\+\_\+in\+\_\+phantom }\end{DoxyParamCaption})}
 
 
 
@@ -329,7 +329,7 @@ Definition at line 45 of file control\+Utils.\+cpp.
 \index{ocra\+::utils@{ocra\+::utils}!compute\+Ego\+Frame@{compute\+Ego\+Frame}}
 \index{compute\+Ego\+Frame@{compute\+Ego\+Frame}!ocra\+::utils@{ocra\+::utils}}
 \subsubsection{\texorpdfstring{compute\+Ego\+Frame()}{computeEgoFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::compute\+Ego\+Frame (\begin{DoxyParamCaption}\item[{Model \&}]{model,  }\item[{const Eigen\+::\+Vector3d \&}]{fwd\+Direction\+\_\+in\+\_\+phantom }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd ocra\+::utils\+::compute\+Ego\+Frame (\begin{DoxyParamCaption}\item[{\hyperlink{classocra_1_1Model}{Model} \&}]{model,  }\item[{const Eigen\+::\+Vector3d \&}]{fwd\+Direction\+\_\+in\+\_\+phantom }\end{DoxyParamCaption})}
 
 Computes the displacement of an ego frame wrt the world frame for a manikin. The ego frame is built as follows\+: the x direction is defined by the user, by giving its coordinates in the root frame of the robot; this vector is supposed to represent the \textquotesingle{}forward\textquotesingle{} direction of the manikin. the z direction is the world frame z; y = z cross x. \hypertarget{namespaceocra_1_1utils_a02a6c3a9f1fe61b2ae034dee1b75a795}{}\label{namespaceocra_1_1utils_a02a6c3a9f1fe61b2ae034dee1b75a795} 
 \index{ocra\+::utils@{ocra\+::utils}!compute\+Gradient@{compute\+Gradient}}

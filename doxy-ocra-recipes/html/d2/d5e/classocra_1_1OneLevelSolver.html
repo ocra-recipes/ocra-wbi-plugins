@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -755,7 +761,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Prepare the basic matrices, which can be considered as the task <img class="formulaInl" alt="$ T_0 $" src="../../form_112.png"/> because it minimizes the whole problem vector with very low coefficient. </p>
+<p>Prepare the basic matrices, which can be considered as the task \( T_0 \) because it minimizes the whole problem vector with very low coefficient. </p>
 
 <p>Definition at line <a class="el" href="../../d6/d44/OneLevelSolver_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../d6/d44/OneLevelSolver_8cpp_source.html">OneLevelSolver.cpp</a>.</p>
 
@@ -855,10 +861,10 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<p>To reduce the set of equality constraints, we make a SVD decomposition <img class="formulaInl" alt="$ \A = U . S . V\tp $" src="../../form_113.png"/>. Then we check the dimension (denoted by <img class="formulaInl" alt="$ r $" src="../../form_114.png"/>) of the diagonal <img class="formulaInl" alt="$ S $" src="../../form_96.png"/> where value are greater than the tolerance.</p>
+<p>To reduce the set of equality constraints, we make a SVD decomposition \( \A = U . S . V\tp \). Then we check the dimension (denoted by \( r \)) of the diagonal \( S \) where value are greater than the tolerance.</p>
 <p>The reduced set of task is then (noted in a python way):</p>
 <p class="formulaDsp">
-<img class="formulaDsp" alt="\begin{align*} \A_r &amp;= S[0:r, :] V[:, 0:r] \tp &amp; &amp; &amp; \b_r &amp;= U[:, 0:r] \tp \b \end{align*}" src="../../form_115.png"/>
+\begin{align*} \A_r &amp;= S[0:r, :] V[:, 0:r] \tp &amp; &amp; &amp; \b_r &amp;= U[:, 0:r] \tp \b \end{align*}
 </p>
  
 <p>Definition at line <a class="el" href="../../d6/d44/OneLevelSolver_8cpp_source.html#l00168">168</a> of file <a class="el" href="../../d6/d44/OneLevelSolver_8cpp_source.html">OneLevelSolver.cpp</a>.</p>
@@ -1430,7 +1436,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:35 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:26 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

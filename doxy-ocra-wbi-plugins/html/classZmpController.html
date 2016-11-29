@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -88,17 +94,17 @@ Public Member Functions</h2></td></tr>
 <dl class="section author"><dt>Author</dt><dd>Jorhabib Eljaik</dd></dl>
 <p><a class="el" href="citelist.html#CITEREF_krause2012stabilization">[3]</a></p>
 <dl class="section warning"><dt>Warning</dt><dd>Work in progress! This is still a barebone class in the process of being tested.</dd></dl>
-<p>In <a class="el" href="citelist.html#CITEREF_krause2012stabilization">[3]</a> a position-based ZMP controller was implemented by relating the desired ZMP <img class="formulaInl" alt="$ \mathbf{p}_d $" src="form_80.png"/> to a desired force, given the relationship between CoM acceleration and the ZMP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the ZMP <img class="formulaInl" alt="$\mathbf{p} = (p_x, p_y)$" src="form_81.png"/> can be computed as: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\begin{equation} \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p}) \label{eq:simplifiedZMP} \end{equation}" src="form_82.png"/>
+<p>In <a class="el" href="citelist.html#CITEREF_krause2012stabilization">[3]</a> a position-based ZMP controller was implemented by relating the desired ZMP \( \mathbf{p}_d \) to a desired force, given the relationship between CoM acceleration and the ZMP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the ZMP \(\mathbf{p} = (p_x, p_y)\) can be computed as: <a class="anchor" id="simplifiedZMP"></a> </p><p class="formulaDsp">
+\begin{equation} \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p}) \end{equation}
 </p>
-<p> Where <img class="formulaInl" alt="$\omega = \sqrt{g/c_z}$" src="form_83.png"/> as done in <a class="el" href="citelist.html#CITEREF_kajita2003biped">[2]</a>. Therefore the desired <img class="formulaInl" alt="$\mathbf{p}_d$" src="form_84.png"/> can be associated to a desired force on the CoM: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ F_d = m \omega^2 (\mathbf{h} - \mathbf{p}_d) \]" src="form_85.png"/>
+<p>Where \(\omega = \sqrt{g/c_z}\) as done in <a class="el" href="citelist.html#CITEREF_kajita2003biped">[2]</a>. Therefore the desired \(\mathbf{p}_d\) can be associated to a desired force on the CoM: </p><p class="formulaDsp">
+\[ F_d = m \omega^2 (\mathbf{h} - \mathbf{p}_d) \]
 </p>
-<p> Where <img class="formulaInl" alt="$m$" src="form_86.png"/> is the total mass of the robot and a force set point regulator can be implemented as: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \dot{\mathbf{h}}_d = k_f(F_d - F) \]" src="form_87.png"/>
+<p> Where \(m\) is the total mass of the robot and a force set point regulator can be implemented as: </p><p class="formulaDsp">
+\[ \dot{\mathbf{h}}_d = k_f(F_d - F) \]
 </p>
-<p> Where <img class="formulaInl" alt="$k_f &gt; 0$" src="form_88.png"/> is a force control gain. Substituting eq:simplifiedZMP we get: </p><p class="formulaDsp">
-<img class="formulaDsp" alt="\[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \]" src="form_89.png"/>
+<p> Where \(k_f &gt; 0\) is a force control gain. Substituting <a class="el" href="classZmpController.html#simplifiedZMP">simplifiedZMP</a> we get: </p><p class="formulaDsp">
+\[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \]
 </p>
  </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a401013c4cc1d215972062b027e11e619"></a>
@@ -184,7 +190,7 @@ Public Member Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">pd</td><td>Horizontal desired zmp position </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">dhd</td><td>Horizonal CoM velocity <img class="formulaInl" alt="$\dot{\mathbf{h}}_d$" src="form_90.png"/> </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">dhd</td><td>Horizonal CoM velocity \(\dot{\mathbf{h}}_d\) </td></tr>
   </table>
   </dd>
 </dl>
@@ -198,7 +204,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Nov 28 2016 19:27:00 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:19:24 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

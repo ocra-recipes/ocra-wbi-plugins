@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -110,6 +116,7 @@ $(function() {
 <li>disconnect()
 : <a class="el" href="dc/d77/classocra_1_1Subject.html#a6c96a103a782be401def25981d70c407">ocra::Subject</a>
 , <a class="el" href="dc/d29/classocra_1_1SubjectBase.html#a58cd908830894df5c5cc6d03888ae8cc">ocra::SubjectBase&lt; EVT &gt;</a>
+, <a class="el" href="d9/d30/classocra__recipes_1_1TaskConnection.html#a66f5d60e3690f959135319ed85778de8">ocra_recipes::TaskConnection</a>
 </li>
 <li>disconnectFromController()
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a5caec6472d19926a2448779fa629c9d8">gocra::GHCJTTask</a>
@@ -232,8 +239,8 @@ $(function() {
 <li>doCreateTask()
 : <a class="el" href="d6/dbf/classgocra_1_1GHCJTController.html#a989588cb4fa067230026394434c7a901">gocra::GHCJTController</a>
 , <a class="el" href="d1/d6a/classhocra_1_1HocraController.html#a3e308f54d5b535a67a51d60454ea35b0">hocra::HocraController</a>
-, <a class="el" href="d8/d92/classocra_1_1Controller.html#a358a31c0b6b6bdcc0e6da5c49eb9fde5">ocra::Controller</a>
-, <a class="el" href="db/d14/classwocra_1_1WocraController.html#a1dec71e9c2fb5b2d6fab0bcd230e9c00">wocra::WocraController</a>
+, <a class="el" href="d8/d92/classocra_1_1Controller.html#a05f6d757e4125a71bf766df7f069ac43">ocra::Controller</a>
+, <a class="el" href="db/d14/classwocra_1_1WocraController.html#a4ce73b9a7b7026427e8abf44f54155af">wocra::WocraController</a>
 </li>
 <li>doDeactivateAsConstraint()
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a2274fda92c62d88a6b4b35286606c41c">gocra::GHCJTTask</a>
@@ -247,18 +254,35 @@ $(function() {
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a20b391cbb8d62237216624db57d0f634">gocra::GHCJTTask</a>
 , <a class="el" href="d9/d84/classocra_1_1Task.html#a98cfb17f9df4e27b5c1d9cc2bf0faa9e">ocra::Task</a>
 </li>
+<li>doDofName()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a664454a77b21d2f5501c2aaf9652c058">ocra::Model</a>
+</li>
+<li>DofName()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a12d3de75b9a3825f547e860f4318d4cd">ocra::Model</a>
+</li>
+<li>doGetDofIndex()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a0f4f5c643b386b3d29c6cb66ab38a5cd">ocra::Model</a>
+</li>
+<li>doGetDofName()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a81ea95179ef3cca4ad98c3c525eaaedf">ocra::Model</a>
+</li>
 <li>doGetOutput()
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a9f2cd769e33b12a5885ecd7b78a41185">gocra::GHCJTTask</a>
 , <a class="el" href="d9/d84/classocra_1_1Task.html#a96981db9ec0975c321ab46d182d3f6d8">ocra::Task</a>
 </li>
 <li>doGetSegmentIndex()
 : <a class="el" href="d3/d33/classModel3T.html#aabe2edc629d42407da7b45db620854c2">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#aede6166f1991c23db634aa5ff16b6584">ocra::Model</a>
 </li>
 <li>doGetSegmentName()
 : <a class="el" href="d3/d33/classModel3T.html#a1fbf30cc6c5a4abfcd9ecd574e79b866">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a0f339ce01a0871a19b0f952bdda82822">ocra::Model</a>
 </li>
 <li>doInit()
 : <a class="el" href="d7/d38/classgocra_1_1gOcraTaskManagerCollectionBase.html#a81b68fbc3c26897cb4c971bd53199b78">gocra::gOcraTaskManagerCollectionBase</a>
+</li>
+<li>doInvalidate()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a902663196e1c7535c27b755cf4436693">ocra::Model</a>
 </li>
 <li>dontSaturate()
 : <a class="el" href="dd/dda/classocra_1_1SecondOrderLinearTask.html#a8e155a518199e0ae1b8eca4915d46420">ocra::SecondOrderLinearTask</a>
@@ -272,11 +296,16 @@ $(function() {
 , <a class="el" href="d2/dab/classocra_1_1QLDSolver.html#ac590e2b4c851042177e8e4b84f946ced">ocra::QLDSolver</a>
 , <a class="el" href="d6/dd3/classocra_1_1Solver.html#a9ab90e87025e3da7239141c48d28ab4a">ocra::Solver</a>
 </li>
+<li>doSegmentName()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a887c6805af16d21ec54ef104f79f244d">ocra::Model</a>
+</li>
 <li>doSetFreeFlyerPosition()
 : <a class="el" href="d3/d33/classModel3T.html#ab239abd9e83130d463503eb5915e2ed1">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a4174e9fd30f913f43e516bbef9583ca2">ocra::Model</a>
 </li>
 <li>doSetFreeFlyerVelocity()
 : <a class="el" href="d3/d33/classModel3T.html#a21b50cac2862f3721db524437282a7b3">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#aad824e82f724f24e3769c74355162bda">ocra::Model</a>
 </li>
 <li>doSetFrictionCoeff()
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#ab05c45917bde9d97f166356f96ee7f95">gocra::GHCJTTask</a>
@@ -284,9 +313,11 @@ $(function() {
 </li>
 <li>doSetJointPositions()
 : <a class="el" href="d3/d33/classModel3T.html#a603f405545e77d1e16449581876b005d">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a1353dd716f80843ea11ff6193c512b13">ocra::Model</a>
 </li>
 <li>doSetJointVelocities()
 : <a class="el" href="d3/d33/classModel3T.html#a215cf3c1fdfc7a229a9ae65b815d6060">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a770a539312a2e805fcca2af3529ecff9">ocra::Model</a>
 </li>
 <li>doSetMargin()
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#ab2a09a00c8e1a2ffef7bd80b40aaeee1">gocra::GHCJTTask</a>
@@ -294,6 +325,9 @@ $(function() {
 </li>
 <li>doSetMaxJointTorques()
 : <a class="el" href="d8/d92/classocra_1_1Controller.html#a75d6419229980f6088a689fcafc1d224">ocra::Controller</a>
+</li>
+<li>doSetState()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#adab6b86806c9298ecba14da065badacf">ocra::Model</a>
 </li>
 <li>doSetWeight()
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a4966871ab447bff90495c057725e7122">gocra::GHCJTTask</a>
@@ -312,10 +346,10 @@ $(function() {
 , <a class="el" href="d6/dd3/classocra_1_1Solver.html#ace2d7cfe741611de6dc87a0de7e7f3a9">ocra::Solver</a>
 </li>
 <li>DotProductFunction()
-: <a class="el" href="db/da4/classocra_1_1DotProductFunction.html#a70f7d2b9c9fefba0203fbee84607c9e9">ocra::DotProductFunction</a>
+: <a class="el" href="db/da4/classocra_1_1DotProductFunction.html#a369a245fec0cfe2d4f72bfd577ab7ad0">ocra::DotProductFunction</a>
 </li>
 <li>DoubleDiagonalLinearFunction()
-: <a class="el" href="d4/d5c/classocra_1_1DoubleDiagonalLinearFunction.html#a790df03af5df25353682965f7a556aec">ocra::DoubleDiagonalLinearFunction</a>
+: <a class="el" href="d4/d5c/classocra_1_1DoubleDiagonalLinearFunction.html#a96c59d997d8ec798745389d98c2d5e63">ocra::DoubleDiagonalLinearFunction</a>
 </li>
 <li>doUpdate()
 : <a class="el" href="d7/d38/classgocra_1_1gOcraTaskManagerCollectionBase.html#a42f29543b66d4ff1e297225e0f5c6501">gocra::gOcraTaskManagerCollectionBase</a>
@@ -384,7 +418,7 @@ $(function() {
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:28 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

@@ -40,7 +40,7 @@ typedef \hyperlink{classocra_1_1LinearFunction}{Linear\+Function} \hyperlink{cla
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classocra_1_1FullJointLimitFunction_af49c77d067fe584cf6d3884eb33b2ed0}{Full\+Joint\+Limit\+Function} (const Model \&model)
+\hyperlink{classocra_1_1FullJointLimitFunction_af49c77d067fe584cf6d3884eb33b2ed0}{Full\+Joint\+Limit\+Function} (const \hyperlink{classocra_1_1Model}{Model} \&model)
 \item 
 \hyperlink{classocra_1_1FullJointLimitFunction_a84cc9b5e7efdf78fe9a279ef5940871b}{$\sim$\+Full\+Joint\+Limit\+Function} ()
 \end{DoxyCompactItemize}
@@ -79,13 +79,13 @@ Definition at line 123 of file Joint\+Limit\+Constraint.\+h.
 \index{ocra\+::\+Full\+Joint\+Limit\+Function@{ocra\+::\+Full\+Joint\+Limit\+Function}!Full\+Joint\+Limit\+Function@{Full\+Joint\+Limit\+Function}}
 \index{Full\+Joint\+Limit\+Function@{Full\+Joint\+Limit\+Function}!ocra\+::\+Full\+Joint\+Limit\+Function@{ocra\+::\+Full\+Joint\+Limit\+Function}}
 \subsubsection{\texorpdfstring{Full\+Joint\+Limit\+Function()}{FullJointLimitFunction()}}
-{\footnotesize\ttfamily Full\+Joint\+Limit\+Function\+::\+Full\+Joint\+Limit\+Function (\begin{DoxyParamCaption}\item[{const Model \&}]{model }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Full\+Joint\+Limit\+Function\+::\+Full\+Joint\+Limit\+Function (\begin{DoxyParamCaption}\item[{const \hyperlink{classocra_1_1Model}{Model} \&}]{model }\end{DoxyParamCaption})}
 
 Initialize a joint limits function designed for the full formalism.
 
 
 \begin{DoxyParams}{Parameters}
-{\em model} & The Model on which we will update the dynamic parameters\\
+{\em model} & The \hyperlink{classocra_1_1Model}{Model} on which we will update the dynamic parameters\\
 \hline
 \end{DoxyParams}
 It is connected with the model and invalidates $ \b $ when E\+V\+T\+\_\+\+C\+H\+A\+N\+G\+E\+\_\+\+V\+A\+L\+UE is raised. Furthermore, it computes the Jacobian matrix $ \A $ which is constant. 

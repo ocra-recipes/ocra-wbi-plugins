@@ -35,11 +35,11 @@ struct \hyperlink{structwocra_1_1WocraController_1_1Pimpl}{Pimpl}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classwocra_1_1WocraController_ae14fda387f6d308aead6ab7a59e82e74}{Wocra\+Controller} (const std\+::string \&ctrl\+Name, std\+::shared\+\_\+ptr$<$ Model $>$ inner\+Model, std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver} $>$ inner\+Solver, bool use\+Reduced\+Problem)
+\hyperlink{classwocra_1_1WocraController_ae14fda387f6d308aead6ab7a59e82e74}{Wocra\+Controller} (const std\+::string \&ctrl\+Name, std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$ inner\+Model, std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver} $>$ inner\+Solver, bool use\+Reduced\+Problem)
 \item 
 virtual \hyperlink{classwocra_1_1WocraController_a4051d9aab485cfa444ed90da795f2bb2}{$\sim$\+Wocra\+Controller} ()
 \begin{DoxyCompactList}\small\item\em Destructor of Wocra controller. \end{DoxyCompactList}\item 
-std\+::shared\+\_\+ptr$<$ Model $>$ \hyperlink{classwocra_1_1WocraController_adc7f78b5f888c76a3296cfd5882caad1}{get\+Model} ()
+std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$ \hyperlink{classwocra_1_1WocraController_adc7f78b5f888c76a3296cfd5882caad1}{get\+Model} ()
 \item 
 std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver} $>$ \hyperlink{classwocra_1_1WocraController_a94f67ee0ae6985969f4f1798bde0a9db}{get\+Solver} ()
 \item 
@@ -136,7 +136,7 @@ Definition at line 101 of file Wocra\+Controller.\+h.
 \index{wocra\+::\+Wocra\+Controller@{wocra\+::\+Wocra\+Controller}!Wocra\+Controller@{Wocra\+Controller}}
 \index{Wocra\+Controller@{Wocra\+Controller}!wocra\+::\+Wocra\+Controller@{wocra\+::\+Wocra\+Controller}}
 \subsubsection{\texorpdfstring{Wocra\+Controller()}{WocraController()}}
-{\footnotesize\ttfamily wocra\+::\+Wocra\+Controller\+::\+Wocra\+Controller (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ctrl\+Name,  }\item[{std\+::shared\+\_\+ptr$<$ Model $>$}]{inner\+Model,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver} $>$}]{inner\+Solver,  }\item[{bool}]{use\+Reduced\+Problem }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily wocra\+::\+Wocra\+Controller\+::\+Wocra\+Controller (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ctrl\+Name,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$}]{inner\+Model,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1OneLevelSolver}{One\+Level\+Solver} $>$}]{inner\+Solver,  }\item[{bool}]{use\+Reduced\+Problem }\end{DoxyParamCaption})}
 
 Initializes Wocra controller.
 
@@ -374,7 +374,7 @@ Definition at line 261 of file Wocra\+Controller.\+cpp.
 \index{wocra\+::\+Wocra\+Controller@{wocra\+::\+Wocra\+Controller}!get\+Model@{get\+Model}}
 \index{get\+Model@{get\+Model}!wocra\+::\+Wocra\+Controller@{wocra\+::\+Wocra\+Controller}}
 \subsubsection{\texorpdfstring{get\+Model()}{getModel()}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ Model $>$ wocra\+::\+Wocra\+Controller\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$ wocra\+::\+Wocra\+Controller\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Returns the inner model.
 

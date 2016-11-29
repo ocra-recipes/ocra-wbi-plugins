@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -117,11 +123,11 @@ Functions</h2></td></tr>
 <tr class="separator:aef5a7c74e8cfa9b803cd2a18d6401d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea2b40d346ee7532a6cdb9392e7c5767"><td class="memItemLeft" align="right" valign="top">Eigen::Matrix&lt; double, 6, 1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#aea2b40d346ee7532a6cdb9392e7c5767">cartesianDCoupling</a> (const Eigen::Matrix&lt; double, 6, 1 &gt; &amp;kv, const Eigen::Twistd &amp;Tdes, const Eigen::Twistd &amp;T)</td></tr>
 <tr class="separator:aea2b40d346ee7532a6cdb9392e7c5767"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8e0359ef8aba5d4f7de70014e9ab324"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#ad8e0359ef8aba5d4f7de70014e9ab324">adaptKToInertia</a> (const Eigen::VectorXd &amp;K, const Model &amp;model, double scale=1.)</td></tr>
+<tr class="memitem:ad8e0359ef8aba5d4f7de70014e9ab324"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#ad8e0359ef8aba5d4f7de70014e9ab324">adaptKToInertia</a> (const Eigen::VectorXd &amp;K, const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;model, double scale=1.)</td></tr>
 <tr class="separator:ad8e0359ef8aba5d4f7de70014e9ab324"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9158ce8ea082d7620fd3204979c75c09"><td class="memItemLeft" align="right" valign="top">Eigen::Displacementd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#a9158ce8ea082d7620fd3204979c75c09">compute_H_2_in_1</a> (const Eigen::Displacementd &amp;H_1_in_ref, const Eigen::Displacementd &amp;H_2_in_ref)</td></tr>
 <tr class="separator:a9158ce8ea082d7620fd3204979c75c09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54960ab215262788c23ca1eee8786b5a"><td class="memItemLeft" align="right" valign="top">Eigen::Displacementd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#a54960ab215262788c23ca1eee8786b5a">computeEgoFrame</a> (Model &amp;model, const Eigen::Vector3d &amp;fwdDirection_in_phantom)</td></tr>
+<tr class="memitem:a54960ab215262788c23ca1eee8786b5a"><td class="memItemLeft" align="right" valign="top">Eigen::Displacementd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#a54960ab215262788c23ca1eee8786b5a">computeEgoFrame</a> (<a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;model, const Eigen::Vector3d &amp;fwdDirection_in_phantom)</td></tr>
 <tr class="separator:a54960ab215262788c23ca1eee8786b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d939e7ed429dffde760d84e41258940"><td class="memItemLeft" align="right" valign="top">Eigen::Displacementd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#a8d939e7ed429dffde760d84e41258940">interpolate</a> (const Eigen::Displacementd &amp;Hstart, const Eigen::Displacementd &amp;Hend, double t)</td></tr>
 <tr class="separator:a8d939e7ed429dffde760d84e41258940"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -234,9 +240,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a11933c4ad5ae5b9bdce3005941bdd433"><td class="memTemplParams" colspan="2">template&lt;class Derived &gt; </td></tr>
 <tr class="memitem:a11933c4ad5ae5b9bdce3005941bdd433"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#a11933c4ad5ae5b9bdce3005941bdd433">writeInFileForScilab</a> (std::ostream &amp;s, const MatrixBase&lt; Derived &gt; &amp;m, int precision=-1)</td></tr>
 <tr class="separator:a11933c4ad5ae5b9bdce3005941bdd433"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acfdf52324cf9c44fbe5225d17d5ff926"><td class="memItemLeft" align="right" valign="top">VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#acfdf52324cf9c44fbe5225d17d5ff926">adaptKToInertia</a> (const VectorXd &amp;K, const Model &amp;model, double scale)</td></tr>
+<tr class="memitem:acfdf52324cf9c44fbe5225d17d5ff926"><td class="memItemLeft" align="right" valign="top">VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#acfdf52324cf9c44fbe5225d17d5ff926">adaptKToInertia</a> (const VectorXd &amp;K, const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;model, double scale)</td></tr>
 <tr class="separator:acfdf52324cf9c44fbe5225d17d5ff926"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaad3b464589711bcc5fecec8c8b9af76"><td class="memItemLeft" align="right" valign="top">Eigen::Displacementd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#aaad3b464589711bcc5fecec8c8b9af76">computeEgoFrame</a> (Model &amp;model, const Vector3d &amp;fwdDirection_in_phantom)</td></tr>
+<tr class="memitem:aaad3b464589711bcc5fecec8c8b9af76"><td class="memItemLeft" align="right" valign="top">Eigen::Displacementd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#aaad3b464589711bcc5fecec8c8b9af76">computeEgoFrame</a> (<a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;model, const Vector3d &amp;fwdDirection_in_phantom)</td></tr>
 <tr class="separator:aaad3b464589711bcc5fecec8c8b9af76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07cf93b22e02458b2c184ddd5787a6b2"><td class="memItemLeft" align="right" valign="top">Eigen::Displacementd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../de/d29/namespaceocra_1_1utils.html#a07cf93b22e02458b2c184ddd5787a6b2">projectRotation</a> (const Eigen::Displacementd &amp;H, const Vector3d &amp;n, double &amp;theta)</td></tr>
 <tr class="separator:a07cf93b22e02458b2c184ddd5787a6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -262,7 +268,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Model &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>model</em>, </td>
         </tr>
         <tr>
@@ -298,7 +304,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const Model &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>model</em>, </td>
         </tr>
         <tr>
@@ -978,7 +984,7 @@ template&lt;class Derived1 , class Derived2 &gt; </div>
         <tr>
           <td class="memname">Eigen::Displacementd ocra::utils::computeEgoFrame </td>
           <td>(</td>
-          <td class="paramtype">Model &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>model</em>, </td>
         </tr>
         <tr>
@@ -1008,7 +1014,7 @@ template&lt;class Derived1 , class Derived2 &gt; </div>
         <tr>
           <td class="memname">Eigen::Displacementd ocra::utils::computeEgoFrame </td>
           <td>(</td>
-          <td class="paramtype">Model &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>model</em>, </td>
         </tr>
         <tr>
@@ -2882,7 +2888,7 @@ template&lt;class Derived &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

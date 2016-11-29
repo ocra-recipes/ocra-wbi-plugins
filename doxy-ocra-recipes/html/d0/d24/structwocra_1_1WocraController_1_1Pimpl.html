@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -80,14 +86,14 @@ Collaboration diagram for wocra::WocraController::Pimpl:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae9e38baadd765c1005354808ea768800"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html#ae9e38baadd765c1005354808ea768800">Pimpl</a> (std::shared_ptr&lt; Model &gt; m, std::shared_ptr&lt; <a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">OneLevelSolver</a> &gt; s, bool useReducedProblem)</td></tr>
+<tr class="memitem:ae9e38baadd765c1005354808ea768800"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html#ae9e38baadd765c1005354808ea768800">Pimpl</a> (std::shared_ptr&lt; <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &gt; m, std::shared_ptr&lt; <a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">OneLevelSolver</a> &gt; s, bool useReducedProblem)</td></tr>
 <tr class="separator:ae9e38baadd765c1005354808ea768800"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e7ca6582122e345e4d51d30ed481450"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html#a9e7ca6582122e345e4d51d30ed481450">~Pimpl</a> ()</td></tr>
 <tr class="separator:a9e7ca6582122e345e4d51d30ed481450"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a4fe5b4fd5e927bbf9c83bf10ffafc98f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; Model &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html#a4fe5b4fd5e927bbf9c83bf10ffafc98f">innerModel</a></td></tr>
+<tr class="memitem:a4fe5b4fd5e927bbf9c83bf10ffafc98f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html#a4fe5b4fd5e927bbf9c83bf10ffafc98f">innerModel</a></td></tr>
 <tr class="separator:a4fe5b4fd5e927bbf9c83bf10ffafc98f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a761307f74ee3b130993d589372164b98"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">OneLevelSolver</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d24/structwocra_1_1WocraController_1_1Pimpl.html#a761307f74ee3b130993d589372164b98">innerSolver</a></td></tr>
 <tr class="separator:a761307f74ee3b130993d589372164b98"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -128,7 +134,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="memname">wocra::WocraController::Pimpl::Pimpl </td>
           <td>(</td>
-          <td class="paramtype">std::shared_ptr&lt; Model &gt;&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &gt;&#160;</td>
           <td class="paramname"><em>m</em>, </td>
         </tr>
         <tr>
@@ -211,7 +217,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::shared_ptr&lt;Model&gt; wocra::WocraController::Pimpl::innerModel</td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a>&gt; wocra::WocraController::Pimpl::innerModel</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -386,7 +392,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

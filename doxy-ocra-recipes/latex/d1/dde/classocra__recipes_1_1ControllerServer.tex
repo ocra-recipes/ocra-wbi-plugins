@@ -28,7 +28,7 @@ void \hyperlink{classocra__recipes_1_1ControllerServer_a925d4de1de73f0ac18e50f0f
 \item 
 const std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Controller}{ocra\+::\+Controller} $>$ \hyperlink{classocra__recipes_1_1ControllerServer_a40bc86b6d9a4140441320c88bfc77652}{get\+Controller} ()
 \item 
-const std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$ \hyperlink{classocra__recipes_1_1ControllerServer_ab83e5cc59e33d26cedbea43afae25e1e}{get\+Robot\+Model} ()
+const std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{ocra\+::\+Model} $>$ \hyperlink{classocra__recipes_1_1ControllerServer_ab83e5cc59e33d26cedbea43afae25e1e}{get\+Robot\+Model} ()
 \item 
 bool \hyperlink{classocra__recipes_1_1ControllerServer_ad2ca7fafa8c7fff009581df869f65d85}{add\+Tasks\+From\+Xml\+File} (const std\+::string \&file\+Path)
 \item 
@@ -41,7 +41,7 @@ void \hyperlink{classocra__recipes_1_1ControllerServer_a83755d02be88fa3805d770d9
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual std\+::shared\+\_\+ptr$<$ Model $>$ \hyperlink{classocra__recipes_1_1ControllerServer_a50715d81293d3ec5f0d6a60710008510}{load\+Robot\+Model} ()=0
+virtual std\+::shared\+\_\+ptr$<$ \hyperlink{classocra_1_1Model}{Model} $>$ \hyperlink{classocra__recipes_1_1ControllerServer_a50715d81293d3ec5f0d6a60710008510}{load\+Robot\+Model} ()=0
 \item 
 virtual void \hyperlink{classocra__recipes_1_1ControllerServer_a93ec150bea9b2a7a03aac1cc048d5484}{get\+Robot\+State} (Eigen\+::\+Vector\+Xd \&q, Eigen\+::\+Vector\+Xd \&qd, Eigen\+::\+Displacementd \&H\+\_\+root, Eigen\+::\+Twistd \&T\+\_\+root)=0
 \end{DoxyCompactItemize}
@@ -81,7 +81,7 @@ std\+::string \hyperlink{classocra__recipes_1_1ControllerServer_a93ffe0eff924223
 \subsection{Detailed Description}
 
 
-Definition at line 44 of file Controller\+Server.\+h.
+Definition at line 43 of file Controller\+Server.\+h.
 
 
 
@@ -117,7 +117,7 @@ Definition at line 16 of file Controller\+Server.\+cpp.
 
 
 
-Definition at line 130 of file Controller\+Server.\+cpp.
+Definition at line 131 of file Controller\+Server.\+cpp.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_ad2ca7fafa8c7fff009581df869f65d85}{}\label{classocra__recipes_1_1ControllerServer_ad2ca7fafa8c7fff009581df869f65d85} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!add\+Tasks\+From\+Xml\+File@{add\+Tasks\+From\+Xml\+File}}
@@ -127,7 +127,7 @@ Definition at line 130 of file Controller\+Server.\+cpp.
 
 
 
-Definition at line 124 of file Controller\+Server.\+cpp.
+Definition at line 125 of file Controller\+Server.\+cpp.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a4b4c825748bc85f200f4b82cbffb8e0d}{}\label{classocra__recipes_1_1ControllerServer_a4b4c825748bc85f200f4b82cbffb8e0d} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!compute\+Torques@{compute\+Torques}}
@@ -137,7 +137,7 @@ Definition at line 124 of file Controller\+Server.\+cpp.
 
 
 
-Definition at line 98 of file Controller\+Server.\+cpp.
+Definition at line 99 of file Controller\+Server.\+cpp.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a925d4de1de73f0ac18e50f0f3c4cd0a4}{}\label{classocra__recipes_1_1ControllerServer_a925d4de1de73f0ac18e50f0f3c4cd0a4} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!compute\+Torques@{compute\+Torques}}
@@ -147,7 +147,7 @@ Definition at line 98 of file Controller\+Server.\+cpp.
 
 
 
-Definition at line 105 of file Controller\+Server.\+cpp.
+Definition at line 106 of file Controller\+Server.\+cpp.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a40bc86b6d9a4140441320c88bfc77652}{}\label{classocra__recipes_1_1ControllerServer_a40bc86b6d9a4140441320c88bfc77652} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!get\+Controller@{get\+Controller}}
@@ -157,17 +157,17 @@ Definition at line 105 of file Controller\+Server.\+cpp.
 
 
 
-Definition at line 64 of file Controller\+Server.\+h.
+Definition at line 63 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_ab83e5cc59e33d26cedbea43afae25e1e}{}\label{classocra__recipes_1_1ControllerServer_ab83e5cc59e33d26cedbea43afae25e1e} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!get\+Robot\+Model@{get\+Robot\+Model}}
 \index{get\+Robot\+Model@{get\+Robot\+Model}!ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}}
 \subsubsection{\texorpdfstring{get\+Robot\+Model()}{getRobotModel()}}
-{\footnotesize\ttfamily const std\+::shared\+\_\+ptr$<$ocra\+::\+Model$>$ ocra\+\_\+recipes\+::\+Controller\+Server\+::get\+Robot\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily const std\+::shared\+\_\+ptr$<$\hyperlink{classocra_1_1Model}{ocra\+::\+Model}$>$ ocra\+\_\+recipes\+::\+Controller\+Server\+::get\+Robot\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Definition at line 65 of file Controller\+Server.\+h.
+Definition at line 64 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a93ec150bea9b2a7a03aac1cc048d5484}{}\label{classocra__recipes_1_1ControllerServer_a93ec150bea9b2a7a03aac1cc048d5484} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!get\+Robot\+State@{get\+Robot\+State}}
@@ -200,7 +200,7 @@ If the use\+Odometry flag is passed to the server, odometry is computed.
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!load\+Robot\+Model@{load\+Robot\+Model}}
 \index{load\+Robot\+Model@{load\+Robot\+Model}!ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}}
 \subsubsection{\texorpdfstring{load\+Robot\+Model()}{loadRobotModel()}}
-{\footnotesize\ttfamily virtual std\+::shared\+\_\+ptr$<$Model$>$ ocra\+\_\+recipes\+::\+Controller\+Server\+::load\+Robot\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+{\footnotesize\ttfamily virtual std\+::shared\+\_\+ptr$<$\hyperlink{classocra_1_1Model}{Model}$>$ ocra\+\_\+recipes\+::\+Controller\+Server\+::load\+Robot\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a83755d02be88fa3805d770d964995fb0}{}\label{classocra__recipes_1_1ControllerServer_a83755d02be88fa3805d770d964995fb0} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!update\+Model@{update\+Model}}
@@ -210,7 +210,7 @@ If the use\+Odometry flag is passed to the server, odometry is computed.
 
 
 
-Definition at line 111 of file Controller\+Server.\+cpp.
+Definition at line 112 of file Controller\+Server.\+cpp.
 
 
 
@@ -223,7 +223,7 @@ Definition at line 111 of file Controller\+Server.\+cpp.
 
 
 
-Definition at line 81 of file Controller\+Server.\+h.
+Definition at line 80 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_aaf53114a96960a3cb81577378c179411}{}\label{classocra__recipes_1_1ControllerServer_aaf53114a96960a3cb81577378c179411} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!controller\+Type@{controller\+Type}}
@@ -233,7 +233,7 @@ Definition at line 81 of file Controller\+Server.\+h.
 
 
 
-Definition at line 93 of file Controller\+Server.\+h.
+Definition at line 92 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a93ffe0eff924223989db0ae6fcafaca2}{}\label{classocra__recipes_1_1ControllerServer_a93ffe0eff924223989db0ae6fcafaca2} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!initial\+Fixed\+Frame@{initial\+Fixed\+Frame}}
@@ -243,7 +243,7 @@ Definition at line 93 of file Controller\+Server.\+h.
 
 
 
-Definition at line 103 of file Controller\+Server.\+h.
+Definition at line 102 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a46e53b5a5bf9f7d55af477f85cb21522}{}\label{classocra__recipes_1_1ControllerServer_a46e53b5a5bf9f7d55af477f85cb21522} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!internal\+Solver@{internal\+Solver}}
@@ -253,7 +253,7 @@ Definition at line 103 of file Controller\+Server.\+h.
 
 
 
-Definition at line 82 of file Controller\+Server.\+h.
+Definition at line 81 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_ab239e92da81b48afa2211ef9b25672f3}{}\label{classocra__recipes_1_1ControllerServer_ab239e92da81b48afa2211ef9b25672f3} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!model@{model}}
@@ -263,7 +263,7 @@ Definition at line 82 of file Controller\+Server.\+h.
 
 
 
-Definition at line 80 of file Controller\+Server.\+h.
+Definition at line 79 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_ab077706b924eed4ac5c50e9ade36acf4}{}\label{classocra__recipes_1_1ControllerServer_ab077706b924eed4ac5c50e9ade36acf4} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!model\+File@{model\+File}}
@@ -273,7 +273,7 @@ Definition at line 80 of file Controller\+Server.\+h.
 
 
 
-Definition at line 102 of file Controller\+Server.\+h.
+Definition at line 101 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a5c565a9ec45e5fad7b56e9a48609ef3d}{}\label{classocra__recipes_1_1ControllerServer_a5c565a9ec45e5fad7b56e9a48609ef3d} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!r\+State@{r\+State}}
@@ -283,7 +283,7 @@ Definition at line 102 of file Controller\+Server.\+h.
 
 
 
-Definition at line 87 of file Controller\+Server.\+h.
+Definition at line 86 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_af01dc7be410bfebebefedc5f4bb27d1b}{}\label{classocra__recipes_1_1ControllerServer_af01dc7be410bfebebefedc5f4bb27d1b} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!server\+Coms@{server\+Coms}}
@@ -293,7 +293,7 @@ Definition at line 87 of file Controller\+Server.\+h.
 
 
 
-Definition at line 84 of file Controller\+Server.\+h.
+Definition at line 83 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a7c7d1eda2c96085709f0c3a28fd998a4}{}\label{classocra__recipes_1_1ControllerServer_a7c7d1eda2c96085709f0c3a28fd998a4} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!solver\+Type@{solver\+Type}}
@@ -303,7 +303,7 @@ Definition at line 84 of file Controller\+Server.\+h.
 
 
 
-Definition at line 94 of file Controller\+Server.\+h.
+Definition at line 93 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a587f8ef2bc028bf845b1713955def5a1}{}\label{classocra__recipes_1_1ControllerServer_a587f8ef2bc028bf845b1713955def5a1} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!states\+Bottle@{states\+Bottle}}
@@ -313,7 +313,7 @@ Definition at line 94 of file Controller\+Server.\+h.
 
 
 
-Definition at line 98 of file Controller\+Server.\+h.
+Definition at line 97 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a1d314027131262206280be3e728bf59f}{}\label{classocra__recipes_1_1ControllerServer_a1d314027131262206280be3e728bf59f} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!states\+Port@{states\+Port}}
@@ -323,7 +323,7 @@ Definition at line 98 of file Controller\+Server.\+h.
 
 
 
-Definition at line 99 of file Controller\+Server.\+h.
+Definition at line 98 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a07e10b62b84a999c14843662a378ec0f}{}\label{classocra__recipes_1_1ControllerServer_a07e10b62b84a999c14843662a378ec0f} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!tau@{tau}}
@@ -333,7 +333,7 @@ Definition at line 99 of file Controller\+Server.\+h.
 
 
 
-Definition at line 86 of file Controller\+Server.\+h.
+Definition at line 85 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_a7f7559e938ca0e3cfff4833d86ef5b54}{}\label{classocra__recipes_1_1ControllerServer_a7f7559e938ca0e3cfff4833d86ef5b54} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!using\+Coms@{using\+Coms}}
@@ -343,7 +343,7 @@ Definition at line 86 of file Controller\+Server.\+h.
 
 
 
-Definition at line 95 of file Controller\+Server.\+h.
+Definition at line 94 of file Controller\+Server.\+h.
 
 \hypertarget{classocra__recipes_1_1ControllerServer_afd126a8b289e29213468fe9e9a800dd2}{}\label{classocra__recipes_1_1ControllerServer_afd126a8b289e29213468fe9e9a800dd2} 
 \index{ocra\+\_\+recipes\+::\+Controller\+Server@{ocra\+\_\+recipes\+::\+Controller\+Server}!using\+Odometry@{using\+Odometry}}
@@ -353,7 +353,7 @@ Definition at line 95 of file Controller\+Server.\+h.
 
 
 
-Definition at line 96 of file Controller\+Server.\+h.
+Definition at line 95 of file Controller\+Server.\+h.
 
 
 

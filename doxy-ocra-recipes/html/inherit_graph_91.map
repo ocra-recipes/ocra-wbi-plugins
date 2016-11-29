@@ -1,5 +1,5 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$d1/d29/structocra_1_1FunctionInterfaceMapping.html" title="ocra::FunctionInterfaceMapping\l\&lt; Constraint\&lt; Function \&gt; \&gt;" alt="" coords="13,5,222,44"/>
-<area shape="rect" id="node2" href="$de/d3b/classocra_1_1Constraint_3_01Function_01_4.html" title="ocra::Constraint\&lt; Function \&gt;" alt="" coords="277,47,467,72"/>
-<area shape="rect" id="node3" href="$dc/d29/classocra_1_1SubjectBase.html" title="ocra::SubjectBase\&lt;\l EVT_CSTR_CHANGE_BOUNDS\l_NUMBER \&gt;" alt="" coords="5,68,229,120"/>
+<area shape="rect" id="node1" href="$d0/dd9/structocra_1_1SubjectBaseTraitsBase.html" title="Base class for objects who can raise events,. " alt="" coords="5,37,198,76"/>
+<area shape="rect" id="node2" href="$dc/d3a/structocra_1_1SubjectBaseTraits.html" title="ocra::SubjectBaseTraits\l\&lt; EVT, T \&gt;" alt="" coords="246,5,409,44"/>
+<area shape="rect" id="node3" href="$d9/d47/structocra_1_1SubjectBaseTraits_3_01EVT_00_01void_01_4.html" title="ocra::SubjectBaseTraits\l\&lt; EVT, void \&gt;" alt="" coords="246,68,409,107"/>
 </map>

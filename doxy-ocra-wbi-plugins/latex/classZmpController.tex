@@ -34,7 +34,11 @@ Jorhabib Eljaik
 \begin{DoxyWarning}{Warning}
 Work in progress! This is still a barebone class in the process of being tested.
 \end{DoxyWarning}
-In \cite{krause2012stabilization} a position-\/based Z\+MP controller was implemented by relating the desired Z\+MP $ \mathbf{p}_d $ to a desired force, given the relationship between CoM acceleration and the Z\+MP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the Z\+MP $\mathbf{p} = (p_x, p_y)$ can be computed as\+: \begin{equation} \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p}) \label{eq:simplifiedZMP} \end{equation} Where $\omega = \sqrt{g/c_z}$ as done in \cite{kajita2003biped}. Therefore the desired $\mathbf{p}_d$ can be associated to a desired force on the CoM\+: \[ F_d = m \omega^2 (\mathbf{h} - \mathbf{p}_d) \] Where $m$ is the total mass of the robot and a force set point regulator can be implemented as\+: \[ \dot{\mathbf{h}}_d = k_f(F_d - F) \] Where $k_f > 0$ is a force control gain. Substituting eq\+:simplified\+Z\+MP we get\+: \[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \] 
+In \cite{krause2012stabilization} a position-\/based Z\+MP controller was implemented by relating the desired Z\+MP $ \mathbf{p}_d $ to a desired force, given the relationship between CoM acceleration and the Z\+MP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the Z\+MP $\mathbf{p} = (p_x, p_y)$ can be computed as\+: \label{classZmpController_simplifiedZMP}%
+\hypertarget{classZmpController_simplifiedZMP}{}%
+ \begin{equation} \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p}) \end{equation}
+
+Where $\omega = \sqrt{g/c_z}$ as done in \cite{kajita2003biped}. Therefore the desired $\mathbf{p}_d$ can be associated to a desired force on the CoM\+: \[ F_d = m \omega^2 (\mathbf{h} - \mathbf{p}_d) \] Where $m$ is the total mass of the robot and a force set point regulator can be implemented as\+: \[ \dot{\mathbf{h}}_d = k_f(F_d - F) \] Where $k_f > 0$ is a force control gain. Substituting \hyperlink{classZmpController_simplifiedZMP}{simplified\+Z\+MP} we get\+: \[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \] 
 
 \subsection{Constructor \& Destructor Documentation}
 \hypertarget{classZmpController_a401013c4cc1d215972062b027e11e619}{}\label{classZmpController_a401013c4cc1d215972062b027e11e619} 

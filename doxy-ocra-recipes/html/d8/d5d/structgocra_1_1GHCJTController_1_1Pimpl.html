@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -75,19 +81,20 @@ $(function() {
 <div class="dynheader">
 Collaboration diagram for gocra::GHCJTController::Pimpl:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/d76/structgocra_1_1GHCJTController_1_1Pimpl__coll__graph.svg" width="1523" height="618"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="../../dd/d76/structgocra_1_1GHCJTController_1_1Pimpl__coll__graph.svg" width="1523" height="404"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 <center><span class="legend">[<a href="../../graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad9ff86db7b59559d42a4d87eee73c761"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#ad9ff86db7b59559d42a4d87eee73c761">Pimpl</a> (const std::string &amp;name, Model &amp;m, <a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">ocra::OneLevelSolver</a> &amp;s, bool <a class="el" href="../../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#a0a9b1d16fc029929004e00dbf358063a">useGrav</a>)</td></tr>
+<tr class="memitem:ad9ff86db7b59559d42a4d87eee73c761"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#ad9ff86db7b59559d42a4d87eee73c761">Pimpl</a> (const std::string &amp;name, <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;m, <a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">ocra::OneLevelSolver</a> &amp;s, bool <a class="el" href="../../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#a0a9b1d16fc029929004e00dbf358063a">useGrav</a>)</td></tr>
 <tr class="separator:ad9ff86db7b59559d42a4d87eee73c761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0df04a7ffd9f5bc6346fc786d1c30ef1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#a0df04a7ffd9f5bc6346fc786d1c30ef1">~Pimpl</a> ()</td></tr>
 <tr class="separator:a0df04a7ffd9f5bc6346fc786d1c30ef1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a43eb79ddf7ef332d76d850711fc57e8e"><td class="memItemLeft" align="right" valign="top">Model &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#a43eb79ddf7ef332d76d850711fc57e8e">innerModel</a></td></tr>
+<tr class="memitem:a43eb79ddf7ef332d76d850711fc57e8e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#a43eb79ddf7ef332d76d850711fc57e8e">innerModel</a></td></tr>
 <tr class="separator:a43eb79ddf7ef332d76d850711fc57e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af06224d9d2a704cb042b5b01d3bf18ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d5e/classocra_1_1OneLevelSolver.html">ocra::OneLevelSolver</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d5d/structgocra_1_1GHCJTController_1_1Pimpl.html#af06224d9d2a704cb042b5b01d3bf18ab">innerSolver</a></td></tr>
 <tr class="separator:af06224d9d2a704cb042b5b01d3bf18ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -134,7 +141,7 @@ Public Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Model &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>m</em>, </td>
         </tr>
         <tr>
@@ -249,7 +256,7 @@ Public Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Model&amp; gocra::GHCJTController::Pimpl::innerModel</td>
+          <td class="memname"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a>&amp; gocra::GHCJTController::Pimpl::innerModel</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -392,7 +399,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:33 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:24 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

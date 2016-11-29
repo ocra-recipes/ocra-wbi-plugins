@@ -6,6 +6,7 @@ var searchData=
   ['handleerror',['handleError',['../d7/dcf/structocra_1_1Controller_1_1Pimpl.html#a2764f0bf903a983abae8195ab6639ed5',1,'ocra::Controller::Pimpl']]],
   ['hasacceleration',['hasAcceleration',['../dc/d31/classocra_1_1TaskState.html#a345c1cdb0c0bc05d087153b3018a1811',1,'ocra::TaskState']]],
   ['hasbeenreleased',['hasBeenReleased',['../df/d60/classocra__recipes_1_1ControllerClient.html#a8c83005b1be831bc230d5a441f88980d',1,'ocra_recipes::ControllerClient']]],
+  ['hasfixedroot',['hasFixedRoot',['../d4/d00/classocra_1_1Model.html#a6f300d27fc0363c1cc6cb016e5c1d566',1,'ocra::Model']]],
   ['hasposition',['hasPosition',['../dc/d31/classocra_1_1TaskState.html#a1f6358128f62c6200b9a48b0600d58b8',1,'ocra::TaskState']]],
   ['hasproperty',['hasProperty',['../d0/de6/structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4.html#a8fbc174cf47fff622585a56db6444286',1,'ocra::FunctionInterfaceMapping&lt; X&lt; Function &gt; &gt;::hasProperty()'],['../dd/d68/classocra_1_1IFunctionProperties.html#a9484dcc696cc2425ae1e1e10fa79b5ba',1,'ocra::IFunctionProperties::hasProperty()']]],
   ['hasq',['hasQ',['../dc/d31/classocra_1_1TaskState.html#aad8be338fe82467edd8060644176e82e',1,'ocra::TaskState']]],

@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -90,6 +96,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aa2a733dfaa80f32fa95f45c2d98f6106"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a416154f1cd736647003442d905b9862e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#a416154f1cd736647003442d905b9862e">reconnect</a> ()</td></tr>
 <tr class="separator:a416154f1cd736647003442d905b9862e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66f5d60e3690f959135319ed85778de8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#a66f5d60e3690f959135319ed85778de8">disconnect</a> ()</td></tr>
+<tr class="separator:a66f5d60e3690f959135319ed85778de8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a64c0f6623daace3ac9030ec620ed98a2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#a64c0f6623daace3ac9030ec620ed98a2">activate</a> ()</td></tr>
 <tr class="separator:a64c0f6623daace3ac9030ec620ed98a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8488250380b7fd9598f3246ec6111d6a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#a8488250380b7fd9598f3246ec6111d6a">deactivate</a> ()</td></tr>
@@ -128,8 +136,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ad03415eb9f2107be39cb44399fb0afd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44930029ade716c0ebbe04fba658cf7e"><td class="memItemLeft" align="right" valign="top">Eigen::VectorXd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#a44930029ade716c0ebbe04fba658cf7e">getWeight</a> ()</td></tr>
 <tr class="separator:a44930029ade716c0ebbe04fba658cf7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab7feddafb3948aaf67bf00b227591694"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#ab7feddafb3948aaf67bf00b227591694">openControlPorts</a> ()</td></tr>
-<tr class="separator:ab7feddafb3948aaf67bf00b227591694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af80b37e5862169c841e4fec70a354937"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#af80b37e5862169c841e4fec70a354937">openControlPorts</a> (bool connect=true)</td></tr>
+<tr class="separator:af80b37e5862169c841e4fec70a354937"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad33b58e0bf6e0f7051b0187435b014f9"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#ad33b58e0bf6e0f7051b0187435b014f9">getTaskName</a> ()</td></tr>
 <tr class="separator:ad33b58e0bf6e0f7051b0187435b014f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac5a29440c295728f97b5a5f6df69924f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/d84/classocra_1_1Task.html#a8ddf2840d178ca273e886c9ca95248fe">ocra::Task::META_TASK_TYPE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#ac5a29440c295728f97b5a5f6df69924f">getTaskType</a> ()</td></tr>
@@ -261,7 +269,7 @@ Public Member Functions</h2></td></tr>
 <p>Activates the underlying task(s) </p><dl class="section note"><dt>Note</dt><dd><code><a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html#a8488250380b7fd9598f3246ec6111d6a">deactivate()</a></code> must be called before this function to work properly.</dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A boolean indicating the success of the operation. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00052">52</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00069">69</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -280,7 +288,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00425">425</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00442">442</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -301,7 +309,26 @@ Public Member Functions</h2></td></tr>
 <p>Deactivates the underlying task(s). This is where we call getTaskMode() to see if the task in an objective or a constraint.</p>
 <dl class="section return"><dt>Returns</dt><dd>A boolean indicating the success of the operation. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00064">64</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00081">81</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+
+</div>
+</div>
+<a id="a66f5d60e3690f959135319ed85778de8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66f5d60e3690f959135319ed85778de8">&sect;&nbsp;</a></span>disconnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void TaskConnection::disconnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00045">45</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -322,7 +349,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the current damping, or damping (Kd) gain, of the task.</p>
 <dl class="section return"><dt>Returns</dt><dd>The first diagonal entry of the damping matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00198">198</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00215">215</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -343,7 +370,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the current damping, or damping (Kd) gain, of the task.</p>
 <dl class="section return"><dt>Returns</dt><dd>The damping matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00203">203</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00220">220</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -362,7 +389,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00290">290</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00307">307</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -383,7 +410,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the name of the task manager's RPC server port.</p>
 <dl class="section return"><dt>Returns</dt><dd>The port's full name as a string. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00076">76</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00093">93</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -404,7 +431,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the current stiffness, or proportional (Kp) gain, of the task.</p>
 <dl class="section return"><dt>Returns</dt><dd>The first diagonal entry of the stiffness matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00147">147</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00164">164</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -425,7 +452,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the current stiffness, or proportional (Kp) gain, of the task.</p>
 <dl class="section return"><dt>Returns</dt><dd>The stiffness matrix. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00152">152</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00169">169</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -444,7 +471,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00251">251</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00268">268</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -465,7 +492,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the current error vector of the task.  Only valid for task managers with 1 task, not sets of tasks.</p>
 <dl class="section return"><dt>Returns</dt><dd>A vector of errors in each DoF of the task. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00096">96</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00113">113</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -486,7 +513,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the current error vector norm of the task.  Only valid for task managers with 1 task, not sets of tasks.</p>
 <dl class="section return"><dt>Returns</dt><dd>The norm of the task error vector. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00109">109</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00126">126</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -505,7 +532,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00330">330</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00347">347</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -524,7 +551,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00360">360</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00377">377</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -543,7 +570,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00350">350</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00367">367</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -562,7 +589,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00320">320</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00337">337</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -581,7 +608,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00355">355</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00372">372</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -600,7 +627,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00345">345</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00362">362</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -619,7 +646,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00340">340</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00357">357</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -638,7 +665,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00335">335</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00352">352</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -657,7 +684,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00325">325</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00342">342</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -676,7 +703,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00416">416</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00433">433</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -705,7 +732,7 @@ Public Member Functions</h2></td></tr>
 <p>The name of the task we are connected to.</p>
 <dl class="section return"><dt>Returns</dt><dd>The name of the task we are connected to. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../de/d5d/TaskConnection_8h_source.html#l00189">189</a> of file <a class="el" href="../../de/d5d/TaskConnection_8h_source.html">TaskConnection.h</a>.</p>
+<p>Definition at line <a class="el" href="../../de/d5d/TaskConnection_8h_source.html#l00192">192</a> of file <a class="el" href="../../de/d5d/TaskConnection_8h_source.html">TaskConnection.h</a>.</p>
 
 </div>
 </div>
@@ -724,7 +751,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00408">408</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00425">425</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -743,7 +770,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00275">275</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00292">292</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -764,7 +791,7 @@ Public Member Functions</h2></td></tr>
 <p>The type of the task we are connected to.</p>
 <dl class="section return"><dt>Returns</dt><dd>The type of the task we are connected to. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00259">259</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00276">276</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -783,7 +810,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00267">267</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00284">284</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -804,7 +831,7 @@ Public Member Functions</h2></td></tr>
 <p>Gets the weights associated with the task. Often a task will have a single weight but it is still represented as a vector to be applied to each DoF of the task.</p>
 <dl class="section return"><dt>Returns</dt><dd>The vector of task weights. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00238">238</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00255">255</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -825,12 +852,12 @@ Public Member Functions</h2></td></tr>
 <p>Check if the task is active as either an objective or a constraint.</p>
 <dl class="section return"><dt>Returns</dt><dd>A boolean indicating the task(s) activity. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00084">84</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00101">101</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
-<a id="ab7feddafb3948aaf67bf00b227591694"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab7feddafb3948aaf67bf00b227591694">&sect;&nbsp;</a></span>openControlPorts()</h2>
+<a id="af80b37e5862169c841e4fec70a354937"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af80b37e5862169c841e4fec70a354937">&sect;&nbsp;</a></span>openControlPorts()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -838,15 +865,22 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">bool TaskConnection::openControlPorts </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>connect</em> = <code>true</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Opens the high speed task control ports.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connect</td><td>the <a class="el" href="../../d9/d30/classocra__recipes_1_1TaskConnection.html">TaskConnection</a> ports to the highspeed Task control ports. </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section return"><dt>Returns</dt><dd>True if the ports open successfully and are connected. </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00365">365</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00382">382</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -876,7 +910,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00445">445</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00462">462</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -895,7 +929,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00045">45</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00059">59</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -921,7 +955,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00165">165</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00182">182</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -947,7 +981,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00176">176</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00193">193</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -973,7 +1007,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00187">187</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00204">204</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -993,7 +1027,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00301">301</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00318">318</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -1013,7 +1047,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00309">309</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00326">326</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -1039,7 +1073,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00114">114</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00131">131</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -1065,7 +1099,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00125">125</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00142">142</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -1091,7 +1125,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00136">136</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00153">153</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -1117,7 +1151,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00216">216</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00233">233</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -1143,7 +1177,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00227">227</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
+<p>Definition at line <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html#l00244">244</a> of file <a class="el" href="../../d1/d60/TaskConnection_8cpp_source.html">TaskConnection.cpp</a>.</p>
 
 </div>
 </div>
@@ -1154,7 +1188,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

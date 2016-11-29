@@ -33,6 +33,7 @@ var searchData=
   ['isregisteredasconstraint',['isRegisteredAsConstraint',['../df/d7f/structocra_1_1Task_1_1Pimpl.html#ae028c89ba97335288e09cf823399f680',1,'ocra::Task::Pimpl::isRegisteredAsConstraint()'],['../d7/d99/structgocra_1_1GHCJTTask_1_1Pimpl.html#aace8728a2e9a0271ea89aea0355c036b',1,'gocra::GHCJTTask::Pimpl::isRegisteredAsConstraint()']]],
   ['isregisteredasobjective',['isRegisteredAsObjective',['../df/d7f/structocra_1_1Task_1_1Pimpl.html#a15289fedace1e80a0999cec502b60d23',1,'ocra::Task::Pimpl::isRegisteredAsObjective()'],['../d7/d99/structgocra_1_1GHCJTTask_1_1Pimpl.html#ac3772fc7a816ef1ba5ac40b79908d225',1,'gocra::GHCJTTask::Pimpl::isRegisteredAsObjective()']]],
   ['istaskcurrentlyactive',['isTaskCurrentlyActive',['../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a7f185a5b52a00b7e5bce78e5ffb77d97',1,'ocra_recipes::TrajectoryThread']]],
+  ['isusingterminationstrategy',['isUsingTerminationStrategy',['../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#adb4b6cffdd2a797c95b54642e13502d2',1,'ocra_recipes::TrajectoryThread']]],
   ['iter',['iter',['../d7/d96/structocra_1_1NewtonSolver_1_1eNewtonInfo.html#a3ec8816b36812a608542479168a9c18d',1,'ocra::NewtonSolver::eNewtonInfo::iter()'],['../d2/d99/structocra_1_1fsqpDetails_1_1Prnt.html#a276fb8038114797a04a94e1b2ec10a35',1,'ocra::fsqpDetails::Prnt::iter()']]],
   ['iter_5fmod',['iter_mod',['../d2/d99/structocra_1_1fsqpDetails_1_1Prnt.html#ab7a06548e1ccc8483b3221798ab15e7e',1,'ocra::fsqpDetails::Prnt']]]
 ];

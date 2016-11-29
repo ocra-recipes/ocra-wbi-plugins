@@ -11,11 +11,11 @@
 <polygon fill="white" stroke="none" points="-4,4 -4,-43 157.036,-43 157.036,4 -4,4"/>
 <!-- Node0 -->
 <g id="node1" class="node"><title>Node0</title>
-<g id="a_node1"><a xlink:href="d0/d77/structocra_1_1Parenthood_1_1childIs.html" target="_top" xlink:title="ocra::Parenthood\&lt; Component\lDerived, CompositeDerived,\l ParenthoodInfo \&gt;::childIs">
+<g id="a_node1"><a xlink:href="df/d61/structocra_1_1Parenthood_1_1parentIs.html" target="_top" xlink:title="Functors to locate a parent or a child. ">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-38.5 153.036,-38.5 153.036,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">ocra::Parenthood&lt; Component</text>
 <text text-anchor="start" x="8" y="-16.5" font-family="Helvetica,sans-Serif" font-size="10.00">Derived, CompositeDerived,</text>
-<text text-anchor="middle" x="76.5181" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00"> ParenthoodInfo &gt;::childIs</text>
+<text text-anchor="middle" x="76.5181" y="-6.5" font-family="Helvetica,sans-Serif" font-size="10.00"> ParenthoodInfo &gt;::parentIs</text>
 </a>
 </g>
 </g>

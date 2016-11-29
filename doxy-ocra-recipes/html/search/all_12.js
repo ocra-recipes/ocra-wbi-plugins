@@ -52,6 +52,7 @@ var searchData=
   ['return_5ftype',['return_type',['../d1/d71/classocra_1_1IFunction.html#a04d351c2f938d01046328b54fb7e6525',1,'ocra::IFunction']]],
   ['return_5ftype_5ftraits',['return_type_traits',['../d7/d42/structocra_1_1return__type__traits.html',1,'ocra']]],
   ['returninghome',['returningHome',['../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a3835f5a143e350d53786d4469fce09f1',1,'ocra_recipes::TrajectoryThread']]],
+  ['returntohome',['returnToHome',['../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#ac1335eaa6c85597cab894673ef9a56f9',1,'ocra_recipes::TrajectoryThread']]],
   ['reverse',['REVERSE',['../d5/d53/namespaceocra__recipes.html#afcf7ca623a6c39b246aa4bda629c7309a468959a03833fa918bffd1c79b8ab2d6',1,'ocra_recipes']]],
   ['reverse_5fstop',['REVERSE_STOP',['../d5/d53/namespaceocra__recipes.html#afcf7ca623a6c39b246aa4bda629c7309aad0af957c445b2993cea58c80fa519ff',1,'ocra_recipes']]],
   ['reverse_5fstop_5fdeactivate',['REVERSE_STOP_DEACTIVATE',['../d5/d53/namespaceocra__recipes.html#afcf7ca623a6c39b246aa4bda629c7309a39851fd1d704bc5bfaf8cdde6193e675',1,'ocra_recipes']]],

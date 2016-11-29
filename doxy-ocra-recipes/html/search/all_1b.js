@@ -46,6 +46,7 @@ var searchData=
   ['_7elinearfunction',['~LinearFunction',['../de/d3a/classocra_1_1LinearFunction.html#a0bdb80bc2a85566bc02dd143b6db7fdf',1,'ocra::LinearFunction']]],
   ['_7elineartask',['~LinearTask',['../dd/d16/classocra_1_1LinearTask.html#ad443b3044cc66e3e68ea3f5062e37453',1,'ocra::LinearTask']]],
   ['_7emergedvariable',['~MergedVariable',['../dd/d9c/classocra_1_1MergedVariable.html#aa126050631c068dba3e1d12f31dea9ec',1,'ocra::MergedVariable']]],
+  ['_7emodel',['~Model',['../d4/d00/classocra_1_1Model.html#acd9ac3268fc9f79738067bc12292521f',1,'ocra::Model']]],
   ['_7emodel3t',['~Model3T',['../d3/d33/classModel3T.html#a6dedc34c9fefff7bd94d7c482eab04d1',1,'Model3T']]],
   ['_7emodelcontacts',['~ModelContacts',['../d8/d4c/classocra_1_1ModelContacts.html#ab8ca6e653ccacdff73ae10e7c0750bbf',1,'ocra::ModelContacts']]],
   ['_7enamedinstance',['~NamedInstance',['../db/de3/classocra_1_1NamedInstance.html#a0caaa1040def535f34f527b7f7f590cf',1,'ocra::NamedInstance']]],

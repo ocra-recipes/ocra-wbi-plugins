@@ -35,13 +35,13 @@ struct \hyperlink{structocra_1_1SegmentFrame_1_1Pimpl}{Pimpl}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classocra_1_1SegmentFrame_ab05987e2ecc0f904c905b9e66269ce84}{Segment\+Frame} (const std\+::string \&name, const Model \&model, const std\+::string \&segname)
+\hyperlink{classocra_1_1SegmentFrame_ab05987e2ecc0f904c905b9e66269ce84}{Segment\+Frame} (const std\+::string \&name, const \hyperlink{classocra_1_1Model}{Model} \&model, const std\+::string \&segname)
 \item 
-\hyperlink{classocra_1_1SegmentFrame_ad9cd47c330239c77e913d38029af808d}{Segment\+Frame} (const std\+::string \&name, const Model \&model, const std\+::string \&segname, const Eigen\+::\+Displacementd \&H\+\_\+local)
+\hyperlink{classocra_1_1SegmentFrame_ad9cd47c330239c77e913d38029af808d}{Segment\+Frame} (const std\+::string \&name, const \hyperlink{classocra_1_1Model}{Model} \&model, const std\+::string \&segname, const Eigen\+::\+Displacementd \&H\+\_\+local)
 \item 
-\hyperlink{classocra_1_1SegmentFrame_a01156da94eca5bf4961077a3310fc271}{Segment\+Frame} (const std\+::string \&name, const Model \&model, int segment\+Id)
+\hyperlink{classocra_1_1SegmentFrame_a01156da94eca5bf4961077a3310fc271}{Segment\+Frame} (const std\+::string \&name, const \hyperlink{classocra_1_1Model}{Model} \&model, int segment\+Id)
 \item 
-\hyperlink{classocra_1_1SegmentFrame_a3864bc8263c40f7afa11de3c8c2dd76b}{Segment\+Frame} (const std\+::string \&name, const Model \&model, int segment\+Id, const Eigen\+::\+Displacementd \&H\+\_\+local)
+\hyperlink{classocra_1_1SegmentFrame_a3864bc8263c40f7afa11de3c8c2dd76b}{Segment\+Frame} (const std\+::string \&name, const \hyperlink{classocra_1_1Model}{Model} \&model, int segment\+Id, const Eigen\+::\+Displacementd \&H\+\_\+local)
 \item 
 Eigen\+::\+Displacementd \hyperlink{classocra_1_1SegmentFrame_ad0c5aa3b15b384cd5a4774ddd534b32e}{get\+Position} () const
 \item 
@@ -55,7 +55,7 @@ Eigen\+::\+Matrix$<$ double, 6, Eigen\+::\+Dynamic $>$ \hyperlink{classocra_1_1S
 \item 
 bool \hyperlink{classocra_1_1SegmentFrame_a68708b5ced24d192fbb0bfd9e3647925}{depends\+On\+Model\+Configuration} () const
 \item 
-const Model \& \hyperlink{classocra_1_1SegmentFrame_a3a14b77753ad98507db9968b33c582e4}{get\+Model} () const
+const \hyperlink{classocra_1_1Model}{Model} \& \hyperlink{classocra_1_1SegmentFrame_a3a14b77753ad98507db9968b33c582e4}{get\+Model} () const
 \item 
 int \hyperlink{classocra_1_1SegmentFrame_a8f651dccb13afc25504531efd17c8eef}{get\+Segment\+Index} () const
 \end{DoxyCompactItemize}
@@ -74,7 +74,7 @@ Definition at line 103 of file Control\+Frame.\+h.
 \index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!Segment\+Frame@{Segment\+Frame}}
 \index{Segment\+Frame@{Segment\+Frame}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
 \subsubsection{\texorpdfstring{Segment\+Frame()}{SegmentFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [1/4]}}
-{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{const std\+::string \&}]{segname }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \hyperlink{classocra_1_1Model}{Model} \&}]{model,  }\item[{const std\+::string \&}]{segname }\end{DoxyParamCaption})}
 
 
 
@@ -84,7 +84,7 @@ Definition at line 141 of file Control\+Frame.\+cpp.
 \index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!Segment\+Frame@{Segment\+Frame}}
 \index{Segment\+Frame@{Segment\+Frame}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
 \subsubsection{\texorpdfstring{Segment\+Frame()}{SegmentFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [2/4]}}
-{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{const std\+::string \&}]{segname,  }\item[{const Eigen\+::\+Displacementd \&}]{H\+\_\+local }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \hyperlink{classocra_1_1Model}{Model} \&}]{model,  }\item[{const std\+::string \&}]{segname,  }\item[{const Eigen\+::\+Displacementd \&}]{H\+\_\+local }\end{DoxyParamCaption})}
 
 
 
@@ -94,7 +94,7 @@ Definition at line 147 of file Control\+Frame.\+cpp.
 \index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!Segment\+Frame@{Segment\+Frame}}
 \index{Segment\+Frame@{Segment\+Frame}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
 \subsubsection{\texorpdfstring{Segment\+Frame()}{SegmentFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [3/4]}}
-{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{int}]{segment\+Id }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \hyperlink{classocra_1_1Model}{Model} \&}]{model,  }\item[{int}]{segment\+Id }\end{DoxyParamCaption})}
 
 
 
@@ -104,7 +104,7 @@ Definition at line 153 of file Control\+Frame.\+cpp.
 \index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!Segment\+Frame@{Segment\+Frame}}
 \index{Segment\+Frame@{Segment\+Frame}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
 \subsubsection{\texorpdfstring{Segment\+Frame()}{SegmentFrame()}\hspace{0.1cm}{\footnotesize\ttfamily [4/4]}}
-{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const Model \&}]{model,  }\item[{int}]{segment\+Id,  }\item[{const Eigen\+::\+Displacementd \&}]{H\+\_\+local }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily ocra\+::\+Segment\+Frame\+::\+Segment\+Frame (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name,  }\item[{const \hyperlink{classocra_1_1Model}{Model} \&}]{model,  }\item[{int}]{segment\+Id,  }\item[{const Eigen\+::\+Displacementd \&}]{H\+\_\+local }\end{DoxyParamCaption})}
 
 
 
@@ -159,7 +159,7 @@ Definition at line 185 of file Control\+Frame.\+cpp.
 \index{ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}!get\+Model@{get\+Model}}
 \index{get\+Model@{get\+Model}!ocra\+::\+Segment\+Frame@{ocra\+::\+Segment\+Frame}}
 \subsubsection{\texorpdfstring{get\+Model()}{getModel()}}
-{\footnotesize\ttfamily const Model \& ocra\+::\+Segment\+Frame\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
+{\footnotesize\ttfamily const \hyperlink{classocra_1_1Model}{Model} \& ocra\+::\+Segment\+Frame\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [virtual]}}
 
 
 

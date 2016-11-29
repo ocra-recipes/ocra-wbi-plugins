@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -90,11 +96,13 @@ $(function() {
   <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a55a2e93d3706b500338c70d4e1c406ba">init</a>()</td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a08dc8a4a78b61d6b3d1e38e82b809493">isPaused</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a7f185a5b52a00b7e5bce78e5ffb77d97">isTaskCurrentlyActive</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a16c8d8bfbbfb45b1a3fa9b08781123aa">maximumVariance</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a5ca19050f1f7f7e396c558b98c9ee8d7">pause</a>()</td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a9436d523ebb66dfa9bbc8ed458306e46">pauseTime</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a4dbc25516ce41a0bc82c49e004a1b933">printWaitingNoticeOnce</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a3835f5a143e350d53786d4469fce09f1">returningHome</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#adb4b6cffdd2a797c95b54642e13502d2">isUsingTerminationStrategy</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a16c8d8bfbbfb45b1a3fa9b08781123aa">maximumVariance</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a5ca19050f1f7f7e396c558b98c9ee8d7">pause</a>()</td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a9436d523ebb66dfa9bbc8ed458306e46">pauseTime</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a4dbc25516ce41a0bc82c49e004a1b933">printWaitingNoticeOnce</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a3835f5a143e350d53786d4469fce09f1">returningHome</a></td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#ac1335eaa6c85597cab894673ef9a56f9">returnToHome</a>()</td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a835a13515f49bfa8ff047dbbaa6deb14">run</a>()</td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#a8cff41b23344e18cd795354ba893b3e2">setDisplacement</a>(double dispDouble)</td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html#ab068cd5ad8d3b000c0af32311c113141">setDisplacement</a>(const Eigen::VectorXd &amp;displacementVector)</td><td class="entry"><a class="el" href="../../d0/d2a/classocra__recipes_1_1TrajectoryThread.html">ocra_recipes::TrajectoryThread</a></td><td class="entry"></td></tr>
@@ -128,7 +136,7 @@ $(function() {
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:27 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

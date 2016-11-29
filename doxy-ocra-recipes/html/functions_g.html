@@ -12,6 +12,12 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -98,6 +104,9 @@ $(function() {
 , <a class="el" href="da/dbb/classocra_1_1TargetFrame.html#ab38d91f0d2f90b102259ec155a8a1245">ocra::TargetFrame</a>
 , <a class="el" href="dc/d31/classocra_1_1TaskState.html#a807bf13b983e7656b89f559a16d61b26">ocra::TaskState</a>
 </li>
+<li>getAccelerationVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#adf0c6ffce3a2cc8e3d654bf3d6f23b3c">ocra::Model</a>
+</li>
 <li>getActionVariable()
 : <a class="el" href="d4/d62/group__constraint.html#gaa3c3057ca6a00bf88c372d0c467bed67">ocra::FullDynamicEquationFunction</a>
 </li>
@@ -109,6 +118,7 @@ $(function() {
 </li>
 <li>getActuatedDofs()
 : <a class="el" href="d3/d33/classModel3T.html#aad7041820bf886ee965b05611bdedfd0">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#ad1a78d57aca4a4128c54d479f30afd82">ocra::Model</a>
 </li>
 <li>getAdaptativeAlpha()
 : <a class="el" href="d2/d07/classocra_1_1NewtonSolver.html#aa0f49d597e69f641c28e35b038e91d99">ocra::NewtonSolver</a>
@@ -177,17 +187,27 @@ $(function() {
 <li>getClientPortName()
 : <a class="el" href="df/dca/classocra__recipes_1_1ClientCommunications.html#aa6a6158593016b02b28122903022b0e6">ocra_recipes::ClientCommunications</a>
 </li>
+<li>getCoMAngularJacobian()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a24406cb7507684963e5aedb6b79940cd">ocra::Model</a>
+</li>
+<li>getCoMAngularVelocity()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#ac7f7c87ee1ecb19e342faaac8241de6c">ocra::Model</a>
+</li>
 <li>getCoMJacobian()
 : <a class="el" href="d3/d33/classModel3T.html#addc6149d27f7cb5d3c8ab453e55b88e4">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a4b148504194036b0faafe619e5b98f59">ocra::Model</a>
 </li>
 <li>getCoMJacobianDot()
 : <a class="el" href="d3/d33/classModel3T.html#a6b63e04105ce4fa8026681ea1109702e">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#abfc71fa0f52145b1df92bdbd0963c926">ocra::Model</a>
 </li>
 <li>getCoMJdotQdot()
 : <a class="el" href="d3/d33/classModel3T.html#a408213f442ab7287c44e86e6d72f825c">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a2be9c0fdd8dbe4ecbb99eef5f4ea45d1">ocra::Model</a>
 </li>
 <li>getCoMPosition()
 : <a class="el" href="d3/d33/classModel3T.html#ad81ca6213b967fb62d8c1682c3389736">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a9c3b077772e4886299f613a71f8981e2">ocra::Model</a>
 </li>
 <li>getComputedForce()
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a088d67ee49cbdc57ad2b77e2d89afae0">gocra::GHCJTTask</a>
@@ -195,9 +215,13 @@ $(function() {
 </li>
 <li>getCoMVelocity()
 : <a class="el" href="d3/d33/classModel3T.html#abe65ef07b4e6c61f6567c1f007631081">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a567e950be5868080c250c40d8fc0c0ce">ocra::Model</a>
 </li>
 <li>getConeOrientation()
 : <a class="el" href="d0/dd6/classocra_1_1LinearizedCoulombFunction.html#af503cd2489d6cdc131e5bbd526586954">ocra::LinearizedCoulombFunction</a>
+</li>
+<li>getConfigurationVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#aff63dd9c26f6149f0cdc33a402eca4ea">ocra::Model</a>
 </li>
 <li>getConstraint()
 : <a class="el" href="d7/d85/classocra_1_1ControlConstraint.html#a41b7568bc59441ca8d115e7ccf613658">ocra::ControlConstraint</a>
@@ -255,6 +279,7 @@ $(function() {
 </li>
 <li>getDampingMatrix()
 : <a class="el" href="d3/d33/classModel3T.html#a5ed6794462c63bdd1eeabbfa221e2ef6">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#adfbe3160558dd221e7e91e2aad4d5089">ocra::Model</a>
 , <a class="el" href="d8/d26/classocra_1_1TaskYarpInterface.html#afdb2df2def4dec4067bd4696489a3b36">ocra::TaskYarpInterface</a>
 , <a class="el" href="d9/d30/classocra__recipes_1_1TaskConnection.html#a4176118231f2c5e17e4f749999c9456e">ocra_recipes::TaskConnection</a>
 </li>
@@ -288,7 +313,7 @@ $(function() {
 , <a class="el" href="d9/dfa/classocra_1_1LinearInterpolationTrajectory.html#a342ca41e9c55e46cc40f884b9f7a6412">ocra::LinearInterpolationTrajectory</a>
 , <a class="el" href="d5/df0/classocra_1_1MinimumJerkTrajectory.html#aec9a296591707254657082d550bdb21f">ocra::MinimumJerkTrajectory</a>
 , <a class="el" href="dc/d2e/classocra_1_1TimeOptimalTrajectory.html#a42ca0b579494ac0c3c4c842896e592f9">ocra::TimeOptimalTrajectory</a>
-, <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#a2102a829e6dad497f7c773c346d499b7">ocra::Trajectory</a>
+, <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#aab6869cf5bc4a7c44eac36a0e49255b9">ocra::Trajectory</a>
 </li>
 <li>getDiagonal()
 : <a class="el" href="d3/d89/classocra_1_1DiagonalLinearFunction.html#a1b2acc7225716b75ef0cf9995a49406b">ocra::DiagonalLinearFunction</a>
@@ -311,6 +336,12 @@ $(function() {
 , <a class="el" href="d4/d58/classocra_1_1PointContactFeature.html#aa2621ee588c9b593a68ace1a167d4418">ocra::PointContactFeature</a>
 , <a class="el" href="d7/d01/classocra_1_1PositionFeature.html#a1fa18a892139ae4e962f189cedd699c0">ocra::PositionFeature</a>
 , <a class="el" href="d9/d84/classocra_1_1Task.html#a12b60082f3f87274db964b7844af816e">ocra::Task</a>
+</li>
+<li>getDofIndex()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a070d9fa513218ca3f9fa8b2690563482">ocra::Model</a>
+</li>
+<li>getDofName()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#ad64d41ddb52236bee343d27572cd7020">ocra::Model</a>
 </li>
 <li>getDofs()
 : <a class="el" href="d0/d45/classocra_1_1PartialState.html#a969bb0d941f73df7da78aba4339908c4">ocra::PartialState</a>
@@ -370,9 +401,11 @@ $(function() {
 </li>
 <li>getFreeFlyerPosition()
 : <a class="el" href="d3/d33/classModel3T.html#ab9a2a5644b40341af54e408dd8d1b0de">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a7549d8ca32c46a84ea4799730a81dae2">ocra::Model</a>
 </li>
 <li>getFreeFlyerVelocity()
 : <a class="el" href="d3/d33/classModel3T.html#aa2b2a35af047f4fd539131e87ee3af2a">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a0a11fff87a21ab37535420f7a7544c96">ocra::Model</a>
 </li>
 <li>getFrictionCoeff()
 : <a class="el" href="d0/dd6/classocra_1_1LinearizedCoulombFunction.html#a392b8054e54449a81202ae9682211d32">ocra::LinearizedCoulombFunction</a>
@@ -397,6 +430,7 @@ $(function() {
 </li>
 <li>getGravityTerms()
 : <a class="el" href="d3/d33/classModel3T.html#a593775a88272c140518b679ad910a89c">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#aef569d0c71ab76665e4a24d178e8243d">ocra::Model</a>
 </li>
 <li>getHierarchyLevel()
 : <a class="el" href="d1/de8/classocra_1_1CascadeQP.html#a49b3ce4ed68507905755b63f878c1990">ocra::CascadeQP</a>
@@ -426,6 +460,7 @@ $(function() {
 , <a class="el" href="dd/d54/classocra_1_1FullModelState.html#a988dec9567fd2b083ecfb6f3348d9a09">ocra::FullModelState</a>
 , <a class="el" href="d2/d99/classocra_1_1FullState.html#a5d5c2ddfaf4868f78b4621d27b500784">ocra::FullState</a>
 , <a class="el" href="d5/de2/classocra_1_1FullTargetState.html#ad7a1b06462ba3cc348e5634e1a0db0b2">ocra::FullTargetState</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#adf59aeee10c9d3babb05d7249bf71106">ocra::Model</a>
 , <a class="el" href="d1/dc1/classocra_1_1PartialModelState.html#a9fe03ab8c3c4afe56ee4b59f96ac4a25">ocra::PartialModelState</a>
 , <a class="el" href="d0/d45/classocra_1_1PartialState.html#ad811a25932f0fad439242ebd48841162">ocra::PartialState</a>
 , <a class="el" href="d1/def/classocra_1_1PartialTargetState.html#a757cd49fca47e934025e92b81dc15535">ocra::PartialTargetState</a>
@@ -435,6 +470,7 @@ $(function() {
 , <a class="el" href="dd/d54/classocra_1_1FullModelState.html#adf7ce7128a112c3f2b6367b6c0f6b9a2">ocra::FullModelState</a>
 , <a class="el" href="d2/d99/classocra_1_1FullState.html#a10f3a888554035bf13b3f636ce4b4edc">ocra::FullState</a>
 , <a class="el" href="d5/de2/classocra_1_1FullTargetState.html#a55194b2f5683696eeee538cb93f3403a">ocra::FullTargetState</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#ac1b1137365a6f6765d41d68bc02f3e62">ocra::Model</a>
 , <a class="el" href="d1/dc1/classocra_1_1PartialModelState.html#a664e4f70861eefde844dca6dd09a2213">ocra::PartialModelState</a>
 , <a class="el" href="d0/d45/classocra_1_1PartialState.html#a83979e39dd3631861c724514e49cb8b4">ocra::PartialState</a>
 , <a class="el" href="d1/def/classocra_1_1PartialTargetState.html#a0e6f90f112e0a54384eb99dd7def49e0">ocra::PartialTargetState</a>
@@ -456,6 +492,15 @@ $(function() {
 </li>
 <li>getInputPortName()
 : <a class="el" href="d5/d2f/classocra__recipes_1_1ControlThread.html#a1082fa50dfacb28ffc37f8daf6417649">ocra_recipes::ControlThread</a>
+</li>
+<li>getInternalAccelerationVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a4a95124245b13fe015c1a487dcbb8868">ocra::Model</a>
+</li>
+<li>getInternalConfigurationVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a6c660297f1bd8c07c93829fc8a28838a">ocra::Model</a>
+</li>
+<li>getInternalVelocityVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#ae690f2e3d9822b3c192393add7af60a3">ocra::Model</a>
 </li>
 <li>getIthEqualityConstraint()
 : <a class="el" href="d3/d2a/classocra_1_1ConstraintSet.html#a5b7d67d57cc92ade65d84fe36d94bbe0">ocra::ConstraintSet&lt; T &gt;</a>
@@ -479,8 +524,12 @@ $(function() {
 <li>getJct()
 : <a class="el" href="d8/d4c/classocra_1_1ModelContacts.html#ac3c23337fdfac47ddf40b7e3332e31fc">ocra::ModelContacts</a>
 </li>
+<li>getJointDamping()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#af2cfdd6af60477289b035fa376ec4058">ocra::Model</a>
+</li>
 <li>getJointJacobian()
 : <a class="el" href="d3/d33/classModel3T.html#a6fd62404b6e74f239142c6a4de76d7e9">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a0adc740df0aff2f5da852421933fa493">ocra::Model</a>
 </li>
 <li>getJointLowerLimit()
 : <a class="el" href="d4/d69/classocra_1_1JointLimitConstraint.html#a4140ce4adf0c699b65ab1f9d33b4d487">ocra::JointLimitConstraint</a>
@@ -490,9 +539,20 @@ $(function() {
 : <a class="el" href="d3/d33/classModel3T.html#aea8da0b07db1efd0a8f578f0afad2372">Model3T</a>
 , <a class="el" href="d4/d69/classocra_1_1JointLimitConstraint.html#a207e245abf812538eacf10fb9d9e704d">ocra::JointLimitConstraint</a>
 , <a class="el" href="df/de0/classocra_1_1JointLimitFunction.html#ae9a3d083f00c608ed09a687447d086f1">ocra::JointLimitFunction</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#ade47bb5ea3029b3d5652109d1ec6df7f">ocra::Model</a>
+</li>
+<li>getJointName()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#ac88c445f37e5bf7302aa19b8e986013b">ocra::Model</a>
 </li>
 <li>getJointPositions()
 : <a class="el" href="d3/d33/classModel3T.html#abcaa7a21ab72837d469e5b13db23f0bc">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a9af46a69337d88d28232554175723018">ocra::Model</a>
+</li>
+<li>getJointTorques()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a062fc08c456adf091e38ed1cfa5f0524">ocra::Model</a>
+</li>
+<li>getJointTorqueVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#aa937c641a2a01e672824a3d4b16f4942">ocra::Model</a>
 </li>
 <li>getJointUpperLimit()
 : <a class="el" href="d4/d69/classocra_1_1JointLimitConstraint.html#af08f9fe570f139055dc609e34d44e062">ocra::JointLimitConstraint</a>
@@ -502,9 +562,11 @@ $(function() {
 : <a class="el" href="d3/d33/classModel3T.html#a5b2add8312e0251e43cd1027a6a72056">Model3T</a>
 , <a class="el" href="d4/d69/classocra_1_1JointLimitConstraint.html#a5055bb2f327a4fef0b43a3e92309e16f">ocra::JointLimitConstraint</a>
 , <a class="el" href="df/de0/classocra_1_1JointLimitFunction.html#aeed410787750256bdd52fdd5ca3c519f">ocra::JointLimitFunction</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a75caa887c8f27d8be8dc5a60ed1e1c41">ocra::Model</a>
 </li>
 <li>getJointVelocities()
 : <a class="el" href="d3/d33/classModel3T.html#adb503d550d97093a65f19e55725865ca">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a73b9bd94e98138145217526dbe23841a">ocra::Model</a>
 </li>
 <li>getl()
 : <a class="el" href="d4/d02/classocra_1_1CmlQuadraticSolver.html#a963b8e8e4f099e89003be3c9cb77fa90">ocra::CmlQuadraticSolver</a>
@@ -528,6 +590,7 @@ $(function() {
 </li>
 <li>getLinearTerms()
 : <a class="el" href="d3/d33/classModel3T.html#a82b4a52bc8bf966a57a31e54e3efb80c">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a0f9c628cb9e77d63744ccfd164e9beed">ocra::Model</a>
 </li>
 <li>getManagerName()
 : <a class="el" href="dd/d05/classocra__recipes_1_1ClientManager.html#a3fd7aa39812c9ffdb32b732c4f854862">ocra_recipes::ClientManager</a>
@@ -544,6 +607,7 @@ $(function() {
 </li>
 <li>getMass()
 : <a class="el" href="d3/d33/classModel3T.html#a226c740338e57180fafed23181d1ca85">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a6237f96c89946f6c09be38761f128f28">ocra::Model</a>
 </li>
 <li>getMaxAcceleration()
 : <a class="el" href="d2/d0d/classocra_1_1Trajectory.html#ab86e41d3a59f9e9f9b06bf43928f7552">ocra::Trajectory</a>
@@ -606,6 +670,9 @@ $(function() {
 , <a class="el" href="da/dbb/classocra_1_1TargetFrame.html#acfd238567f0cfb9e6107cd17103ec6ea">ocra::TargetFrame</a>
 , <a class="el" href="db/d14/classwocra_1_1WocraController.html#adc7f78b5f888c76a3296cfd5882caad1">wocra::WocraController</a>
 </li>
+<li>getModelContacts()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a47362fe2f99287f555bbdb186d021823">ocra::Model</a>
+</li>
 <li>getMoreInfo()
 : <a class="el" href="d4/d02/classocra_1_1CmlQuadraticSolver.html#a95f1b52f24a43f9afc38b36fb7943e05">ocra::CmlQuadraticSolver</a>
 , <a class="el" href="d2/dab/classocra_1_1QLDSolver.html#a387f7b02e2cac27c91a0e36c2b473722">ocra::QLDSolver</a>
@@ -633,6 +700,7 @@ $(function() {
 </li>
 <li>getNonLinearTerms()
 : <a class="el" href="d3/d33/classModel3T.html#af41d3f87cb77877320f4c589d9cf7ffe">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#ac494939416d3ddcb6e5cf0ece43f3098">ocra::Model</a>
 </li>
 <li>getNumberOfChildren()
 : <a class="el" href="d2/dac/classocra_1_1Variable.html#aabb9b5602a269bb9a2baf18184b29292">ocra::Variable</a>
@@ -799,6 +867,15 @@ $(function() {
 <li>getRobotState()
 : <a class="el" href="d1/dde/classocra__recipes_1_1ControllerServer.html#a93ec150bea9b2a7a03aac1cc048d5484">ocra_recipes::ControllerServer</a>
 </li>
+<li>getRootAccelerationVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#ae342ff99f5249d17014d30863ff7857c">ocra::Model</a>
+</li>
+<li>getRootConfigurationVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a68d8c2cf5a411f98e1f624a356b87fba">ocra::Model</a>
+</li>
+<li>getRootVelocityVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a556fa391a6c5405599d23ee83d4b4787">ocra::Model</a>
+</li>
 <li>getSaturationValue()
 : <a class="el" href="dd/dda/classocra_1_1SecondOrderLinearTask.html#ab36774d979e6930e5bb56bb9fe913667">ocra::SecondOrderLinearTask</a>
 </li>
@@ -808,36 +885,50 @@ $(function() {
 </li>
 <li>getSegmentCoM()
 : <a class="el" href="d3/d33/classModel3T.html#a7e3f88de763eb1faf3ba60dc032a99fb">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a577292e1e1441afbecb3912124b7eb04">ocra::Model</a>
 </li>
 <li>getSegmentIndex()
-: <a class="el" href="d1/d45/classocra_1_1SegmentFrame.html#a8f651dccb13afc25504531efd17c8eef">ocra::SegmentFrame</a>
+: <a class="el" href="d4/d00/classocra_1_1Model.html#a0043ea00ff58fc52bc2d8f54d5fb5400">ocra::Model</a>
+, <a class="el" href="d1/d45/classocra_1_1SegmentFrame.html#a8f651dccb13afc25504531efd17c8eef">ocra::SegmentFrame</a>
 </li>
 <li>getSegmentInertiaAxes()
 : <a class="el" href="d3/d33/classModel3T.html#a40cf731f4ab38620127021aaa68d387a">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a09d58bf429940098baf9727140e37441">ocra::Model</a>
 </li>
 <li>getSegmentJacobian()
 : <a class="el" href="d3/d33/classModel3T.html#a3c138d685389144406ab0bd219e7bb36">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a626aed0875f6336c2ecc0147bc8c7d4e">ocra::Model</a>
 </li>
 <li>getSegmentJdot()
 : <a class="el" href="d3/d33/classModel3T.html#a24e4def66a047175935bf343f38a8b84">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a00cceda96b47bee05cb6366d070d7961">ocra::Model</a>
 </li>
 <li>getSegmentJdotQdot()
 : <a class="el" href="d3/d33/classModel3T.html#add0fcd2f4259009f964a03c6402d1ca9">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a6fe0178b1e8213e39366b2355d0d4de3">ocra::Model</a>
 </li>
 <li>getSegmentMass()
 : <a class="el" href="d3/d33/classModel3T.html#a644b29c19a8a08e82f74ff411f5963df">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a9840649a6137c8ec964914f91c83a1b9">ocra::Model</a>
 </li>
 <li>getSegmentMassMatrix()
 : <a class="el" href="d3/d33/classModel3T.html#a5bd15fc87b6490e3828953073b52a836">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#ae795ffdaa76419eb74acba87555b83bb">ocra::Model</a>
 </li>
 <li>getSegmentMomentsOfInertia()
 : <a class="el" href="d3/d33/classModel3T.html#abac667ae49c8690ddf20ca1ae0154459">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#aadbb1c73724eba41dff3afc805275601">ocra::Model</a>
+</li>
+<li>getSegmentName()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#ac21f88edd570d8d012e8e20b7ddc20c4">ocra::Model</a>
 </li>
 <li>getSegmentPosition()
 : <a class="el" href="d3/d33/classModel3T.html#af2408d3a32ae4762ce3c5951360f5f67">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#ae7afe827a1c09b99d80134a447bd9ccc">ocra::Model</a>
 </li>
 <li>getSegmentVelocity()
 : <a class="el" href="d3/d33/classModel3T.html#ac94524afc47ca5c16045b53d6c5b6118">Model3T</a>
+, <a class="el" href="d4/d00/classocra_1_1Model.html#a01f56bca692e0907a641f0dce70e6ed2">ocra::Model</a>
 </li>
 <li>getSize()
 : <a class="el" href="d2/d99/classocra_1_1FullState.html#a64f03f9385b36840d23e06de18a40112">ocra::FullState</a>
@@ -1074,7 +1165,7 @@ $(function() {
 </li>
 <li>getVariable()
 : <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a9ba33bc965fe2d39a7758bca2d41005a">gocra::GHCJTTask</a>
-, <a class="el" href="d2/d99/classocra_1_1Function.html#a2528d95d06e21e60eff14bb3ee484345">ocra::Function</a>
+, <a class="el" href="d2/d99/classocra_1_1Function.html#a6748e5c8a2bb40655bf574baac33dfdd">ocra::Function</a>
 , <a class="el" href="d0/de6/structocra_1_1FunctionInterfaceMapping_3_01X_3_01Function_01_4_01_4.html#a9058e43e7454b244cb55433205ecc163">ocra::FunctionInterfaceMapping&lt; X&lt; Function &gt; &gt;</a>
 , <a class="el" href="dd/d9c/classocra_1_1MergedVariable.html#afa4986407c3fbaebe268fd248b2c4bcf">ocra::MergedVariable</a>
 </li>
@@ -1091,6 +1182,9 @@ $(function() {
 , <a class="el" href="d1/d45/classocra_1_1SegmentFrame.html#a6a45d4901408704ead9bbd1f5b99a666">ocra::SegmentFrame</a>
 , <a class="el" href="da/dbb/classocra_1_1TargetFrame.html#a5eeda88210d7002c3c73ba949139ed5b">ocra::TargetFrame</a>
 , <a class="el" href="dc/d31/classocra_1_1TaskState.html#afe6820421d754df7b005e6ebc4e10919">ocra::TaskState</a>
+</li>
+<li>getVelocityVariable()
+: <a class="el" href="d4/d00/classocra_1_1Model.html#adceb9df8746c94bd72e1d5035e368eae">ocra::Model</a>
 </li>
 <li>getViolationTolerance()
 : <a class="el" href="de/d3b/classocra_1_1Constraint_3_01Function_01_4.html#a72f3bc312073f4d431547261ff06387e">ocra::Constraint&lt; Function &gt;</a>
@@ -1132,7 +1226,7 @@ $(function() {
 , <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#ad38e451271fa3f064d99a850190a56e7">gocra::GHCJTTask</a>
 </li>
 <li>GHCJTTask()
-: <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a45a0f844d1e8e3a2d500da01a6606a03">gocra::GHCJTTask</a>
+: <a class="el" href="d2/d46/classgocra_1_1GHCJTTask.html#a9161a72cfe5261e5a3580fba578ef23f">gocra::GHCJTTask</a>
 </li>
 <li>goalAttained()
 : <a class="el" href="d0/d2a/classocra__recipes_1_1TrajectoryThread.html#acd000c1ffee3b03d2756b04dba583285">ocra_recipes::TrajectoryThread</a>
@@ -1150,19 +1244,19 @@ $(function() {
 : <a class="el" href="d7/d0b/classgocra_1_1gOcraContactTaskManager.html#aa35eda0ee0b427b7da1aca284f6da5a8">gocra::gOcraContactTaskManager</a>
 </li>
 <li>gOcraFullPostureTaskManager()
-: <a class="el" href="d5/db1/classgocra_1_1gOcraFullPostureTaskManager.html#a29b20652dfa8665e85cf88a75b1e681f">gocra::gOcraFullPostureTaskManager</a>
+: <a class="el" href="d5/db1/classgocra_1_1gOcraFullPostureTaskManager.html#a71c039da046e968235f40e53838018c0">gocra::gOcraFullPostureTaskManager</a>
 </li>
 <li>gOcraPartialPostureTaskManager()
-: <a class="el" href="d9/dc9/classgocra_1_1gOcraPartialPostureTaskManager.html#afd597f38d4ee2dfb05606959bf90757f">gocra::gOcraPartialPostureTaskManager</a>
+: <a class="el" href="d9/dc9/classgocra_1_1gOcraPartialPostureTaskManager.html#a2dd620f693ca7ad7492e298a6a081b7d">gocra::gOcraPartialPostureTaskManager</a>
 </li>
 <li>gOcraSegCartesianTaskManager()
 : <a class="el" href="de/d88/classgocra_1_1gOcraSegCartesianTaskManager.html#a33e6727a735de2c8564442f0cb5a3976">gocra::gOcraSegCartesianTaskManager</a>
 </li>
 <li>gOcraSegOrientationTaskManager()
-: <a class="el" href="db/d04/classgocra_1_1gOcraSegOrientationTaskManager.html#a4d14922b755ae527247c7c82b1c99cdb">gocra::gOcraSegOrientationTaskManager</a>
+: <a class="el" href="db/d04/classgocra_1_1gOcraSegOrientationTaskManager.html#abdf3dc20892fc1308806b72b9976461e">gocra::gOcraSegOrientationTaskManager</a>
 </li>
 <li>gOcraSegPoseTaskManager()
-: <a class="el" href="d7/d78/classgocra_1_1gOcraSegPoseTaskManager.html#a5bf1af63ef4741f8ac30ce2a042dc9b2">gocra::gOcraSegPoseTaskManager</a>
+: <a class="el" href="d7/d78/classgocra_1_1gOcraSegPoseTaskManager.html#a9756a704f7ac1b45084ed1aa44ffc805">gocra::gOcraSegPoseTaskManager</a>
 </li>
 <li>gOcraTaskManagerBase()
 : <a class="el" href="d5/d16/classgocra_1_1gOcraTaskManagerBase.html#aeb3bde0cba73fbf7cf261f5293133f54">gocra::gOcraTaskManagerBase</a>
@@ -1185,7 +1279,7 @@ $(function() {
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:37 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:28 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

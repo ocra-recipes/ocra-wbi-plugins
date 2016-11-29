@@ -35,11 +35,11 @@ struct \hyperlink{structgocra_1_1GHCJTController_1_1Pimpl}{Pimpl}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classgocra_1_1GHCJTController_a0a9898a818ddf6e52da7d63616bd73f6}{G\+H\+C\+J\+T\+Controller} (const std\+::string \&ctrl\+Name, Model \&inner\+Model, \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \&inner\+Solver, bool use\+Grav)
+\hyperlink{classgocra_1_1GHCJTController_a0a9898a818ddf6e52da7d63616bd73f6}{G\+H\+C\+J\+T\+Controller} (const std\+::string \&ctrl\+Name, \hyperlink{classocra_1_1Model}{Model} \&inner\+Model, \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \&inner\+Solver, bool use\+Grav)
 \item 
 virtual \hyperlink{classgocra_1_1GHCJTController_ab20678c55e42d6f844b11e044f258e4b}{$\sim$\+G\+H\+C\+J\+T\+Controller} ()
 \item 
-Model \& \hyperlink{classgocra_1_1GHCJTController_ac687ebab107bcd79828564b0adad2e10}{get\+Model} ()
+\hyperlink{classocra_1_1Model}{Model} \& \hyperlink{classgocra_1_1GHCJTController_ac687ebab107bcd79828564b0adad2e10}{get\+Model} ()
 \item 
 \hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \& \hyperlink{classgocra_1_1GHCJTController_a25b8ce2edaa3fccc38dfa81900353856}{get\+Solver} ()
 \item 
@@ -113,7 +113,7 @@ Definition at line 40 of file G\+H\+C\+J\+T\+Controller.\+h.
 \index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!G\+H\+C\+J\+T\+Controller@{G\+H\+C\+J\+T\+Controller}}
 \index{G\+H\+C\+J\+T\+Controller@{G\+H\+C\+J\+T\+Controller}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
 \subsubsection{\texorpdfstring{G\+H\+C\+J\+T\+Controller()}{GHCJTController()}}
-{\footnotesize\ttfamily gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+G\+H\+C\+J\+T\+Controller (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ctrl\+Name,  }\item[{Model \&}]{inner\+Model,  }\item[{\hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \&}]{inner\+Solver,  }\item[{bool}]{use\+Grav }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily gocra\+::\+G\+H\+C\+J\+T\+Controller\+::\+G\+H\+C\+J\+T\+Controller (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{ctrl\+Name,  }\item[{\hyperlink{classocra_1_1Model}{Model} \&}]{inner\+Model,  }\item[{\hyperlink{classocra_1_1OneLevelSolver}{ocra\+::\+One\+Level\+Solver} \&}]{inner\+Solver,  }\item[{bool}]{use\+Grav }\end{DoxyParamCaption})}
 
 Initialize G\+H\+C\+JT controller.
 
@@ -384,7 +384,7 @@ Definition at line 437 of file G\+H\+C\+J\+T\+Controller.\+cpp.
 \index{gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}!get\+Model@{get\+Model}}
 \index{get\+Model@{get\+Model}!gocra\+::\+G\+H\+C\+J\+T\+Controller@{gocra\+::\+G\+H\+C\+J\+T\+Controller}}
 \subsubsection{\texorpdfstring{get\+Model()}{getModel()}}
-{\footnotesize\ttfamily Model \& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \hyperlink{classocra_1_1Model}{Model} \& gocra\+::\+G\+H\+C\+J\+T\+Controller\+::get\+Model (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 \begin{DoxyReturn}{Returns}
 the inner model used to construct this controller instance 

@@ -1,3 +1,11 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$d8/d26/classocra_1_1TaskYarpInterface.html" title="ocra::TaskYarpInterface" alt="" coords="5,5,166,31"/>
+<area shape="rect" id="node2" href="$de/d1c/classocra_1_1TaskYarpInterface_1_1ControlInputCallback.html" title="a short description " alt="" coords="184,5,345,44"/>
+<area shape="rect" id="node3" href="$d1/d1a/classocra_1_1TaskYarpInterface_1_1RpcMessageCallback.html" title="a short description " alt="" coords="184,68,345,107"/>
+<area shape="rect" id="node4" href="$df/dca/classocra__recipes_1_1ClientCommunications.html" title="ocra_recipes::ClientCommunications" alt="" coords="145,131,384,156"/>
+<area shape="rect" id="node5" href="$de/dfc/classocra__recipes_1_1ClientCommunications_1_1InputCallback.html" title="ocra_recipes::ClientCommunications\l::InputCallback" alt="" coords="145,180,384,219"/>
+<area shape="rect" id="node6" href="$d4/d05/classocra__recipes_1_1ClientManager_1_1moduleCallback.html" title="A callback function which binds the rpc server port opened in the contoller server module to the cont..." alt="" coords="169,243,361,281"/>
+<area shape="rect" id="node7" href="$d5/d79/classocra__recipes_1_1ControlThread_1_1inputCallback.html" title="ocra_recipes::ControlThread\l::inputCallback" alt="" coords="170,305,360,344"/>
+<area shape="rect" id="node8" href="$d9/d94/classocra__recipes_1_1ServerCommunications.html" title="ocra_recipes::ServerCommunications" alt="" coords="143,368,386,393"/>
+<area shape="rect" id="node9" href="$d2/dde/classocra__recipes_1_1StateListener.html" title="A callback for a port listing to robot states. " alt="" coords="173,417,356,443"/>
+<area shape="rect" id="node10" href="$da/d7d/classocra__recipes_1_1TaskConnection_1_1inputCallback.html" title="ocra_recipes::TaskConnection\l::inputCallback" alt="" coords="165,467,365,505"/>
 </map>

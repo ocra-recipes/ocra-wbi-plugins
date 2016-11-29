@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -95,7 +101,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:abf9089d7762205480b46005544883e60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d4c/classocra_1_1ModelContacts.html#abf9089d7762205480b46005544883e60">ModelContacts</a> (Model &amp;model)</td></tr>
+<tr class="memitem:abf9089d7762205480b46005544883e60"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d4c/classocra_1_1ModelContacts.html#abf9089d7762205480b46005544883e60">ModelContacts</a> (<a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;model)</td></tr>
 <tr class="separator:abf9089d7762205480b46005544883e60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8ca6e653ccacdff73ae10e7c0750bbf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d4c/classocra_1_1ModelContacts.html#ab8ca6e653ccacdff73ae10e7c0750bbf">~ModelContacts</a> ()</td></tr>
 <tr class="separator:ab8ca6e653ccacdff73ae10e7c0750bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -117,7 +123,7 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:aede709082b66b0c30aa57ac4cd7094ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40f66a2528a3f7c0538172987de7c919"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d6/d87/classocra_1_1Feature.html">Feature</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d4c/classocra_1_1ModelContacts.html#a40f66a2528a3f7c0538172987de7c919">getContactFeature</a> (int index) const</td></tr>
 <tr class="separator:a40f66a2528a3f7c0538172987de7c919"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a188e822de7692fba999836b1ffb7f376"><td class="memItemLeft" align="right" valign="top">const Model &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d4c/classocra_1_1ModelContacts.html#a188e822de7692fba999836b1ffb7f376">getModel</a> () const</td></tr>
+<tr class="memitem:a188e822de7692fba999836b1ffb7f376"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d8/d4c/classocra_1_1ModelContacts.html#a188e822de7692fba999836b1ffb7f376">getModel</a> () const</td></tr>
 <tr class="separator:a188e822de7692fba999836b1ffb7f376"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classocra_1_1ObserverSubject"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classocra_1_1ObserverSubject')"><img src="../../closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="../../d3/d16/classocra_1_1ObserverSubject.html">ocra::ObserverSubject</a></td></tr>
 <tr class="memitem:ac2fe2208f340a71da5821952c26460ec inherit pub_methods_classocra_1_1ObserverSubject"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d3/d16/classocra_1_1ObserverSubject.html#ac2fe2208f340a71da5821952c26460ec">ObserverSubject</a> ()</td></tr>
@@ -283,7 +289,7 @@ Additional Inherited Members</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>ModelContacts class. </p>
 <dl class="section warning"><dt>Warning</dt><dd>None</dd></dl>
-<p>Concatenates the contact variables and jacobians for a model. This class is not necessary to handle contacts, but an be useful if a component of your controller handles all contact points as a whole. For instance, <a class="el" href="../../d9/d84/classocra_1_1Task.html">Task</a> objects will generally manipulate forces independently. But if you need to use a <a class="el" href="../../d9/da6/classocra_1_1DynamicEquationFunction.html" title="DynamicEquationFunction class. ">DynamicEquationFunction</a> in your control, then you have to update the <a class="el" href="../../d8/d4c/classocra_1_1ModelContacts.html" title="ModelContacts class. ">ModelContacts</a> of your Model so that they are included in the dynamic equation of your model.</p>
+<p>Concatenates the contact variables and jacobians for a model. This class is not necessary to handle contacts, but an be useful if a component of your controller handles all contact points as a whole. For instance, <a class="el" href="../../d9/d84/classocra_1_1Task.html">Task</a> objects will generally manipulate forces independently. But if you need to use a <a class="el" href="../../d9/da6/classocra_1_1DynamicEquationFunction.html" title="DynamicEquationFunction class. ">DynamicEquationFunction</a> in your control, then you have to update the <a class="el" href="../../d8/d4c/classocra_1_1ModelContacts.html" title="ModelContacts class. ">ModelContacts</a> of your <a class="el" href="../../d4/d00/classocra_1_1Model.html" title="Model class. ">Model</a> so that they are included in the dynamic equation of your model.</p>
 <p>NB: the forces considered here are applied by the manikin on the environment.</p>
 <p>TODO: review update mechanism. </p>
 
@@ -298,7 +304,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">ocra::ModelContacts::ModelContacts </td>
           <td>(</td>
-          <td class="paramtype">Model &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp;&#160;</td>
           <td class="paramname"><em>model</em></td><td>)</td>
           <td></td>
         </tr>
@@ -464,7 +470,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const Model &amp; ocra::ModelContacts::getModel </td>
+          <td class="memname">const <a class="el" href="../../d4/d00/classocra_1_1Model.html">Model</a> &amp; ocra::ModelContacts::getModel </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -541,7 +547,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:35 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:26 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

@@ -12,6 +12,12 @@
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+</script><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js"></script>
 <link href="../../doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -107,9 +113,9 @@ class ocra::Constraint&lt; T &gt;</h3>
 
 <p>Constraint class. </p>
 <dl class="section warning"><dt>Warning</dt><dd>None</dd></dl>
-<p>Given a function <img class="formulaInl" alt="$ f $" src="../../form_25.png"/> over <img class="formulaInl" alt="$ x \in R^n $" src="../../form_26.png"/> and possibly over the time <img class="formulaInl" alt="$ t $" src="../../form_27.png"/>, we can write a constraint whose most generic expression is <img class="formulaInl" alt="$ l \le f(x,t) \le u $" src="../../form_28.png"/>, with <img class="formulaInl" alt="$ l $" src="../../form_29.png"/> and <img class="formulaInl" alt="$ u $" src="../../form_30.png"/> two vectors of size <img class="formulaInl" alt="$ m $" src="../../form_31.png"/> having their value in <img class="formulaInl" alt="$ \left(R\cup\left\{-\infty,+\infty\right\}\right)^m $" src="../../form_32.png"/> and verifying <img class="formulaInl" alt="$ l \le u $" src="../../form_33.png"/>. This class is a C++ translation of this mathematical writing, but distinguishes some specific cases, for the ease of use, that are enumerated by eConstraintType :</p><ul>
-<li><img class="formulaInl" alt="$ l = u = b $" src="../../form_34.png"/>, the constraint is treated as an equality to b (which can be 0): CSTR_EQUAL_ZERO and CSTR_EQUAL_B,</li>
-<li><img class="formulaInl" alt="$ l = -\infty $" src="../../form_35.png"/> (resp. <img class="formulaInl" alt="$ u = +\infty $" src="../../form_36.png"/>), in which case the lower (resp. upper) bound is ignored. The remaining bound can be 0: CSTR_LOWER_ZERO, CSTR_LOWER_U, CSTR_GREATER_ZERO and CSTR_GREATER_L,</li>
+<p>Given a function \( f \) over \( x \in R^n \) and possibly over the time \( t \), we can write a constraint whose most generic expression is \( l \le f(x,t) \le u \), with \( l \) and \( u \) two vectors of size \( m \) having their value in \( \left(R\cup\left\{-\infty,+\infty\right\}\right)^m \) and verifying \( l \le u \). This class is a C++ translation of this mathematical writing, but distinguishes some specific cases, for the ease of use, that are enumerated by eConstraintType :</p><ul>
+<li>\( l = u = b \), the constraint is treated as an equality to b (which can be 0): CSTR_EQUAL_ZERO and CSTR_EQUAL_B,</li>
+<li>\( l = -\infty \) (resp. \( u = +\infty \)), in which case the lower (resp. upper) bound is ignored. The remaining bound can be 0: CSTR_LOWER_ZERO, CSTR_LOWER_U, CSTR_GREATER_ZERO and CSTR_GREATER_L,</li>
 <li>the general case: CSTR_LOWER_AND_GREATER.</li>
 </ul>
 <p>The <a class="el" href="../../dc/d5c/classocra_1_1Constraint.html" title="Constraint class. ">Constraint</a> class is templated by the type of the function on which the constraint is built. Provided the class definition of this function provides the good typedef functionType_t, the hierarchy of the <a class="el" href="../../d2/d99/classocra_1_1Function.html" title="Function class. ">Function</a> classes is mimicked by <a class="el" href="../../dc/d5c/classocra_1_1Constraint.html" title="Constraint class. ">Constraint</a>: if B is a class deriving of A and B::functionType_t is A, then <a class="el" href="../../dc/d5c/classocra_1_1Constraint.html" title="Constraint class. ">Constraint</a><b> will automatically derived from <a class="el" href="../../dc/d5c/classocra_1_1Constraint.html" title="Constraint class. ">Constraint</a>. As a concrete example, if <a class="el" href="../../d3/d89/classocra_1_1DiagonalLinearFunction.html" title="DiagonalLinearFunction class. ">DiagonalLinearFunction</a> derives from <a class="el" href="../../de/d3a/classocra_1_1LinearFunction.html" title="LinearFunction class. ">LinearFunction</a> that derives from <a class="el" href="../../d2/d99/classocra_1_1Function.html" title="Function class. ">Function</a>, then Constraint&lt;DiagonalLinearFunction&gt; will derive from Constraint&lt;LinearFunction&gt; that will itself derive from <a class="el" href="../../de/d3b/classocra_1_1Constraint_3_01Function_01_4.html">Constraint&lt;Function&gt;</a>. Thus a Constraint&lt;DiagonalLinearFunction&gt; is also a Constraint&lt;LinearFunction&gt; for example.</b></p>
@@ -170,10 +176,10 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 <p>The following cases arise:</p><ul>
-<li>Constraint(f, true): the constraint describes <img class="formulaInl" alt="$ f(x,t) = 0 $" src="../../form_37.png"/> (type CSTR_EQUAL_ZERO)</li>
-<li>Constraint(f, false): the constraint describes <img class="formulaInl" alt="$ f(x,t) \le 0 $" src="../../form_38.png"/> (type CSTR_LOWER_ZERO)</li>
-<li>Constraint(f, true, b): the constraint describes <img class="formulaInl" alt="$ f(x,t) = b $" src="../../form_39.png"/> (type CSTR_EQUAL_B)</li>
-<li>Constraint(f, false, u): the constraint describes <img class="formulaInl" alt="$ f(x,t) \le u $" src="../../form_40.png"/> (type CSTR_LOWER_U)</li>
+<li>Constraint(f, true): the constraint describes \( f(x,t) = 0 \) (type CSTR_EQUAL_ZERO)</li>
+<li>Constraint(f, false): the constraint describes \( f(x,t) \le 0 \) (type CSTR_LOWER_ZERO)</li>
+<li>Constraint(f, true, b): the constraint describes \( f(x,t) = b \) (type CSTR_EQUAL_B)</li>
+<li>Constraint(f, false, u): the constraint describes \( f(x,t) \le u \) (type CSTR_LOWER_U)</li>
 </ul>
 <dl class="section pre"><dt>Precondition</dt><dd>If v is given (and non null), v.size() must be equal to function-&gt;getDimension() </dd></dl>
 
@@ -232,11 +238,11 @@ template&lt;class T &gt; </div>
   </dd>
 </dl>
 <p>The following cases arise:</p><ul>
-<li>Constraint(f): the constraint describes <img class="formulaInl" alt="$ f(x,t) \ge 0 $" src="../../form_41.png"/> (type CSTR_GREATER_ZERO)</li>
-<li>Constraint(f, l): the constraint describes <img class="formulaInl" alt="$ f(x,t) \ge l $" src="../../form_42.png"/> (type CSTR_GREATER_L)</li>
-<li>Constraint(f, l, u): the constraint describes <img class="formulaInl" alt="$ l \le f(x,t) \le u $" src="../../form_28.png"/> (type CSTR_LOWER_AND_GREATER)</li>
-<li>Constraint(f, l, u) with l==VectorXd(): the constraint describes <img class="formulaInl" alt="$ f(x,t) \le u $" src="../../form_40.png"/> (type CSTR_LOWER_U)</li>
-<li>Constraint(f, l, u) with l==u: the constraint describes <img class="formulaInl" alt="$ f(x,t) = u $" src="../../form_43.png"/> (type CSTR_EQUAL_B)</li>
+<li>Constraint(f): the constraint describes \( f(x,t) \ge 0 \) (type CSTR_GREATER_ZERO)</li>
+<li>Constraint(f, l): the constraint describes \( f(x,t) \ge l \) (type CSTR_GREATER_L)</li>
+<li>Constraint(f, l, u): the constraint describes \( l \le f(x,t) \le u \) (type CSTR_LOWER_AND_GREATER)</li>
+<li>Constraint(f, l, u) with l==VectorXd(): the constraint describes \( f(x,t) \le u \) (type CSTR_LOWER_U)</li>
+<li>Constraint(f, l, u) with l==u: the constraint describes \( f(x,t) = u \) (type CSTR_EQUAL_B)</li>
 </ul>
 <dl class="section pre"><dt>Precondition</dt><dd>l&lt;=u </dd>
 <dd>
@@ -344,7 +350,7 @@ template&lt;class T&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Nov 3 2016 19:43:34 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Nov 29 2016 13:22:25 for ocra-recipes by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
