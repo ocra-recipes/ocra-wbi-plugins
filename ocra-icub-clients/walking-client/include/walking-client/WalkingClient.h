@@ -5,6 +5,7 @@
 #include <ocra-recipes/TrajectoryThread.h>
 #include <ocra-recipes/ControllerClient.h>
 #include "walking-client/ZmpPreviewController.h"
+#include "walking-client/ZmpController.h"
 
 class WalkingClient : public ocra_recipes::ControllerClient
 {
@@ -20,6 +21,8 @@ protected:
     virtual void loop();
 
 private:
+    std::shared_ptr<ZmpControllerParams> _zmpParams;
+    std::shared_ptr<ZmpController> _zmpController;
 
 };
 

@@ -3,8 +3,6 @@
  *
  *  \brief Implementes a ZMP controller as a force set point regulator.
  *
- *  \note Put original ZMP preview control reference along with Aurelien's
- *
  *  \author Jorhabib Eljaik
  *
  *  \cite krause2012stabilization
@@ -29,6 +27,8 @@
  \f[
  \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d)
  \f]
+ 
+ @sa computehd()
  */
 
 #ifndef _ZMPCONTROLLER_
@@ -40,22 +40,133 @@
 #include <vector>
 
 struct ZmpControllerParams {
+    /**
+     *  Positive control gain.
+     */
     const double kf;
+    /**
+     *  Total mass of the robot
+     */
     const double m;
+    /**
+     *  CoM height
+     */
     const double cz;
+    /**
+     *  Gravity acceleration = 9.8m/s^2
+     */
     const double g;
+    /**
+     *  Separation between foot force torque sensor and sole of the foot;
+     */
+    const double d;
+    
+    ZmpControllerParams(const double kf,
+                        const double m,
+                        const double cz,
+                        const double g,
+                        const double d):
+    kf(kf),
+    m(m),
+    cz(cz),
+    g(g),
+    d(d) {}
+};
+
+enum FOOT {
+    LEFT_FOOT,
+    RIGHT_FOOT
 };
 
 class ZmpController
 {
 public:
 
-    ZmpController(const int period, struct ZmpControllerParams parameters);
+    ZmpController(const int period,
+                  std::shared_ptr<ocra::Model> modelPtr,
+                  std::shared_ptr<ZmpControllerParams> parameters);
 
     virtual ~ZmpController();
     
     /**
-     *  Computes the instantaneous desired horizonal COM velocity for the corresponding desired zmp position.
+     *  Computes the ZMP for a single foot in world reference frame.
+     *
+     *  Assuming that \f$\mathbf{p}\f$ is the position of the ZMP for a single foot and also that the center of measurement of the F/T sensor lies on the \f$z\f$ axis of the reference coordinate system, the ZMP position can be computed as:
+     \f[
+     \left[\begin{array}{c}p_x \\
+     p_y \end{array}\right] =
+     \left[\begin{array}{cccccc}
+     -\frac{d}{f_z} & 0 & 0 & 0 & -1 & 0 \\
+     0 & -\frac{d}{f_z} & 0 & 1 & 0 & 0
+     \end{array}\right]
+     \left[\begin{array}{c}
+     \mathbf{f}\\
+     \mathbf{\tau}
+     \end{array}\right]
+     \f]
+     
+     Where \f$d\f$ is the vertical distance between the F/T sensor and the sole of the foot.
+     *
+     *  @param whichFoot        LEFT_FOOT or RIGHT_FOOT.
+     *  @param wrench           External wrench on the foot as read by the F/T sensors.
+     *  @param[out] footZMP     Foot ZMP in world reference frame.
+     *  @param[out] wrenchInWorldRef Transformed wrench in world reference frame.
+     *  @param tolerance        Tolerance value below which the ZMP is considered null.
+     *  @cite                   Kajita2014Intro
+     *
+     *  @return True if all operations proceed successfully.
+     */
+    bool computeFootZMP(FOOT whichFoot,
+                        Eigen::VectorXd wrench,
+                        Eigen::Vector2d &footZMP,
+                        Eigen::VectorXd &wrenchInWorldRef,
+                        const double tolerance=1e-3);
+    
+    /**
+     *  Computes the global ZMP for two feet in contact.
+     *
+     *  After obtaining the ZMP position for both feet \f$\mathbf{p}_R\f$ and \f$\mathbf{p}_L\f$ independently and expressed in the world reference frame, in the case where both feet are in contact with the ground (or just one), the global expression of the ZMP \f$\mathbf{p}\f$ expressed in the world reference frame is:
+     \f[
+     \left[\begin{array}{c}
+     p_x\\
+     p_y
+     \end{array}\right] =
+     \left[\begin{array}{cc}
+     \mathbf{p}_R & \mathbf{p}_L
+     \end{array}\right]
+     \left[\begin{array}{c}
+     f_{R_z}\\
+     f_{L_z}
+     \end{array}\right]
+     \f]
+     *
+     *  @param rawLeftFootWrench  Raw left foot wrench as read from the sensors [force | torque]
+     *  @param rawRightFootWrench Raw right foot wrench as read from the sensors.
+     *  @param globalZMP          Global zmp in world reference frame considering both feet.
+     @  @cite                     Kajita2014Intro
+     *
+     *  @return True if all operations succeed, false otherwise.
+     */
+    bool computeGlobalZMPFromSensors(Eigen::VectorXd rawLeftFootWrench,
+                                     Eigen::VectorXd rawRightFootWrench,
+                                     Eigen::Vector2d &globalZMP);
+    
+    /**
+     *  Retrieves the FT sensor adjoint matrix expressed in the world reference frame which multiplied by the local measurement of the sensor gives you the measurement in the world reference.
+     *
+     *  @param whichFoot LEFT_FOOT or RIGHT_FOOT
+     *  @param[out] T         Adjoint matrix.
+     */
+    void getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T);
+    
+    void getLeftFootPosition(Eigen::Vector3d &leftFootPosition);
+    
+    void getRightFootPosition(Eigen::Vector3d &rightFootPosition);
+    
+
+    
+    /**
+     *  Computes the instantaneous desired horizontal COM velocity for the corresponding desired zmp position.
      *
      *  @param p  Horizonal measured zmp position
      *  @param pd Horizontal desired zmp position
@@ -64,7 +175,8 @@ public:
     bool computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vector2d &dhd);
     
 private:
-    ZmpControllerParams params;
+    std::shared_ptr<ZmpControllerParams> _params;
+    std::shared_ptr<ocra::Model> _model;
 
 };
 
