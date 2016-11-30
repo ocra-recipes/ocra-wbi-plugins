@@ -93,7 +93,7 @@ std::string generateChartFromJoint(int row, int col, int i, const std::string& j
                         gridy='"+std::to_string(row)+"' \
                         hspan='1' \
                         vspan='1' \
-                        title='"+jointName+"' \
+                        title='"+jointName+" (red=ref, blue=real)' \
                         size='60' \
                         minval='-25' \
                         maxval='25' \
