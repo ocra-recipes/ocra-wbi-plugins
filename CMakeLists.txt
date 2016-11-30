@@ -31,8 +31,8 @@ set(VARS_PREFIX "OcraIcub")
 # set(CMAKE_BUILD_TYPE Debug)
 
 set(${VARS_PREFIX}_MAJOR_VERSION 1)
-set(${VARS_PREFIX}_MINOR_VERSION 0)
-set(${VARS_PREFIX}_PATCH_VERSION 0)
+set(${VARS_PREFIX}_MINOR_VERSION 1)
+set(${VARS_PREFIX}_PATCH_VERSION 1)
 set(${VARS_PREFIX}_VERSION ${${VARS_PREFIX}_MAJOR_VERSION}.${${VARS_PREFIX}_MINOR_VERSION}.${${VARS_PREFIX}_PATCH_VERSION})
 
 option(GENERATE_DOCUMENTATION "Generate the doxygen documentation." FALSE)
@@ -76,6 +76,10 @@ if(GENERATE_DOCUMENTATION)
     find_package(Doxygen REQUIRED)
     message("Generating API documentation with Doxygen")
     configure_file(${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
+    message("- Copied wbipluginsReferences.bib into: " ${CMAKE_CURRENT_BINARY_DIR}/wbipluginsReferences.bib)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/docs/wbipluginsReferences.bib
+                   ${CMAKE_CURRENT_BINARY_DIR}/wbipluginsReferences.bib COPYONLY)
+
     add_custom_target(
         docs
         ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
