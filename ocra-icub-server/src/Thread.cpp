@@ -363,11 +363,40 @@ void Thread::parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
 
             std::cout << replyString << std::endl;
 
+        } else if (key == "noOutputMode") {
+            std::string toggleMessage = input.get(++i).asString();
+            std::transform(toggleMessage.begin(), toggleMessage.end(), toggleMessage.begin(), ::toupper);
+
+            std::string replyString("");
+            if ( (toggleMessage == "ON") || (toggleMessage == "1") ) {
+                replyString += "Switching to 'noOutputMode'.\n";
+                ctrlOptions.noOutputMode = true;
+                ctrlOptions.runInDebugMode = false;
+                if(yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS)) {
+                    replyString += "Success! Setting all joints to POSITION control mode.";
+                } else {
+                    replyString += "FAILED! Could not set the control mode of the joints to POSITION mode.";
+                }
+            } else {
+                replyString += "Switching OFF 'noOutputMode'. WARNING: Torques will be sent to robot.\n";
+                ctrlOptions.noOutputMode = false;
+                ctrlOptions.runInDebugMode = true;
+                if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, torques.data(), ALL_JOINTS) ) {
+                    debuggingAllJoints = true;
+                    replyString += "Success! Setting all joints to TORQUE control mode.";
+                } else {
+                    replyString += "FAILED! Could not set the control mode of the joints to TORQUE mode.";
+                }
+            }
+            reply.addVocab(yarp::os::Vocab::encode("many"));
+            reply.addString(replyString);
+            std::cout << replyString << std::endl;
         } else if (key == "help") {
             std::string helpString("");
             helpString += "Valid commands: \n";
             helpString += "-- setJoint [index]\n";
             helpString += "-- listJoints\n";
+            helpString += "-- noOutputMode [ON/OFF]\n";
             helpString += "-- help\n";
             std::cout << helpString << std::endl;
             reply.addVocab(yarp::os::Vocab::encode("many"));
