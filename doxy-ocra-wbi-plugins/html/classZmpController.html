@@ -79,27 +79,19 @@ $(function() {
  <a href="classZmpController.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ZmpController_8h_source.html">ZmpController.h</a>&gt;</code></p>
-<div class="dynheader">
-Collaboration diagram for ZmpController:</div>
-<div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classZmpController__coll__graph.svg" width="163" height="123"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ac19bf2e39f4b15f6b8562102278b0544"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#ac19bf2e39f4b15f6b8562102278b0544">ZmpController</a> (const int period, std::shared_ptr&lt; ocra::Model &gt; modelPtr, struct <a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a> parameters)</td></tr>
-<tr class="separator:ac19bf2e39f4b15f6b8562102278b0544"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c47608f6d62b6b490808816879c01b7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a4c47608f6d62b6b490808816879c01b7">ZmpController</a> (const int period, std::shared_ptr&lt; ocra::Model &gt; modelPtr, std::shared_ptr&lt; <a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a> &gt; parameters)</td></tr>
+<tr class="separator:a4c47608f6d62b6b490808816879c01b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af308a70e70cfe9a1e9569606da8b1739"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#af308a70e70cfe9a1e9569606da8b1739">~ZmpController</a> ()</td></tr>
 <tr class="separator:af308a70e70cfe9a1e9569606da8b1739"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fd41771d83a31bd190f4031f82649e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a6fd41771d83a31bd190f4031f82649e0">computeFootZMP</a> (<a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a> whichFoot, Eigen::VectorXd wrench, Eigen::Vector2d &amp;footZMP, Eigen::VectorXd &amp;wrenchInWorldRef, const double tolerance=1e-3)</td></tr>
 <tr class="separator:a6fd41771d83a31bd190f4031f82649e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aae5cc381a922206dad10ba2d425992ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#aae5cc381a922206dad10ba2d425992ce">computeGlobalZMPFromSensors</a> (Eigen::VectorXd rawLeftFootWrench, Eigen::VectorXd rawRightFootWrench, Eigen::Vector2d &amp;globalZMP)</td></tr>
 <tr class="separator:aae5cc381a922206dad10ba2d425992ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa46736e04771dc709b4edd267f1d6f51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#aa46736e04771dc709b4edd267f1d6f51">transformWrenchInWRF</a> (Eigen::VectorXd wrench, Eigen::VectorXd &amp;wrenchTransformed)</td></tr>
-<tr class="separator:aa46736e04771dc709b4edd267f1d6f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d04ede7ad8c05e9a0b12e3db39ba1ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a4d04ede7ad8c05e9a0b12e3db39ba1ce">getFTSensorRotoTranslation</a> (<a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a> whichFoot, Eigen::MatrixXd &amp;T)</td></tr>
-<tr class="separator:a4d04ede7ad8c05e9a0b12e3db39ba1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58e30464e2976555bdd5fbbc7cca6bba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a58e30464e2976555bdd5fbbc7cca6bba">getFTSensorAdjointMatrix</a> (<a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a> whichFoot, Eigen::MatrixXd &amp;T)</td></tr>
+<tr class="separator:a58e30464e2976555bdd5fbbc7cca6bba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8e821f72c79fe86102f02c4c155ad30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#ac8e821f72c79fe86102f02c4c155ad30">getLeftFootPosition</a> (Eigen::Vector3d &amp;leftFootPosition)</td></tr>
 <tr class="separator:ac8e821f72c79fe86102f02c4c155ad30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a815cd495f657cbd93c25610d24982e8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a815cd495f657cbd93c25610d24982e8c">getRightFootPosition</a> (Eigen::Vector3d &amp;rightFootPosition)</td></tr>
@@ -109,17 +101,17 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a9573986e0a65a4247c80fbcccb686756"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a9573986e0a65a4247c80fbcccb686756">params</a></td></tr>
-<tr class="separator:a9573986e0a65a4247c80fbcccb686756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59a45aafc8a49a0d49966f7ed061a022"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a59a45aafc8a49a0d49966f7ed061a022">_params</a></td></tr>
+<tr class="separator:a59a45aafc8a49a0d49966f7ed061a022"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac86a58d1f870ce27c78b0f6d2294e05f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; ocra::Model &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#ac86a58d1f870ce27c78b0f6d2294e05f">_model</a></td></tr>
 <tr class="separator:ac86a58d1f870ce27c78b0f6d2294e05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementes a ZMP controller as a force set point regulator. </p>
 <dl class="section author"><dt>Author</dt><dd>Jorhabib Eljaik</dd></dl>
-<p><a class="el" href="citelist.html#CITEREF_krause2012stabilization">[3]</a></p>
+<p><a class="el" href="citelist.html#CITEREF_krause2012stabilization">[4]</a></p>
 <dl class="section warning"><dt>Warning</dt><dd>Work in progress! This is still a barebone class in the process of being tested.</dd></dl>
-<p>In <a class="el" href="citelist.html#CITEREF_krause2012stabilization">[3]</a> a position-based ZMP controller was implemented by relating the desired ZMP \( \mathbf{p}_d \) to a desired force, given the relationship between CoM acceleration and the ZMP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the ZMP \(\mathbf{p} = (p_x, p_y)\) can be computed as: <a class="anchor" id="simplifiedZMP"></a> </p><p class="formulaDsp">
+<p>In <a class="el" href="citelist.html#CITEREF_krause2012stabilization">[4]</a> a position-based ZMP controller was implemented by relating the desired ZMP \( \mathbf{p}_d \) to a desired force, given the relationship between CoM acceleration and the ZMP. When the dynamical effects of the vertical motion of the robot together with the change of angular momentum are neglected, the horizontal location of the ZMP \(\mathbf{p} = (p_x, p_y)\) can be computed as: <a class="anchor" id="simplifiedZMP"></a> </p><p class="formulaDsp">
 \begin{equation} \ddot{h} = \omega^2(\mathbf{h} - \mathbf{p}) \end{equation}
 </p>
 <p>Where \(\omega = \sqrt{g/c_z}\) as done in <a class="el" href="citelist.html#CITEREF_kajita2003biped">[2]</a>. Therefore the desired \(\mathbf{p}_d\) can be associated to a desired force on the CoM: </p><p class="formulaDsp">
@@ -131,9 +123,10 @@ Private Attributes</h2></td></tr>
 <p> Where \(k_f &gt; 0\) is a force control gain. Substituting <a class="el" href="classZmpController.html#simplifiedZMP">simplifiedZMP</a> we get: </p><p class="formulaDsp">
 \[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \]
 </p>
- </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ac19bf2e39f4b15f6b8562102278b0544"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac19bf2e39f4b15f6b8562102278b0544">&sect;&nbsp;</a></span>ZmpController()</h2>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classZmpController.html#a5eab881a51fb2ace1a1d494171353bc7">computehd()</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4c47608f6d62b6b490808816879c01b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c47608f6d62b6b490808816879c01b7">&sect;&nbsp;</a></span>ZmpController()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -153,7 +146,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a>&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a> &gt;&#160;</td>
           <td class="paramname"><em>parameters</em>&#160;</td>
         </tr>
         <tr>
@@ -236,13 +229,17 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Computes the ZMP for a single foot in world reference frame.</p>
+<p>Assuming that \(\mathbf{p}\) is the position of the ZMP for a single foot and also that the center of measurement of the F/T sensor lies on the \(z\) axis of the reference coordinate system, the ZMP position can be computed as: </p><p class="formulaDsp">
+\[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \left[\begin{array}{cccccc} -\frac{d}{f_z} &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 0 \\ 0 &amp; -\frac{d}{f_z} &amp; 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
+</p>
+<p>Where \(d\) is the vertical distance between the F/T sensor and the sole of the foot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">whichFoot</td><td>LEFT_FOOT or RIGHT_FOOT. </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">wrench</td><td>External wrench on the foot as read by the F/T sensors. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">footZMP</td><td>Foot ZMP in world reference frame. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">wrenchInWorldRef</td><td>Transformed wrench in world reference frame. </td></tr>
-    <tr><td class="paramdir"></td><td class="paramname">tolerance</td><td>Tolerance value below which the ZMP is considered null. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">tolerance</td><td>Tolerance value below which the ZMP is considered null. <a class="el" href="citelist.html#CITEREF_Kajita2014Intro">[3]</a></td></tr>
   </table>
   </dd>
 </dl>
@@ -282,11 +279,14 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Computes the global ZMP for two feet in contact.</p>
+<p>After obtaining the ZMP position for both feet \(\mathbf{p}_R\) and \(\mathbf{p}_L\) independently and expressed in the world reference frame, in the case where both feet are in contact with the ground (or just one), the global expression of the ZMP \(\mathbf{p}\) expressed in the world reference frame is: </p><p class="formulaDsp">
+\[ \left[\begin{array}{c} p_x\\ p_y \end{array}\right] = \left[\begin{array}{cc} \mathbf{p}_R &amp; \mathbf{p}_L \end{array}\right] \left[\begin{array}{c} f_{R_z}\\ f_{L_z} \end{array}\right] \]
+</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">rawLeftFootWrench</td><td>Raw left foot wrench as read from the sensors [force | torque] </td></tr>
     <tr><td class="paramname">rawRightFootWrench</td><td>Raw right foot wrench as read from the sensors. </td></tr>
-    <tr><td class="paramname">globalZMP</td><td>Global zmp in world reference frame considering both feet. @  </td></tr>
+    <tr><td class="paramname">globalZMP</td><td>Global zmp in world reference frame considering both feet. @ <a class="el" href="citelist.html#CITEREF_Kajita2014Intro">[3]</a></td></tr>
   </table>
   </dd>
 </dl>
@@ -325,7 +325,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Computes the instantaneous desired horizonal COM velocity for the corresponding desired zmp position.</p>
+<p>Computes the instantaneous desired horizontal COM velocity for the corresponding desired zmp position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir"></td><td class="paramname">p</td><td>Horizonal measured zmp position </td></tr>
@@ -337,14 +337,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d04ede7ad8c05e9a0b12e3db39ba1ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d04ede7ad8c05e9a0b12e3db39ba1ce">&sect;&nbsp;</a></span>getFTSensorRotoTranslation()</h2>
+<a id="a58e30464e2976555bdd5fbbc7cca6bba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58e30464e2976555bdd5fbbc7cca6bba">&sect;&nbsp;</a></span>getFTSensorAdjointMatrix()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void ZmpController::getFTSensorRotoTranslation </td>
+          <td class="memname">void ZmpController::getFTSensorAdjointMatrix </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a>&#160;</td>
           <td class="paramname"><em>whichFoot</em>, </td>
@@ -362,6 +362,14 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Retrieves the FT sensor adjoint matrix expressed in the world reference frame which multiplied by the local measurement of the sensor gives you the measurement in the world reference.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">whichFoot</td><td>LEFT_FOOT or RIGHT_FOOT </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">T</td><td>Adjoint matrix. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -401,34 +409,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aa46736e04771dc709b4edd267f1d6f51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa46736e04771dc709b4edd267f1d6f51">&sect;&nbsp;</a></span>transformWrenchInWRF()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void ZmpController::transformWrenchInWRF </td>
-          <td>(</td>
-          <td class="paramtype">Eigen::VectorXd&#160;</td>
-          <td class="paramname"><em>wrench</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">Eigen::VectorXd &amp;&#160;</td>
-          <td class="paramname"><em>wrenchTransformed</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a id="ac86a58d1f870ce27c78b0f6d2294e05f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ac86a58d1f870ce27c78b0f6d2294e05f">&sect;&nbsp;</a></span>_model</h2>
@@ -452,8 +432,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a9573986e0a65a4247c80fbcccb686756"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9573986e0a65a4247c80fbcccb686756">&sect;&nbsp;</a></span>params</h2>
+<a id="a59a45aafc8a49a0d49966f7ed061a022"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59a45aafc8a49a0d49966f7ed061a022">&sect;&nbsp;</a></span>_params</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -462,7 +442,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a> ZmpController::params</td>
+          <td class="memname">std::shared_ptr&lt;<a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a>&gt; ZmpController::_params</td>
         </tr>
       </table>
   </td>
@@ -481,7 +461,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 30 2016 16:26:38 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 30 2016 17:39:25 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
