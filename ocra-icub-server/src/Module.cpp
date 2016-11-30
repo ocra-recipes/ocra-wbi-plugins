@@ -49,6 +49,7 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
 
     controller_options.serverName = rf.check("local") ? rf.find("local").asString().c_str() : "OcraControllerServer";
     controller_options.runInDebugMode = rf.check("debug");
+    controller_options.noOutputMode = rf.check("noOutput");
     controller_options.isFloatingBase = rf.check("floatingBase");
     controller_options.useOdometry = rf.check("useOdometry");
 

@@ -38,6 +38,7 @@ OcraControllerOptions::OcraControllerOptions()
 , startupSequence("")
 , wbiConfigFilePath("")
 , runInDebugMode(false)
+, noOutputMode(false)
 , isFloatingBase(false)
 , yarpWbiOptions(yarp::os::Property())
 , controllerType(ocra_recipes::WOCRA_CONTROLLER)
@@ -60,6 +61,7 @@ std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
     out << "startupSequence: " << opts.startupSequence << "\n\n";
     out << "wbiConfigFilePath: " << opts.wbiConfigFilePath << "\n\n";
     out << "runInDebugMode: " << opts.runInDebugMode << "\n\n";
+    out << "noOutputMode: " << opts.noOutputMode << "\n\n";
     out << "isFloatingBase: " << opts.isFloatingBase << "\n\n";
     out << "useOdometry: " << opts.useOdometry << "\n\n";
     // out << "yarpWbiOptions: " << opts.yarpWbiOptions << "\n\n";
@@ -92,18 +94,6 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
                                                          ctrlOptions.useOdometry
                                                        );
 
-//    ctrlServer->initialize();
-//    if (ctrlOptions.useOdometry)
-//        ctrlServer->updateModel();
-//
-//    model = ctrlServer->getRobotModel();
-//    // Construct rpc server callback and bind to the control thread.
-//    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
-//    // Open the rpc server port.
-//    rpcServerPort.open("/ocra-icub-server/info/rpc:i");
-//    // Bind the callback to the port.
-//    rpcServerPort.setReader(*rpcServerCallback);
-
 
 }
 
@@ -127,7 +117,7 @@ bool Thread::threadInit()
     /* ======== This block was originally in the constructor of this thread ======= */
     // The server will initialize but without calling updateModel() at the end, if useOdometry is true.
     ctrlServer->initialize();
-    
+
     // Odometry initialization. Odometry assumes one foot to be fixed to the ground.
     if (ctrlOptions.useOdometry && ctrlOptions.isFloatingBase) {
         yarp::os::Bottle wbiStateOptionsGroup = ctrlOptions.yarpWbiOptions.findGroup("WBI_STATE_OPTIONS");
@@ -144,7 +134,7 @@ bool Thread::threadInit()
 
     if (ctrlOptions.useOdometry)
         ctrlServer->updateModel();
-    
+
     model = ctrlServer->getRobotModel();
     // Construct rpc server callback and bind to the control thread.
     rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
@@ -153,16 +143,16 @@ bool Thread::threadInit()
     // Bind the callback to the port.
     rpcServerPort.setReader(*rpcServerCallback);
     /* ============================================================================= */
-    
+
     // TODO: Add a check to make sure the tasks get loaded in and if not - don't change the control mode. return false;
     ctrlServer->addTasksFromXmlFile(ctrlOptions.startupTaskSetPath);
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
-    
     yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
-    if(ctrlOptions.runInDebugMode) {
+    if(ctrlOptions.runInDebugMode || ctrlOptions.noOutputMode) {
         debugJointIndex = 0;
         debuggingAllJoints = false;
         std::string debugRpcPortName("/ocra-icub-server/debug/rpc:i");
@@ -177,19 +167,30 @@ bool Thread::threadInit()
         debugRefOutPort.open(debugRefOutPortName);
         debugRealOutPort.open(debugRealOutPortName);
         std::cout << "-----------------------------------------------------------------" << std::endl;
-        std::cout << "\t--> Running in DEBUG mode <--" << std::endl;
+        if (ctrlOptions.noOutputMode) {
+            std::cout << "\t--> Running in NO OUTPUT mode <--" << std::endl;
+        } else {
+            std::cout << "\t--> Running in DEBUG mode <--" << std::endl;
+        }
         std::cout << "-----------------------------------------------------------------" << std::endl;
         std::cout << "-- RPC port open at: " << debugRpcPortName << std::endl;
         std::cout << "-- Output port open at: " << debugRefOutPortName << std::endl;
         std::cout << "-- Input port open at: " << debugRealOutPortName << std::endl;
         std::cout << "-----------------------------------------------------------------" << std::endl;
-        std::string jointName = model->getJointName(debugJointIndex);
-        std::cout << "Debugging joint index: " << debugJointIndex << " ("<< jointName <<")" << std::endl;
-
 
         yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
         yarpWbi->setControlReference(initialPosture.data());
-        return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, debugJointIndex);
+
+
+        if (ctrlOptions.runInDebugMode) {
+            std::string jointName = model->getJointName(debugJointIndex);
+            std::cout << "Debugging joint index: " << debugJointIndex << " ("<< jointName <<")" << std::endl;
+            return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, debugJointIndex);
+        } else {
+            return true;
+        }
+
+
     } else {
         // yarp::os::Time timer;
         // timer.delay(5.0);
@@ -218,19 +219,29 @@ bool Thread::threadInit()
 
 void Thread::run()
 {
+    // Eigen::VectorXd externalWrench(6);
+    // yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, externalWrench.data());
+    // std::cout << "externalWrench:\n" << externalWrench.transpose() << std::endl;
+
     ctrlServer->computeTorques(torques);
     torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
-    if (ctrlOptions.runInDebugMode) {
+    if (ctrlOptions.runInDebugMode || ctrlOptions.noOutputMode) {
         measuredTorques = model->getJointTorques();
         writeDebugData();
-        if (debuggingAllJoints) {
-            yarpWbi->setControlReference(torques.data());
-        } else {
-            double refTau = torques(debugJointIndex);
-            yarpWbi->setControlReference(&refTau, debugJointIndex);
+        if (!ctrlOptions.noOutputMode) {
+            if (debuggingAllJoints) {
+                yarpWbi->setControlReference(torques.data());
+            } else {
+                double refTau = torques(debugJointIndex);
+                yarpWbi->setControlReference(&refTau, debugJointIndex);
+            }
         }
     } else {
-        yarpWbi->setControlReference(torques.data());
+        bool ok = yarpWbi->setControlReference(torques.data());
+        if(!ok) {
+            OCRA_WARNING("Couldn't set the control reference. Trying to put the robot back into torque control.")
+            yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+        }
     }
 }
 
