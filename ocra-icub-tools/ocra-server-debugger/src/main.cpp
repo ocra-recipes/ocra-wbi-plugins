@@ -81,14 +81,39 @@ int main(int argc, char const *argv[]) {
 std::string generateXmlHeader(int nRows, int nCols)
 {
     std::string retString("");
-    retString += "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n";
-    retString += "<portscope rows=\""+ std::to_string(nRows) +"\" columns=\""+ std::to_string(nCols) +"\" carrier=\"udp\">";
+    retString += "<?xml version='1.0' encoding='UTF-8' ?>\n";
+    retString += "<portscope rows='"+ std::to_string(nRows) +"' columns='"+ std::to_string(nCols) +"' carrier='udp'>";
     return retString;
 }
 std::string generateChartFromJoint(int row, int col, int i, const std::string& jointName)
 {
     std::string retString("");
-    retString += "<plot\ngridx=\""+std::to_string(col)+"\"\ngridy=\""+std::to_string(row)+"\"\nhspan=\"1\"\nvspan=\"1\"\ntitle=\""+jointName+"\"\nsize=\"60\"\nminval=\"-25\"\nmaxval=\"25\"\nbgcolor=\"LightSlateGrey\">\n<graph remote=\"/ocra-icub-server/debug/ref:o\"\nindex=\""+std::to_string(i)+"\"\ncolor=\"Red\"\ntitle=\"Reference\"\ntype=\"lines\"\nsize=\"3\" />\n<graph remote=\"/ocra-icub-server/debug/real:o\"\nindex=\""+std::to_string(i)+"\"\ncolor=\"Blue\"\ntitle=\"Real\"\nsize=\"2\"\ntype=\"lines\" />\n</plot>";
+    retString += "<plot \
+                        gridx='"+std::to_string(col)+"' \
+                        gridy='"+std::to_string(row)+"' \
+                        hspan='1' \
+                        vspan='1' \
+                        title='"+jointName+"' \
+                        size='60' \
+                        minval='-25' \
+                        maxval='25' \
+                        bgcolor='LightSlateGrey' \
+                    > \
+                        <graph remote='/ocra-icub-server/debug/ref:o' \
+                            index='"+std::to_string(i)+"' \
+                            color='Red' \
+                            title='Reference' \
+                            type='lines' \
+                            size='3' \
+                        /> \
+                        <graph remote='/ocra-icub-server/debug/real:o' \
+                            index='"+std::to_string(i)+"' \
+                            color='Blue' \
+                            title='Real' \
+                            size='2' \
+                            type='lines' \
+                        /> \
+                </plot>";
     return retString;
 }
 std::string generateXmlFooter()
