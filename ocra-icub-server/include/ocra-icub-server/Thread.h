@@ -68,6 +68,7 @@ public: // Variables
     std::string             wbiConfigFilePath; /*!< The absolute path to the configuration file used to initialize the yarpWBI. */
     std::string             urdfModelPath; /*!< Absolute path to the urdf model. Used for the odometry. */
     bool                    runInDebugMode; /*!< a boolean which runs the controller in a debugging mode which allows one to check the controller ouput joint by joint. */
+    bool                    noOutputMode; /*!< a boolean which runs the controller in a debugging mode but never sends the torques to the robot. */
     bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
     bool                    useOdometry; /*!< a boolean which tells the controller to start the odometry, meaning that the world reference frame remains attached to the ground*/
     yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
@@ -188,7 +189,7 @@ private:
 
     Eigen::VectorXd measuredTorques;
     bool debuggingAllJoints;
-    
+
     iDynTree::SimpleLeggedOdometry odometry; /*!< Odometry object */
 };
 
