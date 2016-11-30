@@ -14,6 +14,13 @@ DEFINE_CLASS_POINTER_TYPEDEFS(WalkingClient)
 public:
     WalkingClient (std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod);
     virtual ~WalkingClient ();
+    
+    bool readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench);
+    
+    yarp::os::BufferedPort<yarp::sig::Vector> portWrenchLeftFoot;
+    
+    yarp::os::BufferedPort<yarp::sig::Vector> portWrenchRightFoot;
+    
 
 protected:
     virtual bool initialize();

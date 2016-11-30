@@ -4,15 +4,7 @@ WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int lo
 _zmpParams(std::make_shared<ZmpControllerParams>(1, model->getMass(), model->getCoMPosition().operator()(2), 9.8, 0.05) ),
 _zmpController(std::make_shared<ZmpController>(loopPeriod, modelPtr, _zmpParams))
 {
-    //TODO: These parameters should be read from the configuration file of the client.
-//    _zmpParams = ZmpControllerParams(1, model->getMass(), model->getCoMPosition().operator()(2), 9.8, 0.05);
-//    _zmpParams.kf = 1;
-//    _zmpParams.m = model->getMass();
-//    _zmpParams.cz = model->getCoMPosition().operator()(2);
-//    _zmpParams.g = 9.8;
-//    _zmpParams.d = 0.05;
-//    this->_zmpControllerObj = std::make_shared<ZmpController>(loopPeriod, modelPtr, );
-    // add your code here...
+
 }
 
 WalkingClient::~WalkingClient()
@@ -22,11 +14,30 @@ WalkingClient::~WalkingClient()
 
 bool WalkingClient::initialize()
 {
-    // Create ZMPController object
+    // Connect to feet wrench ports
+    bool ok = portWrenchLeftFoot.open("/walkingClient/left_foot/wrench:i");
+    if (!ok) {
+        OCRA_ERROR("Impossible to open /walkingClient/left_foot/wrench:i");
+        return false;
+    } else {
+        // Autoconnect
+        if (!yarp::os::Network::connect("/icubGazeboSim/left_foot/analog:o", portWrenchLeftFoot.getName().c_str())) {
+            OCRA_ERROR("Impossible to connect to /icubGazeboSim/left_foot/analog:o");
+            return false;
+        }
+    }
+    ok = portWrenchRightFoot.open("/walkingClient/right_foot/wrench:i");
+    if (!ok) {
+        OCRA_ERROR("Impossible to open /walkingClient/right_foot/wrench:i");
+        return false;
+    } else {
+        // Autoconnect
+        if (!yarp::os::Network::connect("/icubGazeboSim/right_foot/analog:o", portWrenchRightFoot.getName().c_str()) ) {
+            OCRA_ERROR("Impossible to connect to /icubGazeboSim/right_foot/analog:o");
+            return false;
+        }
+    }
     
-    // Create ZMPPreviewController object
-    
-    // add your code here...
     return true;
 }
 
@@ -37,5 +48,36 @@ void WalkingClient::release()
 
 void WalkingClient::loop()
 {
-    // add your code here...
+    // Read measurements
+    Eigen::VectorXd rawLeftFootWrench(6);
+    Eigen::VectorXd rawRightFootWrench(6);
+    readFootWrench(LEFT_FOOT, rawLeftFootWrench);
+    readFootWrench(RIGHT_FOOT, rawRightFootWrench);
+    
+    // Compute ZMP
+    Eigen::Vector2d globalZMP; globalZMP.setZero();
+    _zmpController->computeGlobalZMPFromSensors(rawLeftFootWrench, rawRightFootWrench, globalZMP);
+    
+    // Compute ZMPPreviewController optimal input
+    
+}
+
+bool WalkingClient::readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench) {
+    yarp::sig::Vector * yRawFootWrench;
+    switch (whichFoot) {
+        case LEFT_FOOT:
+            yRawFootWrench = portWrenchLeftFoot.read();
+            break;
+        case RIGHT_FOOT:
+            yRawFootWrench = portWrenchRightFoot.read();
+            break;
+        default:
+            break;
+    }
+    
+    if (yRawFootWrench == NULL)
+        return false;
+    
+    rawWrench = Eigen::VectorXd::Map(yRawFootWrench->data(), 6);
+    return true;
 }
