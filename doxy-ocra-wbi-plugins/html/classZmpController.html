@@ -68,6 +68,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classZmpController-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ZmpController Class Reference</div>  </div>
@@ -78,19 +79,43 @@ $(function() {
  <a href="classZmpController.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="ZmpController_8h_source.html">ZmpController.h</a>&gt;</code></p>
+<div class="dynheader">
+Collaboration diagram for ZmpController:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classZmpController__coll__graph.svg" width="163" height="123"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a401013c4cc1d215972062b027e11e619"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a401013c4cc1d215972062b027e11e619">ZmpController</a> (const int period, struct <a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a> parameters)</td></tr>
-<tr class="separator:a401013c4cc1d215972062b027e11e619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19bf2e39f4b15f6b8562102278b0544"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#ac19bf2e39f4b15f6b8562102278b0544">ZmpController</a> (const int period, std::shared_ptr&lt; ocra::Model &gt; modelPtr, struct <a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a> parameters)</td></tr>
+<tr class="separator:ac19bf2e39f4b15f6b8562102278b0544"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af308a70e70cfe9a1e9569606da8b1739"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#af308a70e70cfe9a1e9569606da8b1739">~ZmpController</a> ()</td></tr>
 <tr class="separator:af308a70e70cfe9a1e9569606da8b1739"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6b6978770bbba4f1041f938d9f1308f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#ae6b6978770bbba4f1041f938d9f1308f">computehd</a> (Eigen::Vector2d pd, Eigen::Vector2d &amp;dhd)</td></tr>
-<tr class="separator:ae6b6978770bbba4f1041f938d9f1308f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fd41771d83a31bd190f4031f82649e0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a6fd41771d83a31bd190f4031f82649e0">computeFootZMP</a> (<a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a> whichFoot, Eigen::VectorXd wrench, Eigen::Vector2d &amp;footZMP, Eigen::VectorXd &amp;wrenchInWorldRef, const double tolerance=1e-3)</td></tr>
+<tr class="separator:a6fd41771d83a31bd190f4031f82649e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae5cc381a922206dad10ba2d425992ce"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#aae5cc381a922206dad10ba2d425992ce">computeGlobalZMPFromSensors</a> (Eigen::VectorXd rawLeftFootWrench, Eigen::VectorXd rawRightFootWrench, Eigen::Vector2d &amp;globalZMP)</td></tr>
+<tr class="separator:aae5cc381a922206dad10ba2d425992ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa46736e04771dc709b4edd267f1d6f51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#aa46736e04771dc709b4edd267f1d6f51">transformWrenchInWRF</a> (Eigen::VectorXd wrench, Eigen::VectorXd &amp;wrenchTransformed)</td></tr>
+<tr class="separator:aa46736e04771dc709b4edd267f1d6f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d04ede7ad8c05e9a0b12e3db39ba1ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a4d04ede7ad8c05e9a0b12e3db39ba1ce">getFTSensorRotoTranslation</a> (<a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a> whichFoot, Eigen::MatrixXd &amp;T)</td></tr>
+<tr class="separator:a4d04ede7ad8c05e9a0b12e3db39ba1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e821f72c79fe86102f02c4c155ad30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#ac8e821f72c79fe86102f02c4c155ad30">getLeftFootPosition</a> (Eigen::Vector3d &amp;leftFootPosition)</td></tr>
+<tr class="separator:ac8e821f72c79fe86102f02c4c155ad30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a815cd495f657cbd93c25610d24982e8c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a815cd495f657cbd93c25610d24982e8c">getRightFootPosition</a> (Eigen::Vector3d &amp;rightFootPosition)</td></tr>
+<tr class="separator:a815cd495f657cbd93c25610d24982e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eab881a51fb2ace1a1d494171353bc7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a5eab881a51fb2ace1a1d494171353bc7">computehd</a> (Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vector2d &amp;dhd)</td></tr>
+<tr class="separator:a5eab881a51fb2ace1a1d494171353bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a9573986e0a65a4247c80fbcccb686756"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a9573986e0a65a4247c80fbcccb686756">params</a></td></tr>
+<tr class="separator:a9573986e0a65a4247c80fbcccb686756"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac86a58d1f870ce27c78b0f6d2294e05f"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; ocra::Model &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#ac86a58d1f870ce27c78b0f6d2294e05f">_model</a></td></tr>
+<tr class="separator:ac86a58d1f870ce27c78b0f6d2294e05f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementes a ZMP controller as a force set point regulator. </p>
-<dl class="section note"><dt>Note</dt><dd>Put original ZMP preview control reference along with Aurelien's</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>Jorhabib Eljaik</dd></dl>
 <p><a class="el" href="citelist.html#CITEREF_krause2012stabilization">[3]</a></p>
 <dl class="section warning"><dt>Warning</dt><dd>Work in progress! This is still a barebone class in the process of being tested.</dd></dl>
@@ -107,8 +132,8 @@ Public Member Functions</h2></td></tr>
 \[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \]
 </p>
  </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a401013c4cc1d215972062b027e11e619"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a401013c4cc1d215972062b027e11e619">&sect;&nbsp;</a></span>ZmpController()</h2>
+<a id="ac19bf2e39f4b15f6b8562102278b0544"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19bf2e39f4b15f6b8562102278b0544">&sect;&nbsp;</a></span>ZmpController()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -118,6 +143,12 @@ Public Member Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">const int&#160;</td>
           <td class="paramname"><em>period</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::shared_ptr&lt; ocra::Model &gt;&#160;</td>
+          <td class="paramname"><em>modelPtr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -161,8 +192,110 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae6b6978770bbba4f1041f938d9f1308f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6b6978770bbba4f1041f938d9f1308f">&sect;&nbsp;</a></span>computehd()</h2>
+<a id="a6fd41771d83a31bd190f4031f82649e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fd41771d83a31bd190f4031f82649e0">&sect;&nbsp;</a></span>computeFootZMP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ZmpController::computeFootZMP </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a>&#160;</td>
+          <td class="paramname"><em>whichFoot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::VectorXd&#160;</td>
+          <td class="paramname"><em>wrench</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Vector2d &amp;&#160;</td>
+          <td class="paramname"><em>footZMP</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>wrenchInWorldRef</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const double&#160;</td>
+          <td class="paramname"><em>tolerance</em> = <code>1e-3</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Computes the ZMP for a single foot in world reference frame.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">whichFoot</td><td>LEFT_FOOT or RIGHT_FOOT. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">wrench</td><td>External wrench on the foot as read by the F/T sensors. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">footZMP</td><td>Foot ZMP in world reference frame. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">wrenchInWorldRef</td><td>Transformed wrench in world reference frame. </td></tr>
+    <tr><td class="paramdir"></td><td class="paramname">tolerance</td><td>Tolerance value below which the ZMP is considered null. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if all operations proceed successfully. </dd></dl>
+
+</div>
+</div>
+<a id="aae5cc381a922206dad10ba2d425992ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aae5cc381a922206dad10ba2d425992ce">&sect;&nbsp;</a></span>computeGlobalZMPFromSensors()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool ZmpController::computeGlobalZMPFromSensors </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::VectorXd&#160;</td>
+          <td class="paramname"><em>rawLeftFootWrench</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::VectorXd&#160;</td>
+          <td class="paramname"><em>rawRightFootWrench</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Vector2d &amp;&#160;</td>
+          <td class="paramname"><em>globalZMP</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Computes the global ZMP for two feet in contact.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rawLeftFootWrench</td><td>Raw left foot wrench as read from the sensors [force | torque] </td></tr>
+    <tr><td class="paramname">rawRightFootWrench</td><td>Raw right foot wrench as read from the sensors. </td></tr>
+    <tr><td class="paramname">globalZMP</td><td>Global zmp in world reference frame considering both feet. @  </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if all operations succeed, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="a5eab881a51fb2ace1a1d494171353bc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eab881a51fb2ace1a1d494171353bc7">&sect;&nbsp;</a></span>computehd()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,6 +303,12 @@ Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">bool ZmpController::computehd </td>
           <td>(</td>
+          <td class="paramtype">Eigen::Vector2d&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">Eigen::Vector2d&#160;</td>
           <td class="paramname"><em>pd</em>, </td>
         </tr>
@@ -189,11 +328,149 @@ Public Member Functions</h2></td></tr>
 <p>Computes the instantaneous desired horizonal COM velocity for the corresponding desired zmp position.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramdir"></td><td class="paramname">p</td><td>Horizonal measured zmp position </td></tr>
     <tr><td class="paramdir"></td><td class="paramname">pd</td><td>Horizontal desired zmp position </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">dhd</td><td>Horizonal CoM velocity \(\dot{\mathbf{h}}_d\) </td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a4d04ede7ad8c05e9a0b12e3db39ba1ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d04ede7ad8c05e9a0b12e3db39ba1ce">&sect;&nbsp;</a></span>getFTSensorRotoTranslation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZmpController::getFTSensorRotoTranslation </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a>&#160;</td>
+          <td class="paramname"><em>whichFoot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::MatrixXd &amp;&#160;</td>
+          <td class="paramname"><em>T</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8e821f72c79fe86102f02c4c155ad30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e821f72c79fe86102f02c4c155ad30">&sect;&nbsp;</a></span>getLeftFootPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZmpController::getLeftFootPosition </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>leftFootPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a815cd495f657cbd93c25610d24982e8c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a815cd495f657cbd93c25610d24982e8c">&sect;&nbsp;</a></span>getRightFootPosition()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZmpController::getRightFootPosition </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::Vector3d &amp;&#160;</td>
+          <td class="paramname"><em>rightFootPosition</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa46736e04771dc709b4edd267f1d6f51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa46736e04771dc709b4edd267f1d6f51">&sect;&nbsp;</a></span>transformWrenchInWRF()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZmpController::transformWrenchInWRF </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::VectorXd&#160;</td>
+          <td class="paramname"><em>wrench</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>wrenchTransformed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac86a58d1f870ce27c78b0f6d2294e05f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac86a58d1f870ce27c78b0f6d2294e05f">&sect;&nbsp;</a></span>_model</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::shared_ptr&lt;ocra::Model&gt; ZmpController::_model</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9573986e0a65a4247c80fbcccb686756"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9573986e0a65a4247c80fbcccb686756">&sect;&nbsp;</a></span>params</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structZmpControllerParams.html">ZmpControllerParams</a> ZmpController::params</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -204,7 +481,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Nov 29 2016 13:19:24 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 30 2016 16:26:38 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>

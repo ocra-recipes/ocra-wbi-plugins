@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['j_5fcom',['J_com',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#ab724e92a7f74f03c3842f22129b2ad94',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
-  ['j_5fcom_5fangular',['J_com_angular',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a1755993b2e425c6a49c55874c6c455e4',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
-  ['j_5fcom_5ffull',['J_com_full',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a73c9391019a2e36ddd2c2f9ef1773a41',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
-  ['j_5fcom_5ffull_5fangular',['J_com_full_angular',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#ac064807ab1c8a89585cb7aa5f49d8744',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
-  ['j_5fcom_5frm',['J_com_rm',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a58b26a33ee0449f71a3d338c23ea29d5',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
-  ['j_5fcom_5frm_5fangular',['J_com_rm_angular',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#ad52987f0908ab1b44779e3d752a7b97b',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
-  ['jroot',['Jroot',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a4a70bcc50b618443daf9fed6f5303403',1,'OcraWbiModel::OcraWbiModel_pimpl']]]
+  ['initialposture',['initialPosture',['../classThread.html#aa59863bb50c8aa88fe5872e75be44cb7',1,'Thread']]],
+  ['isfloatingbase',['isFloatingBase',['../classIcubControllerServer.html#aebc2019921c3eabb53c01012fbd2355a',1,'IcubControllerServer::isFloatingBase()'],['../classOcraControllerOptions.html#a1edf322553d88c1ac2bf8947e9d942d7',1,'OcraControllerOptions::isFloatingBase()'],['../classocra__icub_1_1ModelInitializer.html#a51d73f808c75fbc1284f460e7ff66d6a',1,'ocra_icub::ModelInitializer::isFloatingBase()']]],
+  ['isinleftsupportmode',['isInLeftSupportMode',['../classSteppingDemoClient.html#a88b84ed8fc7808ea3fb68f2ec3d29ebe',1,'SteppingDemoClient']]],
+  ['isinrightsupportmode',['isInRightSupportMode',['../classSteppingDemoClient.html#a7697070e5db6c635aa2eff70bce29176',1,'SteppingDemoClient']]],
+  ['ismovingcom',['isMovingCoM',['../classSteppingDemoClient.html#ad7e3950d053af7c1aca33b3e7c3b20c5',1,'SteppingDemoClient']]],
+  ['ispausing',['isPausing',['../classSteppingDemoClient.html#a29e7765300c7d2e2d5108025fbdcbc2c',1,'SteppingDemoClient']]]
 ];

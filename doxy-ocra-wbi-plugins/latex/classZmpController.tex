@@ -9,23 +9,49 @@ Implementes a Z\+MP controller as a force set point regulator.
 
 {\ttfamily \#include $<$Zmp\+Controller.\+h$>$}
 
+
+
+Collaboration diagram for Zmp\+Controller\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{classZmpController__coll__graph}
+\end{center}
+\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classZmpController_a401013c4cc1d215972062b027e11e619}{Zmp\+Controller} (const int period, struct \hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params} parameters)
+\hyperlink{classZmpController_ac19bf2e39f4b15f6b8562102278b0544}{Zmp\+Controller} (const int period, std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$ model\+Ptr, struct \hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params} parameters)
 \item 
 virtual \hyperlink{classZmpController_af308a70e70cfe9a1e9569606da8b1739}{$\sim$\+Zmp\+Controller} ()
 \item 
-bool \hyperlink{classZmpController_ae6b6978770bbba4f1041f938d9f1308f}{computehd} (Eigen\+::\+Vector2d pd, Eigen\+::\+Vector2d \&dhd)
+bool \hyperlink{classZmpController_a6fd41771d83a31bd190f4031f82649e0}{compute\+Foot\+Z\+MP} (\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT} which\+Foot, Eigen\+::\+Vector\+Xd wrench, Eigen\+::\+Vector2d \&foot\+Z\+MP, Eigen\+::\+Vector\+Xd \&wrench\+In\+World\+Ref, const double tolerance=1e-\/3)
+\item 
+bool \hyperlink{classZmpController_aae5cc381a922206dad10ba2d425992ce}{compute\+Global\+Z\+M\+P\+From\+Sensors} (Eigen\+::\+Vector\+Xd raw\+Left\+Foot\+Wrench, Eigen\+::\+Vector\+Xd raw\+Right\+Foot\+Wrench, Eigen\+::\+Vector2d \&global\+Z\+MP)
+\item 
+void \hyperlink{classZmpController_aa46736e04771dc709b4edd267f1d6f51}{transform\+Wrench\+In\+W\+RF} (Eigen\+::\+Vector\+Xd wrench, Eigen\+::\+Vector\+Xd \&wrench\+Transformed)
+\item 
+void \hyperlink{classZmpController_a4d04ede7ad8c05e9a0b12e3db39ba1ce}{get\+F\+T\+Sensor\+Roto\+Translation} (\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT} which\+Foot, Eigen\+::\+Matrix\+Xd \&T)
+\item 
+void \hyperlink{classZmpController_ac8e821f72c79fe86102f02c4c155ad30}{get\+Left\+Foot\+Position} (Eigen\+::\+Vector3d \&left\+Foot\+Position)
+\item 
+void \hyperlink{classZmpController_a815cd495f657cbd93c25610d24982e8c}{get\+Right\+Foot\+Position} (Eigen\+::\+Vector3d \&right\+Foot\+Position)
+\item 
+bool \hyperlink{classZmpController_a5eab881a51fb2ace1a1d494171353bc7}{computehd} (Eigen\+::\+Vector2d p, Eigen\+::\+Vector2d pd, Eigen\+::\+Vector2d \&dhd)
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params} \hyperlink{classZmpController_a9573986e0a65a4247c80fbcccb686756}{params}
+\item 
+std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$ \hyperlink{classZmpController_ac86a58d1f870ce27c78b0f6d2294e05f}{\+\_\+model}
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
 Implementes a Z\+MP controller as a force set point regulator. 
 
-\begin{DoxyNote}{Note}
-Put original Z\+MP preview control reference along with Aurelien\textquotesingle{}s
-\end{DoxyNote}
 \begin{DoxyAuthor}{Author}
 Jorhabib Eljaik
 \end{DoxyAuthor}
@@ -41,11 +67,11 @@ In \cite{krause2012stabilization} a position-\/based Z\+MP controller was implem
 Where $\omega = \sqrt{g/c_z}$ as done in \cite{kajita2003biped}. Therefore the desired $\mathbf{p}_d$ can be associated to a desired force on the CoM\+: \[ F_d = m \omega^2 (\mathbf{h} - \mathbf{p}_d) \] Where $m$ is the total mass of the robot and a force set point regulator can be implemented as\+: \[ \dot{\mathbf{h}}_d = k_f(F_d - F) \] Where $k_f > 0$ is a force control gain. Substituting \hyperlink{classZmpController_simplifiedZMP}{simplified\+Z\+MP} we get\+: \[ \dot{\mathbf{h}}_d = k_f m \omega^2(\mathbf{p} - \mathbf{p}_d) \] 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classZmpController_a401013c4cc1d215972062b027e11e619}{}\label{classZmpController_a401013c4cc1d215972062b027e11e619} 
+\hypertarget{classZmpController_ac19bf2e39f4b15f6b8562102278b0544}{}\label{classZmpController_ac19bf2e39f4b15f6b8562102278b0544} 
 \index{Zmp\+Controller@{Zmp\+Controller}!Zmp\+Controller@{Zmp\+Controller}}
 \index{Zmp\+Controller@{Zmp\+Controller}!Zmp\+Controller@{Zmp\+Controller}}
 \subsubsection{\texorpdfstring{Zmp\+Controller()}{ZmpController()}}
-{\footnotesize\ttfamily Zmp\+Controller\+::\+Zmp\+Controller (\begin{DoxyParamCaption}\item[{const int}]{period,  }\item[{struct \hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params}}]{parameters }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Zmp\+Controller\+::\+Zmp\+Controller (\begin{DoxyParamCaption}\item[{const int}]{period,  }\item[{std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$}]{model\+Ptr,  }\item[{struct \hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params}}]{parameters }\end{DoxyParamCaption})}
 
 \hypertarget{classZmpController_af308a70e70cfe9a1e9569606da8b1739}{}\label{classZmpController_af308a70e70cfe9a1e9569606da8b1739} 
 \index{Zmp\+Controller@{Zmp\+Controller}!````~Zmp\+Controller@{$\sim$\+Zmp\+Controller}}
@@ -56,21 +82,106 @@ Where $\omega = \sqrt{g/c_z}$ as done in \cite{kajita2003biped}. Therefore the d
 
 
 \subsection{Member Function Documentation}
-\hypertarget{classZmpController_ae6b6978770bbba4f1041f938d9f1308f}{}\label{classZmpController_ae6b6978770bbba4f1041f938d9f1308f} 
+\hypertarget{classZmpController_a6fd41771d83a31bd190f4031f82649e0}{}\label{classZmpController_a6fd41771d83a31bd190f4031f82649e0} 
+\index{Zmp\+Controller@{Zmp\+Controller}!compute\+Foot\+Z\+MP@{compute\+Foot\+Z\+MP}}
+\index{compute\+Foot\+Z\+MP@{compute\+Foot\+Z\+MP}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{compute\+Foot\+Z\+M\+P()}{computeFootZMP()}}
+{\footnotesize\ttfamily bool Zmp\+Controller\+::compute\+Foot\+Z\+MP (\begin{DoxyParamCaption}\item[{\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT}}]{which\+Foot,  }\item[{Eigen\+::\+Vector\+Xd}]{wrench,  }\item[{Eigen\+::\+Vector2d \&}]{foot\+Z\+MP,  }\item[{Eigen\+::\+Vector\+Xd \&}]{wrench\+In\+World\+Ref,  }\item[{const double}]{tolerance = {\ttfamily 1e-\/3} }\end{DoxyParamCaption})}
+
+Computes the Z\+MP for a single foot in world reference frame.
+
+
+\begin{DoxyParams}[1]{Parameters}
+ & {\em which\+Foot} & L\+E\+F\+T\+\_\+\+F\+O\+OT or R\+I\+G\+H\+T\+\_\+\+F\+O\+OT. \\
+\hline
+ & {\em wrench} & External wrench on the foot as read by the F/T sensors. \\
+\hline
+\mbox{\tt out}  & {\em foot\+Z\+MP} & Foot Z\+MP in world reference frame. \\
+\hline
+\mbox{\tt out}  & {\em wrench\+In\+World\+Ref} & Transformed wrench in world reference frame. \\
+\hline
+ & {\em tolerance} & Tolerance value below which the Z\+MP is considered null. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if all operations proceed successfully. 
+\end{DoxyReturn}
+\hypertarget{classZmpController_aae5cc381a922206dad10ba2d425992ce}{}\label{classZmpController_aae5cc381a922206dad10ba2d425992ce} 
+\index{Zmp\+Controller@{Zmp\+Controller}!compute\+Global\+Z\+M\+P\+From\+Sensors@{compute\+Global\+Z\+M\+P\+From\+Sensors}}
+\index{compute\+Global\+Z\+M\+P\+From\+Sensors@{compute\+Global\+Z\+M\+P\+From\+Sensors}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{compute\+Global\+Z\+M\+P\+From\+Sensors()}{computeGlobalZMPFromSensors()}}
+{\footnotesize\ttfamily bool Zmp\+Controller\+::compute\+Global\+Z\+M\+P\+From\+Sensors (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{raw\+Left\+Foot\+Wrench,  }\item[{Eigen\+::\+Vector\+Xd}]{raw\+Right\+Foot\+Wrench,  }\item[{Eigen\+::\+Vector2d \&}]{global\+Z\+MP }\end{DoxyParamCaption})}
+
+Computes the global Z\+MP for two feet in contact.
+
+
+\begin{DoxyParams}{Parameters}
+{\em raw\+Left\+Foot\+Wrench} & Raw left foot wrench as read from the sensors \mbox{[}force $\vert$ torque\mbox{]} \\
+\hline
+{\em raw\+Right\+Foot\+Wrench} & Raw right foot wrench as read from the sensors. \\
+\hline
+{\em global\+Z\+MP} & Global zmp in world reference frame considering both feet. @  \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if all operations succeed, false otherwise. 
+\end{DoxyReturn}
+\hypertarget{classZmpController_a5eab881a51fb2ace1a1d494171353bc7}{}\label{classZmpController_a5eab881a51fb2ace1a1d494171353bc7} 
 \index{Zmp\+Controller@{Zmp\+Controller}!computehd@{computehd}}
 \index{computehd@{computehd}!Zmp\+Controller@{Zmp\+Controller}}
 \subsubsection{\texorpdfstring{computehd()}{computehd()}}
-{\footnotesize\ttfamily bool Zmp\+Controller\+::computehd (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector2d}]{pd,  }\item[{Eigen\+::\+Vector2d \&}]{dhd }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily bool Zmp\+Controller\+::computehd (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector2d}]{p,  }\item[{Eigen\+::\+Vector2d}]{pd,  }\item[{Eigen\+::\+Vector2d \&}]{dhd }\end{DoxyParamCaption})}
 
 Computes the instantaneous desired horizonal C\+OM velocity for the corresponding desired zmp position.
 
 
 \begin{DoxyParams}[1]{Parameters}
+ & {\em p} & Horizonal measured zmp position \\
+\hline
  & {\em pd} & Horizontal desired zmp position \\
 \hline
 \mbox{\tt out}  & {\em dhd} & Horizonal CoM velocity $\dot{\mathbf{h}}_d$ \\
 \hline
 \end{DoxyParams}
+\hypertarget{classZmpController_a4d04ede7ad8c05e9a0b12e3db39ba1ce}{}\label{classZmpController_a4d04ede7ad8c05e9a0b12e3db39ba1ce} 
+\index{Zmp\+Controller@{Zmp\+Controller}!get\+F\+T\+Sensor\+Roto\+Translation@{get\+F\+T\+Sensor\+Roto\+Translation}}
+\index{get\+F\+T\+Sensor\+Roto\+Translation@{get\+F\+T\+Sensor\+Roto\+Translation}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{get\+F\+T\+Sensor\+Roto\+Translation()}{getFTSensorRotoTranslation()}}
+{\footnotesize\ttfamily void Zmp\+Controller\+::get\+F\+T\+Sensor\+Roto\+Translation (\begin{DoxyParamCaption}\item[{\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT}}]{which\+Foot,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{T }\end{DoxyParamCaption})}
+
+\hypertarget{classZmpController_ac8e821f72c79fe86102f02c4c155ad30}{}\label{classZmpController_ac8e821f72c79fe86102f02c4c155ad30} 
+\index{Zmp\+Controller@{Zmp\+Controller}!get\+Left\+Foot\+Position@{get\+Left\+Foot\+Position}}
+\index{get\+Left\+Foot\+Position@{get\+Left\+Foot\+Position}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{get\+Left\+Foot\+Position()}{getLeftFootPosition()}}
+{\footnotesize\ttfamily void Zmp\+Controller\+::get\+Left\+Foot\+Position (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector3d \&}]{left\+Foot\+Position }\end{DoxyParamCaption})}
+
+\hypertarget{classZmpController_a815cd495f657cbd93c25610d24982e8c}{}\label{classZmpController_a815cd495f657cbd93c25610d24982e8c} 
+\index{Zmp\+Controller@{Zmp\+Controller}!get\+Right\+Foot\+Position@{get\+Right\+Foot\+Position}}
+\index{get\+Right\+Foot\+Position@{get\+Right\+Foot\+Position}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{get\+Right\+Foot\+Position()}{getRightFootPosition()}}
+{\footnotesize\ttfamily void Zmp\+Controller\+::get\+Right\+Foot\+Position (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector3d \&}]{right\+Foot\+Position }\end{DoxyParamCaption})}
+
+\hypertarget{classZmpController_aa46736e04771dc709b4edd267f1d6f51}{}\label{classZmpController_aa46736e04771dc709b4edd267f1d6f51} 
+\index{Zmp\+Controller@{Zmp\+Controller}!transform\+Wrench\+In\+W\+RF@{transform\+Wrench\+In\+W\+RF}}
+\index{transform\+Wrench\+In\+W\+RF@{transform\+Wrench\+In\+W\+RF}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{transform\+Wrench\+In\+W\+R\+F()}{transformWrenchInWRF()}}
+{\footnotesize\ttfamily void Zmp\+Controller\+::transform\+Wrench\+In\+W\+RF (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector\+Xd}]{wrench,  }\item[{Eigen\+::\+Vector\+Xd \&}]{wrench\+Transformed }\end{DoxyParamCaption})}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classZmpController_ac86a58d1f870ce27c78b0f6d2294e05f}{}\label{classZmpController_ac86a58d1f870ce27c78b0f6d2294e05f} 
+\index{Zmp\+Controller@{Zmp\+Controller}!\+\_\+model@{\+\_\+model}}
+\index{\+\_\+model@{\+\_\+model}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{\+\_\+model}{\_model}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ocra\+::\+Model$>$ Zmp\+Controller\+::\+\_\+model\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classZmpController_a9573986e0a65a4247c80fbcccb686756}{}\label{classZmpController_a9573986e0a65a4247c80fbcccb686756} 
+\index{Zmp\+Controller@{Zmp\+Controller}!params@{params}}
+\index{params@{params}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{params}{params}}
+{\footnotesize\ttfamily \hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params} Zmp\+Controller\+::params\hspace{0.3cm}{\ttfamily [private]}}
+
 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}

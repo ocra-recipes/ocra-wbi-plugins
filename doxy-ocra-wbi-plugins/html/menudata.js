@@ -16,7 +16,8 @@ var menudata={children:[
 {text:'Class Hierarchy',url:'inherits.html'},
 {text:'Class Members',url:'functions.html',children:[
 {text:'All',url:'functions.html',children:[
-{text:'a',url:'functions.html#index_a'},
+{text:'_',url:'functions.html#index__'},
+{text:'a',url:'functions_a.html#index_a'},
 {text:'b',url:'functions_b.html#index_b'},
 {text:'c',url:'functions_c.html#index_c'},
 {text:'d',url:'functions_d.html#index_d'},
@@ -64,7 +65,8 @@ var menudata={children:[
 {text:'z',url:'functions_func.html#index_z'},
 {text:'~',url:'functions_func.html#index_0x7e'}]},
 {text:'Variables',url:'functions_vars.html',children:[
-{text:'a',url:'functions_vars.html#index_a'},
+{text:'_',url:'functions_vars.html#index__'},
+{text:'a',url:'functions_vars_a.html#index_a'},
 {text:'b',url:'functions_vars_b.html#index_b'},
 {text:'c',url:'functions_vars_c.html#index_c'},
 {text:'d',url:'functions_vars_d.html#index_d'},
@@ -86,7 +88,8 @@ var menudata={children:[
 {text:'u',url:'functions_vars_u.html#index_u'},
 {text:'v',url:'functions_vars_v.html#index_v'},
 {text:'w',url:'functions_vars_w.html#index_w'},
-{text:'y',url:'functions_vars_y.html#index_y'}]}]}]},
+{text:'y',url:'functions_vars_y.html#index_y'},
+{text:'z',url:'functions_vars_z.html#index_z'}]}]}]},
 {text:'Files',url:'files.html',children:[
 {text:'File List',url:'files.html'},
 {text:'File Members',url:'globals.html',children:[
