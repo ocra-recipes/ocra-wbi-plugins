@@ -20,6 +20,12 @@ bool ExampleClient::initialize()
 
     ocra_recipes::TaskConnection leftHandTask("LeftHandCartesian");
     Eigen::Vector3d initialPos = leftHandTask.getTaskState().getPosition().getTranslation();
+
+    // std::cout << "\n\n\n" << std::endl;
+    // std::cout << "task pose: " << leftHandTask.getTaskState().getPosition() << std::endl;
+    // std::cout << "hand pose: " << model->getSegmentPosition("l_hand") << std::endl;
+    // std::cout << "\n\n\n" << std::endl;
+
     waypoints.resize(3,3);
     waypoints.col(0) = initialPos + Eigen::Vector3d(0.0,  0.0,  0.2);
     waypoints.col(1) = initialPos + Eigen::Vector3d(0.0, -0.2,  0.2);
