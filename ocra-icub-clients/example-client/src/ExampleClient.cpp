@@ -18,10 +18,13 @@ bool ExampleClient::initialize()
 
     ocra_recipes::TRAJECTORY_TYPE trajType = ocra_recipes::MIN_JERK;
 
+    ocra_recipes::TaskConnection leftHandTask("LeftHandCartesian");
+    Eigen::Vector3d initialPos = leftHandTask.getTaskState().getPosition().getTranslation();
     waypoints.resize(3,3);
-    waypoints <<     0.20, 0.25, 0.15,
-                    -0.06, 0.10, 0.30,
-                     0.55, 0.85, 0.65;
+    waypoints.col(0) = initialPos + Eigen::Vector3d(0.0,  0.0,  0.2);
+    waypoints.col(1) = initialPos + Eigen::Vector3d(0.0, -0.2,  0.2);
+    waypoints.col(2) = initialPos + Eigen::Vector3d(0.0, -0.2,  0.0);
+
 
     ocra_recipes::TERMINATION_STRATEGY termStrategy = ocra_recipes::BACK_AND_FORTH;
 
