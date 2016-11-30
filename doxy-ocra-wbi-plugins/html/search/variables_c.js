@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['m',['m',['../structZmpControllerParams.html#a1a3eea24e276953f2e74c4066b24106c',1,'ZmpControllerParams::m()'],['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a56b6cb4adf9dead06b4d09fe38daa26e',1,'ocra_icub::OcraWbiModel::OcraWbiModel_pimpl::M()']]],
+  ['m',['M',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a56b6cb4adf9dead06b4d09fe38daa26e',1,'ocra_icub::OcraWbiModel::OcraWbiModel_pimpl::M()'],['../structZmpControllerParams.html#a1a3eea24e276953f2e74c4066b24106c',1,'ZmpControllerParams::m()']]],
   ['m_5ffull',['M_full',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#af57ebe4c5c15477a9592dd91a5c96f12',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
   ['m_5ffull_5frm',['M_full_rm',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a6ed8d69d83b0321920c0f79cf8e58bde',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
   ['maxtorques',['maxTorques',['../classThread.html#af28a4fcbbcbf77c42237c0be75a25a54',1,'Thread']]],

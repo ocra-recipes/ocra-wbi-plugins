@@ -15,8 +15,7 @@ Inheritance diagram for Walking\+Client\+:\nopagebreak
 \end{figure}
 
 
-Collaboration diagram for Walking\+Client\+:
-\nopagebreak
+Collaboration diagram for Walking\+Client\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -29,6 +28,15 @@ Collaboration diagram for Walking\+Client\+:
 \hyperlink{classWalkingClient_a6c9002a44a54814c4b482739824e39aa}{Walking\+Client} (std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$ model\+Ptr, const int loop\+Period)
 \item 
 virtual \hyperlink{classWalkingClient_a1dbc0308f844aea6542750104fddf8e2}{$\sim$\+Walking\+Client} ()
+\item 
+bool \hyperlink{classWalkingClient_a03ea2313c954a97aeb4d5b614f3e6caa}{read\+Foot\+Wrench} (\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT} which\+Foot, Eigen\+::\+Vector\+Xd \&raw\+Wrench)
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::sig\+::\+Vector $>$ \hyperlink{classWalkingClient_a88ee63ff6a341eccd458d24700383457}{port\+Wrench\+Left\+Foot}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::sig\+::\+Vector $>$ \hyperlink{classWalkingClient_a96321dc60e84c193f2dea6e85983ca67}{port\+Wrench\+Right\+Foot}
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -76,6 +84,12 @@ std\+::shared\+\_\+ptr$<$ \hyperlink{classZmpController}{Zmp\+Controller} $>$ \h
 \subsubsection{\texorpdfstring{loop()}{loop()}}
 {\footnotesize\ttfamily void Walking\+Client\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
+\hypertarget{classWalkingClient_a03ea2313c954a97aeb4d5b614f3e6caa}{}\label{classWalkingClient_a03ea2313c954a97aeb4d5b614f3e6caa} 
+\index{Walking\+Client@{Walking\+Client}!read\+Foot\+Wrench@{read\+Foot\+Wrench}}
+\index{read\+Foot\+Wrench@{read\+Foot\+Wrench}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{read\+Foot\+Wrench()}{readFootWrench()}}
+{\footnotesize\ttfamily bool Walking\+Client\+::read\+Foot\+Wrench (\begin{DoxyParamCaption}\item[{\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT}}]{which\+Foot,  }\item[{Eigen\+::\+Vector\+Xd \&}]{raw\+Wrench }\end{DoxyParamCaption})}
+
 \hypertarget{classWalkingClient_a3b36da9d7649865a13c9318dd73ebc7e}{}\label{classWalkingClient_a3b36da9d7649865a13c9318dd73ebc7e} 
 \index{Walking\+Client@{Walking\+Client}!release@{release}}
 \index{release@{release}!Walking\+Client@{Walking\+Client}}
@@ -96,6 +110,18 @@ std\+::shared\+\_\+ptr$<$ \hyperlink{classZmpController}{Zmp\+Controller} $>$ \h
 \index{\+\_\+zmp\+Params@{\+\_\+zmp\+Params}!Walking\+Client@{Walking\+Client}}
 \subsubsection{\texorpdfstring{\+\_\+zmp\+Params}{\_zmpParams}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params}$>$ Walking\+Client\+::\+\_\+zmp\+Params\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a88ee63ff6a341eccd458d24700383457}{}\label{classWalkingClient_a88ee63ff6a341eccd458d24700383457} 
+\index{Walking\+Client@{Walking\+Client}!port\+Wrench\+Left\+Foot@{port\+Wrench\+Left\+Foot}}
+\index{port\+Wrench\+Left\+Foot@{port\+Wrench\+Left\+Foot}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{port\+Wrench\+Left\+Foot}{portWrenchLeftFoot}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::sig\+::\+Vector$>$ Walking\+Client\+::port\+Wrench\+Left\+Foot}
+
+\hypertarget{classWalkingClient_a96321dc60e84c193f2dea6e85983ca67}{}\label{classWalkingClient_a96321dc60e84c193f2dea6e85983ca67} 
+\index{Walking\+Client@{Walking\+Client}!port\+Wrench\+Right\+Foot@{port\+Wrench\+Right\+Foot}}
+\index{port\+Wrench\+Right\+Foot@{port\+Wrench\+Right\+Foot}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{port\+Wrench\+Right\+Foot}{portWrenchRightFoot}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::sig\+::\+Vector$>$ Walking\+Client\+::port\+Wrench\+Right\+Foot}
 
 
 

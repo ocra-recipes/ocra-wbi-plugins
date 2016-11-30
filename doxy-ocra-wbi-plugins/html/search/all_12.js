@@ -1,6 +1,7 @@
 var searchData=
 [
   ['read',['read',['../classThread_1_1ControllerRpcServerCallback.html#a61f5510543f1bb96793dceca13eb6865',1,'Thread::ControllerRpcServerCallback::read()'],['../classThread_1_1DebugRpcServerCallback.html#a3b39ac9b379ce3212bb2b05a89fa6024',1,'Thread::DebugRpcServerCallback::read()']]],
+  ['readfootwrench',['readFootWrench',['../classWalkingClient.html#a03ea2313c954a97aeb4d5b614f3e6caa',1,'WalkingClient']]],
   ['readme_2emd',['README.md',['../README_8md.html',1,'']]],
   ['release',['release',['../classExampleClient.html#a5acf25784c1c5b51c2c085327f195002',1,'ExampleClient::release()'],['../classSittingDemoClient.html#a18d30d70a9b17e8f64f87f5cb01b746e',1,'SittingDemoClient::release()'],['../classSteppingDemoClient.html#aafcb227c0d7ce24823957e2331caa88b',1,'SteppingDemoClient::release()'],['../classTaskOpsClient.html#af54d37bc4a2631c5c47e23d8156f6e95',1,'TaskOpsClient::release()'],['../classWalkingClient.html#a3b36da9d7649865a13c9318dd73ebc7e',1,'WalkingClient::release()']]],
   ['remove_5ftask',['REMOVE_TASK',['../TaskOpsClient_8h.html#a0140057ae3fbe1db5f5c418dfc67d9dbaf831abed77e2c76cacc256b8b16f2b2a',1,'TaskOpsClient.h']]],

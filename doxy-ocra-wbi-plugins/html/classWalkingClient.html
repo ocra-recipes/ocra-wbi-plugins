@@ -68,6 +68,7 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classWalkingClient-members.html">List of all members</a>  </div>
@@ -85,8 +86,7 @@ Inheritance diagram for WalkingClient:</div>
 <div class="dynheader">
 Collaboration diagram for WalkingClient:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="classWalkingClient__coll__graph.svg" width="124" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
-</div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="classWalkingClient__coll__graph.svg" width="124" height="110"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 <center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -95,6 +95,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6c9002a44a54814c4b482739824e39aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dbc0308f844aea6542750104fddf8e2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWalkingClient.html#a1dbc0308f844aea6542750104fddf8e2">~WalkingClient</a> ()</td></tr>
 <tr class="separator:a1dbc0308f844aea6542750104fddf8e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03ea2313c954a97aeb4d5b614f3e6caa"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWalkingClient.html#a03ea2313c954a97aeb4d5b614f3e6caa">readFootWrench</a> (<a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a> whichFoot, Eigen::VectorXd &amp;rawWrench)</td></tr>
+<tr class="separator:a03ea2313c954a97aeb4d5b614f3e6caa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a88ee63ff6a341eccd458d24700383457"><td class="memItemLeft" align="right" valign="top">yarp::os::BufferedPort&lt; yarp::sig::Vector &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWalkingClient.html#a88ee63ff6a341eccd458d24700383457">portWrenchLeftFoot</a></td></tr>
+<tr class="separator:a88ee63ff6a341eccd458d24700383457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96321dc60e84c193f2dea6e85983ca67"><td class="memItemLeft" align="right" valign="top">yarp::os::BufferedPort&lt; yarp::sig::Vector &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classWalkingClient.html#a96321dc60e84c193f2dea6e85983ca67">portWrenchRightFoot</a></td></tr>
+<tr class="separator:a96321dc60e84c193f2dea6e85983ca67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -217,6 +226,34 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a03ea2313c954a97aeb4d5b614f3e6caa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03ea2313c954a97aeb4d5b614f3e6caa">&sect;&nbsp;</a></span>readFootWrench()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool WalkingClient::readFootWrench </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="ZmpController_8h.html#a4b6a8e135f90bd56e5a57a60efb42529">FOOT</a>&#160;</td>
+          <td class="paramname"><em>whichFoot</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::VectorXd &amp;&#160;</td>
+          <td class="paramname"><em>rawWrench</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a3b36da9d7649865a13c9318dd73ebc7e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3b36da9d7649865a13c9318dd73ebc7e">&sect;&nbsp;</a></span>release()</h2>
 
@@ -287,6 +324,34 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a88ee63ff6a341eccd458d24700383457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88ee63ff6a341eccd458d24700383457">&sect;&nbsp;</a></span>portWrenchLeftFoot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">yarp::os::BufferedPort&lt;yarp::sig::Vector&gt; WalkingClient::portWrenchLeftFoot</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a96321dc60e84c193f2dea6e85983ca67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96321dc60e84c193f2dea6e85983ca67">&sect;&nbsp;</a></span>portWrenchRightFoot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">yarp::os::BufferedPort&lt;yarp::sig::Vector&gt; WalkingClient::portWrenchRightFoot</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/Users/jorhabibeljaik/Code/codyco-superbuild/main/ocra-wbi-plugins/ocra-icub-clients/walking-client/include/walking-client/<a class="el" href="WalkingClient_8h_source.html">WalkingClient.h</a></li>
 <li>/Users/jorhabibeljaik/Code/codyco-superbuild/main/ocra-wbi-plugins/ocra-icub-clients/walking-client/src/<a class="el" href="WalkingClient_8cpp.html">WalkingClient.cpp</a></li>
@@ -294,7 +359,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 30 2016 17:39:25 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 30 2016 19:28:27 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
