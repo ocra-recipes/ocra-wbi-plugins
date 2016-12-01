@@ -230,7 +230,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Computes the ZMP for a single foot in world reference frame.</p>
 <p>Assuming that \(\mathbf{p}\) is the position of the ZMP for a single foot, \(\mathbf{p}_s\) the position of a force torque (F/T) sensor at the foot and, the ZMP position can be computed as: </p><p class="formulaDsp">
-\[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \frac{1}{f_z} \left[\begin{array}{cccccc} -p_{s_z} &amp; 0 &amp; p_{s_x} &amp; 0 &amp; -1 &amp; 0 \\ 0 &amp; -p_{s_z} &amp; 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
+\[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \frac{1}{f_z} \left[\begin{array}{cccccc} -p_{s_z} &amp; 0 &amp; p_{s_x} &amp; 0 &amp; -1 &amp; 0 \\ 0 &amp; -p_{s_z} &amp; p_{s_y} &amp; 1 &amp; 0 &amp; 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -466,7 +466,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 19:16:07 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 19:19:11 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
