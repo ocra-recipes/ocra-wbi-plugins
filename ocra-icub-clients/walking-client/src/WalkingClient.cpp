@@ -1,7 +1,7 @@
 #include "walking-client/WalkingClient.h"
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod),
-_zmpParams(std::make_shared<ZmpControllerParams>(1, model->getMass(), model->getCoMPosition().operator()(2), 9.8, 0.004) ),
+_zmpParams(std::make_shared<ZmpControllerParams>(1, model->getMass(), model->getCoMPosition().operator()(2), 9.8) ),
 _zmpController(std::make_shared<ZmpController>(loopPeriod, modelPtr, _zmpParams))
 {
 
@@ -37,6 +37,15 @@ bool WalkingClient::initialize()
             return false;
         }
     }
+    
+    // Trajectory objects
+    ocra_recipes::TRAJECTORY_TYPE trajType = ocra_recipes::MIN_JERK;
+    ocra_recipes::TERMINATION_STRATEGY termStrategy = ocra_recipes::WAIT;
+    int trajThreadPeriod = 10;
+    _com_TrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(trajThreadPeriod, "ComTask", trajType, termStrategy);
+    _com_TrajThread->setMaxVelocity(0.01);
+    _com_TrajThread->setGoalErrorThreshold(0.01);
+    if (!_com_TrajThread->start()) return false;
     
     return true;
 }

@@ -30,6 +30,7 @@ protected:
 private:
     std::shared_ptr<ZmpControllerParams> _zmpParams;
     std::shared_ptr<ZmpController> _zmpController;
+    std::shared_ptr<ocra_recipes::TrajectoryThread> _com_TrajThread;
 
 };
 

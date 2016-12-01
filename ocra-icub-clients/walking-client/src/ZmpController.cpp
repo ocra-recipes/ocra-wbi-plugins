@@ -44,10 +44,6 @@ bool ZmpController::computeFootZMP(FOOT whichFoot,
     A << ((-sensorPosition(2))*Eigen::Matrix2d::Identity()), sensorPosition.topRows(2), (Eigen::Matrix2d() << 0, -1, 1, 0).finished(), Eigen::Vector2d::Zero();
     std::cout << "Matrix A" << std::endl << A << std::endl;
     double fz = wrenchInWorldRef(2);
-//    A(0,0) = -_params->d/fz;
-//    A(1,1) = -_params->d/fz;
-//    A(0,4) = -1/fz;
-//    A(1,3) = 1/fz;
     
     footZMP = (1/fz)*A*wrenchInWorldRef;
     return true;

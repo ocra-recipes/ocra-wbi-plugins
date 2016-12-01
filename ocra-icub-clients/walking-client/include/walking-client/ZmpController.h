@@ -56,21 +56,15 @@ struct ZmpControllerParams {
      *  Gravity acceleration = 9.8m/s^2
      */
     const double g;
-    /**
-     *  Separation between foot force torque sensor and sole of the foot;
-     */
-    const double d;
     
     ZmpControllerParams(const double kf,
                         const double m,
                         const double cz,
-                        const double g,
-                        const double d):
+                        const double g):
     kf(kf),
     m(m),
     cz(cz),
-    g(g),
-    d(d) {}
+    g(g){}
 };
 
 enum FOOT {
@@ -91,13 +85,13 @@ public:
     /**
      *  Computes the ZMP for a single foot in world reference frame.
      *
-     *  Assuming that \f$\mathbf{p}\f$ is the position of the ZMP for a single foot, \f$\mathbf{p}_s\f$ the position of a force torque (F/T) sensor at the foot and, the ZMP position can be computed as:
+     *  Assuming that \f$\mathbf{p}\f$ is the position of the ZMP for a single foot, \f$\mathbf{p}_s\f$ the position of a force torque (F/T) sensor at the foot, the ZMP position can be computed as:
      \f[
      \left[\begin{array}{c}p_x \\
      p_y \end{array}\right] = \frac{1}{f_z}
      \left[\begin{array}{cccccc}
      -p_{s_z} & 0 & p_{s_x} & 0 & -1 & 0 \\
-     0 & -p_{s_z} & 0 & 1 & 0 & 0
+     0 & -p_{s_z} & p_{s_y} & 1 & 0 & 0
      \end{array}\right]
      \left[\begin{array}{c}
      \mathbf{f}\\
