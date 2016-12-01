@@ -91,13 +91,13 @@ public:
     /**
      *  Computes the ZMP for a single foot in world reference frame.
      *
-     *  Assuming that \f$\mathbf{p}\f$ is the position of the ZMP for a single foot and also that the center of measurement of the F/T sensor lies on the \f$z\f$ axis of the reference coordinate system, the ZMP position can be computed as:
+     *  Assuming that \f$\mathbf{p}\f$ is the position of the ZMP for a single foot, \f$\mathbf{p}_s\f$ the position of a force torque (F/T) sensor at the foot and, the ZMP position can be computed as:
      \f[
      \left[\begin{array}{c}p_x \\
-     p_y \end{array}\right] =
+     p_y \end{array}\right] = \frac{1}{f_z}
      \left[\begin{array}{cccccc}
-     -\frac{d}{f_z} & 0 & 0 & 0 & -1/f_z & 0 \\
-     0 & -\frac{d}{f_z} & 0 & 1/f_z & 0 & 0
+     -p_{s_z} & 0 & p_{s_x} & 0 & -1 & 0 \\
+     0 & -p_{s_z} & 0 & 1 & 0 & 0
      \end{array}\right]
      \left[\begin{array}{c}
      \mathbf{f}\\
@@ -105,7 +105,6 @@ public:
      \end{array}\right]
      \f]
      
-     Where \f$d\f$ is the vertical distance between the F/T sensor and the sole of the foot.
      *
      *  @param whichFoot        LEFT_FOOT or RIGHT_FOOT.
      *  @param wrench           External wrench on the foot as read by the F/T sensors.
@@ -158,7 +157,7 @@ public:
      *  @param whichFoot LEFT_FOOT or RIGHT_FOOT
      *  @param[out] T         Adjoint matrix.
      */
-    void getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T);
+    void getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T, Eigen::Vector3d &sensorPosition);
     
     void getLeftFootPosition(Eigen::Vector3d &leftFootPosition);
     

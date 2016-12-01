@@ -19,12 +19,13 @@ bool ZmpController::computeFootZMP(FOOT whichFoot,
                                    Eigen::VectorXd &wrenchInWorldRef,
                                    const double tolerance) {
     Eigen::MatrixXd adjointTransposed;
+    Eigen::Vector3d sensorPosition;
     switch (whichFoot) {
         case LEFT_FOOT:
-            getFTSensorAdjointMatrix(whichFoot, adjointTransposed);
+            getFTSensorAdjointMatrix(whichFoot, adjointTransposed, sensorPosition);
             break;
         case RIGHT_FOOT:
-            getFTSensorAdjointMatrix(whichFoot, adjointTransposed);
+            getFTSensorAdjointMatrix(whichFoot, adjointTransposed, sensorPosition);
             break;
         default:
             break;
@@ -40,14 +41,15 @@ bool ZmpController::computeFootZMP(FOOT whichFoot,
     
     // Build matrix A stablishing the linear relationship between the foot wrench and its zmp
     Eigen::MatrixXd A(2,6);
-    A.setZero();
+    A << ((-sensorPosition(2))*Eigen::Matrix2d::Identity()), sensorPosition.topRows(2), (Eigen::Matrix2d() << 0, -1, 1, 0).finished(), Eigen::Vector2d::Zero();
+    std::cout << "Matrix A" << std::endl << A << std::endl;
     double fz = wrenchInWorldRef(2);
-    A(0,0) = -_params->d/fz;
-    A(1,1) = -_params->d/fz;
-    A(0,4) = -1/fz;
-    A(1,3) = 1/fz;
+//    A(0,0) = -_params->d/fz;
+//    A(1,1) = -_params->d/fz;
+//    A(0,4) = -1/fz;
+//    A(1,3) = 1/fz;
     
-    footZMP = A*wrenchInWorldRef;
+    footZMP = (1/fz)*A*wrenchInWorldRef;
     return true;
 }
 
@@ -78,7 +80,7 @@ bool ZmpController::computeGlobalZMPFromSensors(Eigen::VectorXd rawLeftFootWrenc
     return true;
 }
 
-void ZmpController::getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T) {
+void ZmpController::getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T, Eigen::Vector3d &sensorPosition) {
     std::string prefixFoot;
     switch (whichFoot) {
         case LEFT_FOOT:
@@ -91,7 +93,9 @@ void ZmpController::getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T)
             break;
     }
     
-    Eigen::Displacementd sensorPoseInWorld = _model->getSegmentPosition(std::string(prefixFoot + "ankle_2"));
+    Eigen::Displacementd sensorPoseInWorld = _model->getSegmentPosition(std::string(prefixFoot + "foot"));
+//    std::cout << prefixFoot + "Foot sensor is at: " << std::endl << sensorPoseInWorld.getTranslation().transpose() << std::endl;
+    sensorPosition = sensorPoseInWorld.getTranslation();
     T = sensorPoseInWorld.adjoint().transpose();
     
 }
