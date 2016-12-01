@@ -111,7 +111,7 @@ True if all operations proceed successfully.
 
 Computes the global Z\+MP for two feet in contact.
 
-After obtaining the Z\+MP position for both feet $\mathbf{p}_R$ and $\mathbf{p}_L$ independently and expressed in the world reference frame, in the case where both feet are in contact with the ground (or just one), the global expression of the Z\+MP $\mathbf{p}$ expressed in the world reference frame is\+: \[ \left[\begin{array}{c} p_x\\ p_y \end{array}\right] = \left[\begin{array}{cc} \mathbf{p}_R & \mathbf{p}_L \end{array}\right] \left[\begin{array}{c} f_{R_z}\\ f_{L_z} \end{array}\right] \]
+After obtaining the Z\+MP position for both feet $\mathbf{p}_R$ and $\mathbf{p}_L$ independently and expressed in the world reference frame, in the case where both feet are in contact with the ground (or just one), the global expression of the Z\+MP $\mathbf{p}$ expressed in the world reference frame is\+: \[ \left[\begin{array}{c} p_x\\ p_y \end{array}\right] = \frac{1}{f_{R_z} + f_{L_z}} \left[\begin{array}{cc} \mathbf{p}_R & \mathbf{p}_L \end{array}\right] \left[\begin{array}{c} f_{R_z}\\ f_{L_z} \end{array}\right] \]
 
 
 \begin{DoxyParams}{Parameters}

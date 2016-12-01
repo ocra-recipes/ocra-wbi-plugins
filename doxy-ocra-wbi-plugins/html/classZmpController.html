@@ -280,7 +280,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Computes the global ZMP for two feet in contact.</p>
 <p>After obtaining the ZMP position for both feet \(\mathbf{p}_R\) and \(\mathbf{p}_L\) independently and expressed in the world reference frame, in the case where both feet are in contact with the ground (or just one), the global expression of the ZMP \(\mathbf{p}\) expressed in the world reference frame is: </p><p class="formulaDsp">
-\[ \left[\begin{array}{c} p_x\\ p_y \end{array}\right] = \left[\begin{array}{cc} \mathbf{p}_R &amp; \mathbf{p}_L \end{array}\right] \left[\begin{array}{c} f_{R_z}\\ f_{L_z} \end{array}\right] \]
+\[ \left[\begin{array}{c} p_x\\ p_y \end{array}\right] = \frac{1}{f_{R_z} + f_{L_z}} \left[\begin{array}{cc} \mathbf{p}_R &amp; \mathbf{p}_L \end{array}\right] \left[\begin{array}{c} f_{R_z}\\ f_{L_z} \end{array}\right] \]
 </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -461,7 +461,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Nov 30 2016 19:28:27 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 16:19:58 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
