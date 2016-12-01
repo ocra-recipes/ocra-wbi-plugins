@@ -20,7 +20,7 @@ bool \hyperlink{classZmpController_a6fd41771d83a31bd190f4031f82649e0}{compute\+F
 \item 
 bool \hyperlink{classZmpController_aae5cc381a922206dad10ba2d425992ce}{compute\+Global\+Z\+M\+P\+From\+Sensors} (Eigen\+::\+Vector\+Xd raw\+Left\+Foot\+Wrench, Eigen\+::\+Vector\+Xd raw\+Right\+Foot\+Wrench, Eigen\+::\+Vector2d \&global\+Z\+MP)
 \item 
-void \hyperlink{classZmpController_a58e30464e2976555bdd5fbbc7cca6bba}{get\+F\+T\+Sensor\+Adjoint\+Matrix} (\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT} which\+Foot, Eigen\+::\+Matrix\+Xd \&T)
+void \hyperlink{classZmpController_aad272bd33de6fad489ea99618a7e9afa}{get\+F\+T\+Sensor\+Adjoint\+Matrix} (\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT} which\+Foot, Eigen\+::\+Matrix\+Xd \&T, Eigen\+::\+Vector3d \&sensor\+Position)
 \item 
 void \hyperlink{classZmpController_ac8e821f72c79fe86102f02c4c155ad30}{get\+Left\+Foot\+Position} (Eigen\+::\+Vector3d \&left\+Foot\+Position)
 \item 
@@ -83,9 +83,7 @@ Where $\omega = \sqrt{g/c_z}$ as done in \cite{kajita2003biped}. Therefore the d
 
 Computes the Z\+MP for a single foot in world reference frame.
 
-Assuming that $\mathbf{p}$ is the position of the Z\+MP for a single foot and also that the center of measurement of the F/T sensor lies on the $z$ axis of the reference coordinate system, the Z\+MP position can be computed as\+: \[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \left[\begin{array}{cccccc} -\frac{d}{f_z} & 0 & 0 & 0 & -1/f_z & 0 \\ 0 & -\frac{d}{f_z} & 0 & 1/f_z & 0 & 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
-
-Where $d$ is the vertical distance between the F/T sensor and the sole of the foot.
+Assuming that $\mathbf{p}$ is the position of the Z\+MP for a single foot, $\mathbf{p}_s$ the position of a force torque (F/T) sensor at the foot and, the Z\+MP position can be computed as\+: \[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \frac{1}{f_z} \left[\begin{array}{cccccc} -p_{s_z} & 0 & p_{s_x} & 0 & -1 & 0 \\ 0 & -p_{s_z} & 0 & 1 & 0 & 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
 
 
 \begin{DoxyParams}[1]{Parameters}
@@ -142,11 +140,11 @@ Computes the instantaneous desired horizontal C\+OM velocity for the correspondi
 \mbox{\tt out}  & {\em dhd} & Horizonal CoM velocity $\dot{\mathbf{h}}_d$ \\
 \hline
 \end{DoxyParams}
-\hypertarget{classZmpController_a58e30464e2976555bdd5fbbc7cca6bba}{}\label{classZmpController_a58e30464e2976555bdd5fbbc7cca6bba} 
+\hypertarget{classZmpController_aad272bd33de6fad489ea99618a7e9afa}{}\label{classZmpController_aad272bd33de6fad489ea99618a7e9afa} 
 \index{Zmp\+Controller@{Zmp\+Controller}!get\+F\+T\+Sensor\+Adjoint\+Matrix@{get\+F\+T\+Sensor\+Adjoint\+Matrix}}
 \index{get\+F\+T\+Sensor\+Adjoint\+Matrix@{get\+F\+T\+Sensor\+Adjoint\+Matrix}!Zmp\+Controller@{Zmp\+Controller}}
 \subsubsection{\texorpdfstring{get\+F\+T\+Sensor\+Adjoint\+Matrix()}{getFTSensorAdjointMatrix()}}
-{\footnotesize\ttfamily void Zmp\+Controller\+::get\+F\+T\+Sensor\+Adjoint\+Matrix (\begin{DoxyParamCaption}\item[{\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT}}]{which\+Foot,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{T }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void Zmp\+Controller\+::get\+F\+T\+Sensor\+Adjoint\+Matrix (\begin{DoxyParamCaption}\item[{\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT}}]{which\+Foot,  }\item[{Eigen\+::\+Matrix\+Xd \&}]{T,  }\item[{Eigen\+::\+Vector3d \&}]{sensor\+Position }\end{DoxyParamCaption})}
 
 Retrieves the FT sensor adjoint matrix expressed in the world reference frame which multiplied by the local measurement of the sensor gives you the measurement in the world reference.
 
