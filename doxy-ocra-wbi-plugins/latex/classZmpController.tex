@@ -83,7 +83,7 @@ Where $\omega = \sqrt{g/c_z}$ as done in \cite{kajita2003biped}. Therefore the d
 
 Computes the Z\+MP for a single foot in world reference frame.
 
-Assuming that $\mathbf{p}$ is the position of the Z\+MP for a single foot and also that the center of measurement of the F/T sensor lies on the $z$ axis of the reference coordinate system, the Z\+MP position can be computed as\+: \[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \left[\begin{array}{cccccc} -\frac{d}{f_z} & 0 & 0 & 0 & -1 & 0 \\ 0 & -\frac{d}{f_z} & 0 & 1 & 0 & 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
+Assuming that $\mathbf{p}$ is the position of the Z\+MP for a single foot and also that the center of measurement of the F/T sensor lies on the $z$ axis of the reference coordinate system, the Z\+MP position can be computed as\+: \[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \left[\begin{array}{cccccc} -\frac{d}{f_z} & 0 & 0 & 0 & -1/f_z & 0 \\ 0 & -\frac{d}{f_z} & 0 & 1/f_z & 0 & 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
 
 Where $d$ is the vertical distance between the F/T sensor and the sole of the foot.
 

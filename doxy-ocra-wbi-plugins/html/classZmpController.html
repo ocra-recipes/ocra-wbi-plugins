@@ -230,7 +230,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 <p>Computes the ZMP for a single foot in world reference frame.</p>
 <p>Assuming that \(\mathbf{p}\) is the position of the ZMP for a single foot and also that the center of measurement of the F/T sensor lies on the \(z\) axis of the reference coordinate system, the ZMP position can be computed as: </p><p class="formulaDsp">
-\[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \left[\begin{array}{cccccc} -\frac{d}{f_z} &amp; 0 &amp; 0 &amp; 0 &amp; -1 &amp; 0 \\ 0 &amp; -\frac{d}{f_z} &amp; 0 &amp; 1 &amp; 0 &amp; 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
+\[ \left[\begin{array}{c}p_x \\ p_y \end{array}\right] = \left[\begin{array}{cccccc} -\frac{d}{f_z} &amp; 0 &amp; 0 &amp; 0 &amp; -1/f_z &amp; 0 \\ 0 &amp; -\frac{d}{f_z} &amp; 0 &amp; 1/f_z &amp; 0 &amp; 0 \end{array}\right] \left[\begin{array}{c} \mathbf{f}\\ \mathbf{\tau} \end{array}\right] \]
 </p>
 <p>Where \(d\) is the vertical distance between the F/T sensor and the sole of the foot.</p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -461,7 +461,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 1 2016 16:19:58 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 1 2016 16:23:38 for ocra-wbi-plugins by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.12
 </small></address>
