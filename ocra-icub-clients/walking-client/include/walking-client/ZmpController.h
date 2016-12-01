@@ -96,8 +96,8 @@ public:
      \left[\begin{array}{c}p_x \\
      p_y \end{array}\right] =
      \left[\begin{array}{cccccc}
-     -\frac{d}{f_z} & 0 & 0 & 0 & -1 & 0 \\
-     0 & -\frac{d}{f_z} & 0 & 1 & 0 & 0
+     -\frac{d}{f_z} & 0 & 0 & 0 & -1/f_z & 0 \\
+     0 & -\frac{d}{f_z} & 0 & 1/f_z & 0 & 0
      \end{array}\right]
      \left[\begin{array}{c}
      \mathbf{f}\\
@@ -131,6 +131,7 @@ public:
      p_x\\
      p_y
      \end{array}\right] =
+     \frac{1}{f_{R_z} + f_{L_z}}
      \left[\begin{array}{cc}
      \mathbf{p}_R & \mathbf{p}_L
      \end{array}\right]

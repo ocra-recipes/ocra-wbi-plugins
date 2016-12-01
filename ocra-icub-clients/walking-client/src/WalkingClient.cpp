@@ -1,7 +1,7 @@
 #include "walking-client/WalkingClient.h"
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod),
-_zmpParams(std::make_shared<ZmpControllerParams>(1, model->getMass(), model->getCoMPosition().operator()(2), 9.8, 0.05) ),
+_zmpParams(std::make_shared<ZmpControllerParams>(1, model->getMass(), model->getCoMPosition().operator()(2), 9.8, 0.04) ),
 _zmpController(std::make_shared<ZmpController>(loopPeriod, modelPtr, _zmpParams))
 {
 
@@ -57,7 +57,7 @@ void WalkingClient::loop()
     // Compute ZMP
     Eigen::Vector2d globalZMP; globalZMP.setZero();
     _zmpController->computeGlobalZMPFromSensors(rawLeftFootWrench, rawRightFootWrench, globalZMP);
-    
+    std::cout << "Global ZMP: " << globalZMP << std::endl;
     // Compute ZMPPreviewController optimal input
     
 }
