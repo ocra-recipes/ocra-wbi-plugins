@@ -6,6 +6,7 @@ var classWalkingClient =
     [ "loop", "classWalkingClient.html#afd997bb00534c57fe1b0d5f37f207386", null ],
     [ "readFootWrench", "classWalkingClient.html#a03ea2313c954a97aeb4d5b614f3e6caa", null ],
     [ "release", "classWalkingClient.html#a3b36da9d7649865a13c9318dd73ebc7e", null ],
+    [ "_com_TrajThread", "classWalkingClient.html#af1d2fec39a0545daf5d5e3681b4b2f17", null ],
     [ "_zmpController", "classWalkingClient.html#afc6a0ac97a4c3f83e27879e803fab8f6", null ],
     [ "_zmpParams", "classWalkingClient.html#a20012b4bee7f6de8177ed53907f894cb", null ],
     [ "portWrenchLeftFoot", "classWalkingClient.html#a88ee63ff6a341eccd458d24700383457", null ],

@@ -43,7 +43,7 @@ var NAVTREEINDEX =
 [
 "ExampleClient_8cpp.html",
 "classThread.html#aa2856c7d45670f45d66bcb319255defe",
-"functions_y.html"
+"functions_w.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
