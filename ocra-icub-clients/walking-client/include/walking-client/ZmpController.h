@@ -50,8 +50,10 @@ struct ZmpControllerParams {
     const double m;
     /**
      *  CoM height
+     *
+     *  @note I would like to initialize this during the construction of the client as a const double, but for some reason, when initializing from the member list, the returned COM height is incorrect. Check this out.
      */
-    const double cz;
+    double cz;
     /**
      *  Gravity acceleration = 9.8m/s^2
      */
@@ -59,7 +61,7 @@ struct ZmpControllerParams {
     
     ZmpControllerParams(const double kf,
                         const double m,
-                        const double cz,
+                        double cz,
                         const double g):
     kf(kf),
     m(m),
