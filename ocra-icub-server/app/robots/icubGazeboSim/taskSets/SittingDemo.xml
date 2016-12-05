@@ -63,6 +63,19 @@
     <offset  x="0.05" y="0.0" z="0.0" />
 </task>
 
+<task name="LeftUpperLegContact" type="PointContact">
+    <segment>l_upper_leg</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x="-0.045" y="-0.06" z="0.0" qw="0.707107" qx="0.0" qy="-0.707107" qz="0.0" />
+</task>
+
+<task name="RightUpperLegContact" type="PointContact">
+    <segment>r_upper_leg</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x="-0.045" y="-0.06" z="0.0" qw="0.707107" qx="-0.0" qy="-0.707107" qz="0.0" />
+</task>
+
+
 <!-- Left foot contacts -->
 
 <task name="LeftFootContact_BackLeft" type="PointContact">
