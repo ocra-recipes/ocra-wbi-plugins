@@ -157,7 +157,7 @@ std::vector<Eigen::Vector2d> WalkingClient::generateZMPTrajectoryTEST(const doub
     Eigen::Vector2d sineVector = Eigen::Vector2d::Zero();
     double t = 0;
     while (t < N*tTrans) {
-        double tmp = (-feetSeparation/2)*std::sin((2*tTrans/M_PI)*t) - feetSeparation/2;
+        double tmp = (-feetSeparation/3)*std::sin((M_PI/(2*tTrans))*t) - feetSeparation/2;
         sineVector(1) = tmp;
         zmpTrajectory.push_back(sineVector);
         t = t + timeStep/1000;
