@@ -41,9 +41,13 @@
 
 struct ZmpControllerParams {
     /**
-     *  Positive control gain.
+     *  Positive force control gain in the x direction
      */
-    const double kf;
+    const double kfx;
+    /**
+     *  Positive force control gain in the y direction
+     */
+    const double kfy;
     /**
      *  Total mass of the robot
      */
@@ -59,11 +63,13 @@ struct ZmpControllerParams {
      */
     const double g;
     
-    ZmpControllerParams(const double kf,
+    ZmpControllerParams(const double kfx,
+                        const double kfy,
                         const double m,
                         double cz,
                         const double g):
-    kf(kf),
+    kfx(kfx),
+    kfy(kfy),
     m(m),
     cz(cz),
     g(g){}

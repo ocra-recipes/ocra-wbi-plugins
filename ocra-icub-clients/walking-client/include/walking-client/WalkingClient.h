@@ -59,6 +59,8 @@ public:
     bool publishCOMError(Eigen::Vector2d &dcomError);
     
     bool publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &port, Eigen::Vector3d &value);
+    
+    void performZMPTest(bool usingConstantRef);
 
 protected:
     virtual bool initialize();

@@ -4,7 +4,7 @@ using namespace Eigen;
 
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod),
-_zmpParams(std::make_shared<ZmpControllerParams>(2e-3, model->getMass(), (model->getCoMPosition()).operator()(2), 9.8) ),
+_zmpParams(std::make_shared<ZmpControllerParams>(1e-3, 1.6e-3, model->getMass(), (model->getCoMPosition()).operator()(2), 9.8) ),
 _zmpController(std::make_shared<ZmpController>(loopPeriod, modelPtr, _zmpParams)),
 _rawLeftFootWrench(Eigen::VectorXd::Zero(6)),
 _rawRightFootWrench(Eigen::VectorXd::Zero(6)),
@@ -57,7 +57,7 @@ bool WalkingClient::initialize()
     Eigen::Vector3d sep; sep.setZero();
     getFeetSeparation(sep);
     double feetSeparation = sep(1);
-    int N = 4;
+    int N = 6;
     int period = this->getExpectedPeriod();
     double tTrans = 4;
     _zmpTrajectory = generateZMPTrajectoryTEST(tTrans, feetSeparation, period, N);
@@ -82,7 +82,8 @@ bool WalkingClient::initialize()
     Eigen::Vector3d initialCOMPosition = this->model->getCoMPosition();
     _zmpParams->cz = initialCOMPosition(2);
     std::cout << "ZMPController object will run with the following parameters: " << std::endl;
-    std::cout << "Gain k_f: " << _zmpParams->kf << std::endl;
+    std::cout << "Gain k_f_x: " << _zmpParams->kfx << std::endl;
+    std::cout << "Gain k_f_y: " << _zmpParams->kfy << std::endl;
     std::cout << "Total mass of the robot: " << _zmpParams->m << std::endl;
     std::cout << "Constant height of the COM: " << _zmpParams->cz << std::endl;
     std::cout << "Gravity acceleration: " << _zmpParams->g << std::endl;
@@ -92,12 +93,22 @@ bool WalkingClient::initialize()
 
 void WalkingClient::release()
 {
+    if (_isTestRun)
+    {
+        _zmpPort.close();
+        _dcomErrorPort.close();
+        _dComDesPort.close();
+        _zmpDesPort.close();
+        _zmpCurPort.close();
+        _comCurrent.close();
+        _ddcomCurrent.close();
+        _ddcomFromZMP.close();
+    }
     
 }
 
 void WalkingClient::loop()
 {
-    static int el = 0;
     // Read measurements
     readFootWrench(LEFT_FOOT, _rawLeftFootWrench);
     readFootWrench(RIGHT_FOOT, _rawRightFootWrench);
@@ -106,52 +117,8 @@ void WalkingClient::loop()
     // Compute ZMP
     _zmpController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, _globalZMP);
     
-    
-    // Testing
-    Eigen::Vector2d dhd; dhd.setZero();
-    //TODO: Write _zmpTrajectory to port
     if (_isTestRun) {
-        _zmpController->computehd(_globalZMP, _zmpTrajectory[el], dhd);
-//        Eigen::Vector2d error = _globalZMP - _zmpTrajectory.rbegin()[el];
-//        publishZMPError(error);
-        if ( el < _zmpTrajectory.size() ){
-            el++;
-        }
-    }
-    
-    Eigen::Vector3d zeroAngVel = Eigen::Vector3d::Zero();
-//    double yRefVel = 0.01;
-//    Eigen::Vector3d refLinVel( 0, yRefVel, 0 );
-//    Eigen::Vector3d refLinVel( dhd(0), dhd(1), 0 );
-    Eigen::Vector3d refLinVel( 0, dhd(1), 0 );
-    Eigen::Twistd refComVelocity( zeroAngVel, refLinVel );
-    
-    // Apply CONTROL
-    _desiredComState.setVelocity(refComVelocity);
-    _comTask->setDesiredTaskStateDirect(_desiredComState);
-    
-    Eigen::Vector3d currentComLinVel;
-    currentComLinVel = _comTask->getTaskState().getVelocity().getLinearVelocity();
-//    Eigen::Vector2d error = currentComLinVel.topRows(2) - refLinVel.topRows(2);
-//    publishCOMError( error );
-    
-    Eigen::Vector3d currentComPos;
-    currentComPos = _comTask->getTaskState().getPosition().getTranslation();
-    
-    Eigen::Vector3d currentddcom;
-    currentddcom = _comTask->getTaskState().getAcceleration().getLinearVelocity();
-    
-    Eigen::Vector3d ddcomFromZMP;
-    ddcomFromZMP = (_zmpParams->g/_zmpParams->cz)*(currentComPos.topRows(2) - _globalZMP);
-
-    if (_isTestRun) {
-        publish3dQuantity(_dComDesPort, refLinVel);
-        publish3dQuantity(_dComCurPort, currentComLinVel);
-        publish3dQuantity(_zmpDesPort, (Eigen::Vector3d() << _zmpTrajectory[el-1], 0).finished());
-        publish3dQuantity(_zmpCurPort, (Eigen::Vector3d() << _globalZMP, 0).finished());
-        publish3dQuantity(_comCurrent, currentComPos);
-        publish3dQuantity(_ddcomCurrent, currentddcom);
-        publish3dQuantity(_ddcomFromZMP, (Eigen::Vector3d() << ddcomFromZMP, 0).finished());
+        performZMPTest(false);
     }
     
     // Compute ZMPPreviewController optimal input
@@ -204,23 +171,6 @@ bool WalkingClient::getFeetSeparation(Eigen::Vector3d &sep) {
     return true;
 }
 
-bool WalkingClient::publishZMPError(Eigen::Vector2d &zmpError) {
-    yarp::os::Bottle &output = _zmpPort.prepare();
-    output.clear();
-    output.addDouble(zmpError(0));
-    output.addDouble(zmpError(1));
-    _zmpPort.write();
-    return true;
-}
-
-bool WalkingClient::publishCOMError(Eigen::Vector2d &dcomError) {
-    yarp::os::Bottle &output = _dcomErrorPort.prepare();
-    output.clear();
-    output.addDouble(dcomError(0));
-    output.addDouble(dcomError(1));
-    _dcomErrorPort.write();
-    return true;
-}
 
 bool WalkingClient::publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &port, Eigen::Vector3d &value) {
     yarp::os::Bottle &output = port.prepare();
@@ -230,4 +180,48 @@ bool WalkingClient::publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &
     output.addDouble(value(2));
     port.write();
     return true;
+}
+
+void WalkingClient::performZMPTest(bool usingConstantRef) {
+    
+    static int el = 0;
+    Eigen::Vector2d constantZMPRef = Eigen::Vector2d::Zero();
+    constantZMPRef(1) = -0.10;
+    // Testing
+    Eigen::Vector2d dhd; dhd.setZero();
+    if (_isTestRun) {
+        if(usingConstantRef) {
+            _zmpController->computehd(_globalZMP, constantZMPRef, dhd);
+        }
+        else {
+            _zmpController->computehd(_globalZMP, _zmpTrajectory[el], dhd);
+        }
+        if ( el < _zmpTrajectory.size() ){
+            el++;
+        }
+    }
+    
+    Eigen::Vector3d zeroAngVel = Eigen::Vector3d::Zero();
+    Eigen::Vector3d refLinVel( dhd(0), dhd(1), 0 );
+    Eigen::Twistd refComVelocity( zeroAngVel, refLinVel );
+    
+    // Apply CONTROL
+    _desiredComState.setVelocity(refComVelocity);
+    _comTask->setDesiredTaskStateDirect(_desiredComState);
+    
+    Eigen::Vector3d currentComLinVel;
+    currentComLinVel = _comTask->getTaskState().getVelocity().getLinearVelocity();
+    
+    Eigen::Vector3d currentComPos;
+    currentComPos = _comTask->getTaskState().getPosition().getTranslation();
+    
+    publish3dQuantity(_dComDesPort, refLinVel);
+    publish3dQuantity(_dComCurPort, currentComLinVel);
+    if (usingConstantRef)
+        publish3dQuantity(_zmpDesPort, (Eigen::Vector3d() << constantZMPRef, 0).finished());
+    else
+        publish3dQuantity(_zmpDesPort, (Eigen::Vector3d() << _zmpTrajectory[el-1], 0).finished());
+    publish3dQuantity(_zmpCurPort, (Eigen::Vector3d() << _globalZMP, 0).finished());
+    publish3dQuantity(_comCurrent, currentComPos);
+
 }
