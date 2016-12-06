@@ -95,6 +95,16 @@ bool ZmpController::computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vect
     Eigen::Vector2d error;
     error = pd - p;
     dhd = _params->m * (_params->g/_params->cz) * kfVec * error;
+    
+    static Eigen::Vector2d previousError = Eigen::Vector2d::Zero();
+    Eigen::Matrix2d kdVec = Eigen::Matrix2d::Identity();
+    kdVec(0,0) = _params->kdx;
+    kdVec(1,1) = _params->kdy;
+    //TODO: Remove this constant dt
+    Eigen::Vector2d derivative = (1/0.010) * kdVec * (error - previousError);
+    previousError = error;
+    dhd += derivative;
+    
     return true;
 }
 
@@ -105,7 +115,3 @@ void ZmpController::getLeftFootPosition(Eigen::Vector3d &leftFootPosition) {
 void ZmpController::getRightFootPosition(Eigen::Vector3d &rightFootPosition) {
     rightFootPosition = _model->getSegmentPosition(_model->getSegmentIndex("r_sole")).getTranslation();
 }
-
-
-
-

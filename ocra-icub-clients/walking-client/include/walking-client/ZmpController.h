@@ -51,6 +51,8 @@ struct ZmpControllerParams {
     /**
      *  Total mass of the robot
      */
+    const double kdx;
+    const double kdy;
     const double m;
     /**
      *  CoM height
@@ -65,11 +67,15 @@ struct ZmpControllerParams {
     
     ZmpControllerParams(const double kfx,
                         const double kfy,
+                        const double kdx,
+                        const double kdy,
                         const double m,
                         double cz,
                         const double g):
     kfx(kfx),
     kfy(kfy),
+    kdx(kdx),
+    kdy(kdy),
     m(m),
     cz(cz),
     g(g){}

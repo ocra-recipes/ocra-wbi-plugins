@@ -4,7 +4,7 @@ using namespace Eigen;
 
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod),
-_zmpParams(std::make_shared<ZmpControllerParams>(1e-3, 1.6e-3, model->getMass(), (model->getCoMPosition()).operator()(2), 9.8) ),
+_zmpParams(std::make_shared<ZmpControllerParams>(1e-3, 1.5e-3, 1e-6, 5e-4, model->getMass(), (model->getCoMPosition()).operator()(2), 9.8) ),
 _zmpController(std::make_shared<ZmpController>(loopPeriod, modelPtr, _zmpParams)),
 _rawLeftFootWrench(Eigen::VectorXd::Zero(6)),
 _rawRightFootWrench(Eigen::VectorXd::Zero(6)),
@@ -118,7 +118,7 @@ void WalkingClient::loop()
     _zmpController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, _globalZMP);
     
     if (_isTestRun) {
-        performZMPTest(false);
+        performZMPTest(true);
     }
     
     // Compute ZMPPreviewController optimal input
@@ -219,8 +219,9 @@ void WalkingClient::performZMPTest(bool usingConstantRef) {
     publish3dQuantity(_dComCurPort, currentComLinVel);
     if (usingConstantRef)
         publish3dQuantity(_zmpDesPort, (Eigen::Vector3d() << constantZMPRef, 0).finished());
-    else
+    else{
         publish3dQuantity(_zmpDesPort, (Eigen::Vector3d() << _zmpTrajectory[el-1], 0).finished());
+    }
     publish3dQuantity(_zmpCurPort, (Eigen::Vector3d() << _globalZMP, 0).finished());
     publish3dQuantity(_comCurrent, currentComPos);
 
