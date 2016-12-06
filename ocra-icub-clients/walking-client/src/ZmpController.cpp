@@ -89,10 +89,7 @@ void ZmpController::getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T,
 }
 
 bool ZmpController::computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vector2d &dhd){
-    std::cout << "ZMP Error is: " << (p - pd).cwiseAbs().transpose() << std::endl;
-//    std::cout << "zmp: " << p << std::endl;
-//    std::cout << "zmp_d: " << pd << std::endl;
-    dhd = _params->kf * _params->m * (_params->g/_params->cz) * ( p - pd );
+    dhd = _params->kf * _params->m * (_params->g/_params->cz) * ( pd - p);
     return true;
 }
 

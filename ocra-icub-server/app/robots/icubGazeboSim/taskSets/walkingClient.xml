@@ -27,17 +27,17 @@
 </task>
 
 <task name="ComTask" type="CoM">
-    <params kp="0" kd="1" weight="1.0" axes="XY"/>
+    <params kp="0" kd="7" weight="1.0" axes="XY"/>
 </task>
 
 <!-- <task name="TorsoCartesianTask" type="Cartesian">
     <segment>torso</segment>
     <params kp="1" kd="2" weight="0.01" axes="XY"/>
 </task> -->
-<!-- <task name="TorsoOrientationTask" type="Orientation">
+<task name="TorsoOrientationTask" type="Orientation">
     <segment>torso</segment>
     <params kp="20.0" kd="2" weight="0.2" axes="XYZ"/>
-</task> -->
+</task>
 <task name="LeftFootCartesian" type="Cartesian">
     <segment>l_sole</segment>
     <params kp="40.0" weight="1.0" axes="XYZ" />

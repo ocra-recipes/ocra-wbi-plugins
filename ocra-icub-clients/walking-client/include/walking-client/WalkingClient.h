@@ -56,6 +56,9 @@ public:
      */
     bool publishZMPError(Eigen::Vector2d &zmpError);
     
+    bool publishCOMError(Eigen::Vector2d &dcomError);
+    
+    bool publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &port, Eigen::Vector3d &value);
 
 protected:
     virtual bool initialize();
@@ -68,9 +71,20 @@ private:
     std::shared_ptr<ocra_recipes::TaskConnection> _comTask;
     std::vector<Eigen::Vector2d> _zmpTrajectory;
     ocra::TaskState _desiredComState;
+    Eigen::VectorXd _rawLeftFootWrench;
+    Eigen::VectorXd _rawRightFootWrench;
+    Eigen::Vector2d _globalZMP;
     bool _isTestRun;
     
     yarp::os::BufferedPort<yarp::os::Bottle> _zmpPort;
+    yarp::os::BufferedPort<yarp::os::Bottle> _dcomErrorPort;
+    yarp::os::BufferedPort<yarp::os::Bottle> _dComDesPort;
+    yarp::os::BufferedPort<yarp::os::Bottle> _dComCurPort;
+    yarp::os::BufferedPort<yarp::os::Bottle> _zmpDesPort;
+    yarp::os::BufferedPort<yarp::os::Bottle> _zmpCurPort;
+    yarp::os::BufferedPort<yarp::os::Bottle> _comCurrent;
+    yarp::os::BufferedPort<yarp::os::Bottle> _ddcomCurrent;
+    yarp::os::BufferedPort<yarp::os::Bottle> _ddcomFromZMP;
 
 };
 
