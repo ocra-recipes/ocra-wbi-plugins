@@ -71,9 +71,11 @@ public: // Variables
     bool                    noOutputMode; /*!< a boolean which runs the controller in a debugging mode but never sends the torques to the robot. */
     bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
     bool                    useOdometry; /*!< a boolean which tells the controller to start the odometry, meaning that the world reference frame remains attached to the ground*/
+    bool                    idleAnkles; /*!< A boolean which tells the controller to idle the ankles for a short period and then pass on to normal operation. This is to get the feet flush with the ground.*/
     yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
     ocra_recipes::CONTROLLER_TYPE    controllerType; /*!< The type of OCRA controller to use. */
     ocra_recipes::SOLVER_TYPE    solver; /*!< The type of OCRA controller to use. */
+
 };
 
 
@@ -156,7 +158,7 @@ private:
     void parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     void parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     void writeDebugData();
-
+    void putAnklesIntoIdle();
 
 private:
     ocra::Model::Ptr model;
