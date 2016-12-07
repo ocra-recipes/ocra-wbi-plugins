@@ -192,6 +192,9 @@ bool Thread::threadInit()
 
 
     } else {
+        if (ctrlOptions.idleAnkles) {
+            putAnklesIntoIdle();
+        }
         // yarp::os::Time timer;
         // timer.delay(5.0);
         // std::cout << "First timer over" << std::endl;
@@ -435,6 +438,32 @@ bool Thread::ControllerRpcServerCallback::read(yarp::os::ConnectionReader& conne
         return true;
     }
 }
+
+void Thread::putAnklesIntoIdle()
+{
+    // Set everything else to position mode
+    yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+    yarpWbi->setControlReference(initialPosture.data());
+    // Ankle indexes are: 17, 18, 23, 24
+    /*
+     *  The idea here is that by asking for 0 torque in the ankles they will be "idle"
+     */
+    int l_ankle_pitch = 17;
+    int l_ankle_roll = 18;
+    int r_ankle_pitch = 23;
+    int r_ankle_roll = 24;
+    double zeroTorque = 0.0;
+    yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &zeroTorque, l_ankle_pitch);
+    yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &zeroTorque, l_ankle_roll);
+    yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &zeroTorque, r_ankle_pitch);
+    yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &zeroTorque, r_ankle_roll);
+
+    // Wait for a bit.
+    OCRA_INFO("Putting ankles into idle to flatten out the feet...")
+    yarp::os::Time::delay(2.0);
+    OCRA_INFO("Done. Resuming controller startup.")
+}
+
 /**************************************************************************************************
 **************************************************************************************************/
 
