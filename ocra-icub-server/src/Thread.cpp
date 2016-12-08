@@ -258,9 +258,17 @@ void Thread::run()
 void Thread::threadRelease()
 {
     controllerStatus = ocra_icub::CONTROLLER_SERVER_STOPPED;
-
-    yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
-    yarpWbi->setControlReference(initialPosture.data());
+    if (ctrlOptions.maintainFinalPosture) {
+        OCRA_INFO("Staying in my current posture.")
+        Eigen::VectorXd finalPosture = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
+        yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, finalPosture.data(), ALL_JOINTS);
+        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, finalPosture.data(), ALL_JOINTS);
+        yarpWbi->setControlReference(finalPosture.data());
+    } else {
+        OCRA_INFO("Returning to my initial posture.")
+        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+        yarpWbi->setControlReference(initialPosture.data());
+    }
 
 }
 
