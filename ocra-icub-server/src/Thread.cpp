@@ -151,6 +151,8 @@ bool Thread::threadInit()
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
     yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
 
+    l_foot_disp_inverse = model->getSegmentPosition("l_foot").inverse();
+
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
     if(ctrlOptions.runInDebugMode || ctrlOptions.noOutputMode) {
         debugJointIndex = 0;
@@ -268,19 +270,57 @@ void Thread::writeDebugData()
     debugRealOutPort.write(realBottle);
 }
 
+ocra_icub::OCRA_ICUB_MESSAGE Thread::convertStringToOcraIcubMessage(const std::string& s)
+{
+    ocra_icub::OCRA_ICUB_MESSAGE tag = ocra_icub::OCRA_ICUB_MESSAGE::FAILURE;
+    std::string _s = ocra::util::convertToUpperCase(s);
+/*
+    STRING_MESSAGE = -1,
+    FAILURE = 0,
+    SUCCESS,
+
+    GET_MODEL_CONFIG_INFO,
+    GET_CONTROLLER_SERVER_STATUS,
+
+    CONTROLLER_SERVER_RUNNING,
+    CONTROLLER_SERVER_STOPPED,
+    CONTROLLER_SERVER_PAUSED,
+    GET_L_FOOT_POSE,
+*/
+
+    if (_s=="HELP") {
+        return ocra_icub::OCRA_ICUB_MESSAGE::HELP;
+    } else if (_s=="GET_MODEL_CONFIG_INFO") {
+        return ocra_icub::OCRA_ICUB_MESSAGE::GET_MODEL_CONFIG_INFO;
+    } else if (_s=="GET_CONTROLLER_SERVER_STATUS") {
+        return ocra_icub::OCRA_ICUB_MESSAGE::GET_CONTROLLER_SERVER_STATUS;
+    } else if (_s=="GET_L_FOOT_POSE") {
+        return ocra_icub::OCRA_ICUB_MESSAGE::GET_L_FOOT_POSE;
+    } else {
+        return ocra_icub::OCRA_ICUB_MESSAGE::FAILURE;
+    }
+}
 
 void Thread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
 {
+    bool convertStringToTag = false;
     int btlSize = input.size();
-    for (int i=0; i<btlSize;)
+    for (int i=0; i<btlSize; ++i)
     {
-        // OCRA_CONTROLLER_MESSAGE message();
-        switch (input.get(i).asInt()) {
+        ocra_icub::OCRA_ICUB_MESSAGE tag;
+        if (convertStringToTag) {
+            std::string tagAsString = input.get(i).asString();
+            // TODO: this should be in ocra-icub/Utilities.h but for some reason I get 'undefined reference' errors if it is there (even if the header is included in Thread.h)
+            tag = convertStringToOcraIcubMessage(tagAsString);
+            convertStringToTag = false;
+        } else {
+            tag = ocra_icub::OCRA_ICUB_MESSAGE(input.get(i).asInt());
+        }
+        switch (tag) {
             case ocra_icub::GET_CONTROLLER_SERVER_STATUS:
                 {
                     std::cout << "Got message: GET_CONTROLLER_SERVER_STATUS." << std::endl;
                     reply.addInt(controllerStatus);
-                    ++i;
                 }break;
 
             case ocra_icub::GET_MODEL_CONFIG_INFO:
@@ -289,18 +329,28 @@ void Thread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& rep
                     reply.addString(ctrlOptions.wbiConfigFilePath);
                     reply.addString(ctrlOptions.robotName);
                     reply.addInt(ctrlOptions.isFloatingBase);
-                    ++i;
+                }break;
+
+            case ocra_icub::GET_L_FOOT_POSE:
+                {
+                    std::cout << "Got message: GET_L_FOOT_POSE." << std::endl;
+                    ocra::util::pourDisplacementdIntoBottle(l_foot_disp_inverse, reply);
+                }break;
+
+            case ocra_icub::STRING_MESSAGE:
+                {
+                    std::cout << "Got message: STRING_MESSAGE." << std::endl;
+                    convertStringToTag = true;
                 }break;
 
             case ocra_icub::HELP:
                 {
-                    ++i;
                     std::cout << "Got message: HELP." << std::endl;
                 }break;
 
+
             default:
                 {
-                    ++i;
                     std::cout << "Got message: UNKNOWN." << std::endl;
                 }break;
 

@@ -155,6 +155,7 @@ public:
     };
 
 private:
+    ocra_icub::OCRA_ICUB_MESSAGE convertStringToOcraIcubMessage(const std::string& s);
     void parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     void parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     void writeDebugData();
@@ -191,6 +192,8 @@ private:
 
     Eigen::VectorXd measuredTorques;
     bool debuggingAllJoints;
+
+    Eigen::Displacementd l_foot_disp_inverse; /*!< For gazebo visualization. You can't get the l_sole pose directly in gazebo, but you can get the l_foot, so since all poses from ocra::Model are calculated in the l_sole then we need to go from l_sole to l_foot.*/
 
     iDynTree::SimpleLeggedOdometry odometry; /*!< Odometry object */
 };
