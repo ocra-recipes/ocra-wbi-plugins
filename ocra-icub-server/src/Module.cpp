@@ -53,6 +53,7 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
     controller_options.isFloatingBase = rf.check("floatingBase");
     controller_options.useOdometry = rf.check("useOdometry");
     controller_options.idleAnkles = rf.check("idleAnkles");
+    controller_options.maintainFinalPosture = rf.check("maintainFinalPosture");
 
     if( rf.check("solver") )
     {
@@ -246,4 +247,5 @@ void Module::printHelp()
     std::cout << "\t--absolutePath :If you use this in conjunction with a task set then the controller will look for the task set exactly where you tell it to." << std::endl;
     std::cout << "\t--useOdometry :This will enable odometry leavint the world reference frame attached a non-moving point." << std::endl;
     std::cout << "\t--idleAnkles :Tells the controller to idle the ankles for a short period and then pass on to normal operation. This is to get the feet flush with the ground." << std::endl;
+    std::cout << "\t--maintainFinalPosture :Tells the controller to stay in its final posture when the controller is switched to position mode at the end of usage." << std::endl;
 }
