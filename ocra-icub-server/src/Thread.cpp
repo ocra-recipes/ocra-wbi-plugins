@@ -145,11 +145,18 @@ bool Thread::threadInit()
     /* ============================================================================= */
 
     // TODO: Add a check to make sure the tasks get loaded in and if not - don't change the control mode. return false;
-    ctrlServer->addTasksFromXmlFile(ctrlOptions.startupTaskSetPath);
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
     yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+
+    // If the ankles need to go into idle, we do this before we create the tasks. The reason for this is because many of the tasks simply try to maintain their initial states and if we create them in one state then change that state (by say putting the ankles into idle) then the tasks will try to track the old states when the `run()` method is executed.
+    if (ctrlOptions.idleAnkles) {
+        putAnklesIntoIdle();
+    }
+
+    // Now we can add our tasks! Yay! Yupeee!
+    ctrlServer->addTasksFromXmlFile(ctrlOptions.startupTaskSetPath);
 
     l_foot_disp_inverse = model->getSegmentPosition("l_foot").inverse();
 
@@ -194,9 +201,7 @@ bool Thread::threadInit()
 
 
     } else {
-        if (ctrlOptions.idleAnkles) {
-            putAnklesIntoIdle();
-        }
+
         // yarp::os::Time timer;
         // timer.delay(5.0);
         // std::cout << "First timer over" << std::endl;
@@ -510,8 +515,13 @@ void Thread::putAnklesIntoIdle()
 
     // Wait for a bit.
     OCRA_INFO("Putting ankles into idle to flatten out the feet...")
-    yarp::os::Time::delay(2.0);
+    yarp::os::Time::delay(1.5);
     OCRA_INFO("Done. Resuming controller startup.")
+
+    // Now we need to manually call an update on the model because the model state has changed but the controller server doesn't know about it because the change didn't happen in the `run()` method.
+    ctrlServer->updateModel();
+    // Also, we update the initial posture of the robot so we go back to a good home position when we close the controller server.
+    yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
 }
 
 /**************************************************************************************************
