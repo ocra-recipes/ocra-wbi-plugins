@@ -17,54 +17,101 @@ bool StandingDemoClient::configure(yarp::os::ResourceFinder &rf)
     } else {
         useMinJerk = false;
     }
+
+    if (rf.check("maxVel")) {
+        maxVel = rf.find("maxVel").asDouble();
+    } else {
+        if (useMinJerk) {
+            maxVel = 0.06;
+        } else {
+            maxVel = 0.2;
+        }
+    }
+
+    if (rf.check("maxAcc")) {
+        maxAcc = rf.find("maxAcc").asDouble();
+    } else {
+        maxAcc = maxVel;
+    }
+
+    if (rf.check("delay")) {
+        contactReleaseDelay = rf.find("delay").asDouble();
+    } else {
+        contactReleaseDelay = 2.0;
+    }
+
     return true;
+}
+
+void StandingDemoClient::printHelp()
+{
+    std::cout << "=======================================" << std::endl;
+    std::cout << "------- StandingDemoClient HELP -------" << std::endl;
+    std::cout << "=======================================" << std::endl;
+    std::cout << "Valid args" << std::endl;
+    std::cout << "--help --> Shows this message :)." << std::endl;
+    std::cout << "--minJerk --> Uses a MinimumJerkTrajectory instead of a TimeOptimalTrajectory." << std::endl;
+    std::cout << "--maxVel [double value] --> Sets the maximum velocity of the movement." << std::endl;
+    std::cout << "--maxAcc [double value] --> Sets the maximum acceleration of the movement." << std::endl;
+    std::cout << "--delay [double value] --> Sets the time to wait before deactivating the leg contacts (seconds)." << std::endl;
+    std::cout << "=======================================" << std::endl;
+    std::cout << "-------       END OF HELP       -------" << std::endl;
+    std::cout << "=======================================" << std::endl;
 }
 
 bool StandingDemoClient::initialize()
 {
-    // comTask = std::make_shared<ocra_recipes::TaskConnection>("ComTask");
-    // rootTask = std::make_shared<ocra_recipes::TaskConnection>("RootCartesian");
+    std::cout << "\n\n\n\n" << std::endl;
+    std::cout << "====================================================================" << std::endl;
+    std::cout << "Creating the following trajectory:" << std::endl;
+    if (useMinJerk) {
+        std::cout << "type: MinimumJerkTrajectory" << std::endl;
+    } else {
+        std::cout << "type: TimeOptimalTrajectory" << std::endl;
+    }
+    std::cout << "maxVel: " << maxVel << std::endl;
+    std::cout << "maxAcc: " << maxAcc << std::endl;
+    std::cout << "====================================================================" << std::endl;
+
     leftLegContactTask = std::make_shared<ocra_recipes::TaskConnection>("LeftUpperLegContact");
     rightLegContactTask = std::make_shared<ocra_recipes::TaskConnection>("RightUpperLegContact");
 
     Eigen::Vector3d comStartingPos = model->getCoMPosition();
-    // Eigen::Vector3d rootStartingPos = model->getSegmentPosition("root_link").getTranslation();
-
-    // Eigen::Vector3d leftFootPos = model->getSegmentPosition("l_foot").getTranslation();
-    // Eigen::Vector3d rightFootPos = model->getSegmentPosition("r_foot").getTranslation();
-
-    // std::cout << "comStartingPos\n" << comStartingPos.transpose() << std::endl;
-    // std::cout << "rootStartingPos\n" << rootStartingPos.transpose() << std::endl;
-    // std::cout << "leftFootPos\n" << leftFootPos.transpose() << std::endl;
-    // std::cout << "rightFootPos\n" << rightFootPos.transpose() << std::endl;
-
-    // Eigen::MatrixXd root_waypoints(3,1);
-    // root_waypoints << rootStartingPos;
-    // root_waypoints(0,0) = 0.0; // move x forward to between the feet
-    // root_waypoints(2,0) += 0.2; // and move z upward 20cm
-    // std::cout << "root_waypoints\n" << root_waypoints << std::endl;
-
+    double zDisp = 0.2;
+    if (useMinJerk){
+        zDisp = 0.145;
+    }
 
     Eigen::MatrixXd com_waypoints(3,2);
     com_waypoints << comStartingPos, comStartingPos;
-    com_waypoints(0,0) = 0.0; // First move x forward to between the feet
+
+    com_waypoints(0,0) = comStartingPos(0) / 2.0; // First move x forward to between the feet
+    com_waypoints(2,0) += zDisp / 2.0; // and move z upward
     com_waypoints(0,1) = 0.0; // First move x forward to between the feet
-    com_waypoints(2,1) += 0.2; // and move z upward 20cm
+    com_waypoints(2,1) += zDisp; // and move z upward
+    
+    /* Manual solution */
+    // com_waypoints(0,0) = 0.0; // First move x forward to between the feet
+    // com_waypoints(0,1) = 0.0; // First move x forward to between the feet
+    // com_waypoints(2,1) += zDisp; // and move z upward
+
     std::cout << "com_waypoints\n" << com_waypoints << std::endl;
 
     std::list<Eigen::VectorXd> com_waypointList;
-    for(int i=0; i<3; ++i) {
+    for(int i=0; i<com_waypoints.cols(); ++i) {
         com_waypointList.push_back(com_waypoints.col(i));
     }
+
     ocra_recipes::TERMINATION_STRATEGY termStrategy = ocra_recipes::STOP_THREAD;
 
     if (useMinJerk) {
         ocra_recipes::TRAJECTORY_TYPE trajType = ocra_recipes::MIN_JERK;
         comTrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(10, "ComTask", com_waypoints, trajType, termStrategy);
-        comTrajThread->setMaxVelocity(0.1);
+        comTrajThread->setMaxVelocity(maxVel);
     } else {
         ocra_recipes::TRAJECTORY_TYPE trajType = ocra_recipes::TIME_OPTIMAL;
         comTrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(10, "ComTask", com_waypointList, trajType, termStrategy);
+        comTrajThread->setMaxVelocityAndAcceleration(maxVel, maxAcc);
     }
 
     comTrajThread->start();
@@ -74,7 +121,7 @@ bool StandingDemoClient::initialize()
     // rootTrajThread->start();
 
 
-    contactReleaseDelay = 2.0;
+
     contactsReleased = false;
 
     startTime = yarp::os::Time::now();
