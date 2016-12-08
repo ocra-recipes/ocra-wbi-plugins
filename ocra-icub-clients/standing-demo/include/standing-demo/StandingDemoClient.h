@@ -19,8 +19,11 @@ protected:
     virtual bool initialize();
     virtual void release();
     virtual void loop();
+    virtual void printHelp();
 
 private:
+    double maxVel;
+    double maxAcc;
     bool useMinJerk;
     ocra_recipes::TrajectoryThread::Ptr comTrajThread;
     ocra_recipes::TrajectoryThread::Ptr rootTrajThread;
