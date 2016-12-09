@@ -24,7 +24,7 @@ bool StandingDemoClient::configure(yarp::os::ResourceFinder &rf)
         if (useMinJerk) {
             maxVel = 0.06;
         } else {
-            maxVel = 0.2;
+            maxVel = 0.1;
         }
     }
 
@@ -77,23 +77,17 @@ bool StandingDemoClient::initialize()
     rightLegContactTask = std::make_shared<ocra_recipes::TaskConnection>("RightUpperLegContact");
 
     Eigen::Vector3d comStartingPos = model->getCoMPosition();
-    double zDisp = 0.2;
+    double zDisp = 0.15;
     if (useMinJerk){
         zDisp = 0.145;
     }
 
+    /* Manual solution */
     Eigen::MatrixXd com_waypoints(3,2);
     com_waypoints << comStartingPos, comStartingPos;
-
-    com_waypoints(0,0) = comStartingPos(0) / 2.0; // First move x forward to between the feet
-    com_waypoints(2,0) += zDisp / 2.0; // and move z upward
+    com_waypoints(0,0) = 0.0; // First move x forward to between the feet
     com_waypoints(0,1) = 0.0; // First move x forward to between the feet
     com_waypoints(2,1) += zDisp; // and move z upward
-    
-    /* Manual solution */
-    // com_waypoints(0,0) = 0.0; // First move x forward to between the feet
-    // com_waypoints(0,1) = 0.0; // First move x forward to between the feet
-    // com_waypoints(2,1) += zDisp; // and move z upward
 
     std::cout << "com_waypoints\n" << com_waypoints << std::endl;
 
