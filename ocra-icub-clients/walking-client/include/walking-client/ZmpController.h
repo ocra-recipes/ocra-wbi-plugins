@@ -48,11 +48,11 @@ struct ZmpControllerParams {
      *  Positive force control gain in the y direction
      */
     const double kfy;
+    const double kdx;
+    const double kdy;
     /**
      *  Total mass of the robot
      */
-    const double kdx;
-    const double kdy;
     const double m;
     /**
      *  CoM height
@@ -64,6 +64,10 @@ struct ZmpControllerParams {
      *  Gravity acceleration = 9.8m/s^2
      */
     const double g;
+    /**
+     *  Controller period in seconds
+     */
+    const double controllerPeriod;
     
     ZmpControllerParams(const double kfx,
                         const double kfy,
@@ -71,14 +75,16 @@ struct ZmpControllerParams {
                         const double kdy,
                         const double m,
                         double cz,
-                        const double g):
+                        const double g,
+                        const double controllerPeriod):
     kfx(kfx),
     kfy(kfy),
     kdx(kdx),
     kdy(kdy),
     m(m),
     cz(cz),
-    g(g){}
+    g(g),
+    controllerPeriod(controllerPeriod){}
 };
 
 enum FOOT {
@@ -182,6 +188,9 @@ public:
      */
     bool computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vector2d &dhd);
     
+    void computehdd(Eigen::Vector3d comPosition, Eigen::Vector2d globalZMP, Eigen::Vector2d &ddh);
+    
+    void computeh(Eigen::Vector2d prevComPosition, Eigen::Vector2d prevComVel, Eigen::Vector2d &intComPosition);
 private:
     std::shared_ptr<ZmpControllerParams> _params;
     std::shared_ptr<ocra::Model> _model;

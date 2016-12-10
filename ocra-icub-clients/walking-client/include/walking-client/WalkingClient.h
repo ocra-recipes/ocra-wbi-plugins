@@ -4,8 +4,17 @@
 #include <ocra-icub/IcubClient.h>
 #include <ocra-recipes/TrajectoryThread.h>
 #include <ocra-recipes/ControllerClient.h>
+#include <ocra/util/EigenUtilities.h>
 #include "walking-client/ZmpPreviewController.h"
 #include "walking-client/ZmpController.h"
+#include <ocra/util/FileOperations.h>
+#include <yarp/os/Time.h>
+
+enum ZmpTestType {
+    ZMP_CONSTANT_REFERENCE,
+    ZMP_VARYING_REFERENCE,
+    COM_LIN_VEL_CONSTANT_REFERENCE
+};
 
 class WalkingClient : public ocra_recipes::ControllerClient
 {
@@ -60,8 +69,8 @@ public:
     
     bool publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &port, Eigen::Vector3d &value);
     
-    void performZMPTest(bool usingConstantRef);
-
+    void performZMPTest(ZmpTestType type);
+        
 protected:
     virtual bool initialize();
     virtual void release();
@@ -76,7 +85,9 @@ private:
     Eigen::VectorXd _rawLeftFootWrench;
     Eigen::VectorXd _rawRightFootWrench;
     Eigen::Vector2d _globalZMP;
+    Eigen::Vector2d _previousCOM;
     bool _isTestRun;
+    ZmpTestType _zmpTestType;
     
     yarp::os::BufferedPort<yarp::os::Bottle> _zmpPort;
     yarp::os::BufferedPort<yarp::os::Bottle> _dcomErrorPort;

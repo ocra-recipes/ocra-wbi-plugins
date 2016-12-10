@@ -65,6 +65,7 @@ bool ZmpController::computeGlobalZMPFromSensors(Eigen::VectorXd rawLeftFootWrenc
     double divisor = 1/(fVecz(0) + fVecz(1));
     globalZMP = divisor*(Eigen::MatrixXd(2,2) << rightFootZmp, leftFootZmp).finished() * fVecz;
     
+
     return true;
 }
 
@@ -101,11 +102,19 @@ bool ZmpController::computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vect
     kdVec(0,0) = _params->kdx;
     kdVec(1,1) = _params->kdy;
     //TODO: Remove this constant dt
-    Eigen::Vector2d derivative = (1/0.010) * kdVec * (error - previousError);
+    Eigen::Vector2d derivative = (1/_params->controllerPeriod) * kdVec * (error - previousError);
     previousError = error;
     dhd += derivative;
     
     return true;
+}
+
+void ZmpController::computehdd(Eigen::Vector3d comPosition, Eigen::Vector2d refZMP, Eigen::Vector2d &ddh) {
+    ddh = (_params->g/_params->cz)*(comPosition.topRows(2) - refZMP);
+}
+
+void ZmpController::computeh(Eigen::Vector2d prevComPosition, Eigen::Vector2d prevComVel, Eigen::Vector2d &intComPosition) {
+    intComPosition = prevComPosition + _params->controllerPeriod*prevComVel;
 }
 
 void ZmpController::getLeftFootPosition(Eigen::Vector3d &leftFootPosition) {
