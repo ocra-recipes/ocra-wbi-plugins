@@ -42,11 +42,6 @@ set(${PROJECT_NAME}_VERSION ${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_M
 # Add some helpful CMake functions
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 
-# Find OcraIcub
-find_package(OcraIcub REQUIRED)
-IF(${OcraIcub_FOUND})
-    message("-- Found OcraIcub version ${OcraIcub_VERSION}")
-ENDIF()
 
 # Get all of the source and header files.
 file(GLOB folder_source src/*.cpp)
@@ -70,7 +65,7 @@ target_link_libraries(
 ${PROJECT_NAME}
 ${YARP_LIBRARIES}
 ${OcraRecipes_LIBRARIES}
-${OcraIcub_LIBRARIES}
+ocra-icub
 )
 
 # Install to the bin/ directory if installed.
