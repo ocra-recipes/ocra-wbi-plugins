@@ -4,8 +4,8 @@ using namespace Eigen;
 
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod),
-_zmpParams(std::make_shared<ZmpControllerParams>(1e-3,
-                                                 1.5e-3,
+_zmpParams(std::make_shared<ZmpControllerParams>(1e-4,
+                                                 1.5e-4,
                                                  1e-6,
                                                  5e-4,
                                                  model->getMass(),
@@ -66,7 +66,7 @@ bool WalkingClient::initialize()
     double feetSeparation = sep(1);
     int N = 6;
     int period = this->getExpectedPeriod();
-    double tTrans = 4;
+    double tTrans = 3;
     _zmpTrajectory = generateZMPTrajectoryTEST(tTrans, feetSeparation, period, N);
     
     // Is the controller undergoing a test run?
@@ -128,7 +128,7 @@ void WalkingClient::loop()
     
     if (_isTestRun) {
         // Specify type of zmp test
-        ZmpTestType testType = ZmpTestType::COM_LIN_VEL_CONSTANT_REFERENCE;
+        ZmpTestType testType = ZmpTestType::ZMP_VARYING_REFERENCE;
         performZMPTest(testType);
     }
     
@@ -197,7 +197,7 @@ void WalkingClient::performZMPTest(ZmpTestType type) {
     
     static int el = 0;
     static double timeInit = yarp::os::Time::now();
-    double tnow;
+    double tnow = yarp::os::Time::now();
     
     Eigen::Vector2d constantZMPRef;
     Eigen::Vector3d constantRefLinVel;
@@ -212,13 +212,16 @@ void WalkingClient::performZMPTest(ZmpTestType type) {
         case ZMP_CONSTANT_REFERENCE:
             zmpReference  << 0, -0.10, 0;
             _zmpController->computehd(_globalZMP, zmpReference, dhd);
+            if (tnow - timeInit >3)
+                this->askToStop();
             break;
         case COM_LIN_VEL_CONSTANT_REFERENCE:
             constantRefLinVel << 0, 0.01, 0;
             // Stop sending this constant reference after 2 seconds.
-            tnow = yarp::os::Time::now();
-            if (tnow - timeInit > 2)
+            if (tnow - timeInit > 2) {
                 constantRefLinVel(1) = 0.0;
+                this->askToStop();
+            }
             dhd = constantRefLinVel.topRows(2);
             break;
         case ZMP_VARYING_REFERENCE:
@@ -226,6 +229,9 @@ void WalkingClient::performZMPTest(ZmpTestType type) {
             _zmpController->computehd(_globalZMP, zmpReference, dhd);
             if ( el < _zmpTrajectory.size() ){
                 el++;
+            }
+            if (tnow - timeInit > 12) {
+                this->askToStop();
             }
             break;
         default:
@@ -288,11 +294,12 @@ void WalkingClient::performZMPTest(ZmpTestType type) {
     
     // Write to file for plotting
     tnow = yarp::os::Time::now() - timeInit;
-    std::string homeDir = "/Users/jorhabibeljaik/Documents/MATLAB/";
+    //TODO: Move this directory to the configuration file of the client
+    std::string homeDir = "/home/jorhabib/Documents/octave/";
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComLinVel).finished(), std::string(homeDir + "currentComLinVel.txt"),true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, intComPosition).finished(), std::string(homeDir + "intComPositionRef.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, currentComPos).finished(), std::string(homeDir + "currentComPos.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComPos).finished(), std::string(homeDir + "currentComPos.txt"), true);
 
 }
 
