@@ -129,24 +129,24 @@ bool WalkingClient::initialize()
 {
     //TODO: Remember to remove the hardcorded /walkingClient name
     // Connect to feet wrench ports
-    bool ok = portWrenchLeftFoot.open("/walkingClient/left_foot/wrench:i");
+    bool ok = portWrenchLeftFoot.open(composePortName("left_foot/wrench:i"));
     if (!ok) {
         OCRA_ERROR("Impossible to open /walkingClient/left_foot/wrench:i");
         return false;
     } else {
         // Autoconnect
-        if (!yarp::os::Network::connect("/icubGazeboSim/left_foot/analog:o", portWrenchLeftFoot.getName().c_str())) {
+        if (!yarp::os::Network::connect(std::string("/"+_robot+"/left_foot/analog:o"), portWrenchLeftFoot.getName().c_str())) {
             OCRA_ERROR("Impossible to connect to /icubGazeboSim/left_foot/analog:o");
             return false;
         }
     }
-    ok = portWrenchRightFoot.open("/walkingClient/right_foot/wrench:i");
+    ok = portWrenchRightFoot.open(composePortName("right_foot/wrench:i"));
     if (!ok) {
-        OCRA_ERROR("Impossible to open /walkingClient/right_foot/wrench:i");
+        OCRA_ERROR("Impossible to open /right_foot/wrench:i");
         return false;
     } else {
         // Autoconnect
-        if (!yarp::os::Network::connect("/icubGazeboSim/right_foot/analog:o", portWrenchRightFoot.getName().c_str()) ) {
+        if (!yarp::os::Network::connect(std::string("/"+_robot+"right_foot/analog:o"), portWrenchRightFoot.getName().c_str()) ) {
             OCRA_ERROR("Impossible to connect to /icubGazeboSim/right_foot/analog:o");
             return false;
         }
