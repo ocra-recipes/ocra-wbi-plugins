@@ -70,3 +70,5 @@ ocra-icub
 
 # Install to the bin/ directory if installed.
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+
+add_subdirectory(app)
