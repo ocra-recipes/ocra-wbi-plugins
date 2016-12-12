@@ -142,31 +142,31 @@ std::vector<std::string> IcubControllerServer::getCanonical_iCubJoints()
     std::vector<std::string> consideredJoints;
 
     // These are the joints that constitute ROBOT_MAIN_JOINTS and that will be hardcoded here just because the list name ROBOT_MAIN_JOINTS is hardcoded anyways. If that list was changed, then this must be changed too.
-    consideredJoints.push_back("torso_pitch");
-    consideredJoints.push_back("torso_roll");
-    consideredJoints.push_back("torso_yaw");
-    consideredJoints.push_back("l_shoulder_pitch");
-    consideredJoints.push_back("l_shoulder_roll");
-    consideredJoints.push_back("l_shoulder_yaw");
-    consideredJoints.push_back("l_elbow");
-    consideredJoints.push_back("l_wrist_prosup");
-    consideredJoints.push_back("r_shoulder_pitch");
-    consideredJoints.push_back("r_shoulder_roll");
-    consideredJoints.push_back("r_shoulder_yaw");
-    consideredJoints.push_back("r_elbow");
-    consideredJoints.push_back("r_wrist_prosup");
-    consideredJoints.push_back("l_hip_pitch");
-    consideredJoints.push_back("l_hip_roll");
-    consideredJoints.push_back("l_hip_yaw");
-    consideredJoints.push_back("l_knee");
-    consideredJoints.push_back("l_ankle_pitch");
-    consideredJoints.push_back("l_ankle_roll");
-    consideredJoints.push_back("r_hip_pitch");
-    consideredJoints.push_back("r_hip_roll");
-    consideredJoints.push_back("r_hip_yaw");
-    consideredJoints.push_back("r_knee");
-    consideredJoints.push_back("r_ankle_pitch");
-    consideredJoints.push_back("r_ankle_roll");
+    consideredJoints.push_back("torso_pitch");          // index = 0
+    consideredJoints.push_back("torso_roll");           // index = 1
+    consideredJoints.push_back("torso_yaw");            // index = 2
+    consideredJoints.push_back("l_shoulder_pitch");     // index = 3
+    consideredJoints.push_back("l_shoulder_roll");      // index = 4
+    consideredJoints.push_back("l_shoulder_yaw");       // index = 5
+    consideredJoints.push_back("l_elbow");              // index = 6
+    consideredJoints.push_back("l_wrist_prosup");       // index = 7
+    consideredJoints.push_back("r_shoulder_pitch");     // index = 8
+    consideredJoints.push_back("r_shoulder_roll");      // index = 9
+    consideredJoints.push_back("r_shoulder_yaw");       // index = 10
+    consideredJoints.push_back("r_elbow");              // index = 11
+    consideredJoints.push_back("r_wrist_prosup");       // index = 12
+    consideredJoints.push_back("l_hip_pitch");          // index = 13
+    consideredJoints.push_back("l_hip_roll");           // index = 14
+    consideredJoints.push_back("l_hip_yaw");            // index = 15
+    consideredJoints.push_back("l_knee");               // index = 16
+    consideredJoints.push_back("l_ankle_pitch");        // index = 17
+    consideredJoints.push_back("l_ankle_roll");         // index = 18
+    consideredJoints.push_back("r_hip_pitch");          // index = 19
+    consideredJoints.push_back("r_hip_roll");           // index = 20
+    consideredJoints.push_back("r_hip_yaw");            // index = 21
+    consideredJoints.push_back("r_knee");               // index = 22
+    consideredJoints.push_back("r_ankle_pitch");        // index = 23
+    consideredJoints.push_back("r_ankle_roll");         // index = 24
 
     return consideredJoints;
 }

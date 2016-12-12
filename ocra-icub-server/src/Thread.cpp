@@ -38,6 +38,7 @@ OcraControllerOptions::OcraControllerOptions()
 , startupSequence("")
 , wbiConfigFilePath("")
 , runInDebugMode(false)
+, noOutputMode(false)
 , isFloatingBase(false)
 , yarpWbiOptions(yarp::os::Property())
 , controllerType(ocra_recipes::WOCRA_CONTROLLER)
@@ -60,6 +61,7 @@ std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
     out << "startupSequence: " << opts.startupSequence << "\n\n";
     out << "wbiConfigFilePath: " << opts.wbiConfigFilePath << "\n\n";
     out << "runInDebugMode: " << opts.runInDebugMode << "\n\n";
+    out << "noOutputMode: " << opts.noOutputMode << "\n\n";
     out << "isFloatingBase: " << opts.isFloatingBase << "\n\n";
     out << "useOdometry: " << opts.useOdometry << "\n\n";
     // out << "yarpWbiOptions: " << opts.yarpWbiOptions << "\n\n";
@@ -92,18 +94,6 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
                                                          ctrlOptions.useOdometry
                                                        );
 
-//    ctrlServer->initialize();
-//    if (ctrlOptions.useOdometry)
-//        ctrlServer->updateModel();
-//
-//    model = ctrlServer->getRobotModel();
-//    // Construct rpc server callback and bind to the control thread.
-//    rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
-//    // Open the rpc server port.
-//    rpcServerPort.open("/ocra-icub-server/info/rpc:i");
-//    // Bind the callback to the port.
-//    rpcServerPort.setReader(*rpcServerCallback);
-
 
 }
 
@@ -127,7 +117,7 @@ bool Thread::threadInit()
     /* ======== This block was originally in the constructor of this thread ======= */
     // The server will initialize but without calling updateModel() at the end, if useOdometry is true.
     ctrlServer->initialize();
-    
+
     // Odometry initialization. Odometry assumes one foot to be fixed to the ground.
     if (ctrlOptions.useOdometry && ctrlOptions.isFloatingBase) {
         yarp::os::Bottle wbiStateOptionsGroup = ctrlOptions.yarpWbiOptions.findGroup("WBI_STATE_OPTIONS");
@@ -144,7 +134,7 @@ bool Thread::threadInit()
 
     if (ctrlOptions.useOdometry)
         ctrlServer->updateModel();
-    
+
     model = ctrlServer->getRobotModel();
     // Construct rpc server callback and bind to the control thread.
     rpcServerCallback = std::make_shared<ControllerRpcServerCallback>(*this);
@@ -153,16 +143,25 @@ bool Thread::threadInit()
     // Bind the callback to the port.
     rpcServerPort.setReader(*rpcServerCallback);
     /* ============================================================================= */
-    
+
     // TODO: Add a check to make sure the tasks get loaded in and if not - don't change the control mode. return false;
-    ctrlServer->addTasksFromXmlFile(ctrlOptions.startupTaskSetPath);
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
-    
     yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+
+    // If the ankles need to go into idle, we do this before we create the tasks. The reason for this is because many of the tasks simply try to maintain their initial states and if we create them in one state then change that state (by say putting the ankles into idle) then the tasks will try to track the old states when the `run()` method is executed.
+    if (ctrlOptions.idleAnkles) {
+        putAnklesIntoIdle();
+    }
+
+    // Now we can add our tasks! Yay! Yupeee!
+    ctrlServer->addTasksFromXmlFile(ctrlOptions.startupTaskSetPath);
+
+    l_foot_disp_inverse = model->getSegmentPosition("l_foot").inverse();
+
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
-    if(ctrlOptions.runInDebugMode) {
+    if(ctrlOptions.runInDebugMode || ctrlOptions.noOutputMode) {
         debugJointIndex = 0;
         debuggingAllJoints = false;
         std::string debugRpcPortName("/ocra-icub-server/debug/rpc:i");
@@ -177,20 +176,32 @@ bool Thread::threadInit()
         debugRefOutPort.open(debugRefOutPortName);
         debugRealOutPort.open(debugRealOutPortName);
         std::cout << "-----------------------------------------------------------------" << std::endl;
-        std::cout << "\t--> Running in DEBUG mode <--" << std::endl;
+        if (ctrlOptions.noOutputMode) {
+            std::cout << "\t--> Running in NO OUTPUT mode <--" << std::endl;
+        } else {
+            std::cout << "\t--> Running in DEBUG mode <--" << std::endl;
+        }
         std::cout << "-----------------------------------------------------------------" << std::endl;
         std::cout << "-- RPC port open at: " << debugRpcPortName << std::endl;
         std::cout << "-- Output port open at: " << debugRefOutPortName << std::endl;
         std::cout << "-- Input port open at: " << debugRealOutPortName << std::endl;
         std::cout << "-----------------------------------------------------------------" << std::endl;
-        std::string jointName = model->getJointName(debugJointIndex);
-        std::cout << "Debugging joint index: " << debugJointIndex << " ("<< jointName <<")" << std::endl;
-
 
         yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
         yarpWbi->setControlReference(initialPosture.data());
-        return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, debugJointIndex);
+
+
+        if (ctrlOptions.runInDebugMode) {
+            std::string jointName = model->getJointName(debugJointIndex);
+            std::cout << "Debugging joint index: " << debugJointIndex << " ("<< jointName <<")" << std::endl;
+            return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, debugJointIndex);
+        } else {
+            return true;
+        }
+
+
     } else {
+
         // yarp::os::Time timer;
         // timer.delay(5.0);
         // std::cout << "First timer over" << std::endl;
@@ -218,28 +229,46 @@ bool Thread::threadInit()
 
 void Thread::run()
 {
+    // Eigen::VectorXd externalWrench(6);
+    // yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, externalWrench.data());
+    // std::cout << "externalWrench:\n" << externalWrench.transpose() << std::endl;
+
     ctrlServer->computeTorques(torques);
     torques = ((torques.array().max(minTorques)).min(maxTorques)).matrix().eval();
-    if (ctrlOptions.runInDebugMode) {
+    if (ctrlOptions.runInDebugMode || ctrlOptions.noOutputMode) {
         measuredTorques = model->getJointTorques();
         writeDebugData();
-        if (debuggingAllJoints) {
-            yarpWbi->setControlReference(torques.data());
-        } else {
-            double refTau = torques(debugJointIndex);
-            yarpWbi->setControlReference(&refTau, debugJointIndex);
+        if (!ctrlOptions.noOutputMode) {
+            if (debuggingAllJoints) {
+                yarpWbi->setControlReference(torques.data());
+            } else {
+                double refTau = torques(debugJointIndex);
+                yarpWbi->setControlReference(&refTau, debugJointIndex);
+            }
         }
     } else {
-        yarpWbi->setControlReference(torques.data());
+        bool ok = yarpWbi->setControlReference(torques.data());
+        if(!ok) {
+            OCRA_WARNING("Couldn't set the control reference. Trying to put the robot back into torque control.")
+            yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
+        }
     }
 }
 
 void Thread::threadRelease()
 {
     controllerStatus = ocra_icub::CONTROLLER_SERVER_STOPPED;
-
-    yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
-    yarpWbi->setControlReference(initialPosture.data());
+    if (ctrlOptions.maintainFinalPosture) {
+        OCRA_INFO("Staying in my current posture.")
+        Eigen::VectorXd finalPosture = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
+        yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, finalPosture.data(), ALL_JOINTS);
+        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, finalPosture.data(), ALL_JOINTS);
+        yarpWbi->setControlReference(finalPosture.data());
+    } else {
+        OCRA_INFO("Returning to my initial posture.")
+        yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+        yarpWbi->setControlReference(initialPosture.data());
+    }
 
 }
 
@@ -254,19 +283,57 @@ void Thread::writeDebugData()
     debugRealOutPort.write(realBottle);
 }
 
+ocra_icub::OCRA_ICUB_MESSAGE Thread::convertStringToOcraIcubMessage(const std::string& s)
+{
+    ocra_icub::OCRA_ICUB_MESSAGE tag = ocra_icub::OCRA_ICUB_MESSAGE::FAILURE;
+    std::string _s = ocra::util::convertToUpperCase(s);
+/*
+    STRING_MESSAGE = -1,
+    FAILURE = 0,
+    SUCCESS,
+
+    GET_MODEL_CONFIG_INFO,
+    GET_CONTROLLER_SERVER_STATUS,
+
+    CONTROLLER_SERVER_RUNNING,
+    CONTROLLER_SERVER_STOPPED,
+    CONTROLLER_SERVER_PAUSED,
+    GET_L_FOOT_POSE,
+*/
+
+    if (_s=="HELP") {
+        return ocra_icub::OCRA_ICUB_MESSAGE::HELP;
+    } else if (_s=="GET_MODEL_CONFIG_INFO") {
+        return ocra_icub::OCRA_ICUB_MESSAGE::GET_MODEL_CONFIG_INFO;
+    } else if (_s=="GET_CONTROLLER_SERVER_STATUS") {
+        return ocra_icub::OCRA_ICUB_MESSAGE::GET_CONTROLLER_SERVER_STATUS;
+    } else if (_s=="GET_L_FOOT_POSE") {
+        return ocra_icub::OCRA_ICUB_MESSAGE::GET_L_FOOT_POSE;
+    } else {
+        return ocra_icub::OCRA_ICUB_MESSAGE::FAILURE;
+    }
+}
 
 void Thread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
 {
+    bool convertStringToTag = false;
     int btlSize = input.size();
-    for (int i=0; i<btlSize;)
+    for (int i=0; i<btlSize; ++i)
     {
-        // OCRA_CONTROLLER_MESSAGE message();
-        switch (input.get(i).asInt()) {
+        ocra_icub::OCRA_ICUB_MESSAGE tag;
+        if (convertStringToTag) {
+            std::string tagAsString = input.get(i).asString();
+            // TODO: this should be in ocra-icub/Utilities.h but for some reason I get 'undefined reference' errors if it is there (even if the header is included in Thread.h)
+            tag = convertStringToOcraIcubMessage(tagAsString);
+            convertStringToTag = false;
+        } else {
+            tag = ocra_icub::OCRA_ICUB_MESSAGE(input.get(i).asInt());
+        }
+        switch (tag) {
             case ocra_icub::GET_CONTROLLER_SERVER_STATUS:
                 {
                     std::cout << "Got message: GET_CONTROLLER_SERVER_STATUS." << std::endl;
                     reply.addInt(controllerStatus);
-                    ++i;
                 }break;
 
             case ocra_icub::GET_MODEL_CONFIG_INFO:
@@ -275,18 +342,28 @@ void Thread::parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& rep
                     reply.addString(ctrlOptions.wbiConfigFilePath);
                     reply.addString(ctrlOptions.robotName);
                     reply.addInt(ctrlOptions.isFloatingBase);
-                    ++i;
+                }break;
+
+            case ocra_icub::GET_L_FOOT_POSE:
+                {
+                    std::cout << "Got message: GET_L_FOOT_POSE." << std::endl;
+                    ocra::util::pourDisplacementdIntoBottle(l_foot_disp_inverse, reply);
+                }break;
+
+            case ocra_icub::STRING_MESSAGE:
+                {
+                    std::cout << "Got message: STRING_MESSAGE." << std::endl;
+                    convertStringToTag = true;
                 }break;
 
             case ocra_icub::HELP:
                 {
-                    ++i;
                     std::cout << "Got message: HELP." << std::endl;
                 }break;
 
+
             default:
                 {
-                    ++i;
                     std::cout << "Got message: UNKNOWN." << std::endl;
                 }break;
 
@@ -352,11 +429,40 @@ void Thread::parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
 
             std::cout << replyString << std::endl;
 
+        } else if (key == "noOutputMode") {
+            std::string toggleMessage = input.get(++i).asString();
+            std::transform(toggleMessage.begin(), toggleMessage.end(), toggleMessage.begin(), ::toupper);
+
+            std::string replyString("");
+            if ( (toggleMessage == "ON") || (toggleMessage == "1") ) {
+                replyString += "Switching to 'noOutputMode'.\n";
+                ctrlOptions.noOutputMode = true;
+                ctrlOptions.runInDebugMode = false;
+                if(yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS)) {
+                    replyString += "Success! Setting all joints to POSITION control mode.";
+                } else {
+                    replyString += "FAILED! Could not set the control mode of the joints to POSITION mode.";
+                }
+            } else {
+                replyString += "Switching OFF 'noOutputMode'. WARNING: Torques will be sent to robot.\n";
+                ctrlOptions.noOutputMode = false;
+                ctrlOptions.runInDebugMode = true;
+                if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, torques.data(), ALL_JOINTS) ) {
+                    debuggingAllJoints = true;
+                    replyString += "Success! Setting all joints to TORQUE control mode.";
+                } else {
+                    replyString += "FAILED! Could not set the control mode of the joints to TORQUE mode.";
+                }
+            }
+            reply.addVocab(yarp::os::Vocab::encode("many"));
+            reply.addString(replyString);
+            std::cout << replyString << std::endl;
         } else if (key == "help") {
             std::string helpString("");
             helpString += "Valid commands: \n";
             helpString += "-- setJoint [index]\n";
             helpString += "-- listJoints\n";
+            helpString += "-- noOutputMode [ON/OFF]\n";
             helpString += "-- help\n";
             std::cout << helpString << std::endl;
             reply.addVocab(yarp::os::Vocab::encode("many"));
@@ -395,6 +501,37 @@ bool Thread::ControllerRpcServerCallback::read(yarp::os::ConnectionReader& conne
         return true;
     }
 }
+
+void Thread::putAnklesIntoIdle()
+{
+    // Set everything else to position mode
+    yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
+    yarpWbi->setControlReference(initialPosture.data());
+    // Ankle indexes are: 17, 18, 23, 24
+    /*
+     *  The idea here is that by asking for 0 torque in the ankles they will be "idle"
+     */
+    int l_ankle_pitch = 17;
+    int l_ankle_roll = 18;
+    int r_ankle_pitch = 23;
+    int r_ankle_roll = 24;
+    double zeroTorque = 0.0;
+    yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &zeroTorque, l_ankle_pitch);
+    yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &zeroTorque, l_ankle_roll);
+    yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &zeroTorque, r_ankle_pitch);
+    yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &zeroTorque, r_ankle_roll);
+
+    // Wait for a bit.
+    OCRA_INFO("Putting ankles into idle to flatten out the feet...")
+    yarp::os::Time::delay(1.5);
+    OCRA_INFO("Done. Resuming controller startup.")
+
+    // Now we need to manually call an update on the model because the model state has changed but the controller server doesn't know about it because the change didn't happen in the `run()` method.
+    ctrlServer->updateModel();
+    // Also, we update the initial posture of the robot so we go back to a good home position when we close the controller server.
+    yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
+}
+
 /**************************************************************************************************
 **************************************************************************************************/
 

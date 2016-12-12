@@ -14,7 +14,7 @@ bool SittingDemoClient::initialize()
 {
     ocra_recipes::TRAJECTORY_TYPE trajType = ocra_recipes::MIN_JERK;
 
-    Eigen::Vector3d waypoints(-0.12, -0.105, 0.22);
+    Eigen::Vector3d waypoints(-0.12, -0.105, 0.21);
 
     ocra_recipes::TERMINATION_STRATEGY termStrategy = ocra_recipes::REVERSE_STOP;
 
@@ -34,5 +34,7 @@ void SittingDemoClient::release()
 
 void SittingDemoClient::loop()
 {
-    // add your code here...
+    if(!rootTrajThread->isRunning()) {
+        stop();
+    }
 }

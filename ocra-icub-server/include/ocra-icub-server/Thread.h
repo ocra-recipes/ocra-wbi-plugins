@@ -68,11 +68,15 @@ public: // Variables
     std::string             wbiConfigFilePath; /*!< The absolute path to the configuration file used to initialize the yarpWBI. */
     std::string             urdfModelPath; /*!< Absolute path to the urdf model. Used for the odometry. */
     bool                    runInDebugMode; /*!< a boolean which runs the controller in a debugging mode which allows one to check the controller ouput joint by joint. */
+    bool                    noOutputMode; /*!< a boolean which runs the controller in a debugging mode but never sends the torques to the robot. */
     bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
     bool                    useOdometry; /*!< a boolean which tells the controller to start the odometry, meaning that the world reference frame remains attached to the ground*/
+    bool                    idleAnkles; /*!< A boolean which tells the controller to idle the ankles for a short period and then pass on to normal operation. This is to get the feet flush with the ground.*/
+    bool                    maintainFinalPosture; /*!< A boolean which tells the controller to stay in its final posture when the controller is switched to position mode at the end of usage.*/
     yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
     ocra_recipes::CONTROLLER_TYPE    controllerType; /*!< The type of OCRA controller to use. */
     ocra_recipes::SOLVER_TYPE    solver; /*!< The type of OCRA controller to use. */
+
 };
 
 
@@ -152,10 +156,11 @@ public:
     };
 
 private:
+    ocra_icub::OCRA_ICUB_MESSAGE convertStringToOcraIcubMessage(const std::string& s);
     void parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     void parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     void writeDebugData();
-
+    void putAnklesIntoIdle();
 
 private:
     ocra::Model::Ptr model;
@@ -188,7 +193,9 @@ private:
 
     Eigen::VectorXd measuredTorques;
     bool debuggingAllJoints;
-    
+
+    Eigen::Displacementd l_foot_disp_inverse; /*!< For gazebo visualization. You can't get the l_sole pose directly in gazebo, but you can get the l_foot, so since all poses from ocra::Model are calculated in the l_sole then we need to go from l_sole to l_foot.*/
+
     iDynTree::SimpleLeggedOdometry odometry; /*!< Odometry object */
 };
 

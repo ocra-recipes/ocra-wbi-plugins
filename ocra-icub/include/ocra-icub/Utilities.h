@@ -23,8 +23,8 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef UTILITIES_H
-#define UTILITIES_H
+#ifndef OCRA_ICUB_UTILITIES_H
+#define OCRA_ICUB_UTILITIES_H
 
 /*
  *  Let's include some shit!!!! Here we go...
@@ -60,6 +60,7 @@
 
 // Ocra includes
 #include "ocra/control/Model.h"
+#include "ocra/util/StringUtilities.h"
 
 // Eigen includes
 #include <Eigen/Dense>
@@ -88,13 +89,9 @@ using const_weak_ptr      = const std::weak_ptr     <Class>;
 
 static constexpr double DEG_TO_RAD = M_PI/180.0;
 
-
-void getNominalPosture(const ocra::Model &model, Eigen::VectorXd &q);
-void getHomePosture(const ocra::Model &model, Eigen::VectorXd &q);
-
-
 enum OCRA_ICUB_MESSAGE
 {
+    STRING_MESSAGE = -1,
     FAILURE = 0,
     SUCCESS,
 
@@ -105,8 +102,14 @@ enum OCRA_ICUB_MESSAGE
     CONTROLLER_SERVER_STOPPED,
     CONTROLLER_SERVER_PAUSED,
 
+    GET_L_FOOT_POSE,
+
     HELP
 };
 
+void getNominalPosture(const ocra::Model &model, Eigen::VectorXd &q);
+void getHomePosture(const ocra::Model &model, Eigen::VectorXd &q);
+
+
 } /* ocra_icub */
-#endif //UTILITIES_H
+#endif //OCRA_ICUB_UTILITIES_H
