@@ -20,7 +20,7 @@
  Denoting a horizon of input CoMjerks \f$\mathbf{u}\f$, the following problem:
  
  \f{align*}
- \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\
+ \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_u || \mathbf{u} ||^2 \\
  \text{such that}&\\
  \mathbf{p} &= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\
  \mathbf{\hat{h}}_{k+j+1|k} &= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\
@@ -69,15 +69,78 @@
 #include <vector>
 
 
+struct ZmpPreviewParams {
+    /**
+     *  Size of preview window.
+     */
+    int Nc;
+    /**
+     *  Robot's CoMconstant height.
+     */
+    double cz;
+    /**
+     *  Weight of the input regularization term in the cost function \f$\eta_u\f$.
+     */
+    double nu;
+    /**
+     *  Weight of the walking cost function \f$ \eta_w \f$.
+     */
+    double nw;
+    /**
+     *  Weight of the balancing cost function \f$ \eta_b \f$.
+     */
+    double nb;
+//     std::vector<Eigen::Vector2d> Pr;
+//     std::vector<Eigen::Vector2d> Hr;
+    
+    /**
+     * Constructor
+     */
+    ZmpPreviewParams(int    Nc,
+                     double cz,
+                     double nu,
+                     double nw,
+                     double nb
+                     /*std::vector<Eigen::Vector2d> Pr,
+                     std::vector<Eigen::Vector2d> Hr*/):
+    Nc(Nc),
+    cz(cz),
+    nu(nu),
+    nw(nw),
+    nb(nb)
+/*    Pr(Pr),
+    Hr(Hr)*/{}
+    
+    /**
+     *  Helper function to transform Pr or Hr into a serialized vector of references.
+     *
+     *  @param ref vector of Nc references.
+     *  @return Serialized references in one single column vector.
+     *  @note Currently unused.
+     */
+//     Eigen::MatrixXd serializeReference(std::vector<Eigen::Vector2d> ref) {
+//         Eigen::MatrixXd output;
+//         output.resize(2*Nc,1);
+//         unsigned int k = 0;
+//         for (auto it=ref.begin() ; it != ref.end(); ++it) {
+//             output.block(k*2, 0, 2, 1) = *it;
+//             k++;
+//         }
+//         return output;
+//     }
+};
+
+
+
 class ZmpPreviewController
 {
 public:
     /**
-     *  Class constructor. Build all the time-invariant matrices used to compute the optimal output of the preview controller.
+     *  Class constructor. Builds all the time-invariant matrices used to compute the optimal output of the preview controller.
          @param period       Period (in ms) of the thread in which an object of this class is created.
          @param parameters   An object containing the main parameters. \see struct ZmpPreviewParams for details.
      */
-    ZmpPreviewController(const int period, struct ZmpPreviewParams parameters);
+    ZmpPreviewController(const double period, std::shared_ptr<ZmpPreviewParams> parameters);
     
     virtual ~ZmpPreviewController();
     
@@ -337,50 +400,6 @@ private:
     
     
     
-};
-
-
-struct ZmpPreviewParams {
-    /**
-     *  Size of preview window.
-     */
-    const double Nc;
-    /**
-     *  Robot's CoMconstant height.
-     */
-    const double cz;
-    /**
-     *  Weight of the input regularization term in the cost function \f$\eta_u\f$.
-     */
-    const double nu;
-    /**
-     *  Weight of the walking cost function \f$ \eta_w \f$.
-     */
-    const double nw;
-    /**
-     *  Weight of the balancing cost function \f$ \eta_b \f$.
-     */
-    const double nb;
-    std::vector<Eigen::Vector2d> Pr;
-    std::vector<Eigen::Vector2d> Hr;
-    
-    /**
-     *  Helper function to transform Pr or Hr into a serialized vector of references.
-     *
-     *  @param ref vector of Nc references.
-     *  @return Serialized references in one single column vector.
-     *  @note Currently unused.
-     */
-    Eigen::MatrixXd serializeReference(std::vector<Eigen::Vector2d> ref) {
-        Eigen::MatrixXd output;
-        output.resize(2*Nc,1);
-        unsigned int k = 0;
-        for (auto it=ref.begin() ; it != ref.end(); ++it) {
-            output.block(k*2, 0, 2, 1) = *it;
-            k++;
-        }
-        return output;
-    }
 };
 
 #endif

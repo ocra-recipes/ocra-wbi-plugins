@@ -2,13 +2,13 @@
 #include "unsupported/Eigen/MatrixFunctions"
 
 
-ZmpPreviewController::ZmpPreviewController(const int period, ZmpPreviewParams parameters) :
-cz(parameters.cz),
+ZmpPreviewController::ZmpPreviewController(const double period, std::shared_ptr<ZmpPreviewParams> parameters) :
+cz(parameters->cz),
 dt(period/1000),
-Nc(parameters.Nc),
-nu(parameters.nu),
-nw(parameters.nw),
-nb(parameters.nb),
+Nc(parameters->Nc),
+nu(parameters->nu),
+nw(parameters->nw),
+nb(parameters->nb),
 Nu(buildNu(nu, Nc)),
 Nw(buildNw(nw, Nc)),
 Nb(buildNb(nb, Nc)),

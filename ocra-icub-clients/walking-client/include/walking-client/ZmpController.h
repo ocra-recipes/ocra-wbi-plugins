@@ -67,14 +67,14 @@ struct ZmpControllerParams {
      */
     double controllerPeriod;
     
-    ZmpControllerParams(const double kfx,
-                        const double kfy,
-                        const double kdx,
-                        const double kdy,
-                        const double m,
+    ZmpControllerParams(double kfx,
+                        double kfy,
+                        double kdx,
+                        double kdy,
+                        double m,
                         double cz,
-                        const double g,
-                        const double controllerPeriod):
+                        double g,
+                        double controllerPeriod):
     kfx(kfx),
     kfy(kfy),
     kdx(kdx),

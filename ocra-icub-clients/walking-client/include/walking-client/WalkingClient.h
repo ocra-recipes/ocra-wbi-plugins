@@ -96,7 +96,7 @@ public:
 
     void performZMPTest(ZmpTestType type);
 
-    std::__cxx11::string composePortName(std::__cxx11::string portName);
+    std::string composePortName(std::string portName);
 
 protected:
     virtual bool initialize();
@@ -106,6 +106,8 @@ protected:
 private:
     std::shared_ptr<ZmpControllerParams> _zmpParams;
     std::shared_ptr<ZmpController> _zmpController;
+    std::shared_ptr<ZmpPreviewParams> _zmpPreviewParams;
+    std::shared_ptr<ZmpPreviewController> _zmpPreviewController;
     std::shared_ptr<ocra_recipes::TaskConnection> _comTask;
     std::vector<Eigen::Vector2d> _zmpTrajectory;
     ocra::TaskState _desiredComState;
