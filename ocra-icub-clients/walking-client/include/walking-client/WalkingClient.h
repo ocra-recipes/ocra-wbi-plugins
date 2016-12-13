@@ -10,10 +10,13 @@
 #include <ocra/util/FileOperations.h>
 #include <yarp/os/Time.h>
 
+/**
+ Performs tests helpful to tune the gains used by the zmp and zmp preview controllers as well as the COM task. See configure() for additional information.
+ */
 enum ZmpTestType {
-    ZMP_CONSTANT_REFERENCE=0,
-    ZMP_VARYING_REFERENCE,
-    COM_LIN_VEL_CONSTANT_REFERENCE
+    ZMP_CONSTANT_REFERENCE=0, /*Constant zmp reference (step setpoint). Can be specified through config file with value 0.*/
+    ZMP_VARYING_REFERENCE, /*Sinusoidal zmp reference. The parameters can be specified through config file with value 1.*/
+    COM_LIN_VEL_CONSTANT_REFERENCE /*Constant COM linear velocity. The zmp controller does nothing. Used to tuned the com task level gains.*/
 };
 
 class WalkingClient : public ocra_recipes::ControllerClient
@@ -25,7 +28,8 @@ public:
     virtual ~WalkingClient ();
 
    /**
-    * Takes all the parameters used by this client from configuration file.
+    * Takes all the parameters used by this client from configuration file and parses
+    * them through yarp's Resource Finder.
     *
     * Details on group [ZMP_CONTROLLER_PARAMS] in walking-client.ini
     * Options are: 0 - ZMP_CONSTANT_REFERENCE
@@ -88,14 +92,25 @@ public:
      *  @return True if writing is successful, false otherwise.
      *
      */
-    bool publishZMPError(Eigen::Vector2d &zmpError);
-
-    bool publishCOMError(Eigen::Vector2d &dcomError);
-
+    
     bool publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &port, Eigen::Vector3d &value);
 
+    /**
+     *  Performs one of three possible ZMP tests:
+     *
+     *  @param type See ZmpTestType for possible options.
+     */
     void performZMPTest(ZmpTestType type);
+    
+    void performZMPPreviewTest(ZmpPreviewType type);
 
+    /**
+     *  Composes a port name with the client name as the suffix. This client name is assumed to be passed through command line options or configuration file as per the policies of yarp's Resource Finder.
+     *
+     *  @param portName Name of the port without backslashes. e.g. "zmpError:o"
+     *
+     *  @return A client-name-prepended port name, e.g. "/walkingClient/zmpError:o"
+     */
     std::string composePortName(std::string portName);
 
 protected:
