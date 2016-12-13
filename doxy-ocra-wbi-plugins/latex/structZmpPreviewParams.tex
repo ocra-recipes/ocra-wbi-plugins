@@ -7,93 +7,64 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-Eigen\+::\+Matrix\+Xd \hyperlink{structZmpPreviewParams_aeeb0cf190cf77933cd819afb10888f07}{serialize\+Reference} (std\+::vector$<$ Eigen\+::\+Vector2d $>$ ref)
+\hyperlink{structZmpPreviewParams_a67df1929d83bddb9fb44c9c7846762c6}{Zmp\+Preview\+Params} (int \hyperlink{structZmpPreviewParams_adf022d12c133e9a17a41c1a9864fdef0}{Nc}, double \hyperlink{structZmpPreviewParams_a4bddbdd99f911c9dddfcb2445da1b7dc}{cz}, double \hyperlink{structZmpPreviewParams_a3be5d92df5593e2a7c5694beaf912dac}{nu}, double \hyperlink{structZmpPreviewParams_ae09ca5b74feda7b0af99c07cd7a36c64}{nw}, double \hyperlink{structZmpPreviewParams_abaa39df27b9d8993a940e753b297dcea}{nb})
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const double \hyperlink{structZmpPreviewParams_aa2d2913f976860373f8f70abc13a22ba}{Nc}
+int \hyperlink{structZmpPreviewParams_adf022d12c133e9a17a41c1a9864fdef0}{Nc}
 \item 
-const double \hyperlink{structZmpPreviewParams_a19d944dc7a6b40e6e55068a62d33e546}{cz}
+double \hyperlink{structZmpPreviewParams_a4bddbdd99f911c9dddfcb2445da1b7dc}{cz}
 \item 
-const double \hyperlink{structZmpPreviewParams_a331ce39cf97a39d023ffd3c357d50e7a}{nu}
+double \hyperlink{structZmpPreviewParams_a3be5d92df5593e2a7c5694beaf912dac}{nu}
 \item 
-const double \hyperlink{structZmpPreviewParams_ae8e33a6d2e4d7d58444b9f38288831e4}{nw}
+double \hyperlink{structZmpPreviewParams_ae09ca5b74feda7b0af99c07cd7a36c64}{nw}
 \item 
-const double \hyperlink{structZmpPreviewParams_a906e4172573a97bcdaffa69548024a7e}{nb}
-\item 
-std\+::vector$<$ Eigen\+::\+Vector2d $>$ \hyperlink{structZmpPreviewParams_ae1a666259161913a15bf06832adcbf37}{Pr}
-\item 
-std\+::vector$<$ Eigen\+::\+Vector2d $>$ \hyperlink{structZmpPreviewParams_a5dc49bed0a434fd99f74517185792456}{Hr}
+double \hyperlink{structZmpPreviewParams_abaa39df27b9d8993a940e753b297dcea}{nb}
 \end{DoxyCompactItemize}
 
 
-\subsection{Member Function Documentation}
-\hypertarget{structZmpPreviewParams_aeeb0cf190cf77933cd819afb10888f07}{}\label{structZmpPreviewParams_aeeb0cf190cf77933cd819afb10888f07} 
-\index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!serialize\+Reference@{serialize\+Reference}}
-\index{serialize\+Reference@{serialize\+Reference}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
-\subsubsection{\texorpdfstring{serialize\+Reference()}{serializeReference()}}
-{\footnotesize\ttfamily Eigen\+::\+Matrix\+Xd Zmp\+Preview\+Params\+::serialize\+Reference (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Eigen\+::\+Vector2d $>$}]{ref }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{structZmpPreviewParams_a67df1929d83bddb9fb44c9c7846762c6}{}\label{structZmpPreviewParams_a67df1929d83bddb9fb44c9c7846762c6} 
+\index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
+\index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
+\subsubsection{\texorpdfstring{Zmp\+Preview\+Params()}{ZmpPreviewParams()}}
+{\footnotesize\ttfamily Zmp\+Preview\+Params\+::\+Zmp\+Preview\+Params (\begin{DoxyParamCaption}\item[{int}]{Nc,  }\item[{double}]{cz,  }\item[{double}]{nu,  }\item[{double}]{nw,  }\item[{double}]{nb }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Helper function to transform Pr or Hr into a serialized vector of references.
-
-
-\begin{DoxyParams}{Parameters}
-{\em ref} & vector of Nc references. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Serialized references in one single column vector. 
-\end{DoxyReturn}
-\begin{DoxyNote}{Note}
-Currently unused. 
-\end{DoxyNote}
-
+Constructor 
 
 \subsection{Member Data Documentation}
-\hypertarget{structZmpPreviewParams_a19d944dc7a6b40e6e55068a62d33e546}{}\label{structZmpPreviewParams_a19d944dc7a6b40e6e55068a62d33e546} 
+\hypertarget{structZmpPreviewParams_a4bddbdd99f911c9dddfcb2445da1b7dc}{}\label{structZmpPreviewParams_a4bddbdd99f911c9dddfcb2445da1b7dc} 
 \index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!cz@{cz}}
 \index{cz@{cz}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
 \subsubsection{\texorpdfstring{cz}{cz}}
-{\footnotesize\ttfamily const double Zmp\+Preview\+Params\+::cz}
+{\footnotesize\ttfamily double Zmp\+Preview\+Params\+::cz}
 
-Robot\textquotesingle{}s Co\+Mconstant height. \hypertarget{structZmpPreviewParams_a5dc49bed0a434fd99f74517185792456}{}\label{structZmpPreviewParams_a5dc49bed0a434fd99f74517185792456} 
-\index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!Hr@{Hr}}
-\index{Hr@{Hr}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
-\subsubsection{\texorpdfstring{Hr}{Hr}}
-{\footnotesize\ttfamily std\+::vector$<$Eigen\+::\+Vector2d$>$ Zmp\+Preview\+Params\+::\+Hr}
-
-\hypertarget{structZmpPreviewParams_a906e4172573a97bcdaffa69548024a7e}{}\label{structZmpPreviewParams_a906e4172573a97bcdaffa69548024a7e} 
+Robot\textquotesingle{}s Co\+Mconstant height. \hypertarget{structZmpPreviewParams_abaa39df27b9d8993a940e753b297dcea}{}\label{structZmpPreviewParams_abaa39df27b9d8993a940e753b297dcea} 
 \index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!nb@{nb}}
 \index{nb@{nb}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
 \subsubsection{\texorpdfstring{nb}{nb}}
-{\footnotesize\ttfamily const double Zmp\+Preview\+Params\+::nb}
+{\footnotesize\ttfamily double Zmp\+Preview\+Params\+::nb}
 
-Weight of the balancing cost function $ \eta_b $. \hypertarget{structZmpPreviewParams_aa2d2913f976860373f8f70abc13a22ba}{}\label{structZmpPreviewParams_aa2d2913f976860373f8f70abc13a22ba} 
+Weight of the balancing cost function $ \eta_b $. \hypertarget{structZmpPreviewParams_adf022d12c133e9a17a41c1a9864fdef0}{}\label{structZmpPreviewParams_adf022d12c133e9a17a41c1a9864fdef0} 
 \index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!Nc@{Nc}}
 \index{Nc@{Nc}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
 \subsubsection{\texorpdfstring{Nc}{Nc}}
-{\footnotesize\ttfamily const double Zmp\+Preview\+Params\+::\+Nc}
+{\footnotesize\ttfamily int Zmp\+Preview\+Params\+::\+Nc}
 
-Size of preview window. \hypertarget{structZmpPreviewParams_a331ce39cf97a39d023ffd3c357d50e7a}{}\label{structZmpPreviewParams_a331ce39cf97a39d023ffd3c357d50e7a} 
+Size of preview window. \hypertarget{structZmpPreviewParams_a3be5d92df5593e2a7c5694beaf912dac}{}\label{structZmpPreviewParams_a3be5d92df5593e2a7c5694beaf912dac} 
 \index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!nu@{nu}}
 \index{nu@{nu}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
 \subsubsection{\texorpdfstring{nu}{nu}}
-{\footnotesize\ttfamily const double Zmp\+Preview\+Params\+::nu}
+{\footnotesize\ttfamily double Zmp\+Preview\+Params\+::nu}
 
-Weight of the input regularization term in the cost function $\eta_u$. \hypertarget{structZmpPreviewParams_ae8e33a6d2e4d7d58444b9f38288831e4}{}\label{structZmpPreviewParams_ae8e33a6d2e4d7d58444b9f38288831e4} 
+Weight of the input regularization term in the cost function $\eta_u$. \hypertarget{structZmpPreviewParams_ae09ca5b74feda7b0af99c07cd7a36c64}{}\label{structZmpPreviewParams_ae09ca5b74feda7b0af99c07cd7a36c64} 
 \index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!nw@{nw}}
 \index{nw@{nw}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
 \subsubsection{\texorpdfstring{nw}{nw}}
-{\footnotesize\ttfamily const double Zmp\+Preview\+Params\+::nw}
+{\footnotesize\ttfamily double Zmp\+Preview\+Params\+::nw}
 
-Weight of the walking cost function $ \eta_w $. \hypertarget{structZmpPreviewParams_ae1a666259161913a15bf06832adcbf37}{}\label{structZmpPreviewParams_ae1a666259161913a15bf06832adcbf37} 
-\index{Zmp\+Preview\+Params@{Zmp\+Preview\+Params}!Pr@{Pr}}
-\index{Pr@{Pr}!Zmp\+Preview\+Params@{Zmp\+Preview\+Params}}
-\subsubsection{\texorpdfstring{Pr}{Pr}}
-{\footnotesize\ttfamily std\+::vector$<$Eigen\+::\+Vector2d$>$ Zmp\+Preview\+Params\+::\+Pr}
-
-
+Weight of the walking cost function $ \eta_w $. 
 
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 

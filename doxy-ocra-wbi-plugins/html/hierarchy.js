@@ -3,6 +3,7 @@ var hierarchy =
     [ "ControllerClient", null, [
       [ "ExampleClient", "classExampleClient.html", null ],
       [ "SittingDemoClient", "classSittingDemoClient.html", null ],
+      [ "StandingDemoClient", "classStandingDemoClient.html", null ],
       [ "SteppingDemoClient", "classSteppingDemoClient.html", null ],
       [ "TaskOpsClient", "classTaskOpsClient.html", null ],
       [ "WalkingClient", "classWalkingClient.html", null ]

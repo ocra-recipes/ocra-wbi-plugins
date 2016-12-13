@@ -131,17 +131,20 @@ $(document).ready(function(){initNavTree('Utilities_8h.html','');});
 <code>#include &lt;yarp/sig/Matrix.h&gt;</code><br />
 <code>#include &lt;wbi/wbi.h&gt;</code><br />
 <code>#include &quot;ocra/control/Model.h&quot;</code><br />
+<code>#include &quot;ocra/util/StringUtilities.h&quot;</code><br />
 <code>#include &lt;Eigen/Dense&gt;</code><br />
 <code>#include &lt;Eigen/Lgsm&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Utilities.h:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Utilities_8h__incl.svg" width="3287" height="163"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="Utilities_8h__incl.svg" width="3472" height="163"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="Utilities_8h__dep__incl.svg" width="2686" height="890"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="Utilities_8h__dep__incl.svg" width="3143" height="890"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="Utilities_8h_source.html">Go to the source code of this file.</a></p>
@@ -159,14 +162,17 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:afbd2db66b68005fb7cfac19210caf83f"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83f">ocra_icub::OCRA_ICUB_MESSAGE</a> { <br />
-&#160;&#160;<a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83faa0c1832978fad84ef108d48265af68d2">ocra_icub::FAILURE</a> = 0, 
+&#160;&#160;<a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fafa982af27b4e13f109d8769472d75217">ocra_icub::STRING_MESSAGE</a> = -1, 
+<a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83faa0c1832978fad84ef108d48265af68d2">ocra_icub::FAILURE</a> = 0, 
 <a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fa67c96e3afcb39533f69c97dc5e9734e5">ocra_icub::SUCCESS</a>, 
 <a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fae8fe02f5f3b1b11d4749e720b9ec3636">ocra_icub::GET_MODEL_CONFIG_INFO</a>, 
-<a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fa772ab917d1ff28db029af9271208a69a">ocra_icub::GET_CONTROLLER_SERVER_STATUS</a>, 
 <br />
-&#160;&#160;<a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fa5dee3cfa0ab6c29f5546bc9e30c0aef5">ocra_icub::CONTROLLER_SERVER_RUNNING</a>, 
+&#160;&#160;<a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fa772ab917d1ff28db029af9271208a69a">ocra_icub::GET_CONTROLLER_SERVER_STATUS</a>, 
+<a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fa5dee3cfa0ab6c29f5546bc9e30c0aef5">ocra_icub::CONTROLLER_SERVER_RUNNING</a>, 
 <a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fafd31e40d18e553fc09105d360455bc49">ocra_icub::CONTROLLER_SERVER_STOPPED</a>, 
 <a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fa48ad7962d035a58257a0381872ce27b1">ocra_icub::CONTROLLER_SERVER_PAUSED</a>, 
+<br />
+&#160;&#160;<a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fafd78d107914396f475c3b12d2b31ea2a">ocra_icub::GET_L_FOOT_POSE</a>, 
 <a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fae7c9fa2563b6c0b14e5b05d1794dac36">ocra_icub::HELP</a>
 <br />
  }</td></tr>
@@ -220,7 +226,7 @@ Variables</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_5c982d53a68cdbcd421152b4020263a9.html">main</a></li><li class="navelem"><a class="el" href="dir_fc6a0c39831b5ee8ca68bf3518822430.html">ocra-wbi-plugins</a></li><li class="navelem"><a class="el" href="dir_ae0ac749c71297e1475c146e3b298b2a.html">ocra-icub</a></li><li class="navelem"><a class="el" href="dir_64d70e58af70d29ce410f9d2ad82d6e7.html">include</a></li><li class="navelem"><a class="el" href="dir_d345e022628d0c50648a247a6d77249e.html">ocra-icub</a></li><li class="navelem"><a class="el" href="Utilities_8h.html">Utilities.h</a></li>
-    <li class="footer">Generated on Fri Dec 2 2016 10:35:56 for ocra-wbi-plugins by
+    <li class="footer">Generated on Wed Dec 14 2016 00:13:46 for ocra-wbi-plugins by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
   </ul>

@@ -29,7 +29,21 @@ Collaboration diagram for Walking\+Client\+:\nopagebreak
 \item 
 virtual \hyperlink{classWalkingClient_a1dbc0308f844aea6542750104fddf8e2}{$\sim$\+Walking\+Client} ()
 \item 
+bool \hyperlink{classWalkingClient_adb8f972f34cb39c69c02a7c3cb493b81}{configure} (yarp\+::os\+::\+Resource\+Finder \&rf)
+\item 
 bool \hyperlink{classWalkingClient_a03ea2313c954a97aeb4d5b614f3e6caa}{read\+Foot\+Wrench} (\hyperlink{ZmpController_8h_a4b6a8e135f90bd56e5a57a60efb42529}{F\+O\+OT} which\+Foot, Eigen\+::\+Vector\+Xd \&raw\+Wrench)
+\item 
+std\+::vector$<$ Eigen\+::\+Vector2d $>$ \hyperlink{classWalkingClient_a3185a8ede8bf8b1227f7dd540ba87e3c}{generate\+Z\+M\+P\+Trajectory\+T\+E\+ST} (const double t\+Trans, const double feet\+Separation, const double time\+Step, const int amplitude\+Fraction, const int N)
+\item 
+bool \hyperlink{classWalkingClient_a87e70046251149b4b7aff1dc57b3dcc4}{get\+Feet\+Separation} (Eigen\+::\+Vector3d \&sep)
+\item 
+bool \hyperlink{classWalkingClient_ae6d6c046a9a3e51771afe8b4c105b412}{publish3d\+Quantity} (yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \&port, Eigen\+::\+Vector3d \&value)
+\item 
+void \hyperlink{classWalkingClient_ae3c259f7615c85ce53a413f6e7ab4b76}{perform\+Z\+M\+P\+Test} (\hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{Zmp\+Test\+Type} type)
+\item 
+void \hyperlink{classWalkingClient_a3b1217b7fa17f76f162be0e12e419d96}{perform\+Z\+M\+P\+Preview\+Test} (\hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{Zmp\+Test\+Type} type)
+\item 
+std\+::string \hyperlink{classWalkingClient_ae8f7dc629313df7d362e3edd6f45ae10}{compose\+Port\+Name} (std\+::string port\+Name)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
@@ -54,7 +68,67 @@ std\+::shared\+\_\+ptr$<$ \hyperlink{structZmpControllerParams}{Zmp\+Controller\
 \item 
 std\+::shared\+\_\+ptr$<$ \hyperlink{classZmpController}{Zmp\+Controller} $>$ \hyperlink{classWalkingClient_afc6a0ac97a4c3f83e27879e803fab8f6}{\+\_\+zmp\+Controller}
 \item 
-std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Trajectory\+Thread $>$ \hyperlink{classWalkingClient_af1d2fec39a0545daf5d5e3681b4b2f17}{\+\_\+com\+\_\+\+Traj\+Thread}
+std\+::shared\+\_\+ptr$<$ \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} $>$ \hyperlink{classWalkingClient_a9a2cf2d6107ab91fc5bd1d82a3b85a84}{\+\_\+zmp\+Preview\+Params}
+\item 
+std\+::shared\+\_\+ptr$<$ \hyperlink{classZmpPreviewController}{Zmp\+Preview\+Controller} $>$ \hyperlink{classWalkingClient_ae570aa07bed9e336eda93f331f3485fb}{\+\_\+zmp\+Preview\+Controller}
+\item 
+std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Task\+Connection $>$ \hyperlink{classWalkingClient_aa798d6193535e80816f8107ee5fb2172}{\+\_\+com\+Task}
+\item 
+std\+::vector$<$ Eigen\+::\+Vector2d $>$ \hyperlink{classWalkingClient_a8b8a3d7fe6e12d49a0e72d05f9938564}{\+\_\+zmp\+Trajectory}
+\item 
+ocra\+::\+Task\+State \hyperlink{classWalkingClient_a2625bf687aa3141f5a2404c8d9b3c392}{\+\_\+desired\+Com\+State}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classWalkingClient_a1c3fb4d182e33d6d9386e9bb05aa4ae8}{\+\_\+raw\+Left\+Foot\+Wrench}
+\item 
+Eigen\+::\+Vector\+Xd \hyperlink{classWalkingClient_a9df32e0c73632c5f869e5933e20def71}{\+\_\+raw\+Right\+Foot\+Wrench}
+\item 
+Eigen\+::\+Vector2d \hyperlink{classWalkingClient_aa784eac1247f0d858e2364e0c2bc25b2}{\+\_\+global\+Z\+MP}
+\item 
+Eigen\+::\+Vector2d \hyperlink{classWalkingClient_a549751e511e023d5fc73eccd1c185317}{\+\_\+previous\+C\+OM}
+\item 
+std\+::string \hyperlink{classWalkingClient_aff02b341d5e1f500dc9a849337319a8d}{\+\_\+client\+Name}
+\item 
+std\+::string \hyperlink{classWalkingClient_a67461634d7e8cb0234400b34fd2865e7}{\+\_\+robot}
+\item 
+bool \hyperlink{classWalkingClient_a4f9c8688537ddd8a487a212fbb279a9b}{\+\_\+is\+Test\+Run}
+\item 
+\hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{Zmp\+Test\+Type} \hyperlink{classWalkingClient_a14576258d7fed1b36919145f1b56d74c}{\+\_\+zmp\+Test\+Type}
+\item 
+std\+::string \hyperlink{classWalkingClient_ade3bf018661152fc0404d3973ea30783}{\+\_\+home\+Data\+Dir}
+\item 
+double \hyperlink{classWalkingClient_a4e448bc147b41d97e0f17af6ebb0020f}{\+\_\+com\+Y\+Const\+Vel}
+\item 
+double \hyperlink{classWalkingClient_a9f19b1a1184cbdbf883cc374c6b6b88f}{\+\_\+stop\+Time\+Const\+Com\+Vel}
+\item 
+double \hyperlink{classWalkingClient_a6cba3194816a0be78a8b17d539806115}{\+\_\+zmp\+Y\+Const\+Ref}
+\item 
+double \hyperlink{classWalkingClient_a58b08317f6d8b825a21e1db8c7f0ff32}{\+\_\+stop\+Time\+Const\+Zmp}
+\item 
+double \hyperlink{classWalkingClient_a144518766ec4eb9eeab230fcb291e20c}{\+\_\+t\+Trans}
+\item 
+int \hyperlink{classWalkingClient_aefb4ed994a32879a526f2bc8c962927f}{\+\_\+number\+Of\+Transitions}
+\item 
+int \hyperlink{classWalkingClient_ac548ce03ea9ceffb4b42981942f66dd0}{\+\_\+amplitude\+Fraction}
+\item 
+double \hyperlink{classWalkingClient_a2ed3837afa0c366f1cdef16b2a99b761}{\+\_\+stop\+Time\+Varying\+Zmp}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_af2e0817fa94ca802775addd22b09bf7a}{\+\_\+zmp\+Port}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_a1b01264c9d9d403a68a149d86d1bc53f}{\+\_\+dcom\+Error\+Port}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_a17369473b4fe2ff0eaecc7d41a8430c7}{\+\_\+d\+Com\+Des\+Port}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_a1fbc9d7f1e967f24acda745028f865df}{\+\_\+d\+Com\+Cur\+Port}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_acbac3e142471448b50dd605e4217b0d0}{\+\_\+zmp\+Des\+Port}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_a546e6830e43d19ba7d8a8e808e28ef53}{\+\_\+zmp\+Cur\+Port}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_a199a104e0d4d52deae07d88d8229b60d}{\+\_\+com\+Current}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_a692d95b3e76a396d107b0c29a3d591f1}{\+\_\+ddcom\+Current}
+\item 
+yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \hyperlink{classWalkingClient_a41b7320607812418af496b8b2c30204f}{\+\_\+ddcom\+From\+Z\+MP}
 \end{DoxyCompactItemize}
 
 
@@ -74,6 +148,70 @@ std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Trajectory\+Thread $>$ \hyperli
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classWalkingClient_ae8f7dc629313df7d362e3edd6f45ae10}{}\label{classWalkingClient_ae8f7dc629313df7d362e3edd6f45ae10} 
+\index{Walking\+Client@{Walking\+Client}!compose\+Port\+Name@{compose\+Port\+Name}}
+\index{compose\+Port\+Name@{compose\+Port\+Name}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{compose\+Port\+Name()}{composePortName()}}
+{\footnotesize\ttfamily std\+::string Walking\+Client\+::compose\+Port\+Name (\begin{DoxyParamCaption}\item[{std\+::string}]{port\+Name }\end{DoxyParamCaption})}
+
+Composes a port name with the client name as the suffix. This client name is assumed to be passed through command line options or configuration file as per the policies of yarp\textquotesingle{}s Resource Finder.
+
+
+\begin{DoxyParams}{Parameters}
+{\em port\+Name} & Name of the port without backslashes. e.\+g. \char`\"{}zmp\+Error\+:o\char`\"{}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A client-\/name-\/prepended port name, e.\+g. \char`\"{}/walking\+Client/zmp\+Error\+:o\char`\"{} 
+\end{DoxyReturn}
+\hypertarget{classWalkingClient_adb8f972f34cb39c69c02a7c3cb493b81}{}\label{classWalkingClient_adb8f972f34cb39c69c02a7c3cb493b81} 
+\index{Walking\+Client@{Walking\+Client}!configure@{configure}}
+\index{configure@{configure}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{configure()}{configure()}}
+{\footnotesize\ttfamily bool Walking\+Client\+::configure (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Resource\+Finder \&}]{rf }\end{DoxyParamCaption})}
+
+Takes all the parameters used by this client from configuration file and parses them through yarp\textquotesingle{}s Resource Finder.
+
+Details on group \mbox{[}Z\+M\+P\+\_\+\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+P\+A\+R\+A\+MS\mbox{]} in walking-\/client.\+ini Options are\+: 0 -\/ Z\+M\+P\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE 1 -\/ Z\+M\+P\+\_\+\+V\+A\+R\+Y\+I\+N\+G\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE 2 -\/ C\+O\+M\+\_\+\+L\+I\+N\+\_\+\+V\+E\+L\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE Each of these tests are used to evaluate the correct gains to be used at each level of the control loops. Make sure the flag \textquotesingle{}run\+For\+Tests\textquotesingle{} is active. When using this client for the first time on a robot, the gains of the com\+Task in its corresponding task\+Set file must be tuned first as well and later those for the \hyperlink{classZmpController}{Zmp\+Controller} class. Therefore we recommend executing this client first as a way of testing the \char`\"{}low\char`\"{} level Com\+Task control in order to find good kp and kd. Do this by setting \textquotesingle{}type\textquotesingle{} to 2. Data will be saved at the location you specify through the option \textquotesingle{}home\+Data\+Dir\textquotesingle{}. After having a good C\+OM velocity tracking at the task level, you want to test the tracking of the zmp controller by setting \textquotesingle{}type\textquotesingle{} to 0. A constant zmp reference is given and the controller gains kfx, kfy, kdx and kdy must be tuned accordingly. Finally, the tracking of varying zmp reference can be tested which takes the zmp from left to right, while the robot stands on both feet. \hypertarget{classWalkingClient_a3185a8ede8bf8b1227f7dd540ba87e3c}{}\label{classWalkingClient_a3185a8ede8bf8b1227f7dd540ba87e3c} 
+\index{Walking\+Client@{Walking\+Client}!generate\+Z\+M\+P\+Trajectory\+T\+E\+ST@{generate\+Z\+M\+P\+Trajectory\+T\+E\+ST}}
+\index{generate\+Z\+M\+P\+Trajectory\+T\+E\+ST@{generate\+Z\+M\+P\+Trajectory\+T\+E\+ST}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{generate\+Z\+M\+P\+Trajectory\+T\+E\+S\+T()}{generateZMPTrajectoryTEST()}}
+{\footnotesize\ttfamily std\+::vector$<$ Eigen\+::\+Vector2d $>$ Walking\+Client\+::generate\+Z\+M\+P\+Trajectory\+T\+E\+ST (\begin{DoxyParamCaption}\item[{const double}]{t\+Trans,  }\item[{const double}]{feet\+Separation,  }\item[{const double}]{time\+Step,  }\item[{const int}]{amplitude\+Fraction,  }\item[{const int}]{N }\end{DoxyParamCaption})}
+
+Generates a sinusoidal zmp trajectory on the $y$ expressed in the world reference frame. This is intended for testing purposes only.
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Trans} & Time in which you want the Z\+MP to go from one foot to the other. \\
+\hline
+{\em feet\+Separation} & Separation between the feet in meters. \\
+\hline
+{\em time\+Step} & Desired time step. \\
+\hline
+{\em amplitude\+Fraction} & Fraction of the initial feet separation to determine max amplitude of movement. \\
+\hline
+{\em N} & Number of transitions (left to right or right to left).\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Trajectory of 2D Z\+MP points. 
+\end{DoxyReturn}
+\hypertarget{classWalkingClient_a87e70046251149b4b7aff1dc57b3dcc4}{}\label{classWalkingClient_a87e70046251149b4b7aff1dc57b3dcc4} 
+\index{Walking\+Client@{Walking\+Client}!get\+Feet\+Separation@{get\+Feet\+Separation}}
+\index{get\+Feet\+Separation@{get\+Feet\+Separation}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{get\+Feet\+Separation()}{getFeetSeparation()}}
+{\footnotesize\ttfamily bool Walking\+Client\+::get\+Feet\+Separation (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector3d \&}]{sep }\end{DoxyParamCaption})}
+
+Returns the current feet separation vector;
+
+
+\begin{DoxyParams}{Parameters}
+{\em sep} & Separation vector.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if all operations proceed well. False otherwise. 
+\end{DoxyReturn}
 \hypertarget{classWalkingClient_aba6a03fe29a4e947bc6bc0c09a713b2a}{}\label{classWalkingClient_aba6a03fe29a4e947bc6bc0c09a713b2a} 
 \index{Walking\+Client@{Walking\+Client}!initialize@{initialize}}
 \index{initialize@{initialize}!Walking\+Client@{Walking\+Client}}
@@ -86,6 +224,41 @@ std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Trajectory\+Thread $>$ \hyperli
 \subsubsection{\texorpdfstring{loop()}{loop()}}
 {\footnotesize\ttfamily void Walking\+Client\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
 
+\hypertarget{classWalkingClient_a3b1217b7fa17f76f162be0e12e419d96}{}\label{classWalkingClient_a3b1217b7fa17f76f162be0e12e419d96} 
+\index{Walking\+Client@{Walking\+Client}!perform\+Z\+M\+P\+Preview\+Test@{perform\+Z\+M\+P\+Preview\+Test}}
+\index{perform\+Z\+M\+P\+Preview\+Test@{perform\+Z\+M\+P\+Preview\+Test}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{perform\+Z\+M\+P\+Preview\+Test()}{performZMPPreviewTest()}}
+{\footnotesize\ttfamily void Walking\+Client\+::perform\+Z\+M\+P\+Preview\+Test (\begin{DoxyParamCaption}\item[{\hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{Zmp\+Test\+Type}}]{type }\end{DoxyParamCaption})}
+
+\hypertarget{classWalkingClient_ae3c259f7615c85ce53a413f6e7ab4b76}{}\label{classWalkingClient_ae3c259f7615c85ce53a413f6e7ab4b76} 
+\index{Walking\+Client@{Walking\+Client}!perform\+Z\+M\+P\+Test@{perform\+Z\+M\+P\+Test}}
+\index{perform\+Z\+M\+P\+Test@{perform\+Z\+M\+P\+Test}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{perform\+Z\+M\+P\+Test()}{performZMPTest()}}
+{\footnotesize\ttfamily void Walking\+Client\+::perform\+Z\+M\+P\+Test (\begin{DoxyParamCaption}\item[{\hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{Zmp\+Test\+Type}}]{type }\end{DoxyParamCaption})}
+
+Performs one of three possible Z\+MP tests\+:
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & See Zmp\+Test\+Type for possible options. \\
+\hline
+\end{DoxyParams}
+\hypertarget{classWalkingClient_ae6d6c046a9a3e51771afe8b4c105b412}{}\label{classWalkingClient_ae6d6c046a9a3e51771afe8b4c105b412} 
+\index{Walking\+Client@{Walking\+Client}!publish3d\+Quantity@{publish3d\+Quantity}}
+\index{publish3d\+Quantity@{publish3d\+Quantity}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{publish3d\+Quantity()}{publish3dQuantity()}}
+{\footnotesize\ttfamily bool Walking\+Client\+::publish3d\+Quantity (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Buffered\+Port$<$ yarp\+::os\+::\+Bottle $>$ \&}]{port,  }\item[{Eigen\+::\+Vector3d \&}]{value }\end{DoxyParamCaption})}
+
+Write the Z\+MP error (externally computed, thus, any zmp related measurement) to a port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em zmp\+Error} & $\mathbf{p} - \mathbf{p_d}$\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if writing is successful, false otherwise. 
+\end{DoxyReturn}
 \hypertarget{classWalkingClient_a03ea2313c954a97aeb4d5b614f3e6caa}{}\label{classWalkingClient_a03ea2313c954a97aeb4d5b614f3e6caa} 
 \index{Walking\+Client@{Walking\+Client}!read\+Foot\+Wrench@{read\+Foot\+Wrench}}
 \index{read\+Foot\+Wrench@{read\+Foot\+Wrench}!Walking\+Client@{Walking\+Client}}
@@ -101,11 +274,143 @@ std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Trajectory\+Thread $>$ \hyperli
 
 
 \subsection{Member Data Documentation}
-\hypertarget{classWalkingClient_af1d2fec39a0545daf5d5e3681b4b2f17}{}\label{classWalkingClient_af1d2fec39a0545daf5d5e3681b4b2f17} 
-\index{Walking\+Client@{Walking\+Client}!\+\_\+com\+\_\+\+Traj\+Thread@{\+\_\+com\+\_\+\+Traj\+Thread}}
-\index{\+\_\+com\+\_\+\+Traj\+Thread@{\+\_\+com\+\_\+\+Traj\+Thread}!Walking\+Client@{Walking\+Client}}
-\subsubsection{\texorpdfstring{\+\_\+com\+\_\+\+Traj\+Thread}{\_com\_TrajThread}}
-{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ocra\+\_\+recipes\+::\+Trajectory\+Thread$>$ Walking\+Client\+::\+\_\+com\+\_\+\+Traj\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+\hypertarget{classWalkingClient_ac548ce03ea9ceffb4b42981942f66dd0}{}\label{classWalkingClient_ac548ce03ea9ceffb4b42981942f66dd0} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+amplitude\+Fraction@{\+\_\+amplitude\+Fraction}}
+\index{\+\_\+amplitude\+Fraction@{\+\_\+amplitude\+Fraction}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+amplitude\+Fraction}{\_amplitudeFraction}}
+{\footnotesize\ttfamily int Walking\+Client\+::\+\_\+amplitude\+Fraction\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_aff02b341d5e1f500dc9a849337319a8d}{}\label{classWalkingClient_aff02b341d5e1f500dc9a849337319a8d} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+client\+Name@{\+\_\+client\+Name}}
+\index{\+\_\+client\+Name@{\+\_\+client\+Name}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+client\+Name}{\_clientName}}
+{\footnotesize\ttfamily std\+::string Walking\+Client\+::\+\_\+client\+Name\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a199a104e0d4d52deae07d88d8229b60d}{}\label{classWalkingClient_a199a104e0d4d52deae07d88d8229b60d} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+com\+Current@{\+\_\+com\+Current}}
+\index{\+\_\+com\+Current@{\+\_\+com\+Current}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+com\+Current}{\_comCurrent}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+com\+Current\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_aa798d6193535e80816f8107ee5fb2172}{}\label{classWalkingClient_aa798d6193535e80816f8107ee5fb2172} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+com\+Task@{\+\_\+com\+Task}}
+\index{\+\_\+com\+Task@{\+\_\+com\+Task}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+com\+Task}{\_comTask}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$ocra\+\_\+recipes\+::\+Task\+Connection$>$ Walking\+Client\+::\+\_\+com\+Task\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a4e448bc147b41d97e0f17af6ebb0020f}{}\label{classWalkingClient_a4e448bc147b41d97e0f17af6ebb0020f} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+com\+Y\+Const\+Vel@{\+\_\+com\+Y\+Const\+Vel}}
+\index{\+\_\+com\+Y\+Const\+Vel@{\+\_\+com\+Y\+Const\+Vel}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+com\+Y\+Const\+Vel}{\_comYConstVel}}
+{\footnotesize\ttfamily double Walking\+Client\+::\+\_\+com\+Y\+Const\+Vel\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a1fbc9d7f1e967f24acda745028f865df}{}\label{classWalkingClient_a1fbc9d7f1e967f24acda745028f865df} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+d\+Com\+Cur\+Port@{\+\_\+d\+Com\+Cur\+Port}}
+\index{\+\_\+d\+Com\+Cur\+Port@{\+\_\+d\+Com\+Cur\+Port}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+d\+Com\+Cur\+Port}{\_dComCurPort}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+d\+Com\+Cur\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a17369473b4fe2ff0eaecc7d41a8430c7}{}\label{classWalkingClient_a17369473b4fe2ff0eaecc7d41a8430c7} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+d\+Com\+Des\+Port@{\+\_\+d\+Com\+Des\+Port}}
+\index{\+\_\+d\+Com\+Des\+Port@{\+\_\+d\+Com\+Des\+Port}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+d\+Com\+Des\+Port}{\_dComDesPort}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+d\+Com\+Des\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a1b01264c9d9d403a68a149d86d1bc53f}{}\label{classWalkingClient_a1b01264c9d9d403a68a149d86d1bc53f} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+dcom\+Error\+Port@{\+\_\+dcom\+Error\+Port}}
+\index{\+\_\+dcom\+Error\+Port@{\+\_\+dcom\+Error\+Port}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+dcom\+Error\+Port}{\_dcomErrorPort}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+dcom\+Error\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a692d95b3e76a396d107b0c29a3d591f1}{}\label{classWalkingClient_a692d95b3e76a396d107b0c29a3d591f1} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+ddcom\+Current@{\+\_\+ddcom\+Current}}
+\index{\+\_\+ddcom\+Current@{\+\_\+ddcom\+Current}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+ddcom\+Current}{\_ddcomCurrent}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+ddcom\+Current\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a41b7320607812418af496b8b2c30204f}{}\label{classWalkingClient_a41b7320607812418af496b8b2c30204f} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+ddcom\+From\+Z\+MP@{\+\_\+ddcom\+From\+Z\+MP}}
+\index{\+\_\+ddcom\+From\+Z\+MP@{\+\_\+ddcom\+From\+Z\+MP}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+ddcom\+From\+Z\+MP}{\_ddcomFromZMP}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+ddcom\+From\+Z\+MP\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a2625bf687aa3141f5a2404c8d9b3c392}{}\label{classWalkingClient_a2625bf687aa3141f5a2404c8d9b3c392} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+desired\+Com\+State@{\+\_\+desired\+Com\+State}}
+\index{\+\_\+desired\+Com\+State@{\+\_\+desired\+Com\+State}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+desired\+Com\+State}{\_desiredComState}}
+{\footnotesize\ttfamily ocra\+::\+Task\+State Walking\+Client\+::\+\_\+desired\+Com\+State\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_aa784eac1247f0d858e2364e0c2bc25b2}{}\label{classWalkingClient_aa784eac1247f0d858e2364e0c2bc25b2} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+global\+Z\+MP@{\+\_\+global\+Z\+MP}}
+\index{\+\_\+global\+Z\+MP@{\+\_\+global\+Z\+MP}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+global\+Z\+MP}{\_globalZMP}}
+{\footnotesize\ttfamily Eigen\+::\+Vector2d Walking\+Client\+::\+\_\+global\+Z\+MP\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_ade3bf018661152fc0404d3973ea30783}{}\label{classWalkingClient_ade3bf018661152fc0404d3973ea30783} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+home\+Data\+Dir@{\+\_\+home\+Data\+Dir}}
+\index{\+\_\+home\+Data\+Dir@{\+\_\+home\+Data\+Dir}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+home\+Data\+Dir}{\_homeDataDir}}
+{\footnotesize\ttfamily std\+::string Walking\+Client\+::\+\_\+home\+Data\+Dir\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a4f9c8688537ddd8a487a212fbb279a9b}{}\label{classWalkingClient_a4f9c8688537ddd8a487a212fbb279a9b} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+is\+Test\+Run@{\+\_\+is\+Test\+Run}}
+\index{\+\_\+is\+Test\+Run@{\+\_\+is\+Test\+Run}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+is\+Test\+Run}{\_isTestRun}}
+{\footnotesize\ttfamily bool Walking\+Client\+::\+\_\+is\+Test\+Run\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_aefb4ed994a32879a526f2bc8c962927f}{}\label{classWalkingClient_aefb4ed994a32879a526f2bc8c962927f} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+number\+Of\+Transitions@{\+\_\+number\+Of\+Transitions}}
+\index{\+\_\+number\+Of\+Transitions@{\+\_\+number\+Of\+Transitions}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+number\+Of\+Transitions}{\_numberOfTransitions}}
+{\footnotesize\ttfamily int Walking\+Client\+::\+\_\+number\+Of\+Transitions\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a549751e511e023d5fc73eccd1c185317}{}\label{classWalkingClient_a549751e511e023d5fc73eccd1c185317} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+previous\+C\+OM@{\+\_\+previous\+C\+OM}}
+\index{\+\_\+previous\+C\+OM@{\+\_\+previous\+C\+OM}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+previous\+C\+OM}{\_previousCOM}}
+{\footnotesize\ttfamily Eigen\+::\+Vector2d Walking\+Client\+::\+\_\+previous\+C\+OM\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a1c3fb4d182e33d6d9386e9bb05aa4ae8}{}\label{classWalkingClient_a1c3fb4d182e33d6d9386e9bb05aa4ae8} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+raw\+Left\+Foot\+Wrench@{\+\_\+raw\+Left\+Foot\+Wrench}}
+\index{\+\_\+raw\+Left\+Foot\+Wrench@{\+\_\+raw\+Left\+Foot\+Wrench}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+raw\+Left\+Foot\+Wrench}{\_rawLeftFootWrench}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Walking\+Client\+::\+\_\+raw\+Left\+Foot\+Wrench\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a9df32e0c73632c5f869e5933e20def71}{}\label{classWalkingClient_a9df32e0c73632c5f869e5933e20def71} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+raw\+Right\+Foot\+Wrench@{\+\_\+raw\+Right\+Foot\+Wrench}}
+\index{\+\_\+raw\+Right\+Foot\+Wrench@{\+\_\+raw\+Right\+Foot\+Wrench}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+raw\+Right\+Foot\+Wrench}{\_rawRightFootWrench}}
+{\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Walking\+Client\+::\+\_\+raw\+Right\+Foot\+Wrench\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a67461634d7e8cb0234400b34fd2865e7}{}\label{classWalkingClient_a67461634d7e8cb0234400b34fd2865e7} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+robot@{\+\_\+robot}}
+\index{\+\_\+robot@{\+\_\+robot}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+robot}{\_robot}}
+{\footnotesize\ttfamily std\+::string Walking\+Client\+::\+\_\+robot\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a9f19b1a1184cbdbf883cc374c6b6b88f}{}\label{classWalkingClient_a9f19b1a1184cbdbf883cc374c6b6b88f} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+stop\+Time\+Const\+Com\+Vel@{\+\_\+stop\+Time\+Const\+Com\+Vel}}
+\index{\+\_\+stop\+Time\+Const\+Com\+Vel@{\+\_\+stop\+Time\+Const\+Com\+Vel}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+stop\+Time\+Const\+Com\+Vel}{\_stopTimeConstComVel}}
+{\footnotesize\ttfamily double Walking\+Client\+::\+\_\+stop\+Time\+Const\+Com\+Vel\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a58b08317f6d8b825a21e1db8c7f0ff32}{}\label{classWalkingClient_a58b08317f6d8b825a21e1db8c7f0ff32} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+stop\+Time\+Const\+Zmp@{\+\_\+stop\+Time\+Const\+Zmp}}
+\index{\+\_\+stop\+Time\+Const\+Zmp@{\+\_\+stop\+Time\+Const\+Zmp}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+stop\+Time\+Const\+Zmp}{\_stopTimeConstZmp}}
+{\footnotesize\ttfamily double Walking\+Client\+::\+\_\+stop\+Time\+Const\+Zmp\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a2ed3837afa0c366f1cdef16b2a99b761}{}\label{classWalkingClient_a2ed3837afa0c366f1cdef16b2a99b761} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+stop\+Time\+Varying\+Zmp@{\+\_\+stop\+Time\+Varying\+Zmp}}
+\index{\+\_\+stop\+Time\+Varying\+Zmp@{\+\_\+stop\+Time\+Varying\+Zmp}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+stop\+Time\+Varying\+Zmp}{\_stopTimeVaryingZmp}}
+{\footnotesize\ttfamily double Walking\+Client\+::\+\_\+stop\+Time\+Varying\+Zmp\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a144518766ec4eb9eeab230fcb291e20c}{}\label{classWalkingClient_a144518766ec4eb9eeab230fcb291e20c} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+t\+Trans@{\+\_\+t\+Trans}}
+\index{\+\_\+t\+Trans@{\+\_\+t\+Trans}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+t\+Trans}{\_tTrans}}
+{\footnotesize\ttfamily double Walking\+Client\+::\+\_\+t\+Trans\hspace{0.3cm}{\ttfamily [private]}}
 
 \hypertarget{classWalkingClient_afc6a0ac97a4c3f83e27879e803fab8f6}{}\label{classWalkingClient_afc6a0ac97a4c3f83e27879e803fab8f6} 
 \index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Controller@{\+\_\+zmp\+Controller}}
@@ -113,11 +418,59 @@ std\+::shared\+\_\+ptr$<$ ocra\+\_\+recipes\+::\+Trajectory\+Thread $>$ \hyperli
 \subsubsection{\texorpdfstring{\+\_\+zmp\+Controller}{\_zmpController}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classZmpController}{Zmp\+Controller}$>$ Walking\+Client\+::\+\_\+zmp\+Controller\hspace{0.3cm}{\ttfamily [private]}}
 
+\hypertarget{classWalkingClient_a546e6830e43d19ba7d8a8e808e28ef53}{}\label{classWalkingClient_a546e6830e43d19ba7d8a8e808e28ef53} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Cur\+Port@{\+\_\+zmp\+Cur\+Port}}
+\index{\+\_\+zmp\+Cur\+Port@{\+\_\+zmp\+Cur\+Port}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+zmp\+Cur\+Port}{\_zmpCurPort}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+zmp\+Cur\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_acbac3e142471448b50dd605e4217b0d0}{}\label{classWalkingClient_acbac3e142471448b50dd605e4217b0d0} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Des\+Port@{\+\_\+zmp\+Des\+Port}}
+\index{\+\_\+zmp\+Des\+Port@{\+\_\+zmp\+Des\+Port}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+zmp\+Des\+Port}{\_zmpDesPort}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+zmp\+Des\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
 \hypertarget{classWalkingClient_a20012b4bee7f6de8177ed53907f894cb}{}\label{classWalkingClient_a20012b4bee7f6de8177ed53907f894cb} 
 \index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Params@{\+\_\+zmp\+Params}}
 \index{\+\_\+zmp\+Params@{\+\_\+zmp\+Params}!Walking\+Client@{Walking\+Client}}
 \subsubsection{\texorpdfstring{\+\_\+zmp\+Params}{\_zmpParams}}
 {\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{structZmpControllerParams}{Zmp\+Controller\+Params}$>$ Walking\+Client\+::\+\_\+zmp\+Params\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_af2e0817fa94ca802775addd22b09bf7a}{}\label{classWalkingClient_af2e0817fa94ca802775addd22b09bf7a} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Port@{\+\_\+zmp\+Port}}
+\index{\+\_\+zmp\+Port@{\+\_\+zmp\+Port}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+zmp\+Port}{\_zmpPort}}
+{\footnotesize\ttfamily yarp\+::os\+::\+Buffered\+Port$<$yarp\+::os\+::\+Bottle$>$ Walking\+Client\+::\+\_\+zmp\+Port\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_ae570aa07bed9e336eda93f331f3485fb}{}\label{classWalkingClient_ae570aa07bed9e336eda93f331f3485fb} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Preview\+Controller@{\+\_\+zmp\+Preview\+Controller}}
+\index{\+\_\+zmp\+Preview\+Controller@{\+\_\+zmp\+Preview\+Controller}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+zmp\+Preview\+Controller}{\_zmpPreviewController}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{classZmpPreviewController}{Zmp\+Preview\+Controller}$>$ Walking\+Client\+::\+\_\+zmp\+Preview\+Controller\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a9a2cf2d6107ab91fc5bd1d82a3b85a84}{}\label{classWalkingClient_a9a2cf2d6107ab91fc5bd1d82a3b85a84} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Preview\+Params@{\+\_\+zmp\+Preview\+Params}}
+\index{\+\_\+zmp\+Preview\+Params@{\+\_\+zmp\+Preview\+Params}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+zmp\+Preview\+Params}{\_zmpPreviewParams}}
+{\footnotesize\ttfamily std\+::shared\+\_\+ptr$<$\hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params}$>$ Walking\+Client\+::\+\_\+zmp\+Preview\+Params\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a14576258d7fed1b36919145f1b56d74c}{}\label{classWalkingClient_a14576258d7fed1b36919145f1b56d74c} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Test\+Type@{\+\_\+zmp\+Test\+Type}}
+\index{\+\_\+zmp\+Test\+Type@{\+\_\+zmp\+Test\+Type}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+zmp\+Test\+Type}{\_zmpTestType}}
+{\footnotesize\ttfamily \hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{Zmp\+Test\+Type} Walking\+Client\+::\+\_\+zmp\+Test\+Type\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a8b8a3d7fe6e12d49a0e72d05f9938564}{}\label{classWalkingClient_a8b8a3d7fe6e12d49a0e72d05f9938564} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Trajectory@{\+\_\+zmp\+Trajectory}}
+\index{\+\_\+zmp\+Trajectory@{\+\_\+zmp\+Trajectory}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+zmp\+Trajectory}{\_zmpTrajectory}}
+{\footnotesize\ttfamily std\+::vector$<$Eigen\+::\+Vector2d$>$ Walking\+Client\+::\+\_\+zmp\+Trajectory\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classWalkingClient_a6cba3194816a0be78a8b17d539806115}{}\label{classWalkingClient_a6cba3194816a0be78a8b17d539806115} 
+\index{Walking\+Client@{Walking\+Client}!\+\_\+zmp\+Y\+Const\+Ref@{\+\_\+zmp\+Y\+Const\+Ref}}
+\index{\+\_\+zmp\+Y\+Const\+Ref@{\+\_\+zmp\+Y\+Const\+Ref}!Walking\+Client@{Walking\+Client}}
+\subsubsection{\texorpdfstring{\+\_\+zmp\+Y\+Const\+Ref}{\_zmpYConstRef}}
+{\footnotesize\ttfamily double Walking\+Client\+::\+\_\+zmp\+Y\+Const\+Ref\hspace{0.3cm}{\ttfamily [private]}}
 
 \hypertarget{classWalkingClient_a88ee63ff6a341eccd458d24700383457}{}\label{classWalkingClient_a88ee63ff6a341eccd458d24700383457} 
 \index{Walking\+Client@{Walking\+Client}!port\+Wrench\+Left\+Foot@{port\+Wrench\+Left\+Foot}}

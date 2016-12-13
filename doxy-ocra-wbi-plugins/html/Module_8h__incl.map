@@ -1,7 +1,7 @@
 <map id="/Users/jorhabibeljaik/Code/codyco&#45;superbuild/main/ocra&#45;wbi&#45;plugins/ocra&#45;icub&#45;server/include/ocra&#45;icub&#45;server/Module.h" name="/Users/jorhabibeljaik/Code/codyco&#45;superbuild/main/ocra&#45;wbi&#45;plugins/ocra&#45;icub&#45;server/include/ocra&#45;icub&#45;server/Module.h">
-<area shape="rect" id="node8" href="$Thread_8h.html" title="The thread class for the controller server. " alt="" coords="1597,132,1772,157"/>
-<area shape="rect" id="node20" href="$Utilities_8h.html" title="Some useful tools for the ocra&#45;icub lib. " alt="" coords="1275,459,1409,484"/>
-<area shape="rect" id="node10" href="$IcubControllerServer_8h.html" title="ocra&#45;icub&#45;server/IcubController\lServer.h" alt="" coords="1344,205,1548,244"/>
-<area shape="rect" id="node13" href="$OcraWbiModel_8h.html" title="Implementation of ocra::Model using wholeBodyInterface. " alt="" coords="618,299,797,324"/>
-<area shape="rect" id="node16" href="$OcraWbiConversions_8h.html" title="A utility class full of static conversion functions. " alt="" coords="454,379,671,404"/>
+<area shape="rect" id="node8" href="$Thread_8h.html" title="The thread class for the controller server. " alt="" coords="1179,132,1353,157"/>
+<area shape="rect" id="node20" href="$Utilities_8h.html" title="Some useful tools for the ocra&#45;icub lib. " alt="" coords="1434,459,1568,484"/>
+<area shape="rect" id="node10" href="$IcubControllerServer_8h.html" title="ocra&#45;icub&#45;server/IcubController\lServer.h" alt="" coords="732,205,936,244"/>
+<area shape="rect" id="node13" href="$OcraWbiModel_8h.html" title="Implementation of ocra::Model using wholeBodyInterface. " alt="" coords="745,299,924,324"/>
+<area shape="rect" id="node16" href="$OcraWbiConversions_8h.html" title="A utility class full of static conversion functions. " alt="" coords="963,379,1180,404"/>
 </map>

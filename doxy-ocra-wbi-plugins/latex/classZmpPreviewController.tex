@@ -12,7 +12,7 @@ Implementes an extended Z\+MP preview controller as an unconstrained QP problem.
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{classZmpPreviewController_af1c464b13886dc0edf2f295fc215b13c}{Zmp\+Preview\+Controller} (const int period, struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} parameters)
+\hyperlink{classZmpPreviewController_a26b5bd0bdd476f70c2009d77d5495b24}{Zmp\+Preview\+Controller} (const double period, std\+::shared\+\_\+ptr$<$ \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} $>$ parameters)
 \item 
 virtual \hyperlink{classZmpPreviewController_af702c45f318c7a78310d19cc061886dd}{$\sim$\+Zmp\+Preview\+Controller} ()
 \item 
@@ -103,7 +103,7 @@ Given a rough Z\+MP trajectory and a corresponding consistent Co\+Mvelocity, thi
 
 Denoting a horizon of input Co\+Mjerks $\mathbf{u}$, the following problem\+:
 
-\begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\ \text{such that}&\\ \mathbf{p} &= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &= \mathbf{h}_k\\ \mathbf{h} &= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}
+\begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_u || \mathbf{u} ||^2 \\ \text{such that}&\\ \mathbf{p} &= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &= \mathbf{h}_k\\ \mathbf{h} &= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}
 
 Where $\mathbf{p}$ are horizontal Z\+MP coordinates, $ \mathbf{r}^r $ Z\+MP references (in walking-\/client is the interpolated Z\+MP reference from the walking M\+I\+QP problem) $ \mathbf{\dot{h}} $ the horizontal Co\+Mvelocity, $ \mathbf{\dot{h}}^r $ Co\+Mhorizontal velocity reference (in walking-\/client it\textquotesingle{}s the interpolated Co\+Mvelocity reference from the walking M\+I\+QP problem). $\mathbf{u}$ are the input Co\+Mjerks, $\mathbf{c}$ the three-\/dimensional Co\+Mposition. $h$ the horizonal Co\+Mposition, $\hat{\mathbf{h}}$ the horizontal Co\+Mstate $ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) $ and $\mathbf{e}_2$ the vertical unit vectory $ [0\;0\;1]^T$. $\mathbf{A}_h$ and $\mathbf{B}_h$ are integration matrices.
 
@@ -118,13 +118,13 @@ $\mathbf{N}_w$ and $\mathbf{N}_u$ have a similar structure to $\mathbf{N}_b$
 A closed-\/form solution can thus be found and is equal to\+: \[ \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right) \] 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{classZmpPreviewController_af1c464b13886dc0edf2f295fc215b13c}{}\label{classZmpPreviewController_af1c464b13886dc0edf2f295fc215b13c} 
+\hypertarget{classZmpPreviewController_a26b5bd0bdd476f70c2009d77d5495b24}{}\label{classZmpPreviewController_a26b5bd0bdd476f70c2009d77d5495b24} 
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \index{Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}!Zmp\+Preview\+Controller@{Zmp\+Preview\+Controller}}
 \subsubsection{\texorpdfstring{Zmp\+Preview\+Controller()}{ZmpPreviewController()}}
-{\footnotesize\ttfamily Zmp\+Preview\+Controller\+::\+Zmp\+Preview\+Controller (\begin{DoxyParamCaption}\item[{const int}]{period,  }\item[{struct \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params}}]{parameters }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily Zmp\+Preview\+Controller\+::\+Zmp\+Preview\+Controller (\begin{DoxyParamCaption}\item[{const double}]{period,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{structZmpPreviewParams}{Zmp\+Preview\+Params} $>$}]{parameters }\end{DoxyParamCaption})}
 
-Class constructor. Build all the time-\/invariant matrices used to compute the optimal output of the preview controller. 
+Class constructor. Builds all the time-\/invariant matrices used to compute the optimal output of the preview controller. 
 \begin{DoxyParams}{Parameters}
 {\em period} & Period (in ms) of the thread in which an object of this class is created. \\
 \hline

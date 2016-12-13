@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['generatezmptrajectorytest',['generateZMPTrajectoryTEST',['../classWalkingClient.html#a3185a8ede8bf8b1227f7dd540ba87e3c',1,'WalkingClient']]],
   ['getactuateddofs',['getActuatedDofs',['../classocra__icub_1_1OcraWbiModel.html#acd7bfd155351337be585ae2171f9ddca',1,'ocra_icub::OcraWbiModel']]],
   ['getcanonical_5ficubjoints',['getCanonical_iCubJoints',['../classIcubControllerServer.html#a892bb43e568d3f112465dff1e0c6b348',1,'IcubControllerServer']]],
   ['getcomangularjacobian',['getCoMAngularJacobian',['../classocra__icub_1_1OcraWbiModel.html#aca6a017f40a432142653bf3fa50f425d',1,'ocra_icub::OcraWbiModel']]],
@@ -11,6 +12,7 @@ var searchData=
   ['getcomvelocity',['getCoMVelocity',['../classocra__icub_1_1OcraWbiModel.html#a08a0b1a4be74a6456162d60e38d470cd',1,'ocra_icub::OcraWbiModel']]],
   ['getconfigurationinfofromcontrollerserver',['getConfigurationInfoFromControllerServer',['../classocra__icub_1_1ModelInitializer.html#abb762b28a1e7b57103f609c4fab4e94e',1,'ocra_icub::ModelInitializer']]],
   ['getdampingmatrix',['getDampingMatrix',['../classocra__icub_1_1OcraWbiModel.html#abe5946b7948e22fedfd09575fd4edbf7',1,'ocra_icub::OcraWbiModel']]],
+  ['getfeetseparation',['getFeetSeparation',['../classWalkingClient.html#a87e70046251149b4b7aff1dc57b3dcc4',1,'WalkingClient']]],
   ['getfreeflyerposition',['getFreeFlyerPosition',['../classocra__icub_1_1OcraWbiModel.html#a1e48e56afb9ff2904785d5878d1021a9',1,'ocra_icub::OcraWbiModel']]],
   ['getfreeflyervelocity',['getFreeFlyerVelocity',['../classocra__icub_1_1OcraWbiModel.html#a6f87ccbf428eed32efb5424ec57eb3c3',1,'ocra_icub::OcraWbiModel']]],
   ['getftsensoradjointmatrix',['getFTSensorAdjointMatrix',['../classZmpController.html#aad272bd33de6fad489ea99618a7e9afa',1,'ZmpController']]],

@@ -1,9 +1,11 @@
 var searchData=
 [
-  ['g',['g',['../structZmpControllerParams.html#af97a6bcc6b60e8372dd444d695d705f7',1,'ZmpControllerParams::g()'],['../classZmpPreviewController.html#a344571f012aa58250d7625905681bf1b',1,'ZmpPreviewController::g()'],['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#ac9a96e0afe19e395bfadf4a21b6d0f5b',1,'ocra_icub::OcraWbiModel::OcraWbiModel_pimpl::g()']]],
+  ['g',['g',['../structZmpControllerParams.html#a66ef6924d304ac0376ee64c2aa8234f9',1,'ZmpControllerParams::g()'],['../classZmpPreviewController.html#a344571f012aa58250d7625905681bf1b',1,'ZmpPreviewController::g()'],['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#ac9a96e0afe19e395bfadf4a21b6d0f5b',1,'ocra_icub::OcraWbiModel::OcraWbiModel_pimpl::g()']]],
   ['g_5ffull',['g_full',['../structOcraWbiModel_1_1OcraWbiModel__pimpl.html#a76adc7eb17d82f9234a4f130c2712be5',1,'OcraWbiModel::OcraWbiModel_pimpl']]],
   ['g_5fvector',['g_vector',['../OcraWbiModel_8cpp.html#a3cdc4ec85b339c11e5b34ce069bf7077',1,'OcraWbiModel.cpp']]],
+  ['generatezmptrajectorytest',['generateZMPTrajectoryTEST',['../classWalkingClient.html#a3185a8ede8bf8b1227f7dd540ba87e3c',1,'WalkingClient']]],
   ['get_5fcontroller_5fserver_5fstatus',['GET_CONTROLLER_SERVER_STATUS',['../namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fa772ab917d1ff28db029af9271208a69a',1,'ocra_icub']]],
+  ['get_5fl_5ffoot_5fpose',['GET_L_FOOT_POSE',['../namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fafd78d107914396f475c3b12d2b31ea2a',1,'ocra_icub']]],
   ['get_5fmodel_5fconfig_5finfo',['GET_MODEL_CONFIG_INFO',['../namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83fae8fe02f5f3b1b11d4749e720b9ec3636',1,'ocra_icub']]],
   ['getactuateddofs',['getActuatedDofs',['../classocra__icub_1_1OcraWbiModel.html#acd7bfd155351337be585ae2171f9ddca',1,'ocra_icub::OcraWbiModel']]],
   ['getcanonical_5ficubjoints',['getCanonical_iCubJoints',['../classIcubControllerServer.html#a892bb43e568d3f112465dff1e0c6b348',1,'IcubControllerServer']]],
@@ -16,6 +18,7 @@ var searchData=
   ['getcomvelocity',['getCoMVelocity',['../classocra__icub_1_1OcraWbiModel.html#a08a0b1a4be74a6456162d60e38d470cd',1,'ocra_icub::OcraWbiModel']]],
   ['getconfigurationinfofromcontrollerserver',['getConfigurationInfoFromControllerServer',['../classocra__icub_1_1ModelInitializer.html#abb762b28a1e7b57103f609c4fab4e94e',1,'ocra_icub::ModelInitializer']]],
   ['getdampingmatrix',['getDampingMatrix',['../classocra__icub_1_1OcraWbiModel.html#abe5946b7948e22fedfd09575fd4edbf7',1,'ocra_icub::OcraWbiModel']]],
+  ['getfeetseparation',['getFeetSeparation',['../classWalkingClient.html#a87e70046251149b4b7aff1dc57b3dcc4',1,'WalkingClient']]],
   ['getfreeflyerposition',['getFreeFlyerPosition',['../classocra__icub_1_1OcraWbiModel.html#a1e48e56afb9ff2904785d5878d1021a9',1,'ocra_icub::OcraWbiModel']]],
   ['getfreeflyervelocity',['getFreeFlyerVelocity',['../classocra__icub_1_1OcraWbiModel.html#a6f87ccbf428eed32efb5424ec57eb3c3',1,'ocra_icub::OcraWbiModel']]],
   ['getftsensoradjointmatrix',['getFTSensorAdjointMatrix',['../classZmpController.html#aad272bd33de6fad489ea99618a7e9afa',1,'ZmpController']]],

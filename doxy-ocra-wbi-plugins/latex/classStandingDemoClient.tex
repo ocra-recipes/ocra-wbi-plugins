@@ -1,0 +1,197 @@
+\hypertarget{classStandingDemoClient}{}\section{Standing\+Demo\+Client Class Reference}
+\label{classStandingDemoClient}\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+
+
+{\ttfamily \#include $<$Standing\+Demo\+Client.\+h$>$}
+
+
+
+Inheritance diagram for Standing\+Demo\+Client\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{classStandingDemoClient__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Standing\+Demo\+Client\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{classStandingDemoClient__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classStandingDemoClient_a7fc81439cf274825e81f243fab4ee94a}{Standing\+Demo\+Client} (std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$ model\+Ptr, const int loop\+Period)
+\item 
+virtual \hyperlink{classStandingDemoClient_a36afdcb86f9e304c53f9903d6b286dd7}{$\sim$\+Standing\+Demo\+Client} ()
+\item 
+bool \hyperlink{classStandingDemoClient_a9cca697399c183d9e2e5fe5b45dbc815}{configure} (yarp\+::os\+::\+Resource\+Finder \&rf)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \hyperlink{classStandingDemoClient_a0219c4ae161543b6ea797f27f345593c}{initialize} ()
+\item 
+virtual void \hyperlink{classStandingDemoClient_abdc4f3642b1ab31ba16375e55a7a68f4}{release} ()
+\item 
+virtual void \hyperlink{classStandingDemoClient_a294411fb3f128a6a8f5011ea6330af6e}{loop} ()
+\item 
+virtual void \hyperlink{classStandingDemoClient_ae1f321428f6b67b2f8bf7e1e7a1cd3d4}{print\+Help} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classStandingDemoClient_a6a16f7c8b66d49c6fc63f75ce8eaaf0b}{deactivate\+Leg\+Contacts} ()
+\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{classStandingDemoClient_a638e427aef4c4dc6fa38081ab5f9f405}{max\+Vel}
+\item 
+double \hyperlink{classStandingDemoClient_abc06fc0343cbca7a3faac4dbb1eaa842}{max\+Acc}
+\item 
+bool \hyperlink{classStandingDemoClient_a47132d5336d2e3b02085d2f153db6385}{use\+Min\+Jerk}
+\item 
+ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::\+Ptr \hyperlink{classStandingDemoClient_a223aa634ceba696716779461ec1d3f63}{com\+Traj\+Thread}
+\item 
+ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::\+Ptr \hyperlink{classStandingDemoClient_a4f84e52d8be94fb7fae7a6c0ad8e8adb}{root\+Traj\+Thread}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classStandingDemoClient_ad5dfa4632f03e75095c810b6ff2301b4}{left\+Leg\+Contact\+Task}
+\item 
+ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr \hyperlink{classStandingDemoClient_ad53b834a0927d48917f5b6e830feb0f8}{right\+Leg\+Contact\+Task}
+\item 
+double \hyperlink{classStandingDemoClient_af05ac205216c20f9780f7e48a9ee4648}{start\+Time}
+\item 
+double \hyperlink{classStandingDemoClient_a4a13f8bdbc84e3645c7a1ab69012c652}{contact\+Release\+Delay}
+\item 
+bool \hyperlink{classStandingDemoClient_ac6744005797ac8071776a68b35a7da6d}{contacts\+Released}
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classStandingDemoClient_a7fc81439cf274825e81f243fab4ee94a}{}\label{classStandingDemoClient_a7fc81439cf274825e81f243fab4ee94a} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{Standing\+Demo\+Client()}{StandingDemoClient()}}
+{\footnotesize\ttfamily Standing\+Demo\+Client\+::\+Standing\+Demo\+Client (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ ocra\+::\+Model $>$}]{model\+Ptr,  }\item[{const int}]{loop\+Period }\end{DoxyParamCaption})}
+
+\hypertarget{classStandingDemoClient_a36afdcb86f9e304c53f9903d6b286dd7}{}\label{classStandingDemoClient_a36afdcb86f9e304c53f9903d6b286dd7} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!````~Standing\+Demo\+Client@{$\sim$\+Standing\+Demo\+Client}}
+\index{````~Standing\+Demo\+Client@{$\sim$\+Standing\+Demo\+Client}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{$\sim$\+Standing\+Demo\+Client()}{~StandingDemoClient()}}
+{\footnotesize\ttfamily Standing\+Demo\+Client\+::$\sim$\+Standing\+Demo\+Client (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classStandingDemoClient_a9cca697399c183d9e2e5fe5b45dbc815}{}\label{classStandingDemoClient_a9cca697399c183d9e2e5fe5b45dbc815} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!configure@{configure}}
+\index{configure@{configure}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{configure()}{configure()}}
+{\footnotesize\ttfamily bool Standing\+Demo\+Client\+::configure (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Resource\+Finder \&}]{rf }\end{DoxyParamCaption})}
+
+\hypertarget{classStandingDemoClient_a6a16f7c8b66d49c6fc63f75ce8eaaf0b}{}\label{classStandingDemoClient_a6a16f7c8b66d49c6fc63f75ce8eaaf0b} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!deactivate\+Leg\+Contacts@{deactivate\+Leg\+Contacts}}
+\index{deactivate\+Leg\+Contacts@{deactivate\+Leg\+Contacts}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{deactivate\+Leg\+Contacts()}{deactivateLegContacts()}}
+{\footnotesize\ttfamily void Standing\+Demo\+Client\+::deactivate\+Leg\+Contacts (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_a0219c4ae161543b6ea797f27f345593c}{}\label{classStandingDemoClient_a0219c4ae161543b6ea797f27f345593c} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!initialize@{initialize}}
+\index{initialize@{initialize}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily bool Standing\+Demo\+Client\+::initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classStandingDemoClient_a294411fb3f128a6a8f5011ea6330af6e}{}\label{classStandingDemoClient_a294411fb3f128a6a8f5011ea6330af6e} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!loop@{loop}}
+\index{loop@{loop}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{loop()}{loop()}}
+{\footnotesize\ttfamily void Standing\+Demo\+Client\+::loop (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classStandingDemoClient_ae1f321428f6b67b2f8bf7e1e7a1cd3d4}{}\label{classStandingDemoClient_ae1f321428f6b67b2f8bf7e1e7a1cd3d4} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!print\+Help@{print\+Help}}
+\index{print\+Help@{print\+Help}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{print\+Help()}{printHelp()}}
+{\footnotesize\ttfamily void Standing\+Demo\+Client\+::print\+Help (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+\hypertarget{classStandingDemoClient_abdc4f3642b1ab31ba16375e55a7a68f4}{}\label{classStandingDemoClient_abdc4f3642b1ab31ba16375e55a7a68f4} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!release@{release}}
+\index{release@{release}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{release()}{release()}}
+{\footnotesize\ttfamily void Standing\+Demo\+Client\+::release (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classStandingDemoClient_a223aa634ceba696716779461ec1d3f63}{}\label{classStandingDemoClient_a223aa634ceba696716779461ec1d3f63} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!com\+Traj\+Thread@{com\+Traj\+Thread}}
+\index{com\+Traj\+Thread@{com\+Traj\+Thread}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{com\+Traj\+Thread}{comTrajThread}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::\+Ptr Standing\+Demo\+Client\+::com\+Traj\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_a4a13f8bdbc84e3645c7a1ab69012c652}{}\label{classStandingDemoClient_a4a13f8bdbc84e3645c7a1ab69012c652} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!contact\+Release\+Delay@{contact\+Release\+Delay}}
+\index{contact\+Release\+Delay@{contact\+Release\+Delay}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{contact\+Release\+Delay}{contactReleaseDelay}}
+{\footnotesize\ttfamily double Standing\+Demo\+Client\+::contact\+Release\+Delay\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_ac6744005797ac8071776a68b35a7da6d}{}\label{classStandingDemoClient_ac6744005797ac8071776a68b35a7da6d} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!contacts\+Released@{contacts\+Released}}
+\index{contacts\+Released@{contacts\+Released}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{contacts\+Released}{contactsReleased}}
+{\footnotesize\ttfamily bool Standing\+Demo\+Client\+::contacts\+Released\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_ad5dfa4632f03e75095c810b6ff2301b4}{}\label{classStandingDemoClient_ad5dfa4632f03e75095c810b6ff2301b4} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!left\+Leg\+Contact\+Task@{left\+Leg\+Contact\+Task}}
+\index{left\+Leg\+Contact\+Task@{left\+Leg\+Contact\+Task}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{left\+Leg\+Contact\+Task}{leftLegContactTask}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Standing\+Demo\+Client\+::left\+Leg\+Contact\+Task\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_abc06fc0343cbca7a3faac4dbb1eaa842}{}\label{classStandingDemoClient_abc06fc0343cbca7a3faac4dbb1eaa842} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!max\+Acc@{max\+Acc}}
+\index{max\+Acc@{max\+Acc}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{max\+Acc}{maxAcc}}
+{\footnotesize\ttfamily double Standing\+Demo\+Client\+::max\+Acc\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_a638e427aef4c4dc6fa38081ab5f9f405}{}\label{classStandingDemoClient_a638e427aef4c4dc6fa38081ab5f9f405} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!max\+Vel@{max\+Vel}}
+\index{max\+Vel@{max\+Vel}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{max\+Vel}{maxVel}}
+{\footnotesize\ttfamily double Standing\+Demo\+Client\+::max\+Vel\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_ad53b834a0927d48917f5b6e830feb0f8}{}\label{classStandingDemoClient_ad53b834a0927d48917f5b6e830feb0f8} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!right\+Leg\+Contact\+Task@{right\+Leg\+Contact\+Task}}
+\index{right\+Leg\+Contact\+Task@{right\+Leg\+Contact\+Task}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{right\+Leg\+Contact\+Task}{rightLegContactTask}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Task\+Connection\+::\+Ptr Standing\+Demo\+Client\+::right\+Leg\+Contact\+Task\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_a4f84e52d8be94fb7fae7a6c0ad8e8adb}{}\label{classStandingDemoClient_a4f84e52d8be94fb7fae7a6c0ad8e8adb} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!root\+Traj\+Thread@{root\+Traj\+Thread}}
+\index{root\+Traj\+Thread@{root\+Traj\+Thread}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{root\+Traj\+Thread}{rootTrajThread}}
+{\footnotesize\ttfamily ocra\+\_\+recipes\+::\+Trajectory\+Thread\+::\+Ptr Standing\+Demo\+Client\+::root\+Traj\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_af05ac205216c20f9780f7e48a9ee4648}{}\label{classStandingDemoClient_af05ac205216c20f9780f7e48a9ee4648} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!start\+Time@{start\+Time}}
+\index{start\+Time@{start\+Time}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{start\+Time}{startTime}}
+{\footnotesize\ttfamily double Standing\+Demo\+Client\+::start\+Time\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classStandingDemoClient_a47132d5336d2e3b02085d2f153db6385}{}\label{classStandingDemoClient_a47132d5336d2e3b02085d2f153db6385} 
+\index{Standing\+Demo\+Client@{Standing\+Demo\+Client}!use\+Min\+Jerk@{use\+Min\+Jerk}}
+\index{use\+Min\+Jerk@{use\+Min\+Jerk}!Standing\+Demo\+Client@{Standing\+Demo\+Client}}
+\subsubsection{\texorpdfstring{use\+Min\+Jerk}{useMinJerk}}
+{\footnotesize\ttfamily bool Standing\+Demo\+Client\+::use\+Min\+Jerk\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub-\/clients/standing-\/demo/include/standing-\/demo/\hyperlink{StandingDemoClient_8h}{Standing\+Demo\+Client.\+h}\item 
+/\+Users/jorhabibeljaik/\+Code/codyco-\/superbuild/main/ocra-\/wbi-\/plugins/ocra-\/icub-\/clients/standing-\/demo/src/\hyperlink{StandingDemoClient_8cpp}{Standing\+Demo\+Client.\+cpp}\end{DoxyCompactItemize}

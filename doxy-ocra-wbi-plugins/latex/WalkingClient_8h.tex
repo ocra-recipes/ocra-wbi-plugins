@@ -3,16 +3,21 @@
 {\ttfamily \#include $<$ocra-\/icub/\+Icub\+Client.\+h$>$}\newline
 {\ttfamily \#include $<$ocra-\/recipes/\+Trajectory\+Thread.\+h$>$}\newline
 {\ttfamily \#include $<$ocra-\/recipes/\+Controller\+Client.\+h$>$}\newline
+{\ttfamily \#include $<$ocra/util/\+Eigen\+Utilities.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}walking-\/client/\+Zmp\+Preview\+Controller.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}walking-\/client/\+Zmp\+Controller.\+h\char`\"{}}\newline
-Include dependency graph for Walking\+Client.\+h\+:\nopagebreak
+{\ttfamily \#include $<$ocra/util/\+File\+Operations.\+h$>$}\newline
+{\ttfamily \#include $<$yarp/os/\+Time.\+h$>$}\newline
+Include dependency graph for Walking\+Client.\+h\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{WalkingClient_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -24,3 +29,34 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \item 
 class \hyperlink{classWalkingClient}{Walking\+Client}
 \end{DoxyCompactItemize}
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{Zmp\+Test\+Type} \{ \hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaa648ff770c850b8352c3306c1659e8157}{Z\+M\+P\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE} =0, 
+\hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaa97cb99b5fec95c1f2945d3b33455b139}{Z\+M\+P\+\_\+\+V\+A\+R\+Y\+I\+N\+G\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}, 
+\hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaad20e2ca429f4e3ba50e1de174c92af60}{C\+O\+M\+\_\+\+L\+I\+N\+\_\+\+V\+E\+L\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}
+ \}
+\end{DoxyCompactItemize}
+
+
+\subsection{Enumeration Type Documentation}
+\hypertarget{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{}\label{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa} 
+\index{Walking\+Client.\+h@{Walking\+Client.\+h}!Zmp\+Test\+Type@{Zmp\+Test\+Type}}
+\index{Zmp\+Test\+Type@{Zmp\+Test\+Type}!Walking\+Client.\+h@{Walking\+Client.\+h}}
+\subsubsection{\texorpdfstring{Zmp\+Test\+Type}{ZmpTestType}}
+{\footnotesize\ttfamily enum \hyperlink{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffa}{Zmp\+Test\+Type}}
+
+Performs tests helpful to tune the gains used by the zmp and zmp preview controllers as well as the C\+OM task. See configure() for additional information. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Z\+M\+P\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE@{Z\+M\+P\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}!Walking\+Client.\+h@{Walking\+Client.\+h}}\index{Walking\+Client.\+h@{Walking\+Client.\+h}!Z\+M\+P\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE@{Z\+M\+P\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}}}\hypertarget{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaa648ff770c850b8352c3306c1659e8157}{}\label{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaa648ff770c850b8352c3306c1659e8157} 
+Z\+M\+P\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Z\+M\+P\+\_\+\+V\+A\+R\+Y\+I\+N\+G\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE@{Z\+M\+P\+\_\+\+V\+A\+R\+Y\+I\+N\+G\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}!Walking\+Client.\+h@{Walking\+Client.\+h}}\index{Walking\+Client.\+h@{Walking\+Client.\+h}!Z\+M\+P\+\_\+\+V\+A\+R\+Y\+I\+N\+G\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE@{Z\+M\+P\+\_\+\+V\+A\+R\+Y\+I\+N\+G\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}}}\hypertarget{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaa97cb99b5fec95c1f2945d3b33455b139}{}\label{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaa97cb99b5fec95c1f2945d3b33455b139} 
+Z\+M\+P\+\_\+\+V\+A\+R\+Y\+I\+N\+G\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{C\+O\+M\+\_\+\+L\+I\+N\+\_\+\+V\+E\+L\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE@{C\+O\+M\+\_\+\+L\+I\+N\+\_\+\+V\+E\+L\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}!Walking\+Client.\+h@{Walking\+Client.\+h}}\index{Walking\+Client.\+h@{Walking\+Client.\+h}!C\+O\+M\+\_\+\+L\+I\+N\+\_\+\+V\+E\+L\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE@{C\+O\+M\+\_\+\+L\+I\+N\+\_\+\+V\+E\+L\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE}}}\hypertarget{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaad20e2ca429f4e3ba50e1de174c92af60}{}\label{WalkingClient_8h_afc01479a47f5a87462a54b6a9e11fffaad20e2ca429f4e3ba50e1de174c92af60} 
+C\+O\+M\+\_\+\+L\+I\+N\+\_\+\+V\+E\+L\+\_\+\+C\+O\+N\+S\+T\+A\+N\+T\+\_\+\+R\+E\+F\+E\+R\+E\+N\+CE&\\
+\hline
+
+\end{DoxyEnumFields}

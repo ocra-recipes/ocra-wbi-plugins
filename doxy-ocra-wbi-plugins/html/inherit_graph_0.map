@@ -1,7 +1,8 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
 <area shape="rect" id="node2" href="$classExampleClient.html" title="ExampleClient" alt="" coords="185,5,292,31"/>
 <area shape="rect" id="node3" href="$classSittingDemoClient.html" title="SittingDemoClient" alt="" coords="174,55,302,80"/>
-<area shape="rect" id="node4" href="$classSteppingDemoClient.html" title="SteppingDemoClient" alt="" coords="167,104,310,129"/>
-<area shape="rect" id="node5" href="$classTaskOpsClient.html" title="TaskOpsClient" alt="" coords="185,153,292,179"/>
-<area shape="rect" id="node6" href="$classWalkingClient.html" title="WalkingClient" alt="" coords="187,203,290,228"/>
+<area shape="rect" id="node4" href="$classStandingDemoClient.html" title="StandingDemoClient" alt="" coords="167,104,310,129"/>
+<area shape="rect" id="node5" href="$classSteppingDemoClient.html" title="SteppingDemoClient" alt="" coords="167,153,310,179"/>
+<area shape="rect" id="node6" href="$classTaskOpsClient.html" title="TaskOpsClient" alt="" coords="185,203,292,228"/>
+<area shape="rect" id="node7" href="$classWalkingClient.html" title="WalkingClient" alt="" coords="187,252,290,277"/>
 </map>

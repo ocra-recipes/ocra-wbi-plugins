@@ -147,12 +147,16 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
+<tr class="memitem:a2c64d83df66f7168d34993b76a179dde"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83f">ocra_icub::OCRA_ICUB_MESSAGE</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThread.html#a2c64d83df66f7168d34993b76a179dde">convertStringToOcraIcubMessage</a> (const std::string &amp;s)</td></tr>
+<tr class="separator:a2c64d83df66f7168d34993b76a179dde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae21029d250ac7c720f2411eab71a9414"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThread.html#ae21029d250ac7c720f2411eab71a9414">parseIncomingMessage</a> (yarp::os::Bottle &amp;input, yarp::os::Bottle &amp;reply)</td></tr>
 <tr class="separator:ae21029d250ac7c720f2411eab71a9414"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ce5ef9684cb2793be85e7402ad672f0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThread.html#a6ce5ef9684cb2793be85e7402ad672f0">parseDebugMessage</a> (yarp::os::Bottle &amp;input, yarp::os::Bottle &amp;reply)</td></tr>
 <tr class="separator:a6ce5ef9684cb2793be85e7402ad672f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9af0e98aa9b1de2f5c7bfa2f6e5001a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThread.html#a9af0e98aa9b1de2f5c7bfa2f6e5001a2">writeDebugData</a> ()</td></tr>
 <tr class="separator:a9af0e98aa9b1de2f5c7bfa2f6e5001a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49b65da88eb521ff53ef94d6ec8da7ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThread.html#a49b65da88eb521ff53ef94d6ec8da7ab">putAnklesIntoIdle</a> ()</td></tr>
+<tr class="separator:a49b65da88eb521ff53ef94d6ec8da7ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -192,6 +196,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:aa9cbe8744e51571a17fa726d8d16a0c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba345996b91a57d9e1f2dd15c7c75e08"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThread.html#aba345996b91a57d9e1f2dd15c7c75e08">debuggingAllJoints</a></td></tr>
 <tr class="separator:aba345996b91a57d9e1f2dd15c7c75e08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a304e7ee40ec0ceec2fc7ca80353ab478"><td class="memItemLeft" align="right" valign="top">Eigen::Displacementd&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThread.html#a304e7ee40ec0ceec2fc7ca80353ab478">l_foot_disp_inverse</a></td></tr>
+<tr class="separator:a304e7ee40ec0ceec2fc7ca80353ab478"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23a41c6ccd1df898084112cfd46120f3"><td class="memItemLeft" align="right" valign="top">iDynTree::SimpleLeggedOdometry&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classThread.html#a23a41c6ccd1df898084112cfd46120f3">odometry</a></td></tr>
 <tr class="separator:a23a41c6ccd1df898084112cfd46120f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -269,6 +275,32 @@ Static Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a2c64d83df66f7168d34993b76a179dde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c64d83df66f7168d34993b76a179dde">&sect;&nbsp;</a></span>convertStringToOcraIcubMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceocra__icub.html#afbd2db66b68005fb7cfac19210caf83f">ocra_icub::OCRA_ICUB_MESSAGE</a> Thread::convertStringToOcraIcubMessage </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>s</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a6ce5ef9684cb2793be85e7402ad672f0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6ce5ef9684cb2793be85e7402ad672f0">&sect;&nbsp;</a></span>parseDebugMessage()</h2>
 
@@ -330,6 +362,31 @@ Static Private Attributes</h2></td></tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a49b65da88eb521ff53ef94d6ec8da7ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49b65da88eb521ff53ef94d6ec8da7ab">&sect;&nbsp;</a></span>putAnklesIntoIdle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Thread::putAnklesIntoIdle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
   </td>
@@ -664,6 +721,29 @@ Static Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a304e7ee40ec0ceec2fc7ca80353ab478"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a304e7ee40ec0ceec2fc7ca80353ab478">&sect;&nbsp;</a></span>l_foot_disp_inverse</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Eigen::Displacementd Thread::l_foot_disp_inverse</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>For gazebo visualization. You can't get the l_sole pose directly in gazebo, but you can get the l_foot, so since all poses from ocra::Model are calculated in the l_sole then we need to go from l_sole to l_foot. </p>
+
+</div>
+</div>
 <a id="af28a4fcbbcbf77c42237c0be75a25a54"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af28a4fcbbcbf77c42237c0be75a25a54">&sect;&nbsp;</a></span>maxTorques</h2>
 
@@ -925,7 +1005,7 @@ Static Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classThread.html">Thread</a></li>
-    <li class="footer">Generated on Fri Dec 2 2016 10:35:57 for ocra-wbi-plugins by
+    <li class="footer">Generated on Wed Dec 14 2016 00:13:46 for ocra-wbi-plugins by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
   </ul>

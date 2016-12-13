@@ -9,8 +9,8 @@
 <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 243)">
 <title>/Users/jorhabibeljaik/Code/codyco&#45;superbuild/main/ocra&#45;wbi&#45;plugins/ocra&#45;icub&#45;server/include/ocra&#45;icub&#45;server/Thread.h</title>
 <polygon fill="white" stroke="none" points="-4,4 -4,-243 412.487,-243 412.487,4 -4,4"/>
-<!-- Node34 -->
-<g id="node1" class="node"><title>Node34</title>
+<!-- Node35 -->
+<g id="node1" class="node"><title>Node35</title>
 <polygon fill="#bfbfbf" stroke="black" points="178.33,-180.5 178.33,-238.5 312.152,-238.5 312.152,-180.5 178.33,-180.5"/>
 <text text-anchor="start" x="186.33" y="-226.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Users/jorhabibeljaik</text>
 <text text-anchor="start" x="186.33" y="-216.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Code/codyco&#45;superbuild</text>
@@ -18,8 +18,8 @@
 <text text-anchor="start" x="186.33" y="-196.5" font-family="Helvetica,sans-Serif" font-size="10.00">/ocra&#45;icub&#45;server/include</text>
 <text text-anchor="middle" x="245.241" y="-186.5" font-family="Helvetica,sans-Serif" font-size="10.00">/ocra&#45;icub&#45;server/Thread.h</text>
 </g>
-<!-- Node35 -->
-<g id="node2" class="node"><title>Node35</title>
+<!-- Node36 -->
+<g id="node2" class="node"><title>Node36</title>
 <g id="a_node2"><a xlink:href="Module_8h.html" target="_top" xlink:title="Module class for the controller server. ">
 <polygon fill="white" stroke="black" points="94.7734,-85.5 94.7734,-143.5 229.709,-143.5 229.709,-85.5 94.7734,-85.5"/>
 <text text-anchor="start" x="102.773" y="-131.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Users/jorhabibeljaik</text>
@@ -30,13 +30,13 @@
 </a>
 </g>
 </g>
-<!-- Node34&#45;&gt;Node35 -->
-<g id="edge1" class="edge"><title>Node34&#45;&gt;Node35</title>
+<!-- Node35&#45;&gt;Node36 -->
+<g id="edge1" class="edge"><title>Node35&#45;&gt;Node36</title>
 <path fill="none" stroke="midnightblue" d="M213.344,-172.759C204.707,-163.083 195.484,-152.748 187.284,-143.56"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="210.843,-175.214 220.113,-180.345 216.066,-170.553 210.843,-175.214"/>
 </g>
-<!-- Node38 -->
-<g id="node5" class="node"><title>Node38</title>
+<!-- Node39 -->
+<g id="node5" class="node"><title>Node39</title>
 <g id="a_node5"><a xlink:href="Thread_8cpp.html" target="_top" xlink:title="The thread class for the controller server. ">
 <polygon fill="white" stroke="black" points="247.995,-90.5 247.995,-138.5 408.487,-138.5 408.487,-90.5 247.995,-90.5"/>
 <text text-anchor="start" x="255.995" y="-126.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Users/jorhabibeljaik</text>
@@ -46,14 +46,14 @@
 </a>
 </g>
 </g>
-<!-- Node34&#45;&gt;Node38 -->
-<g id="edge4" class="edge"><title>Node34&#45;&gt;Node38</title>
+<!-- Node35&#45;&gt;Node39 -->
+<g id="edge4" class="edge"><title>Node35&#45;&gt;Node39</title>
 <path fill="none" stroke="midnightblue" d="M277.273,-172.609C287.478,-161.174 298.49,-148.835 307.659,-138.562"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="274.416,-170.553 270.369,-180.345 279.639,-175.214 274.416,-170.553"/>
 </g>
-<!-- Node36 -->
-<g id="node3" class="node"><title>Node36</title>
-<g id="a_node3"><a xlink:href="main_8cpp.html" target="_top" xlink:title="Basically just launches the server module which then launches the server thread. (...it&#39;s a dream within a dream) ">
+<!-- Node37 -->
+<g id="node3" class="node"><title>Node37</title>
+<g id="a_node3"><a xlink:href="ocra-icub-server_2src_2main_8cpp.html" target="_top" xlink:title="/Users/jorhabibeljaik\l/Code/codyco&#45;superbuild\l/main/ocra&#45;wbi&#45;plugins\l/ocra&#45;icub&#45;server/src/main.cpp">
 <polygon fill="white" stroke="black" points="0,-0.5 0,-48.5 150.482,-48.5 150.482,-0.5 0,-0.5"/>
 <text text-anchor="start" x="8" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Users/jorhabibeljaik</text>
 <text text-anchor="start" x="8" y="-26.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Code/codyco&#45;superbuild</text>
@@ -62,13 +62,13 @@
 </a>
 </g>
 </g>
-<!-- Node35&#45;&gt;Node36 -->
-<g id="edge2" class="edge"><title>Node35&#45;&gt;Node36</title>
+<!-- Node36&#45;&gt;Node37 -->
+<g id="edge2" class="edge"><title>Node36&#45;&gt;Node37</title>
 <path fill="none" stroke="midnightblue" d="M126.975,-77.8285C117.294,-68.0359 107.048,-57.672 98.2506,-48.7739"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="124.715,-80.5212 134.235,-85.1719 129.693,-75.5998 124.715,-80.5212"/>
 </g>
-<!-- Node37 -->
-<g id="node4" class="node"><title>Node37</title>
+<!-- Node38 -->
+<g id="node4" class="node"><title>Node38</title>
 <g id="a_node4"><a xlink:href="Module_8cpp.html" target="_top" xlink:title="/Users/jorhabibeljaik\l/Code/codyco&#45;superbuild\l/main/ocra&#45;wbi&#45;plugins\l/ocra&#45;icub&#45;server/src/Module.cpp">
 <polygon fill="white" stroke="black" points="168.438,-0.5 168.438,-48.5 330.044,-48.5 330.044,-0.5 168.438,-0.5"/>
 <text text-anchor="start" x="176.438" y="-36.5" font-family="Helvetica,sans-Serif" font-size="10.00">/Users/jorhabibeljaik</text>
@@ -78,8 +78,8 @@
 </a>
 </g>
 </g>
-<!-- Node35&#45;&gt;Node37 -->
-<g id="edge3" class="edge"><title>Node35&#45;&gt;Node37</title>
+<!-- Node36&#45;&gt;Node38 -->
+<g id="edge3" class="edge"><title>Node36&#45;&gt;Node38</title>
 <path fill="none" stroke="midnightblue" d="M197.507,-77.8285C207.189,-68.0359 217.435,-57.672 226.232,-48.7739"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="194.789,-75.5998 190.247,-85.1719 199.767,-80.5212 194.789,-75.5998"/>
 </g>

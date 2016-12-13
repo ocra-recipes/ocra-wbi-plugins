@@ -1,6 +1,7 @@
 var searchData=
 [
   ['deactivatefootcontacts',['deactivateFootContacts',['../classSteppingDemoClient.html#a62b5028bdc99de117cfffc576478a0f1',1,'SteppingDemoClient']]],
+  ['deactivatelegcontacts',['deactivateLegContacts',['../classStandingDemoClient.html#a6a16f7c8b66d49c6fc63f75ce8eaaf0b',1,'StandingDemoClient']]],
   ['debugrpcservercallback',['DebugRpcServerCallback',['../classThread_1_1DebugRpcServerCallback.html#a479142cdf2f840df23b4605a532aaddf',1,'Thread::DebugRpcServerCallback']]],
   ['dodofname',['doDofName',['../classocra__icub_1_1OcraWbiModel.html#af65d4fd7cae0ed86ea2bb588a9e024f9',1,'ocra_icub::OcraWbiModel']]],
   ['dogetdofindex',['doGetDofIndex',['../classocra__icub_1_1OcraWbiModel.html#a327862ec0da18711147d0ec62002fbef',1,'ocra_icub::OcraWbiModel']]],

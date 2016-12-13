@@ -6,6 +6,7 @@ var annotated_dup =
     [ "Module", "classModule.html", "classModule" ],
     [ "OcraControllerOptions", "classOcraControllerOptions.html", "classOcraControllerOptions" ],
     [ "SittingDemoClient", "classSittingDemoClient.html", "classSittingDemoClient" ],
+    [ "StandingDemoClient", "classStandingDemoClient.html", "classStandingDemoClient" ],
     [ "SteppingDemoClient", "classSteppingDemoClient.html", "classSteppingDemoClient" ],
     [ "TaskOpsClient", "classTaskOpsClient.html", "classTaskOpsClient" ],
     [ "Thread", "classThread.html", "classThread" ],

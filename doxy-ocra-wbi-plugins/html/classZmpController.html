@@ -128,6 +128,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a815cd495f657cbd93c25610d24982e8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5eab881a51fb2ace1a1d494171353bc7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a5eab881a51fb2ace1a1d494171353bc7">computehd</a> (Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vector2d &amp;dhd)</td></tr>
 <tr class="separator:a5eab881a51fb2ace1a1d494171353bc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa450c67048a44fe0dfadf07cd30165e7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#aa450c67048a44fe0dfadf07cd30165e7">computehdd</a> (Eigen::Vector3d comPosition, Eigen::Vector2d globalZMP, Eigen::Vector2d &amp;ddh)</td></tr>
+<tr class="separator:aa450c67048a44fe0dfadf07cd30165e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e275de73186b889c755e6dc618d29bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpController.html#a3e275de73186b889c755e6dc618d29bf">computeh</a> (Eigen::Vector2d prevComPosition, Eigen::Vector2d prevComVel, Eigen::Vector2d &amp;intComPosition)</td></tr>
+<tr class="separator:a3e275de73186b889c755e6dc618d29bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -323,6 +327,40 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a3e275de73186b889c755e6dc618d29bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e275de73186b889c755e6dc618d29bf">&sect;&nbsp;</a></span>computeh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZmpController::computeh </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::Vector2d&#160;</td>
+          <td class="paramname"><em>prevComPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Vector2d&#160;</td>
+          <td class="paramname"><em>prevComVel</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Vector2d &amp;&#160;</td>
+          <td class="paramname"><em>intComPosition</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a5eab881a51fb2ace1a1d494171353bc7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5eab881a51fb2ace1a1d494171353bc7">&sect;&nbsp;</a></span>computehd()</h2>
 
@@ -363,6 +401,40 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aa450c67048a44fe0dfadf07cd30165e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa450c67048a44fe0dfadf07cd30165e7">&sect;&nbsp;</a></span>computehdd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ZmpController::computehdd </td>
+          <td>(</td>
+          <td class="paramtype">Eigen::Vector3d&#160;</td>
+          <td class="paramname"><em>comPosition</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Vector2d&#160;</td>
+          <td class="paramname"><em>globalZMP</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Eigen::Vector2d &amp;&#160;</td>
+          <td class="paramname"><em>ddh</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -499,7 +571,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZmpController.html">ZmpController</a></li>
-    <li class="footer">Generated on Fri Dec 2 2016 10:35:57 for ocra-wbi-plugins by
+    <li class="footer">Generated on Wed Dec 14 2016 00:13:47 for ocra-wbi-plugins by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
   </ul>

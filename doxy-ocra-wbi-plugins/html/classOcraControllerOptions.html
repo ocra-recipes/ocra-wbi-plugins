@@ -132,10 +132,16 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a697196e6267b2a519dd0bcc2bc03ab73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26dce90c0e6cf7ba608020d01cd08f3c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOcraControllerOptions.html#a26dce90c0e6cf7ba608020d01cd08f3c">runInDebugMode</a></td></tr>
 <tr class="separator:a26dce90c0e6cf7ba608020d01cd08f3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af05db2783f36f469fa535fd4ba5c12b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOcraControllerOptions.html#af05db2783f36f469fa535fd4ba5c12b1">noOutputMode</a></td></tr>
+<tr class="separator:af05db2783f36f469fa535fd4ba5c12b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1edf322553d88c1ac2bf8947e9d942d7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOcraControllerOptions.html#a1edf322553d88c1ac2bf8947e9d942d7">isFloatingBase</a></td></tr>
 <tr class="separator:a1edf322553d88c1ac2bf8947e9d942d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a335f09b446b6d10e2a8e6eb453391d9e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOcraControllerOptions.html#a335f09b446b6d10e2a8e6eb453391d9e">useOdometry</a></td></tr>
 <tr class="separator:a335f09b446b6d10e2a8e6eb453391d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34c0a162302f4f2c462d9ce4818292d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOcraControllerOptions.html#a34c0a162302f4f2c462d9ce4818292d5">idleAnkles</a></td></tr>
+<tr class="separator:a34c0a162302f4f2c462d9ce4818292d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7b16a5b8264abd18ee8761eb1091ccf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOcraControllerOptions.html#ae7b16a5b8264abd18ee8761eb1091ccf">maintainFinalPosture</a></td></tr>
+<tr class="separator:ae7b16a5b8264abd18ee8761eb1091ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3965bdcce6cb2ce3e4a335f855acd63"><td class="memItemLeft" align="right" valign="top">yarp::os::Property&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOcraControllerOptions.html#ac3965bdcce6cb2ce3e4a335f855acd63">yarpWbiOptions</a></td></tr>
 <tr class="separator:ac3965bdcce6cb2ce3e4a335f855acd63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa533fe11c53b7fb17105f1edf48e1c0d"><td class="memItemLeft" align="right" valign="top">ocra_recipes::CONTROLLER_TYPE&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classOcraControllerOptions.html#aa533fe11c53b7fb17105f1edf48e1c0d">controllerType</a></td></tr>
@@ -196,6 +202,21 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a34c0a162302f4f2c462d9ce4818292d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34c0a162302f4f2c462d9ce4818292d5">&sect;&nbsp;</a></span>idleAnkles</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool OcraControllerOptions::idleAnkles</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A boolean which tells the controller to idle the ankles for a short period and then pass on to normal operation. This is to get the feet flush with the ground. </p>
+
+</div>
+</div>
 <a id="a1edf322553d88c1ac2bf8947e9d942d7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1edf322553d88c1ac2bf8947e9d942d7">&sect;&nbsp;</a></span>isFloatingBase</h2>
 
@@ -208,6 +229,36 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>a boolean which tells the controller whether the robot has a fixed or floating base. </p>
+
+</div>
+</div>
+<a id="ae7b16a5b8264abd18ee8761eb1091ccf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7b16a5b8264abd18ee8761eb1091ccf">&sect;&nbsp;</a></span>maintainFinalPosture</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool OcraControllerOptions::maintainFinalPosture</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A boolean which tells the controller to stay in its final posture when the controller is switched to position mode at the end of usage. </p>
+
+</div>
+</div>
+<a id="af05db2783f36f469fa535fd4ba5c12b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af05db2783f36f469fa535fd4ba5c12b1">&sect;&nbsp;</a></span>noOutputMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool OcraControllerOptions::noOutputMode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>a boolean which runs the controller in a debugging mode but never sends the torques to the robot. </p>
 
 </div>
 </div>
@@ -386,7 +437,7 @@ Public Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classOcraControllerOptions.html">OcraControllerOptions</a></li>
-    <li class="footer">Generated on Fri Dec 2 2016 10:35:57 for ocra-wbi-plugins by
+    <li class="footer">Generated on Wed Dec 14 2016 00:13:46 for ocra-wbi-plugins by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
   </ul>

@@ -112,8 +112,8 @@ $(document).ready(function(){initNavTree('classZmpPreviewController.html','');})
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af1c464b13886dc0edf2f295fc215b13c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#af1c464b13886dc0edf2f295fc215b13c">ZmpPreviewController</a> (const int period, struct <a class="el" href="structZmpPreviewParams.html">ZmpPreviewParams</a> parameters)</td></tr>
-<tr class="separator:af1c464b13886dc0edf2f295fc215b13c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26b5bd0bdd476f70c2009d77d5495b24"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#a26b5bd0bdd476f70c2009d77d5495b24">ZmpPreviewController</a> (const double period, std::shared_ptr&lt; <a class="el" href="structZmpPreviewParams.html">ZmpPreviewParams</a> &gt; parameters)</td></tr>
+<tr class="separator:a26b5bd0bdd476f70c2009d77d5495b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af702c45f318c7a78310d19cc061886dd"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#af702c45f318c7a78310d19cc061886dd">~ZmpPreviewController</a> ()</td></tr>
 <tr class="separator:af702c45f318c7a78310d19cc061886dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac28287e01187bff2cea5a68292d936bd"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classZmpPreviewController.html#ac28287e01187bff2cea5a68292d936bd">initialize</a> ()</td></tr>
@@ -194,7 +194,7 @@ Private Attributes</h2></td></tr>
 </p>
 <p>Denoting a horizon of input CoMjerks \(\mathbf{u}\), the following problem:</p>
 <p class="formulaDsp">
-\begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} &amp; \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_r || \mathbf{u} ||^2 \\ \text{such that}&amp;\\ \mathbf{p} &amp;= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &amp;= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &amp;= \mathbf{h}_k\\ \mathbf{h} &amp;= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}
+\begin{align*} \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} &amp; \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_u || \mathbf{u} ||^2 \\ \text{such that}&amp;\\ \mathbf{p} &amp;= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\ \mathbf{\hat{h}}_{k+j+1|k} &amp;= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\ \mathbf{h}_{k+j|k} &amp;= \mathbf{h}_k\\ \mathbf{h} &amp;= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2 \end{align*}
 </p>
 <p>Where \(\mathbf{p}\) are horizontal ZMP coordinates, \( \mathbf{r}^r \) ZMP references (in walking-client is the interpolated ZMP reference from the walking MIQP problem) \( \mathbf{\dot{h}} \) the horizontal CoMvelocity, \( \mathbf{\dot{h}}^r \) CoMhorizontal velocity reference (in walking-client it's the interpolated CoMvelocity reference from the walking MIQP problem). \(\mathbf{u}\) are the input CoMjerks, \(\mathbf{c}\) the three-dimensional CoMposition. \(h\) the horizonal CoMposition, \(\hat{\mathbf{h}}\) the horizontal CoMstate \( (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) \) and \(\mathbf{e}_2\) the vertical unit vectory \( [0\;0\;1]^T\). \(\mathbf{A}_h\) and \(\mathbf{B}_h\) are integration matrices.</p>
 <p>The previously described problem is an unconstrained QP problem which has a closed-form solution. In order to help us find one, the same minimization problem will be expressed in matrix form as:</p>
@@ -209,8 +209,8 @@ Private Attributes</h2></td></tr>
 \[ \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right) \]
 </p>
  </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="af1c464b13886dc0edf2f295fc215b13c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1c464b13886dc0edf2f295fc215b13c">&sect;&nbsp;</a></span>ZmpPreviewController()</h2>
+<a id="a26b5bd0bdd476f70c2009d77d5495b24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26b5bd0bdd476f70c2009d77d5495b24">&sect;&nbsp;</a></span>ZmpPreviewController()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -218,13 +218,13 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="memname">ZmpPreviewController::ZmpPreviewController </td>
           <td>(</td>
-          <td class="paramtype">const int&#160;</td>
+          <td class="paramtype">const double&#160;</td>
           <td class="paramname"><em>period</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structZmpPreviewParams.html">ZmpPreviewParams</a>&#160;</td>
+          <td class="paramtype">std::shared_ptr&lt; <a class="el" href="structZmpPreviewParams.html">ZmpPreviewParams</a> &gt;&#160;</td>
           <td class="paramname"><em>parameters</em>&#160;</td>
         </tr>
         <tr>
@@ -234,7 +234,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Class constructor. Build all the time-invariant matrices used to compute the optimal output of the preview controller. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Class constructor. Builds all the time-invariant matrices used to compute the optimal output of the preview controller. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">period</td><td>Period (in ms) of the thread in which an object of this class is created. </td></tr>
     <tr><td class="paramname">parameters</td><td>An object containing the main parameters. </td></tr>
@@ -1191,7 +1191,7 @@ Private Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="classZmpPreviewController.html">ZmpPreviewController</a></li>
-    <li class="footer">Generated on Fri Dec 2 2016 10:35:57 for ocra-wbi-plugins by
+    <li class="footer">Generated on Wed Dec 14 2016 00:13:47 for ocra-wbi-plugins by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
   </ul>

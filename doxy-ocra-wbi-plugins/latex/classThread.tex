@@ -50,11 +50,15 @@ void \hyperlink{classThread_aa2856c7d45670f45d66bcb319255defe}{thread\+Release} 
 \subsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{namespaceocra__icub_afbd2db66b68005fb7cfac19210caf83f}{ocra\+\_\+icub\+::\+O\+C\+R\+A\+\_\+\+I\+C\+U\+B\+\_\+\+M\+E\+S\+S\+A\+GE} \hyperlink{classThread_a2c64d83df66f7168d34993b76a179dde}{convert\+String\+To\+Ocra\+Icub\+Message} (const std\+::string \&s)
+\item 
 void \hyperlink{classThread_ae21029d250ac7c720f2411eab71a9414}{parse\+Incoming\+Message} (yarp\+::os\+::\+Bottle \&input, yarp\+::os\+::\+Bottle \&reply)
 \item 
 void \hyperlink{classThread_a6ce5ef9684cb2793be85e7402ad672f0}{parse\+Debug\+Message} (yarp\+::os\+::\+Bottle \&input, yarp\+::os\+::\+Bottle \&reply)
 \item 
 void \hyperlink{classThread_a9af0e98aa9b1de2f5c7bfa2f6e5001a2}{write\+Debug\+Data} ()
+\item 
+void \hyperlink{classThread_a49b65da88eb521ff53ef94d6ec8da7ab}{put\+Ankles\+Into\+Idle} ()
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -94,6 +98,8 @@ Debug\+Rpc\+Server\+Callback\+::shared\+\_\+ptr \hyperlink{classThread_a42833af6
 Eigen\+::\+Vector\+Xd \hyperlink{classThread_aa9cbe8744e51571a17fa726d8d16a0c6}{measured\+Torques}
 \item 
 bool \hyperlink{classThread_aba345996b91a57d9e1f2dd15c7c75e08}{debugging\+All\+Joints}
+\item 
+Eigen\+::\+Displacementd \hyperlink{classThread_a304e7ee40ec0ceec2fc7ca80353ab478}{l\+\_\+foot\+\_\+disp\+\_\+inverse}
 \item 
 i\+Dyn\+Tree\+::\+Simple\+Legged\+Odometry \hyperlink{classThread_a23a41c6ccd1df898084112cfd46120f3}{odometry}
 \end{DoxyCompactItemize}
@@ -138,6 +144,12 @@ Constructor
 
 
 \subsection{Member Function Documentation}
+\hypertarget{classThread_a2c64d83df66f7168d34993b76a179dde}{}\label{classThread_a2c64d83df66f7168d34993b76a179dde} 
+\index{Thread@{Thread}!convert\+String\+To\+Ocra\+Icub\+Message@{convert\+String\+To\+Ocra\+Icub\+Message}}
+\index{convert\+String\+To\+Ocra\+Icub\+Message@{convert\+String\+To\+Ocra\+Icub\+Message}!Thread@{Thread}}
+\subsubsection{\texorpdfstring{convert\+String\+To\+Ocra\+Icub\+Message()}{convertStringToOcraIcubMessage()}}
+{\footnotesize\ttfamily \hyperlink{namespaceocra__icub_afbd2db66b68005fb7cfac19210caf83f}{ocra\+\_\+icub\+::\+O\+C\+R\+A\+\_\+\+I\+C\+U\+B\+\_\+\+M\+E\+S\+S\+A\+GE} Thread\+::convert\+String\+To\+Ocra\+Icub\+Message (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{s }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
 \hypertarget{classThread_a6ce5ef9684cb2793be85e7402ad672f0}{}\label{classThread_a6ce5ef9684cb2793be85e7402ad672f0} 
 \index{Thread@{Thread}!parse\+Debug\+Message@{parse\+Debug\+Message}}
 \index{parse\+Debug\+Message@{parse\+Debug\+Message}!Thread@{Thread}}
@@ -149,6 +161,12 @@ Constructor
 \index{parse\+Incoming\+Message@{parse\+Incoming\+Message}!Thread@{Thread}}
 \subsubsection{\texorpdfstring{parse\+Incoming\+Message()}{parseIncomingMessage()}}
 {\footnotesize\ttfamily void Thread\+::parse\+Incoming\+Message (\begin{DoxyParamCaption}\item[{yarp\+::os\+::\+Bottle \&}]{input,  }\item[{yarp\+::os\+::\+Bottle \&}]{reply }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+\hypertarget{classThread_a49b65da88eb521ff53ef94d6ec8da7ab}{}\label{classThread_a49b65da88eb521ff53ef94d6ec8da7ab} 
+\index{Thread@{Thread}!put\+Ankles\+Into\+Idle@{put\+Ankles\+Into\+Idle}}
+\index{put\+Ankles\+Into\+Idle@{put\+Ankles\+Into\+Idle}!Thread@{Thread}}
+\subsubsection{\texorpdfstring{put\+Ankles\+Into\+Idle()}{putAnklesIntoIdle()}}
+{\footnotesize\ttfamily void Thread\+::put\+Ankles\+Into\+Idle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
 
 \hypertarget{classThread_ad9373d8d725c46717dfce3130018fe3a}{}\label{classThread_ad9373d8d725c46717dfce3130018fe3a} 
 \index{Thread@{Thread}!run@{run}}
@@ -243,7 +261,13 @@ Rpc server port callback function. \hypertarget{classThread_aa6b8f3712e7776d560b
 \subsubsection{\texorpdfstring{initial\+Posture}{initialPosture}}
 {\footnotesize\ttfamily Eigen\+::\+Vector\+Xd Thread\+::initial\+Posture\hspace{0.3cm}{\ttfamily [private]}}
 
-The torques calculated at each \hyperlink{classThread_ad9373d8d725c46717dfce3130018fe3a}{run()} loop. \hypertarget{classThread_af28a4fcbbcbf77c42237c0be75a25a54}{}\label{classThread_af28a4fcbbcbf77c42237c0be75a25a54} 
+The torques calculated at each \hyperlink{classThread_ad9373d8d725c46717dfce3130018fe3a}{run()} loop. \hypertarget{classThread_a304e7ee40ec0ceec2fc7ca80353ab478}{}\label{classThread_a304e7ee40ec0ceec2fc7ca80353ab478} 
+\index{Thread@{Thread}!l\+\_\+foot\+\_\+disp\+\_\+inverse@{l\+\_\+foot\+\_\+disp\+\_\+inverse}}
+\index{l\+\_\+foot\+\_\+disp\+\_\+inverse@{l\+\_\+foot\+\_\+disp\+\_\+inverse}!Thread@{Thread}}
+\subsubsection{\texorpdfstring{l\+\_\+foot\+\_\+disp\+\_\+inverse}{l\_foot\_disp\_inverse}}
+{\footnotesize\ttfamily Eigen\+::\+Displacementd Thread\+::l\+\_\+foot\+\_\+disp\+\_\+inverse\hspace{0.3cm}{\ttfamily [private]}}
+
+For gazebo visualization. You can\textquotesingle{}t get the l\+\_\+sole pose directly in gazebo, but you can get the l\+\_\+foot, so since all poses from ocra\+::\+Model are calculated in the l\+\_\+sole then we need to go from l\+\_\+sole to l\+\_\+foot. \hypertarget{classThread_af28a4fcbbcbf77c42237c0be75a25a54}{}\label{classThread_af28a4fcbbcbf77c42237c0be75a25a54} 
 \index{Thread@{Thread}!max\+Torques@{max\+Torques}}
 \index{max\+Torques@{max\+Torques}!Thread@{Thread}}
 \subsubsection{\texorpdfstring{max\+Torques}{maxTorques}}

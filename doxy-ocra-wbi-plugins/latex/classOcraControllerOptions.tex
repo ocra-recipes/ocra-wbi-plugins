@@ -30,9 +30,15 @@ std\+::string \hyperlink{classOcraControllerOptions_a697196e6267b2a519dd0bcc2bc0
 \item 
 bool \hyperlink{classOcraControllerOptions_a26dce90c0e6cf7ba608020d01cd08f3c}{run\+In\+Debug\+Mode}
 \item 
+bool \hyperlink{classOcraControllerOptions_af05db2783f36f469fa535fd4ba5c12b1}{no\+Output\+Mode}
+\item 
 bool \hyperlink{classOcraControllerOptions_a1edf322553d88c1ac2bf8947e9d942d7}{is\+Floating\+Base}
 \item 
 bool \hyperlink{classOcraControllerOptions_a335f09b446b6d10e2a8e6eb453391d9e}{use\+Odometry}
+\item 
+bool \hyperlink{classOcraControllerOptions_a34c0a162302f4f2c462d9ce4818292d5}{idle\+Ankles}
+\item 
+bool \hyperlink{classOcraControllerOptions_ae7b16a5b8264abd18ee8761eb1091ccf}{maintain\+Final\+Posture}
 \item 
 yarp\+::os\+::\+Property \hyperlink{classOcraControllerOptions_ac3965bdcce6cb2ce3e4a335f855acd63}{yarp\+Wbi\+Options}
 \item 
@@ -64,13 +70,31 @@ Destructor. Does nothing.
 \subsubsection{\texorpdfstring{controller\+Type}{controllerType}}
 {\footnotesize\ttfamily ocra\+\_\+recipes\+::\+C\+O\+N\+T\+R\+O\+L\+L\+E\+R\+\_\+\+T\+Y\+PE Ocra\+Controller\+Options\+::controller\+Type}
 
-The type of O\+C\+RA controller to use. \hypertarget{classOcraControllerOptions_a1edf322553d88c1ac2bf8947e9d942d7}{}\label{classOcraControllerOptions_a1edf322553d88c1ac2bf8947e9d942d7} 
+The type of O\+C\+RA controller to use. \hypertarget{classOcraControllerOptions_a34c0a162302f4f2c462d9ce4818292d5}{}\label{classOcraControllerOptions_a34c0a162302f4f2c462d9ce4818292d5} 
+\index{Ocra\+Controller\+Options@{Ocra\+Controller\+Options}!idle\+Ankles@{idle\+Ankles}}
+\index{idle\+Ankles@{idle\+Ankles}!Ocra\+Controller\+Options@{Ocra\+Controller\+Options}}
+\subsubsection{\texorpdfstring{idle\+Ankles}{idleAnkles}}
+{\footnotesize\ttfamily bool Ocra\+Controller\+Options\+::idle\+Ankles}
+
+A boolean which tells the controller to idle the ankles for a short period and then pass on to normal operation. This is to get the feet flush with the ground. \hypertarget{classOcraControllerOptions_a1edf322553d88c1ac2bf8947e9d942d7}{}\label{classOcraControllerOptions_a1edf322553d88c1ac2bf8947e9d942d7} 
 \index{Ocra\+Controller\+Options@{Ocra\+Controller\+Options}!is\+Floating\+Base@{is\+Floating\+Base}}
 \index{is\+Floating\+Base@{is\+Floating\+Base}!Ocra\+Controller\+Options@{Ocra\+Controller\+Options}}
 \subsubsection{\texorpdfstring{is\+Floating\+Base}{isFloatingBase}}
 {\footnotesize\ttfamily bool Ocra\+Controller\+Options\+::is\+Floating\+Base}
 
-a boolean which tells the controller whether the robot has a fixed or floating base. \hypertarget{classOcraControllerOptions_a897948011f23b08ba20e1707033458d4}{}\label{classOcraControllerOptions_a897948011f23b08ba20e1707033458d4} 
+a boolean which tells the controller whether the robot has a fixed or floating base. \hypertarget{classOcraControllerOptions_ae7b16a5b8264abd18ee8761eb1091ccf}{}\label{classOcraControllerOptions_ae7b16a5b8264abd18ee8761eb1091ccf} 
+\index{Ocra\+Controller\+Options@{Ocra\+Controller\+Options}!maintain\+Final\+Posture@{maintain\+Final\+Posture}}
+\index{maintain\+Final\+Posture@{maintain\+Final\+Posture}!Ocra\+Controller\+Options@{Ocra\+Controller\+Options}}
+\subsubsection{\texorpdfstring{maintain\+Final\+Posture}{maintainFinalPosture}}
+{\footnotesize\ttfamily bool Ocra\+Controller\+Options\+::maintain\+Final\+Posture}
+
+A boolean which tells the controller to stay in its final posture when the controller is switched to position mode at the end of usage. \hypertarget{classOcraControllerOptions_af05db2783f36f469fa535fd4ba5c12b1}{}\label{classOcraControllerOptions_af05db2783f36f469fa535fd4ba5c12b1} 
+\index{Ocra\+Controller\+Options@{Ocra\+Controller\+Options}!no\+Output\+Mode@{no\+Output\+Mode}}
+\index{no\+Output\+Mode@{no\+Output\+Mode}!Ocra\+Controller\+Options@{Ocra\+Controller\+Options}}
+\subsubsection{\texorpdfstring{no\+Output\+Mode}{noOutputMode}}
+{\footnotesize\ttfamily bool Ocra\+Controller\+Options\+::no\+Output\+Mode}
+
+a boolean which runs the controller in a debugging mode but never sends the torques to the robot. \hypertarget{classOcraControllerOptions_a897948011f23b08ba20e1707033458d4}{}\label{classOcraControllerOptions_a897948011f23b08ba20e1707033458d4} 
 \index{Ocra\+Controller\+Options@{Ocra\+Controller\+Options}!robot\+Name@{robot\+Name}}
 \index{robot\+Name@{robot\+Name}!Ocra\+Controller\+Options@{Ocra\+Controller\+Options}}
 \subsubsection{\texorpdfstring{robot\+Name}{robotName}}

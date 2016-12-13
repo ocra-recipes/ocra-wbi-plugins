@@ -2,6 +2,7 @@ var searchData=
 [
   ['dangerperiodlooptime',['dangerPeriodLoopTime',['../classModule.html#a33fee1e7f977b4f27a2e1488480996fb',1,'Module']]],
   ['deactivatefootcontacts',['deactivateFootContacts',['../classSteppingDemoClient.html#a62b5028bdc99de117cfffc576478a0f1',1,'SteppingDemoClient']]],
+  ['deactivatelegcontacts',['deactivateLegContacts',['../classStandingDemoClient.html#a6a16f7c8b66d49c6fc63f75ce8eaaf0b',1,'StandingDemoClient']]],
   ['debuggingalljoints',['debuggingAllJoints',['../classThread.html#aba345996b91a57d9e1f2dd15c7c75e08',1,'Thread']]],
   ['debugjointindex',['debugJointIndex',['../classThread.html#aedf960b8e991868561f35193702245b0',1,'Thread']]],
   ['debugrealoutport',['debugRealOutPort',['../classThread.html#a9bd7f6aebc0be4709f32f95aa32f1add',1,'Thread']]],

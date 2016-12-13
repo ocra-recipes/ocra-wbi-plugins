@@ -27,6 +27,10 @@ void \hyperlink{classZmpController_ac8e821f72c79fe86102f02c4c155ad30}{get\+Left\
 void \hyperlink{classZmpController_a815cd495f657cbd93c25610d24982e8c}{get\+Right\+Foot\+Position} (Eigen\+::\+Vector3d \&right\+Foot\+Position)
 \item 
 bool \hyperlink{classZmpController_a5eab881a51fb2ace1a1d494171353bc7}{computehd} (Eigen\+::\+Vector2d p, Eigen\+::\+Vector2d pd, Eigen\+::\+Vector2d \&dhd)
+\item 
+void \hyperlink{classZmpController_aa450c67048a44fe0dfadf07cd30165e7}{computehdd} (Eigen\+::\+Vector3d com\+Position, Eigen\+::\+Vector2d global\+Z\+MP, Eigen\+::\+Vector2d \&ddh)
+\item 
+void \hyperlink{classZmpController_a3e275de73186b889c755e6dc618d29bf}{computeh} (Eigen\+::\+Vector2d prev\+Com\+Position, Eigen\+::\+Vector2d prev\+Com\+Vel, Eigen\+::\+Vector2d \&int\+Com\+Position)
 \end{DoxyCompactItemize}
 \subsection*{Private Attributes}
 \begin{DoxyCompactItemize}
@@ -123,6 +127,12 @@ After obtaining the Z\+MP position for both feet $\mathbf{p}_R$ and $\mathbf{p}_
 \begin{DoxyReturn}{Returns}
 True if all operations succeed, false otherwise. 
 \end{DoxyReturn}
+\hypertarget{classZmpController_a3e275de73186b889c755e6dc618d29bf}{}\label{classZmpController_a3e275de73186b889c755e6dc618d29bf} 
+\index{Zmp\+Controller@{Zmp\+Controller}!computeh@{computeh}}
+\index{computeh@{computeh}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{computeh()}{computeh()}}
+{\footnotesize\ttfamily void Zmp\+Controller\+::computeh (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector2d}]{prev\+Com\+Position,  }\item[{Eigen\+::\+Vector2d}]{prev\+Com\+Vel,  }\item[{Eigen\+::\+Vector2d \&}]{int\+Com\+Position }\end{DoxyParamCaption})}
+
 \hypertarget{classZmpController_a5eab881a51fb2ace1a1d494171353bc7}{}\label{classZmpController_a5eab881a51fb2ace1a1d494171353bc7} 
 \index{Zmp\+Controller@{Zmp\+Controller}!computehd@{computehd}}
 \index{computehd@{computehd}!Zmp\+Controller@{Zmp\+Controller}}
@@ -140,6 +150,12 @@ Computes the instantaneous desired horizontal C\+OM velocity for the correspondi
 \mbox{\tt out}  & {\em dhd} & Horizonal CoM velocity $\dot{\mathbf{h}}_d$ \\
 \hline
 \end{DoxyParams}
+\hypertarget{classZmpController_aa450c67048a44fe0dfadf07cd30165e7}{}\label{classZmpController_aa450c67048a44fe0dfadf07cd30165e7} 
+\index{Zmp\+Controller@{Zmp\+Controller}!computehdd@{computehdd}}
+\index{computehdd@{computehdd}!Zmp\+Controller@{Zmp\+Controller}}
+\subsubsection{\texorpdfstring{computehdd()}{computehdd()}}
+{\footnotesize\ttfamily void Zmp\+Controller\+::computehdd (\begin{DoxyParamCaption}\item[{Eigen\+::\+Vector3d}]{com\+Position,  }\item[{Eigen\+::\+Vector2d}]{global\+Z\+MP,  }\item[{Eigen\+::\+Vector2d \&}]{ddh }\end{DoxyParamCaption})}
+
 \hypertarget{classZmpController_aad272bd33de6fad489ea99618a7e9afa}{}\label{classZmpController_aad272bd33de6fad489ea99618a7e9afa} 
 \index{Zmp\+Controller@{Zmp\+Controller}!get\+F\+T\+Sensor\+Adjoint\+Matrix@{get\+F\+T\+Sensor\+Adjoint\+Matrix}}
 \index{get\+F\+T\+Sensor\+Adjoint\+Matrix@{get\+F\+T\+Sensor\+Adjoint\+Matrix}!Zmp\+Controller@{Zmp\+Controller}}
