@@ -31,11 +31,11 @@ else()
  endif()
 
  # Build as Release (Change Release to Debug for better debugging symbols)
-set(CMAKE_BUILD_TYPE Release)
+# set(CMAKE_BUILD_TYPE Release)
 
 # Set the project version.
-set(${PROJECT_NAME}_MAJOR_VERSION 1)
-set(${PROJECT_NAME}_MINOR_VERSION 0)
+set(${PROJECT_NAME}_MAJOR_VERSION 0)
+set(${PROJECT_NAME}_MINOR_VERSION 1)
 set(${PROJECT_NAME}_PATCH_VERSION 0)
 set(${PROJECT_NAME}_VERSION ${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_MINOR_VERSION}.${${PROJECT_NAME}_PATCH_VERSION})
 

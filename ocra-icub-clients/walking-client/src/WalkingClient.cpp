@@ -394,7 +394,6 @@ void WalkingClient::performZMPTest(ZmpTestType type) {
 
     // Write to file for plotting
     tnow = yarp::os::Time::now() - timeInit;
-    //TODO: Move this directory to the configuration file of the client
     std::string homeDir = std::string(_homeDataDir);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComLinVel).finished(), std::string(homeDir + "currentComLinVel.txt"),true);

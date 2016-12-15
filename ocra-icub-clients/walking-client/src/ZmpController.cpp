@@ -101,7 +101,6 @@ bool ZmpController::computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vect
     Eigen::Matrix2d kdVec = Eigen::Matrix2d::Identity();
     kdVec(0,0) = _params->kdx;
     kdVec(1,1) = _params->kdy;
-    //TODO: Remove this constant dt
     Eigen::Vector2d derivative = (1/_params->controllerPeriod) * kdVec * (error - previousError);
     previousError = error;
     dhd += derivative;
