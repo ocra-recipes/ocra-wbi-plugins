@@ -672,7 +672,7 @@ LAYOUT_FILE            =
 # search path. Do not use file names with spaces, bibtex cannot handle them. See
 # also \cite for info how to create references.
 
-CITE_BIB_FILES         = $(TRAVIS_BUILD_DIR)/../../ocra-wbi-plugins/docs/wbipluginsReferences.bib
+CITE_BIB_FILES         = $(TRAVIS_BUILD_DIR)/ocra-wbi-plugins/docs/wbipluginsReferences.bib
 
 #---------------------------------------------------------------------------
 # Configuration options related to warning and progress messages
@@ -743,7 +743,7 @@ WARN_LOGFILE           =
 # spaces.
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = $(TRAVIS_BUILD_DIR)/../../ocra-wbi-plugins/ocra-icub-server $(TRAVIS_BUILD_DIR)/../../ocra-wbi-plugins/ocra-icub-clients $(TRAVIS_BUILD_DIR)/../../ocra-wbi-plugins/ocra-icub $(TRAVIS_BUILD_DIR)/../../ocra-wbi-plugins/README.md
+INPUT                  = $(TRAVIS_BUILD_DIR)/ocra-wbi-plugins/ocra-icub-server $(TRAVIS_BUILD_DIR)/ocra-wbi-plugins/ocra-icub-clients $(TRAVIS_BUILD_DIR)/ocra-wbi-plugins/ocra-icub $(TRAVIS_BUILD_DIR)/ocra-wbi-plugins/README.md
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding. Doxygen uses
