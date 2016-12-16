@@ -58,7 +58,7 @@ PROJECT_LOGO           = $(TRAVIS_BUILD_DIR)/static/img/logo-doxygen.png
 # entered, it will be relative to the location where doxygen was xstarted. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = $(TRAVIS_BUILD_DIR)/doxy-ocra-wbi-plugins
+OUTPUT_DIRECTORY       = $(TRAVIS_BUILD_DIR)/ocra-wbi-plugins/docs/doxy-ocra-wbi-plugins
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
