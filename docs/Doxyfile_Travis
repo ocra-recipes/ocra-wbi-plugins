@@ -51,14 +51,14 @@ PROJECT_BRIEF          = "Doxygen documentation for the ocra-wbi-plugins reposit
 # and the maximum width should not exceed 200 pixels. Doxygen will copy the logo
 # to the output directory.
 
-PROJECT_LOGO           = $(TRAVIS_BUILD_DIR)/code-docs/web/static/img/logo-doxygen.png
+PROJECT_LOGO           = $(TRAVIS_BUILD_DIR)/web/static/img/logo-doxygen.png
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute) path
 # into which the generated documentation will be written. If a relative path is
 # entered, it will be relative to the location where doxygen was xstarted. If
 # left blank the current directory will be used.
 
-OUTPUT_DIRECTORY       = $(TRAVIS_BUILD_DIR)/code-docs/web/doxy-ocra-wbi-plugins
+OUTPUT_DIRECTORY       = $(TRAVIS_BUILD_DIR)/web/doxy-ocra-wbi-plugins
 
 # If the CREATE_SUBDIRS tag is set to YES, then doxygen will create 4096 sub-
 # directories (in 2 levels) under the output directory of each output format and
