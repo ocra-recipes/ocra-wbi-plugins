@@ -158,7 +158,18 @@ public:
      *
      *  @return True if computation is successful, false otherwise.
      */
-    bool computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::Vector2d hk, Eigen::VectorXd &optimalU);
+    bool computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::VectorXd hk, Eigen::VectorXd& optimalU);
+    
+    /**
+     *  Integrates the COM state vector given a COM jerk input
+     * 
+     *  @param comJerk  Input com jerk \f$\mathbf{u}\f$
+     *  @param hk       Current COM state \f$\mathbf{h}_k\f$
+     *  @param hkk      Integrated COM state \f$\mathbf{h}_{k+1}\f$
+     */
+    void integrateComJerk(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk);
+    
+    void tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd ddhk, Eigen::Vector2d& p);
     
     /**
      *  Builds \f$A_h\f$. Called during the member list initialization of the constructor of this class.

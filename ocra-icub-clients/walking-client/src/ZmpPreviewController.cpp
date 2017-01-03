@@ -29,13 +29,23 @@ bool ZmpPreviewController::initialize() {
     return true;
 }
 
-bool ZmpPreviewController::computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::Vector2d hk, Eigen::VectorXd &optimalU) {
+bool ZmpPreviewController::computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::VectorXd hk, Eigen::VectorXd &optimalU) {
     Eigen::MatrixXd A = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
     Eigen::MatrixXd b = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
     optimalU = A.colPivHouseholderQr().solve(b);
     return true;
 }
 
+void ZmpPreviewController::integrateComJerk(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk) {
+    OCRA_INFO("Ah: \n " << Ah);
+    OCRA_INFO("Bh: \n " << Bh);
+    hkk = Ah*hk + Bh*comJerk;
+}
+
+void ZmpPreviewController::tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd ddhk, Eigen::Vector2d& p) {   
+    p = hk - this->cz/this->g * ddhk;
+}
+    
 // ************ Output preview matrices and COM state space matrices ******************
 
 Eigen::MatrixXd ZmpPreviewController::buildAh(const double dt) {
@@ -44,6 +54,7 @@ Eigen::MatrixXd ZmpPreviewController::buildAh(const double dt) {
     Ah.block(0,2,2,2) = dt*Eigen::Matrix2d::Identity();
     Ah.block(0,4,2,2) = (pow(dt,2)/2)*Eigen::Matrix2d::Identity();
     Ah.block(2,4,2,2) = dt*Eigen::Matrix2d::Identity();
+    OCRA_WARNING("Ah just build is: " << Ah);
     return Ah;
 }
 

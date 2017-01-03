@@ -102,7 +102,7 @@ public:
      */
     void performZMPTest(ZmpTestType type);
     
-    void performZMPPreviewTest(ZmpPreviewType type);
+    void performZMPPreviewTest(ZmpTestType type);
 
     /**
      *  Composes a port name with the client name as the suffix. This client name is assumed to be passed through command line options or configuration file as per the policies of yarp's Resource Finder.
@@ -113,6 +113,8 @@ public:
      */
     std::string composePortName(std::string portName);
 
+    void transformStdVectorToEigenVector(std::vector< Eigen::Vector2d >& fullTraj, int from, int Nc, VectorXd& output);
+    
 protected:
     virtual bool initialize();
     virtual void release();
