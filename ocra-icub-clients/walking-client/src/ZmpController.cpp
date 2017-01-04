@@ -116,6 +116,33 @@ void ZmpController::computeh(Eigen::Vector2d prevComPosition, Eigen::Vector2d pr
     intComPosition = prevComPosition + _params->controllerPeriod*prevComVel;
 }
 
+ocra::TaskState ZmpController::computeControl(Eigen::Vector2d comRefPosition, Eigen::Vector2d comRefVelocity)
+{
+    OCRA_INFO("Computing Control");
+    // Prepare desired com state
+    // Desired com velocity
+    Eigen::Vector3d zeroAngVel = Eigen::Vector3d::Zero();
+    Eigen::Vector3d refLinVel; refLinVel << comRefVelocity(0), comRefVelocity(1), 0;
+    Eigen::Twistd refComVelocity( zeroAngVel, refLinVel );
+    OCRA_INFO("Ref Com Velocity twist: " << refComVelocity.transpose());
+    // Desired com position
+    Eigen::Vector3d position;
+    position(0) = comRefPosition(0);
+    position(1) = comRefPosition(1);
+    position(2) = _params->cz;
+    Eigen::VectorXd displacement(7);
+    Eigen::VectorXd orientation(4);
+    orientation << 1.0, 0.0, 0.0, 0.0;
+    displacement << position, orientation;
+    Eigen::Displacementd refComPosition = ocra::util::eigenVectorToDisplacementd(displacement);
+    OCRA_INFO("Ref COM Position: " << refComPosition);
+    ocra::TaskState desiredComState;
+    desiredComState.setVelocity(refComVelocity);
+    desiredComState.setPosition(refComPosition);
+
+    return desiredComState;
+}
+
 void ZmpController::getLeftFootPosition(Eigen::Vector3d &leftFootPosition) {
     leftFootPosition = _model->getSegmentPosition(_model->getSegmentIndex("l_sole")).getTranslation();
 }

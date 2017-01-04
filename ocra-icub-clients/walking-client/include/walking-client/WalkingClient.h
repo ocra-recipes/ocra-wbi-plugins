@@ -113,6 +113,8 @@ public:
      */
     std::string composePortName(std::string portName);
 
+    void transformStdVectorToEigenVector(std::vector< Eigen::Vector2d >& fullTraj, int from, int Nc, VectorXd& output);
+    
 protected:
     virtual bool initialize();
     virtual void release();

@@ -36,6 +36,9 @@
 
 #include <ocra-icub/Utilities.h>
 #include <ocra/util/ErrorsHelper.h>
+#include <ocra/util/EigenUtilities.h>
+#include <ocra/control/TaskState.h>
+#include <ocra-recipes/TaskConnection.h>
 #include <Eigen/Dense>
 #include <vector>
 
@@ -189,6 +192,8 @@ public:
     void computehdd(Eigen::Vector3d comPosition, Eigen::Vector2d globalZMP, Eigen::Vector2d &ddh);
     
     void computeh(Eigen::Vector2d prevComPosition, Eigen::Vector2d prevComVel, Eigen::Vector2d &intComPosition);
+    
+    ocra::TaskState computeControl(Eigen::Vector2d comRefPosition, Eigen::Vector2d comRefVelocity);
 private:
     std::shared_ptr<ZmpControllerParams> _params;
     std::shared_ptr<ocra::Model> _model;
