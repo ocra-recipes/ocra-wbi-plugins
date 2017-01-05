@@ -155,6 +155,8 @@ private:
     yarp::os::BufferedPort<yarp::os::Bottle> _comCurrent;
     yarp::os::BufferedPort<yarp::os::Bottle> _ddcomCurrent;
     yarp::os::BufferedPort<yarp::os::Bottle> _ddcomFromZMP;
+    VectorXd _hkkPrevious;
+    bool _firstLoop;
 
 };
 

@@ -37,12 +37,11 @@ bool ZmpPreviewController::computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::Ve
 }
 
 void ZmpPreviewController::integrateComJerk(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk) {
-    OCRA_INFO("Ah: \n " << Ah);
-    OCRA_INFO("Bh: \n " << Bh);
     hkk = Ah*hk + Bh*comJerk;
 }
 
 void ZmpPreviewController::tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd ddhk, Eigen::Vector2d& p) {   
+    // Another expression is Ch*hkk
     p = hk - this->cz/this->g * ddhk;
 }
     

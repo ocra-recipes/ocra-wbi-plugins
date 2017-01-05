@@ -201,7 +201,9 @@ bool WalkingClient::initialize()
     Eigen::Vector3d initialCOMPosition = this->model->getCoMPosition();
     _zmpParams->cz = initialCOMPosition(2);
     _previousCOM = initialCOMPosition.topRows(2);
-
+    _hkkPrevious.setZero(6);
+    _firstLoop = true;
+    
     OCRA_INFO("Initialization is over");
     return true;
 }
@@ -338,7 +340,10 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     Eigen::VectorXd hkk(6); hkk.setZero();
     //TODO: This should be passed to the initialization method of the walkingClient.
     // Initial value of hkkPrevious equal to the initial state hk
-    static Eigen::VectorXd hkkPrevious(6); hkkPrevious = hk;
+    if (_firstLoop) {
+        _hkkPrevious = hk;
+        _firstLoop = false;
+    }
     Eigen::Vector2d pk; pk.setZero();
     Eigen::Vector2d intddhkk; intddhkk.setZero();
     Eigen::Vector2d inthkk; inthkk.setZero();
@@ -361,15 +366,15 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 //             OCRA_INFO("Optimal input: " << optimalU.transpose() );
             /** Only using the first input computed by the preview controller;
              * This input must now be integrated (since it's just the optimal com jerk)
-             * Should hk be the previously estimated/integrated hkk????
+             * [CHECKED]
              */
-            _zmpPreviewController->integrateComJerk(optimalU.topRows(2), hkkPrevious, hkk);
+            _zmpPreviewController->integrateComJerk(optimalU.topRows(2), _hkkPrevious, hkk);
 //             OCRA_INFO("Integrated state: " << hkk.transpose());
             /** Using the zmp cart model, the instantaneous zmp trajectory can now be
              * computed. For this we'll pass the current com state hk and the integrated 
              * optimal com acceleration.
              */
-             hkkPrevious = hkk;
+             _hkkPrevious = hkk;
              intddhkk = hkk.tail<2>();
              inthkk = hkk.head<2>();
             _zmpPreviewController->tableCartModel(inthkk, intddhkk, pk);
@@ -420,7 +425,9 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, pk).finished(), std::string(homeDir + "previewedZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, inthkk).finished(), std::string(homeDir + "integratedCOM.txt"), true);
 }
+
 
 void WalkingClient::performZMPTest(ZmpTestType type) {
 
