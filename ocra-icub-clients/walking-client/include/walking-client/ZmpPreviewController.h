@@ -398,7 +398,7 @@ private:
     /**
      *  Input matrix \f$\mathbf{H}_h\f$ from the preview horizon of CoMvelocities \f$\tilde{\mathbf{H}}\f$, of size \f$2N_c \times 2N_c\f$ and equal to:
      \f[
-     \mathbf{H}_p = \left[\begin{array}{cccc}
+     \mathbf{H}_h = \left[\begin{array}{cccc}
      \mathbf{C}_h\mathbf{B}_h               &   0                          &  \cdots   &   0 \\
      \mathbf{C}_h\mathbf{A}_h\mathbf{B}_h   &   \mathbf{C}_h\mathbf{B}_h   &  \cdots   &   0 \\
      \vdots                                 & \vdots                       & \ddots    &  \vdots \\

@@ -20,7 +20,9 @@ Hp(buildHp(Cp,Bh,Ah,Nc)),
 Ch(buildCh()),
 Gh(buildGh(Ch,Ah,Nc)),
 Hh(buildHh(Ch,Bh,Ah,Nc))
-{ }
+{ 
+    OCRA_INFO("Parameters passed to ZmpPreviewController: \n cz: " << parameters->cz << " Nc: " << parameters->Nc << " nu " << parameters->nu << " nw: " << parameters->nw << " nb: " << parameters->nb);
+}
 
 ZmpPreviewController::~ZmpPreviewController() {
 }
@@ -53,7 +55,6 @@ Eigen::MatrixXd ZmpPreviewController::buildAh(const double dt) {
     Ah.block(0,2,2,2) = dt*Eigen::Matrix2d::Identity();
     Ah.block(0,4,2,2) = (pow(dt,2)/2)*Eigen::Matrix2d::Identity();
     Ah.block(2,4,2,2) = dt*Eigen::Matrix2d::Identity();
-    OCRA_WARNING("Ah just build is: " << Ah);
     return Ah;
 }
 
@@ -66,6 +67,8 @@ Eigen::MatrixXd ZmpPreviewController::buildBh(const double dt){
 Eigen::MatrixXd ZmpPreviewController::buildCp(const double cz, const double g) {
     Eigen::MatrixXd Cp(2,6);
     Cp << Eigen::Matrix2d::Identity(), Eigen::Matrix2d::Zero(), (-cz/g)*Eigen::Matrix2d::Identity();
+    OCRA_INFO("About to compute Cp with cz: " << cz << "and g: " << g);
+    OCRA_INFO("Cp: \n" << Cp);
     return Cp;
 }
 
@@ -77,6 +80,7 @@ Eigen::MatrixXd ZmpPreviewController::buildGp(Eigen::MatrixXd Cp, Eigen::MatrixX
     for (unsigned int i=0; i<Nc; i++) {
         Gp.block(i*CpRows, 0, CpRows, AhCols) = Cp*Ah.pow(i+1);
     }
+    OCRA_INFO("Gp: \n" << Gp);
     return Gp;
 }
 
@@ -96,6 +100,7 @@ Eigen::MatrixXd ZmpPreviewController::buildHp(Eigen::MatrixXd Cp, Eigen::MatrixX
         Hp.block(j*CpRows, j*BhCols, CpRows*(Nc-j), BhCols) = HpColumn.topRows((Nc-j)*CpRows);
         j=j+1;
     }
+    OCRA_INFO("Hp: \n" << Hp);
     return Hp;
 }
 
