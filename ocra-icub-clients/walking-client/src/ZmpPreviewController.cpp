@@ -35,6 +35,11 @@ bool ZmpPreviewController::computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::Ve
     Eigen::MatrixXd A = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
     Eigen::MatrixXd b = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
     optimalU = A.colPivHouseholderQr().solve(b);
+    
+//     Eigen::MatrixXd tmpIdentity(2*Nc,2*Nc); tmpIdentity.setIdentity();
+//     Eigen::MatrixXd Awieber = Hp.transpose() * Hp + this->nu/this->nb * tmpIdentity;
+//     Eigen::MatrixXd bwieber = Hp.transpose() * (zmpRef - Gp * hk);
+//     optimalU = Awieber.colPivHouseholderQr().solve(bwieber);
     return true;
 }
 
@@ -67,8 +72,8 @@ Eigen::MatrixXd ZmpPreviewController::buildBh(const double dt){
 Eigen::MatrixXd ZmpPreviewController::buildCp(const double cz, const double g) {
     Eigen::MatrixXd Cp(2,6);
     Cp << Eigen::Matrix2d::Identity(), Eigen::Matrix2d::Zero(), (-cz/g)*Eigen::Matrix2d::Identity();
-    OCRA_INFO("About to compute Cp with cz: " << cz << "and g: " << g);
-    OCRA_INFO("Cp: \n" << Cp);
+//     OCRA_INFO("About to compute Cp with cz: " << cz << "and g: " << g);
+//     OCRA_INFO("Cp: \n" << Cp);
     return Cp;
 }
 
@@ -80,7 +85,7 @@ Eigen::MatrixXd ZmpPreviewController::buildGp(Eigen::MatrixXd Cp, Eigen::MatrixX
     for (unsigned int i=0; i<Nc; i++) {
         Gp.block(i*CpRows, 0, CpRows, AhCols) = Cp*Ah.pow(i+1);
     }
-    OCRA_INFO("Gp: \n" << Gp);
+//     OCRA_INFO("Gp: \n" << Gp);
     return Gp;
 }
 
@@ -100,7 +105,7 @@ Eigen::MatrixXd ZmpPreviewController::buildHp(Eigen::MatrixXd Cp, Eigen::MatrixX
         Hp.block(j*CpRows, j*BhCols, CpRows*(Nc-j), BhCols) = HpColumn.topRows((Nc-j)*CpRows);
         j=j+1;
     }
-    OCRA_INFO("Hp: \n" << Hp);
+//     OCRA_INFO("Hp: \n" << Hp);
     return Hp;
 }
 

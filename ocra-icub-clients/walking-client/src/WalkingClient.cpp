@@ -367,6 +367,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 //             OCRA_INFO("Zmp Reference for " << _zmpPreviewParams->Nc << "-sized window is: \n" << zmpRef );
 //             OCRA_INFO("Com Vel Reference: " << comVelRef.transpose());
 //             OCRA_INFO("Current com state: " << hk.transpose());
+            // [CHECKED]
             _zmpPreviewController->computeOptimalInput(zmpRef, comVelRef, hk, optimalU);
             
 //             OCRA_INFO("Optimal input: " << optimalU.transpose() );
