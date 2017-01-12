@@ -40,7 +40,7 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
         _clientName = rf.find("name").asString();
         OCRA_INFO("Client name is: " << _clientName);
     }
-    // Thread period
+    // Robot name
     if (!rf.check("robot")) {
         OCRA_ERROR("Option 'robot' was not specified. Critical error. ");
         return false;
@@ -188,6 +188,7 @@ bool WalkingClient::initialize()
     getFeetSeparation(sep);
     double feetSeparation = sep(1);
     int period = this->getExpectedPeriod();
+    OCRA_WARNING("The zmp sine trajectory will have period: " << period);
     _zmpTrajectory = generateZMPTrajectoryTEST(_tTrans, feetSeparation, period, _amplitudeFraction, _numberOfTransitions);
 
     // If ZMP tests are being run, publish ZMP on port
@@ -239,7 +240,6 @@ void WalkingClient::loop()
         // Specify type of zmp test
         performZMPTest(_zmpTestType);
     } else {
-        OCRA_INFO("ZMP Preview test");
     // Compute ZMPPreviewController optimal input
         performZMPPreviewTest(_zmpTestType);
     }
@@ -321,7 +321,8 @@ void WalkingClient::transformStdVectorToEigenVector(std::vector<Eigen::Vector2d>
 
 void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 {
-    OCRA_INFO("Performing zmp preview test");
+//     OCRA_INFO("Performing zmp preview test");
+    //TODO: Pass most of this shit of the initialization method
     static double timeInit = yarp::os::Time::now();
     Eigen::Vector2d zmpReference;
     // Vector of the next Nc references. Size is 2*Nc because every zmp reference is bidimensional
@@ -339,7 +340,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     hk.head<2>() = h;
     hk.segment<2>(2) = dh;
     hk.tail<2>() = ddh;
-    OCRA_INFO("hk is: " << hk.transpose());
+//     OCRA_INFO("hk is: " << hk.transpose());
     Eigen::VectorXd hkk(6); hkk.setZero();
     //TODO: This should be passed to the initialization method of the walkingClient.
     // Initial value of hkkPrevious equal to the initial state hk
@@ -352,7 +353,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     Eigen::Vector2d inthkk; inthkk.setZero();
     Eigen::Vector2d dhd; dhd.setZero();
     Eigen::Vector2d intComPosition; intComPosition.setZero();
-    double tnow = yarp::os::Time::now();
+    static double tnow = yarp::os::Time::now() - timeInit;
 
     // Transform the following Nc zmp references from the current time step in the std::vector container to a single Eigen::VectorXd
     
@@ -427,7 +428,8 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     Eigen::Vector3d refLinVel( dhd(0), dhd(1), 0 );
     
 //     Write to file for plotting
-    tnow = yarp::os::Time::now() - timeInit;
+    tnow = tnow + this->getEstPeriod()/1000;
+    OCRA_INFO("tnow: " << tnow);
     std::string homeDir = std::string(_homeDataDir + "zmpPreviewController/");
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComLinVel).finished(), std::string(homeDir + "currentComLinVel.txt"),true);
