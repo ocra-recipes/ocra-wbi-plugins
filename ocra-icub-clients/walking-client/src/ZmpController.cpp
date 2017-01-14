@@ -97,13 +97,13 @@ bool ZmpController::computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vect
     error = pd - p;
     dhd = _params->m * (_params->g/_params->cz) * kfVec * error;
     
-    static Eigen::Vector2d previousError = Eigen::Vector2d::Zero();
-    Eigen::Matrix2d kdVec = Eigen::Matrix2d::Identity();
-    kdVec(0,0) = _params->kdx;
-    kdVec(1,1) = _params->kdy;
-    Eigen::Vector2d derivative = (1/_params->controllerPeriod) * kdVec * (error - previousError);
-    previousError = error;
-    dhd += derivative;
+//     static Eigen::Vector2d previousError = Eigen::Vector2d::Zero();
+//     Eigen::Matrix2d kdVec = Eigen::Matrix2d::Identity();
+//     kdVec(0,0) = _params->kdx;
+//     kdVec(1,1) = _params->kdy;
+//     Eigen::Vector2d derivative = (1/_params->controllerPeriod) * kdVec * (error - previousError);
+//     previousError = error;
+//     dhd += derivative;
     
     return true;
 }

@@ -36,7 +36,8 @@ public:
     *              1 - ZMP_VARYING_REFERENCE
     *              2 - COM_LIN_VEL_CONSTANT_REFERENCE
     * Each of these tests are used to evaluate the correct gains to be used at each
-    * level of the control loops. Make sure the flag 'runForTests' is active.
+    * level of the control loops. These trajectorie will be used during the tests 
+    * specified through the option 'test' which takes the values "zmpPreview" or "zmpController".
     * When using this client for the first time on a robot, the gains of the comTask
     * in its corresponding taskSet file must be tuned first as well and later those
     * for the ZmpController class. Therefore we recommend executing this client first
@@ -50,6 +51,8 @@ public:
     * to right, while the robot stands on both feet.
     */
     bool configure(yarp::os::ResourceFinder &rf);
+    
+    void printHelp();
 
     bool readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench);
 
@@ -132,9 +135,11 @@ private:
     Eigen::VectorXd _rawRightFootWrench;
     Eigen::Vector2d _globalZMP;
     Eigen::Vector2d _previousCOM;
+    Eigen::Vector2d _previousCOMVel;
     std::string _clientName;
     std::string _robot;
     bool _isTestRun;
+    std::string _testType;
     ZmpTestType _zmpTestType;
     std::string _homeDataDir;
     double _comYConstVel;

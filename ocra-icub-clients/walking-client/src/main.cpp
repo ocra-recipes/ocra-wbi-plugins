@@ -83,6 +83,7 @@ int main (int argc, char * argv[])
 
     if (rf.check("help"))
     {
+        OCRA_INFO("User requested help...");
         clientManager->printHelp();
         return 0;
     }
