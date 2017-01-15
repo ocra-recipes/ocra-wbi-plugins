@@ -427,6 +427,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
         */
         _hkkPrevious = hkk;
         intddhkk = hkk.tail<2>();
+        intdhkk = hkk.segment<2>(2);
         inthkk = hkk.head<2>();
     _zmpPreviewController->tableCartModel(inthkk, intddhkk, pk);
 
@@ -436,19 +437,19 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
         * velocity are computed to reduce the zmp tracking error.
         */
         // First, compute the corresponding desired velocity
-    _zmpController->computehd(_globalZMP, pk, dhd);
+//     _zmpController->computehd(_globalZMP, pk, dhd);
 
 //             OCRA_INFO("COM velocity reference: " << dhd.transpose());
         // With the previous velocity, compute the corresponding desired com position
-    _zmpController->computeh(_previousCOM, dhd, intComPosition);
+//     _zmpController->computeh(_previousCOM, dhd, intComPosition);
 //             OCRA_INFO("Integrated COM Position: " << intComPosition.transpose());
 
-    _previousCOM = intComPosition;
+//     _previousCOM = intComPosition;
 
     /** Apply control
         *  The ZMP Controller is in charge of computing the control
         */
-    ocra::TaskState desiredState = _zmpController->computeControl(intComPosition, dhd);
+    ocra::TaskState desiredState = _zmpController->computeControl(inthkk, intdhkk);
 //             OCRA_INFO("Going to apply the following state: " << desiredState);
     _comTask->setDesiredTaskStateDirect(desiredState);
 
@@ -463,7 +464,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 //     OCRA_INFO("Current com position " << currentComPos.transpose());
 
 //     Ref. Linear Velocity
-    Eigen::Vector3d refLinVel( dhd(0), dhd(1), 0 );
+    Eigen::Vector3d refLinVel( intdhkk(0), intdhkk(1), 0 );
     
     // Read Force/Torque measurements
     readFootWrench(LEFT_FOOT, _rawLeftFootWrench);
@@ -478,13 +479,12 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     std::string homeDir = std::string(_homeDataDir + "zmpPreviewController/");
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComLinVel).finished(), std::string(homeDir + "currentComLinVel.txt"),true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, intComPosition).finished(), std::string(homeDir + "intComPositionRef.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, inthkk).finished(), std::string(homeDir + "intComPositionRef.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComPos).finished(), std::string(homeDir + "currentComPos.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, _globalZMP).finished(), std::string(homeDir + "currentZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, pk).finished(), std::string(homeDir + "previewedZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, inthkk).finished(), std::string(homeDir + "integratedCOM.txt"), true);
     
     if ( el < _zmpTrajectory.size() )
         el++;
