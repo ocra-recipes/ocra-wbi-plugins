@@ -158,7 +158,7 @@ public:
      *
      *  @return True if computation is successful, false otherwise.
      */
-    bool computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::VectorXd hk, Eigen::VectorXd& optimalU);
+    bool computeOptimalInput(Eigen::VectorXd& zmpRef, Eigen::VectorXd& comVelRef, Eigen::VectorXd hk, Eigen::VectorXd& optimalU);
     
     /**
      *  Integrates the COM state vector given a COM jerk input
@@ -408,6 +408,8 @@ private:
      */
     const Eigen::MatrixXd Hh;
     
+    Eigen::MatrixXd AOptimal;
+    Eigen::MatrixXd bOptimal;
     
     
     

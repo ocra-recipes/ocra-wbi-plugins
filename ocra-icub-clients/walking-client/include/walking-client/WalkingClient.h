@@ -118,6 +118,8 @@ public:
 
     void transformStdVectorToEigenVector(std::vector< Eigen::Vector2d >& fullTraj, int from, int Nc, VectorXd& output);
     
+    std::vector< Eigen::Vector2d > generateZMPStepTrajectoryTEST(double feetSeparation, double period, double duration, double riseTime, double constantReferenceY);
+    
 protected:
     virtual bool initialize();
     virtual void release();
@@ -162,6 +164,9 @@ private:
     yarp::os::BufferedPort<yarp::os::Bottle> _ddcomFromZMP;
     VectorXd _hkkPrevious;
     bool _firstLoop;
+    Eigen::VectorXd zmpRefInPreviewWindow;
+    Eigen::VectorXd comVelRefInPreviewWindow;
+    Eigen::VectorXd optimalU;
 
 };
 
