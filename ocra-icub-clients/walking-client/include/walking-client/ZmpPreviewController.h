@@ -67,6 +67,7 @@
 #include <ocra/util/ErrorsHelper.h>
 #include <Eigen/Dense>
 #include <vector>
+#include <chrono>
 
 
 struct ZmpPreviewParams {
@@ -158,8 +159,26 @@ public:
      *
      *  @return True if computation is successful, false otherwise.
      */
-    bool computeOptimalInput(Eigen::VectorXd& zmpRef, Eigen::VectorXd& comVelRef, Eigen::VectorXd hk, Eigen::VectorXd& optimalU);
-    
+    template <typename Derived>
+    void computeOptimalInput(const Eigen::MatrixBase<Derived>& zmpRef, 
+                             const Eigen::MatrixBase<Derived>& comVelRef, 
+                             const Eigen::MatrixBase<Derived>& hk, 
+                             Eigen::MatrixBase<Derived>& optimalU) {
+//     AOptimal = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
+//     bOptimal = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
+//     optimalU = AOptimal.colPivHouseholderQr().solve(bOptimal);
+        
+//         double start = yarp::os::Time::now();
+//         bOptimal = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
+//         OCRA_INFO("Time to compute bOptimal is: " << yarp::os::Time::now() - start);
+        bOptimal = Hp.transpose() * (zmpRef - Gp * hk);
+//         start = yarp::os::Time::now();
+//         optimalU = AOptimal.colPivHouseholderQr().solve(Hp.transpose() * (bOptimal));
+        // Using Cholesky decomposition
+        optimalU = (AOptimal).llt().solve(bOptimal);
+//         OCRA_INFO("Time to compute optimalU using Cholesky decomposition : " << yarp::os::Time::now() - start);
+    }
+
     /**
      *  Integrates the COM state vector given a COM jerk input
      * 

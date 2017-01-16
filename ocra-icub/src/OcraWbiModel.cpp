@@ -56,6 +56,7 @@ public:
     Eigen::VectorXd                                         upperLimits; // upper q of joints
     Eigen::VectorXd                                         q; // state variable
     Eigen::VectorXd                                         dq; // derivative of q
+    Eigen::VectorXd                                         ddq; // Joint accelerations
     Eigen::VectorXd                                         tau; // joint torques
     Eigen::Displacementd                                    Hroot; // translation of root
     wbi::Frame                                              Hroot_wbi;
@@ -74,6 +75,7 @@ public:
     double                                                  total_mass;
     Eigen::Vector3d                                         pos_com; // COM position
     Eigen::Vector3d                                         vel_com; // COM linear velocity
+    Eigen::Vector3d                                         acc_com; // COM linear acceleration
     Eigen::Vector3d                                         vel_com_angular; // COM angular velocity
     Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        J_com; // Jacobian matrix (col major for ocra control)
     Eigen::MatrixXd                                         J_com_full; // Jacobian matrix (full from WBI control)
@@ -115,6 +117,7 @@ public:
         :nbSegments(nbSeg)
         ,q(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
         ,dq(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
+        ,ddq(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
         ,tau(Eigen::VectorXd::Zero(nDofFree-TRANS_ROT_DIM))
         ,Hroot(Eigen::Displacementd(0,0,1))
         ,Troot(Eigen::Twistd(0,0,0,0,0,0))
@@ -234,6 +237,13 @@ const Eigen::VectorXd& OcraWbiModel::getJointVelocities() const
 {
     // set by setState or setJointVelocities
     return owm_pimpl->dq;
+}
+
+const Eigen::VectorXd& OcraWbiModel::getJointAccelerations() const
+{
+
+    robot->getEstimates(wbi::ESTIMATE_JOINT_ACC, owm_pimpl->ddq.data(), ALL_JOINTS);
+    return owm_pimpl->ddq;
 }
 
 const Eigen::VectorXd& OcraWbiModel::getJointTorques() const
@@ -390,6 +400,12 @@ const Eigen::Vector3d& OcraWbiModel::getCoMVelocity() const
     else
         owm_pimpl->vel_com = getCoMJacobian()*owm_pimpl->dq;
     return owm_pimpl->vel_com;
+}
+
+const Eigen::Vector3d& OcraWbiModel::getCoMAcceleration() const
+{
+    owm_pimpl->acc_com = getCoMJacobian()*owm_pimpl->ddq + getCoMJdotQdot();
+    return owm_pimpl->acc_com;
 }
 
 const Eigen::Vector3d& OcraWbiModel::getCoMAngularVelocity() const

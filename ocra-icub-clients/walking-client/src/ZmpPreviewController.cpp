@@ -22,6 +22,9 @@ Gh(buildGh(Ch,Ah,Nc)),
 Hh(buildHh(Ch,Bh,Ah,Nc))
 { 
     AOptimal = Eigen::MatrixXd(2*Nc,2*Nc).setZero();
+//  Wieber's expression    
+//     AOptimal = Hp.transpose() * Hp + Nu;
+    AOptimal = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
     bOptimal = Eigen::MatrixXd(2*Nc,1).setZero();
     OCRA_INFO("Parameters passed to ZmpPreviewController: \n cz: " << parameters->cz << " Nc: " << parameters->Nc << " nu " << parameters->nu << " nw: " << parameters->nw << " nb: " << parameters->nb);
 }
@@ -30,17 +33,6 @@ ZmpPreviewController::~ZmpPreviewController() {
 }
 
 bool ZmpPreviewController::initialize() {
-    return true;
-}
-
-bool ZmpPreviewController::computeOptimalInput(Eigen::VectorXd &zmpRef, Eigen::VectorXd &comVelRef, Eigen::VectorXd hk, Eigen::VectorXd &optimalU) {
-//     AOptimal = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
-//     bOptimal = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
-//     optimalU = AOptimal.colPivHouseholderQr().solve(bOptimal);
-    
-    AOptimal = Hp.transpose() * Hp + Nu;
-    bOptimal = Hp.transpose() * (zmpRef - Gp * hk);
-    optimalU = AOptimal.colPivHouseholderQr().solve(bOptimal);
     return true;
 }
 

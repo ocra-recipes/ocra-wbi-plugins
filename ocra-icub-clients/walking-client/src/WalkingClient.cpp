@@ -1,5 +1,6 @@
 #include "walking-client/WalkingClient.h"
 
+
 using namespace Eigen;
 
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
@@ -381,7 +382,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     hk.segment<2>(2) = dh;
     hk.tail<2>() = ddh;
     Eigen::VectorXd hkk(6); hkk.setZero();
-    //TODO: This should be passed to the initialization method of the walkingClient.
+    //TODO: if _firstLoop == TRUE, this means I'm using the actual COM instead of the previous ones.
     // Initial value of hkkPrevious equal to the initial state hk
     if (_firstLoop) {
         _hkkPrevious = hk;
@@ -409,9 +410,10 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 //             OCRA_INFO("Com Vel Reference: " << comVelRefInPreviewWindow.transpose());
 //             OCRA_INFO("Current com state: " << hk.transpose());
     // [CHECKED]
-    double timeToComputeOptimalInputIni = yarp::os::Time::now();
+//     auto start = std::chrono::high_resolution_clock::now();
     _zmpPreviewController->computeOptimalInput(zmpRefInPreviewWindow, comVelRefInPreviewWindow, _hkkPrevious, optimalU);
-    OCRA_WARNING("Time to compute optimal input: \n " << yarp::os::Time::now() - timeToComputeOptimalInputIni);
+//     auto stop = std::chrono::high_resolution_clock::now();
+//     OCRA_WARNING("Time to compute optimal input: \n " << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count());
     
 //             OCRA_INFO("Optimal input: " << optimalU.transpose() );
     /** Only using the first input computed by the preview controller;

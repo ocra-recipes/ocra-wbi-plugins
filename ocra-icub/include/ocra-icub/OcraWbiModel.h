@@ -57,6 +57,7 @@ public:
     virtual const Eigen::VectorXd&       getJointUpperLimits      () const;
     virtual const Eigen::VectorXd&       getJointPositions        () const;
     virtual const Eigen::VectorXd&       getJointVelocities       () const;
+    virtual const Eigen::VectorXd&       getJointAccelerations    () const;
     virtual const Eigen::VectorXd&       getJointTorques          () const;
 
     virtual const Eigen::Displacementd&  getFreeFlyerPosition     () const;
@@ -77,6 +78,7 @@ public:
     virtual double                                         getMass            () const;
     virtual const Eigen::Vector3d&                         getCoMPosition     () const;
     virtual const Eigen::Vector3d&                         getCoMVelocity     () const;
+    virtual const Eigen::Vector3d&                         getCoMAcceleration () const;
     virtual const Eigen::Vector3d&                         getCoMJdotQdot     () const;
     virtual const Eigen::Matrix<double,3,Eigen::Dynamic>&  getCoMJacobian     () const;
     virtual const Eigen::Matrix<double,3,Eigen::Dynamic>&  getCoMJacobianDot  () const;
