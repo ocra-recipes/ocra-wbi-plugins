@@ -116,11 +116,12 @@ void ZmpController::computeh(Eigen::Vector2d prevComPosition, Eigen::Vector2d pr
     intComPosition = prevComPosition + _params->controllerPeriod*prevComVel;
 }
 
-ocra::TaskState ZmpController::computeControl(Eigen::Vector2d comRefPosition, Eigen::Vector2d comRefVelocity)
+ocra::TaskState ZmpController::createDesiredState(Eigen::Vector2d comRefPosition, Eigen::Vector2d comRefVelocity, Eigen::Vector2d comRefAcceleration)
 {
 //     OCRA_INFO("Computing Control");
     // Prepare desired com state
     // Desired com velocity
+    //TODO: I can save two of the next lines by creating a twistd ref vel as ocra::util::eigenVectorToTwistd(refLinVel)
     Eigen::Vector3d zeroAngVel = Eigen::Vector3d::Zero();
     Eigen::Vector3d refLinVel; refLinVel << comRefVelocity(0), comRefVelocity(1), 0;
     Eigen::Twistd refComVelocity( zeroAngVel, refLinVel );
@@ -139,6 +140,9 @@ ocra::TaskState ZmpController::computeControl(Eigen::Vector2d comRefPosition, Ei
     ocra::TaskState desiredComState;
     desiredComState.setVelocity(refComVelocity);
     desiredComState.setPosition(refComPosition);
+    
+    Eigen::Vector3d refLinAcc; refLinAcc << comRefAcceleration(0), comRefAcceleration(1), 0;
+    desiredComState.setAcceleration(ocra::util::eigenVectorToTwistd(refLinAcc));
 
     return desiredComState;
 }

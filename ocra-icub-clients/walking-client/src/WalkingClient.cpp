@@ -208,10 +208,11 @@ bool WalkingClient::initialize()
         _zmpTrajectory = generateZMPTrajectoryTEST(_tTrans, feetSeparation, period, _amplitudeFraction, _numberOfTransitions);
     } else {
         if (_zmpTestType == ZMP_CONSTANT_REFERENCE) {
+            //TODO: These parameters should be taken from the proper group of parameteres for the zmpPreviewController
             OCRA_WARNING("A ZMP Step Reference traject will be created");
-            double riseTime = 3;
-            double trajectoryDuration = 8;
-            double constantReferenceY = -0.01;
+            double riseTime = 2;
+            double trajectoryDuration = 15;
+            double constantReferenceY = -0.10;
             _zmpTrajectory = generateZMPStepTrajectoryTEST(feetSeparation, period, trajectoryDuration, riseTime, constantReferenceY);
         }
     }
@@ -377,16 +378,17 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     Eigen::VectorXd hk(6);
     Eigen::Vector2d h = this->model->getCoMPosition().topRows(2);
     Eigen::Vector2d dh = this->model->getCoMVelocity().topRows(2);
-    Eigen::Vector2d ddh; ddh.setZero();
+    //TODO: This acceleration should come from ocraWbiModel instead. 
+    Eigen::Vector2d ddh = this->model->getCoMAcceleration().topRows(2);
     hk.head<2>() = h;
     hk.segment<2>(2) = dh;
     hk.tail<2>() = ddh;
     Eigen::VectorXd hkk(6); hkk.setZero();
-    //TODO: if _firstLoop == TRUE, this means I'm using the actual COM instead of the previous ones.
+    //TODO: if _firstLoop == TRUE, this means I'm using the actual COM instead of the integrated one.
     // Initial value of hkkPrevious equal to the initial state hk
     if (_firstLoop) {
         _hkkPrevious = hk;
-        _firstLoop = false;
+        _firstLoop = true;
     }
     Eigen::Vector2d pk; pk.setZero();
     Eigen::Vector2d intddhkk; intddhkk.setZero();
@@ -433,25 +435,11 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
         inthkk = hkk.head<2>();
     _zmpPreviewController->tableCartModel(inthkk, intddhkk, pk);
 
-//             OCRA_INFO("Preview zmp: " << pk.transpose());
-    /** The zmp controller will now use this instantaneous value as reference.
-        * However, for this reference, a corresponding desired com position and
-        * velocity are computed to reduce the zmp tracking error.
-        */
-        // First, compute the corresponding desired velocity
-//     _zmpController->computehd(_globalZMP, pk, dhd);
-
-//             OCRA_INFO("COM velocity reference: " << dhd.transpose());
-        // With the previous velocity, compute the corresponding desired com position
-//     _zmpController->computeh(_previousCOM, dhd, intComPosition);
-//             OCRA_INFO("Integrated COM Position: " << intComPosition.transpose());
-
-//     _previousCOM = intComPosition;
-
     /** Apply control
-        *  The ZMP Controller is in charge of computing the control
+        *  The ZMP Controller is in charge of preparing the desired state
         */
-    ocra::TaskState desiredState = _zmpController->computeControl(inthkk, intdhkk);
+    //TODO: Move this method createDesiredState from the zmpControllerClass to the zmpPreviewController.
+    ocra::TaskState desiredState = _zmpController->createDesiredState(inthkk, intdhkk, intddhkk);
 //             OCRA_INFO("Going to apply the following state: " << desiredState);
     _comTask->setDesiredTaskStateDirect(desiredState);
 
@@ -487,6 +475,8 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, pk).finished(), std::string(homeDir + "previewedZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, ddh).finished(), std::string(homeDir + "comAcceleration.txt"), true);
+    
     
     if ( el < _zmpTrajectory.size() )
         el++;

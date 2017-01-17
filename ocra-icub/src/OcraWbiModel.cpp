@@ -404,7 +404,7 @@ const Eigen::Vector3d& OcraWbiModel::getCoMVelocity() const
 
 const Eigen::Vector3d& OcraWbiModel::getCoMAcceleration() const
 {
-    owm_pimpl->acc_com = getCoMJacobian()*owm_pimpl->ddq + getCoMJdotQdot();
+    owm_pimpl->acc_com = getCoMJacobian()*this->getJointAccelerations() + getCoMJdotQdot();
     return owm_pimpl->acc_com;
 }
 
