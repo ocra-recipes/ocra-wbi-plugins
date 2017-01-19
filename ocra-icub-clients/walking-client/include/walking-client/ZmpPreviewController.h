@@ -149,7 +149,7 @@ public:
     /**
      Initializes the matrices and parameters used by the controller.
      
-     Currently we are not initializing through this class, but through the constructor.
+     Currently we are not initializing through this method, but through the constructor.
      @return True if successful, false otherwise.
      */
     bool initialize();
@@ -157,16 +157,17 @@ public:
     /**
      *  Computes a horizon of optimal inputs (CoM jerks) to be applied to the system, i.e.:
      *  \f{align*}
-         \mathcal{U}_{k+N|k} &= (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right)
-         \mathcal{U}_{k+N|k} &= \mathbf{A}_{\text{opt}}^-1 \mathbf{b}_{\text{opt}}
+         \mathcal{U}_{k+N|k} &= (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right)\\
+         \mathcal{U}_{k+N|k} &= \mathbf{A}_{\text{opt}}^{-1} \mathbf{b}_{\text{opt}}
          \f}
      *
-     *  This solution is computed through standard Cholesky decomposition. See Eigen::LLT for more details.
+     *  This solution is computed through standard Cholesky decomposition. See Eigen::LLT for more details. Matrix ZmpPreviewController::AOptimal is precomputed by the constructor for efficiency reasons.
      *
-     *  @param zmpRef    \f$\mathbf{P}_r\f$ Horizon of \f$N_c\f$ references.
-     *  @param comVelRef \f$\tilde{\mathbf{H}}_r\f$ Horizon of CoM velocities.
+     *  @param zmpRef    \f$\mathbf{P}_r\f$ Horizon of \f$N_c\f$ ZMP references.
+     *  @param comVelRef \f$\tilde{\mathbf{H}}_r\f$ Horizon of \f$N_c\f$ CoM velocities.
      *  @param hk        Current measured CoM state at time \f$k\f$, i.e. \f$\hat{\mathbf{h}}_k\f$
-     *  @param optimalU  Closed-form solution to the unconstrained QP problem, \f$\mathbf{U}_{k+N_c|k}\f$
+     *  @param optimalU  Closed-form solution to the unconstrained QP problem, \f$\mathcal{U}_{k+N_c|k}\f$
+     *  @see ZmpPreviewController::AOptimal, ZmpPreviewController::bOptimal
      *
      */
     template <typename Derived>
@@ -191,14 +192,32 @@ public:
     }
 
     /**
-     *  Integrates the COM state vector given a COM jerk input
+     *  Integrates the CoM for a given CoM jerk input.
+     *
+     *  \f[
+     *  \mathbf{h}_{k+1} = \mathbf{A}_h \mathbf{h}_k + \mathbf{B}_h \mathbf{u}_k
+     *  \f]
      * 
-     *  @param comJerk  Input com jerk \f$\mathbf{u}\f$
-     *  @param hk       Current COM state \f$\mathbf{h}_k\f$
-     *  @param hkk      Integrated COM state \f$\mathbf{h}_{k+1}\f$
+     *  @param      comJerk  Input com jerk \f$\mathbf{u}_k\f$
+     *  @param      hk       Current COM state \f$\mathbf{h}_k\f$
+     *  @param[out] hkk      Integrated COM state \f$\mathbf{h}_{k+1}\f$
      */
-    void integrateComJerk(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk);
+    void integrateCom(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk);
     
+    
+    /** Computes a simplified model-based ZMP.
+     
+     Computes the zero-moment point given the robot's horizontal CoM acceleration and position, besides
+     a constant CoM height and gravity acceleration.
+
+     @param      hk Horizontal CoM position.
+     @param      ddhk Horizontal CoM acceleration.
+     @param[out] p Computed ZMP.
+     @note       The MPC formulation presented in the description of this controller finds the optimal
+                 inputs (jerks) for the system, not the optimal ZMP trajectory! This is why, if we want
+                 to see what the previewed ZMP reference is, we need to use this table-cart model whose
+                 inputs are to be integrated from the optimal jerks through integrateCom().
+     */
     void tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd ddhk, Eigen::Vector2d& p);
     
     /**
@@ -206,6 +225,7 @@ public:
      *
      *  @param dt Thread period in which this classed in instantiated.
      *  @return The constant matrix Ah.
+     *  @see ZmpPreviewController::Ah
      */
     Eigen::MatrixXd buildAh(const double dt);
     
@@ -214,32 +234,35 @@ public:
      *
      *  @param dt Thread period in which this classed in instantiated.
      *  @return The constant matrix Bh.
+     *  @see ZmpPreviewController::Bh
      */
     Eigen::MatrixXd buildBh(const double dt);
     
     /**
-     *  Builds \f$C_p\f$
+     *  Builds \f$C_p\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param cz Constant CoMheight.
      *  @param g  Constant gravity acceleration (m^2/s)
      *
      *  @return \f$C_p\f$
+     *  @see ZmpPreviewController::Cp
      */
     Eigen::MatrixXd buildCp(const double cz, const double g);
     
     /**
-     *  Builds \f$G_p\f$
+     *  Builds \f$G_p\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param Cp \f$C_p\f$
      *  @param Ah \f$A_h\f$
      *  @param Nc \f$N_c\f$
      *
      *  @return \f$G_p\f$
+     *  @see ZmpPreviewController::Gp
      */
     Eigen::MatrixXd buildGp(Eigen::MatrixXd Cp, Eigen::MatrixXd Ah, const int Nc);
     
     /**
-     *  Builds \f$H_p\f$
+     *  Builds \f$H_p\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param Cp \f$C_p\f$
      *  @param Bh \f$B_h\f$
@@ -247,29 +270,32 @@ public:
      *  @param Nc \f$N_c\f$
      *
      *  @return \f$H_p\f$
+     *  @see ZmpPreviewController::Hp
      */
     Eigen::MatrixXd buildHp(Eigen::MatrixXd Cp, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc);
     
     /**
-     *  Builds \f$C_h\f$
+     *  Builds \f$C_h\f$. Called during the member list initialization of the constructor of this class
      *
      *  @return \f$C_h\f$
+     *  @see ZmpPreviewController::Ch
      */
     Eigen::MatrixXd buildCh();
     
     /**
-     *  Builds \f$G_h\f$
+     *  Builds \f$G_h\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param Ch \f$C_h\f$
      *  @param Ah \f$A_h\f$
      *  @param Nc \f$N_c\f$
      *
      *  @return \f$G_h\f$
+     *  @see ZmpPreviewController::Gh
      */
     Eigen::MatrixXd buildGh(Eigen::MatrixXd Ch, Eigen::MatrixXd Ah, const int Nc);
     
     /**
-     *  Builds \f$H_h\f$
+     *  Builds \f$H_h\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param Ch \f$C_h\f$
      *  @param Bh \f$B_h\f$
@@ -277,36 +303,40 @@ public:
      *  @param Nc \f$N_c\f$
      *
      *  @return \f$H_h\f$
+     *  @see ZmpPreviewController::Hh
      */
     Eigen::MatrixXd buildHh(Eigen::MatrixXd Ch, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc);
     
     /**
-     *  Builds \f$N_u\f$
+     *  Builds \f$N_u\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param nu \f$\eta_u\f$
      *  @param Nc \f$N_c\f$
      *
      *  @return \f$N_u\f$
+     *  @see ZmpPreviewController::Nu
      */
     Eigen::MatrixXd buildNu(const double nu, const int Nc);
     
     /**
-     *  Builds \f$N_w\f$
+     *  Builds \f$N_w\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param nw \f$\eta_w\f$
      *  @param Nc \f$Nc\f$
      *
      *  @return \f$N_w\f$
+     *  @see ZmpPreviewController::Nw
      */
     Eigen::MatrixXd buildNw(const double nw, const int Nc);
     
     /**
-     *  Builds \f$N_b\f$
+     *  Builds \f$N_b\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param nb \f$\eta_b\f$
      *  @param Nc \f$N_c\f$
      *
      *  @return \f$N_b\f$
+     *  @see ZmpPreviewController::Nb
      */
     Eigen::MatrixXd buildNb(const double nb, const int Nc);
     
@@ -376,7 +406,7 @@ private:
     /**
      *  Output matrix \f$C_p\f$ from the linear state process relating ZMP to the CoMdynamics \f$\hat{\mathbf{h}}\f$. It is time-invariant of size \f$2\times6\f$ and equal to:
      \f[
-     \mathbf{C}_h = \left[\begin{array}{ccc}
+     \mathbf{C}_p = \left[\begin{array}{ccc}
      \mathbf{I}_2  &  \mathbf{0}_2  &   -\frac{c_z}{g}\mathbf{I}_2 \\
      \end{array}\right]
      \f]
@@ -417,7 +447,7 @@ private:
     /**
      *  State matrix \f$\mathbf{G}_h\f$  of size \f$2N_c \times 6\f$ from the preview horizon of CoMvelocities. It is constant and equal to:
      \f[
-     \mathbf{G}_p = \left[\begin{array}{c}
+     \mathbf{G}_h = \left[\begin{array}{c}
      \mathbf{C}_h\mathbf{A}_h \\
      \vdots \\
      \mathbf{C}_h\mathbf{A}^{N_c}_h
@@ -438,7 +468,14 @@ private:
      */
     const Eigen::MatrixXd Hh;
     
+    /**
+     *  Matrix \f$\mathbf{A}_{\text{opt}}\f$ in computeOptimalInput().
+     */
     Eigen::MatrixXd AOptimal;
+    
+    /**
+     *  Vector \f$\mathbf{b}_{\text{opt}}\f$ in computeOptimalInput().
+     */
     Eigen::MatrixXd bOptimal;
     
     

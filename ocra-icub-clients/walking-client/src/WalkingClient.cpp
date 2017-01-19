@@ -422,7 +422,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
         * This input must now be integrated (since it's just the optimal com jerk)
         */
     // [CHECKED]
-    _zmpPreviewController->integrateComJerk(optimalU.topRows(2), _hkkPrevious, hkk);
+    _zmpPreviewController->integrateCom(optimalU.topRows(2), _hkkPrevious, hkk);
 
 //             OCRA_INFO("Integrated state: " << hkk.transpose());
     /** Using the zmp cart model, the instantaneous zmp trajectory can now be

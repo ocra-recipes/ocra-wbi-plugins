@@ -36,7 +36,7 @@ bool ZmpPreviewController::initialize() {
     return true;
 }
 
-void ZmpPreviewController::integrateComJerk(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk) {
+void ZmpPreviewController::integrateCom(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk) {
     hkk = Ah*hk + Bh*comJerk;
 }
 
