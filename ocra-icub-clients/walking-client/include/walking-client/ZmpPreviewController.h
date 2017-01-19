@@ -11,16 +11,10 @@
  *
  *  \warning Work in progress! This is still a barebone class in the process of being tested.
  *
- *  \details Given a rough ZMP trajectory and a corresponding consistent CoMvelocity, this class computes at a fast rate optimal CoMjerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoMtracking objective in order to minimize the error over a preview horizon to reference CoMvelocities. This preview controller solves with
- 
- \f[
- \mathcal{U}_{k+N|k} = (\mathbf{u}_{k|k}, ... , \mathbf{u})
- \f]
- 
- Denoting a horizon of input CoMjerks \f$\mathbf{u}\f$, the following problem:
+ *  \details Given a rough ZMP trajectory and a corresponding consistent CoM horizontal velocity, this class computes at a fast rate optimal CoM jerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoM velocity tracking objective in order to minimize the error over a preview horizon to reference CoM velocities. This preview controller solves the following problem in a time window of size \f$N_c\f$
  
  \f{align*}
- \underset{\mathcal{U}_{k+N|k}}{\text{min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_u || \mathbf{u} ||^2 \\
+ \mathcal{U}_{k+N_c|k}^* = \underset{\mathcal{U}_{k+N_c|k}}{\text{arg min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_u || \mathbf{u} ||^2 \\
  \text{such that}&\\
  \mathbf{p} &= \mathbf{h} - \mathbf{c}\mathbf{e}_2 \mathbf{\ddot{h}} \\
  \mathbf{\hat{h}}_{k+j+1|k} &= \mathbf{A}_h \hat{\mathbf{h}}_{k+j|k} + \mathbf{B}_h \mathbf{u}_{k+j+1|k} \\
@@ -28,9 +22,9 @@
  \mathbf{h} &= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2
  \f}
  
- Where \f$\mathbf{p}\f$ are horizontal ZMP coordinates, \f$ \mathbf{r}^r \f$ ZMP references (in walking-client is the interpolated ZMP reference from the walking MIQP problem) \f$ \mathbf{\dot{h}} \f$ the horizontal CoMvelocity, \f$ \mathbf{\dot{h}}^r \f$ CoMhorizontal velocity reference (in walking-client it's the interpolated CoMvelocity reference from the walking MIQP problem). \f$\mathbf{u}\f$ are the input CoMjerks, \f$\mathbf{c}\f$ the three-dimensional CoMposition. \f$h\f$ the horizonal CoMposition, \f$\hat{\mathbf{h}}\f$ the horizontal CoMstate \f$ (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) \f$ and \f$\mathbf{e}_2\f$ the vertical unit vectory \f$ [0\;0\;1]^T\f$. \f$\mathbf{A}_h\f$ and \f$\mathbf{B}_h\f$ are integration matrices.
+ Where \f${U}_{k+N_c|k}^*\f$ is the optimal horizon of inputs, \f$\mathbf{p}\f$ is the horizontal ZMP coordinate, \f$ \mathbf{r}^r \f$ ZMP references (in `walking-client` it's the interpolated ZMP reference from the walking MIQP problem) \f$ \mathbf{\dot{h}} \f$ the horizontal CoM velocity, \f$ \mathbf{\dot{h}}^r \f$ CoM horizontal velocity reference (in walking-client it's the interpolated CoM velocity reference from the walking MIQP problem). \f$\mathbf{u}\f$ is the input CoM jerk, \f$\mathbf{c}\f$ the three-dimensional CoM position. The horizontal CoM state is denoted \f$\hat{\mathbf{h}} = (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) \f$  (CoM horizontal position, velocity and acceleration respectively) while \f$\mathbf{e}_2\f$ is the vertical unit vector \f$ [0\;0\;1]^T\f$. \f$\mathbf{A}_h\f$ and \f$\mathbf{B}_h\f$ are integration matrices.
  
- The previously described problem is an unconstrained QP problem which has a closed-form solution. In order to help us find one, the same minimization problem will be expressed in matrix form as:
+ The previously described problem is an unconstrained QP problem which has a closed-form solution. The same can be expressed in matrix form as:
  
  \f[
  \underset{\mathbf{U}}{\text{min}} \; (\mathbf{P}_r - \mathbf{P})^T \mathbf{N}_b (\mathbf{P}_r - \mathbf{P}) + (\tilde{\mathbf{H}}_r - \mathbf{H})^T\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{H}) + \mathbf{U}^T\mathbf{N}_u \mathbf{U}
@@ -192,7 +186,7 @@ public:
     }
 
     /**
-     *  Integrates the CoM for a given CoM jerk input.
+     *  Integrates the CoM for a given CoM jerk input. Integration matrices \f$\mathbf{A}_h\f$ and \f$\mathbf{b}_h\f$ are precomputed by the constructor of this class.
      *
      *  \f[
      *  \mathbf{h}_{k+1} = \mathbf{A}_h \mathbf{h}_k + \mathbf{B}_h \mathbf{u}_k
@@ -201,6 +195,7 @@ public:
      *  @param      comJerk  Input com jerk \f$\mathbf{u}_k\f$
      *  @param      hk       Current COM state \f$\mathbf{h}_k\f$
      *  @param[out] hkk      Integrated COM state \f$\mathbf{h}_{k+1}\f$
+     *  @see                 buildAh(), buildBh()
      */
     void integrateCom(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk);
     
