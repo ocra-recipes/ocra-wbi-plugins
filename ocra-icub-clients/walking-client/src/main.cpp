@@ -48,10 +48,23 @@ int main (int argc, char * argv[])
         return -1;
     }
 
+    yLog.info() << "Resource finder stuff";
+    yarp::os::ResourceFinder rf;
+    rf.setVerbose(true);
+    rf.setDefaultConfigFile("walking-client.ini"); //default config file name.
+    rf.setDefaultContext("walking-client"); //when no parameters are given to the module this is the default context
+    rf.configure(argc,argv);
+
+    int loopPeriod;
+    if (!rf.check("period")) {
+        OCRA_WARNING("Option 'period' [ms] was not specified. Using default 10ms ");
+        loopPeriod = 10;
+    } else {
+        loopPeriod = rf.find("period").asInt();
+    }
+    
     yLog.info() << "Making model initializer";
     ocra_icub::ModelInitializer modelIni = ocra_icub::ModelInitializer();
-
-    int loopPeriod = 10;
 
     std::shared_ptr<ocra_recipes::ControllerClient> ctrlClient;
     yLog.info() << "Making controller client";
@@ -67,15 +80,10 @@ int main (int argc, char * argv[])
     yLog.info() << "Making client manager";
     clientManager = std::make_shared<ocra_recipes::ClientManager>(ctrlClient);
 
-    yLog.info() << "Resource finder stuff";
-    yarp::os::ResourceFinder rf;
-    rf.setVerbose(true);
-    rf.setDefaultConfigFile("walking-client.ini"); //default config file name.
-    rf.setDefaultContext("walking-client"); //when no parameters are given to the module this is the default context
-    rf.configure(argc,argv);
 
     if (rf.check("help"))
     {
+        OCRA_INFO("User requested help...");
         clientManager->printHelp();
         return 0;
     }

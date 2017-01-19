@@ -193,7 +193,7 @@ public:
     
     void computeh(Eigen::Vector2d prevComPosition, Eigen::Vector2d prevComVel, Eigen::Vector2d &intComPosition);
     
-    ocra::TaskState computeControl(Eigen::Vector2d comRefPosition, Eigen::Vector2d comRefVelocity);
+    ocra::TaskState createDesiredState(Eigen::Vector2d comRefPosition, Eigen::Vector2d comRefVelocity, Eigen::Vector2d comRefAcceleration);
 private:
     std::shared_ptr<ZmpControllerParams> _params;
     std::shared_ptr<ocra::Model> _model;

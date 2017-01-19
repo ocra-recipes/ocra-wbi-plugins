@@ -67,6 +67,7 @@
 #include <ocra/util/ErrorsHelper.h>
 #include <Eigen/Dense>
 #include <vector>
+#include <chrono>
 
 
 struct ZmpPreviewParams {
@@ -138,28 +139,57 @@ public:
     /**
      *  Class constructor. Builds all the time-invariant matrices used to compute the optimal output of the preview controller.
          @param period       Period (in ms) of the thread in which an object of this class is created.
-         @param parameters   An object containing the main parameters. \see struct ZmpPreviewParams for details.
+         @param parameters   An object containing the main parameters. \see struct ZmpPreviewParams for details on the parameters.
      */
     ZmpPreviewController(const double period, std::shared_ptr<ZmpPreviewParams> parameters);
     
     virtual ~ZmpPreviewController();
     
+    
+    /**
+     Initializes the matrices and parameters used by the controller.
+     
+     Currently we are not initializing through this class, but through the constructor.
+     @return True if successful, false otherwise.
+     */
     bool initialize();
     
     /**
-     *  Computes the optimal input, i.e.:
-     *  \f[
-         \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right)
-         \f]
-     *  @param zmpRef    \f$\mathbf{P}_r\f$
-     *  @param comVelRef \f$\tilde{\mathbf{H}}_r\f$
-     *  @param hk        CoMstate at time \f$k\f$, i.e. \f$\hat{\mathbf{h}}_k\f$
+     *  Computes a horizon of optimal inputs (CoM jerks) to be applied to the system, i.e.:
+     *  \f{align*}
+         \mathcal{U}_{k+N|k} &= (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right)
+         \mathcal{U}_{k+N|k} &= \mathbf{A}_{\text{opt}}^-1 \mathbf{b}_{\text{opt}}
+         \f}
+     *
+     *  This solution is computed through standard Cholesky decomposition. See Eigen::LLT for more details.
+     *
+     *  @param zmpRef    \f$\mathbf{P}_r\f$ Horizon of \f$N_c\f$ references.
+     *  @param comVelRef \f$\tilde{\mathbf{H}}_r\f$ Horizon of CoM velocities.
+     *  @param hk        Current measured CoM state at time \f$k\f$, i.e. \f$\hat{\mathbf{h}}_k\f$
      *  @param optimalU  Closed-form solution to the unconstrained QP problem, \f$\mathbf{U}_{k+N_c|k}\f$
      *
-     *  @return True if computation is successful, false otherwise.
      */
-    bool computeOptimalInput(Eigen::VectorXd zmpRef, Eigen::VectorXd comVelRef, Eigen::VectorXd hk, Eigen::VectorXd& optimalU);
-    
+    template <typename Derived>
+    void computeOptimalInput(const Eigen::MatrixBase<Derived>& zmpRef, 
+                             const Eigen::MatrixBase<Derived>& comVelRef, 
+                             const Eigen::MatrixBase<Derived>& hk, 
+                             Eigen::MatrixBase<Derived>& optimalU) {
+//     AOptimal = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
+//     bOptimal = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
+//     optimalU = AOptimal.colPivHouseholderQr().solve(bOptimal);
+        
+//         double start = yarp::os::Time::now();
+        //TODO: Remember that the bOptimal I have to use is actually the next line, not Weiber's because it doesn't take into account com velocity references.
+//         bOptimal = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
+//         OCRA_INFO("Time to compute bOptimal is: " << yarp::os::Time::now() - start);
+        bOptimal = Hp.transpose() * (zmpRef - Gp * hk);
+//         start = yarp::os::Time::now();
+//         optimalU = AOptimal.colPivHouseholderQr().solve(Hp.transpose() * (bOptimal));
+        // Using Cholesky decomposition
+        optimalU = (AOptimal).llt().solve(bOptimal);
+//         OCRA_INFO("Time to compute optimalU using Cholesky decomposition : " << yarp::os::Time::now() - start);
+    }
+
     /**
      *  Integrates the COM state vector given a COM jerk input
      * 
@@ -398,7 +428,7 @@ private:
     /**
      *  Input matrix \f$\mathbf{H}_h\f$ from the preview horizon of CoMvelocities \f$\tilde{\mathbf{H}}\f$, of size \f$2N_c \times 2N_c\f$ and equal to:
      \f[
-     \mathbf{H}_p = \left[\begin{array}{cccc}
+     \mathbf{H}_h = \left[\begin{array}{cccc}
      \mathbf{C}_h\mathbf{B}_h               &   0                          &  \cdots   &   0 \\
      \mathbf{C}_h\mathbf{A}_h\mathbf{B}_h   &   \mathbf{C}_h\mathbf{B}_h   &  \cdots   &   0 \\
      \vdots                                 & \vdots                       & \ddots    &  \vdots \\
@@ -408,6 +438,8 @@ private:
      */
     const Eigen::MatrixXd Hh;
     
+    Eigen::MatrixXd AOptimal;
+    Eigen::MatrixXd bOptimal;
     
     
     

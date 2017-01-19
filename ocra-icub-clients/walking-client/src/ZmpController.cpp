@@ -97,13 +97,13 @@ bool ZmpController::computehd(Eigen::Vector2d p, Eigen::Vector2d pd, Eigen::Vect
     error = pd - p;
     dhd = _params->m * (_params->g/_params->cz) * kfVec * error;
     
-    static Eigen::Vector2d previousError = Eigen::Vector2d::Zero();
-    Eigen::Matrix2d kdVec = Eigen::Matrix2d::Identity();
-    kdVec(0,0) = _params->kdx;
-    kdVec(1,1) = _params->kdy;
-    Eigen::Vector2d derivative = (1/_params->controllerPeriod) * kdVec * (error - previousError);
-    previousError = error;
-    dhd += derivative;
+//     static Eigen::Vector2d previousError = Eigen::Vector2d::Zero();
+//     Eigen::Matrix2d kdVec = Eigen::Matrix2d::Identity();
+//     kdVec(0,0) = _params->kdx;
+//     kdVec(1,1) = _params->kdy;
+//     Eigen::Vector2d derivative = (1/_params->controllerPeriod) * kdVec * (error - previousError);
+//     previousError = error;
+//     dhd += derivative;
     
     return true;
 }
@@ -116,15 +116,16 @@ void ZmpController::computeh(Eigen::Vector2d prevComPosition, Eigen::Vector2d pr
     intComPosition = prevComPosition + _params->controllerPeriod*prevComVel;
 }
 
-ocra::TaskState ZmpController::computeControl(Eigen::Vector2d comRefPosition, Eigen::Vector2d comRefVelocity)
+ocra::TaskState ZmpController::createDesiredState(Eigen::Vector2d comRefPosition, Eigen::Vector2d comRefVelocity, Eigen::Vector2d comRefAcceleration)
 {
-    OCRA_INFO("Computing Control");
+//     OCRA_INFO("Computing Control");
     // Prepare desired com state
     // Desired com velocity
+    //TODO: I can save two of the next lines by creating a twistd ref vel as ocra::util::eigenVectorToTwistd(refLinVel)
     Eigen::Vector3d zeroAngVel = Eigen::Vector3d::Zero();
     Eigen::Vector3d refLinVel; refLinVel << comRefVelocity(0), comRefVelocity(1), 0;
     Eigen::Twistd refComVelocity( zeroAngVel, refLinVel );
-    OCRA_INFO("Ref Com Velocity twist: " << refComVelocity.transpose());
+//     OCRA_INFO("Ref Com Velocity twist: " << refComVelocity.transpose());
     // Desired com position
     Eigen::Vector3d position;
     position(0) = comRefPosition(0);
@@ -135,10 +136,13 @@ ocra::TaskState ZmpController::computeControl(Eigen::Vector2d comRefPosition, Ei
     orientation << 1.0, 0.0, 0.0, 0.0;
     displacement << position, orientation;
     Eigen::Displacementd refComPosition = ocra::util::eigenVectorToDisplacementd(displacement);
-    OCRA_INFO("Ref COM Position: " << refComPosition);
+//     OCRA_INFO("Ref COM Position: " << refComPosition);
     ocra::TaskState desiredComState;
     desiredComState.setVelocity(refComVelocity);
     desiredComState.setPosition(refComPosition);
+    
+    Eigen::Vector3d refLinAcc; refLinAcc << comRefAcceleration(0), comRefAcceleration(1), 0;
+    desiredComState.setAcceleration(ocra::util::eigenVectorToTwistd(refLinAcc));
 
     return desiredComState;
 }
