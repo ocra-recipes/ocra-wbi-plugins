@@ -52,10 +52,22 @@ public:
     */
     bool configure(yarp::os::ResourceFinder &rf);
     
+    
+    /**
+     Prints a list of options accepted by the client.
+     */
     void printHelp();
 
-    bool readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench);
+    
+    /**
+     Reads the raw wrench published for the corresponding analog force/torque sensors in iCub's feet.
 
+     @param whichFoot For which foot is the measurement read.
+     @param rawWrench Result of the reading.
+     @return True if reading is successful, false otherwise.
+     */
+    bool readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench);
+    
     yarp::os::BufferedPort<yarp::sig::Vector> portWrenchLeftFoot;
 
     yarp::os::BufferedPort<yarp::sig::Vector> portWrenchRightFoot;
@@ -99,27 +111,67 @@ public:
     bool publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &port, Eigen::Vector3d &value);
 
     /**
-     *  Performs one of three possible ZMP tests:
+     *  Performs a zmp test for the specified type of trajectory.
      *
      *  @param type See ZmpTestType for possible options.
+     *  @note To be deprecated as the zmp controller became unnecessary.
      */
     void performZMPTest(ZmpTestType type);
     
+    
+    /**
+     Performs a zmpPreviewTest for assessing and tuning of its parameters. This test has been succesfully performed with the iCub platform on Gazebo using the following configuration set in walking-client.ini:
+    
+         |  Parameter  | Value |
+         | ----------: | :-----|
+         |         Nc  | 200   |
+         |         nw  | 0.0   |
+         |         nb  | 1.0   |
+         |         nu  | 1e-6  |
+
+     @param type Trajectory type. \see ZmpTestType.
+     */
     void performZMPPreviewTest(ZmpTestType type);
 
     /**
      *  Composes a port name with the client name as the suffix. This client name is assumed to be passed through command line options or configuration file as per the policies of yarp's Resource Finder.
      *
      *  @param portName Name of the port without backslashes. e.g. "zmpError:o"
-     *
      *  @return A client-name-prepended port name, e.g. "/walkingClient/zmpError:o"
      */
     std::string composePortName(std::string portName);
 
+    
+    /**
+     Takes an std::Vector of ZMP trajectories at time \f$k\f$ and outputs the ZMP samples from time \f$k\f$ until \f$k + N_c\f$s, i.e. the ZMP preview window.
+
+     @param fullTraj Vector of horizontal ZMP positions.
+     @param from Index in the vector corresponding to the current time instant.
+     @param Nc Length of the preview window.
+     @param output ZMP samples in the preview window.
+     */
     void transformStdVectorToEigenVector(std::vector< Eigen::Vector2d >& fullTraj, int from, int Nc, VectorXd& output);
     
+    
+    /**
+     Generates a step-like zmp trajectory for testing/assessment purposes. This assumes a world reference frame with positive x axis pointing forward and positive z axis pointing up.
+
+     @param feetSeparation Separation between the feet.
+     @param period Thread period in ms.
+     @param duration Duration of the trajectory in seconds.
+     @param riseTime Time in seconds at which the step should happen.
+     @param constantReferenceY Value of the
+     @return Vector of horizontal ZMP positions.
+     */
     std::vector< Eigen::Vector2d > generateZMPStepTrajectoryTEST(double feetSeparation, double period, double duration, double riseTime, double constantReferenceY);
     
+    
+    /**
+     Prepares an object of type ocra::TaskState with the com state passed to this method and when doSet is true, applies the control to the robot.
+
+     @param comState 6-dim CoM state vector (horizontal dynamics).
+     @param doSet True if the desired state is to be set. False otherwise.
+     */
     void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet);
     
 protected:

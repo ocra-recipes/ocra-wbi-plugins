@@ -132,7 +132,7 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
     // Find ZMP_CONSTANT_REFERENCE group
     if (!rf.check("ZMP_CONSTANT_REFERENCE")) {
         OCRA_WARNING("Group ZMP_CONSTANT_REFERENCE was not found, using default parameters zmpYConstRef=-0.10, stopTimeConstZmp=3");
-        _zmpYConstRef = 0.10;
+        _zmpYConstRef = 0.010;
         _stopTimeConstZmp = 3;
     } else {
         yarp::os::Property zmpConstantReferenceGroup;
@@ -267,7 +267,7 @@ void WalkingClient::loop()
                 performZMPTest(_zmpTestType);
         } else if
             (!_testType.compare("zmpPreview")) {
-                // Track a sinusoidal zmp trajectory using a zmp preview controller
+                // Track a zmp trajectory using a zmp preview controller
                 performZMPPreviewTest(_zmpTestType);
         } else
             OCRA_ERROR("You want to perform a zmp test, but neither zmpPreview or zmpController were passed as values for the option 'test'. Please try again... ");
@@ -395,28 +395,25 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 
     zmpReference = _zmpTrajectory[el];
 
-    /** Transform the following Nc zmp references from the current time step in the std::vector container to a single Eigen::VectorXd */
+    // Transform the following Nc zmp references from the current time step in the std::vector container to a single Eigen::VectorXd
     transformStdVectorToEigenVector(_zmpTrajectory, el, _zmpPreviewParams->Nc, zmpRefInPreviewWindow);
 
-    /** Compute optimal input in preview window for the next Nc zmp references */
+    // Compute optimal input in preview window for the next Nc zmp references
     _zmpPreviewController->computeOptimalInput(zmpRefInPreviewWindow, comVelRefInPreviewWindow, hk, optimalU);
     
-    /** Only using the first input computed by the preview controller;
-      * This input must now be integrated (since it's just the optimal com jerk)
-      */
+    // Only using the first input computed by the preview controller;
+    // This input must now be integrated (since it's just the optimal com jerk)
     _zmpPreviewController->integrateCom(optimalU.topRows(2), hk, hkk);
 
-    /** Using the zmp cart model, the instantaneous zmp trajectory can now be
-      * computed. For this we'll pass the current full com state hk.
-      */
+    // Using the zmp cart model, the instantaneous zmp trajectory can now be
+    // computed. For this we'll pass the current full com state hk.
     intddhkk = hkk.tail<2>();
     intdhkk = hkk.segment<2>(2);
     inthkk = hkk.head<2>();
     _zmpPreviewController->tableCartModel(hkk, pk);
     
-    /** Apply control
-      * Preprare the desired com state and apply control!
-      */
+    // Apply control
+    // Prepare the desired com state and apply control!
     prepareAndsetDesiredCoMTaskState(hkk, true);
 
     // Read actual state
@@ -438,6 +435,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 
 
     // Write to file for plotting
+    //TODO: Watch out! if the thread doesn't respect the desired period, then your plots will look horizontally scaled!
     tnow = tnow + this->getEstPeriod()/1000;
     std::string homeDir = std::string(_homeDataDir + "zmpPreviewController/");
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
@@ -450,7 +448,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, ddh).finished(), std::string(homeDir + "comAcceleration.txt"), true);
     
-    
+    //TODO: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
     if ( el < _zmpTrajectory.size() )
         el++;
     else
