@@ -220,6 +220,8 @@ public:
      */
     void tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd ddhk, Eigen::Vector2d& p);
     
+    void tableCartModel(Eigen::VectorXd hkk, Eigen::Vector2d& p);
+    
     /**
      *  Builds \f$A_h\f$. Called during the member list initialization of the constructor of this class.
      *

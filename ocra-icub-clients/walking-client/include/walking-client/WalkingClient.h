@@ -120,6 +120,8 @@ public:
     
     std::vector< Eigen::Vector2d > generateZMPStepTrajectoryTEST(double feetSeparation, double period, double duration, double riseTime, double constantReferenceY);
     
+    void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet);
+    
 protected:
     virtual bool initialize();
     virtual void release();

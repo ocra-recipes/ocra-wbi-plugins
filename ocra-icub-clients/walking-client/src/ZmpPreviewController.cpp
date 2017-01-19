@@ -41,8 +41,11 @@ void ZmpPreviewController::integrateCom(Eigen::VectorXd comJerk, Eigen::VectorXd
 }
 
 void ZmpPreviewController::tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd ddhk, Eigen::Vector2d& p) {   
-    // Another expression is Ch*hkk
     p = hk - this->cz/this->g * ddhk;
+}
+
+void ZmpPreviewController::tableCartModel(Eigen::VectorXd hkk, Eigen::Vector2d& p) {   
+    p = this->Cp * hkk;
 }
     
 // ************ Output preview matrices and COM state space matrices ******************

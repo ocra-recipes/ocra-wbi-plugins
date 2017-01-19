@@ -378,18 +378,11 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     Eigen::VectorXd hk(6);
     Eigen::Vector2d h = this->model->getCoMPosition().topRows(2);
     Eigen::Vector2d dh = this->model->getCoMVelocity().topRows(2);
-    //TODO: This acceleration should come from ocraWbiModel instead. 
     Eigen::Vector2d ddh = this->model->getCoMAcceleration().topRows(2);
     hk.head<2>() = h;
     hk.segment<2>(2) = dh;
     hk.tail<2>() = ddh;
     Eigen::VectorXd hkk(6); hkk.setZero();
-    //TODO: if _firstLoop == TRUE, this means I'm using the actual COM instead of the integrated one.
-    // Initial value of hkkPrevious equal to the initial state hk
-    if (_firstLoop) {
-        _hkkPrevious = hk;
-        _firstLoop = true;
-    }
     Eigen::Vector2d pk; pk.setZero();
     Eigen::Vector2d intddhkk; intddhkk.setZero();
     Eigen::Vector2d inthkk; inthkk.setZero();
@@ -398,62 +391,42 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     Eigen::Vector2d intComPosition; intComPosition.setZero();
     Eigen::Vector3d feetSeparation; feetSeparation.setZero();    
     static double tnow = yarp::os::Time::now() - timeInit;
-
-    // Transform the following Nc zmp references from the current time step in the std::vector container to a single Eigen::VectorXd
-
     static int el = 0;
 
     zmpReference = _zmpTrajectory[el];
 
-    // Compute optimal input in preview window for the next Nc zmp references
-    // [CHECKED]
+    /** Transform the following Nc zmp references from the current time step in the std::vector container to a single Eigen::VectorXd */
     transformStdVectorToEigenVector(_zmpTrajectory, el, _zmpPreviewParams->Nc, zmpRefInPreviewWindow);
-//             OCRA_INFO("Zmp Reference for " << _zmpPreviewParams->Nc << "-sized window is: \n" << zmpRef );
-//             OCRA_INFO("Com Vel Reference: " << comVelRefInPreviewWindow.transpose());
-//             OCRA_INFO("Current com state: " << hk.transpose());
-    // [CHECKED]
-//     auto start = std::chrono::high_resolution_clock::now();
-    _zmpPreviewController->computeOptimalInput(zmpRefInPreviewWindow, comVelRefInPreviewWindow, _hkkPrevious, optimalU);
-//     auto stop = std::chrono::high_resolution_clock::now();
-//     OCRA_WARNING("Time to compute optimal input: \n " << std::chrono::duration_cast<std::chrono::milliseconds>(stop - start).count());
+
+    /** Compute optimal input in preview window for the next Nc zmp references */
+    _zmpPreviewController->computeOptimalInput(zmpRefInPreviewWindow, comVelRefInPreviewWindow, hk, optimalU);
     
-//             OCRA_INFO("Optimal input: " << optimalU.transpose() );
     /** Only using the first input computed by the preview controller;
-        * This input must now be integrated (since it's just the optimal com jerk)
-        */
-    // [CHECKED]
-    _zmpPreviewController->integrateCom(optimalU.topRows(2), _hkkPrevious, hkk);
+      * This input must now be integrated (since it's just the optimal com jerk)
+      */
+    _zmpPreviewController->integrateCom(optimalU.topRows(2), hk, hkk);
 
-//             OCRA_INFO("Integrated state: " << hkk.transpose());
     /** Using the zmp cart model, the instantaneous zmp trajectory can now be
-        * computed. For this we'll pass the current com state hk and the integrated
-        * optimal com acceleration.
-        */
-        _hkkPrevious = hkk;
-        intddhkk = hkk.tail<2>();
-        intdhkk = hkk.segment<2>(2);
-        inthkk = hkk.head<2>();
-    _zmpPreviewController->tableCartModel(inthkk, intddhkk, pk);
-
+      * computed. For this we'll pass the current full com state hk.
+      */
+    intddhkk = hkk.tail<2>();
+    intdhkk = hkk.segment<2>(2);
+    inthkk = hkk.head<2>();
+    _zmpPreviewController->tableCartModel(hkk, pk);
+    
     /** Apply control
-        *  The ZMP Controller is in charge of preparing the desired state
-        */
-    //TODO: Move this method createDesiredState from the zmpControllerClass to the zmpPreviewController.
-    ocra::TaskState desiredState = _zmpController->createDesiredState(inthkk, intdhkk, intddhkk);
-//             OCRA_INFO("Going to apply the following state: " << desiredState);
-    _comTask->setDesiredTaskStateDirect(desiredState);
-
+      * Preprare the desired com state and apply control!
+      */
+    prepareAndsetDesiredCoMTaskState(hkk, true);
 
     // Read actual state
     Eigen::Vector3d currentComLinVel;
     currentComLinVel = _comTask->getTaskState().getVelocity().getLinearVelocity();
-//     OCRA_INFO("Current com lin vel " << currentComLinVel.transpose());
 
     Eigen::Vector3d currentComPos;
     currentComPos = _comTask->getTaskState().getPosition().getTranslation();
-//     OCRA_INFO("Current com position " << currentComPos.transpose());
 
-//     Ref. Linear Velocity
+    // Ref. Linear Velocity
     Eigen::Vector3d refLinVel( intdhkk(0), intdhkk(1), 0 );
     
     // Read Force/Torque measurements
@@ -464,7 +437,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     _zmpController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, _globalZMP);
 
 
-//     Write to file for plotting
+    // Write to file for plotting
     tnow = tnow + this->getEstPeriod()/1000;
     std::string homeDir = std::string(_homeDataDir + "zmpPreviewController/");
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
@@ -482,6 +455,26 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
         el++;
     else
         this->askToStop();
+
+}
+
+void WalkingClient::prepareAndsetDesiredCoMTaskState(VectorXd comState, bool doSet)
+{
+    ocra::TaskState desiredComState;
+
+    Eigen::Vector3d comRefPosition; 
+    comRefPosition << comState.head<2>(), _zmpPreviewParams->cz;
+    Eigen::Vector3d comRefVelocity; 
+    comRefVelocity << comState.segment<2>(2), 0;
+    Eigen::Vector3d comRefAcceleration;
+    comRefAcceleration << comState.tail<2>(), 0;
+    
+    if (doSet) {
+        desiredComState.setPosition(ocra::util::eigenVectorToDisplacementd(comRefPosition));
+        desiredComState.setVelocity(ocra::util::eigenVectorToTwistd(comRefVelocity));
+        desiredComState.setAcceleration(ocra::util::eigenVectorToTwistd(comRefAcceleration));
+        _comTask->setDesiredTaskStateDirect(desiredComState);
+    }
 
 }
 
