@@ -240,6 +240,10 @@ bool WalkingClient::initialize()
     // Allocation of optimal input vector
     optimalU = Eigen::VectorXd(2*_zmpPreviewParams->Nc);
 
+    // Set task's Kp and Kd to 0 from the client, since this task will receive pure accelerations
+    _comTask->setStiffness(0);
+    _comTask->setDamping(0);
+    
     OCRA_INFO("Initialization is over");
     return true;
 }
@@ -373,24 +377,22 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 {
     //TODO: Pass most of this shit to the initialization method
     static double timeInit = yarp::os::Time::now();
+    static double tnow = yarp::os::Time::now() - timeInit;
+    static int el = 0;
+
     Eigen::Vector2d zmpReference;
     // Retrieve current COM state
     Eigen::VectorXd hk(6);
-    Eigen::Vector2d h = this->model->getCoMPosition().topRows(2);
-    Eigen::Vector2d dh = this->model->getCoMVelocity().topRows(2);
-    Eigen::Vector2d ddh = this->model->getCoMAcceleration().topRows(2);
+    hk.head<2>() = this->model->getCoMPosition().topRows(2);
+    hk.segment<2>(2) = this->model->getCoMVelocity().topRows(2);
+    hk.tail<2>() = this->model->getCoMAcceleration().topRows(2);
     //TODO: Try to get the task state instead of pos, vel and acc individually.
     //_comTask->getTaskState();
-    hk.head<2>() = h;
-    hk.segment<2>(2) = dh;
-    hk.tail<2>() = ddh;
     Eigen::VectorXd hkk(6); hkk.setZero();
     Eigen::Vector2d pk; pk.setZero();
     Eigen::Vector2d intddhkk; intddhkk.setZero();
     Eigen::Vector2d inthkk; inthkk.setZero();
     Eigen::Vector2d intdhkk; intdhkk.setZero();
-    static double tnow = yarp::os::Time::now() - timeInit;
-    static int el = 0;
 
     zmpReference = _zmpTrajectory[el];
 
@@ -406,14 +408,14 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 
     // Using the zmp cart model, the instantaneous zmp trajectory can now be
     // computed. For this we'll pass the current full com state hk.
-    intddhkk = hkk.tail<2>();
-    intdhkk = hkk.segment<2>(2);
     inthkk = hkk.head<2>();
+    intdhkk = hkk.segment<2>(2);
+    intddhkk = hkk.tail<2>() + 0.010*optimalU.topRows(2);
+    hkk.tail<2>() = intddhkk;
     _zmpPreviewController->tableCartModel(hkk, pk);
     
     // Apply control
     // Prepare the desired com state and apply control!
-    //TODO: Make kp = 0 and kd = 0 in the CoM task description (walkingClient.xml) and set the integrated acceleration only
     prepareAndsetDesiredCoMTaskState(hkk, true);
 
     // Read actual state
@@ -446,7 +448,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, pk).finished(), std::string(homeDir + "previewedZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, ddh).finished(), std::string(homeDir + "comAcceleration.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, hk.tail<2>()).finished(), std::string(homeDir + "comAcceleration.txt"), true);
     
     //TODO: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
     if ( el < _zmpTrajectory.size() )
@@ -460,18 +462,19 @@ void WalkingClient::prepareAndsetDesiredCoMTaskState(VectorXd comState, bool doS
 {
     ocra::TaskState desiredComState;
 
-    Eigen::Vector3d comRefPosition; 
-    comRefPosition << comState.head<2>(), _zmpPreviewParams->cz;
-    Eigen::Vector3d comRefVelocity; 
-    comRefVelocity << comState.segment<2>(2), 0;
+//     Eigen::Vector3d comRefPosition; 
+//     comRefPosition << comState.head<2>(), _zmpPreviewParams->cz;
+//     Eigen::Vector3d comRefVelocity; 
+//     comRefVelocity << comState.segment<2>(2), 0;
     Eigen::Vector3d comRefAcceleration;
     comRefAcceleration << comState.tail<2>(), 0;
     
     if (doSet) {
-        desiredComState.setPosition(ocra::util::eigenVectorToDisplacementd(comRefPosition));
-        desiredComState.setVelocity(ocra::util::eigenVectorToTwistd(comRefVelocity));
+//         desiredComState.setPosition(ocra::util::eigenVectorToDisplacementd(comRefPosition));
+//         desiredComState.setVelocity(ocra::util::eigenVectorToTwistd(comRefVelocity));
         desiredComState.setAcceleration(ocra::util::eigenVectorToTwistd(comRefAcceleration));
-        _comTask->setDesiredTaskStateDirect(desiredComState);
+//         _comTask->setDesiredTaskStateDirect(desiredComState);
+        _comTask->setDesiredTaskState(desiredComState);
     }
 
 }
