@@ -379,6 +379,8 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     Eigen::Vector2d h = this->model->getCoMPosition().topRows(2);
     Eigen::Vector2d dh = this->model->getCoMVelocity().topRows(2);
     Eigen::Vector2d ddh = this->model->getCoMAcceleration().topRows(2);
+    //TODO: Try to get the task state instead of pos, vel and acc individually.
+    //_comTask->getTaskState();
     hk.head<2>() = h;
     hk.segment<2>(2) = dh;
     hk.tail<2>() = ddh;
@@ -387,9 +389,6 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     Eigen::Vector2d intddhkk; intddhkk.setZero();
     Eigen::Vector2d inthkk; inthkk.setZero();
     Eigen::Vector2d intdhkk; intdhkk.setZero();
-    Eigen::Vector2d dhd; dhd.setZero();
-    Eigen::Vector2d intComPosition; intComPosition.setZero();
-    Eigen::Vector3d feetSeparation; feetSeparation.setZero();    
     static double tnow = yarp::os::Time::now() - timeInit;
     static int el = 0;
 
@@ -414,6 +413,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     
     // Apply control
     // Prepare the desired com state and apply control!
+    //TODO: Make kp = 0 and kd = 0 in the CoM task description (walkingClient.xml) and set the integrated acceleration only
     prepareAndsetDesiredCoMTaskState(hkk, true);
 
     // Read actual state
