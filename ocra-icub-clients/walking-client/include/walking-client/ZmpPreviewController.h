@@ -61,7 +61,6 @@
 #include <ocra/util/ErrorsHelper.h>
 #include <Eigen/Dense>
 #include <vector>
-#include <chrono>
 
 
 struct ZmpPreviewParams {
@@ -95,36 +94,19 @@ struct ZmpPreviewParams {
                      double cz,
                      double nu,
                      double nw,
-                     double nb
-                     /*std::vector<Eigen::Vector2d> Pr,
-                     std::vector<Eigen::Vector2d> Hr*/):
+                     double nb):
     Nc(Nc),
     cz(cz),
     nu(nu),
     nw(nw),
-    nb(nb)
-/*    Pr(Pr),
-    Hr(Hr)*/{}
+    nb(nb){}
     
-    /**
-     *  Helper function to transform Pr or Hr into a serialized vector of references.
-     *
-     *  @param ref vector of Nc references.
-     *  @return Serialized references in one single column vector.
-     *  @note Currently unused.
-     */
-//     Eigen::MatrixXd serializeReference(std::vector<Eigen::Vector2d> ref) {
-//         Eigen::MatrixXd output;
-//         output.resize(2*Nc,1);
-//         unsigned int k = 0;
-//         for (auto it=ref.begin() ; it != ref.end(); ++it) {
-//             output.block(k*2, 0, 2, 1) = *it;
-//             k++;
-//         }
-//         return output;
-//     }
 };
 
+enum FOOT {
+    LEFT_FOOT,
+    RIGHT_FOOT
+};
 
 
 class ZmpPreviewController
@@ -336,6 +318,81 @@ public:
      *  @see ZmpPreviewController::Nb
      */
     Eigen::MatrixXd buildNb(const double nb, const int Nc);
+    
+    /**
+     *  Computes the ZMP for a single foot in world reference frame.
+     *
+     *  Assuming that \f$\mathbf{p}\f$ is the position of the ZMP for a single foot, \f$\mathbf{p}_s\f$ the position of a force torque (F/T) sensor at the foot, the ZMP position can be computed as:
+     \f[
+     \left[\begin{array}{c}p_x \\
+     p_y \end{array}\right] = \frac{1}{f_z}
+     \left[\begin{array}{cccccc}
+     -p_{s_z} & 0 & p_{s_x} & 0 & -1 & 0 \\
+     0 & -p_{s_z} & p_{s_y} & 1 & 0 & 0
+     \end{array}\right]
+     \left[\begin{array}{c}
+     \mathbf{f}\\
+     \mathbf{\tau}
+     \end{array}\right]
+     \f]
+     
+     *
+     *  @param whichFoot        LEFT_FOOT or RIGHT_FOOT.
+     *  @param wrench           External wrench on the foot as read by the F/T sensors.
+     *  @param[out] footZMP     Foot ZMP in world reference frame.
+     *  @param[out] wrenchInWorldRef Transformed wrench in world reference frame.
+     *  @param tolerance        Tolerance value below which the ZMP is considered null.
+     *  @cite                   Kajita2014Intro
+     *
+     *  @return True if all operations proceed successfully.
+     */
+    bool computeFootZMP(FOOT whichFoot,
+                        Eigen::VectorXd wrench,
+                        Eigen::Vector2d &footZMP,
+                        Eigen::VectorXd &wrenchInWorldRef,
+                        ocra::Model::Ptr model,
+                        const double tolerance=1e-3);
+
+    
+    /**
+     *  Computes the global ZMP for two feet in contact.
+     *
+     *  After obtaining the ZMP position for both feet \f$\mathbf{p}_R\f$ and \f$\mathbf{p}_L\f$ independently and expressed in the world reference frame, in the case where both feet are in contact with the ground (or just one), the global expression of the ZMP \f$\mathbf{p}\f$ expressed in the world reference frame is:
+     \f[
+     \left[\begin{array}{c}
+     p_x\\
+     p_y
+     \end{array}\right] =
+     \frac{1}{f_{R_z} + f_{L_z}}
+     \left[\begin{array}{cc}
+     \mathbf{p}_R & \mathbf{p}_L
+     \end{array}\right]
+     \left[\begin{array}{c}
+     f_{R_z}\\
+     f_{L_z}
+     \end{array}\right]
+     \f]
+     *
+     *  @param rawLeftFootWrench  Raw left foot wrench as read from the sensors [force | torque]
+     *  @param rawRightFootWrench Raw right foot wrench as read from the sensors.
+     *  @param globalZMP          Global zmp in world reference frame considering both feet.
+     @  @cite                     Kajita2014Intro
+     *
+     *  @return True if all operations succeed, false otherwise.
+     */
+    bool computeGlobalZMPFromSensors(Eigen::VectorXd rawLeftFootWrench,
+                                     Eigen::VectorXd rawRightFootWrench,
+                                     ocra::Model::Ptr model,
+                                     Eigen::Vector2d &globalZMP);
+    
+    /**
+     *  Retrieves the FT sensor adjoint matrix expressed in the world reference frame which multiplied by the local measurement of the sensor gives you the measurement in the world reference.
+     *
+     *  @param whichFoot LEFT_FOOT or RIGHT_FOOT
+     *  @param[out] T         Adjoint matrix.
+     */
+    void getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T, Eigen::Vector3d &sensorPosition, ocra::Model::Ptr model);
+
     
 private:
     /**

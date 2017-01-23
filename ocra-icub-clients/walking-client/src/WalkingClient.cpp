@@ -5,15 +5,6 @@ using namespace Eigen;
 
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod),
-_zmpParams(std::make_shared<ZmpControllerParams>(1e-4,
-                                                 1.5e-4,
-                                                 1e-6,
-                                                 5e-4,
-                                                 model->getMass(),
-                                                 (model->getCoMPosition()).operator()(2),
-                                                 9.8,
-                                                 (double) loopPeriod/1000)),
-_zmpController(std::make_shared<ZmpController>(loopPeriod, modelPtr, _zmpParams)),
 _zmpPreviewParams(std::make_shared<ZmpPreviewParams>(3,
                                                      (model->getCoMPosition()).operator()(2),
                                                      1e-3,
@@ -68,20 +59,6 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
     } else {
         _isTestRun = true;
         _testType = rf.find("test").asString();
-    }
-
-    // Find ZMP Controller paramaters
-    if (!rf.check("ZMP_CONTROLLER_PARAMS")) {
-        OCRA_WARNING("Group of options ZMP_CONTROLLER_PARAMS was not found, using default parameters kpx = 1e-4, kpy = 1.5e-4, kdx = 1e-6, kdy = 5e-4, g 9.8");
-    } else {
-        yarp::os::Property zmpControllerParamsGroup;
-        zmpControllerParamsGroup.fromString(rf.findGroup("ZMP_CONTROLLER_PARAMS").tail().toString());
-        _zmpParams->kfx = zmpControllerParamsGroup.find("kfx").asDouble();
-        _zmpParams->kfy = zmpControllerParamsGroup.find("kfy").asDouble();
-        _zmpParams->kdx = zmpControllerParamsGroup.find("kdx").asDouble();
-        _zmpParams->kdy = zmpControllerParamsGroup.find("kdy").asDouble();
-        _zmpParams->g = zmpControllerParamsGroup.find("g").asDouble();
-        OCRA_INFO(">> [ZMP_CONTROLLER_PARAMS]: \n " << zmpControllerParamsGroup.toString().c_str());
     }
 
     yarp::os::Time::delay(2);
@@ -192,7 +169,7 @@ bool WalkingClient::initialize()
     }
 
 
-    // CoM TaskConnection object. This is the task object through which the CoM velocity will be set by this controller.
+    // CoM TaskConnection object. This is the task object through which the CoM acceleration will be set by this controller.
     std::string comTaskName("ComTask");
     _comTask = std::make_shared<ocra_recipes::TaskConnection>(comTaskName);
     _comTask->openControlPorts();
@@ -218,7 +195,6 @@ bool WalkingClient::initialize()
     }
     
     Eigen::Vector3d initialCOMPosition = this->model->getCoMPosition();
-    _zmpParams->cz = initialCOMPosition(2);
     _previousCOM = initialCOMPosition.topRows(2);
     _previousCOMVel = this->model->getCoMVelocity().topRows(2);
     _hkkPrevious.setZero(6);
@@ -229,7 +205,7 @@ bool WalkingClient::initialize()
     readFootWrench(RIGHT_FOOT, _rawRightFootWrench);
 
     // Compute ZMP
-    _zmpController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, _globalZMP);
+    _zmpPreviewController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, this->model, _globalZMP);
 
     // Vector of the next Nc references. Size is 2*Nc because every zmp reference is bidimensional
     zmpRefInPreviewWindow = Eigen::VectorXd(2*_zmpPreviewParams->Nc);
@@ -250,31 +226,18 @@ bool WalkingClient::initialize()
 
 void WalkingClient::release()
 {
-//     if (_isTestRun)
-//     {
-//         _zmpPort.close();
-//         _dcomErrorPort.close();
-//         _dComDesPort.close();
-//         _zmpDesPort.close();
-//         _zmpCurPort.close();
-//         _comCurrent.close();
-//         _ddcomCurrent.close();
-//         _ddcomFromZMP.close();
-//     }
 }
 
 void WalkingClient::loop()
 {
     if (_isTestRun) {
-        if (!_testType.compare("zmpController")) {
-                // Track a sinusoidal zmp trajectory using a zmp controller
-                performZMPTest(_zmpTestType);
-        } else if
-            (!_testType.compare("zmpPreview")) {
-                // Track a zmp trajectory using a zmp preview controller
-                performZMPPreviewTest(_zmpTestType);
-        } else
-            OCRA_ERROR("You want to perform a zmp test, but neither zmpPreview or zmpController were passed as values for the option 'test'. Please try again... ");
+        if (!_testType.compare("zmpPreview")) {
+            // Track a zmp trajectory using a zmp preview controller
+            performZMPPreviewTest(_zmpTestType);
+        } else {
+            OCRA_ERROR("You want to perform a zmp test, but zmpPreview was not found as value for the option 'test'. Please try again... ");
+            this->askToStop();
+        }
     }
 }
 
@@ -306,7 +269,7 @@ std::vector< Eigen::Vector2d > WalkingClient::generateZMPStepTrajectoryTEST(doub
     double tmp;
     while (t < duration) {
         if (t < riseTime) {
-            //TODO: This minus (-) is assuming that the world reference frame is always on the left foot!
+            //WARNING: This minus (-) is assuming that the world reference frame is always on the left foot!
             stepReference(1) = -feetSeparation/2;
         } else {
             stepReference(1) = constantReferenceY;
@@ -359,18 +322,12 @@ bool WalkingClient::publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &
 
 void WalkingClient::transformStdVectorToEigenVector(std::vector<Eigen::Vector2d> &fullTraj, int from, int Nc, Eigen::VectorXd &output)
 {
-//     if (output.RowsAtCompileTime != 2*Nc) {
-//         OCRA_ERROR("The output vector has the wrong size!");
-//         this->askToStop();
-//     }
-
     int k = 0;
     for (int i=from; i<=from+Nc-1; i++) {
         output(k) = fullTraj[i].operator()(0);
         output(k+1) = fullTraj[i].operator()(1);
         k = k + 2;
     }
-
 }
 
 void WalkingClient::performZMPPreviewTest(ZmpTestType type)
@@ -433,7 +390,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     readFootWrench(RIGHT_FOOT, _rawRightFootWrench);
 
     // Compute ZMP
-    _zmpController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, _globalZMP);
+    _zmpPreviewController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, this->model, _globalZMP);
 
 
     // Write to file for plotting
@@ -479,122 +436,7 @@ void WalkingClient::prepareAndsetDesiredCoMTaskState(VectorXd comState, bool doS
 
 }
 
-
-void WalkingClient::performZMPTest(ZmpTestType type) {
-
-    static int el = 0;
-    static double timeInit = yarp::os::Time::now();
-    double tnow = yarp::os::Time::now() - timeInit;
-    Eigen::Vector3d feetSeparation; feetSeparation.setZero();
-    
-    Eigen::Vector2d constantZMPRef;
-    Eigen::Vector3d constantRefLinVel;
-    Eigen::Vector2d zmpReference; zmpReference.setZero();
-    Eigen::Vector2d dhd; dhd.setZero();
-    Eigen::Vector2d ddh; ddh.setZero();
-    Eigen::Vector2d hdes; hdes.setZero();
-    Eigen::Vector2d intComPosition; intComPosition.setZero();
-
-
-    switch (type) {
-        case ZMP_CONSTANT_REFERENCE:
-            this->getFeetSeparation(feetSeparation);
-            zmpReference(1) = -feetSeparation(1)/2; 
-            if (tnow > 3)
-                zmpReference(1) = _zmpYConstRef;
-//             zmpReference  << 0, _zmpYConstRef, 0;
-            _zmpController->computehd(_globalZMP, zmpReference, dhd);
-            if (tnow > _stopTimeConstZmp) {
-                OCRA_WARNING("Stopping client for ZMP_CONSTANT_REFERENCE test");
-                this->askToStop();
-            }
-            break;
-        case COM_LIN_VEL_CONSTANT_REFERENCE:
-            constantRefLinVel << 0, _comYConstVel, 0;
-            // Stop sending this constant reference after 2 seconds.
-            if (tnow > _stopTimeConstComVel) {
-                constantRefLinVel(1) = 0.0;
-                OCRA_WARNING("Stopping client for COM_LIN_VEL_CONSTANT_REFERENCE");
-                this->askToStop();
-            }
-            dhd = constantRefLinVel.topRows(2);
-            break;
-        case ZMP_VARYING_REFERENCE:
-            zmpReference = _zmpTrajectory[el];
-            _zmpController->computehd(_globalZMP, zmpReference, dhd);
-            if ( el < _zmpTrajectory.size() ){
-                el++;
-            }
-            if (tnow > _stopTimeVaryingZmp) {
-                OCRA_WARNING("Stopping client for ZMP_VARYING_REFERENCE test");
-                this->askToStop();
-            }
-            break;
-        default:
-            break;
-    }
-
-    // Integrate from the computed COM velocity the desired COM position
-    _zmpController->computeh(_previousCOM, _previousCOMVel, intComPosition);
-    _previousCOMVel = dhd;
-    _previousCOM = intComPosition;
-//     _zmpController->computehdd((Eigen::Vector3d() << intComPosition, 0).finished(), zmpReference, ddh);
-
-
-    // Prepare desired com state
-    // Desired com velocity
-    Eigen::Vector3d zeroAngVel = Eigen::Vector3d::Zero();
-    Eigen::Vector3d refLinVel( _previousCOMVel(0), _previousCOMVel(1), 0 );
-    Eigen::Twistd refComVelocity( zeroAngVel, refLinVel );
-
-    // Desired com acceleration
-//    Eigen::Vector3d zeroAngAcc = Eigen::Vector3d::Zero();
-//    Eigen::Vector3d refLinAcc( ddh(0), ddh(1), 0 );
-//    Eigen::Twistd refComAcceleration( zeroAngAcc, refLinAcc );
-
-    // Desired com position
-    Eigen::Vector3d position;
-    position(0) = intComPosition(0);
-    position(1) = intComPosition(1);
-    position(2) = _zmpParams->cz;
-    Eigen::VectorXd displacement(7);
-    Eigen::VectorXd orientation(4);
-    orientation << 1.0, 0.0, 0.0, 0.0;
-    displacement << position, orientation;
-    Eigen::Displacementd refComPosition = ocra::util::eigenVectorToDisplacementd(displacement);
-
-    // Apply CONTROL
-    _desiredComState.setVelocity(refComVelocity);
-    _desiredComState.setPosition(refComPosition);
-    _comTask->setDesiredTaskStateDirect(_desiredComState);
-
-    // Read actual state
-    Eigen::Vector3d currentComLinVel;
-    currentComLinVel = _comTask->getTaskState().getVelocity().getLinearVelocity();
-
-    Eigen::Vector3d currentComPos;
-    currentComPos = _comTask->getTaskState().getPosition().getTranslation();
-
-    // Read Force/Torque measurements
-    readFootWrench(LEFT_FOOT, _rawLeftFootWrench);
-    readFootWrench(RIGHT_FOOT, _rawRightFootWrench);
-
-    // Compute ZMP
-    _zmpController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, _globalZMP);
-
-    // Write to file for plotting
-    tnow = tnow + this->getEstPeriod()/1000;
-    std::string homeDir = std::string(_homeDataDir + "zmpController/");
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComLinVel).finished(), std::string(homeDir + "currentComLinVel.txt"),true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, intComPosition).finished(), std::string(homeDir + "intComPositionRef.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComPos).finished(), std::string(homeDir + "currentComPos.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, _globalZMP).finished(), std::string(homeDir + "currentZMP.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
-
-}
-
- std::string WalkingClient::composePortName(std::string portName) {
+std::string WalkingClient::composePortName(std::string portName) {
     std::string tmp;
     tmp = std::string("/" + _clientName + "/" + portName);
     return tmp;

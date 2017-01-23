@@ -44,6 +44,85 @@ void ZmpPreviewController::tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd dd
     p = hk - this->cz/this->g * ddhk;
 }
 
+bool ZmpPreviewController::computeFootZMP(FOOT whichFoot,
+                                   Eigen::VectorXd wrench,
+                                   Eigen::Vector2d &footZMP,
+                                   Eigen::VectorXd &wrenchInWorldRef,
+                                   ocra::Model::Ptr model,
+                                   const double tolerance) {
+    Eigen::MatrixXd adjointTransposed;
+    Eigen::Vector3d sensorPosition;
+    switch (whichFoot) {
+        case LEFT_FOOT:
+            getFTSensorAdjointMatrix(whichFoot, adjointTransposed, sensorPosition, model);
+            break;
+        case RIGHT_FOOT:
+            getFTSensorAdjointMatrix(whichFoot, adjointTransposed, sensorPosition, model);
+            break;
+        default:
+            break;
+    }
+    
+    wrenchInWorldRef = adjointTransposed * wrench;
+    
+    // If abs(f_z) < tolerance
+    if (fabs(wrenchInWorldRef(2)) < tolerance) {
+        footZMP.setZero();
+        return true;
+    }
+    
+    // Build matrix A stablishing the linear relationship between the foot wrench and its zmp
+    Eigen::MatrixXd A(2,6);
+    A << ((-sensorPosition(2))*Eigen::Matrix2d::Identity()), sensorPosition.topRows(2), (Eigen::Matrix2d() << 0, -1, 1, 0).finished(), Eigen::Vector2d::Zero();
+    double fz = wrenchInWorldRef(2);
+    
+    footZMP = (1/fz)*A*wrenchInWorldRef;
+    return true;
+}
+
+bool ZmpPreviewController::computeGlobalZMPFromSensors(Eigen::VectorXd rawLeftFootWrench,
+                                                Eigen::VectorXd rawRightFootWrench,
+                                                ocra::Model::Ptr model,
+                                                Eigen::Vector2d &globalZMP) {
+    // Compute ZMP for left foot
+    Eigen::Vector2d leftFootZmp; leftFootZmp.setZero();
+    Eigen::VectorXd leftWrenchInWorld(6); leftWrenchInWorld.setZero();
+    computeFootZMP(LEFT_FOOT, rawLeftFootWrench, leftFootZmp, leftWrenchInWorld, model);
+    
+    // Compute ZMP for right foot
+    Eigen::Vector2d rightFootZmp; rightFootZmp.setZero();
+    Eigen::VectorXd rightWrenchInWorld(6); rightWrenchInWorld.setZero();
+    computeFootZMP(RIGHT_FOOT, rawRightFootWrench, rightFootZmp, rightWrenchInWorld, model);
+    
+    Eigen::Vector2d fVecz;
+    fVecz << rightWrenchInWorld(2), leftWrenchInWorld(2);
+    double divisor = 1/(fVecz(0) + fVecz(1));
+    globalZMP = divisor*(Eigen::MatrixXd(2,2) << rightFootZmp, leftFootZmp).finished() * fVecz;
+    
+
+    return true;
+}
+
+void ZmpPreviewController::getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T, Eigen::Vector3d &sensorPosition, ocra::Model::Ptr model) {
+    std::string prefixFoot;
+    switch (whichFoot) {
+        case LEFT_FOOT:
+            prefixFoot = "l_";
+            break;
+        case RIGHT_FOOT:
+            prefixFoot = "r_";
+            break;
+        default:
+            break;
+    }
+    
+    Eigen::Displacementd sensorPoseInWorld = model->getSegmentPosition(std::string(prefixFoot + "foot"));
+//    std::cout << prefixFoot + "Foot sensor is at: " << std::endl << sensorPoseInWorld.getTranslation().transpose() << std::endl;
+    sensorPosition = sensorPoseInWorld.getTranslation();
+    T = sensorPoseInWorld.adjoint().transpose();
+    
+}
+
 void ZmpPreviewController::tableCartModel(Eigen::VectorXd hkk, Eigen::Vector2d& p) {   
     p = this->Cp * hkk;
 }

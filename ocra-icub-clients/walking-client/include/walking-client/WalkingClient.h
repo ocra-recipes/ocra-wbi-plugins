@@ -6,7 +6,6 @@
 #include <ocra-recipes/ControllerClient.h>
 #include <ocra/util/EigenUtilities.h>
 #include "walking-client/ZmpPreviewController.h"
-#include "walking-client/ZmpController.h"
 #include <ocra/util/FileOperations.h>
 #include <yarp/os/Time.h>
 
@@ -180,8 +179,6 @@ protected:
     virtual void loop();
 
 private:
-    std::shared_ptr<ZmpControllerParams> _zmpParams;
-    std::shared_ptr<ZmpController> _zmpController;
     std::shared_ptr<ZmpPreviewParams> _zmpPreviewParams;
     std::shared_ptr<ZmpPreviewController> _zmpPreviewController;
     std::shared_ptr<ocra_recipes::TaskConnection> _comTask;
