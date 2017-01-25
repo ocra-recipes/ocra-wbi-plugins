@@ -3,6 +3,7 @@
  *  \details
  *  \author     [Ryan Lober](http://www.ryanlober.com)
  *  \author     [Antoine Hoarau](http://ahoarau.github.io)
+ *  \author     [Jorhabib Eljaik](https://github.com/jeljaik)
  *  \date       Feb 2016
  *  \copyright  GNU General Public License.
  */

@@ -6,17 +6,9 @@
 #include <ocra-recipes/ControllerClient.h>
 #include <ocra/util/EigenUtilities.h>
 #include "walking-client/ZmpPreviewController.h"
+#include "walking-client/StepController.h"
 #include <ocra/util/FileOperations.h>
 #include <yarp/os/Time.h>
-
-/**
- Performs tests helpful to tune the gains used by the zmp and zmp preview controllers as well as the COM task. See configure() for additional information.
- */
-enum ZmpTestType {
-    ZMP_CONSTANT_REFERENCE=0, /*Constant zmp reference (step setpoint). Can be specified through config file with value 0.*/
-    ZMP_VARYING_REFERENCE, /*Sinusoidal zmp reference. The parameters can be specified through config file with value 1.*/
-    COM_LIN_VEL_CONSTANT_REFERENCE /*Constant COM linear velocity. The zmp controller does nothing. Used to tuned the com task level gains.*/
-};
 
 class WalkingClient : public ocra_recipes::ControllerClient
 {
@@ -117,7 +109,7 @@ public:
      */
     void performZMPTest(ZmpTestType type);
     
-    
+
     /**
      Performs a zmpPreviewTest for assessing and tuning of its parameters. This test has been succesfully performed with the iCub platform on Gazebo using the following configuration set in walking-client.ini:
     
@@ -173,6 +165,8 @@ public:
      */
     void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet);
     
+    
+    
 protected:
     virtual bool initialize();
     virtual void release();
@@ -182,6 +176,7 @@ private:
     std::shared_ptr<ZmpPreviewParams> _zmpPreviewParams;
     std::shared_ptr<ZmpPreviewController> _zmpPreviewController;
     std::shared_ptr<ocra_recipes::TaskConnection> _comTask;
+    std::shared_ptr<StepController> _stepController;
     std::vector<Eigen::Vector2d> _zmpTrajectory;
     ocra::TaskState _desiredComState;
     Eigen::VectorXd _rawLeftFootWrench;

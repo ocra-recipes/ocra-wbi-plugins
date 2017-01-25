@@ -220,12 +220,17 @@ bool WalkingClient::initialize()
     _comTask->setStiffness(0);
     _comTask->setDamping(0);
     
+    // Prepare feet cartesian tasks
+    _stepController = std::make_shared<StepController>(period, this->model );
+    _stepController->initialize();
+    
     OCRA_INFO("Initialization is over");
     return true;
 }
 
 void WalkingClient::release()
 {
+    _stepController->stop();
 }
 
 void WalkingClient::loop()
@@ -266,7 +271,6 @@ std::vector< Eigen::Vector2d > WalkingClient::generateZMPStepTrajectoryTEST(doub
     std::vector<Eigen::Vector2d> zmpTrajectory;
     Eigen::Vector2d stepReference = Eigen::Vector2d::Zero();
     double t = 0;
-    double tmp;
     while (t < duration) {
         if (t < riseTime) {
             //WARNING: This minus (-) is assuming that the world reference frame is always on the left foot!

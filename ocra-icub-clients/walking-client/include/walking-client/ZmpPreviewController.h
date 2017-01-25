@@ -12,7 +12,7 @@
  *  \warning Work in progress! This is still a barebone class in the process of being tested.
  *
  *  \details Given a rough ZMP trajectory and a corresponding consistent CoM horizontal velocity, this class computes at a fast rate optimal CoM jerks over a refined preview horizon. The ZMP preview control formulation in (reference goes here) is extended to account for a CoM velocity tracking objective in order to minimize the error over a preview horizon to reference CoM velocities. This preview controller solves the following problem in a time window of size \f$N_c\f$
- 
+
  \f{align*}
  \mathcal{U}_{k+N_c|k}^* = \underset{\mathcal{U}_{k+N_c|k}}{\text{arg min}} \; \sum_{j=1}^{N} & \eta_b || \mathbf{p}_{k+j|k} - \mathbf{r}_{k+j|k}^r ||^2 + \eta_w ||\mathbf{\dot{h}}_{k+j|k} - \dot{\mathbf{h}}^r_{k+j|k} ||^2 + \eta_u || \mathbf{u} ||^2 \\
  \text{such that}&\\
@@ -21,16 +21,16 @@
  \mathbf{h}_{k+j|k} &= \mathbf{h}_k\\
  \mathbf{h} &= \mathbf{c} - (\mathbf{c}\cdot\mathbf{e}_2)\mathbf{e}_2
  \f}
- 
+
  Where \f${U}_{k+N_c|k}^*\f$ is the optimal horizon of inputs, \f$\mathbf{p}\f$ is the horizontal ZMP coordinate, \f$ \mathbf{r}^r \f$ ZMP references (in `walking-client` it's the interpolated ZMP reference from the walking MIQP problem) \f$ \mathbf{\dot{h}} \f$ the horizontal CoM velocity, \f$ \mathbf{\dot{h}}^r \f$ CoM horizontal velocity reference (in walking-client it's the interpolated CoM velocity reference from the walking MIQP problem). \f$\mathbf{u}\f$ is the input CoM jerk, \f$\mathbf{c}\f$ the three-dimensional CoM position. The horizontal CoM state is denoted \f$\hat{\mathbf{h}} = (\mathbf{h}, \mathbf{\dot{h}}, \mathbf{\ddot{h}}) \f$  (CoM horizontal position, velocity and acceleration respectively) while \f$\mathbf{e}_2\f$ is the vertical unit vector \f$ [0\;0\;1]^T\f$. \f$\mathbf{A}_h\f$ and \f$\mathbf{B}_h\f$ are integration matrices.
- 
+
  The previously described problem is an unconstrained QP problem which has a closed-form solution. The same can be expressed in matrix form as:
- 
+
  \f[
  \underset{\mathbf{U}}{\text{min}} \; (\mathbf{P}_r - \mathbf{P})^T \mathbf{N}_b (\mathbf{P}_r - \mathbf{P}) + (\tilde{\mathbf{H}}_r - \mathbf{H})^T\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{H}) + \mathbf{U}^T\mathbf{N}_u \mathbf{U}
  \f]
- 
- Where: 
+
+ Where:
  \f{align*}
  \mathbf{U}^T &= \left[ \mathbf{u}^T_{k+1|k}, \cdots, \mathbf{u}^T_{k+N_c|k} \right]^T \\
  \mathbf{P}^T &= \left[ \mathbf{p}^T_{k+1|k}, \cdots, \mathbf{p}^T_{k+N_c|k} \right]^T \\
@@ -43,15 +43,15 @@
  0  & \cdots & 1
  \end{array}\right]
  \f}
- 
+
  \f$\mathbf{N}_w\f$ and \f$\mathbf{N}_u\f$ have a similar structure to \f$\mathbf{N}_b\f$
- 
- A closed-form solution can thus be found and is equal to: 
+
+ A closed-form solution can thus be found and is equal to:
  \f[
  \mathbf{U}_{k+N_c|k} = (\mathbf{H}_p^T \mathbf{N}_b \mathbf{H}_p + \mathbf{N}_u + \mathbf{H}_h^T \mathbf{N}_w \mathbf{H}_h)^{-1} \left(\mathbf{H}^T_p \mathbf{N}_b (\mathbf{P}_r - \mathbf{G}_p \hat{\mathbf{h}}_k) + \mathbf{H}^T_h\mathbf{N}_w(\tilde{\mathbf{H}}_r - \mathbf{G}_h \hat{\mathbf{h}}_k)\right)
  \f]
 
- 
+
  */
 
 #ifndef _ZMPPREVIEWCONTROLLER_
@@ -61,6 +61,7 @@
 #include <ocra/util/ErrorsHelper.h>
 #include <Eigen/Dense>
 #include <vector>
+#include "walking-client/utils.h"
 
 
 struct ZmpPreviewParams {
@@ -86,7 +87,7 @@ struct ZmpPreviewParams {
     double nb;
 //     std::vector<Eigen::Vector2d> Pr;
 //     std::vector<Eigen::Vector2d> Hr;
-    
+
     /**
      * Constructor
      */
@@ -100,14 +101,8 @@ struct ZmpPreviewParams {
     nu(nu),
     nw(nw),
     nb(nb){}
-    
-};
 
-enum FOOT {
-    LEFT_FOOT,
-    RIGHT_FOOT
 };
-
 
 class ZmpPreviewController
 {
@@ -118,18 +113,18 @@ public:
          @param parameters   An object containing the main parameters. \see struct ZmpPreviewParams for details on the parameters.
      */
     ZmpPreviewController(const double period, std::shared_ptr<ZmpPreviewParams> parameters);
-    
+
     virtual ~ZmpPreviewController();
-    
-    
+
+
     /**
      Initializes the matrices and parameters used by the controller.
-     
+
      Currently we are not initializing through this method, but through the constructor.
      @return True if successful, false otherwise.
      */
     bool initialize();
-    
+
     /**
      *  Computes a horizon of optimal inputs (CoM jerks) to be applied to the system, i.e.:
      *  \f{align*}
@@ -147,14 +142,14 @@ public:
      *
      */
     template <typename Derived>
-    void computeOptimalInput(const Eigen::MatrixBase<Derived>& zmpRef, 
-                             const Eigen::MatrixBase<Derived>& comVelRef, 
-                             const Eigen::MatrixBase<Derived>& hk, 
+    void computeOptimalInput(const Eigen::MatrixBase<Derived>& zmpRef,
+                             const Eigen::MatrixBase<Derived>& comVelRef,
+                             const Eigen::MatrixBase<Derived>& hk,
                              Eigen::MatrixBase<Derived>& optimalU) {
 //     AOptimal = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
 //     bOptimal = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
 //     optimalU = AOptimal.colPivHouseholderQr().solve(bOptimal);
-        
+
 //         double start = yarp::os::Time::now();
         //TODO: Remember that the bOptimal I have to use is actually the next line, not Weiber's because it doesn't take into account com velocity references.
 //         bOptimal = Hp.transpose()*Nb*(zmpRef - Gp*hk) + Hh.transpose()*Nw*(comVelRef - Gh*hk);
@@ -173,17 +168,17 @@ public:
      *  \f[
      *  \mathbf{h}_{k+1} = \mathbf{A}_h \mathbf{h}_k + \mathbf{B}_h \mathbf{u}_k
      *  \f]
-     * 
+     *
      *  @param      comJerk  Input com jerk \f$\mathbf{u}_k\f$
      *  @param      hk       Current COM state \f$\mathbf{h}_k\f$
      *  @param[out] hkk      Integrated COM state \f$\mathbf{h}_{k+1}\f$
      *  @see                 buildAh(), buildBh()
      */
     void integrateCom(Eigen::VectorXd comJerk, Eigen::VectorXd hk, Eigen::VectorXd &hkk);
-    
-    
+
+
     /** Computes a simplified model-based ZMP.
-     
+
      Computes the zero-moment point given the robot's horizontal CoM acceleration and position, besides
      a constant CoM height and gravity acceleration.
 
@@ -196,9 +191,9 @@ public:
                  inputs are to be integrated from the optimal jerks through integrateCom().
      */
     void tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd ddhk, Eigen::Vector2d& p);
-    
+
     void tableCartModel(Eigen::VectorXd hkk, Eigen::Vector2d& p);
-    
+
     /**
      *  Builds \f$A_h\f$. Called during the member list initialization of the constructor of this class.
      *
@@ -207,7 +202,7 @@ public:
      *  @see ZmpPreviewController::Ah
      */
     Eigen::MatrixXd buildAh(const double dt);
-    
+
     /**
      *  Builds \f$B_h\f$. Called during the member list initialization of the constructor of this class.
      *
@@ -216,7 +211,7 @@ public:
      *  @see ZmpPreviewController::Bh
      */
     Eigen::MatrixXd buildBh(const double dt);
-    
+
     /**
      *  Builds \f$C_p\f$. Called during the member list initialization of the constructor of this class
      *
@@ -227,7 +222,7 @@ public:
      *  @see ZmpPreviewController::Cp
      */
     Eigen::MatrixXd buildCp(const double cz, const double g);
-    
+
     /**
      *  Builds \f$G_p\f$. Called during the member list initialization of the constructor of this class
      *
@@ -239,7 +234,7 @@ public:
      *  @see ZmpPreviewController::Gp
      */
     Eigen::MatrixXd buildGp(Eigen::MatrixXd Cp, Eigen::MatrixXd Ah, const int Nc);
-    
+
     /**
      *  Builds \f$H_p\f$. Called during the member list initialization of the constructor of this class
      *
@@ -252,7 +247,7 @@ public:
      *  @see ZmpPreviewController::Hp
      */
     Eigen::MatrixXd buildHp(Eigen::MatrixXd Cp, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc);
-    
+
     /**
      *  Builds \f$C_h\f$. Called during the member list initialization of the constructor of this class
      *
@@ -260,7 +255,7 @@ public:
      *  @see ZmpPreviewController::Ch
      */
     Eigen::MatrixXd buildCh();
-    
+
     /**
      *  Builds \f$G_h\f$. Called during the member list initialization of the constructor of this class
      *
@@ -272,7 +267,7 @@ public:
      *  @see ZmpPreviewController::Gh
      */
     Eigen::MatrixXd buildGh(Eigen::MatrixXd Ch, Eigen::MatrixXd Ah, const int Nc);
-    
+
     /**
      *  Builds \f$H_h\f$. Called during the member list initialization of the constructor of this class
      *
@@ -285,7 +280,7 @@ public:
      *  @see ZmpPreviewController::Hh
      */
     Eigen::MatrixXd buildHh(Eigen::MatrixXd Ch, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc);
-    
+
     /**
      *  Builds \f$N_u\f$. Called during the member list initialization of the constructor of this class
      *
@@ -296,7 +291,7 @@ public:
      *  @see ZmpPreviewController::Nu
      */
     Eigen::MatrixXd buildNu(const double nu, const int Nc);
-    
+
     /**
      *  Builds \f$N_w\f$. Called during the member list initialization of the constructor of this class
      *
@@ -307,7 +302,7 @@ public:
      *  @see ZmpPreviewController::Nw
      */
     Eigen::MatrixXd buildNw(const double nw, const int Nc);
-    
+
     /**
      *  Builds \f$N_b\f$. Called during the member list initialization of the constructor of this class
      *
@@ -318,7 +313,7 @@ public:
      *  @see ZmpPreviewController::Nb
      */
     Eigen::MatrixXd buildNb(const double nb, const int Nc);
-    
+
     /**
      *  Computes the ZMP for a single foot in world reference frame.
      *
@@ -335,7 +330,7 @@ public:
      \mathbf{\tau}
      \end{array}\right]
      \f]
-     
+
      *
      *  @param whichFoot        LEFT_FOOT or RIGHT_FOOT.
      *  @param wrench           External wrench on the foot as read by the F/T sensors.
@@ -353,7 +348,7 @@ public:
                         ocra::Model::Ptr model,
                         const double tolerance=1e-3);
 
-    
+
     /**
      *  Computes the global ZMP for two feet in contact.
      *
@@ -384,7 +379,7 @@ public:
                                      Eigen::VectorXd rawRightFootWrench,
                                      ocra::Model::Ptr model,
                                      Eigen::Vector2d &globalZMP);
-    
+
     /**
      *  Retrieves the FT sensor adjoint matrix expressed in the world reference frame which multiplied by the local measurement of the sensor gives you the measurement in the world reference.
      *
@@ -393,7 +388,7 @@ public:
      */
     void getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T, Eigen::Vector3d &sensorPosition, ocra::Model::Ptr model);
 
-    
+
 private:
     /**
      *  CoMconstant height. It is not hardcoded but corresponds to the vertical coordinate (height) of the CoMat the beginning of execution, i.e. \f$ c_z \f$.
@@ -521,19 +516,19 @@ private:
      \f]
      */
     const Eigen::MatrixXd Hh;
-    
+
     /**
      *  Matrix \f$\mathbf{A}_{\text{opt}}\f$ in computeOptimalInput().
      */
     Eigen::MatrixXd AOptimal;
-    
+
     /**
      *  Vector \f$\mathbf{b}_{\text{opt}}\f$ in computeOptimalInput().
      */
     Eigen::MatrixXd bOptimal;
-    
-    
-    
+
+
+
 };
 
 #endif
