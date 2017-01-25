@@ -194,6 +194,9 @@ private:
     double _stopTimeConstComVel;
     double _zmpYConstRef;
     double _stopTimeConstZmp;
+    double _riseTimeConstZmp;
+    double _trajectoryDurationConstZmp;
+    double _constantReferenceY;
     double _tTrans;
     int _numberOfTransitions;
     int _amplitudeFraction;

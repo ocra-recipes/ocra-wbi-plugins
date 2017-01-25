@@ -109,13 +109,15 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
     // Find ZMP_CONSTANT_REFERENCE group
     if (!rf.check("ZMP_CONSTANT_REFERENCE")) {
         OCRA_WARNING("Group ZMP_CONSTANT_REFERENCE was not found, using default parameters zmpYConstRef=-0.10, stopTimeConstZmp=3");
-        _zmpYConstRef = 0.010;
+        _zmpYConstRef = -0.010;
         _stopTimeConstZmp = 3;
     } else {
         yarp::os::Property zmpConstantReferenceGroup;
         zmpConstantReferenceGroup.fromString(rf.findGroup("ZMP_CONSTANT_REFERENCE").tail().toString());
         _zmpYConstRef = zmpConstantReferenceGroup.find("zmpYConstRef").asDouble();
         _stopTimeConstZmp = zmpConstantReferenceGroup.find("stopTimeConstZmp").asDouble();
+        _riseTimeConstZmp = zmpConstantReferenceGroup.find("riseTime").asDouble();
+        _trajectoryDurationConstZmp = zmpConstantReferenceGroup.find("duration").asDouble();;
         OCRA_INFO(">> [ZMP_CONSTANT_REFERENCE]: \n " << zmpConstantReferenceGroup.toString().c_str());
     }
 
@@ -180,17 +182,12 @@ bool WalkingClient::initialize()
     getFeetSeparation(sep);
     double feetSeparation = sep(1);
     int period = this->getExpectedPeriod();
-    OCRA_WARNING("The zmp sine trajectory will have period: " << period);
     if (_zmpTestType == ZMP_VARYING_REFERENCE) {
         _zmpTrajectory = generateZMPTrajectoryTEST(_tTrans, feetSeparation, period, _amplitudeFraction, _numberOfTransitions);
     } else {
         if (_zmpTestType == ZMP_CONSTANT_REFERENCE) {
-            //TODO: These parameters should be taken from the proper group of parameteres for the zmpPreviewController
             OCRA_WARNING("A ZMP Step Reference traject will be created");
-            double riseTime = 2;
-            double trajectoryDuration = 15;
-            double constantReferenceY = -0.10;
-            _zmpTrajectory = generateZMPStepTrajectoryTEST(feetSeparation, period, trajectoryDuration, riseTime, constantReferenceY);
+            _zmpTrajectory = generateZMPStepTrajectoryTEST(feetSeparation, period, _trajectoryDurationConstZmp, _riseTimeConstZmp, _zmpYConstRef);
         }
     }
     
