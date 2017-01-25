@@ -21,6 +21,8 @@ struct singleStepTestParams {
     double offset;
     double SSduration;
     double riseTime;
+    double stepLength;
+    double stepHeight;
 };
 
 

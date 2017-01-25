@@ -33,10 +33,10 @@
  Where:
  \f{align*}
  \mathbf{U}^T &= \left[ \mathbf{u}^T_{k+1|k}, \cdots, \mathbf{u}^T_{k+N_c|k} \right]^T \\
- \mathbf{P}^T &= \left[ \mathbf{p}^T_{k+1|k}, \cdots, \mathbf{p}^T_{k+N_c|k} \right]^T \\
- \mathbf{P}^T_r &= \left[ \mathbf{r}^T_{k+1|k}, \cdots, \mathbf{r}^T_{k+N_c|k} \right]^T \\
- \mathbf{\tilde{H}}^T &= \left[ \dot{\mathbf{h}}^T_{k+1|k}, \cdots, \dot{\mathbf{h}}^T_{k+N_c|k} \right]^T \\
- \mathbf{\tilde{H}}^T_r &= \left[ \dot{\mathbf{h}^r}^T_{k+1|k}, \cdots, \dot{\mathbf{h}^r}^T_{k+N_c|k} \right]^T \\
+ \mathbf{P}^T &= \left[ \mathbf{p}^T_{k+1|k}, \cdots, \mathbf{p}^T_{k+N_p|k} \right]^T \\
+ \mathbf{P}^T_r &= \left[ \mathbf{r}^T_{k+1|k}, \cdots, \mathbf{r}^T_{k+N_p|k} \right]^T \\
+ \mathbf{\tilde{H}}^T &= \left[ \dot{\mathbf{h}}^T_{k+1|k}, \cdots, \dot{\mathbf{h}}^T_{k+N_p|k} \right]^T \\
+ \mathbf{\tilde{H}}^T_r &= \left[ \dot{\mathbf{h}^r}^T_{k+1|k}, \cdots, \dot{\mathbf{h}^r}^T_{k+N_p|k} \right]^T \\
  \mathbf{N}_b &= \eta_b\left[\begin{array}{ccc}
  1 & \cdots & 0 \\
  \vdots & \ddots & \vdots\\
@@ -44,7 +44,7 @@
  \end{array}\right]
  \f}
 
- \f$\mathbf{N}_w\f$ and \f$\mathbf{N}_u\f$ have a similar structure to \f$\mathbf{N}_b\f$
+ \f$\mathbf{N}_w\f$ and \f$\mathbf{N}_u\f$ have a similar structure to \f$\mathbf{N}_b\f$.
 
  A closed-form solution can thus be found and is equal to:
  \f[
@@ -66,9 +66,13 @@
 
 struct ZmpPreviewParams {
     /**
-     *  Size of preview window.
+     *  Size of the control window.
      */
     int Nc;
+    /** 
+     * Size of the preview window.
+     */
+    int Np;
     /**
      *  Robot's CoMconstant height.
      */
@@ -91,11 +95,13 @@ struct ZmpPreviewParams {
     /**
      * Constructor
      */
-    ZmpPreviewParams(int    Nc,
+    ZmpPreviewParams(int    Np,
+                     int    Nc,
                      double cz,
                      double nu,
                      double nw,
                      double nb):
+    Np(Np),
     Nc(Nc),
     cz(cz),
     nu(nu),
@@ -192,6 +198,22 @@ public:
      */
     void tableCartModel(Eigen::Vector2d hk, Eigen::VectorXd ddhk, Eigen::Vector2d& p);
 
+     /** Computes a simplified model-based ZMP.
+
+     Computes the zero-moment point given the robot's horizontal CoM acceleration and position, besides
+     a constant CoM height and gravity acceleration.
+     
+     \f[
+     \mathbf{p}_{k+1} = \mathbf{C}_p \mathbf{h}_{k+1}
+     \f]
+
+     @param      hkk Horizontal CoM state.
+     @param[out] p Computed ZMP.
+     @note       The MPC formulation presented in the description of this controller finds the optimal
+                 inputs (jerks) for the system, not the optimal ZMP trajectory! This is why, if we want
+                 to see what the previewed ZMP reference is, we need to use this table-cart model whose
+                 inputs are to be integrated from the optimal jerks through integrateCom().
+     */
     void tableCartModel(Eigen::VectorXd hkk, Eigen::Vector2d& p);
 
     /**
@@ -228,12 +250,12 @@ public:
      *
      *  @param Cp \f$C_p\f$
      *  @param Ah \f$A_h\f$
-     *  @param Nc \f$N_c\f$
+     *  @param Nc \f$N_p\f$
      *
      *  @return \f$G_p\f$
      *  @see ZmpPreviewController::Gp
      */
-    Eigen::MatrixXd buildGp(Eigen::MatrixXd Cp, Eigen::MatrixXd Ah, const int Nc);
+    Eigen::MatrixXd buildGp(Eigen::MatrixXd Cp, Eigen::MatrixXd Ah, const int Np);
 
     /**
      *  Builds \f$H_p\f$. Called during the member list initialization of the constructor of this class
@@ -242,11 +264,12 @@ public:
      *  @param Bh \f$B_h\f$
      *  @param Ah \f$A_h\f$
      *  @param Nc \f$N_c\f$
+     *  @param Np \f$N_p\f$
      *
      *  @return \f$H_p\f$
      *  @see ZmpPreviewController::Hp
      */
-    Eigen::MatrixXd buildHp(Eigen::MatrixXd Cp, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc);
+    Eigen::MatrixXd buildHp(Eigen::MatrixXd Cp, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc, const int Np);
 
     /**
      *  Builds \f$C_h\f$. Called during the member list initialization of the constructor of this class
@@ -261,12 +284,12 @@ public:
      *
      *  @param Ch \f$C_h\f$
      *  @param Ah \f$A_h\f$
-     *  @param Nc \f$N_c\f$
+     *  @param Np \f$N_p\f$
      *
      *  @return \f$G_h\f$
      *  @see ZmpPreviewController::Gh
      */
-    Eigen::MatrixXd buildGh(Eigen::MatrixXd Ch, Eigen::MatrixXd Ah, const int Nc);
+    Eigen::MatrixXd buildGh(Eigen::MatrixXd Ch, Eigen::MatrixXd Ah, const int Np);
 
     /**
      *  Builds \f$H_h\f$. Called during the member list initialization of the constructor of this class
@@ -274,12 +297,13 @@ public:
      *  @param Ch \f$C_h\f$
      *  @param Bh \f$B_h\f$
      *  @param Ah \f$A_h\f$
-     *  @param Nc \f$N_c\f$
+     *  @param Hh \f$N_c\f$
+     *  @param Nc \f$N_p\f$
      *
      *  @return \f$H_h\f$
      *  @see ZmpPreviewController::Hh
      */
-    Eigen::MatrixXd buildHh(Eigen::MatrixXd Ch, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc);
+    Eigen::MatrixXd buildHh(Eigen::MatrixXd Ch, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc, const int Np);
 
     /**
      *  Builds \f$N_u\f$. Called during the member list initialization of the constructor of this class
@@ -296,23 +320,23 @@ public:
      *  Builds \f$N_w\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param nw \f$\eta_w\f$
-     *  @param Nc \f$Nc\f$
+     *  @param Np \f$Nc\f$
      *
      *  @return \f$N_w\f$
      *  @see ZmpPreviewController::Nw
      */
-    Eigen::MatrixXd buildNw(const double nw, const int Nc);
+    Eigen::MatrixXd buildNw(const double nw, const int Np);
 
     /**
      *  Builds \f$N_b\f$. Called during the member list initialization of the constructor of this class
      *
      *  @param nb \f$\eta_b\f$
-     *  @param Nc \f$N_c\f$
+     *  @param Np \f$N_p\f$
      *
      *  @return \f$N_b\f$
      *  @see ZmpPreviewController::Nb
      */
-    Eigen::MatrixXd buildNb(const double nb, const int Nc);
+    Eigen::MatrixXd buildNb(const double nb, const int Np);
 
     /**
      *  Computes the ZMP for a single foot in world reference frame.
@@ -383,8 +407,10 @@ public:
     /**
      *  Retrieves the FT sensor adjoint matrix expressed in the world reference frame which multiplied by the local measurement of the sensor gives you the measurement in the world reference.
      *
-     *  @param whichFoot LEFT_FOOT or RIGHT_FOOT
-     *  @param[out] T         Adjoint matrix.
+     *  @param      whichFoot        LEFT_FOOT or RIGHT_FOOT
+     *  @param[out] T                Adjoint matrix.
+     *  @param[out] sensorPosition   3D Position of the F/T sensor corresponding to whichFoot. 
+     *  @param      model            Pointer to the model that must have been initialized by the calling thread.
      */
     void getFTSensorAdjointMatrix(FOOT whichFoot, Eigen::MatrixXd &T, Eigen::Vector3d &sensorPosition, ocra::Model::Ptr model);
 
@@ -403,9 +429,13 @@ private:
      */
     const double dt;
     /**
-     *  Size of preview window \f$ N_c \f$
+     *  Size of control window \f$ N_c \f$. It should less or equal to \f$Np\f$.
      */
     const int Nc;
+    /**
+     *  Size of preview window \f$ N_p \f$. It should be greater or equal to \f$N_c\f$.
+     */
+    const int Np;
     /**
      *  Weight of the input regularization term in the cost function \f$\eta_u\f$
      */
@@ -423,11 +453,11 @@ private:
      */
     const Eigen::MatrixXd Nu;
     /**
-     *  Diagonal matrix \f$N_w\ = \eta_w\mathbf{I}_{2N_c}\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the walking cost function in its matrix form.
+     *  Diagonal matrix \f$N_w\ = \eta_w\mathbf{I}_{2N_p}\f$ of size \f$[2N_p \times 2N_p]\f$ weighting the walking cost function in its matrix form.
      */
     const Eigen::MatrixXd Nw;
     /**
-     *  Diagonal matrix \f$N_b = \eta_b\mathbf{I}_{2N_c}\f$ of size \f$[2N_c \times 2N_c]\f$ weighting the balancing cost function in its matrix form.
+     *  Diagonal matrix \f$N_b = \eta_b\mathbf{I}_{2N_p}\f$ of size \f$[2N_p \times 2N_p]\f$ weighting the balancing cost function in its matrix form.
      */
     const Eigen::MatrixXd Nb;
     /**
@@ -462,24 +492,24 @@ private:
      */
     const Eigen::MatrixXd Cp;
     /**
-     *  State matrix \f$\mathbf{G}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is of size \f$2Nc \times 6\f$ and equal to:
+     *  State matrix \f$\mathbf{G}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is of size \f$2N_p \times 6\f$ and equal to:
      \f[
      \mathbf{G}_p = \left[\begin{array}{c}
      \mathbf{C}_p\mathbf{A}_h \\
      \vdots \\
-     \mathbf{C}_p\mathbf{A}^{N_c}_h
+     \mathbf{C}_p\mathbf{A}^{N_p}_h
      \end{array}\right]
      \f]
      */
     const Eigen::MatrixXd Gp;
     /**
-     *  Input matrix \f$\mathbf{H}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is of size \f$2N_c \times 2N_c\f$ and equal to:
+     *  Input matrix \f$\mathbf{H}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is of size \f$2N_p \times 2N_c\f$ and equal to:
      \f[
      \mathbf{H}_p = \left[\begin{array}{cccc}
      \mathbf{C}_p\mathbf{B}_h               &   0                          &  \cdots   &   0 \\
      \mathbf{C}_p\mathbf{A}_h\mathbf{B}_h   &   \mathbf{C}_p\mathbf{B}_h   &  \cdots   &   0 \\
      \vdots                                 & \vdots                       & \ddots    &  \vdots \\
-     \mathbf{C}_p\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_p\mathbf{B}_h
+     \mathbf{C}_p\mathbf{A}^{N_p-1}_h\mathbf{B}_h & \mathbf{C}_p\mathbf{A}^{N_p-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_p\mathbf{A}_p^{N_p - N_c}\mathbf{B}_h
      \end{array}\right]
      \f]
      */
@@ -494,24 +524,24 @@ private:
      */
     const Eigen::MatrixXd Ch;
     /**
-     *  State matrix \f$\mathbf{G}_h\f$  of size \f$2N_c \times 6\f$ from the preview horizon of CoMvelocities. It is constant and equal to:
+     *  State matrix \f$\mathbf{G}_h\f$  of size \f$2N_p \times 6\f$ from the preview horizon of CoMvelocities. It is constant and equal to:
      \f[
      \mathbf{G}_h = \left[\begin{array}{c}
      \mathbf{C}_h\mathbf{A}_h \\
      \vdots \\
-     \mathbf{C}_h\mathbf{A}^{N_c}_h
+     \mathbf{C}_h\mathbf{A}^{N_p}_h
      \end{array}\right]
      \f]
      */
     const Eigen::MatrixXd Gh;
     /**
-     *  Input matrix \f$\mathbf{H}_h\f$ from the preview horizon of CoMvelocities \f$\tilde{\mathbf{H}}\f$, of size \f$2N_c \times 2N_c\f$ and equal to:
+     *  Input matrix \f$\mathbf{H}_h\f$ from the preview horizon of CoMvelocities \f$\tilde{\mathbf{H}}\f$, of size \f$2N_p \times 2N_c\f$ and equal to:
      \f[
      \mathbf{H}_h = \left[\begin{array}{cccc}
      \mathbf{C}_h\mathbf{B}_h               &   0                          &  \cdots   &   0 \\
      \mathbf{C}_h\mathbf{A}_h\mathbf{B}_h   &   \mathbf{C}_h\mathbf{B}_h   &  \cdots   &   0 \\
      \vdots                                 & \vdots                       & \ddots    &  \vdots \\
-     \mathbf{C}_h\mathbf{A}^{N_c-1}_h\mathbf{B}_h & \mathbf{C}_h\mathbf{A}^{N_c-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_h\mathbf{B}_h
+     \mathbf{C}_h\mathbf{A}^{N_p-1}_h\mathbf{B}_h & \mathbf{C}_h\mathbf{A}^{N_p-2}_h\mathbf{B}_h & \cdots & \mathbf{C}_h\mathbf{A}^{N_p - N_c}\mathbf{B}_h
      \end{array}\right]
      \f]
      */

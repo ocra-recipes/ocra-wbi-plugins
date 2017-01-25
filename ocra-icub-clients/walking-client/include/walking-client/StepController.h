@@ -64,6 +64,8 @@ public:
     
     void doComputeMidPoint(Eigen::Vector3d currentFootPosition, Eigen::Vector3d target, double stepHeight, Eigen::Vector3d & midPoint);
 
+    bool isTrajectoryFinished(FOOT foot);
+    
     /**
      *  Stops the feet trajectory threads. To be called during the release of the
      *  owner thread.

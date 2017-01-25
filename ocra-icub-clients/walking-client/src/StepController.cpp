@@ -19,8 +19,8 @@ bool StepController::initialize() {
     _rightFoot_TrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(_period, "RightFootCartesian", trajType, termStrategy);
 
     //TODO: We don't really want this! The speed should be given based on the time in which the step should be performed.
-    _leftFoot_TrajThread->setMaxVelocity(0.02);
-    _rightFoot_TrajThread->setMaxVelocity(0.02);
+    _leftFoot_TrajThread->setMaxVelocity(0.05);
+    _rightFoot_TrajThread->setMaxVelocity(0.05);
 
     // Start trajectory threads
     if (!_leftFoot_TrajThread->start()) return false;
@@ -115,9 +115,20 @@ bool StepController::doStepWithMaxVelocity(FOOT foot, Eigen::Vector3d target, do
 
     // Pass only the midpoint and the target point. The current position should be included by default.
     this->computeMidPoint(foot, target, stepHeight, midPoint);
+    OCRA_INFO("Midpoint: " << midPoint);
+    OCRA_INFO("Target: " << target);
     wayPoints.col(0) = midPoint;
     wayPoints.col(1) = target;
-    _leftFoot_TrajThread->setTrajectoryWaypoints(wayPoints);
+    switch ( foot ) {
+        case LEFT_FOOT: 
+            _leftFoot_TrajThread->setTrajectoryWaypoints(wayPoints);
+            break;
+        case RIGHT_FOOT:
+            _rightFoot_TrajThread->setTrajectoryWaypoints(wayPoints);
+            break;
+        default:
+            break;
+    }
 
     return true;
 }
@@ -141,6 +152,21 @@ void StepController::computeMidPoint(FOOT foot, Eigen::Vector3d target, double s
 void StepController::doComputeMidPoint(Eigen::Vector3d currentFootPosition, Eigen::Vector3d target, double stepHeight, Eigen::Vector3d & midPoint) {
     Eigen::Vector3d k; k << 0,0,stepHeight;
     midPoint = currentFootPosition + 0.5*(target - currentFootPosition) + k;
+}
+
+bool StepController::isTrajectoryFinished(FOOT foot) {
+    switch (foot) {
+        case LEFT_FOOT:
+            return this->_leftFoot_TrajThread->goalAttained();
+            break;
+        case RIGHT_FOOT:
+            return this->_rightFoot_TrajThread->goalAttained();
+            break;
+        default:
+            break;
+    }
+    
+    return true;
 }
 
 Eigen::Vector3d StepController::getLeftFootPosition()

@@ -5,11 +5,12 @@ using namespace Eigen;
 
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod),
-_zmpPreviewParams(std::make_shared<ZmpPreviewParams>(3,
+_zmpPreviewParams(std::make_shared<ZmpPreviewParams>(200,
+                                                     200,
                                                      (model->getCoMPosition()).operator()(2),
-                                                     1e-3,
-                                                     0.5,
-                                                     0.5)),
+                                                     1e-6,
+                                                     0.0,
+                                                     1.0)),
 _rawLeftFootWrench(Eigen::VectorXd::Zero(6)),
 _rawRightFootWrench(Eigen::VectorXd::Zero(6)),
 _globalZMP(Eigen::Vector2d::Zero()),
@@ -71,6 +72,7 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
         zmpPreviewControllerParamsGroup.fromString(rf.findGroup("ZMP_PREVIEW_CONTROLLER_PARAMS").tail().toString());
         _zmpPreviewParams->cz = this->model->getCoMPosition().operator()(2);
         _zmpPreviewParams->Nc = zmpPreviewControllerParamsGroup.find("Nc").asInt();
+        _zmpPreviewParams->Np = zmpPreviewControllerParamsGroup.find("Np").asInt();
         _zmpPreviewParams->nw = zmpPreviewControllerParamsGroup.find("nw").asDouble();
         _zmpPreviewParams->nb = zmpPreviewControllerParamsGroup.find("nb").asDouble();
         _zmpPreviewParams->nu = zmpPreviewControllerParamsGroup.find("nu").asDouble();
@@ -131,6 +133,8 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
         _singleStepTestParams.offset = singleStepTestGroup.find("offset").asDouble();
         _singleStepTestParams.SSduration = singleStepTestGroup.find("SSduration").asDouble();
         _singleStepTestParams.riseTime = singleStepTestGroup.find("riseTime").asDouble();
+        _singleStepTestParams.stepLength = singleStepTestGroup.find("stepLength").asDouble();
+        _singleStepTestParams.stepHeight = singleStepTestGroup.find("stepHeight").asDouble();
         OCRA_INFO(">> [SINGLE_STEP_TEST]: \n " << singleStepTestGroup.toString().c_str());
     }
 
@@ -212,8 +216,8 @@ bool WalkingClient::initialize()
     
     if (!_testType.compare("singleStepTest")) {
         OCRA_INFO("A single step zmp trajectory will be created");
+        OCRA_WARNING("Feet separation: " << sep);
         _singleStepTrajectory = generateZMPSingleStepTrajectory(period, feetSeparation);
-        OCRA_INFO("single step zmp trajectory \n" << _singleStepTrajectory);
     }
     
     Eigen::Vector3d initialCOMPosition = this->model->getCoMPosition();
@@ -229,11 +233,11 @@ bool WalkingClient::initialize()
     // Compute ZMP
     _zmpPreviewController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, this->model, _globalZMP);
 
-    // Vector of the next Nc references. Size is 2*Nc because every zmp reference is bidimensional
-    zmpRefInPreviewWindow = Eigen::VectorXd(2*_zmpPreviewParams->Nc);
+    // Vector of the next Np references. Size is 2*Np because every zmp reference is bidimensional
+    zmpRefInPreviewWindow = Eigen::VectorXd(2*_zmpPreviewParams->Np);
     zmpRefInPreviewWindow.setZero();
     // For the test the reference com velocity is set to zero. Only zmp references are considered.
-    comVelRefInPreviewWindow = Eigen::VectorXd(2*_zmpPreviewParams->Nc);
+    comVelRefInPreviewWindow = Eigen::VectorXd(2*_zmpPreviewParams->Np);
     comVelRefInPreviewWindow.setZero();
     // Allocation of optimal input vector
     optimalU = Eigen::VectorXd(2*_zmpPreviewParams->Nc);
@@ -311,25 +315,22 @@ std::vector< Eigen::Vector2d > WalkingClient::generateZMPStepTrajectoryTEST(doub
 std::vector<Eigen::Vector2d> WalkingClient::generateZMPSingleStepTrajectory(double period, double feetSeparation) {
     std::vector<Eigen::Vector2d> zmpTrajectory;
     Eigen::Vector2d reference = Eigen::Vector2d::Zero();
+    double betweenFeetY = -feetSeparation/2;
     double t = 0;
-    OCRA_INFO("total duration " << _singleStepTestParams.totalDuration);
-    OCRA_INFO("rise time " << _singleStepTestParams.riseTime);
-    OCRA_INFO("SSduration " << _singleStepTestParams.SSduration); 
-    OCRA_INFO("offset " << _singleStepTestParams.offset); 
     while (t < _singleStepTestParams.totalDuration) {
         if (t < _singleStepTestParams.riseTime) {
-            reference(1) = -feetSeparation/2;
+            reference(1) = betweenFeetY;
         } else {
             if ( t > _singleStepTestParams.riseTime && t < ( _singleStepTestParams.riseTime + _singleStepTestParams.SSduration ) ) {
                 Eigen::Vector3d leftFootPosition = _stepController->getLeftFootPosition();
                 reference(1) = leftFootPosition(1) - _singleStepTestParams.offset;
-            } else {
+            } /*else {
                 if ( t > ( _singleStepTestParams.riseTime + _singleStepTestParams.SSduration ) ) {
-                    //TODO Change zmp to the other foot and move forward too!!
                     Eigen::Vector3d rightFootPosition = _stepController->getRightFootPosition();
-                    reference(1) = rightFootPosition(1) + _singleStepTestParams.offset;
+                    reference(1) = betweenFeetY;
+                    reference(0) =  _singleStepTestParams.stepLength;;
                 }
-            }
+            }*/
         }
         zmpTrajectory.push_back(reference);
         t = t + period/1000;
@@ -360,8 +361,8 @@ std::vector<Eigen::Vector2d> WalkingClient::generateZMPTrajectoryTEST(double tTr
 }
 
 bool WalkingClient::getFeetSeparation(Eigen::Vector3d &sep) {
-    Eigen::Vector3d lFootPosition = this->model->getSegmentPosition("l_foot").getTranslation();
-    Eigen::Vector3d rFootPosition = this->model->getSegmentPosition("r_foot").getTranslation();
+    Eigen::Vector3d lFootPosition = this->model->getSegmentPosition("l_sole").getTranslation();
+    Eigen::Vector3d rFootPosition = this->model->getSegmentPosition("r_sole").getTranslation();
     sep = (rFootPosition - lFootPosition).cwiseAbs();
     return true;
 }
@@ -377,10 +378,10 @@ bool WalkingClient::publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &
     return true;
 }
 
-void WalkingClient::transformStdVectorToEigenVector(std::vector<Eigen::Vector2d> &fullTraj, int from, int Nc, Eigen::VectorXd &output)
+void WalkingClient::transformStdVectorToEigenVector(std::vector<Eigen::Vector2d> &fullTraj, int from, int Np, Eigen::VectorXd &output)
 {
     int k = 0;
-    for (int i=from; i<=from+Nc-1; i++) {
+    for (int i=from; i<=from+Np-1; i++) {
         output(k) = fullTraj[i].operator()(0);
         output(k+1) = fullTraj[i].operator()(1);
         k = k + 2;
@@ -410,10 +411,10 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
 
     zmpReference = _zmpTrajectory[el];
 
-    // Transform the following Nc zmp references from the current time step in the std::vector container to a single Eigen::VectorXd
-    transformStdVectorToEigenVector(_zmpTrajectory, el, _zmpPreviewParams->Nc, zmpRefInPreviewWindow);
+    // Transform the following Np zmp references from the current time step in the std::vector container to a single Eigen::VectorXd
+    transformStdVectorToEigenVector(_zmpTrajectory, el, _zmpPreviewParams->Np, zmpRefInPreviewWindow);
 
-    // Compute optimal input in preview window for the next Nc zmp references
+    // Compute optimal input in preview window for the next Np zmp references
     _zmpPreviewController->computeOptimalInput(zmpRefInPreviewWindow, comVelRefInPreviewWindow, hk, optimalU);
     
     // Only using the first input computed by the preview controller;
@@ -432,16 +433,12 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     // Prepare the desired com state and apply control!
     prepareAndsetDesiredCoMTaskState(hkk, true);
 
-    // Read actual state
-    Eigen::Vector3d currentComLinVel;
-    currentComLinVel = _comTask->getTaskState().getVelocity().getLinearVelocity();
-
     Eigen::Vector3d currentComPos;
     currentComPos = _comTask->getTaskState().getPosition().getTranslation();
 
-    // Ref. Linear Velocity
-    Eigen::Vector3d refLinVel( intdhkk(0), intdhkk(1), 0 );
-    
+    Eigen::Vector3d currentAcceleration;
+    currentAcceleration = this->model->getCoMAcceleration();
+
     // Read Force/Torque measurements
     readFootWrench(LEFT_FOOT, _rawLeftFootWrench);
     readFootWrench(RIGHT_FOOT, _rawRightFootWrench);
@@ -449,20 +446,18 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     // Compute ZMP
     _zmpPreviewController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, this->model, _globalZMP);
 
-
     // Write to file for plotting
     //TODO: Watch out! if the thread doesn't respect the desired period, then your plots will look horizontally scaled!
     tnow = tnow + this->getEstPeriod()/1000;
     std::string homeDir = std::string(_homeDataDir + "zmpPreviewController/");
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComLinVel).finished(), std::string(homeDir + "currentComLinVel.txt"),true);
+    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, intddhkk).finished(), std::string(homeDir + "refComLinAcc.txt") ,true);
+    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentAcceleration).finished(), std::string(homeDir + "currentComLinAcc.txt"),true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, inthkk).finished(), std::string(homeDir + "intComPositionRef.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComPos).finished(), std::string(homeDir + "currentComPos.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, _globalZMP).finished(), std::string(homeDir + "currentZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, pk).finished(), std::string(homeDir + "previewedZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, hk.tail<2>()).finished(), std::string(homeDir + "comAcceleration.txt"), true);
     
     //TODO: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
     if ( el < _zmpTrajectory.size() )
@@ -477,6 +472,7 @@ void WalkingClient::performSingleStepTest() {
     static double timeInit = yarp::os::Time::now();
     static double tnow = yarp::os::Time::now() - timeInit;
     static int el = 0;
+    static bool stepStarted = false;
 
     Eigen::Vector2d zmpReference;
     // Retrieve current COM state
@@ -494,10 +490,10 @@ void WalkingClient::performSingleStepTest() {
 
     zmpReference = _singleStepTrajectory[el];
 
-    // Transform the following Nc zmp references from the current time step in the std::vector container to a single Eigen::VectorXd
-    transformStdVectorToEigenVector(_singleStepTrajectory, el, _zmpPreviewParams->Nc, zmpRefInPreviewWindow);
+    // Transform the following Np zmp references from the current time step in the std::vector container to a single Eigen::VectorXd
+    transformStdVectorToEigenVector(_singleStepTrajectory, el, _zmpPreviewParams->Np, zmpRefInPreviewWindow);
 
-    // Compute optimal input in preview window for the next Nc zmp references
+    // Compute optimal input in preview window for the next Np zmp references
     _zmpPreviewController->computeOptimalInput(zmpRefInPreviewWindow, comVelRefInPreviewWindow, hk, optimalU);
     
     // Only using the first input computed by the preview controller;
@@ -516,15 +512,23 @@ void WalkingClient::performSingleStepTest() {
     // Prepare the desired com state and apply control!
     prepareAndsetDesiredCoMTaskState(hkk, true);
 
-    // Read actual state
-    Eigen::Vector3d currentComLinVel;
-    currentComLinVel = _comTask->getTaskState().getVelocity().getLinearVelocity();
-
     Eigen::Vector3d currentComPos;
     currentComPos = _comTask->getTaskState().getPosition().getTranslation();
-
-    // Ref. Linear Velocity
-    Eigen::Vector3d refLinVel( intdhkk(0), intdhkk(1), 0 );
+    
+    if (tnow > 3 && !stepStarted) {
+        Eigen::Vector3d rFootPosition = this->model->getSegmentPosition("r_sole").getTranslation();
+        rFootPosition(0) += _singleStepTestParams.stepLength;
+        _stepController->deactivateFeetContacts(RIGHT_FOOT);
+        _stepController->doStepWithMaxVelocity(RIGHT_FOOT, rFootPosition, _singleStepTestParams.stepHeight);
+        stepStarted = true;
+    }
+    
+    if (stepStarted && _stepController->isTrajectoryFinished(RIGHT_FOOT)) {
+        _stepController->activateFeetContacts(RIGHT_FOOT);
+    }
+    
+    Eigen::Vector3d currentAcceleration;
+    currentAcceleration = this->model->getCoMAcceleration();
     
     // Read Force/Torque measurements
     readFootWrench(LEFT_FOOT, _rawLeftFootWrench);
@@ -537,15 +541,14 @@ void WalkingClient::performSingleStepTest() {
     //TODO: Watch out! if the thread doesn't respect the desired period, then your plots will look horizontally scaled!
     tnow = tnow + this->getEstPeriod()/1000;
     std::string homeDir = std::string(_homeDataDir + "zmpPreviewController/");
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, refLinVel).finished(), std::string(homeDir + "refLinVel.txt") ,true);
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComLinVel).finished(), std::string(homeDir + "currentComLinVel.txt"),true);
+    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, intddhkk).finished(), std::string(homeDir + "refComLinAcc.txt") ,true);
+    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentAcceleration).finished(), std::string(homeDir + "currentComLinAcc.txt"),true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, inthkk).finished(), std::string(homeDir + "intComPositionRef.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComPos).finished(), std::string(homeDir + "currentComPos.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, _globalZMP).finished(), std::string(homeDir + "currentZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, pk).finished(), std::string(homeDir + "previewedZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, hk.tail<2>()).finished(), std::string(homeDir + "comAcceleration.txt"), true);
 
     //TODO: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
     if ( el < _singleStepTrajectory.size() )
@@ -558,7 +561,7 @@ void WalkingClient::performSingleStepTest() {
 void WalkingClient::prepareAndsetDesiredCoMTaskState(VectorXd comState, bool doSet)
 {
     ocra::TaskState desiredComState;
-
+//TODO: Change input to this method to just com acceleration
 //     Eigen::Vector3d comRefPosition; 
 //     comRefPosition << comState.head<2>(), _zmpPreviewParams->cz;
 //     Eigen::Vector3d comRefVelocity; 
@@ -570,8 +573,8 @@ void WalkingClient::prepareAndsetDesiredCoMTaskState(VectorXd comState, bool doS
 //         desiredComState.setPosition(ocra::util::eigenVectorToDisplacementd(comRefPosition));
 //         desiredComState.setVelocity(ocra::util::eigenVectorToTwistd(comRefVelocity));
         desiredComState.setAcceleration(ocra::util::eigenVectorToTwistd(comRefAcceleration));
-//         _comTask->setDesiredTaskStateDirect(desiredComState);
-        _comTask->setDesiredTaskState(desiredComState);
+        _comTask->setDesiredTaskStateDirect(desiredComState);
+//         _comTask->setDesiredTaskState(desiredComState);
     }
 
 }
