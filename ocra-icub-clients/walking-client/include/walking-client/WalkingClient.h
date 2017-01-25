@@ -7,6 +7,7 @@
 #include <ocra/util/EigenUtilities.h>
 #include "walking-client/ZmpPreviewController.h"
 #include "walking-client/StepController.h"
+#include "walking-client/utils.h"
 #include <ocra/util/FileOperations.h>
 #include <yarp/os/Time.h>
 
@@ -123,6 +124,8 @@ public:
      @param type Trajectory type. \see ZmpTestType.
      */
     void performZMPPreviewTest(ZmpTestType type);
+    
+    void performSingleStepTest();
 
     /**
      *  Composes a port name with the client name as the suffix. This client name is assumed to be passed through command line options or configuration file as per the policies of yarp's Resource Finder.
@@ -156,6 +159,7 @@ public:
      */
     std::vector< Eigen::Vector2d > generateZMPStepTrajectoryTEST(double feetSeparation, double period, double duration, double riseTime, double constantReferenceY);
     
+    std::vector<Eigen::Vector2d> generateZMPSingleStepTrajectory(double period, double feetSeparation);
     
     /**
      Prepares an object of type ocra::TaskState with the com state passed to this method and when doSet is true, applies the control to the robot.
@@ -178,6 +182,7 @@ private:
     std::shared_ptr<ocra_recipes::TaskConnection> _comTask;
     std::shared_ptr<StepController> _stepController;
     std::vector<Eigen::Vector2d> _zmpTrajectory;
+    std::vector<Eigen::Vector2d> _singleStepTrajectory;
     ocra::TaskState _desiredComState;
     Eigen::VectorXd _rawLeftFootWrench;
     Eigen::VectorXd _rawRightFootWrench;
@@ -197,6 +202,7 @@ private:
     double _riseTimeConstZmp;
     double _trajectoryDurationConstZmp;
     double _constantReferenceY;
+    singleStepTestParams _singleStepTestParams;
     double _tTrans;
     int _numberOfTransitions;
     int _amplitudeFraction;
