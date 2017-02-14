@@ -36,11 +36,11 @@ MIQPController::~MIQPController() {}
 
 bool MIQPController::threadInit() {
     // Create Gurobi environment
-    _env = new GRBEnv();
+//    _env = new GRBEnv();
     
     // Create Gurobi model
     // TODO: Check if eigen-gurobi also creates its own model ?? If it does, then this is wrong and I should get a copy form it
-    _model = new GRBModel(*_env);
+//    _model = new GRBModel(*_env);
     
     // Add variables to the model. This is actually done in GurobiCommon::problem()
     // _vars = this->addVariablesToModel();
@@ -69,7 +69,7 @@ bool MIQPController::threadInit() {
 }
 
 void MIQPController::threadRelease() {
-    delete _env;
+//    delete _env;
 }
 
 void MIQPController::run() {
