@@ -21,6 +21,9 @@ cmake_minimum_required(VERSION 2.8.12)
 # Initiate the project
 PROJECT(walking-client CXX)
 
+# Append GUROBI's FindGUROBI.cmake
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/ocra-icub-clients/walking-client/cmake/")
+
 # Make sure you have a C++11 compatible compiler
 include(CheckCXXCompilerFlag)
 CHECK_CXX_COMPILER_FLAG("-std=c++11" COMPILER_SUPPORTS_CXX11)
@@ -30,9 +33,14 @@ else()
     message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
  endif()
 
- # Build as Release (Change Release to Debug for better debugging symbols)
-# set(CMAKE_BUILD_TYPE Release)
-
+# Remember to export the following environmental variables when using GUROBI
+# export GUROBI_HOME="/Library/gurobi701/mac64"
+# export PATH="${PATH}:${GUROBI_HOME}/bin"
+# export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${GUROBI_HOME}/lib
+# export GRB_LICENSE_FILE=/Users/jorhabibeljaik/gurobi.lic
+# Find Gurobi
+find_package(GUROBI REQUIRED)
+find_package(EigenGurobi REQUIRED)
 # Set the project version.
 set(${PROJECT_NAME}_MAJOR_VERSION 0)
 set(${PROJECT_NAME}_MINOR_VERSION 1)
@@ -45,9 +53,11 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/Modules)
 
 # Get all of the source and header files.
 file(GLOB folder_source src/*.cpp)
-file(GLOB folder_header include/${PROJECT_NAME}/*.h)
+file(GLOB_RECURSE folder_header include/${PROJECT_NAME}/*.h )
+file(GLOB folder_header_constraints include/${PROJECT_NAME}/constraints/*.h)
 source_group("Source Files" FILES ${folder_source})
-source_group("Header Files" FILES ${folder_header})
+source_group("Headers Client" FILES ${folder_header})
+source_group("Headers Constraints" FILES ${folder_header_constraints})
 
 # Tell the compiler where to look for all other headers
 include_directories(
@@ -55,17 +65,22 @@ ${PROJECT_SOURCE_DIR}/include
 ${YARP_INCLUDE_DIRS}
 ${OcraIcub_INCLUDE_DIRS}
 ${OcraRecipes_INCLUDE_DIRS}
+${GUROBI_INCLUDE_DIRS}
+${EIGENGUROBI_INCLUDE_DIR}
 )
 
 # Add the client executable (binary)
 add_executable(${PROJECT_NAME} ${folder_source} ${folder_header})
 
+message("GUROBI libraries: " ${GUROBI_LIBRARIES})
 # Link to the appropriate libs
 target_link_libraries(
 ${PROJECT_NAME}
 ${YARP_LIBRARIES}
 ${OcraRecipes_LIBRARIES}
 ocra-icub
+${GUROBI_LIBRARIES}
+${EIGENGUROBI_LIBRARIES}
 )
 
 # Install to the bin/ directory if installed.

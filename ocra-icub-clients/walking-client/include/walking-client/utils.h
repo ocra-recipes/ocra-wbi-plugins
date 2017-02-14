@@ -25,5 +25,16 @@ struct singleStepTestParams {
     double stepHeight;
 };
 
+struct MIQPParameters {
+    /* Size of preview window */
+    int N;
+    /* Constant com height */
+    double cz;
+    /* Gavity acceleration */
+    double g;
+    //TODO: Missing state selection matrix S
+};
+
+#define SIZE_STATE_VECTOR 16
 
 #endif

@@ -62,6 +62,7 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
         _testType = rf.find("test").asString();
     }
 
+    //WARNING: This innocent delay is important here to ensure that the model has been properly loaded
     yarp::os::Time::delay(2);
 
     // Find ZMP Preview Controller parameters

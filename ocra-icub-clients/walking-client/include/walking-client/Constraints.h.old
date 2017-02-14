@@ -1,0 +1,136 @@
+#include <vector>
+#include <string>
+
+// Ocra include
+#include <ocra/util/ErrorsHelper.h>
+#include "walking-client/utils.h"
+#include "walking-client/constraintsStructs.h"
+// Yarp includes
+#include <yarp/os/ResourceFinder.h>
+
+#include <Eigen/Core>
+
+
+class Constraints {
+private:
+    yarp::os::ResourceFinder _rf;
+    MIQPParameters _miqpParams;
+    std::vector<std::string> _shapeConstraints;
+    std::vector<std::string> _admissibilityConstraints;
+    std::vector<std::string> _walkingConstraints;
+    ShapeConstraintsStruct _shapeConstraintsStruct;
+    AdmissibilityConstraintsStruct _admissibilityConstraintsStruct;
+
+    /* General Constraints Matrix \f$\bar{C}\f$ */
+    Eigen::MatrixXd _Cbar;
+    Eigen::VectorXd _dBar;
+    Eigen::MatrixXd _A;
+    Eigen::MatrixXd _R;
+    Eigen::MatrixXd _P;
+    Eigen::VectorXd _rhs;
+    Eigen::VectorXd _fHistory;
+
+public:
+    Constraints(yarp::os::ResourceFinder &rf, MIQPParameters miqpParams, Eigen::MatrixXd R, Eigen::MatrixXd P);
+    virtual ~Constraints();
+
+    bool initialize(Eigen::VectorXd Xi_k);
+
+    /**
+     Updates/Builds the RHS of the general constraints inequality \f$ \mathbf{A} \mathcal{X}_{text{K,N}} \leq \text{RHS} \f$ Where:
+     \f[
+     \bar{\mathbf{d}} - f_{\text{history}} - \bar{\mathbf{C}}\mathbf{P}\mathbf{\xi}_k
+     \f]
+     
+     @return True if there was no error in the building process.
+     */
+    bool updateMIQPrhsVector(Eigen::VectorXd currentState);
+    
+    Eigen::MatrixXd getConstraintsMatrix();
+    
+    Eigen::VectorXd getRHSVector();
+
+protected:
+    void initializeShapeConstraintsMatrix();
+    void initializeAdmissibilityConstraintsMatrix();
+//    void initializeWalkingConstraintsMatrix();
+    void initializeMIQPConstraintsMatrices();
+    void buildShapeConstraintsCbar();
+    void buildShapeConstraintsC2bars();
+    void buildAdmissibilityConstraintsC2bars();
+    void buildShapeConstraintsdBar();
+    void buildAdmissibilityConstraintsCbar();
+    void buildAdmissibilityConstraintsdBar();
+    
+    // #### Shape Constraints Cbar ####
+    // Bounding
+    void buildBoundingCbar(Eigen::MatrixXd &Cbar);
+    void buildBoundingdBar(Eigen::VectorXd &dBar);
+    void updateBoundingfHistory();
+    // Constancy
+    void buildConstancyCbar(Eigen::MatrixXd &Cbar);
+    void buildConstancyC2bar(Eigen::MatrixXd &C2bar);
+    void buildConstancydBar(Eigen::VectorXd &dBar);
+    void updateConstancyfHistory(Eigen::VectorXd Xi_k);
+    // Sequentiality
+    void buildSequentialityCbar(Eigen::MatrixXd &Cbar);
+    void buildSequentialitydBar(Eigen::VectorXd &dBar);
+    void updateSequentialityfHistory();
+    
+    // #### Admissibility Constraints Cbar ####
+    // SS and DS Alternation
+    void buildSSandDSAlternationCbar(Eigen::MatrixXd &Cbar);
+    void buildSSandDSAlternationC2bar(Eigen::MatrixXd &C2bar);
+    void buildSSandDSAlternationdBar(Eigen::VectorXd &dBar);
+    void updateSSandDSAlternationfHistory(Eigen::VectorXd Xi_k);
+    // Single Support
+    void buildSingleSupportCbar(Eigen::MatrixXd &Cbar);
+    void buildSingleSupportdBar(Eigen::VectorXd &dBar);
+    void updateSingleSupportfHistory();
+    // Contact Configuration History
+    void buildContactConfigurationHistoryCbar(Eigen::MatrixXd &Cbar);
+    void buildContactConfigurationHistoryC2bar(Eigen::MatrixXd &C2bar);
+    void buildContactConfigurationHistorydBar(Eigen::VectorXd &dBar);
+    void updateContactConfigurationHistoryfHistory(Eigen::VectorXd Xi_k);
+    // Contact Configuration Enforcement
+    void buildContactConfigurationEnforcementCbar(Eigen::MatrixXd &Cbar);
+    void buildContactConfigurationEnforcementdBar(Eigen::VectorXd &dBar);
+    void updateContactConfigurationEnforcementfHistory();
+    // #### Walking Constraints Cbar ####
+
+    bool buildMIQPCbarMatrix();
+    bool buildC2barMatrices();
+    void buildMIQPAMAtrix();
+    
+    /**
+     Stacks N copies of a given vector.
+
+     @param vector Vector to stack.
+     @param output Stacked vector.
+     */
+    void stackVector(Eigen::VectorXd &vector, Eigen::VectorXd &output);
+    
+    void updatefHistory(Eigen::VectorXd currentState);
+    
+    void updateShapeConstraintsfHistory(Eigen::VectorXd Xi_k);
+    
+    void updateAdmissibilityConstraintsfHistory(Eigen::VectorXd Xi_k);
+    
+    
+    /**
+     Builds the constant part of the RHS of the constraints inequality, i.e. \f$\bar{\mathbf{d}}\f$
+     */
+    void builddBar();
+    
+    // #### Helpers ####
+    void buildDiagonalMatrix(Eigen::MatrixXd matrixInDiag, Eigen::MatrixXd &output);
+    void buildDoubleDiagonal(Eigen::MatrixXd C1, Eigen::MatrixXd C2, Eigen::MatrixXd &output);
+
+    bool findConstraintsInConfigFile();
+    void getConstraintsFromConfigFile(CONSTRAINTS_TYPE whichConstraints,
+                                                   yarp::os::Bottle &bottle,
+                                                   std::vector<std::string> &strVec);
+    void extractFromBottle(yarp::os::Bottle &bottle, std::vector<std::string> &strVec);
+    void printConstraintsFromConfigFile(std::vector<std::string> strVec);
+    
+};

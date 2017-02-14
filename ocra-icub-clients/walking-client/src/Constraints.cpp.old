@@ -1,0 +1,566 @@
+#include "walking-client/Constraints.h"
+
+Constraints::Constraints(yarp::os::ResourceFinder &rf, MIQPParameters miqpParams, Eigen::MatrixXd R, Eigen::MatrixXd P):
+_rf(rf),
+_miqpParams(miqpParams),
+_R(R),
+_P(P)
+{}
+
+Constraints::~Constraints() {}
+
+bool Constraints::initialize(Eigen::VectorXd Xi_k) {
+    if (!findConstraintsInConfigFile())
+        return false;
+
+    initializeShapeConstraintsMatrix();
+    initializeAdmissibilityConstraintsMatrix();
+//    initializeWalkingConstraintsMatrix();
+
+    initializeMIQPConstraintsMatrices();
+
+    // Build the general MIQP constraints matrix by stacking all the Cbar matrices from each constraint.
+    if (!buildMIQPCbarMatrix())
+        return false;
+
+    buildMIQPAMAtrix();
+
+    if (!buildC2barMatrices())
+        return false;
+
+    if (!updateMIQPrhsVector(Xi_k))
+        return false;
+
+    return true;
+}
+
+void Constraints::initializeMIQPConstraintsMatrices() {
+    int totalRows = 0;
+    int totalCols = SIZE_STATE_VECTOR*_miqpParams.N;
+
+    // The general matrix _Cbar which multiplies C_{k,N} is the stack
+    // of all the matrices that multiply C_{k,N} from the different constraints
+    //TODO: Add waking constraints size and make sure that xxxx.Cbar.rows() is at least zero.
+    totalRows = _shapeConstraintsStruct.Cbar.rows() + _admissibilityConstraintsStruct.Cbar.rows(); // ... + _walkingConstraintsStruct.CBar.rows();
+
+    _Cbar.resize(totalRows, totalCols);
+    _dBar.resize(totalRows);
+
+    // Initialize general A matrix
+    _A.resize(this->_Cbar.rows(), _R.cols());
+
+    // Initialize right hand side vector _rhs
+    _rhs.resize(_dBar.size());
+    _fHistory.resize(_dBar.size());
+}
+
+bool Constraints::buildMIQPCbarMatrix() {
+    buildShapeConstraintsCbar();
+    buildAdmissibilityConstraintsCbar();
+    //TODO: Missing walking constraints
+    // Stack all the Cbar matrices
+    Eigen::MatrixXd stack; stack << _shapeConstraintsStruct.Cbar, _admissibilityConstraintsStruct.Cbar;
+    if (stack.rows() == _Cbar.rows()) {
+        _Cbar.block(0, 0, _Cbar.rows(), _Cbar.cols()) = stack;
+        return true;
+    } else {
+        OCRA_ERROR("The initial size of the general constraints matrix does not match the one originated from the stacked constraints");
+        return false;
+    }
+}
+
+bool Constraints::buildC2barMatrices() {
+    buildShapeConstraintsC2bars();
+    buildAdmissibilityConstraintsC2bars();
+    return true;
+}
+
+void Constraints::buildShapeConstraintsC2bars() {
+    buildConstancyC2bar(_shapeConstraintsStruct.constancy.Cbar2);
+}
+
+void Constraints::buildAdmissibilityConstraintsC2bars() {
+    buildSSandDSAlternationC2bar(_admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C2bar);
+    buildContactConfigurationHistoryC2bar(_admissibilityConstraintsStruct.contactConfigurationHistory.C2bar);
+}
+
+void Constraints::buildConstancyC2bar(Eigen::MatrixXd &C2bar) {
+    C2bar.setZero();
+    unsigned int C2rows = _shapeConstraintsStruct.constancy.C2.rows();
+    unsigned int C2cols = _shapeConstraintsStruct.constancy.C2.cols();
+    C2bar.block(0, 0, C2rows, C2cols);
+}
+
+void Constraints::buildSSandDSAlternationC2bar(Eigen::MatrixXd &C2bar) {
+    C2bar.setZero();
+    unsigned int C2rows = _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C2.rows();
+    unsigned int C2cols = _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C2.cols();
+    C2bar.block(0, 0, C2rows, C2cols);
+}
+
+void Constraints::buildContactConfigurationHistoryC2bar(Eigen::MatrixXd &C2bar) {
+    C2bar.setZero();
+    unsigned int C2rows = _admissibilityConstraintsStruct.contactConfigurationHistory.C2.rows();
+    unsigned int C2cols = _admissibilityConstraintsStruct.contactConfigurationHistory.C2.cols();
+    C2bar.block(0, 0, C2rows, C2cols);
+}
+
+
+bool Constraints::updateMIQPrhsVector(Eigen::VectorXd currentState) {
+    //TODO: This method will need also the history of states when walking constraints will be included. For now f_history depends only on the current state.
+    //  dBar - f_history - Cbar * P * currentState
+    builddBar();
+    updatefHistory(currentState);
+    _rhs = _dBar - _fHistory - _Cbar*_P*currentState;
+    return true;
+}
+
+void Constraints::updatefHistory(Eigen::VectorXd currentState) {
+    updateShapeConstraintsfHistory(currentState);
+    updateAdmissibilityConstraintsfHistory(currentState);
+    //TODO: Missing update of the walking constraints with not only the current state but also the history of states
+    // Stacking fHistorys
+    _fHistory << _shapeConstraintsStruct.fHistory, _admissibilityConstraintsStruct.fHistory;
+}
+
+void Constraints::updateShapeConstraintsfHistory(Eigen::VectorXd Xi_k) {
+    updateBoundingfHistory();
+    updateConstancyfHistory(Xi_k);
+    updateSequentialityfHistory();
+    // Stacking fHistoryS
+    //TODO: Not sure if I can update a matrix with this type of initialization
+    _shapeConstraintsStruct.fHistory << _shapeConstraintsStruct.bounding.fhistory,
+                                          _shapeConstraintsStruct.constancy.fHistory,
+                                          _shapeConstraintsStruct.sequentiality.fHistory;
+}
+
+void Constraints::updateAdmissibilityConstraintsfHistory(Eigen::VectorXd Xi_k) {
+    updateSSandDSAlternationfHistory(Xi_k);
+    updateSingleSupportfHistory();
+    updateContactConfigurationHistoryfHistory(Xi_k);
+    updateContactConfigurationEnforcementfHistory();
+    // Stacking fHistorys
+    //TODO: Not sure if I can update a matrix with this type of initialization
+    _admissibilityConstraintsStruct.fHistory << _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.fHistory,
+                                                   _admissibilityConstraintsStruct.singleSupport.fHistory,
+                                                   _admissibilityConstraintsStruct.contactConfigurationHistory.fHistory,
+                                                    _admissibilityConstraintsStruct.contactConfigurationEnforcement.fHistory;
+}
+
+void Constraints::updateBoundingfHistory() {
+    _shapeConstraintsStruct.bounding.fhistory.setZero();
+}
+
+void Constraints::updateConstancyfHistory(Eigen::VectorXd Xi_k) {
+    _shapeConstraintsStruct.constancy.fHistory = _shapeConstraintsStruct.constancy.Cbar2 * Xi_k;
+}
+
+void Constraints::updateSequentialityfHistory() {
+    _shapeConstraintsStruct.sequentiality.fHistory.setZero();
+}
+
+void Constraints::updateSSandDSAlternationfHistory(Eigen::VectorXd Xi_k) {
+    _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.fHistory = _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C2bar*Xi_k;
+}
+
+void Constraints::updateSingleSupportfHistory() {
+    _admissibilityConstraintsStruct.singleSupport.fHistory.setZero();
+}
+
+void Constraints::updateContactConfigurationHistoryfHistory(Eigen::VectorXd Xi_k) {
+    _admissibilityConstraintsStruct.contactConfigurationHistory.fHistory = _admissibilityConstraintsStruct.contactConfigurationHistory.C2bar*Xi_k;
+}
+
+void Constraints::updateContactConfigurationEnforcementfHistory() {
+    _admissibilityConstraintsStruct.contactConfigurationEnforcement.fHistory.setZero();
+}
+
+void Constraints::builddBar() {
+    buildShapeConstraintsdBar();
+    buildAdmissibilityConstraintsdBar();
+    //TODO: Missing walking constraints dbar
+    _dBar << _shapeConstraintsStruct.dbar, _admissibilityConstraintsStruct.dbar;
+}
+
+void Constraints::buildMIQPAMAtrix() {
+    _A = _Cbar * _R;
+}
+
+void Constraints::buildShapeConstraintsdBar() {
+    buildBoundingdBar(_shapeConstraintsStruct.bounding.dbar);
+    buildConstancydBar(_shapeConstraintsStruct.constancy.dBar);
+    buildSequentialitydBar(_shapeConstraintsStruct.sequentiality.dBar);
+    // Stacking them!
+    _shapeConstraintsStruct.dbar << _shapeConstraintsStruct.bounding.dbar,
+                                      _shapeConstraintsStruct.constancy.dBar,
+                                      _shapeConstraintsStruct.sequentiality.dBar;
+}
+
+void Constraints::buildAdmissibilityConstraintsdBar() {
+    buildSSandDSAlternationdBar(_admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.dBar);
+    buildSingleSupportdBar(_admissibilityConstraintsStruct.singleSupport.dBar);
+    buildContactConfigurationHistorydBar(_admissibilityConstraintsStruct.contactConfigurationHistory.dBar);
+    buildContactConfigurationEnforcementdBar(_admissibilityConstraintsStruct.contactConfigurationEnforcement.dBar);
+    // Stacking them!
+    _admissibilityConstraintsStruct.dbar << _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.dBar,
+                                               _admissibilityConstraintsStruct.singleSupport.dBar,
+                                               _admissibilityConstraintsStruct.contactConfigurationHistory.dBar,
+                                               _admissibilityConstraintsStruct.contactConfigurationEnforcement.dBar;
+
+}
+
+void Constraints::buildBoundingdBar(Eigen::VectorXd &dBar) {
+    _shapeConstraintsStruct.bounding.d << 0, 0;
+    stackVector(_shapeConstraintsStruct.bounding.d, dBar);
+}
+
+void Constraints::buildConstancydBar(Eigen::VectorXd &dBar) {
+    _shapeConstraintsStruct.constancy.d = Eigen::VectorXd::Zero(8);
+    stackVector(_shapeConstraintsStruct.constancy.d, dBar);
+}
+
+void Constraints::buildSequentialitydBar(Eigen::VectorXd &dBar) {
+    _shapeConstraintsStruct.sequentiality.d << 1, 1;
+    stackVector(_shapeConstraintsStruct.sequentiality.d, dBar);
+}
+
+void Constraints::buildSSandDSAlternationdBar(Eigen::VectorXd &dBar) {
+    _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.d << 2, 0, 0, 0;
+    stackVector(_admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.d, dBar);
+}
+
+void Constraints::buildSingleSupportdBar(Eigen::VectorXd &dBar) {
+    _admissibilityConstraintsStruct.singleSupport.d << 0, 0, 0, 0;
+    stackVector(_admissibilityConstraintsStruct.singleSupport.d, dBar);
+}
+
+void Constraints::buildContactConfigurationHistorydBar(Eigen::VectorXd &dBar) {
+    _admissibilityConstraintsStruct.contactConfigurationHistory.d << 1, 1;
+    stackVector(_admissibilityConstraintsStruct.contactConfigurationHistory.d, dBar);
+}
+
+void Constraints::buildContactConfigurationEnforcementdBar(Eigen::VectorXd &dBar) {
+    _admissibilityConstraintsStruct.contactConfigurationEnforcement.d << 1, 1, 1, 1, 0, 0, 0, 0;
+    stackVector(_admissibilityConstraintsStruct.contactConfigurationEnforcement.d, dBar);
+}
+
+void Constraints::stackVector(Eigen::VectorXd &vector, Eigen::VectorXd &output) {
+    unsigned int dRows = vector.size();
+    for (unsigned int i = 0; i <= _miqpParams.N - 1; i++)
+        output.segment(i*dRows, dRows) = vector;
+}
+
+void Constraints::buildShapeConstraintsCbar() {
+    buildBoundingCbar(_shapeConstraintsStruct.bounding.Cbar);
+    buildConstancyCbar(_shapeConstraintsStruct.constancy.Cbar1);
+    buildSequentialityCbar(_shapeConstraintsStruct.sequentiality.Cbar);
+    _shapeConstraintsStruct.Cbar << _shapeConstraintsStruct.bounding.Cbar,
+                                      _shapeConstraintsStruct.constancy.Cbar1,
+                                      _shapeConstraintsStruct.sequentiality.Cbar;
+}
+
+void Constraints::buildAdmissibilityConstraintsCbar() {
+    buildSSandDSAlternationCbar(_admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C1bar);
+    buildSingleSupportCbar(_admissibilityConstraintsStruct.singleSupport.Cbar);
+    buildContactConfigurationHistoryCbar(_admissibilityConstraintsStruct.contactConfigurationHistory.C1bar);
+    buildContactConfigurationEnforcementCbar(_admissibilityConstraintsStruct.contactConfigurationEnforcement.Cbar);
+    _admissibilityConstraintsStruct.Cbar << _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C1bar,
+                                              _admissibilityConstraintsStruct.singleSupport.Cbar,
+                                              _admissibilityConstraintsStruct.contactConfigurationHistory.C1bar,
+                                              _admissibilityConstraintsStruct.contactConfigurationEnforcement.Cbar;
+}
+
+
+void Constraints::buildBoundingCbar(Eigen::MatrixXd &Cbar) {
+    Eigen::VectorXd zero12 = Eigen::VectorXd::Zero(12);
+    _shapeConstraintsStruct.bounding.C << -1,  0, 1, 0, zero12.transpose(),
+                                             0, -1, 0, 1, zero12.transpose();
+    buildDiagonalMatrix(_shapeConstraintsStruct.bounding.C, Cbar);
+
+}
+
+void Constraints::buildConstancyCbar(Eigen::MatrixXd &Cbar) {
+    Eigen::VectorXd zero8 = Eigen::VectorXd::Zero(8);
+    Eigen::VectorXd zero12 = Eigen::VectorXd::Zero(12);
+    double sx =_shapeConstraintsStruct.constancy.S(0);
+    double sy = _shapeConstraintsStruct.constancy.S(1);
+   _shapeConstraintsStruct.constancy.C1 <<  1,  0,  0,  0, -sx,   0,   0,   0, zero8.transpose(),
+                                              -1,  0,  0,  0, -sx,   0,   0,   0, zero8.transpose(),
+                                               0,  0,  1,  0,   0,   0, -sx,   0, zero8.transpose(),
+                                               0,  0, -1,  0,   0,   0, -sx,   0, zero8.transpose(),
+                                               0,  1,  0,  0,   0, -sy,   0,   0, zero8.transpose(),
+                                               0, -1,  0,  0,   0, -sy,   0,   0, zero8.transpose(),
+                                               0,  0,  0,  1,   0,   0,   0, -sy, zero8.transpose(),
+                                               0,  0,  0, -1,   0,   0,   0, -sy, zero8.transpose();
+
+    _shapeConstraintsStruct.constancy.C2 << -1,  0,  0,  0, zero12.transpose(),
+                                                1,  0,  0,  0, zero12.transpose(),
+                                                0,  0, -1,  0, zero12.transpose(),
+                                                0,  0,  1,  0, zero12.transpose(),
+                                                0, -1,  0,  0, zero12.transpose(),
+                                                0,  1,  0,  0, zero12.transpose(),
+                                                0,  0,  0, -1, zero12.transpose(),
+                                                0,  0,  0,  1, zero12.transpose();
+
+    buildDoubleDiagonal(_shapeConstraintsStruct.constancy.C1, _shapeConstraintsStruct.constancy.C2, Cbar);
+}
+
+void Constraints::buildSequentialityCbar(Eigen::MatrixXd &Cbar) {
+    Eigen::VectorXd zero8 = Eigen::VectorXd::Zero(8);
+    Eigen::VectorXd zero4 = Eigen::VectorXd::Zero(4);
+    _shapeConstraintsStruct.sequentiality.C << zero4, 1, 0, 1, 0, zero8.transpose(),
+                                                  zero4, 0, 1, 0, 1, zero8.transpose();
+    buildDiagonalMatrix(_shapeConstraintsStruct.sequentiality.C, Cbar);
+}
+
+// ######## ADMISSIBILITY CONSTRAINTS CBAR ###############
+void Constraints::buildSSandDSAlternationCbar(Eigen::MatrixXd &Cbar) {
+    Eigen::VectorXd zero4 = Eigen::VectorXd::Zero(4);
+    Eigen::VectorXd zero6 = Eigen::VectorXd::Zero(6);
+    Eigen::VectorXd zero9 = Eigen::VectorXd::Zero(9);
+    _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C1 << zero4.transpose(), 1, 0,  1, 0, 0,  1, zero6,
+                                                                            zero4.transpose(),  1, 0,  1, 0, 0, -1, zero6,
+                                                                            zero4.transpose(), -1, 0, -1, 0, 0,  1, zero6,
+                                                                            zero4.transpose(), -1, 0, -1, 0, 0, -1, zero6;
+    _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C2 << zero9.transpose(),  1, 0,
+                                                                            zero9.transpose(),  -1, 0,
+                                                                            zero9.transpose(),  -1, 0,
+                                                                            zero9.transpose(),   1, 0;
+    buildDoubleDiagonal(_admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C1,
+                        _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C2,
+                        Cbar);
+}
+
+void Constraints::buildSingleSupportCbar(Eigen::MatrixXd &Cbar) {
+    //TODO: temporarily hardcoding this bound S
+    double sx = 0.1;
+    _admissibilityConstraintsStruct.singleSupport.S(0) = sx;
+    double sy = 0.1;
+    _admissibilityConstraintsStruct.singleSupport.S(1) = sy;
+    _admissibilityConstraintsStruct.singleSupport.C << 1,  0,  -1, 0,  0, 0, 0,  -sx, 0, 0,
+                                                          -1,  0,  1,  0,  0, 0, 0, -sx, 0, 0,
+                                                           0,  1,  0, -1,  0, 0, 0, -sy, 0, 0,
+                                                           0, -1,  0,  1,  0, 0, 0, -sy, 0, 0;
+    buildDiagonalMatrix(_admissibilityConstraintsStruct.singleSupport.C , Cbar);
+}
+
+void Constraints::buildContactConfigurationHistoryCbar(Eigen::MatrixXd &Cbar) {
+    Eigen::VectorXd zero8 = Eigen::VectorXd::Zero(8);
+    _admissibilityConstraintsStruct.contactConfigurationHistory.C1 << zero8.transpose(),  1, 0, 0, 0,
+                                                                           zero8.transpose(), -1, 0, 0, 0;
+    _admissibilityConstraintsStruct.contactConfigurationHistory.C2 << zero8.transpose(), -1, 1, 0, 0,
+                                                                           zero8.transpose(), 1, 1, 0, 0;
+    buildDoubleDiagonal(_admissibilityConstraintsStruct.contactConfigurationHistory.C1,
+                         _admissibilityConstraintsStruct.contactConfigurationHistory.C2,
+                         Cbar);
+}
+
+void Constraints::buildContactConfigurationEnforcementCbar(Eigen::MatrixXd &Cbar) {
+    Eigen::VectorXd zero7 = Eigen::VectorXd::Zero(7);
+    Eigen::VectorXd zero4 = Eigen::VectorXd::Zero(4);
+    _admissibilityConstraintsStruct.contactConfigurationEnforcement.C << zero4.transpose(), -1, -1,  0,  0,  1, zero7.transpose(),
+                                                                              zero4.transpose(), -1,  1,  0,  0,  1, zero7.transpose(),
+                                                                              zero4.transpose(),  0,  0,  1, -1,  1, zero7.transpose(),
+                                                                              zero4.transpose(),  0,  0, -1,  1,  1, zero7.transpose(),
+                                                                              zero4.transpose(),  1,  0,  0, -1, -1, zero7.transpose(),
+                                                                              zero4.transpose(), -1,  0,  0,  1, -1, zero7.transpose(),
+                                                                              zero4.transpose(),  0, -1,  1,  0, -1, zero7.transpose(),
+                                                                              zero4.transpose(),  0,  1, -1,  0, -1, zero7.transpose();
+    buildDiagonalMatrix(_admissibilityConstraintsStruct.contactConfigurationEnforcement.C, Cbar);
+}
+
+void Constraints::buildDoubleDiagonal(Eigen::MatrixXd C1, Eigen::MatrixXd C2, Eigen::MatrixXd &output) {
+    output.setZero();
+    output.block(0, 0, C1.rows(), C1.cols());
+    for (unsigned int i = 1; i < _miqpParams.N - 1; i++) {
+        output.block(i*C1.rows(), i*C1.cols(), C1.rows(), C1.cols()) = C1;
+        output.block(i*C2.rows(), (i-1)*C2.cols(), C2.rows(), C2.cols() ) = C2;
+    }
+}
+
+void Constraints::buildDiagonalMatrix(Eigen::MatrixXd matrixInDiag, Eigen::MatrixXd &output) {
+    output.setZero();
+    unsigned int lastIndex = _miqpParams.N - 1;
+    for (unsigned int i = 0; i <= lastIndex; i++) {
+        output.block(i*matrixInDiag.rows(), i*matrixInDiag.cols(), matrixInDiag.rows() , matrixInDiag.cols()) = matrixInDiag;
+    }
+}
+
+void Constraints::initializeShapeConstraintsMatrix() {
+    // Number of total rows of the final shape constraints matrix
+    int totalRowsCbar = 0;
+    int totalColsCbar = SIZE_STATE_VECTOR*_miqpParams.N;
+    int totalRowsDbar = 0;
+    // Check if _shapeConstraintsMatrix is empty. For the present constraints
+    // resize their corresponding matrices. The size of _shapeConstraintsStruct.Cbar
+    // depends on the constraints that were included in the configuration file.
+    // So first, which constraints were added to the config file?
+    //TODO: Simultaneity constraint is an equality. Must be handled differently
+    //TODO: What should I do if _shapeConstraints is actually empty?
+    if (!_shapeConstraints.empty()) {
+        for (auto const& container: _shapeConstraints) {
+            if(!container.compare("bounding")) {
+                totalRowsCbar += 2*_miqpParams.N;
+                _shapeConstraintsStruct.bounding.C.resize(2, SIZE_STATE_VECTOR);
+                _shapeConstraintsStruct.bounding.d.resize(2);
+                _shapeConstraintsStruct.bounding.Cbar.resize(2*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                _shapeConstraintsStruct.bounding.dbar.resize(2*_miqpParams.N);
+                _shapeConstraintsStruct.bounding.fhistory.resize(_shapeConstraintsStruct.bounding.dbar.size());
+            }
+            if (!container.compare("constancy")) {
+                totalRowsCbar += 8*_miqpParams.N;
+                _shapeConstraintsStruct.constancy.C1.resize(8, SIZE_STATE_VECTOR);
+                _shapeConstraintsStruct.constancy.C2.resize(8, SIZE_STATE_VECTOR);
+                _shapeConstraintsStruct.constancy.d.resize(8);
+                _shapeConstraintsStruct.constancy.dBar.resize(8*_miqpParams.N);
+                _shapeConstraintsStruct.constancy.Cbar1.resize(8*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                _shapeConstraintsStruct.constancy.Cbar2.resize(8*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                //TODO: Didn't think about the additional parameters a constraint may have, such as bounds, etc. For the moment hardcoding it!
+                double Sx = 0.1;
+                double Sy = 0.1;
+                _shapeConstraintsStruct.constancy.S(0) = Sx;
+                _shapeConstraintsStruct.constancy.S(1) = Sy;
+                _shapeConstraintsStruct.constancy.fHistory.resize(_shapeConstraintsStruct.constancy.dBar.size());
+            }
+            if (!container.compare("sequentiality")) {
+                totalRowsCbar += 2*_miqpParams.N;
+                _shapeConstraintsStruct.sequentiality.C.resize(2, SIZE_STATE_VECTOR);
+                _shapeConstraintsStruct.sequentiality.d.resize(2);
+                _shapeConstraintsStruct.sequentiality.Cbar.resize(2*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                _shapeConstraintsStruct.sequentiality.dBar.resize(2*_miqpParams.N);
+                _shapeConstraintsStruct.sequentiality.fHistory.resize(_shapeConstraintsStruct.sequentiality.dBar.size());
+            }
+        }
+    }
+
+    totalRowsDbar = totalRowsCbar;
+
+    _shapeConstraintsStruct.Cbar.resize(totalRowsCbar, totalColsCbar);
+    _shapeConstraintsStruct.dbar.resize(totalRowsDbar);
+}
+
+void Constraints::initializeAdmissibilityConstraintsMatrix() {
+    // Number of total rows of the final shape constraints matrix
+    int totalRowsCbar = 0;
+    int totalColsCbar = SIZE_STATE_VECTOR*_miqpParams.N;
+    int totalRowsDbar = 0;
+    // Check if _admissibilityConstraints is empty. For the present constraints
+    // resize their corresponding matrices. The size of _admissibilityConstraints
+    // depends on the constraints that were included in the configuration file.
+    // So first, which constraints were added to the config file?
+    //TODO: What should I do if _admissibilityConstraints is actually empty?
+    if (!_admissibilityConstraints.empty()) {
+        for (auto const& container: _admissibilityConstraints) {
+            if (!container.compare("ss_and_ds_alternation")) {
+                _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C1.resize(4, SIZE_STATE_VECTOR);
+                _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C2.resize(4, SIZE_STATE_VECTOR);
+                _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.d.resize(4);
+                _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C1bar.resize(4*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C2bar.resize(4*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.dBar.resize(4*_miqpParams.N);
+                _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.fHistory.resize(_admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.dBar.size());
+                totalRowsCbar += _admissibilityConstraintsStruct.ssAndDoubleSupportAlternation.C1bar.rows();
+            }
+            if (!container.compare("single_support")) {
+                _admissibilityConstraintsStruct.singleSupport.C.resize(4, SIZE_STATE_VECTOR);
+                _admissibilityConstraintsStruct.singleSupport.d.resize(4);
+                _admissibilityConstraintsStruct.singleSupport.Cbar.resize(4*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                _admissibilityConstraintsStruct.singleSupport.dBar.resize(4);
+                _admissibilityConstraintsStruct.singleSupport.fHistory.resize(_admissibilityConstraintsStruct.singleSupport.dBar.size());
+                totalRowsCbar += _admissibilityConstraintsStruct.singleSupport.Cbar.rows();
+            }
+            if (!container.compare("contact_config_history")) {
+                _admissibilityConstraintsStruct.contactConfigurationHistory.C1.resize(2, SIZE_STATE_VECTOR);
+                _admissibilityConstraintsStruct.contactConfigurationHistory.C2.resize(2, SIZE_STATE_VECTOR);
+                _admissibilityConstraintsStruct.contactConfigurationHistory.d.resize(2);
+                _admissibilityConstraintsStruct.contactConfigurationHistory.C1bar.resize(2*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                _admissibilityConstraintsStruct.contactConfigurationHistory.C2bar.resize(2*_miqpParams.N, SIZE_STATE_VECTOR*_miqpParams.N);
+                _admissibilityConstraintsStruct.contactConfigurationHistory.dBar.resize(2*_miqpParams.N);
+                _admissibilityConstraintsStruct.contactConfigurationHistory.fHistory.resize(_admissibilityConstraintsStruct.contactConfigurationHistory.dBar.size());
+                totalRowsCbar += _admissibilityConstraintsStruct.contactConfigurationHistory.C1bar.rows();
+            }
+            if (!container.compare("contact_config_enforcement")) {
+                _admissibilityConstraintsStruct.contactConfigurationEnforcement.C.resize(8, SIZE_STATE_VECTOR);
+                _admissibilityConstraintsStruct.contactConfigurationEnforcement.d.resize(8);
+                _admissibilityConstraintsStruct.contactConfigurationEnforcement.Cbar.resize(8*_miqpParams.N, SIZE_STATE_VECTOR);
+                _admissibilityConstraintsStruct.contactConfigurationEnforcement.dBar.resize(8*_miqpParams.N);
+                _admissibilityConstraintsStruct.contactConfigurationEnforcement.fHistory.resize(_admissibilityConstraintsStruct.contactConfigurationEnforcement.dBar.size());
+                totalRowsCbar += _admissibilityConstraintsStruct.contactConfigurationEnforcement.Cbar.rows();
+            }
+        }
+    }
+
+    totalRowsDbar = totalRowsCbar;
+    _admissibilityConstraintsStruct.Cbar.resize(totalRowsCbar, totalColsCbar);
+    _admissibilityConstraintsStruct.dbar.resize(totalRowsDbar);
+
+}
+
+bool Constraints::findConstraintsInConfigFile() {
+
+    yarp::os::Bottle tmpBottle;
+
+    if (!_rf.check("SHAPE_CONSTRAINTS") &&
+        !_rf.check("ADMISSIBILITY_CONSTRAINTS") &&
+        !_rf.check("WALKING_CONSTRAINTS")) {
+        OCRA_ERROR("This MIQP won't work without constraints! Please insert them and see documentation on the class Constraints to see possible ones");
+    return false;
+    }
+
+    // Fill every vector of constraints names with the names of the constraints included in config file
+    getConstraintsFromConfigFile(SHAPE_CONSTRAINTS, tmpBottle, _shapeConstraints);
+    getConstraintsFromConfigFile(ADMISSIBILITY_CONSTRAINTS, tmpBottle, _admissibilityConstraints);
+    getConstraintsFromConfigFile(WALKING_CONSTRAINTS, tmpBottle, _walkingConstraints);
+
+    // Print constraints in each vector. Mostly for debugging purposes.
+    printConstraintsFromConfigFile(_shapeConstraints);
+    printConstraintsFromConfigFile(_admissibilityConstraints);
+    printConstraintsFromConfigFile(_walkingConstraints);
+
+    return true;
+}
+
+void Constraints::printConstraintsFromConfigFile(std::vector<std::string> strVec) {
+    if (!strVec.empty()) {
+        for (auto const& content: strVec)
+            std::cout << content;
+    } else {
+        OCRA_WARNING("A vector of constraints is empty. Let's hope this was intentional.");
+    }
+}
+
+void Constraints::extractFromBottle(yarp::os::Bottle &bottle, std::vector<std::string> &strVec) {
+    while (!bottle.isNull()) {
+        strVec.push_back(bottle.pop().asString());
+    }
+}
+
+void Constraints::getConstraintsFromConfigFile(CONSTRAINTS_TYPE whichConstraints,
+                                                yarp::os::Bottle &bottle,
+                                                std::vector<std::string> &strVec) {
+    std::string constraintType;
+    switch (whichConstraints) {
+        case SHAPE_CONSTRAINTS:
+            constraintType = "SHAPE_CONSTRAINTS";
+            break;
+            case ADMISSIBILITY_CONSTRAINTS:
+            constraintType = "ADMISSIBILITY_CONSTRAINTS";
+            break;
+        case WALKING_CONSTRAINTS:
+            constraintType = "WALKING_CONSTRAINTS";
+            break;
+        default:
+            break;
+    }
+
+    bottle = _rf.findGroup(constraintType);
+    extractFromBottle(bottle, strVec);
+}
+
+Eigen::MatrixXd Constraints::getConstraintsMatrix() {
+    return _A;
+}
+
+Eigen::VectorXd Constraints::getRHSVector() {
+    return _rhs;
+}
