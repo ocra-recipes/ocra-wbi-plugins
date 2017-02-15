@@ -8,9 +8,9 @@ public:
     Bounding();
     virtual ~Bounding();
 protected:
-    void buildMatrixCi();
-    void buildMatrixCii();
-    void buildVectord();
+    virtual void buildMatrixCi();
+    virtual void buildMatrixCii();
+    virtual void buildVectord();
 };
 
 #endif

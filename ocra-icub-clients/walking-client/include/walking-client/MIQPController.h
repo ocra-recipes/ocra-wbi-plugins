@@ -41,7 +41,7 @@
 
 class MIQPController : public yarp::os::RateThread {
 public:
-    /** 
+    /**
      * Constructor.
      *
      * @param period        Thread period in ms
@@ -50,12 +50,12 @@ public:
      * @param comStateRef   Reference to a matrix of CoM state references
      */
     MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, const Eigen::MatrixXd &comStateRef);
-    
+
     /**
      * Destructor
      */
     virtual ~MIQPController();
-    
+
     /**
      * Performs all the initialization of the MIQP controller such as:
      * - Initializing the Gurobi model.
@@ -65,12 +65,12 @@ public:
      * - Setup the eigen-gurobi object.
      */
     virtual bool threadInit();
-    
+
     /**
      * Deallocates in memory. In particular, that of the Gurobi environment.
      */
     virtual void threadRelease();
-    
+
     /**
      * Main loop of this thread. Performs the following operations:
      * - Updates the state vector.
@@ -147,7 +147,7 @@ protected:
      *  @return The constant matrix Ah.
      *  @see ZmpPreviewController::Ah
      */
-    Eigen::MatrixXd buildAh(int dt);
+    void buildAh(int dt, Eigen::MatrixXd &output);
 
     /**
      *  Builds \f$B_h\f$. Called during the member list initialization of the constructor of this class.
@@ -156,37 +156,40 @@ protected:
      *  @return The constant matrix Bh.
      *  @see ZmpPreviewController::Bh
      */
-    Eigen::MatrixXd buildBh(int dt);
+    void buildBh(int dt, Eigen::MatrixXd &output);
 
     /**
      Builds the matrix \f$\mathbf{Q}\f$. \see MIQPController::Q
 
      @return Matrix Q
      */
-    Eigen::MatrixXd buildQ();
+    void buildQ(Eigen::MatrixXd &output);
 
     /**
      Builds the matrix \f$\mathbf{T}\f$. \see MIQPController::T
 
      @return Matrix T
      */
-    Eigen::MatrixXd buildT();
+    void buildT(Eigen::MatrixXd &output);
     // TODO: Document
-    Eigen::MatrixXd buildC_H();
+    void buildC_H(Eigen::MatrixXd &output);
     // TODO: Document
-    Eigen::MatrixXd buildC_P();
+    void buildC_P(Eigen::MatrixXd &output);
     // TODO: Document
-    Eigen::MatrixXd buildC_B();
+    void buildC_B(Eigen::MatrixXd &output);
+    
+    /* Matrix Q in \f$ \underset{x}{\text{min}}\; x^TQx^T + c^Tx \f$
+     *
+     */
+    void buildH_N(Eigen::MatrixXd &output);
     // TODO: Document
-    Eigen::MatrixXd buildH_N();
+    void buildNb(Eigen::MatrixXd &output);
     // TODO: Document
-    Eigen::MatrixXd buildNb();
+    void buildSw(Eigen::MatrixXd &output);
     // TODO: Document
-    Eigen::MatrixXd buildSw();
+    void buildPreviewStateMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &P);
     // TODO: Document
-    Eigen::MatrixXd buildPreviewStateMatrix(Eigen::MatrixXd C);
-    // TODO: Document
-    Eigen::MatrixXd buildPreviewInputMatrix(Eigen::MatrixXd C);
+    void buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &R);
 
 private:
     // MARK: - PRIVATE VARIABLES
@@ -200,32 +203,32 @@ private:
 
     /** Thread period in milliseconds */
     int _period;
-    
+
     /** Gurobi environment. Necessary before setting up the gurobi model */
-    
+
     GRBEnv * _env;
-    
-    /** 
+
+    /**
      * Gurobi model. It is built by adding variables and constraints to it and it can
      * be asked to perform the optimization or integrate model changes.
      */
     GRBModel * _model;
-    
+
     // FIXME: Deprecate. As this is created by eigen-gurobi as well
     /**
      * Objective function as a GRBQadExpr object. Consists of a linear expression, plus a list of
      * coefficient-variable-variable triples that capture the quadratic terms.
      */
     GRBQuadExpr _obj;
-    
+
     // FIXME: Deprecate
     GRBVar * _vars;
-    
+
     /**
      *  Containts the state-dependent linear term of the objective function. This vector is to be passed to the eigen-gurobi problem.
      */
     Eigen::VectorXd _linearTermTransObjFunc;
-    
+
     // FIXME: Deprecate
     Eigen::VectorXd _quadraticTermObjFunc;
 
@@ -234,7 +237,7 @@ private:
 
     /** Vector of upper bounds of the input vector \f$\mathcal{X}\f$ */
     Eigen::VectorXd _ub;
-    
+
     // TODO: Document
     std::string _variablesNames[INPUT_VECTOR_SIZE];
 
@@ -267,7 +270,7 @@ private:
      *  \f[
      *  \mathbf{A_h} = \left[ \begin{array}{ccc}
      *  \mathbf{I}_2  & \delta t \mathbf{I}_2  &  \frac{\delta t^2}{2} \mathbf{I}_2 \\
-     *   0  &     \mathbf{I}_2     &  \delta t     \\
+     *   0  &     \mathbf{I}_2     &  \delta t \mathbf{I}_2    \\
      *   0  &     0     &      \mathbf{I}_2
      *  \end{array} \right]
      *  \f]
@@ -292,8 +295,8 @@ private:
      *  \f]
      */
     Eigen::MatrixXd _Bh;
-
-    /* Matrix Q in \f$ \underset{x}{\text{min}}\; x^TQx^T + c^Tx \f$
+    
+    /**
      *
      * \f[
      \mathbf{Q} = \left[\begin{array}{cc}
@@ -301,8 +304,6 @@ private:
      \mathbf{0}_{6\times10} & \mathbf{A_h}_{6\times6}
      \end{array}\right]
      * \f]
-     *
-     * @see MIQPController::_Ah
      */
     Eigen::MatrixXd _Q;
 
@@ -340,11 +341,11 @@ private:
     // TODO: Document
     Eigen::MatrixXd _R_B;
     // TODO: Document
-    Eigen::MatrixXd _H_N;
+    Eigen::MatrixXd _Sw;
     // TODO: Document
     Eigen::MatrixXd _Nb;
     // TODO: Document
-    Eigen::MatrixXd _Sw;
+    Eigen::MatrixXd _H_N;
 
 
     /** Inequality matrix of the MIQP problem, i.e.

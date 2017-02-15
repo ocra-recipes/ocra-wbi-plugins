@@ -37,11 +37,8 @@
 
 class Constraint {
 public:
-    Constraint() {
-        buildMatrixCi();
-        buildMatrixCii();
-        buildVectord();
-    }
+    Constraint() { }
+    void init() { OCRA_WARNING("Trying to initialize"); buildMatrixCi(); buildMatrixCii(); buildVectord(); };
     Eigen::MatrixXd getCi() { return _Ci; };
     Eigen::MatrixXd getCii() { return _Cii; };
     Eigen::VectorXd getd(){ return _d; };

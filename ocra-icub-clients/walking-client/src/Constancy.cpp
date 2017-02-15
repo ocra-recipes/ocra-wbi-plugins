@@ -1,6 +1,6 @@
 #include "walking-client/constraints/Constancy.h"
 
-Constancy::Constancy() {
+Constancy::Constancy() : Constraint() {
 // Set bounding
     //TODO: This should be input somehow from configuration file
     _S(0) = 0.01;
@@ -9,6 +9,7 @@ Constancy::Constancy() {
 Constancy::~Constancy() {}
 
 void Constancy::buildMatrixCi() {
+    _Ci.resize(8,SIZE_STATE_VECTOR);
     Eigen::VectorXd zero8 = Eigen::VectorXd::Zero(8);
     double sx = _S(0);
     double sy = _S(1);
@@ -20,9 +21,11 @@ void Constancy::buildMatrixCi() {
             0, -1,  0,  0,   0, -sy,   0,   0, zero8.transpose(),
             0,  0,  0,  1,   0,   0,   0, -sy, zero8.transpose(),
             0,  0,  0, -1,   0,   0,   0, -sy, zero8.transpose();
+    OCRA_WARNING("Ci built for Constancy");
 }
 
 void Constancy::buildMatrixCii() {
+    _Cii.resize(8,SIZE_STATE_VECTOR);
     Eigen::VectorXd zero12 = Eigen::VectorXd::Zero(12);
     _Cii << -1,  0,  0,  0, zero12.transpose(),
             1,  0,  0,  0, zero12.transpose(),
@@ -32,8 +35,11 @@ void Constancy::buildMatrixCii() {
             0,  1,  0,  0, zero12.transpose(),
             0,  0,  0, -1, zero12.transpose(),
             0,  0,  0,  1, zero12.transpose();
+    OCRA_WARNING("Cii built for Constancy");
 }
 
 void Constancy::buildVectord() {
+    _d.resize(8);
     _d = Eigen::VectorXd::Zero(_Ci.rows());
+    OCRA_WARNING("d built for Constancy");
 }

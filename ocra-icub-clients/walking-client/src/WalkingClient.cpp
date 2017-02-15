@@ -5,8 +5,8 @@ using namespace Eigen;
 
 WalkingClient::WalkingClient(std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod)
 : ocra_recipes::ControllerClient(modelPtr, loopPeriod),
-_zmpPreviewParams(std::make_shared<ZmpPreviewParams>(200,
-                                                     200,
+_zmpPreviewParams(std::make_shared<ZmpPreviewParams>(50,
+                                                     50,
                                                      (model->getCoMPosition()).operator()(2),
                                                      1e-6,
                                                      0.0,
@@ -246,7 +246,16 @@ bool WalkingClient::initialize()
     // Set task's Kp and Kd to 0 from the client, since this task will receive pure accelerations
     _comTask->setStiffness(0);
     _comTask->setDamping(0);
-        
+    
+    // Start MIQPController thread
+    // First setup the parameters
+    MIQPParameters miqpParams;
+    miqpParams.cz = _zmpPreviewParams->cz;
+    miqpParams.g = 9.8;
+    miqpParams.N = _zmpPreviewParams->Np;
+    Eigen::MatrixXd comStateRef = Eigen::MatrixXd::Zero(miqpParams.N, 6);
+    _miqpController = std::make_shared<MIQPController>(period, miqpParams, this->model, comStateRef);
+    _miqpController->start();
     OCRA_INFO("Initialization is over");
     return true;
 }
@@ -254,6 +263,7 @@ bool WalkingClient::initialize()
 void WalkingClient::release()
 {
     _stepController->stop();
+    _miqpController->stop();
 }
 
 void WalkingClient::loop()

@@ -8,6 +8,7 @@
 #include "walking-client/ZmpPreviewController.h"
 #include "walking-client/StepController.h"
 #include "walking-client/utils.h"
+#include "walking-client/MIQPController.h"
 #include <ocra/util/FileOperations.h>
 #include <yarp/os/Time.h>
 
@@ -180,6 +181,7 @@ private:
     std::shared_ptr<ZmpPreviewParams> _zmpPreviewParams;
     std::shared_ptr<ZmpPreviewController> _zmpPreviewController;
     std::shared_ptr<ocra_recipes::TaskConnection> _comTask;
+    std::shared_ptr<MIQPController> _miqpController;
     std::shared_ptr<StepController> _stepController;
     std::vector<Eigen::Vector2d> _zmpTrajectory;
     std::vector<Eigen::Vector2d> _singleStepTrajectory;
