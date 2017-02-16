@@ -39,6 +39,7 @@ void MIQPLinearConstraints::setMatrixAcl() {
 
 void MIQPLinearConstraints::updateRHS(Eigen::VectorXd xi_k){
     _rhs = _fcbarShapeAdmiss - _BShapeAdmiss * xi_k;
+    OCRA_WARNING("Updated RHS");
 }
 
 void MIQPLinearConstraints::getRHS(Eigen::VectorXd &rhs) {

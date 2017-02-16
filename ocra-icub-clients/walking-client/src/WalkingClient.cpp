@@ -253,8 +253,10 @@ bool WalkingClient::initialize()
     miqpParams.cz = _zmpPreviewParams->cz;
     miqpParams.g = 9.8;
     miqpParams.N = _zmpPreviewParams->Np;
-    Eigen::MatrixXd comStateRef = Eigen::MatrixXd::Zero(miqpParams.N, 6);
-    _miqpController = std::make_shared<MIQPController>(period, miqpParams, this->model, comStateRef);
+    // FIXME: Dummy initial COM states reference!
+    Eigen::MatrixXd comStateRef = Eigen::MatrixXd::Zero(100*miqpParams.N, 6);
+    // FIXME: For now hardcoding 100ms period
+    _miqpController = std::make_shared<MIQPController>(100, miqpParams, this->model, comStateRef);
     _miqpController->start();
     OCRA_INFO("Initialization is over");
     return true;
@@ -268,20 +270,20 @@ void WalkingClient::release()
 
 void WalkingClient::loop()
 {
-    if (_isTestRun) {
-        if (!_testType.compare("zmpPreview")) {
-            // Track a zmp trajectory using a zmp preview controller
-            performZMPPreviewTest(_zmpTestType);
-        } else {
-            if (!_testType.compare("singleStepTest")) {
-            // Performing one single step with the right foot
-                performSingleStepTest();
-            } else {
-                OCRA_ERROR("You want to perform a zmp test, but zmpPreview was not found as value for the option 'test'. Please try again... ");
-                this->askToStop();
-            }
-        }
-    }
+//    if (_isTestRun) {
+//        if (!_testType.compare("zmpPreview")) {
+//            // Track a zmp trajectory using a zmp preview controller
+//            performZMPPreviewTest(_zmpTestType);
+//        } else {
+//            if (!_testType.compare("singleStepTest")) {
+//            // Performing one single step with the right foot
+//                performSingleStepTest();
+//            } else {
+//                OCRA_ERROR("You want to perform a zmp test, but zmpPreview was not found as value for the option 'test'. Please try again... ");
+//                this->askToStop();
+//            }
+//        }
+//    }
 }
 
 bool WalkingClient::readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench) {

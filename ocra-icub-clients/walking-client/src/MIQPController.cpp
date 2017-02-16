@@ -12,7 +12,8 @@ _obj(0),
 _vars(0),
 _lb(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
 _ub(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
-_xi_k(Eigen::VectorXd(INPUT_VECTOR_SIZE)),
+_xi_k(Eigen::VectorXd(STATE_VECTOR_SIZE)),
+_X_kn(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
 _Ah(Eigen::MatrixXd(6,6)),
 _Bh(Eigen::MatrixXd(6,2)),
 _Q(Eigen::MatrixXd::Identity(SIZE_STATE_VECTOR, SIZE_STATE_VECTOR)),
@@ -25,7 +26,9 @@ _P_P(_miqpParams.N * _C_P.rows(), _Q.cols()),
 _P_B(_miqpParams.N * _C_B.rows(), _Q.cols()),
 _R_H(_C_H.rows()*_miqpParams.N, _T.cols()*_miqpParams.N),
 _R_P(_C_P.rows()*_miqpParams.N, _T.cols()*_miqpParams.N),
-_R_B(_C_B.rows()*_miqpParams.N, _T.cols()*_miqpParams.N)
+_R_B(_C_B.rows()*_miqpParams.N, _T.cols()*_miqpParams.N),
+_H_N_r(6*_miqpParams.N)
+
 {
     buildAh(_period, _Ah);
     buildBh(period, _Bh);
@@ -53,37 +56,31 @@ MIQPController::~MIQPController() {
 }
 
 bool MIQPController::threadInit() {
-    // Create Gurobi environment
-//    _env = new GRBEnv();
-
-    // Create Gurobi model
-    // TODO: Check if eigen-gurobi also creates its own model ?? If it does, then this is wrong and I should get a copy form it
-//    _model = new GRBModel(*_env);
-
-    // Add variables to the model. This is actually done in GurobiCommon::problem()
-    // _vars = this->addVariablesToModel();
-
-    // Set quadratic part of objective function, i.e. obj = X^T * H * X
-    // setQuadraticPartObjectiveFunction();
     
     // Sets lower and upper bounds
     setLowerAndUpperBounds();
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
     _constraints = std::make_shared<MIQPLinearConstraints>(_period, _miqpParams.N);
-    // Initiliazie all constraints
-//    _constraints->initialize();
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  SIZE_INPUT_VECTOR * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
-
+    
+    // Resize _Bineq
+    _Bineq.resize(_Aineq.rows());
+    
     // FIXME: There is at least one equality constraint for Simultaneity. Fix this!
     // Setup eigen-gurobi object with 12*N variables, 0 equality constraints and rows-of-Aineq inequality constraints.
-    _eigGurobi.problem(INPUT_VECTOR_SIZE*_miqpParams.N, 0, _Aineq.rows());
+    try {
+        _eigGurobi.problem(INPUT_VECTOR_SIZE*_miqpParams.N, 0, _Aineq.rows());
 
-    // In the previous initialization all variables are assumed continuous by default. Specify which ones are binary (4->9)
-    // i.e. alpha_x, alpha_y, beta_x, beta_y, delta, gamma
+    // In the previous initialization all variables are assumed continuous by default. Specify which ones are binary (4->9) i.e. alpha_x, alpha_y, beta_x, beta_y, delta, gamma
     for (int i = 4; i <=9; i++)
         _eigGurobi.setVariableType(i, GRB_BINARY);
+    }
+    catch (GRBException e) {
+        std::cout << "Error code = " << e.getErrorCode() << std::endl;
+        std::cout << e.getMessage() << std::endl;
+    }
 
     OCRA_WARNING("Finished MIQPController initialization");
     return true;
@@ -94,35 +91,46 @@ void MIQPController::threadRelease() {
 }
 
 void MIQPController::run() {
-    // TODO: This method needs to be implemented.
+    // FIXME: This method needs to be implemented.
     updateStateVector();
 
     // Update constraints.
     // NOTE: _Aineq is time-invariant and thus built only once, while _Bineq is state dependant (also depends on a history of states when walking constraints are included).
     _constraints->updateRHS(_xi_k);
     _constraints->getRHS(_Bineq);
+    OCRA_WARNING("RHS Retrieved");
 
     // TODO: Still gotta set the equality constraints such as Simultaneity
-    Eigen::VectorXd beqNULL(1); beqNULL.setZero();
-    Eigen::MatrixXd AeqNULL(1,1); AeqNULL.setZero();
+    Eigen::VectorXd beqNULL;beqNULL.resize(0); //beqNULL.setZero();
+    Eigen::MatrixXd AeqNULL;AeqNULL.resize(0,0);// AeqNULL.setZero();
 
     setCOMStateRefInPreviewWindow(_k, _H_N_r);
     setLinearPartObjectiveFunction();
 
+    try {
     // TODO: Watch out! _eigGurobi will add a 1/2. Therefore the 2. Check that this is correct.
-    // FIXME: The expression for Q is missing regularization terms
+    // FIXME: The expression for _H_N is missing regularization terms
     _eigGurobi.solve(2*_H_N, _linearTermTransObjFunc, AeqNULL, beqNULL, _Aineq, _Bineq, _lb, _ub);
 
     // Get the solution
     _X_kn = _eigGurobi.result();
+    } catch(GRBException e) {
+        std::cout << "Error code = " << e.getErrorCode() << std::endl;
+        std::cout << e.getMessage() << std::endl;
+    }
+    
+    _k++;
 }
 
-void MIQPController::setCOMStateRefInPreviewWindow(unsigned int k, Eigen::VectorXd &comStateRef) {
+void MIQPController::setCOMStateRefInPreviewWindow(unsigned int k, Eigen::VectorXd &H_N_r) {
     unsigned int j = 0;
-    for (unsigned int i = k + 1; i < k + _miqpParams.N; i++) {
-        comStateRef.segment(j, _miqpParams.N) = _comStateRef.row(i);
-        j += _miqpParams.N;
+    // FIXME: Pass an actual reference of CoM states
+    for (unsigned int i = k + 1; i <= k + _miqpParams.N; i++) {
+        OCRA_INFO("Copying \n" << _comStateRef.row(i) << "\n into H_N_r at position: " << j);
+        H_N_r.segment(j, 6) = _comStateRef.row(i);
+        j += 6;
     }
+    OCRA_WARNING("Updated COMStateRefInPreviewWindow");
 }
 
 void MIQPController::setVariablesTypes(char * variablesTypes) {
@@ -167,7 +175,7 @@ void MIQPController::updateStateVector() {
     // TODO: Update rising/falling edges
     // TODO: Update SS/DS
     // TODO: Update potential change from DS to SS
-    _xi_k = Eigen::VectorXd::Zero(SIZE_STATE_VECTOR);
+    _xi_k.setZero();
 }
 
 GRBVar* MIQPController::addVariablesToModel() {
@@ -208,7 +216,11 @@ void MIQPController::setQuadraticPartObjectiveFunction() {
 }
 
 void MIQPController::setLinearPartObjectiveFunction() {
+    // FIXME:
+//    Set Linear Part of the Obj Function
+//    Assertion failed: (A.rows() == len), function updateConstr, file /Users/jorhabibeljaik/Code/eigen-gurobi/src/Gurobi.cpp, line 267.
     _linearTermTransObjFunc = -2*(_H_N_r - _P_H*_xi_k).transpose()*_Sw*_R_H + 2*((_P_P - _P_B)*_xi_k).transpose()*_Nb*(_R_P - _R_B);
+    OCRA_WARNING("Set Linear Part of the Obj Function");
 }
 
 void MIQPController::buildAh(int dt, Eigen::MatrixXd &Ah) {
