@@ -23,6 +23,9 @@ public:
     StepController(int periodms, ocra::Model::Ptr model);
     virtual ~StepController();
 
+    /**
+     * @todo This max velocity must be compatible with the one specified in the linar constraints
+     */
     bool initialize();
 
     /**

@@ -124,7 +124,11 @@ private:
     unsigned int _nConstraints;
 public:
 
+    /**
+     * @todo Once I add walking constraints this will change to include the rows added by walking constraints
+     */
     MIQPLinearConstraints (unsigned int dt, unsigned int N);
+    
     virtual ~MIQPLinearConstraints ();
     
     void initialize();
@@ -164,6 +168,7 @@ protected:
      \f]
 
      \see buildAShapeAdmiss()
+     \todo When walking constraints are added, matrix _A will be a stack of the two
      */
     void buildShapeAndAdmissibilityInPreviewWindow();
     /*

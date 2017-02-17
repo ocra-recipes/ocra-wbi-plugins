@@ -167,12 +167,16 @@ public:
 
      @param comState 6-dim CoM state vector (horizontal dynamics).
      @param doSet True if the desired state is to be set. False otherwise.
+     @todo Change input to this method to just com acceleration.
      */
     void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet);
     
     
     
 protected:
+    /**
+     * @todo Dummy initial COM states reference!
+     */
     virtual bool initialize();
     virtual void release();
     virtual void loop();

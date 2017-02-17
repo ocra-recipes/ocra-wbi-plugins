@@ -97,6 +97,9 @@ class ZmpController
 {
 public:
 
+    /**
+     * @todo Deprecate this class
+     */
     ZmpController(const int period,
                   std::shared_ptr<ocra::Model> modelPtr,
                   std::shared_ptr<ZmpControllerParams> parameters);

@@ -5,6 +5,9 @@ private:
     /* Upper bounds */
     Eigen::Vector2d _S;
 public:
+    /**
+     * @todo Upper boundaries should be input somehow from configuration file
+     */
     Constancy();
     virtual ~Constancy();
 protected:

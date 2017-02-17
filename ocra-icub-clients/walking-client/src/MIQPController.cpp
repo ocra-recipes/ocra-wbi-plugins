@@ -47,16 +47,16 @@ _H_N_r(6*_miqpParams.N)
     buildNb(_Nb);
     buildH_N(_H_N);
     _k = 0;
-    
-    
+
+
 }
 
 MIQPController::~MIQPController() {
-    OCRA_WARNING("Built an MIQP Controller object");
+//    OCRA_WARNING("Built an MIQP Controller object");
 }
 
 bool MIQPController::threadInit() {
-    
+
     // Sets lower and upper bounds
     setLowerAndUpperBounds();
 
@@ -64,10 +64,10 @@ bool MIQPController::threadInit() {
     _constraints = std::make_shared<MIQPLinearConstraints>(_period, _miqpParams.N);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  SIZE_INPUT_VECTOR * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
-    
+
     // Resize _Bineq
     _Bineq.resize(_Aineq.rows());
-    
+
     // FIXME: There is at least one equality constraint for Simultaneity. Fix this!
     // Setup eigen-gurobi object with 12*N variables, 0 equality constraints and rows-of-Aineq inequality constraints.
     try {
@@ -98,7 +98,7 @@ void MIQPController::run() {
     // NOTE: _Aineq is time-invariant and thus built only once, while _Bineq is state dependant (also depends on a history of states when walking constraints are included).
     _constraints->updateRHS(_xi_k);
     _constraints->getRHS(_Bineq);
-    OCRA_WARNING("RHS Retrieved");
+//    OCRA_WARNING("RHS Retrieved");
 
     // TODO: Still gotta set the equality constraints such as Simultaneity
     Eigen::VectorXd beqNULL;beqNULL.resize(0); //beqNULL.setZero();
@@ -118,7 +118,7 @@ void MIQPController::run() {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
         std::cout << e.getMessage() << std::endl;
     }
-    
+
     _k++;
 }
 
@@ -126,11 +126,9 @@ void MIQPController::setCOMStateRefInPreviewWindow(unsigned int k, Eigen::Vector
     unsigned int j = 0;
     // FIXME: Pass an actual reference of CoM states
     for (unsigned int i = k + 1; i <= k + _miqpParams.N; i++) {
-        OCRA_INFO("Copying \n" << _comStateRef.row(i) << "\n into H_N_r at position: " << j);
         H_N_r.segment(j, 6) = _comStateRef.row(i);
         j += 6;
     }
-    OCRA_WARNING("Updated COMStateRefInPreviewWindow");
 }
 
 void MIQPController::setVariablesTypes(char * variablesTypes) {
@@ -216,109 +214,85 @@ void MIQPController::setQuadraticPartObjectiveFunction() {
 }
 
 void MIQPController::setLinearPartObjectiveFunction() {
-    // FIXME:
-//    Set Linear Part of the Obj Function
-//    Assertion failed: (A.rows() == len), function updateConstr, file /Users/jorhabibeljaik/Code/eigen-gurobi/src/Gurobi.cpp, line 267.
     _linearTermTransObjFunc = -2*(_H_N_r - _P_H*_xi_k).transpose()*_Sw*_R_H + 2*((_P_P - _P_B)*_xi_k).transpose()*_Nb*(_R_P - _R_B);
-    OCRA_WARNING("Set Linear Part of the Obj Function");
+//    OCRA_WARNING("Set Linear Part of the Obj Function");
 }
 
 void MIQPController::buildAh(int dt, Eigen::MatrixXd &Ah) {
-//    Eigen::MatrixXd Ah(6,6);
     Ah.setIdentity();
     dt = dt/1000;
     Ah.block(0,2,2,2) = dt*Eigen::Matrix2d::Identity();
     Ah.block(0,4,2,2) = (pow(dt,2)/2)*Eigen::Matrix2d::Identity();
     Ah.block(2,4,2,2) = dt*Eigen::Matrix2d::Identity();
-    OCRA_WARNING("Built Ah");
+    // OCRA_WARNING("Built Ah");
 }
 
 void MIQPController::buildBh(int dt, Eigen::MatrixXd &Bh){
-//    Eigen::MatrixXd Bh(6,2);
     dt = dt/1000;
     Bh << (pow(dt,3)/6)*Eigen::Matrix2d::Identity(), (pow(dt,2)/2)*Eigen::Matrix2d::Identity(), dt*Eigen::Matrix2d::Identity();
-    OCRA_WARNING("Built Bh");
+    // OCRA_WARNING("Built Bh");
 }
 
 void MIQPController::buildQ(Eigen::MatrixXd &Q) {
-//    Eigen::MatrixXd Q = Eigen::MatrixXd::Identity(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
     Q.block(10,10,_Bh.rows(),_Bh.cols()) = _Bh;
-    OCRA_WARNING("Built Q");
+    // OCRA_WARNING("Built Q");
 }
 
 void MIQPController::buildT(Eigen::MatrixXd &T) {
-//    Eigen::MatrixXd T(STATE_VECTOR_SIZE, INPUT_VECTOR_SIZE);
     T.setZero();
     T.block(0,0,10,10) = Eigen::MatrixXd::Identity(10, 10);
     T.block(10,10,6,2) = _Bh;
-    OCRA_WARNING("Built T");
+    // OCRA_WARNING("Built T");
 }
 
 void MIQPController::buildC_H(Eigen::MatrixXd &C_H) {
-//    Eigen::MatrixXd C_H(6,STATE_VECTOR_SIZE);
     C_H.setZero();
     C_H.block(0,10,6,6) = Eigen::MatrixXd::Identity(6,6);
-    OCRA_WARNING("Built C_H");
-//    return C_H;
+//    OCRA_WARNING("Built C_H");
 }
 
 void MIQPController::buildC_P(Eigen::MatrixXd &C_P) {
-//    Eigen::MatrixXd C_P(2,STATE_VECTOR_SIZE);
     C_P.setZero();
     C_P.block(0,10,2,2) = Eigen::MatrixXd::Identity(2, 2);
     C_P.block(0,14,2,2) = (-_miqpParams.cz/_miqpParams.g)*Eigen::MatrixXd::Identity(2, 2);
-    OCRA_WARNING("Built C_P");
-//    return C_P;
+//    OCRA_WARNING("Built C_P");
 }
 
 void MIQPController::buildC_B(Eigen::MatrixXd &C_B) {
-//    Eigen::MatrixXd C_B(2,STATE_VECTOR_SIZE);
     C_B.setZero();
     C_B.block(0,0,2,2) = 0.5*Eigen::Matrix2d::Identity();
     C_B.block(0,2,2,2) = 0.5*Eigen::Matrix2d::Identity();
-    OCRA_WARNING("Built C_B");
-//    return C_B;
+//    OCRA_WARNING("Built C_B");
 }
 
 void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
     H_N = Eigen::MatrixXd(_miqpParams.N*INPUT_VECTOR_SIZE, _miqpParams.N*INPUT_VECTOR_SIZE);
-    std::cout << "Writing sizes" << std::endl;
-    OCRA_INFO("_R_H: rows: " << _R_H.rows() << " cols: " << _R_H.cols());
-    OCRA_INFO("_Sw: rows: " << _Sw.rows() << " cols: " << _Sw.cols());
-    OCRA_INFO("_R_P: rows: " << _R_P.rows() << " cols: " << _R_P.cols());
-    OCRA_INFO("_R_B: rows: " << _R_B.rows() << " cols: " << _R_B.cols());
-    OCRA_INFO("_Nb: rows: " << _Nb.rows() << " cols: " << _Nb.cols());
     // OCRA_INFO("[ " << _R_H.cols() << " x " << _R_H.rows() << " x " << " ")
     H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B);
-    OCRA_WARNING("Built H_N");
-//    return H_N;
+//    OCRA_WARNING("Built H_N");
 }
 
 void MIQPController::buildNb(Eigen::MatrixXd &Nb) {
     Nb = Eigen::MatrixXd::Identity(2*_miqpParams.N, 2*_miqpParams.N);
-    OCRA_WARNING("First thre elements: " << Nb(0) << " " << Nb(1) << " " << Nb(2));
-    OCRA_WARNING("Built Nb");
-//    return Nb;
+//    OCRA_WARNING("Built Nb");
 }
 
 void MIQPController::buildSw(Eigen::MatrixXd &Sw) {
+    // FIXME:
     Sw = Eigen::MatrixXd::Identity(6*_miqpParams.N, 6*_miqpParams.N);
-    OCRA_WARNING("Built Sw");
-//    return Sw;
+//    OCRA_WARNING("Built Sw");
 }
 
 
 void MIQPController::buildPreviewStateMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &P) {
-//    P(_miqpParams.N * C.rows(), _Q.cols());
     P.setZero();
     for (unsigned int i=0; i<_miqpParams.N; i++) {
         P.block(i*C.rows(), 0, C.rows(), _Q.cols()) = C*_Q.pow(i+1);
     }
-    OCRA_WARNING("Built P");
+//    OCRA_WARNING("Built P");
 }
 
 void MIQPController::buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &R) {
-//    R(C.rows()*_miqpParams.N, _T.cols()*_miqpParams.N);
     R.setZero();
     // Create first column
     Eigen::MatrixXd RColumn(C.rows()*_miqpParams.N, _T.cols());
@@ -331,5 +305,5 @@ void MIQPController::buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd
         R.block(j*C.rows(), j*_T.cols(), C.rows()*(_miqpParams.N-j), _T.cols()) = RColumn.topRows((_miqpParams.N-j)*C.rows());
         j=j+1;
     }
-    OCRA_WARNING("Built R");
+//    OCRA_WARNING("Built R");
 }

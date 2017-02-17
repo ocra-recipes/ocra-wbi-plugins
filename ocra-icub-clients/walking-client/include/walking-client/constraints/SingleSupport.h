@@ -10,6 +10,9 @@ public:
     SingleSupport();
     virtual ~SingleSupport();
 protected:
+    /**
+     * @todo Bound S must not be hardcoded
+     */
     virtual void buildMatrixCi();
     virtual void buildMatrixCii();
     virtual void buildVectord();

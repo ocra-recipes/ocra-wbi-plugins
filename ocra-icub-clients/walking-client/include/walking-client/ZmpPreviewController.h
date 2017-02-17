@@ -146,6 +146,8 @@ public:
      *  @param optimalU  Closed-form solution to the unconstrained QP problem, \f$\mathcal{U}_{k+N_c|k}\f$
      *  @see ZmpPreviewController::AOptimal, ZmpPreviewController::bOptimal
      *
+     *  @todo Remember that the bOptimal I have to use is actually not Weiber's because it doesn't take into account com velocity references.
+     *
      */
     template <typename Derived>
     void computeOptimalInput(const Eigen::MatrixBase<Derived>& zmpRef,
@@ -302,6 +304,7 @@ public:
      *
      *  @return \f$H_h\f$
      *  @see ZmpPreviewController::Hh
+     *  @todo Check the first for loop of this method. I think this should be Np - 1
      */
     Eigen::MatrixXd buildHh(Eigen::MatrixXd Ch, Eigen::MatrixXd Bh, Eigen::MatrixXd Ah, const int Nc, const int Np);
 
