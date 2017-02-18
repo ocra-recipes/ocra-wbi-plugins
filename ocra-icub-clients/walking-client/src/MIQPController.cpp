@@ -169,7 +169,7 @@ void MIQPController::setLowerAndUpperBounds() {
 
 void MIQPController::updateStateVector() {
     // TODO: Update state vector using _robotModel
-    // TODO: Update upper bounds
+    // TODO: Update upper bounds 
     // TODO: Update rising/falling edges
     // TODO: Update SS/DS
     // TODO: Update potential change from DS to SS
@@ -278,7 +278,7 @@ void MIQPController::buildNb(Eigen::MatrixXd &Nb) {
 }
 
 void MIQPController::buildSw(Eigen::MatrixXd &Sw) {
-    // FIXME:
+    // FIXME: For the time being this is hardcoded
     Sw = Eigen::MatrixXd::Identity(6*_miqpParams.N, 6*_miqpParams.N);
 //    OCRA_WARNING("Built Sw");
 }

@@ -41,24 +41,24 @@
 
 class MIQPController : public yarp::os::RateThread {
 public:
-    /*
+    /**
      * Constructor.
      *
      * @param period        Thread period in ms
      * @param params        MIQP parameters
-     * @params robotModel   Pointer to the robot model instantiated by the containing client 
+     * @params robotModel   Pointer to the robot model instantiated by the containing client
      *                      (walking-client)
      * @param comStateRef   Reference to a matrix of CoM state references. The k-th row contains the
      *                      desired CoM state at time k
      */
     MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, const Eigen::MatrixXd &comStateRef);
 
-    /*
+    /**
      * Destructor
      */
     virtual ~MIQPController();
 
-    /*
+    /**
      * Performs all the initialization of the MIQP controller such as:
      * - Initializing the Gurobi model.
      * - Set lower and upper bounds of the optimization variables.
@@ -68,12 +68,12 @@ public:
      */
     virtual bool threadInit();
 
-    /*
+    /**
      * Deallocates in memory. In particular, that of the Gurobi environment.
      */
     virtual void threadRelease();
 
-    /*
+    /**
      * Main loop of this thread. Performs the following operations:
      * - Updates the state vector.
      * - Updates the state-dependent RHS of the constraints.
@@ -89,7 +89,7 @@ public:
      */
     virtual void run();
 
-    /*
+    /**
      Takes N elements from an original trajectory of desired CoM states from state k
 
      @param comStateRef Sets _H_N_r for a preview window of size N from time k
@@ -98,24 +98,27 @@ public:
 
 protected:
     // MARK: - PROTECTED METHODS
-    // TODO: Document
+    /**
+     * Sets #_linearTermTransObjFunc, which corresponds to the linear part of the objective 
+     * function of the MIQP
+     */
     void setLinearPartObjectiveFunction();
 
     // FIXME: Deprecate
-    /*
+    /**
      Sets the objective function object for Gurobi.
      /warning To be deprecated if eigen-gurobi works fine
      */
     void setQuadraticPartObjectiveFunction();
 
-    /*
+    /**
      Technically should set the constraints matrix _Aineq.
      /warning To be deprecated if eigen-gurobi works fine
      */
     void setConstraintsMatrix();
 
     // FIXME: Deprecate
-    /*
+    /**
      /warning To be deprecated if eigen-gurobi works fine
 
      @param[out] variablesTypes Vector of variables' types
@@ -123,14 +126,14 @@ protected:
     void setVariablesTypes(char * variablesTypes);
 
     // FIXME: Deprecate
-    /*
+    /**
      Sets the objective function with only the quadratic term.
      @warning To be deprecated if eigen-gurobi works fine
      */
     void setObjectiveFunction();
 
     // FIXME: Deprecate
-    /*
+    /**
      Adds variables to the model. Sets also the variable types and calls the lower and upper bounds method
 
      @return Pointer to object of Gurobi variables.
@@ -138,85 +141,148 @@ protected:
      */
     GRBVar* addVariablesToModel();
 
-    /*
-     * Sets MIQPController::_lb and MIQPController::_ub \see MIQPController::_lb MIQPController::_ub
+    /**
+     * Sets #_lb and #_ub \see #_lb #_ub
      */
     void setLowerAndUpperBounds();
 
-    /*
-     * Updates the state vector \f$xi_k\f$. \see MIQPController::xi_k
+    /**
+     * Updates the state vector #_xi_k, i.e. \f$xi_k\f$
      *
      * @todo Update state vector using _robotModel
-     * @todo Update upper bounds
-     * @todo Update rising/falling edges
-     * @todo Update SS/DS
-     * @todo Update potential change from DS to SS
-     * @see MIQPController::_xi_k
+     * @todo Update upper bounds (a, b)
+     * @todo Update rising/falling edges (alpha, beta)
+     * @todo Update SS/DS (delta)
+     * @todo Update potential change from DS to SS (gamma)
+     * @see #_xi_k
      */
     void updateStateVector();
 
-    /*
-     *  Builds \f$A_h\f$. Called during the member list initialization of the constructor of this class.
+    /**
+     *  Builds \f$A_h\f$.
      *
-     *  @param dt Thread period in which this classe in instantiated.
-     *  @return The constant matrix Ah.
-     *  @see ZmpPreviewController::Ah
+     *  @param dt Thread period in which this class is instantiated.
+     *  @param[out] Output passed to matrix reference.
+     *  @see #_Ah
      */
     void buildAh(int dt, Eigen::MatrixXd &output);
 
-    /*
-     *  Builds \f$B_h\f$. Called during the member list initialization of the constructor of this class.
+    /**
+     *  Builds \f$B_h\f$.
      *
      *  @param dt Thread period in which this classed in instantiated.
-     *  @return The constant matrix Bh.
-     *  @see ZmpPreviewController::Bh
+     *  @param[out] Output passed to matrix reference.
+     *  @see #_Bh
      */
     void buildBh(int dt, Eigen::MatrixXd &output);
 
-    /*
-     Builds the matrix \f$\mathbf{Q}\f$. \see MIQPController::_Q
-
-     @return Matrix Q
+    /**
+     * Builds the matrix \f$\mathbf{Q}\f$.
+     *
+     * @param[out] Output passed to matrix reference.
+     * @see #_Q
      */
     void buildQ(Eigen::MatrixXd &output);
 
-    /*
-     Builds the matrix \f$\mathbf{T}\f$. \see MIQPController::_T
-
-     @return Matrix T
+    /**
+     * Builds the matrix \f$\mathbf{T}\f$.
+     *
+     * @param[out] Output passed to matrix reference.
+     * @see #_T
      */
     void buildT(Eigen::MatrixXd &output);
-    
-    
-    /*
-     * Builds output matrix of the CoM state representation.
 
-     @param output <#output description#>
+    /**
+     * Builds \f$\mathbf{C}_H\f$.
+     *
+     * @see #_C_H
+     * @param[out] Output passed to matrix reference.
      */
     void buildC_H(Eigen::MatrixXd &output);
-    // TODO: Document
+
+    /**
+     * Builds \f$\mathbf{C}_P\f$.
+     *
+     * @see #_C_P
+     * @param[out] Output passed to matrix reference.
+     */
     void buildC_P(Eigen::MatrixXd &output);
-    // TODO: Document
+
+    /**
+     * Builds \f$\mathbf{C}_B\f$.
+     *
+     * @see #_C_B
+     * @param[out] Output passed to matrix reference.
+     */
     void buildC_B(Eigen::MatrixXd &output);
 
-    /* Matrix Q in \f$ \underset{x}{\text{min}}\; x^TQx^T + c^Tx \f$
+    /**
+     * Builds matrix \f$\mathbf{H}_N\f$.
      *
+     * @see #_H_N
+     * @param[out] Output passed to matrix reference.
      */
     void buildH_N(Eigen::MatrixXd &output);
-    // TODO: Document
+    
+    
+    /**
+     * Builds matrix \f$\mathbf{N}_b\f$.
+     *
+     * @param[out] Output passed to matrix reference.
+     * @see #_Nb
+     */
     void buildNb(Eigen::MatrixXd &output);
-    // TODO: Document
+    
+
+    /**
+     * Builds matrix \f$\mathbf{S}_w\f$
+     * 
+     * @param[out] Output passed to matrix reference.
+     * @see #_Sw
+     */
     void buildSw(Eigen::MatrixXd &output);
-    // TODO: Document
+
+    
+    /**
+     * Builds a Preview State Matrix for a preview window of size \f$N\f$ with the following form:
+         \mathbf{P} = \left[\begin{array}{c}
+         \mathbf{C} \mathbf{Q} \\
+         \vdots\\
+         \mathbf{C} \mathbf{Q}^N
+         \end{array}\right]
+     *
+     * @param C Output matrix from a state space representation.
+     * @param P Output.
+     * @see #_Q, #_T
+     */
     void buildPreviewStateMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &P);
-    // TODO: Document
+
+    
+    /**
+     * Builds a Preview Input Matrix for a preview window of size \f$N\f$ with the following form
+         \mathbf{R} = \left[\begin{array}{cccc}
+         \mathbf{C}\mathbf{T}               &   0                          &  \cdots   &   0 \\
+         \mathbf{C}\mathbf{Q}\mathbf{T}   &   \mathbf{C}\mathbf{T}   &  \cdots   &   0 \\
+         \vdots                                 & \vdots                       & \ddots    &  \vdots \\
+         \mathbf{C}\mathbf{Q}^{N-1}\mathbf{T} & \mathbf{C}\mathbf{Q}^{N-2}\mathbf{T} & \cdots & \mathbf{C}\mathbf{T}
+         \end{array}\right]
+     *
+     * @param C Output matrix from a state space representation.
+     * @param[out] R Output.
+     * @see #_Q, #_T
+     */
     void buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &R);
 
 private:
     // MARK: - PRIVATE VARIABLES
-    // TODO: Document
+    /*
+     * Pointer to robot model which will be used by MIQPController::updateStateVector() to update the state vector by retrieving robot information set up by the hosting client (`walking-client`) and coordinated by the controller server.
+     */
     ocra::Model::Ptr _robotModel;
-    // TODO: Document
+
+    /**
+     * Object containing basic MIQP parameters.
+     */
     MIQPParameters _miqpParams;
 
     /** Matrix of CoM state references. Every row corresponds to the CoM state at a given time step. */
@@ -226,7 +292,6 @@ private:
     int _period;
 
     /** Gurobi environment. Necessary before setting up the gurobi model */
-
     GRBEnv * _env;
 
     /**
@@ -246,7 +311,20 @@ private:
     GRBVar * _vars;
 
     /**
-     *  Containts the state-dependent linear term of the objective function. This vector is to be passed to the eigen-gurobi problem.
+     * Containts the state-dependent coefficients of the linear term of the objective function of
+     * the MIQP for the walking MPC problem.
+     * 
+     \f[
+         \underset{\mathcal{X}}{\text{min}} \; \mathcal{X}^T \mathbf{H}_N \mathcal{X} + \mathbf{d}^T \mathcal{X}
+     \f]
+     * 
+     * For the time being, it does not contain any resulting term from regularizing terms.
+     * 
+     \f[
+        \mathbf{d}^T = -2(\mathbf{H}_N^r - \mathbf{P}_H \xi_k)^T \mathbf{S}_w \mathbf{R}_H + 2[(\mathbf{P}_P - \mathbf{P}_B) \xi_k]^T \mathbf{N}_b(\mathbf{R}_P - \mathbf{R}_B)     
+     \f]
+     * 
+     * @see setLinearPartObjectiveFunction()
      */
     Eigen::VectorXd _linearTermTransObjFunc;
 
@@ -276,7 +354,7 @@ private:
      */
     Eigen::VectorXd _xi_k;
 
-    /* Solution \f$\mathcal{X_{k,N}}\f$ of the MIQP problem
+    /** Solution \f$\mathcal{X_{k,N}}\f$ of the MIQP problem
      */
     Eigen::VectorXd _X_kn;
 
@@ -317,7 +395,7 @@ private:
      */
     Eigen::MatrixXd _Bh;
 
-    /*
+    /**
      * Matrix \f$\mathbf{Q}\f$ in preview state model:
      * \f[
      \mathbf{\xi}_{k+1|k} = \mathbf{Q} \xi_{k|k} + \mathbf{T}\mathcal{X}_{k+1|k}
@@ -331,9 +409,9 @@ private:
      */
     Eigen::MatrixXd _Q;
 
-    /*
+    /**
      * Matrix \f$\mathbf{T}\f$ in preview state model:
-     * 
+     *
      \f[
      \mathbf{\xi}_{k+1|k} = \mathbf{Q} \xi_{k|k} + \mathbf{T}\mathcal{X}_{k+1|k}
      \f]
@@ -345,7 +423,7 @@ private:
      \end{array}\right]
      \f]
      *
-     * @see MIQPController::_Bh
+     * @see #_Bh
      */
     Eigen::MatrixXd _T;
 
@@ -377,7 +455,7 @@ private:
      * \f}
      *
      * Where
-     * 
+     *
      * \f[
      * \mathbf{C}_P = \left[
      \begin{array}{ccccc}
@@ -387,16 +465,16 @@ private:
      */
     Eigen::MatrixXd _C_P;
 
-    /** 
+    /**
      * Output matrix \f$\mathbf{C_B}\f$ of the BoS state space representation
-     * 
+     *
      * \f{align*}
      * \mathbf{\xi}_{k+1|k} &= \mathbf{Q} \xi_{k|k} + \mathbf{T}\mathcal{X}_{k+1|k} \\
      * \mathbf{r}_{k|k} & =\mathbf{C}_B \xi_{k|k}
      * \f}
      *
-     * Where 
-     * 
+     * Where
+     *
      * \f[
      \mathbf{C}_B &= \frac{1}{2} \left[
      \begin{array}{ccccc}
@@ -423,7 +501,7 @@ private:
      \f}
      */
     Eigen::MatrixXd _P_H;
-    
+
     /**
      * Matrix \f$\mathbf{P}_p\f$ in the equation for the preview CoP output matrix \f$\mathbf{P}_{k,N} = \left\{ \mathbf{p}_{k+1|k}, \mathbf{p}_{k+2|k}, \dots, \mathbf{p}_{k+N|k} \right\}\f$.
      *
@@ -444,9 +522,9 @@ private:
 
     /**
      * Matrix \f$\mathbf{P}_B\f$ in the equation for the preview center of BoS output matrix \f$\mathbf{R}_{k,N} = \left\{ \mathbf{r}_{k+1|k}, \mathbf{r}_{k+2|k}, \dots, \mathbf{r}_{k+N|k} \right\}\f$
-     * 
+     *
      * For a preview window of size \f$N\f$:
-     * 
+     *
      \f[
          \mathbf{R}_{k,N} = \mathbf{R}_B \mathbf{\xi}_k + \mathbf{R}_B \mathcal{X}_{k,N}
      \f]
@@ -460,7 +538,7 @@ private:
      \f]
      */
     Eigen::MatrixXd _P_B;
-    
+
     /**
      * Input matrix \f$\mathbf{R}_H\f$ in the equation for the preview CoM output matrix \f$\mathbf{H}_{k,N} = \left\{ \mathbf{h}_{k+1|k}, \mathbf{h}_{k+2|k}, \dots, \mathbf{h}_{k+N|k} \right\}\f$.
      *
@@ -514,9 +592,9 @@ private:
      \f]
      */
     Eigen::MatrixXd _R_B;
-    
+
     /**
-     * \f$S_w\f$ is a \f$6\times6\f$ diagonal weighting selection matrix, defining whether position, 
+     * \f$S_w\f$ is a \f$6\times6\f$ diagonal weighting selection matrix, defining whether position,
      * velocity and/or acceleration of the CoM are tracked in each of the two horizontal directions.
      *
      * \todo For the moment this has been hardcoded! Put it in configuration file.
@@ -527,15 +605,18 @@ private:
      * \f$N_b\f$ is a diagonal weighting matrix whose scalar weights help define the compromise between balance robustness and tracking performance.
      */
     Eigen::MatrixXd _Nb;
-    
+
     /**
-     * Positive definite matrix \f$H_N\f$ with the coefficients of the quadratic objective of the MIQP for the walking MPC problem.
+     * Positive definite matrix \f$H_N\f$ with the coefficients of the quadratic objective of the MIQP for the walking MPC problem:
+     \f[
+     \underset{\mathcal{X}}{\text{min}} \; \mathcal{X}^T \mathbf{H}_N \mathcal{X} + \mathbf{d}^T \mathcal{X}
+     \f]
      *
      * For the time being this is:
      *
-     * \f[
-     *   \mathbf{R}_H^T \mathbf{S}_w \mathbf{R}_H + (\mathbf{R}_P - \mathbf{R}_B)^T \mathbf{N}_b (\mathbf{R}_P - \mathbf{R}_B)
-     * \f]
+     \f[
+        \mathbf{R}_H^T \mathbf{S}_w \mathbf{R}_H + (\mathbf{R}_P - \mathbf{R}_B)^T \mathbf{N}_b (\mathbf{R}_P - \mathbf{R}_B)
+     \f]
      * But this expression is missing the regularizing terms of the cost function. Current size is \f$12N\times12N\f$
      */
     Eigen::MatrixXd _H_N;
@@ -559,16 +640,16 @@ private:
       */
     Eigen::VectorXd _Bineq;
 
-    /* eigen-gurobi object */
+    /** eigen-gurobi object */
     Eigen::GurobiDense _eigGurobi;
 
-    /* Linear constraints object */
+    /** Linear constraints object */
     std::shared_ptr<MIQPLinearConstraints> _constraints;
 
-    /* Reference CoM state in preview window. Size: [6N]*/
+    /** Reference CoM state in preview window. Size: [6N]*/
     Eigen::VectorXd _H_N_r;
 
-    /* Current iteration */
+    /** Current iteration */
     unsigned int _k;
 };
 
