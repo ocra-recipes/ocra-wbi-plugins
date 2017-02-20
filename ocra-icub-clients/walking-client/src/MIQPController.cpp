@@ -47,8 +47,6 @@ _H_N_r(6*_miqpParams.N)
     buildNb(_Nb);
     buildH_N(_H_N);
     _k = 0;
-
-
 }
 
 MIQPController::~MIQPController() {
@@ -57,6 +55,9 @@ MIQPController::~MIQPController() {
 
 bool MIQPController::threadInit() {
 
+    // Instantiate MIQP state object
+    _state = std::make_shared<MIQPState>(_robotModel);
+    
     // Sets lower and upper bounds
     setLowerAndUpperBounds();
 
@@ -96,6 +97,7 @@ void MIQPController::run() {
 
     // Update constraints.
     // NOTE: _Aineq is time-invariant and thus built only once, while _Bineq is state dependant (also depends on a history of states when walking constraints are included).
+    // FIXME: Make sure that _xi_k was updated from the MIQPState object.
     _constraints->updateRHS(_xi_k);
     _constraints->getRHS(_Bineq);
 //    OCRA_WARNING("RHS Retrieved");
@@ -168,12 +170,8 @@ void MIQPController::setLowerAndUpperBounds() {
 }
 
 void MIQPController::updateStateVector() {
-    // TODO: Update state vector using _robotModel
-    // TODO: Update upper bounds 
-    // TODO: Update rising/falling edges
-    // TODO: Update SS/DS
-    // TODO: Update potential change from DS to SS
-    _xi_k.setZero();
+    _state->updateStateVector();
+    _state->getFullState(_xi_k);
 }
 
 GRBVar* MIQPController::addVariablesToModel() {

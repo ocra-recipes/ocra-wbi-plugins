@@ -49,7 +49,7 @@ bool MIQPState::initialize() {
 
 }
 
-void MIQPState::updateStateVector(Eigen::Vector2d &xi_k) {
+void MIQPState::updateStateVector() {
     /* TODO: This threshold should not be hardcoded but from config file*/
     double thresholdChange = 0.015; //1.5cm
     updateBaseOfSupportDescriptors(_a, _b, _alpha, _beta, _delta, _gamma, thresholdChange);
@@ -203,6 +203,10 @@ bool MIQPState::readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench) {
     return true;
 }
 
+void MIQPState::getFullState(Eigen::VectorXd &xi) {
+    xi = _xi_k;
+}
+
 std::ostream& operator<<(std::ostream &out, const MIQPState &state) {
     out << "----- State Vector xi_k ----- \n";
     out << "a: " << state._a.transpose() << "\n";
@@ -216,3 +220,5 @@ std::ostream& operator<<(std::ostream &out, const MIQPState &state) {
     out << "ddh: " << state._hk.tail(2) << "\n";
     return out;
 }
+
+

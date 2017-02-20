@@ -34,6 +34,7 @@
 #include <Eigen/Lgsm>
 #include "unsupported/Eigen/MatrixFunctions"
 #include <walking-client/constraints/MIQPLinearConstraints.h>
+#include <walking-client/MIQPState.h>
 #include "Gurobi.h" // eigen-gurobi
 
 #define INPUT_VECTOR_SIZE 12
@@ -646,6 +647,9 @@ private:
 
     /** Linear constraints object */
     std::shared_ptr<MIQPLinearConstraints> _constraints;
+    
+    /** MIQP State **/
+    std::shared_ptr<MIQPState> _state;
 
     /** Reference CoM state in preview window. Size: [6N]*/
     Eigen::VectorXd _H_N_r;

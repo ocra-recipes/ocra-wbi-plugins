@@ -125,11 +125,10 @@ public:
     bool initialize();
     
     /**
-     * Calls the update of all the base of support descriptors and CoM state.
-     *
-     * @param[out] xi_k State vector.
+     * Calls the update of all the base of support descriptors and CoM state, and fills
+     * #_xi_k with it. In order to retrieve, call MIQPState::getFullState().
      */
-    void updateStateVector(Eigen::Vector2d &xi_k);
+    void updateStateVector();
     
     /**
      Updates the base of support (BoS) descriptors, i.e. #_a, #_b, #_alpha, #_beta, #_delta, #_gamma.
@@ -185,6 +184,13 @@ public:
      @return True if reading is successful, false otherwise.
      */
     bool readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench);
+    
+    /**
+     * Copies in #xi the full state #_xi_k.
+     *
+     * @param[out] xi Full state.
+     */
+    void getFullState(Eigen::VectorXd &xi);
 
 };
 #endif
