@@ -477,7 +477,7 @@ private:
      *
      * \f[
      \mathbf{C}_B &= \frac{1}{2} \left[
-     \begin{array}{ccccc}
+     \begin{array}{ccc}
      \mathbf{I}_{2\times2} & \mathbf{I}_{2\times2} & \mathbf{0}_{2\times12}
      \end{array}\right]
      * \f]
@@ -580,6 +580,7 @@ private:
      *
      \f[
      \mathbf{R}_{k,N} = \mathbf{R}_B \mathbf{\xi}_k + \mathbf{R}_B \mathcal{X}_{k,N}
+     \f]
      * Where:
      *
      \f[
