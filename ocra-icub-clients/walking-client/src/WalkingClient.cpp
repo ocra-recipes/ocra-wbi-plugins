@@ -253,8 +253,11 @@ bool WalkingClient::initialize()
     miqpParams.cz = _zmpPreviewParams->cz;
     miqpParams.g = 9.8;
     miqpParams.N = _zmpPreviewParams->Np;
-    // FIXME: Dummy initial COM states reference!
-    Eigen::MatrixXd comStateRef = Eigen::MatrixXd::Zero(100*miqpParams.N, 6);
+    // FIXME: Dummy initial COM states reference which pretty much says, keep the initial COM position.
+    Eigen::MatrixXd comStateRef(100*miqpParams.N, 6);
+    Eigen::VectorXd comRefToReplicate(6); comRefToReplicate << _previousCOM, 0, 0, 0, 0;
+    comStateRef = comRefToReplicate.transpose().replicate(100*miqpParams.N,1);
+    OCRA_INFO(">>> FIRST REFS: \n"); OCRA_INFO(comStateRef.block(0,0,5,6));
     // FIXME: For now hardcoding 100ms period
     _miqpController = std::make_shared<MIQPController>(100, miqpParams, this->model, comStateRef);
     _miqpController->start();

@@ -27,6 +27,7 @@ _P_B(_miqpParams.N * _C_B.rows(), _Q.cols()),
 _R_H(_C_H.rows()*_miqpParams.N, _T.cols()*_miqpParams.N),
 _R_P(_C_P.rows()*_miqpParams.N, _T.cols()*_miqpParams.N),
 _R_B(_C_B.rows()*_miqpParams.N, _T.cols()*_miqpParams.N),
+_Sw(_R_H.rows(), _R_H.rows()),
 _H_N_r(6*_miqpParams.N)
 
 {
@@ -264,7 +265,7 @@ void MIQPController::buildC_B(Eigen::MatrixXd &C_B) {
 
 void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
     H_N = Eigen::MatrixXd(_miqpParams.N*INPUT_VECTOR_SIZE, _miqpParams.N*INPUT_VECTOR_SIZE);
-    // OCRA_INFO("[ " << _R_H.cols() << " x " << _R_H.rows() << " x " << " ")
+//     OCRA_INFO("[ " << _R_H.cols() << " x " << _R_H.rows() << " x " << " " << _Sw.rows() << " x " << _Sw.cols())
     H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B);
 //    OCRA_WARNING("Built H_N");
 }
@@ -275,8 +276,15 @@ void MIQPController::buildNb(Eigen::MatrixXd &Nb) {
 }
 
 void MIQPController::buildSw(Eigen::MatrixXd &Sw) {
-    // FIXME: For the time being this is hardcoded
-    Sw = Eigen::MatrixXd::Identity(6*_miqpParams.N, 6*_miqpParams.N);
+    // FIXME: For the time being this is hardcoded to use the com velocity references only
+    // Create the diagonal as a vector
+    OCRA_INFO("Initial size of Sw: " << Sw.rows() << ", " << Sw.cols());
+    Eigen::VectorXd vecToRepeat(6); vecToRepeat << 0, 0, 1, 1, 0, 0;
+    // Replicate
+    Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
+    // Transform into diagonal matrix
+    Sw = diagonal.asDiagonal();
+//     Sw = Eigen::MatrixXd::Identity(6*_miqpParams.N, 6*_miqpParams.N);
 //    OCRA_WARNING("Built Sw");
 }
 

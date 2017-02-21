@@ -286,7 +286,11 @@ private:
      */
     MIQPParameters _miqpParams;
 
-    /** Matrix of CoM state references. Every row corresponds to the CoM state at a given time step. */
+    /** Matrix of CoM state references. Every row corresponds to the CoM state at a given time step. 
+     * 
+     * Size: \f$n\times6\f$
+     * Where \f$n\f$ is the length of the trajectory.
+     */
     Eigen::MatrixXd _comStateRef;
 
     /** Thread period in milliseconds */
@@ -329,19 +333,27 @@ private:
      */
     Eigen::VectorXd _linearTermTransObjFunc;
 
-    // FIXME: Deprecate
+    /*
+     * @note Deprecate
+     */
     Eigen::VectorXd _quadraticTermObjFunc;
 
-    /** Vector of lower bounds of the input vector \f$\mathcal{X}\f$ */
+    /** Vector of lower bounds of the input vector \f$\mathcal{X}\f$ 
+     *
+     * Size: \f$[6\times1]\f$
+     */
     Eigen::VectorXd _lb;
 
-    /** Vector of upper bounds of the input vector \f$\mathcal{X}\f$ */
+    /** Vector of upper bounds of the input vector \f$\mathcal{X}\f$ 
+     *
+     * Size: \f$[6\times1]\f$
+     */
     Eigen::VectorXd _ub;
 
     // TODO: Document
     std::string _variablesNames[INPUT_VECTOR_SIZE];
 
-    /* State vector of the MIQP problem:
+    /** State vector \f$\xi_k\f$ of the MIQP problem:
      *
      * \f[
      * \begin{array}{ccccccccc}
@@ -350,12 +362,13 @@ private:
      * \f]
      *
      * Where \f$\mathbf{a} \in \mathbb{R}^2\f$ are the upper bounds of the base of support (BoS), \f$b \in \mathbb{R}^2\f$ are
-     * the lower bounds, \f$\mathbf{\alpha} \in \mathbb{R}^2\f$ the rising edges of \f$\mathbf{a}\f$, \f$\mathbf{\beta} \in \mathbb{R}^2\f$ are the falling edges of \f$\mathbf{b}\f$, \f$\delta\f$ indicates the potential change from double support
+     * the lower bounds, \f$\mathbf{\alpha} \in \mathbb{R}^2\f$ the rising edges of \f$\mathbf{a}\f$, \f$\mathbf{\beta} \in \mathbb{R}^2\f$ 
+     * are the falling edges of \f$\mathbf{b}\f$, \f$\delta\f$ indicates the potential change from double support
      * to single support, while \f$\gamma\f$ indicates whether the robot is in single support (SS) or double support (DS).
      */
     Eigen::VectorXd _xi_k;
 
-    /** Solution \f$\mathcal{X_{k,N}}\f$ of the MIQP problem
+    /** Solution \f$\mathcal{X}_{k,N}\f$ of the MIQP problem
      */
     Eigen::VectorXd _X_kn;
 
@@ -374,6 +387,8 @@ private:
      *   0  &     0     &      \mathbf{I}_2
      *  \end{array} \right]
      *  \f]
+     * 
+     * Size: \f$[6\times6]\f$
      */
     Eigen::MatrixXd _Ah;
 
@@ -393,20 +408,26 @@ private:
      *  \delta t \mathbf{I}_2
      *  \end{array} \right]
      *  \f]
+     * 
+     * Size: \f$[6\times2]\f$
      */
     Eigen::MatrixXd _Bh;
 
     /**
      * Matrix \f$\mathbf{Q}\f$ in preview state model:
-     * \f[
+     \f[
      \mathbf{\xi}_{k+1|k} = \mathbf{Q} \xi_{k|k} + \mathbf{T}\mathcal{X}_{k+1|k}
-     * \f]
-     * \f[
+     \f]
+     \f[
      \mathbf{Q} = \left[\begin{array}{cc}
      \mathbf{I}_{10\times10} & \mathbf{0}_{10\times6}\\
      \mathbf{0}_{6\times10} & \mathbf{A_h}_{6\times6}
      \end{array}\right]
-     * \f]
+     \f]
+     *
+     * Size: \f$[16\times16]\f$
+     *
+     * @see #_Ah
      */
     Eigen::MatrixXd _Q;
 
@@ -424,6 +445,8 @@ private:
      \end{array}\right]
      \f]
      *
+     *
+     * Size: \f$[16\times12]\f$
      * @see #_Bh
      */
     Eigen::MatrixXd _T;
@@ -444,6 +467,8 @@ private:
      *  \mathbf{0}_{6\times10} & \mathbf{I}_{6\times6}
      *  \end{array} \right]
      * \f]
+     * 
+     * Size: \f$[6\times16]\f$
      */
     Eigen::MatrixXd _C_H;
 
@@ -457,12 +482,14 @@ private:
      *
      * Where
      *
-     * \f[
-     * \mathbf{C}_P = \left[
+     \f[
+     \mathbf{C}_P = \left[
      \begin{array}{ccccc}
      \mathbf{0}_{2\times10} & \mathbf{I}_{2\times2} & \mathbf{0}_{2\times2} & -\frac{c_z}{g}\mathbf{I}_{2\times2}
      \end{array}\right]
-     * \f]
+     \f]
+     *
+     * Size: \f$[2\times16]\f$
      */
     Eigen::MatrixXd _C_P;
 
@@ -476,12 +503,15 @@ private:
      *
      * Where
      *
-     * \f[
+     * 
+     \f[
      \mathbf{C}_B &= \frac{1}{2} \left[
      \begin{array}{ccc}
      \mathbf{I}_{2\times2} & \mathbf{I}_{2\times2} & \mathbf{0}_{2\times12}
      \end{array}\right]
-     * \f]
+     \f]
+     * 
+     * Size: \f$[2\times12]\f$
      */
     Eigen::MatrixXd _C_B;
 
@@ -500,6 +530,10 @@ private:
      \mathbf{C}_H \mathbf{Q}^N
      \end{array}\right]
      \f}
+     *
+     * Size: \f$[6N\times16]\f$
+     *
+     * @see #_C_H, #_Q
      */
     Eigen::MatrixXd _P_H;
 
@@ -518,6 +552,8 @@ private:
      \mathbf{C}_P \mathbf{Q}^N
      \end{array}\right]
      \f}
+     *
+     * Size: \f$[2N\times16]\f$
      */
     Eigen::MatrixXd _P_P;
 
@@ -537,6 +573,10 @@ private:
      \mathbf{C}_B \mathbf{Q}^N
      \end{array}\right]
      \f]
+     *
+     * Size: \f$[2N\times16]\f$
+     *
+     * @see #_C_B, #_Q
      */
     Eigen::MatrixXd _P_B;
 
@@ -549,13 +589,16 @@ private:
      \f]
      * Where:
      \f[
-     \mathbf{R}_h = \left[\begin{array}{cccc}
+     \mathbf{R}_H = \left[\begin{array}{cccc}
      \mathbf{C}_H\mathbf{T}               &   0                          &  \cdots   &   0 \\
      \mathbf{C}_H\mathbf{Q}\mathbf{T}   &   \mathbf{C}_H\mathbf{T}   &  \cdots   &   0 \\
      \vdots                                 & \vdots                       & \ddots    &  \vdots \\
      \mathbf{C}_H\mathbf{Q}^{N-1}\mathbf{T} & \mathbf{C}_H\mathbf{Q}^{N-2}\mathbf{T} & \cdots & \mathbf{C}_H\mathbf{T}
      \end{array}\right]
      \f]
+     *
+     * Size: \f$[6N\times12N]\f$
+     * @see #_C_H, #_Q, #_T
      */
     Eigen::MatrixXd _R_H;
 
@@ -567,10 +610,17 @@ private:
      \mathbf{P}_{k,N} = \mathbf{P}_p \mathbf{\xi}_k + \mathbf{R}_p \mathcal{X}_{k,N}
      \f]
      *
-     * Size: [2N * 12N]
      * Where:
      \f[
+     \mathbf{R}_P = \left[\begin{array}{cccc}
+     \mathbf{C}_P\mathbf{T}               &   0                          &  \cdots   &   0 \\
+     \mathbf{C}_P\mathbf{Q}\mathbf{T}   &   \mathbf{C}_P\mathbf{T}   &  \cdots   &   0 \\
+     \vdots                                 & \vdots                       & \ddots    &  \vdots \\
+     \mathbf{C}_P\mathbf{Q}^{N-1}\mathbf{T} & \mathbf{C}_P\mathbf{Q}^{N-2}\mathbf{T} & \cdots & \mathbf{C}_P\mathbf{T}
+     \end{array}\right]
      \f]
+     *
+     * Size: \f$[2N\times12N]\f$
      */
     Eigen::MatrixXd _R_P;
 
@@ -592,24 +642,28 @@ private:
      \mathbf{C}_B\mathbf{Q}^{N-1}\mathbf{T} & \mathbf{C}_B\mathbf{Q}^{N-2}\mathbf{T} & \cdots & \mathbf{C}_B\mathbf{T}
      \end{array}\right]
      \f]
+     *
+     * Size: \f$[2N\times12N]\f$
+     *
+     * @see #_C_B, #_T, #_Q
      */
     Eigen::MatrixXd _R_B;
 
     /**
-     * \f$S_w\f$ is a \f$6\times6\f$ diagonal weighting selection matrix, defining whether position,
+     * \f$\mathbf{S_w}\f$ is a \f$6N\times6N\f$ diagonal weighting selection matrix, defining whether position,
      * velocity and/or acceleration of the CoM are tracked in each of the two horizontal directions.
      *
-     * \todo For the moment this has been hardcoded! Put it in configuration file.
+     * \todo For the moment this has been hardcoded to take into account only CoM velocity references.
      */
     Eigen::MatrixXd _Sw;
 
     /**
-     * \f$N_b\f$ is a diagonal weighting matrix whose scalar weights help define the compromise between balance robustness and tracking performance.
+     * \f$\mathbf{N}_b\f$ is a diagonal weighting matrix whose scalar weights help define the compromise between balance robustness and tracking performance.
      */
     Eigen::MatrixXd _Nb;
 
     /**
-     * Positive definite matrix \f$H_N\f$ with the coefficients of the quadratic objective of the MIQP for the walking MPC problem:
+     * Positive definite matrix \f$\mathbf{H}_N\f$ with the coefficients of the quadratic objective of the MIQP for the walking MPC problem:
      \f[
      \underset{\mathcal{X}}{\text{min}} \; \mathcal{X}^T \mathbf{H}_N \mathcal{X} + \mathbf{d}^T \mathcal{X}
      \f]
@@ -619,7 +673,8 @@ private:
      \f[
         \mathbf{R}_H^T \mathbf{S}_w \mathbf{R}_H + (\mathbf{R}_P - \mathbf{R}_B)^T \mathbf{N}_b (\mathbf{R}_P - \mathbf{R}_B)
      \f]
-     * But this expression is missing the regularizing terms of the cost function. Current size is \f$12N\times12N\f$
+     *
+     * @note But this expression is missing the regularizing terms of the cost function. Current size is \f$12N\times12N\f$
      */
     Eigen::MatrixXd _H_N;
 

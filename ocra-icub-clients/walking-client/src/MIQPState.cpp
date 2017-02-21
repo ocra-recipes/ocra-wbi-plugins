@@ -74,7 +74,7 @@ bool MIQPState::isRobotInSS(FOOT &footInSS) {
         return true;
     }
     
-    OCRA_ERROR("Something smells fishy! No feet found in contact!!!")
+    OCRA_ERROR("Something smells fishy! No feet found in contact!!!");
     return false;
         
 }
