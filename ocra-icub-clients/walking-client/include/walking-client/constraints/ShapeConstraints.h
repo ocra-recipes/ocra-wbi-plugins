@@ -3,8 +3,8 @@
 
 #include "walking-client/constraints/Constraint.h"
 #include "walking-client/constraints/Bounding.h"
-#include "walking-client/constraints/constancy.h"
-#include "walking-client/constraints/sequentiality.h"
+#include "walking-client/constraints/Constancy.h"
+#include "walking-client/constraints/Sequentiality.h"
 
 class ShapeConstraints : public Constraint {
 protected:

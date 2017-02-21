@@ -96,7 +96,7 @@ bool MIQPState::isFootInContact(FOOT whichFoot, double FzThreshold, double PzThr
             break;
     }
     
-    if (rawWrench(2) > _FzThreshold && coordZ < _PzThreshold)
+    if (rawWrench(2) < -_FzThreshold && coordZ < _PzThreshold)
         return true;
     else
         return false;

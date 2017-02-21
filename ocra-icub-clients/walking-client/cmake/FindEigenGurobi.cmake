@@ -11,9 +11,9 @@ find_path(EIGENGUROBI_INCLUDE_DIR
           PATHS "$ENV{EIGENGUROBI_HOME}/include"
                 "/usr/local/include/eigen-gurobi")
 find_library(EIGENGUROBI_LIBRARIES
-             NAMES libeigen-gurobi.dylib
-           PATHS "$ENV{EIGENGUROBI_HOME}/build/lib"
-         "/usr/local/lib")
+             NAMES libeigen-gurobi.dylib libeigen-gurobi.so
+             PATHS "$ENV{EIGENGUROBI_HOME}/build/lib"
+                   "/usr/local/lib")
 set(EIGENGUROBI_FOUND true)
 message("-- EIGENGUROBI_INCLUDE_DIR: " ${EIGENGUROBI_INCLUDE_DIR})
 message("-- EIGENGUROBI_LIBRARIES: " ${EIGENGUROBI_LIBRARIES})

@@ -11,6 +11,8 @@
 #include "walking-client/MIQPController.h"
 #include <ocra/util/FileOperations.h>
 #include <yarp/os/Time.h>
+#include "gurobi_c++.h"
+#include "Gurobi.h"
 
 class WalkingClient : public ocra_recipes::ControllerClient
 {

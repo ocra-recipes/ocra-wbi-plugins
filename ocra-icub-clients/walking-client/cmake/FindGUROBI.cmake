@@ -22,6 +22,7 @@ find_path(GUROBI_INCLUDE_DIR
           )
 find_library( GUROBI_LIBRARY
               NAMES gurobi
+                    gurobi702
                     gurobi701
 										gurobi70
 		    					  gurobi45
