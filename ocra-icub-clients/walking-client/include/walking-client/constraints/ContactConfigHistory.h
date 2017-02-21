@@ -1,7 +1,7 @@
 #ifndef _CONTACTCONFIGHISTORY_H_
 #define _CONTACTCONFIGHISTORY_H_
 
-#include "walking-client/constraints/constraint.h"
+#include "walking-client/constraints/Constraint.h"
 
 class ContactConfigHistory : public Constraint {
 private:

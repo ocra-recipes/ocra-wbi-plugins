@@ -1,7 +1,7 @@
 #ifndef _CONTACTCONFIGENFORCEMENT_H_
 #define _CONTACTCONFIGENFORCEMENT_H_
 
-#include "walking-client/constraints/constraint.h"
+#include "walking-client/constraints/Constraint.h"
 
 class ContactConfigEnforcement : public Constraint {
 private:
