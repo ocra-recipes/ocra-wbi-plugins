@@ -316,7 +316,7 @@ private:
     GRBVar * _vars;
 
     /**
-     * Containts the state-dependent coefficients of the linear term of the objective function of
+     * Contains the state-dependent coefficients of the linear term of the objective function of
      * the MIQP for the walking MPC problem.
      * 
      \f[

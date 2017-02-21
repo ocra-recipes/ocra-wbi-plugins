@@ -13,13 +13,13 @@ void Sequentiality::buildMatrixCi() {
 }
 
 void Sequentiality::buildMatrixCii() {
-    _Cii.resize(1, SIZE_STATE_VECTOR);
-    _Cii = Eigen::MatrixXd::Zero(_Ci.rows(), _Ci.cols());
+    _Cii.resize(_Ci.rows(), _Ci.cols());
+    _Cii.setZero();
     OCRA_WARNING("Cii built for sequentiality");
 }
 
 void Sequentiality::buildVectord() {
-    _d.resize(2);
+    _d.resize(_Ci.rows());
     _d << 1, 1;
     OCRA_WARNING("d built for sequentiality");
 }

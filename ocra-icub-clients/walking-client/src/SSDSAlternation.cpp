@@ -27,7 +27,7 @@ void SSDSAlternation::buildMatrixCii(){
 }
 
 void SSDSAlternation::buildVectord(){
-    _d.resize(4);
+    _d.resize(_Ci.rows());
     _d << 2, 0, 0, 0;
     OCRA_WARNING("d built for SSDSAlternation");
 }

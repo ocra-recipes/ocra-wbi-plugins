@@ -59,7 +59,7 @@ bool MIQPController::threadInit() {
     // Instantiate MIQP state object
     _state = std::make_shared<MIQPState>(_robotModel);
     
-    // Sets lower and upper bounds
+    // Set lower and upper bounds
     setLowerAndUpperBounds();
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
@@ -172,6 +172,7 @@ void MIQPController::setLowerAndUpperBounds() {
 void MIQPController::updateStateVector() {
     _state->updateStateVector();
     _state->getFullState(_xi_k);
+    OCRA_INFO("State: \n" << *_state);
 }
 
 GRBVar* MIQPController::addVariablesToModel() {

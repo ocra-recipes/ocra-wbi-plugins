@@ -105,12 +105,7 @@ private:
      * Normal distance threshold
      */
     double _PzThreshold; // m
-    
-    /*
-     * Operator to write the current state contents in a "pretty" way.
-     */
-    friend std::ostream& operator<<(std::ostream &out, const MIQPState &state);
-    
+        
 public:
     
     MIQPState (ocra::Model::Ptr robotModel);
@@ -191,6 +186,11 @@ public:
      * @param[out] xi Full state.
      */
     void getFullState(Eigen::VectorXd &xi);
+    
+    /**
+     * Operator to write the current state contents in a "pretty" way.
+     */
+    friend std::ostream& operator<<(std::ostream &out, const MIQPState &state);
 
 };
 #endif

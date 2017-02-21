@@ -59,18 +59,18 @@ private:
     Eigen::MatrixXd _Acr;
     Eigen::MatrixXd _Acl;
     
-    /*
+    /**
      *
-     * \f[
+     \f[
      \mathbf{Q} = \left[\begin{array}{cc}
      \mathbf{I}_{10\times10} & \mathbf{0}_{10\times6}\\
      \mathbf{0}_{6\times10} & \mathbf{A_h}_{6\times6}
      \end{array}\right]
-     * \f]
+     \f]
      */
     Eigen::MatrixXd _Q;
     
-    /* Matrix T in \f$ \underset{x}{\text{min}}\; x^TQx^T + c^Tx \f$
+    /** Matrix T in \f$ \underset{x}{\text{min}}\; x^TQx^T + c^Tx \f$
      *
      \f[
      \mathbf{T} = \left[\begin{array}{cc}
@@ -79,12 +79,12 @@ private:
      \end{array}\right]
      \f]
      *
-     * @see MIQPController::_Bh
+     * @see #_Bh
      */
 
     Eigen::MatrixXd _T;
 
-    /*
+    /**
      *  Input matrix \f$\mathbf{B}_h\f$ from the linear state process of the CoMstate \f$\hat{\mathbf{h}}\f$. It is constant of size \f$6\times2\f$ and equal to:
      \f[
      \mathbf{B_h} = \left[ \begin{array}{c}
@@ -96,7 +96,7 @@ private:
      */
     Eigen::MatrixXd _Bh;
     
-    /*
+    /**
      *  State matrix \f$A_h\f$ from the CoM jerk integration scheme.
      *
      *  \f[
@@ -114,13 +114,13 @@ private:
      */
     Eigen::MatrixXd _Ah;
 
-    /* Period in milliseconds */
+    /** Period in milliseconds */
     unsigned int _dt;
     
-    /* Length of preview window */
+    /** Length of preview window */
     unsigned int _N;
     
-    /* Total number of constraints*/
+    /** Total number of constraints*/
     unsigned int _nConstraints;
 public:
 
@@ -133,25 +133,34 @@ public:
     
     void initialize();
     
+    /**
+     * Updates the state-dependent RHS of the inequality constraints 
+     * 
+     * @param[in] xi_k Current state.
+     */
     void updateRHS(Eigen::VectorXd xi_k);
-    /*
-     Retrieves the constraints matrix \f$\mathbf{A}\f$. Before passing a matrix to copy MIQPLinearConstraints::_A allocate the space for A by calling getTotalNumberOfConstraints() to know the number of rows, while SIZE_INPUT_VECTOR * SIZE_PREVIEW_WINDOW will be the number of columns.
-
-     @param A Reference to matrix where the global constraints matrix _A will be copied.
+    
+    /**
+     * Retrieves the constraints matrix \f$\mathbf{A}\f$. Before passing a matrix to copy #_A allocate the space 
+     * for A by calling getTotalNumberOfConstraints() to know the number of rows, while 
+     * SIZE_INPUT_VECTOR * SIZE_PREVIEW_WINDOW will be the number of columns.
+     *
+     * @param A Reference to matrix where the global constraints matrix _A will be copied.
      */
     void getConstraintsMatrixA(Eigen::MatrixXd &A);
-    /*
-     Returns the total number of constraints.
-
-     @return _nConstraints
+    
+    /**
+     * Returns the total number of constraints.
+     *
+     * @return _nConstraints
      */
     unsigned int getTotalNumberOfConstraints();
 
     void getRHS(Eigen::VectorXd &rhs);
 
 protected:
-    /*
-     Basically builds matrix \f$\mathbf{A}\f$ (MIQPLinearConstraints::_AShapeAdmiss) in the partial expression for the MIQP linear constraints, containing only shape and admissibility constraints, such that:
+    /**
+     Basically builds matrix \f$\mathbf{A}\f$ (#_AShapeAdmiss) in the partial expression for the MIQP linear constraints, containing only shape and admissibility constraints, such that:
      \f[
      \mathbf{A} \mathcal{X}_{k,N} \leq \bar{\mathbf{f}}_c - \mathbf{B} \xi_k
      \f]
@@ -171,56 +180,56 @@ protected:
      \todo When walking constraints are added, matrix _A will be a stack of the two
      */
     void buildShapeAndAdmissibilityInPreviewWindow();
-    /*
+    /**
      Actually builds the matrix A referred to in buildShapeAndAdmissibilityInPreviewWindow()
 
      \see buildShapeAndAdmissibilityInPreviewWindow
      */
     void buildAShapeAdmiss();
-    /*
+    /**
      Actually builds the matrix B referred to in buildShapeAndAdmissibilityInPreviewWindow()
 
      \see buildShapeAndAdmissibilityInPreviewWindow
      */
     void buildBShapeAdmiss();
-    /*
+    /**
      Actually builds the vector \f$\bar{\mathbf{f}}_c\f$ referred to in buildShapeAndAdmissibilityInPreviewWindow()
      */
     void buildFcBarShapeAdmiss();
-    /*
-     Stacks matrices \f$C_{i+1}\f$ (Cii) from the shape and admissibility constraints to set variable MIQPLinearConstraints::_Acr
+    /**
+     Stacks matrices \f$C_{i+1}\f$ (Cii) from the shape and admissibility constraints to set variable #_Acr
      */
     void setMatrixAcr();
-    /*
-     Stacks matrices \f$C_{i}\f$ (Ci) from the shape and admissiblity constraints to set variable MIQPLinearConstraints::_Acl
+    /**
+     Stacks matrices \f$C_{i}\f$ (Ci) from the shape and admissiblity constraints to set variable #_Acl
      */
     void setMatrixAcl();
-    /*
-     Builds matrix Q (MIQPLinearConstraints::_Q) from the preview model:
+    /**
+     Builds matrix Q (#_Q) from the preview model:
 
      \f[
      \forall j \in \mathbb{N}^*, \xi_{k+j+1|k} = \mathbf{Q} \xi_{k+j|k} + \mathbf{T}\mathcal{X}_{k+j+1|k}
      \f]
      */
     void buildMatrixQ();
-    /*
-     Builds matrix T (MIQPLinearConstraints::_T) from the preview model:
+    /**
+     Builds matrix T (#_T) from the preview model:
 
      \f[
      \forall j \in \mathbb{N}^*, \xi_{k+j+1|k} = \mathbf{Q} \xi_{k+j|k} + \mathbf{T}\mathcal{X}_{k+j+1|k}
-     \f$]
+     \f]
      */
     void buildMatrixT();
-    /*
-     *  Builds \f$B_h\f$ (MIQPLinearConstraints::_Bh) called by the constructor of this class.
+    /**
+     *  Builds \f$B_h\f$ (#_Bh) called by the constructor of this class.
      *
-     *  @see MIQPLinearConstraints::_Bh
+     *  @see #_Bh
      */
     void buildBh();
-    /*
+    /**
      *  Builds \f$A_h\f$.
      *
-     *  @see MIQPLinearConstraints::_Ah
+     *  @see #_Ah
      */
     void buildAh();
 };

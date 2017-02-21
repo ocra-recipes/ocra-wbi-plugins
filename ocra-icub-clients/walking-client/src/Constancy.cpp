@@ -39,7 +39,7 @@ void Constancy::buildMatrixCii() {
 }
 
 void Constancy::buildVectord() {
-    _d.resize(8);
-    _d = Eigen::VectorXd::Zero(_Ci.rows());
+    _d.resize(_Ci.rows());
+    _d.setZero();
     OCRA_WARNING("d built for Constancy");
 }

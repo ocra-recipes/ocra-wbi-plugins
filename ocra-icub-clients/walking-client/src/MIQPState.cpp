@@ -209,15 +209,15 @@ void MIQPState::getFullState(Eigen::VectorXd &xi) {
 
 std::ostream& operator<<(std::ostream &out, const MIQPState &state) {
     out << "----- State Vector xi_k ----- \n";
-    out << "a: " << state._a.transpose() << "\n";
-    out << "b: " << state._b.transpose() << "\n";
-    out << "alpha: " << state._alpha.transpose() << "\n";
-    out << "beta: " << state._beta.transpose() << "\n";
-    out << "delta: " << state._delta << "\n";
-    out << "gamma: " << state._gamma << "\n";
-    out << "h: " << state._hk.head(2) << "\n";
-    out << "dh: " << state._hk.segment<2>(2) << "\n";
-    out << "ddh: " << state._hk.tail(2) << "\n";
+    out << "\ta    : [" << state._a.transpose()               << "]\n";
+    out << "\tb    : [" << state._b.transpose()               << "]\n";
+    out << "\talpha: [" << state._alpha.transpose()           << "]\n";
+    out << "\tbeta : [" << state._beta.transpose()            << "]\n";
+    out << "\tdelta:  " << state._delta                       << "]\n";
+    out << "\tgamma:  " << state._gamma                       << " \n";
+    out << "\th    : [" << state._hk.head(2).transpose()       << " \n";
+    out << "\tdh   : [" << state._hk.segment<2>(2).transpose()<< "]\n";
+    out << "\tddh  : [" << state._hk.tail(2).transpose()      << "]\n";
     return out;
 }
 

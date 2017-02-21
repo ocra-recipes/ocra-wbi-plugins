@@ -23,7 +23,7 @@ void ContactConfigHistory::buildMatrixCii(){
 }
 
 void ContactConfigHistory::buildVectord(){
-    _d.resize(2);
+    _d.resize(_Ci.rows());
     _d << 1, 1;
     OCRA_WARNING("d built for ContactConfigHistory");
 }

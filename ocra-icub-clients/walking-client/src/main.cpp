@@ -1,8 +1,8 @@
 /*
  *  \file       main.cpp
- *  \brief      A module that makes iCub walk using based on mixed-integer model predictive control.
+ *  \brief      A module that makes iCub walk based on mixed-integer model predictive control.
  *  \details
- *  \Author     [Jorhabib Eljaik](http://github.com/jeljaik)
+ *  \Author     [Jorhabib Eljaik](http://github.com/jeljaik)
  *  \date       25 November 2016
  *  \copyright  GNU General Public License.
  */

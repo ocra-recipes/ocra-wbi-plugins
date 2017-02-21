@@ -21,12 +21,12 @@ void ContactConfigEnforcement::buildMatrixCi(){
 
 void ContactConfigEnforcement::buildMatrixCii(){
     _Cii.resize(_Ci.rows(), _Ci.cols());
-    _Cii = Eigen::MatrixXd::Zero(_Ci.rows(), _Ci.cols());
+    _Cii.setZero();
     OCRA_WARNING("Cii built for ContactConfigEnforcement");
 }
 
 void ContactConfigEnforcement::buildVectord(){
-    _d.resize(8);
+    _d.resize(_Ci.rows());
     _d << 1, 1, 1, 1, 0, 0, 0, 0;
     OCRA_WARNING("d built for ContactConfigEnforcement");
 }

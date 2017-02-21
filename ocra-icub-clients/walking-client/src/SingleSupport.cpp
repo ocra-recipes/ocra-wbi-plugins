@@ -21,12 +21,12 @@ void SingleSupport::buildMatrixCi(){
 }
 void SingleSupport::buildMatrixCii(){
     _Cii.resize(_Ci.rows(), _Ci.cols());
-    _Cii = Eigen::MatrixXd::Zero(_Ci.rows(), _Ci.cols());
+    _Cii.setZero();
     OCRA_WARNING("Cii build for SingleSupport");
 }
 
 void SingleSupport::buildVectord(){
-    _d.resize(4);
+    _d.resize(_Ci.rows());
     _d << 0, 0, 0, 0;
     OCRA_WARNING("d build for SingleSupport");
 }
