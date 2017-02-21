@@ -92,12 +92,11 @@ void MIQPController::threadRelease() {
 }
 
 void MIQPController::run() {
-    // FIXME: This method needs to be implemented.
+    // Update state vector
     updateStateVector();
 
     // Update constraints.
     // NOTE: _Aineq is time-invariant and thus built only once, while _Bineq is state dependant (also depends on a history of states when walking constraints are included).
-    // FIXME: Make sure that _xi_k was updated from the MIQPState object.
     _constraints->updateRHS(_xi_k);
     _constraints->getRHS(_Bineq);
 //    OCRA_WARNING("RHS Retrieved");

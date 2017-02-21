@@ -1,7 +1,7 @@
 #ifndef _SINGLE_SUPPORT_H_
 #define _SINGLE_SUPPORT_H_
 
-#include "walking-client/constraints/constraint.h"
+#include "walking-client/constraints/Constraint.h"
 
 class SingleSupport : public Constraint {
 private:
