@@ -113,6 +113,21 @@ private:
      *  \f]
      */
     Eigen::MatrixXd _Ah;
+    
+    /**
+     * Boolean too add shape constraints.
+     */
+    bool _addShapeCtrs;
+    
+    /**
+     * Boolean to add admissibility constraints.
+     */
+    bool _addAdmissibilityCtrs;
+    
+    /**
+     * Boolean to add walking constraints.
+     */
+    bool _addWalkingCtrs;
 
     /** Period in milliseconds */
     unsigned int _dt;
@@ -127,11 +142,9 @@ public:
     /**
      * @todo Once I add walking constraints this will change to include the rows added by walking constraints
      */
-    MIQPLinearConstraints (unsigned int dt, unsigned int N);
+    MIQPLinearConstraints(unsigned int dt, unsigned int N, bool addShapeCtrs=true, bool addAdmissibilityCtrs=true, bool addWalkingCtrs=false);
     
     virtual ~MIQPLinearConstraints ();
-    
-    void initialize();
     
     /**
      * Updates the state-dependent RHS of the inequality constraints 

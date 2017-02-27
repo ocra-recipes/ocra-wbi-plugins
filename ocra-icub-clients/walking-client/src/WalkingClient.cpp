@@ -192,7 +192,7 @@ bool WalkingClient::initialize()
 
 
      // Prepare feet cartesian tasks
-    _stepController = std::make_shared<StepController>(period, this->model );
+    _stepController = std::make_shared<StepController>(period, this->model);
     _stepController->initialize();
 
 
@@ -267,6 +267,10 @@ bool WalkingClient::initialize()
 
 void WalkingClient::release()
 {
+     // Set task's Kp and Kd to initial values before starting the client
+    _comTask->setStiffness(30);
+    _comTask->setDamping(5);
+
     _stepController->stop();
     _miqpController->stop();
 }

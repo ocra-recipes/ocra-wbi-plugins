@@ -112,12 +112,6 @@ protected:
      */
     void setQuadraticPartObjectiveFunction();
 
-    /**
-     Technically should set the constraints matrix _Aineq.
-     /warning To be deprecated if eigen-gurobi works fine
-     */
-    void setConstraintsMatrix();
-
     // FIXME: Deprecate
     /**
      /warning To be deprecated if eigen-gurobi works fine
@@ -234,7 +228,14 @@ protected:
      */
     void buildNb(Eigen::MatrixXd &output);
     
-
+    /**
+     * Builds matrix \f$\mathbf{N}_x\f$.
+     * 
+     * @param[out] Output Passed to matrix reference.
+     * @see #_Nx
+     */
+    void buildNx(Eigen::MatrixXd &output);
+    
     /**
      * Builds matrix \f$\mathbf{S}_w\f$
      * 
@@ -273,7 +274,21 @@ protected:
      * @see #_Q, #_T
      */
     void buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &R);
+    
+    /** Builds the equality constraints matrices #_Aeq, #_RHSeq
+     * 
+     * @param Aeq Reference to output matrix.
+     * @param Beq Reference to right hand side vector.
+     * @param x_k Current state vector.
+     */
+    void buildEqualityConstraintsMatrices(Eigen::MatrixXd& Aeq, Eigen::VectorXd& Beq, Eigen::VectorXd &x_k);
 
+    /**
+     * Updates the RHS of the equality constraints.
+     * 
+     * @see buildEqualityConstraintsMatrices(), #_Beq
+     */
+    void updateEqualityConstraints(Eigen::VectorXd &x_k);
 private:
     // MARK: - PRIVATE VARIABLES
     /*
@@ -630,7 +645,7 @@ private:
      * For a preview window of size \f$N\f$:
      *
      \f[
-     \mathbf{R}_{k,N} = \mathbf{R}_B \mathbf{\xi}_k + \mathbf{R}_B \mathcal{X}_{k,N}
+     \mathbf{R}_{k,N} = \mathbf{P}_B \mathbf{\xi}_k + \mathbf{R}_B \mathcal{X}_{k,N}
      \f]
      * Where:
      *
@@ -661,6 +676,12 @@ private:
      * \f$\mathbf{N}_b\f$ is a diagonal weighting matrix whose scalar weights help define the compromise between balance robustness and tracking performance.
      */
     Eigen::MatrixXd _Nb;
+    
+    /**
+     * \f$N_x\f$ is a diagonal weighting matrix to include the consideration given to the size of the CoM jerks in \f$\mathcal{X}\f$. Part of the 
+     * regularization terms of the quadratic coefficients #_H_N.
+     */
+    Eigen::MatrixXd _Nx;
 
     /**
      * Positive definite matrix \f$\mathbf{H}_N\f$ with the coefficients of the quadratic objective of the MIQP for the walking MPC problem:
@@ -696,6 +717,44 @@ private:
       * Set by MIQPLinearConstraints::getRHS()
       */
     Eigen::VectorXd _Bineq;
+        
+    /**
+     * Matrix A of the equality constraints of the MIQP problem, i.e.
+     * \f[
+     * A_{\text{eq}} x = b_{\text{eq}}
+     * \f]
+     * 
+     * @see buildEqualityConstraintsMatrices()
+     */
+    Eigen::MatrixXd _Aeq;
+    
+    /**
+     * RHS of the equality constraints of the MIQP problem, i.e.
+     * \f[
+     * A_{\text{eq}} x = b_{\test{eq}}
+     * \f]
+     * 
+     * @see buildEqualityConstraintsMatrices()
+     */
+    Eigen::VectorXd _Beq;
+    
+    /**
+     * Matrix \f$\mathbf{C}_i\f$ from the Simultaneity equality constraint
+     * \f[
+     * \mathbf{C}_i \mathbf{\xi}_i = 0
+     * \f]
+     */
+    Eigen::MatrixXd _Ci_eq;
+    
+    /**
+     * constant part of the RHS of the Simultaneity euqality constraint.
+     */
+    Eigen::VectorXd _fcbar_eq;
+    
+    /** 
+     * State matrix of the RHS of the Simultaneity equality constraint.
+     */
+    Eigen::MatrixXd _rhs_2_eq;
 
     /** eigen-gurobi object */
     Eigen::GurobiDense _eigGurobi;
@@ -710,7 +769,8 @@ private:
     Eigen::VectorXd _H_N_r;
 
     /** Current iteration */
-    unsigned int _k;
+    unsigned int _k;   
+    
 };
 
 #endif

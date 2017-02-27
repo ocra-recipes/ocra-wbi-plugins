@@ -32,7 +32,7 @@ _H_N_r(6*_miqpParams.N)
 
 {
     buildAh(_period, _Ah);
-    buildBh(period, _Bh);
+    buildBh(_period, _Bh);
     buildQ(_Q);
     buildT(_T);
     buildC_H(_C_H);
@@ -46,6 +46,7 @@ _H_N_r(6*_miqpParams.N)
     buildPreviewInputMatrix(_C_B, _R_B);
     buildSw(_Sw);
     buildNb(_Nb);
+    buildNx(_Nx);
     buildH_N(_H_N);
     _k = 0;
 }
@@ -58,26 +59,41 @@ bool MIQPController::threadInit() {
 
     // Instantiate MIQP state object
     _state = std::make_shared<MIQPState>(_robotModel);
+    updateStateVector();
     
     // Set lower and upper bounds
     setLowerAndUpperBounds();
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
-    _constraints = std::make_shared<MIQPLinearConstraints>(_period, _miqpParams.N);
+    // FIXME: For now TESTING only with shape and addmissibility constraints!!
+    _constraints = std::make_shared<MIQPLinearConstraints>(_period, _miqpParams.N, true, true);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  SIZE_INPUT_VECTOR * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
 
     // Resize _Bineq
     _Bineq.resize(_Aineq.rows());
+    
+    std::cout << "Writing Aineq: of size: " << _Aineq.rows() << " x " << _Aineq.cols() << std::endl;
 
-    // FIXME: There is at least one equality constraint for Simultaneity. Fix this!
-    // Setup eigen-gurobi object with 12*N variables, 0 equality constraints and rows-of-Aineq inequality constraints.
+    // Resize _Aeq and _Beq
+    _Aeq.resize(_miqpParams.N, SIZE_INPUT_VECTOR*_miqpParams.N);
+    _Beq.resize(_miqpParams.N);
+    buildEqualityConstraintsMatrices(_Aeq, _Beq, _xi_k);
+    
+    // Setup eigen-gurobi object with 12*N variables, 1 equality constraint and rows-of-Aineq inequality constraints.
+    // FIXME: Also check if I'm missing the ZMP contraints
     try {
-        _eigGurobi.problem(INPUT_VECTOR_SIZE*_miqpParams.N, 0, _Aineq.rows());
+        OCRA_INFO("About to build eigen-gurobi problem");
+        _eigGurobi.problem(INPUT_VECTOR_SIZE*_miqpParams.N, _Aeq.rows(), _Aineq.rows());
 
-    // In the previous initialization all variables are assumed continuous by default. Specify which ones are binary (4->9) i.e. alpha_x, alpha_y, beta_x, beta_y, delta, gamma
-    for (int i = 4; i <=9; i++)
-        _eigGurobi.setVariableType(i, GRB_BINARY);
+        // In the previous initialization all variables are assumed continuous by default. Specify which ones are binary (4->9) i.e. alpha_x, alpha_y, beta_x, beta_y, delta, gamma
+        int m = 0;
+        while( m < INPUT_VECTOR_SIZE*_miqpParams.N) {
+            for (int i = 4; i <= 9; i++) {
+            _eigGurobi.setVariableType(m+i, GRB_BINARY);
+            }
+            m += SIZE_INPUT_VECTOR;
+        }
     }
     catch (GRBException e) {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
@@ -102,20 +118,22 @@ void MIQPController::run() {
     _constraints->getRHS(_Bineq);
 //    OCRA_WARNING("RHS Retrieved");
 
-    // TODO: Still gotta set the equality constraints such as Simultaneity
-    Eigen::VectorXd beqNULL;beqNULL.resize(0); //beqNULL.setZero();
-    Eigen::MatrixXd AeqNULL;AeqNULL.resize(0,0);// AeqNULL.setZero();
+    // Updates RHS of equality constraints. For now, constains only Simultaneity
+    updateEqualityConstraints(_xi_k);
 
     setCOMStateRefInPreviewWindow(_k, _H_N_r);
     setLinearPartObjectiveFunction();
 
     try {
     // TODO: Watch out! _eigGurobi will add a 1/2. Therefore the 2. Check that this is correct.
-    // FIXME: The expression for _H_N is missing regularization terms
-    _eigGurobi.solve(2*_H_N, _linearTermTransObjFunc, AeqNULL, beqNULL, _Aineq, _Bineq, _lb, _ub);
+    // FIXME: The expression for _H_N only includes jerk regularization terms
+    _eigGurobi.solve(2*_H_N, _linearTermTransObjFunc, _Aeq, _Beq, _Aineq, _Bineq, _lb, _ub);
+    _eigGurobi.inform();
 
     // Get the solution
     _X_kn = _eigGurobi.result();
+    OCRA_WARNING("Optimal is: ")
+    std::cout << _X_kn.topRows(SIZE_INPUT_VECTOR).transpose() << std::endl;
     } catch(GRBException e) {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
         std::cout << e.getMessage() << std::endl;
@@ -154,17 +172,17 @@ void MIQPController::setLowerAndUpperBounds() {
     unsigned int k = 0;
     while (k < INPUT_VECTOR_SIZE*_miqpParams.N) {
         for (unsigned int j = 0; j < 4; j++)
-            _lb[k+j] = GRB_INFINITY;
+            _lb[k+j] = -100;
         for (unsigned int j = 10; j < INPUT_VECTOR_SIZE; j++)
-            _lb[k+j] = GRB_INFINITY;
+            _lb[k+j] = -100;
         k += INPUT_VECTOR_SIZE;
     }
     k = 0;
     while (k < INPUT_VECTOR_SIZE*_miqpParams.N) {
         for (unsigned int j = 0; j < 4; j++)
-            _ub[k+j] = GRB_INFINITY;
+            _ub[k+j] = 100;
         for (unsigned int j = 10; j < INPUT_VECTOR_SIZE; j++)
-            _ub[k+j] = GRB_INFINITY;
+            _ub[k+j] = 100;
         k += INPUT_VECTOR_SIZE;
     }
 }
@@ -198,10 +216,6 @@ void MIQPController::setObjectiveFunction() {
 
 }
 
-void MIQPController::setConstraintsMatrix() {
-
-}
-
 void MIQPController::setQuadraticPartObjectiveFunction() {
     unsigned int cols = INPUT_VECTOR_SIZE*_miqpParams.N;
     // This part of the cost function is actually time-invariant
@@ -219,17 +233,18 @@ void MIQPController::setLinearPartObjectiveFunction() {
 
 void MIQPController::buildAh(int dt, Eigen::MatrixXd &Ah) {
     Ah.setIdentity();
-    dt = dt/1000;
-    Ah.block(0,2,2,2) = dt*Eigen::Matrix2d::Identity();
-    Ah.block(0,4,2,2) = (pow(dt,2)/2)*Eigen::Matrix2d::Identity();
-    Ah.block(2,4,2,2) = dt*Eigen::Matrix2d::Identity();
+    double dt_ = dt/1000;
+    Ah.block(0,2,2,2) = dt_*Eigen::Matrix2d::Identity();
+    Ah.block(0,4,2,2) = (pow(dt_,2)/2)*Eigen::Matrix2d::Identity();
+    Ah.block(2,4,2,2) = dt_*Eigen::Matrix2d::Identity();
     // OCRA_WARNING("Built Ah");
 }
 
 void MIQPController::buildBh(int dt, Eigen::MatrixXd &Bh){
-    dt = dt/1000;
-    Bh << (pow(dt,3)/6)*Eigen::Matrix2d::Identity(), (pow(dt,2)/2)*Eigen::Matrix2d::Identity(), dt*Eigen::Matrix2d::Identity();
-    // OCRA_WARNING("Built Bh");
+    double dt_ = (double)dt/1000;
+    Bh << (pow(dt_,3)/6)*Eigen::Matrix2d::Identity(), (pow(dt_,2)/2)*Eigen::Matrix2d::Identity(), dt_*Eigen::Matrix2d::Identity();
+    std::cout << "Bh is: \n" << std::endl;
+    std::cout << Bh << std::endl;
 }
 
 void MIQPController::buildQ(Eigen::MatrixXd &Q) {
@@ -241,7 +256,6 @@ void MIQPController::buildT(Eigen::MatrixXd &T) {
     T.setZero();
     T.block(0,0,10,10) = Eigen::MatrixXd::Identity(10, 10);
     T.block(10,10,6,2) = _Bh;
-    // OCRA_WARNING("Built T");
 }
 
 void MIQPController::buildC_H(Eigen::MatrixXd &C_H) {
@@ -267,13 +281,23 @@ void MIQPController::buildC_B(Eigen::MatrixXd &C_B) {
 void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
     H_N = Eigen::MatrixXd(_miqpParams.N*INPUT_VECTOR_SIZE, _miqpParams.N*INPUT_VECTOR_SIZE);
 //     OCRA_INFO("[ " << _R_H.cols() << " x " << _R_H.rows() << " x " << " " << _Sw.rows() << " x " << _Sw.cols())
-    H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B);
+    H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B) + _Nx;
 //    OCRA_WARNING("Built H_N");
 }
 
 void MIQPController::buildNb(Eigen::MatrixXd &Nb) {
     Nb = Eigen::MatrixXd::Identity(2*_miqpParams.N, 2*_miqpParams.N);
 //    OCRA_WARNING("Built Nb");
+}
+
+void MIQPController::buildNx(Eigen::MatrixXd &Nx) {
+    Eigen::VectorXd vecToRepeat(12);
+    // FIXME: Hardcoding regularization on ALL variables. This should be only for the jerk
+    vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,1)).finished(), 1, 1;
+    // replicate over the preview window
+    Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
+    // Transform into diagonal matrix
+    Nx = diagonal.asDiagonal();
 }
 
 void MIQPController::buildSw(Eigen::MatrixXd &Sw) {
@@ -312,4 +336,40 @@ void MIQPController::buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd
         j=j+1;
     }
 //    OCRA_WARNING("Built R");
+}
+
+void MIQPController::buildEqualityConstraintsMatrices(Eigen::MatrixXd &Aeq, Eigen::VectorXd &Beq, Eigen::VectorXd &x_k) {
+    _Ci_eq.resize(1,SIZE_STATE_VECTOR);
+    _Ci_eq << 0,0,0,0,1,-1,1,-1, Eigen::VectorXd::Zero(8);
+    Aeq.setZero();
+    
+    // Create first column of Aeq
+    Eigen::MatrixXd AeqColumn(_miqpParams.N, _T.cols());
+    for (unsigned int i=0; i<_miqpParams.N; i++){
+        AeqColumn.block(i*_Ci_eq.rows(), 0, _Ci_eq.rows(), _T.cols()) = _Ci_eq * _Q.pow(i) * _T;
+    }
+    // Shift AeqColumn into every column of Aeq to take the form of a lower diagonal toeplitz matrix
+    unsigned int j=0;
+    while (j<_miqpParams.N){
+        Aeq.block(j*_Ci_eq.rows(), j*_T.cols(), _Ci_eq.rows()*(_miqpParams.N-j), _T.cols()) = AeqColumn.topRows((_miqpParams.N-j)*_Ci_eq.rows());
+        j=j+1;
+    } 
+    
+    // Build time-independent matrices in RHS of equality constraints.
+    // First build vector of fc
+    _fcbar_eq.resize(_miqpParams.N);
+    _fcbar_eq.setZero();
+
+    _rhs_2_eq.resize(_Ci_eq.rows()*_miqpParams.N, _Q.cols());
+    for (unsigned int i=0; i < _miqpParams.N; i++) {
+        _rhs_2_eq.block(i*_Ci_eq.rows(),0,_Ci_eq.rows(),_Q.cols()) = _Ci_eq*_Q.pow(i+1);
+    }
+
+    updateEqualityConstraints(x_k);
+    
+}
+
+void MIQPController::updateEqualityConstraints(Eigen::VectorXd &x_k) {
+    // Build RHS
+    _Beq = _fcbar_eq - _rhs_2_eq*x_k;
 }

@@ -1,15 +1,31 @@
 #include "walking-client/constraints/MIQPLinearConstraints.h"
 
-MIQPLinearConstraints::MIQPLinearConstraints(unsigned int dt, unsigned int N):_dt(dt), _N(N){
-    _shapeCnstr = std::make_shared<ShapeConstraints>();
-    _admissibilityCnstr = std::make_shared<AdmissibilityConstraints>();
-    _shapeCnstr->init();
-    _admissibilityCnstr->init();
+MIQPLinearConstraints::MIQPLinearConstraints(unsigned int dt, 
+                                             unsigned int N, 
+                                             bool addShapeCtrs, 
+                                             bool addAdmissibilityCtrs, 
+                                             bool addWalkingCtrs):
+_dt(dt), 
+_N(N), 
+_addShapeCtrs(addShapeCtrs), 
+_addAdmissibilityCtrs(addAdmissibilityCtrs),
+_addWalkingCtrs(addWalkingCtrs)
+ {
+    if (_addShapeCtrs) {
+        _shapeCnstr = std::make_shared<ShapeConstraints>();
+        _shapeCnstr->init();    
+    }
+    if (_addAdmissibilityCtrs) {
+        _admissibilityCnstr = std::make_shared<AdmissibilityConstraints>();
+        _admissibilityCnstr->init();
+    }
+    
     buildMatrixQ();
     buildMatrixT();
 
     setMatrixAcl();
     setMatrixAcr();
+    
     buildShapeAndAdmissibilityInPreviewWindow();
     
     // Initialize size of _rhs
@@ -20,21 +36,40 @@ MIQPLinearConstraints::MIQPLinearConstraints(unsigned int dt, unsigned int N):_d
 
 MIQPLinearConstraints::~MIQPLinearConstraints (){}
 
-void MIQPLinearConstraints::initialize() {
-    _shapeCnstr->init();
-    _admissibilityCnstr->init();
-}
-
 void MIQPLinearConstraints::setMatrixAcr() {
-    _Acr.resize(_shapeCnstr->getCii().rows() + _admissibilityCnstr->getCii().rows(), _shapeCnstr->getCii().cols());
-    this->_Acr << _shapeCnstr->getCii(), _admissibilityCnstr->getCii();
-    OCRA_WARNING("Built Acr");
+    if(_addShapeCtrs && _addAdmissibilityCtrs) {
+        _Acr.resize(_shapeCnstr->getCii().rows() + _admissibilityCnstr->getCii().rows(), _shapeCnstr->getCii().cols());
+        this->_Acr << _shapeCnstr->getCii(), _admissibilityCnstr->getCii();
+        OCRA_WARNING("Built Acr for Shape and Admissiblity Constraints");
+    }
+    if(_addShapeCtrs && !_addAdmissibilityCtrs) {
+        _Acr.resize(_shapeCnstr->getCii().rows(), _shapeCnstr->getCii().cols());
+        this->_Acr << _shapeCnstr->getCii();
+        OCRA_WARNING("Built Acr for Shape Constraints only");
+    }
+    if(!_addShapeCtrs && _addAdmissibilityCtrs) {
+        _Acr.resize(_admissibilityCnstr->getCii().rows(), _admissibilityCnstr->getCii().cols());
+        this->_Acr << _admissibilityCnstr->getCii();
+        OCRA_WARNING("Built Acr for Admissibility Constraints only");
+    }
 }
 
 void MIQPLinearConstraints::setMatrixAcl() {
-    _Acl.resize(_shapeCnstr->getCi().rows() + _admissibilityCnstr->getCi().rows(), _shapeCnstr->getCi().cols());
-    this->_Acl << _shapeCnstr->getCi(), _admissibilityCnstr->getCi();
-    OCRA_WARNING("Built Acl");
+    if(_addShapeCtrs && _addAdmissibilityCtrs) {
+        _Acl.resize(_shapeCnstr->getCi().rows() + _admissibilityCnstr->getCi().rows(), _shapeCnstr->getCi().cols());
+        this->_Acl << _shapeCnstr->getCi(), _admissibilityCnstr->getCi();
+        OCRA_WARNING("Built Acl for Shape and Admissiblity Constraints");
+    }
+    if(_addShapeCtrs && !_addAdmissibilityCtrs) {
+        _Acl.resize(_shapeCnstr->getCi().rows(), _shapeCnstr->getCi().cols());
+        this->_Acl << _shapeCnstr->getCi();
+        OCRA_WARNING("Built Acl for Shape Constraints only");
+    }
+    if(!_addShapeCtrs && _addAdmissibilityCtrs) {
+        _Acl.resize(_admissibilityCnstr->getCi().rows(), _admissibilityCnstr->getCi().cols());
+        this->_Acl << _admissibilityCnstr->getCi();
+        OCRA_WARNING("Built Acl for Admissibility Constraints only");
+    }
 }
 
 void MIQPLinearConstraints::updateRHS(Eigen::VectorXd xi_k){
@@ -48,14 +83,14 @@ void MIQPLinearConstraints::getRHS(Eigen::VectorXd &rhs) {
 
 void MIQPLinearConstraints::buildBh() {
     _Bh.resize(6,2);
-    double dt = _dt/1000;
+    double dt = (double) _dt/1000;
     _Bh << (pow(dt,3)/6)*Eigen::Matrix2d::Identity(), (pow(dt,2)/2)*Eigen::Matrix2d::Identity(), dt*Eigen::Matrix2d::Identity();
 }
 
 void MIQPLinearConstraints::buildAh() {
     _Ah.resize(6,6);
     _Ah.setIdentity();
-    double dt = _dt/1000;
+    double dt = (double) _dt/1000;
     _Ah.block(0,2,2,2) = dt*Eigen::Matrix2d::Identity();
     _Ah.block(0,4,2,2) = (pow(dt,2)/2)*Eigen::Matrix2d::Identity();
     _Ah.block(2,4,2,2) = dt*Eigen::Matrix2d::Identity();
@@ -118,13 +153,27 @@ void MIQPLinearConstraints::buildBShapeAdmiss() {
 }
 
 void MIQPLinearConstraints::buildFcBarShapeAdmiss() {
-    unsigned int totalRows = _shapeCnstr->getd().size() + _admissibilityCnstr->getd().size();
+    unsigned int totalRows;
+    Eigen::VectorXd fc;
+    if (_shapeCnstr && _addAdmissibilityCtrs) {
+        totalRows = _shapeCnstr->getd().size() + _admissibilityCnstr->getd().size();
+        fc.resize(totalRows);
+        fc << _shapeCnstr->getd(), _admissibilityCnstr->getd();
+    } 
+    if (_shapeCnstr && !_admissibilityCnstr) {
+        totalRows = _shapeCnstr->getd().size();
+        fc.resize(totalRows);
+        fc << _shapeCnstr->getd();
+    }
+    if (!_shapeCnstr && _admissibilityCnstr) {
+        totalRows = _admissibilityCnstr->getd().size();
+        fc.resize(totalRows);
+        fc << _admissibilityCnstr->getd();
+    }
     OCRA_WARNING("Size of fc: " << totalRows);
-    OCRA_WARNING("shapeConstr.d: " << _shapeCnstr->getd());
-    OCRA_WARNING("admissConstr.d: " << _admissibilityCnstr->getd());
     _fcbarShapeAdmiss.resize(totalRows*_N);
-    Eigen::VectorXd fc(totalRows); fc << _shapeCnstr->getd(), _admissibilityCnstr->getd();
-    OCRA_WARNING("fc: " << fc);
+    
+    OCRA_WARNING("fc: " << fc.transpose());
     for (unsigned int i=0; i<_N; i++)
         _fcbarShapeAdmiss.segment(i*fc.size(), fc.size()) = fc;
     OCRA_WARNING("Built fcbarShapeAdmiss");
