@@ -52,7 +52,7 @@ public:
      * @param comStateRef   Reference to a matrix of CoM state references. The k-th row contains the
      *                      desired CoM state at time k
      */
-    MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, const Eigen::MatrixXd &comStateRef);
+    MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, std::shared_ptr<StepController> stepController, const Eigen::MatrixXd &comStateRef);
 
     /**
      * Destructor
@@ -295,6 +295,13 @@ private:
      * Pointer to robot model which will be used by MIQPController::updateStateVector() to update the state vector by retrieving robot information set up by the hosting client (`walking-client`) and coordinated by the controller server.
      */
     ocra::Model::Ptr _robotModel;
+    
+    /*
+     * Pointer to step controller started by the walking-client
+     * 
+     * @todo This is really NOT desireable at all. Find another way to get this object down to MIQPLinearConstraints.
+     */
+    std::shared_ptr<StepController> _stepController;
 
     /**
      * Object containing basic MIQP parameters.

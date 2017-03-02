@@ -2,8 +2,9 @@
 
 using namespace MIQP;
 
-MIQPController::MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, const Eigen::MatrixXd &comStateRef) : RateThread(period),
+MIQPController::MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, std::shared_ptr<StepController> stepController, const Eigen::MatrixXd &comStateRef) : RateThread(period),
 _robotModel(robotModel),
+_stepController(stepController),
 _miqpParams(params),
 _comStateRef(comStateRef),
 _period(period),
@@ -67,7 +68,7 @@ bool MIQPController::threadInit() {
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
     // FIXME: For now TESTING only with shape and addmissibility constraints!!
-    _constraints = std::make_shared<MIQPLinearConstraints>(_period, _miqpParams.N, true, true);
+    _constraints = std::make_shared<MIQPLinearConstraints>(_period, _miqpParams.N, _stepController, true, true, true, false);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  SIZE_INPUT_VECTOR * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
 
@@ -294,7 +295,7 @@ void MIQPController::buildNb(Eigen::MatrixXd &Nb) {
 void MIQPController::buildNx(Eigen::MatrixXd &Nx) {
     Eigen::VectorXd vecToRepeat(12);
     // FIXME: Hardcoding regularization on ALL variables. This should be only for the jerk
-    vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,1)).finished(), 1, 1;
+    vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,0)).finished(), 1, 1;
     // replicate over the preview window
     Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
     // Transform into diagonal matrix

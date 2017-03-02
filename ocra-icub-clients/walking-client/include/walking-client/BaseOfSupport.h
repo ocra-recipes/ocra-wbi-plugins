@@ -35,9 +35,9 @@ private:
     Eigen::VectorXd _B;
     Polygon _poly;
     Polygon _hull;
-    StepController _stepController;
+    std::shared_ptr<StepController> _stepController;
 public:
-    BaseOfSupport(StepController stepController);
+    BaseOfSupport(std::shared_ptr<StepController> stepController);
     virtual ~BaseOfSupport ();
 
     void computeBoSCenter(Eigen::Vector2d &r);

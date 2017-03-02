@@ -2,13 +2,17 @@
 
 MIQPLinearConstraints::MIQPLinearConstraints(unsigned int dt, 
                                              unsigned int N, 
+                                             std::shared_ptr<StepController> stepController,
                                              bool addShapeCtrs, 
-                                             bool addAdmissibilityCtrs, 
+                                             bool addAdmissibilityCtrs,
+                                             bool addCoPConstraints,
                                              bool addWalkingCtrs):
 _dt(dt), 
 _N(N), 
+_stepController(stepController),
 _addShapeCtrs(addShapeCtrs), 
 _addAdmissibilityCtrs(addAdmissibilityCtrs),
+_addCoPConstraints(addCoPConstraints),
 _addWalkingCtrs(addWalkingCtrs)
  {
     if (_addShapeCtrs) {
@@ -27,6 +31,8 @@ _addWalkingCtrs(addWalkingCtrs)
     setMatrixAcr();
     
     buildShapeAndAdmissibilityInPreviewWindow();
+    
+    
     
     // Initialize size of _rhs
     //TODO: Once I add walking constraints this will change to include the rows added by walking constraints

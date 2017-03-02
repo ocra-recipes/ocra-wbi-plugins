@@ -259,7 +259,7 @@ bool WalkingClient::initialize()
     comStateRef = comRefToReplicate.transpose().replicate(100*miqpParams.N,1);
     OCRA_INFO(">>> FIRST REFS: \n"); OCRA_INFO(comStateRef.block(0,0,5,6));
     // FIXME: For now hardcoding 100ms period
-    _miqpController = std::make_shared<MIQPController>(100, miqpParams, this->model, comStateRef);
+    _miqpController = std::make_shared<MIQPController>(100, miqpParams, this->model, this->_stepController, comStateRef);
     _miqpController->start();
     OCRA_INFO("Initialization is over");
     return true;

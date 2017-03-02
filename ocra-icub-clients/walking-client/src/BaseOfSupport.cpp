@@ -1,6 +1,6 @@
 #include "walking-client/BaseOfSupport.h"
 
-BaseOfSupport::BaseOfSupport(StepController stepController):_stepController(stepController){
+BaseOfSupport::BaseOfSupport(std::shared_ptr<StepController> stepController):_stepController(stepController){
 }
 
 BaseOfSupport::~BaseOfSupport(){}
@@ -11,7 +11,7 @@ bool BaseOfSupport::update(Eigen::VectorXd xi_k) {
     int gamma = xi_k(MIQP::DELTA);
     // Get feet corners
     Eigen::MatrixXd feetCorners;
-    feetCorners = _stepController.getContact2DCoordinates();
+    feetCorners = _stepController->getContact2DCoordinates();
 //    feetCorners = getFeetCorners(gamma);
     // Compute the convex hull of the current support configuration
     // Every row of listConvexHull is a 2D point of the convex hull
@@ -40,7 +40,7 @@ bool BaseOfSupport::update(Eigen::VectorXd xi_k) {
 //}
 
 Eigen::MatrixXd BaseOfSupport::computeConvexHull(Eigen::MatrixXd &feetCorners){
-
+    
     for (unsigned int i=0 ; i<feetCorners.rows(); i++) {
         _poly.outer().push_back(point(feetCorners(i,0), feetCorners(i,1)));
     }
@@ -55,6 +55,15 @@ Eigen::MatrixXd BaseOfSupport::computeConvexHull(Eigen::MatrixXd &feetCorners){
     // TODO: Get the points from _hull in the form of an Eigen::Matrix
 //    point tmp;
 //    _hull.outer().pop_back();
+    Eigen::MatrixXd  convexHullEigen;
+    convexHullEigen.resize(_hull.outer().size(),2);
+    int k = 0;
+    OCRA_INFO("Points in convex hull: ");
+    for (auto const &value : _hull.outer()) {
+        std::cout << "[ " << boost::get<0>(value) << boost::get<1>(value) << " ]"<< std::endl;
+        k++;
+    }
+    return convexHullEigen;
 }
 
 void BaseOfSupport::computeBoSCenter(Eigen::Vector2d &r)

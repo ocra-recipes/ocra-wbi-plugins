@@ -45,11 +45,14 @@
 
 #include "walking-client/constraints/ShapeConstraints.h"
 #include "walking-client/constraints/AdmissibilityConstraints.h"
+#include "walking-client/StepController.h"
+#include "walking-client/BaseOfSupport.h"
 
 class MIQPLinearConstraints {
 private:
     std::shared_ptr<ShapeConstraints> _shapeCnstr;
     std::shared_ptr<AdmissibilityConstraints> _admissibilityCnstr;
+    std::shared_ptr<StepController> _stepController;
     Eigen::MatrixXd _AShapeAdmiss;
     Eigen::MatrixXd _BShapeAdmiss;
     Eigen::VectorXd _fcbarShapeAdmiss;
@@ -125,6 +128,11 @@ private:
     bool _addAdmissibilityCtrs;
     
     /**
+     * Boolean to add CoP constraints within the convex hull defined by the feet location
+     */
+    bool _addCoPConstraints;
+    
+    /**
      * Boolean to add walking constraints.
      */
     bool _addWalkingCtrs;
@@ -137,12 +145,15 @@ private:
     
     /** Total number of constraints*/
     unsigned int _nConstraints;
+    
+    /** Base of support object to retrieve the corresponding inequality constraints*/
+    BaseOfSupport _baseOfSupport;
 public:
 
     /**
      * @todo Once I add walking constraints this will change to include the rows added by walking constraints
      */
-    MIQPLinearConstraints(unsigned int dt, unsigned int N, bool addShapeCtrs=true, bool addAdmissibilityCtrs=true, bool addWalkingCtrs=false);
+    MIQPLinearConstraints(unsigned int dt, unsigned int N, std::shared_ptr<StepController> stepController, bool addShapeCtrs=true, bool addAdmissibilityCtrs=true, bool addCoPConstraints=false, bool addWalkingCtrs=false);
     
     virtual ~MIQPLinearConstraints ();
     

@@ -225,7 +225,19 @@ namespace MIQP{
         /**
          * Operator to write the current state contents in a "pretty" way.
          */
-        friend std::ostream& operator<<(std::ostream &out, const MIQPState &state);
+        friend std::ostream& operator<<(std::ostream &out, const MIQPState &state) {
+            out << "----- State Vector xi_k ----- \n";
+            out << "\ta    : [" << state._a.transpose()               << "]\n";
+            out << "\tb    : [" << state._b.transpose()               << "]\n";
+            out << "\talpha: [" << state._alpha.transpose()           << "]\n";
+            out << "\tbeta : [" << state._beta.transpose()            << "]\n";
+            out << "\tdelta:  " << state._delta                       << "]\n";
+            out << "\tgamma:  " << state._gamma                       << " \n";
+            out << "\th    : [" << state._hk.head(2).transpose()       << " \n";
+            out << "\tdh   : [" << state._hk.segment<2>(2).transpose()<< "]\n";
+            out << "\tddh  : [" << state._hk.tail(2).transpose()      << "]\n";
+            return out;
+        }
 
     };
 } // end of namespace
