@@ -1,5 +1,6 @@
 #include "walking-client/MIQPState.h"
 
+using namespace MIQP;
 
 MIQPState::MIQPState(ocra::Model::Ptr robotModel):
 _xi_k(Eigen::VectorXd(SIZE_STATE_VECTOR)),
@@ -14,7 +15,7 @@ _delta(1)
 MIQPState::~MIQPState(){}
 
 bool MIQPState::initialize() {
-    
+
     // Connect to feet wrench ports
     bool ok = _portWrenchLeftFoot.open("/walkingClient/MIQPState/left_foot/wrench:i");
     if (!ok) {
@@ -40,12 +41,12 @@ bool MIQPState::initialize() {
             return false;
         }
     }
-    
+
     // Set thresholds
     // FIXME: This should come from configuration file
     _FzThreshold = 5; // N
     _PzThreshold = 0.05; // m => 5cm
-    
+
     return true;
 
 }
@@ -74,10 +75,10 @@ bool MIQPState::isRobotInSS(FOOT &footInSS) {
             footInSS = RIGHT_FOOT;
         return true;
     }
-    
+
     OCRA_ERROR("Something smells fishy! No feet found in contact!!!");
     return false;
-        
+
 }
 
 bool MIQPState::isFootInContact(FOOT whichFoot, double FzThreshold, double PzThreshold) {
@@ -96,7 +97,7 @@ bool MIQPState::isFootInContact(FOOT whichFoot, double FzThreshold, double PzThr
         default:
             break;
     }
-    
+
     if (rawWrench(2) < -_FzThreshold && coordZ < _PzThreshold)
         return true;
     else
@@ -112,9 +113,9 @@ void MIQPState::updateBaseOfSupportDescriptors(Eigen::Vector2d &aa,
                                                 double thresholdChange){
     // This method will actually update a, b, alpha, beta, delta and gamma
     // Retrieve coordinates of left sole
-    _l_foot_coord = _robotModel->getSegmentPosition(_robotModel->getSegmentIndex("l_sole")).getTranslation();
+    _l_foot_coord = getLeftFootPosition();
     // Retrieve coordinates of right sole
-    _r_foot_coord = _robotModel->getSegmentPosition(_robotModel->getSegmentIndex("r_sole")).getTranslation();
+    _r_foot_coord = getRightFootPosition();
     // If the robot is in SS, identify which foot is on the ground and set lower and upper bounds accordingly
     Eigen::Vector2d a;
     Eigen::Vector2d b;
@@ -153,7 +154,7 @@ void MIQPState::updateBaseOfSupportDescriptors(Eigen::Vector2d &aa,
         // UPDATE THE state variable GAMMA with DS
         ggamma = 1;
     }
-    
+
     // UPDATING also ALPHA and BETA
     Eigen::Vector2d alpha;
     Eigen::Vector2d beta;
@@ -161,7 +162,7 @@ void MIQPState::updateBaseOfSupportDescriptors(Eigen::Vector2d &aa,
     std::abs(b(0) - bb(0)) > thresholdChange ? beta(0)  = 1 : beta(0)  = 0;
     std::abs(a(1) - aa(1)) > thresholdChange ? alpha(1) = 1 : alpha(1) = 0;
     std::abs(b(1) - bb(1)) > thresholdChange ? beta(1)  = 1 : beta(1)  = 0;
-    
+
     // UPDATE state variables a and b
     aa = a;
     bb = b;
@@ -172,7 +173,7 @@ void MIQPState::updateBaseOfSupportDescriptors(Eigen::Vector2d &aa,
         ddelta = 1;
     if ((alpha(0) == 1 && beta(1) == 1) || (beta(0) == 1 && alpha(1) == 1))
         ddelta = 0;
-    
+
     // ACTUALLY UPDATE aalpa, bbeta
     aalpha = alpha;
     bbeta = beta;
@@ -196,10 +197,10 @@ bool MIQPState::readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench) {
         default:
             break;
     }
-    
+
     if (yRawFootWrench == NULL)
         return false;
-    
+
     rawWrench = Eigen::VectorXd::Map(yRawFootWrench->data(), 6);
     return true;
 }
@@ -208,7 +209,18 @@ void MIQPState::getFullState(Eigen::VectorXd &xi) {
     xi = _xi_k;
 }
 
-std::ostream& operator<<(std::ostream &out, const MIQPState &state) {
+Eigen::Vector3d MIQPState::getLeftFootPosition()
+{
+    return _robotModel->getSegmentPosition(_robotModel->getSegmentIndex("l_sole")).getTranslation();
+}
+
+Eigen::Vector3d MIQPState::getRightFootPosition()
+{
+    return _robotModel->getSegmentPosition(_robotModel->getSegmentIndex("r_sole")).getTranslation();
+}
+
+
+std::ostream& MIQP::operator<<(std::ostream &out, const MIQPState &state) {
     out << "----- State Vector xi_k ----- \n";
     out << "\ta    : [" << state._a.transpose()               << "]\n";
     out << "\tb    : [" << state._b.transpose()               << "]\n";
@@ -221,5 +233,3 @@ std::ostream& operator<<(std::ostream &out, const MIQPState &state) {
     out << "\tddh  : [" << state._hk.tail(2).transpose()      << "]\n";
     return out;
 }
-
-

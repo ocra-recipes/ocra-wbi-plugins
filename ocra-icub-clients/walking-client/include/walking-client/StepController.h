@@ -76,8 +76,16 @@ public:
     void stop();
     
     
+    /**
+     * Returns the 2D coordinates of the contacts defined at the task level.
+
+     @return Matrix of 2D coordinates of the contact points defined at task level. 
+     */
+    Eigen::MatrixXd getContact2DCoordinates();
+    
 
 private:
+    std::vector<ocra_recipes::TaskConnection::Ptr> _contactsCollection;
     ocra_recipes::TaskConnection::Ptr _LeftFootContact_BackLeft;
     ocra_recipes::TaskConnection::Ptr _LeftFootContact_FrontLeft;
     ocra_recipes::TaskConnection::Ptr _LeftFootContact_BackRight;

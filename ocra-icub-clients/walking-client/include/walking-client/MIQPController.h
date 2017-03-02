@@ -763,7 +763,7 @@ private:
     std::shared_ptr<MIQPLinearConstraints> _constraints;
     
     /** MIQP State **/
-    std::shared_ptr<MIQPState> _state;
+    std::shared_ptr<MIQP::MIQPState> _state;
 
     /** Reference CoM state in preview window. Size: [6N]*/
     Eigen::VectorXd _H_N_r;

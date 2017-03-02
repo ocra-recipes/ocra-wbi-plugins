@@ -41,6 +41,8 @@ else()
 # Find Gurobi
 find_package(GUROBI REQUIRED)
 find_package(EigenGurobi REQUIRED)
+find_package(Boost REQUIRED)
+
 # Set the project version.
 set(${PROJECT_NAME}_MAJOR_VERSION 0)
 set(${PROJECT_NAME}_MINOR_VERSION 1)
@@ -67,6 +69,7 @@ ${OcraIcub_INCLUDE_DIRS}
 ${OcraRecipes_INCLUDE_DIRS}
 ${GUROBI_INCLUDE_DIRS}
 ${EIGENGUROBI_INCLUDE_DIR}
+${Boost_INCLUDE_DIRS}
 )
 
 # Add the client executable (binary)

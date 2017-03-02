@@ -29,17 +29,26 @@ bool StepController::initialize() {
 
     // Create task connection objects
     _LeftFootContact_BackLeft = std::make_shared<ocra_recipes::TaskConnection>("LeftFootContact_BackLeft");
+    _contactsCollection.push_back(_LeftFootContact_BackLeft);
     _LeftFootContact_FrontLeft = std::make_shared<ocra_recipes::TaskConnection>("LeftFootContact_FrontLeft");
+    _contactsCollection.push_back(_LeftFootContact_FrontLeft);
     _LeftFootContact_BackRight = std::make_shared<ocra_recipes::TaskConnection>("LeftFootContact_BackRight");
+    _contactsCollection.push_back(_LeftFootContact_BackRight);
     _LeftFootContact_FrontRight = std::make_shared<ocra_recipes::TaskConnection>("LeftFootContact_FrontRight");
+    _contactsCollection.push_back(_LeftFootContact_FrontRight);
 
     _RightFootContact_BackLeft = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_BackLeft");
+    _contactsCollection.push_back(_RightFootContact_BackLeft);
     _RightFootContact_FrontLeft = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_FrontLeft");
+    _contactsCollection.push_back(_RightFootContact_FrontLeft);
     _RightFootContact_BackRight = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_BackRight");
+    _contactsCollection.push_back(_RightFootContact_BackRight);
     _RightFootContact_FrontRight = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_FrontRight");
+    _contactsCollection.push_back(_RightFootContact_FrontRight);
 
     _leftFoot_TrajThread->setGoalErrorThreshold(0.01);
     _rightFoot_TrajThread->setGoalErrorThreshold(0.01);
+    
     return true;
 }
 
@@ -179,6 +188,23 @@ Eigen::Vector3d StepController::getRightFootPosition()
     return _model->getSegmentPosition(_model->getSegmentIndex("r_sole")).getTranslation();
 }
 
+Eigen::MatrixXd StepController::getContact2DCoordinates() {
+    Eigen::MatrixXd contactsCoordinates;
+    int activeContacts = 0;
+    for (auto const& value : _contactsCollection) {
+        if (value->isActivated())
+            activeContacts++;
+    }
+    contactsCoordinates.resize(activeContacts,2);
+    unsigned int k = 0;
+    for (auto const& value : _contactsCollection) {
+        if (value->isActivated()) {
+            contactsCoordinates.row(k) = value->getTaskState().getPosition().getTranslation().topRows(2).transpose();
+            k++;
+        }
+    }
+    return contactsCoordinates;
+}
 
 void StepController::stop() {
     _rightFoot_TrajThread->stop();

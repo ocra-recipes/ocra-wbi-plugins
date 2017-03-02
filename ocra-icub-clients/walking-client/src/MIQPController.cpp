@@ -1,5 +1,6 @@
 #include "walking-client/MIQPController.h"
 
+using namespace MIQP;
 
 MIQPController::MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, const Eigen::MatrixXd &comStateRef) : RateThread(period),
 _robotModel(robotModel),
