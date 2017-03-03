@@ -295,7 +295,9 @@ void MIQPController::buildNb(Eigen::MatrixXd &Nb) {
 void MIQPController::buildNx(Eigen::MatrixXd &Nx) {
     Eigen::VectorXd vecToRepeat(12);
     // FIXME: Hardcoding regularization on ALL variables. This should be only for the jerk
-    vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,0)).finished(), 1, 1;
+    // For now this is ok since I haven't added the walking constraints, thus helping
+    // the problem to be feasible.
+    vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,1)).finished(), 1, 1;
     // replicate over the preview window
     Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
     // Transform into diagonal matrix

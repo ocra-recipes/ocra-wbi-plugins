@@ -31,9 +31,7 @@ _addWalkingCtrs(addWalkingCtrs)
     setMatrixAcr();
     
     buildShapeAndAdmissibilityInPreviewWindow();
-    
-    
-    
+    _baseOfSupport = std::make_shared<BaseOfSupport>(_stepController);
     // Initialize size of _rhs
     //TODO: Once I add walking constraints this will change to include the rows added by walking constraints
     _rhs.resize(_fcbarShapeAdmiss.size());
@@ -80,6 +78,8 @@ void MIQPLinearConstraints::setMatrixAcl() {
 
 void MIQPLinearConstraints::updateRHS(Eigen::VectorXd xi_k){
     _rhs = _fcbarShapeAdmiss - _BShapeAdmiss * xi_k;
+    /** FIXME TEMPORARY!! */
+    _baseOfSupport->update(xi_k);
     OCRA_WARNING("Updated RHS");
 }
 

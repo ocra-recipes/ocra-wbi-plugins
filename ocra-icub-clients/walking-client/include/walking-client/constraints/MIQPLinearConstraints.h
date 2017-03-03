@@ -147,7 +147,7 @@ private:
     unsigned int _nConstraints;
     
     /** Base of support object to retrieve the corresponding inequality constraints*/
-    BaseOfSupport _baseOfSupport;
+    std::shared_ptr<BaseOfSupport> _baseOfSupport;
 public:
 
     /**

@@ -8,67 +8,51 @@ BaseOfSupport::~BaseOfSupport(){}
 bool BaseOfSupport::update(Eigen::VectorXd xi_k) {
     Eigen::Vector2d a = xi_k.segment(MIQP::A_X,2);
     Eigen::Vector2d b = xi_k.segment(MIQP::B_X,2);
-    int gamma = xi_k(MIQP::DELTA);
     // Get feet corners
     Eigen::MatrixXd feetCorners;
     feetCorners = _stepController->getContact2DCoordinates();
-//    feetCorners = getFeetCorners(gamma);
     // Compute the convex hull of the current support configuration
     // Every row of listConvexHull is a 2D point of the convex hull
     Eigen::MatrixXd listConvexHull = computeConvexHull(feetCorners);
     // Resize inequality matrix _A based on the size of the convex hull
-    _A.resize(listConvexHull.rows(), 2);
-    _B.resize(listConvexHull.rows());
+    // (listConvexHull.rows() - 1) rows because the list contains the closing point 
+    // last_point == first_point
+    _A.resize(listConvexHull.rows()-1, 2);
+    _B.resize(listConvexHull.rows()-1);
     // Compute the inequality matrices Ax <= b that represent the interior
     // of the support polygon (or BoS)
     computeAandB(listConvexHull, a, b);
     return true;
 }
 
-//Eigen::MatrixXd BaseOfSupport::getFeetCorners(int gamma) {
-//    Eigen::MatrixXd feetCorners;
-//    // The output could be a 4x2 matrix or an nx2 depending on whether the two feet are on the ground
-//    // or just one (DS=1 or SS=0 given by gamma)
-//    if (gamma) {
-//        feetCorners.resize(8,2);
-//        // Retrieve feet centers' location
-//        // Build corners coordinates using feet dimensions and feet centers.
-//        /* TODO: This can also be done by the server*/
-//    } else {
-//        feetCorners.resize(4,2);
-//    }
-//}
-
 Eigen::MatrixXd BaseOfSupport::computeConvexHull(Eigen::MatrixXd &feetCorners){
-    
+    _poly.clear();
+    _hull.clear();
+    OCRA_INFO("Feet corners given by StepController are: ");
+    std::cout << feetCorners << std::endl;
     for (unsigned int i=0 ; i<feetCorners.rows(); i++) {
         _poly.outer().push_back(point(feetCorners(i,0), feetCorners(i,1)));
     }
-
+    boost::geometry::correct(_poly);
+    
     boost::geometry::convex_hull(_poly, _hull);
 
     using boost::geometry::dsv;
-    std::cout
-    << "polygon: " << dsv(_poly) << std::endl
-    << "hull: " << dsv(_hull) << std::endl;
+//     std::cout
+//     << "polygon: " << dsv(_poly) << std::endl
+//     << "hull: " << dsv(_hull) << std::endl;
     
-    // TODO: Get the points from _hull in the form of an Eigen::Matrix
-//    point tmp;
-//    _hull.outer().pop_back();
     Eigen::MatrixXd  convexHullEigen;
     convexHullEigen.resize(_hull.outer().size(),2);
     int k = 0;
-    OCRA_INFO("Points in convex hull: ");
+//     OCRA_INFO("Points in convex hull: ");
     for (auto const &value : _hull.outer()) {
-        std::cout << "[ " << boost::get<0>(value) << boost::get<1>(value) << " ]"<< std::endl;
+//         std::cout << "[ " << boost::get<0>(value) << ", " <<boost::get<1>(value) << " ]  "<< std::endl;
+        convexHullEigen(k,0) = boost::get<0>(value);
+        convexHullEigen(k,1) = boost::get<1>(value);
         k++;
     }
     return convexHullEigen;
-}
-
-void BaseOfSupport::computeBoSCenter(Eigen::Vector2d &r)
-{
-
 }
 
 void BaseOfSupport::computeAandB(Eigen::MatrixXd &listConvexHull,
@@ -77,17 +61,21 @@ void BaseOfSupport::computeAandB(Eigen::MatrixXd &listConvexHull,
 {
     Eigen::Vector2d r;
     computeMidpoint(a,b,r);
+    OCRA_INFO("Midpoint is: " << r);
     Eigen::RowVector2d Ai;
     double bi;
-    // TODO: Make sure that listConvexHull does not include the first point twice
+    // NOTE: Make sure that listConvexHull does not include the first point twice
     // Otherwise this for-loop would go until listConvexHull.rows() - 1
-    for (unsigned int i = 0; i < listConvexHull.rows(); i++) {
+    OCRA_INFO("listConvexHull is: \n" << listConvexHull);
+    for (unsigned int i = 0; i < listConvexHull.rows()-1; i++) {
         Eigen::Vector2d p1 = listConvexHull.row(i);
         Eigen::Vector2d p2 = listConvexHull.row(i+1);
         computeAiBi(r, p1, p2, Ai, bi);
         _A.row(i) = Ai;
         _B(i) = bi;
     }
+//     OCRA_INFO("A: \n " << _A);
+//     OCRA_INFO("B: \n " << _B);
 }
 
 void BaseOfSupport::computeAiBi(Eigen::Vector2d r,
