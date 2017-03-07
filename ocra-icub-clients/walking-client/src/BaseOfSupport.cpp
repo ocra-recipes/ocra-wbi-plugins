@@ -120,7 +120,7 @@ void BaseOfSupport::computeBoundingBox(Eigen::MatrixXd &feetCorners, Eigen::Matr
 }
 
 void BaseOfSupport::getA(Eigen::MatrixXd &output) {
-    if (output.rows() !=  _Ci.rows()*_miqpParams.N, _T.cols()*_miqpParams.N && output.cols() != INPUT_VECTOR_SIZE) {
+    if (output.rows() !=  _A.rows() != _A.cols()) {
         OCRA_ERROR("Malformed constraint matrix container A. It should have size: " << _A.rows() << "x" << _A.cols());
     }
     output = _A;
