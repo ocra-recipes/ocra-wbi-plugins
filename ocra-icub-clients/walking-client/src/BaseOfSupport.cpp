@@ -22,13 +22,13 @@ _f(Eigen::VectorXd(14))
     buildA(_Ci, _Q, _T);
     buildB(_Ci, _Q);
     _f.setZero();
-    //TODO: Missing the update of the rhs of the constraints using the current state of the system
 }
 
 BaseOfSupport::~BaseOfSupport(){}
    
 void BaseOfSupport::buildAb() {
     _Ab << -1, 0, 1, 0, 0, -1, 0, 1;
+    OCRA_WARNING("Built Ab");
 }
    
 void BaseOfSupport::buildb(Eigen::Matrix2d minMaxBoundingBox) {
@@ -42,11 +42,17 @@ void BaseOfSupport::buildCp(double cz, double g) {
     _Cp.setZero();
     _Cp.block(0,10,2,2) = Eigen::MatrixXd::Identity(2, 2);
     _Cp.block(0,14,2,2) = (-cz/g)*Eigen::MatrixXd::Identity(2, 2);
+    OCRA_INFO("Built Cp");
 }
    
 void BaseOfSupport::buildCi(Eigen::MatrixXd &Ab, Eigen::MatrixXd &Cp) {
+    if (Ab.data() == nullptr)
+        OCRA_ERROR("Reference Ab hasn't been resized");
+    if (Cp.data() == nullptr) 
+        OCRA_ERROR("Reference Cp hasn't been resized");
     _Ci.setZero();
     _Ci.block(10,10,4,6) = _Ab*_Cp;
+    OCRA_INFO("Built Ci");
 }
    
 void BaseOfSupport::buildf(){
@@ -54,6 +60,8 @@ void BaseOfSupport::buildf(){
 }
 
 void BaseOfSupport::buildfbar(Eigen::VectorXd &f) {
+    if (f.data() == nullptr)
+        OCRA_ERROR("f hasn't been resized");
     for (unsigned int i=0; i < _miqpParams.N; i++) {
         _fbar.segment(i*f.size(), f.size()) = f;
     }
@@ -63,6 +71,7 @@ void BaseOfSupport::buildB(Eigen::MatrixXd Ci, Eigen::MatrixXd Q){
     for (unsigned int i=0; i < _miqpParams.N; i++) {
         _B.block(i*Ci.rows(), 0, Ci.rows(), _Q.cols()) = Ci*_Q.pow(i+1);
     }
+    OCRA_WARNING("Built B");
 }
 
 void BaseOfSupport::buildA(const Eigen::MatrixXd &Ci, const Eigen::MatrixXd &Q, const Eigen::MatrixXd &T){
@@ -77,6 +86,7 @@ void BaseOfSupport::buildA(const Eigen::MatrixXd &Ci, const Eigen::MatrixXd &Q, 
         _A.block(j*Ci.rows(), j*T.cols(), Ci.rows()*(_miqpParams.N-j), T.cols()) = AColumn.topRows((_miqpParams.N-j)*Ci.rows());
         j=j+1;
     }
+    OCRA_WARNING("Built A");
 }
 
 bool BaseOfSupport::update(Eigen::VectorXd &xi_k) {
@@ -98,6 +108,9 @@ bool BaseOfSupport::update(Eigen::VectorXd &xi_k) {
 }
 
 void BaseOfSupport::computeBoundingBox(Eigen::MatrixXd &feetCorners, Eigen::Matrix2d &minMaxBoundingBox){
+    if (minMaxBoundingBox.data() == nullptr)
+        OCRA_ERROR("Output matrix hasn't been resized");
+    
     _poly.clear();
     OCRA_INFO("Feet corners given by StepController are: ");
     std::cout << feetCorners << std::endl;
@@ -120,14 +133,18 @@ void BaseOfSupport::computeBoundingBox(Eigen::MatrixXd &feetCorners, Eigen::Matr
 }
 
 void BaseOfSupport::getA(Eigen::MatrixXd &output) {
+    if (output.data() == nullptr)
+    OCRA_ERROR("Output matrix hasn't been resized");
+
     if (output.rows() !=  _A.rows() != _A.cols()) {
         OCRA_ERROR("Malformed constraint matrix container A. It should have size: " << _A.rows() << "x" << _A.cols());
     }
     output = _A;
+    OCRA_WARNING("Built A");
 }
 
 void BaseOfSupport::getrhs(Eigen::VectorXd &output) {
-    if (output.size() != _miqpParams.N) {
+    if (output.size() != _rhs.size()) {
         OCRA_ERROR("Malformed constraint vector container RHS. It should have size: " << _rhs.size());
     }
     output = _rhs;

@@ -31,7 +31,6 @@ _addWalkingCtrs(addWalkingCtrs)
     setMatrixAcr();
     
     // Initialize number of constraints to
-    // FIXME: Don't forget to increase nConstraints in buildShapeAndAdmissibilityInPreviewWindow
     _nConstraints = 0;
     // First build Shape and/or Admissibility Constraints in preview window
     buildShapeAndAdmissibilityInPreviewWindow();
@@ -40,22 +39,30 @@ _addWalkingCtrs(addWalkingCtrs)
     // Now stack in _A the previous constraints matrices. First we need to resize A with the total number of constraints by the size of the input vector \mathbb{X}
      if(_addCoPConstraints) {
          // FIXME: Get the hardcoded 14*miqpParams from Base of Support class. Something like getnConstraints(). Also add to nConstraints those added by baseOfSupport
-         Eigen::MatrixXd ACoP(14*_miqpParams.N, _T.cols()*_miqpParams.N);
+         Eigen::MatrixXd ACoP(14*_N, _T.cols()*_N); 
+         OCRA_WARNING("ACoP has size: " << ACoP.rows() << "x" << ACoP.cols());
          _baseOfSupport->getA(ACoP);
-         _A.resize(_AShapeAdmiss.rows() + ACoP.rows(), INPUT_VECTOR_SIZE);
+         _A.resize(_AShapeAdmiss.rows() + ACoP.rows(), _AShapeAdmiss.cols());
          _A.block(0,0,_AShapeAdmiss.rows(), _AShapeAdmiss.cols()) = _AShapeAdmiss;
          _A.block(_AShapeAdmiss.rows(),0, ACoP.rows(), ACoP.cols()) = ACoP;
+         // Increment the number of constraints given by the base of support ones
+         // The number of shape and admissibility constraints are added in buildShapeAndAdmissibilityInPreviewWindow()
+         _nConstraints += ACoP.rows();
+         OCRA_WARNING("This problem will have " << ACoP.rows() << " CoP constraints, " << _AShapeAdmiss.rows() << " shape and admissibility constraints, for a total of: " << _nConstraints << " constraints!");
      } else {
-         _A.resize(_AShapeAdmiss.rows(), INPUT_VECTOR_SIZE);
+         _A.resize(_AShapeAdmiss.rows(), _AShapeAdmiss.cols());
          _A.block(0,0,_AShapeAdmiss.rows(), _AShapeAdmiss.cols()) = _AShapeAdmiss;
+         OCRA_WARNING("Built Matrix A in preview window");
      }
     // Initialize size of _rhs
     //TODO: Once I add walking constraints this will change to include the rows added by walking constraints
      if(_addCoPConstraints) {
-         Eigen::VectorXd rhsCoP(14*_miqpParams.N);
+         Eigen::VectorXd rhsCoP(14*_N);
         _rhs.resize(_fcbarShapeAdmiss.size() + rhsCoP.size());
+        OCRA_WARNING("RHS contains: " << _fcbarShapeAdmiss.size() << " shape and admissibility constraints terms and " << rhsCoP.size() << " cop constraints terms, for a total of: " << _rhs.size());
      } else {
          _rhs.resize(_fcbarShapeAdmiss.size());
+         OCRA_WARNING("Resized vector rhs");
      }
      
      //TODO: I should check that MIQP params are correct
@@ -101,9 +108,15 @@ void MIQPLinearConstraints::setMatrixAcl() {
 }
 
 void MIQPLinearConstraints::updateRHS(Eigen::VectorXd xi_k){
-    _rhs = _fcbarShapeAdmiss - _BShapeAdmiss * xi_k;
+    _rhs.segment(0,_fcbarShapeAdmiss.size()) = _fcbarShapeAdmiss - _BShapeAdmiss * xi_k;
     /** FIXME: TEMPORARY!!  Maybe it's best to have a more generic update method*/
-    _baseOfSupport->update(xi_k);
+    if (_addCoPConstraints) {
+        _baseOfSupport->update(xi_k);
+        // TODO: Add to _rhs the base of support terms
+        Eigen::VectorXd tmprhs(_rhs.size() - _fcbarShapeAdmiss.size());
+        _baseOfSupport->getrhs(tmprhs);
+        _rhs.segment(_fcbarShapeAdmiss.size(), tmprhs.size()) = tmprhs;
+    }
     OCRA_WARNING("Updated RHS");
 }
 
