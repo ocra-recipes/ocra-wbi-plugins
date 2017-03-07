@@ -10,7 +10,7 @@ ShapeConstraints::~ShapeConstraints() {}
 void ShapeConstraints::buildMatrixCi() {
     OCRA_WARNING("Building MatrixCi for Shape Constraints");
     unsigned int totalRows = _bounding.getCi().rows() + _constancy.getCi().rows() + _sequentiality.getCi().rows();
-    unsigned int totalCols = SIZE_STATE_VECTOR;
+    unsigned int totalCols = STATE_VECTOR_SIZE;
     _Ci.resize(totalRows, totalCols);
     _Ci << _bounding.getCi(), _constancy.getCi(), _sequentiality.getCi();
     OCRA_WARNING("Built Ci for Shape Constraints");

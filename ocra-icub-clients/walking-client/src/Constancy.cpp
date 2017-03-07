@@ -9,7 +9,7 @@ Constancy::Constancy() : Constraint() {
 Constancy::~Constancy() {}
 
 void Constancy::buildMatrixCi() {
-    _Ci.resize(8,SIZE_STATE_VECTOR);
+    _Ci.resize(8,STATE_VECTOR_SIZE);
     Eigen::VectorXd zero12 = Eigen::VectorXd::Zero(12);
     _Ci << -1,  0,  0,  0, zero12.transpose(),
             1,  0,  0,  0, zero12.transpose(),
@@ -23,7 +23,7 @@ void Constancy::buildMatrixCi() {
 }
 
 void Constancy::buildMatrixCii() {
-    _Cii.resize(8,SIZE_STATE_VECTOR);
+    _Cii.resize(8,STATE_VECTOR_SIZE);
     Eigen::VectorXd zero8 = Eigen::VectorXd::Zero(8);
     double sx = _S(0);
     double sy = _S(1);

@@ -3,7 +3,7 @@
 using namespace MIQP;
 
 MIQPState::MIQPState(ocra::Model::Ptr robotModel):
-_xi_k(Eigen::VectorXd(SIZE_STATE_VECTOR)),
+_xi_k(Eigen::VectorXd(STATE_VECTOR_SIZE)),
 _hk(Eigen::VectorXd(6)),
 _robotModel(robotModel),
 _robot("icubGazeboSim"),

@@ -1,33 +1,104 @@
 #include "walking-client/BaseOfSupport.h"
 
-BaseOfSupport::BaseOfSupport(std::shared_ptr<StepController> stepController):_stepController(stepController){
+BaseOfSupport::BaseOfSupport(std::shared_ptr<StepController> stepController, Eigen::MatrixXd Q, Eigen::MatrixXd T, MIQPParameters miqpParams):
+_stepController(stepController),
+_miqpParams(miqpParams),
+_Q(Q),
+_T(T),
+_Ab(Eigen::MatrixXd(4,2)),
+_b(Eigen::VectorXd(4)),
+_Cp(Eigen::MatrixXd(2, STATE_VECTOR_SIZE)),
+_Ci(Eigen::MatrixXd(14,STATE_VECTOR_SIZE)),
+_f(Eigen::VectorXd(14))
+{
+    _A.resize(_Ci.rows()*miqpParams.N, T.cols()*miqpParams.N);
+    _fbar.resize(_f.rows()*miqpParams.N);
+    _B.resize(_Ci.rows()*miqpParams.N, Q.cols());
+    _rhs.resize(miqpParams.N);
+    // Build matrices of the bounding constraints when expressed in the terms of the state vector xi
+    buildAb();
+    buildCp(_miqpParams.cz, _miqpParams.g);
+    buildCi(_Ab, _Cp);
+    buildA(_Ci, _Q, _T);
+    buildB(_Ci, _Q);
+    _f.setZero();
+    //TODO: Missing the update of the rhs of the constraints using the current state of the system
 }
 
 BaseOfSupport::~BaseOfSupport(){}
+   
+void BaseOfSupport::buildAb() {
+    _Ab << -1, 0, 1, 0, 0, -1, 0, 1;
+}
+   
+void BaseOfSupport::buildb(Eigen::Matrix2d minMaxBoundingBox) {
+    _b << -minMaxBoundingBox(0,0),
+           minMaxBoundingBox(1,0),
+          -minMaxBoundingBox(0,1),
+           minMaxBoundingBox(1,1);
+}
+   
+void BaseOfSupport::buildCp(double cz, double g) {
+    _Cp.setZero();
+    _Cp.block(0,10,2,2) = Eigen::MatrixXd::Identity(2, 2);
+    _Cp.block(0,14,2,2) = (-cz/g)*Eigen::MatrixXd::Identity(2, 2);
+}
+   
+void BaseOfSupport::buildCi(Eigen::MatrixXd &Ab, Eigen::MatrixXd &Cp) {
+    _Ci.setZero();
+    _Ci.block(10,10,4,6) = _Ab*_Cp;
+}
+   
+void BaseOfSupport::buildf(){
+    _f.segment(10,4) = _b;
+}
 
-bool BaseOfSupport::update(Eigen::VectorXd xi_k) {
-    Eigen::Vector2d a = xi_k.segment(MIQP::A_X,2);
-    Eigen::Vector2d b = xi_k.segment(MIQP::B_X,2);
+void BaseOfSupport::buildfbar(Eigen::VectorXd &f) {
+    for (unsigned int i=0; i < _miqpParams.N; i++) {
+        _fbar.segment(i*f.size(), f.size()) = f;
+    }
+}
+
+void BaseOfSupport::buildB(Eigen::MatrixXd Ci, Eigen::MatrixXd Q){
+    for (unsigned int i=0; i < _miqpParams.N; i++) {
+        _B.block(i*Ci.rows(), 0, Ci.rows(), _Q.cols()) = Ci*_Q.pow(i+1);
+    }
+}
+
+void BaseOfSupport::buildA(const Eigen::MatrixXd &Ci, const Eigen::MatrixXd &Q, const Eigen::MatrixXd &T){
+    // Create first column of Aeq
+    Eigen::MatrixXd AColumn(Ci.rows()*_miqpParams.N, T.cols());
+    for (unsigned int i=0; i<_miqpParams.N; i++){
+        AColumn.block(i*Ci.rows(), 0, Ci.rows(), T.cols()) = Ci * Q.pow(i) * T;
+    }
+    // Shift AeqColumn into every column of Aeq to take the form of a lower diagonal toeplitz matrix
+    unsigned int j=0;
+    while (j<_miqpParams.N){
+        _A.block(j*Ci.rows(), j*T.cols(), Ci.rows()*(_miqpParams.N-j), T.cols()) = AColumn.topRows((_miqpParams.N-j)*Ci.rows());
+        j=j+1;
+    }
+}
+
+bool BaseOfSupport::update(Eigen::VectorXd &xi_k) {
     // Get feet corners
     Eigen::MatrixXd feetCorners;
     feetCorners = _stepController->getContact2DCoordinates();
-    // Compute the convex hull of the current support configuration
-    // Every row of listConvexHull is a 2D point of the convex hull
-    Eigen::MatrixXd listConvexHull = computeConvexHull(feetCorners);
-    // Resize inequality matrix _A based on the size of the convex hull
-    // (listConvexHull.rows() - 1) rows because the list contains the closing point 
-    // last_point == first_point
-    _A.resize(listConvexHull.rows()-1, 2);
-    _B.resize(listConvexHull.rows()-1);
-    // Compute the inequality matrices Ax <= b that represent the interior
-    // of the support polygon (or BoS)
-    computeAandB(listConvexHull, a, b);
+    // Compute the bounding box of the current support configuration
+    Eigen::Matrix2d minMaxBoundingBox;
+    computeBoundingBox(feetCorners, minMaxBoundingBox);
+    // Update right-hand side of constraints
+    buildb(minMaxBoundingBox);
+    buildf();
+    // Matrices in the preview window s.t.
+    // A*X <= fbar - B*xi_k
+    // Therefore we can prebuild A, fbar and B which are not time-dependent
+    buildfbar(_f);
+    _rhs = _fbar - _B*xi_k;
     return true;
 }
 
-Eigen::MatrixXd BaseOfSupport::computeConvexHull(Eigen::MatrixXd &feetCorners){
+void BaseOfSupport::computeBoundingBox(Eigen::MatrixXd &feetCorners, Eigen::Matrix2d &minMaxBoundingBox){
     _poly.clear();
-    _hull.clear();
     OCRA_INFO("Feet corners given by StepController are: ");
     std::cout << feetCorners << std::endl;
     for (unsigned int i=0 ; i<feetCorners.rows(); i++) {
@@ -35,75 +106,31 @@ Eigen::MatrixXd BaseOfSupport::computeConvexHull(Eigen::MatrixXd &feetCorners){
     }
     boost::geometry::correct(_poly);
     
-    boost::geometry::convex_hull(_poly, _hull);
+    boost::geometry::envelope(_poly, _bbox);
 
     using boost::geometry::dsv;
 //     std::cout
 //     << "polygon: " << dsv(_poly) << std::endl
-//     << "hull: " << dsv(_hull) << std::endl;
     
-    Eigen::MatrixXd  convexHullEigen;
-    convexHullEigen.resize(_hull.outer().size(),2);
-    int k = 0;
-//     OCRA_INFO("Points in convex hull: ");
-    for (auto const &value : _hull.outer()) {
-//         std::cout << "[ " << boost::get<0>(value) << ", " <<boost::get<1>(value) << " ]  "<< std::endl;
-        convexHullEigen(k,0) = boost::get<0>(value);
-        convexHullEigen(k,1) = boost::get<1>(value);
-        k++;
-    }
-    return convexHullEigen;
+//     OCRA_INFO("Points in bounding box");
+    minMaxBoundingBox(0,0) = boost::geometry::get<boost::geometry::min_corner, 0>(_bbox);
+    minMaxBoundingBox(0,1) = boost::geometry::get<boost::geometry::min_corner, 1>(_bbox);
+    minMaxBoundingBox(1,0) = boost::geometry::get<boost::geometry::max_corner, 0>(_bbox);
+    minMaxBoundingBox(1,1) = boost::geometry::get<boost::geometry::max_corner, 1>(_bbox);
 }
 
-void BaseOfSupport::computeAandB(Eigen::MatrixXd &listConvexHull,
-                                 Eigen::Vector2d a,
-                                 Eigen::Vector2d b)
-{
-    Eigen::Vector2d r;
-    computeMidpoint(a,b,r);
-    OCRA_INFO("Midpoint is: " << r);
-    Eigen::RowVector2d Ai;
-    double bi;
-    // NOTE: Make sure that listConvexHull does not include the first point twice
-    // Otherwise this for-loop would go until listConvexHull.rows() - 1
-    OCRA_INFO("listConvexHull is: \n" << listConvexHull);
-    for (unsigned int i = 0; i < listConvexHull.rows()-1; i++) {
-        Eigen::Vector2d p1 = listConvexHull.row(i);
-        Eigen::Vector2d p2 = listConvexHull.row(i+1);
-        computeAiBi(r, p1, p2, Ai, bi);
-        _A.row(i) = Ai;
-        _B(i) = bi;
+void BaseOfSupport::getA(Eigen::MatrixXd &output) {
+    if (output.rows() !=  _Ci.rows()*_miqpParams.N, _T.cols()*_miqpParams.N && output.cols() != INPUT_VECTOR_SIZE) {
+        OCRA_ERROR("Malformed constraint matrix container A. It should have size: " << _A.rows() << "x" << _A.cols());
     }
-//     OCRA_INFO("A: \n " << _A);
-//     OCRA_INFO("B: \n " << _B);
+    output = _A;
 }
 
-void BaseOfSupport::computeAiBi(Eigen::Vector2d r,
-                                Eigen::Vector2d p1,
-                                Eigen::Vector2d p2,
-                                Eigen::RowVector2d &Ai,
-                                double &bi,
-                                double tolDiff)
-{
-    double p1x = p1(0);
-    double p1y = p1(1);
-    double p2x = p2(0);
-    double p2y = p2(1);
-    double m;
-
-    if (std::abs(p2x - p1x) > tolDiff) {
-        m = (p2y - p1y) /  (p2x - p1x);
-        Ai << -m, 1;
-        bi = p1y - m*p1x;
-    } else {
-        m = 1;
-        Ai << -m, 0;
-        bi = -m*p1x;
+void BaseOfSupport::getrhs(Eigen::VectorXd &output) {
+    if (output.size() != _miqpParams.N) {
+        OCRA_ERROR("Malformed constraint vector container RHS. It should have size: " << _rhs.size());
     }
-    if (Ai*r > bi) {
-        Ai = -Ai;
-        bi = -bi;
-    }
+    output = _rhs;
 }
 
 void BaseOfSupport::computeMidpoint(Eigen::Vector2d a, Eigen::Vector2d b, Eigen::Vector2d &r) {

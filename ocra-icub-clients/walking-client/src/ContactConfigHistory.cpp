@@ -5,7 +5,7 @@ ContactConfigHistory::ContactConfigHistory() : Constraint(){}
 ContactConfigHistory::~ContactConfigHistory(){}
 
 void ContactConfigHistory::buildMatrixCi(){
-    _Ci.resize(2,SIZE_STATE_VECTOR);
+    _Ci.resize(2,STATE_VECTOR_SIZE);
     Eigen::VectorXd zero8 = Eigen::VectorXd::Zero(8);
     Eigen::VectorXd zero6 = Eigen::VectorXd::Zero(6);
     _Ci << zero8.transpose(), -1, 1, zero6.transpose(),
@@ -15,7 +15,7 @@ void ContactConfigHistory::buildMatrixCi(){
 }
 
 void ContactConfigHistory::buildMatrixCii(){
-    _Cii.resize(2, SIZE_STATE_VECTOR);
+    _Cii.resize(2, STATE_VECTOR_SIZE);
     Eigen::VectorXd zero8 = Eigen::VectorXd::Zero(8);
     Eigen::VectorXd zero7 = Eigen::VectorXd::Zero(7);
     _Cii << zero8.transpose(),  1, zero7.transpose(),

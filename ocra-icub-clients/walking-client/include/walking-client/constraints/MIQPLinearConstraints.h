@@ -47,6 +47,7 @@
 #include "walking-client/constraints/AdmissibilityConstraints.h"
 #include "walking-client/StepController.h"
 #include "walking-client/BaseOfSupport.h"
+#include "walking-client/utils.h"
 
 class MIQPLinearConstraints {
 private:
@@ -148,12 +149,14 @@ private:
     
     /** Base of support object to retrieve the corresponding inequality constraints*/
     std::shared_ptr<BaseOfSupport> _baseOfSupport;
+    
+    MIQPParameters _miqpParams;
 public:
 
     /**
      * @todo Once I add walking constraints this will change to include the rows added by walking constraints
      */
-    MIQPLinearConstraints(unsigned int dt, unsigned int N, std::shared_ptr<StepController> stepController, bool addShapeCtrs=true, bool addAdmissibilityCtrs=true, bool addCoPConstraints=false, bool addWalkingCtrs=false);
+    MIQPLinearConstraints(std::shared_ptr<StepController> stepController, MIQPParameters miqpParams, bool addShapeCtrs=true, bool addAdmissibilityCtrs=true, bool addCoPConstraints=false, bool addWalkingCtrs=false);
     
     virtual ~MIQPLinearConstraints ();
     
@@ -167,7 +170,7 @@ public:
     /**
      * Retrieves the constraints matrix \f$\mathbf{A}\f$. Before passing a matrix to copy #_A allocate the space 
      * for A by calling getTotalNumberOfConstraints() to know the number of rows, while 
-     * SIZE_INPUT_VECTOR * SIZE_PREVIEW_WINDOW will be the number of columns.
+     * INPUT_VECTOR_SIZE * SIZE_PREVIEW_WINDOW will be the number of columns.
      *
      * @param A Reference to matrix where the global constraints matrix _A will be copied.
      */

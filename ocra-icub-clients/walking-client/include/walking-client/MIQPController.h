@@ -37,22 +37,18 @@
 #include <walking-client/MIQPState.h>
 #include "Gurobi.h" // eigen-gurobi
 
-#define INPUT_VECTOR_SIZE 12
-#define STATE_VECTOR_SIZE 16
-
 class MIQPController : public yarp::os::RateThread {
 public:
     /**
      * Constructor.
      *
-     * @param period        Thread period in ms
      * @param params        MIQP parameters
      * @params robotModel   Pointer to the robot model instantiated by the containing client
      *                      (walking-client)
      * @param comStateRef   Reference to a matrix of CoM state references. The k-th row contains the
      *                      desired CoM state at time k
      */
-    MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, std::shared_ptr<StepController> stepController, const Eigen::MatrixXd &comStateRef);
+    MIQPController(MIQPParameters params, ocra::Model::Ptr robotModel, std::shared_ptr<StepController> stepController, const Eigen::MatrixXd &comStateRef);
 
     /**
      * Destructor
@@ -276,7 +272,26 @@ protected:
     void buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &R);
     
     /** Builds the equality constraints matrices #_Aeq, #_RHSeq
-     * 
+     *
+     \left[\begin{array}{cccc}
+     \mathbf{C}_i\mathbf{T}                 &   0                          &  \cdots   &   0 \\
+     \mathbf{C}_i\mathbf{Q}\mathbf{T}       &   \mathbf{C}_i\mathbf{T}   &  \cdots   &   0 \\
+     \vdots                                 & \vdots                       & \ddots    &  \vdots \\
+     \mathbf{C}_i\mathbf{Q}^{N-1}\mathbf{T} & \mathbf{C}_i\mathbf{Q}^{N-2}\mathbf{T} & \cdots & \mathbf{C}_i\mathbf{T}
+     \end{array}\right] =
+     \left[\begin{array}{c}
+     \mathbf{f}_c\\
+     \mathbf{f}_c\\
+     \vdots\\
+     \mathbf{f}_c
+     \end{array}\right] -
+     \left[\begin{array}{c}
+     \mathbf{C}_i\mathbf{Q}\\
+     \mathbf{C}_i\mathbf{Q}^2\\
+     \vdots\\
+     \mathbf{C}_i\mathbf{Q}^N
+     \end{array}\right] \mathbf{\xi}_k
+     *
      * @param Aeq Reference to output matrix.
      * @param Beq Reference to right hand side vector.
      * @param x_k Current state vector.
@@ -728,7 +743,7 @@ private:
     /**
      * Matrix A of the equality constraints of the MIQP problem, i.e.
      * \f[
-     * A_{\text{eq}} x = b_{\text{eq}}
+     * \mathbf{A}_{\text{eq}} \mathcal{\mathbf{X}} = \mathbf{b}_{\text{eq}}
      * \f]
      * 
      * @see buildEqualityConstraintsMatrices()
@@ -738,7 +753,7 @@ private:
     /**
      * RHS of the equality constraints of the MIQP problem, i.e.
      * \f[
-     * A_{\text{eq}} x = b_{\test{eq}}
+     * \mathbf{A}_{\text{eq}} x = \mathbf{b}_{\text{eq}}
      * \f]
      * 
      * @see buildEqualityConstraintsMatrices()

@@ -2,12 +2,12 @@
 
 using namespace MIQP;
 
-MIQPController::MIQPController(int period, MIQPParameters params, ocra::Model::Ptr robotModel, std::shared_ptr<StepController> stepController, const Eigen::MatrixXd &comStateRef) : RateThread(period),
+MIQPController::MIQPController(MIQPParameters params, ocra::Model::Ptr robotModel, std::shared_ptr<StepController> stepController, const Eigen::MatrixXd &comStateRef) : RateThread(params.dt),
 _robotModel(robotModel),
 _stepController(stepController),
 _miqpParams(params),
 _comStateRef(comStateRef),
-_period(period),
+_period(params.dt),
 _env(0),
 _model(0),
 _obj(0),
@@ -18,7 +18,7 @@ _xi_k(Eigen::VectorXd(STATE_VECTOR_SIZE)),
 _X_kn(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
 _Ah(Eigen::MatrixXd(6,6)),
 _Bh(Eigen::MatrixXd(6,2)),
-_Q(Eigen::MatrixXd::Identity(SIZE_STATE_VECTOR, SIZE_STATE_VECTOR)),
+_Q(Eigen::MatrixXd::Identity(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE)),
 _T(STATE_VECTOR_SIZE, INPUT_VECTOR_SIZE),
 _C_H(6,STATE_VECTOR_SIZE),
 _C_P(2, STATE_VECTOR_SIZE),
@@ -68,8 +68,8 @@ bool MIQPController::threadInit() {
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
     // FIXME: For now TESTING only with shape and addmissibility constraints!!
-    _constraints = std::make_shared<MIQPLinearConstraints>(_period, _miqpParams.N, _stepController, true, true, true, false);
-    _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  SIZE_INPUT_VECTOR * _miqpParams.N );
+    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, true, true, true, false);
+    _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  INPUT_VECTOR_SIZE * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
 
     // Resize _Bineq
@@ -78,7 +78,7 @@ bool MIQPController::threadInit() {
     std::cout << "Writing Aineq: of size: " << _Aineq.rows() << " x " << _Aineq.cols() << std::endl;
 
     // Resize _Aeq and _Beq
-    _Aeq.resize(_miqpParams.N, SIZE_INPUT_VECTOR*_miqpParams.N);
+    _Aeq.resize(_miqpParams.N, INPUT_VECTOR_SIZE*_miqpParams.N);
     _Beq.resize(_miqpParams.N);
     buildEqualityConstraintsMatrices(_Aeq, _Beq, _xi_k);
     
@@ -94,7 +94,7 @@ bool MIQPController::threadInit() {
             for (int i = 4; i <= 9; i++) {
             _eigGurobi.setVariableType(m+i, GRB_BINARY);
             }
-            m += SIZE_INPUT_VECTOR;
+            m += INPUT_VECTOR_SIZE;
         }
     }
     catch (GRBException e) {
@@ -135,7 +135,7 @@ void MIQPController::run() {
     // Get the solution
     _X_kn = _eigGurobi.result();
     OCRA_WARNING("Optimal is: ")
-    std::cout << _X_kn.topRows(SIZE_INPUT_VECTOR).transpose() << std::endl;
+    std::cout << _X_kn.topRows(INPUT_VECTOR_SIZE).transpose() << std::endl;
     } catch(GRBException e) {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
         std::cout << e.getMessage() << std::endl;
@@ -343,7 +343,7 @@ void MIQPController::buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd
 }
 
 void MIQPController::buildEqualityConstraintsMatrices(Eigen::MatrixXd &Aeq, Eigen::VectorXd &Beq, Eigen::VectorXd &x_k) {
-    _Ci_eq.resize(1,SIZE_STATE_VECTOR);
+    _Ci_eq.resize(1,STATE_VECTOR_SIZE);
     _Ci_eq << 0,0,0,0,1,-1,1,-1, Eigen::VectorXd::Zero(8);
     Aeq.setZero();
     

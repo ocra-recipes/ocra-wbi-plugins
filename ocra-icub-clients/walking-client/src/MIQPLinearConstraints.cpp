@@ -1,14 +1,14 @@
 #include "walking-client/constraints/MIQPLinearConstraints.h"
 
-MIQPLinearConstraints::MIQPLinearConstraints(unsigned int dt, 
-                                             unsigned int N, 
-                                             std::shared_ptr<StepController> stepController,
+MIQPLinearConstraints::MIQPLinearConstraints(std::shared_ptr<StepController> stepController,
+                                             MIQPParameters miqpParams,
                                              bool addShapeCtrs, 
                                              bool addAdmissibilityCtrs,
                                              bool addCoPConstraints,
                                              bool addWalkingCtrs):
-_dt(dt), 
-_N(N), 
+_dt(miqpParams.dt),
+_N(miqpParams.N),
+_miqpParams(miqpParams),
 _stepController(stepController),
 _addShapeCtrs(addShapeCtrs), 
 _addAdmissibilityCtrs(addAdmissibilityCtrs),
@@ -30,11 +30,35 @@ _addWalkingCtrs(addWalkingCtrs)
     setMatrixAcl();
     setMatrixAcr();
     
+    // Initialize number of constraints to
+    // FIXME: Don't forget to increase nConstraints in buildShapeAndAdmissibilityInPreviewWindow
+    _nConstraints = 0;
+    // First build Shape and/or Admissibility Constraints in preview window
     buildShapeAndAdmissibilityInPreviewWindow();
-    _baseOfSupport = std::make_shared<BaseOfSupport>(_stepController);
+    // Then build CoP constraints in preview window
+    _baseOfSupport = std::make_shared<BaseOfSupport>(_stepController,_Q,_T,_miqpParams);
+    // Now stack in _A the previous constraints matrices. First we need to resize A with the total number of constraints by the size of the input vector \mathbb{X}
+     if(_addCoPConstraints) {
+         // FIXME: Get the hardcoded 14*miqpParams from Base of Support class. Something like getnConstraints(). Also add to nConstraints those added by baseOfSupport
+         Eigen::MatrixXd ACoP(14*_miqpParams.N, _T.cols()*_miqpParams.N);
+         _baseOfSupport->getA(ACoP);
+         _A.resize(_AShapeAdmiss.rows() + ACoP.rows(), INPUT_VECTOR_SIZE);
+         _A.block(0,0,_AShapeAdmiss.rows(), _AShapeAdmiss.cols()) = _AShapeAdmiss;
+         _A.block(_AShapeAdmiss.rows(),0, ACoP.rows(), ACoP.cols()) = ACoP;
+     } else {
+         _A.resize(_AShapeAdmiss.rows(), INPUT_VECTOR_SIZE);
+         _A.block(0,0,_AShapeAdmiss.rows(), _AShapeAdmiss.cols()) = _AShapeAdmiss;
+     }
     // Initialize size of _rhs
     //TODO: Once I add walking constraints this will change to include the rows added by walking constraints
-    _rhs.resize(_fcbarShapeAdmiss.size());
+     if(_addCoPConstraints) {
+         Eigen::VectorXd rhsCoP(14*_miqpParams.N);
+        _rhs.resize(_fcbarShapeAdmiss.size() + rhsCoP.size());
+     } else {
+         _rhs.resize(_fcbarShapeAdmiss.size());
+     }
+     
+     //TODO: I should check that MIQP params are correct
     OCRA_WARNING("MIQPLinearConstraints constructor done");
 }
 
@@ -78,7 +102,7 @@ void MIQPLinearConstraints::setMatrixAcl() {
 
 void MIQPLinearConstraints::updateRHS(Eigen::VectorXd xi_k){
     _rhs = _fcbarShapeAdmiss - _BShapeAdmiss * xi_k;
-    /** FIXME TEMPORARY!! */
+    /** FIXME: TEMPORARY!!  Maybe it's best to have a more generic update method*/
     _baseOfSupport->update(xi_k);
     OCRA_WARNING("Updated RHS");
 }
@@ -104,13 +128,13 @@ void MIQPLinearConstraints::buildAh() {
 
 void MIQPLinearConstraints::buildMatrixQ() {
     buildAh();
-    _Q = Eigen::MatrixXd::Identity(SIZE_STATE_VECTOR, SIZE_STATE_VECTOR);
+    _Q = Eigen::MatrixXd::Identity(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
     _Q.block(10,10,_Ah.rows(),_Ah.cols()) = _Ah;
 }
 
 void MIQPLinearConstraints::buildMatrixT() {
     buildBh();
-    _T = Eigen::MatrixXd::Identity(SIZE_STATE_VECTOR, SIZE_INPUT_VECTOR);
+    _T = Eigen::MatrixXd::Identity(STATE_VECTOR_SIZE, INPUT_VECTOR_SIZE);
     _T.block(10,10,6,2) = _Bh;
 }
 
@@ -123,10 +147,12 @@ void MIQPLinearConstraints::buildShapeAndAdmissibilityInPreviewWindow(){
     buildFcBarShapeAdmiss();
     
     // Update the total number of constraints
-    _nConstraints = _AShapeAdmiss.rows();
+    // FIXME: Make this incremental since CoP and walking constraints should increment this value
+    _nConstraints += _AShapeAdmiss.rows();
     // Update matrix A
     // TODO: When walking constraints are added, this will be a stack of the two
-    _A = _AShapeAdmiss;
+    // FIXME: Move this assignment to another method that stacks all the constraints as _A.
+//    _A = _AShapeAdmiss;
 }
 
 void MIQPLinearConstraints::buildAShapeAdmiss() {

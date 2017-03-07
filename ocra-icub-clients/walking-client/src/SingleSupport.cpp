@@ -7,7 +7,7 @@ SingleSupport::~SingleSupport(){}
 void SingleSupport::buildMatrixCi(){
     Eigen::VectorXd zero5 = Eigen::VectorXd::Zero(5);
     Eigen::VectorXd zero6 = Eigen::VectorXd::Zero(6);
-    _Ci.resize(4,SIZE_STATE_VECTOR);
+    _Ci.resize(4,STATE_VECTOR_SIZE);
     //TODO: temporarily hardcoding this bound S
     double sx = 0.01;
     _S(0) = sx;

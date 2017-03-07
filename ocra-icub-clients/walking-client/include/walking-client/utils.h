@@ -27,14 +27,17 @@ struct singleStepTestParams {
 
 struct MIQPParameters {
     /* Size of preview window */
-    int N;
+    unsigned int N;
     /* Constant com height */
     double cz;
     /* Gavity acceleration */
     double g;
     //TODO: Missing state selection matrix S
+    /* Thread period */
+    unsigned int dt;
 };
 
-#define SIZE_STATE_VECTOR 16
+#define STATE_VECTOR_SIZE 16
+#define INPUT_VECTOR_SIZE 12
 
 #endif

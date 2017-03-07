@@ -5,7 +5,7 @@ Bounding::~Bounding() {}
 
 void Bounding::buildMatrixCi() {
     Eigen::VectorXd zero12 = Eigen::VectorXd::Zero(12);
-    _Ci.resize(2, SIZE_STATE_VECTOR);
+    _Ci.resize(2, STATE_VECTOR_SIZE);
     this->_Ci << -1,  0, 1, 0, zero12.transpose(),
                   0, -1, 0, 1, zero12.transpose();
     OCRA_WARNING("Ci built for Bounding");

@@ -33,9 +33,6 @@
 #include <ocra/util/ErrorsHelper.h>
 #include <memory>
 
-#define SIZE_STATE_VECTOR 16
-#define SIZE_INPUT_VECTOR 12
-
 class Constraint {
 public:
     Constraint() { }

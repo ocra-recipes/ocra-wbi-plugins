@@ -5,7 +5,7 @@ ContactConfigEnforcement::ContactConfigEnforcement() : Constraint() {}
 ContactConfigEnforcement::~ContactConfigEnforcement(){}
 
 void ContactConfigEnforcement::buildMatrixCi(){
-    _Ci.resize(8,SIZE_STATE_VECTOR);
+    _Ci.resize(8,STATE_VECTOR_SIZE);
     Eigen::VectorXd zero7 = Eigen::VectorXd::Zero(7);
     Eigen::VectorXd zero4 = Eigen::VectorXd::Zero(4);
     _Ci << zero4.transpose(), -1, -1,  0,  0,  1, zero7.transpose(),

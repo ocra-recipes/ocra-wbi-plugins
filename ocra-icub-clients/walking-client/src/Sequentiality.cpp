@@ -4,7 +4,7 @@ Sequentiality::Sequentiality() : Constraint() {}
 Sequentiality::~Sequentiality() {}
 
 void Sequentiality::buildMatrixCi() {
-    _Ci.resize(2,SIZE_STATE_VECTOR);
+    _Ci.resize(2,STATE_VECTOR_SIZE);
     Eigen::VectorXd zero8 = Eigen::VectorXd::Zero(8);
     Eigen::VectorXd zero4 = Eigen::VectorXd::Zero(4);
     _Ci << zero4.transpose(), 1, 0, 1, 0, zero8.transpose(),
