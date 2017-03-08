@@ -29,6 +29,7 @@
 #include "gurobi_c++.h"
 #include <walking-client/utils.h>
 #include <ocra-icub/OcraWbiModel.h>
+#include <ocra/util/FileOperations.h>
 #include <yarp/os/RateThread.h>
 #include <Eigen/Dense>
 #include <Eigen/Lgsm>
@@ -288,6 +289,16 @@ protected:
     void updateEqualityConstraints(const Eigen::VectorXd &x_k, Eigen::VectorXd &Beq);
     
     void setBinaryVariables();
+    
+    /**
+     * Writes optimization result to file for plotting.
+     * 
+     * @param time Timestamp.
+     * @param X_kn result of optimization.
+     * @param home Root directory where to write the file.
+     */
+    void writeToFile(const double& time, const Eigen::VectorXd& X_kn, std::string& home);
+    
 private:
     // MARK: - PRIVATE VARIABLES
     /*

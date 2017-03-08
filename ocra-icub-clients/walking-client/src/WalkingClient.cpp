@@ -254,6 +254,7 @@ bool WalkingClient::initialize()
     miqpParams.g = 9.8;
     miqpParams.N = 5;
     miqpParams.dt = 100;
+    miqpParams.home = _homeDataDir;
     // FIXME: Dummy initial COM states reference which pretty much says, keep the initial COM position.
     Eigen::MatrixXd comStateRef(100*miqpParams.N, 6);
     Eigen::VectorXd comRefToReplicate(6); comRefToReplicate << _previousCOM, 0, 0, 0, 0;

@@ -1,5 +1,6 @@
 #ifndef _UTILS_H_
 #define  _UTILS_H_
+#include <string>
 
 enum FOOT {
     LEFT_FOOT,
@@ -35,6 +36,8 @@ struct MIQPParameters {
     //TODO: Missing state selection matrix S
     /* Thread period */
     unsigned int dt;
+    /* Home directory where logged data will be saved */
+    std::string home;
 };
 
 #define STATE_VECTOR_SIZE 16

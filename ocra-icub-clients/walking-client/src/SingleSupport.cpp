@@ -13,7 +13,7 @@ void SingleSupport::buildMatrixCi(){
     _S(0) = sx;
     double sy = 0.3;
     _S(1) = sy;
-    _Ci << 1,  0,  -1, 0, zero5.transpose(),  -sx, zero6.transpose(),
+    _Ci << 1,  0,  -1, 0, zero5.transpose(), -sx, zero6.transpose(),
           -1,  0,  1,  0, zero5.transpose(), -sx, zero6.transpose(),
            0,  1,  0, -1, zero5.transpose(), -sy, zero6.transpose(),
            0, -1,  0,  1, zero5.transpose(), -sy, zero6.transpose();

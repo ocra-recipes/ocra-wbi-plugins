@@ -130,8 +130,17 @@ void MIQPController::run() {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
         std::cout << e.getMessage() << std::endl;
     }
-
+    
+    // Write solution to file for plots
+    std::string home = std::string(_miqpParams.home + "MIQP/");
+    writeToFile(0.100*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
     _k++;
+}
+
+void MIQPController::writeToFile(const double& time, const Eigen::VectorXd& X_kn, std::string& home) {
+    Eigen::VectorXd tmp(INPUT_VECTOR_SIZE+1);
+    tmp << time, X_kn;
+    ocra::utils::writeInFile(tmp, std::string(home + "solution.txt"), true);
 }
 
 void MIQPController::setBinaryVariables()
