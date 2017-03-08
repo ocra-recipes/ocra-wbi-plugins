@@ -8,10 +8,6 @@ _stepController(stepController),
 _miqpParams(params),
 _comStateRef(comStateRef),
 _period(params.dt),
-_env(0),
-_model(0),
-_obj(0),
-_vars(0),
 _lb(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
 _ub(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
 _xi_k(Eigen::VectorXd(STATE_VECTOR_SIZE)),
@@ -67,12 +63,12 @@ bool MIQPController::threadInit() {
     setLowerAndUpperBounds();
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
-    // FIXME: For now TESTING only with shape and addmissibility constraints!!
+    // FIXME: For now TESTING only with shape, admissibility and cop constraints!! Don't forget to add walking constraints.
     _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, true, true, true, false);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  INPUT_VECTOR_SIZE * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
 
-    // Resize _Bineq
+    // Resize _Bineq. However since it's state-dependent, it will be updated in the run() method
     _Bineq.resize(_Aineq.rows());
     
     std::cout << "Writing Aineq: of size: " << _Aineq.rows() << " x " << _Aineq.cols() << std::endl;
@@ -80,22 +76,15 @@ bool MIQPController::threadInit() {
     // Resize _Aeq and _Beq
     _Aeq.resize(_miqpParams.N, INPUT_VECTOR_SIZE*_miqpParams.N);
     _Beq.resize(_miqpParams.N);
-    buildEqualityConstraintsMatrices(_Aeq, _Beq, _xi_k);
+    buildEqualityConstraintsMatrices(_xi_k, _Aeq, _Beq);
     
-    // Setup eigen-gurobi object with 12*N variables, 1 equality constraint and rows-of-Aineq inequality constraints.
-    // FIXME: Also check if I'm missing the ZMP contraints
+    // Setup eigen-gurobi object with 12*N variables, N equality constraints and rows-of-Aineq inequality constraints.
     try {
         OCRA_INFO("About to build eigen-gurobi problem");
         _eigGurobi.problem(INPUT_VECTOR_SIZE*_miqpParams.N, _Aeq.rows(), _Aineq.rows());
 
-        // In the previous initialization all variables are assumed continuous by default. Specify which ones are binary (4->9) i.e. alpha_x, alpha_y, beta_x, beta_y, delta, gamma
-        int m = 0;
-        while( m < INPUT_VECTOR_SIZE*_miqpParams.N) {
-            for (int i = 4; i <= 9; i++) {
-            _eigGurobi.setVariableType(m+i, GRB_BINARY);
-            }
-            m += INPUT_VECTOR_SIZE;
-        }
+        // In the previous initialization all variables are assumed continuous by default. 
+        setBinaryVariables();
     }
     catch (GRBException e) {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
@@ -115,13 +104,14 @@ void MIQPController::run() {
     updateStateVector();
 
     // Update constraints.
-    // NOTE: _Aineq is time-invariant and thus built only once, while _Bineq is state dependant (also depends on a history of states when walking constraints are included).
+    // NOTE: _Aineq is time-invariant and thus built only once, while _Bineq is state dependant 
+    // (also depends on a history of states when walking constraints are included).
     _constraints->updateRHS(_xi_k);
     _constraints->getRHS(_Bineq);
 //    OCRA_WARNING("RHS Retrieved");
 
-    // Updates RHS of equality constraints. For now, constains only Simultaneity
-    updateEqualityConstraints(_xi_k);
+    // Updates RHS of equality constraints. For now, contains only Simultaneity
+    updateEqualityConstraints(_xi_k, _Beq);
 
     setCOMStateRefInPreviewWindow(_k, _H_N_r);
     setLinearPartObjectiveFunction();
@@ -130,7 +120,7 @@ void MIQPController::run() {
     // TODO: Watch out! _eigGurobi will add a 1/2. Therefore the 2. Check that this is correct.
     // FIXME: The expression for _H_N only includes jerk regularization terms
     _eigGurobi.solve(2*_H_N, _linearTermTransObjFunc, _Aeq, _Beq, _Aineq, _Bineq, _lb, _ub);
-    _eigGurobi.inform();
+//     _eigGurobi.inform();
 
     // Get the solution
     _X_kn = _eigGurobi.result();
@@ -144,26 +134,24 @@ void MIQPController::run() {
     _k++;
 }
 
+void MIQPController::setBinaryVariables()
+{
+    int m = 0;
+    while( m < INPUT_VECTOR_SIZE*_miqpParams.N) {
+        // Set binary variables (4->9) i.e. alpha_x, alpha_y, beta_x, beta_y, delta, gamma
+        for (int i = 4; i <= 9; i++) {
+            _eigGurobi.setVariableType(m+i, GRB_BINARY);
+        }
+        m += INPUT_VECTOR_SIZE;
+    }
+}
+
 void MIQPController::setCOMStateRefInPreviewWindow(unsigned int k, Eigen::VectorXd &H_N_r) {
     unsigned int j = 0;
     // FIXME: Pass an actual reference of CoM states
     for (unsigned int i = k + 1; i <= k + _miqpParams.N; i++) {
         H_N_r.segment(j, 6) = _comStateRef.row(i);
         j += 6;
-    }
-}
-
-void MIQPController::setVariablesTypes(char * variablesTypes) {
-
-    unsigned int k = 0;
-    while (k < INPUT_VECTOR_SIZE*_miqpParams.N) {
-        for (unsigned int i = 0; i < 4; i++)
-            variablesTypes[k+i] = GRB_CONTINUOUS;
-        for (unsigned int i = 4; i < 10; i++)
-            variablesTypes[k+i] = GRB_BINARY;
-        for (unsigned int i = 10; i < 12; i++)
-            variablesTypes[k+i] = GRB_CONTINUOUS;
-        k += INPUT_VECTOR_SIZE;
     }
 }
 
@@ -193,39 +181,6 @@ void MIQPController::updateStateVector() {
     _state->updateStateVector();
     _state->getFullState(_xi_k);
     OCRA_INFO("State: \n" << *_state);
-}
-
-GRBVar* MIQPController::addVariablesToModel() {
-    // TODO: Double check this
-//    std::string variablesNames[INPUT_VECTOR_SIZE] = {"a_0", "a_1", "b_0", "b_1", "alpha_0", "alpha_1", "beta_0", "beta_1", "delta", "gamma", "u_x", "u_y"};
-    // Set variables types
-    char variablesTypes[INPUT_VECTOR_SIZE*_miqpParams.N];
-    setVariablesTypes(&variablesTypes[0]);
-
-    // Set lower and upper bounds
-    setLowerAndUpperBounds();
-
-    // Add variables
-    return this->_model->addVars(_lb.data(), _ub.data(), NULL, variablesTypes, NULL, INPUT_VECTOR_SIZE);
-}
-
-void MIQPController::setObjectiveFunction() {
-    // Set quadratic part
-    setQuadraticPartObjectiveFunction();
-    // Set linear part
-//    setLinearPartObjectiveFunction();
-    // Add quadratic part to objective function
-
-}
-
-void MIQPController::setQuadraticPartObjectiveFunction() {
-    unsigned int cols = INPUT_VECTOR_SIZE*_miqpParams.N;
-    // This part of the cost function is actually time-invariant
-    // TODO: Check if the indexing of the Eigen matrix _H_N corresponds to the logic here implemented for X^T * H_N * X
-    for (unsigned int i = 0; i < cols; i++)
-        for (unsigned int j = 0; j < cols; j++)
-            if (_H_N(i*cols+j) != 0)
-                _obj += _H_N(i*cols+j)*_vars[i]*_vars[j];
 }
 
 void MIQPController::setLinearPartObjectiveFunction() {
@@ -318,7 +273,7 @@ void MIQPController::buildSw(Eigen::MatrixXd &Sw) {
 }
 
 
-void MIQPController::buildPreviewStateMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &P) {
+void MIQPController::buildPreviewStateMatrix(const Eigen::MatrixXd &C, Eigen::MatrixXd &P) {
     P.setZero();
     for (unsigned int i=0; i<_miqpParams.N; i++) {
         P.block(i*C.rows(), 0, C.rows(), _Q.cols()) = C*_Q.pow(i+1);
@@ -326,7 +281,7 @@ void MIQPController::buildPreviewStateMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd
 //    OCRA_WARNING("Built P");
 }
 
-void MIQPController::buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &R) {
+void MIQPController::buildPreviewInputMatrix(const Eigen::MatrixXd &C, Eigen::MatrixXd &R) {
     R.setZero();
     // Create first column
     Eigen::MatrixXd RColumn(C.rows()*_miqpParams.N, _T.cols());
@@ -342,7 +297,7 @@ void MIQPController::buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd
 //    OCRA_WARNING("Built R");
 }
 
-void MIQPController::buildEqualityConstraintsMatrices(Eigen::MatrixXd &Aeq, Eigen::VectorXd &Beq, Eigen::VectorXd &x_k) {
+void MIQPController::buildEqualityConstraintsMatrices(const Eigen::VectorXd &x_k, Eigen::MatrixXd &Aeq, Eigen::VectorXd &Beq) {
     _Ci_eq.resize(1,STATE_VECTOR_SIZE);
     _Ci_eq << 0,0,0,0,1,-1,1,-1, Eigen::VectorXd::Zero(8);
     Aeq.setZero();
@@ -369,11 +324,10 @@ void MIQPController::buildEqualityConstraintsMatrices(Eigen::MatrixXd &Aeq, Eige
         _rhs_2_eq.block(i*_Ci_eq.rows(),0,_Ci_eq.rows(),_Q.cols()) = _Ci_eq*_Q.pow(i+1);
     }
 
-    updateEqualityConstraints(x_k);
-    
+    updateEqualityConstraints(x_k, Beq);
 }
 
-void MIQPController::updateEqualityConstraints(Eigen::VectorXd &x_k) {
+void MIQPController::updateEqualityConstraints(const Eigen::VectorXd &x_k, Eigen::VectorXd &Beq) {
     // Build RHS
     _Beq = _fcbar_eq - _rhs_2_eq*x_k;
 }

@@ -155,9 +155,20 @@ public:
 
     /**
      * @todo Once I add walking constraints this will change to include the rows added by walking constraints
+     * @param[in] stepController Pointer to StepController object which is instantiated by the hosting client.
+     * @param[in] miqpParams Container of the MIQP parameters. 
+     * @param[in] addShapeCtrs Boolean indicating whether shape constraints are added to the problem.
+     * @param[in] addAdmissibilityCtrs Boolean indicating whether admissibility constraints are added to the problem.
+     * @param[in] addCoPConstraints Boolean indicating whether CoP constraints are added to the problem.
+     * @param[in] addWalkingCtrs Boolean indicating whether walking constraints are added to the problem.
+     * 
+     * @todo Handle the booleans in a different form. This is sort of ugly.
      */
     MIQPLinearConstraints(std::shared_ptr<StepController> stepController, MIQPParameters miqpParams, bool addShapeCtrs=true, bool addAdmissibilityCtrs=true, bool addCoPConstraints=false, bool addWalkingCtrs=false);
     
+    /**
+     * Default destructor
+     */
     virtual ~MIQPLinearConstraints ();
     
     /**
@@ -165,7 +176,7 @@ public:
      * 
      * @param[in] xi_k Current state.
      */
-    void updateRHS(Eigen::VectorXd xi_k);
+    void updateRHS(const Eigen::VectorXd& xi_k);
     
     /**
      * Retrieves the constraints matrix \f$\mathbf{A}\f$. Before passing a matrix to copy #_A allocate the space 
@@ -183,6 +194,12 @@ public:
      */
     unsigned int getTotalNumberOfConstraints();
 
+    /**
+     * Returns in #rhs the right-hand size of the inequality constraints of the problem.
+     * 
+     * @param[out] rhs State-dependent right hand side.
+     * @see updateRHS()
+     */
     void getRHS(Eigen::VectorXd &rhs);
 
 protected:

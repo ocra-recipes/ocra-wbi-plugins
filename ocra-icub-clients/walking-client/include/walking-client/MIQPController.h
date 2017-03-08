@@ -79,17 +79,15 @@ public:
      * - Retrieves the solution.
      *
      * @see updateStateVector(), MIQPLinearConstraints::updateRHS(), setCOMStateRefInPreviewWindow(), setLinearPartObjectiveFunction(), Eigen::GurobiDense::solve()
-     * @todo updateStateVector() needs to be implemented.
-     * @todo Still gotta set the equality constraints such as Simultaneity
      * @todo Watch out! _eigGurobi will add a 1/2. Therefore the 2. Check that this is correct.
-     * @todo: The expression for _H_N is missing regularization terms
+     * @todo The expression for _H_N is missing regularization terms
      */
     virtual void run();
 
     /**
-     Takes N elements from an original trajectory of desired CoM states from state k
+     Takes \f$N\f$ elements from an original trajectory of desired CoM states from state \f$k\f$
 
-     @param comStateRef Sets _H_N_r for a preview window of size N from time k
+     @param comStateRef Sets #_H_N_r for a preview window of size N from time k
      */
     void setCOMStateRefInPreviewWindow(unsigned int k, Eigen::VectorXd &comStateRef);
 
@@ -98,53 +96,21 @@ protected:
     /**
      * Sets #_linearTermTransObjFunc, which corresponds to the linear part of the objective 
      * function of the MIQP
+     * 
+     * @see #_linearTermTransObjFunc
      */
     void setLinearPartObjectiveFunction();
 
-    // FIXME: Deprecate
     /**
-     Sets the objective function object for Gurobi.
-     /warning To be deprecated if eigen-gurobi works fine
-     */
-    void setQuadraticPartObjectiveFunction();
-
-    // FIXME: Deprecate
-    /**
-     /warning To be deprecated if eigen-gurobi works fine
-
-     @param[out] variablesTypes Vector of variables' types
-     */
-    void setVariablesTypes(char * variablesTypes);
-
-    // FIXME: Deprecate
-    /**
-     Sets the objective function with only the quadratic term.
-     @warning To be deprecated if eigen-gurobi works fine
-     */
-    void setObjectiveFunction();
-
-    // FIXME: Deprecate
-    /**
-     Adds variables to the model. Sets also the variable types and calls the lower and upper bounds method
-
-     @return Pointer to object of Gurobi variables.
-     @warning To be deprecated if eigen-gurobi works fine
-     */
-    GRBVar* addVariablesToModel();
-
-    /**
-     * Sets #_lb and #_ub \see #_lb #_ub
+     * Sets #_lb and #_ub 
+     * 
+     * @see #_lb #_ub
      */
     void setLowerAndUpperBounds();
 
     /**
      * Updates the state vector #_xi_k, i.e. \f$xi_k\f$
      *
-     * @todo Update state vector using _robotModel
-     * @todo Update upper bounds (a, b)
-     * @todo Update rising/falling edges (alpha, beta)
-     * @todo Update SS/DS (delta)
-     * @todo Update potential change from DS to SS (gamma)
      * @see #_xi_k
      */
     void updateStateVector();
@@ -243,36 +209,49 @@ protected:
     
     /**
      * Builds a Preview State Matrix for a preview window of size \f$N\f$ with the following form:
+     * \f[
          \mathbf{P} = \left[\begin{array}{c}
          \mathbf{C} \mathbf{Q} \\
          \vdots\\
          \mathbf{C} \mathbf{Q}^N
          \end{array}\right]
+        \f]
      *
      * @param C Output matrix from a state space representation.
      * @param P Output.
      * @see #_Q, #_T
      */
-    void buildPreviewStateMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &P);
+    void buildPreviewStateMatrix(const Eigen::MatrixXd &C, Eigen::MatrixXd &P);
 
     
     /**
      * Builds a Preview Input Matrix for a preview window of size \f$N\f$ with the following form
+     * \f[
          \mathbf{R} = \left[\begin{array}{cccc}
          \mathbf{C}\mathbf{T}               &   0                          &  \cdots   &   0 \\
          \mathbf{C}\mathbf{Q}\mathbf{T}   &   \mathbf{C}\mathbf{T}   &  \cdots   &   0 \\
          \vdots                                 & \vdots                       & \ddots    &  \vdots \\
          \mathbf{C}\mathbf{Q}^{N-1}\mathbf{T} & \mathbf{C}\mathbf{Q}^{N-2}\mathbf{T} & \cdots & \mathbf{C}\mathbf{T}
          \end{array}\right]
+       \f]
      *
      * @param C Output matrix from a state space representation.
      * @param[out] R Output.
      * @see #_Q, #_T
      */
-    void buildPreviewInputMatrix(Eigen::MatrixXd &C, Eigen::MatrixXd &R);
+    void buildPreviewInputMatrix(const Eigen::MatrixXd &C, Eigen::MatrixXd &R);
     
-    /** Builds the equality constraints matrices #_Aeq, #_RHSeq
+    /** Builds the equality constraints matrices #_Aeq, #_Beq. For the time being, the equality constraints are composed of only the so-called Simultaneity
+     * constraints of the problem, which guarantee that allowing a discontinuity of one of the bounds (\f$\matbf{a},\mathbf{b}\f$) in one direction simultaneously 
+     * allows a discontinuity in the orthogonal direction. This requirement writes: 
+     * 
+     * \f[
+     * \forall i, \alpha_{x_i} + \beta_{x_i} = \alpha_{y_i} + \beta_{y_i}
+     * \f]
      *
+     * Which then in a preview window of size \f$N\f$ writes:
+     * 
+     \f[
      \left[\begin{array}{cccc}
      \mathbf{C}_i\mathbf{T}                 &   0                          &  \cdots   &   0 \\
      \mathbf{C}_i\mathbf{Q}\mathbf{T}       &   \mathbf{C}_i\mathbf{T}   &  \cdots   &   0 \\
@@ -291,19 +270,24 @@ protected:
      \vdots\\
      \mathbf{C}_i\mathbf{Q}^N
      \end{array}\right] \mathbf{\xi}_k
+     \f]
      *
-     * @param Aeq Reference to output matrix.
-     * @param Beq Reference to right hand side vector.
-     * @param x_k Current state vector.
+     * @param[in]  x_k Current state vector.
+     * @param[out] Aeq Reference to output matrix.
+     * @param[out] Beq Reference to right hand side vector.
      */
-    void buildEqualityConstraintsMatrices(Eigen::MatrixXd& Aeq, Eigen::VectorXd& Beq, Eigen::VectorXd &x_k);
+    void buildEqualityConstraintsMatrices(const Eigen::VectorXd &x_k, Eigen::MatrixXd& Aeq, Eigen::VectorXd& Beq);
 
     /**
      * Updates the RHS of the equality constraints.
      * 
+     * @param[in] x_k System state vector at time k.
+     * @param[out] Beq Output matrix. It should be a reference to #_Beq.
      * @see buildEqualityConstraintsMatrices(), #_Beq
      */
-    void updateEqualityConstraints(Eigen::VectorXd &x_k);
+    void updateEqualityConstraints(const Eigen::VectorXd &x_k, Eigen::VectorXd &Beq);
+    
+    void setBinaryVariables();
 private:
     // MARK: - PRIVATE VARIABLES
     /*
@@ -333,25 +317,6 @@ private:
     /** Thread period in milliseconds */
     int _period;
 
-    /** Gurobi environment. Necessary before setting up the gurobi model */
-    GRBEnv * _env;
-
-    /**
-     * Gurobi model. It is built by adding variables and constraints to it and it can
-     * be asked to perform the optimization or integrate model changes.
-     */
-    GRBModel * _model;
-
-    // FIXME: Deprecate. As this is created by eigen-gurobi as well
-    /**
-     * Objective function as a GRBQadExpr object. Consists of a linear expression, plus a list of
-     * coefficient-variable-variable triples that capture the quadratic terms.
-     */
-    GRBQuadExpr _obj;
-
-    // FIXME: Deprecate
-    GRBVar * _vars;
-
     /**
      * Contains the state-dependent coefficients of the linear term of the objective function of
      * the MIQP for the walking MPC problem.
@@ -369,11 +334,6 @@ private:
      * @see setLinearPartObjectiveFunction()
      */
     Eigen::VectorXd _linearTermTransObjFunc;
-
-    /*
-     * @note Deprecate
-     */
-    Eigen::VectorXd _quadraticTermObjFunc;
 
     /** Vector of lower bounds of the input vector \f$\mathcal{X}\f$ 
      *
@@ -401,7 +361,8 @@ private:
      * Where \f$\mathbf{a} \in \mathbb{R}^2\f$ are the upper bounds of the base of support (BoS), \f$b \in \mathbb{R}^2\f$ are
      * the lower bounds, \f$\mathbf{\alpha} \in \mathbb{R}^2\f$ the rising edges of \f$\mathbf{a}\f$, \f$\mathbf{\beta} \in \mathbb{R}^2\f$ 
      * are the falling edges of \f$\mathbf{b}\f$, \f$\delta\f$ indicates the potential change from double support
-     * to single support, while \f$\gamma\f$ indicates whether the robot is in single support (SS) or double support (DS).
+     * to single support, while \f$\gamma\f$ indicates whether the robot is in single support (SS) or double support (DS). 
+     * \f$\mathbf{h}, \dot{\mathbf{h}}, \ddot{\mathbf{h}}\f$
      */
     Eigen::VectorXd _xi_k;
 
@@ -743,7 +704,7 @@ private:
     /**
      * Matrix A of the equality constraints of the MIQP problem, i.e.
      * \f[
-     * \mathbf{A}_{\text{eq}} \mathcal{\mathbf{X}} = \mathbf{b}_{\text{eq}}
+     * \mathbf{A}_{\text{eq}} \mathbf{\mathcal{X}} = \mathbf{b}_{\text{eq}}
      * \f]
      * 
      * @see buildEqualityConstraintsMatrices()
@@ -775,6 +736,8 @@ private:
     
     /** 
      * State matrix of the RHS of the Simultaneity equality constraint.
+     * 
+     * @see buildEqualityConstraintsMatrices()
      */
     Eigen::MatrixXd _rhs_2_eq;
 

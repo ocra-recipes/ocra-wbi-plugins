@@ -9,9 +9,9 @@ void SingleSupport::buildMatrixCi(){
     Eigen::VectorXd zero6 = Eigen::VectorXd::Zero(6);
     _Ci.resize(4,STATE_VECTOR_SIZE);
     //TODO: temporarily hardcoding this bound S
-    double sx = 0.01;
+    double sx = 0.3;
     _S(0) = sx;
-    double sy = 0.01;
+    double sy = 0.3;
     _S(1) = sy;
     _Ci << 1,  0,  -1, 0, zero5.transpose(),  -sx, zero6.transpose(),
           -1,  0,  1,  0, zero5.transpose(), -sx, zero6.transpose(),

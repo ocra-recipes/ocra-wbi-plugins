@@ -30,13 +30,14 @@ _addWalkingCtrs(addWalkingCtrs)
     setMatrixAcl();
     setMatrixAcr();
     
-    // Initialize number of constraints to
+    // Initialize number of constraints to 0
     _nConstraints = 0;
     // First build Shape and/or Admissibility Constraints in preview window
     buildShapeAndAdmissibilityInPreviewWindow();
     // Then build CoP constraints in preview window
     _baseOfSupport = std::make_shared<BaseOfSupport>(_stepController,_Q,_T,_miqpParams);
-    // Now stack in _A the previous constraints matrices. First we need to resize A with the total number of constraints by the size of the input vector \mathbb{X}
+    // Now stack in _A the previous constraints matrices. 
+    // If also CoP constraints are added, we need to resize A with the total number of constraints times the size of the input vector \mathcal{X}
      if(_addCoPConstraints) {
          // FIXME: Get the hardcoded 14*miqpParams from Base of Support class. Something like getnConstraints(). Also add to nConstraints those added by baseOfSupport
          Eigen::MatrixXd ACoP(14*_N, _T.cols()*_N); 
@@ -107,7 +108,7 @@ void MIQPLinearConstraints::setMatrixAcl() {
     }
 }
 
-void MIQPLinearConstraints::updateRHS(Eigen::VectorXd xi_k){
+void MIQPLinearConstraints::updateRHS(const Eigen::VectorXd& xi_k){
     _rhs.segment(0,_fcbarShapeAdmiss.size()) = _fcbarShapeAdmiss - _BShapeAdmiss * xi_k;
     /** FIXME: TEMPORARY!!  Maybe it's best to have a more generic update method*/
     if (_addCoPConstraints) {
@@ -152,11 +153,11 @@ void MIQPLinearConstraints::buildMatrixT() {
 }
 
 void MIQPLinearConstraints::buildShapeAndAdmissibilityInPreviewWindow(){
-    // This builds A in A*X <= fc - B*xi_k
+    // This builds A in A*X <= fcbar - B*xi_k
     buildAShapeAdmiss();
-    // This builds B in A*X <= fc - B*xi_k
+    // This builds B in A*X <= fcbar - B*xi_k
     buildBShapeAdmiss();
-    // This builds fc in A*X <= fc - B*xi_k
+    // This builds fcbar in A*X <= fcbar - B*xi_k
     buildFcBarShapeAdmiss();
     
     // Update the total number of constraints
@@ -229,5 +230,7 @@ unsigned int MIQPLinearConstraints::getTotalNumberOfConstraints() {
 }
 
 void MIQPLinearConstraints::getConstraintsMatrixA(Eigen::MatrixXd &A) {
+    if (A.rows() != _A.rows() || A.cols() != _A.cols())
+        OCRA_ERROR("Output matrix does not have the right size");
     A = _A;
 }

@@ -252,7 +252,7 @@ bool WalkingClient::initialize()
     MIQPParameters miqpParams;
     miqpParams.cz = _zmpPreviewParams->cz;
     miqpParams.g = 9.8;
-    miqpParams.N = _zmpPreviewParams->Np;
+    miqpParams.N = 5;
     miqpParams.dt = 100;
     // FIXME: Dummy initial COM states reference which pretty much says, keep the initial COM position.
     Eigen::MatrixXd comStateRef(100*miqpParams.N, 6);
