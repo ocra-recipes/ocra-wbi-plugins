@@ -14,7 +14,7 @@ _xi_k(Eigen::VectorXd(STATE_VECTOR_SIZE)),
 _X_kn(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
 _Ah(Eigen::MatrixXd(6,6)),
 _Bh(Eigen::MatrixXd(6,2)),
-_Q(Eigen::MatrixXd::Identity(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE)),
+_Q(Eigen::MatrixXd(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE)),
 _T(STATE_VECTOR_SIZE, INPUT_VECTOR_SIZE),
 _C_H(6,STATE_VECTOR_SIZE),
 _C_P(2, STATE_VECTOR_SIZE),
@@ -64,7 +64,7 @@ bool MIQPController::threadInit() {
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
     // FIXME: For now TESTING only with shape, admissibility and cop constraints!! Don't forget to add walking constraints.
-    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, true, true, true, false);
+    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, true, false, false, false);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  INPUT_VECTOR_SIZE * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
 
@@ -199,11 +199,12 @@ void MIQPController::setLinearPartObjectiveFunction() {
 
 void MIQPController::buildAh(int dt, Eigen::MatrixXd &Ah) {
     Ah.setIdentity();
-    double dt_ = dt/1000;
+    double dt_ = (double) dt/1000;
     Ah.block(0,2,2,2) = dt_*Eigen::Matrix2d::Identity();
     Ah.block(0,4,2,2) = (pow(dt_,2)/2)*Eigen::Matrix2d::Identity();
     Ah.block(2,4,2,2) = dt_*Eigen::Matrix2d::Identity();
-    // OCRA_WARNING("Built Ah");
+    OCRA_WARNING("Built Ah");
+    std::cout << Ah << std::endl;
 }
 
 void MIQPController::buildBh(int dt, Eigen::MatrixXd &Bh){
@@ -214,14 +215,18 @@ void MIQPController::buildBh(int dt, Eigen::MatrixXd &Bh){
 }
 
 void MIQPController::buildQ(Eigen::MatrixXd &Q) {
-    Q.block(10,10,_Bh.rows(),_Bh.cols()) = _Bh;
-    // OCRA_WARNING("Built Q");
+    Q.setZero();
+    _Q.block(10,10,_Ah.rows(),_Ah.cols()) = _Ah;
+    OCRA_WARNING("Built Q");
+    std::cout << Q << std::endl;
 }
 
 void MIQPController::buildT(Eigen::MatrixXd &T) {
     T.setZero();
     T.block(0,0,10,10) = Eigen::MatrixXd::Identity(10, 10);
     T.block(10,10,6,2) = _Bh;
+    OCRA_WARNING("Built T");
+    std::cout << T << std::endl;
 }
 
 void MIQPController::buildC_H(Eigen::MatrixXd &C_H) {

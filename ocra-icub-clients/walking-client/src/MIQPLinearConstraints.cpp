@@ -55,7 +55,7 @@ _addWalkingCtrs(addWalkingCtrs)
          _A.block(0,0,_AShapeAdmiss.rows(), _AShapeAdmiss.cols()) = _AShapeAdmiss;
          OCRA_WARNING("Built Matrix A in preview window");
      }
-    // Initialize size of _rhs
+    // Initialize size of rhs
     //TODO: Once I add walking constraints this will change to include the rows added by walking constraints
      if(_addCoPConstraints) {
          Eigen::VectorXd rhsCoP(14*_N);
@@ -142,8 +142,10 @@ void MIQPLinearConstraints::buildAh() {
 
 void MIQPLinearConstraints::buildMatrixQ() {
     buildAh();
-    _Q = Eigen::MatrixXd::Identity(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
+    _Q = Eigen::MatrixXd::Zero(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
     _Q.block(10,10,_Ah.rows(),_Ah.cols()) = _Ah;
+    OCRA_WARNING("Built Q");
+    std::cout << _Q << std::endl;
 }
 
 void MIQPLinearConstraints::buildMatrixT() {

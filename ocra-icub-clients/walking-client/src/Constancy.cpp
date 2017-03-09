@@ -3,8 +3,8 @@
 Constancy::Constancy() : Constraint() {
 // Set bounding
     //TODO: This should be input somehow from configuration file
-    _S(0) = 0.25;
-    _S(1) = 0.25;
+    _S(0) = 0.3;
+    _S(1) = 0.3;
 }
 Constancy::~Constancy() {}
 

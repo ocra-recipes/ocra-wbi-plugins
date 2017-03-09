@@ -243,7 +243,7 @@ protected:
     void buildPreviewInputMatrix(const Eigen::MatrixXd &C, Eigen::MatrixXd &R);
     
     /** Builds the equality constraints matrices #_Aeq, #_Beq. For the time being, the equality constraints are composed of only the so-called Simultaneity
-     * constraints of the problem, which guarantee that allowing a discontinuity of one of the bounds (\f$\matbf{a},\mathbf{b}\f$) in one direction simultaneously 
+     * constraints of the problem, which guarantee that allowing a discontinuity of one of the bounds (\f$\mathbf{a},\mathbf{b}\f$) in one direction simultaneously 
      * allows a discontinuity in the orthogonal direction. This requirement writes: 
      * 
      * \f[
@@ -429,7 +429,7 @@ private:
      \f]
      \f[
      \mathbf{Q} = \left[\begin{array}{cc}
-     \mathbf{I}_{10\times10} & \mathbf{0}_{10\times6}\\
+     \mathbf{0}_{10\times10} & \mathbf{0}_{10\times6}\\
      \mathbf{0}_{6\times10} & \mathbf{A_h}_{6\times6}
      \end{array}\right]
      \f]
@@ -465,7 +465,7 @@ private:
      *
      * \f{align*}
      * \mathbf{\xi}_{k+1|k} &= \mathbf{Q} \xi_{k|k} + \mathbf{T}\mathcal{X}_{k+1|k} \\
-     * \hat{\mathbf{h}}_k & =\mathbf{C}_H \xi_{k|k}
+     * \hat{\mathbf{h}}_{k|k} & =\mathbf{C}_H \xi_{k|k}
      * \f}
      *
      * Where
@@ -514,7 +514,7 @@ private:
      *
      * 
      \f[
-     \mathbf{C}_B &= \frac{1}{2} \left[
+     \mathbf{C}_B = \frac{1}{2} \left[
      \begin{array}{ccc}
      \mathbf{I}_{2\times2} & \mathbf{I}_{2\times2} & \mathbf{0}_{2\times12}
      \end{array}\right]
@@ -572,7 +572,7 @@ private:
      * For a preview window of size \f$N\f$:
      *
      \f[
-         \mathbf{R}_{k,N} = \mathbf{R}_B \mathbf{\xi}_k + \mathbf{R}_B \mathcal{X}_{k,N}
+         \mathbf{R}_{k,N} = \mathbf{P}_B \mathbf{\xi}_k + \mathbf{R}_B \mathcal{X}_{k,N}
      \f]
      * Where:
      \f[
@@ -696,7 +696,7 @@ private:
 
     /** Inequality matrix of the MIQP problem, i.e.
       * \f[
-      *  A_{\text{ineq}} x \leq b_{\text{ineq}}
+      *  A_{\text{ineq}} \mathcal{X} \leq b_{\text{ineq}}
       * \f]
       *
       * Set by MIQPLinearConstraints::getConstraintsMatrixA().

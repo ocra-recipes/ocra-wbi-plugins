@@ -67,7 +67,7 @@ private:
      *
      \f[
      \mathbf{Q} = \left[\begin{array}{cc}
-     \mathbf{I}_{10\times10} & \mathbf{0}_{10\times6}\\
+     \mathbf{0}_{10\times10} & \mathbf{0}_{10\times6}\\
      \mathbf{0}_{6\times10} & \mathbf{A_h}_{6\times6}
      \end{array}\right]
      \f]
@@ -195,7 +195,7 @@ public:
     unsigned int getTotalNumberOfConstraints();
 
     /**
-     * Returns in #rhs the right-hand size of the inequality constraints of the problem.
+     * Returns in rhs the right-hand size of the inequality constraints of the problem.
      * 
      * @param[out] rhs State-dependent right hand side.
      * @see updateRHS()

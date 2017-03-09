@@ -9,7 +9,8 @@
  *  Afterwards, it will build the inequality constraints in a preview window of size \f$N\f$ 
  *  delimiting the area of this polygoon where the Center of Pressure is constrained to lie.
  *  
- *  The bounding box of the Base of Support writes as a set of intequality constraints, where \f$\mathbf{p}\f$ is the horizonal Center of Pressure (CoP).
+ *  The bounding box of the Base of Support writes as a set of intequality constraints, where 
+ *  \f$\mathbf{p}\f$ is the horizonal Center of Pressure (CoP).
      \f[
      \left[\begin{array}{cc}
      -1  &  0\\
@@ -259,7 +260,7 @@ private:
      \f]
      \f[
      \mathbf{Q} = \left[\begin{array}{cc}
-     \mathbf{I}_{10\times10} & \mathbf{0}_{10\times6}\\
+     \mathbf{0}_{10\times10} & \mathbf{0}_{10\times6}\\
      \mathbf{0}_{6\times10} & \mathbf{A_h}_{6\times6}
      \end{array}\right]
      \f]
@@ -346,7 +347,7 @@ public:
     /**
      * Getter for the inequality vector b
      * 
-     * @param[out] Right-hand side vector \f$\bar{\mathbf{f}} - \mathbf{B}\xi_k\f$
+     * @param[out] rhs Right-hand side vector \f$\bar{\mathbf{f}} - \mathbf{B}\xi_k\f$
      * @see #_rhs, #_B, #_fbar
      */
     void getrhs(Eigen::VectorXd& rhs);
