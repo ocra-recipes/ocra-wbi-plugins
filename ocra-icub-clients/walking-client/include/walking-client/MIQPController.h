@@ -630,6 +630,8 @@ private:
      \f]
      *
      * Size: \f$[2N\times12N]\f$
+     *
+     * @see #_C_P, #_Q, #_T
      */
     Eigen::MatrixXd _R_P;
 
