@@ -7,7 +7,7 @@ _Q(Q),
 _T(T),
 _Ab(Eigen::MatrixXd(4,2)),
 _b(Eigen::VectorXd(4)),
-_Cp(Eigen::MatrixXd(2, STATE_VECTOR_SIZE)),
+_Cp(Eigen::MatrixXd(2, 6)),
 _Ci(Eigen::MatrixXd(14,STATE_VECTOR_SIZE)),
 _f(Eigen::VectorXd(14))
 {
@@ -28,6 +28,7 @@ BaseOfSupport::~BaseOfSupport(){}
    
 void BaseOfSupport::buildAb() {
     _Ab << -1, 0, 1, 0, 0, -1, 0, 1;
+    OCRA_ERROR("Ab is \n: " << _Ab);
     OCRA_WARNING("Built Ab");
 }
    
@@ -40,8 +41,9 @@ void BaseOfSupport::buildb(const Eigen::Matrix2d& minMaxBoundingBox) {
    
 void BaseOfSupport::buildCp(double cz, double g) {
     _Cp.setZero();
-    _Cp.block(0,10,2,2) = Eigen::MatrixXd::Identity(2, 2);
-    _Cp.block(0,14,2,2) = (-cz/g)*Eigen::MatrixXd::Identity(2, 2);
+    _Cp.block(0,0,2,2) = Eigen::MatrixXd::Identity(2, 2);
+    _Cp.block(0,4,2,2) = (-cz/g)*Eigen::MatrixXd::Identity(2, 2);
+    OCRA_ERROR("Cp is : \n" << _Cp);
     OCRA_INFO("Built Cp");
 }
    
@@ -52,6 +54,7 @@ void BaseOfSupport::buildCi(const Eigen::MatrixXd& Ab, const Eigen::MatrixXd& Cp
         OCRA_ERROR("Reference Cp hasn't been resized");
     _Ci.setZero();
     _Ci.block(10,10,4,6) = _Ab*_Cp;
+    OCRA_ERROR("Ci is : \n" << _Ci);
     OCRA_INFO("Built Ci");
 }
    
@@ -82,10 +85,12 @@ void BaseOfSupport::buildA(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q, 
     }
     // Shift AeqColumn into every column of Aeq to take the form of a lower diagonal toeplitz matrix
     unsigned int j=0;
+    OCRA_ERROR("AColumn: \n" << AColumn);
     while (j<_miqpParams.N){
         _A.block(j*Ci.rows(), j*T.cols(), Ci.rows()*(_miqpParams.N-j), T.cols()) = AColumn.topRows((_miqpParams.N-j)*Ci.rows());
         j=j+1;
     }
+    OCRA_ERROR("A: \n" << _A);
     OCRA_WARNING("Built A");
 }
 

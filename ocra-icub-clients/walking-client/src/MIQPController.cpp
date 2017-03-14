@@ -113,7 +113,7 @@ bool MIQPController::threadInit() {
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
     // FIXME: For now TESTING only with shape, admissibility and cop constraints!! Don't forget to add walking constraints.
-    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, false, true, false, false);
+    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, true, true, true, false);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  INPUT_VECTOR_SIZE * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
 
