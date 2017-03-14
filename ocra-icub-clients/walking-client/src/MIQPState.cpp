@@ -47,6 +47,12 @@ bool MIQPState::initialize() {
     _FzThreshold = 5; // N
     _PzThreshold = 0.05; // m => 5cm
 
+    // Set initial values for some of the BoS descriptors, assuming the robot always starts in double
+    // support and no initial com velocity
+    _alpha.setZero();
+    _beta.setZero();
+    _delta = 1;
+    _gamma = 1;
     return true;
 
 }
@@ -111,6 +117,7 @@ void MIQPState::updateBaseOfSupportDescriptors(Eigen::Vector2d &aa,
                                                 unsigned int &ddelta,
                                                 unsigned int &ggamma,
                                                 double thresholdChange){
+    static bool firstUpdate = true;
     // This method will actually update a, b, alpha, beta, delta and gamma
     // Retrieve coordinates of left sole
     _l_foot_coord = getLeftFootPosition();
@@ -158,10 +165,12 @@ void MIQPState::updateBaseOfSupportDescriptors(Eigen::Vector2d &aa,
     // UPDATING also ALPHA and BETA
     Eigen::Vector2d alpha;
     Eigen::Vector2d beta;
-    std::abs(a(0) - aa(0)) > thresholdChange ? alpha(0) = 1 : alpha(0) = 0;
-    std::abs(b(0) - bb(0)) > thresholdChange ? beta(0)  = 1 : beta(0)  = 0;
-    std::abs(a(1) - aa(1)) > thresholdChange ? alpha(1) = 1 : alpha(1) = 0;
-    std::abs(b(1) - bb(1)) > thresholdChange ? beta(1)  = 1 : beta(1)  = 0;
+    if (!firstUpdate) {
+        std::abs(a(0) - aa(0)) > thresholdChange ? alpha(0) = 1 : alpha(0) = 0;
+        std::abs(b(0) - bb(0)) > thresholdChange ? beta(0)  = 1 : beta(0)  = 0;
+        std::abs(a(1) - aa(1)) > thresholdChange ? alpha(1) = 1 : alpha(1) = 0;
+        std::abs(b(1) - bb(1)) > thresholdChange ? beta(1)  = 1 : beta(1)  = 0;
+    }
 
     // UPDATE state variables a and b
     aa = a;
@@ -177,6 +186,7 @@ void MIQPState::updateBaseOfSupportDescriptors(Eigen::Vector2d &aa,
     // ACTUALLY UPDATE aalpa, bbeta
     aalpha = alpha;
     bbeta = beta;
+    firstUpdate = false;
 }
 
 void MIQPState::updateHorizontalCoMState(Eigen::VectorXd &hk) {

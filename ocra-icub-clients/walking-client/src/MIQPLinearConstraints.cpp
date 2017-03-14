@@ -66,6 +66,11 @@ _addWalkingCtrs(addWalkingCtrs)
          OCRA_WARNING("Resized vector rhs");
      }
      
+     OCRA_WARNING("Matrix Q: \n" << _Q);
+     OCRA_WARNING("Matrix T: \n " << _T);
+     OCRA_WARNING("Matrix Acr: \n" << _Acr);
+     OCRA_WARNING("Matrix Acl: \n" << _Acl);
+     
      //TODO: I should check that MIQP params are correct
     OCRA_WARNING("MIQPLinearConstraints constructor done");
 }
@@ -180,12 +185,19 @@ void MIQPLinearConstraints::buildAShapeAdmiss() {
     for (unsigned int i=1; i<=_N-1; i++){
         AColumn.block(i*_Acr.rows(), 0, _Acr.rows(), _T.cols()) = _Acl*_Q.pow(i-1)*_T + _Acr*_Q.pow(i)*_T;
     }
+    OCRA_INFO("First column AColumn: of size [" << AColumn.rows() << " x " << AColumn.cols() << "\n" << AColumn);
     // Shift AColumn to take the form of a lower diagonal toeplitz matrix
     unsigned int j=1;
+    Eigen::MatrixXd Aexcerpt;
+    _AShapeAdmiss.block(0,0,_N*_Acr.rows(), _T.cols()) = AColumn;
     while (j < _N){
         _AShapeAdmiss.block(j*_Acr.rows(), j*_T.cols(), _Acr.rows()*(_N-j), _T.cols()) = AColumn.topRows((_N-j)*_Acr.rows());
+        Aexcerpt = AColumn .topRows((_N-j)*_Acr.rows());
+        OCRA_INFO("Rows to copy from row: " << j*_Acr.rows() << " to column: " << j*_T.cols() << ", " << _Acr.rows()*(_N-j) << " rows, " << _T.cols() << " cols \n" << Aexcerpt);
         j++;
     }
+    Aexcerpt = _AShapeAdmiss.block(0,0,_N*_Acl.rows(), _N*_T.cols());
+    OCRA_WARNING("First three columns of AShapeAdmiss of size: " << _AShapeAdmiss.rows() << " x " << _AShapeAdmiss.cols() << "\n" << Aexcerpt);
     OCRA_WARNING("Built AShapeAdmiss");
 }
 
@@ -197,6 +209,7 @@ void MIQPLinearConstraints::buildBShapeAdmiss() {
     for (unsigned int i = 1; i <= _N; i++) {
         _BShapeAdmiss.block((i-1)*_Acr.rows(), 0, _Acr.rows(), _Q.cols()) = _Acl*_Q.pow(i-1) + _Acr*_Q.pow(i);
     }
+    OCRA_INFO("BShapeAdmiss is: " << _BShapeAdmiss);
     OCRA_WARNING("Built BShapeAdmiss");
 }
 
@@ -224,6 +237,7 @@ void MIQPLinearConstraints::buildFcBarShapeAdmiss() {
     OCRA_WARNING("fc: " << fc.transpose());
     for (unsigned int i=0; i<_N; i++)
         _fcbarShapeAdmiss.segment(i*fc.size(), fc.size()) = fc;
+    OCRA_WARNING("fcbaseShapeAdmiss is: " << _fcbarShapeAdmiss);
     OCRA_WARNING("Built fcbarShapeAdmiss");
 }
 

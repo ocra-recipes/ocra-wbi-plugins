@@ -46,6 +46,55 @@ _H_N_r(6*_miqpParams.N)
     buildNb(_Nb);
     buildNx(_Nx);
     buildH_N(_H_N);
+
+//     OCRA_WARNING("Built Ah");
+//     std::cout << _Ah << std::endl;
+// 
+//     OCRA_WARNING("Built Bh");
+//     std::cout << _Bh << std::endl;
+// 
+//     OCRA_WARNING("Built Q");
+//     std::cout << _Q<< std::endl;
+// 
+//     OCRA_WARNING("Built T");
+//     std::cout << _T<< std::endl;
+// 
+//     OCRA_WARNING("Built _C_H");
+//     std::cout << _C_H << std::endl;
+// 
+//     OCRA_WARNING("Built _C_P");
+//     std::cout << _C_P << std::endl;
+// 
+//     OCRA_WARNING("Built _C_B");
+//     std::cout << _C_B << std::endl;
+// 
+//     OCRA_WARNING("Built _P_H");
+//     std::cout << _P_H << std::endl;
+// 
+//     OCRA_WARNING("Built _P_P");
+//     std::cout << _P_P << std::endl;
+// 
+//     OCRA_WARNING("Built _P_B");
+//     std::cout << _P_B << std::endl;
+// 
+//     OCRA_WARNING("Built _R_H");
+//     std::cout << _R_H << std::endl;
+// 
+//     OCRA_WARNING("Built _R_P");
+//     std::cout << _R_P << std::endl;
+// 
+//     OCRA_WARNING("Built _R_B");
+//     std::cout << _R_B << std::endl;
+// 
+//     OCRA_WARNING("Built _Sw");
+//     std::cout << _Sw << std::endl;
+// 
+//     OCRA_WARNING("Built _Nb");
+//     std::cout << _Nb << std::endl;
+// 
+//     OCRA_WARNING("Built _Nx");
+//     std::cout << _Nx << std::endl;
+
     _k = 0;
 }
 
@@ -58,32 +107,32 @@ bool MIQPController::threadInit() {
     // Instantiate MIQP state object
     _state = std::make_shared<MIQPState>(_robotModel);
     updateStateVector();
-    
+
     // Set lower and upper bounds
     setLowerAndUpperBounds();
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
     // FIXME: For now TESTING only with shape, admissibility and cop constraints!! Don't forget to add walking constraints.
-    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, true, false, false, false);
+    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, false, true, false, false);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  INPUT_VECTOR_SIZE * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
 
     // Resize _Bineq. However since it's state-dependent, it will be updated in the run() method
     _Bineq.resize(_Aineq.rows());
-    
+
     std::cout << "Writing Aineq: of size: " << _Aineq.rows() << " x " << _Aineq.cols() << std::endl;
 
     // Resize _Aeq and _Beq
     _Aeq.resize(_miqpParams.N, INPUT_VECTOR_SIZE*_miqpParams.N);
     _Beq.resize(_miqpParams.N);
     buildEqualityConstraintsMatrices(_xi_k, _Aeq, _Beq);
-    
+
     // Setup eigen-gurobi object with 12*N variables, N equality constraints and rows-of-Aineq inequality constraints.
     try {
         OCRA_INFO("About to build eigen-gurobi problem");
         _eigGurobi.problem(INPUT_VECTOR_SIZE*_miqpParams.N, _Aeq.rows(), _Aineq.rows());
 
-        // In the previous initialization all variables are assumed continuous by default. 
+        // In the previous initialization all variables are assumed continuous by default.
         setBinaryVariables();
     }
     catch (GRBException e) {
@@ -104,7 +153,7 @@ void MIQPController::run() {
     updateStateVector();
 
     // Update constraints.
-    // NOTE: _Aineq is time-invariant and thus built only once, while _Bineq is state dependant 
+    // NOTE: _Aineq is time-invariant and thus built only once, while _Bineq is state dependant
     // (also depends on a history of states when walking constraints are included).
     _constraints->updateRHS(_xi_k);
     _constraints->getRHS(_Bineq);
@@ -130,7 +179,7 @@ void MIQPController::run() {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
         std::cout << e.getMessage() << std::endl;
     }
-    
+
     // Write solution to file for plots
     std::string home = std::string(_miqpParams.home + "MIQP/");
     writeToFile(0.100*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
@@ -203,8 +252,6 @@ void MIQPController::buildAh(int dt, Eigen::MatrixXd &Ah) {
     Ah.block(0,2,2,2) = dt_*Eigen::Matrix2d::Identity();
     Ah.block(0,4,2,2) = (pow(dt_,2)/2)*Eigen::Matrix2d::Identity();
     Ah.block(2,4,2,2) = dt_*Eigen::Matrix2d::Identity();
-    OCRA_WARNING("Built Ah");
-    std::cout << Ah << std::endl;
 }
 
 void MIQPController::buildBh(int dt, Eigen::MatrixXd &Bh){
@@ -315,7 +362,7 @@ void MIQPController::buildEqualityConstraintsMatrices(const Eigen::VectorXd &x_k
     _Ci_eq.resize(1,STATE_VECTOR_SIZE);
     _Ci_eq << 0,0,0,0,1,-1,1,-1, Eigen::VectorXd::Zero(8);
     Aeq.setZero();
-    
+
     // Create first column of Aeq
     Eigen::MatrixXd AeqColumn(_miqpParams.N, _T.cols());
     for (unsigned int i=0; i<_miqpParams.N; i++){
@@ -326,8 +373,8 @@ void MIQPController::buildEqualityConstraintsMatrices(const Eigen::VectorXd &x_k
     while (j<_miqpParams.N){
         Aeq.block(j*_Ci_eq.rows(), j*_T.cols(), _Ci_eq.rows()*(_miqpParams.N-j), _T.cols()) = AeqColumn.topRows((_miqpParams.N-j)*_Ci_eq.rows());
         j=j+1;
-    } 
-    
+    }
+
     // Build time-independent matrices in RHS of equality constraints.
     // First build vector of fc
     _fcbar_eq.resize(_miqpParams.N);

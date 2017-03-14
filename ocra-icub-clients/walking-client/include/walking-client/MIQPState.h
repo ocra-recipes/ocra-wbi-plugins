@@ -75,8 +75,8 @@ namespace MIQP{
 
         /**
          * Single/Double Support indicator.
-         * If the robot is in Double Support, then \f$\delta = 1\f$
-         * If the robot is in Single Support, then \f$\delta = 0\f$
+         * If the robot is in Double Support, then \f$\gamma = 1\f$
+         * If the robot is in Single Support, then \f$\gamma = 0\f$
          */
         unsigned int          _gamma;
 
