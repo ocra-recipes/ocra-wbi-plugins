@@ -225,7 +225,7 @@ private:
      *
      * @see #_Ci, #_Q
      */
-    Eigen::VectorXd _B;
+    Eigen::MatrixXd _B;
     
     /**
      * Right-hand side of the constraints of the bounding box in a preview window of size \f$N\f$ and

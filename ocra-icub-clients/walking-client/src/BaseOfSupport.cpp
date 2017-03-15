@@ -13,7 +13,7 @@ _f(Eigen::VectorXd(14))
 {
     _A.resize(_Ci.rows()*miqpParams.N, T.cols()*miqpParams.N); _A.setZero();
     _fbar.resize(_f.rows()*miqpParams.N); _fbar.setZero();
-    _B.resize(_Ci.rows()*miqpParams.N, Q.cols()); _B.setZero();
+    _B.resize(_Ci.rows()*miqpParams.N, _Q.cols()); _B.setZero();
     _rhs.resize(miqpParams.N); _rhs.setZero();
     // Build matrices of the bounding constraints when expressed in the terms of the state vector xi
     buildAb();
@@ -28,7 +28,6 @@ BaseOfSupport::~BaseOfSupport(){}
    
 void BaseOfSupport::buildAb() {
     _Ab << -1, 0, 1, 0, 0, -1, 0, 1;
-    OCRA_ERROR("Ab is \n: " << _Ab);
     OCRA_WARNING("Built Ab");
 }
    
@@ -37,13 +36,13 @@ void BaseOfSupport::buildb(const Eigen::Matrix2d& minMaxBoundingBox) {
            minMaxBoundingBox(1,0),
           -minMaxBoundingBox(0,1),
            minMaxBoundingBox(1,1);
+    OCRA_WARNING("Built b");
 }
    
 void BaseOfSupport::buildCp(double cz, double g) {
     _Cp.setZero();
     _Cp.block(0,0,2,2) = Eigen::MatrixXd::Identity(2, 2);
     _Cp.block(0,4,2,2) = (-cz/g)*Eigen::MatrixXd::Identity(2, 2);
-    OCRA_ERROR("Cp is : \n" << _Cp);
     OCRA_INFO("Built Cp");
 }
    
@@ -54,7 +53,6 @@ void BaseOfSupport::buildCi(const Eigen::MatrixXd& Ab, const Eigen::MatrixXd& Cp
         OCRA_ERROR("Reference Cp hasn't been resized");
     _Ci.setZero();
     _Ci.block(10,10,4,6) = _Ab*_Cp;
-    OCRA_ERROR("Ci is : \n" << _Ci);
     OCRA_INFO("Built Ci");
 }
    
@@ -68,9 +66,11 @@ void BaseOfSupport::buildfbar(const Eigen::VectorXd& f) {
     for (unsigned int i=0; i < _miqpParams.N; i++) {
         _fbar.segment(i*f.size(), f.size()) = f;
     }
+    OCRA_WARNING("Fbar is: \n" << _fbar);
 }
 
 void BaseOfSupport::buildB(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q){
+    OCRA_ERROR("Q here is: \n" << Q);
     for (unsigned int i=0; i < _miqpParams.N; i++) {
         _B.block(i*Ci.rows(), 0, Ci.rows(), _Q.cols()) = Ci*_Q.pow(i+1);
     }
@@ -85,7 +85,6 @@ void BaseOfSupport::buildA(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q, 
     }
     // Shift AeqColumn into every column of Aeq to take the form of a lower diagonal toeplitz matrix
     unsigned int j=0;
-    OCRA_ERROR("AColumn: \n" << AColumn);
     while (j<_miqpParams.N){
         _A.block(j*Ci.rows(), j*T.cols(), Ci.rows()*(_miqpParams.N-j), T.cols()) = AColumn.topRows((_miqpParams.N-j)*Ci.rows());
         j=j+1;
@@ -126,15 +125,19 @@ void BaseOfSupport::computeBoundingBox(const Eigen::MatrixXd &feetCorners, Eigen
     
     boost::geometry::envelope(_poly, _bbox);
 
-    using boost::geometry::dsv;
+//     using boost::geometry::dsv;
 //     std::cout
 //     << "polygon: " << dsv(_poly) << std::endl
     
-//     OCRA_INFO("Points in bounding box");
     minMaxBoundingBox(0,0) = boost::geometry::get<boost::geometry::min_corner, 0>(_bbox);
     minMaxBoundingBox(0,1) = boost::geometry::get<boost::geometry::min_corner, 1>(_bbox);
     minMaxBoundingBox(1,0) = boost::geometry::get<boost::geometry::max_corner, 0>(_bbox);
     minMaxBoundingBox(1,1) = boost::geometry::get<boost::geometry::max_corner, 1>(_bbox);
+
+    OCRA_WARNING("Points in bounding box");
+    std::cout << "min: " <<  (0,0) << ", " << minMaxBoundingBox(0,1) << std::endl;
+    std::cout << "max: " << minMaxBoundingBox(1,0) << ", " << minMaxBoundingBox(1,1) << std::endl;
+    
 }
 
 void BaseOfSupport::getA(Eigen::MatrixXd &output) {
