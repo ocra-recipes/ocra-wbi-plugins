@@ -7,9 +7,11 @@
  *  \details This class uses the Geometry Boost libraries in order to find the
  *  vertices of the bounding box defined by the location of the feet of the robot. 
  *  Afterwards, it will build the inequality constraints in a preview window of size \f$N\f$ 
- *  delimiting the area of this polygoon where the Center of Pressure is constrained to lie.
+ *  delimiting the area of this polygon where the Center of Pressure is constrained to lie.
  *  
- *  The bounding box of the Base of Support writes as a set of intequality constraints, where 
+ *  \image latex bounding-box.eps "Two examples of the bounding box given double support configurations. For single support the bounding box goes around the single foot in a similar fashion."
+ *
+ *  The bounding box of the Base of Support as the ones shown in the figure above writes as a set of intequality constraints, where
  *  \f$\mathbf{p}\f$ is the horizonal Center of Pressure (CoP).
      \f[
      \left[\begin{array}{cc}
@@ -54,7 +56,7 @@
      \mathbf{C}_i\mathbf{Q}\mathbf{T}       & \mathbf{C}_i\mathbf{T}   & \cdots   &   0 \\
      \vdots                                 & \vdots                   & \ddots    &  \vdots \\
      \mathbf{C}_i\mathbf{Q}^{N-1}\mathbf{T} & \mathbf{C}_i\mathbf{Q}^{N-2}\mathbf{T} & \cdots & \mathbf{C}_i\mathbf{T}
-     \end{array}\right] \mathbf{\mathcal{X}}_{N,k} =
+     \end{array}\right] \mathbf{\mathcal{X}}_{N,k} \leq
      \left[\begin{array}{c}
      \mathbf{f}_c\\
      \mathbf{f}_c\\
@@ -163,8 +165,9 @@ private:
     Eigen::MatrixXd _Ci;
     
     /**
-     * Right-hand side vector of the inequalities expressing the bounding box, when the
-     * latter is expressed in terms of the sytem state \f$\xi_k\f$ and equal to:
+     * Right-hand side vector \f$\mathbf{f}_c\f$ of the inequalities expressing the 
+     * bounding box, when the latter is expressed in terms of the sytem 
+     * state \f$\xi_k\f$ and equal to:
      *
      \f[
      \left[
@@ -187,6 +190,8 @@ private:
      \mathbf{C}_i\mathbf{Q}^{N-1}\mathbf{T} & \mathbf{C}_i\mathbf{Q}^{N-2}\mathbf{T} & \cdots & \mathbf{C}_i\mathbf{T}
      \end{array}\right]
      \f]
+     *
+     * @see #_Ci, #_Q, #_T
      */
     Eigen::MatrixXd _A;
     
@@ -201,6 +206,8 @@ private:
      \mathbf{f}_c
      \end{array}\right]
      \f]
+     *
+     * @see #_f
      */
     Eigen::VectorXd _fbar;
     
@@ -215,6 +222,8 @@ private:
          \mathbf{C}_i\mathbf{Q}^N
          \end{array}\right]
      \f]
+     *
+     * @see #_Ci, #_Q
      */
     Eigen::VectorXd _B;
     
@@ -224,6 +233,8 @@ private:
      \f[
          \bar{\mathbf{f}} - \mathbf{B}\xi_k
      \f]
+     * 
+     * @see #_fbar, #_B
      */
     Eigen::VectorXd _rhs;
     
@@ -236,7 +247,7 @@ private:
      */
     Box _bbox;
     /**
-     * Pointer to the `stepController` object instantiated by the `walking-client`. Since it contains all the contact
+     * Pointer to the stepController object instantiated by the `walking-client`. Since it contains all the contact
      * tasks, it was easier to interface to it to requests the current contact state of the robot, i.e. contact points 
      * locations on the ground.
      * 
@@ -395,8 +406,8 @@ protected:
     /**
      Builds matrix \f$\mathbf{B}\f$
 
-     @param Ci See #_Ci
-     @param Q See #_Q
+     @param[in] Ci See #_Ci
+     @param[in] Q See #_Q
      @see #_B
      */
     void buildB(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q);
@@ -404,9 +415,9 @@ protected:
     /**
      Builds constraints matrix \f$\mathbf{A}\f$.
 
-     @param Ci See #_Ci
-     @param Q See #_Q
-     @param T See #_T
+     @param[in] Ci See #_Ci
+     @param[in] Q See #_Q
+     @param[in] T See #_T
      @see #_A
      */
     void buildA(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q, const Eigen::MatrixXd& T);
