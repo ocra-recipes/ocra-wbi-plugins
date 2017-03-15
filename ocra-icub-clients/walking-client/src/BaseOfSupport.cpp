@@ -11,10 +11,10 @@ _Cp(Eigen::MatrixXd(2, 6)),
 _Ci(Eigen::MatrixXd(14,STATE_VECTOR_SIZE)),
 _f(Eigen::VectorXd(14))
 {
-    _A.resize(_Ci.rows()*miqpParams.N, T.cols()*miqpParams.N);
-    _fbar.resize(_f.rows()*miqpParams.N);
-    _B.resize(_Ci.rows()*miqpParams.N, Q.cols());
-    _rhs.resize(miqpParams.N);
+    _A.resize(_Ci.rows()*miqpParams.N, T.cols()*miqpParams.N); _A.setZero();
+    _fbar.resize(_f.rows()*miqpParams.N); _fbar.setZero();
+    _B.resize(_Ci.rows()*miqpParams.N, Q.cols()); _B.setZero();
+    _rhs.resize(miqpParams.N); _rhs.setZero();
     // Build matrices of the bounding constraints when expressed in the terms of the state vector xi
     buildAb();
     buildCp(_miqpParams.cz, _miqpParams.g);
@@ -90,7 +90,6 @@ void BaseOfSupport::buildA(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q, 
         _A.block(j*Ci.rows(), j*T.cols(), Ci.rows()*(_miqpParams.N-j), T.cols()) = AColumn.topRows((_miqpParams.N-j)*Ci.rows());
         j=j+1;
     }
-    OCRA_ERROR("A: \n" << _A);
     OCRA_WARNING("Built A");
 }
 
