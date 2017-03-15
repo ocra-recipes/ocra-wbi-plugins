@@ -64,6 +64,10 @@ private:
     Eigen::MatrixXd _Acl;
     
     /**
+     * Matrix \f$\mathbf{Q}\f$ from the preview model:
+     \f[
+     \forall j \in \mathbb{N}^*, \xi_{k+j+1|k} = \mathbf{Q} \xi_{k+j|k} + \mathbf{T}\mathcal{X}_{k+j+1|k}
+     \f]
      *
      \f[
      \mathbf{Q} = \left[\begin{array}{cc}
@@ -74,7 +78,11 @@ private:
      */
     Eigen::MatrixXd _Q;
     
-    /** Matrix T in \f$ \underset{x}{\text{min}}\; x^TQx^T + c^Tx \f$
+    /** 
+     * Matrix \f$\mathbf{T}\f$ from the preview model:
+     \f[
+     \forall j \in \mathbb{N}^*, \xi_{k+j+1|k} = \mathbf{Q} \xi_{k+j|k} + \mathbf{T}\mathcal{X}_{k+j+1|k}
+     \f]
      *
      \f[
      \mathbf{T} = \left[\begin{array}{cc}
@@ -212,11 +220,11 @@ protected:
 
      \f[
      \begin{array}{cccccc}
-     A_{\text{cr}} Q^0 T  &  0  &  0  &  0  &  \hdots  & 0\\
-     (A_{\text{cl}}Q^0 + A_{\text{cr}}Q^1)T  &  A_{\text{cr}}Q^0 T  &  0  &  0  &  \hdots & 0  \\
-     (A_{\text{cl}}Q^1 + A_{\text{cr}}Q^2)T &  (A_{\text{cl}}Q^0 + A_{\text{cr}}Q^1)T  &  A_{\text{cr}} Q^0 T  &  0  &  \hdots & 0  \\
+     A_{\text{cr}} Q^0 T  &  0  &  0  &  0  &  \dots  & 0\\
+     (A_{\text{cl}}Q^0 + A_{\text{cr}}Q^1)T  &  A_{\text{cr}}Q^0 T  &  0  &  0  &  \dots & 0  \\
+     (A_{\text{cl}}Q^1 + A_{\text{cr}}Q^2)T &  (A_{\text{cl}}Q^0 + A_{\text{cr}}Q^1)T  &  A_{\text{cr}} Q^0 T  &  0  &  \dots & 0  \\
      \vdots & \vdots  &    &    &   & \vdots \\
-     (A_{\text{cl}}Q^{N-2} + A_{\text{cr}}Q^{N-1})T & (A_{\text{cl}}Q^{N-3} + A_{\text{cr}}Q^{N-2})T & \hdots & \hdots & \hdots & A_{\text{cr}}Q^0T \\
+     (A_{\text{cl}}Q^{N-2} + A_{\text{cr}}Q^{N-1})T & (A_{\text{cl}}Q^{N-3} + A_{\text{cr}}Q^{N-2})T & \dots & \dots & \dots & A_{\text{cr}}Q^0T \\
      \end{array}
      \f]
 
@@ -254,6 +262,8 @@ protected:
      \f[
      \forall j \in \mathbb{N}^*, \xi_{k+j+1|k} = \mathbf{Q} \xi_{k+j|k} + \mathbf{T}\mathcal{X}_{k+j+1|k}
      \f]
+     *
+     * @see #_Q
      */
     void buildMatrixQ();
     /**
@@ -262,6 +272,8 @@ protected:
      \f[
      \forall j \in \mathbb{N}^*, \xi_{k+j+1|k} = \mathbf{Q} \xi_{k+j|k} + \mathbf{T}\mathcal{X}_{k+j+1|k}
      \f]
+     *
+     * @see #_T
      */
     void buildMatrixT();
     /**

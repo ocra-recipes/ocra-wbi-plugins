@@ -149,8 +149,6 @@ void MIQPLinearConstraints::buildMatrixQ() {
     buildAh();
     _Q = Eigen::MatrixXd::Zero(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
     _Q.block(10,10,_Ah.rows(),_Ah.cols()) = _Ah;
-    OCRA_WARNING("Built Q");
-    std::cout << _Q << std::endl;
 }
 
 void MIQPLinearConstraints::buildMatrixT() {

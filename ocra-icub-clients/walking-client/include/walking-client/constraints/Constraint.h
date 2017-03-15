@@ -4,8 +4,9 @@
  *  \author     [Jorhabib Eljaik](https://github.com/jeljaik)
  *  \date       Feb 2017
  *  \copyright  GNU General Public License.
- */
-/*
+ *  \details    The basic form of a linear constraint in our MIQP formulation 
+ * is 
+ *
  *  This file is part of ocra-recipes.
  *  Copyright (C) 2016 Institut des Systèmes Intelligents et de Robotique (ISIR)
  *

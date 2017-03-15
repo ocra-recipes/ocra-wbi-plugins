@@ -133,23 +133,14 @@ private:
     Eigen::VectorXd _b;
 
     /**
-     * Output matrix \f$\mathbf{C_P}\f$ of the CoP state space representation
-     *
-     \f{align*}
-     \mathbf{\xi}_{k+1|k} &= \mathbf{Q} \xi_{k|k} + \mathbf{T}\mathcal{X}_{k+1|k} \\
-     \mathbf{p}_{k|k} & =\mathbf{C}_P \xi_{k|k}
-     \f}
-     *
-     * Where
-     *
+     *  State matrix \f$\mathbf{G}_p\f$ from the preview horizon of ZMP outputs \f$\mathbf{P}\f$. It is of size \f$2N_p \times 6\f$ and equal to:
      \f[
-     \mathbf{C}_P = \left[
-     \begin{array}{ccccc}
-     \mathbf{0}_{2\times10} & \mathbf{I}_{2\times2} & \mathbf{0}_{2\times2} & -\frac{c_z}{g}\mathbf{I}_{2\times2}
+     \mathbf{G}_p = \left[\begin{array}{c}
+     \mathbf{C}_p\mathbf{A}_h \\
+     \vdots \\
+     \mathbf{C}_p\mathbf{A}^{N_p}_h
      \end{array}\right]
      \f]
-     *
-     * Size: \f$[2\times16]\f$
      */
     Eigen::MatrixXd _Cp;
 

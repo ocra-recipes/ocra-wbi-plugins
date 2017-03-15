@@ -90,6 +90,7 @@ void BaseOfSupport::buildA(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q, 
         _A.block(j*Ci.rows(), j*T.cols(), Ci.rows()*(_miqpParams.N-j), T.cols()) = AColumn.topRows((_miqpParams.N-j)*Ci.rows());
         j=j+1;
     }
+    OCRA_ERROR("A is: \n" << _A);
     OCRA_WARNING("Built A");
 }
 
