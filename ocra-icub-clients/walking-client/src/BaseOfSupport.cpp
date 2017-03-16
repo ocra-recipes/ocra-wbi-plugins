@@ -66,11 +66,9 @@ void BaseOfSupport::buildfbar(const Eigen::VectorXd& f) {
     for (unsigned int i=0; i < _miqpParams.N; i++) {
         _fbar.segment(i*f.size(), f.size()) = f;
     }
-    OCRA_WARNING("Fbar is: \n" << _fbar);
 }
 
 void BaseOfSupport::buildB(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q){
-    OCRA_ERROR("Q here is: \n" << Q);
     for (unsigned int i=0; i < _miqpParams.N; i++) {
         _B.block(i*Ci.rows(), 0, Ci.rows(), _Q.cols()) = Ci*_Q.pow(i+1);
     }
@@ -89,7 +87,6 @@ void BaseOfSupport::buildA(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q, 
         _A.block(j*Ci.rows(), j*T.cols(), Ci.rows()*(_miqpParams.N-j), T.cols()) = AColumn.topRows((_miqpParams.N-j)*Ci.rows());
         j=j+1;
     }
-    OCRA_ERROR("A is: \n" << _A);
     OCRA_WARNING("Built A");
 }
 

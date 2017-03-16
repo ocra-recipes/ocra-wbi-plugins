@@ -372,7 +372,7 @@ void MIQPController::buildEqualityConstraintsMatrices(const Eigen::VectorXd &x_k
     unsigned int j=0;
     while (j<_miqpParams.N){
         Aeq.block(j*_Ci_eq.rows(), j*_T.cols(), _Ci_eq.rows()*(_miqpParams.N-j), _T.cols()) = AeqColumn.topRows((_miqpParams.N-j)*_Ci_eq.rows());
-        j=j+1;
+        j++;
     }
 
     // Build time-independent matrices in RHS of equality constraints.
@@ -384,7 +384,7 @@ void MIQPController::buildEqualityConstraintsMatrices(const Eigen::VectorXd &x_k
     for (unsigned int i=0; i < _miqpParams.N; i++) {
         _rhs_2_eq.block(i*_Ci_eq.rows(),0,_Ci_eq.rows(),_Q.cols()) = _Ci_eq*_Q.pow(i+1);
     }
-
+    
     updateEqualityConstraints(x_k, Beq);
 }
 
