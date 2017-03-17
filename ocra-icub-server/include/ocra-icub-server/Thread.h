@@ -168,7 +168,6 @@ private:
     void sendTorqueReferenceToDebugJoint(int idx);
     bool setDebugJointToTorqueMode(int idx);
 
-
 private:
     ocra::Model::Ptr model;
     std::shared_ptr<IcubControllerServer> ctrlServer;
