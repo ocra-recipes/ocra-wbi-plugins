@@ -242,8 +242,12 @@ void MIQPController::updateStateVector() {
 }
 
 void MIQPController::setLinearPartObjectiveFunction() {
-    _linearTermTransObjFunc = -2*(_H_N_r - _P_H*_xi_k).transpose()*_Sw*_R_H + 2*((_P_P - _P_B)*_xi_k).transpose()*_Nb*(_R_P - _R_B);
+     Eigen::VectorXd a = -2*(_H_N_r - _P_H*_xi_k).transpose()*_Sw*_R_H;
+     Eigen::VectorXd b = 2*((_P_P - _P_B)*_xi_k).transpose();
+     Eigen::VectorXd c = b*_Nb;
+     Eigen::MatrixXd d = (_R_P - _R_B);
 //    OCRA_WARNING("Set Linear Part of the Obj Function");
+    _linearTermTransObjFunc = a + (c*d);
 }
 
 void MIQPController::buildAh(int dt, Eigen::MatrixXd &Ah) {
