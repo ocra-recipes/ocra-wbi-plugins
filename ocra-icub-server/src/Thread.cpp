@@ -40,6 +40,8 @@ OcraControllerOptions::OcraControllerOptions()
 , runInDebugMode(false)
 , noOutputMode(false)
 , isFloatingBase(false)
+, idleAnkles(false)
+, idleAnkleTime(1.5)
 , yarpWbiOptions(yarp::os::Property())
 , controllerType(ocra_recipes::WOCRA_CONTROLLER)
 , solver(ocra_recipes::QUADPROG)
@@ -64,6 +66,8 @@ std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
     out << "noOutputMode: " << opts.noOutputMode << "\n\n";
     out << "isFloatingBase: " << opts.isFloatingBase << "\n\n";
     out << "useOdometry: " << opts.useOdometry << "\n\n";
+    out << "idleAnkles: " << opts.idleAnkles << "\n\n";
+    out << "idleAnkleTime: " << opts.idleAnkleTime << "\n\n";
     // out << "yarpWbiOptions: " << opts.yarpWbiOptions << "\n\n";
     out << "controllerType: " << opts.controllerType << "\n\n";
     out << "solver: " << opts.solver << "\n\n";
@@ -152,7 +156,7 @@ bool Thread::threadInit()
 
     // If the ankles need to go into idle, we do this before we create the tasks. The reason for this is because many of the tasks simply try to maintain their initial states and if we create them in one state then change that state (by say putting the ankles into idle) then the tasks will try to track the old states when the `run()` method is executed.
     if (ctrlOptions.idleAnkles) {
-        putAnklesIntoIdle();
+        putAnklesIntoIdle(ctrlOptions.idleAnkleTime);
     }
 
     // Now we can add our tasks! Yay! Yupeee!
@@ -502,7 +506,7 @@ bool Thread::ControllerRpcServerCallback::read(yarp::os::ConnectionReader& conne
     }
 }
 
-void Thread::putAnklesIntoIdle()
+void Thread::putAnklesIntoIdle(double idleTime)
 {
     // Set everything else to position mode
     yarpWbi->setControlMode(wbi::CTRL_MODE_POS, initialPosture.data(), ALL_JOINTS);
@@ -523,7 +527,7 @@ void Thread::putAnklesIntoIdle()
 
     // Wait for a bit.
     OCRA_INFO("Putting ankles into idle to flatten out the feet...")
-    yarp::os::Time::delay(1.5);
+    yarp::os::Time::delay(idleTime);
     OCRA_INFO("Done. Resuming controller startup.")
 
     // Now we need to manually call an update on the model because the model state has changed but the controller server doesn't know about it because the change didn't happen in the `run()` method.

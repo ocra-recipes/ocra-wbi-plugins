@@ -72,6 +72,7 @@ public: // Variables
     bool                    isFloatingBase; /*!< a boolean which tells the controller whether the robot has a fixed or floating base. */
     bool                    useOdometry; /*!< a boolean which tells the controller to start the odometry, meaning that the world reference frame remains attached to the ground*/
     bool                    idleAnkles; /*!< A boolean which tells the controller to idle the ankles for a short period and then pass on to normal operation. This is to get the feet flush with the ground.*/
+    double                  idleAnkleTime; /*!< Number of seconds to idle the ankle. By default 1.5s.*/
     bool                    maintainFinalPosture; /*!< A boolean which tells the controller to stay in its final posture when the controller is switched to position mode at the end of usage.*/
     yarp::os::Property      yarpWbiOptions; /*!< Options for the WBI used to update the model. */
     ocra_recipes::CONTROLLER_TYPE    controllerType; /*!< The type of OCRA controller to use. */
@@ -160,7 +161,7 @@ private:
     void parseIncomingMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     void parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply);
     void writeDebugData();
-    void putAnklesIntoIdle();
+    void putAnklesIntoIdle(double idleTime);
 
 private:
     ocra::Model::Ptr model;

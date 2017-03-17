@@ -53,6 +53,15 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
     controller_options.isFloatingBase = rf.check("floatingBase");
     controller_options.useOdometry = rf.check("useOdometry");
     controller_options.idleAnkles = rf.check("idleAnkles");
+    if ( controller_options.idleAnkles ) {
+        if ( !rf.find("idleAnkles").isNull() ) {
+            controller_options.idleAnkleTime = rf.find("idleAnkles").asDouble();
+            if ( controller_options.idleAnkleTime < 0.0 ) {
+                controller_options.idleAnkleTime = 0.0;
+                OCRA_WARNING("Ankle idling time must be > 0. Setting to 0.0s.")
+            }
+        }
+    }
     controller_options.maintainFinalPosture = rf.check("maintainFinalPosture");
 
     if( rf.check("solver") )
