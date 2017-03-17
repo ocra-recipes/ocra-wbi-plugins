@@ -42,6 +42,9 @@ OcraControllerOptions::OcraControllerOptions()
 , isFloatingBase(false)
 , idleAnkles(false)
 , idleAnkleTime(1.5)
+, wDdq(1e-7)
+, wTau(1e-8)
+, wFc(1e-9)
 , yarpWbiOptions(yarp::os::Property())
 , controllerType(ocra_recipes::WOCRA_CONTROLLER)
 , solver(ocra_recipes::QUADPROG)
@@ -68,6 +71,9 @@ std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
     out << "useOdometry: " << opts.useOdometry << "\n\n";
     out << "idleAnkles: " << opts.idleAnkles << "\n\n";
     out << "idleAnkleTime: " << opts.idleAnkleTime << "\n\n";
+    out << "wDdq: " << opts.wDdq << "\n\n";
+    out << "wTau: " << opts.wTau << "\n\n";
+    out << "wFc: " << opts.wFc << "\n\n";
     // out << "yarpWbiOptions: " << opts.yarpWbiOptions << "\n\n";
     out << "controllerType: " << opts.controllerType << "\n\n";
     out << "solver: " << opts.solver << "\n\n";
@@ -121,6 +127,14 @@ bool Thread::threadInit()
     /* ======== This block was originally in the constructor of this thread ======= */
     // The server will initialize but without calling updateModel() at the end, if useOdometry is true.
     ctrlServer->initialize();
+
+    // ctrlServer->setRegularizationTermWeights(ctrlOptions.wDdq, ctrlOptions.wTau, ctrlOptions.wFc);
+
+    // FOR THE EXPERIMENTS ON ICUBGENOVA02
+    // For reaching
+    // ctrlServer->setRegularizationTermWeights(1e-7, 0.00001, 1e-9);
+    // For sitting
+    // ctrlServer->setRegularizationTermWeights(1e-7, 0.0001, 1e-9);
 
     // Odometry initialization. Odometry assumes one foot to be fixed to the ground.
     if (ctrlOptions.useOdometry && ctrlOptions.isFloatingBase) {

@@ -78,6 +78,9 @@ public: // Variables
     ocra_recipes::CONTROLLER_TYPE    controllerType; /*!< The type of OCRA controller to use. */
     ocra_recipes::SOLVER_TYPE    solver; /*!< The type of OCRA controller to use. */
 
+    double wDdq;
+    double wTau;
+    double wFc;
 };
 
 

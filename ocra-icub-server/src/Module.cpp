@@ -64,6 +64,16 @@ bool Module::configure(yarp::os::ResourceFinder &rf)
     }
     controller_options.maintainFinalPosture = rf.check("maintainFinalPosture");
 
+    if ( rf.check("wDdq") ) {
+        controller_options.wDdq = rf.find("wDdq").asDouble();
+    }
+    if ( rf.check("wTau") ) {
+        controller_options.wTau = rf.find("wTau").asDouble();
+    }
+    if ( rf.check("wFc") ) {
+        controller_options.wFc = rf.find("wFc").asDouble();
+    }
+
     if( rf.check("solver") )
     {
         std::string solverString = rf.find("solver").asString().c_str();
