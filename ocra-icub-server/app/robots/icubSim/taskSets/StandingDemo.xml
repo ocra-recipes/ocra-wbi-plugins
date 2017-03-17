@@ -1,0 +1,123 @@
+<?xml version="1.0" ?>
+<!-- TODO: Add a tag for expressing angles in degrees or radians. -->
+<!-- <anglesExpressedIn>degrees</anglesExpressedIn> -->
+
+<!-- Note:
+        Not providing a desired value for joint tasks will default to the current joint position.
+ -->
+<task name="FullPosture" type="FullPosture">
+   <params kp="5.0" kd="4.5" weight="0.0001" />
+   <!-- <joints>
+       <joint name="l_hip_pitch"    weight="0.0004"/>
+       <joint name="l_hip_roll"     weight="0.1"/>
+       <joint name="l_hip_yaw"      weight="0.1"/>
+       <joint name="r_hip_pitch"    weight="0.0004"/>
+       <joint name="r_hip_roll"     weight="0.1"/>
+       <joint name="r_hip_yaw"      weight="0.1"/>
+       <joint name="l_ankle_pitch"  weight="1.0"/>
+       <joint name="r_ankle_pitch"  weight="1.0"/>
+       <joint name="l_knee"         weight="0.0004"/>
+       <joint name="r_knee"         weight="0.0004"/>
+       <joint name="torso_pitch"    weight="0.1"/>
+       <joint name="torso_roll"     weight="0.01"/>
+       <joint name="torso_yaw"      weight="0.001"/>
+       <joint name="r_elbow"        weight="0.00001"/>
+       <joint name="l_elbow"        weight="0.00001"/>
+   </joints> -->
+</task>
+
+<task name="ComTask" type="CoM">
+    <params kp="60" weight="1.0" axes="XYZ"/>
+</task>
+
+<!-- <task name="TorsoCartesianTask" type="Cartesian">
+    <segment>torso</segment>
+    <params kp="10.0" weight="0.01" axes="XY"/>
+</task> -->
+
+<task name="TorsoOrientationTask" type="Orientation">
+    <segment>torso</segment>
+    <params kp="10.0" weight="0.002" axes="XYZ"/>
+</task>
+
+<!-- <task name="RootCartesian" type="Cartesian">
+    <segment>root_link</segment>
+    <offset z="-0.16" />
+    <params kp="60.0" weight="1.0" axes="XYZ" />
+</task> -->
+<!--
+<task name="RootOrientation" type="Orientation">
+    <segment>root_link</segment>
+    <params kp="20.0" weight="1.0" />
+</task> -->
+
+<task name="LeftHandCartesian" type="Cartesian">
+    <segment>l_hand</segment>
+    <params kp="20.0" weight="0.001" axes="XYZ" />
+    <offset  x="0.05" y="0.0" z="0.0" />
+</task>
+
+<task name="RightHandCartesian" type="Cartesian">
+    <segment>r_hand</segment>
+    <params kp="20.0" weight="0.001" axes="XYZ" />
+    <offset  x="0.05" y="0.0" z="0.0" />
+</task>
+
+<task name="LeftUpperLegContact" type="PointContact">
+    <segment>l_upper_leg</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x="-0.045" y="-0.06" z="0.0" qw="0.707107" qx="0.0" qy="-0.707107" qz="0.0" />
+</task>
+
+<task name="RightUpperLegContact" type="PointContact">
+    <segment>r_upper_leg</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x="-0.045" y="-0.06" z="0.0" qw="0.707107" qx="-0.0" qy="-0.707107" qz="0.0" />
+</task>
+
+
+<!-- Left foot contacts -->
+
+<task name="LeftFootContact_BackLeft" type="PointContact">
+    <segment>l_sole</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x="-0.02" y="-0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+</task>
+<task name="LeftFootContact_FrontLeft" type="PointContact">
+    <segment>l_sole</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x=" 0.06" y="-0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+</task>
+<task name="LeftFootContact_BackRight" type="PointContact">
+    <segment>l_sole</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x="-0.02" y=" 0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+</task>
+<task name="LeftFootContact_FrontRight" type="PointContact">
+    <segment>l_sole</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x=" 0.06" y=" 0.02" z="0.0" qw="0.0" qx="0.707107" qy="0.707107" qz="0.0" />
+</task>
+
+<!-- Right foot contacts -->
+
+<task name="RightFootContact_BackLeft" type="PointContact">
+    <segment>r_sole</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x="-0.02" y="-0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+</task>
+<task name="RightFootContact_FrontLeft" type="PointContact">
+    <segment>r_sole</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x=" 0.06" y="-0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+</task>
+<task name="RightFootContact_BackRight" type="PointContact">
+    <segment>r_sole</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x="-0.02" y=" 0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+</task>
+<task name="RightFootContact_FrontRight" type="PointContact">
+    <segment>r_sole</segment>
+    <params mu="1.0" margin="0.05" />
+    <offset x=" 0.06" y=" 0.02" z="0.0" qw="0.0" qx="-0.707107" qy="-0.707107" qz="0.0" />
+</task>

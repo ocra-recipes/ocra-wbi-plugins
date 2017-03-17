@@ -1,0 +1,33 @@
+<?xml version="1.0" ?>
+<!-- TODO: Add a tag for expressing angles in degrees or radians. -->
+<!-- <useDegrees>true</useDegrees> -->
+
+<!-- Note:
+        Not providing a desired value for joint tasks will default to the current joint position.
+ -->
+<task name="FullPosture" type="FullPosture">
+   <params kp="5.0" kd="4.5" weight="0.01" />
+   <joints>
+       <joint name="l_hip_pitch"    weight="0.0004"/>
+       <joint name="l_hip_roll"     weight="0.1"/>
+       <joint name="l_hip_yaw"      weight="0.1"/>
+       <joint name="r_hip_pitch"    weight="0.0004"/>
+       <joint name="r_hip_roll"     weight="0.1"/>
+       <joint name="r_hip_yaw"      weight="0.1"/>
+       <joint name="l_ankle_pitch"  weight="1.0"/>
+       <joint name="r_ankle_pitch"  weight="1.0"/>
+       <joint name="l_knee"         weight="0.0004"/>
+       <joint name="r_knee"         weight="0.0004"/>
+       <joint name="torso_pitch"    weight="0.1"/>
+       <joint name="torso_roll"     weight="0.01"/>
+       <joint name="torso_yaw"      weight="0.001"/>
+       <joint name="r_elbow"        weight="0.00001"/>
+       <joint name="l_elbow"        weight="0.00001"/>
+   </joints>
+</task>
+
+
+<task name="RightHandOrientation" type="Orientation">
+    <segment>r_hand</segment>
+    <params kp="40.0" weight="1.0" />
+</task>
