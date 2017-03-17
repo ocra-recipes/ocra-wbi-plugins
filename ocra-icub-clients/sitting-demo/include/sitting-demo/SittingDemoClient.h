@@ -22,8 +22,14 @@ protected:
     virtual void loop();
 
 private:
-    ocra_recipes::TrajectoryThread::Ptr rootTrajThread;
+
+    void moveCom();
+    std::string taskName;
+    ocra_recipes::TaskConnection::Ptr comTask;
+    ocra_recipes::TrajectoryThread::Ptr comTrajThread;
     double xDisp, yDisp, zDisp;
+    Eigen::Vector3d currentDesiredPosition;
+    Eigen::MatrixXd Kp, Kd;
 };
 
 
