@@ -12,6 +12,7 @@ if(CODYCO_INSTALL_ALL_ROBOTS)
                iCubGenova03
                iCubParis02
                iCubParis01
+               icubSim
                )
 else()
   if(ROBOT_NAME)
