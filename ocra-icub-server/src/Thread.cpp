@@ -106,6 +106,7 @@ Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::w
                                                        );
 
 
+
 }
 
 Thread::~Thread()
@@ -167,6 +168,7 @@ bool Thread::threadInit()
     minTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MIN);
     maxTorques      = Eigen::ArrayXd::Constant(yarpWbi->getDoFs(), TORQUE_MAX);
     initialPosture  = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
+    // torques         = Eigen::VectorXd::Zero(yarpWbi->getDoFs());
     yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, initialPosture.data(), ALL_JOINTS);
 
     // If the ankles need to go into idle, we do this before we create the tasks. The reason for this is because many of the tasks simply try to maintain their initial states and if we create them in one state then change that state (by say putting the ankles into idle) then the tasks will try to track the old states when the `run()` method is executed.
@@ -183,6 +185,7 @@ bool Thread::threadInit()
     if(ctrlOptions.runInDebugMode || ctrlOptions.noOutputMode) {
         debugJointIndex = 0;
         debuggingAllJoints = false;
+        userHasSetDebugIndex = false;
         std::string debugRpcPortName("/ocra-icub-server/debug/rpc:i");
         std::string debugRefOutPortName("/ocra-icub-server/debug/ref:o");
         std::string debugRealOutPortName("/ocra-icub-server/debug/real:o");
@@ -213,7 +216,7 @@ bool Thread::threadInit()
         if (ctrlOptions.runInDebugMode) {
             std::string jointName = model->getJointName(debugJointIndex);
             std::cout << "Debugging joint index: " << debugJointIndex << " ("<< jointName <<")" << std::endl;
-            return yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, debugJointIndex);
+            return setDebugJointToTorqueMode(debugJointIndex);
         } else {
             return true;
         }
@@ -257,12 +260,11 @@ void Thread::run()
     if (ctrlOptions.runInDebugMode || ctrlOptions.noOutputMode) {
         measuredTorques = model->getJointTorques();
         writeDebugData();
-        if (!ctrlOptions.noOutputMode) {
+        if (!ctrlOptions.noOutputMode || userHasSetDebugIndex) {
             if (debuggingAllJoints) {
                 yarpWbi->setControlReference(torques.data());
             } else {
-                double refTau = torques(debugJointIndex);
-                yarpWbi->setControlReference(&refTau, debugJointIndex);
+                sendTorqueReferenceToDebugJoint(debugJointIndex);
             }
         }
     } else {
@@ -289,6 +291,32 @@ void Thread::threadRelease()
         yarpWbi->setControlReference(initialPosture.data());
     }
 
+}
+
+bool Thread::setDebugJointToTorqueMode(int idx)
+{
+    bool isTorqueModeSet = true;
+    if ( (idx==0) || (idx==1) || (idx==2) ) {
+        isTorqueModeSet &= yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, 0);
+        isTorqueModeSet &= yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, 1);
+        isTorqueModeSet &= yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, 2);
+    } else {
+        isTorqueModeSet &= yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, idx);
+    }
+
+    return isTorqueModeSet;
+}
+
+
+void Thread::sendTorqueReferenceToDebugJoint(int idx)
+{
+    if ( (idx==0) || (idx==1) || (idx==2) ) {
+        yarpWbi->setControlReference(&torques(0), 0);
+        yarpWbi->setControlReference(&torques(1), 1);
+        yarpWbi->setControlReference(&torques(2), 2);
+    } else {
+        yarpWbi->setControlReference(&torques(idx), idx);
+    }
 }
 
 void Thread::writeDebugData()
@@ -421,12 +449,13 @@ void Thread::parseDebugMessage(yarp::os::Bottle& input, yarp::os::Bottle& reply)
                         yarpWbi->setControlReference(&initialPosture(debugJointIndex), debugJointIndex);
                     }
 
-                    if(yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, &torques(newIndex), newIndex) ) {
+                    if( setDebugJointToTorqueMode(newIndex) ) {
                         replyString = "Success! Debugging joint index: " + jointString + " (" + jointName +")";
                     } else {
                         replyString = "FAILED! Could not set the control mode of joint " + jointString + " ("+jointName+") to TORQUE mode.";
                     }
                     debugJointIndex = newIndex;
+                    userHasSetDebugIndex = true;
                 } else {
                     replyString = "FAILED! The index " + jointString + " is outside of the valid range, [0-" + std::to_string(initialPosture.rows() - 1)+ "] Use index = -1 for all joints. Type [listJoints] or [help] for details.";
                 }
