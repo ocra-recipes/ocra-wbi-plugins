@@ -8,7 +8,7 @@
 
 find_path(EIGENGUROBI_INCLUDE_DIR
           NAMES Gurobi.h eigen_gurobi_api.h
-          PATHS "$ENV{EIGENGUROBI_HOME}/include"
+          PATHS "$ENV{EIGENGUROBI_HOME}/include/eigen-gurobi"
                 "/usr/local/include/eigen-gurobi")
 find_library(EIGENGUROBI_LIBRARIES
              NAMES libeigen-gurobi.dylib libeigen-gurobi.a
