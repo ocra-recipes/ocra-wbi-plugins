@@ -30,9 +30,14 @@
     <params kp="40" weight="1.0" axes="XY"/>
 </task>
 
-<task name="TorsoCartesianTask" type="Cartesian">
+<!-- <task name="TorsoCartesianTask" type="Cartesian">
     <segment>torso</segment>
     <params kp="1" weight="0.01" axes="XY"/>
+</task> -->
+
+<task name="TorsoCartesianTask" type="Cartesian">
+    <segment>neck_1</segment>
+    <params kp="1" weight="0.01" axes="YZ"/>
 </task>
 
 <task name="LeftHandCartesian" type="Cartesian">
