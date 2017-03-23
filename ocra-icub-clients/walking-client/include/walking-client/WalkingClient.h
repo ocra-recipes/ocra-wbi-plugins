@@ -192,6 +192,7 @@ private:
     std::vector<Eigen::Vector2d> _zmpTrajectory;
     std::vector<Eigen::Vector2d> _singleStepTrajectory;
     ocra::TaskState _desiredComState;
+    MIQPParameters _miqpParams;
     Eigen::VectorXd _rawLeftFootWrench;
     Eigen::VectorXd _rawRightFootWrench;
     Eigen::Vector2d _globalZMP;

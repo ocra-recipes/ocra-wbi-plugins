@@ -155,6 +155,20 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
         _stopTimeVaryingZmp = zmpVaryingReferenceGroup.find("stopTimeVaryingZmp").asDouble();
         OCRA_INFO(">> [ZMP_VARYING_REFERENCE]: \n " << zmpVaryingReferenceGroup.toString().c_str());
     }
+    
+    // Find MIQP Paramters
+    if (!rf.check("MIQP_CONTROLLER_PARAMS")) {
+        OCRA_ERROR("No parameters have been specified for the MIQP controller");
+    } else {
+        yarp::os::Property miqpParamsGroup;
+        miqpParamsGroup.fromString(rf.findGroup("MIQP_CONTROLLER_PARAMS").tail().toString());
+        _miqpParams.cz = this->model->getCoMPosition().operator()(2);
+        _miqpParams.dt = (unsigned int) miqpParamsGroup.find("dt").asInt();
+        _miqpParams.g = miqpParamsGroup.find("g").asDouble();
+        _miqpParams.home = _homeDataDir; // This is actually in the TESTS_GENERAL_PARAMETERS group
+        _miqpParams.N = miqpParamsGroup.find("N").asInt();
+         OCRA_INFO(">> [MIQP_CONTROLLER_PARAMS]: \n " << miqpParamsGroup.toString().c_str());
+    }
 
 
     return true;
@@ -248,20 +262,13 @@ bool WalkingClient::initialize()
     _comTask->setDamping(0);
     
     // Start MIQPController thread
-    // First setup the parameters
-    MIQPParameters miqpParams;
-    miqpParams.cz = _zmpPreviewParams->cz;
-    miqpParams.g = 9.8;
-    miqpParams.N = 5;
-    miqpParams.dt = 100;
-    miqpParams.home = _homeDataDir;
     // FIXME: Dummy initial COM states reference which pretty much says, keep the initial COM position.
-    Eigen::MatrixXd comStateRef(100*miqpParams.N, 6);
+    Eigen::MatrixXd comStateRef(100*_miqpParams.N, 6);
     Eigen::VectorXd comRefToReplicate(6); comRefToReplicate << _previousCOM, 0, 0, 0, 0;
-    comStateRef = comRefToReplicate.transpose().replicate(100*miqpParams.N,1);
-    OCRA_INFO(">>> FIRST REFS: \n"); OCRA_INFO(comStateRef.block(0,0,5,6));
-    // FIXME: For now hardcoding 100ms period
-    _miqpController = std::make_shared<MIQPController>(miqpParams, this->model, this->_stepController, comStateRef);
+    comStateRef = comRefToReplicate.transpose().replicate(100*_miqpParams.N,1);
+    OCRA_INFO(">>> FIRST REFS: \n");
+    OCRA_INFO(comStateRef.block(0,0,5,6));
+    _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
     _miqpController->start();
     OCRA_INFO("Initialization is over");
     return true;
@@ -378,7 +385,7 @@ std::vector<Eigen::Vector2d> WalkingClient::generateZMPTrajectoryTEST(double tTr
         zmpTrajectory.push_back(sineVector);
         t = t + timeStep/1000;
     }
-
+    OCRA_INFO("ZMP Trajectory Generated");
     return zmpTrajectory;
 }
 

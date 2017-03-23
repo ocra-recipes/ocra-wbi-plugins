@@ -48,7 +48,7 @@ bool StepController::initialize() {
 
     _leftFoot_TrajThread->setGoalErrorThreshold(0.01);
     _rightFoot_TrajThread->setGoalErrorThreshold(0.01);
-    
+    OCRA_INFO("StepController finished initialization");
     return true;
 }
 
