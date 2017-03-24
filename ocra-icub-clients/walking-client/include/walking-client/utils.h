@@ -33,11 +33,30 @@ struct MIQPParameters {
     double cz;
     /* Gavity acceleration */
     double g;
-    //TODO: Missing state selection matrix S
     /* Thread period */
     unsigned int dt;
     /* Home directory where logged data will be saved */
     std::string home;
+    /* Walking Performance Cost Weight */
+    double ww;
+    /* Balance Performance Cost Weight */
+    double wb;
+    /* X Boundary in Constancy constraints */
+    double sx_constancy;
+    /* Y Boundary in Constancy constraints */
+    double sy_constancy;
+    /* X Boundary in Single Support Constraints */
+    double sx_ss;
+    /* Y Boundary in Single Support Constraints */
+    double sy_ss;
+    /* CoM State Reference Selection Vector. If your CoM State Reference consists only of forward velocity
+     * then this vector is: [0 0 1 1 0 0] */
+    double hx_ref;
+    double hy_ref;
+    double dhx_ref;
+    double dhy_ref;
+    double ddhx_ref;
+    double ddhy_ref;
 };
 
 #define STATE_VECTOR_SIZE 16

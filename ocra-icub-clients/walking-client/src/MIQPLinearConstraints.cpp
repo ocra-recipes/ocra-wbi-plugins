@@ -160,12 +160,9 @@ void MIQPLinearConstraints::buildShapeAndAdmissibilityInPreviewWindow(){
     buildFcBarShapeAdmiss();
     
     // Update the total number of constraints
-    // FIXME: Make this incremental since CoP and walking constraints should increment this value
     _nConstraints += _AShapeAdmiss.rows();
     // Update matrix A
     // TODO: When walking constraints are added, this will be a stack of the two
-    // FIXME: Move this assignment to another method that stacks all the constraints as _A.
-//    _A = _AShapeAdmiss;
 }
 
 void MIQPLinearConstraints::buildAShapeAdmiss() {

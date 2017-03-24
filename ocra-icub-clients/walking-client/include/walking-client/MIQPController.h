@@ -186,10 +186,11 @@ protected:
     /**
      * Builds matrix \f$\mathbf{N}_b\f$.
      *
+     * @param[in] wb Weight of the balance performance cost.
      * @param[out] Output passed to matrix reference.
      * @see #_Nb
      */
-    void buildNb(Eigen::MatrixXd &output);
+    void buildNb(Eigen::MatrixXd &output, double wb);
     
     /**
      * Builds matrix \f$\mathbf{N}_x\f$.
@@ -202,10 +203,11 @@ protected:
     /**
      * Builds matrix \f$\mathbf{S}_w\f$
      * 
+     * @param[in] miqpParams list of MIQP parameters indicating also what kind of CoM state reference are going to be tracked.
      * @param[out] Output passed to matrix reference.
-     * @see #_Sw
+     * @see #_Sw, MIQPParameters
      */
-    void buildSw(Eigen::MatrixXd &output);
+    void buildSw(Eigen::MatrixXd &output, MIQPParameters miqpParams);
 
     
     /**

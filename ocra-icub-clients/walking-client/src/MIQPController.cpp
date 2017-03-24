@@ -29,6 +29,7 @@ _Sw(_R_H.rows(), _R_H.rows()),
 _H_N_r(6*_miqpParams.N)
 
 {
+    OCRA_ERROR("MIQP PARAMS ARE: " << _miqpParams.dhx_ref << " " << _miqpParams.dhy_ref);
     buildAh(_period, _Ah);
     buildBh(_period, _Bh);
     buildQ(_Q);
@@ -42,8 +43,8 @@ _H_N_r(6*_miqpParams.N)
     buildPreviewInputMatrix(_C_H, _R_H);
     buildPreviewInputMatrix(_C_P, _R_P);
     buildPreviewInputMatrix(_C_B, _R_B);
-    buildSw(_Sw);
-    buildNb(_Nb);
+    buildSw(_Sw, _miqpParams );
+    buildNb(_Nb, _miqpParams.wb);
     buildNx(_Nx);
     buildH_N(_H_N);
 
@@ -169,7 +170,6 @@ void MIQPController::run() {
     // TODO: Watch out! _eigGurobi will add a 1/2. Therefore the 2. Check that this is correct.
     // FIXME: The expression for _H_N only includes jerk regularization terms
     _eigGurobi.solve(2*_H_N, _linearTermTransObjFunc, _Aeq, _Beq, _Aineq, _Bineq, _lb, _ub);
-//     _eigGurobi.inform();
 
     // Get the solution
     _X_kn = _eigGurobi.result();
@@ -307,9 +307,10 @@ void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
 //    OCRA_WARNING("Built H_N");
 }
 
-void MIQPController::buildNb(Eigen::MatrixXd &Nb) {
-    Nb = Eigen::MatrixXd::Identity(2*_miqpParams.N, 2*_miqpParams.N);
-//    OCRA_WARNING("Built Nb");
+void MIQPController::buildNb(Eigen::MatrixXd &Nb, double wb) {
+    Nb = wb*Eigen::MatrixXd::Identity(2*_miqpParams.N, 2*_miqpParams.N);
+    OCRA_INFO("Nb is: \n" << Nb);
+    OCRA_WARNING("Built Nb");
 }
 
 void MIQPController::buildNx(Eigen::MatrixXd &Nx) {
@@ -324,17 +325,25 @@ void MIQPController::buildNx(Eigen::MatrixXd &Nx) {
     Nx = diagonal.asDiagonal();
 }
 
-void MIQPController::buildSw(Eigen::MatrixXd &Sw) {
-    // FIXME: For the time being this is hardcoded to use the com velocity references only
+void MIQPController::buildSw(Eigen::MatrixXd &Sw, MIQPParameters miqpParams) {
     // Create the diagonal as a vector
-    OCRA_INFO("Initial size of Sw: " << Sw.rows() << ", " << Sw.cols());
-    Eigen::VectorXd vecToRepeat(6); vecToRepeat << 0, 0, 1, 1, 0, 0;
+    double ww = miqpParams.ww;
+    OCRA_ERROR("Ww is: " << ww);
+    double hx_ref = ww*miqpParams.hx_ref;
+    double hy_ref = ww*miqpParams.hy_ref;
+    double dhx_ref = ww*miqpParams.dhx_ref;
+    double dhy_ref = ww*miqpParams.dhy_ref;
+    double ddhx_ref = ww*miqpParams.ddhx_ref;
+    double ddhy_ref = ww*miqpParams.ddhy_ref;
+
+    Eigen::VectorXd vecToRepeat(6); vecToRepeat << hx_ref, hy_ref, dhx_ref, dhy_ref, ddhx_ref, ddhy_ref;
+    vecToRepeat = vecToRepeat;
     // Replicate
     Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
     // Transform into diagonal matrix
     Sw = diagonal.asDiagonal();
-//     Sw = Eigen::MatrixXd::Identity(6*_miqpParams.N, 6*_miqpParams.N);
-//    OCRA_WARNING("Built Sw");
+    OCRA_INFO("Sw is: \n" << Sw);
+    OCRA_WARNING("Built Sw");
 }
 
 

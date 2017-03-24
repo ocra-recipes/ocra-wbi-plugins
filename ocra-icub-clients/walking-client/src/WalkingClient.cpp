@@ -167,6 +167,18 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
         _miqpParams.g = miqpParamsGroup.find("g").asDouble();
         _miqpParams.home = _homeDataDir; // This is actually in the TESTS_GENERAL_PARAMETERS group
         _miqpParams.N = miqpParamsGroup.find("N").asInt();
+        _miqpParams.sx_constancy = miqpParamsGroup.find("sx_constancy").asDouble();
+        _miqpParams.sy_constancy = miqpParamsGroup.find("sy_constancy").asDouble();
+        _miqpParams.sx_ss = miqpParamsGroup.find("sx_ss").asDouble();
+        _miqpParams.sy_ss = miqpParamsGroup.find("sy_ss").asDouble();
+        _miqpParams.hx_ref = miqpParamsGroup.find("hx_ref").asDouble();
+        _miqpParams.hy_ref = miqpParamsGroup.find("hy_ref").asDouble();
+        _miqpParams.dhx_ref = miqpParamsGroup.find("dhx_ref").asDouble();
+        _miqpParams.dhy_ref = miqpParamsGroup.find("dhy_ref").asDouble();
+        _miqpParams.ddhx_ref = miqpParamsGroup.find("ddhx_ref").asDouble();
+        _miqpParams.ddhy_ref =miqpParamsGroup.find("ddhy_ref").asDouble();
+        _miqpParams.ww = miqpParamsGroup.find("ww").asDouble();
+        _miqpParams.wb = miqpParamsGroup.find("wb").asDouble();
          OCRA_INFO(">> [MIQP_CONTROLLER_PARAMS]: \n " << miqpParamsGroup.toString().c_str());
     }
 
