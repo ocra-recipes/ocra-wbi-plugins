@@ -290,6 +290,19 @@ protected:
      */
     void updateEqualityConstraints(const Eigen::VectorXd &x_k, Eigen::VectorXd &Beq);
     
+    /**
+     * Builds regularization terms. For the moment, these include: 
+     * - Avoid resting on one foot
+     * - CoM jerk regularization terms
+     */
+    void buildRegularizationTerms(MIQPParameters &miqpParams);
+    
+    void buildCoMJerkReg(MIQPParameters &miqpParams);
+    
+    void buildAvoidOneFootRestReg(MIQPParameters &miqpParams);
+    
+    void buildMinimizeSteppingReg(MIQPParameters &miqpParams);
+    
     void setBinaryVariables();
     
     /**
@@ -329,6 +342,9 @@ private:
 
     /** Thread period in milliseconds */
     int _period;
+    
+    /** Add regularization terms to cost function? */
+    bool _addRegularization;
 
     /**
      * Contains the state-dependent coefficients of the linear term of the objective function of
@@ -773,6 +789,18 @@ private:
     /** Current iteration */
     unsigned int _k;   
     
+    ///////////////// Regularization Variables ///////////////////////////
+    Eigen::MatrixXd _S_wu;
+    Eigen::MatrixXd _S_gamma;
+    Eigen::MatrixXd _P_Gamma;
+    Eigen::MatrixXd _R_Gamma;
+    Eigen::VectorXd _One_Gamma;
+    Eigen::MatrixXd _S_alpha;
+    Eigen::MatrixXd _S_beta;
+    Eigen::MatrixXd _P_Alpha;
+    Eigen::MatrixXd _R_Alpha;
+    Eigen::MatrixXd _P_Beta;
+    Eigen::MatrixXd _R_Beta;
 };
 
 #endif

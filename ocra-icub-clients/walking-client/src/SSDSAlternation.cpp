@@ -12,7 +12,7 @@ void SSDSAlternation::buildMatrixCi() {
            zero9.transpose(),  -1, zero6.transpose(),
            zero9.transpose(),  -1, zero6.transpose(),
            zero9.transpose(),   1, zero6.transpose();
-    OCRA_WARNING("Ci built for SSDSAlternation");
+    OCRA_INFO("Ci built for SSDSAlternation");
 }
 
 void SSDSAlternation::buildMatrixCii(){
@@ -23,11 +23,11 @@ void SSDSAlternation::buildMatrixCii(){
             zero4.transpose(), 1, 0,  1, 0, 0, -1, zero6.transpose(),
             zero4.transpose(),-1, 0, -1, 0, 0,  1, zero6.transpose(),
             zero4.transpose(),-1, 0, -1, 0, 0, -1, zero6.transpose();
-    OCRA_WARNING("Cii built for SSDSAlternation");
+    OCRA_INFO("Cii built for SSDSAlternation");
 }
 
 void SSDSAlternation::buildVectord(){
     _d.resize(_Ci.rows());
     _d << 2, 0, 0, 0;
-    OCRA_WARNING("d built for SSDSAlternation");
+    OCRA_INFO("d built for SSDSAlternation");
 }

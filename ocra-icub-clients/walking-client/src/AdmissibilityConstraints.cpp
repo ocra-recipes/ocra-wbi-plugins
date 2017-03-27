@@ -12,10 +12,10 @@ AdmissibilityConstraints::~AdmissibilityConstraints() {}
 void AdmissibilityConstraints::buildMatrixCi() {
     unsigned int totalRows = _ssdsAlternation.getCi().rows() + _singleSupport.getCi().rows() + _contactConfigHistory.getCi().rows() + _contactConfigEnforcement.getCi().rows();
     unsigned int totalCols = STATE_VECTOR_SIZE;
-    OCRA_WARNING("Rows: " << totalRows << " Cols: " << totalCols);
+    OCRA_INFO("Rows: " << totalRows << " Cols: " << totalCols);
     _Ci.resize(totalRows,totalCols);
     _Ci << _ssdsAlternation.getCi(), _singleSupport.getCi(), _contactConfigHistory.getCi(), _contactConfigEnforcement.getCi();
-    OCRA_WARNING("Built Ci for AdmissibilityConstraints");
+    OCRA_INFO("Built Ci for AdmissibilityConstraints");
 }
 
 void AdmissibilityConstraints::buildMatrixCii() {
@@ -23,12 +23,12 @@ void AdmissibilityConstraints::buildMatrixCii() {
     unsigned int totalCols = STATE_VECTOR_SIZE;
     _Cii.resize(totalRows,totalCols);
     _Cii << _ssdsAlternation.getCii(), _singleSupport.getCii(), _contactConfigHistory.getCii(), _contactConfigEnforcement.getCii();
-    OCRA_WARNING("Built Cii for AdmissibilityConstraints");
+    OCRA_INFO("Built Cii for AdmissibilityConstraints");
 }
 
 void AdmissibilityConstraints::buildVectord() {
     unsigned int totalRows = _ssdsAlternation.getd().size() + _singleSupport.getd().size() + _contactConfigHistory.getd().size() + _contactConfigEnforcement.getd().size();
     _d.resize(totalRows);
     _d << _ssdsAlternation.getd(), _singleSupport.getd(), _contactConfigHistory.getd(), _contactConfigEnforcement.getd();
-    OCRA_WARNING("Built d for AdmissibilityConstraints");
+    OCRA_INFO("Built d for AdmissibilityConstraints");
 }

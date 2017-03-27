@@ -41,6 +41,8 @@ struct MIQPParameters {
     double ww;
     /* Balance Performance Cost Weight */
     double wb;
+    /* Jerk regularization Cost Weight */
+    double wu;
     /* X Boundary in Constancy constraints */
     double sx_constancy;
     /* Y Boundary in Constancy constraints */
@@ -57,6 +59,16 @@ struct MIQPParameters {
     double dhy_ref;
     double ddhx_ref;
     double ddhy_ref;
+    /* Add Shape Constraints? */
+    bool shapeConstraints;
+    /* Add Admissibility Constraints? */
+    bool admissibilityConstraints;
+    /* Add CoP Constraints? */
+    bool copConstraints;
+    /* Add walking constraints? */
+    bool walkingConstraints;
+    /* Add regularization terms?*/
+    bool addRegularization;
 };
 
 #define STATE_VECTOR_SIZE 16

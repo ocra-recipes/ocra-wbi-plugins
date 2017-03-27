@@ -11,7 +11,7 @@ void ContactConfigHistory::buildMatrixCi(){
     _Ci << zero8.transpose(), -1, 1, zero6.transpose(),
            zero8.transpose(),  1, 1, zero6.transpose();
 
-    OCRA_WARNING("Ci built for ContactConfigHistory");
+    OCRA_INFO("Ci built for ContactConfigHistory");
 }
 
 void ContactConfigHistory::buildMatrixCii(){
@@ -20,11 +20,11 @@ void ContactConfigHistory::buildMatrixCii(){
     Eigen::VectorXd zero7 = Eigen::VectorXd::Zero(7);
     _Cii << zero8.transpose(),  1, zero7.transpose(),
             zero8.transpose(), -1, zero7.transpose();
-    OCRA_WARNING("Cii built for ContactConfigHistory");
+    OCRA_INFO("Cii built for ContactConfigHistory");
 }
 
 void ContactConfigHistory::buildVectord(){
     _d.resize(_Ci.rows());
     _d << 1, 1;
-    OCRA_WARNING("d built for ContactConfigHistory");
+    OCRA_INFO("d built for ContactConfigHistory");
 }
