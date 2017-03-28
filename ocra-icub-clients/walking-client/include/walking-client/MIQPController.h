@@ -38,6 +38,23 @@
 #include <walking-client/MIQPState.h>
 #include "Gurobi.h" // eigen-gurobi
 
+namespace MIQP{
+    enum InputVectorIndex{
+        A_X_IN=0,
+        A_Y_IN,
+        B_X_IN,
+        B_Y_IN,
+        ALPHA_X_IN,
+        ALPHA_Y_IN,
+        BETA_X_IN,
+        BETA_Y_IN,
+        DELTA_IN,
+        GAMMA_IN,
+        U_X_IN,
+        U_Y_IN
+    };
+}
+
 class MIQPController : public yarp::os::RateThread {
 public:
     /**
@@ -199,6 +216,12 @@ protected:
      * @see #_Nx
      */
     void buildNx(Eigen::MatrixXd &output);
+
+    /**
+     * Builds a generic regularization matrix for a specified variable
+     * 
+     */
+    void buildGenericRegMat(MIQP::InputVectorIndex whichVariable, double weight, Eigen::MatrixXd &output);
     
     /**
      * Builds matrix \f$\mathbf{S}_w\f$

@@ -116,7 +116,7 @@ bool MIQPController::threadInit() {
     setLowerAndUpperBounds();
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
-    // FIXME: For now TESTING only with shape, admissibility and cop constraints!! Don't forget to add walking constraints.
+    // FIXME: Missing walking constraints.
     _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  INPUT_VECTOR_SIZE * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
@@ -149,7 +149,6 @@ bool MIQPController::threadInit() {
 }
 
 void MIQPController::threadRelease() {
-//    delete _env;
 }
 
 void MIQPController::run() {
@@ -161,7 +160,6 @@ void MIQPController::run() {
     // (also depends on a history of states when walking constraints are included).
     _constraints->updateRHS(_xi_k);
     _constraints->getRHS(_Bineq);
-//    OCRA_WARNING("RHS Retrieved");
 
     // Updates RHS of equality constraints. For now, contains only Simultaneity
     updateEqualityConstraints(_xi_k, _Beq);
@@ -187,6 +185,12 @@ void MIQPController::run() {
     std::string home = std::string(_miqpParams.home + "MIQP/");
     writeToFile(0.100*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
     _k++;
+    // Write the first solution in the WHOLE preview horizon
+    // FIXME: This is simply a test done in open loop to see if the solution makes sense in the first preview window.
+    if (_k==1) {
+        for (unsigned int i = 0; i <= _miqpParams.N-1; i++)
+            ocra::utils::writeInFile(_X_kn.segment(i*INPUT_VECTOR_SIZE,INPUT_VECTOR_SIZE), std::string(home+"solutionInPreview.txt"),true);
+    }
 }
 
 void MIQPController::writeToFile(const double& time, const Eigen::VectorXd& X_kn, std::string& home) {
@@ -249,7 +253,6 @@ void MIQPController::setLinearPartObjectiveFunction() {
      Eigen::VectorXd b = 2*((_P_P - _P_B)*_xi_k).transpose();
      Eigen::VectorXd c = b*_Nb;
      Eigen::MatrixXd d = (_R_P - _R_B);
-//    OCRA_WARNING("Set Linear Part of the Obj Function");
     _linearTermTransObjFunc = a + (c*d);
     
     if(_addRegularization) {
@@ -320,10 +323,28 @@ void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
         H_N.noalias() += _S_wu;
         // Minimize stepping
         H_N.noalias() += _R_Alpha.transpose()*_R_Alpha + _R_Beta.transpose()*_R_Beta;
+        // Dummy regularization on delta
+        Eigen::MatrixXd Reg_Delta;
+        // FIXME: Get from config file. Temporary, while we add walking constraints
+        double deltaRegWeight = 1e-3;
+        buildGenericRegMat(MIQP::DELTA_IN, deltaRegWeight, Reg_Delta);
+        // TODO: Add RegDelta to cost
+        H_N.noalias() += Reg_Delta;
     } else {
         // Regularize everything with a diagonal matrix of ones
         H_N.noalias() += _Nx;
     }
+}
+
+void MIQPController::buildGenericRegMat(MIQP::InputVectorIndex whichVariable, double weight, Eigen::MatrixXd& output)
+{
+    if (output.rows() != INPUT_VECTOR_SIZE*_miqpParams.N || output.cols() != INPUT_VECTOR_SIZE*_miqpParams.N)
+        output.resize(INPUT_VECTOR_SIZE*_miqpParams.N, INPUT_VECTOR_SIZE*_miqpParams.N);        
+    Eigen::VectorXd vecToRepeat(INPUT_VECTOR_SIZE);
+    vecToRepeat.setZero();
+    vecToRepeat(whichVariable) = pow(weight,2);
+    Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
+    output = diagonal.asDiagonal();
 }
 
 void MIQPController::buildNb(Eigen::MatrixXd &Nb, double wb) {
