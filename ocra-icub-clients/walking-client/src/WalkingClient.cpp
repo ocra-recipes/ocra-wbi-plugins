@@ -183,8 +183,8 @@ bool WalkingClient::initialize()
 
     if (_testType.compare("steppingTest")) {
         // Set task's Kp and Kd to 0 from the client, since this task will receive pure accelerations
-        _comTask->setStiffness(0);
-        _comTask->setDamping(0);
+//         _comTask->setStiffness(0);
+//         _comTask->setDamping(0);
     }
 
     // Start MIQPController thread
@@ -877,11 +877,15 @@ void WalkingClient::findMIQPParams(yarp::os::ResourceFinder &rf) {
         _miqpParams.ww = miqpParamsGroup.find("ww").asDouble();
         _miqpParams.wb = miqpParamsGroup.find("wb").asDouble();
         _miqpParams.wu = miqpParamsGroup.find("wu").asDouble();
+        _miqpParams.wss = miqpParamsGroup.find("wss").asDouble();
+        _miqpParams.wstep = miqpParamsGroup.find("wstep").asDouble();
+        _miqpParams.wdelta = miqpParamsGroup.find("wdelta").asDouble();
         _miqpParams.shapeConstraints = miqpParamsGroup.find("shapeConstraints").asBool();
         _miqpParams.admissibilityConstraints = miqpParamsGroup.find("admissibilityConstraints").asBool();
         _miqpParams.copConstraints = miqpParamsGroup.find("copConstraints").asBool();
         _miqpParams.walkingConstraints = miqpParamsGroup.find("walkingConstraints").asBool();
         _miqpParams.addRegularization = miqpParamsGroup.find("addRegularization").asBool();
+        _miqpParams.robot = miqpParamsGroup.find("robot").asString();
          OCRA_INFO(">> [MIQP_CONTROLLER_PARAMS in config file]: \n " << miqpParamsGroup.toString().c_str());
     }
 }

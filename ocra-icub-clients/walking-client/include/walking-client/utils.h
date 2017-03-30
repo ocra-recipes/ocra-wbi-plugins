@@ -51,6 +51,12 @@ struct MIQPParameters {
     double wb;
     /* Jerk regularization Cost Weight */
     double wu;
+    /* Regularization weight to avoid resting on one foot */
+    double wss;
+    /* Regularization weight to minimize stepping */
+    double wstep;
+    /* Regularization weight on delta*/
+    double wdelta;
     /* X Boundary in Constancy constraints */
     double sx_constancy;
     /* Y Boundary in Constancy constraints */
@@ -77,6 +83,8 @@ struct MIQPParameters {
     bool walkingConstraints;
     /* Add regularization terms?*/
     bool addRegularization;
+    /* robot name */
+    std::string robot;
 };
 
 #define STATE_VECTOR_SIZE 16
