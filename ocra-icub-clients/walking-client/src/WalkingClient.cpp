@@ -78,18 +78,8 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
     findZMPConstRefParams(rf);
     // Find single step test parameters
     findSingleStepTestParams(rf);
-    // Find single stepping test parameters
-    if (!rf.check("STEPPING_TEST")) {
-        OCRA_WARNING("Group STEPPING_TEST was not found, using default parameters");
-    } else {
-        yarp::os::Property steppingTestGroup;
-        steppingTestGroup.fromString(rf.findGroup("STEPPING_TEST").tail().toString());
-        _steppingTestParams.nSteps = steppingTestGroup.find("nSteps").asInt();
-        _steppingTestParams.stepDuration = steppingTestGroup.find("stepDuration").asDouble();
-        _steppingTestParams.stepLength = steppingTestGroup.find("stepLength").asDouble();
-        _steppingTestParams.stepHeight = steppingTestGroup.find("stepHeight").asDouble();
-        OCRA_INFO(">> [STEPPING_TEST]: \n " << steppingTestGroup.toString().c_str());
-    }
+    // Find stepping test parameters
+    findSteppingTestParams(rf);
     // Find ZMP_VARYING_REFERENCE
     findZMPVaryingReferenceParams(rf);
     // Find MIQP Parameters
@@ -893,5 +883,19 @@ void WalkingClient::findMIQPParams(yarp::os::ResourceFinder &rf) {
         _miqpParams.walkingConstraints = miqpParamsGroup.find("walkingConstraints").asBool();
         _miqpParams.addRegularization = miqpParamsGroup.find("addRegularization").asBool();
          OCRA_INFO(">> [MIQP_CONTROLLER_PARAMS in config file]: \n " << miqpParamsGroup.toString().c_str());
+    }
+}
+
+void WalkingClient::findSteppingTestParams(yarp::os::ResourceFinder &rf) {
+    if (!rf.check("STEPPING_TEST")) {
+        OCRA_WARNING("Group STEPPING_TEST was not found, using default parameters");
+    } else {
+        yarp::os::Property steppingTestGroup;
+        steppingTestGroup.fromString(rf.findGroup("STEPPING_TEST").tail().toString());
+        _steppingTestParams.nSteps = steppingTestGroup.find("nSteps").asInt();
+        _steppingTestParams.stepDuration = steppingTestGroup.find("stepDuration").asDouble();
+        _steppingTestParams.stepLength = steppingTestGroup.find("stepLength").asDouble();
+        _steppingTestParams.stepHeight = steppingTestGroup.find("stepHeight").asDouble();
+        OCRA_INFO(">> [STEPPING_TEST]: \n " << steppingTestGroup.toString().c_str());
     }
 }
