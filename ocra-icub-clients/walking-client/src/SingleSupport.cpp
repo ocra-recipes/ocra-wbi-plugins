@@ -17,16 +17,16 @@ void SingleSupport::buildMatrixCi(){
           -1,  0,  1,  0, zero5.transpose(), -sx, zero6.transpose(),
            0,  1,  0, -1, zero5.transpose(), -sy, zero6.transpose(),
            0, -1,  0,  1, zero5.transpose(), -sy, zero6.transpose();
-    OCRA_WARNING("Ci build for SingleSupport");
+    OCRA_INFO("Ci build for SingleSupport");
 }
 void SingleSupport::buildMatrixCii(){
     _Cii.resize(_Ci.rows(), _Ci.cols());
     _Cii.setZero();
-    OCRA_WARNING("Cii build for SingleSupport");
+    OCRA_INFO("Cii build for SingleSupport");
 }
 
 void SingleSupport::buildVectord(){
     _d.resize(_Ci.rows());
     _d << 0, 0, 0, 0;
-    OCRA_WARNING("d build for SingleSupport");
+    OCRA_INFO("d build for SingleSupport");
 }

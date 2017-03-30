@@ -38,6 +38,23 @@
 #include <walking-client/MIQPState.h>
 #include "Gurobi.h" // eigen-gurobi
 
+namespace MIQP{
+    enum InputVectorIndex{
+        A_X_IN=0,
+        A_Y_IN,
+        B_X_IN,
+        B_Y_IN,
+        ALPHA_X_IN,
+        ALPHA_Y_IN,
+        BETA_X_IN,
+        BETA_Y_IN,
+        DELTA_IN,
+        GAMMA_IN,
+        U_X_IN,
+        U_Y_IN
+    };
+}
+
 class MIQPController : public yarp::os::RateThread {
 public:
     /**
@@ -186,10 +203,11 @@ protected:
     /**
      * Builds matrix \f$\mathbf{N}_b\f$.
      *
+     * @param[in] wb Weight of the balance performance cost.
      * @param[out] Output passed to matrix reference.
      * @see #_Nb
      */
-    void buildNb(Eigen::MatrixXd &output);
+    void buildNb(Eigen::MatrixXd &output, double wb);
     
     /**
      * Builds matrix \f$\mathbf{N}_x\f$.
@@ -198,14 +216,21 @@ protected:
      * @see #_Nx
      */
     void buildNx(Eigen::MatrixXd &output);
+
+    /**
+     * Builds a generic regularization matrix for a specified variable
+     * 
+     */
+    void buildGenericRegMat(MIQP::InputVectorIndex whichVariable, double weight, Eigen::MatrixXd &output);
     
     /**
      * Builds matrix \f$\mathbf{S}_w\f$
      * 
+     * @param[in] miqpParams list of MIQP parameters indicating also what kind of CoM state reference are going to be tracked.
      * @param[out] Output passed to matrix reference.
-     * @see #_Sw
+     * @see #_Sw, MIQPParameters
      */
-    void buildSw(Eigen::MatrixXd &output);
+    void buildSw(Eigen::MatrixXd &output, MIQPParameters miqpParams);
 
     
     /**
@@ -288,6 +313,19 @@ protected:
      */
     void updateEqualityConstraints(const Eigen::VectorXd &x_k, Eigen::VectorXd &Beq);
     
+    /**
+     * Builds regularization terms. For the moment, these include: 
+     * - Avoid resting on one foot
+     * - CoM jerk regularization terms
+     */
+    void buildRegularizationTerms(MIQPParameters &miqpParams);
+    
+    void buildCoMJerkReg(MIQPParameters &miqpParams);
+    
+    void buildAvoidOneFootRestReg(MIQPParameters &miqpParams);
+    
+    void buildMinimizeSteppingReg(MIQPParameters &miqpParams);
+    
     void setBinaryVariables();
     
     /**
@@ -327,6 +365,9 @@ private:
 
     /** Thread period in milliseconds */
     int _period;
+    
+    /** Add regularization terms to cost function? */
+    bool _addRegularization;
 
     /**
      * Contains the state-dependent coefficients of the linear term of the objective function of
@@ -771,6 +812,18 @@ private:
     /** Current iteration */
     unsigned int _k;   
     
+    ///////////////// Regularization Variables ///////////////////////////
+    Eigen::MatrixXd _S_wu;
+    Eigen::MatrixXd _S_gamma;
+    Eigen::MatrixXd _P_Gamma;
+    Eigen::MatrixXd _R_Gamma;
+    Eigen::VectorXd _One_Gamma;
+    Eigen::MatrixXd _S_alpha;
+    Eigen::MatrixXd _S_beta;
+    Eigen::MatrixXd _P_Alpha;
+    Eigen::MatrixXd _R_Alpha;
+    Eigen::MatrixXd _P_Beta;
+    Eigen::MatrixXd _R_Beta;
 };
 
 #endif

@@ -69,79 +69,15 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
     yarp::os::Time::delay(2);
 
     // Find ZMP Preview Controller parameters
-    if (!rf.check("ZMP_PREVIEW_CONTROLLER_PARAMS")) {
-        OCRA_WARNING("Group of options ZMP_PREVIEW_CONTROLLER_PARAMS was not found, using default parameters Nc=3, nu=, nw=, nb= ");
-    } else {
-        yarp::os::Property zmpPreviewControllerParamsGroup;
-        zmpPreviewControllerParamsGroup.fromString(rf.findGroup("ZMP_PREVIEW_CONTROLLER_PARAMS").tail().toString());
-        _zmpPreviewParams->cz = this->model->getCoMPosition().operator()(2);
-        _zmpPreviewParams->Nc = zmpPreviewControllerParamsGroup.find("Nc").asInt();
-        _zmpPreviewParams->Np = zmpPreviewControllerParamsGroup.find("Np").asInt();
-        _zmpPreviewParams->nw = zmpPreviewControllerParamsGroup.find("nw").asDouble();
-        _zmpPreviewParams->nb = zmpPreviewControllerParamsGroup.find("nb").asDouble();
-        _zmpPreviewParams->nu = zmpPreviewControllerParamsGroup.find("nu").asDouble();
-        OCRA_INFO(">> [ZMP_PREVIEW_CONTROLLER_PARAMS]: \n " << zmpPreviewControllerParamsGroup.toString().c_str() << " cz: " << _zmpPreviewParams->cz);
-    }
-
-    // Create zmpPreviewController object
-   _zmpPreviewController = std::make_shared<ZmpPreviewController>((double) this->getExpectedPeriod(), _zmpPreviewParams);
-
+    findZMPPreviewControllerParams(rf);
     // Find TESTS_GENERAL_PARAMETERS
-    if (!rf.check("TESTS_GENERAL_PARAMETERS")) {
-            OCRA_WARNING("Group of options TESTS_GENERAL_PARAMETERS was not found, using default parameters _zmpTestType " << _zmpTestType << "_homeDataDir: " << _homeDataDir);
-            _zmpTestType = ZmpTestType::ZMP_VARYING_REFERENCE;
-            _homeDataDir = "/home/";
-    } else {
-            yarp::os::Property testsGeneralParamsGroup;
-            testsGeneralParamsGroup.fromString(rf.findGroup("TESTS_GENERAL_PARAMETERS").tail().toString());
-            _zmpTestType = (ZmpTestType) testsGeneralParamsGroup.find("type").asInt();
-            _homeDataDir = testsGeneralParamsGroup.find("homeDataDir").asString();
-            OCRA_INFO(">> [TESTS_GENERAL_PARAMETERS]: \n " << testsGeneralParamsGroup.toString().c_str());
-    }
-
+    findGeneralTestsParams(rf);
     // Find COM_LIN_VEL_CONSTANT_REFERENCE
-    if (!rf.check("COM_LIN_VEL_CONSTANT_REFERENCE")) {
-        OCRA_WARNING("Group COM_LIN_VEL_CONSTANT_REFERENCE was not found, using default parameters comYConstVel=0.01, stopTimeConstComVel 2");
-        _comYConstVel = 0.01;
-        _stopTimeConstComVel = 2;
-    } else {
-        yarp::os::Property comLinVelConstantReferenceGroup;
-        comLinVelConstantReferenceGroup.fromString(rf.findGroup("COM_LIN_VEL_CONSTANT_REFERENCE").tail().toString());
-        _comYConstVel = comLinVelConstantReferenceGroup.find("comYConstVel").asDouble();
-        _stopTimeConstComVel = comLinVelConstantReferenceGroup.find("stopTimeConstComVel").asDouble();
-        OCRA_INFO(">> [COM_LIN_VEL_CONSTANT_REFERENCE]: \n " << comLinVelConstantReferenceGroup.toString().c_str());
-    }
-
+    findCOMLinVelConstRefParams(rf);
     // Find ZMP_CONSTANT_REFERENCE group
-    if (!rf.check("ZMP_CONSTANT_REFERENCE")) {
-        OCRA_WARNING("Group ZMP_CONSTANT_REFERENCE was not found, using default parameters zmpYConstRef=-0.10, stopTimeConstZmp=3");
-        _zmpYConstRef = -0.010;
-        _stopTimeConstZmp = 3;
-    } else {
-        yarp::os::Property zmpConstantReferenceGroup;
-        zmpConstantReferenceGroup.fromString(rf.findGroup("ZMP_CONSTANT_REFERENCE").tail().toString());
-        _zmpYConstRef = zmpConstantReferenceGroup.find("zmpYConstRef").asDouble();
-        _stopTimeConstZmp = zmpConstantReferenceGroup.find("stopTimeConstZmp").asDouble();
-        _riseTimeConstZmp = zmpConstantReferenceGroup.find("riseTime").asDouble();
-        _trajectoryDurationConstZmp = zmpConstantReferenceGroup.find("duration").asDouble();;
-        OCRA_INFO(">> [ZMP_CONSTANT_REFERENCE]: \n " << zmpConstantReferenceGroup.toString().c_str());
-    }
-
+    findZMPConstRefParams(rf);
     // Find single step test parameters
-    if (!rf.check("SINGLE_STEP_TEST")) {
-        OCRA_WARNING("Group SINGLE_STEP_TEST was not found, using default parameters");
-    } else {
-        yarp::os::Property singleStepTestGroup;
-        singleStepTestGroup.fromString(rf.findGroup("SINGLE_STEP_TEST").tail().toString());
-        _singleStepTestParams.totalDuration = singleStepTestGroup.find("totalDuration").asDouble();
-        _singleStepTestParams.offset = singleStepTestGroup.find("offset").asDouble();
-        _singleStepTestParams.SSduration = singleStepTestGroup.find("SSduration").asDouble();
-        _singleStepTestParams.riseTime = singleStepTestGroup.find("riseTime").asDouble();
-        _singleStepTestParams.stepLength = singleStepTestGroup.find("stepLength").asDouble();
-        _singleStepTestParams.stepHeight = singleStepTestGroup.find("stepHeight").asDouble();
-        OCRA_INFO(">> [SINGLE_STEP_TEST]: \n " << singleStepTestGroup.toString().c_str());
-    }
-
+    findSingleStepTestParams(rf);
     // Find single stepping test parameters
     if (!rf.check("STEPPING_TEST")) {
         OCRA_WARNING("Group STEPPING_TEST was not found, using default parameters");
@@ -154,24 +90,10 @@ bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
         _steppingTestParams.stepHeight = steppingTestGroup.find("stepHeight").asDouble();
         OCRA_INFO(">> [STEPPING_TEST]: \n " << steppingTestGroup.toString().c_str());
     }
-
     // Find ZMP_VARYING_REFERENCE
-    if (!rf.check("ZMP_VARYING_REFERENCE")) {
-        OCRA_WARNING("Group ZMP_VARYING_REFERENCE was not found, using default parameters tTrans=3, numberOfTransitions=6, amplitudeFraction=3");
-        _tTrans = 3;
-        _numberOfTransitions = 6;
-        _amplitudeFraction = 3;
-        _stopTimeVaryingZmp = 12;
-    } else {
-        yarp::os::Property zmpVaryingReferenceGroup;
-        zmpVaryingReferenceGroup.fromString(rf.findGroup("ZMP_VARYING_REFERENCE").tail().toString());
-        _tTrans = zmpVaryingReferenceGroup.find("tTrans").asDouble();
-        _numberOfTransitions = zmpVaryingReferenceGroup.find("numberOfTransitions").asInt();
-        _amplitudeFraction = zmpVaryingReferenceGroup.find("amplitudeFraction").asInt();
-        _stopTimeVaryingZmp = zmpVaryingReferenceGroup.find("stopTimeVaryingZmp").asDouble();
-        OCRA_INFO(">> [ZMP_VARYING_REFERENCE]: \n " << zmpVaryingReferenceGroup.toString().c_str());
-    }
-
+    findZMPVaryingReferenceParams(rf);
+    // Find MIQP Parameters
+    findMIQPParams(rf);
 
     return true;
 }
@@ -276,20 +198,13 @@ bool WalkingClient::initialize()
     }
 
     // Start MIQPController thread
-    // First setup the parameters
-    MIQPParameters miqpParams;
-    miqpParams.cz = _zmpPreviewParams->cz;
-    miqpParams.g = 9.8;
-    miqpParams.N = 5;
-    miqpParams.dt = 100;
-    miqpParams.home = _homeDataDir;
     // FIXME: Dummy initial COM states reference which pretty much says, keep the initial COM position.
-    Eigen::MatrixXd comStateRef(100*miqpParams.N, 6);
+    Eigen::MatrixXd comStateRef(100*_miqpParams.N, 6);
     Eigen::VectorXd comRefToReplicate(6); comRefToReplicate << _previousCOM, 0, 0, 0, 0;
-    comStateRef = comRefToReplicate.transpose().replicate(100*miqpParams.N,1);
-    OCRA_INFO(">>> FIRST REFS: \n"); OCRA_INFO(comStateRef.block(0,0,5,6));
+    comStateRef = comRefToReplicate.transpose().replicate(100*_miqpParams.N,1);
+    OCRA_INFO(">>> FIRST REFS: \n");
+    OCRA_INFO(comStateRef.block(0,0,5,6));
     if (_testType.compare("steppingTest")) {
-        // FIXME: For now hardcoding 100ms period
         _miqpController = std::make_shared<MIQPController>(miqpParams, this->model, this->_stepController, comStateRef);
         _miqpController->start();
     }
@@ -500,7 +415,7 @@ std::vector<Eigen::Vector2d> WalkingClient::generateZMPTrajectoryTEST(double tTr
         zmpTrajectory.push_back(sineVector);
         t = t + timeStep/1000;
     }
-
+    OCRA_INFO("ZMP Trajectory Generated");
     return zmpTrajectory;
 }
 
@@ -849,4 +764,134 @@ std::string WalkingClient::composePortName(std::string portName) {
     std::string tmp;
     tmp = std::string("/" + _clientName + "/" + portName);
     return tmp;
+}
+
+void WalkingClient::findZMPPreviewControllerParams(yarp::os::ResourceFinder &rf) {
+        if (!rf.check("ZMP_PREVIEW_CONTROLLER_PARAMS")) {
+        OCRA_WARNING("Group of options ZMP_PREVIEW_CONTROLLER_PARAMS was not found, using default parameters Nc=3, nu=, nw=, nb= ");
+    } else {
+        yarp::os::Property zmpPreviewControllerParamsGroup;
+        zmpPreviewControllerParamsGroup.fromString(rf.findGroup("ZMP_PREVIEW_CONTROLLER_PARAMS").tail().toString());
+        _zmpPreviewParams->cz = this->model->getCoMPosition().operator()(2);
+        _zmpPreviewParams->Nc = zmpPreviewControllerParamsGroup.find("Nc").asInt();
+        _zmpPreviewParams->Np = zmpPreviewControllerParamsGroup.find("Np").asInt();
+        _zmpPreviewParams->nw = zmpPreviewControllerParamsGroup.find("nw").asDouble();
+        _zmpPreviewParams->nb = zmpPreviewControllerParamsGroup.find("nb").asDouble();
+        _zmpPreviewParams->nu = zmpPreviewControllerParamsGroup.find("nu").asDouble();
+        OCRA_INFO(">> [ZMP_PREVIEW_CONTROLLER_PARAMS]: \n " << zmpPreviewControllerParamsGroup.toString().c_str() << " cz: " << _zmpPreviewParams->cz);
+    }
+
+    // Create zmpPreviewController object
+   _zmpPreviewController = std::make_shared<ZmpPreviewController>((double) this->getExpectedPeriod(), _zmpPreviewParams);
+}
+
+void WalkingClient::findGeneralTestsParams(yarp::os::ResourceFinder &rf) {
+    if (!rf.check("TESTS_GENERAL_PARAMETERS")) {
+        OCRA_WARNING("Group of options TESTS_GENERAL_PARAMETERS was not found, using default parameters _zmpTestType " << _zmpTestType << "_homeDataDir: " << _homeDataDir);
+        _zmpTestType = ZmpTestType::ZMP_VARYING_REFERENCE;
+        _homeDataDir = "/home/";
+    } else {
+            yarp::os::Property testsGeneralParamsGroup;
+            testsGeneralParamsGroup.fromString(rf.findGroup("TESTS_GENERAL_PARAMETERS").tail().toString());
+            _zmpTestType = (ZmpTestType) testsGeneralParamsGroup.find("type").asInt();
+            _homeDataDir = testsGeneralParamsGroup.find("homeDataDir").asString();
+            OCRA_INFO(">> [TESTS_GENERAL_PARAMETERS]: \n " << testsGeneralParamsGroup.toString().c_str());
+    }
+}
+
+void WalkingClient::findCOMLinVelConstRefParams(yarp::os::ResourceFinder &rf) {
+    if (!rf.check("COM_LIN_VEL_CONSTANT_REFERENCE")) {
+    OCRA_WARNING("Group COM_LIN_VEL_CONSTANT_REFERENCE was not found, using default parameters comYConstVel=0.01, stopTimeConstComVel 2");
+    _comYConstVel = 0.01;
+    _stopTimeConstComVel = 2;
+    } else {
+        yarp::os::Property comLinVelConstantReferenceGroup;
+        comLinVelConstantReferenceGroup.fromString(rf.findGroup("COM_LIN_VEL_CONSTANT_REFERENCE").tail().toString());
+        _comYConstVel = comLinVelConstantReferenceGroup.find("comYConstVel").asDouble();
+        _stopTimeConstComVel = comLinVelConstantReferenceGroup.find("stopTimeConstComVel").asDouble();
+        OCRA_INFO(">> [COM_LIN_VEL_CONSTANT_REFERENCE]: \n " << comLinVelConstantReferenceGroup.toString().c_str());
+    }
+}
+
+void WalkingClient::findZMPConstRefParams(yarp::os::ResourceFinder &rf) {
+    if (!rf.check("ZMP_CONSTANT_REFERENCE")) {
+    OCRA_WARNING("Group ZMP_CONSTANT_REFERENCE was not found, using default parameters zmpYConstRef=-0.10, stopTimeConstZmp=3");
+    _zmpYConstRef = -0.010;
+    _stopTimeConstZmp = 3;
+    } else {
+        yarp::os::Property zmpConstantReferenceGroup;
+        zmpConstantReferenceGroup.fromString(rf.findGroup("ZMP_CONSTANT_REFERENCE").tail().toString());
+        _zmpYConstRef = zmpConstantReferenceGroup.find("zmpYConstRef").asDouble();
+        _stopTimeConstZmp = zmpConstantReferenceGroup.find("stopTimeConstZmp").asDouble();
+        _riseTimeConstZmp = zmpConstantReferenceGroup.find("riseTime").asDouble();
+        _trajectoryDurationConstZmp = zmpConstantReferenceGroup.find("duration").asDouble();;
+        OCRA_INFO(">> [ZMP_CONSTANT_REFERENCE]: \n " << zmpConstantReferenceGroup.toString().c_str());
+    }
+}
+
+void WalkingClient::findSingleStepTestParams(yarp::os::ResourceFinder &rf) {
+        if (!rf.check("SINGLE_STEP_TEST")) {
+        OCRA_WARNING("Group SINGLE_STEP_TEST was not found, using default parameters");
+    } else {
+        yarp::os::Property singleStepTestGroup;
+        singleStepTestGroup.fromString(rf.findGroup("SINGLE_STEP_TEST").tail().toString());
+        _singleStepTestParams.totalDuration = singleStepTestGroup.find("totalDuration").asDouble();
+        _singleStepTestParams.offset = singleStepTestGroup.find("offset").asDouble();
+        _singleStepTestParams.SSduration = singleStepTestGroup.find("SSduration").asDouble();
+        _singleStepTestParams.riseTime = singleStepTestGroup.find("riseTime").asDouble();
+        _singleStepTestParams.stepLength = singleStepTestGroup.find("stepLength").asDouble();
+        _singleStepTestParams.stepHeight = singleStepTestGroup.find("stepHeight").asDouble();
+        OCRA_INFO(">> [SINGLE_STEP_TEST]: \n " << singleStepTestGroup.toString().c_str());
+    }
+}
+
+void WalkingClient::findZMPVaryingReferenceParams(yarp::os::ResourceFinder &rf) {
+        if (!rf.check("ZMP_VARYING_REFERENCE")) {
+        OCRA_WARNING("Group ZMP_VARYING_REFERENCE was not found, using default parameters tTrans=3, numberOfTransitions=6, amplitudeFraction=3");
+        _tTrans = 3;
+        _numberOfTransitions = 6;
+        _amplitudeFraction = 3;
+        _stopTimeVaryingZmp = 12;
+    } else {
+        yarp::os::Property zmpVaryingReferenceGroup;
+        zmpVaryingReferenceGroup.fromString(rf.findGroup("ZMP_VARYING_REFERENCE").tail().toString());
+        _tTrans = zmpVaryingReferenceGroup.find("tTrans").asDouble();
+        _numberOfTransitions = zmpVaryingReferenceGroup.find("numberOfTransitions").asInt();
+        _amplitudeFraction = zmpVaryingReferenceGroup.find("amplitudeFraction").asInt();
+        _stopTimeVaryingZmp = zmpVaryingReferenceGroup.find("stopTimeVaryingZmp").asDouble();
+        OCRA_INFO(">> [ZMP_VARYING_REFERENCE]: \n " << zmpVaryingReferenceGroup.toString().c_str());
+    }
+}
+
+void WalkingClient::findMIQPParams(yarp::os::ResourceFinder &rf) {
+        if (!rf.check("MIQP_CONTROLLER_PARAMS")) {
+        OCRA_ERROR("No parameters have been specified for the MIQP controller");
+    } else {
+        yarp::os::Property miqpParamsGroup;
+        miqpParamsGroup.fromString(rf.findGroup("MIQP_CONTROLLER_PARAMS").tail().toString());
+        _miqpParams.cz = this->model->getCoMPosition().operator()(2);
+        _miqpParams.dt = (unsigned int) miqpParamsGroup.find("dt").asInt();
+        _miqpParams.g = miqpParamsGroup.find("g").asDouble();
+        _miqpParams.home = _homeDataDir; // This is actually in the TESTS_GENERAL_PARAMETERS group
+        _miqpParams.N = miqpParamsGroup.find("N").asInt();
+        _miqpParams.sx_constancy = miqpParamsGroup.find("sx_constancy").asDouble();
+        _miqpParams.sy_constancy = miqpParamsGroup.find("sy_constancy").asDouble();
+        _miqpParams.sx_ss = miqpParamsGroup.find("sx_ss").asDouble();
+        _miqpParams.sy_ss = miqpParamsGroup.find("sy_ss").asDouble();
+        _miqpParams.hx_ref = miqpParamsGroup.find("hx_ref").asDouble();
+        _miqpParams.hy_ref = miqpParamsGroup.find("hy_ref").asDouble();
+        _miqpParams.dhx_ref = miqpParamsGroup.find("dhx_ref").asDouble();
+        _miqpParams.dhy_ref = miqpParamsGroup.find("dhy_ref").asDouble();
+        _miqpParams.ddhx_ref = miqpParamsGroup.find("ddhx_ref").asDouble();
+        _miqpParams.ddhy_ref =miqpParamsGroup.find("ddhy_ref").asDouble();
+        _miqpParams.ww = miqpParamsGroup.find("ww").asDouble();
+        _miqpParams.wb = miqpParamsGroup.find("wb").asDouble();
+        _miqpParams.wu = miqpParamsGroup.find("wu").asDouble();
+        _miqpParams.shapeConstraints = miqpParamsGroup.find("shapeConstraints").asBool();
+        _miqpParams.admissibilityConstraints = miqpParamsGroup.find("admissibilityConstraints").asBool();
+        _miqpParams.copConstraints = miqpParamsGroup.find("copConstraints").asBool();
+        _miqpParams.walkingConstraints = miqpParamsGroup.find("walkingConstraints").asBool();
+        _miqpParams.addRegularization = miqpParamsGroup.find("addRegularization").asBool();
+         OCRA_INFO(">> [MIQP_CONTROLLER_PARAMS in config file]: \n " << miqpParamsGroup.toString().c_str());
+    }
 }

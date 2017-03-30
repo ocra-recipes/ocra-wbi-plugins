@@ -19,7 +19,7 @@ void Constancy::buildMatrixCi() {
             0,  1,  0,  0, zero12.transpose(),
             0,  0,  0, -1, zero12.transpose(),
             0,  0,  0,  1, zero12.transpose();
-    OCRA_WARNING("Ci built for Constancy");
+    OCRA_INFO("Ci built for Constancy");
 }
 
 void Constancy::buildMatrixCii() {
@@ -36,11 +36,11 @@ void Constancy::buildMatrixCii() {
             0,  0,  0,  1,   0,   0,   0, -sy, zero8.transpose(),
             0,  0,  0, -1,   0,   0,   0, -sy, zero8.transpose();
             
-    OCRA_WARNING("Cii built for Constancy");
+    OCRA_INFO("Cii built for Constancy");
 }
 
 void Constancy::buildVectord() {
     _d.resize(_Ci.rows());
     _d.setZero();
-    OCRA_WARNING("d built for Constancy");
+    OCRA_INFO("d built for Constancy");
 }

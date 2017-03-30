@@ -1,25 +1,23 @@
 #include "walking-client/constraints/MIQPLinearConstraints.h"
 
 MIQPLinearConstraints::MIQPLinearConstraints(std::shared_ptr<StepController> stepController,
-                                             MIQPParameters miqpParams,
-                                             bool addShapeCtrs, 
-                                             bool addAdmissibilityCtrs,
-                                             bool addCoPConstraints,
-                                             bool addWalkingCtrs):
+                                             MIQPParameters &miqpParams):
 _dt(miqpParams.dt),
 _N(miqpParams.N),
 _miqpParams(miqpParams),
 _stepController(stepController),
-_addShapeCtrs(addShapeCtrs), 
-_addAdmissibilityCtrs(addAdmissibilityCtrs),
-_addCoPConstraints(addCoPConstraints),
-_addWalkingCtrs(addWalkingCtrs)
+_addShapeCtrs(miqpParams.shapeConstraints), 
+_addAdmissibilityCtrs(miqpParams.admissibilityConstraints),
+_addCoPConstraints(miqpParams.copConstraints),
+_addWalkingCtrs(miqpParams.walkingConstraints)
  {
     if (_addShapeCtrs) {
+        OCRA_WARNING("This MIQP Controller will add Shape Constraints");
         _shapeCnstr = std::make_shared<ShapeConstraints>();
         _shapeCnstr->init();    
     }
     if (_addAdmissibilityCtrs) {
+        OCRA_WARNING("This MIQP Controller will add Admissibility Constraints");
         _admissibilityCnstr = std::make_shared<AdmissibilityConstraints>();
         _admissibilityCnstr->init();
     }
@@ -39,9 +37,10 @@ _addWalkingCtrs(addWalkingCtrs)
     // Now stack in _A the previous constraints matrices. 
     // If also CoP constraints are added, we need to resize A with the total number of constraints times the size of the input vector \mathcal{X}
      if(_addCoPConstraints) {
+         OCRA_WARNING("This MIQP Controller will add CoP Constraints");
          // FIXME: Get the hardcoded 14*miqpParams from Base of Support class. Something like getnConstraints(). Also add to nConstraints those added by baseOfSupport
          Eigen::MatrixXd ACoP(14*_N, _T.cols()*_N); 
-         OCRA_WARNING("ACoP has size: " << ACoP.rows() << "x" << ACoP.cols());
+         OCRA_INFO("ACoP has size: " << ACoP.rows() << "x" << ACoP.cols());
          _baseOfSupport->getA(ACoP);
          _A.resize(_AShapeAdmiss.rows() + ACoP.rows(), _AShapeAdmiss.cols());
          _A.block(0,0,_AShapeAdmiss.rows(), _AShapeAdmiss.cols()) = _AShapeAdmiss;
@@ -75,17 +74,17 @@ void MIQPLinearConstraints::setMatrixAcr() {
     if(_addShapeCtrs && _addAdmissibilityCtrs) {
         _Acr.resize(_shapeCnstr->getCii().rows() + _admissibilityCnstr->getCii().rows(), _shapeCnstr->getCii().cols());
         this->_Acr << _shapeCnstr->getCii(), _admissibilityCnstr->getCii();
-        OCRA_WARNING("Built Acr for Shape and Admissiblity Constraints");
+        OCRA_INFO("Built Acr for Shape and Admissiblity Constraints");
     }
     if(_addShapeCtrs && !_addAdmissibilityCtrs) {
         _Acr.resize(_shapeCnstr->getCii().rows(), _shapeCnstr->getCii().cols());
         this->_Acr << _shapeCnstr->getCii();
-        OCRA_WARNING("Built Acr for Shape Constraints only");
+        OCRA_INFO("Built Acr for Shape Constraints only");
     }
     if(!_addShapeCtrs && _addAdmissibilityCtrs) {
         _Acr.resize(_admissibilityCnstr->getCii().rows(), _admissibilityCnstr->getCii().cols());
         this->_Acr << _admissibilityCnstr->getCii();
-        OCRA_WARNING("Built Acr for Admissibility Constraints only");
+        OCRA_INFO("Built Acr for Admissibility Constraints only");
     }
 }
 
@@ -93,17 +92,17 @@ void MIQPLinearConstraints::setMatrixAcl() {
     if(_addShapeCtrs && _addAdmissibilityCtrs) {
         _Acl.resize(_shapeCnstr->getCi().rows() + _admissibilityCnstr->getCi().rows(), _shapeCnstr->getCi().cols());
         this->_Acl << _shapeCnstr->getCi(), _admissibilityCnstr->getCi();
-        OCRA_WARNING("Built Acl for Shape and Admissiblity Constraints");
+        OCRA_INFO("Built Acl for Shape and Admissiblity Constraints");
     }
     if(_addShapeCtrs && !_addAdmissibilityCtrs) {
         _Acl.resize(_shapeCnstr->getCi().rows(), _shapeCnstr->getCi().cols());
         this->_Acl << _shapeCnstr->getCi();
-        OCRA_WARNING("Built Acl for Shape Constraints only");
+        OCRA_INFO("Built Acl for Shape Constraints only");
     }
     if(!_addShapeCtrs && _addAdmissibilityCtrs) {
         _Acl.resize(_admissibilityCnstr->getCi().rows(), _admissibilityCnstr->getCi().cols());
         this->_Acl << _admissibilityCnstr->getCi();
-        OCRA_WARNING("Built Acl for Admissibility Constraints only");
+        OCRA_INFO("Built Acl for Admissibility Constraints only");
     }
 }
 
@@ -160,12 +159,9 @@ void MIQPLinearConstraints::buildShapeAndAdmissibilityInPreviewWindow(){
     buildFcBarShapeAdmiss();
     
     // Update the total number of constraints
-    // FIXME: Make this incremental since CoP and walking constraints should increment this value
     _nConstraints += _AShapeAdmiss.rows();
     // Update matrix A
     // TODO: When walking constraints are added, this will be a stack of the two
-    // FIXME: Move this assignment to another method that stacks all the constraints as _A.
-//    _A = _AShapeAdmiss;
 }
 
 void MIQPLinearConstraints::buildAShapeAdmiss() {

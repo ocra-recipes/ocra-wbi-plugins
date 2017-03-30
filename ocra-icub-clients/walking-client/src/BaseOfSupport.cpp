@@ -36,7 +36,7 @@ void BaseOfSupport::buildb(const Eigen::Matrix2d& minMaxBoundingBox) {
            minMaxBoundingBox(1,0),
           -minMaxBoundingBox(0,1),
            minMaxBoundingBox(1,1);
-    OCRA_WARNING("Built b");
+    OCRA_INFO("Built b");
 }
    
 void BaseOfSupport::buildCp(double cz, double g) {
@@ -72,7 +72,7 @@ void BaseOfSupport::buildB(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q){
     for (unsigned int i=0; i < _miqpParams.N; i++) {
         _B.block(i*Ci.rows(), 0, Ci.rows(), _Q.cols()) = Ci*_Q.pow(i+1);
     }
-    OCRA_WARNING("Built B");
+    OCRA_INFO("Built B");
 }
 
 void BaseOfSupport::buildA(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q, const Eigen::MatrixXd& T){
@@ -87,7 +87,7 @@ void BaseOfSupport::buildA(const Eigen::MatrixXd& Ci, const Eigen::MatrixXd& Q, 
         _A.block(j*Ci.rows(), j*T.cols(), Ci.rows()*(_miqpParams.N-j), T.cols()) = AColumn.topRows((_miqpParams.N-j)*Ci.rows());
         j=j+1;
     }
-    OCRA_WARNING("Built A");
+    OCRA_INFO("Built A");
 }
 
 bool BaseOfSupport::update(const Eigen::VectorXd& xi_k) {
@@ -145,7 +145,7 @@ void BaseOfSupport::getA(Eigen::MatrixXd &output) {
         OCRA_ERROR("Malformed constraint matrix container A. It should have size: " << _A.rows() << "x" << _A.cols());
     
     output = _A;
-    OCRA_WARNING("Built A");
+    OCRA_INFO("Built A");
 }
 
 void BaseOfSupport::getrhs(Eigen::VectorXd &output) {

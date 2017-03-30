@@ -165,14 +165,9 @@ public:
      * @todo Once I add walking constraints this will change to include the rows added by walking constraints
      * @param[in] stepController Pointer to StepController object which is instantiated by the hosting client.
      * @param[in] miqpParams Container of the MIQP parameters. 
-     * @param[in] addShapeCtrs Boolean indicating whether shape constraints are added to the problem.
-     * @param[in] addAdmissibilityCtrs Boolean indicating whether admissibility constraints are added to the problem.
-     * @param[in] addCoPConstraints Boolean indicating whether CoP constraints are added to the problem.
-     * @param[in] addWalkingCtrs Boolean indicating whether walking constraints are added to the problem.
      * 
-     * @todo Handle the booleans in a different form. This is sort of ugly.
      */
-    MIQPLinearConstraints(std::shared_ptr<StepController> stepController, MIQPParameters miqpParams, bool addShapeCtrs=true, bool addAdmissibilityCtrs=true, bool addCoPConstraints=false, bool addWalkingCtrs=false);
+    MIQPLinearConstraints(std::shared_ptr<StepController> stepController, MIQPParameters &miqpParams);
     
     /**
      * Default destructor

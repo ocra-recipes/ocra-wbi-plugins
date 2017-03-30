@@ -16,17 +16,17 @@ void ContactConfigEnforcement::buildMatrixCi(){
           zero4.transpose(), -1,  0,  0,  1, -1, zero7.transpose(),
           zero4.transpose(),  0, -1,  1,  0, -1, zero7.transpose(),
           zero4.transpose(),  0,  1, -1,  0, -1, zero7.transpose();
-    OCRA_WARNING("Ci built for ContactConfigEnforcement");
+    OCRA_INFO("Ci built for ContactConfigEnforcement");
 }
 
 void ContactConfigEnforcement::buildMatrixCii(){
     _Cii.resize(_Ci.rows(), _Ci.cols());
     _Cii.setZero();
-    OCRA_WARNING("Cii built for ContactConfigEnforcement");
+    OCRA_INFO("Cii built for ContactConfigEnforcement");
 }
 
 void ContactConfigEnforcement::buildVectord(){
     _d.resize(_Ci.rows());
     _d << 1, 1, 1, 1, 0, 0, 0, 0;
-    OCRA_WARNING("d built for ContactConfigEnforcement");
+    OCRA_INFO("d built for ContactConfigEnforcement");
 }

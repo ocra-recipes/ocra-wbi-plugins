@@ -8,6 +8,7 @@ _stepController(stepController),
 _miqpParams(params),
 _comStateRef(comStateRef),
 _period(params.dt),
+_addRegularization(_miqpParams.addRegularization),
 _lb(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
 _ub(Eigen::VectorXd(INPUT_VECTOR_SIZE*_miqpParams.N)),
 _xi_k(Eigen::VectorXd(STATE_VECTOR_SIZE)),
@@ -42,9 +43,12 @@ _H_N_r(6*_miqpParams.N)
     buildPreviewInputMatrix(_C_H, _R_H);
     buildPreviewInputMatrix(_C_P, _R_P);
     buildPreviewInputMatrix(_C_B, _R_B);
-    buildSw(_Sw);
-    buildNb(_Nb);
-    buildNx(_Nx);
+    buildSw(_Sw, _miqpParams );
+    buildNb(_Nb, _miqpParams.wb);
+    if (_addRegularization)
+        buildRegularizationTerms(_miqpParams);
+    else
+        buildNx(_Nx);
     buildH_N(_H_N);
 
 //     OCRA_WARNING("Built Ah");
@@ -112,8 +116,8 @@ bool MIQPController::threadInit() {
     setLowerAndUpperBounds();
 
     // Instantiate MIQPLinearConstraints object and update constraints matrix _Aineq
-    // FIXME: For now TESTING only with shape, admissibility and cop constraints!! Don't forget to add walking constraints.
-    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams, true, true, true, false);
+    // FIXME: Missing walking constraints.
+    _constraints = std::make_shared<MIQPLinearConstraints>(_stepController, _miqpParams);
     _Aineq.resize(_constraints->getTotalNumberOfConstraints(),  INPUT_VECTOR_SIZE * _miqpParams.N );
     _constraints->getConstraintsMatrixA(_Aineq);
 
@@ -145,7 +149,6 @@ bool MIQPController::threadInit() {
 }
 
 void MIQPController::threadRelease() {
-//    delete _env;
 }
 
 void MIQPController::run() {
@@ -157,7 +160,6 @@ void MIQPController::run() {
     // (also depends on a history of states when walking constraints are included).
     _constraints->updateRHS(_xi_k);
     _constraints->getRHS(_Bineq);
-//    OCRA_WARNING("RHS Retrieved");
 
     // Updates RHS of equality constraints. For now, contains only Simultaneity
     updateEqualityConstraints(_xi_k, _Beq);
@@ -169,7 +171,6 @@ void MIQPController::run() {
     // TODO: Watch out! _eigGurobi will add a 1/2. Therefore the 2. Check that this is correct.
     // FIXME: The expression for _H_N only includes jerk regularization terms
     _eigGurobi.solve(2*_H_N, _linearTermTransObjFunc, _Aeq, _Beq, _Aineq, _Bineq, _lb, _ub);
-//     _eigGurobi.inform();
 
     // Get the solution
     _X_kn = _eigGurobi.result();
@@ -184,6 +185,12 @@ void MIQPController::run() {
     std::string home = std::string(_miqpParams.home + "MIQP/");
     writeToFile(0.100*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
     _k++;
+    // Write the first solution in the WHOLE preview horizon
+    // FIXME: This is simply a test done in open loop to see if the solution makes sense in the first preview window.
+    if (_k==1) {
+        for (unsigned int i = 0; i <= _miqpParams.N-1; i++)
+            ocra::utils::writeInFile(_X_kn.segment(i*INPUT_VECTOR_SIZE,INPUT_VECTOR_SIZE), std::string(home+"solutionInPreview.txt"),true);
+    }
 }
 
 void MIQPController::writeToFile(const double& time, const Eigen::VectorXd& X_kn, std::string& home) {
@@ -246,8 +253,15 @@ void MIQPController::setLinearPartObjectiveFunction() {
      Eigen::VectorXd b = 2*((_P_P - _P_B)*_xi_k).transpose();
      Eigen::VectorXd c = b*_Nb;
      Eigen::MatrixXd d = (_R_P - _R_B);
-//    OCRA_WARNING("Set Linear Part of the Obj Function");
     _linearTermTransObjFunc = a + (c*d);
+    
+    if(_addRegularization) {
+        // Avoid resting on one foot
+        Eigen::VectorXd e = 2*(_P_Gamma*_xi_k - _One_Gamma).transpose()*_R_Gamma;
+        // Minimize stepping
+        Eigen::VectorXd f = 2*_xi_k.transpose()*(_P_Alpha.transpose()*_R_Alpha + _P_Beta.transpose()*_R_Beta);
+        _linearTermTransObjFunc += e + f;
+    }
 }
 
 void MIQPController::buildAh(int dt, Eigen::MatrixXd &Ah) {
@@ -269,7 +283,6 @@ void MIQPController::buildQ(Eigen::MatrixXd &Q) {
     Q.setZero();
     _Q.block(10,10,_Ah.rows(),_Ah.cols()) = _Ah;
     OCRA_WARNING("Built Q");
-    std::cout << Q << std::endl;
 }
 
 void MIQPController::buildT(Eigen::MatrixXd &T) {
@@ -277,7 +290,6 @@ void MIQPController::buildT(Eigen::MatrixXd &T) {
     T.block(0,0,10,10) = Eigen::MatrixXd::Identity(10, 10);
     T.block(10,10,6,2) = _Bh;
     OCRA_WARNING("Built T");
-    std::cout << T << std::endl;
 }
 
 void MIQPController::buildC_H(Eigen::MatrixXd &C_H) {
@@ -302,14 +314,42 @@ void MIQPController::buildC_B(Eigen::MatrixXd &C_B) {
 
 void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
     H_N = Eigen::MatrixXd(_miqpParams.N*INPUT_VECTOR_SIZE, _miqpParams.N*INPUT_VECTOR_SIZE);
-//     OCRA_INFO("[ " << _R_H.cols() << " x " << _R_H.rows() << " x " << " " << _Sw.rows() << " x " << _Sw.cols())
-    H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B) + _Nx;
-//    OCRA_WARNING("Built H_N");
+    H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B); // + _Nx;
+   OCRA_WARNING("Built H_N");
+    if (_miqpParams.addRegularization) {
+        // Avoid resting on one foot
+        H_N.noalias() += _R_Gamma.transpose()*_R_Gamma;
+        // CoM Jerk Regularization
+        H_N.noalias() += _S_wu;
+        // Minimize stepping
+        H_N.noalias() += _R_Alpha.transpose()*_R_Alpha + _R_Beta.transpose()*_R_Beta;
+        // Dummy regularization on delta
+        Eigen::MatrixXd Reg_Delta;
+        // FIXME: Get from config file. Temporary, while we add walking constraints
+        double deltaRegWeight = 1e-3;
+        buildGenericRegMat(MIQP::DELTA_IN, deltaRegWeight, Reg_Delta);
+        // TODO: Add RegDelta to cost
+        H_N.noalias() += Reg_Delta;
+    } else {
+        // Regularize everything with a diagonal matrix of ones
+        H_N.noalias() += _Nx;
+    }
 }
 
-void MIQPController::buildNb(Eigen::MatrixXd &Nb) {
-    Nb = Eigen::MatrixXd::Identity(2*_miqpParams.N, 2*_miqpParams.N);
-//    OCRA_WARNING("Built Nb");
+void MIQPController::buildGenericRegMat(MIQP::InputVectorIndex whichVariable, double weight, Eigen::MatrixXd& output)
+{
+    if (output.rows() != INPUT_VECTOR_SIZE*_miqpParams.N || output.cols() != INPUT_VECTOR_SIZE*_miqpParams.N)
+        output.resize(INPUT_VECTOR_SIZE*_miqpParams.N, INPUT_VECTOR_SIZE*_miqpParams.N);        
+    Eigen::VectorXd vecToRepeat(INPUT_VECTOR_SIZE);
+    vecToRepeat.setZero();
+    vecToRepeat(whichVariable) = pow(weight,2);
+    Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
+    output = diagonal.asDiagonal();
+}
+
+void MIQPController::buildNb(Eigen::MatrixXd &Nb, double wb) {
+    Nb = wb*Eigen::MatrixXd::Identity(2*_miqpParams.N, 2*_miqpParams.N);
+    OCRA_WARNING("Built Nb");
 }
 
 void MIQPController::buildNx(Eigen::MatrixXd &Nx) {
@@ -324,17 +364,23 @@ void MIQPController::buildNx(Eigen::MatrixXd &Nx) {
     Nx = diagonal.asDiagonal();
 }
 
-void MIQPController::buildSw(Eigen::MatrixXd &Sw) {
-    // FIXME: For the time being this is hardcoded to use the com velocity references only
+void MIQPController::buildSw(Eigen::MatrixXd &Sw, MIQPParameters miqpParams) {
     // Create the diagonal as a vector
-    OCRA_INFO("Initial size of Sw: " << Sw.rows() << ", " << Sw.cols());
-    Eigen::VectorXd vecToRepeat(6); vecToRepeat << 0, 0, 1, 1, 0, 0;
+    double ww = miqpParams.ww;
+    double hx_ref = ww*miqpParams.hx_ref;
+    double hy_ref = ww*miqpParams.hy_ref;
+    double dhx_ref = ww*miqpParams.dhx_ref;
+    double dhy_ref = ww*miqpParams.dhy_ref;
+    double ddhx_ref = ww*miqpParams.ddhx_ref;
+    double ddhy_ref = ww*miqpParams.ddhy_ref;
+
+    Eigen::VectorXd vecToRepeat(6); vecToRepeat << hx_ref, hy_ref, dhx_ref, dhy_ref, ddhx_ref, ddhy_ref;
+    vecToRepeat = vecToRepeat;
     // Replicate
     Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
     // Transform into diagonal matrix
     Sw = diagonal.asDiagonal();
-//     Sw = Eigen::MatrixXd::Identity(6*_miqpParams.N, 6*_miqpParams.N);
-//    OCRA_WARNING("Built Sw");
+    OCRA_WARNING("Built Sw");
 }
 
 
@@ -395,4 +441,66 @@ void MIQPController::buildEqualityConstraintsMatrices(const Eigen::VectorXd &x_k
 void MIQPController::updateEqualityConstraints(const Eigen::VectorXd &x_k, Eigen::VectorXd &Beq) {
     // Build RHS
     _Beq = _fcbar_eq - _rhs_2_eq*x_k;
+}
+
+void MIQPController::buildRegularizationTerms(MIQPParameters &miqpParams) {
+    // CoM Jerk Regularization
+    buildCoMJerkReg(miqpParams);
+    // One Foot Rest Avoidance
+    buildAvoidOneFootRestReg(miqpParams);   
+    // Minimize Stepping
+    buildMinimizeSteppingReg(miqpParams);
+}
+
+void MIQPController::buildCoMJerkReg(MIQPParameters &miqpParams) {
+    // Build Sw_u
+    _S_wu.resize(INPUT_VECTOR_SIZE*miqpParams.N, INPUT_VECTOR_SIZE*miqpParams.N);
+    
+    Eigen::VectorXd vecToRepeat(INPUT_VECTOR_SIZE);
+    double weight = std::pow(miqpParams.wu,2);
+    vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,0)).finished(), weight, weight;
+    // replicate over the preview window
+    Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
+    // Transform into diagonal matrix
+    _S_wu = diagonal.asDiagonal();
+}
+
+void MIQPController::buildAvoidOneFootRestReg(MIQPParameters &miqpParams) {
+    // Build quadratic coefficients
+    // Build S_Gamma
+    _S_gamma.resize(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
+    _S_gamma.setZero();
+    _S_gamma(10,10) = 1;
+    _P_Gamma.resize(_S_gamma.rows()*miqpParams.N, _Q.cols());
+    _R_Gamma.resize(_S_gamma.rows()*miqpParams.N, _T.cols()*miqpParams.N);
+    _One_Gamma.resize(_P_Gamma.rows());
+    _One_Gamma.setOnes();
+    // Build Preview State Matrix
+    buildPreviewStateMatrix(_S_gamma, _P_Gamma);
+    // Build Input State Matrix
+    buildPreviewInputMatrix(_S_gamma, _R_Gamma);
+    OCRA_ERROR("Built Reg Terms to avoid resting on one foot");
+}
+
+void MIQPController::buildMinimizeSteppingReg(MIQPParameters &miqpParams) {
+    _S_alpha.resize(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
+    _S_alpha.setZero();
+    _S_alpha(5,5) = 1;
+    _S_alpha(6,6) = 1;
+    
+    _S_beta.resize(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
+    _S_beta.setZero();
+    _S_beta(7,7) = 1;
+    _S_beta(8,8) = 1;
+    
+    _P_Alpha.resize(_S_alpha.rows()*miqpParams.N, _Q.cols());
+    _P_Beta.resize(_S_beta.rows()*miqpParams.N, _Q.cols());
+    _R_Alpha.resize(_S_alpha.rows()*miqpParams.N,_T.cols()*miqpParams.N); 
+    _R_Beta.resize(_S_beta.rows()*miqpParams.N,_T.cols()*miqpParams.N);
+    
+    // Build Preview State and Input Matrices
+    buildPreviewStateMatrix(_S_alpha, _P_Alpha);
+    buildPreviewStateMatrix(_S_beta, _P_Beta);
+    buildPreviewInputMatrix(_S_alpha, _R_Alpha);
+    buildPreviewInputMatrix(_S_beta, _R_Beta);
 }

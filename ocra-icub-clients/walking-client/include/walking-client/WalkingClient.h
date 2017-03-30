@@ -143,6 +143,13 @@ public:
      */
     std::string composePortName(std::string portName);
 
+    void findZMPPreviewControllerParams(yarp::os::ResourceFinder &rf);
+    void findGeneralTestsParams(yarp::os::ResourceFinder &rf);
+    void findCOMLinVelConstRefParams(yarp::os::ResourceFinder &rf);
+    void findZMPConstRefParams(yarp::os::ResourceFinder &rf);
+    void findSingleStepTestParams(yarp::os::ResourceFinder &rf);
+    void findZMPVaryingReferenceParams(yarp::os::ResourceFinder &rf);
+    void findMIQPParams(yarp::os::ResourceFinder &rf);
 
     /**
      Takes an std::Vector of ZMP trajectories at time \f$k\f$ and outputs the ZMP samples from time \f$k\f$ until \f$k + N_c\f$s, i.e. the ZMP preview window.
@@ -225,6 +232,7 @@ private:
     std::vector<Eigen::Vector2d> _zmpTrajectory;
     std::vector<Eigen::Vector2d> _singleStepTrajectory;
     ocra::TaskState _desiredComState;
+    MIQPParameters _miqpParams;
     Eigen::VectorXd _rawLeftFootWrench;
     Eigen::VectorXd _rawRightFootWrench;
     Eigen::Vector2d _globalZMP;
