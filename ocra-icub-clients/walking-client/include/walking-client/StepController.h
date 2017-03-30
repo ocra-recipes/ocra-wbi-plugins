@@ -47,14 +47,31 @@ public:
 
     
     bool doStepWithMaxVelocity(FOOT foot, Eigen::Vector3d target, double stepHeight);
-    
+
+    /**
+     *  Make a step with foot with a specific duration with a specific height.
+     *
+     *  @param foot LEFT_FOOT or RIGHT_FOOT.
+     *  @param target x,y,z location of where the foot should land.
+     *  @param duration How long the step should take.
+     *  @param stepHeight How high the foot should lift.
+     */
+    void step(FOOT foot, Eigen::Vector3d target, double stepDuration, double stepHeight);
+
+    /**
+     *  Checks if the step has reached it's target locations and if this is true then re-activates the foot contacts.
+     *
+     *  @param foot LEFT_FOOT or RIGHT_FOOT (whichever is stepping currently)
+     */
+    bool isStepFinished(FOOT foot);
+
     /**
      *  Retrieves the 3D position of the "l_sole" frame from the iCub model.
      *
      *  @return 3D position of the left foot.
      */
     Eigen::Vector3d getLeftFootPosition();
-    
+
     /**
      *  Retrieves the 3D position of the "r_sole" frame from the iCub model.
      *
