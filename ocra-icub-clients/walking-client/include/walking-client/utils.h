@@ -14,7 +14,8 @@ enum ZmpTestType {
     ZMP_CONSTANT_REFERENCE=0, /*Constant zmp reference (step setpoint). Can be specified through config file with value 0.*/
     ZMP_VARYING_REFERENCE, /*Sinusoidal zmp reference. The parameters can be specified through config file with value 1.*/
     COM_LIN_VEL_CONSTANT_REFERENCE, /*Constant COM linear velocity. The zmp controller does nothing. Used to tuned the com task level gains.*/
-    SINGLE_STEP /* Performs one single step with the right foot using also the zmp preview controller */
+    SINGLE_STEP, /* Performs one single step with the right foot using also the zmp preview controller */
+    STEPPING_TEST /* Performs one single step with the right foot using also the zmp preview controller */
 };
 
 struct singleStepTestParams {
@@ -22,6 +23,13 @@ struct singleStepTestParams {
     double offset;
     double SSduration;
     double riseTime;
+    double stepLength;
+    double stepHeight;
+};
+
+struct steppingTestParams {
+    int    nSteps;
+    double stepDuration;
     double stepLength;
     double stepHeight;
 };
