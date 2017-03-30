@@ -6,7 +6,7 @@ MIQPState::MIQPState(ocra::Model::Ptr robotModel):
 _xi_k(Eigen::VectorXd(STATE_VECTOR_SIZE)),
 _hk(Eigen::VectorXd(6)),
 _robotModel(robotModel),
-_robot("icubGazeboSim"),
+_robot("icubSim"),
 _delta(1)
 {
     initialize();

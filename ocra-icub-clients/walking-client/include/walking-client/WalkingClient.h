@@ -31,7 +31,7 @@ public:
     *              1 - ZMP_VARYING_REFERENCE
     *              2 - COM_LIN_VEL_CONSTANT_REFERENCE
     * Each of these tests are used to evaluate the correct gains to be used at each
-    * level of the control loops. These trajectorie will be used during the tests 
+    * level of the control loops. These trajectorie will be used during the tests
     * specified through the option 'test' which takes the values "zmpPreview" or "zmpController".
     * When using this client for the first time on a robot, the gains of the comTask
     * in its corresponding taskSet file must be tuned first as well and later those
@@ -46,14 +46,14 @@ public:
     * to right, while the robot stands on both feet.
     */
     bool configure(yarp::os::ResourceFinder &rf);
-    
-    
+
+
     /**
      Prints a list of options accepted by the client.
      */
     void printHelp();
 
-    
+
     /**
      Reads the raw wrench published for the corresponding analog force/torque sensors in iCub's feet.
 
@@ -62,7 +62,7 @@ public:
      @return True if reading is successful, false otherwise.
      */
     bool readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench);
-    
+
     yarp::os::BufferedPort<yarp::sig::Vector> portWrenchLeftFoot;
 
     yarp::os::BufferedPort<yarp::sig::Vector> portWrenchRightFoot;
@@ -102,7 +102,7 @@ public:
      *  @return True if writing is successful, false otherwise.
      *
      */
-    
+
     bool publish3dQuantity(yarp::os::BufferedPort<yarp::os::Bottle> &port, Eigen::Vector3d &value);
 
     /**
@@ -112,11 +112,11 @@ public:
      *  @note To be deprecated as the zmp controller became unnecessary.
      */
     void performZMPTest(ZmpTestType type);
-    
+
 
     /**
      Performs a zmpPreviewTest for assessing and tuning of its parameters. This test has been succesfully performed with the iCub platform on Gazebo using the following configuration set in walking-client.ini:
-    
+
          |  Parameter  | Value |
          | ----------: | :-----|
          |         Nc  | 200   |
@@ -143,7 +143,7 @@ public:
      */
     std::string composePortName(std::string portName);
 
-    
+
     /**
      Takes an std::Vector of ZMP trajectories at time \f$k\f$ and outputs the ZMP samples from time \f$k\f$ until \f$k + N_c\f$s, i.e. the ZMP preview window.
 
@@ -153,8 +153,8 @@ public:
      @param output ZMP samples in the preview window.
      */
     void transformStdVectorToEigenVector(std::vector< Eigen::Vector2d >& fullTraj, int from, int Nc, VectorXd& output);
-    
-    
+
+
     /**
      Generates a step-like zmp trajectory for testing/assessment purposes. This assumes a world reference frame with positive x axis pointing forward and positive z axis pointing up.
 
@@ -192,9 +192,9 @@ public:
      @todo Change input to this method to just com acceleration.
      */
     void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet);
-    
-    
-    
+
+
+
 protected:
     /**
      * @todo Dummy initial COM states reference!

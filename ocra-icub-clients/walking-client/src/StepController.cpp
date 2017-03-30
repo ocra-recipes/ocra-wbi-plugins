@@ -48,7 +48,7 @@ bool StepController::initialize() {
 
     _leftFoot_TrajThread->setGoalErrorThreshold(0.01);
     _rightFoot_TrajThread->setGoalErrorThreshold(0.01);
-    
+
     return true;
 }
 
@@ -129,7 +129,7 @@ bool StepController::doStepWithMaxVelocity(FOOT foot, Eigen::Vector3d target, do
     wayPoints.col(0) = midPoint;
     wayPoints.col(1) = target;
     switch ( foot ) {
-        case LEFT_FOOT: 
+        case LEFT_FOOT:
             _leftFoot_TrajThread->setTrajectoryWaypoints(wayPoints);
             break;
         case RIGHT_FOOT:
@@ -187,7 +187,7 @@ void StepController::computeMidPoint(FOOT foot, Eigen::Vector3d target, double s
             _rightFootPosition = this->getRightFootPosition();
             doComputeMidPoint(_rightFootPosition, target, stepHeight, midPoint);
             break;
-            
+
         default:
             break;
     }

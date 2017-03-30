@@ -4,7 +4,7 @@ import os
 
 plt.style.use('ggplot')
 
-home = "/home/jorhabib/Documents/octave/zmpPreviewController/"
+home = "/home/ryan/octave/zmpPreviewController/"
 # currentComLinAcc = np.loadtxt(home + "currentComLinAcc.txt")
 # refComLinAcc = np.loadtxt(home + "refComLinAcc.txt");
 intComPositionRef = np.loadtxt(home + "intComPositionRef.txt");
