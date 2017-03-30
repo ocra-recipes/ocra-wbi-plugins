@@ -205,7 +205,7 @@ bool WalkingClient::initialize()
     OCRA_INFO(">>> FIRST REFS: \n");
     OCRA_INFO(comStateRef.block(0,0,5,6));
     if (_testType.compare("steppingTest")) {
-        _miqpController = std::make_shared<MIQPController>(miqpParams, this->model, this->_stepController, comStateRef);
+        _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
         _miqpController->start();
     }
     OCRA_INFO("Initialization is over");
