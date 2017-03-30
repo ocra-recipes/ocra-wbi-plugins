@@ -47,8 +47,10 @@ _H_N_r(6*_miqpParams.N)
     buildNb(_Nb, _miqpParams.wb);
     if (_addRegularization)
         buildRegularizationTerms(_miqpParams);
-    else
+    else {
         buildNx(_Nx);
+        OCRA_ERROR("Not regularizing");
+    }
     buildH_N(_H_N);
 
 //     OCRA_WARNING("Built Ah");
@@ -191,7 +193,21 @@ void MIQPController::run() {
         for (unsigned int i = 0; i <= _miqpParams.N-1; i++)
             ocra::utils::writeInFile(_X_kn.segment(i*INPUT_VECTOR_SIZE,INPUT_VECTOR_SIZE), std::string(home+"solutionInPreview.txt"),true);
     }
-}
+    // Log the first full previewed CoP and center of BoS trajectory
+    // First compute P_{k,N}
+    Eigen::VectorXd P_kN;
+    Eigen::VectorXd r_kN;
+    r_kN.resize(2*_miqpParams.N);
+    P_kN.resize(2*_miqpParams.N);
+    P_kN = _P_P*_xi_k + _R_P*_X_kn;
+    r_kN = _P_B*_xi_k + _R_B*_X_kn;
+    if (_k==1) {
+    for (unsigned int i = 0; i <= _miqpParams.N-1; i++){
+        ocra::utils::writeInFile(P_kN.segment(i*2,2), std::string(home+"CoPinPreview.txt"),true);
+        ocra::utils::writeInFile(r_kN.segment(i*2,2), std::string(home+"BoSinPreview.txt"),true);
+    }
+    }
+ }
 
 void MIQPController::writeToFile(const double& time, const Eigen::VectorXd& X_kn, std::string& home) {
     Eigen::VectorXd tmp(INPUT_VECTOR_SIZE+1);
@@ -226,18 +242,20 @@ void MIQPController::setLowerAndUpperBounds() {
     _ub.setOnes();
     unsigned int k = 0;
     while (k < INPUT_VECTOR_SIZE*_miqpParams.N) {
+        // a and b bounds
         for (unsigned int j = 0; j < 4; j++)
-            _lb[k+j] = -100;
+            _lb[k+j] = -1;
+        // Jerk bounds
         for (unsigned int j = 10; j < INPUT_VECTOR_SIZE; j++)
-            _lb[k+j] = -100;
+            _lb[k+j] = -10;
         k += INPUT_VECTOR_SIZE;
     }
     k = 0;
     while (k < INPUT_VECTOR_SIZE*_miqpParams.N) {
         for (unsigned int j = 0; j < 4; j++)
-            _ub[k+j] = 100;
+            _ub[k+j] = 1;
         for (unsigned int j = 10; j < INPUT_VECTOR_SIZE; j++)
-            _ub[k+j] = 100;
+            _ub[k+j] = 10;
         k += INPUT_VECTOR_SIZE;
     }
 }
@@ -325,18 +343,13 @@ void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
         double wdelta = _miqpParams.wdelta;
         // Avoid resting on one foot
         H_N.noalias() += wss*_R_Gamma.transpose()*_R_Gamma;
-        OCRA_ERROR("Reg mat to avoid resting on one foot: \n" << wss*_R_Gamma.transpose()*_R_Gamma);
         // CoM Jerk Regularization
         H_N.noalias() += _S_wu;
-        OCRA_ERROR("Reg mat for com jerk reg: \n" << _S_wu);
         // Minimize stepping
         H_N.noalias() += wstep*_R_Alpha.transpose()*_R_Alpha + wstep*_R_Beta.transpose()*_R_Beta;
-        OCRA_ERROR("Reg mat for minimizing stepping with weight " << wstep << ": \n" << wstep*_R_Alpha.transpose()*_R_Alpha + wstep*_R_Beta.transpose()*_R_Beta);
         // Dummy regularization on delta
         Eigen::MatrixXd Reg_Delta;
         buildGenericRegMat(MIQP::DELTA_IN, wdelta, Reg_Delta);
-        // TODO: Add RegDelta to cost
-        OCRA_ERROR("Reg mat for delta: \n" << Reg_Delta);
         H_N.noalias() += Reg_Delta;
     } else {
         // Regularize everything with a diagonal matrix of ones
@@ -465,7 +478,8 @@ void MIQPController::buildCoMJerkReg(MIQPParameters &miqpParams) {
     _S_wu.resize(INPUT_VECTOR_SIZE*miqpParams.N, INPUT_VECTOR_SIZE*miqpParams.N);
     
     Eigen::VectorXd vecToRepeat(INPUT_VECTOR_SIZE);
-    double weight = miqpParams.wu/200;
+    OCRA_ERROR("CoM Jerk weight is: miqpParams.wu: " << miqpParams.wu);
+    double weight = miqpParams.wu/(10*10);
     vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,0)).finished(), weight, weight;
     // replicate over the preview window
     Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);

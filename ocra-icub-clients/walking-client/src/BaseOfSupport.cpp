@@ -132,7 +132,7 @@ void BaseOfSupport::computeBoundingBox(const Eigen::MatrixXd &feetCorners, Eigen
     minMaxBoundingBox(1,1) = boost::geometry::get<boost::geometry::max_corner, 1>(_bbox);
 
     OCRA_WARNING("Points in bounding box");
-    std::cout << "min: " <<  (0,0) << ", " << minMaxBoundingBox(0,1) << std::endl;
+    std::cout << "min: " << minMaxBoundingBox(0,0) << ", " << minMaxBoundingBox(0,1) << std::endl;
     std::cout << "max: " << minMaxBoundingBox(1,0) << ", " << minMaxBoundingBox(1,1) << std::endl;
     
 }
