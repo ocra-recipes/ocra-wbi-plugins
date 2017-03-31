@@ -32,10 +32,10 @@ void BaseOfSupport::buildAb() {
 }
    
 void BaseOfSupport::buildb(const Eigen::Matrix2d& minMaxBoundingBox) {
-    _b << -minMaxBoundingBox(0,0),
-           minMaxBoundingBox(1,0),
-          -minMaxBoundingBox(0,1),
-           minMaxBoundingBox(1,1);
+    _b << -minMaxBoundingBox(0,0) - _miqpParams.marginCoPBounds,
+           minMaxBoundingBox(1,0) - _miqpParams.marginCoPBounds,
+          -minMaxBoundingBox(0,1) + _miqpParams.marginCoPBounds,
+           minMaxBoundingBox(1,1) - _miqpParams.marginCoPBounds;
     OCRA_INFO("Built b");
 }
    

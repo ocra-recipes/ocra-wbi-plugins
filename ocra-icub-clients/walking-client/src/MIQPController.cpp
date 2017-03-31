@@ -202,10 +202,10 @@ void MIQPController::run() {
     P_kN = _P_P*_xi_k + _R_P*_X_kn;
     r_kN = _P_B*_xi_k + _R_B*_X_kn;
     if (_k==1) {
-    for (unsigned int i = 0; i <= _miqpParams.N-1; i++){
-        ocra::utils::writeInFile(P_kN.segment(i*2,2), std::string(home+"CoPinPreview.txt"),true);
-        ocra::utils::writeInFile(r_kN.segment(i*2,2), std::string(home+"BoSinPreview.txt"),true);
-    }
+        for (unsigned int i = 0; i <= _miqpParams.N-1; i++){
+            ocra::utils::writeInFile(P_kN.segment(i*2,2), std::string(home+"CoPinPreview.txt"),true);
+            ocra::utils::writeInFile(r_kN.segment(i*2,2), std::string(home+"BoSinPreview.txt"),true);
+        }
     }
  }
 
@@ -355,6 +355,7 @@ void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
         // Regularize everything with a diagonal matrix of ones
         H_N.noalias() += _Nx;
     }
+    OCRA_ERROR("Final quadratic coefficients is \n: " << H_N);
 }
 
 void MIQPController::buildGenericRegMat(MIQP::InputVectorIndex whichVariable, double weight, Eigen::MatrixXd& output)
@@ -363,7 +364,7 @@ void MIQPController::buildGenericRegMat(MIQP::InputVectorIndex whichVariable, do
         output.resize(INPUT_VECTOR_SIZE*_miqpParams.N, INPUT_VECTOR_SIZE*_miqpParams.N);        
     Eigen::VectorXd vecToRepeat(INPUT_VECTOR_SIZE);
     vecToRepeat.setZero();
-    vecToRepeat(whichVariable) = pow(weight,2);
+    vecToRepeat(whichVariable) = weight;
     Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
     output = diagonal.asDiagonal();
 }
@@ -479,6 +480,7 @@ void MIQPController::buildCoMJerkReg(MIQPParameters &miqpParams) {
     
     Eigen::VectorXd vecToRepeat(INPUT_VECTOR_SIZE);
     OCRA_ERROR("CoM Jerk weight is: miqpParams.wu: " << miqpParams.wu);
+    //FIXME: These bounds "10" should come from configuration file
     double weight = miqpParams.wu/(10*10);
     vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,0)).finished(), weight, weight;
     // replicate over the preview window
@@ -492,11 +494,12 @@ void MIQPController::buildAvoidOneFootRestReg(MIQPParameters &miqpParams) {
     // Build S_Gamma
     _S_gamma.resize(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
     _S_gamma.setZero();
-    _S_gamma(10,10) = 1;
+    _S_gamma(MIQP::GAMMA,MIQP::GAMMA) = 1;
     _P_Gamma.resize(_S_gamma.rows()*miqpParams.N, _Q.cols());
     _R_Gamma.resize(_S_gamma.rows()*miqpParams.N, _T.cols()*miqpParams.N);
     _One_Gamma.resize(_P_Gamma.rows());
-    _One_Gamma.setOnes();
+    //FIXME: This is a test
+    _One_Gamma.setZero();
     // Build Preview State Matrix
     buildPreviewStateMatrix(_S_gamma, _P_Gamma);
     // Build Input State Matrix
@@ -507,13 +510,13 @@ void MIQPController::buildAvoidOneFootRestReg(MIQPParameters &miqpParams) {
 void MIQPController::buildMinimizeSteppingReg(MIQPParameters &miqpParams) {
     _S_alpha.resize(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
     _S_alpha.setZero();
-    _S_alpha(5,5) = 1;
-    _S_alpha(6,6) = 1;
+    _S_alpha(MIQP::ALPHA_X,MIQP::ALPHA_X) = 1;
+    _S_alpha(MIQP::ALPHA_Y,MIQP::ALPHA_Y) = 1;
     
     _S_beta.resize(STATE_VECTOR_SIZE, STATE_VECTOR_SIZE);
     _S_beta.setZero();
-    _S_beta(7,7) = 1;
-    _S_beta(8,8) = 1;
+    _S_beta(MIQP::BETA_X,MIQP::BETA_X) = 1;
+    _S_beta(MIQP::BETA_Y,MIQP::BETA_Y) = 1;
     
     _P_Alpha.resize(_S_alpha.rows()*miqpParams.N, _Q.cols());
     _P_Beta.resize(_S_beta.rows()*miqpParams.N, _Q.cols());

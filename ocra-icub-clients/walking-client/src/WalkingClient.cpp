@@ -886,6 +886,7 @@ void WalkingClient::findMIQPParams(yarp::os::ResourceFinder &rf) {
         _miqpParams.walkingConstraints = miqpParamsGroup.find("walkingConstraints").asBool();
         _miqpParams.addRegularization = miqpParamsGroup.find("addRegularization").asBool();
         _miqpParams.robot = miqpParamsGroup.find("robot").asString();
+        _miqpParams.marginCoPBounds = miqpParamsGroup.find("marginCoPBounds").asDouble();
          OCRA_INFO(">> [MIQP_CONTROLLER_PARAMS in config file]: \n " << miqpParamsGroup.toString().c_str());
     }
 }

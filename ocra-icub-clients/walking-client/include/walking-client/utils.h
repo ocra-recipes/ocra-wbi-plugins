@@ -85,6 +85,8 @@ struct MIQPParameters {
     bool addRegularization;
     /* robot name */
     std::string robot;
+    /* Distance from actual CoP boundaries */
+    double marginCoPBounds;
 };
 
 #define STATE_VECTOR_SIZE 16
