@@ -128,7 +128,7 @@ namespace MIQP{
 
     public:
 
-        MIQPState (ocra::Model::Ptr robotModel);
+        MIQPState (ocra::Model::Ptr robotModel, std::string robot);
 
         virtual ~MIQPState ();
 

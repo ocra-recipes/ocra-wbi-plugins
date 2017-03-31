@@ -2,13 +2,14 @@
 
 using namespace MIQP;
 
-MIQPState::MIQPState(ocra::Model::Ptr robotModel):
+MIQPState::MIQPState(ocra::Model::Ptr robotModel, std::string robot):
 _xi_k(Eigen::VectorXd(STATE_VECTOR_SIZE)),
 _hk(Eigen::VectorXd(6)),
 _robotModel(robotModel),
-_robot("icubSim"),
+_robot(robot),
 _delta(1)
 {
+    OCRA_ERROR("FROM MIQPSTATE ROBOT NAME IS: " << _robot);
     initialize();
 }
 
@@ -163,8 +164,8 @@ void MIQPState::updateBaseOfSupportDescriptors(Eigen::Vector2d &aa,
     }
 
     // UPDATING also ALPHA and BETA
-    Eigen::Vector2d alpha;
-    Eigen::Vector2d beta;
+    Eigen::Vector2d alpha(0,0);
+    Eigen::Vector2d beta(0,0);
     if (!firstUpdate) {
         std::abs(a(0) - aa(0)) > thresholdChange ? alpha(0) = 1 : alpha(0) = 0;
         std::abs(b(0) - bb(0)) > thresholdChange ? beta(0)  = 1 : beta(0)  = 0;

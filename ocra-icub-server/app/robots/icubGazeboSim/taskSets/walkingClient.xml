@@ -27,7 +27,7 @@
 </task>
 
 <task name="ComTask" type="CoM">
-    <params kp="30" weight="1.0" axes="XYZ"/>
+    <params kp="10" kd="0" weight="1.0" axes="XYZ"/>
 </task>
 
 <!-- <task name="TorsoCartesianTask" type="Cartesian">

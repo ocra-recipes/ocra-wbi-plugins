@@ -109,7 +109,7 @@ MIQPController::~MIQPController() {
 bool MIQPController::threadInit() {
 
     // Instantiate MIQP state object
-    _state = std::make_shared<MIQPState>(_robotModel);
+    _state = std::make_shared<MIQPState>(_robotModel, _miqpParams.robot);
     updateStateVector();
 
     // Set lower and upper bounds
@@ -256,10 +256,13 @@ void MIQPController::setLinearPartObjectiveFunction() {
     _linearTermTransObjFunc = a + (c*d);
     
     if(_addRegularization) {
+        double wss = _miqpParams.wss;
+        double wstep = _miqpParams.wstep;
+        double wdelta = _miqpParams.wdelta;
         // Avoid resting on one foot
-        Eigen::VectorXd e = 2*(_P_Gamma*_xi_k - _One_Gamma).transpose()*_R_Gamma;
+        Eigen::VectorXd e = 2*wss*(_P_Gamma*_xi_k - _One_Gamma).transpose()*_R_Gamma;
         // Minimize stepping
-        Eigen::VectorXd f = 2*_xi_k.transpose()*(_P_Alpha.transpose()*_R_Alpha + _P_Beta.transpose()*_R_Beta);
+        Eigen::VectorXd f = 2*wstep*_xi_k.transpose()*(_P_Alpha.transpose()*_R_Alpha + _P_Beta.transpose()*_R_Beta);
         _linearTermTransObjFunc += e + f;
     }
 }
@@ -317,18 +320,23 @@ void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
     H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B); // + _Nx;
    OCRA_WARNING("Built H_N");
     if (_miqpParams.addRegularization) {
+        double wss = _miqpParams.wss;
+        double wstep = _miqpParams.wstep;
+        double wdelta = _miqpParams.wdelta;
         // Avoid resting on one foot
-        H_N.noalias() += _R_Gamma.transpose()*_R_Gamma;
+        H_N.noalias() += wss*_R_Gamma.transpose()*_R_Gamma;
+        OCRA_ERROR("Reg mat to avoid resting on one foot: \n" << wss*_R_Gamma.transpose()*_R_Gamma);
         // CoM Jerk Regularization
         H_N.noalias() += _S_wu;
+        OCRA_ERROR("Reg mat for com jerk reg: \n" << _S_wu);
         // Minimize stepping
-        H_N.noalias() += _R_Alpha.transpose()*_R_Alpha + _R_Beta.transpose()*_R_Beta;
+        H_N.noalias() += wstep*_R_Alpha.transpose()*_R_Alpha + wstep*_R_Beta.transpose()*_R_Beta;
+        OCRA_ERROR("Reg mat for minimizing stepping with weight " << wstep << ": \n" << wstep*_R_Alpha.transpose()*_R_Alpha + wstep*_R_Beta.transpose()*_R_Beta);
         // Dummy regularization on delta
         Eigen::MatrixXd Reg_Delta;
-        // FIXME: Get from config file. Temporary, while we add walking constraints
-        double deltaRegWeight = 1e-3;
-        buildGenericRegMat(MIQP::DELTA_IN, deltaRegWeight, Reg_Delta);
+        buildGenericRegMat(MIQP::DELTA_IN, wdelta, Reg_Delta);
         // TODO: Add RegDelta to cost
+        OCRA_ERROR("Reg mat for delta: \n" << Reg_Delta);
         H_N.noalias() += Reg_Delta;
     } else {
         // Regularize everything with a diagonal matrix of ones
@@ -457,7 +465,7 @@ void MIQPController::buildCoMJerkReg(MIQPParameters &miqpParams) {
     _S_wu.resize(INPUT_VECTOR_SIZE*miqpParams.N, INPUT_VECTOR_SIZE*miqpParams.N);
     
     Eigen::VectorXd vecToRepeat(INPUT_VECTOR_SIZE);
-    double weight = std::pow(miqpParams.wu,2);
+    double weight = miqpParams.wu/200;
     vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,0)).finished(), weight, weight;
     // replicate over the preview window
     Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
