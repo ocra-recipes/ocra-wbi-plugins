@@ -37,6 +37,14 @@ set(${VARS_PREFIX}_VERSION ${${VARS_PREFIX}_MAJOR_VERSION}.${${VARS_PREFIX}_MINO
 
 option(GENERATE_DOCUMENTATION "Generate the doxygen documentation." FALSE)
 
+option(USING_ATOM_EDITOR "If using atom as an IDE build the necessary json files." FALSE)
+if(USING_ATOM_EDITOR)
+    # https://atom.io/packages/linter-clang
+    # http://clang.llvm.org/docs/JSONCompilationDatabase.html
+    message("-- Using Atom editor as a C++ IDE. Generating necessary files.")
+    set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+endif()
+
 find_package(YARP REQUIRED)
 find_package(YCM REQUIRED)
 find_package(iDynTree REQUIRED)
@@ -98,3 +106,14 @@ install_basic_package_files(OcraIcub VARS_PREFIX ${VARS_PREFIX}
                                         NO_CHECK_REQUIRED_COMPONENTS_MACRO
                                     )
 include(AddUninstallTarget)
+
+
+if(USING_ATOM_EDITOR)
+    add_custom_target(  atom-files ALL
+                        DEPENDS ocra-icub
+                        COMMAND ${CMAKE_COMMAND} -E copy
+                        ${CMAKE_CURRENT_BINARY_DIR}/compile_commands.json
+                        ${CMAKE_SOURCE_DIR}
+                        COMMENT "Copying 'compile_commands.json' to '${CMAKE_SOURCE_DIR}'"
+                     )
+endif()
