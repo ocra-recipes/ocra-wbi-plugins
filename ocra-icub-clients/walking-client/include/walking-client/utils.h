@@ -42,6 +42,8 @@ struct MIQPParameters {
     /* Gavity acceleration */
     double g;
     /* Thread period */
+    unsigned int dtThread;
+    /* MIQP discretization period */
     unsigned int dt;
     /* Home directory where logged data will be saved */
     std::string home;

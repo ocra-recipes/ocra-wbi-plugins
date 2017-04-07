@@ -2,7 +2,7 @@
 
 using namespace MIQP;
 
-MIQPController::MIQPController(MIQPParameters params, ocra::Model::Ptr robotModel, std::shared_ptr<StepController> stepController, const Eigen::MatrixXd &comStateRef) : RateThread(params.dt),
+MIQPController::MIQPController(MIQPParameters params, ocra::Model::Ptr robotModel, std::shared_ptr<StepController> stepController, const Eigen::MatrixXd &comStateRef) : RateThread(params.dtThread),
 _robotModel(robotModel),
 _stepController(stepController),
 _miqpParams(params),
@@ -146,7 +146,7 @@ bool MIQPController::threadInit() {
         std::cout << e.getMessage() << std::endl;
     }
 
-    OCRA_WARNING("Finished MIQPController initialization");
+    OCRA_WARNING("Finished MIQPController initialization. This thread will run at " << this->getRate() << " ms");
     return true;
 }
 
@@ -185,7 +185,7 @@ void MIQPController::run() {
 
     // Write solution to file for plots
     std::string home = std::string(_miqpParams.home + "MIQP/");
-    writeToFile(0.100*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
+    writeToFile(_miqpParams.dt*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
     _k++;
     // Write the first solution in the WHOLE preview horizon
     // FIXME: This is simply a test done in open loop to see if the solution makes sense in the first preview window.
@@ -197,16 +197,21 @@ void MIQPController::run() {
     // First compute P_{k,N}
     Eigen::VectorXd P_kN;
     Eigen::VectorXd r_kN;
+    Eigen::VectorXd H_kN;
     r_kN.resize(2*_miqpParams.N);
     P_kN.resize(2*_miqpParams.N);
+    H_kN.resize(6*_miqpParams.N);
     P_kN = _P_P*_xi_k + _R_P*_X_kn;
     r_kN = _P_B*_xi_k + _R_B*_X_kn;
+    H_kN = _P_H*_xi_k + _R_H*_X_kn;
     if (_k==1) {
         for (unsigned int i = 0; i <= _miqpParams.N-1; i++){
             ocra::utils::writeInFile(P_kN.segment(i*2,2), std::string(home+"CoPinPreview.txt"),true);
             ocra::utils::writeInFile(r_kN.segment(i*2,2), std::string(home+"BoSinPreview.txt"),true);
+            ocra::utils::writeInFile(H_kN.segment(i*6,6), std::string(home+"CoMinPreview.txt"),true);
         }
     }
+    this->askToStop();
  }
 
 void MIQPController::writeToFile(const double& time, const Eigen::VectorXd& X_kn, std::string& home) {
@@ -263,25 +268,36 @@ void MIQPController::setLowerAndUpperBounds() {
 void MIQPController::updateStateVector() {
     _state->updateStateVector();
     _state->getFullState(_xi_k);
+    _xi_k << 0, 0, 0, -0.13, 0, 0,0,0, 1, 1, 0.0, -0.065, 0, 0, 0, 0;
+    OCRA_INFO("State in MIQPController is: _xi_k)" << _xi_k.transpose());
     OCRA_INFO("State: \n" << *_state);
 }
 
 void MIQPController::setLinearPartObjectiveFunction() {
      Eigen::VectorXd a = -2*(_H_N_r - _P_H*_xi_k).transpose()*_Sw*_R_H;
-     Eigen::VectorXd b = 2*((_P_P - _P_B)*_xi_k).transpose();
-     Eigen::VectorXd c = b*_Nb;
+     Eigen::VectorXd b = 2*((_P_P - _P_B)*_xi_k);
+     // WARNING: Be careful with this line! The result of this operation is a row vector. 
+     // If instead you put a normal VectorXd this will be seen as some sort of really fucked
+     // up matrix with a lot of garbage as coefficients. 
+     Eigen::RowVectorXd c = b.transpose()*_Nb;
      Eigen::MatrixXd d = (_R_P - _R_B);
-    _linearTermTransObjFunc = a + (c*d);
+     Eigen::VectorXd g = (c*d).transpose();
+    _linearTermTransObjFunc = a + g;
+    
+    // FIXME: Temporary test
+//     OCRA_ERROR("Linear part test: \n" << 2*_xi_k.transpose()*(_P_P - _P_B).transpose() * (_R_P - _R_B));
+//     _linearTermTransObjFunc = 2*_xi_k.transpose()*(_P_P - _P_B).transpose() * (_R_P - _R_B);
     
     if(_addRegularization) {
+        // FIXME: DOUBLE CHECK THE TYPE OF EACH VECTOR IN THE FOLLOWING ADDITIONS! 
         double wss = _miqpParams.wss;
         double wstep = _miqpParams.wstep;
-        double wdelta = _miqpParams.wdelta;
         // Avoid resting on one foot
         Eigen::VectorXd e = 2*wss*(_P_Gamma*_xi_k - _One_Gamma).transpose()*_R_Gamma;
         // Minimize stepping
         Eigen::VectorXd f = 2*wstep*_xi_k.transpose()*(_P_Alpha.transpose()*_R_Alpha + _P_Beta.transpose()*_R_Beta);
-        _linearTermTransObjFunc += e + f;
+        _linearTermTransObjFunc += e;
+        _linearTermTransObjFunc += f;
     }
 }
 
@@ -335,7 +351,14 @@ void MIQPController::buildC_B(Eigen::MatrixXd &C_B) {
 
 void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
     H_N = Eigen::MatrixXd(_miqpParams.N*INPUT_VECTOR_SIZE, _miqpParams.N*INPUT_VECTOR_SIZE);
-    H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B); // + _Nx;
+    H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B);
+    
+    // FIXME: THIS IS JUST A TEST >> COP COST FUNCTION ONLY + JERK REGULARIZATION
+//     H_N = (_R_P - _R_B).transpose()*(_R_P - _R_B);
+//     // CoM Jerk Regularization
+//     buildCoMJerkReg(_miqpParams);
+//     H_N.noalias() += _S_wu;
+    
    OCRA_WARNING("Built H_N");
     if (_miqpParams.addRegularization) {
         double wss = _miqpParams.wss;
@@ -347,15 +370,14 @@ void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
         H_N.noalias() += _S_wu;
         // Minimize stepping
         H_N.noalias() += wstep*_R_Alpha.transpose()*_R_Alpha + wstep*_R_Beta.transpose()*_R_Beta;
-        // Dummy regularization on delta
-        Eigen::MatrixXd Reg_Delta;
-        buildGenericRegMat(MIQP::DELTA_IN, wdelta, Reg_Delta);
-        H_N.noalias() += Reg_Delta;
+//         // Dummy regularization on delta
+//         Eigen::MatrixXd Reg_Delta;
+//         buildGenericRegMat(MIQP::DELTA_IN, wdelta, Reg_Delta);
+//         H_N.noalias() += Reg_Delta;
     } else {
         // Regularize everything with a diagonal matrix of ones
-        H_N.noalias() += _Nx;
+//         H_N.noalias() += _Nx;
     }
-    OCRA_ERROR("Final quadratic coefficients is \n: " << H_N);
 }
 
 void MIQPController::buildGenericRegMat(MIQP::InputVectorIndex whichVariable, double weight, Eigen::MatrixXd& output)
@@ -479,7 +501,6 @@ void MIQPController::buildCoMJerkReg(MIQPParameters &miqpParams) {
     _S_wu.resize(INPUT_VECTOR_SIZE*miqpParams.N, INPUT_VECTOR_SIZE*miqpParams.N);
     
     Eigen::VectorXd vecToRepeat(INPUT_VECTOR_SIZE);
-    OCRA_ERROR("CoM Jerk weight is: miqpParams.wu: " << miqpParams.wu);
     //FIXME: These bounds "10" should come from configuration file
     double weight = miqpParams.wu/(10*10);
     vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,0)).finished(), weight, weight;
@@ -504,7 +525,6 @@ void MIQPController::buildAvoidOneFootRestReg(MIQPParameters &miqpParams) {
     buildPreviewStateMatrix(_S_gamma, _P_Gamma);
     // Build Input State Matrix
     buildPreviewInputMatrix(_S_gamma, _R_Gamma);
-    OCRA_ERROR("Built Reg Terms to avoid resting on one foot");
 }
 
 void MIQPController::buildMinimizeSteppingReg(MIQPParameters &miqpParams) {

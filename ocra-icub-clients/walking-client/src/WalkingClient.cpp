@@ -205,8 +205,8 @@ bool WalkingClient::initialize()
 void WalkingClient::release()
 {
      // Set task's Kp and Kd to initial values before starting the client
-    _comTask->setStiffness(30);
-    _comTask->setDamping(5);
+//     _comTask->setStiffness(30);
+//     _comTask->setDamping(5);
 
     _stepController->stop();
     _miqpController->stop();
@@ -861,6 +861,7 @@ void WalkingClient::findMIQPParams(yarp::os::ResourceFinder &rf) {
         miqpParamsGroup.fromString(rf.findGroup("MIQP_CONTROLLER_PARAMS").tail().toString());
         _miqpParams.cz = this->model->getCoMPosition().operator()(2);
         _miqpParams.dt = (unsigned int) miqpParamsGroup.find("dt").asInt();
+        _miqpParams.dtThread = (unsigned int) miqpParamsGroup.find("dtThread").asInt();
         _miqpParams.g = miqpParamsGroup.find("g").asDouble();
         _miqpParams.home = _homeDataDir; // This is actually in the TESTS_GENERAL_PARAMETERS group
         _miqpParams.N = miqpParamsGroup.find("N").asInt();
