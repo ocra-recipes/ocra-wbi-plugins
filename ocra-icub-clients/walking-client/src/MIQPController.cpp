@@ -375,7 +375,7 @@ void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
 //         H_N.noalias() += Reg_Delta;
     } else {
         // Regularize everything with a diagonal matrix of ones
-//         H_N.noalias() += _Nx;
+        H_N.noalias() += _Nx;
     }
 }
 
@@ -517,8 +517,6 @@ void MIQPController::buildAvoidOneFootRestReg(MIQPParameters &miqpParams) {
     _P_Gamma.resize(_S_gamma.rows()*miqpParams.N, _Q.cols());
     _R_Gamma.resize(_S_gamma.rows()*miqpParams.N, _T.cols()*miqpParams.N);
     _One_Gamma.resize(_P_Gamma.rows());
-    //FIXME: This is a test
-    _One_Gamma.setZero();
     _One_Gamma.setOnes();
     // Build Preview State Matrix
     buildPreviewStateMatrix(_S_gamma, _P_Gamma);
