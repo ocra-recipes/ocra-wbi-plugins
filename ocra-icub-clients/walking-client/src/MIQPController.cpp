@@ -171,7 +171,6 @@ void MIQPController::run() {
 
     try {
     // TODO: Watch out! _eigGurobi will add a 1/2. Therefore the 2. Check that this is correct.
-    // FIXME: The expression for _H_N only includes jerk regularization terms
     _eigGurobi.solve(2*_H_N, _linearTermTransObjFunc, _Aeq, _Beq, _Aineq, _Bineq, _lb, _ub);
 
     // Get the solution
@@ -399,8 +398,6 @@ void MIQPController::buildNb(Eigen::MatrixXd &Nb, double wb) {
 void MIQPController::buildNx(Eigen::MatrixXd &Nx) {
     Eigen::VectorXd vecToRepeat(12);
     // FIXME: Hardcoding regularization on ALL variables. This should be only for the jerk
-    // For now this is ok since I haven't added the walking constraints, thus helping
-    // the problem to be feasible.
     vecToRepeat << (Eigen::VectorXd(10) << Eigen::VectorXd::Constant(10,1)).finished(), 1, 1;
     // replicate over the preview window
     Eigen::VectorXd diagonal = vecToRepeat.replicate(1,_miqpParams.N);
@@ -494,6 +491,7 @@ void MIQPController::buildRegularizationTerms(MIQPParameters &miqpParams) {
     buildAvoidOneFootRestReg(miqpParams);   
     // Minimize Stepping
     buildMinimizeSteppingReg(miqpParams);
+    // TODO: Still missing Tracking of previous BoS Size and Avoiding Excessive Changes in solutions
 }
 
 void MIQPController::buildCoMJerkReg(MIQPParameters &miqpParams) {
