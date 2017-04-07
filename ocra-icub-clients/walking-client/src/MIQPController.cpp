@@ -519,6 +519,7 @@ void MIQPController::buildAvoidOneFootRestReg(MIQPParameters &miqpParams) {
     _One_Gamma.resize(_P_Gamma.rows());
     //FIXME: This is a test
     _One_Gamma.setZero();
+    _One_Gamma.setOnes();
     // Build Preview State Matrix
     buildPreviewStateMatrix(_S_gamma, _P_Gamma);
     // Build Input State Matrix
