@@ -116,7 +116,6 @@ void MIQPLinearConstraints::updateRHS(const Eigen::VectorXd& xi_k){
         _baseOfSupport->getrhs(tmprhs);
         _rhs.segment(_fcbarShapeAdmiss.size(), tmprhs.size()) = tmprhs;
     }
-    OCRA_WARNING("Updated RHS");
 }
 
 void MIQPLinearConstraints::getRHS(Eigen::VectorXd &rhs) {

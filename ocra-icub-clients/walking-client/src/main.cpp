@@ -89,6 +89,7 @@ int main (int argc, char * argv[])
     }
 
     yLog.info() << "Configuring";
+    OCRA_WARNING("rf.MIQP_PARAMS.wu = " << rf.find("wu").asDouble());
     clientManager->configure(rf);
 
     yLog.info() << "Launching client";

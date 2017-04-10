@@ -175,7 +175,6 @@ void MIQPController::run() {
 
     // Get the solution
     _X_kn = _eigGurobi.result();
-    OCRA_WARNING("Optimal is: ")
     std::cout << _X_kn.topRows(INPUT_VECTOR_SIZE).transpose() << std::endl;
     } catch(GRBException e) {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
@@ -184,7 +183,7 @@ void MIQPController::run() {
 
     // Write solution to file for plots
     std::string home = std::string(_miqpParams.home + "MIQP/");
-    writeToFile(_miqpParams.dt*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
+//     writeToFile(_miqpParams.dt*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
     _k++;
     // Write the first solution in the WHOLE preview horizon
     // FIXME: This is simply a test done in open loop to see if the solution makes sense in the first preview window.
@@ -208,6 +207,7 @@ void MIQPController::run() {
             ocra::utils::writeInFile(P_kN.segment(i*2,2), std::string(home+"CoPinPreview.txt"),true);
             ocra::utils::writeInFile(r_kN.segment(i*2,2), std::string(home+"BoSinPreview.txt"),true);
             ocra::utils::writeInFile(H_kN.segment(i*6,6), std::string(home+"CoMinPreview.txt"),true);
+            ocra::utils::writeInFile(_H_N_r.segment(i*6,6), std::string(home+"CoMRefinPreview.txt"), true);
         }
     }
     this->askToStop();
@@ -351,13 +351,7 @@ void MIQPController::buildC_B(Eigen::MatrixXd &C_B) {
 void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
     H_N = Eigen::MatrixXd(_miqpParams.N*INPUT_VECTOR_SIZE, _miqpParams.N*INPUT_VECTOR_SIZE);
     H_N =   _R_H.transpose()*_Sw*_R_H + (_R_P - _R_B).transpose() * _Nb * (_R_P - _R_B);
-    
-    // FIXME: THIS IS JUST A TEST >> COP COST FUNCTION ONLY + JERK REGULARIZATION
-//     H_N = (_R_P - _R_B).transpose()*(_R_P - _R_B);
-//     // CoM Jerk Regularization
-//     buildCoMJerkReg(_miqpParams);
-//     H_N.noalias() += _S_wu;
-    
+        
    OCRA_WARNING("Built H_N");
     if (_miqpParams.addRegularization) {
         double wss = _miqpParams.wss;
@@ -369,10 +363,10 @@ void MIQPController::buildH_N(Eigen::MatrixXd &H_N) {
         H_N.noalias() += _S_wu;
         // Minimize stepping
         H_N.noalias() += wstep*_R_Alpha.transpose()*_R_Alpha + wstep*_R_Beta.transpose()*_R_Beta;
-//         // Dummy regularization on delta
-//         Eigen::MatrixXd Reg_Delta;
-//         buildGenericRegMat(MIQP::DELTA_IN, wdelta, Reg_Delta);
-//         H_N.noalias() += Reg_Delta;
+        // Dummy regularization on delta
+        Eigen::MatrixXd Reg_Delta;
+        buildGenericRegMat(MIQP::DELTA_IN, wdelta, Reg_Delta);
+        H_N.noalias() += Reg_Delta;
     } else {
         // Regularize everything with a diagonal matrix of ones
         H_N.noalias() += _Nx;

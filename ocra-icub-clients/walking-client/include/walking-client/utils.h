@@ -37,6 +37,10 @@ struct steppingTestParams {
 struct MIQPParameters {
     /* Size of preview window */
     unsigned int N;
+    /* CoM velocity reference in x dir */
+    double dCoMxRef;
+    /* CoM velocity reference in y dir */
+    double dCoMyRef;
     /* Constant com height */
     double cz;
     /* Gavity acceleration */

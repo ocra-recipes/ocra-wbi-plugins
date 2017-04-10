@@ -41,6 +41,7 @@ void WalkingClient::printHelp()
 
 
 bool WalkingClient::configure(yarp::os::ResourceFinder &rf) {
+
     // Client name
     if (!rf.check("name")) {
         OCRA_WARNING("Option 'name' was not specified. Default is the name of this module, i.e. walking-client");
@@ -190,10 +191,33 @@ bool WalkingClient::initialize()
     // Start MIQPController thread
     // FIXME: Dummy initial COM states reference which pretty much says, keep the initial COM position.
     Eigen::MatrixXd comStateRef(100*_miqpParams.N, 6);
-    Eigen::VectorXd comRefToReplicate(6); comRefToReplicate << _previousCOM, 0, 0, 0, 0;
+    double dCoMxRef = _miqpParams.dCoMxRef; 
+    double dCoMyRef = _miqpParams.dCoMyRef;
+    Eigen::VectorXd comRefToReplicate(6); comRefToReplicate << _previousCOM, dCoMxRef, dCoMyRef, 0, 0;
     comStateRef = comRefToReplicate.transpose().replicate(100*_miqpParams.N,1);
+    OCRA_WARNING("dCoMxRef is: " << dCoMxRef);
+    OCRA_WARNING("dCoMyRef is: " << dCoMyRef);
+    //FIXME: In this way I'm creating a velocity ramp only in the first preview window! 
+    comStateRef(0,2) = 0;
+    comStateRef(1,2) = 0;
+    comStateRef(2,2) = 0.33*_miqpParams.dCoMxRef;
+    comStateRef(3,2) = 0.66*_miqpParams.dCoMxRef;
+    comStateRef(_miqpParams.N-3,2) = 0.66*_miqpParams.dCoMxRef;
+    comStateRef(_miqpParams.N-2,2) = 0.33*_miqpParams.dCoMxRef;
+    comStateRef(_miqpParams.N-1,2) = 0;
+    comStateRef(_miqpParams.N, 2) = 0;
+    
+    comStateRef(0,3) = 0;
+    comStateRef(1,3) = 0;
+    comStateRef(2,3) = 0.33*dCoMyRef;
+    comStateRef(3,3) = 0.66*dCoMyRef;
+    comStateRef(_miqpParams.N-3,3) = 0.66*dCoMyRef;
+    comStateRef(_miqpParams.N-2,3) = 0.33*dCoMyRef;
+    comStateRef(_miqpParams.N-1,3) = 0;
+    comStateRef(_miqpParams.N, 3) = 0;
+
     OCRA_INFO(">>> FIRST REFS: \n");
-    OCRA_INFO(comStateRef.block(0,0,5,6));
+    OCRA_INFO(comStateRef.block(0,0,_miqpParams.N,6));
     if (_testType.compare("steppingTest")) {
         _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
         _miqpController->start();
@@ -207,9 +231,9 @@ void WalkingClient::release()
      // Set task's Kp and Kd to initial values before starting the client
 //     _comTask->setStiffness(30);
 //     _comTask->setDamping(5);
-
-    _stepController->stop();
+    
     _miqpController->stop();
+    _stepController->stop();
 }
 
 void WalkingClient::loop()
@@ -854,12 +878,17 @@ void WalkingClient::findZMPVaryingReferenceParams(yarp::os::ResourceFinder &rf) 
 }
 
 void WalkingClient::findMIQPParams(yarp::os::ResourceFinder &rf) {
-        if (!rf.check("MIQP_CONTROLLER_PARAMS")) {
+    if (!rf.check("MIQP_CONTROLLER_PARAMS")) {
         OCRA_ERROR("No parameters have been specified for the MIQP controller");
     } else {
+        OCRA_ERROR("rf " << rf.toString());
         yarp::os::Property miqpParamsGroup;
+        OCRA_ERROR("rf to string: "<< rf.findGroup("MIQP_CONTROLLER_PARAMS").tail().toString());
         miqpParamsGroup.fromString(rf.findGroup("MIQP_CONTROLLER_PARAMS").tail().toString());
+        OCRA_ERROR("rf group params from string: " << miqpParamsGroup.toString());
         _miqpParams.cz = this->model->getCoMPosition().operator()(2);
+        _miqpParams.dCoMxRef = miqpParamsGroup.find("dCoMxRef").asDouble();
+        _miqpParams.dCoMyRef = miqpParamsGroup.find("dCoMyRef").asDouble();
         _miqpParams.dt = (unsigned int) miqpParamsGroup.find("dt").asInt();
         _miqpParams.dtThread = (unsigned int) miqpParamsGroup.find("dtThread").asInt();
         _miqpParams.g = miqpParamsGroup.find("g").asDouble();

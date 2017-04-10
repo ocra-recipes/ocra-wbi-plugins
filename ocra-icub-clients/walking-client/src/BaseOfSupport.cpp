@@ -113,7 +113,6 @@ void BaseOfSupport::computeBoundingBox(const Eigen::MatrixXd &feetCorners, Eigen
         OCRA_ERROR("Output matrix hasn't been resized");
     
     _poly.clear();
-    OCRA_INFO("Feet corners given by StepController are: ");
     std::cout << feetCorners << std::endl;
     for (unsigned int i=0 ; i<feetCorners.rows(); i++) {
         _poly.outer().push_back(point(feetCorners(i,0), feetCorners(i,1)));
