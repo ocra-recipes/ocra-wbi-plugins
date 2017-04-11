@@ -174,7 +174,9 @@ void MIQPController::run() {
     _eigGurobi.solve(2*_H_N, _linearTermTransObjFunc, _Aeq, _Beq, _Aineq, _Bineq, _lb, _ub);
 
     // Get the solution
+    this->semaphore.wait();
     _X_kn = _eigGurobi.result();
+    this->semaphore.post();
     std::cout << _X_kn.topRows(INPUT_VECTOR_SIZE).transpose() << std::endl;
     } catch(GRBException e) {
         std::cout << "Error code = " << e.getErrorCode() << std::endl;
@@ -541,4 +543,8 @@ void MIQPController::buildMinimizeSteppingReg(MIQPParameters &miqpParams) {
     buildPreviewStateMatrix(_S_beta, _P_Beta);
     buildPreviewInputMatrix(_S_alpha, _R_Alpha);
     buildPreviewInputMatrix(_S_beta, _R_Beta);
+}
+
+void MIQPController::getSolution(Eigen::VectorXd &X_kn) {
+    X_kn = _X_kn;
 }

@@ -53,6 +53,17 @@ public:
      */
     void printHelp();
 
+    
+    /**
+     If miqpPeriod/clientPeriod samples have passed, this method asks for the MIQP solution.
+
+     @param miqpPeriod Period of the MIQP thread.
+     @param miqpPreviewPeriod Period used to discretize the MIQP
+     @param clientPeriod Period of the current client thread.
+     @param[out] Preview solution from the MIQP.
+     @return True if the right amount of time has passed, false otherwise.
+     */
+    bool queryMIQPSolution(const int miqpPeriod, const int miqpPreviewPeriod, const int clientPeriod, Eigen::VectorXd &preview);
 
     /**
      Reads the raw wrench published for the corresponding analog force/torque sensors in iCub's feet.
@@ -257,6 +268,7 @@ private:
     int _numberOfTransitions;
     int _amplitudeFraction;
     double _stopTimeVaryingZmp;
+    int _k;
 
     yarp::os::BufferedPort<yarp::os::Bottle> _zmpPort;
     yarp::os::BufferedPort<yarp::os::Bottle> _dcomErrorPort;
@@ -273,7 +285,7 @@ private:
     Eigen::VectorXd comVelRefInPreviewWindow;
     Eigen::VectorXd optimalU;
     
-    // MIQP-related
+    // MIQP-related variables
     Eigen::VectorXd _X_kn;
 
 };

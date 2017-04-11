@@ -219,9 +219,18 @@ bool WalkingClient::initialize()
 
     OCRA_INFO(">>> FIRST REFS: \n");
     OCRA_INFO(comStateRef.block(0,0,_miqpParams.N,6));
-    if (_testType.compare("steppingTest")) {
-        _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
-        _miqpController->start();
+    // Current iteration
+    _k = 0;
+    // Allocate spsce for optimal horizon of solutions
+    int Nw;
+    Nw = (int) (_miqpParams.N*_miqpParams.dt - (_miqpParams.dtThread - _miqpParams.dt))/period;
+    OCRA_ERROR("Space allocated for preview window of the walking-client: " << Nw);
+    this->_X_kn.resize(Nw);
+    _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
+    _miqpController->start();
+    // Don't run this thread before the MIQPController class has finished initializing
+    while (!_miqpController->isRunning()) {
+        OCRA_WARNING("Waiting for MIQPController thread to start");
     }
     OCRA_INFO("Initialization is over");
     return true;
@@ -239,7 +248,7 @@ void WalkingClient::release()
 
 void WalkingClient::loop()
 {
-   if (_isTestRun) {
+    if (_isTestRun) {
        if (!_testType.compare("zmpPreview")) {
            // Track a zmp trajectory using a zmp preview controller
            performZMPPreviewTest(_zmpTestType);
@@ -254,7 +263,48 @@ void WalkingClient::loop()
                this->askToStop();
            }
        }
-   }
+    } else {
+       // INTERFACE THE MIQP CONTROLLER WITH THE MAIN THREAD OF THE WALKING CLIENT! THIS IS THE REAL DEAL
+        if ( queryMIQPSolution(_miqpParams.dtThread, _miqpParams.dt, this->getExpectedPeriod(), _X_kn) ) {
+            // If a new solution was retrieved from the MIQP
+            // ...
+            OCRA_ERROR("A new solution was retrieved and it was: \n ");
+            for (unsigned int i = 0; i < _X_kn.size(); i++) {
+                std::cout << _X_kn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE) << std::endl;
+            }
+            this->askToStop();
+        }
+    }
+    _k++;
+}
+
+bool WalkingClient::queryMIQPSolution(const int miqpPeriod, const int miqpPreviewPeriod, const int clientPeriod, Eigen::VectorXd &preview) {
+    // If current iteration _k is a multiple of miqpPeriod/clientPeriod, then a new solution from the MIQP should be ready.
+    preview.setZero();
+    int samplesInPreview = (int) miqpPeriod/clientPeriod;
+    OCRA_ERROR("Samples in preview window: " << samplesInPreview);
+    Eigen::VectorXd tmpXkn(INPUT_VECTOR_SIZE*_miqpParams.N);
+    if ( _k % samplesInPreview == 0 ) {
+        _miqpController->semaphore.wait();
+        _miqpController->getSolution(tmpXkn);
+        _miqpController->semaphore.post();
+        // Take only the first solution and copy it the first samplesInPreview of _X_kn (or &preview)
+        Eigen::VectorXd Xk1 = tmpXkn.topRows(INPUT_VECTOR_SIZE);
+        Eigen::VectorXd XknSegment(samplesInPreview*INPUT_VECTOR_SIZE);
+        XknSegment = Xk1.replicate(samplesInPreview,1);
+        // Assign the first replicated segment to the new preview window
+        preview.segment(0, INPUT_VECTOR_SIZE*samplesInPreview) = XknSegment;
+        // From sample ceil((miqpPeriod - previewPeriod)/previewPeriod) + 2 copy every element in the preview window every samplesInPreview
+        unsigned int fromSample = (unsigned int) std::ceil( (miqpPeriod - miqpPreviewPeriod)/miqpPreviewPeriod ) + 2; // >> fromSample in the original solution
+        unsigned int j = samplesInPreview;
+        for ( unsigned int i = fromSample; i <= _miqpParams.N; i++ ) {
+            preview.segment(INPUT_VECTOR_SIZE*j, INPUT_VECTOR_SIZE) = tmpXkn.segment(INPUT_VECTOR_SIZE*i,INPUT_VECTOR_SIZE);
+            j += samplesInPreview;
+        }
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool WalkingClient::readFootWrench(FOOT whichFoot, Eigen::VectorXd &rawWrench) {

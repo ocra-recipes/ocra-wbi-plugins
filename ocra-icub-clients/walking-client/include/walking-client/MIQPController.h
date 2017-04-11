@@ -109,12 +109,7 @@ public:
      @param comStateRef Sets #_H_N_r for a preview window of size N from time k
      */
     void setCOMStateRefInPreviewWindow(unsigned int k, Eigen::VectorXd &comStateRef);
-    
-    /** 
-     * Mutex-protected variable to know when the MIQPController has finished initialization. 
-     */
-    bool isInitialized;
-    
+        
     /**
      * Semaphore protecting the isInitialized variable.
      */
