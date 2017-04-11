@@ -31,6 +31,7 @@
 #include <ocra-icub/OcraWbiModel.h>
 #include <ocra/util/FileOperations.h>
 #include <yarp/os/RateThread.h>
+#include <yarp/os/Semaphore.h>
 #include <Eigen/Dense>
 #include <Eigen/Lgsm>
 #include "unsupported/Eigen/MatrixFunctions"
@@ -108,6 +109,18 @@ public:
      @param comStateRef Sets #_H_N_r for a preview window of size N from time k
      */
     void setCOMStateRefInPreviewWindow(unsigned int k, Eigen::VectorXd &comStateRef);
+    
+    /** 
+     * Mutex-protected variable to know when the MIQPController has finished initialization. 
+     */
+    bool isInitialized;
+    
+    /**
+     * Semaphore protecting the isInitialized variable.
+     */
+    yarp::os::Semaphore semaphore;
+    
+    void getSolution(Eigen::VectorXd &X_kn);
 
 protected:
     // MARK: - PROTECTED METHODS

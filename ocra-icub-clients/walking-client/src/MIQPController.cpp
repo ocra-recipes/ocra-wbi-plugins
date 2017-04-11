@@ -181,18 +181,19 @@ void MIQPController::run() {
         std::cout << e.getMessage() << std::endl;
     }
 
+    _k++;
+    
+    // NOTE: LOGGING SECTION
     // Write solution to file for plots
     std::string home = std::string(_miqpParams.home + "MIQP/");
 //     writeToFile(_miqpParams.dt*_k, _X_kn.topRows(INPUT_VECTOR_SIZE), home);
-    _k++;
     // Write the first solution in the WHOLE preview horizon
     // FIXME: This is simply a test done in open loop to see if the solution makes sense in the first preview window.
     if (_k==1) {
         for (unsigned int i = 0; i <= _miqpParams.N-1; i++)
             ocra::utils::writeInFile(_X_kn.segment(i*INPUT_VECTOR_SIZE,INPUT_VECTOR_SIZE), std::string(home+"solutionInPreview.txt"),true);
     }
-    // Log the first full previewed CoP and center of BoS trajectory
-    // First compute P_{k,N}
+    // Log the first full previewed CoP, center of BoS and CoM
     Eigen::VectorXd P_kN;
     Eigen::VectorXd r_kN;
     Eigen::VectorXd H_kN;
@@ -210,6 +211,7 @@ void MIQPController::run() {
             ocra::utils::writeInFile(_H_N_r.segment(i*6,6), std::string(home+"CoMRefinPreview.txt"), true);
         }
     }
+    //FIXME: This is temporary. Remove when allowing state feedback
     this->askToStop();
  }
 

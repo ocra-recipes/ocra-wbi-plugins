@@ -182,6 +182,7 @@ bool WalkingClient::initialize()
     // Allocation of optimal input vector
     optimalU = Eigen::VectorXd(2*_zmpPreviewParams->Nc);
 
+    //FIXME: Is this necessary?
     if (_testType.compare("steppingTest")) {
         // Set task's Kp and Kd to 0 from the client, since this task will receive pure accelerations
 //         _comTask->setStiffness(0);
@@ -189,7 +190,7 @@ bool WalkingClient::initialize()
     }
 
     // Start MIQPController thread
-    // FIXME: Dummy initial COM states reference which pretty much says, keep the initial COM position.
+    // FIXME: Dummy initial COM velocity references. They're both ramps, to test in the preview window.
     Eigen::MatrixXd comStateRef(100*_miqpParams.N, 6);
     double dCoMxRef = _miqpParams.dCoMxRef; 
     double dCoMyRef = _miqpParams.dCoMyRef;

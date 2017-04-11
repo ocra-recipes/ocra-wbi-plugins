@@ -272,6 +272,9 @@ private:
     Eigen::VectorXd zmpRefInPreviewWindow;
     Eigen::VectorXd comVelRefInPreviewWindow;
     Eigen::VectorXd optimalU;
+    
+    // MIQP-related
+    Eigen::VectorXd _X_kn;
 
 };
 
