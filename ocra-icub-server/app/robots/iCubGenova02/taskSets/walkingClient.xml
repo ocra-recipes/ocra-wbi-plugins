@@ -47,7 +47,7 @@
 </task>
 
 <task name="TorsoOrientationTask" type="Orientation">
-    <segment>torso</segment>
+    <segment>neck_1</segment>
     <params kp="20.0" weight="0.5" axes="XYZ"/>
 </task>
 <task name="LeftFootCartesian" type="Cartesian">
