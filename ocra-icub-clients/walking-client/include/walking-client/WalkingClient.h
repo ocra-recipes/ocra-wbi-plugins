@@ -9,6 +9,7 @@
 #include "walking-client/StepController.h"
 #include "walking-client/utils.h"
 #include "walking-client/MIQPController.h"
+#include "walking-client/Interpolator.h"
 #include <ocra/util/FileOperations.h>
 #include <yarp/os/Time.h>
 #include "gurobi_c++.h"
@@ -53,7 +54,7 @@ public:
      */
     void printHelp();
 
-    
+
     /**
      If miqpPeriod/clientPeriod samples have passed, this method asks for the MIQP solution.
 
@@ -286,11 +287,10 @@ private:
     Eigen::VectorXd zmpRefInPreviewWindow;
     Eigen::VectorXd comVelRefInPreviewWindow;
     Eigen::VectorXd optimalU;
-    
+
     // MIQP-related variables
     Eigen::VectorXd _X_kn;
     Eigen::VectorXd _t_kn;
-
 };
 
 

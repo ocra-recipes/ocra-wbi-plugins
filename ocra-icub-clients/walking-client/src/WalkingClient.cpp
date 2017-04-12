@@ -271,11 +271,31 @@ void WalkingClient::loop()
             OCRA_ERROR("A new solution was retrieved after " << _k << " samples of walking-client and it was: \n ");
             int Nw = (int) _X_kn.size()/INPUT_VECTOR_SIZE;
             for (unsigned int i = 0; i < Nw; i++) {
-                std::cout << "i: " << i << std::endl;
                 std::cout << _X_kn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE).transpose() << std::endl;
             }
             std::cout << "Time vector is: \n" << _t_kn.transpose() << std::endl;
-            // 
+            // INTERPOLATION TO GENERATE CoP and CoM velocity reference
+            // First create vector of doubles with the times to interpolate
+            std::vector<double> timeToInterp;
+            for (unsigned int i = 0; i < _t_kn.size(); i++) {
+                timeToInterp.push_back(_t_kn(i)/1000);
+            }
+            // Then create vector of points to interpolate a and b
+            std::vector<Eigen::Vector2d> aToInterp;
+            std::vector<Eigen::Vector2d> bToInterp;
+            int samples = (int) _X_kn.size()/INPUT_VECTOR_SIZE;
+            for (unsigned int i = 0; i < samples; i++) {
+                aToInterp.push_back(_X_kn.segment(i*INPUT_VECTOR_SIZE,2));
+                bToInterp.push_back(_X_kn.segment(i*INPUT_VECTOR_SIZE + 2,2));
+            }
+            std::vector<double> intTime;       // Result of interpolation for time
+            std::vector<Eigen::Vector2d> intA; // Result of interpolation for a
+            std::vector<Eigen::Vector2d> intB; // Result of interpolation for b
+            double dt = (double) this->_period/1000;
+            linearInterpolation(timeToInterp, aToInterp, dt, intTime, intA);
+            linearInterpolation(timeToInterp, bToInterp, dt, intTime, intB);
+            // Now that we have interpolated a and b, we can compute the corresponding interpolated CoP
+            //...
         }
         _k++;
         //FIXME: Remember to remove this when using state feedback
