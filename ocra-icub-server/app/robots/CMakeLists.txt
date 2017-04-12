@@ -9,6 +9,7 @@ set(ROBOT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/${ROBOT_NAME}")
 if(CODYCO_INSTALL_ALL_ROBOTS)
     set(robots icubGazeboSim
                iCubGenova03
+               iCubGenova02
                iCubParis02
                iCubParis01
                icubSim
