@@ -175,6 +175,7 @@ void MIQPController::run() {
 
     // Get the solution
     this->semaphore.wait();
+    OCRA_WARNING("Updated _X_kn");
     _X_kn = _eigGurobi.result();
     this->semaphore.post();
     std::cout << _X_kn.topRows(INPUT_VECTOR_SIZE).transpose() << std::endl;

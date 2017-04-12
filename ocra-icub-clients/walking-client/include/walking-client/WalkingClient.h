@@ -252,6 +252,7 @@ private:
     Eigen::Vector2d _previousCOMVel;
     std::string _clientName;
     std::string _robot;
+    int _period;
     bool _isTestRun;
     std::string _testType;
     ZmpTestType _zmpTestType;

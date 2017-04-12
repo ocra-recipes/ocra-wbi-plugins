@@ -117,11 +117,11 @@ bool WalkingClient::initialize()
         }
     }
 
-    int period = this->getExpectedPeriod();
+    _period = this->getExpectedPeriod();
 
 
      // Prepare feet cartesian tasks
-    _stepController = std::make_shared<StepController>(period, this->model);
+    _stepController = std::make_shared<StepController>(_period, this->model);
     _stepController->initialize();
 
 
@@ -136,18 +136,18 @@ bool WalkingClient::initialize()
     getFeetSeparation(sep);
     double feetSeparation = sep(1);
     if (_zmpTestType == ZMP_VARYING_REFERENCE) {
-        _zmpTrajectory = generateZMPTrajectoryTEST(_tTrans, feetSeparation, period, _amplitudeFraction, _numberOfTransitions);
+        _zmpTrajectory = generateZMPTrajectoryTEST(_tTrans, feetSeparation, _period, _amplitudeFraction, _numberOfTransitions);
     } else {
         if (_zmpTestType == ZMP_CONSTANT_REFERENCE) {
             OCRA_WARNING("A ZMP Step Reference trajectory will be created");
-            _zmpTrajectory = generateZMPStepTrajectoryTEST(feetSeparation, period, _trajectoryDurationConstZmp, _riseTimeConstZmp, _zmpYConstRef);
+            _zmpTrajectory = generateZMPStepTrajectoryTEST(feetSeparation, _period, _trajectoryDurationConstZmp, _riseTimeConstZmp, _zmpYConstRef);
         }
     }
 
     if (!_testType.compare("singleStepTest")) {
         OCRA_INFO("A single step zmp trajectory will be created");
         OCRA_WARNING("Feet separation: " << sep);
-        _singleStepTrajectory = generateZMPSingleStepTrajectory(period, feetSeparation);
+        _singleStepTrajectory = generateZMPSingleStepTrajectory(_period, feetSeparation);
     }
     if (!_testType.compare("steppingTest")) {
         OCRA_INFO("A single step zmp trajectory will be created");
@@ -185,8 +185,6 @@ bool WalkingClient::initialize()
     //FIXME: Is this necessary?
     if (_testType.compare("steppingTest")) {
         // Set task's Kp and Kd to 0 from the client, since this task will receive pure accelerations
-//         _comTask->setStiffness(0);
-//         _comTask->setDamping(0);
     }
 
     // Start MIQPController thread
@@ -220,12 +218,14 @@ bool WalkingClient::initialize()
     OCRA_INFO(">>> FIRST REFS: \n");
     OCRA_INFO(comStateRef.block(0,0,_miqpParams.N,6));
     // Current iteration
-    _k = 0;
-    // Allocate spsce for optimal horizon of solutions
+    _k = 1;
+    // Allocate space for optimal horizon of solutions
     int Nw;
-    Nw = (int) (_miqpParams.N*_miqpParams.dt - (_miqpParams.dtThread - _miqpParams.dt))/period;
+    // Starting sample point in the original solution from which everything will be copied as it is.
+    unsigned int fromSample = (unsigned int) std::ceil( (2*_miqpParams.dtThread - _miqpParams.dt)/_miqpParams.dt ) + 1; 
+    Nw = _miqpParams.N - fromSample + 1 + 2;
     OCRA_ERROR("Space allocated for preview window of the walking-client: " << Nw);
-    this->_X_kn.resize(Nw);
+    this->_X_kn.resize(Nw*INPUT_VECTOR_SIZE);
     _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
     _miqpController->start();
     // Don't run this thread before the MIQPController class has finished initializing
@@ -267,40 +267,40 @@ void WalkingClient::loop()
        // INTERFACE THE MIQP CONTROLLER WITH THE MAIN THREAD OF THE WALKING CLIENT! THIS IS THE REAL DEAL
         if ( queryMIQPSolution(_miqpParams.dtThread, _miqpParams.dt, this->getExpectedPeriod(), _X_kn) ) {
             // If a new solution was retrieved from the MIQP
-            // ...
-            OCRA_ERROR("A new solution was retrieved and it was: \n ");
-            for (unsigned int i = 0; i < _X_kn.size(); i++) {
-                std::cout << _X_kn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE) << std::endl;
-            }
-            this->askToStop();
+            OCRA_ERROR("A new solution was retrieved after " << _k << " samples of walking-client and it was: \n ");
+            //FIXME: Don't leave it like this
+            int Nw = (int) _X_kn.size()/INPUT_VECTOR_SIZE;
+//             for (unsigned int i = 0; i < Nw; i++) {
+//                 std::cout << "i: " << i << std::endl;
+//                 std::cout << _X_kn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE).transpose() << std::endl;
+//             }
         }
+        _k++;
+        //FIXME: Remember to remove this when using state feedback
+        if (_k==7)
+            this->askToStop();
     }
-    _k++;
 }
 
 bool WalkingClient::queryMIQPSolution(const int miqpPeriod, const int miqpPreviewPeriod, const int clientPeriod, Eigen::VectorXd &preview) {
     // If current iteration _k is a multiple of miqpPeriod/clientPeriod, then a new solution from the MIQP should be ready.
     preview.setZero();
     int samplesInPreview = (int) miqpPeriod/clientPeriod;
-    OCRA_ERROR("Samples in preview window: " << samplesInPreview);
+    unsigned int fromSample = (unsigned int) std::ceil( (2*miqpPeriod - miqpPreviewPeriod)/miqpPreviewPeriod ) + 1; 
     Eigen::VectorXd tmpXkn(INPUT_VECTOR_SIZE*_miqpParams.N);
     if ( _k % samplesInPreview == 0 ) {
         _miqpController->semaphore.wait();
         _miqpController->getSolution(tmpXkn);
         _miqpController->semaphore.post();
         // Take only the first solution and copy it the first samplesInPreview of _X_kn (or &preview)
-        Eigen::VectorXd Xk1 = tmpXkn.topRows(INPUT_VECTOR_SIZE);
-        Eigen::VectorXd XknSegment(samplesInPreview*INPUT_VECTOR_SIZE);
-        XknSegment = Xk1.replicate(samplesInPreview,1);
-        // Assign the first replicated segment to the new preview window
-        preview.segment(0, INPUT_VECTOR_SIZE*samplesInPreview) = XknSegment;
-        // From sample ceil((miqpPeriod - previewPeriod)/previewPeriod) + 2 copy every element in the preview window every samplesInPreview
-        unsigned int fromSample = (unsigned int) std::ceil( (miqpPeriod - miqpPreviewPeriod)/miqpPreviewPeriod ) + 2; // >> fromSample in the original solution
-        unsigned int j = samplesInPreview;
-        for ( unsigned int i = fromSample; i <= _miqpParams.N; i++ ) {
-            preview.segment(INPUT_VECTOR_SIZE*j, INPUT_VECTOR_SIZE) = tmpXkn.segment(INPUT_VECTOR_SIZE*i,INPUT_VECTOR_SIZE);
-            j += samplesInPreview;
-        }
+        for (unsigned int i = 0; i < _miqpParams.N; i++)
+            std::cout << tmpXkn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE).transpose() << std::endl;
+        // Repeat the first solution twice
+        _X_kn.segment(0,INPUT_VECTOR_SIZE) = tmpXkn.topRows(INPUT_VECTOR_SIZE);
+        _X_kn.segment(INPUT_VECTOR_SIZE,INPUT_VECTOR_SIZE) = tmpXkn.topRows(INPUT_VECTOR_SIZE);
+        // From fromSample copy every element in the preview window
+        // FIXME: The first two elements will always be X_{k+1}
+        _X_kn.segment(2*INPUT_VECTOR_SIZE, (_miqpParams.N - fromSample + 1)*INPUT_VECTOR_SIZE) = tmpXkn.segment((fromSample-1)*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE*(_miqpParams.N - fromSample + 1));
         return true;
     } else {
         return false;
