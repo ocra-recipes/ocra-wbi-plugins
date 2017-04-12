@@ -185,6 +185,8 @@ bool WalkingClient::initialize()
     //FIXME: Is this necessary?
     if (_testType.compare("steppingTest")) {
         // Set task's Kp and Kd to 0 from the client, since this task will receive pure accelerations
+        _comTask->setStiffness(0);
+        _comTask->setDamping(0);
     }
 
     // Start MIQPController thread
@@ -577,7 +579,8 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     // computed. For this we'll pass the current full com state hk.
     inthkk = hkk.head<2>();
     intdhkk = hkk.segment<2>(2);
-    intddhkk = hkk.tail<2>() + 0.010*optimalU.topRows(2);
+    double periodDouble = (double) this->_period/1000;
+    intddhkk = hkk.tail<2>() + periodDouble*optimalU.topRows(2);
     hkk.tail<2>() = intddhkk;
     _zmpPreviewController->tableCartModel(hkk, pk);
 
@@ -748,7 +751,8 @@ void WalkingClient::steppingTest() {
     // computed. For this we'll pass the current full com state hk.
     inthkk = hkk.head<2>();
     intdhkk = hkk.segment<2>(2);
-    intddhkk = hkk.tail<2>() + 0.010*optimalU.topRows(2);
+    double periodDouble = (double) this->_period/1000;
+    intddhkk = hkk.tail<2>() + periodDouble*optimalU.topRows(2);
     hkk.tail<2>() = intddhkk;
     _zmpPreviewController->tableCartModel(hkk, pk);
 

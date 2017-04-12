@@ -64,7 +64,8 @@ int main (int argc, char * argv[])
 
     std::shared_ptr<ocra_recipes::ClientManager> clientManager;
     yLog.info() << "Making client manager";
-    clientManager = std::make_shared<ocra_recipes::ClientManager>(ctrlClient);
+    bool suppressWarnings = true;
+    clientManager = std::make_shared<ocra_recipes::ClientManager>(ctrlClient, suppressWarnings);
 
     yLog.info() << "Resource finder stuff";
     yarp::os::ResourceFinder rf;

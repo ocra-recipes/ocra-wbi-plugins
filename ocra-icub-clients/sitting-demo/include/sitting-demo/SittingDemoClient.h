@@ -13,6 +13,8 @@ DEFINE_CLASS_POINTER_TYPEDEFS(SittingDemoClient)
 public:
     SittingDemoClient (std::shared_ptr<ocra::Model> modelPtr, const int loopPeriod);
     virtual ~SittingDemoClient ();
+    virtual bool configure(yarp::os::ResourceFinder &rf);
+
 
 protected:
     virtual bool initialize();
@@ -20,7 +22,14 @@ protected:
     virtual void loop();
 
 private:
-    ocra_recipes::TrajectoryThread::Ptr rootTrajThread;
+
+    void moveCom();
+    std::string taskName;
+    ocra_recipes::TaskConnection::Ptr comTask;
+    ocra_recipes::TrajectoryThread::Ptr comTrajThread;
+    double xDisp, yDisp, zDisp;
+    Eigen::Vector3d currentDesiredPosition;
+    Eigen::MatrixXd Kp, Kd;
 };
 
 
