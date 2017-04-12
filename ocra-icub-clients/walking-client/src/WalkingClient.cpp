@@ -242,8 +242,8 @@ bool WalkingClient::initialize()
 void WalkingClient::release()
 {
      // Set task's Kp and Kd to initial values before starting the client
-//     _comTask->setStiffness(30);
-//     _comTask->setDamping(5);
+    _comTask->setStiffness(30);
+    _comTask->setDamping(5);
     
     _miqpController->stop();
     _stepController->stop();
@@ -504,12 +504,13 @@ std::vector<Eigen::Vector2d> WalkingClient::generateZMPTrajectoryTEST(double tTr
     Eigen::Vector2d sineVector = Eigen::Vector2d::Zero();
     double t = 0;
     double tmp;
-    while (t < N*tTrans) {
+    while (t < N*tTrans+tTrans*0.0001) {
         tmp = (-feetSeparation/amplitudeFraction)*std::sin((M_PI/(2*tTrans))*t) - feetSeparation/2;
         sineVector(1) = tmp;
         zmpTrajectory.push_back(sineVector);
         t = t + timeStep/1000;
     }
+    std::cout << "last zmp point: " << zmpTrajectory[zmpTrajectory.size()-1] << std::endl;
     OCRA_INFO("ZMP Trajectory Generated");
     return zmpTrajectory;
 }
@@ -555,6 +556,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     hk.head<2>() = this->model->getCoMPosition().topRows(2);
     hk.segment<2>(2) = this->model->getCoMVelocity().topRows(2);
     hk.tail<2>() = this->model->getCoMAcceleration().topRows(2);
+    OCRA_WARNING("CoM state from model: " << hk.transpose());
     //TODO: Try to get the task state instead of pos, vel and acc individually.
     //_comTask->getTaskState();
     Eigen::VectorXd hkk(6); hkk.setZero();
@@ -617,9 +619,12 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     //TODO: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
     if ( el < _zmpTrajectory.size() )
         el++;
-    else
+    else {
+        OCRA_ERROR("Trajectory finished");
+        Eigen::VectorXd zeroAcc = Eigen::VectorXd::Zero(6);
+        prepareAndsetDesiredCoMTaskState(zeroAcc,true);
         this->askToStop();
-
+    }   
 }
 
 void WalkingClient::performSingleStepTest() {
@@ -705,7 +710,7 @@ void WalkingClient::performSingleStepTest() {
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
 
-    //TODO: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
+    //FIXME: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
     if ( el < _singleStepTrajectory.size() )
         el++;
     else
@@ -839,14 +844,14 @@ void WalkingClient::prepareAndsetDesiredCoMTaskState(VectorXd comState, bool doS
     Eigen::Vector3d comRefVelocity;
     Eigen::Vector3d comRefAcceleration;
 
-    if (!_testType.compare("steppingTest")) {
+    if (!_testType.compare("steppingTest") || !_testType.compare("zmpPreview")) {
         comRefPosition << comState.head<2>(), _zmpPreviewParams->cz;
         comRefVelocity << comState.segment<2>(2), 0;
     }
     comRefAcceleration << comState.tail<2>(), 0;
 
     if (doSet) {
-        if (!_testType.compare("steppingTest")) {
+        if (!_testType.compare("steppingTest") || !_testType.compare("zmpPreview")) {
             desiredComState.setPosition(ocra::util::eigenVectorToDisplacementd(comRefPosition));
             desiredComState.setVelocity(ocra::util::eigenVectorToTwistd(comRefVelocity));
         }

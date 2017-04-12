@@ -43,7 +43,7 @@
     <offset  x="0.05" y="0.0" z="0.0" />
 </task> -->
 <task name="ComTask" type="CoM">
-    <params kp="10" kd="0.0" weight="1.0" axes="XYZ"/>
+    <params kp="100" kd="0.0" weight="1.0" axes="XYZ"/>
 </task>
 
 <task name="TorsoOrientationTask" type="Orientation">

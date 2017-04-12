@@ -58,7 +58,7 @@ private:
     std::string robotName;
     bool isFloatingBase;
     bool useOdometry;
-    static const int ALL_JOINTS = -1;
+    static constexpr double ALL_JOINTS = -1.0;
     int nDoF;
 
     Eigen::VectorXd wbi_H_root_Vector;

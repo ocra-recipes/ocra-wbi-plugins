@@ -212,7 +212,7 @@ public:
      @param doSet True if the desired state is to be set. False otherwise.
      @todo Change input to this method to just com acceleration.
      */
-    void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet);
+    void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet=true);
 
 
 

@@ -396,6 +396,7 @@ const Eigen::Vector3d& OcraWbiModel::getCoMVelocity() const
     {
         Eigen::MatrixXd J = getCoMJacobian();
         owm_pimpl->vel_com = J.leftCols(6)*owm_pimpl->Troot+J.rightCols(owm_pimpl->nbInternalDofs)*owm_pimpl->dq;
+        std::cout << "dq is: " << owm_pimpl->dq.transpose() << std::endl;
     }
     else
         owm_pimpl->vel_com = getCoMJacobian()*owm_pimpl->dq;
