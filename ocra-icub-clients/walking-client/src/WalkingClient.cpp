@@ -226,6 +226,7 @@ bool WalkingClient::initialize()
     Nw = _miqpParams.N - fromSample + 1 + 2;
     OCRA_ERROR("Space allocated for preview window of the walking-client: " << Nw);
     this->_X_kn.resize(Nw*INPUT_VECTOR_SIZE);
+    this->_t_kn.resize(Nw);
     _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
     _miqpController->start();
     // Don't run this thread before the MIQPController class has finished initializing
@@ -265,15 +266,16 @@ void WalkingClient::loop()
        }
     } else {
        // INTERFACE THE MIQP CONTROLLER WITH THE MAIN THREAD OF THE WALKING CLIENT! THIS IS THE REAL DEAL
-        if ( queryMIQPSolution(_miqpParams.dtThread, _miqpParams.dt, this->getExpectedPeriod(), _X_kn) ) {
+        if ( queryMIQPSolution(_miqpParams.dtThread, _miqpParams.dt, this->getExpectedPeriod(), _X_kn, _t_kn) ) {
             // If a new solution was retrieved from the MIQP
             OCRA_ERROR("A new solution was retrieved after " << _k << " samples of walking-client and it was: \n ");
-            //FIXME: Don't leave it like this
             int Nw = (int) _X_kn.size()/INPUT_VECTOR_SIZE;
-//             for (unsigned int i = 0; i < Nw; i++) {
-//                 std::cout << "i: " << i << std::endl;
-//                 std::cout << _X_kn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE).transpose() << std::endl;
-//             }
+            for (unsigned int i = 0; i < Nw; i++) {
+                std::cout << "i: " << i << std::endl;
+                std::cout << _X_kn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE).transpose() << std::endl;
+            }
+            std::cout << "Time vector is: \n" << _t_kn.transpose() << std::endl;
+            // 
         }
         _k++;
         //FIXME: Remember to remove this when using state feedback
@@ -282,7 +284,7 @@ void WalkingClient::loop()
     }
 }
 
-bool WalkingClient::queryMIQPSolution(const int miqpPeriod, const int miqpPreviewPeriod, const int clientPeriod, Eigen::VectorXd &preview) {
+bool WalkingClient::queryMIQPSolution(const int miqpPeriod, const int miqpPreviewPeriod, const int clientPeriod, Eigen::VectorXd &preview, Eigen::VectorXd &timeVector) {
     // If current iteration _k is a multiple of miqpPeriod/clientPeriod, then a new solution from the MIQP should be ready.
     preview.setZero();
     int samplesInPreview = (int) miqpPeriod/clientPeriod;
@@ -301,6 +303,12 @@ bool WalkingClient::queryMIQPSolution(const int miqpPeriod, const int miqpPrevie
         // From fromSample copy every element in the preview window
         // FIXME: The first two elements will always be X_{k+1}
         _X_kn.segment(2*INPUT_VECTOR_SIZE, (_miqpParams.N - fromSample + 1)*INPUT_VECTOR_SIZE) = tmpXkn.segment((fromSample-1)*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE*(_miqpParams.N - fromSample + 1));
+        // Fill-in time vector
+        timeVector(0) = 0;
+        timeVector(1) = miqpPeriod - clientPeriod;
+        for (unsigned int i = 0; i <= _miqpParams.N - fromSample; i++) {
+            timeVector(i+2)= miqpPeriod + i*miqpPreviewPeriod;
+        }
         return true;
     } else {
         return false;

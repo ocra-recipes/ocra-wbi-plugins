@@ -61,9 +61,10 @@ public:
      @param miqpPreviewPeriod Period used to discretize the MIQP
      @param clientPeriod Period of the current client thread.
      @param[out] Preview solution from the MIQP.
+     @param[out] tPreview time vector in preview used by the client
      @return True if the right amount of time has passed, false otherwise.
      */
-    bool queryMIQPSolution(const int miqpPeriod, const int miqpPreviewPeriod, const int clientPeriod, Eigen::VectorXd &preview);
+    bool queryMIQPSolution(const int miqpPeriod, const int miqpPreviewPeriod, const int clientPeriod, Eigen::VectorXd &preview, Eigen::VectorXd &tPreview);
 
     /**
      Reads the raw wrench published for the corresponding analog force/torque sensors in iCub's feet.
@@ -288,6 +289,7 @@ private:
     
     // MIQP-related variables
     Eigen::VectorXd _X_kn;
+    Eigen::VectorXd _t_kn;
 
 };
 
