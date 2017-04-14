@@ -41,11 +41,27 @@ void IcubControllerServer::getRobotState(Eigen::VectorXd& q, Eigen::VectorXd& qd
     // OCRA_INFO("Getting robot state");
     q.resize(nDoF);
     qd.resize(nDoF);
-    iDynTree::JointPosDoubleArray qj;
-    qj.resize(nDoF);
+    
     wbi->getEstimates(wbi::ESTIMATE_JOINT_POS, q.data(), ALL_JOINTS);
-    wbi->getEstimates(wbi::ESTIMATE_JOINT_VEL, qd.data(), ALL_JOINTS);
 
+    //FIXME: This is temporary hack for experiments in IIT
+    if (this->firstRun) {
+        this->qdPrevious.resize(nDoF);
+        this->qPrevious.resize(nDoF);
+        this->qdPrevious.setZero();
+        qd.setZero();
+        this->qPrevious = q;
+        this->firstRun = false;
+    } else {
+        qd = (1.0/0.010)*(q - this->qPrevious);
+        qPrevious = q;
+    }
+    //FIXME: COMMENT TO USE NUMERICAL DIFFERENTIATION
+    wbi->getEstimates(wbi::ESTIMATE_JOINT_VEL, qd.data(), ALL_JOINTS);
+//     qd.setZero();
+    iDynTree::JointPosDoubleArray qj;
+    
+    qj.resize(nDoF);
     if (isFloatingBase)
     {
         if (useOdometry) {

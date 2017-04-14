@@ -140,6 +140,8 @@ public:
      @param type Trajectory type. \see ZmpTestType.
      */
     void performZMPPreviewTest(ZmpTestType type);
+    
+    void performZMPPreviewTestIntCoM(ZmpTestType type);
 
     void performSingleStepTest();
 
@@ -212,7 +214,7 @@ public:
      @param doSet True if the desired state is to be set. False otherwise.
      @todo Change input to this method to just com acceleration.
      */
-    void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet=true);
+    void prepareAndsetDesiredCoMTaskState(Eigen::VectorXd comState, bool doSet);
 
 
 
@@ -282,7 +284,7 @@ private:
     yarp::os::BufferedPort<yarp::os::Bottle> _comCurrent;
     yarp::os::BufferedPort<yarp::os::Bottle> _ddcomCurrent;
     yarp::os::BufferedPort<yarp::os::Bottle> _ddcomFromZMP;
-    VectorXd _hkkPrevious;
+    Eigen::VectorXd _hkkPrevious;
     bool _firstLoop;
     Eigen::VectorXd zmpRefInPreviewWindow;
     Eigen::VectorXd comVelRefInPreviewWindow;

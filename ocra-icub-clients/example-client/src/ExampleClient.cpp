@@ -26,10 +26,11 @@ bool ExampleClient::initialize()
     // std::cout << "hand pose: " << model->getSegmentPosition("l_hand") << std::endl;
     // std::cout << "\n\n\n" << std::endl;
 
-    waypoints.resize(3,3);
+    waypoints.resize(3,4);
     waypoints.col(0) = initialPos + Eigen::Vector3d(0.0,  0.0,  0.2);
     waypoints.col(1) = initialPos + Eigen::Vector3d(0.0, -0.2,  0.2);
     waypoints.col(2) = initialPos + Eigen::Vector3d(0.0, -0.2,  0.0);
+    waypoints.col(3) = initialPos + Eigen::Vector3d(0.0,  0.2,  0.0);
 
 
     ocra_recipes::TERMINATION_STRATEGY termStrategy = ocra_recipes::BACK_AND_FORTH;
@@ -37,7 +38,7 @@ bool ExampleClient::initialize()
     leftHandTrajThread = std::make_shared<ocra_recipes::TrajectoryThread>(10, "LeftHandCartesian", waypoints, trajType, termStrategy);
 
     // leftHandTrajThread->setDisplacement(0.2);
-    leftHandTrajThread->setGoalErrorThreshold(0.03);
+    leftHandTrajThread->setGoalErrorThreshold(0.07);
     leftHandTrajThread->setMaxVelocity(0.2);
 
 

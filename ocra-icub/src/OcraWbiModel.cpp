@@ -75,6 +75,7 @@ public:
     double                                                  total_mass;
     Eigen::Vector3d                                         pos_com; // COM position
     Eigen::Vector3d                                         vel_com; // COM linear velocity
+    Eigen::Vector3d                                         vel_com_old; // CoM linear velocity previous time step
     Eigen::Vector3d                                         acc_com; // COM linear acceleration
     Eigen::Vector3d                                         vel_com_angular; // COM angular velocity
     Eigen::Matrix<double,COM_POS_DIM,Eigen::Dynamic>        J_com; // Jacobian matrix (col major for ocra control)
@@ -157,6 +158,7 @@ public:
         ,segJointJacobian(nbSeg, Eigen::Matrix<double,TRANS_ROT_DIM,Eigen::Dynamic>::Zero(TRANS_ROT_DIM,ndof))
         ,segJdotQdot(nbSeg, Eigen::Twistd(0,0,0,0,0,0))
     {
+        vel_com_old = Eigen::Vector3d::Zero();
 
     }
 
@@ -194,8 +196,9 @@ OcraWbiModel::OcraWbiModel(const std::string& robotName, const int robotNumDOF, 
     // Get full M0
     MatrixXdRm M_rm_total_mass(full_wbi_size,full_wbi_size);
     robot->computeMassMatrix(owm_pimpl->q.data(), wbi::Frame(), M_rm_total_mass.data());
-    owm_pimpl->total_mass = M_rm_total_mass(0,0);
-
+    owm_pimpl->total_mass = M_rm_total_mass(0,0); 
+    
+    dqPrevious = Eigen::VectorXd::Zero(owm_pimpl->q.size());
 }
 
 OcraWbiModel::~OcraWbiModel()
@@ -241,7 +244,7 @@ const Eigen::VectorXd& OcraWbiModel::getJointVelocities() const
 
 const Eigen::VectorXd& OcraWbiModel::getJointAccelerations() const
 {
-
+    //FIXME: COMMENT OUT FOR NUMERICAL DIFFERENTIATION
     robot->getEstimates(wbi::ESTIMATE_JOINT_ACC, owm_pimpl->ddq.data(), ALL_JOINTS);
     return owm_pimpl->ddq;
 }
@@ -375,16 +378,38 @@ double OcraWbiModel::getMass() const
 
 const Eigen::Vector3d& OcraWbiModel::getCoMPosition() const
 {
+//     this->mutex.wait();
+//     wbi::Frame H;
+// //     double initTime = yarp::os::Time::now();
+//     robot->computeH(owm_pimpl->q.data(),owm_pimpl->Hroot_wbi,wbi::iWholeBodyModel::COM_LINK_ID,H);
+// //     std::cout<<"OcraWbiModel::getCoMPosition - computeH takes: " << yarp::os::Time::now() - initTime << std::endl; 
+// 
+//     OcraWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->H_com);
+// //     initTime = yarp::os::Time::now();
+//     owm_pimpl->pos_com = owm_pimpl->H_com.getTranslation();
+// //     std::cout<<"OcraWbiModel::getCoMPosition - owm_pimpl->H_com.getTranslation() takes: " << yarp::os::Time::now() - initTime << std::endl;     
+// /*
+//     printf("Get COM Poisiton\n");
+//     std::cout << owm_pimpl->pos_com << std::endl;
+// */
+// //     Eigen::Vector3d tmp = owm_pimpl->pos_com;
+//     this->mutex.post();
+    return owm_pimpl->pos_com;
+}
+
+void OcraWbiModel::updateCoMPosition() {
     wbi::Frame H;
+//     double initTime = yarp::os::Time::now();
     robot->computeH(owm_pimpl->q.data(),owm_pimpl->Hroot_wbi,wbi::iWholeBodyModel::COM_LINK_ID,H);
+//     std::cout<<"OcraWbiModel::getCoMPosition - computeH takes: " << yarp::os::Time::now() - initTime << std::endl; 
 
     OcraWbiConversions::wbiFrameToEigenDispd(H,owm_pimpl->H_com);
+//     initTime = yarp::os::Time::now();
+    this->mutex.lock();
     owm_pimpl->pos_com = owm_pimpl->H_com.getTranslation();
-/*
-    printf("Get COM Poisiton\n");
-    std::cout << owm_pimpl->pos_com << std::endl;
-*/
-    return owm_pimpl->pos_com;
+    this->mutex.unlock();
+//     std::cout<<"OcraWbiModel::getCoMPosition - owm_pimpl->H_com.getTranslation() takes: " << yarp::os::Time::now() - initTime << std::endl;     
+//     Eigen::Vector3d tmp = owm_pimpl->pos_com;
 }
 
 const Eigen::Vector3d& OcraWbiModel::getCoMVelocity() const
@@ -392,20 +417,41 @@ const Eigen::Vector3d& OcraWbiModel::getCoMVelocity() const
 /*
     printf("Get COM Velocity\n");
 */
+//     if (owm_pimpl->freeRoot)
+//     {
+//         Eigen::MatrixXd J = getCoMJacobian();
+//         owm_pimpl->vel_com = J.leftCols(6)*owm_pimpl->Troot+J.rightCols(owm_pimpl->nbInternalDofs)*owm_pimpl->dq;
+//     }
+//     else
+//         owm_pimpl->vel_com = getCoMJacobian()*owm_pimpl->dq;
+    return owm_pimpl->vel_com;
+}
+
+void OcraWbiModel::updateCoMVelocity() {
     if (owm_pimpl->freeRoot)
     {
         Eigen::MatrixXd J = getCoMJacobian();
+        this->mutex.lock();
         owm_pimpl->vel_com = J.leftCols(6)*owm_pimpl->Troot+J.rightCols(owm_pimpl->nbInternalDofs)*owm_pimpl->dq;
-        std::cout << "dq is: " << owm_pimpl->dq.transpose() << std::endl;
+        this->mutex.unlock();
     }
-    else
+    else {
+        this->mutex.lock();
         owm_pimpl->vel_com = getCoMJacobian()*owm_pimpl->dq;
-    return owm_pimpl->vel_com;
+        this->mutex.unlock();
+    }
+    
+    // Differentiating velocity
+    this->mutex.lock();
+    owm_pimpl->acc_com = (1.0/0.010)*(owm_pimpl->vel_com - owm_pimpl->vel_com_old);
+    this->mutex.unlock();
+    
+    owm_pimpl->vel_com_old = owm_pimpl->vel_com;
 }
 
 const Eigen::Vector3d& OcraWbiModel::getCoMAcceleration() const
 {
-    owm_pimpl->acc_com = getCoMJacobian()*this->getJointAccelerations() + getCoMJdotQdot();
+//     owm_pimpl->acc_com = getCoMJacobian()*this->getJointAccelerations() + getCoMJdotQdot();
     return owm_pimpl->acc_com;
 }
 
@@ -669,6 +715,15 @@ void OcraWbiModel::doSetJointVelocities(const Eigen::VectorXd& dq)
     std::cout << dq.transpose() << std::endl;
 */
     owm_pimpl->dq = dq;
+    //FIXME: Added here during the demo prep in IIT
+    //FIXME: UNCOMMENT TO USE NUMERICAL DIFFERENTIATION
+//     doSetJointAccelerations((1.0/0.010)*(dq - dqPrevious));
+    dqPrevious = dq;
+}
+
+void OcraWbiModel::doSetJointAccelerations(const Eigen::VectorXd& ddq)
+{
+    owm_pimpl->ddq = ddq;
 }
 
 void OcraWbiModel::doSetFreeFlyerPosition(const Eigen::Displacementd& Hroot)
@@ -731,12 +786,14 @@ const std::string OcraWbiModel::doDofName(const std::string& name) const
 
 void OcraWbiModel::doSetState(const Eigen::VectorXd& q, const Eigen::VectorXd& q_dot)
 {
-    // Do nothing
+    updateCoMPosition();
+    updateCoMVelocity();
 }
 
 void OcraWbiModel::doSetState(const Eigen::Displacementd& H_root, const Eigen::VectorXd& q, const Eigen::Twistd& T_root, const Eigen::VectorXd& q_dot)
 {
-    // Do nothing
+    updateCoMPosition();
+    updateCoMVelocity();
 }
 
 void OcraWbiModel::printAllData()

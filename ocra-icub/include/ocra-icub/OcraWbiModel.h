@@ -77,6 +77,8 @@ public:
 //===============================CoM functions================================//
     virtual double                                         getMass            () const;
     virtual const Eigen::Vector3d&                         getCoMPosition     () const;
+    void                                                   updateCoMPosition();
+    void                                                   updateCoMVelocity();    
     virtual const Eigen::Vector3d&                         getCoMVelocity     () const;
     virtual const Eigen::Vector3d&                         getCoMAcceleration () const;
     virtual const Eigen::Vector3d&                         getCoMJdotQdot     () const;
@@ -115,6 +117,7 @@ protected:
 
     virtual void                doSetJointPositions     (const Eigen::VectorXd& q);
     virtual void                doSetJointVelocities    (const Eigen::VectorXd& dq);
+    virtual void                doSetJointAccelerations (const Eigen::VectorXd& ddq);
     virtual void                doSetFreeFlyerPosition  (const Eigen::Displacementd& Hroot);
     virtual void                doSetFreeFlyerVelocity  (const Eigen::Twistd& Troot);
 
@@ -131,6 +134,8 @@ private:
     struct OcraWbiModel_pimpl;
     boost::shared_ptr<OcraWbiModel_pimpl> owm_pimpl; // where all internal data are saved
     yarp::os::Log yLog;
+    Eigen::VectorXd dqPrevious;
+    yarp::os::Mutex mutex;
 };
 } /* ocra_icub */
 

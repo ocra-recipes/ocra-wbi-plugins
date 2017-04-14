@@ -182,12 +182,12 @@ bool WalkingClient::initialize()
     // Allocation of optimal input vector
     optimalU = Eigen::VectorXd(2*_zmpPreviewParams->Nc);
 
-    //FIXME: Is this necessary?
-    if (_testType.compare("steppingTest")) {
-        // Set task's Kp and Kd to 0 from the client, since this task will receive pure accelerations
-        _comTask->setStiffness(0);
-        _comTask->setDamping(0);
-    }
+//     //FIXME: Is this necessary?
+//     if (_testType.compare("steppingTest")) {
+//         // Set task's Kp and Kd to 0 from the client, since this task will receive pure accelerations
+//         _comTask->setStiffness(0);
+//         _comTask->setDamping(0);
+//     }
 
     // Start MIQPController thread
     // FIXME: Dummy initial COM velocity references. They're both ramps, to test in the preview window.
@@ -242,8 +242,8 @@ bool WalkingClient::initialize()
 void WalkingClient::release()
 {
      // Set task's Kp and Kd to initial values before starting the client
-    _comTask->setStiffness(30);
-    _comTask->setDamping(5);
+//     _comTask->setStiffness(30);
+//     _comTask->setDamping(5);
     
     _miqpController->stop();
     _stepController->stop();
@@ -254,7 +254,8 @@ void WalkingClient::loop()
     if (_isTestRun) {
        if (!_testType.compare("zmpPreview")) {
            // Track a zmp trajectory using a zmp preview controller
-           performZMPPreviewTest(_zmpTestType);
+//            performZMPPreviewTest(_zmpTestType);
+           performZMPPreviewTestIntCoM(_zmpTestType);
        } else if (!_testType.compare("steppingTest")) {
            this->steppingTest();
        } else {
@@ -556,7 +557,7 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     hk.head<2>() = this->model->getCoMPosition().topRows(2);
     hk.segment<2>(2) = this->model->getCoMVelocity().topRows(2);
     hk.tail<2>() = this->model->getCoMAcceleration().topRows(2);
-    OCRA_WARNING("CoM state from model: " << hk.transpose());
+//     OCRA_WARNING("CoM state from model: " << hk.transpose());
     //TODO: Try to get the task state instead of pos, vel and acc individually.
     //_comTask->getTaskState();
     Eigen::VectorXd hkk(6); hkk.setZero();
@@ -581,9 +582,10 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     // computed. For this we'll pass the current full com state hk.
     inthkk = hkk.head<2>();
     intdhkk = hkk.segment<2>(2);
-    double periodDouble = (double) this->_period/1000;
-    intddhkk = hkk.tail<2>() + periodDouble*optimalU.topRows(2);
-    hkk.tail<2>() = intddhkk;
+//     double periodDouble = (double) this->_period/1000;
+//     intddhkk = hkk.tail<2>() + periodDouble*optimalU.topRows(2);
+//     hkk.tail<2>() = intddhkk;
+    intddhkk = hkk.tail<2>();
     _zmpPreviewController->tableCartModel(hkk, pk);
 
     // Apply control
@@ -622,6 +624,96 @@ void WalkingClient::performZMPPreviewTest(ZmpTestType type)
     else {
         OCRA_ERROR("Trajectory finished");
         Eigen::VectorXd zeroAcc = Eigen::VectorXd::Zero(6);
+        prepareAndsetDesiredCoMTaskState(zeroAcc,true);
+        this->askToStop();
+    }   
+}
+
+void WalkingClient::performZMPPreviewTestIntCoM(ZmpTestType type)
+{
+    //TODO: Pass most of this shit to the initialization method
+    static double timeInit = yarp::os::Time::now();
+    static double tnow = yarp::os::Time::now() - timeInit;
+    static int el = 0;
+    if (_firstLoop) {
+        _hkkPrevious.setZero();
+        _hkkPrevious.head<2>() = this->model->getCoMPosition().topRows(2);
+        _firstLoop = false;
+    }
+
+    Eigen::Vector2d zmpReference;
+    // Retrieve current COM state
+    Eigen::VectorXd hk(6);
+    // Get only current CoM position
+    hk.head<2>() = this->model->getCoMPosition().topRows(2);
+    Eigen::VectorXd hkk(6); hkk.setZero();
+    Eigen::Vector2d pk; pk.setZero();
+    Eigen::Vector2d intddhkk; intddhkk.setZero();
+    Eigen::Vector2d inthkk; inthkk.setZero();
+    Eigen::Vector2d intdhkk; intdhkk.setZero();
+
+    zmpReference = _zmpTrajectory[el];
+
+    // Transform the following Np zmp references from the current time step in the std::vector container to a single Eigen::VectorXd
+    transformStdVectorToEigenVector(_zmpTrajectory, el, _zmpPreviewParams->Np, zmpRefInPreviewWindow);
+
+    // Compute optimal input in preview window for the next Np zmp references
+    _zmpPreviewController->computeOptimalInput(zmpRefInPreviewWindow, comVelRefInPreviewWindow, _hkkPrevious, optimalU);
+
+    // Only using the first input computed by the preview controller;
+    // This input must now be integrated (since it's just the optimal com jerk)
+    _zmpPreviewController->integrateCom(optimalU.topRows(2), _hkkPrevious, hkk);
+
+    // Using the zmp cart model, the instantaneous zmp trajectory can now be
+    // computed. For this we'll pass the current full com state hk.
+    inthkk = hkk.head<2>();
+    intdhkk = hkk.segment<2>(2);
+    double periodDouble = (double) this->_period/1000;
+    intddhkk = hkk.tail<2>() + periodDouble*optimalU.topRows(2);
+    hkk.tail<2>() = intddhkk;
+    intddhkk = hkk.tail<2>();
+    _zmpPreviewController->tableCartModel(hkk, pk);
+
+    // The next actual state will be the previously integrated CoM
+    _hkkPrevious = hkk;
+    
+    // Apply control
+    // Prepare the desired com state and apply control!
+    prepareAndsetDesiredCoMTaskState(hkk, true);
+
+    Eigen::Vector3d currentComPos;
+    currentComPos = _comTask->getTaskState().getPosition().getTranslation();
+
+    Eigen::Vector3d currentAcceleration;
+    currentAcceleration = this->model->getCoMAcceleration();
+
+    // Read Force/Torque measurements
+    readFootWrench(LEFT_FOOT, _rawLeftFootWrench);
+    readFootWrench(RIGHT_FOOT, _rawRightFootWrench);
+
+    // Compute ZMP
+    _zmpPreviewController->computeGlobalZMPFromSensors(_rawLeftFootWrench, _rawRightFootWrench, this->model, _globalZMP);
+
+    // Write to file for plotting
+    //TODO: Watch out! if the thread doesn't respect the desired period, then your plots will look horizontally scaled!
+    tnow = tnow + this->getEstPeriod()/1000;
+    std::string homeDir = std::string(_homeDataDir + "/zmpPreviewController/");
+    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, intddhkk).finished(), std::string(homeDir + "refComLinAcc.txt") ,true);
+    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentAcceleration).finished(), std::string(homeDir + "currentComLinAcc.txt"),true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, inthkk).finished(), std::string(homeDir + "intComPositionRef.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComPos).finished(), std::string(homeDir + "currentComPos.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, _globalZMP).finished(), std::string(homeDir + "currentZMP.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, pk).finished(), std::string(homeDir + "previewedZMP.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
+
+    //TODO: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
+    if ( el < _zmpTrajectory.size() )
+        el++;
+    else {
+        OCRA_ERROR("Trajectory finished");
+        Eigen::VectorXd zeroAcc = Eigen::VectorXd::Zero(6);
+        zeroAcc.topRows<2>() = inthkk;
         prepareAndsetDesiredCoMTaskState(zeroAcc,true);
         this->askToStop();
     }   

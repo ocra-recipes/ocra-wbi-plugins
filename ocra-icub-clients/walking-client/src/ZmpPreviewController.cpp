@@ -28,6 +28,8 @@ Hh(buildHh(Ch,Bh,Ah,Nc,Np))
     AOptimal = Hp.transpose()*Nb*Hp + Nu + Hh.transpose()*Nw*Hh;
     bOptimal = Eigen::MatrixXd(2*Nc,1).setZero();
     OCRA_INFO("Parameters passed to ZmpPreviewController: \n cz: " << parameters->cz << " Nc: " << parameters->Nc << " nu " << parameters->nu << " nw: " << parameters->nw << " nb: " << parameters->nb);
+    OCRA_ERROR("After constructor, Ah: \n" << Ah);
+    OCRA_ERROR("After constructor, Bh: \n" << Bh);
 }
 
 ZmpPreviewController::~ZmpPreviewController() {
@@ -136,12 +138,14 @@ Eigen::MatrixXd ZmpPreviewController::buildAh(const double dt) {
     Ah.block(0,2,2,2) = dt*Eigen::Matrix2d::Identity();
     Ah.block(0,4,2,2) = (pow(dt,2)/2)*Eigen::Matrix2d::Identity();
     Ah.block(2,4,2,2) = dt*Eigen::Matrix2d::Identity();
+    OCRA_ERROR("Ah is: " << Ah);
     return Ah;
 }
 
 Eigen::MatrixXd ZmpPreviewController::buildBh(const double dt){
     Eigen::MatrixXd Bh(6,2);
     Bh << (pow(dt,3)/6)*Eigen::Matrix2d::Identity(), (pow(dt,2)/2)*Eigen::Matrix2d::Identity(), dt*Eigen::Matrix2d::Identity();
+    OCRA_ERROR("Bh is: " << Bh);
     return Bh;
 }
 

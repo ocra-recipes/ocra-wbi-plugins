@@ -95,7 +95,7 @@ void SittingDemoClient::loop()
         std::cout << "Exiting..." << std::endl;
         stop();
     } else {
-        std::cout << "Enter value: " << std::endl;
+        std::cout << "Enter value in cm: " << std::endl;
         std::cin >> value;
 
         xDisp = 0.0;
