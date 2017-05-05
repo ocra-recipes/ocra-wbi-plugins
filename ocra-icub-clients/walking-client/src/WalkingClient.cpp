@@ -135,14 +135,9 @@ bool WalkingClient::initialize()
     Eigen::Vector3d sep; sep.setZero();
     getFeetSeparation(sep);
     double feetSeparation = sep(1);
-    if (_zmpTestType == ZMP_VARYING_REFERENCE) {
+    if (!_testType.compare("zmpPreview")) {
         _zmpTrajectory = generateZMPTrajectoryTEST(_tTrans, feetSeparation, _period, _amplitudeFraction, _numberOfTransitions);
-    } else {
-        if (_zmpTestType == ZMP_CONSTANT_REFERENCE) {
-            OCRA_WARNING("A ZMP Step Reference trajectory will be created");
-            _zmpTrajectory = generateZMPStepTrajectoryTEST(feetSeparation, _period, _trajectoryDurationConstZmp, _riseTimeConstZmp, _zmpYConstRef);
-        }
-    }
+    } 
 
     if (!_testType.compare("singleStepTest")) {
         OCRA_INFO("A single step zmp trajectory will be created");
@@ -150,14 +145,13 @@ bool WalkingClient::initialize()
         _singleStepTrajectory = generateZMPSingleStepTrajectory(_period, feetSeparation);
     }
     if (!_testType.compare("steppingTest")) {
-        OCRA_INFO("A single step zmp trajectory will be created");
-        OCRA_WARNING("Feet separation: " << sep);
+        OCRA_WARNING("Generating trajectory for stepping test with feet separation: " << sep);
         generateStepPattern();
         _steppingTrajectory = generateZMPSteppingTrajectory();
-        // for (auto v : _steppingTrajectory)
-        // {
-        //     std::cout << v.transpose() << std::endl;
-        // }
+//         for (auto v : _steppingTrajectory)
+//         {
+//             OCRA_INFO("stepping Trajectory \n" << v.transpose());
+//         }
     }
 
     Eigen::Vector3d initialCOMPosition = this->model->getCoMPosition();
@@ -229,11 +223,13 @@ bool WalkingClient::initialize()
     OCRA_ERROR("Space allocated for preview window of the walking-client: " << Nw);
     this->_X_kn.resize(Nw*INPUT_VECTOR_SIZE);
     this->_t_kn.resize(Nw);
-    _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
-    _miqpController->start();
-    // Don't run this thread before the MIQPController class has finished initializing
-    while (!_miqpController->isRunning()) {
-        OCRA_WARNING("Waiting for MIQPController thread to start");
+    if (!_testType.compare("miqp")) {
+        _miqpController = std::make_shared<MIQPController>(_miqpParams, this->model, this->_stepController, comStateRef);
+        _miqpController->start();
+        // Don't run this thread before the MIQPController class has finished initializing
+        while (!_miqpController->isRunning()) {
+            OCRA_WARNING("Waiting for MIQPController thread to start");
+        }
     }
     OCRA_INFO("Initialization is over");
     return true;
@@ -244,8 +240,8 @@ void WalkingClient::release()
      // Set task's Kp and Kd to initial values before starting the client
 //     _comTask->setStiffness(30);
 //     _comTask->setDamping(5);
-    
-    _miqpController->stop();
+    if (!_testType.compare("miqp"))
+        _miqpController->stop();
     _stepController->stop();
 }
 
@@ -256,55 +252,63 @@ void WalkingClient::loop()
            // Track a zmp trajectory using a zmp preview controller
 //            performZMPPreviewTest(_zmpTestType);
            performZMPPreviewTestIntCoM(_zmpTestType);
-       } else if (!_testType.compare("steppingTest")) {
-           this->steppingTest();
-       } else {
-           if (!_testType.compare("singleStepTest")) {
-           // Performing one single step with the right foot
-               performSingleStepTest();
-           } else {
-               OCRA_ERROR("You want to perform a zmp test, but zmpPreview was not found as value for the option 'test'. Please try again... ");
-               this->askToStop();
-           }
        }
-    } else {
-       // INTERFACE THE MIQP CONTROLLER WITH THE MAIN THREAD OF THE WALKING CLIENT! THIS IS THE REAL DEAL
-        if ( queryMIQPSolution(_miqpParams.dtThread, _miqpParams.dt, this->getExpectedPeriod(), _X_kn, _t_kn) ) {
-            // If a new solution was retrieved from the MIQP
-            OCRA_ERROR("A new solution was retrieved after " << _k << " samples of walking-client and it was: \n ");
-            int Nw = (int) _X_kn.size()/INPUT_VECTOR_SIZE;
-            for (unsigned int i = 0; i < Nw; i++) {
-                std::cout << _X_kn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE).transpose() << std::endl;
-            }
-            std::cout << "Time vector is: \n" << _t_kn.transpose() << std::endl;
-            // INTERPOLATION TO GENERATE CoP and CoM velocity reference
-            // First create vector of doubles with the times to interpolate
-            std::vector<double> timeToInterp;
-            for (unsigned int i = 0; i < _t_kn.size(); i++) {
-                timeToInterp.push_back(_t_kn(i)/1000);
-            }
-            // Then create vector of points to interpolate a and b
-            std::vector<Eigen::Vector2d> aToInterp;
-            std::vector<Eigen::Vector2d> bToInterp;
-            int samples = (int) _X_kn.size()/INPUT_VECTOR_SIZE;
-            for (unsigned int i = 0; i < samples; i++) {
-                aToInterp.push_back(_X_kn.segment(i*INPUT_VECTOR_SIZE,2));
-                bToInterp.push_back(_X_kn.segment(i*INPUT_VECTOR_SIZE + 2,2));
-            }
-            std::vector<double> intTime;       // Result of interpolation for time
-            std::vector<Eigen::Vector2d> intA; // Result of interpolation for a
-            std::vector<Eigen::Vector2d> intB; // Result of interpolation for b
-            double dt = (double) this->_period/1000;
-            linearInterpolation(timeToInterp, aToInterp, dt, intTime, intA);
-            linearInterpolation(timeToInterp, bToInterp, dt, intTime, intB);
-            // Now that we have interpolated a and b, we can compute the corresponding interpolated CoP
-            //...
-        }
-        _k++;
-        //FIXME: Remember to remove this when using state feedback
-        if (_k==7)
+       
+       if (!_testType.compare("steppingTest")) {
+           this->steppingTest();
+       }
+       
+       if (!_testType.compare("singleStepTest")) {
+           performSingleStepTest();
+       }
+       
+       if (!_testType.compare("miqp")) {
+           performMIQPTest();
+       }
+       
+       if (!_testType.compare("")) {
+            OCRA_ERROR("You want to perform a zmp test, but zmpPreview was not found as value for the option 'test'. Please try again... ");
             this->askToStop();
+       } 
     }
+}
+
+void WalkingClient::performMIQPTest() {
+    if ( queryMIQPSolution(_miqpParams.dtThread, _miqpParams.dt, this->getExpectedPeriod(), _X_kn, _t_kn) ) {
+        // If a new solution was retrieved from the MIQP
+        OCRA_ERROR("A new solution was retrieved after " << _k << " samples of walking-client and it was: \n ");
+        int Nw = (int) _X_kn.size()/INPUT_VECTOR_SIZE;
+        for (unsigned int i = 0; i < Nw; i++) {
+            std::cout << _X_kn.segment(i*INPUT_VECTOR_SIZE, INPUT_VECTOR_SIZE).transpose() << std::endl;
+        }
+        std::cout << "Time vector is: \n" << _t_kn.transpose() << std::endl;
+        // INTERPOLATION TO GENERATE CoP and CoM velocity reference
+        // First create vector of doubles with the times to interpolate
+        std::vector<double> timeToInterp;
+        for (unsigned int i = 0; i < _t_kn.size(); i++) {
+            timeToInterp.push_back(_t_kn(i)/1000);
+        }
+        // Then create vector of points to interpolate a and b
+        std::vector<Eigen::Vector2d> aToInterp;
+        std::vector<Eigen::Vector2d> bToInterp;
+        int samples = (int) _X_kn.size()/INPUT_VECTOR_SIZE;
+        for (unsigned int i = 0; i < samples; i++) {
+            aToInterp.push_back(_X_kn.segment(i*INPUT_VECTOR_SIZE,2));
+            bToInterp.push_back(_X_kn.segment(i*INPUT_VECTOR_SIZE + 2,2));
+        }
+        std::vector<double> intTime;       // Result of interpolation for time
+        std::vector<Eigen::Vector2d> intA; // Result of interpolation for a
+        std::vector<Eigen::Vector2d> intB; // Result of interpolation for b
+        double dt = (double) this->_period/1000;
+        linearInterpolation(timeToInterp, aToInterp, dt, intTime, intA);
+        linearInterpolation(timeToInterp, bToInterp, dt, intTime, intB);
+        // Now that we have interpolated a and b, we can compute the corresponding interpolated CoP
+        //...
+    }
+    _k++;
+    //FIXME: Remember to remove this when using state feedback
+    if (_k==7)
+        this->askToStop();
 }
 
 bool WalkingClient::queryMIQPSolution(const int miqpPeriod, const int miqpPreviewPeriod, const int clientPeriod, Eigen::VectorXd &preview, Eigen::VectorXd &timeVector) {
@@ -467,7 +471,7 @@ std::vector<Eigen::Vector2d> WalkingClient::generateZMPSteppingTrajectory()
     Eigen::VectorXd zmpWaypointDurations = Eigen::VectorXd::Zero(zmpWaypoints.cols()-1);
     double singleSupportDuration = _steppingTestParams.stepDuration;
     double doubleSupportDuration = _steppingTestParams.stepDuration/2.0;
-    double startShiftDuration = doubleSupportDuration/2.0;
+    double startShiftDuration = doubleSupportDuration;
 
     zmpWaypointDurations(0) = singleSupportDuration;
     zmpWaypointDurations(1) = startShiftDuration;
@@ -714,6 +718,7 @@ void WalkingClient::performZMPPreviewTestIntCoM(ZmpTestType type)
         OCRA_ERROR("Trajectory finished");
         Eigen::VectorXd zeroAcc = Eigen::VectorXd::Zero(6);
         zeroAcc.topRows<2>() = inthkk;
+        zeroAcc.segment<2>(2) << 0.0001, 0.0001;
         prepareAndsetDesiredCoMTaskState(zeroAcc,true);
         this->askToStop();
     }   
@@ -812,7 +817,7 @@ void WalkingClient::performSingleStepTest() {
 
 void WalkingClient::steppingTest() {
     static double steppingTestStartTime = yarp::os::Time::now();
-    static double initialZmpMoveTime = _steppingTestParams.stepDuration * 1.5;
+    static double initialZmpMoveTime = _steppingTestParams.stepDuration + (_steppingTestParams.stepDuration/2);
     static double tnow = yarp::os::Time::now() - steppingTestStartTime;
 
     static int el = 0;
@@ -860,8 +865,12 @@ void WalkingClient::steppingTest() {
     Eigen::Vector3d currentComPos;
     currentComPos = _comTask->getTaskState().getPosition().getTranslation();
 
+    int stepTrigger = 0;
+    static double error = 0;
     if ((yarp::os::Time::now()-steppingTestStartTime)>=initialZmpMoveTime) {
-        startSteppinMotherFucker();
+        startSteppinMotherFucker(stepTrigger, error);
+//         OCRA_WARNING("Foot Traj Error called with: " << _stepOrder[_currentStepIndex]);
+//         _stepController->getFootTrajError(_stepOrder[_currentStepIndex], error);    
     }
 
 
@@ -878,15 +887,16 @@ void WalkingClient::steppingTest() {
     // Write to file for plotting
     //TODO: Watch out! if the thread doesn't respect the desired period, then your plots will look horizontally scaled!
     tnow = tnow + this->getEstPeriod()/1000;
-    std::string homeDir = std::string(_homeDataDir + "/zmpPreviewController/");
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, intddhkk).finished(), std::string(homeDir + "refComLinAcc.txt") ,true);
-    ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentAcceleration).finished(), std::string(homeDir + "currentComLinAcc.txt"),true);
+    std::string homeDir = std::string(_homeDataDir + "/steppingTests/");
+//     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, intddhkk).finished(), std::string(homeDir + "refComLinAcc.txt") ,true);
+    ocra::utils::writeInFile((Eigen::VectorXd(2) << tnow, error).finished(), std::string(homeDir + "feetError.txt"), true);
+    ocra::utils::writeInFile((Eigen::VectorXd(2) << tnow, stepTrigger).finished(), std::string(homeDir + "stepTrigger.txt"),true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, inthkk).finished(), std::string(homeDir + "intComPositionRef.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(4) << tnow, currentComPos).finished(), std::string(homeDir + "currentComPos.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, _globalZMP).finished(), std::string(homeDir + "currentZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, pk).finished(), std::string(homeDir + "previewedZMP.txt"), true);
     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, zmpReference).finished(), std::string(homeDir + "referenceZMP.txt"), true);
-    ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
+//     ocra::utils::writeInFile((Eigen::VectorXd(3) << tnow, optimalU.topRows(2)).finished(), std::string(homeDir + "optimalInput.txt"), true);
 
     //TODO: This way of finishing the test is not good. For some reason when the thread is asked to stop, the trajectories go to zero and the robot still tries to track them. Stpping the module with ctrl + c interruption is best.
     if ( el < _steppingTrajectory.size() )
@@ -896,16 +906,18 @@ void WalkingClient::steppingTest() {
 
 }
 
-void WalkingClient::startSteppinMotherFucker()
+void WalkingClient::startSteppinMotherFucker(int &stepTrigger, double &error)
 {
     if (!_currentlyStepping) {
         if(_currentStepIndex<_stepOrder.size()){
-            std::cout << "Step started." << std::endl;
+            OCRA_WARNING("Step Started");
             auto foot = _stepOrder[_currentStepIndex];
             auto target = _stepTargets.col(_currentStepIndex);
             double stepDuration = _stepTargetDurations(_currentStepIndex);
             _stepController->step(foot, target, stepDuration, _steppingTestParams.stepHeight);
+            stepTrigger = 1;
             _currentlyStepping = true;
+            _stepController->getFootTrajError(_stepOrder[_currentStepIndex], error);
         }
     } else {
         if (_waitBeforeNextStep) {
@@ -915,6 +927,7 @@ void WalkingClient::startSteppinMotherFucker()
                 } else {
                     this->changeFixedLink("l_sole", true, false);
                 }
+                _stepController->getFootTrajError(_stepOrder[_currentStepIndex], error);
                 _waitBeforeNextStep = false;
                 _currentlyStepping = false;
                 ++_currentStepIndex;
@@ -924,6 +937,8 @@ void WalkingClient::startSteppinMotherFucker()
                 std::cout << "Step finished. Waiting for ZMP." << std::endl;
                 _waitBeforeNextStep = true;
                 _waitTimeStart = yarp::os::Time::now();
+                stepTrigger = -1;
+                _stepController->getFootTrajError(_stepOrder[_currentStepIndex], error);
             }
         }
     }
@@ -1061,11 +1076,8 @@ void WalkingClient::findMIQPParams(yarp::os::ResourceFinder &rf) {
     if (!rf.check("MIQP_CONTROLLER_PARAMS")) {
         OCRA_ERROR("No parameters have been specified for the MIQP controller");
     } else {
-        OCRA_ERROR("rf " << rf.toString());
         yarp::os::Property miqpParamsGroup;
-        OCRA_ERROR("rf to string: "<< rf.findGroup("MIQP_CONTROLLER_PARAMS").tail().toString());
         miqpParamsGroup.fromString(rf.findGroup("MIQP_CONTROLLER_PARAMS").tail().toString());
-        OCRA_ERROR("rf group params from string: " << miqpParamsGroup.toString());
         _miqpParams.cz = this->model->getCoMPosition().operator()(2);
         _miqpParams.dCoMxRef = miqpParamsGroup.find("dCoMxRef").asDouble();
         _miqpParams.dCoMyRef = miqpParamsGroup.find("dCoMyRef").asDouble();

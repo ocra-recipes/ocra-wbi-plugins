@@ -64,7 +64,9 @@ public:
      *  @param foot LEFT_FOOT or RIGHT_FOOT (whichever is stepping currently)
      */
     bool isStepFinished(FOOT foot);
-
+    
+    double getFootTrajError(FOOT foot, double &error);
+    
     /**
      *  Retrieves the 3D position of the "l_sole" frame from the iCub model.
      *

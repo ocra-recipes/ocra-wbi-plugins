@@ -46,8 +46,8 @@ bool StepController::initialize() {
     _RightFootContact_FrontRight = std::make_shared<ocra_recipes::TaskConnection>("RightFootContact_FrontRight");
     _contactsCollection.push_back(_RightFootContact_FrontRight);
 
-    _leftFoot_TrajThread->setGoalErrorThreshold(0.01);
-    _rightFoot_TrajThread->setGoalErrorThreshold(0.01);
+    _leftFoot_TrajThread->setGoalErrorThreshold(0.005);
+    _rightFoot_TrajThread->setGoalErrorThreshold(0.005);
     OCRA_INFO("StepController finished initialization");
     return true;
 }
@@ -152,7 +152,7 @@ void StepController::step(FOOT foot, Eigen::Vector3d target, double stepDuration
 
     // Pass only the midpoint and the target point. The current position should be included by default.
     this->computeMidPoint(foot, target, stepHeight, midPoint);
-    OCRA_INFO("Midpoint: " << midPoint.transpose());
+//     OCRA_INFO("Midpoint: " << midPoint.transpose());
     OCRA_INFO("Target: " << target.transpose());
     wayPoints.col(0) = midPoint;
     wayPoints.col(1) = target;
@@ -174,6 +174,8 @@ void StepController::step(FOOT foot, Eigen::Vector3d target, double stepDuration
         default:
             break;
     }
+    
+    _leftFoot_TrajThread->getTrajectory();
 
 }
 
@@ -233,6 +235,23 @@ bool StepController::isStepFinished(FOOT foot) {
 
     return stepFinished;
 }
+
+double StepController::getFootTrajError(FOOT foot, double &error) {
+    switch (foot) {
+        case LEFT_FOOT:
+        {
+            error = this->_leftFoot_TrajThread->getDiffError();
+        }break;
+        case RIGHT_FOOT:
+        {
+            error = this->_rightFoot_TrajThread->getDiffError();
+        }break;
+        default:
+            break;
+    }
+    return error;
+}
+
 
 Eigen::Vector3d StepController::getLeftFootPosition()
 {

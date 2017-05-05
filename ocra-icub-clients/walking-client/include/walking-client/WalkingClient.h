@@ -142,6 +142,8 @@ public:
     void performZMPPreviewTest(ZmpTestType type);
     
     void performZMPPreviewTestIntCoM(ZmpTestType type);
+    
+    void performMIQPTest();
 
     void performSingleStepTest();
 
@@ -205,7 +207,7 @@ public:
     /**
      Manages the step switching for the STEPPING_TEST.
     */
-    void startSteppinMotherFucker();
+    void startSteppinMotherFucker(int &stepTrigger, double &error);
 
     /**
      Prepares an object of type ocra::TaskState with the com state passed to this method and when doSet is true, applies the control to the robot.
