@@ -40,6 +40,9 @@
 #include <yarp/os/ConnectionReader.h>
 #include <yarp/os/Time.h>
 
+#include <yarp/os/RpcClient.h>
+#include <yarp/os/Network.h>
+
 #include <sstream>
 #include <string>
 
@@ -204,6 +207,10 @@ private:
     Eigen::Displacementd l_foot_disp_inverse; /*!< For gazebo visualization. You can't get the l_sole pose directly in gazebo, but you can get the l_foot, so since all poses from ocra::Model are calculated in the l_sole then we need to go from l_sole to l_foot.*/
 
     iDynTree::SimpleLeggedOdometry odometry; /*!< Odometry object */
+
+
+    yarp::os::RpcClient gazeboYarpClockRpc;
+    yarp::os::Network yarp;
 };
 
 

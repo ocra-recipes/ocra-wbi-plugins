@@ -88,7 +88,7 @@ std::ostream& operator<<(std::ostream &out, const OcraControllerOptions& opts)
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Thread::Thread(OcraControllerOptions& controller_options, std::shared_ptr<wbi::wholeBodyInterface> wbi)
-: RateThread(controller_options.threadPeriod)
+: RateThread(1)//controller_options.threadPeriod)
 , ctrlOptions(controller_options)
 , controllerStatus(ocra_icub::CONTROLLER_SERVER_STOPPED)
 {
@@ -182,6 +182,22 @@ bool Thread::threadInit()
     l_foot_disp_inverse = model->getSegmentPosition("l_foot").inverse();
 
     controllerStatus = ocra_icub::CONTROLLER_SERVER_RUNNING;
+
+
+
+
+
+    std::string clockRpcClientName("/ControllerServer/clock/rpc:o");
+    gazeboYarpClockRpc.open(clockRpcClientName);
+    yarp.connect(clockRpcClientName, "/clock/rpc");
+
+
+
+
+
+
+
+
     if(ctrlOptions.runInDebugMode || ctrlOptions.noOutputMode) {
         debugJointIndex = 0;
         debuggingAllJoints = false;
@@ -251,6 +267,9 @@ bool Thread::threadInit()
 
 void Thread::run()
 {
+    yarp::os::Bottle msg, reply;
+    msg.addString("pauseSimulation");
+    gazeboYarpClockRpc.write(msg, reply);
     // Eigen::VectorXd externalWrench(6);
     // yarpWbi->getEstimates(wbi::ESTIMATE_JOINT_POS, externalWrench.data());
     // std::cout << "externalWrench:\n" << externalWrench.transpose() << std::endl;
@@ -274,6 +293,13 @@ void Thread::run()
             yarpWbi->setControlMode(wbi::CTRL_MODE_TORQUE, 0, ALL_JOINTS);
         }
     }
+
+    // yarp::os::Bottle msg, reply;
+    msg.clear();
+    reply.clear();
+    msg.addString("stepSimulation");
+    msg.addInt(2);
+    gazeboYarpClockRpc.write(msg, reply);
 }
 
 void Thread::threadRelease()
