@@ -1,4 +1,6 @@
 # ocra-wbi-plugins
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1118370.svg)](https://doi.org/10.5281/zenodo.1118370)
+
 Controller implementations and plugins for communicating between the whole body controller libraries developed at ISIR, [`ocra-recipes`](https://github.com/ocra-recipes/ocra-recipes), and the iCub Whole Body Interface, [`WBI`](https://github.com/robotology/wholebodyinterface), libraries.
 
 #### Build Status
